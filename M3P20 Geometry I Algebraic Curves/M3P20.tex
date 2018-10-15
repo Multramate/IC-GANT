@@ -1,0 +1,430 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[UKenglish]{babel}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{csquotes}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\val}[1]{\left. #1 \right\rvert}
+\newcommand{\rb}[1]{\left( #1 \right)}
+\renewcommand{\sb}[1]{\left[ #1 \right]}
+\newcommand{\cb}[1]{\left\{ #1 \right\}}
+\newcommand{\ab}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
+\theoremstyle{definition}\newtheorem{example}[definition]{Example}
+\theoremstyle{definition}\newtheorem*{exercise}{Exercise}
+\theoremstyle{definition}\newtheorem*{fact}{Fact}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\pagestyle{fancy}
+\lhead{M3P20 Geometry I: Algebraic Curves}
+\rhead{Autumn 2018}
+
+\title{M3P20 Geometry I: Algebraic Curves}
+\author{Lectured by Dr Mattia Talpo \\ Typeset by David Kurniadi Angdinata}
+\date{Autumn 2018}
+
+\begin{document}
+
+\maketitle
+
+\vfill
+
+\tableofcontents
+
+\pagebreak
+
+\marginpar{Lecture 1 \\ Monday \\ 08/10/18}
+
+\section{Introduction}
+
+This course is intended as a first course in algebraic geometry, the area of mathematics that studies spaces defined by polynomial equations using algebra. It will focus on one dimensional algebraic varieties. The reference books for the course are:
+
+\begin{enumerate}
+\item F Kirwan, Complex algebraic curves, 1992
+\item W Fulton, Algebraic curves: an introduction to algebraic geometry, 1969
+\end{enumerate}
+
+Geometry is the study of shapes in suitable spaces, such as sets of points on the real line $ \R $, lines and circles in $ \R^2 $, spheres in higher dimensional Euclidean spaces $ \R^n $, etc. One way to think about shapes is to see them as the locus of zeroes defined by
+$$ \cb{\rb{x_1, \dots, x_n} \in \R^n \mid f\rb{x_1, \dots, x_n} = 0} \qquad \iff \qquad \cb{f\rb{x_1, \dots, x_n} = 0} \subset \R^n $$
+for some suitable function $ f $.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Circles $ \cb{f_1\rb{x, y} = x^2 + y^2 - R^2 = 0} $ in $ \R^2 $ for some $ R \in \R $.
+\item The unit square with vertices at $ \cb{\rb{\pm 1, 0}, \rb{0, \pm 1}} $ in $ \R^2 $ defined by $ \cb{f_2\rb{x, y} = \abs{x} + \abs{y} - 1 = 0} $.
+\item Spheres $ \cb{f_3\rb{x_1, \dots, x_n} = x_1^2 + \dots + x_n^2 - R^2} $ in $ \R^n $ for some $ R \in \R $.
+\end{enumerate}
+\end{example}
+
+\begin{remark}
+Every subset $ S \subseteq \R^n $ is the zero-set of some function. We can define $ \chi_S\rb{x} = 1 $ if $ x \notin S $, $ \chi_S\rb{x} = 0 $ if $ x \in S $.
+\end{remark}
+
+The class of functions used to defined our shapes has great consequences on their geometry. For the circle, $ f_1 $ is a polynomial so that it is differentiable and also $ C^\infty $. For the square, $ f $ is continuous but not differentiable at $ \cb{\rb{0, \pm 1}, \rb{\pm 1, 0}} $, the vertices of the square. The function $ \chi_S $ is not even continuous, unless $ S $ is empty, or the whole $ \R^n $. As these examples illustrate, an underlying principle is the following equivalence.
+
+\begin{fact}
+Regularity properties of $ f $ are regularity properties of $ \cb{f = 0} $.
+\end{fact}
+
+Such shapes are called \textbf{algebraic varieties}. Their geometric properties are intimately related to the algebraic properties of the defining polynomial equations.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ f\rb{x} $ be a polynomial. Then the zero set of $ f\rb{x} $, $ \cb{f\rb{x} = 0} \subseteq \R $ is a finite set of points in $ \R $, and every finite set of points arises in this manner.
+\item The circle is an algebraic variety.
+\item Spheres in higher dimensions are algebraic varieties.
+\end{enumerate}
+\end{example}
+
+\begin{exercise}
+\hfill
+\begin{enumerate}
+\item Is $ \Z \subseteq \R $ an algebraic variety?
+\item Is the unit square an algebraic variety?
+\end{enumerate}
+\end{exercise}
+
+\begin{definition}
+Let $ K $ be a field, such as $ K = \Q, \R, \C $. For $ \alpha = \rb{\alpha_1, \dots, \alpha_n} \in \N^n $ a multi-index, denote by $ \abs{\alpha} = \sum_{i = 1}^n \alpha_i $ and by $ x^\alpha = x_1^{\alpha_1} \dots x_n^{\alpha_n} $, a \textbf{monomial}. A \textbf{polynomial of degree $ d $} in $ n $ variables with coefficients in $ K $ is a finite sum.
+$$ P\rb{x_1, \dots, x_n} = \sum_{\alpha \in \N^n} a_\alpha x^\alpha, $$
+where $ a_\alpha \in K $, $ a_\alpha = 0 $ for all $ \abs{\alpha} > d $ and $ a_\alpha \ne 0 $ for some $ \alpha $ with $ \abs{\alpha} = d $. The set of polynomials of arbitrary degree in $ n $ variables with coefficients in $ K $ is denoted $ K\sb{x_1, \dots, x_n} $.
+\end{definition}
+
+\begin{example}
+Let $ n = 3 $. $ P\rb{x_1, x_2, x_3} = 3 + x_1^2x_2 + x_3^{10} $ for $ \alpha = \rb{2, 1, 0} $ and $ \alpha = \rb{0, 0, 10} $ has degree ten.
+\end{example}
+
+\begin{exercise}
+\hfill
+\begin{enumerate}
+\item Show that $ K\sb{x_1, \dots, x_n} $ is a ring, and that if $ P, Q $ are polynomials of degrees $ p, q $ respectively, then the degree of $ \lambda P + \mu Q $ for $ \lambda, \mu \in K $ is at most $ \max\cb{p, q} $. Give an example of polynomials $ P, Q \in K\sb{x} $ such that $ \deg\rb{P + Q} < \max\cb{\deg\rb{P}, \deg\rb{Q}} $.
+\item Show that $ \rb{P \cdot Q}\rb{x_1, \dots, x_n} = P\rb{x_1, \dots, x_n}Q\rb{x_1, \dots, x_n} $ is a polynomial $ P \cdot Q \in K\sb{x_1, \dots, x_n} $ with $ \deg\rb{P \cdot Q} = \deg\rb{P} + \deg\rb{Q} $. What if $ P = 0 $? What is $ \deg\rb{0} $?
+\end{enumerate}
+\end{exercise}
+
+\begin{definition}
+An \textbf{affine plane curve} defined over $ K $ is
+$$ C = \cb{\rb{x, y} \in K^2 \mid P\rb{x, y} = 0} \subset K^2, $$
+where $ P = K\sb{x, y} $. More generally, an \textbf{algebraic variety} $ V \subset K^n $ is a subset of $ K^n $ defined as the locus
+$$ \cb{f_1 = \dots = f_k = 0} \subset K^n, $$
+where $ f_1, \dots, f_k \in K\sb{x_1, \dots, x_n} $ are polynomials in $ n $ variables with coefficients in $ K $.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ a, b, c \in \R $ with $ \rb{a, b} \ne \rb{0, 0} $, and let
+$$ f\rb{x, y} = ax + by + c. $$
+Then $ \cb{\rb{x, y} \in \R^2 \mid f\rb{x, y} = 0} $ is a line.
+\item Let $ a, b \in \R^* = \R \setminus \cb{0} $ and
+$$ f\rb{x, y} = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - 1. $$
+The curve $ \cb{\rb{x, y} \in \R^2 \mid f\rb{x, y} = 0} $ is an ellipse.
+\item Let $ a, b \in \R^* $ and
+$$ g\rb{x, y} = \dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} - 1. $$
+The curve $ \cb{\rb{x, y} \in \R^2 \mid g\rb{x, y} = 0} $ is a hyperbola.
+\item Spheres, quadrics such as ellipsoids, paraboloids, and hyperboloids in $ \R^3 $ are all defined via a single polynomial equation of degree two. A line in $ \R^3 $ can be defined by two equations in degree one.
+\end{enumerate}
+\end{example}
+
+The first property of algebraic curves is the following.
+
+\begin{lemma}
+\label{lem:1.7}
+The union of two affine plane curves is again an affine plane curve.
+\end{lemma}
+
+\begin{proof}
+Let $ f_1, f_2 \in K\sb{x, y} $ and let $ C_1 = \cb{f_1 = 0} $ and $ C_2 = \cb{f_2 = 0} $. Then $ f_1 \cdot f_2 \in K\sb{x, y} $ is a polynomial and
+$$ C_1 \cup C_2 = \cb{f_1 \cdot f_2 = 0}, $$
+so that $ C_1 \cup C_2 $ is an affine plane curve.
+\end{proof}
+
+\begin{exercise}
+Write down an equation for the plane curve that is the union of the lines through any two vertices of the unit square.
+\end{exercise}
+
+Recall the following.
+
+\begin{definition}
+A polynomial $ P \in K\sb{x_1, \dots, x_n} $ is \textbf{reducible} over $ K $ if there are non-constant polynomials $ Q, R \in K\sb{x_1, \dots, x_n} $, so $ \deg\rb{Q}, \deg\rb{R} > 0 $, such that $ P = Q \cdot R $. A polynomial $ P $ is \textbf{irreducible} if it is not reducible.
+\end{definition}
+
+\begin{example}
+$ x_1x_2 $ is reducible, $ x_1 + x_2 $ is irreducible.
+\end{example}
+
+\begin{fact}
+Recall also that every polynomial $ P \in K\sb{x_1, \dots, x_n} $ can be written as a product of irreducible factors $ P = f_1 \dots f_k $ in an essentially unique way up to multiplication by constants. We have
+$$ \cb{P = 0} = \cb{f_1 = 0} \cup \dots \cup \cb{f_k = 0} \subseteq K^n, $$ so in particular every algebraic curve is a union of algebraic curves defined by irreducible polynomials.
+\end{fact}
+
+In the course, we will consider questions such as:
+
+\begin{enumerate}
+\item When do polynomials $ f, g \in K\sb{x, y} $ define the same affine plane curve?
+\item What can be said about the intersection $ \cb{f = 0} \cap \cb{g = 0} \subset K^2 $?
+\end{enumerate}
+
+Very different questions can be approached through algebraic curves. For example, we can study integer solutions to some Diophantine equations.
+
+\begin{example}
+The unit circle is the curve
+$$ C = \cb{x^2 + y^2 = 1} \subset \R^2. $$
+Several parametrisations are known, such as
+$$ t \in [0, 2\pi) \mapsto \rb{\cos t, \sin t} \in \R^2. $$
+We can write down another parametrisation of $ C $ by considering lines through the point $ P = \rb{-1, 0} $ using a stereographic projection. A line through $ P $ with slope $ t \in \R $ has equation
+$$ L_t = \cb{y = t\rb{x + 1}} \subset \R^2 $$
+and meets $ C $ in two points, $ P $ and $ P_t = \rb{x\rb{t}, y\rb{t}} $. We can determine the coordinate of $ P_t $ by solving the system
+$$ L_t \cap C = \begin{cases} y = t\rb{x + 1} \\ x^2 + y^2 = 1 \end{cases}. $$
+Replacing the value of $ y $ given by the first equation into the second yields two solutions for $ x\rb{t} $. The first one is $ x = -1 $ and corresponds to the point $ P = \rb{-1, 0} $. The second is $ \rb{x\rb{t}, y\rb{t}} $, where
+$$ x\rb{t} = \dfrac{1 - t^2}{1 + t^2}, \qquad y\rb{t} = \dfrac{2t}{1 + t^2}. $$
+Note that when $ t \to \infty $, $ \rb{x\rb{t}, y\rb{t}} \to \rb{-1, 0} $, so that $ t \mapsto \rb{x\rb{t}, y\rb{t}} $ is a parametrisation of $ C $ that identifies it with $ \R \cup \cb{\infty} $. The advantage of this parametrisation is that it is given by rational functions, that is $ x\rb{t} $ and $ y\rb{t} $ are of the form
+$$ t \mapsto \dfrac{p\rb{t}}{q\rb{t}}, $$
+where $ p, q $ are polynomials. One can use this parametrisation to get the general solution of the equation
+\begin{equation}
+\label{eq:1}
+x^2 + y^2 = z^2
+\end{equation}
+for $ x, y, z \in \Z $ coprime. If $ t = p / q \in \Q $, where $ p, q \in \Z $ are coprime, then $ x\rb{t}, y\rb{t} \in \Q $ becomes
+$$ x\rb{t} = \dfrac{p^2 - q^2}{p^2 + q^2}, \qquad y\rb{t} = \dfrac{2pq}{p + q^2}. $$
+If $ x = p^2 - q^2 $, $ y = 2pq $, and $ z = p^2 + q^2 $, $ x, y, z \in \Z $ satisfy $ \rb{\ref{eq:1}} $. They are coprime precisely when $ p, q $ are coprime and not both odd. When $ p, q $ are coprime and both odd, then
+$$ x = \dfrac{p^2 - q^2}{2}, \qquad y = pq, \qquad \dfrac{p^2 + q^2}{2} $$
+satisfy $ \rb{\ref{eq:1}} $. Conversely, this is the general form of solutions in $ \rb{\ref{eq:1}} $. Indeed, given $ x, y, z \in \Z $ coprime that satisfy $ \rb{\ref{eq:1}} $, $ z \ne 0 $ and
+$$ \dfrac{x^2}{z^2} + \dfrac{y^2}{z^2} = 1, $$
+so that $ \rb{x / z, y / z} \in \C $ and if $ \rb{x, y, z} \ne \rb{-1, 0, 1} $, there is $ t \in \R $ such that $ \rb{x / z, y / z} = \rb{x\rb{t}, y\rb{t}} $. But then since $ x / z, y / z \in \Q $, we can take $ t \in \Q $ and $ x, y, z $ have the form above.
+\end{example}
+
+\marginpar{Lecture 2 \\ Thursday \\ 11/10/18}
+
+\begin{definition}
+Let $ f \in \R\sb{x, y} $ and let $ C = \cb{f = 0} $. A \textbf{rational point} of $ C $ is a point $ \rb{x, y} \in C $, that is $ f\rb{x, y} = 0 $, such that $ x, y \in \Q $.
+\end{definition}
+
+\begin{example}
+There are infinitely many rational points on the circle $ \cb{x^2 + y^2 = 1} \subseteq \R^2 $, which can be described explicitly, and can be used to solve $ a^2 + b^2 = c^2 $ for $ a, b, c \in \Z $, a problem in number theory. Now take $ n \ge 3 $ and consider
+$$ C = \cb{x^n + y^n - 1 = 0}. $$
+What are the rational points of $ C $? Write
+$$ x = \dfrac{a}{c}, \qquad y = \dfrac{b}{c}, \qquad a, b, c \in \Z, \qquad c \ne 0. $$
+Then
+$$ \rb{x, y} \in C \qquad \iff \qquad a^n + b^n = c^n. $$
+Fermat's Last Theorem by Wiles then states that there exists no solution with $ a, b \ne 0 $.
+\end{example}
+
+\section{Complex plane curves}
+
+Let $ P \in \R\sb{x, y} $ be a polynomial with coefficients in $ \R $. A priori, it is natural to study the real plane curve $ C_\R = \cb{\rb{x, y} \in \R^2 \mid P\rb{x, y} = 0} $. However, $ P $ can also been seen as a polynomial with coefficients in $ \C $, and it will often be simpler to study the complex plane curve $ C_\C = \cb{\rb{x, y} \in \C^2 \mid P\rb{x, y} = 0} $. We first explain some of the properties of algebraic curves that we would like to hold and explain why these properties do not necessarily hold for real plane curves and some unpleasant things happen.
+
+\begin{fact}
+Many real curves are so degenerate that they do not even have points, that is $ C_\R = \emptyset $. If $ C_\R \ne \emptyset $, the dimension of $ C_\R $ is difficult to determine.
+\end{fact}
+
+\begin{example}
+\label{eg:2.1}
+Let $ t \in \R $ and consider $ f_t\rb{x, y} = x^2 + y^2 - t $ and the real plane curve $ C_t = \cb{f_t\rb{x, y} = 0} \subseteq \R^2 $. If $ t > 0 $, $ C_t $ is a circle with radius $ \sqrt{t} $, if $ t = 0 $, has $ C_0 = \cb{\rb{0, 0}} $, and if $ t < 0 $, $ C_t = \emptyset $.
+\end{example}
+
+\begin{fact}
+In general, it is not clear when two polynomials $ f, g \in \R\sb{x, y} $ define the same real plane curve, that is when
+$$ \cb{\rb{x, y} \in \R^2 \mid f\rb{x, y} = 0} = \cb{\rb{x, y} \in \R^2 \mid g\rb{x, y} = 0}. $$
+\end{fact}
+
+\begin{example}
+Let $ f, g $ denote the polynomials
+$$ f\rb{x, y} = x^2y + y^2 + x^3 + x, \qquad g\rb{x, y} = x^2 + 2xy + y^2. $$
+Then, since $ f\rb{x, y} = \rb{x + 1} \cdot \rb{x^2 + 1} $ and $ g\rb{x, y} = \rb{x + y}^2 $,
+$$ \cb{\rb{x, y} \in \R^2 \mid f\rb{x, y} = 0} = \cb{\rb{x, y} \in \R^2 \mid g\rb{x, y} = 0}. $$
+\end{example}
+
+\begin{fact}
+In general, it is hard to predict when a curve intersects a fixed line, or more generally when two real curves intersect.
+\end{fact}
+
+\begin{example}
+In the notation of Example \ref{eg:2.1}, let $ C = \cb{\rb{x, y} \in \R^2 \mid x^2 + y^2 - 1} \subset R^2 $ be the unit circle. Consider the line $ \cb{ax + by + c = 0} $ for $ \rb{a, b} \ne \rb{0, 0} $. Then, depending on $ \rb{a, b, c} \in \R^3 $, $ L \cap C $ consists of two points, one point, or is empty.
+\end{example}
+
+Most of these difficulties disappear when working with curves $ C_\C \subset \C^2 $, essentially because $ \C $ is algebraically closed, in other words the following theorem holds.
+
+\begin{theorem}[Fundamental theorem of algebra]
+\label{thm:2.4}
+Let $ P \in \C\sb{x} $ be a non-constant polynomial. Then $ P $ has at least one complex root, that is there exists $ \alpha \in \C $ such that $ P\rb{\alpha} = 0 $.
+\end{theorem}
+
+A consequence of the fundamental theorem of algebra is that if $ P \in \C\sb{x, y} $ is non-constant, then $ C = \cb{P = 0} $ has infinitely many points. Assume without loss of generality that the polynomials in one variable $ P\rb{\cdot, y} $ and $ P\rb{x, \cdot} $ are not constant. This means that if
+$$ P\rb{x, y} = \sum_{\rb{r, s} \in \N^2} c_{r, s}x^ry^s, $$
+there exist $ \rb{r, s} $ and $ \rb{r', s'} $ in $ \N^2 $, which may be equal, such that $ r \ne 0 $ and $ s' \ne 0 $, and $ c_{r, s} \ne 0 $ and $ c_{r', s'} \ne 0 $. When $ y_0 \ne 0 $ the polynomial $ P\rb{x, y_0} \in \C\sb{x} $ is non-constant and by Theorem \ref{thm:2.4}, there exists $ x_0 \in \C $ such that $ P\rb{x_0, y_0} = 0 $. In fact, for most choices of $ y_0 \ne y_0' $, the polynomials $ P\rb{\cdot, y_0} $ and $ P\rb{\cdot, y_0'} $ are different, and have some distinct roots. It follows that $ \cb{P = 0} $ contains infinitely many points.
+
+\begin{example}
+Let $ a, b, c \in \C $ with $ \rb{a, b} \ne \rb{0, 0} $, and let $ f\rb{x, y} = ax + by + c $. If $ a \ne 0 $, for each $ y \in \C $, there is precisely one solution of $ f\rb{x, y} = 0 $, namely
+$$ x = -\dfrac{b}{a}y - \dfrac{c}{a}. $$
+Thus $ \C^2 \supset \cb{f = 0} = C \to \C \cong \R^2 $ is an isomorphism. We will call $ C $ a \textbf{complex line}.
+\end{example}
+
+\begin{remark}
+It is difficult to draw complex curves. Our intuition is for real vector spaces, and this makes complex curves hard to visualise. They are objects of real dimension two in $ \C^2 \cong \R^4 $, a four-dimensional real vector space.
+\end{remark}
+
+\begin{example}
+Let $ f\rb{x, y} = x^2 + y^2 $. Then $ f\rb{x, y} = \rb{x + iy} \cdot \rb{x - iy} $ and, as in Lemma \ref{lem:1.7}, $ C = \cb{f = 0} \subset \C^2 $ is the union of the two complex lines $ \cb{x + iy = 0} $ and $ \cb{x - iy = 0} $. When seen as $ \R $-vector spaces, these two planes meet at exactly one point corresponding to $ \rb{0, 0} \in \R^2 \subseteq \C^2 $, the only real point of $ C $. It is difficult to imagine two planes meeting in one point, because our intuition relies on three-dimensional space $ \R^3 $, while $ \C^2 = \R^4 $.
+\end{example}
+
+Describing intersections is also easier.
+
+\begin{example}
+Consider $ C = \cb{x^2 + y^2 - 1 = 0} \subseteq \C^2 $ and $ L = \cb{ax + by + c = 0} \subseteq \C^2 $. If $ b \ne 0 $, we determine the intersection $ C \cap L $ by solving the equation
+$$ x^2 + y^2 = 1, \qquad y = -\dfrac{a}{b}x - \dfrac{c}{b}. $$
+If $ a^2 = -b^2 $ or $ c = 0 $, there are one or two solutions. Again, it is hard to imagine a two-dimensional real surface which meets a real plane in two points.
+\end{example}
+
+We now turn to the question of recognising when two polynomials define the same plane curve. Here again, working in $ \C $ is a simplification.
+
+\begin{theorem}[Consequence of Hilbert's Nullstellensatz]
+\label{thm:2.9}
+Let $ f, g \in \C\sb{x, y} $ be two polynomials. Then
+$$ \cb{f = 0} = \cb{g = 0} $$
+if and only if there exist $ P_1, \dots, P_k \in \C\sb{x, y} $, $ a_1, \dots, a_k, b_1, \dots, b_k \in \Z_{> 0} $ and $ \lambda_1, \lambda_2 \in \C^* $ such that
+\begin{equation}
+\label{eq:2}
+f\rb{x, y} = \lambda_1 P_1^{a_1} \dots P_k^{a_k}, \qquad g\rb{x, y} = \lambda_2 P_1^{b_1} \dots P_k^{b_k}.
+\end{equation}
+\end{theorem}
+
+\marginpar{Lecture 3 \\ Friday \\ 12/10/18}
+
+\begin{proof}
+Assume that $ \rb{\ref{eq:2}} $ holds. Then by the proof of Lemma \ref{lem:1.7},
+$$ \cb{f = 0} = \cb{P_1^{a_1} = 0} \cup \dots \cup \cb{P_k^{a_k} = 0} = \cb{P_1 = 0} \cup \dots \cup \cb{P_k = 0}, $$
+because if $ \alpha \in \C $ is such that $ \alpha^n = 0 $, then $ \alpha = 0 $. The same holds for $ \cb{g = 0} $. Therefore $ \cb{f = 0} = \cb{g = 0} $. The second half of the proof needs tools of commutative algebra and is omitted.
+\end{proof}
+
+\begin{remark}
+The theorem fails over $ \R $. Let $ f\rb{x, y} = x^2 + 1 $ and $ g\rb{x, y} = 1 $. Then $ \cb{f = 0} = \cb{g = 0} = \emptyset $ but the conclusion in $ \rb{\ref{eq:2}} $ is not true.
+\end{remark}
+
+Thus, the relation between the geometric shape $ C = \cb{f = 0} $ in $ \C^2 $ and the polynomial $ f \in \C\sb{x, y} $ is more transparent than in $ \R $. We will always work in $ \C $. Let us introduce some important notions for the study of polynomials.
+
+\begin{definition}
+A polynomial $ f \in K\sb{x, y} $ has \textbf{no repeated factors} over $ K $ if it cannot be written as a product of the form
+$$ f\rb{x, y} = g\rb{x, y}^2 \cdot h\rb{x, y}, $$
+where $ g, h \in K\sb{x, y} $ and $ g $ is non-constant.
+\end{definition}
+
+\begin{exercise}
+Show that this is equivalent to
+$$ f = P_1 \cdots P_k, $$
+where $ P_1, \cdot, P_k $ are distinct irreducible polynomials.
+\end{exercise}
+
+\begin{corollary}
+Let $ f, g \in \C\sb{x, y} $ be polynomials with no repeated factors. Then $ f, g $ define the same complex plane curve
+$$ \cb{f = 0} = \cb{g = 0} $$
+if and only if there is a non-zero constant $ \lambda \in \C^* $ such that $ f = \lambda g $.
+\end{corollary}
+
+\begin{proof}
+Follows immediately from Theorem \ref{thm:2.9}.
+\end{proof}
+
+\begin{remark}
+If $ f = P_1^{a_1} \cdot P_k^{a_k} $ with $ P_i $ irreducible for all $ i $ and $ a_i \in \N $, then $ \cb{f = 0} = \cb{g = 0} $ where $ g = P_1 \cdot P_k $. We do not lose anything by only looking at $ f $ with no repeated factors.
+\end{remark}
+
+Let $ C \subseteq \C^2 $ be a complex plane curve. We have proved that, up to multiplication by $ \lambda \in \C^* $, there is a unique non-constant polynomial $ f \in \C $ with no repeated factors such that
+$$ C = \cb{f = 0}. $$
+It makes sense to define the following.
+
+\begin{definition}
+The \textbf{degree} of an affine curve $ C \subseteq \C^2 $ is the degree of any polynomial with no repeated factors $ f $ such that $ C = \cb{f = 0} $, that is
+$$ \deg\rb{C} = \deg\rb{f}. $$
+\end{definition}
+
+\begin{example}
+Lines have degree one, since they are defined by a linear polynomial. Conics have degree two. $ \cb{x^2y + y^2 + x + 1 = 0} $ has degree 3, assuming it has no repeated factors.
+\end{example}
+
+Unless mentioned otherwise, in the first few weeks, we will assume that polynomials have no repeated factors.
+
+\begin{definition}
+Let $ f_1, f_2 \in \C\sb{x, y} $ be polynomials with no repeated factors and let $ C_1 = \cb{f = 0} $ and $ C_2 = \cb{g = 0} $ be the associated complex curves. The curves $ C_1 $ and $ C_2 $ have \textbf{no common component} if there is no non-constant polynomial $ P $ that divides both $ f $ and $ g $.
+\end{definition}
+
+This is equivalent to saying that if $ f = P_1^{a_1} \dots P_k^{a_k} $ and $ g = Q_1^{b_1} \dots Q_k^{b_k} $ with $ P_i, Q_i $ irreducibles, $ P_i $ distinct distinct, and $ Q_i $ distinct, then $ \lambda P_i \ne Q_j $ for all $ i, j, \lambda \in \C^* $.
+
+\begin{exercise}
+Show that if $ C_1 $ and $ C_2 $ have no common component, then $ \deg\rb{C_1 \cup C_2} = \deg\rb{C_1} + \deg\rb{C_2} $.
+\end{exercise}
+
+\begin{exercise}
+Let $ L, L' $ be the lines
+$$ L = \cb{ax + by + c = 0} \subset \C^2, \qquad L' = \cb{a'x + b'y + c' = 0} \subset \C^2. $$
+\begin{enumerate}
+\item Show that $ L $ and $ L' $ meet at exactly one point if and only if $ ab' - a'b \ne 0 $.
+\item Show that $ L = L' $ if and only if there exists $ \lambda \in \C $ such that $ \lambda \ne 0 $ and
+$$ a' = \lambda a, \qquad b' = \lambda b, \qquad c' = \lambda c. $$
+\end{enumerate}
+\end{exercise}
+
+\begin{remark}[First aid topology]
+\hfill
+\begin{enumerate}
+\item A \textbf{topological space} is a set $ X $ with a collection of open subsets $ \cb{U_i \subset X} $ such that
+\begin{enumerate}
+\item $ \emptyset $ and $ X $ are open,
+\item any union $ \cup_{i \in I} U_i $ of open sets $ U_i $ is open, and
+\item any finite intersection $ \cap_{i = 1}^k U_i $ of open sets $ U_i $ is open.
+\end{enumerate}
+\item A \textbf{metric space} $ X $, such as $ \rb{\C^n, \abs{\abs{.}}} $, is a topological space. The open sets are given by arbitrary unions and finite intersections of the familiar open balls $ B\rb{x, \epsilon} = \cb{z \in X \mid \abs{\abs{z - x}}} < \epsilon $.
+\item A subset $ X \subset Y $ of a topological space $ Y $ inherits a topology from $ Y $. The open sets of $ X $ are the sets $ X \cap U $, where $ U \subset Y $ is an open set of $ Y $.
+\item $ X $ is \textbf{compact} if for all open covering $ X = \sum_{i \in I} $ where $ U_i $ are open, there exists a finite subcovering $ \Cup_{i_1, \dots, i_k} U_{i_j} $ for $ \cb{i_1, \dots, i_k} \subseteq I $.
+\item The \textbf{Heine-Borel theorem} states that a subset $ X $ of $ \R^n $ or of $ \C^m $ is compact if and only if $ X $ is closed, that is its complement is open, and bounded for the usual norm.
+\item A closed subset of a compact space is compact.
+\item A map $ f : X \to Y $ between topological spaces is \textbf{continuous} if and only if $ f^{-1}\rb{U} $ is open in $ X $ whenever $ U \subset Y $ is open. It follows that $ f^{-1}\rb{F} $ is closed whenever $ F \subset Y $ is closed. In particular, if $ f \in \C\sb{x_1, \dots, x_n} $ is a polynomial, $ f $ defines a map $ f : \C^n \to \C $ that is continuous, and
+$$ f^{-1}\rb{\cb{0}} = \cb{f = 0} \subset \C^n $$
+is closed because $ \cb{0} $ is a closed subset of $ \C $.
+\end{enumerate}
+\end{remark}
+
+In particular, $ \C^2 $ is a topological space with the Euclidean distance in $ \R^4 $ and the affine plane curve $ C = \cb{f = 0} \subseteq \C^2 \cong \R^4 $ inherits a topology. Open sets of $ C $ are $ U \cup C $ where $ U \subseteq \C^2 $ is open. So algebraic curves have a natural topology.
+
+\begin{lemma}
+Let $ C \subset \C^2 $ be an affine plane curve, then $ C $ is not compact.
+\end{lemma}
+
+\begin{proof}
+Since $ f $ is a continuous function $ \C^2 \to \C $, $ C = \cb{f = 0} = f^{-1}\rb{\cb{0}} $, and $ \cb{0} $ is closed in $ \C $, $ C $ is closed in $ \C^2 $. We check that $ C \subset \C^2 $ is not bounded. Assume that it is, then there is a constant $ M > 0 $ such that $ C \subset B\rb{0, M} $, where the open ball is
+$$ B\rb{0, M} = \cb{\abs{x}^2 + \abs{y}^2 < M}. $$
+Want to show that some points in $ \C $ are outside this open ball. Let $ y_0 \in \C $ be such that $ \abs{y_0} > M $ and assume we can arrange for $ g = f\rb{\cdot, y_0} $ to be a non-constant polynomial of $ x $. By the fundamental theorem of algebra, $ g $ has a root $ x_0 \in \C $ and the point $ \rb{x_0, y_0} \in C $. This is a contradiction, as $ \rb{x_0, y_0} \notin B\rb{0, M} $.
+\end{proof}
+
+\begin{exercise}
+What if $ f\rb{x, y} $ happens to be a polynomial of $ y $ alone, so that this cannot be arranged?
+\end{exercise}
+
+\end{document}
