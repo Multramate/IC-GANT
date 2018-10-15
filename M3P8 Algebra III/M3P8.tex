@@ -1,0 +1,392 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[UKenglish]{babel}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{csquotes}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\val}[1]{\left. #1 \right\rvert}
+\newcommand{\rb}[1]{\left( #1 \right)}
+\renewcommand{\sb}[1]{\left[ #1 \right]}
+\newcommand{\cb}[1]{\left\{ #1 \right\}}
+\newcommand{\ab}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
+\theoremstyle{definition}\newtheorem*{example}{Example}
+\theoremstyle{definition}\newtheorem*{note}{Note}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\pagestyle{fancy}
+\lhead{M3P8 Algebra III}
+\rhead{Autumn 2018}
+
+\title{M3P8 Algebra III}
+\author{Lectured by Dr David Helm \\ Typeset by David Kurniadi Angdinata}
+\date{Autumn 2018}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\maketitle
+
+\vfill
+
+\tableofcontents
+
+\pagebreak
+
+\marginpar{Lecture 1 \\ Friday \\ 05/10/18}
+
+\section{Introduction}
+
+This course is an introduction to ring theory. The topics covered will include ideals, factorisation, the theory of field extensions, finite fields, polynomial rings in several variables, and the theory of modules.
+
+In addition to the lecture notes, the following will cover much of the material we will be studying.
+
+\begin{enumerate}
+\item M Artin, Algebra, 1991
+\end{enumerate}
+
+Rings are contexts in which it makes sense to add and multiply. For example, $ \Z $, $ \Q $, $ \R $, $ \C $, polynomials, functions $ \cb{0, 1} \to \R $, and $ \Z / n\Z $ are rings. The goals of this course include:
+\begin{enumerate}
+\item unify arguments that apply in all of the above contexts, and
+\item study relationships between different rings.
+\end{enumerate}
+The applications of rings include:
+\begin{enumerate}
+\item number theory - studying extensions of $ \Z $ in which particular Diophantine equations have solutions, for example $ n = x^2 + y^2 = \rb{x + iy}\rb{x - iy} $ to study solutions in $ \Z\cb{i} $ and pass to result about $ \Z $,
+\item algebraic geometry - study of zero sets of polynomials in several variables via rings of functions, and
+\item topology - cohomology classes of topological space form a ring.
+\end{enumerate}
+
+\section{Basic definitions and examples}
+
+\subsection{Rings}
+
+Recall the definition of a commmutative ring.
+
+\begin{definition}
+A \textbf{commutative ring with identity} $ R $ is a set together with two binary operations $ +_R, \cdot_R : R \times R \to R $, addition and multiplication, and two distinguished elements $ 0_R $ and $ 1_R $ such that:
+\begin{enumerate}
+\item The operation $ +_R $ makes $ R $ into an abelian group with identity $ 0_R $:
+\begin{enumerate}
+\item for all $ r \in R $, $ 0_R +_R r = r +_R 0_R = 0_R $ (additive identity),
+\item for all $ r, s, t \in R $, $ \rb{r +_R s} +_R t = r +_R \rb{s +_R t} $  (associativity of $ +_R $),
+\item for all $ r, s \in R $, $ r +_R s = s +_R r $ (commutativity of $ +_R $), and
+\item for all $ r \in R $, there exists $ -r \in R $ such that $ r +_R \rb{-r} = \rb{-r} +_R r = 0_R $ (additive inverses).
+\end{enumerate}
+\item The operation $ \cdot_R $ is associative and commutative with identity $ 1_R $:
+\begin{enumerate}
+\item for all $ r \in R $, $ 1_R \cdot_R r = r \cdot_R 1_R = 1_R $ (multiplicative identity),
+\item for all $ r, s, t \in R $, $ \rb{r \cdot_R s} \cdot_R t = r \cdot_R \rb{s \cdot_R t} $ (associativity of $ \cdot_R $), and
+\item for all $ r, s \in R $, $ r \cdot_R s = s \cdot_R r $ (commutativity of $ \cdot_R $).
+\end{enumerate}
+\item Multiplication distributes over addition: for all $ r, s, t \in R $, $ r \cdot_R \rb{s +_R t} = r \cdot_R s +_R r \cdot_R t $ and $ \rb{s +_R t} \cdot_R r = s \cdot_R r +_R t \cdot_R r $.
+\end{enumerate}
+\end{definition}
+
+There is some redundancy here, of course. I have written things this way so that one obtains the definition of a noncommutative ring simply by removing the condition that multiplication is commutative. In this course, however, all rings will be commutative.
+
+\begin{proposition}
+Let $ R $ be a ring. Then for all $ r \in R $, $ r \cdot_R 0_R = 0_R $.
+\end{proposition}
+
+\begin{proof}
+$ r \cdot_R 0_R = r \cdot_R \rb{0_R +_R 0_R} = r \cdot_R 0_R +_R r \cdot_R 0_R $. Thus $ 0_R = -\rb{r \cdot_R 0_R} +_R \rb{r \cdot_R 0_R} = -\rb{r \cdot_R 0_R} +_R \rb{r \cdot_R 0_R +_R r \cdot_R 0_R} = r \cdot_R 0_R $.
+\end{proof}
+
+Some people require $ 0_R \ne 1_R $ in $ R $.
+
+\begin{proposition}
+If $ 0_R = 1_R $, then $ R = \cb{0_R} $.
+\end{proposition}
+
+\begin{proof}
+$ 0_R = r \cdot_R 0_R = r \cdot_R 1_R = r $.
+\end{proof}
+
+When it is clear from the context what ring we are working with, we will write $ 0_R $ and $ 1_R $ as $ 0 $ and $ 1 $, $ a +_R b $ as $ a + b $ and $ a \cdot_R b $ as $ ab $.
+
+\begin{definition}
+A ring $ R $ is a \textbf{field} if $ R \ne \cb{0_R} $ and every nonzero element of $ R $ has a multiplicative inverse, that is for every $ r \in R \setminus \cb{0_R} $ there exists $ r^{-1} \in R $ such that $ rr^{-1} = r^{-1}r = 1_R $.
+\end{definition}
+
+We do not consider the zero ring $ \cb{0_R} $ to be a field. We have seen many examples of rings at this point. The sets $ \Z $, $ \Q $, $ \R $, $ \C $ are all rings with their usual notion of addition and multiplication. All of them but $ \Z $ are in fact fields. As another example, we have the ring $ \Z / n\Z $ of integers modulo $ n $. Let $ n \in \Z_{> 0} $, and recall that $ a $ and $ b $ are said to be \textbf{congruent modulo $ n $} if $ a - b $ is divisible by $ n $. It is easy to check that this is an equivalence relation on $ \Z $. Moreover, since any $ a \in \Z $ can uniquely be written as $ qn + r $ with $ q, r \in \Z $ and $ 0 \le r < n $, the set $ \cb{\sb{0}_n, \dots, \sb{n - 1}_n} $ is a complete list of the equivalence classes under this relation, where $ \sb{a}_n $ denotes the set of all integers congruent to $ a \mod n $. We denote this $ n $-element set by $ \Z / n\Z $, and we can define addition and multiplication in $ \Z / n\Z $ by setting $ \sb{a}_n + \sb{b}_n = \sb{a + b}_n $ and $ \sb{a}_n\sb{b}_n = \sb{ab}_n $. This defines a ring structure on $ \Z / n\Z $ once one checks that it is well-defined. This is the first example of a general construction of the quotient of a ring by an ideal we will define later.
+
+\marginpar{Lecture 2 \\ Monday \\ 08/10/18}
+
+\subsection{Polynomial rings}
+
+A very important class of rings that we will study are the polynomial rings. Let $ R $ be any ring. Then we can form a new ring $ R\sb{X} $, called the \textbf{ring of polynomials in $ X $ with coefficients in $ R $}. Informally, a polynomial in $ R\sb{X} $ is a finite sum of the form $ r_0 + \dots + r_nX^n $ for some $ n \in \Z_{\ge 0} $ and $ r_i \in R $. If $ n > m $, we consider $ r_0 + \dots + r_nX^n $ to represent the same polynomial of $ R\sb{X} $ as $ s_0 + \dots + s_mX^m $ if $ r_i = s_i $ for $ i \le m $ and $ r_i = 0_R $ for $ i > m $. That is, you can pad out a polynomial with terms of the form $ 0_RX^i $ without changing it. From a formal standpoint, it is better to define a polynomial to be an infinite sum $ \sum_{n = 0}^\infty r_iX^i $ for $ r_i \in R $ in which all but finitely many $ r_i $ are zero. This makes it easier to define addition and multiplication. The \textbf{degree} of such an expression is the largest $ i $ such that $ r_i $ is nonzero. We add and multiply in $ R\sb{X} $ just as we would any other polynomials, by
+$$ \rb{\sum_{i = 0}^\infty r_iX^i} +_{R\sb{X}} \rb{\sum_{i = 0}^\infty s_iX^i} = \sum_{i = 0}^\infty \rb{r_i +_R s_i} X^i, $$
+$$ \rb{\sum_{i = 0}^\infty r_iX^i} \cdot_{R\sb{X}} \rb{\sum_{i = 0}^\infty s_iX^i} = \sum_{i = 0}^\infty \rb{\sum_{j = 0}^i \rb{r_j \cdot_R s_{i - j}}} X^i. $$
+What about polynomial rings in more than one variable? Since the construction of polynomial rings takes an arbitrary ring as input, one can iterate it. Start with a ring $ R $, and consider first the ring $ R\sb{X} $ and then the ring $ \rb{R\sb{X}}\sb{Y} $. An polynomial of this has the form $ \sum_{i = 0}^\infty \rb{\sum_{j = 0}^\infty r_{ij}X^j}Y^i $ for $ r_{ij} \in R $. On the other hand, we can consider the ring $ \rb{R\sb{Y}}\sb{X} $, whose polynomials have the form $ \sum_{i = 0}^\infty \rb{\sum_{j = 0}^\infty s_{ij}Y^j}X^i $ for $ s_{ij} \in R $. Alternatively, we could consider the ring $ R\sb{X, Y} $ whose polynomials are formal expressions of the form $ \sum_{i = 0}^\infty \rb{\sum_{i = 0}^\infty r_{ij}X^i}Y^j $ with only finitely many nonzero coefficients $ r_{ij} $ and define addition and multiplication in the usual way. It is not hard to see that all three approaches yield the same ring. There is a bijection between these expressions. We will therefore primarily use notation like $ R\sb{X, Y} $ for polynomial rings in multiple variables, but we will occasionally need to know that this is the same as $ \rb{R\sb{X}}\sb{Y} $ or $ \rb{R\sb{Y}}\sb{X} $. The identification we have made here is an example of an isomorphism of rings, a notion we will make precise later.
+
+\subsection{Subrings and extensions}
+
+\begin{definition}
+Let $ R $ be a ring. A subset $ S $ of $ R $ is a \textbf{subring} of $ R $ if
+\begin{enumerate}
+\item $ 0_R, 1_R, -1_R \in S $.
+\item $ S $ is closed under $ +_R $ and $ \cdot_R $, so if $ r, s \in S $, then so are $ r +_R s $ and $ r \cdot_R s $.
+\end{enumerate}
+\end{definition}
+
+Subrings inherit the additive and multiplicative structures from the ring that contains them, and are thus themselves rings.
+
+\begin{example}
+$ \Z $ is a subring of $ \R $, which is itself a subring of $ \C $.
+\end{example}
+
+It is easy to see that the intersection of two subrings of $ R $, or even an arbitrary collection of subrings of $ R $, is also a subring of $ R $.
+
+\begin{definition}
+Let $ S \subseteq R $ be a subring of a ring $ R $, and let $ \alpha $ be an element of $ R $. We can then form a subring $ S\sb{\alpha} $ of $ R $, called the \textbf{subring of $ R $ generated by $ \alpha $ over $ S $}, consisting of all elements of $ R $ that can be expressed as $ r_0 + \dots + r_n\alpha^n $ for some $ n \in \Z^* $, and $ r_i \in S $.
+\end{definition}
+
+This operation is known as \textbf{adjoining} the element $ \alpha $ to the ring $ S $. An alternative way of defining the ring $ S\sb{\alpha} $ is to note that it is the smallest subring of $ R $ containing $ S $ and $ \alpha $. In one direction, any such subring contains every expression of the form $ r_0 + \dots + r_n\alpha^n $, with $ r_i \in S $, so any subring of $ R $ containing $ S $ and $ \alpha $ contains $ S\sb{\alpha} $. One can thus construct $ S\sb{\alpha} $ as the intersection of every subring of $ R $ containing $ S $ and $ \alpha $. Since the intersection of any collection of subrings of $ R $ is a subring of $ R $ it is clear that this intersection is equal to $ S\sb{\alpha} $ as defined above.
+
+\begin{example}
+Let $ i $ denote a square root of $ -1 $ in $ \C $. $ \Z \subseteq \C $ and $ i $ form $ \Z\sb{i} $. Note $ -1 = i^2 = i^6 = i + i^3 + i^{10} $.
+\end{example}
+
+\begin{proposition}
+Every element of $ \Z\sb{i} $ can be uniquely expressed as $ a + bi $ for $ a, b \in \Z $.
+\end{proposition}
+
+\begin{example}
+Given $ \sum_{n = 0}^\infty a_ni^n $ with only finitely many $ a_n $ nonzero, set $ a = a_0 - a_2 + \dots $ and $ b = a_1 - a_3 + \dots $. Then $ \sum_{n = 0}^\infty a_ni^n = a + bi $. For uniqueness, if $ a + bi = c + di $ in $ \C $ for $ a, b, c, d \in \Z $, then $ a = c $ or $ b = d $.
+\end{example}
+
+If $ \alpha $ is more complicated then the elements of $ R\sb{\alpha} $ may well be harder to describe.
+
+\begin{example}
+If $ \alpha $ is the real cube root of $ 2 $, then every element of $ \Z\sb{\alpha} $ can be uniquely expressed as $ a + b\alpha + c\alpha^2 $ for $ a, b, c \in \Z $.
+\end{example}
+
+\begin{example}
+In $ \Z\sb{\pi} $, any element has a unique expression in the form $ \sum_{n = 0}^\infty a_n\pi^n $ for all but finitely many $ a_n $ are zero. Suppose $ \sum_{n = 0}^\infty a_n\pi^n = \sum_{n = 0}^\infty b_n\pi^n $, then $ 0 = \sum_{n = 0}^\infty \rb{a_n - b_n}\pi^n $. Since $ \pi $ is transcendental, this polynomial must be zero. Thus each $ a_n = b_n $.
+\end{example}
+
+\begin{example}
+The elements of $ \Z\sb{\tfrac{1}{2}} $ can be expressed uniquely as $ a / b $, where $ b $ is a power of $ 2 $ and $ a $ is odd unless $ b = 1 $.
+\end{example}
+
+\begin{example}
+Let $ \alpha $ be a root of $ x^2 - \tfrac{1}{2}x + 1 $. Then $ \alpha^2 \in \Z\sb{\alpha} $ and $ \alpha^2 = \alpha / 2 - 1 $. Can show that every element of $ \Z\sb{\alpha} $ can be expressed as $ a + b\alpha $ for $ a, b \in \Z\sb{\tfrac{1}{2}} $, but not every $ a + b\alpha $ arises $ a, b \in \Z\sb{\tfrac{1}{2}} $.
+\end{example}
+
+\marginpar{Lecture 3 \\ Wednesday \\ 10/10/18}
+
+\subsection{Integral domains and rings of fractions}
+
+\begin{definition}
+A \textbf{zero divisor} in a ring $ R $ is a nonzero element $ r $ of $ R $ such that there exists a nonzero $ s \in R $ with $ rs = 0 $. A ring $ R $ in which there are no zero divisors is called an \textbf{integral domain}.
+\end{definition}
+
+\begin{example}
+$ \Z $ is an integral domain and any subring of a field is an integral domain, but $ \Z / 6\Z $ is not an integral domain, as $ \sb{2}\sb{3} $ is zero modulo $ 6 $ even though neither $ \sb{2} $ nor $ \sb{3} $ is zero modulo $ 6 $.
+\end{example}
+
+If $ R $ is an integral domain, then we can form the field of fractions of $ R $ in analogy to the way we build $ \Q $ from $ \Z $.
+
+\begin{definition}
+Let $ R $ be an integral domain. The \textbf{field of fractions} $ K\rb{R} $ is the set of equivalence classes of expressions of the form $ a / b $ for $ a, b \in R $, $ b \ne 0 $, where $ a / b \sim a' / b' $ iff $ ab' = a'b $. We add and multiply elements of $ K\rb{R} $ just as we do for fractions, by
+$$ \dfrac{a}{b} + \dfrac{a'}{b'} = \dfrac{ab' + a'b}{bb'}, \qquad \dfrac{a}{b} \cdot \dfrac{a'}{b'} = \dfrac{aa'}{bb'}, \qquad 0_{K\rb{R}} = \dfrac{0_R}{1_R}, \qquad 1_{K\rb{R}} = \dfrac{1_R}{1_R}. $$
+If $ a \ne 0 $ in $ R $, then $ b / a \in K\rb{R} $, so $ \rb{a / b} \cdot \rb{b / a} = ab / ba \sim 1 / 1 $.
+\end{definition}
+
+Then $ K\rb{R} $ is a field, and it contains $ R $ in a natural way as a subring if we identify $ r $ with $ r / 1_R \in K\rb{R} $. The field $ K\rb{R} $ is in some sense the smallest field containing $ R $ as a subring. When we talk about homomorphisms and isomorphisms, we will be able to state this more precisely. More generally, a subset $ S $ of $ R $ is a \textbf{multiplicative system} if $ 1 \in S $ and $ 0 \notin S $, and $ S $ is closed under multiplication, that is if $ a, b $ are in $ S $ then so is $ ab $. For any integral domain $ R $ and any multiplicative system $ S $, we can define $ S^{-1}R \subseteq K\rb{R} $ consisting of all fractions of the form $ a / b $ with $ b \in S $. It is easy to see that his is closed under addition and multiplication, and defines a ring in between $ R $ and $ K\rb{R} $.
+
+\begin{example}
+If $ R = \Z $ and $ S $ is the set of powers of $ 2 $, then $ S^{-1}R = \Z\sb{\tfrac{1}{2}} $. On the other hand, if $ S $ is the set of odd integers, then $ S^{-1}R $ is the set of all rational numbers of the form $ a / b $ with $ b $ odd.
+\end{example}
+
+In general $ S^{-1}R $ is the smallest subring of $ K\rb{R} $ containing $ R $ in which every element of $ S $ has a multiplicative inverse, that is $ b^{-1} \in S $ for all $ b \in S $. The process of obtaining $ S^{-1}R $ from $ R $ is called \textbf{localisation} and is an extremely powerful tool. One can even make sense of it when $ R $ is not an integral domain, but one has to be more careful. The equivalence relation on fractions is tricker, for example. We will not discuss this in this course but it will be quite useful in future courses.
+
+\section{Homomorphisms, ideals, and quotients}
+
+\subsection{Homomorphisms}
+
+Let $ R $ and $ S $ be rings. A ring homomorphism from $ R $ to $ S $ is, roughly, a way of interpreting elements of $ R $ as elements of $ S $, in a way that is compatible with the addition and multiplication laws on $ R $ and $ S $. More precisely is the following.
+
+\begin{definition}
+A function $ f : R \to S $ is a \textbf{ring homomorphism} if
+\begin{enumerate}
+\item $ f\rb{1_R} = 1_S $,
+\item for all $ r, r' \in R $, $ f\rb{r +_R r'} = f\rb{r} +_S f\rb{r'} $, and
+\item for all $ r, r' \in R $, $ f\rb{r \cdot_R r'} = f\rb{r} \cdot_S f\rb{r'} $.
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+If $ f $ is a homomorphism then $ f\rb{0_R} = f\rb{0_R + 0_R} = f\rb{0_R} +_S f\rb{0_R} $ gives $ f\rb{0_R} = 0_S $. Thus we do not need to require this as an axiom. On the other hand we do need to require $ f\rb{1_R} = 1_S $. For certain $ R, S $ one can construct examples of maps $ f : R \to S $ that satisfy properties $ 2 $ and $ 3 $ of the definition without satisfying property $ 1 $.
+\end{note}
+
+\begin{example}
+If $ R $ is a subring of $ S $, then the inclusion of $ R $ into $ S $, such as $ \Z \subset \Q \subset \R \subset \C $, is a homomorphism. This is just a fancy way of saying that the addition and multiplication on $ R $ are induced from the corresponding operations on $ S $.
+\end{example}
+
+\begin{example}
+The composition of two homomorphisms is a homomorphism, as is easily checked from the definitions.
+\end{example}
+
+\begin{example}
+The map $ \Z \to \Z / n\Z $ that takes an integer $ m $ into its congruence class modulo $ n $ is also a homomorphism. In fact, this is a special case of the following construction.
+\end{example}
+
+\begin{proposition}
+Let $ R $ be any ring. Then there is a unique ring homomorphism $ f : \Z \to R $ such that
+$$ f\rb{n} = \begin{cases} 1_R + \dots + 1_R & n > 0 \\ -\rb{1_R + \dots + 1_R} & n < 0 \\ 0_R & n = 0 \end{cases}. $$
+\end{proposition}
+
+\begin{proof}
+Let $ f : \Z \to R $ be a homomorphism. Then, directly from the definition, we have $ f\rb{0} = 0_R $ and $ f\rb{1} = 1_R $. In particular for all $ n > 0 $, $ f\rb{n} = f\rb{1 + \dots + 1} = 1_R +_R \dots +_R 1_R $, where there are $ n $ copies of $ 1_R $ in the sum. Moreover, $ 0_R = f\rb{n + \rb{-n}} = f\rb{n} + f\rb{-n} $, so $ f\rb{-n} = -\rb{1_R +_R \dots +_R 1_R} $. Thus $ f\rb{n} $ is determined, for all $ n $, completely by the fact that $ f $ is a homomorphism. In the converse direction, it is not hard to check that the map defined above is in fact a homomorphism.
+\end{proof}
+
+Thus, for any ring $ R $, we can regard an integer as an element of $ R $ via this homomorphism.
+
+\begin{definition}
+A bijective homomorphism $ f : R \to S $ is called an \textbf{isomorphism}. Write $ S \cong R $ for $ S $ is isomorphic to $ R $.
+\end{definition}
+
+In this case one verifies easily that the inverse map $ f^{-1} : S \to R $ is also a bijective homomorphism.
+
+\subsection{Evaluation homomorphisms}
+
+Let $ R $ be a ring, and consider the ring $ R\sb{X} $ of polynomials in $ X $ with coefficients in $ R $. If $ s $ is an element of $ R $, then we can define a homomorphism $ R\sb{X} \to R $ by \textbf{evaluation at $ s $}. More precisely, given an element of $ R\sb{X} $ of the form $ P\rb{X} = r_0 + \dots + r_nX^n $ for some $ n $ and $ r_i \in R $. Then $ P\rb{s} $ for $ s \in R $ is defined to be $ P\rb{s} = r_0 + \dots + r_ns^n \in R $. Consider the map $ \phi_s : R\sb{X} \to R $ that sends $ \phi_s\rb{P} $ to $ P\rb{s} $. In effect, it substitutes $ s $ for $ X $. It is easy to check that this is in fact a ring homomorphism. More generally, if $ R $ and $ S $ are rings and $ f : R \to S $ is a homomorphism, and $ s $ is an element of $ S $, then we can define a map
+$$ \phi_{s, f} : R\sb{X} \to S, $$
+by setting
+$$ \phi_{s, f}\rb{r_0 + \dots + r_nX^n} = f\rb{r_0} + \dots + f\rb{r_n}s^n. $$
+That is, by appling $ f $ to the coefficients and substituting $ s $ for $ X $. Again, this is clearly a homomorphism. The evaluation homomorphisms $ \phi_{s, f} $ are a fundamental property of polynomial rings. In some sense, they are the reason polynomial rings are worth studying. In fact, the ring $ R\sb{X} $ is uniquely characterised by the fact that homomorphisms from $ R\sb{X} $ to $ S $ are in bijection with pairs $ \rb{s, f} $, where $ f : R \to S $ is a homomorphism and $ s $ is an element of $ S $.
+
+\subsection{Images, kernels, and ideals}
+
+\begin{definition}
+Let $ f : R \to S $ be a homomorphism. The \textbf{image} of $ f $ is the subset $ Im\rb{f} = \cb{f\rb{r} \mid r \in R} \subseteq S $. The \textbf{kernel} of $ f $ is the subset $ Ker\rb{f} = \cb{r \in R \mid f\rb{r} = 0} \subseteq R $.
+\end{definition}
+
+The image of a homomorphism $ f : R \to S $ is easily seen to be a subring of $ S $.
+
+\begin{example}
+If $ R $ is a subring of $ S $, $ f : R \to S $ is the inclusion and $ s $ lies in $ S $, then the image of the map $ \phi_{s, f} : R\sb{X} \to S $ is precisely the subring $ R\sb{s} $ of $ S $.
+\end{example}
+
+By contrast, the kernel of a homomorphism $ f $ is almost never a subring of $ R $. For instance, subrings contain the identity. However, it is an ideal of $ R $.
+
+\marginpar{Lecture 4 \\ Friday \\ 12/10/18}
+
+\begin{definition}
+A nonempty subset $ I $ of $ R $ is an \textbf{ideal} of $ R $ if $ I $ is closed under addition, that is for all $ i, j \in I $, $ i + j \in I $, and for all $ i \in I $, $ r \in R $, $ ri \in I $.
+\end{definition}
+
+Then one can verify, directly from the definition, that the kernel of any homomorphism $ f : R \to S $ is an ideal of $ R $.
+
+\begin{note}
+Any ideal of $ R $ contains $ 0_R $, and conversely the subset $ \cb{0_R} $ of $ R $ is an ideal, called the \textbf{zero ideal}. A homomorphism $ f : R \to S $ is injective if and only if its kernel is the zero ideal. Forward direction is easy. Conversely, if $ f\rb{x} = f\rb{y} $, $ f\rb{x - y} = 0 $, so $ x - y \in Ker\rb{f} $. If $ Ker\rb{f} = \cb{0} $, $ x = y $.
+\end{note}
+
+The kernel of the homomorphism $ \Z \to R $ is either the zero ideal, or the ideal of multiples of $ n $ in $ \Z $ for some positive $ n $. We say that $ R $ has characteristic zero or characteristic $ n $, respectively. If not zero, the characteristic of $ R $ is the smallest $ n $ such that the sum of $ n $ copies of $ 1_R $ is equal to zero.
+
+\subsection{Ideals: examples and basic operations}
+
+If $ r $ is an element of $ R $, then any ideal containing $ R $ contains any multiple $ sr $ of $ R $, for any $ r $ in $ S $. Conversely, one checks easily that the set $ \cb{sr \mid s \in R} $ is an ideal of $ R $. It is known as the \textbf{ideal of $ R $ generated by $ r $}, and denoted $ \ab{r} $. An ideal generated by one element in this way is called a \textbf{principal ideal}.
+
+\begin{note}
+The ideal generated by $ 1_R $, or more generally by any element of $ R $ with a multiplicative inverse, is all of $ R $. This ideal is called the \textbf{unit ideal} of $ R $.
+\end{note}
+
+\begin{proposition}
+$ R $ is a \textbf{field} iff the only ideals of $ R $ are the zero ideal $ \cb{0} $ and the unit ideal $ R $.
+\end{proposition}
+
+\begin{proof}
+If $ R $ is a field, let $ I \subseteq R $ be a nonzero ideal. There exists $ r \in I \ne  0 $. Then for all $ s \in R $, $ \rb{sr^{-1}}\rb{r} \in I $, so $ s \in I $ for all $ s \in R $. Conversely, if $ R $ has only zero ideal, unit ideal, let $ r \in R \ne 0 $, let $ I \cb{sr \mid s \in R} $. This is an ideal not zero ideal, so it is all of $ R $. In particular, $ 1 \in I $, so there exists $ s \in R $ such that $ sr = 1 $.
+\end{proof}
+
+More generally is the following.
+
+\begin{definition}
+If $ S $ is a subset of elements of $ R $, then any ideal containing $ S $ consists of all elements of $ R $ the form $ r_0s_0 + \dots + r_ns_n $ for some $ n \in \Z_{\ge 0} $, $ r_i \in R $, and $ s_i \in S $. The intersection of all these ideals is an ideal of $ R $, known as the \textbf{ideal of $ R $ generated by $ S $}, and denoted $ \ab{S} $. It is also the smallest ideal of $ R $ containing $ S $.
+\end{definition}
+
+If $ S $ has one element, $ \ab{S} $ is a principal ideal. We will show soon that any ideal of $ \Z $ is a principal ideal, as is any ideal of the ring $ k\sb{X} $ for any field $ k $. On the other hand, there are rings in which not every ideal is principal.
+
+\begin{example}
+The ideal $ \ab{X, Y} $ of $ k\sb{X, Y} $ is not a principal ideal.
+\end{example}
+
+Given ideals $ I $ and $ J $ there are several ways to create new ideals.
+\begin{enumerate}
+\item If $ I, J $ are ideals, then the intersection $ I \cap J $ is an ideal. If $ I $ and $ J $ are given by generators, it might be hard to find generators for the intersection. Certainly it is not enough to intersect the generating sets.
+\item The union of ideals is not usually an ideal. Taking $ R = \Z $, $ \ab{3} \cup \ab{5} $ contains $ 3, 5 $ but not $ 3 + 5 $.
+\item If $ I, J $ are ideals, then the sum $ I + J $ is an ideal, which are all expressions of the form $ i + j $ for $ i \in I $, $ j \in J $. It is the smallest ideal containing both $ I $ and $ J $, and also the ideal generated by $ I \cup J $.
+\item If $ I, J $ are ideals, the product $ I \cdot J $ or $ IJ $ is the ideal generated by elements of the form $ ij $ for $ i \in I $, $ j \in J $. This may be strictly larger than the set of such products.
+\end{enumerate}
+
+\begin{example}
+Consider the product of the ideals $ I = \ab{X, Y} $ and $ J = \ab{Z, W} $ in $ R = k\sb{X, Y, Z, W} $ for $ k $ a field. The product $ IJ = \ab{XZ, XW, YZ, YW} $ contains $ XZ + YW $, but the latter is not a product of an element in $ I $ with an element in $ J $.
+\end{example}
+
+\begin{note}
+Let $ I, J $ be general ideals. The product of $ I $ and $ J $ is always contained in the intersection of $ I $ and $ J $, but the two need not be equal, even in simple rings like $ \Z $. $ \ab{3} \cdot \ab{3} = \ab{9} \subseteq \Z $ and $ \ab{3} \cap \ab{3} = \ab{3} $.
+\end{note}
+
+\subsection{Quotients}
+
+Let $ R $ be a ring and let $ I $ be an ideal of $ R $. If $ x, y $ are elements of $ R $, we say that $ x $ is \textbf{congruent to $ y $ modulo $ I $} if $ x - y $ is in $ I $. This is an equivalence relation on $ R $. We denote the equivalence class of $ r $ by $ r + I $, or the alternative notations $ \sb{r}_I $, $ \overline{r} $. It is the set $ \cb{r + s \mid s \in I} $. Let $ R / I $ denote the set of equivalence classes on $ R $ modulo $ I $. This set has the natural structure of a ring. The additive and multiplicative identities are $ 0_R + I $ and $ 1_R + I $, respectively, and addition and multiplication are defined by $ \rb{r + I} + \rb{s + I} = \rb{r + s} + I $ and $ \rb{r + I} \cdot \rb{s + I} = \rb{rs + I} $ respectively. One has to check that these are well-defined, but this is not difficult. The ring $ R / I $ is called the \textbf{quotient} of $ R $ by the ideal $ I $.
+
+\begin{example}
+If $ R = \Z $ and $ I $ is the ideal generated by $ n $, then $ R / I $ is the ring $ \Z / n\Z $ that we have already seen.
+\end{example}
+
+\begin{note}
+There is a \textbf{reduction modulo $ I $} or \textbf{natural quotient} homomorphism $ R \to R / I $ defined by taking $ r $ to $ r + I $. This homomorphism is surjective with kernel $ I $.
+\end{note}
+
+We then have the following.
+
+\begin{proposition}
+Let $ I \subseteq R $ be an ideal and let $ f : R \to S $ be a homomorphism, and suppose that the kernel of $ f $ contains $ I $. Then there is a unique homomorphism $ \overline{f} : R / I \to S $ such that for all $ r \in R $, $ \overline{f}\rb{r + I} = f\rb{r} $.
+\end{proposition}
+
+This is called the \textbf{universal property of the quotient}.
+
+\begin{proof}
+$ \overline{f} $ is necessarily unique, as every element of $ R / I $ has the form $ r + I $ for some $ r $. It thus suffices to show that it is well-defined and gives a homomorphism. If $ r + I = r' + I $, then $ r - r' \in I $, so $ f\rb{r - r'} = 0 $ gives $ f\rb{r} = f\rb{r'} $. Thus $ \overline{f} $ is well-defined. Checking that it is a homomorphism follows from $ f $ is a homomorphism.
+\end{proof}
+
+\begin{note}
+The kernel of $ \overline{f} $ in the above proposition is just the image of the kernel of $ f $ in $ R / I $. If the kernel of $ f $ is equal to $ I $, this image is the zero ideal and $ \overline{f} $ is injective. In particular, any homomorphism of $ R $ to $ S $ can be thought of as an isomorphism of some quotient of $ R $ with a subring of $ S $.
+\end{note}
+
+\begin{example}
+Let $ R \subseteq S $ be a subring, $ \alpha \in S $, and $ \iota : R \to S $ be the inclusion map. Recall that we have an evaluation at $ \alpha $ by $ \phi_{\iota, \alpha} : R\sb{X} \to S $. Image of this is $ R\sb{\alpha} $. Let $ I = Ker\rb{\phi_{\iota, \alpha}} $. Then $ \phi_{\iota, \alpha} $ descends to a map $ \phi_{\iota, \alpha} : R\sb{\alpha} / I \to S $ that is injective with image $ R\sb{\alpha} $. So $ R\sb{\alpha} $ is isomorphic to a quotient of $ R\sb{X} $.
+\end{example}
+
+\end{document}
