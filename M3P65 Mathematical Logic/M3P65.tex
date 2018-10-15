@@ -1,0 +1,583 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[UKenglish]{babel}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{csquotes}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\val}[1]{\left. #1 \right\rvert}
+\newcommand{\rb}[1]{\left( #1 \right)}
+\renewcommand{\sb}[1]{\left[ #1 \right]}
+\newcommand{\cb}[1]{\left\{ #1 \right\}}
+\newcommand{\ab}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
+
+\newcommand{\notb}[1]{\rb{\neg #1}}
+\newcommand{\orb}[2]{\rb{#1 \lor #2}}
+\newcommand{\andb}[2]{\rb{#1 \land #2}}
+\newcommand{\impb}[2]{\rb{#1 \rightarrow #2}}
+\newcommand{\iffb}[2]{\rb{#1 \leftrightarrow #2}}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}[subsection]
+\theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
+\theoremstyle{definition}\newtheorem*{example}{Example}
+\theoremstyle{definition}\newtheorem*{note}{Note}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\pagestyle{fancy}
+\lhead{M3P65 Mathematical Logic}
+\rhead{Autumn 2018}
+
+\title{M3P65 Mathematical Logic}
+\author{Lectured by Prof David Evans \\ Typeset by David Kurniadi Angdinata}
+\date{Autumn 2018}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\maketitle
+
+\vfill
+
+\tableofcontents
+
+\pagebreak
+
+\marginpar{Lecture 1 \\ Thursday \\ 04/10/18}
+
+\section{Introduction}
+
+The module is concerned with some of the foundational issues of mathematics, namely propositional logic, predicate logic, and set theory. These topics have applications to other areas of mathematics. Formal logic has applications via model theory and ZFC provides an essential toolkit for handling infinite objects.
+
+In propositional logic, we look at the way simple propositions can be built into more complicated ones using connectives and make precise how the truth or falsity of the component statements influences the truth or falsity of the compound statement. This is done using truth tables and can be useful for testing the validity of various forms of reasoning. It provides a way of analysing deductions of the form 'If the following statements are true, ..., then so is ...'. A completely symbolic process of deduction and describe the formal deduction system for propositional calculus. The propositional formulas are regarded as strings of symbols and we give rules for deducing a new formula from a given collection of formulas. We want these deduction rules to have the property that anything that could be deduced using truth tables (so by considering truth or falsity of the various statements), can be deduced in this formal way, and vice versa. This is the soundness and completeness of our formal system.
+
+In predicate logic, we analyse mathematics using quantifiers. We introduce the notion of a first-order structure, which is general enough to include many of the algebraic objects you come across in mathematics, such as groups, rings, and vector spaces. We then have to be precise about the formulas which make statements about these structures, and give a precise definition of what it means for a particular formula to be true in a structure. This is quite intricate, and the clever part is in getting the definitions right, but it corresponds to ordinary mathematical usage. Once this is done, we set up a formal deduction system for predicate logic. This parallels what we did for propositional logic, but is much harder. Nevertheless, the end result is the same. The formulas which are produced by our formal deduction system are precisely the formulas which are true in all first-order structures. This is Gödel's Completeness Theorem.
+
+Set theory provides the basic foundations and the language in which most of modern mathematics can be expressed, as well as the means for discussing the various notions of sizes of infinity. For example, although the set of natural numbers, the set of integers and the set of real numbers are all infinite, there is a very natural sense in which the first two have the same size, whereas the third is strictly bigger. This is expressed properly in the notion of cardinality. To avoid paradoxes and inconsistencies, we have to be careful about what collections of objects we allow to be called sets. This is done by the Zermelo-Fraenkel axioms, which essentially tell us how we are allowed to create new sets out of old ones. Of course, having laid down these quite rigid rules, we have to show that they are sufficiently flexible to allow us to talk about everyday objects of mathematics. There are also situations in mathematics where an extra axiom is needed, the Axiom of Choice. For example without this axiom, we cannot show that every vector space has a basis. But it also has some slightly counterintuitive consequences, and we shall also look at some of these.
+
+The lecture notes should be fairly self-contained, but the following books might also be of use. You might find that the notation which they use differs form that used in the lectures. You will be able to find various lecture notes on the internet. Some will be good, others not so good.
+
+\begin{enumerate}
+\item P Johnstone, Notes on logic and set theory, 1987
+\item P J Cameron, Sets, logic and categories, 1999
+\item A G Hamilton, Logic for mathematicians, 1988
+\item R Cori and D Lascar, Mathematical logic: a course with exercises parts I and II, 2001
+\item K Hrbaček and T Jech, Introduction to set theory 3rd edition, 1999
+\end{enumerate}
+
+$ 1 $ is very concise, but covers a surprising amount. $ 2 $ is friendlier, but skips some of the harder material. $ 4 $ is quite comprehensive and also available in the original French. $ 3 $ is useful for the logic part and $ 5 $ is a very nice introduction to set theory.
+
+\section{Propositional logic}
+
+Let $ p $ be 'Mr Jones is happy' and $ q $ be 'Mrs Jones is unhappy'. Then 'If Mr Jones is happy, then Mrs Jones is unhappy and if Mrs Jones is unhappy then Mr Jones is unhappy, so Mr Jones is unhappy is
+$$ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\notb{p}}. $$
+
+\subsection{Propositional formulas}
+
+The following are \textbf{truth table rules}.
+
+\begin{definition}
+\label{def:1.1.1}
+A \textbf{proposition} is a statement that is either \textbf{True} $ \rb{T} $ or \textbf{False} $ \rb{F} $, which can be represented symbolically as \textbf{propositional variables}
+$$ p, \quad q, \quad \dots \qquad p_1, \quad p_2, \quad \dots. $$
+We combine basic propositions into others using \textbf{connectives}, which are one of
+\begin{itemize}
+\item \textbf{negation 'not'} $ \rb{\neg p} $, which has value $ F $ if $ p $ has value $ T $ and has value $ T $ if $ p $ has value $ F $,
+\item \textbf{conjunction 'and'} $ \rb{p \land q} $, which has value $ T $ iff $ p $ and $ q $ both have value $ T $,
+\item \textbf{disjunction 'or'} $ \rb{p \lor q} $, which has value $ T $ iff at least one of $ p $ and $ q $ has value $ T $,
+\item \textbf{implication 'implies'} $ \rb{p \rightarrow q} $, which has value $ F $ iff $ p $ has value $ T $ and $ q $ has value $ F $, and
+\item \textbf{biconditional 'iff'} $ \rb{p \leftrightarrow q} $, which has value $ T $ iff $ p $ and $ q $ has the same value.
+\end{itemize}
+This can be represented in the following \textbf{truth table}.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$ p $ & $ q $ & $ \rb{p \land q} $ & $ \rb{p \lor q} $ & $ \rb{p \rightarrow q} $ & $ \rb{p \leftrightarrow q} $ \\
+\hline
+$ T $ & $ T $ & $ T $ & $ T $ & $ T $ & $ T $ \\
+\hline
+$ T $ & $ F $ & $ F $ & $ T $ & $ F $ & $ F $ \\
+\hline
+$ F $ & $ T $ & $ F $ & $ T $ & $ T $ & $ F $ \\
+\hline
+$ F $ & $ F $ & $ F $ & $ F $ & $ T $ & $ T $ \\
+\hline
+\end{tabular}
+\end{center}
+\end{definition}
+
+\begin{definition}
+\label{def:1.1.2}
+A \textbf{propositional formula} is obtained in the following way:
+\begin{enumerate}
+\item Any propositional variable is a formula.
+\item If $ \phi $ and $ \psi $ are formulas, then so are
+$$ \notb{\phi}, \qquad \andb{\phi}{\psi}, \qquad \orb{\phi}{\psi}, \qquad \impb{\phi}{\psi}, \qquad \iffb{\phi}{\psi}. $$
+\item Any formula arises in this way.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+The following are formulas.
+$$ p_1, \qquad p_2, \qquad \notb{p_1}, \qquad \impb{p_1}{\notb{p_2}}, \qquad \impb{\impb{p_1}{\notb{p_2}}}{p_2}. $$
+The following are not formulas.
+$$ p_1 \land p_2 \quad \rb{\text{missing brackets}}, \qquad )( \neg p_1 \quad \rb{\text{not well-formed}}. $$
+\end{example}
+
+Because of the brackets, every formula is either a propositional variable or is built from shorter formulas in a unique way. Arguments are often proved by induction on length of the formula, or the number of connectives in the formula.
+
+\begin{definition}
+\hfill
+\begin{enumerate}
+\item Let $ n \in \N $. A \textbf{truth function} of $ n $ variables is a function $ f : \cb{T, F}^n \to \cb{T, F} $, where $ \cb{T, F}^n = \cb{\rb{x_1, \dots, x_n} \mid x_i \in \cb{T, F}} $.
+\item Suppose $ \phi $ is a formula whose variables are amongst $ p_1, \dots, p_n $. We obtain a truth function $ F_\phi : \cb{T, F}^n \to \cb{T, F} $ whose value at $ \rb{x_1, \dots, x_n} $ is the truth value of $ \phi $ when $ p_i $ has value $ x_i $ for $ i = 1, \dots, n $, computed using the rules in \ref{def:1.1.1}. $ F_\phi $ is the \textbf{truth function of $ \phi$}.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+$ \phi : \impb{\impb{p}{\notb{q}}}{p} $ has truth table:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$ p $ & $ q $ & $ \notb{q} $ & $ \impb{p}{\notb{q}} $ & $ \phi $ \\
+\hline
+$ T $ & $ T $ & $ F $ & $ F $ & $ T $ \\
+\hline
+$ T $ & $ F $ & $ T $ & $ T $ & $ T $ \\
+\hline
+$ F $ & $ T $ & $ F $ & $ T $ & $ F $ \\
+\hline
+$ F $ & $ F $ & $ T $ & $ T $ & $ F $ \\
+\hline
+\end{tabular}
+\end{center}
+So for example $ F_\phi\rb{T, F} = T $. This can also be written in a \textbf{condensed form} as:
+\begin{center}
+\begin{tabular}{c c c c c c c c c c c c c c}
+$ ( $ & $ ( $ & $ p $ & $ \rightarrow $ & $ ( $ & $ \neg $ & $ q $ & $ ) $ & $ ) $ & $ \rightarrow $ & $ p $ & $ ) $ \\
+& & $ T $ & $ F $ & & $ F $ & $ T $ & & & $ T $ & $ T $ & \\
+& & $ T $ & $ T $ & & $ T $ & $ F $ & & & $ T $ & $ T $ & \\
+& & $ F $ & $ T $ & & $ F $ & $ T $ & & & $ F $ & $ F $ & \\
+& & $ F $ & $ T $ & & $ T $ & $ F $ & & & $ F $ & $ F $ & \\
+\end{tabular}
+\end{center}
+\end{example}
+
+\marginpar{Lecture 2 \\ Friday \\ 05/10/18}
+
+\begin{example}
+The truth function of $ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\notb{p}} $ is always $ T $.
+\end{example}
+
+\begin{definition}
+\hfill
+\begin{enumerate}
+\item A propositional formula is a \textbf{tautology} if its truth function $ F_\phi $ always has value $ T $.
+\item Say that formulas $ \phi, \psi $ are \textbf{logically equivalent} (LE) if they have the same truth function, that is $ F_\phi = F_\psi $.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+\hfill
+\label{rem:1.1.5}
+\begin{enumerate}
+\item $ \phi, \psi $ are LE iff $ \iffb{\phi}{\psi} $ is a tautology.
+\item Suppose $ \phi $ is a formula with variables $ p_1, \dots, p_n $ and $ \phi_1, \dots, \phi_n $ are formulas with variables $ q_1, \dots q_r $. For each $ i \le n $ substitute $ \phi_i $ in place of $ p_i $ in $ \phi $. Then the result is a formula $ \theta $, and if $ \phi $ is a tautology, then so is $ \theta $.
+\end{enumerate}
+\end{remark}
+
+\begin{example}
+Check $ \impb{\impb{\notb{p_2}}{\notb{p_1}}}{\impb{p_1}{p_2}} $ is a tautology. So by \ref{rem:1.1.5}(2), if $ \phi_1 $ and $ \phi_2 $ are any formulas, then $ \impb{\impb{\notb{\phi_2}}{\notb{\phi_1}}}{\impb{\phi_1}{\phi_2}} $ is a tautology.
+\end{example}
+
+\begin{proof}[Proof of \ref{rem:1.1.5}]
+\hfill
+\begin{enumerate}
+\item Easy.
+\item Prove $ F_\phi\rb{p_1, \dots, p_r} = F_\phi\rb{F_{\phi_1}\rb{q_1, \dots, q_r}, \dots, F_{\phi_n}\rb{q_1, \dots, q_r}} $ by induction on the number of connectives in $ \phi $.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+The following are LE formulas.
+\begin{enumerate}
+\item $ \andb{p_1}{\andb{p_2}{p_3}} $ is LE to $ \andb{\andb{p_1}{p_2}}{p_3} $.
+\item $ \orb{p_1}{\orb{p_2}{p_3}} $ is LE to $ \orb{\orb{p_1}{p_2}}{p_3} $.
+\item $ \orb{p_1}{\andb{p_2}{p_3}} $ is LE to $ \andb{\orb{p_1}{p_2}}{\orb{p_1}{p_3}} $.
+\item $ \andb{p_1}{\orb{p_2}{p_3}} $ is LE to $ \orb{\andb{p_1}{p_2}}{\andb{p_1}{p_3}} $.
+\item $ \notb{\notb{p_1}} $ is LE to $ p_1 $.
+\item $ \notb{\andb{p_1}{p_2}} $ is LE to $ \orb{\notb{p_1}}{\notb{p_2}} $.
+\item $ \notb{\orb{p_1}{p_2}} $ is LE to $ \andb{\notb{p_1}}{\notb{p_2}} $.
+\end{enumerate}
+By the first two examples, we usually omit brackets as $ \rb{p_1 \land p_2 \land p_3} $ and $ \rb{p_1 \lor p_2 \lor p_3} $ without ambiguity.
+\end{example}
+
+\begin{note}
+By \ref{rem:1.1.5} we obtain, for formulas $ \phi, \psi, \chi $, $ \andb{\phi}{\andb{\psi}{\chi}} $ is LE to $ \andb{\andb{\phi}{\psi}}{\chi} $, etc.
+\end{note}
+
+\begin{lemma}
+There are $ 2^{2^n} $ truth functions of $ n $ variables.
+\end{lemma}
+
+\begin{proof}
+A truth function is a function $ F : \cb{T, F}^n \to \cb{T, F} $. $ \abs{\cb{T, F}^n} = 2^n $ and for each $ \overline{x} \in \cb{T, F}^n $, $ F\rb{\overline{x}} \in \cb{T, F} $. Hence the result.
+\end{proof}
+
+\begin{definition}
+A set of connectives is \textbf{adequate} if for every $ n \ge 1 $, every truth function of $ n $ variables is the truth function of some formula which involves only connectives from the set, and variables $ p_1, \dots, p_n $.
+\end{definition}
+
+\begin{theorem}
+\label{thm:1.1.9}
+The set $ \cb{\neg, \land, \lor} $ is adequate.
+\end{theorem}
+
+\begin{proof}
+Let $ G : \cb{T, F}^n \to \cb{T, F} $.
+\begin{enumerate}
+\item If $ G\rb{\overline{v}} = F $ for all $ \overline{v} \in \cb{T, F}^n $, let $ \phi = \andb{p_1}{\notb{p_1}} $. Then $ F_\phi = G $.
+\item Otherwise list the $ \overline{v} \in \cb{T, F}^n $ with $ G\rb{\overline{v}} = T $ as $ \overline{v_1}, \dots, \overline{v_r} $. Write $ \overline{v_i} = \rb{v_{i1}, \dots, v_{in}} $, where each $ v_{ij} \in \cb{T, F} $. Define
+$$ q_{ij} = \begin{cases} p_j & v_{ij} = T \\ \notb{p_j} & v_{ij} = F \end{cases}, \qquad \psi_i = \rb{q_{i1} \land \dots \land q_{in}}, \qquad \theta = \rb{\psi_1 \lor \dots \lor \psi_r}. $$
+Hence
+\begin{align*}
+F_\theta\rb{\overline{v}} = T
+& \iff \exists i \le r, \ F_{\psi_i}\rb{\overline{v}} = T \\
+& \iff \exists i \le r, \ \forall j \le n, \ q_{ij} = T \\
+& \iff \exists i \le r, \ \forall j \le n, \ p_j = v_{ij} \\
+& \iff \exists i \le r, \ \overline{v} = \overline{v_i} \\
+& \iff G\rb{\overline{v}} = T.
+\end{align*}
+Thus $ F_\theta = G $.
+\end{enumerate}
+As $ \phi $ and $ \theta $ were constructed using only $ \neg, \land, \lor $, \ref{thm:1.1.9} follows.
+\end{proof}
+
+A formula $ \theta $ as in case 2 is said to be in \textbf{disjunctive normal form} (DNF).
+
+\begin{corollary}
+Suppose $ \chi $ is a formula whose truth function is not always $ F $. Then $ \chi $ is LE to a formula in DNF.
+\end{corollary}
+
+\begin{proof}
+Take $ G = F_\chi $ and apply case 2 of \ref{thm:1.1.9}.
+\end{proof}
+
+\begin{example}
+Let $ \chi $ be $ \impb{\impb{p_1}{p_2}}{\notb{p_2}} $. Then $ F_\chi\rb{\overline{v}} = T $ iff $ \overline{v} = \rb{T, F}, \rb{F, F} $. Thus its DNF is
+$$ \orb{\andb{p_1}{\notb{p_2}}}{\andb{\notb{p_1}}{\notb{p_2}}}. $$
+\end{example}
+
+\begin{corollary}
+The following sets of connectives are adequate:
+\begin{enumerate}
+\item $ \cb{\neg, \lor} $,
+\item $ \cb{\neg, \land} $, and
+\item $ \cb{\neg, \rightarrow} $.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item By \ref{thm:1.1.9} it is sufficient to show that we can express $ \land $ using $ \neg, \lor $, which holds since $ \andb{p_1}{p_2} $ is LE to $ \notb{\orb{\notb{p_1}}{\notb{p_2}}} $.
+\item By \ref{thm:1.1.9} it is sufficient to show that we can express $ \lor $ using $ \neg, \land $, which holds since $ \orb{p_1}{p_2} $ is LE to $ \notb{\andb{\notb{p_1}}{\notb{p_2}}} $.
+\item By \ref{thm:1.1.9} it is sufficient to show that we can express $ \lor $ using $ \neg, \rightarrow $, which holds since $ \orb{p_1}{p_2} $ is LE to $ \impb{\notb{p}}{q} $.
+\end{enumerate}
+\end{proof}
+
+\marginpar{Lecture 3 \\ Monday \\ 08/10/18}
+
+\begin{example}
+The following are not adequate.
+\begin{enumerate}
+\item $ \cb{\land, \lor} $. If $ \phi $ is built using $ \land, \lor $, then $ F_\phi\rb{T, \dots, T} = T $. Proof by induction on number of connectives.
+\item $ \cb{\neg, \leftrightarrow} $. (TODO Exercise: proof)
+\end{enumerate}
+\end{example}
+
+\begin{example}
+The NOR connective $ \downarrow $ has truth table
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$ p $ & $ q $ & $ \rb{p \downarrow q} $ \\
+\hline
+$ T $ & $ T $ & $ F $ \\
+\hline
+$ T $ & $ F $ & $ F $ \\
+\hline
+$ F $ & $ T $ & $ F $ \\
+\hline
+$ F $ & $ F $ & $ T $ \\
+\hline
+\end{tabular}
+\end{center}
+$ \rb{p \downarrow q} $ is LE to $ \andb{\notb{p}}{\notb{q}} $. $ \cb{\downarrow} $ is adequate. $ \rb{p \downarrow p} $ is LE to $ \notb{p} $ and $ \rb{\rb{p \downarrow p} \downarrow \rb{q \downarrow q}} $ is LE to $ \andb{p}{q} $. So as $ \cb{\neg, \lor} $ is adequate, so is $ \cb{\downarrow} $.
+\end{example}
+
+\subsection{A formal system for propositional logic}
+
+Idea is to try to generate all tautologies from basic assumptions, or axioms, using appropriate deduction rules. A very general definition is the following.
+
+\begin{definition}
+\hfill
+\begin{enumerate}
+\item A \textbf{formal deduction system} $ \Sigma $ has the following ingredients.
+\begin{enumerate}
+\item a non-zero \textbf{alphabet} $ A $ of symbols,
+\item a non-empty subset $ \mathcal{F} $ of the set of all finite sequences, or \textbf{strings}, of elements of $ A $, the \textbf{formulas} of $ \Sigma $,
+\item a subset $ \mathcal{A} \subseteq \mathcal{F} $ called the \textbf{axioms} of $ \Sigma $, and
+\item a collection of \textbf{deduction rules}.
+\end{enumerate}
+\item A \textbf{proof} in $ \Sigma $ is a finite sequence of formulas in $ \mathcal{F} $ $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom in $ \mathcal{A} $ or is obtained from $ \phi_1, \dots, \phi_{i - 1} $ using one of the deduction rules. The last, or any, formula in a proof is a \textbf{theorem} of $ \Sigma $.
+\end{enumerate}
+Write $ \vdash_\Sigma \phi $ for '$ \phi $ is a theorem of $ \Sigma $'.
+\end{definition}
+
+\begin{remark}
+\hfill
+\begin{enumerate}
+\item If $ \phi \in \mathcal{A} $, then $ \vdash_\Sigma \phi $.
+\item We should have an algorithm to test whether a string is a formula and whether it is an axiom. Then a computer can systematically generate all possible proofs in $ \Sigma $, and check whether something is a proof. Say $ \Sigma $ is \textbf{recursive} in this case.
+\end{enumerate}
+\end{remark}
+
+The main example is the following.
+
+\begin{definition}
+\label{def:1.2.3}
+The formal system \textbf{$ L $} for propositional logic has:
+\begin{enumerate}
+\item alphabet: variables $ p_1, p_2, \dots $, connectives $ \neg, \rightarrow $, and punctuation $ ( $, $ ) $.
+\item formulas: \textbf{$ L $-formulas} defined in \ref{def:1.1.2} for $ \neg, \rightarrow $ by
+\begin{enumerate}
+\item any variable $ p_i $ is a formula,
+\item if $ \phi, \psi $ are formulas so are $ \notb{\phi}, \impb{\phi}{\psi} $, and
+\item any formula arises in this way.
+\end{enumerate}
+\item axioms: suppose $ \phi, \psi, \chi $ are $ L $-formulas, then the axioms of $ L $ are
+\begin{enumerate}[label=(A\arabic*)]
+\item $ \impb{\phi}{\impb{\psi}{\phi}} $,
+\item $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} $, and
+\item $ \impb{\impb{\notb{\psi}}{\notb{\phi}}}{\impb{\phi}{\psi}} $.
+\end{enumerate}
+\item deduction rules: \textbf{Modus Ponens} (MP), from formulas $ \phi, \impb{\phi}{\psi} $, deduce $ \psi $.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+Suppose $ \phi $ is an $ L $-formula. Then $ \vdash_L \impb{\phi}{\phi} $. Here is a proof in $ L $:
+\begin{align*}
+& \impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}} & \rb{A1} \\
+& \impb{\impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}}}{\impb{\impb{\phi}{\impb{\phi}{\phi}}}{\impb{\phi}{\phi}}} & \rb{A2} \\
+& \impb{\impb{\phi}{\impb{\phi}{\phi}}}{\impb{\phi}{\phi}} & \rb{1, 2, MP} \\
+& \impb{\phi}{\impb{\phi}{\phi}} & \rb{A1} \\
+& \impb{\phi}{\phi} & \rb{3, 4, MP}
+\end{align*}
+\end{example}
+
+\marginpar{Lecture 4 \\ Thursday \\ 11/10/18}
+
+\begin{definition}
+Suppose $ \Gamma $ is a set of $ L $-formulas. A \textbf{deduction from $ \Gamma $} is a finite sequence of $ L $-formulas $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom, a formula in $ \Gamma $, or is obtained from previous formulas $ \phi_1, \dots, \phi_{i - 1} $ using the deduction rule MP. Write $ \Gamma \vdash_L \phi $ if there is a deduction from $ \Gamma $ ending in $ \phi $. Say $ \phi $ is a \textbf{consequence} of $ \Gamma $. So $ \emptyset \vdash_L \phi $ is the same as $ \vdash_L \phi $.
+\end{definition}
+
+\begin{theorem}[Deduction theorem]
+\label{thm:dt}
+Suppose $ \Gamma $ is a set of $ L $-formulas and $ \phi, \psi $ are $ L $-formulas. Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $. Then $ \Gamma \vdash_L \impb{\phi}{\psi} $.
+\end{theorem}
+
+\begin{corollary}[Hypothetical syllogism]
+Suppose $ \phi, \psi, \chi $ are $ L $-formulas and $ \vdash_L \impb{\phi}{\psi} $ and $ \vdash_L \impb{\psi}{\chi} $. Then $ \vdash_L \impb{\phi}{\chi} $.
+\end{corollary}
+
+\begin{proof}
+Use deduction theorem with $ \Gamma = \emptyset $. Show $ \cb{\phi} \vdash_L \chi $. Here is a deduction of $ \chi $ from $ \phi $:
+\begin{align*}
+& \impb{\phi}{\psi} & \rb{\text{theorem of } L} \\
+& \impb{\psi}{\chi} & \rb{\text{theorem of } L} \\
+& \phi & \rb{\text{assumption}} \\
+& \psi & \rb{1, 3, MP} \\
+& \chi & \rb{2, 4, MP}
+\end{align*}
+Thus $ \cb{\phi} \vdash_L \chi $. By deduction theorem, $ \emptyset \vdash_L \impb{\phi}{\chi} $, that is $ \vdash_L \impb{\phi}{\chi} $.
+\end{proof}
+
+\begin{proposition}
+\label{prop:1.2.7}
+Suppose $ \phi, \psi $ are $ L $-formulas. Then:
+\begin{enumerate}
+\item $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\phi}} $,
+\item $ \cb{\notb{\psi}, \psi} \vdash_L \phi $, and
+\item $ \vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Problem sheet 1.
+\item By 1 and MP twice.
+\item Suppose $ \chi $ is any formula. Then $ \cb{\notb{\phi}, \impb{\notb{\phi}}{\phi}} \vdash_L \chi $ by 2 and MP. Let $ \alpha $ be any axiom and let $ \chi $ be $ \notb{\alpha} $. Apply deduction theorem to get $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \impb{\notb{\phi}}{\notb{\alpha}} $. Using A3 and MP we get $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \impb{\alpha}{\phi} $. As $ \alpha $ is an axiom we get from MP $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \phi $. Now use deduction theorem to obtain $ \vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
+\end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof of \ref{thm:dt}]
+Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $ using a deduction of length $ n $. Show by induction on $ n $ that $ \Gamma \vdash_L \impb{\phi}{\psi} $:
+\begin{enumerate}
+\item Base step is $ n = 1 $. In this case $ \psi $ is either an axiom or in $ \Gamma $ or is $ \phi $. In the first two cases $ \Gamma \vdash_L \psi $ is a one line deduction. Using the A1 axiom $ \impb{\psi}{\impb{\phi}{\psi}} $ and MP we obtain $ \Gamma \vdash_L \impb{\phi}{\psi} $. If $ \phi $ is $ \psi $ we have $ \Gamma \vdash_L \impb{\phi}{\phi} $ by \ref{def:1.2.3}. This finishes the base case.
+\item Inductive step. In our deduction of $ \psi $ from $ \Gamma \cup \cb{\phi} $ either $ \psi $ is an axiom, or in $ \Gamma $, or is $ \phi $, or $ \psi $ is obtained from earlier steps using MP. In the first three cases we argue as in the base case to get $ \Gamma \vdash_L \impb{\phi}{\psi} $. In the last case there are formulas $ \chi $, $ \impb{\chi}{\psi} $ earlier in the deduction. We use the inductive hypothesis to get $ \Gamma \vdash_L \impb{\phi}{\chi} $ and $ \Gamma \vdash_L \impb{\phi}{\impb{\chi}{\psi}} $. We have the A2 axiom $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} $. This A2 axiom and MP twice we obtain $ \Gamma \vdash_L \impb{\phi}{\chi} $ as required, completing the inductive step.
+\end{enumerate}
+\end{proof}
+
+\marginpar{Lecture 5 \\ Friday \\ 12/10/18}
+
+\subsection{Soundness and Completeness of $ L $}
+
+\begin{theorem}[Soundness of $ L $]
+\label{thm:1.3.1}
+Suppose $ \phi $ is a theorem of $ L $. Then $ \phi $ is a tautology.
+\end{theorem}
+
+\begin{definition}
+A \textbf{propositional valuation} $ v $ is an assignment of truth values to the propositional variables $ p_1, p_2, \dots $. So $ v\rb{p_i} \in \cb{T, F} $ for $ i \in \N $.
+\end{definition}
+
+\begin{note}
+Using the truth table rules, this assigns a truth value $ v\rb{\phi} \in \cb{T, F} $ to every $ L $-formula $ \phi $ satisfying $ v\rb{\notb{\phi}} \ne v\rb{\phi} $, etc. See problem sheet 2, question 3(b).
+\end{note}
+
+By induction on the length of a proof of $ \phi $ it is enough to show
+\begin{enumerate}
+\item every axiom is a tautology, and
+\item MP preserves tautologies, that is if $ \psi, \impb{\psi}{\chi} $ are tautologies, so is $ \chi $.
+\end{enumerate}
+
+\begin{proof}[Proof of Theorem \ref{thm:1.3.1}]
+\hfill
+\begin{enumerate}
+\item Use truth tables, or argue as follows. For A2, suppose for a contradiction there is a valuation $ v $ with
+$$ v\rb{\impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}}} = F. $$
+Then
+\begin{equation}
+\label{eq:1}
+v\rb{\impb{\phi}{\impb{\psi}{\chi}}} = T,
+\end{equation}
+and
+\begin{equation}
+\label{eq:2}
+v\rb{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} = F.
+\end{equation}
+By $ \rb{\ref{eq:2}} $,
+\begin{equation}
+\label{eq:3}
+v\rb{\impb{\phi}{\psi}} = T,
+\end{equation}
+and
+\begin{equation}
+\label{eq:4}
+v\rb{\impb{\phi}{\chi}} = F.
+\end{equation}
+So by $ \rb{\ref{eq:4}} $, $ v\rb{\phi} = T $ and $ v\rb{\chi} = F $. By $ \rb{\ref{eq:3}} $, $ v\rb{\psi} = T $. This contradicts $ \rb{\ref{eq:1}} $. (TODO Exercise: for A1 and A3)
+\item If $ v $ is a valuation and $ v\rb{\psi} = T $ or $ v\rb{\impb{\psi}{\chi}} = T $ then $ v\rb{\chi} = T $.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}[Generalisation of soundness of $ L $]
+Suppose $ \Gamma $ is a set of formulas and $ \phi $ a formula with $ \Gamma \vdash_L \phi $. Suppose $ v $ is a valuation with $ v\rb{\psi} = T $ for all $ \psi \in \Gamma $. Then $ v\rb{\phi} = T $.
+\end{theorem}
+
+\begin{proof}
+Same proof. (TODO Exercise)
+\end{proof}
+
+\begin{theorem}[Completeness of $ L $]
+\label{thm:1.3.4}
+Suppose $ \phi $ is a tautology. Then $ \vdash_L \phi $.
+\end{theorem}
+
+Steps in the proof are:
+\begin{enumerate}
+\item If $ v\rb{\phi} = T $ for all valuations $ v $, want to show $ \vdash_L \phi $.
+\item Try to prove a generalisation. Suppose that for every $ v $ with $ v\rb{\Gamma} = T $, that is $ v\rb{\psi} = T $ for all $ \psi \in \Gamma $, we have $ v\rb{\phi} = T $. Then $ \Gamma \vdash_L \phi $.
+\item Equivalently, if $ \Gamma \not\vdash_L \phi $, show there is a valuation $ v $ with $ v\rb{\Gamma} = T $ and $ v\rb{\phi} = F $.
+\end{enumerate}
+
+\begin{definition}
+A set $ \Gamma $ of $ L $-formulas is \textbf{consistent} if there is no $ L $-formula $ \phi $ such that $ \Gamma \vdash_L \phi $ and $ \Gamma \vdash_L \notb{\phi} $.
+\end{definition}
+
+\begin{proposition}
+\label{prop:1.3.7}
+Suppose $ \Gamma $ is a consistent set of $ L $-formulas and $ \Gamma \not\vdash_L \phi $. Then $ \Gamma \cup \cb{\notb{\phi}} $ is consistent.
+\end{proposition}
+
+\begin{proof}
+Suppose not. So there is some formula $ \psi $ with
+\begin{equation}
+\label{eq:5}
+\Gamma \cup \cb{\notb{\phi}} \vdash_L \psi,
+\end{equation}
+and
+\begin{equation}
+\label{eq:6}
+\Gamma \cup \cb{\notb{\phi}} \vdash_L \notb{\psi}.
+\end{equation}
+Apply deduction theorem to $ \rb{\ref{eq:6}} $, $ \Gamma \vdash_L \impb{\notb{\phi}}{\notb{\psi}} $. By A3 and MP we obtain
+\begin{equation}
+\label{eq:7}
+\Gamma \vdash_L \impb{\psi}{\phi}.
+\end{equation}
+By $ \rb{\ref{eq:5}} $, $ \rb{\ref{eq:7}} $, and MP,
+\begin{equation}
+\label{eq:8}
+\Gamma \cup \cb{\notb{\phi}} \vdash_L \phi.
+\end{equation}
+By deduction theorem,
+\begin{equation}
+\label{eq:9}
+\Gamma \vdash_L \impb{\notb{\phi}}{\phi}.
+\end{equation}
+By \ref{prop:1.2.7}(3),
+\begin{equation}
+\label{eq:10}
+\vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi}.
+\end{equation}
+So by $ \rb{\ref{eq:9}} $, $ \rb{\ref{eq:10}} $, and MP, $ \Gamma \vdash_L \phi $. This contradicts $ \Gamma \not\vdash_L \phi $.
+\end{proof}
+
+\begin{proposition}[Lindenbaum's Lemma]
+Suppose $ \Gamma $ is a consistent set of $ L $-formulas. Then there is a consistent set of formulas $ \Gamma^* \supseteq \Gamma $ such that for every $ \phi $ either $ \Gamma^* \vdash_L \phi $ or $ \Gamma^* \vdash_L \notb{\phi} $.
+\end{proposition}
+
+Sometimes say $ \Gamma^* $ is \textbf{complete}.
+
+\begin{proof}
+The set of $ L $-formulas is countable, so we can list the $ L $-formulas as $ \phi_0, \phi_1, \dots $. It is countable because the alphabet $ \neg, \rightarrow, ), (, p_1, p_2, \dots $ is countable, and the formulas are finite sequences from this alphabet. Define inductively sets of formulas $ \Gamma_0 \subseteq \Gamma_1 \subseteq \dots $ where $ \Gamma_0 = \Gamma $ and $ \Gamma^* = \cup_{i \in \N} \Gamma_i $. Suppose $ \Gamma_n $ has been defined. If $ \Gamma_n \vdash_L \phi_n $ then let $ \Gamma_{n + 1} = \Gamma_n $. If $ \Gamma_n \not\vdash_L \phi_n $ then let $ \Gamma_{n + 1} = \Gamma_n \cup \cb{\notb{\phi_n}} $. An easy induction using \ref{prop:1.3.7} shows that each $ \Gamma_i $ is consistent. Claim that $ \Gamma^* $ is consistent. If $ \Gamma^* \vdash_L \phi $ and $ \Gamma^* \vdash_L \notb{\phi} $ then as deductions are finite sequence of formulas, $ \Gamma_n \vdash_L \phi $ and $ \Gamma_n \vdash_L \notb{\phi} $ for some $ n \in \N $, a contradiction. Let $ \phi $ be any formula. So $ \phi = \phi_n $ for some $ n $. If $ \Gamma^* \not\vdash_L \phi $ then $ \Gamma_n \not\vdash_L \phi $. So by construction $ \Gamma_{n + 1} \vdash_L \notb{\phi} $ as $ \notb{\phi} = \notb{\phi_n} \in \Gamma_{n + 1} $. Thus $ \Gamma^* \vdash_L \notb{\phi} $.
+\end{proof}
+
+\end{document}
