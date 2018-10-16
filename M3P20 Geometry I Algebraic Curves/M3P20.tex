@@ -32,10 +32,12 @@
 \newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
 
 \theoremstyle{definition}\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}\newtheorem{notation}[definition]{Notation}
 \theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
 \theoremstyle{definition}\newtheorem{example}[definition]{Example}
-\theoremstyle{definition}\newtheorem*{exercise}{Exercise}
-\theoremstyle{definition}\newtheorem*{fact}{Fact}
+\theoremstyle{definition}\newtheorem{fact}{Fact}
+\theoremstyle{definition}\newtheorem{exercise}{Exercise}
+\newtheorem{proposition}[definition]{Proposition}
 \newtheorem{lemma}[definition]{Lemma}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{corollary}[definition]{Corollary}
@@ -423,8 +425,180 @@ $$ B\rb{0, M} = \cb{\abs{x}^2 + \abs{y}^2 < M}. $$
 Want to show that some points in $ \C $ are outside this open ball. Let $ y_0 \in \C $ be such that $ \abs{y_0} > M $ and assume we can arrange for $ g = f\rb{\cdot, y_0} $ to be a non-constant polynomial of $ x $. By the fundamental theorem of algebra, $ g $ has a root $ x_0 \in \C $ and the point $ \rb{x_0, y_0} \in C $. This is a contradiction, as $ \rb{x_0, y_0} \notin B\rb{0, M} $.
 \end{proof}
 
+TODO Exercise: what if $ f\rb{x, y} $ happens to be a polynomial of $ y $ alone, so that this cannot be arranged?
+
+\marginpar{Lecture 4 \\ Monday \\ 15/10/18}
+
+\section{Projective space}
+
+Recall that it is difficult to determine when two affine plane curves $ C, C' \in \C^2 $ intersect, and some curves do not in fact intersect even over $ \C $. We want to fix that, and the key is adding points at infinity.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Consider two distinct lines
+$$ L_1 = \cb{ax + by + c = 0}, \qquad L_2 = \cb{a'x + b'y + c' = 0}. $$
+Then $ L_1 $ and $ L_2 $ meet at exactly one point if and only if
+$$ \det\two{a & b}{a' & b'} \ne 0. $$
+But we can pretend that parallel lines meet at a point at infinity corresponding to the direction vector.
+\item Consider the asymptotic curve and line
+$$ C = \cb{xy - 1 = 0}, \qquad L = \cb{x = 0}. $$
+Then $ C $ and $ L $ do not meet, but again we can pretend that they meet at a point at infinity.
+\end{enumerate}
+\end{example}
+
+A heuristic trick is to introduce a variable $ z $.
+\begin{enumerate}
+\item Replace $ x $ by $ x / z $ and $ y $ by $ y / z $.
+\item Solve for $ z = 0 $.
+\end{enumerate}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Consider the lines
+$$ L_1 = \cb{x + y + 1 = 0}, \qquad L_2 = \cb{x + y - 1 = 0}. $$
+Clearly $ L_1 $ and $ L_2 $ do not meet. Let us apply the trick. By $ 1 $ and $ 2 $ we get
+$$ \begin{cases} x / z + y / z + 1 = 0 \\ x / z + y / z - 1 = 0 \end{cases} \qquad \implies \qquad \begin{cases} x + y + z = 0 \\ x + y - z = 0 \end{cases} \qquad \implies \qquad \begin{cases} x + y = 0 \\ x + y = 0 \end{cases}. $$
+We get that the point $ \rb{1, -1, 0} $ is a common solution. This will be called the point at infinity.
+\item Consider the asymptotic curve and line
+$$ C = \cb{xy - 1 = 0}, \qquad L = \cb{x = 0}. $$
+Apply $ 1 $ and $ 2 $ to get
+$$ \begin{cases} xy - z^2 = 0 \\ x / z = 0 \end{cases} \qquad \implies \qquad \begin{cases} xy = 0 \\ x = 0 \end{cases}. $$
+We get that $ \rb{0, 1, 0} $ is a common solution. Again, this will be called the point at infinity.
+\end{enumerate}
+\end{example}
+
+To make this formal, we introduce the projective plane $ \P^2 $. We will add points at infinity to $ \C^2 $, in such a way that asymptotic curves meet at infinity. We will then compactify an affine plane curve $ C $ so that the two compactifications are compatible, that is
+$$ \rb{C \subseteq \C^2} \hookrightarrow \rb{\overline{C} \subseteq \P^2}. $$
+
+\begin{notation}
+Fix $ n \ge 0 $ and $ \C^{n + 1} $. Let $ \underline{0} = \rb{0, \dots, 0} \in \C^{n + 1} $ be the origin of the $ \rb{n + 1} $-dimensional complex Euclidean space. We will denote
+$$ W = \C^{n + 1} \setminus \cb{0}, $$
+that is a point $ x \in W $ is given by $ x = \rb{x_0, \dots, x_n} $ where $ x_0, \dots, x_n \in \C $ are not all zero. We define the equivalence relation on $ W $, for any $ x, y \in W $ by
+$$ x \sim y \qquad \iff \qquad \exists \lambda \in \C^* = \C \setminus \cb{0}, \ x = \lambda y. $$
+\end{notation}
+
 \begin{exercise}
-What if $ f\rb{x, y} $ happens to be a polynomial of $ y $ alone, so that this cannot be arranged?
+Show that $ \sim $ is an equivalence relation on $ W $.
 \end{exercise}
+
+\begin{notation}
+Given $ x \in W $, we denote
+$$ \sb{x} = \cb{y \in W \mid x \sim y}. $$
+For simplicity, if $ x = \rb{x_0, \dots, x_n} $ we will denote $ \sb{x} = \sb{x_0, \dots, x_n} $ instead of $ x = \sb{\rb{x_0, \dots, x_n}} $.
+\end{notation}
+
+\begin{definition}
+The \textbf{$ n $-dimensional projective space} $ \P^n_\C $ or $ \P^n\rb{\C} $ or simply $ \P^n $ is defined as the quotient of $ W $ by $ \sim $, that is
+$$ \P^n = \dfrac{W}{\sim} = \cb{\sb{x} \mid x \in W = \C^{n + 1} \setminus \cb{0}}. $$
+The coordinates of $ \P^n $ are $ \sb{x} \in \P^n $ except $ \sb{0, \dots, 0} $ and $ \sb{\lambda x_0, \dots, \lambda x_n} = \sb{x_0, \dots, x_n} $ for $ \lambda \in \C^* $. In other words, in $ \P^n $, two points $ \sb{x_0, \dots, x_n} $ and $ \sb{y_0, \dots, y_n} $ are the same point if and only if there exists a non-zero constant $ \lambda $ such that
+$$ x_0 = \lambda y_0, \qquad \dots, \qquad x_n = \lambda y_n. $$
+\end{definition}
+
+\begin{exercise}
+Show that $ \sb{x} = \sb{y} $ if and only if $ x \sim y $. Show that if $ y \notin \sb{x} $ then $ \sb{x} \cap \sb{y} = \emptyset $.
+\end{exercise}
+
+\begin{example}
+The point $ \sb{1, 2, i} $ is the same as the point $ \sb{i, 2i, -1} $.
+\end{example}
+
+\begin{exercise}
+Show that there exists a bijection between $ \P^n $ and the set of all the one-dimensional subspaces of $ \C^{n + 1} $. In fact, if $ V $ is a finite-dimensional vector space over $ \C $ without the choice of a basis, we can defined the associated projective space $ \P\rb{V} $ as the set of one-dimensional linear subspaces of $ V $.
+\end{exercise}
+
+\begin{example}
+For any non-zero $ x \in \C $ we have $ \sb{x} = \sb{1} $. So $ \P^0 = \C^1 \setminus \cb{0} / \sim $ is a point $ \C^0 = \cb{\sb{1}} $.
+\end{example}
+
+\begin{notation}
+For any $ i = 0, \dots, n $, denote
+$$ U_i = \cb{\sb{x} = \sb{x_1, \dots, x_n} \in \P^n \mid x_i \ne 0} \subseteq \P^n. $$
+\end{notation}
+
+\begin{lemma}
+$ \P^n = U_0 \cup \dots \cup U_n $.
+\end{lemma}
+
+\begin{proof}
+Take $ \sb{x} = \sb{x_0, \dots, x_n} \in \P^n $ in $ \P^n $ then $ x \in W $ and in particular $ x = \rb{x_0, \dots, x_n} $ where at least one of the coefficients is non-zero, say $ x_i \ne 0 $. Then $ \sb{x} \in U_i $. Thus any $ \sb{x} \in \P^n $ is contained in the union of $ U_0, \dots, U_n $.
+\end{proof}
+
+\begin{lemma}
+Pick $ i = 0, \dots, n $. Define $ \phi_i : \C^n \to U_i $ by
+$$ \phi_i\rb{y_1, \dots, y_n} = \sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n}. $$
+Then $ \phi_i $ is a bijection and its inverse $ \rho_i : U_i \to \C^n $ is given by
+$$ \rho_i\sb{x_0, \dots, x_n} = \rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}}. $$
+\end{lemma}
+
+\begin{proof}
+First note that both $ \phi_i $ and $ \rho_i $ is well-defined, indeed, if
+$$ \rb{y_1, \dots, y_n} \in \C^n $$
+then
+$$ \rb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n} \in W $$
+and therefore
+$ \sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n} \in \P^n $. Similarly, if $ \sb{x_0, \dots, x_n} = \sb{x_0', \dots, x_n'} $ then it follows that $ \rho_i\sb{x_0, \dots, x_n} = \rho_i\sb{x_0', \dots, x_n'} $. Thus, it is enough to show that both $ \phi_i \circ \rho_i $ and $ \rho_i \circ \phi_i $ coincide with the identity. We have
+$$ \rho_i\rb{\phi_i\rb{y_1, \dots, y_n}} = \rho_i\sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n} = \rb{\dfrac{y_1}{1}, \dots, \dfrac{y_{i - 1}}{1}, \dfrac{y_i}{1}, \dots, \dfrac{y_n}{1}} = \rb{y_1, \dots, y_n}. $$
+Similarly,
+$$ \phi_i\rb{\rho_i\sb{x_0, \dots, x_n}} = \phi_i\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}} = \sb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, 1, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}} = \sb{x_0, \dots, x_n}. $$
+Thus they are inverses.
+\end{proof}
+
+\begin{example}
+Let $ n = 2 $ and $ \sb{x_0, x_1, x_2} \in \P^2 $. Let $ \phi_1 : \C^2 \to U_1 $ be defined by $ \rb{0, 0} \mapsto \sb{0, 1, 0} $ and $ \phi_2 : \C^2 \to U_2 $ be defined by $ \rb{0, 0} \mapsto \sb{0, 0, 1} $. Check that
+$$ \rho_i\rb{\phi_i\rb{y_1, \dots, y_n}} = \rho_i\rb{\sb{y_1, \dots, 1, \dots, y_n}} = \rb{y_1, \dots, y_n}. $$
+\end{example}
+
+The previous two lemmas can be used to define a topology on $ \P^n $. Let $ U \subseteq \P^n $, then $ U $ is open if and only if $ \phi_i^{-1}\rb{U \cap U_i} \subseteq \C^n $ is open in $ \C^n $ for any $ i = 0, \dots, n $.
+
+\begin{exercise}
+Show that $ U_i \subseteq \P^n $ is open in $ \P^n $ for all $ i = 0, \dots, n $.
+\end{exercise}
+
+\begin{exercise}
+We can define another topology on $ \P^n $, as follows. A subset $ U \subseteq \P^n $ is open if and only if its preimage $ \pi^{-1}\rb{U} $ is open in $ W $, where $ \pi : W \to \P^n $ is the map defined by $ \rb{x_0, \dots, x_n} \mapsto \sb{x_0, \dots, x_n} $. Show that this indeed defines a topology, and that this topology coincides with the one defined above using the maps $ \phi_i $.
+\end{exercise}
+
+\begin{exercise}
+Prove that $ \P^n $ is compact. Restrict the projection $ \pi $ of the previous exercise to the $ \rb{n + 1} $-dimensional sphere $ S^{n + 1} \subseteq W $, and check that this restriction is surjective and continuous. Since $ S^{n + 1} $ is compact, it follows that $ \P^n $ is compact as well.
+\end{exercise}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item $ \P^1 = \cb{\sb{x_0, x_1} \mid \rb{x_0, x_1} \in \C^2 \setminus \cb{\overline{0}}} $ is the union of two copies $ U_0 $ and $ U_1 $ of $ \C^1 $. The intersection of $ U_0 $ and $ U_1 $ is $ U_0 \cap U_1 = \cb{\sb{x_0, x_1} \mid x_0 \ne 0, x_1 \ne 0} $ can be identified with $ \C^* = \C \setminus \cb{0} $ via the map $ \sb{x_0, x_1} \mapsto x_1 / x_0 $. Using this identification and the maps $ \rho_i $, the inclusion $ U_0 \cap U_1 \subseteq U_0 $ is the map $ \C^* \to \C^1 $ sending $ z $ to itself, and the inclusion $ U_0 \cap U_1 \subseteq U_1 $ is the map $ \C^* \to \C^1 $ given by $ z \mapsto 1 / z $. $ \P^1 $ is glued together from two copies of $ \C $ along $ U_0 \cap U_1 $ by these inclusions, so $ \P^1 = \C^1 \cup \cb{\infty} $. Over the real numbers, $ \P^1\rb{\R} $ is built up in the same way from two copies of $ \R^1 $, and can be identified with the circle $ S^1 $.
+\item $ P^2 $ is the union of three copies of $ U_0 \cong U_1 \cong U_2 \cong \C^2 $, and the intersection can be described similarly. At infinity we will have a line. More generally, $ \P^n $ can be described similarly.
+\end{enumerate}
+\end{example}
+
+In practice, we will view the affine complex plane $ \C^2 $ as being embedded in $ \P^2 $ as one of the open sets $ U_i $. For example, we identify
+$$ \rb{x, y} \in \C^2 \qquad \iff \qquad \sb{x, y, 1} \in \P^2. $$
+What is the complement of this embedding, that is the points at infinity?
+
+\begin{notation}
+For any $ i = 0, \dots, n $, denote
+$$ P_i = \cb{\sb{x_0, \dots, x_n} \in \P^n \mid x_i = 0} \subseteq \P^n. $$
+\end{notation}
+
+\begin{lemma}
+For any $ i = 0, \dots, n $, we have
+$$ \P^n = U_i \sqcup P_i. $$
+Moreover if we define $ f_i : \P^{n - 1} \to P_i $ by
+$$ f_i\sb{z_0, \dots, z_{n - 1}} \mapsto \sb{z_0, \dots, z_{i - 1}, 0, z_i, \dots, z_{n - 1}} $$
+then $ f_i $ is a bijection.
+\end{lemma}
+
+\begin{proof}
+TODO Exercise: both statements are easy to check.
+\end{proof}
+
+In conclusion, we have that
+$$ \P^n = U_i \sqcup P_i \cong \C^n \cup \P^{n - 1} = \dots = \C^n \cup \dots \cup \C^0. $$
+$ P_i $ is called the hyperplane at infinity.
+
+\begin{example}
+In $ \R $, $ \P^1\rb{\R} = \R \cup \R $ by the identification $ r \mapsto 1 / r $, so $ \P^1\rb{\R} \cong S^1 $, while $ \P^2\rb{\R} = \R^2 \cup \P^1\rb{\R} $ has a circle at infinity identified by directions.
+\end{example}
 
 \end{document}
