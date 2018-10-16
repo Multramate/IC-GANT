@@ -458,7 +458,7 @@ Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $ using a deduction of length $ n 
 
 \subsection{Soundness and Completeness of $ L $}
 
-\begin{theorem}[Soundness of $ L $]
+\begin{theorem}[Soundness theorem of $ L $]
 \label{thm:1.3.1}
 Suppose $ \phi $ is a theorem of $ L $. Then $ \phi $ is a tautology.
 \end{theorem}
@@ -480,9 +480,7 @@ By induction on the length of a proof of $ \phi $ it is enough to show
 \begin{proof}[Proof of Theorem \ref{thm:1.3.1}]
 \hfill
 \begin{enumerate}
-\item Use truth tables, or argue as follows. For A2, suppose for a contradiction there is a valuation $ v $ with
-$$ v\rb{\impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}}} = F. $$
-Then
+\item Use truth tables, or argue as follows. For A2, suppose for a contradiction there is a valuation $ v $ with $ v\rb{\impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}}} = F $. Then
 \begin{equation}
 \label{eq:1}
 v\rb{\impb{\phi}{\impb{\psi}{\chi}}} = T,
@@ -492,22 +490,12 @@ and
 \label{eq:2}
 v\rb{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} = F.
 \end{equation}
-By $ \rb{\ref{eq:2}} $,
-\begin{equation}
-\label{eq:3}
-v\rb{\impb{\phi}{\psi}} = T,
-\end{equation}
-and
-\begin{equation}
-\label{eq:4}
-v\rb{\impb{\phi}{\chi}} = F.
-\end{equation}
-So by $ \rb{\ref{eq:4}} $, $ v\rb{\phi} = T $ and $ v\rb{\chi} = F $. By $ \rb{\ref{eq:3}} $, $ v\rb{\psi} = T $. This contradicts $ \rb{\ref{eq:1}} $. (TODO Exercise: for A1 and A3)
+By $ \rb{\ref{eq:2}} $, $ v\rb{\impb{\phi}{\psi}} = T $ and $ v\rb{\impb{\phi}{\chi}} = F $. So by the latter, $ v\rb{\phi} = T $ and $ v\rb{\chi} = F $. By the former, $ v\rb{\psi} = T $. This contradicts $ \rb{\ref{eq:1}} $. (TODO Exercise: for A1 and A3)
 \item If $ v $ is a valuation and $ v\rb{\psi} = T $ or $ v\rb{\impb{\psi}{\chi}} = T $ then $ v\rb{\chi} = T $.
 \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Generalisation of soundness of $ L $]
+\begin{theorem}[Generalisation of Soundness theorem of $ L $]
 Suppose $ \Gamma $ is a set of formulas and $ \phi $ a formula with $ \Gamma \vdash_L \phi $. Suppose $ v $ is a valuation with $ v\rb{\psi} = T $ for all $ \psi \in \Gamma $. Then $ v\rb{\phi} = T $.
 \end{theorem}
 
@@ -515,9 +503,9 @@ Suppose $ \Gamma $ is a set of formulas and $ \phi $ a formula with $ \Gamma \vd
 Same proof. (TODO Exercise)
 \end{proof}
 
-\begin{theorem}[Completeness of $ L $]
+\begin{theorem}[Completeness theorem of $ L $]
 \label{thm:1.3.4}
-Suppose $ \phi $ is a tautology. Then $ \vdash_L \phi $.
+Suppose $ \phi $ is a tautology, that is $ v\rb{\phi} = T $ for every valuation $ v $. Then $ \vdash_L \phi $.
 \end{theorem}
 
 Steps in the proof are:
@@ -539,38 +527,19 @@ Suppose $ \Gamma $ is a consistent set of $ L $-formulas and $ \Gamma \not\vdash
 \begin{proof}
 Suppose not. So there is some formula $ \psi $ with
 \begin{equation}
-\label{eq:5}
+\label{eq:3}
 \Gamma \cup \cb{\notb{\phi}} \vdash_L \psi,
 \end{equation}
 and
 \begin{equation}
-\label{eq:6}
+\label{eq:4}
 \Gamma \cup \cb{\notb{\phi}} \vdash_L \notb{\psi}.
 \end{equation}
-Apply deduction theorem to $ \rb{\ref{eq:6}} $, $ \Gamma \vdash_L \impb{\notb{\phi}}{\notb{\psi}} $. By A3 and MP we obtain
-\begin{equation}
-\label{eq:7}
-\Gamma \vdash_L \impb{\psi}{\phi}.
-\end{equation}
-By $ \rb{\ref{eq:5}} $, $ \rb{\ref{eq:7}} $, and MP,
-\begin{equation}
-\label{eq:8}
-\Gamma \cup \cb{\notb{\phi}} \vdash_L \phi.
-\end{equation}
-By deduction theorem,
-\begin{equation}
-\label{eq:9}
-\Gamma \vdash_L \impb{\notb{\phi}}{\phi}.
-\end{equation}
-By \ref{prop:1.2.7}(3),
-\begin{equation}
-\label{eq:10}
-\vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi}.
-\end{equation}
-So by $ \rb{\ref{eq:9}} $, $ \rb{\ref{eq:10}} $, and MP, $ \Gamma \vdash_L \phi $. This contradicts $ \Gamma \not\vdash_L \phi $.
+Apply deduction theorem to $ \rb{\ref{eq:4}} $, $ \Gamma \vdash_L \impb{\notb{\phi}}{\notb{\psi}} $. By A3 and MP we obtain $ \Gamma \vdash_L \impb{\psi}{\phi} $. By this, $ \rb{\ref{eq:3}} $, and MP, $ \Gamma \cup \cb{\notb{\phi}} \vdash_L \phi $. By deduction theorem, $ \Gamma \vdash_L \impb{\notb{\phi}}{\phi} $. By \ref{prop:1.2.7}(3), $ \vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi} $. So by these and MP, $ \Gamma \vdash_L \phi $. This contradicts $ \Gamma \not\vdash_L \phi $.
 \end{proof}
 
 \begin{proposition}[Lindenbaum's Lemma]
+\label{prop:1.3.8}
 Suppose $ \Gamma $ is a consistent set of $ L $-formulas. Then there is a consistent set of formulas $ \Gamma^* \supseteq \Gamma $ such that for every $ \phi $ either $ \Gamma^* \vdash_L \phi $ or $ \Gamma^* \vdash_L \notb{\phi} $.
 \end{proposition}
 
@@ -579,5 +548,68 @@ Sometimes say $ \Gamma^* $ is \textbf{complete}.
 \begin{proof}
 The set of $ L $-formulas is countable, so we can list the $ L $-formulas as $ \phi_0, \phi_1, \dots $. It is countable because the alphabet $ \neg, \rightarrow, ), (, p_1, p_2, \dots $ is countable, and the formulas are finite sequences from this alphabet. Define inductively sets of formulas $ \Gamma_0 \subseteq \Gamma_1 \subseteq \dots $ where $ \Gamma_0 = \Gamma $ and $ \Gamma^* = \cup_{i \in \N} \Gamma_i $. Suppose $ \Gamma_n $ has been defined. If $ \Gamma_n \vdash_L \phi_n $ then let $ \Gamma_{n + 1} = \Gamma_n $. If $ \Gamma_n \not\vdash_L \phi_n $ then let $ \Gamma_{n + 1} = \Gamma_n \cup \cb{\notb{\phi_n}} $. An easy induction using \ref{prop:1.3.7} shows that each $ \Gamma_i $ is consistent. Claim that $ \Gamma^* $ is consistent. If $ \Gamma^* \vdash_L \phi $ and $ \Gamma^* \vdash_L \notb{\phi} $ then as deductions are finite sequence of formulas, $ \Gamma_n \vdash_L \phi $ and $ \Gamma_n \vdash_L \notb{\phi} $ for some $ n \in \N $, a contradiction. Let $ \phi $ be any formula. So $ \phi = \phi_n $ for some $ n $. If $ \Gamma^* \not\vdash_L \phi $ then $ \Gamma_n \not\vdash_L \phi $. So by construction $ \Gamma_{n + 1} \vdash_L \notb{\phi} $ as $ \notb{\phi} = \notb{\phi_n} \in \Gamma_{n + 1} $. Thus $ \Gamma^* \vdash_L \notb{\phi} $.
 \end{proof}
+
+\marginpar{Lecture 6 \\ Monday \\ 15/10/18}
+
+\begin{lemma}
+\label{lem:1.3.9}
+Let $ \Gamma^* $ be as above. Then there is a valuation $ v $ such that for every $ L $-formula $ \phi $, $ v\rb{\phi} = T $ iff $ \Gamma^* \vdash_L \phi $.
+\end{lemma}
+
+\begin{corollary}
+\label{cor:1.3.10}
+Suppose $ \Delta $ is a set of $ L $-formulas which is consistent and $ \Delta \not\vdash_L \phi $. Then there is a valuation $ v $ with $ v\rb{\Delta} = T $ and $ v\rb{\phi} = F $.
+\end{corollary}
+
+\begin{proof}
+Let $ \Gamma = \Delta \cup \cb{\notb{\phi}} $. By \ref{prop:1.3.7}, $ \Gamma $ is consistent. By \ref{prop:1.3.8} there is $ \Gamma^* \supseteq \Gamma $ which is still consistent and such that for every $ \chi $ either $ \Gamma^* \vdash_L \chi $ or $ \Gamma^* \vdash_L \notb{\chi} $. By \ref{lem:1.3.9} there is a valuation $ v $ with $ v\rb{\Gamma^*} = T $. In particular $ v\rb{\Delta} = T $ and $ v\rb{\notb{\phi}} = T $. So $ v\rb{\phi} = F $.
+\end{proof}
+
+\begin{proof}[Proof of \ref{thm:1.3.4}]
+Suppose $ \not\vdash_L \phi $. Apply \ref{cor:1.3.10} with $ \Delta = \emptyset $. This is consistent due to the Soundness theorem. There is a valuation $ v $ with $ v\rb{\phi} = F $.
+\end{proof}
+
+\begin{proof}[Proof of \ref{lem:1.3.9}]
+Let $ \Gamma^* $ be a consistent set of $ L $-formulas such that for every $ L $-formula $ \phi $ either $ \Gamma^* \vdash_L \phi $ or $ \Gamma^* \vdash_L \notb{\phi} $. Want a valuation $ v $ with $ v\rb{\phi} = T $ for all $ \phi \in \Gamma^* $, that is $ v\rb{\phi} = T $ iff $ \Gamma^* \vdash_L \phi $. Note that for each variable $ p_i $ either $ \Gamma^* \vdash_L p_i $ or $ \Gamma^* \vdash_L \notb{p_i} $. So let $ v $ be the valuation with $ v\rb{p_i} = T $ iff $ \Gamma^* \vdash_L p_i $. Prove by induction on the length of $ \phi $ that $ v\rb{\phi} = T $ iff $ \Gamma^* \vdash_L \phi $. Base case for $ \phi $ is just a propositional variable. This case is by definition of $ v $. Inductive step is the following.
+\begin{enumerate}
+\item Assume that $ \phi $ is $ \notb{\psi} $.
+\begin{itemize}
+\item[$ \Rightarrow $] $ v\rb{\phi} = T $ gives $ v\rb{\psi} = F $ since $ v $ is a valuation. By inductive hypothesis, $ \Gamma^* \not\vdash_L \psi $. Then Lindenbaum property gives $ \Gamma^* \vdash_L \notb{\psi} $, that is $ \Gamma^* \vdash_L \phi $.
+\item[$ \Leftarrow $] Conversely suppose $ \Gamma^* \vdash_L \phi $. By consistency $ \Gamma^* \not\vdash_L \psi $. By inductive hypothesis, $ v\rb{\psi} = F $. As $ v $ is a valuation we obtain $ v\rb{\notb{\psi}} = T $, that is $ v\rb{\phi} = T $.
+\end{itemize}
+\item Assume that $ \phi $ is $ \impb{\psi}{\chi} $.
+\begin{itemize}
+\item[$ \Leftarrow $] Suppose $ v\rb{\phi} = F $. Show $ \Gamma^* \not\vdash_L \phi $. Then $ v\rb{\psi} = T $ and $ v\rb{\chi} = F $. By inductive hypothesis, $ \Gamma^* \vdash_L \psi $ and $ \Gamma^* \not\vdash_L \chi $. If $ \Gamma^* \vdash_L \phi $ then using $ \Gamma^* \vdash_L \psi $ and MP we get $ \Gamma^* \vdash_L \chi $, which is a contradiction. So $ \Gamma^* \not\vdash_L \phi $.
+\item[$ \Rightarrow $] Suppose $ \Gamma^* \not\vdash_L \phi $, that is $ \Gamma^* \not\vdash_L \impb{\psi}{\chi} $. Then $ \Gamma^* \not\vdash_L \chi $ as $ \vdash_L \impb{\chi}{\impb{\psi}{\chi}} $. Also $ \Gamma^* \not\vdash_L \notb{\psi} $ as $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\chi}} $ by \ref{prop:1.2.7}(1). By inductive hypothesis, $ v\rb{\chi} = F $ and $ v\rb{\notb{\psi}} = F $ so $ v\rb{\psi} = T $. Thus $ v\rb{\phi} = F $, which does the inductive step.
+\end{itemize}
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+\label{cor:1.3.12}
+Suppose $ \Delta $ is a set of $ L $-formulas and $ \phi $ is an $ L $-formula. Then
+\begin{enumerate}
+\item $ \Delta $ is consistent iff there is a valuation $ v $ with $ v\rb{\Delta} = T $, and
+\item $ \Delta \vdash_L \phi $ iff for every valuation $ v $ with $ v\rb{\Delta} = T $ we have $ v\rb{\phi} = T $.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+TODO Exercise: deduce these from the preliminaries to Completeness Theorem - warning that in 2 do not assume that $ \Delta $ is consistent.
+\end{proof}
+
+\begin{theorem}[Compactness theorem for $ L $]
+Suppose $ \Delta $ is a set of $ L $-formulas. The following are equivalent.
+\begin{enumerate}
+\item There is a valuation $ v $ with $ v\rb{\Delta} = T $.
+\item For every finite subset $ \Delta_0 \subseteq \Delta $ there is a valuation $ w $ with $ w\rb{\Delta_0} = T $.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By \ref{cor:1.3.12} 1 holds iff $ \Delta $ is consistent. Similarly 2 holds iff every finite subset of $ \Delta $ is consistent. But if $ \Delta \vdash_L \psi $ and $ \Delta \vdash_L \notb{\psi} $ then as deductions are finite and therefore only involve finitely many formulas in $ \Delta $, for some finite $ \Delta_0 \subseteq \Delta $, $ \Delta_0 \vdash_L \psi $ and $ \Delta_0 \vdash_L \notb{\psi} $.
+\end{proof}
+
+Let $ P $ be the set of sequences of $ \cb{T, F} $, that is the set of functions $ f : \N \to \cb{T, F} $. Topologise with basic open sets. For $ a_1, \dots, a_n \in \cb{T, F} $ consider $ O\rb{a_1, \dots, a_n} $, all sequences starting $ a_1, \dots, a_n $. (TODO Exercise: use Compactness theorem to prove $ P $ is compact)
 
 \end{document}
