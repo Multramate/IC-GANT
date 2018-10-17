@@ -396,7 +396,7 @@ By the Chinese Remainder Theorem, to understand the structure of $ \rb{\Z / n\Z}
 \marginpar{Lecture 4 \\ Friday \\ 12/10/18}
 
 \begin{definition}
-If $ G $ is a group and $ g \in G $ is an element, the \textbf{order} of $ g $ is the least $ a \ge 1 $ such that $ g^a = 1 $. In particular, if $ \rb{g, n} = 1 $, then we write $ ord_n\rb{g} $ for the order of $ g $ in $ \rb{\Z / n\Z}^* $, or the order of $ g \mod n $.
+If $ G $ is a group and $ g \in G $ is an element, the \textbf{order} of $ g $ is the least $ a \ge 1 $ such that $ g^a = 1 $. In particular, if $ \rb{g, n} = 1 $, then we write $ ord_n\rb{g} $ for the order of $ g $ in $ \rb{\Z / n\Z}^* $, or the order of $ g $ modulo $ n $.
 \end{definition}
 
 \begin{proposition}
@@ -472,6 +472,7 @@ For each $ d \mid n $, the elements of $ \cb{1, \dots, n} $ with $ \rb{i, n} = n
 \end{proof}
 
 \begin{theorem}
+\label{thm:26}
 Let $ p $ be prime, and let $ d \mid \rb{p - 1} $. Then there are exactly $ \Phi\rb{d} $ elements of $ \rb{\Z / p\Z}^* $ of order $ d $. In particular, there are $ \Phi\rb{p - 1} $ primitive roots, and $ \rb{\Z / p\Z}^* $ is cyclic.
 \end{theorem}
 
@@ -480,5 +481,67 @@ Induction on $ d $. $ d = 1 $ is obvious. Assume the result holds for all $ d' \
 $$ \Phi\rb{d} = d - \sum_{d' \mid d, \ d' \ne d} \Phi\rb{d'}. $$
 Now use inductive hypothesis and Corollary \ref{cor:23}.
 \end{proof}
+
+\marginpar{Lecture 5 \\ Tuesday \\ 16/10/18}
+
+\begin{proposition}
+Let $ p $ be an odd prime and $ n \ge 1 $. Then $ \rb{\Z / p^n\Z}^* $ is cyclic.
+\end{proposition}
+
+\begin{proof}
+Consider three cases.
+\begin{itemize}
+\item[$ n = 1 $] Theorem \ref{thm:26}.
+\item[$ n = 2 $] Let $ g $ be a primitive root modulo $ p $. Claim that either $ g^{p - 1} \not\equiv 1 \mod p^2 $, and $ g $ is a generator for $ \rb{\Z / p^2\Z}^* $, or $ g^{p - 1} \equiv 1 \mod p^2 $, and $ g + p $ is a generator for $ \rb{\Z / p^2\Z}^* $. Either way, $ \rb{\Z / p^2\Z}^* $ is cyclic. Suppose firstly that $ g^{p - 1} \not\equiv 1 \mod p^2 $.
+$$ \#\rb{\Z / p^2\Z}^* = \Phi\rb{p^2} = p\rb{p - 1}. $$
+So $ ord_{p^2}\rb{g} \mid p\rb{p - 1} $. On the other hand, $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p^2 $ gives $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p $, so $ \rb{p - 1} \mid ord_{p^2}\rb{g} $ because $ ord_p\rb{g} = p - 1 $ by assumption. But $ ord_{p^2}\rb{g} \ne p - 1 $, as $ g^{p - 1} \not\equiv 1 \mod p^2 $. So $ ord_{p^2}\rb{g} = p\rb{p - 1} $ as required. Suppose now that $ g^{p - 1} \equiv 1 \mod p $. It suffices to show that $ \rb{g + p}^{p - 1} \not\equiv 1 \mod p^2 $, as we can then apply the analysis above with $ g + p $ in place of $ g $. By the binomial theorem,
+$$ \rb{g + p}^{p - 1} \equiv g^{p - 1} + \rb{p - 1}g^{p - 2}p \equiv 1 + \rb{p - 1}g^{p - 2}p \mod p^2. $$
+Since $ p \nmid \rb{p - 1}g^{p - 2} $, $ \rb{g + p}^{p - 1} \not\equiv 1 \mod p^2 $, as required.
+\item[$ n \ge 2 $] It suffices to show that if $ ord_{p^2}\rb{g} = p\rb{p - 1} $, then $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $. We do this by induction on $ n $. So assume that $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $. Then
+$$ p^{n - 1}\rb{p - 1} = ord_{p^n}\rb{g} \mid ord_{p^{n + 1}}\rb{g} \mid \Phi\rb{p^{n + 1}} = p^n\rb{p - 1}. $$
+So either $ ord_{p^{n + 1}}\rb{g} = p^n\rb{p - 1} $, or $ ord_{p^{n + 1}}\rb{g} = p^{n - 1}\rb{p - 1} $. So we need to show that $ g^{p^{n - 1}\rb{p - 1}} \not\equiv 1 \mod p^{n + 1} $. To do this, consider $ g^{p^{n - 2}\rb{p - 1}} \mod p^{n - 1} $ and $ g^{p^{n - 2}\rb{p - 1}} \mod p^n $. Since $ \Phi\rb{p^{n - 1}} = p^{n - 2}\rb{p - 1} $, $ g^{p^{n - 2}\rb{p - 1}} \equiv 1 \mod p^{n - 1} $ by Euler's theorem. Write $ g^{p^{n - 2}\rb{p - 1}} = 1 + p^{n - 1}t $. Since $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $ by assumption, $ g^{p^{n - 2}\rb{p - 1}} \not\equiv 1 \mod p^n $, that is $ p \nmid t $. Then
+$$ g^{p^{n - 1}\rb{p - 1}} = \rb{g^{p^{n - 2}\rb{p - 1}}}^p = \rb{1 + p^{n - 1}t}^p \equiv 1 + p^nt + \two{p}{2}p^{2\rb{n - 1}}t^2 + \dots + p^{p\rb{n - 1}}t^p \mod p^{n + 1}, $$
+Now $ r\rb{n - 1} \ge n + 1 $ if and only if $ \rb{r - 1}n \ge r + 1 $. Since $ p > 2 $,
+$$ p \ \Big| \ \two{p}{2} \qquad \implies \qquad p^{n + 1} \ \Big| \ p^{2n - 1} = p^{2\rb{n - 1} + 1} \ \Big| \ \two{p}{2}p^{2\rb{n - 1}}. $$
+So $ g^{p^{n - 1}\rb{p - 1}} \equiv 1 + p^nt \not\equiv 1 \mod p^{n + 1} $, because $ p \nmid t $.
+\end{itemize}
+\end{proof}
+
+\begin{example}
+Let $ p = 2 $.
+\begin{enumerate}
+\item $ \rb{\Z / 2\Z}^* = \cb{1} $.
+\item $ \rb{\Z / 4\Z}^* = \cb{1, 3} $ is cyclic of order $ 2 $, with $ 3 $ as a generator.
+\item $ \rb{\Z / 8\Z}^* = \cb{1, 3, 5, 7} $ is not cyclic. $ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8 $, so every element has order two.
+\end{enumerate}
+\end{example}
+
+\begin{lemma}
+\label{lem:27}
+For $ n \ge 0 $ we have $ 5^{2^n} \equiv 1 + 2^{n + 2} \mod 2^{n + 3} $.
+\end{lemma}
+
+\begin{proof}
+Induction on $ n $. $ n = 0 $ is obvious. Assume that $ 5^{2^n} = 1 + 2^{n + 2}t $ with $ t $ odd. Then
+$$ 5^{2^{n + 1}} = \rb{1 + 2^{n + 1}t}^2 = 1 + 2^{n + 3}t + 2^{2\rb{n + 2}}t^2 = 1 + 2^{n + 3}\rb{t + 2^{n + 1}t^2}, $$
+where and $ t + 2^{n + 1}t^2 $ is odd.
+\end{proof}
+
+\begin{proposition}
+If $ n \ge 2 $ then there is an isomorphism $ \rb{\Z / 2^n\Z}^* \to \rb{\Z / 2\Z} \times \rb{\Z / 2^{n - 2}\Z} $. In particular, if $ n \ge 3 $, then $ \rb{\Z / 2^n\Z}^* $ is not cyclic.
+\end{proposition}
+
+\begin{proof}
+Let $ \ab{g} $ denote the group $ \cb{1, \dots, g^{ord\rb{g} - 1}} $ generated by $ g $. Consider the natural map $ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^* $. This is injective, because if $ \pm 1\rb{5}^s \equiv 1 \mod 2^n $ then in particular $ \pm 1\rb{5}^s \equiv 1 \mod 4 $ so $ \pm 1 \equiv 1 \mod 4 $, so we must have $ 5^s \equiv 1 \mod 2^n $, that is $ 5^s = 1 $ in $ \ab{5} $. $ \ab{-1} $ has order $ 2 $ and $ \ab{5} $ has order $ ord_{2^n}\rb{5} = 2^{n - 2} $ by Lemma \ref{lem:27}. So $ \ab{-1} \times \ab{5} $ has order $ 2\rb{2^{n - 2}} = 2^{n - 1} = \Phi\rb{2^n} = \#\rb{\Z / 2^n\Z}^* $. So the map $ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^* $ is an injection of groups of the same order, so it is a bijection.
+\end{proof}
+
+\begin{theorem}
+$ \rb{\Z / n\Z}^* $ is cyclic if and only if
+\begin{enumerate}
+\item $ n = 1, 2, 4 $,
+\item $ n = p^r $ for $ p > 2 $ prime and $ r \ge 1 $, and
+\item $ n = 2p^r $ for $ p > 2 $ prime and $ r \ge 1 $.
+\end{enumerate}
+\end{theorem}
 
 \end{document}
