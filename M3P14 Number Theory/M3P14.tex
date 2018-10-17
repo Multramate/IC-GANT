@@ -544,4 +544,37 @@ $ \rb{\Z / n\Z}^* $ is cyclic if and only if
 \end{enumerate}
 \end{theorem}
 
+\marginpar{Lecture 6 \\ Wednesday \\ 17/10/18}
+
+Primitive roots are generators of $ \rb{\Z / n\Z}^* $. Find them in practice by guessing small values of $ g $, and see if $ g $ is a generator. There are $ \Phi\rb{p - 1} $ primitive roots, which means that you have a high probability of success. Could work out $ 1, \dots, g^{p - 2} $ and check these are distinct. This would be inefficient. Better is to check for some prime $ q \mid \rb{p - 1} $ whether $ g^{\rb{p - 1} / q} = 1 $ or not. This works, because if $ g^{\rb{p - 1} / q} = 1 $ then $ g $ is not a primitive root, while if $ g^{\rb{p - 1} / q} \ne 1 $ then $ ord_p\rb{g} \mid \rb{p - 1} $ and $ ord_p\rb{g} \nmid \rb{p - 1} / q $. If this holds for all $ q \mid \rb{p - 1} $, then $ ord_p\rb{g} = p - 1 $, because otherwise it would be a proper divisor, and so would divide $ \rb{p - 1} / q $ for some prime $ q \mid \rb{p - 1} $.
+
+\begin{example}
+Let $ p = 31 $, $ p - 1 = 30 = \rb{2}\rb{3}\rb{5} $. $ g $ is a primitive root if and only if $ g^{15} \ne 1 $, $ g^{10} \ne 1 $, $ g^{6} \ne 1 $.
+\begin{enumerate}
+\item Is $ 2 $ a primitive root? $ 2^2 = 4 $, $ 2^4 = 16 $, $ 2^6 = 2 $, but $ 2^10 = 2^15 = 1 $ because $ 2^5 = 32 = 1 $, so $ 2 $ is not a primitive root.
+\item How about $ 3 $? $ 3^2 = 9 $, $ 3^4 = 19 $, $ 3^6 = 16 $, $ 3^8 = 20 $, $ 3^{10} = 25 $, $ 3^{15} = 30 $. So $ 3 $ is a primitive root modulo $ 31 $.
+\end{enumerate}
+\end{example}
+
+\section{Primality testing and factorisation}
+
+Idea is testing whether an integer $ n $ is prime is easy. Factoring $ n $ is expected to be hard. Easy here means that there is an algorithm to check whether $ n $ is prime or not which runs in time polynomial in $ \log n $. It is known that a deterministic algorithm exists to do this, the Agrawal-Kayal-Saxena (AKS) algorithm in 2005. We will see an algorithm that runs faster than this in practice. On the other hand, for factoring there are algorithms which are better than exponential in $ \log n $, but there is nothing close to polynomial time, and the general expectation is that no such algorithm should exist.
+
+\subsection{Factorisation}
+
+How do we factor three digit numbers, or small four digit numbers, say $ n \le 400 $, if we wanted to factor with paper or calculator? If $ n \le 400 $ and $ n $ is composite, then $ n $ has a prime factor $ d \le \sqrt{400} = 20 $. If $ d \mid n $ then $ d\rb{n / d} = n $, so either $ d \le \sqrt{n} $ or $ n / d \le \sqrt{n} $. So you only have to be able to check for divisibility $ 2, 3, 5, 7, 11, 13, 17, 19 $.
+\begin{enumerate}
+\item Checking by divisibility by $ 2 $ or $ 5 $ is easy. Just look at the last digit.
+\item For $ 3 $, $ 11 $, use that $ 10 \equiv 1 \mod 3 $ and $ 10 \equiv -1 \mod 3 $. So
+$$ \sum_{i = 0}^{\log n} a_i10^i \equiv \sum_{i = 0}^{\log n} a_i \mod 3, \qquad \sum_{i = 0}^{\log n} a_i10^i \equiv \sum_{i = 0}^{\log n} a_i\rb{-1}^i \mod 11. $$
+So you can check divisibility by $ 3 $ or $ 9 $ by checking for the sum of the digits, and $ 11 $ by taking the alternating sum.
+\item For $ 7 $, $ 10x + y \equiv 0 \mod 7 $ if and only if $ -2\rb{10x + y} \equiv 0 \mod 7 $, if and only if $ x - 2y \equiv 0 \mod 7 $.
+\item For $ 13 $, $ 17 $, $ 19 $, there are no good tests. If $ n \le 400 $ and $ n $ is not divisible by $ 2, 3, 5, 7, 11 $, then the smallest prime factor of $ n $ is at least $ 13 $. Since $ 13^3 > 400 $, it can have at most $ 2 $ prime factors. So if you want to factor numbers $ \le 400 $, you only have to remember a short list
+$$ 13^2, \qquad 13\rb{17}, \qquad 13\rb{19}, \qquad 13\rb{23}, \qquad 13\rb{29}, \qquad 17^2, \qquad 17\rb{19}, \qquad 17\rb{23}, \qquad 19^2. $$
+\end{enumerate}
+
+\begin{example}
+$ 143 \equiv 1 - 4 + 3 \equiv 0 \mod 11 $, $ 144 \equiv 1 + 4 + 4 \equiv 0 \mod 9 $, and $ 154 \equiv 15 - 2\rb{4} = 7 \equiv 0 \mod 7 $.
+\end{example}
+
 \end{document}
