@@ -371,11 +371,9 @@ There is a \textbf{reduction modulo $ I $} or \textbf{natural quotient} homomorp
 
 We then have the following.
 
-\begin{proposition}
+\begin{proposition}[Universal property of the quotient]
 Let $ I \subseteq R $ be an ideal and let $ f : R \to S $ be a homomorphism, and suppose that the kernel of $ f $ contains $ I $. Then there is a unique homomorphism $ \overline{f} : R / I \to S $ such that for all $ r \in R $, $ \overline{f}\rb{r + I} = f\rb{r} $.
 \end{proposition}
-
-This is called the \textbf{universal property of the quotient}.
 
 \begin{proof}
 $ \overline{f} $ is necessarily unique, as every element of $ R / I $ has the form $ r + I $ for some $ r $. It thus suffices to show that it is well-defined and gives a homomorphism. If $ r + I = r' + I $, then $ r - r' \in I $, so $ f\rb{r - r'} = 0 $ gives $ f\rb{r} = f\rb{r'} $. Thus $ \overline{f} $ is well-defined. Checking that it is a homomorphism follows from $ f $ is a homomorphism.
@@ -538,7 +536,7 @@ One technique for proving that rings are PIDs is Euclid's algorithm. We formaliz
 Let $ R $ be an integral domain.
 \begin{enumerate}
 \item A \textbf{Euclidean norm} on $ R $ is a function $ N : R \to \Z_{\ge 0} $ such that for all $ a, b \in R $, with $ b \ne 0 $, there exists $ q, r \in R $ such that $ a = qb + r $, and either $ r = 0 $ or $ N\rb{r} < N\rb{b} $.
-\item An integral domain $ R $ is called a \textbf{Euclidean Domain} if there is a Euclidean norm on $ R $.
+\item An integral domain $ R $ is called a \textbf{Euclidean domain} if there is a Euclidean norm on $ R $.
 \end{enumerate}
 \end{definition}
 
@@ -573,6 +571,88 @@ $$ S\rb{X} = Q\rb{X}T\rb{X} + R\rb{X} \qquad \implies \qquad P\rb{X} = \rb{\dfra
 \end{example}
 
 Later, will show if $ R $ UFD, then $ R\sb{X} $ is also a UFD.
+
+\section{Chinese remainder theorem}
+
+In elementary number theory, let $ m_1, m_2 \in \Z $ be relatively prime and $ a_1, a_2 \in \Z $. Then there exists $ a \in \Z $ such that
+$$ a \equiv a_1 \mod m_1, \qquad a \equiv a_2 \mod m_2. $$
+Moreover, $ a $ is unique up to congruence modulo $ m_1m_2 $. Question is given ideals $ I_1, \dots, I_r $ and $ a_1, \dots, a_r \in \R $, when can we find a $ a \in R $ with $ a \in a_1 + I_1, \dots a_r + I_r $?
+
+\subsection{Products}
+
+\begin{definition}
+Let $ R_1, \dots, R_n $ be rings. The \textbf{direct product} $ R \times \dots \times R_n $ is a ring whose elements are $ n $-tuples $ \rb{r_1, \dots, r_n} $ with $ r_i \in R_i $ for all $ i $. The addition and multiplication are given componentwise.
+$$ \rb{r_1, \dots, r_n} + \rb{r_1', \dots, r_n'} = \rb{r_1 + r_1', \dots, r_n + r_n'}, \qquad \rb{r_1, \dots, r_n}\rb{r_1', \dots, r_n'} = \rb{r_1r_1', \dots, r_nr_n'}. $$
+\end{definition}
+
+\begin{note}
+The product comes with natural homomorphisms for all $ i $, $ \pi_i $, \textbf{projection} onto the $ i $-th factor, defined by
+$$ \pi_i\rb{r_1, \dots, r_n} = r_i : R_1 \times \dots \times R_n \to R_i, $$
+and the following universal property.
+\end{note}
+
+\begin{theorem}[Universal property of the product]
+Let $ S, R_1, \dots, R_n $ be any rings. For any homomorphisms $ f_1 : S \to R_1, \dots, f_n : S \to R_n $, there exists a unique homomorphism $ f : S \to R_1 \times \dots \times R_n $ such that $ \pi_i \circ f = f $ for all $ i $.
+\end{theorem}
+
+\begin{proof}
+Given $ f_i $, the homomorphism $ f $ is defined by $ f\rb{s} = \rb{f_1\rb{t}, \dots, f_n\rb{t}} $. Then $ \rb{\pi_i \circ f}\rb{s} = f_i\rb{s} $. For uniqueness, if $ \rb{\pi \circ g}\rb{s} = f_i\rb{s} $ for all $ i $, then $ g\rb{s} = \rb{f_1\rb{s}, \dots, f_n\rb{s}} = f\rb{s} $.
+\end{proof}
+
+More generally, if $ I $ is any index set, and for each $ i \in I $ we have a ring $ R_i $, we can define the product $ \prod_i R_i $. An element $ r $ of this product is a choice, for each $ i \in I $, of an element of $ R_i $. We write such an element as $ \rb{r_i}_{i \in I} $. For each $ j \in I $ we have a map $ \pi_j : \prod_i R_i \to R_j $ given by $ \pi_j\rb{\rb{r_i}_{i \in I}} = r_j $. Such a product satisfies a very similar universal property. For any collection $ f_i : S \to R_i $ of maps for each $ i \in I $, we get a unique map $ f : S \to \prod_i R_i $ such that $ \pi_j \circ f = f_j $.
+
+\subsection{The Chinese remainder theorem}
+
+Let $ R $ be a ring, and let $ I_1, \dots, I_r $ be a finite collection of ideals of $ R $. We have the natural maps $ R \to R / I_1, \dots, R \to R / I_r $, which are surjective with kernel $ I_j $. Consider the product map
+$$ R \to \dfrac{R}{I_1} \times \dots \times \dfrac{R}{I_r}. $$
+It is easy to see that the kernel of this map is the set of $ r \in R $ such that $ r $ maps to zero in $ R / I_j $ for all $ j $. That is, the kernel is the intersection $ I_1 \cap \dots \cap I_r $. Call this ideal $ J $. We thus have an injective embedding
+$$ \dfrac{R}{J} \hookrightarrow \dfrac{R}{I_1} \times \dots \times \dfrac{R}{I_r}. $$
+A natural question to ask is, what can we say about the image? In other words, given congruence classes modulo $ I_1, I_2, \dots $, when is there a single element of $ R $ that lives in all those congruence classes simultaneously?
+
+\begin{note}
+Because the above map is injective, if one such element exists, then there is a unique congruence class modulo $ J $ that satisfies all of the required congruences.
+\end{note}
+
+Of course, without further hypotheses we cannot expect this map to be surjective. Think about what happens when $ I_1 = I_2 $, for instance. Nonetheless, we have the following.
+
+\begin{definition}
+We will say $ I_1, \dots, I_r $ are \textbf{pairwise relatively prime} if for each $ i \ne j $, the sum $ I_i + I_j $ is the unit ideal in $ R $.
+\end{definition}
+
+(TODO Exercise: if $ R = \Z $, then $ I_i = \ab{n_i} $, and $ \cb{I_i} $ is pairwise relatively prime iff for all $ i \ne j $, $ n_i $ and $ n_j $ are relatively prime)
+
+\begin{theorem}
+Let $ R $ be a ring and $ I_1, \dots, I_r $ be pairwise relatively prime ideals. Then the natural map
+$$ \dfrac{R}{J} \hookrightarrow \dfrac{R}{I_1} \times \dots \times \dfrac{R}{I_r} $$
+is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+We have to prove it is surjective. Fix any tuple $ \rb{c_1, \dots, c_r} $ of elements of $ R $. We need to find $ c \in R $ such that $ c \in c_i + I_i $ for all $ i $. It suffices to construct, for each $ i $, an element $ e_i $ of $ R $ such that $ e_i \equiv 1 \mod I_i $ and $ e_i \equiv 0 \mod I_j $ for $ i \ne j $. Suppose we have such an element. Then the element $ c = c_1e_1 + \dots + c_re_r $ is such that $ c \equiv c_j \mod I_j $ for all $ j $. Given $ i, j $ with $ i \ne j $, we know that $ I_i + I_j $ is the unit ideal. That is, we can write $ a_{ij} + b_{ij} = 1 $ with $ a_{ij} \in I_i $ and $ b_{ij} \in I_j $. Then $ a_{ij} \equiv 1 \mod I_j $ and $ a_{ij} \equiv 0 \mod I_i $ as an element of $ R / I_1 \times \dots \times R / I_r $, so $ a_{ij} $ has zero in the $ i $-th place and one in the $ j $-th place. Then for any $ i $ we can take $ e_j = \prod_{i \ne j} a_{ij} $ and $ e_j \equiv 1 \mod I_j $ and $ e_j \equiv 0 \mod I_i $ for all $ i \ne j $, so $ e_j $ has one only in the $ j $-th place. So $ R \to R / I_1 \times \dots \times R / I_r $ is surjective. The result follows.
+\end{proof}
+
+\subsection{Examples}
+
+When $ R = \Z $, then every ideal is principal, so we can write $ I_j = \ab{n_j} $ for all $ j $. The condition that $ I_i + I_j $ is the unit ideal becomes the condition that $ n_i \in \Z $ are pairwise relatively prime. In this case the ideal $ J $ is generated by the product $ n $ of the $ n_i $. Specialising, we find the version of the Chinese remainder theorem from elementary number theory.
+
+\begin{theorem}
+If $ \cb{n_j \in \Z} $ is a finite collection of pairwise relatively prime integers, and $ n $ is their product, then for any $ c_1, \dots, c_r \in \Z $, there exists $ c \in \Z $ unique up to congruence modulo $ n $ such that $ c $ is congruent to $ c_i $ mod $ n_i $ for all $ i $.
+\end{theorem}
+
+Now let $ K $ be a field and take $ R = K\sb{X} $. If $ c_1, \dots, c_r \in K $ are distinct elements of $ K $, the ideals $ I_i = \ab{X - c_i} \subseteq R $ are such that $ I_i + I_j = \ab{X - c_i} + \ab{X - c_j} $ contains $ c_i - c_k \in K^* $, so contains $ 1 $. That is, $ I_i + I_j $ is the unit ideal in $ R $ and the ideals $ I_i $ are pairwise relatively prime. Moreover, for each $ i $, $ I_i $ is the kernel of the evaluation map $ f_i : R \to K $ by that takes $ P\rb{X} $ to $ P\rb{c_i} $. Let $ f : R \to K^r = K \times \dots \times K $ by $ P\rb{X} \to \rb{P\rb{c_1}, \dots, P\rb{c_r}} $. Then the following diagram commutes.
+$$
+\begin{tikzcd}
+R \arrow{r}{f} \arrow[two heads]{d} & K^r \\
+\dfrac{R}{J} \arrow{r}{\sim} & \dfrac{R}{I_1} \times \dots \times \dfrac{R}{I_r} \arrow{u}{\sim}.
+\end{tikzcd}
+$$
+Chinese remainder theorem gives that $ f $ is surjective. We thus have an isomorphism of $ R / I_i $ with $ K $ that takes $ P\rb{X} $ to $ P\rb{c_i} $ for all polynomials $ P $. We thus obtain the following.
+
+\begin{theorem}
+For any $ c_1, \dots, c_n \in K $, there is a polynomial $ P\rb{X} $ in $ R $, unique up to congruence modulo $ \rb{x - a_1} \dots \rb{x - a_n} $ such that $ P\rb{a_i} = c_i $ for all $ i $.
+\end{theorem}
+
+\marginpar{Lecture 7 \\ Friday \\ 19/10/18}
 
 \section{Fields and field extensions}
 
