@@ -394,6 +394,7 @@ $$ a' = \lambda a, \qquad b' = \lambda b, \qquad c' = \lambda c. $$
 \end{exercise}
 
 \begin{remark}[First aid topology]
+\label{rem:2.19}
 \hfill
 \begin{enumerate}
 \item A \textbf{topological space} is a set $ X $ with a collection of open subsets $ \cb{U_i \subset X} $ such that
@@ -425,7 +426,7 @@ $$ B\rb{0, M} = \cb{\abs{x}^2 + \abs{y}^2 < M}. $$
 Want to show that some points in $ \C $ are outside this open ball. Let $ y_0 \in \C $ be such that $ \abs{y_0} > M $ and assume we can arrange for $ g = f\rb{\cdot, y_0} $ to be a non-constant polynomial of $ x $. By the fundamental theorem of algebra, $ g $ has a root $ x_0 \in \C $ and the point $ \rb{x_0, y_0} \in C $. This is a contradiction, as $ \rb{x_0, y_0} \notin B\rb{0, M} $.
 \end{proof}
 
-TODO Exercise: what if $ f\rb{x, y} $ happens to be a polynomial of $ y $ alone, so that this cannot be arranged?
+(TODO Exercise: what if $ f\rb{x, y} $ happens to be a polynomial of $ y $ alone, so that this cannot be arranged?)
 
 \marginpar{Lecture 4 \\ Monday \\ 15/10/18}
 
@@ -513,7 +514,7 @@ For any non-zero $ x \in \C $ we have $ \sb{x} = \sb{1} $. So $ \P^0 = \C^1 \set
 \end{example}
 
 \begin{notation}
-For any $ i = 0, \dots, n $, denote
+For any $ i = 0, \dots, n $, denote the \textbf{affine chart}
 $$ U_i = \cb{\sb{x} = \sb{x_1, \dots, x_n} \in \P^n \mid x_i \ne 0} \subseteq \P^n. $$
 \end{notation}
 
@@ -550,25 +551,26 @@ Let $ n = 2 $ and $ \sb{x_0, x_1, x_2} \in \P^2 $. Let $ \phi_1 : \C^2 \to U_1 $
 $$ \rho_i\rb{\phi_i\rb{y_1, \dots, y_n}} = \rho_i\rb{\sb{y_1, \dots, 1, \dots, y_n}} = \rb{y_1, \dots, y_n}. $$
 \end{example}
 
-The previous two lemmas can be used to define a topology on $ \P^n $. Let $ U \subseteq \P^n $, then $ U $ is open if and only if $ \phi_i^{-1}\rb{U \cap U_i} \subseteq \C^n $ is open in $ \C^n $ for any $ i = 0, \dots, n $.
+The previous two lemmas can be used to define a topology on $ \P^n $. Let $ U \subseteq \P^n $, then $ U $ is open if and only if $ \phi_i^{-1}\rb{U \cap U_i} \subseteq \C^n $ is open in $ U_i \cong \C^n $ for any $ i = 0, \dots, n $.
 
 \begin{exercise}
 Show that $ U_i \subseteq \P^n $ is open in $ \P^n $ for all $ i = 0, \dots, n $.
 \end{exercise}
 
 \begin{exercise}
-We can define another topology on $ \P^n $, as follows. A subset $ U \subseteq \P^n $ is open if and only if its preimage $ \pi^{-1}\rb{U} $ is open in $ W $, where $ \pi : W \to \P^n $ is the map defined by $ \rb{x_0, \dots, x_n} \mapsto \sb{x_0, \dots, x_n} $. Show that this indeed defines a topology, and that this topology coincides with the one defined above using the maps $ \phi_i $.
+We can define another topology on $ \P^n $ as the quotient topology induced by the map $ \pi : W \to \P^n $ defined by $ \rb{x_0, \dots, x_n} \mapsto \sb{x_0, \dots, x_n} $. A subset $ U \subseteq \P^n $ is open if and only if its preimage $ \pi^{-1}\rb{U} \subseteq W $ is open in $ W $. Show that this indeed defines a topology, and that this topology coincides with the one defined above using the maps $ \phi_i $. Check that with this topology on $ \P^n $, $ \pi $ is continuous.
 \end{exercise}
 
 \begin{exercise}
+\label{ex:12}
 Prove that $ \P^n $ is compact. Restrict the projection $ \pi $ of the previous exercise to the $ \rb{n + 1} $-dimensional sphere $ S^{n + 1} \subseteq W $, and check that this restriction is surjective and continuous. Since $ S^{n + 1} $ is compact, it follows that $ \P^n $ is compact as well.
 \end{exercise}
 
 \begin{example}
 \hfill
 \begin{enumerate}
-\item $ \P^1 = \cb{\sb{x_0, x_1} \mid \rb{x_0, x_1} \in \C^2 \setminus \cb{\overline{0}}} $ is the union of two copies $ U_0 $ and $ U_1 $ of $ \C^1 $. The intersection of $ U_0 $ and $ U_1 $ is $ U_0 \cap U_1 = \cb{\sb{x_0, x_1} \mid x_0 \ne 0, x_1 \ne 0} $ can be identified with $ \C^* = \C \setminus \cb{0} $ via the map $ \sb{x_0, x_1} \mapsto x_1 / x_0 $. Using this identification and the maps $ \rho_i $, the inclusion $ U_0 \cap U_1 \subseteq U_0 $ is the map $ \C^* \to \C^1 $ sending $ z $ to itself, and the inclusion $ U_0 \cap U_1 \subseteq U_1 $ is the map $ \C^* \to \C^1 $ given by $ z \mapsto 1 / z $. $ \P^1 $ is glued together from two copies of $ \C $ along $ U_0 \cap U_1 $ by these inclusions, so $ \P^1 = \C^1 \cup \cb{\infty} $. Over the real numbers, $ \P^1\rb{\R} $ is built up in the same way from two copies of $ \R^1 $, and can be identified with the circle $ S^1 $.
-\item $ P^2 $ is the union of three copies of $ U_0 \cong U_1 \cong U_2 \cong \C^2 $, and the intersection can be described similarly. At infinity we will have a line. More generally, $ \P^n $ can be described similarly.
+\item $ \P^1 = \cb{\sb{x_0, x_1} \mid \rb{x_0, x_1} \in \C^2 \setminus \cb{\underline{0}}} $ is the union of two copies $ U_0 $ and $ U_1 $ of $ \C^1 $. The intersection of $ U_0 $ and $ U_1 $ is $ U_0 \cap U_1 = \cb{\sb{x_0, x_1} \mid x_0 \ne 0, x_1 \ne 0} $ can be identified with $ \C^* = \C \setminus \cb{0} $ via the map $ \sb{x_0, x_1} \mapsto x_1 / x_0 $. Using this identification and the maps $ \rho_i $, the inclusion $ U_0 \cap U_1 \subseteq U_0 $ is the map $ \C^* \to \C^1 $ sending $ z $ to itself, and the inclusion $ U_0 \cap U_1 \subseteq U_1 $ is the map $ \C^* \to \C^1 $ given by $ z \mapsto 1 / z $. $ \P^1 $ is glued together from two copies of $ \C $ along $ U_0 \cap U_1 $ by these inclusions, so $ \P^1 = \C^1 \cup \cb{\infty} $. Over the real numbers, $ \P^1\rb{\R} $ is built up in the same way from two copies of $ \R^1 $, and can be identified with the circle $ S^1 $.
+\item $ \P^2 $ is the union of three copies of $ U_0 \cong U_1 \cong U_2 \cong \C^2 $, and the intersection can be described similarly. At infinity we will have a line. More generally, $ \P^n $ can be described similarly.
 \end{enumerate}
 \end{example}
 
@@ -594,11 +596,148 @@ TODO Exercise: both statements are easy to check.
 \end{proof}
 
 In conclusion, we have that
-$$ \P^n = U_i \sqcup P_i \cong \C^n \cup \P^{n - 1} = \dots = \C^n \cup \dots \cup \C^0. $$
-$ P_i $ is called the hyperplane at infinity.
+$$ \P^n = U_i \sqcup P_i \cong \C^n \sqcup \P^{n - 1} = \dots = \C^n \cup \dots \cup \C^0. $$
+$ P_i $ is called the \textbf{hyperplane at infinity}.
 
 \begin{example}
-In $ \R $, $ \P^1\rb{\R} = \R \cup \R $ by the identification $ r \mapsto 1 / r $, so $ \P^1\rb{\R} \cong S^1 $, while $ \P^2\rb{\R} = \R^2 \cup \P^1\rb{\R} $ has a circle at infinity identified by directions.
+\hfill
+\begin{enumerate}
+\item We have already seen that $ \P^0 $ is a point.
+\item $ \P^1 \cong \C^1 \cup \P^0 $. In other words, $ \P^1 $ is obtained by adding a point at infinity to the complex line $ \C $. It is a way to compactify the real plane. If $ \C^1 $ above is $ U_0 $, this point at infinity is the origin of the other open subset $ U_1 \cong \C^1 $. One can show that there is an bijection which is also a homeomorphism between $ \P^1 $ and the sphere $ S^1 $ in $ \R^3 $ by the identification $ r \mapsto 1 / r $. $ \P^1 $ is called the projective line.
+\item $ \P^2 \cong \C^2 \cup \P^1 $. Thus $ \P^2 $ is obtained by adding a projective line at infinity to the complex plane $ \C^2 $. $ \P^2 $ is called the projective plane.
+\end{enumerate}
 \end{example}
+
+Note that the point at infinity or the line at infinity is not unique, it depends on the choice of the coordinate and in our settings, it depends on $ i $. In the future, we will often fix $ i $, and this will give us a unique choice of the point or line at infinity.
+
+\marginpar{Lecture 5 \\ Thursday \\ 18/10/18}
+
+\section{Projective curves}
+
+Recall that an algebraic curve $ C \subseteq \C^2 $ is given by $ C = \cb{f\rb{x, y} = 0} $ for $ f \in \C\sb{x, y} $. In this section, we want to define projective curves similarly in $ \P^2 $ and then compactify these affine curves. If we try to define a plane projective curve in the same way as an affine curve, that is as $ \cb{f = 0} \subseteq \P^2 $, where $ f $ is a polynomial in $ \C\sb{x_0, x_1, x_2} $, the first hurdle we encounter is that $ f $ does not define a function on $ \P^2 $.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ f\rb{x, y, z} = x^2 + y^2 - z^2 $. Then $ f\rb{1, 1, 1} = 1 + 1 - 1 = 1 \ne 4 = 4 + 4 - 4 = f\rb{2, 2, 2} $, so that $ f $ does not define a function on $ \P^2 $. It makes no sense to talk about $ f\rb{1, 1, 1} $, because in $ \P^2 $, $ \sb{1, 1, 1} = \sb{2, 2, 2} $, so the value would not be well-defined. However, the locus where $ f $ is vanishes in this case is well-defined. If $ f\rb{x, y, z} = 0 $, then $ f\rb{\lambda x, \lambda y, \lambda z} = 0 $ for all $ \lambda \in \C^* $, so that the subset $ \cb{\sb{x, y, z} \in \P^2 \mid f\rb{x, y, z} = 0} $ is well-defined.
+\item Let $ g\rb{x_0, x_1, x_2} = x_0^2 + x_1 $, then $ g\rb{i, 1, 0} = 0 $, but $ g\rb{2i, 2, 0} \ne 0 $, so that in this case, the vanishing locus $ \cb{\sb{x_0, x_1, x_2} \in \P^2 \mid g\rb{x_0, x_1, x_2} = 0} $ is not even well-defined.
+\end{enumerate}
+\end{example}
+
+The example shows that if we want to define projective curves as
+$$ \cb{\sb{x_0, x_1, x_2} \in \P^2 \mid f\rb{x_0, x_1, x_2} = 0}, $$
+then $ f \in \C\sb{x_0, x_1, x_2} $ has to satisfy some additional properties.
+
+\begin{definition}
+A polynomial $ f \in \C\sb{x_0, \dots, x_n} $ is \textbf{homogeneous} if all its monomials have the same degree $ d \in \N $, that is
+$$ f\rb{x_0, \dots, x_n} = \sum_{\abs{\alpha} = \sum_{i = 0}^n \alpha_i = d} a_\alpha x^\alpha, \qquad \alpha \in \N^{n + 1}. $$
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item The polynomial $ f\rb{x, y, z} = x^2 + y^2 - z^2 $ is homogeneous of degree two, and the polynomial $ g\rb{x_0, x_1, x_2} = x_0^2 + x_1 $ is not homogeneous.
+\item $ f\rb{x, y} = Ax^3 + Bx^2y + Cxy^2 + Dy^3 $ is homogeneous of degree three, and all the homogeneous polynomials of degree three in $ x, y $ can be written in this form.
+\item $ g\rb{x, y, z} = x^4 - 2x^2yz + yz^3 $ is homogeneous of degree four.
+\end{enumerate}
+\end{example}
+
+\begin{lemma}
+\label{lem:4.4}
+Let $ P \in \C\sb{x_0, \dots, x_n} $ be a polynomial. If $ P $ is homogeneous of degree $ d $, then
+$$ P\rb{\lambda x_0, \dots, \lambda x_n} = \lambda^dP\rb{x_0, \dots, x_n}, $$ for all $ \lambda \in \C $, and all $ \rb{x_0, \dots, x_n} \in \C^{n + 1} $.
+\end{lemma}
+
+\begin{proof}
+Let $ P $ be a homogeneous polynomial of degree $ d $. Then $ P = M_1 + \dots + M_k $, where each $ M_i $ is a monomial of degree $ d $, that is a product $ a_i \cdot x^{\alpha_i} $ where $ \alpha_i \in \N^{n + 1} $ and $ a_i \in \C $. For each monomial $ M = a_\alpha x^\alpha = a_\alpha x_0^{\alpha_0} \dots x_n^{\alpha_n} $ of degree $ d $, for $ a_\alpha \in \C $ and $ \alpha \in \N^{n + 1} $, we have
+$$ M\rb{\lambda x_0, \dots, \lambda x_n} = a_\alpha\rb{\lambda^{\alpha_0}x_0^{\alpha_0}} \dots \rb{\lambda^{\alpha_n}x_n^{\alpha_n}} = \lambda^{\sum_{i = 0}^n \alpha_i}a_\alpha x^\alpha = \lambda^da_\alpha x^\alpha = \lambda^dM\rb{x_0, \dots, x_n}, $$
+because $ \sum_{i = 0}^n \alpha_i = \abs{\alpha} = d $. For the arbitrary homogeneous polynomial $ P $, write $ P = \sum_{i = 1}^k M_i $. Thus
+$$ P\rb{\lambda x_0, \dots, \lambda x_n} = \sum_{i = 1}^k M_i\rb{\lambda x_0, \dots, \lambda_n x_n} = \lambda^d\sum_{i = 1}^k M_i\rb{x_0, \dots, x_n} = \lambda^dP\rb{x_0, \dots, x_n}. $$
+\end{proof}
+
+\begin{exercise}
+Prove the converse implication for the previous lemma, that is if $ P \in \C\sb{x_0, \dots, x_n} $ and
+$$ P\rb{\lambda x_0, \dots, \lambda x_n} = \lambda^dP\rb{x_0, \dots, x_n}, $$
+for all $ \lambda \in \C $, and all $ \rb{x_0, \dots, x_n} \in \C^{n + 1} $, then $ P $ is homogeneous of degree $ d $.
+\end{exercise}
+
+\begin{proposition}
+Let $ P $ be a homogeneous polynomial. Then
+$$ \cb{\sb{x_0, \dots, x_n} \in \P^n \mid P\rb{x_0, \dots, x_n} = 0} $$
+is well-defined.
+\end{proposition}
+
+\begin{proof}
+We have to check that if $ \rb{x_0, \dots, x_n} \sim \rb{y_0, \dots, y_n} $, $ P\rb{x_0, \dots, x_n} = 0 $ if and only if $ P\rb{y_0, \dots, y_n} = 0 $. This follows immediately from Lemma \ref{lem:4.4}, because by definition of $ \sim $, $ \rb{y_0, \dots, y_n} = \rb{\lambda x_0, \dots, \lambda x_n} $ for some $ \lambda \in \C^* $, so $ P\rb{x_0, \dots, x_n} = 0 $ if and only if $ P\rb{\lambda x_0, \dots, \lambda x_n} = \lambda^dP\rb{x_0, \dots, x_n} = 0 $.
+\end{proof}
+
+\begin{notation}
+Unless mentioned otherwise, arbitrary polynomials will be denoted $ f, g, h, \dots $ while homogeneous polynomials will be denoted $ P, Q, R, \dots $.
+\end{notation}
+
+Let $ P_1, \dots, P_k \in \C\sb{x_0, \dots, x_n} $ be homogeneous polynomials. Then the vanishing locus
+$$ \cb{P_1 = \dots = P_k = 0} \subseteq \P^n $$
+is a \textbf{projective variety}. These are the main object of study of algebraic geometry. In this class, we will focus on plane projective curves.
+
+\begin{definition}
+A \textbf{complex projective plane algebraic curve} is
+$$ C = \cb{\sb{x_0, x_1, x_2} \in \P^2 \mid P\rb{x_0, x_1, x_2} = 0} \subseteq \P^2, $$
+where $ P $ is a non-constant homogeneous polynomial $ P \in \C\sb{x_0, x_1, x_2} $.
+\end{definition}
+
+From now on $ n = 2 $, so consider $ \P^2 $.
+
+\begin{example}
+The hyperplanes at infinity $ P_i = \cb{x_i = 0} \subseteq \P^2 $ for $ i = 0, 1, 2 $ are projective curves of degree one, where $ x_0 $ is a homogeneous polynomial of degree one.
+\end{example}
+
+\begin{definition}
+A \textbf{projective line} is a projective curve defined by a homogeneous polynomial $ ax_0 + bx_1 + cx_2 = 0 $ of degree one.
+\end{definition}
+
+We have seen that in the case of affine plane curves $ \cb{f = 0} \subseteq \C^2 $, the irreducible factors of the polynomial $ f $ were important when studying curves. The next lemma ensures that the same type of results hold for projective curves.
+
+\begin{lemma}
+Let $ P \in K\sb{x_0, \dots, x_n} $ be a non-zero homogeneous polynomial. Assume that $ P = Q \cdot R $, where $ Q, R \in K\sb{x_0, \dots, x_n} $. Then the polynomials $ Q $ and $ R $ are homogeneous.
+\end{lemma}
+
+\begin{proof}
+TODO Exercise.
+\end{proof}
+
+\begin{remark}
+As in the case of affine plane curves, we can therefore make sense of irreducible projective plane curves $ C = \cb{P = 0} \subset \P^2 $ with $ P $ irreducible. When $ P $ is reducible $ P = P_1^{a_1} \dots P_k^{a_k} $ with $ P_i $ distinct irreducible polynomials and $ a_i \in \N_{> 0} $, the projective curves $ C_i = \cb{P_i = 0} $ in $ \cb{P = 0} = \cb{P_1 = 0} \cup \dots \cup \cb{P_k = 0} $ are called the \textbf{irreducible components} of $ C = \cb{P = 0} $.
+\end{remark}
+
+\begin{remark}
+Hilbert's Nullstellensatz, and Theorem \ref{thm:2.9}, still holds. In particular, if $ P, Q \in \C\sb{x, y, z} $ are homogeneous polynomials with no repeated factors, $ \cb{P = 0} = \cb{Q = 0} \subseteq \P^2 $ if and only if $ P = \lambda Q $ for $ \lambda \in \C^* $.
+\end{remark}
+
+\begin{definition}
+Let $ C \subseteq P^2 $ be a projective plane curve and $ P $ any homogeneous polynomial with no repeated factor such that $ C = \cb{P = 0} \subseteq \P^2 $. The \textbf{degree} of $ C $ is the degree of $ P $.
+\end{definition}
+
+\begin{exercise}
+Show that the union of two projective curves $ C_1, C_2 \subseteq \P^2 $ is a projective curve. More generally, show that if $ X_1, X_2 \subseteq \P^2 $ are projective varieties, then $ X_1 \cup X_2 \subseteq \P^n $ is again a projective variety.
+\end{exercise}
+
+\begin{exercise}
+Show that if $ X = \cb{P = 0} \subseteq \P^n $ for a non-zero homogeneous polynomial $ P \in \C\sb{x_0, \dots, x_n} $, then
+$$ X = \cb{x_0P = \dots = x_nP = 0}. $$
+\end{exercise}
+
+\begin{lemma}
+Let $ C \subseteq \P^2 $ be a projective curve. Then $ C $ is compact.
+\end{lemma}
+
+Recall that affine curves are never compact.
+
+\begin{proof}
+Recall that a closed subset of a compact is compact itself. Since $ \P^2 $ is compact by Exercise \ref{ex:12}, we only need to prove that $ C $ is closed, or equivalently, that $ \pi^{-1}\rb{C} \subseteq W = \C^3 \setminus \cb{\underline{0}} $ is closed, where $ \pi : W \to W / \sim = \P^2 $ by $ \rb{x_0, x_1, x_2} \mapsto \rb{x_0, x_1, x_2} $, by Remark \ref{rem:2.19}. Assume that $ C = \cb{P = 0} $ for a homogeneous polynomial $ P $. Then, $ P : W \to \C $ is a continuous map, so that $ \pi^{-1}\rb{C} = P^{-1}\rb{\cb{0}} = \cb{P\rb{x_0, x_1, x_2} = 0} \cap W $ is a closed subset of $ W $.
+\end{proof}
+
+\begin{remark}
+You may have heard of the Zariski topology for algebraic varieties. The Zariski topology is defined on affine space $ \C^n $ or on projective space $ \P^n $ as the topology whose closed sets are of the form $ V\rb{S} = \cb{\underline{x} \in \C^n \mid f\rb{\underline{x}} = 0} $ where $ S $ is a set of polynomials or homogeneous polynomials $ f \in \C\sb{x_0, \dots, x_n} $. In this course, we do not work in the Zariski topology, but in the classical metric or Euclidean topology on $ \C^{n + 1} $ and in the topology this induces on $ \P^n $ as outlined above. One reason for that is that the Zariski topology is not Hausdorff, or separated.
+\end{remark}
 
 \end{document}
