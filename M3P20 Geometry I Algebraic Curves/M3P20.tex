@@ -580,13 +580,13 @@ What is the complement of this embedding, that is the points at infinity?
 
 \begin{notation}
 For any $ i = 0, \dots, n $, denote
-$$ P_i = \cb{\sb{x_0, \dots, x_n} \in \P^n \mid x_i = 0} \subseteq \P^n. $$
+$$ \mathcal{P}_i = \cb{\sb{x_0, \dots, x_n} \in \P^n \mid x_i = 0} \subseteq \P^n. $$
 \end{notation}
 
 \begin{lemma}
 For any $ i = 0, \dots, n $, we have
-$$ \P^n = U_i \sqcup P_i. $$
-Moreover if we define $ f_i : \P^{n - 1} \to P_i $ by
+$$ \P^n = U_i \sqcup \mathcal{P}_i. $$
+Moreover if we define $ f_i : \P^{n - 1} \to \mathcal{P}_i $ by
 $$ f_i\sb{z_0, \dots, z_{n - 1}} \mapsto \sb{z_0, \dots, z_{i - 1}, 0, z_i, \dots, z_{n - 1}} $$
 then $ f_i $ is a bijection.
 \end{lemma}
@@ -596,8 +596,8 @@ TODO Exercise: both statements are easy to check.
 \end{proof}
 
 In conclusion, we have that
-$$ \P^n = U_i \sqcup P_i \cong \C^n \sqcup \P^{n - 1} = \dots = \C^n \cup \dots \cup \C^0. $$
-$ P_i $ is called the \textbf{hyperplane at infinity}.
+$$ \P^n = U_i \sqcup \mathcal{P}_i \cong \C^n \sqcup \P^{n - 1} = \dots = \C^n \cup \dots \cup \C^0. $$
+$ \mathcal{P}_i $ is called the \textbf{hyperplane at infinity}.
 
 \begin{example}
 \hfill
@@ -688,7 +688,7 @@ where $ P $ is a non-constant homogeneous polynomial $ P \in \C\sb{x_0, x_1, x_2
 From now on $ n = 2 $, so consider $ \P^2 $.
 
 \begin{example}
-The hyperplanes at infinity $ P_i = \cb{x_i = 0} \subseteq \P^2 $ for $ i = 0, 1, 2 $ are projective curves of degree one, where $ x_0 $ is a homogeneous polynomial of degree one.
+The hyperplanes at infinity $ \mathcal{P}_i = \cb{x_i = 0} \subseteq \P^2 $ for $ i = 0, 1, 2 $ are projective curves of degree one, where $ x_0 $ is a homogeneous polynomial of degree one.
 \end{example}
 
 \begin{definition}
@@ -738,6 +738,55 @@ Recall that a closed subset of a compact is compact itself. Since $ \P^2 $ is co
 
 \begin{remark}
 You may have heard of the Zariski topology for algebraic varieties. The Zariski topology is defined on affine space $ \C^n $ or on projective space $ \P^n $ as the topology whose closed sets are of the form $ V\rb{S} = \cb{\underline{x} \in \C^n \mid f\rb{\underline{x}} = 0} $ where $ S $ is a set of polynomials or homogeneous polynomials $ f \in \C\sb{x_0, \dots, x_n} $. In this course, we do not work in the Zariski topology, but in the classical metric or Euclidean topology on $ \C^{n + 1} $ and in the topology this induces on $ \P^n $ as outlined above. One reason for that is that the Zariski topology is not Hausdorff, or separated.
+\end{remark}
+
+\marginpar{Lecture 6 \\ Friday \\ 19/10/18}
+
+Lecture 6 is a problem class.
+
+\section{Affine vs projective plane curves}
+
+We now show how to projectivise affine curves, and study the relationship between affine and projective curves.
+
+\begin{notation}
+We will typically use coordinates $ x, y $ on $ \C^2 $ and $ x_0, x_1, x_2 $ on $ \P^2 $.
+\end{notation}
+
+Starting with an affine curve $ C = \cb{f = 0} \subseteq \C^2 $ for $ f \in \C\sb{x, y} $ non-constant, want to construct a projective curve $ \overline{C} \subseteq \P^2 $, a projectivisation of $ C $. Recall that we have identified $ \C^2 $ with the open subset $ U_2 = \cb{x_2 \ne 0} \subseteq \P^2 $, via the function $ \phi : U_2 \to \C^2 $ defined by $ \sb{x_0, x_1, x_2} \mapsto \rb{x_0 / x_2, x_1 / x_2} $ and its inverse $ \rb{x, y} \mapsto \sb{x, y, 1} $. We now want to identify $ U_2 \cap \overline{C} \subseteq \C^2 $ with the original curve $ C $ for a suitable projective plane curve $ \overline{C} = \cb{P = 0} \subseteq \P^2 $ for $ P $ homogeneous, picking $ \C^2 \cong U_2 \subseteq \P^2 $ to be the points not at infinity.
+
+\begin{example}
+Idea is to let $ x = x_0 / x_2 $ and $ y = x_1 / x_2 $. $ f\rb{x, y} = x^3 + y + 1 = \rb{x_0 / x_2}^3 + \rb{x_1 / x_2} + 1 $ and clear denominators to get $ P\rb{x_0, x_1, x_2} = x_0^3 + x_1x_2^2 + x_2^3 $, homogeneous of degree three. Check that restricting $ P $ to $ U_2 \cong \C^2 $ I get back $ f $. Restricting $ P $ to $ U_2 \cong \C^2 $ gives $ P\rb{x, y, 1} = x^3 + y + 1 $. $ \cb{P = 0} = \overline{C} $ is the projectivisation of $ \cb{f = 0} = C $.
+\end{example}
+
+\begin{theorem}
+There is a bijective correspondence between
+\begin{enumerate}
+\item projective plane curves $ \overline{C} = \cb{P = 0} \subseteq \P^2 $ that do not contain the line at infinity $ \mathcal{P} = \cb{x_2 = 0} $, and
+\item affine curves $ C = \cb{f = 0} \subseteq \C^2 $.
+\end{enumerate}
+The bijection $ C \leftrightarrow \overline{C} $ is obtained by
+$$ P \mapsto \sb{f : \rb{x, y} \mapsto P\rb{x, y, 1}}, \qquad f \mapsto \sb{P : \rb{x_0, x_1, x_2} \mapsto x_2^d \cdot f\rb{x_0 / x_2, x_1 / x_2}}, $$
+for $ d = \deg\rb{f} $. The affine curve $ \cb{f = 0} \subseteq \C^2 $ is $ \phi\rb{U \cap \overline{C}} $, where $ \overline{C} = \cb{P = 0} $.
+\end{theorem}
+
+\begin{notation}
+In general, $ P $ is called the \textbf{homogenisation} of the polynomial $ f $. $ \overline{C} $ is the \textbf{projectivisation} of $ C $.
+\end{notation}
+
+\begin{proof}
+Let $ \overline{C} = \cb{P = 0} \subseteq \P^2 $ be a projective curve that does not contain $ \cb{x_2 = 0} $ as in the statement. $ \cb{x_2 = 0} $ is not contained in $ \overline{C} $ if and only if $ P $ contains at least one monomial without $ x_2 $. Then $ P $ contains at least one monomial without $ x_2 $, so that $ f : \rb{x, y} \to P\rb{x, y, 1} $ is a polynomial in $ x, y $. If not, $ P = x_2 \cdot Q $ and $ \cb{P = 0} = \cb{x_2 = 0} \cup \cb{Q = 0} $. So $ f\rb{x, y} $ has degree equal to $ d = \deg\rb{P} $. Under the identification $ \phi : U \to \C^2 $ defined in the previous section,
+$$ \phi\rb{U \cap \overline{C}} = \cb{\rb{x, y} \in \C^2 \mid f\rb{x, y} = 0}. $$
+Conversely, if $ C = \cb{f = 0} $, then $ C $ is the image by $ \phi $ of the intersection of $ U $ and $ \overline{C} $, where $ \overline{C} = \cb{P = 0} $, where the polynomial $ P $ is defined by $ P\rb{x_0, x_1, x_2} = x_2^d \cdot f\rb{x_0 / x_2, x_1 / x_2} $. Check that $ P $ is a well-defined homogeneous polynomial of degree $ d $.
+\end{proof}
+
+Look at an example where $ \overline{C} $ does contain $ \cb{x_2 = 0} $.
+
+\begin{example}
+Let $ P = x_0x_2^2 + x_1^2x_2 = x_2\rb{x_0x_2 + x_1^2} $. Then $ f\rb{x, y} = P\rb{x, y, 1} = x + y^2 $, so $ P\rb{x_0, x_1, x_2} = \rb{x_0 / x_2 + \rb{x_1 / x_2}^2}x_2^2 = x_0x_2 + x_1^2 $.
+\end{example}
+
+\begin{remark}
+To intersect $ \cb{P = 0} $ and $ \cb{Q = 0} $ in $ \P^2 $, solve $ P = 0 $ and $ Q = 0 $ in $ x_0, x_1, x_2 $ to get homogeneous coordinates of points of intersection, where $ \underline{0} $ is not a valid solution and $ \rb{\lambda x_0, \lambda x_1, \lambda x_2} $ is the same as $ \rb{x_0, x_1, x_2} $.
 \end{remark}
 
 \end{document}
