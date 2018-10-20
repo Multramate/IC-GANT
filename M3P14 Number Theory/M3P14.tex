@@ -316,7 +316,7 @@ $ 2x \equiv 3 \mod 6 $ has no solutions as $ \rb{2, 6} = 2 \nmid 3 $. $ 2x \equi
 
 \begin{theorem}[Chinese remainder theorem]
 Let $ m_1, \dots, m_n \in \Z_{\ge 0} $ be pairwise coprime. Then the natural map
-$$ \Z / m_1 \dots m_n\Z \to \rb{\Z / m_1\Z} \times \dots \times \rb{\Z / m_n\Z} $$
+$$ \Z / m_1 \dots m_n\Z \to \Z / m_1\Z \times \dots \times \Z / m_n\Z $$
 is an isomorphism of rings, and the induced map
 $$ \rb{\Z / m_1 \dots m_n\Z}^* \to \rb{\Z / m_1\Z}^* \times \dots \times \rb{\Z / m_n\Z}^* $$
 is an isomorphism of abelian groups.
@@ -399,28 +399,38 @@ By the Chinese Remainder Theorem, to understand the structure of $ \rb{\Z / n\Z}
 If $ G $ is a group and $ g \in G $ is an element, the \textbf{order} of $ g $ is the least $ a \ge 1 $ such that $ g^a = 1 $. In particular, if $ \rb{g, n} = 1 $, then we write $ ord_n\rb{g} $ for the order of $ g $ in $ \rb{\Z / n\Z}^* $, or the order of $ g $ modulo $ n $.
 \end{definition}
 
+Equivalently, let $ n \in \Z_{> 0} $ and $ g \in \Z $ with $ \rb{g, n} = 1 $, then the order of $ g $ modulo $ n $ is the smallest $ a \in \Z_{\ge 0} $ such that $ g^a \equiv 1 \mod n $.
+
 \begin{proposition}
 \label{prop:19}
 If $ G $ is a group and $ g $ is an element of order $ a $, then $ g^n = 1 $ if and only if $ a \mid n $.
 \end{proposition}
 
+Equivalently, let $ g \in \Z $ with $ \rb{g, n} = 1 $, then if $ g^n \equiv \mod n $ then $ ord_n\rb{g} \mid n $.
+
 \begin{proof}
-If $ n = ab $ then $ g^n = \rb{g^a}^b = 1^b = 1 $. Conversely write $ n = ab + r $ with $ 0 \le r < a $. Then $ g^r = 1 $ and since $ r < a $ we have $ r = 0 $.
+If $ n = ab $ then $ g^n = \rb{g^a}^b = 1^b = 1 $. Conversely write $ n = ab + r $ with $ b, r \in \Z $ and $ 0 \le r < a $. Then since $ g^a = 1 $ it follows that $ g^r = 1 $. Since $ r < a $, $ r $ cannot be positive by the definition by order, so $ r = 0 $ and $ n = ab $.
 \end{proof}
 
-In particular, if $ \rb{g, n} = 1 $, then $ g^{\Phi\rb{n}} = 1 $ by Euler's theorem, so Proposition \ref{prop:19} gives $ ord_n\rb{g} \mid \Phi\rb{n} $. We want to prove that if $ p $ is prime, then $ \rb{\Z / p\Z}^* $ is cyclic. Equivalently, we need to show that there exists $ g $ such that $ ord_p\rb{g} = \Phi\rb{p} = p - 1 $. We will do this by counting the number of elements of each order. Key point is that $ \Z / p\Z $ is a field. For any $ d \ge 1 $, the elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $ are exactly the roots of the equation $ X^d - 1 $ in $ \Z / p\Z $ by Proposition \ref{prop:19}.
+In particular, if $ \rb{g, n} = 1 $, then $ g^{\Phi\rb{n}} = 1 $ by Euler's theorem, so Proposition \ref{prop:19} gives the order of $ g $ modulo $ n $ divides $ \Phi\rb{n} $. We are going to prove that if $ p $ is prime, then $ \rb{\Z / p\Z}^* $ is cyclic. Equivalently, we need to show that there exists $ g $ such that $ ord_p\rb{g} = \Phi\rb{p} = p - 1 $. We will do this by counting the number of elements of each order. Key point is that $ \Z / p\Z $ is a field. For any $ d \ge 1 $, the elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $ are exactly the roots of the equation $ X^d - 1 $ in $ \Z / p\Z $ by Proposition \ref{prop:19}.
 
 \begin{example}
 The equation $ X^2 = 1 $ has exactly two solutions modulo $ p $ for any prime $ p $, namely $ \pm 1 $, but it can have more modulo $ n $ if $ n $ is composite. If $ n = 15 $, then $ 4, 11 $ are also solutions. $ X^2 - 1 \equiv 0 \mod n $ if and only if $ n \mid \rb{X + 1}\rb{X - 1} $, so $ 15 \mid \rb{4 + 1}\rb{4 - 1} $.
 \end{example}
 
 \begin{definition}
-$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root} if $ ord_p\rb{g} = p - 1 $, so $ \rb{\Z / p\Z}^* = \ab{g} $.
+$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root} modulo $ p $ if the order of $ g $ modulo $ p $ is exactly $ p - 1 $, equivalently, if $ \overline{g} $ is a generator of $ \rb{\Z / p\Z}^* $.
 \end{definition}
+
+To prove that primitive roots exist, we require some results about roots of polynomials modulo $ p $. Over the rational numbers we all know that a polynomial of degree $ d $ has at most $ d $ roots. This can fail over other rings.
+
+\begin{example}
+The polynomial $ x^2 - x $ has the roots $ 0, 1, 3, 4 $ modulo $ 6 $. The issue here is that $ \Z / 6\Z $ is not a field.
+\end{example}
 
 \begin{lemma}
 \label{lem:21}
-Let $ R $ be a commutative ring, and let $ P\rb{X} \in R\sb{X} $. If $ \alpha \in R $ has $ P\rb{\alpha} = 0 $, then there exists $ Q\rb{X} \in R\sb{X} $ such that $ P\rb{X} = \rb{X - \alpha}Q\rb{X} $.
+Let $ R $ be a commutative ring, and let $ P\rb{X} $ be a polynomial in $ X $ with coefficients in $ R $. If $ \alpha \in R $ has $ P\rb{\alpha} = 0 $, then there exists a polynomial $ Q\rb{X} $ with coefficients in $ R $ such that $ P\rb{X} = \rb{X - \alpha}Q\rb{X} $.
 \end{lemma}
 
 \begin{example}
@@ -428,29 +438,35 @@ If $ R = \Z / 15\Z $, $ X^2 - 1 = \rb{X + 1}\rb{X - 1} = \rb{X + 4}\rb{X - 4} $.
 \end{example}
 
 \begin{proof}
-Induction on $ d = \deg\rb{P} $. $ d = 0 $ is obvious. Assume the result holds for degree less than $ d - 1 $. Let $ P\rb{X} = cX^d + \dots $ and $ S\rb{X} = P\rb{X} - cX^{d - 1}\rb{X - \alpha} $. Then $ S\rb{X} $ has degree less than $ d - 1 $. Also $ S\rb{\alpha} = 0 $. By induction, we can write $ S\rb{X} = \rb{X - \alpha}R\rb{X} $. Set $ Q\rb{X} = cX^{d - 1} + R\sb{X} $. Then
-$$ \rb{X - \alpha}Q\rb{X} = cX^{d - 1}\rb{X - \alpha} + S\rb{X} = P\rb{X}. $$
+We proceed by induction on the degree of $ P $, the degree zero case being clear. Suppose the result is true for polynomials of degree less than $ d - 1 $, and let $ P\rb{X} $ have degree $ d $. If the leading term of $ P\rb{X} $ is $ cX^d $, so $ P\rb{X} = cX^d + \dots $, let $ S\rb{X} = P\rb{X} - cX^{d - 1}\rb{X - \alpha} $. We have $ S\rb{\alpha} = 0 $, and $ S\rb{X} $ has degree less than $ d - 1 $. By induction, there exists $ R\rb{X} $ with coefficients in $ R $ such that we can write $ S\rb{X} = \rb{X - \alpha}R\rb{X} $. Set $ Q\rb{X} = cX^{d - 1} + R\rb{X} $. Then
+$$ \rb{X - \alpha}Q\rb{X} = \rb{X - \alpha}\rb{cX^{d - 1} + R\rb{X}} = cX^{d - 1}\rb{X - \alpha} + S\rb{X} = P\rb{X}. $$
 \end{proof}
 
 \begin{theorem}
 \label{thm:22}
-Let $ F $ be a field. Let $ P\rb{X} $ be a polynomial in $ F\sb{X} $. Then $ P\rb{X} $ has at most $ d $ distinct roots in $ F $.
+Let $ F $ be a field, and $ P\rb{X} $ a polynomial of degree $ d $ with coefficients in $ F $. Then $ P\rb{X} $ has at most $ d $ distinct roots in $ F $.
 \end{theorem}
 
 \begin{proof}
-Induction on $ d = \deg\rb{P} $. $ d = 1 $ is obvious. If $ P $ has no roots, then we are done. Otherwise, let $ \alpha $ be a root. By Lemma \ref{lem:21}, $ P\rb{X} = \rb{X - \alpha}Q\rb{X} $, $ Q\rb{X} $ has degree $ d - 1 $, so we are done by induction.
+We again proceed by induction on $ d = \deg\rb{P} $. The case $ d = 0 $ is clear. If $ P $ has no roots, then we are done. Otherwise, $ P\rb{X} $ has degree $ d $ and let $ \alpha $ be a root. By Lemma \ref{lem:21}, we can write $ P\rb{X} = \rb{X - \alpha}Q\rb{X} $. Now if $ P\rb{\beta} = 0 $, then $ \rb{\beta - \alpha}Q\rb{\beta} = 0 $, so since $ F $ is a field either $ \beta = \alpha $ or $ \beta $ is a root of $ Q\rb{X} $. By the inductive hypothesis $ Q\rb{X} $ has degree $ d - 1 $, so $ P $ has at most $ d $ roots and we are done by induction.
 \end{proof}
+
+As a corollary, we deduce the following.
 
 \begin{corollary}
 \label{cor:23}
-Let $ d $ be any divisor of $ p - 1 $. Then there are exactly $ d $ elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $.
+Let $ p $ be a prime, and let $ d $ be any divisor of $ p - 1 $. Then there are exactly $ d $ elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $.
 \end{corollary}
 
+Equivalently, we have to show that the polynomial $ X^d - 1 $ has exactly $ d $ roots modulo $ p $.
+
 \begin{proof}
-We have to show that $ X^d - 1 $ has exactly $ d $ roots in $ \Z / p\Z $. $ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots, by Fermat's little theorem. Since $ d \mid \rb{p - 1} $, we can write
-$$ X^{p - 1} - 1 = \rb{X^d - 1}\rb{\rb{X^d}^{\tfrac{p - 1}{d} - 1} + \dots + 1} = \rb{X^d - 1}Q\rb{X}, \qquad \deg\rb{Q} = p - 1 - d. $$
-$ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots, $ X^d - 1 $ has at most $ d $ roots, and $ Q\rb{X} $ has at most $ p - 1 - d $ roots by Theorem \ref{thm:22}. So $ X^d - 1 $ has exactly $ d $ roots.
+Note that by Fermat's little theorem, $ 1, \dots, p - 1 $ are all roots of $ x^{p - 1} - 1 $ modulo $ p $. Thus $ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots. Now fix $ d $ dividing $ p - 1 $ and write
+$$ X^{p - 1} - 1 = \rb{X^d - 1}\rb{\rb{X^d}^{\tfrac{p - 1}{d} - 1} + \dots + 1} = \rb{X^d - 1}Q\rb{X}, \qquad \deg\rb{Q} = p - 1 - d, $$
+for a polynomial $ Q\rb{X} $. $ Q\rb{X} $ has integer coefficients so we can view it as a polynomial modulo $ p $. Now $ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots, $ X^d - 1 $ has at most $ d $ roots, and $ Q\rb{X} $ has at most $ p - 1 - d $ roots by Theorem \ref{thm:22}. We must therefore have equality in these inequalities, that is $ X^d - 1 $ has exactly $ d $ roots modulo $ p $.
 \end{proof}
+
+Another way of stating the corollary is to say that for any $ d $ dividing $ p - 1 $, there are exactly $ d $ elements of $ \rb{\Z / p\Z}^* $ whose order divides $ d $.
 
 \begin{example}
 Let $ p = 7 $. Then $ \rb{\Z / p\Z}^* $ has:
@@ -464,57 +480,64 @@ Let $ p = 7 $. Then $ \rb{\Z / p\Z}^* $ has:
 
 \begin{lemma}
 \label{lem:24}
-For any $ n \ge 1 $, we have $ \sum_{d \mid n} \Phi\rb{d} = n $.
+For any $ n \ge 1 $, we have $ \sum_{d \mid n, \ d > 0} \Phi\rb{d} = n $.
 \end{lemma}
 
 \begin{proof}
-For each $ d \mid n $, the elements of $ \cb{1, \dots, n} $ with $ \rb{i, n} = n / d $ are exactly those of the form $ i = \rb{n / d}j $ with $ 1 \le j \le d $ and $ \rb{j, d} = 1 $. There are exactly $ \Phi\rb{d} $ such elements. Since the $ n / d $ run over all the divisors of $ n $, we are done.
+For each $ d \mid n $, the elements $ i \in \cb{1, \dots, n} $ with $ \rb{i, n} = n / d $ are precisely those of the form $ i = \rb{n / d}j $ with $ 1 \le j \le d $ and $ \rb{j, d} = 1 $. There are exactly $ \Phi\rb{d} $ possibilities for $ j $, so there are exactly $ \Phi\rb{d} $ such elements. Summing over all $ d $, since the $ n / d $ run over all the divisors of $ n $, we are done with the result.
 \end{proof}
 
 \begin{theorem}
 \label{thm:26}
-Let $ p $ be prime, and let $ d \mid \rb{p - 1} $. Then there are exactly $ \Phi\rb{d} $ elements of $ \rb{\Z / p\Z}^* $ of order $ d $. In particular, there are $ \Phi\rb{p - 1} $ primitive roots, and $ \rb{\Z / p\Z}^* $ is cyclic.
+Let $ p $ be a prime. Then for any $ d $ dividing $ p - 1 $, there are exactly $ \Phi\rb{d} $ elements of order $ d $ in $ \rb{\Z / p\Z}^* $. In particular there are $ \Phi\rb{p - 1} $ primitive roots modulo $ p $, and $ \rb{\Z / p\Z}^* $ is cyclic.
 \end{theorem}
 
 \begin{proof}
-Induction on $ d $. $ d = 1 $ is obvious. Assume the result holds for all $ d' \mid d $, $ d' \ne d $. Then by Lemma \ref{lem:24},
+We prove this by strong induction on $ d $. The case $ d = 1 $ is clear. Fix $ d $. The inductive hypothesis tells us that for any $ d' $ dividing $ d $ and strictly less than $ d $ there are $ \Phi\rb{d'} $ elements of exact order $ d' $. On the other hand by Corollary \ref{cor:23} there are a total of $ d $ elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $. Thus the number of elements of $ \rb{\Z / p\Z}^* $ of order exactly $ d $ is
 $$ \Phi\rb{d} = d - \sum_{d' \mid d, \ d' \ne d} \Phi\rb{d'}. $$
-Now use inductive hypothesis and Corollary \ref{cor:23}.
+precisely by Lemma \ref{lem:24}. Now use inductive hypothesis.
 \end{proof}
 
 \marginpar{Lecture 5 \\ Tuesday \\ 16/10/18}
 
+We can now go on to the case of $ \rb{\Z / p^n\Z}^* $ for $ n \ge 2 $. Firstly we do the case $ p > 2 $.
+
 \begin{proposition}
-Let $ p $ be an odd prime and $ n \ge 1 $. Then $ \rb{\Z / p^n\Z}^* $ is cyclic.
+Let $ p $ be an odd prime and let $ n \ge 1 $. Then $ \rb{\Z / p^n\Z}^* $ is cyclic.
 \end{proposition}
 
 \begin{proof}
 Consider three cases.
 \begin{itemize}
 \item[$ n = 1 $] Theorem \ref{thm:26}.
-\item[$ n = 2 $] Let $ g $ be a primitive root modulo $ p $. Claim that either $ g^{p - 1} \not\equiv 1 \mod p^2 $, and $ g $ is a generator for $ \rb{\Z / p^2\Z}^* $, or $ g^{p - 1} \equiv 1 \mod p^2 $, and $ g + p $ is a generator for $ \rb{\Z / p^2\Z}^* $. Either way, $ \rb{\Z / p^2\Z}^* $ is cyclic. Suppose firstly that $ g^{p - 1} \not\equiv 1 \mod p^2 $.
-$$ \#\rb{\Z / p^2\Z}^* = \Phi\rb{p^2} = p\rb{p - 1}. $$
-So $ ord_{p^2}\rb{g} \mid p\rb{p - 1} $. On the other hand, $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p^2 $ gives $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p $, so $ \rb{p - 1} \mid ord_{p^2}\rb{g} $ because $ ord_p\rb{g} = p - 1 $ by assumption. But $ ord_{p^2}\rb{g} \ne p - 1 $, as $ g^{p - 1} \not\equiv 1 \mod p^2 $. So $ ord_{p^2}\rb{g} = p\rb{p - 1} $ as required. Suppose now that $ g^{p - 1} \equiv 1 \mod p $. It suffices to show that $ \rb{g + p}^{p - 1} \not\equiv 1 \mod p^2 $, as we can then apply the analysis above with $ g + p $ in place of $ g $. By the binomial theorem,
-$$ \rb{g + p}^{p - 1} \equiv g^{p - 1} + \rb{p - 1}g^{p - 2}p \equiv 1 + \rb{p - 1}g^{p - 2}p \mod p^2. $$
-Since $ p \nmid \rb{p - 1}g^{p - 2} $, $ \rb{g + p}^{p - 1} \not\equiv 1 \mod p^2 $, as required.
-\item[$ n \ge 2 $] It suffices to show that if $ ord_{p^2}\rb{g} = p\rb{p - 1} $, then $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $. We do this by induction on $ n $. So assume that $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $. Then
+\item[$ n = 2 $] Let $ g $ be a primitive root modulo $ p $. Claim that either $ g^{p - 1} \not\equiv 1 \mod p^2 $, and $ g $ is a generator for $ \rb{\Z / p^2\Z}^* $, or $ g^{p - 1} \equiv 1 \mod p^2 $, and $ g + p $ is a generator for $ \rb{\Z / p^2\Z}^* $. Either way, $ \rb{\Z / p^2\Z}^* $ is cyclic. Suppose firstly that $ g^{p - 1} \not\equiv 1 \mod p^2 $. $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p^2 $ gives $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p $, so we have by assumption
+$$ p - 1 = ord_p\rb{g} \mid ord_{p^2}\rb{g} \mid \#\rb{\Z / p^2\Z}^* = \Phi\rb{p^2} = p\rb{p - 1}. $$
+But $ ord_{p^2}\rb{g} \ne p - 1 $, as $ g^{p - 1} \not\equiv 1 \mod p^2 $. So $ ord_{p^2}\rb{g} = p\rb{p - 1} $ as required. Now suppose that $ g^{p - 1} \equiv 1 \mod p^2 $, and set $ h = g + p $. It suffices to show that $ h^{p - 1} \not\equiv 1 \mod p^2 $, as we can then apply the analysis above with $ h $ in place of $ g $ to show that $ ord_{p^2}\rb{h} = p\rb{p - 1} $ and $ \rb{\Z / p^2\Z}^* $ is cyclic. To see the claim, observe that if we expand with the binomial theorem, then we get
+$$ h^{p - 1} = \rb{g + p}^{p - 1} \equiv g^{p - 1} + \rb{p - 1}pg^{p - 2} \equiv 1 + p\rb{p - 1}g^{p - 2} \mod p^2, $$
+and since $ p \nmid \rb{p - 1}g^{p - 2} $, $ \rb{g + p}^{p - 1} \not\equiv 1 \mod p^2 $, as required.
+\item[$ n \ge 2 $] We claim that if $ ord_{p^2}\rb{g} = p\rb{p - 1} $ then in fact $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $ for all $ n \ge 2 $, so that in particular $ \rb{\Z / p^n\Z}^* $ is cyclic. We do this by induction on $ n $. So assume that $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $. Then
 $$ p^{n - 1}\rb{p - 1} = ord_{p^n}\rb{g} \mid ord_{p^{n + 1}}\rb{g} \mid \Phi\rb{p^{n + 1}} = p^n\rb{p - 1}. $$
-So either $ ord_{p^{n + 1}}\rb{g} = p^n\rb{p - 1} $, or $ ord_{p^{n + 1}}\rb{g} = p^{n - 1}\rb{p - 1} $. So we need to show that $ g^{p^{n - 1}\rb{p - 1}} \not\equiv 1 \mod p^{n + 1} $. To do this, consider $ g^{p^{n - 2}\rb{p - 1}} \mod p^{n - 1} $ and $ g^{p^{n - 2}\rb{p - 1}} \mod p^n $. Since $ \Phi\rb{p^{n - 1}} = p^{n - 2}\rb{p - 1} $, $ g^{p^{n - 2}\rb{p - 1}} \equiv 1 \mod p^{n - 1} $ by Euler's theorem. Write $ g^{p^{n - 2}\rb{p - 1}} = 1 + p^{n - 1}t $. Since $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $ by assumption, $ g^{p^{n - 2}\rb{p - 1}} \not\equiv 1 \mod p^n $, that is $ p \nmid t $. Then
+So either $ ord_{p^{n + 1}}\rb{g} = p^n\rb{p - 1} $, or $ ord_{p^{n + 1}}\rb{g} = p^{n - 1}\rb{p - 1} $. The statement that $ ord_{p^{n + 1}}\rb{g} = p^n\rb{p - 1} $ is equivalent to showing that $ g^{p^{n - 1}\rb{p - 1}} \not\equiv 1 \mod p^{n + 1} $. To do this, consider $ g^{p^{n - 2}\rb{p - 1}} \mod p^{n - 1} $ and $ g^{p^{n - 2}\rb{p - 1}} \mod p^n $. Since $ \Phi\rb{p^{n - 1}} = p^{n - 2}\rb{p - 1} $, $ g^{p^{n - 2}\rb{p - 1}} \equiv 1 \mod p^{n - 1} $ by Euler's theorem, so we may write
+$$ g^{p^{n - 2}\rb{p - 1}} = 1 + p^{n - 1}t. $$
+Since $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $ by assumption, $ g^{p^{n - 2}\rb{p - 1}} \not\equiv 1 \mod p^n $, that is $ p \nmid t $. Then the binomial theorem shows that
 $$ g^{p^{n - 1}\rb{p - 1}} = \rb{g^{p^{n - 2}\rb{p - 1}}}^p = \rb{1 + p^{n - 1}t}^p \equiv 1 + p^nt + \two{p}{2}p^{2\rb{n - 1}}t^2 + \dots + p^{p\rb{n - 1}}t^p \mod p^{n + 1}, $$
 Now $ r\rb{n - 1} \ge n + 1 $ if and only if $ \rb{r - 1}n \ge r + 1 $. Since $ p > 2 $,
 $$ p \ \Big| \ \two{p}{2} \qquad \implies \qquad p^{n + 1} \ \Big| \ p^{2n - 1} = p^{2\rb{n - 1} + 1} \ \Big| \ \two{p}{2}p^{2\rb{n - 1}}. $$
-So $ g^{p^{n - 1}\rb{p - 1}} \equiv 1 + p^nt \not\equiv 1 \mod p^{n + 1} $, because $ p \nmid t $.
+So $ g^{p^{n - 1}\rb{p - 1}} \equiv 1 + p^nt \not\equiv 1 \mod p^{n + 1} $, because $ p \nmid t $. So the statement holds for $ n + 1 $, and we are done by induction
 \end{itemize}
 \end{proof}
 
-\begin{example}
-Let $ p = 2 $.
+\begin{note}
+We used the hypothesis that $ p \ne 2 $ right at the end here. If $ p = 2 $ then we cannot ignore the higher order terms.
+\end{note}
+
+If $ n = 1, 2 $ the the proof of did not use $ p > 2 $, and indeed
 \begin{enumerate}
-\item $ \rb{\Z / 2\Z}^* = \cb{1} $.
-\item $ \rb{\Z / 4\Z}^* = \cb{1, 3} $ is cyclic of order $ 2 $, with $ 3 $ as a generator.
-\item $ \rb{\Z / 8\Z}^* = \cb{1, 3, 5, 7} $ is not cyclic. $ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8 $, so every element has order two.
+\item $ \rb{\Z / 2\Z}^* = \cb{1} $ is cyclic,
+\item $ \rb{\Z / 4\Z}^* = \cb{1, 3} $ is cyclic of order $ 2 $, with $ 3 $ as a generator, but
+\item this fails for higher powers, say $ \rb{\Z / 8\Z}^* = \cb{1, 3, 5, 7} $ is not cyclic since $ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8 $, so every element has order two.
 \end{enumerate}
-\end{example}
+The key is the following lemma.
 
 \begin{lemma}
 \label{lem:27}
@@ -522,43 +545,51 @@ For $ n \ge 0 $ we have $ 5^{2^n} \equiv 1 + 2^{n + 2} \mod 2^{n + 3} $.
 \end{lemma}
 
 \begin{proof}
-Induction on $ n $. $ n = 0 $ is obvious. Assume that $ 5^{2^n} = 1 + 2^{n + 2}t $ with $ t $ odd. Then
+Induction on $ n $. The case $ n = 0 $ follows from $ 5 = 1 + 4 $. Suppose that $ 5^{2^n} = 1 + 2^{n + 2}t $ with $ t $ odd. Then
 $$ 5^{2^{n + 1}} = \rb{1 + 2^{n + 1}t}^2 = 1 + 2^{n + 3}t + 2^{2\rb{n + 2}}t^2 = 1 + 2^{n + 3}\rb{t + 2^{n + 1}t^2}, $$
-where and $ t + 2^{n + 1}t^2 $ is odd.
+and since $ n + 1 \ge 1 $ and $ t + 2^{n + 1}t^2 $ is odd we are done by induction.
 \end{proof}
 
 \begin{proposition}
-If $ n \ge 2 $ then there is an isomorphism $ \rb{\Z / 2^n\Z}^* \to \rb{\Z / 2\Z} \times \rb{\Z / 2^{n - 2}\Z} $. In particular, if $ n \ge 3 $, then $ \rb{\Z / 2^n\Z}^* $ is not cyclic.
+If $ n \ge 2 $ then we have an isomorphism $ \rb{\Z / 2^n\Z}^* \to \rb{\Z / 2\Z} \times \rb{\Z / 2^{n - 2}\Z} $, so that in particular if $ n \ge 3 $ then $ \rb{\Z / 2^n\Z}^* $ is not cyclic.
 \end{proposition}
 
 \begin{proof}
-Let $ \ab{g} $ denote the group $ \cb{1, \dots, g^{ord\rb{g} - 1}} $ generated by $ g $. Consider the natural map $ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^* $. This is injective, because if $ \pm 1\rb{5}^s \equiv 1 \mod 2^n $ then in particular $ \pm 1\rb{5}^s \equiv 1 \mod 4 $ so $ \pm 1 \equiv 1 \mod 4 $, so we must have $ 5^s \equiv 1 \mod 2^n $, that is $ 5^s = 1 $ in $ \ab{5} $. $ \ab{-1} $ has order $ 2 $ and $ \ab{5} $ has order $ ord_{2^n}\rb{5} = 2^{n - 2} $ by Lemma \ref{lem:27}. So $ \ab{-1} \times \ab{5} $ has order $ 2\rb{2^{n - 2}} = 2^{n - 1} = \Phi\rb{2^n} = \#\rb{\Z / 2^n\Z}^* $. So the map $ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^* $ is an injection of groups of the same order, so it is a bijection.
+Consider the natural map
+$$ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^*, $$
+where if $ G $ is a group and $ g \in G $ we write $ \ab{g} $ for the cyclic subgroup $ \cb{1, \dots, g^{ord\rb{g} - 1}} $ of $ G $ generated by $ g $. We claim that this map is an isomorphism. To see this, note that it is injective, because if $ \rb{-1}^r\rb{5}^s \equiv 1 \mod 2^n $ then in particular $ \rb{-1}^r\rb{5}^s \equiv 1 \mod 4 $ so $ \rb{-1}^r \equiv 1 \mod 4 $, so we must have $ r = 1 $ and $ 5^s \equiv 1 \mod 2^n $, that is $ 5^s = 1 $ in $ \ab{5} $. $ \ab{-1} \cong \Z / 2\Z $ has order $ 2 $ and $ \ab{5} \cong \Z / 2^{n - 2}\Z $ has order $ ord_{2^n}\rb{5} = 2^{n - 2} $ by Lemma \ref{lem:27}. So $ \ab{-1} \times \ab{5} $ has order $ 2\rb{2^{n - 2}} = 2^{n - 1} = \Phi\rb{2^n} = \#\rb{\Z / 2^n\Z}^* $. So the map $ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^* $ is an injection of groups of the same order, so it is a bijection.
 \end{proof}
 
+Using what we have shown so far, one can conclude the following. See the first example sheet.
+
 \begin{theorem}
-$ \rb{\Z / n\Z}^* $ is cyclic if and only if
+Let $ n \in \Z_{> 0} $. The group $ \rb{\Z / n\Z}^* $ is cyclic if and only if either
 \begin{enumerate}
 \item $ n = 1, 2, 4 $,
-\item $ n = p^r $ for $ p > 2 $ prime and $ r \ge 1 $, and
-\item $ n = 2p^r $ for $ p > 2 $ prime and $ r \ge 1 $.
+\item $ n = p^r $ where $ p $ is an odd prime and $ r \ge 1 $, or
+\item $ n = 2p^r $ where $ p $ is an odd prime and $ r \ge 1 $.
 \end{enumerate}
 \end{theorem}
 
 \marginpar{Lecture 6 \\ Wednesday \\ 17/10/18}
 
-Primitive roots are generators of $ \rb{\Z / n\Z}^* $. Find them in practice by guessing small values of $ g $, and see if $ g $ is a generator. There are $ \Phi\rb{p - 1} $ primitive roots, which means that you have a high probability of success. Could work out $ 1, \dots, g^{p - 2} $ and check these are distinct. This would be inefficient. Better is to check for some prime $ q \mid \rb{p - 1} $ whether $ g^{\rb{p - 1} / q} = 1 $ or not. This works, because if $ g^{\rb{p - 1} / q} = 1 $ then $ g $ is not a primitive root, while if $ g^{\rb{p - 1} / q} \ne 1 $ then $ ord_p\rb{g} \mid \rb{p - 1} $ and $ ord_p\rb{g} \nmid \rb{p - 1} / q $. If this holds for all $ q \mid \rb{p - 1} $, then $ ord_p\rb{g} = p - 1 $, because otherwise it would be a proper divisor, and so would divide $ \rb{p - 1} / q $ for some prime $ q \mid \rb{p - 1} $.
+Note that while the existence of primitive roots is very useful both theoretically and computationally, there is no simple procedure for finding them in practice, beyond trial and error by guessing small values of $ g $, and see if $ g $ is a generator. If $ p $ is prime then there are $ \Phi\rb{p - 1} $ primitive roots modulo $ p $, so they are plentiful, which means that you have a high probability of success, and so trying $ 2, 3, 5, 6, \dots $ is a reasonable strategy, but note that trying $ 4 $ would not be a good idea. We could work out $ 1, \dots, g^{p - 2} $ and check these are distinct, but this would be inefficient. Better is to check that if $ q $ is any prime factor of $ p - 1 $, then $ g^{\rb{p - 1} / q} \ne 1 $. This works, because if $ g $ is not a primitive root, then the order of $ g $ modulo $ p $ is a proper factor of $ p - 1 $, so divides some $ \rb{p - 1} / q $, so $ g^{\rb{p - 1} / q} = 1 $, while if $ g^{\rb{p - 1} / q} \ne 1 $ then $ ord_p\rb{g} \mid \rb{p - 1} $ and $ ord_p\rb{g} \nmid \rb{p - 1} / q $. If this holds for all $ q \mid \rb{p - 1} $, then $ ord_p\rb{g} = p - 1 $, because otherwise it would be a proper divisor, and so would divide $ \rb{p - 1} / q $ for some prime $ q \mid \rb{p - 1} $.
+
+\begin{note}
+This does rely on being able to factor $ p - 1 $, which is a hard problem in general. See the next section.
+\end{note}
+
+The work of computing powers of $ a^k $ modulo $ p $ can be done efficiently by repeated squaring followed by multiplication according to the binary expansion of $ k $.
 
 \begin{example}
-Let $ p = 31 $, $ p - 1 = 30 = \rb{2}\rb{3}\rb{5} $. $ g $ is a primitive root if and only if $ g^{15} \ne 1 $, $ g^{10} \ne 1 $, $ g^{6} \ne 1 $.
-\begin{enumerate}
-\item Is $ 2 $ a primitive root? $ 2^2 = 4 $, $ 2^4 = 16 $, $ 2^6 = 2 $, but $ 2^10 = 2^15 = 1 $ because $ 2^5 = 32 = 1 $, so $ 2 $ is not a primitive root.
-\item How about $ 3 $? $ 3^2 = 9 $, $ 3^4 = 19 $, $ 3^6 = 16 $, $ 3^8 = 20 $, $ 3^{10} = 25 $, $ 3^{15} = 30 $. So $ 3 $ is a primitive root modulo $ 31 $.
-\end{enumerate}
+Let us find a primitive root modulo $ p = 31 $. $ p - 1 = 30 = \rb{2}\rb{3}\rb{5} $. $ g $ is a primitive root if and only if $ g^{15} \ne 1 $, $ g^{10} \ne 1 $, $ g^{6} \ne 1 $. It is easy to see that $ 2 $ does not work because $ 2^2 = 4 $, $ 2^4 = 16 $, $ 2^6 = 2 $, but $ 2^10 = 2^15 = 1 $ because $ 2^5 = 32 = 1 $, so $ 2 $ is not a primitive root. We claim that $ 3 $ is a primitive root. We need to show that none of $ 3^6 $, $ 3^{10} $, $ 3^{15} $ are $ 1 $.
+$$ 3^2 = 9, \quad 3^4 = -12, \quad 3^8 = 20 \quad \implies \quad 3^6 = 9\rb{-12} = 16, \quad 3^{10} = 9\rb{20} = 25, \quad 3^{15} = 3\rb{25}\rb{-12} = -1. $$
+So $ 3 $ is a primitive root modulo $ 31 $, as required.
 \end{example}
 
 \section{Primality testing and factorisation}
 
-Idea is testing whether an integer $ n $ is prime is easy. Factoring $ n $ is expected to be hard. Easy here means that there is an algorithm to check whether $ n $ is prime or not which runs in time polynomial in $ \log n $. It is known that a deterministic algorithm exists to do this, the Agrawal-Kayal-Saxena (AKS) algorithm in 2005. We will see an algorithm that runs faster than this in practice. On the other hand, for factoring there are algorithms which are better than exponential in $ \log n $, but there is nothing close to polynomial time, and the general expectation is that no such algorithm should exist.
+Idea is testing whether $ n \in \Z $ is prime is easy. Factoring $ n $ is expected to be hard. Easy here means that there is an algorithm to check whether $ n $ is prime or not which runs in time polynomial in $ \log n $. It is known that a deterministic algorithm exists to do this, the Agrawal-Kayal-Saxena (AKS) algorithm in 2005. We will see an algorithm that runs faster than this in practice. On the other hand, for factoring there are algorithms which are better than exponential in $ \log n $, but there is nothing close to polynomial time, and the general expectation is that no such algorithm should exist.
 
 \subsection{Factorisation}
 
@@ -576,5 +607,52 @@ $$ 13^2, \qquad 13\rb{17}, \qquad 13\rb{19}, \qquad 13\rb{23}, \qquad 13\rb{29},
 \begin{example}
 $ 143 \equiv 1 - 4 + 3 \equiv 0 \mod 11 $, $ 144 \equiv 1 + 4 + 4 \equiv 0 \mod 9 $, and $ 154 \equiv 15 - 2\rb{4} = 7 \equiv 0 \mod 7 $.
 \end{example}
+
+\marginpar{Lecture 7 \\ Friday \\ 19/10/18}
+
+Factor four digit numbers by an algorithm due to Fermat. Idea is to first check for small prime factors by hand, say $ p = 2, \dots 19 $. If $ n $ is composite and does not have any small factors, then the prime factors of $ n $ should be close to $ \sqrt{n} $. If $ n = ab $ for $ a, b $ odd and $ a \le b $, then
+$$ n = ab = \rb{\dfrac{a + b}{2}}^2 - \rb{\dfrac{b - a}{2}}^2, \qquad \rb{\dfrac{a + b}{2}}^2 - n = \rb{\dfrac{b - a}{2}}^2. $$
+If you know $ \rb{a + b} / 2 $ and $ \rb{b - a} / 2 $, you can recover $ a, b $. So take $ m $ such that $ m^2 \le n < \rb{m + 1}^2 $. If $ n = m^2 $, done, otherwise check if $ \rb{m + i}^2 - n $ is a square for increasing $ i $.
+
+\begin{example}
+Let $ n  = 6077 $. $ 77^2 < 6077 < 78^2 $, so
+\begin{align*}
+78^2 - 6077 & = 7, \\
+79^2 - 6077 & = 164, \\
+80^2 - 6077 & = 323, \\
+81^2 - 6077 & = 484 = 22^2.
+\end{align*}
+Thus $ 6077 = 81^2 - 22^2 = \rb{103}\rb{59} $.
+\end{example}
+
+There exist algorithms for factoring $ n $ which run in better than exponential time in $ \log n $, such as the quadratic sieve and the general number field sieve. The following is the \textbf{quadratic sieve}.
+
+\begin{example}
+Let $ n = 1649 $. $ 40^2 < 1649 < 41^2 $, so
+\begin{align*}
+41^2 - 1649 & = 32 = 2^5, \\
+42^2 - 1649 & = 115, \\
+43^2 - 1649 & = 200 = \rb{2}^3\rb{5}^2.
+\end{align*}
+$ 41^2 \equiv 2^5 \mod 1649 $ and $ 43^2 \equiv \rb{2}^3\rb{5}^2 \mod 1649 $, so $ 80^2 \equiv \rb{41}^2\rb{43}^2 = 1763^2 \equiv 114^2 \mod 1649 $. Then $ 0 \equiv 114^2 - 80^2 = \rb{194}\rb{34} = \rb{2}^2\rb{17}\rb{97} \mod 1649 $. In fact, $ 1649 = \rb{17}\rb{97} $. Better for this last step would be to have computed $ \rb{194, 1649} = 97 $ and $ \rb{34, 1649} = 17 $. Can do this quickly using Euclid's algorithm.
+\end{example}
+
+To make this into an efficient algorithm, need to have a way given $ x_1, \dots, x_r $ to find a subset whose product is a square. If we know the prime factorisation for the $ x_i $, we can write $ x_i = p_1^{a_{i1}} \dots p_k^{a_{ik}} $. Want to choose $ \epsilon_i \in \cb{0, 1} $ such that $ \prod_{i = 1}^r x_i^{\epsilon_i} $ is a square. Equivalently, for each $ j $, want the exponent of $ p_j $ to be even, that is $ \sum_{i = 1}^r \epsilon_ia_{ij} \equiv 0 \mod 2 $.
+
+\begin{example}
+$ x_1 = 2^5 $, $ x_2 = \rb{5}\rb{23} $, $ x_3 = \rb{2}^3\rb{5}^2 $. $ p_1 = 2 $, $ p_2 = 5 $, $ p_3 = 23 $. Ignore all numbers with a large prime factor, here ignore $ 23 $. Left with $ x_1 = 2^5 $ and $ x_3 = \rb{2}^3\rb{5}^2 $.
+$$ \begin{pmatrix} \epsilon_1 & \epsilon_2 \end{pmatrix} \two{5 & 0}{3 & 2} \equiv \begin{pmatrix} 0 & 0 \end{pmatrix} \mod 2 \qquad \iff \qquad \begin{pmatrix} \epsilon_1 & \epsilon_2 \end{pmatrix} \two{1 & 0}{1 & 0} = \begin{pmatrix} 0 & 0 \end{pmatrix} $$
+in the field $ \Z / 2\Z = \F_2 $, that is $ \epsilon_1 + \epsilon_2 = 0 $, so choose $ \epsilon_1 = \epsilon_2 = 1 $.
+\end{example}
+
+This step, solving linear equations in $ \Z / 2\Z $, can be done efficiently. The remaining difficulty is to find a supply of $ m \in \Z $ such that $ m^2 - n $ has only small prime factors. Idea is if we fix a list of small primes to start with, we get congruence conditions on $ m $. It turns out that there is a straightforward algorithm for solving $ m^2 \equiv n \mod p $. This gives two possible values for $ m $ modulo $ p $. If you do this for lots of primes $ p $, you get a supply of congruence conditions for $ m $, so you can eliminate ever considering $ m $ such that $ m^2 - n $ has large prime factors.
+
+\begin{example}
+$ m^2 = 1649 \equiv 2 \mod 3 $ has no solutions.
+\end{example}
+
+\subsection{Primality testing}
+
+Euler's theorem states that if $ \rb{a, n} = 1 $ then $ a^{\Phi\rb{n}} \equiv 1 \mod n $. In particular if $ p $ is prime then $ a^{p - 1} $ then $ a^{p - 1} \equiv 1 \mod p $ for all $ 1 \le a \le p - 1 $. In particular if $ 2^{n - 1} \equiv 1 \mod n $, then $ n $ cannot be prime. Problem is that there exists $ n $ composite such that $ a^{n - 1} \equiv 1 \mod n $ for all $ \rb{a, n} = 1 $. These numbers are called \textbf{Carmichael numbers}. It is known that infinitely many of these exist.
 
 \end{document}
