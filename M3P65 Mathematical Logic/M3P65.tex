@@ -92,7 +92,7 @@ $ 1 $ is very concise, but covers a surprising amount. $ 2 $ is friendlier, but 
 
 \section{Propositional logic}
 
-Let $ p $ be 'Mr Jones is happy' and $ q $ be 'Mrs Jones is unhappy'. Then 'If Mr Jones is happy, then Mrs Jones is unhappy and if Mrs Jones is unhappy then Mr Jones is unhappy, so Mr Jones is unhappy is
+Let $ p $ be 'Mr Jones is happy' and $ q $ be 'Mrs Jones is unhappy'. Then 'If Mr Jones is happy, then Mrs Jones is unhappy and if Mrs Jones is unhappy then Mr Jones is unhappy, so Mr Jones is unhappy' is
 $$ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\notb{p}}. $$
 
 \subsection{Propositional formulas}
@@ -131,7 +131,7 @@ $ F $ & $ F $ & $ F $ & $ F $ & $ T $ & $ T $ \\
 
 \begin{definition}
 \label{def:1.1.2}
-A \textbf{propositional formula} is obtained in the following way:
+A \textbf{propositional formula} is obtained in the following way.
 \begin{enumerate}
 \item Any propositional variable is a formula.
 \item If $ \phi $ and $ \psi $ are formulas, then so are
@@ -158,7 +158,7 @@ Because of the brackets, every formula is either a propositional variable or is 
 \end{definition}
 
 \begin{example}
-$ \phi : \impb{\impb{p}{\notb{q}}}{p} $ has truth table:
+$ \phi : \impb{\impb{p}{\notb{q}}}{p} $ has the following truth table.
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -174,7 +174,7 @@ $ F $ & $ F $ & $ T $ & $ T $ & $ F $ \\
 \hline
 \end{tabular}
 \end{center}
-So for example $ F_\phi\rb{T, F} = T $. This can also be written in a \textbf{condensed form} as:
+So for example $ F_\phi\rb{T, F} = T $. This can also be written in a \textbf{condensed form} as follows.
 \begin{center}
 \begin{tabular}{c c c c c c c c c c c c c c}
 $ ( $ & $ ( $ & $ p $ & $ \rightarrow $ & $ ( $ & $ \neg $ & $ q $ & $ ) $ & $ ) $ & $ \rightarrow $ & $ p $ & $ ) $ \\
@@ -292,10 +292,10 @@ $$ \orb{\andb{p_1}{\notb{p_2}}}{\andb{\notb{p_1}}{\notb{p_2}}}. $$
 \end{example}
 
 \begin{corollary}
-The following sets of connectives are adequate:
+The following sets of connectives are adequate.
 \begin{enumerate}
-\item $ \cb{\neg, \lor} $,
-\item $ \cb{\neg, \land} $, and
+\item $ \cb{\neg, \lor} $.
+\item $ \cb{\neg, \land} $.
 \item $ \cb{\neg, \rightarrow} $.
 \end{enumerate}
 \end{corollary}
@@ -320,7 +320,7 @@ The following are not adequate.
 \end{example}
 
 \begin{example}
-The NOR connective $ \downarrow $ has truth table
+The NOR connective $ \downarrow $ has the following truth table.
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
@@ -370,27 +370,32 @@ The main example is the following.
 
 \begin{definition}
 \label{def:1.2.3}
-The formal system \textbf{$ L $} for propositional logic has:
+The formal system \textbf{$ L $} for propositional logic has the following.
 \begin{enumerate}
-\item alphabet: variables $ p_1, p_2, \dots $, connectives $ \neg, \rightarrow $, and punctuation $ ( $, $ ) $.
-\item formulas: \textbf{$ L $-formulas} defined in \ref{def:1.1.2} for $ \neg, \rightarrow $ by
+\item Alphabet. Alphabets are
+\begin{enumerate}
+\item variables $ p_1, p_2, \dots $,
+\item connectives $ \neg, \rightarrow $, and
+\item punctuation $ ( $, $ ) $.
+\end{enumerate}
+\item Formulas. \textbf{$ L $-formulas} are defined in \ref{def:1.1.2} for $ \neg, \rightarrow $ by
 \begin{enumerate}
 \item any variable $ p_i $ is a formula,
 \item if $ \phi, \psi $ are formulas so are $ \notb{\phi}, \impb{\phi}{\psi} $, and
 \item any formula arises in this way.
 \end{enumerate}
-\item axioms: suppose $ \phi, \psi, \chi $ are $ L $-formulas, then the axioms of $ L $ are
+\item Axioms. Suppose $ \phi, \psi, \chi $ are $ L $-formulas, then the axioms of $ L $ are
 \begin{enumerate}[label=(A\arabic*)]
 \item $ \impb{\phi}{\impb{\psi}{\phi}} $,
 \item $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} $, and
 \item $ \impb{\impb{\notb{\psi}}{\notb{\phi}}}{\impb{\phi}{\psi}} $.
 \end{enumerate}
-\item deduction rules: \textbf{Modus Ponens} (MP), from formulas $ \phi, \impb{\phi}{\psi} $, deduce $ \psi $.
+\item Deduction rules. \textbf{Modus Ponens} (MP), from formulas $ \phi, \impb{\phi}{\psi} $, deduce $ \psi $.
 \end{enumerate}
 \end{definition}
 
 \begin{example}
-Suppose $ \phi $ is an $ L $-formula. Then $ \vdash_L \impb{\phi}{\phi} $. Here is a proof in $ L $:
+Suppose $ \phi $ is an $ L $-formula. Then $ \vdash_L \impb{\phi}{\phi} $. Here is a proof in $ L $.
 \begin{align*}
 & \impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}} & \rb{A1} \\
 & \impb{\impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}}}{\impb{\impb{\phi}{\impb{\phi}{\phi}}}{\impb{\phi}{\phi}}} & \rb{A2} \\
@@ -416,7 +421,7 @@ Suppose $ \phi, \psi, \chi $ are $ L $-formulas and $ \vdash_L \impb{\phi}{\psi}
 \end{corollary}
 
 \begin{proof}
-Use deduction theorem with $ \Gamma = \emptyset $. Show $ \cb{\phi} \vdash_L \chi $. Here is a deduction of $ \chi $ from $ \phi $:
+Use deduction theorem with $ \Gamma = \emptyset $. Show $ \cb{\phi} \vdash_L \chi $. Here is a deduction of $ \chi $ from $ \phi $.
 \begin{align*}
 & \impb{\phi}{\psi} & \rb{\text{theorem of } L} \\
 & \impb{\psi}{\chi} & \rb{\text{theorem of } L} \\
@@ -429,7 +434,7 @@ Thus $ \cb{\phi} \vdash_L \chi $. By deduction theorem, $ \emptyset \vdash_L \im
 
 \begin{proposition}
 \label{prop:1.2.7}
-Suppose $ \phi, \psi $ are $ L $-formulas. Then:
+Suppose $ \phi, \psi $ are $ L $-formulas. Then
 \begin{enumerate}
 \item $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\phi}} $,
 \item $ \cb{\notb{\psi}, \psi} \vdash_L \phi $, and
@@ -447,7 +452,7 @@ Suppose $ \phi, \psi $ are $ L $-formulas. Then:
 \end{proof}
 
 \begin{proof}[Proof of \ref{thm:dt}]
-Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $ using a deduction of length $ n $. Show by induction on $ n $ that $ \Gamma \vdash_L \impb{\phi}{\psi} $:
+Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $ using a deduction of length $ n $. Show by induction on $ n $ that $ \Gamma \vdash_L \impb{\phi}{\psi} $.
 \begin{enumerate}
 \item Base step is $ n = 1 $. In this case $ \psi $ is either an axiom or in $ \Gamma $ or is $ \phi $. In the first two cases $ \Gamma \vdash_L \psi $ is a one line deduction. Using the A1 axiom $ \impb{\psi}{\impb{\phi}{\psi}} $ and MP we obtain $ \Gamma \vdash_L \impb{\phi}{\psi} $. If $ \phi $ is $ \psi $ we have $ \Gamma \vdash_L \impb{\phi}{\phi} $ by \ref{def:1.2.3}. This finishes the base case.
 \item Inductive step. In our deduction of $ \psi $ from $ \Gamma \cup \cb{\phi} $ either $ \psi $ is an axiom, or in $ \Gamma $, or is $ \phi $, or $ \psi $ is obtained from earlier steps using MP. In the first three cases we argue as in the base case to get $ \Gamma \vdash_L \impb{\phi}{\psi} $. In the last case there are formulas $ \chi $, $ \impb{\chi}{\psi} $ earlier in the deduction. We use the inductive hypothesis to get $ \Gamma \vdash_L \impb{\phi}{\chi} $ and $ \Gamma \vdash_L \impb{\phi}{\impb{\chi}{\psi}} $. We have the A2 axiom $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} $. This A2 axiom and MP twice we obtain $ \Gamma \vdash_L \impb{\phi}{\chi} $ as required, completing the inductive step.
@@ -508,7 +513,7 @@ Same proof. (TODO Exercise)
 Suppose $ \phi $ is a tautology, that is $ v\rb{\phi} = T $ for every valuation $ v $. Then $ \vdash_L \phi $.
 \end{theorem}
 
-Steps in the proof are:
+The following are steps in the proof.
 \begin{enumerate}
 \item If $ v\rb{\phi} = T $ for all valuations $ v $, want to show $ \vdash_L \phi $.
 \item Try to prove a generalisation. Suppose that for every $ v $ with $ v\rb{\Gamma} = T $, that is $ v\rb{\psi} = T $ for all $ \psi \in \Gamma $, we have $ v\rb{\phi} = T $. Then $ \Gamma \vdash_L \phi $.
@@ -615,5 +620,110 @@ Let $ P $ be the set of sequences of $ \cb{T, F} $, that is the set of functions
 \marginpar{Lecture 7 \\ Thursday \\ 18/10/18}
 
 Lecture 7 is a problem class.
+
+\marginpar{Lecture 8 \\ Friday \\ 19/10/18}
+
+\section{Predicate logic}
+
+Predicate logic is first-order logic. Plan is the following.
+\begin{enumerate}
+\item Semantics by
+\begin{enumerate}
+\item introducing the mathematical objects, first-order structures, and
+\item introducing the formulas, first-order languages.
+\end{enumerate}
+\item Syntax by
+\begin{enumerate}
+\item describing a formal system, and
+\item showing that its theorems are precisely the formulas true in all structures.
+\end{enumerate}
+\end{enumerate}
+This is Gödel's completeness theorem.
+
+\subsection{Structures}
+
+\begin{definition}
+Suppose $ A $ is a set and $ n \ge 1 $ and $ n \in \N $. An \textbf{$ n $-ary relation} on $ A $ is a subset of $ n $-tuples $ \overline{R} \subseteq A^n = \cb{\rb{a_1, \dots, a_n} \mid a_i \in A} $. An \textbf{$ n $-ary function} on $ A $ is a function $ \overline{f} : A^n \to A $.
+\end{definition}
+
+\begin{example}
+Ordering $ \le $ on $ \R $ is a binary relation on $ \R $. $ + $ on $ \C $ is a binary function on $ \C $. Even integers as a subset of $ \Z $ is a unary relation on $ \Z $.
+\end{example}
+
+If $ \overline{R} \subseteq A^n $ is an $ n $-ary relation and $ a_1, \dots, a_n \in A $, write $ \overline{R}\rb{a_1, \dots, a_n} $ to mean $ \rb{a_1, \dots, a_n} \in \overline{R} $.
+
+\begin{definition}
+A \textbf{first-order structure} $ \mathcal{A} $ consists of
+\begin{enumerate}
+\item a non-empty set $ A $, the \textbf{domain} of $ \mathcal{A} $,
+\item a set $ \cb{\overline{R_i} \mid i \in I} $ of relations on $ A $, $ \overline{R_i} \subseteq A^{n_i} $,
+\item a set $ \cb{\overline{f_j} \mid j \in J} $ of functions on $ A $, $ \overline{f_j} : A^{m_j} \to A $, and
+\item a set $ \cb{\overline{c_k} \mid k \in K} $ of \textbf{constants}, just elements of $ A $.
+\end{enumerate}
+The sets $ I, J, K $ are indexing sets and can be empty. Usually subsets of $ \N $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, and the set $ K $ is called the \textbf{signature} of $ A $. Might denote the structure by
+$$ \mathcal{A} = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}}. $$
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Orderings $ A = \N, \Z, \Q, \R $.
+$$ I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset, \qquad \overline{R_1}\rb{a_1, a_2} \iff a_1 < a_2. $$
+\item Groups.
+\begin{enumerate}
+\item $ \overline{R} $, the binary relation for equality,
+\item $ \overline{m} $, the binary function for multiplication,
+\item $ \overline{i} $, the unary function for inversion, and
+\item $ \overline{e} $, the constant for identity element.
+\end{enumerate}
+\item Rings.
+\begin{enumerate}
+\item $ \overline{R} $, the binary relation for equality,
+\item $ \overline{m} $, the binary function for multiplication,
+\item $ \overline{a} $, the binary function for addition,
+\item $ \overline{n} $, the binary function for negation,
+\item $ \overline{0} $, the constant for zero, and
+\item $ \overline{1} $, the constant for one.
+\end{enumerate}
+\item Graphs.
+\begin{enumerate}
+\item $ \overline{R} $ the binary relation for equality, and
+\item $ \overline{E} $ the binary relation for adjacency.
+\end{enumerate}
+\end{enumerate}
+\end{example}
+
+\subsection{First-order languages}
+
+\begin{definition}
+A \textbf{first-order language} $ \mathcal{L} $ has an alphabet of symbols of the following types.
+\begin{enumerate}
+\item Variables $ x_0, x_1, \dots $.
+\item Punctuation $ ( $, $ ) $, $ , $.
+\item Connectives $ \neg $, $ \rightarrow $.
+\item \textbf{Quantifier} $ \forall $.
+\item Relation symbols $ R_i $ for $ i \in I $.
+\item Function symbols $ f_j $ for $ j \in J $.
+\item Constant symbols $ c_k $ for $ k \in K $.
+\end{enumerate}
+Here $ I, J, K $ are indexing sets and could have $ J, K = \emptyset $. Each $ R_i $ comes equipped with an \textbf{arity} $ n_i $. Each $ f_j $ comes equipped with an arity $ m_j $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, $ K $ is called the signature of $ \mathcal{L} $. A first-order structure $ \mathcal{A} $ with the same signature as $ \mathcal{L} $ is referred to as an \textbf{$ \mathcal{L} $-structure}.
+\end{definition}
+
+\begin{definition}
+A \textbf{term} of $ \mathcal{L} $ is defined as follows.
+\begin{enumerate}
+\item Any variable is a term.
+\item Any constant symbol is a term.
+\item If $ f $ is an $ m $-ary function symbol of $ \mathcal{L} $ and $ t_1, \dots, t_m $ are terms, then $ f\rb{t_1, \dots, t_m} $ is also a term.
+\item Any term arises in this way.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+Suppose $ \mathcal{L} $ has a binary function symbol $ f $ and constant symbols $ c_1, c_2 $. Then the following are some terms.
+$$ c_1, \qquad c_2, \qquad x, \qquad f\rb{c_1, x_1}, \qquad f\rb{f\rb{c_1, x_2}, c_2}, \qquad f\rb{x, f\rb{f\rb{c_1, x_2}, c_2}}. $$
+The following are not terms
+$$ ffx_1 \quad \rb{\text{not well-formed}}. $$
+\end{example}
 
 \end{document}
