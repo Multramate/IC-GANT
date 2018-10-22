@@ -64,8 +64,7 @@
 
 \section{Introduction}
 
-This course is intended as a first course in algebraic geometry, the area of mathematics that studies spaces defined by polynomial equations using algebra. It will focus on one dimensional algebraic varieties. The reference books for the course are:
-
+This course is intended as a first course in algebraic geometry, the area of mathematics that studies spaces defined by polynomial equations using algebra. It will focus on one dimensional algebraic varieties. The reference books for the course are the following.
 \begin{enumerate}
 \item F Kirwan, Complex algebraic curves, 1992
 \item W Fulton, Algebraic curves: an introduction to algebraic geometry, 1969
@@ -134,7 +133,7 @@ Let $ n = 3 $. $ P\rb{x_1, x_2, x_3} = 3 + x_1^2x_2 + x_3^{10} $ for $ \alpha = 
 \begin{definition}
 An \textbf{affine plane curve} defined over $ K $ is
 $$ C = \cb{\rb{x, y} \in K^2 \mid P\rb{x, y} = 0} \subset K^2, $$
-where $ P = K\sb{x, y} $. More generally, an \textbf{algebraic variety} $ V \subset K^n $ is a subset of $ K^n $ defined as the locus
+where $ P \in K\sb{x, y} $. More generally, an \textbf{algebraic variety} $ V \subset K^n $ is a subset of $ K^n $ defined as the locus
 $$ \cb{f_1 = \dots = f_k = 0} \subset K^n, $$
 where $ f_1, \dots, f_k \in K\sb{x_1, \dots, x_n} $ are polynomials in $ n $ variables with coefficients in $ K $.
 \end{definition}
@@ -187,13 +186,11 @@ Recall also that every polynomial $ P \in K\sb{x_1, \dots, x_n} $ can be written
 $$ \cb{P = 0} = \cb{f_1 = 0} \cup \dots \cup \cb{f_k = 0} \subseteq K^n, $$ so in particular every algebraic curve is a union of algebraic curves defined by irreducible polynomials.
 \end{fact}
 
-In the course, we will consider questions such as:
-
+In the course, we will consider questions such as the following.
 \begin{enumerate}
 \item When do polynomials $ f, g \in K\sb{x, y} $ define the same affine plane curve?
 \item What can be said about the intersection $ \cb{f = 0} \cap \cb{g = 0} \subset K^2 $?
 \end{enumerate}
-
 Very different questions can be approached through algebraic curves. For example, we can study integer solutions to some Diophantine equations.
 
 \begin{example}
@@ -761,7 +758,7 @@ Idea is to let $ x = x_0 / x_2 $ and $ y = x_1 / x_2 $. $ f\rb{x, y} = x^3 + y +
 \begin{theorem}
 There is a bijective correspondence between
 \begin{enumerate}
-\item projective plane curves $ \overline{C} = \cb{P = 0} \subseteq \P^2 $ that do not contain the line at infinity $ \mathcal{P} = \cb{x_2 = 0} $, and
+\item projective plane curves $ \overline{C} = \cb{P = 0} \subseteq \P^2 $ that do not contain the line at infinity $ \mathcal{P}_2 = \cb{x_2 = 0} $, and
 \item affine curves $ C = \cb{f = 0} \subseteq \C^2 $.
 \end{enumerate}
 The bijection $ C \leftrightarrow \overline{C} $ is obtained by
@@ -787,6 +784,144 @@ Let $ P = x_0x_2^2 + x_1^2x_2 = x_2\rb{x_0x_2 + x_1^2} $. Then $ f\rb{x, y} = P\
 
 \begin{remark}
 To intersect $ \cb{P = 0} $ and $ \cb{Q = 0} $ in $ \P^2 $, solve $ P = 0 $ and $ Q = 0 $ in $ x_0, x_1, x_2 $ to get homogeneous coordinates of points of intersection, where $ \underline{0} $ is not a valid solution and $ \rb{\lambda x_0, \lambda x_1, \lambda x_2} $ is the same as $ \rb{x_0, x_1, x_2} $.
+\end{remark}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ \overline{C} $ be the projective curve $ \overline{C} = \cb{P\rb{x_0, x_1, x_2} = x_0^2 + x_1^2 + x_2^2 = 0} $. Then $ C = \phi\rb{\overline{C} \cap U_2} $ is $ \cb{f = 0} \subseteq \C^2 $, where $ f\rb{x, y} = x^2 + y^2 + 1 $.
+\item Let $ C $ be the affine curve $ x^2y + y - 1 = 0 $. Then $ \overline{C} $ is defined by $ x_2^3\rb{\rb{x_0 / x_2}^2\rb{x_1 / x_2} + x_1 / x_2 - 1} = x_0^2x_1 + x_1x_2^2 - x_2^3 $.
+\end{enumerate}
+\end{example}
+
+\begin{exercise}
+Let $ i = 1 $ or $ 2 $, recall that $ \phi_i $ denotes the homeomorphism $ \phi : U_i \to \C^2 $. Show that if $ \overline{C} \subseteq \P^2 $ is a projective curve that does not contain $ \mathcal{P}_i = \cb{x_i = 0} $, then
+$$ C_i = \phi_i\rb{\overline{C} \cap U_i} \subseteq \C^2 $$
+is an affine curve.
+\end{exercise}
+
+\marginpar{Lecture 7 \\ Monday \\ 22/10/18}
+
+Intersect projectivisations to find points of intersection at infinity.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Consider the parallel lines
+$$ L_1 = \cb{x + y + 1 = 0}, \qquad L_2 = \cb{x + y - 1 = 0}. $$
+The corresponding projective lines are given by
+$$ \overline{L_1} = \cb{x_0 + x_1 + x_2 = 0}, \qquad \overline{L_2} = \cb{x_0 + x_1 - x_2 = 0}, $$
+then solve to give
+$$ \begin{cases} x_0 + x_1 = -x_2 \\ x_0 + x_1 = x_2 \end{cases} \qquad \implies \qquad \begin{cases} x_0 + x_1 = 0 \\ x_2 = 0 \end{cases}. $$
+Inside $ \P^2 $, the intersection $ L_1 \cap L_2 $ consists of exactly one point
+$$ p = \sb{1, -1, 0}. $$
+Thus, the two projective lines meet at one point $ p \in \mathcal{P}_0 $, that is $ p $ is a point at infinity.
+\item Similarly, let
+$$ C = \cb{xy - 1 = 0}, \qquad L = \cb{x = 0}, $$
+then the projectivisations are
+$$ \overline{C} = \cb{x_0 \cdot x_1 - x_2^2 = 0}, \qquad \overline{L} = \cb{x_0 = 0}, $$
+then intersect to give
+$$ \begin{cases} x_0 = 0 \\ x_0x_1 - x_2^2 = 0 \end{cases} \qquad \implies \qquad \begin{cases} x_0 = 0 \\ x_2 = 0 \end{cases}. $$
+As above, in $ \P^2 $, $ \overline{C} \cap \overline{L} $ consists of a single point
+$$ \cb{\sb{0, 1, 0}} $$
+lying on $ \mathcal{P}_2 = \cb{x_2 = 0} $, the hyperplane at infinity.
+\end{enumerate}
+\end{example}
+
+\begin{example}
+Projective conics over $ \R $ are defined by degree two equations. In $ \R^2 $, smooth conics are three kinds, ellipses, hyperbolas, and parabolas. Passing to $ \P^2\rb{\R} $, these three kinds of curves become the same. Ellipses have no new points at infinity, hyperbolas have two new points at infinity, and parabolas have one new point at infinity.
+\begin{enumerate}
+\item Let $ f\rb{x, y} = x^2 - y^2 + 1 $. Projectivising, $ P\rb{x_0, x_1, x_2} = x_0^2 - x_1^2 + x_2^2 $. Restrict to $ U_1 = \cb{x_1 \ne 0} \subseteq \R^2 $. $ \overline{C} \cap U_1 $, the equation of the unit circle $ g\rb{x, y} = x^2 - 1 + y^2 = x^2 + y^2 - 1 $ is obtained by setting $ x_1 = 1 $.
+\item Consider the parabola $ C $ with equation $ y = x^2 $ in $ \R^2 $. Projectivising, this becomes the curve $ \overline{C} = \cb{x_1x_2 = x_0^2} \subseteq \P^2\rb{\R} $. The intersection with the line at infinity $ x_2 = 0 $ gives $ x_0^2 = 0 $, so the only point is $ \sb{0, 1, 0} $. The square suggests some kind of tangency, and indeed $ \overline{C} $ is tangent to $ x_2 = 0 $. In the chart $ x_0 \ne 0 $, the equation becomes $ xy = 1 $, and we see a hyperbola. In the chart $ x_1 \ne 0 $ we have again a parabola, $ y = x^2 $.
+\item Consider the unit circle $ C = \cb{x^2 + y^2 - 1 = 0} \subseteq \R^2 $. Projectivising we obtain $ \overline{C} = \cb{x_0^2 + x_1^2 - x_2^2 = 0} \subseteq \P^2\rb{\R} $. The intersection with the line at infinity $ x_2 = 0 $ is empty as we could expect. In the chart $ x_0 \ne 0 $ we obtain the curve $ 1 + x^2 - y^2 = 0 $, which is a hyperbola, and similarly in $ x_1 \ne 0 $.
+\end{enumerate}
+\end{example}
+
+\begin{exercise}
+Let $ a, b, c, d, e, f \in \C $, with $ \rb{a, b, c} \ne \rb{0, 0, 0} $, and define
+$$ C = \cb{ax^2 + bxy + cy^2 + dx + ey + f = 0}. $$
+Define the projectivisation $ \overline{C} $ of $ C $ and determine its points on the line at infinity.
+\end{exercise}
+
+\begin{exercise}
+\hfill
+\begin{enumerate}
+\item Show that there exists a unique projective line $ L \subseteq \P^2 $ through two distinct points $ P, Q \in \P^2 $.
+\item Show that two distinct projective lines in $ \P^2 $ meet in exactly one point.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Let $ P_1, P_2, P_3 $ be three points of $ \P^2 $, and denote
+$$ P_i = \sb{b_{i, 1}, b_{i, 2}, b_{i, 3}}, \qquad i = 1, 2, 3 $$
+for their coordinates. Let $ B = \rb{b_{i, j}} $ be the associated $ 3 \times 3 $ matrix. Show that $ P_1, P_2, P_3 $ lie in the same projective line if and only if $ \det\rb{B} = 0 $.
+\end{exercise}
+
+\section{Points at infinity}
+
+Given an affine curve $ C \subseteq \C^2 $ and its projectivisation $ \overline{C} \subseteq \P^2 $, we study the points at infinity of $ C $, that is the points of $ \overline{C} $ that do not lie on $ C $. Let us first recall the notation in use. Denote by $ U_2 $ the open set of $ \P^2 $ defined by $ \C^2 \cong U_2 = \cb{x_2 \ne 0} \subseteq \P^2 $ and let $ \mathcal{P}_2 = \P^2 \setminus U_2 = \cb{x_2 = 0} $ be the corresponding hyperplane or line at infinity. The homeomorphism $ \phi : \C^2 \to U_2 $ is defined by $ \rb{x, y} \mapsto \sb{x, y, 1} $, and its inverse $ \psi : U_2 \to \C^2 $ is the map $ \psi : \sb{x_0, x_1, x_2} \mapsto \sb{x_0 / x_2, x_1 / x_2} $. Let $ C $ be the affine curve
+$$ C = \cb{\rb{x, y} \in \C^2 \mid f\rb{x, y} = 0}, $$
+where $ f \in \C\sb{x, y} $ is a polynomial of degree $ d $ with no repeated factors. The projectivisation of $ C $ is then the curve $ \overline{C} $ such that $ \overline{C} \cap \cb{x_2 \ne 0} = \phi\rb{C} $, or equivalently such that $ \psi\rb{\overline{C} \cap U_2} = C $. The curve $ \overline{C} $ is
+$$ \overline{C} = \cb{\sb{x_0, x_1, x_2} \in \P^2 \mid P\rb{x_0, x_1, x_2} = 0}, $$
+where $ P $ is the homogeneous polynomial
+$$ P\rb{x_0, x_1, x_2} = x_2^df\rb{x_0 / x_2, x_1 / x_2}. $$
+Let $ f_i \in \C\sb{x, y} $ be the homogeneous polynomials of degree $ 0 \le i \le d $ with
+$$ f\rb{x, y} = f_0\rb{x, y} + \dots + f_d\rb{x, y}, $$
+and note that
+$$ P\rb{x_0, x_1, x_2} = f_0\rb{x_0, x_1}x_2^d + \dots + f_d\rb{x_0, x_1}. $$
+
+\begin{definition}
+The \textbf{points at infinity} of $ C $ are the points on $ \overline{C} \setminus \phi\rb{C} $. We will often just write $ \overline{C} \setminus C $.
+\end{definition}
+
+How many points at infinity can there be? If $ \cb{x_2 = 0} \subseteq \overline{C} $, if and only if $ x_2 $ divides $ P\rb{x_0, x_1, x_2} $, then there are infinitely many. Assume $ \cb{x_2 = 0} \not\subseteq \overline{C} $. Look at $ P\rb{x_0, x_1, 0} $, and find solutions of $ P\rb{x_0, x_1, 0} = 0 $ in $ \P^1 \cong \mathcal{P}_2 $. The points at infinity of $ C $ are thus
+$$ \overline{C} \setminus C = \overline{C} \cap \mathcal{P}_2 = \cb{\sb{x_0, x_1, 0} \in \P^2 \mid P\rb{x_0, x_1, 0} = 0}. $$
+From the above equation, and under the identification $ \mathcal{P}_2 \cong \P^1 $, this becomes
+$$ \overline{C} \setminus C = \cb{\sb{x_0, x_1} \in \P^1 \mid f_d\rb{x_0, x_1} = 0}, $$
+that is a projective variety in $ \mathcal{P}_2 \cong \P^1 $. It is natural to expect that such a projective variety consists of a finite number of points. This is what we will prove next.
+
+\begin{lemma}
+\label{lem:6.2}
+Let $ Q \in \C\sb{x_0, x_1} $ be a non-zero homogeneous polynomial of degree $ d \ge 1 $. Then there exist complex numbers $ \alpha_i, \beta_i \in \C $ with $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $ for $ i = 1, \dots, d $ such that
+$$ Q\rb{x_0, x_1} = \prod_{i = 1}^d \rb{\alpha_ix_0 + \beta_ix_1}. $$
+Therefore, $ \cb{\sb{x_0, x_1} \in \P^1 \mid Q\rb{x_0, x_1} = 0} = \cb{P_i = \sb{-\beta_i, \alpha_i}} \subseteq \P^1 $. Note that the $ P_i $ need not be distinct.
+\end{lemma}
+
+\begin{proof}
+Let us pass to $ U_1 \cong \C^1 \subseteq \P^1 $, one of the two affine charts. Write $ Q\rb{x_0, x_1} = \sum_{r = 0}^d a_rx_0^rx_1^{d - r} $ and let $ e = \max\cb{r \mid a_r \ne 0} $ so
+$$ Q\rb{x_0, x_1} = x_1^d \cdot \sum_{r = 0}^e a_r\rb{\dfrac{x_0}{x_1}^r}. $$
+Define $ f \in \C\sb{x} $ as $ f\rb{x} = \sum_{r = 0}^e a_rx^r $. By the fundamental theorem of algebra, there are complex numbers $ \lambda_1, \dots, \lambda_e $ such that
+$$ f\rb{x} = a_e \cdot \prod_{i = 1}^e \rb{x - \lambda_i}, $$
+where $ \lambda_i $ are the roots of $ f $, and hence
+$$ Q\rb{x_0, x_1} = x_1^d \cdot a_e \cdot \prod_{i = 1}^e \rb{\dfrac{x_0}{x_1} - \lambda_i} = a_e \cdot x_1^{d - e} \cdot \prod_{i = 1}^e \rb{x_0 - \lambda_ix_1}. $$
+This proves the lemma, if we set
+$$ \rb{\alpha_i, \beta_i} = \begin{cases} \rb{1, -\lambda_i} & i \le e \\ \rb{0, a_e} & i = e + 1 \\ \rb{0, 1} & i > e + 1 \end{cases}. $$
+If $ e = d $, then set
+$$ \rb{\alpha_i, \beta_i} = \begin{cases} \rb{1, -\lambda_i} & i < e \\ \rb{a_e, -a_e\lambda_e} & i = e \end{cases}. $$
+The description that $ \cb{Q = 0} \subseteq \P^1 $ is clear, once we note that $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $.
+\end{proof}
+
+We have proved the following.
+
+\begin{theorem}
+Let $ \overline{C} \subseteq P^2 $ be a projective curve defined by a polynomial of degree $ d $ that does not contain $ \mathcal{P} $. Then $ \overline{C} \cap \mathcal{P} $ is a non-empty set of at most $ d = \deg\rb{Q} $ points.
+\end{theorem}
+
+\begin{definition}
+Let $ C = \cb{f = 0} \subseteq \C^2 $ for $ f \in \C\sb{x, y} $ be an affine curve of degree $ d $ and let $ \overline{C} $ be its projectivisation, where, as usual, $ C = \psi\rb{\overline{C} \cap U} $. Denote
+$$ f = f_d + \dots + f_0, \qquad \deg f_i = i, \qquad f_d \ne 0, $$
+the decomposition of $ f $ into its homogeneous polynomial parts, so that
+$$ P\rb{x_0, x_1, x_2} = f_d\rb{x_0, x_1} + \dots + f_0\rb{x_0, x_1}x_2^d = \sum_{i = 0}^d x_2^{d - i}f_i\rb{x_0, x_1}. $$
+Then, if $ \rb{\alpha_i, \beta_i} \in \C^2 \setminus \cb{\underline{0}} $ for $ i = 1, \dots, d $ are such that
+$$ f_d\rb{x_0, x_1} = \prod_{i = 1}^d \rb{\alpha_ix_0 + \beta_ix_1}, $$
+the affine lines $ \cb{\alpha_ix + \beta_iy = 0} \subseteq \C^2 $ are the \textbf{asymptotes} of $ C $. The points at infinity at $ x_2 = 0 $ of $ C $ depend on the equation $ f_d\rb{x_0, x_1} = 0 $ and are
+$$ \overline{C} \setminus C = \cb{\sb{-\beta_i, \alpha_i}} \subseteq \mathcal{P}. $$
+\end{definition}
+
+Each asymptote meets $ \overline{C} $ at the point $ \sb{-\beta_i, \alpha_i} \in \P^1 $, the line at infinity. (TODO Exercise: check this)
+
+\begin{remark}
+It is clear from Lemma \ref{lem:6.2} that asymptotes are well-defined. Note that the asymptotes are lines in $ \C^2 $ because $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $.
 \end{remark}
 
 \end{document}
