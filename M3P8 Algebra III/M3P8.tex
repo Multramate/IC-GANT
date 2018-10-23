@@ -72,16 +72,16 @@ In addition to the lecture notes, the following will cover much of the material 
 \item M Artin, Algebra, 1991
 \end{enumerate}
 
-Rings are contexts in which it makes sense to add and multiply. For example, $ \Z $, $ \Q $, $ \R $, $ \C $, polynomials, functions $ \cb{0, 1} \to \R $, and $ \Z / n\Z $ are rings. The goals of this course include:
+Rings are contexts in which it makes sense to add and multiply. For example, $ \Z $, $ \Q $, $ \R $, $ \C $, polynomials, functions $ \cb{0, 1} \to \R $, and $ \Z / n\Z $ are rings. The goals of this course include
 \begin{enumerate}
-\item unify arguments that apply in all of the above contexts, and
-\item study relationships between different rings.
+\item to unify arguments that apply in all of the above contexts, and
+\item to study relationships between different rings.
 \end{enumerate}
-The applications of rings include:
+The applications of rings include
 \begin{enumerate}
-\item number theory - studying extensions of $ \Z $ in which particular Diophantine equations have solutions, for example $ n = x^2 + y^2 = \rb{x + iy}\rb{x - iy} $ to study solutions in $ \Z\cb{i} $ and pass to result about $ \Z $,
-\item algebraic geometry - study of zero sets of polynomials in several variables via rings of functions, and
-\item topology - cohomology classes of topological space form a ring.
+\item number theory, by studying extensions of $ \Z $ in which particular Diophantine equations have solutions, for example $ n = x^2 + y^2 = \rb{x + iy}\rb{x - iy} $ to study solutions in $ \Z\cb{i} $ and pass to result about $ \Z $,
+\item algebraic geometry, by the study of zero sets of polynomials in several variables via rings of functions, and
+\item topology, by cohomology classes of topological spaces.
 \end{enumerate}
 
 \section{Basic definitions and examples}
@@ -91,22 +91,25 @@ The applications of rings include:
 Recall the definition of a commmutative ring.
 
 \begin{definition}
-A \textbf{commutative ring with identity} $ R $ is a set together with two binary operations $ +_R, \cdot_R : R \times R \to R $, addition and multiplication, and two distinguished elements $ 0_R $ and $ 1_R $ such that:
+A \textbf{commutative ring with identity} $ R $ is a set together with two binary operations $ +_R, \cdot_R : R \times R \to R $, addition and multiplication, and two distinguished elements $ 0_R $ and $ 1_R $ such that the following holds.
 \begin{enumerate}
-\item The operation $ +_R $ makes $ R $ into an abelian group with identity $ 0_R $:
+\item The operation $ +_R $ makes $ R $ into an abelian group with identity $ 0_R $.
 \begin{enumerate}
-\item for all $ r \in R $, $ 0_R +_R r = r +_R 0_R = 0_R $ (additive identity),
-\item for all $ r, s, t \in R $, $ \rb{r +_R s} +_R t = r +_R \rb{s +_R t} $  (associativity of $ +_R $),
-\item for all $ r, s \in R $, $ r +_R s = s +_R r $ (commutativity of $ +_R $), and
-\item for all $ r \in R $, there exists $ -r \in R $ such that $ r +_R \rb{-r} = \rb{-r} +_R r = 0_R $ (additive inverses).
+\item For all $ r \in R $, $ 0_R +_R r = r +_R 0_R = 0_R $ (additive identity).
+\item For all $ r, s, t \in R $, $ \rb{r +_R s} +_R t = r +_R \rb{s +_R t} $  (associativity of $ +_R $).
+\item For all $ r, s \in R $, $ r +_R s = s +_R r $ (commutativity of $ +_R $).
+\item For all $ r \in R $, there exists $ -r \in R $ such that $ r +_R \rb{-r} = \rb{-r} +_R r = 0_R $ (additive inverses).
 \end{enumerate}
-\item The operation $ \cdot_R $ is associative and commutative with identity $ 1_R $:
+\item The operation $ \cdot_R $ is associative and commutative with identity $ 1_R $.
 \begin{enumerate}
-\item for all $ r \in R $, $ 1_R \cdot_R r = r \cdot_R 1_R = 1_R $ (multiplicative identity),
-\item for all $ r, s, t \in R $, $ \rb{r \cdot_R s} \cdot_R t = r \cdot_R \rb{s \cdot_R t} $ (associativity of $ \cdot_R $), and
-\item for all $ r, s \in R $, $ r \cdot_R s = s \cdot_R r $ (commutativity of $ \cdot_R $).
+\item For all $ r \in R $, $ 1_R \cdot_R r = r \cdot_R 1_R = 1_R $ (multiplicative identity).
+\item For all $ r, s, t \in R $, $ \rb{r \cdot_R s} \cdot_R t = r \cdot_R \rb{s \cdot_R t} $ (associativity of $ \cdot_R $).
+\item For all $ r, s \in R $, $ r \cdot_R s = s \cdot_R r $ (commutativity of $ \cdot_R $).
 \end{enumerate}
-\item Multiplication distributes over addition: for all $ r, s, t \in R $, $ r \cdot_R \rb{s +_R t} = r \cdot_R s +_R r \cdot_R t $ and $ \rb{s +_R t} \cdot_R r = s \cdot_R r +_R t \cdot_R r $.
+\item Multiplication distributes over addition.
+\begin{enumerate}
+\item For all $ r, s, t \in R $, $ r \cdot_R \rb{s +_R t} = r \cdot_R s +_R r \cdot_R t $ and $ \rb{s +_R t} \cdot_R r = s \cdot_R r +_R t \cdot_R r $ (distributivity of $ \cdot $ over $ + $).
+\end{enumerate}
 \end{enumerate}
 \end{definition}
 
@@ -389,6 +392,8 @@ Let $ R \subseteq S $ be a subring, $ \alpha \in S $, and $ \iota : R \to S $ be
 
 \marginpar{Lecture 5 \\ Monday \\ 15/10/18}
 
+\subsection{Prime and maximal ideals}
+
 \begin{definition}
 An ideal $ I $ of $ R $ is \textbf{prime} if the quotient $ R / I $ is an integral domain. It is \textbf{maximal} if $ R / I $ is a field.
 \end{definition}
@@ -456,7 +461,7 @@ A \textbf{unique factorisation domain} (UFD) is a ring $ R $ in which
 \begin{example}
 Both conditions can fail.
 \begin{enumerate}
-\item There are certainly domains in which $ 1 $ can fail, although they are somewhat exotic. One example is to take the rational polynomial ring $ R = \C\sb{X^\Q} $ with coefficients in $ \C $, whose entreis are finite formal sums $ \sum_{i = 0}^N a_iX^{n_i} $ where the $ a_i $ are in $ \C $ and the $ n_i $ are nonnegative rational numbers $ \Q_{\ge 0} $. Any element of $ R $ is a polynomial in $ X^{1 / n} $ for some $ n $. The element $ X $ of this ring is not a unit, and also not a finite product of irreducibles. In $ \C\sb{X^{1 / n}} $, $ X $ factors as $ \rb{X^{1 / n}}^n $. $ X $ has no factorisation into irreducibles in $ R $. We will show later that a very mild finiteness condition on a domain $ R $, the condition that $ R $ is Noetherian, actually guarantees that $ 1 $ holds.
+\item There are certainly domains in which $ 1 $ can fail, although they are somewhat exotic. One example is to take the rational polynomial ring $ R = \C\sb{X^\Q} $ with coefficients in $ \C $, whose entries are finite formal sums $ \sum_{i = 0}^N a_iX^{n_i} $ where the $ a_i $ are in $ \C $ and the $ n_i $ are nonnegative rational numbers $ \Q_{\ge 0} $. Any element of $ R $ is a polynomial in $ X^{1 / n} $ for some $ n $. The element $ X $ of this ring is not a unit, and also not a finite product of irreducibles. In $ \C\sb{X^{1 / n}} $, $ X $ factors as $ \rb{X^{1 / n}}^n $. $ X $ has no factorisation into irreducibles in $ R $. We will show later that a very mild finiteness condition on a domain $ R $, the condition that $ R $ is Noetherian, actually guarantees that $ 1 $ holds.
 \item Even if $ 1 $ holds, $ 2 $ often fails. The classic example of this is $ R = \Z\sb{\sqrt{-5}} $, in which $ 2, 3, 1 + \sqrt{-5}, 1 - \sqrt{-5} $ are all irreducibles, none are associates of each other, yet $ \rb{2}\rb{3} = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}} $.
 \end{enumerate}
 \end{example}
@@ -641,7 +646,7 @@ If $ \cb{n_j \in \Z} $ is a finite collection of pairwise relatively prime integ
 
 Now let $ K $ be a field and take $ R = K\sb{X} $. If $ c_1, \dots, c_r \in K $ are distinct elements of $ K $, the ideals $ I_i = \ab{X - c_i} \subseteq R $ are such that $ I_i + I_j = \ab{X - c_i} + \ab{X - c_j} $ contains $ c_i - c_k \in K^* $, so contains $ 1 $. That is, $ I_i + I_j $ is the unit ideal in $ R $ and the ideals $ I_i $ are pairwise relatively prime. Moreover, for each $ i $, $ I_i $ is the kernel of the evaluation map $ f_i : R \to K $ by that takes $ P\rb{X} $ to $ P\rb{c_i} $. Let $ f : R \to K^r = K \times \dots \times K $ by $ P\rb{X} \to \rb{P\rb{c_1}, \dots, P\rb{c_r}} $. Then the following diagram commutes.
 $$
-\begin{tikzcd}
+\begin{tikzcd}[column sep=1in]
 R \arrow{r}{f} \arrow[two heads]{d} & K^r \\
 \dfrac{R}{J} \arrow{r}{\sim} & \dfrac{R}{I_1} \times \dots \times \dfrac{R}{I_r} \arrow{u}{\sim}.
 \end{tikzcd}
@@ -689,5 +694,78 @@ is a $ K $-basis for $ M $. Every element $ x $ of $ M $ can be expressed unique
 $$ d_{1, 1}e_1f_1 + \dots + d_{n, 1}e_nf_1 + \dots + d_{1, m}e_1f_m + \dots + d_{n, m}e_nf_m. $$
 In particular the set $ \cb{e_if_j} $ for $ 1 \le i \le n $ and $ 1 \le j \le m $ spans $ M $ over $ K $. In this case the degree of $ L $ over $ K $ is $ n $ and the degree of $ M $ over $ L $ is $ m $, so it remains to show that $ \cb{e_if_j} $ is linearly independent over $ K $. Suppose we have elements $ d_{i, j} $ of $ K $ such that $ \sum_{i, j} d_{i, j}e_if_j = 0 $. Then, regrouping, we find that $ \sum_j \rb{\sum_i d_{i, j}e_i}f_j = 0 $ is an $ L $-linear combination of the $ f_j $ that is zero. Since the $ f_j $ are linearly independent over $ L $ we must have $ \sum_i d_{i, j}e_i = 0 $ for all $ j $. Since the $ e_i $ are linearly independent over $ K $ we must have $ d_{i, j} = 0 $ for all $ i, j $.
 \end{proof}
+
+\marginpar{Lecture 8 \\ Monday \\ 22/10/18}
+
+\subsection{Extensions generated by one element}
+
+Let $ L / K $ be a field extension, and let $ \alpha $ be an element of $ L $.
+
+\begin{definition}
+We let $ K\rb{\alpha} $ denote the subfield of $ L $ consisting of all elements of $ L $ that can be expressed in the form $ P\rb{\alpha} / Q\rb{\alpha} $, where $ P $ and $ Q $ are polynomials with coefficients in $ K $ and $ Q\rb{\alpha} $ is not zero. This is the smallest subfield of $ L $ containing $ K $ and $ \alpha $.
+\end{definition}
+
+Recall that if $ R, S $ are rings, $ f : R \to S $ is a homomorphism, and $ \alpha \in S $, then have $ \phi_{f, a} : R\sb{X} \to S $ by $ \phi_{f, a}\rb{\sum_{i = 1}^n r_iX^i} = \sum_{i = 1}^n f\rb{r_i}\alpha^i $. We have a natural map $ K\sb{X} \to K\rb{\alpha} \subseteq L. $, inclusion on $ K $, that takes a polynomial $ P\rb{X} $ to $ P\rb{\alpha} $. It is a ring homomorphism. Let $ I $ be the kernel of this homomorphism. We then get an injection of $ K\sb{X} / I $ into the field $ K\rb{\alpha} $. Thus $ K\sb{X} / I $ is an integral domain, so $ I $ is a prime ideal of $ K\sb{X} $. Since $ K\sb{X} $ is a PID, every nonzero prime ideal is maximal. (TODO Exercise) There are thus two cases. In the first $ I $ is the zero ideal that is not maximal. That is, there is no nonzero polynomial $ Q $ in $ K\sb{X} $ such that $ Q\rb{\alpha} $ is zero in $ L $. We say that $ \alpha $ is \textbf{transcendental} over $ K $ in this case. In the second $ I $ is an ideal $ \ab{Q} $ for $ Q \in K\sb{X} $ a nonzero irreducible polynomial that is a maximal ideal of $ K\sb{X} $. In this case we say $ \alpha $ is \textbf{algebraic} over $ K $.
+
+\begin{definition}
+$ K\rb{X} $ is the \textbf{field of rational functions} on $ X $,
+$$ K\rb{X} = \cb{\dfrac{P\rb{X}}{Q\rb{X}} \ \Bigg| \ P, Q \in K\sb{X}, \ Q \ne 0} / \sim. $$
+\end{definition}
+
+Assume first that $ \alpha $ is transcendental over $ K $, that is $ I = \cb{0} $. Recall $ I = \cb{P\rb{X} \in K\sb{X} \mid P\rb{\alpha} = 0} $. So in this case there is no nonzero polynomial $ P \in K\sb{X} $ with $ P\rb{\alpha} = 0 $. In this case the map taking $ P\rb{X} $ to $ P\rb{\alpha} $ is an injection of $ K\sb{X} $ into $ K\rb{\alpha} \subseteq L $. In particular every nonzero element of $ K\sb{X} $ gets sent to a nonzero, hence invertible, element of $ L $. Thus the map from $ K\sb{X} $ to $ L $ extends to an injective map from the field of fractions of $ K\sb{X} $, which we denote $ K\rb{X} $, to $ L $. This map takes $ P\rb{X} / Q\rb{X} $ to $ P\rb{\alpha} / Q\rb{\alpha} $. By definition of $ K\rb{\alpha} $, this map is surjective so the image of this map is $ K\rb{\alpha} $. In particular $ K\rb{X} $ and $ K\rb{\alpha} $ are isomorphic. Thus the following diagram holds.
+$$
+\begin{tikzcd}[column sep=1in]
+& L \\
+K\rb{X} \arrow{r}{\sim}[swap]{g} & K\rb{\alpha} \arrow[hookrightarrow, swap]{u}{\subseteq} \\
+K\sb{X} \arrow[hookrightarrow]{u}{\subseteq} \arrow[hookrightarrow, swap]{ur}{f}
+\end{tikzcd}
+\qquad f : P\rb{X} \mapsto P\rb{\alpha} \qquad g : \dfrac{P\rb{X}}{Q\rb{X}} \mapsto \dfrac{P\rb{\alpha}}{Q\rb{\alpha}}
+$$
+
+\begin{note}
+In this case $ K\rb{\alpha} $ is infinite dimensional as a $ K $-vector space. It contains a subspace isomorphic to $ K\sb{X} $, for instance.
+\end{note}
+
+If $ \alpha $ is algebraic over $ K $, then $ I $ is a nonzero maximal ideal of the PID $ K\sb{X} $, so it is generated by a single irreducible polynomial $ Q\rb{X} $ in $ K\sb{X} $. As a consequence, since the units in $ K\sb{X} $ are just the constant polynomials, the polynomial $ Q\rb{X} $ is well-defined up to a constant factor. It is called the \textbf{minimal polynomial} of $ \alpha $. By definition, it divides every polynomial $ P\rb{X} $ such that $ P\rb{\alpha} = 0 $. Since $ \ab{Q\rb{X}} $ is maximal, the ring $ K\sb{X} / \ab{Q\rb{X}} $ is a field. Recall that for any $ P \in K\sb{X} $, can write $ P\rb{X} $ uniquely as $ A\rb{X}Q\rb{X} + R\rb{X} $ with $ \deg\rb{R} < \deg\rb{Q} $. So $ 1, \dots, X^{\deg\rb{Q} - 1} $ are a $ K $-basis of $ K\sb{X} / \ab{Q\rb{X}} $. So its dimension as a $ K $-vector space is equal to the degree of $ Q\rb{X} $. The map $ K\sb{X} \to K\rb{\alpha} \subseteq L $ descends to an injection of $ K\sb{X} / \ab{Q\rb{X}} $ into $ L $. Since its image is a subfield of $ K\rb{\alpha} $ containing $ K $ and $ \alpha $, this map is an isomorphism of $ K\rb{\alpha} $ with $ K\sb{X} / \ab{Q\rb{X}} $. Thus in this case the extension $ K\rb{\alpha} / K $ is a finite extension, of degree equal to the degree of $ Q\rb{X} $. Thus the following diagram holds.
+$$
+\begin{tikzcd}[column sep=1in]
+K\sb{X} \arrow{dr}{f} & L \\
+\dfrac{K\sb{X}}{\ab{Q\rb{X}}} \arrow[hookrightarrow]{u}{\subseteq} \arrow{r}{g}[swap]{\sim} & K\rb{\alpha} \arrow[hookrightarrow, swap]{u}{\subseteq}
+\end{tikzcd}
+\qquad f : P\rb{X} \mapsto P\rb{\alpha} \qquad g : \sb{R\rb{X}}_{\ab{Q\rb{X}}} \to R\rb{\alpha}
+$$
+
+To summarise, extend $ K $ by a single element by
+\begin{enumerate}
+\item building $ K\sb{X} $, and
+\item either passing to field of fractions $ K\rb{X} $ to form a transcendental extension, or choosing an irreducible polynomial $ Q $ to form an algebraic extension $ K\sb{X} / \ab{Q\rb{X}} $.
+\end{enumerate}
+Slightly informally, instead of $ K\sb{X} / \ab{Q\rb{X}} $, we sometimes write $ K\rb{\alpha} $, where $ \alpha $ is a root of $ Q\rb{X} $.
+
+\begin{definition}
+An extension $ L / K $ is \textbf{algebraic} if every element of $ L $ is algebraic over $ K $.
+\end{definition}
+
+An observation is that if $ L / K $ is finite, then $ L / K $ is algebraic. Suppose not. Let $ \alpha \in L $ be transcendental over $ K $. $ K\sb{X} $ is a polynomial ring in $ K\rb{\alpha} $ contained in $ L $, so $ L / K $ is not finite.
+
+\begin{corollary}
+Let $ L / K $ be a field extension for $ \alpha, \beta \in L $ algebraic over $ K $. Then $ \alpha + \beta $, $ \alpha\beta $ are algebraic over $ K $.
+\end{corollary}
+
+\begin{proof}
+$ \sb{K\rb{\alpha} : K} = \deg\rb{\alpha} $ and $ \sb{K\rb{\alpha, \beta} : K\rb{\alpha}} \le \deg\rb{\beta} $, so $ \sb{K\rb{\alpha, \beta} : K} \le \rb{\deg\rb{\alpha}}\rb{\deg\rb{\beta}} $. Now $ K \subseteq K\rb{\alpha + \beta} \subseteq K\rb{\alpha, \beta} $, so $ \deg\rb{\alpha + \beta} $ over $ K $ is less than $ \rb{\deg\rb{\alpha}}\rb{\deg\rb{\beta}} $. Similarly for $ \alpha\beta $.
+\end{proof}
+
+\begin{corollary}
+If $ L / K $, then the subset $ L^{alg} $ of elements of $ L $ algebraic over $ K $ is a field.
+\end{corollary}
+
+\begin{proof}
+If $ a_0 + \dots + a_n\alpha^n = 0 $ then $ a_0\rb{\alpha^{-1}}^n + \dots + a_n = 0 $.
+\end{proof}
+
+\begin{example}
+$ \overline{\Q} \subseteq \C $ is the subfield of elements of $ \C $ that are algebraic over $ \Q $.
+\end{example}
 
 \end{document}
