@@ -64,7 +64,7 @@
 
 \section{Introduction}
 
-Roughly speaking number theory is the study of the integers. More specifically, problems in number theory often have a lot to do with primes and divisibility, congruences, and include problems about the rational numbers. For example, solving equations in integers or in the rationals, such as $ x^2 - 2y^2 = 1 $, etc. We will be looking at problems that can be tackled by elementary means, but this does not mean easy. Also the statements of problems can be elementary without the solution being elementary, such as Fermat's Last Theorem, or even known, such as the twin prime conjecture. Sometimes we will state interesting things, like the prime number theorem, without proving them. Typically these will be things that we could prove if the course was much longer. We will start the course with a look at prime numbers and factorisation, a review of Euclid's algorithm and consequences, congruences, the structure of $ \rb{\Z / n\Z}^* $, RSA algorithm, and quadratic reciprocity. We will return to primes at the end, too. Typical questions here include:
+Roughly speaking number theory is the study of the integers. More specifically, problems in number theory often have a lot to do with primes and divisibility, congruences, and include problems about the rational numbers. For example, solving equations in integers or in the rationals, such as $ x^2 - 2y^2 = 1 $, etc. We will be looking at problems that can be tackled by elementary means, but this does not mean easy. Also the statements of problems can be elementary without the solution being elementary, such as Fermat's Last Theorem, or even known, such as the twin prime conjecture. Sometimes we will state interesting things, like the prime number theorem, without proving them. Typically these will be things that we could prove if the course was much longer. We will start the course with a look at prime numbers and factorisation, a review of Euclid's algorithm and consequences, congruences, the structure of $ \rb{\Z / n\Z}^* $, RSA algorithm, and quadratic reciprocity. We will return to primes at the end, too. Typical questions here include the following.
 \begin{enumerate}
 \item How do you tell if a number is prime?
 \item How many primes are there congruent to $ a $ modulo $ b $ for given $ a, b $?
@@ -139,7 +139,7 @@ This gives us \textbf{Euclid's algorithm} for finding $ \rb{a, b} $ for any $ a,
 Since at every stage $ \abs{a} + \abs{b} $ is decreasing, this algorithm terminates. We have shown that $ \rb{a, b} = \rb{b, r} $ so the output is always equal to $ \rb{a, b} $.
 
 \begin{example}
-Let us make this explicit:
+Let us make this explicit.
 \begin{align*}
 \rb{120, 87}
 & = \rb{87, 33} & 120 = 87 + 33 \\
@@ -149,7 +149,7 @@ Let us make this explicit:
 & = \rb{9, 3} & 12 = 9 + 3 \\
 & = \rb{3, 0} & 9 = 3\rb{3} + 10
 \end{align*}
-Now run this backwards, writing out the equations, to get:
+Now run this backwards, writing out the equations.
 \begin{align*}
 3
 & = 12 - 9 \\
@@ -216,7 +216,7 @@ We say that $ m_1, \dots, m_n \in \Z $ are \textbf{pairwise coprime} if $ \rb{m_
 
 \begin{corollary}
 \label{cor:10}
-Suppose that $ m_1, \dots, m_n $ are pairwise coprime. If $ m_i \mid N $ for all $ i $, then $ \rb{m_1 \dots m_n} \mid N $.
+Suppose that $ m_1, \dots, m_n $ are pairwise coprime. If $ m_i \mid N $ for all $ i $, then $ m_1 \dots m_n \mid N $.
 \end{corollary}
 
 \begin{proof}
@@ -333,7 +333,7 @@ Note firstly that the map exists and is a ring homomorphism. This follows from t
 \begin{note}
 This can be reformulated more concretely as a statement about congruences. It says that for any $ a_i $, there is a unique $ x \mod m_1 \dots m_n $ such that $ x \equiv a_i \mod m_i $. The proof does not tell us how to find $ x $, but it is actually quite easy in practice. Here is one way to do it. Write $ M = m_1 \dots m_n $ and $ M_i = M / m_i $. Choose $ q_i $ such that $ q_iM_i \equiv 1 \mod m_i $, using Euclid's algorithm and $ \rb{M_i, m_i} = 1 $ because $ \rb{m_j, m_i} = 1 $ for all $ j \ne i $. Then set
 $$ x = a_1q_1M_1 + \dots + a_nq_nM_n. $$
-For each $ i $ we have $ q_j \equiv 0 \mod m_i $ if $ i \ne j $, so $ x \equiv a_iq_iM_i \equiv a_i \mod m_i $ for each $ i $.
+For each $ i $ we have $ M_j \equiv 0 \mod m_i $ if $ i \ne j $, so $ x \equiv a_iq_iM_i \equiv a_i \mod m_i $ for each $ i $.
 \end{note}
 
 \section{The structure of $ \rb{\Z / n\Z}^* $}
@@ -419,7 +419,7 @@ The equation $ X^2 = 1 $ has exactly two solutions modulo $ p $ for any prime $ 
 \end{example}
 
 \begin{definition}
-$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root} modulo $ p $ if the order of $ g $ modulo $ p $ is exactly $ p - 1 $, equivalently, if $ \overline{g} $ is a generator of $ \rb{\Z / p\Z}^* $.
+$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root modulo $ p $} if the order of $ g $ modulo $ p $ is exactly $ p - 1 $, equivalently, if $ \overline{g} $ is a generator of $ \rb{\Z / p\Z}^* $.
 \end{definition}
 
 To prove that primitive roots exist, we require some results about roots of polynomials modulo $ p $. Over the rational numbers we all know that a polynomial of degree $ d $ has at most $ d $ roots. This can fail over other rings.
@@ -469,7 +469,7 @@ for a polynomial $ Q\rb{X} $. $ Q\rb{X} $ has integer coefficients so we can vie
 Another way of stating the corollary is to say that for any $ d $ dividing $ p - 1 $, there are exactly $ d $ elements of $ \rb{\Z / p\Z}^* $ whose order divides $ d $.
 
 \begin{example}
-Let $ p = 7 $. Then $ \rb{\Z / p\Z}^* $ has:
+Let $ p = 7 $. Then $ \rb{\Z / p\Z}^* $ has
 \begin{enumerate}
 \item $ 1 $ element of order $ 1 $,
 \item $ 2 $ elements of order dividing $ 2 $, so $ 1 $ element of order $ 2 $,
@@ -503,6 +503,7 @@ precisely by Lemma \ref{lem:24}. Now use inductive hypothesis.
 We can now go on to the case of $ \rb{\Z / p^n\Z}^* $ for $ n \ge 2 $. Firstly we do the case $ p > 2 $.
 
 \begin{proposition}
+\label{prop:26}
 Let $ p $ be an odd prime and let $ n \ge 1 $. Then $ \rb{\Z / p^n\Z}^* $ is cyclic.
 \end{proposition}
 
@@ -531,7 +532,7 @@ So $ g^{p^{n - 1}\rb{p - 1}} \equiv 1 + p^nt \not\equiv 1 \mod p^{n + 1} $, beca
 We used the hypothesis that $ p \ne 2 $ right at the end here. If $ p = 2 $ then we cannot ignore the higher order terms.
 \end{note}
 
-If $ n = 1, 2 $ the the proof of did not use $ p > 2 $, and indeed
+If $ n = 1, 2 $ then the proof of Proposition \ref{prop:26} did not use $ p > 2 $, and indeed
 \begin{enumerate}
 \item $ \rb{\Z / 2\Z}^* = \cb{1} $ is cyclic,
 \item $ \rb{\Z / 4\Z}^* = \cb{1, 3} $ is cyclic of order $ 2 $, with $ 3 $ as a generator, but
@@ -651,8 +652,52 @@ This step, solving linear equations in $ \Z / 2\Z $, can be done efficiently. Th
 $ m^2 = 1649 \equiv 2 \mod 3 $ has no solutions.
 \end{example}
 
+\marginpar{Lecture 8 \\ Tuesday \\ 23/10/18}
+
 \subsection{Primality testing}
 
-Euler's theorem states that if $ \rb{a, n} = 1 $ then $ a^{\Phi\rb{n}} \equiv 1 \mod n $. In particular if $ p $ is prime then $ a^{p - 1} $ then $ a^{p - 1} \equiv 1 \mod p $ for all $ 1 \le a \le p - 1 $. In particular if $ 2^{n - 1} \equiv 1 \mod n $, then $ n $ cannot be prime. Problem is that there exists $ n $ composite such that $ a^{n - 1} \equiv 1 \mod n $ for all $ \rb{a, n} = 1 $. These numbers are called \textbf{Carmichael numbers}. It is known that infinitely many of these exist.
+Euler's theorem states that if $ \rb{a, n} = 1 $ then $ a^{\Phi\rb{n}} \equiv 1 \mod n $. In particular if $ p $ is prime then $ a^{p - 1} $ then $ a^{p - 1} \equiv 1 \mod p $ for all $ 1 \le a \le p - 1 $. In particular if $ 2^{n - 1} \equiv 1 \mod n $, then $ n $ cannot be prime. Problem is that there exists $ n $ composite such that $ a^{n - 1} \equiv 1 \mod n $ for all $ \rb{a, n} = 1 $. These numbers are called \textbf{Carmichael numbers}. It is known that infinitely many of these exist. Miller-Rabin test is a test for whether $ n \in \Z $ is prime or not. Today let $ n \equiv 3 \mod 4 $. Example sheet is $ n \equiv 1 \mod 4 $.
+
+\begin{lemma}
+\label{lem:30}
+Let $ n > 1 $ be congruent to $ 3 $ modulo $ 4 $. Then $ n $ is prime if and only if for all $ \rb{a, n} = 1 $, $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $.
+\end{lemma}
+
+\begin{proof}
+If $ n $ is prime, then $ a^{n - 1} \equiv 1 \mod n $ by Fermat's Little theorem, so $ \rb{a^{\rb{n - 1} / 2}}^2 \equiv 1 \mod n $, so $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $. Suppose firstly that $ n = p^k $ with $ p $ prime, and $ k \ge 2 $. Try $ a = 1 + p $. Then $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv 1 + \rb{\rb{n - 1} / 2}p \mod p^2 $, by the binomial theorem. If $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p^k = n $, then $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p, p^2 $ gives
+$$ \pm 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \equiv 1 \mod p \qquad \implies \qquad 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \mod p^2, $$
+then $ p \mid \rb{\rb{n - 1} / 2} $, so $ p \mid \rb{n - 1} $. But $ p \mid n $, a contradiction. The remaining case is that $ n $ is composite but not a power of a prime. Write $ n = rs $, for $ r, s > 1  $ and odd, and $ \rb{r, s} = 1 $. By the Chinese remainder theorem, $ \Z / n\Z \cong \Z / r\Z \times \Z / s\Z $. Choose $ a $ such that $ a \equiv -1 \mod r $ and $ a \equiv 1 \mod s $. Then $ \rb{a, r} = \rb{a, s} = 1 $, so $ \rb{a, n} = 1 $. Since $ n \equiv 3 \mod 4 $, $ \rb{n - 1} / 2 $ is odd, so $ a^{\rb{n - 1} / 2} \equiv -1 \mod r $ and $ a^{\rb{n - 1} / 2} \equiv 1 \mod s $. So $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $.
+\end{proof}
+
+\begin{lemma}
+\label{lem:31}
+Suppose that $ n \equiv 3 \mod 4 $ is composite. Then the set of $ a \in \rb{\Z / n\Z}^* $ which satisfy $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $ is a proper subgroup of $ \rb{\Z / n\Z}^* $.
+\end{lemma}
+
+\begin{proof}
+Certainly $ 1^{\rb{n - 1} / 2} \equiv 1 \mod n $. If $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $ and $ b^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $,
+$$ \rb{ab}^{\rb{n - 1} / 2} \equiv a^{\rb{n - 1} / 2}b^{\rb{n - 1} / 2} \equiv \rb{\pm 1}\rb{\pm 1} \equiv \pm 1, \quad \rb{a^{-1}}^{\rb{n - 1} / 2} \equiv \rb{a^{\rb{n - 1} / 2}}^{-1} \equiv \rb{\pm 1}^{-1} \equiv \pm 1 \mod n. $$
+So this set is a subgroup of $ \rb{\Z / n\Z}^* $. It is a proper subgroup by Lemma \ref{lem:30}.
+\end{proof}
+
+\begin{corollary}
+At most half the elements of $ \rb{\Z / n\Z}^* $ satisfy $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $.
+\end{corollary}
+
+\begin{proof}
+The set of such elements is a proper subgroup of $ \rb{\Z / n\Z}^* $ by Lemma \ref{lem:31}.
+\end{proof}
+
+In fact, with a bit more work, you can improve this to show that at least $ 3 / 4 $ of the numbers $ 1 \le a \le n - 1 $ satisfy $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $. So if you randomly choose numbers $ 1 \le a \le n - 1 $ $ x $ times, and $ n $ is composite, the probability that you find some $ a $ with $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $ is at least $ 1 - \rb{1 / 4}^x $. This gives a probabilistic algorithm to check if $ n $ is prime in polynomial time. If you assume generalised Riemann hypothesis (GRH) you can find some $ a \in \Z $ with
+$$ 1 \le a \le \left\lceil 2 \rb{\log n}^2 \right\rceil, \qquad a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n. $$
+In practice it is even better.
+
+\begin{example}
+If $ n < 341550071728321 $, then one of $ a = 2, 3, 5, 7, 11, 13, 17 $ will work.
+\end{example}
+
+\section{Public key cryptography}
+
+How do we turn messages into numbers in $ \Z / n\Z $? Idea is to choose $ n $ very large. Say $ n > 2^{8k} $. Write down your message. Break it up into strings of at most $ k $ characters. Encode each character as an $ 8 $ bit binary number. String these integers together to get an $ 8k $ bit binary number. Regard that as an integer modulo $ n $. Now apply some function $ f : \Z / n\Z \to \Z / n\Z $, and then tell whoever you are trying to communicate with the result of this computation. Then they should apply some other function $ g : \Z / m\Z \to \Z / n\Z $, to get back the number you started with. So want $ f $ to be injective. Want to be able to make $ f $ public without making $ g $ public. If you have functions $ f, g : \Z / n\Z \to \Z / n\Z $ with $ f \circ g = g \circ f = id $, then you can also verify your identity, that is sign messages. Again, make $ f $ public, and any time you publish a message $ m $, you also publish $ g\rb{m} $. Then anyone can apply $ f $ to $ g\rb{m} $ to recover $ m = f\rb{g\rb{m}} $, but without $ g $, no one can forge your signature. Idea of \textbf{Rivest-Shamir-Adleman (RSA)} is to choose two large prime numbers $ p, q $ and set $ n = pq $. Choose $ \rb{e, \Phi\rb{n}} = 1 $. Find $ d $ such that $ de = 1 \mod \Phi\rb{n} = \rb{p - 1}\rb{q - 1} = n - \rb{p + q} + 1 $. Publish $ n $ and $ e $, you keep $ p, q, \Phi\rb{n}, d $ secret. $ f\rb{x} = x^e \mod n $ and $ g\rb{x} = x^d \mod n $. $ x^{de} \equiv x^1 \equiv x \mod n $ because $ de \equiv 1 \mod \Phi\rb{n} $ and $ x^{\Phi\rb{n}} \equiv 1 \mod n $.
 
 \end{document}
