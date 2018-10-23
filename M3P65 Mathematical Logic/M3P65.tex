@@ -36,6 +36,8 @@
 \newcommand{\andb}[2]{\rb{#1 \land #2}}
 \newcommand{\impb}[2]{\rb{#1 \rightarrow #2}}
 \newcommand{\iffb}[2]{\rb{#1 \leftrightarrow #2}}
+\newcommand{\fab}[1]{\rb{\forall #1}}
+\newcommand{\teb}[1]{\rb{\exists #1}}
 
 \theoremstyle{definition}\newtheorem{definition}{Definition}[subsection]
 \theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
@@ -141,9 +143,9 @@ $$ \notb{\phi}, \qquad \andb{\phi}{\psi}, \qquad \orb{\phi}{\psi}, \qquad \impb{
 \end{definition}
 
 \begin{example}
-The following are formulas.
+Some formulas are
 $$ p_1, \qquad p_2, \qquad \notb{p_1}, \qquad \impb{p_1}{\notb{p_2}}, \qquad \impb{\impb{p_1}{\notb{p_2}}}{p_2}. $$
-The following are not formulas.
+Some not formulas are
 $$ p_1 \land p_2 \quad \rb{\text{missing brackets}}, \qquad )( \neg p_1 \quad \rb{\text{not well-formed}}. $$
 \end{example}
 
@@ -627,27 +629,26 @@ Lecture 7 is a problem class.
 
 Predicate logic is first-order logic. Plan is the following.
 \begin{enumerate}
-\item Semantics by
-\begin{enumerate}
-\item introducing the mathematical objects, first-order structures, and
-\item introducing the formulas, first-order languages.
+\item Introduce the mathematical objects, first-order structures.
+\item Introduce the formulas, first-order languages.
+\item Describe a formal system.
+\item Show that its theorems are precisely the formulas true in all structures.
 \end{enumerate}
-\item Syntax by
-\begin{enumerate}
-\item describing a formal system, and
-\item showing that its theorems are precisely the formulas true in all structures.
-\end{enumerate}
-\end{enumerate}
-This is Gödel's completeness theorem.
+$ 1 $ and $ 2 $ are semantics while $ 3 $ and $ 4 $ are syntax. This is Gödel's completeness theorem.
 
 \subsection{Structures}
 
 \begin{definition}
-Suppose $ A $ is a set and $ n \ge 1 $ and $ n \in \N $. An \textbf{$ n $-ary relation} on $ A $ is a subset of $ n $-tuples $ \overline{R} \subseteq A^n = \cb{\rb{a_1, \dots, a_n} \mid a_i \in A} $. An \textbf{$ n $-ary function} on $ A $ is a function $ \overline{f} : A^n \to A $.
+Suppose $ A $ is a set and $ n \ge 1 $ and $ n \in \N $. An \textbf{$ n $-ary relation} on $ A $ is a subset $ \overline{R} \subseteq A^n = \cb{\rb{a_1, \dots, a_n} \mid a_i \in A} $ of $ n $-tuples. An \textbf{$ n $-ary function} on $ A $ is a function $ \overline{f} : A^n \to A $.
 \end{definition}
 
 \begin{example}
-Ordering $ \le $ on $ \R $ is a binary relation on $ \R $. $ + $ on $ \C $ is a binary function on $ \C $. Even integers as a subset of $ \Z $ is a unary relation on $ \Z $.
+\hfill
+\begin{enumerate}
+\item Ordering $ \le $ on $ \R $ is a binary relation on $ \R $.
+\item $ + $ on $ \C $ is a binary function on $ \C $.
+\item Even integers as a subset of $ \Z $ is a unary relation on $ \Z $.
+\end{enumerate}
 \end{example}
 
 If $ \overline{R} \subseteq A^n $ is an $ n $-ary relation and $ a_1, \dots, a_n \in A $, write $ \overline{R}\rb{a_1, \dots, a_n} $ to mean $ \rb{a_1, \dots, a_n} \in \overline{R} $.
@@ -656,18 +657,18 @@ If $ \overline{R} \subseteq A^n $ is an $ n $-ary relation and $ a_1, \dots, a_n
 A \textbf{first-order structure} $ \mathcal{A} $ consists of
 \begin{enumerate}
 \item a non-empty set $ A $, the \textbf{domain} of $ \mathcal{A} $,
-\item a set $ \cb{\overline{R_i} \mid i \in I} $ of relations on $ A $, $ \overline{R_i} \subseteq A^{n_i} $,
-\item a set $ \cb{\overline{f_j} \mid j \in J} $ of functions on $ A $, $ \overline{f_j} : A^{m_j} \to A $, and
+\item a set $ \cb{\overline{R_i} \mid i \in I} $ of relations on $ A $ for $ \overline{R_i} \subseteq A^{n_i} $,
+\item a set $ \cb{\overline{f_j} \mid j \in J} $ of functions on $ A $ for $ \overline{f_j} : A^{m_j} \to A $, and
 \item a set $ \cb{\overline{c_k} \mid k \in K} $ of \textbf{constants}, just elements of $ A $.
 \end{enumerate}
-The sets $ I, J, K $ are indexing sets and can be empty. Usually subsets of $ \N $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, and the set $ K $ is called the \textbf{signature} of $ A $. Might denote the structure by
+The sets $ I, J, K $ are indexing sets and can be empty. Usually subsets of $ \N $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, and the set $ K $ is called the \textbf{signature} of $ \mathcal{A} $. Might denote the structure by
 $$ \mathcal{A} = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}}. $$
 \end{definition}
 
 \begin{example}
 \hfill
 \begin{enumerate}
-\item Orderings $ A = \N, \Z, \Q, \R $.
+\item Orderings on $ A = \N, \Z, \Q, \R $ where
 $$ I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset, \qquad \overline{R_1}\rb{a_1, a_2} \iff a_1 < a_2. $$
 \item Groups.
 \begin{enumerate}
@@ -687,8 +688,8 @@ $$ I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset, \qquad \overline{R_1}
 \end{enumerate}
 \item Graphs.
 \begin{enumerate}
-\item $ \overline{R} $ the binary relation for equality, and
-\item $ \overline{E} $ the binary relation for adjacency.
+\item $ \overline{R} $, the binary relation for equality, and
+\item $ \overline{E} $, the binary relation for adjacency.
 \end{enumerate}
 \end{enumerate}
 \end{example}
@@ -706,7 +707,7 @@ A \textbf{first-order language} $ \mathcal{L} $ has an alphabet of symbols of th
 \item Function symbols $ f_j $ for $ j \in J $.
 \item Constant symbols $ c_k $ for $ k \in K $.
 \end{enumerate}
-Here $ I, J, K $ are indexing sets and could have $ J, K = \emptyset $. Each $ R_i $ comes equipped with an \textbf{arity} $ n_i $. Each $ f_j $ comes equipped with an arity $ m_j $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, $ K $ is called the signature of $ \mathcal{L} $. A first-order structure $ \mathcal{A} $ with the same signature as $ \mathcal{L} $ is referred to as an \textbf{$ \mathcal{L} $-structure}.
+Here $ I, J, K $ are indexing sets and could have $ J, K = \emptyset $. Each $ R_i $ comes equipped with an \textbf{arity} $ n_i $. Each $ f_j $ comes equipped with an arity $ m_j $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, $ K $ is called the signature of $ \mathcal{L} $. A first-order structure $ \mathcal{A} $ with the same signature as $ \mathcal{L} $ is referred to as an $ \mathcal{L} $-structure.
 \end{definition}
 
 \begin{definition}
@@ -720,10 +721,99 @@ A \textbf{term} of $ \mathcal{L} $ is defined as follows.
 \end{definition}
 
 \begin{example}
-Suppose $ \mathcal{L} $ has a binary function symbol $ f $ and constant symbols $ c_1, c_2 $. Then the following are some terms.
-$$ c_1, \qquad c_2, \qquad x, \qquad f\rb{c_1, x_1}, \qquad f\rb{f\rb{c_1, x_2}, c_2}, \qquad f\rb{x, f\rb{f\rb{c_1, x_2}, c_2}}. $$
-The following are not terms
+Suppose $ \mathcal{L} $ has a binary function symbol $ f $ and constant symbols $ c_1, c_2 $. Some terms are
+$$ c_1, \qquad c_2, \qquad x_1, \qquad f\rb{c_1, x_1}, \qquad f\rb{f\rb{c_1, x_2}, c_2}, \qquad f\rb{x_1, f\rb{f\rb{c_1, x_2}, c_2}}. $$
+Some not terms are
 $$ ffx_1 \quad \rb{\text{not well-formed}}. $$
 \end{example}
+
+\marginpar{Lecture 9 \\ Monday \\ 22/10/18}
+
+\begin{definition}
+\hfill
+\begin{enumerate}
+\item An \textbf{atomic formula} of $ \mathcal{L} $ is of the form $ R\rb{t_1, \dots, t_n} $ where $ R $ is an $ n $-ary relation symbol of $ \mathcal{L} $ and $ t_1, \dots, t_n $ are terms.
+\item The \textbf{formulas} of $ \mathcal{L} $ are defined as follows.
+\begin{enumerate}
+\item Any atomic formula is a formula.
+\item If $ \phi, \psi $ are $ \mathcal{L} $-formulas then $ \notb{\phi} $, $ \impb{\phi}{\psi} $, $ \fab{x}\phi $ are $ \mathcal{L} $-formulas, where $ x $ is any variable.
+\item Every $ \mathcal{L} $-formula arises in this way.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+Suppose $ \mathcal{L} $ has a binary function symbol $ f $, a unary relation symbol $ P $, a binary relation symbol $ R $, and constant symbols $ c_1, c_2 $. Some terms are
+$$ x_1, \qquad c_1, \qquad f\rb{x_1, c_1}, \qquad f\rb{f\rb{x_1, c_1}, x_2}. $$
+Some atomic formulas are
+$$ P\rb{x_1}, \qquad R\rb{f\rb{x_1, c_1}, x_2}. $$
+Some formulas are
+$$ \fab{x_1}\impb{R\rb{f\rb{x_1, c_1}, x_2}}{P\rb{x_1}}. $$
+\end{example}
+
+\begin{definition}
+Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas. $ \teb{x}\phi $ means $ \notb{\fab{x}\notb{\phi}} $. $ \orb{\phi}{\psi} $ means $ \impb{\notb{\phi}}{\psi} $, etc as in propositional logic.
+\end{definition}
+
+\begin{definition}
+Suppose $ \mathcal{L} $ is a first-order language with relation symbols $ R_i $ of arity $ n_i $ for $ i \in I $, function symbols $ f_j $ of arity $ m_j $ for $ j \in J $, and constant symbols $ c_k $ for $ k \in K $. An \textbf{$ \mathcal{L} $-structure} is a structure
+$$ \mathcal{A} = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}} $$
+of the same signature as $ \mathcal{L} $.
+\end{definition}
+
+There is a correspondence between the relation, function, and constant symbols of $ \mathcal{L} $ and the actual relations, functions, and constants in $ \mathcal{A} $, and the arities match up. This correspondence, or $ \mathcal{A} $, is called an \textbf{interpretation} of $ \mathcal{L} $.
+
+\begin{definition}
+With the same notation, suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure. A \textbf{valuation} in $ \mathcal{A} $ is a function $ v $ from the set of terms of $ \mathcal{L} $ to $ A $ satisfying
+\begin{enumerate}
+\item $ v\rb{c_k} = \overline{c_k} $, and
+\item if $ t_1, \dots, t_m $ are terms of $ \mathcal{L} $ and $ f $ is an $ m $-ary function symbol then
+$$ v\rb{f\rb{t_1, \dots, t_m}} = \overline{f}\rb{v\rb{t_1}, \dots, v\rb{t_m}}, $$
+where $ \overline{f} $ is the interpretation of $ f $ in $ \mathcal{A} $.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ a_0, a_1, \dots \in A $. Then there is a unique valuation $ v $ in $ \mathcal{A} $ with $ v\rb{x_l} = a_l $ for all $ l \in \N $, where the variables of $ \mathcal{L} $ are $ x_0, x_1, \dots $.
+\end{lemma}
+
+\begin{proof}
+By induction on the length of terms. Show that if we let
+\begin{enumerate}
+\item $ v\rb{x_l} = a_l $ for all $ l \in \N $,
+\item $ v\rb{c_k} = \overline{c_k} $ for all $ k \in K $, and
+\item $ v\rb{f\rb{t_1, \dots, t_m}} = \overline{f}\rb{v\rb{t_1}, \dots, v\rb{t_m}} $,
+\end{enumerate}
+then $ v $ is a well-defined valuation.
+\end{proof}
+
+\begin{example}
+Groups with signature of
+\begin{enumerate}
+\item binary relation symbol $ R $ for equality,
+\item binary function symbol $ m $ for multiplication,
+\item unary function symbol $ i $ for inversion, and
+\item constant $ e $ for identity element.
+\end{enumerate}
+Let $ G $ be a group and $ g, h \in G $. Let $ v $ be a valuation with $ v\rb{x_0} = g $ and $ v\rb{x_1} = h $. Then
+$$ v\rb{m\rb{m\rb{x_0, x_1}, i\rb{x_0}}} = \overline{m}\rb{v\rb{m\rb{x_0, x_1}}, v\rb{i\rb{x_0}}} = \overline{m}\rb{v\rb{x_0}, v\rb{x_1}}\overline{i}\rb{v\rb{x_0}} = ghg^{-1}. $$
+\end{example}
+
+\begin{definition}
+Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ x_l $ is any variable. Suppose $ v, w $ are valuations in $ \mathcal{A} $. We say $ v, w $ are $ x_l $-equivalent if $ v\rb{x_m} = w\rb{x_m} $ whenever $ m \ne l $.
+\end{definition}
+
+\begin{definition}
+Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation in $ \mathcal{A} $. Define, for an $ \mathcal{L} $-formula $ \phi $, what is meant by $ v $ \textbf{satisfies} $ \phi $ in $ \mathcal{A} $ by the following.
+\begin{enumerate}
+\item Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \mathcal{L} $. Then $ v $ satisfies the atomic formula $ R\rb{t_1, \dots, t_n} $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \mathcal{A} $.
+\item Suppose $ \phi, \psi $ are $ L $ formulas and we already know about valuations satisfying $ \phi, \psi $.
+\begin{enumerate}
+\item $ v $ satisfies $ \notb{\phi} $ in $ \mathcal{A} $ iff $ v $ does not satisfy $ \phi $ in $ \mathcal{A} $.
+\item $ v $ satisfies $ \impb{\phi}{\psi} $ in $ \mathcal{A} $ iff it is not the case that $ v $ satisfies $ \phi $ in $ \mathcal{A} $ and $ v $ does not satisfy $ \psi $ in $ \mathcal{A} $.
+\item $ v $ satisfies $ \fab{x_l}\phi $ in $ \mathcal{A} $ iff whenever $ w $ is a valuation in $ \mathcal{A} $ which is $ x_l $-equivalent to $ v $, then $ w $ satisfies $ \phi $ in $ \mathcal{A} $.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
 
 \end{document}
