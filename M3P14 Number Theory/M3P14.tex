@@ -700,4 +700,8 @@ If $ n < 341550071728321 $, then one of $ a = 2, 3, 5, 7, 11, 13, 17 $ will work
 
 How do we turn messages into numbers in $ \Z / n\Z $? Idea is to choose $ n $ very large. Say $ n > 2^{8k} $. Write down your message. Break it up into strings of at most $ k $ characters. Encode each character as an $ 8 $ bit binary number. String these integers together to get an $ 8k $ bit binary number. Regard that as an integer modulo $ n $. Now apply some function $ f : \Z / n\Z \to \Z / n\Z $, and then tell whoever you are trying to communicate with the result of this computation. Then they should apply some other function $ g : \Z / m\Z \to \Z / n\Z $, to get back the number you started with. So want $ f $ to be injective. Want to be able to make $ f $ public without making $ g $ public. If you have functions $ f, g : \Z / n\Z \to \Z / n\Z $ with $ f \circ g = g \circ f = id $, then you can also verify your identity, that is sign messages. Again, make $ f $ public, and any time you publish a message $ m $, you also publish $ g\rb{m} $. Then anyone can apply $ f $ to $ g\rb{m} $ to recover $ m = f\rb{g\rb{m}} $, but without $ g $, no one can forge your signature. Idea of \textbf{Rivest-Shamir-Adleman (RSA)} is to choose two large prime numbers $ p, q $ and set $ n = pq $. Choose $ \rb{e, \Phi\rb{n}} = 1 $. Find $ d $ such that $ de = 1 \mod \Phi\rb{n} = \rb{p - 1}\rb{q - 1} = n - \rb{p + q} + 1 $. Publish $ n $ and $ e $, you keep $ p, q, \Phi\rb{n}, d $ secret. $ f\rb{x} = x^e \mod n $ and $ g\rb{x} = x^d \mod n $. $ x^{de} \equiv x^1 \equiv x \mod n $ because $ de \equiv 1 \mod \Phi\rb{n} $ and $ x^{\Phi\rb{n}} \equiv 1 \mod n $.
 
+\marginpar{Lecture 9 \\ Wednesday \\ 24/10/18}
+
+Lecture 9 is a problem class.
+
 \end{document}
