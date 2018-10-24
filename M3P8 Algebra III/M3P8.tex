@@ -291,7 +291,7 @@ That is, by appling $ f $ to the coefficients and substituting $ s $ for $ X $. 
 \subsection{Images, kernels, and ideals}
 
 \begin{definition}
-Let $ f : R \to S $ be a homomorphism. The \textbf{image} of $ f $ is the subset $ Im\rb{f} = \cb{f\rb{r} \mid r \in R} \subseteq S $. The \textbf{kernel} of $ f $ is the subset $ Ker\rb{f} = \cb{r \in R \mid f\rb{r} = 0} \subseteq R $.
+Let $ f : R \to S $ be a homomorphism. The \textbf{image} of $ f $ is $ Im\rb{f} = \cb{f\rb{r} \mid r \in R} \subseteq S $. The \textbf{kernel} of $ f $ is $ Ker\rb{f} = \cb{r \in R \mid f\rb{r} = 0} \subseteq R $.
 \end{definition}
 
 The image of a homomorphism $ f : R \to S $ is easily seen to be a subring of $ S $.
@@ -753,7 +753,7 @@ Let $ L / K $ be a field extension for $ \alpha, \beta \in L $ algebraic over $ 
 \end{corollary}
 
 \begin{proof}
-$ \sb{K\rb{\alpha} : K} = \deg\rb{\alpha} $ and $ \sb{K\rb{\alpha, \beta} : K\rb{\alpha}} \le \deg\rb{\beta} $, so $ \sb{K\rb{\alpha, \beta} : K} \le \rb{\deg\rb{\alpha}}\rb{\deg\rb{\beta}} $. Now $ K \subseteq K\rb{\alpha + \beta} \subseteq K\rb{\alpha, \beta} $, so $ \deg\rb{\alpha + \beta} $ over $ K $ is less than $ \rb{\deg\rb{\alpha}}\rb{\deg\rb{\beta}} $. Similarly for $ \alpha\beta $.
+$ \sb{K\rb{\alpha} : K} = \deg\rb{\alpha} $ and $ \sb{K\rb{\alpha, \beta} : K\rb{\alpha}} \le \deg\rb{\beta} $, so $ \sb{K\rb{\alpha, \beta} : K} \le \rb{\deg\rb{\alpha}}\rb{\deg\rb{\beta}} $. Now $ K \subseteq K\rb{\alpha + \beta} \subseteq K\rb{\alpha, \beta} $, so $ \deg\rb{\alpha + \beta} $ over $ K $ is less than or equal to $ \rb{\deg\rb{\alpha}}\rb{\deg\rb{\beta}} $. Similarly for $ \alpha\beta $.
 \end{proof}
 
 \begin{corollary}
@@ -767,5 +767,91 @@ If $ a_0 + \dots + a_n\alpha^n = 0 $ then $ a_0\rb{\alpha^{-1}}^n + \dots + a_n 
 \begin{example}
 $ \overline{\Q} \subseteq \C $ is the subfield of elements of $ \C $ that are algebraic over $ \Q $.
 \end{example}
+
+\marginpar{Lecture 9 \\ Wednesday \\ 24/10/18}
+
+\section{Finite fields}
+
+Claim that for any $ p $ prime and $ r > 0 \in \Z $,
+\begin{enumerate}
+\item there exists a field with $ p^r $ elements $ \F_{p^r} $, and
+\item this field is unique up to isomorphism.
+\end{enumerate}
+
+\begin{example}
+There exists a unique irreducible polynomial of degree two in $ \F_2\sb{X} $, $ X^2 + X + 1 $. This is irreducible because it has degree two and no roots in $ \F_2 $. The other polynomials of degree two are $ X^2 $, $ X^2 + X $, $ X^2 + 1 = \rb{X + 1}^2 $. Let $ \F_4 = \F_2\sb{X} / \ab{X^2 + X + 1} $.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$ \cdot $ & $ 0 $ & $ 1 $ & $ X $ & $ X + 1 $ \\
+\hline
+$ 0 $ & $ 0 $ & $ 0 $ & $ 0 $ & $ 0 $ \\
+\hline
+$ 1 $ & $ 0 $ & $ 1 $ & $ X $ & $ X + 1 $ \\
+\hline
+$ X $ & $ 0 $ & $ X $ & $ X + 1 $ & $ 1 $ \\
+\hline
+$ X + 1 $ & $ 0 $ & $ X + 1 $ & $ 1 $ & $ X $ \\
+\hline
+\end{tabular}
+\end{center}
+$ X^2 + X + 1 = 0 $ in $ \F_4 $, since $ X^2 = -X - 1 = X + 1 $.
+\end{example}
+
+\begin{proposition}
+Let $ K $ be a field with four elements. Then $ K \cong \F_4 $.
+\end{proposition}
+
+\begin{proof}
+Let $ \alpha \in K $ with $ \alpha \ne 0 $ and $ \alpha \ne 1 $. Consider $ 1, \alpha, \alpha^2 $. Since $ K $ has dimension two over $ \F_2 $, there is a linear dependence. So there exists a polynomial $ P $ in $ \F_2\sb{X} $ of degree less than or equal to two such that $ P\rb{\alpha} = 0 $. In fact $ P $ must be irreducible of degree two. If it is divisible by something of degree one, then a polynomial of degree one vanishes on $ \alpha $, so $ \alpha = 0 $ or $ \alpha = 1 $. So $ \alpha^2 + \alpha + 1 = 0 $. The map $ \F_2\sb{X} \to K $ sending $ X $ to $ \alpha $ descends to $ \F_2\sb{X} / \ab{X^2 + X  + 1} \to K $. So $ \F_4 $ embeds in $ K $. $ K \cong \F_4 $.
+\end{proof}
+
+Let $ R $ be any ring of characteristic $ p $. Then an observation is that $ \rb{x + y}^p = x^p + y^p $ for all $ x, y \in R $. Over any ring, have
+$$ \rb{x + y}^p = x^p + \two{p}{1}xy^{p - 1} + \dots + \two{p}{p - 1}x^{p - 1}y + y^p. $$
+Now for $ 1 \le i \le p - 1 $,
+$$ p \ \Bigg| \ \two{p}{i} = \dfrac{p!}{i!\rb{p - i}!}, $$
+so when $ R $ has characteristic $ p $, $ \rb{x + y}^p = x^p + y^p $ and $ \rb{xy}^p = x^py^p $. So $ x \mapsto x^p : R \to R $ is a ring homomorphism called the \textbf{Frobenius endomorphism}. If $ R $ is a field, then the Frobenius endomorphism is injective. If $ R $ is a field, then the Frobenius endomorphism is injective. If $ R $ is a finite field, then the Frobenius endomorphism is bijective. We call it the \textbf{Frobenius automorphism}.
+
+\begin{example}
+Let $ R = \F_4 $. $ y \to y^2 $ gives $ 0 \mapsto 0 $, $ 1 \mapsto 1 $, $ X \mapsto X + 1 $, and $ X + 1 \mapsto X $.
+\end{example}
+
+\begin{note}
+Let $ K $ be a field of $ p^r $ elements. Then $ \alpha^{p^r} = \alpha $ for all $ \alpha \in K $. If $ \alpha = 0 $, clear. Otherwise $ \alpha \in K^* $, $ K^* $ is an abelian group of order $ p^r - 1 $. Lagrange's theorem gives $ \alpha^{p^r - 1} = 1 $, so $ \alpha^{p^r} = \alpha $.
+\end{note}
+
+\begin{proposition}
+Let $ K $ be a field of characteristic $ p $ such that $ \alpha^{p^r} = \alpha $ for all $ \alpha \in K $. Let $ P\rb{X} \in K\sb{X} $ be an irreducible factor of $ X^{p^r} - X $ in $ K\sb{X} $. Then $ \beta^{p^r} = \beta $ for all $ \beta \in K\sb{X} / \ab{P\rb{X}} $.
+\end{proposition}
+
+\begin{proof}
+Let $ d = \deg\rb{P} $. Can write $ \beta = c_0 + \dots + c_{d - 1}X^{d - 1} $.
+$$ \beta^{p^r} = c_0^{p^r} + \dots + c_{d - 1}^{p^r}\rb{X^{p^r}}^{d - 1} = c_0 + \dots + c_{d - 1}\rb{X^{p^r}}^{d - 1}. $$
+But $ P\rb{X} \mid X^{p^r} - X $ and so $ X^{p^r} - X = 0 $ in $ K\sb{X} / \ab{P\rb{X}} $. So $ X^{p^r} = X $ gives $ \beta^{p^r} = c_0 + \dots + c_{d - 1}X^{d - 1} = \beta $.
+\end{proof}
+
+\begin{proposition}
+There exists a field $ K $ of characteristic $ p $ such that
+\begin{enumerate}
+\item $ \alpha^{p^r} = \alpha $ for all $ \alpha \in K $, and
+\item $ X^{p^r} - X $ factors into linear factors over $ K\sb{X} $.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Let $ K_0 = \F_p $. $ K_0 $ satisfies $ 1 $. We will build a chain $ K_0 \subsetneq K_1 \subsetneq \dots $ all satisfying $ 1 $. Given $ K_i $ satisfying $ 1 $, factor $ X^{p^r} - X $ in $ K_i\sb{X} $. If all factors are linear, we are done. Otherwise let $ P_i\rb{X} $ be an irreducible factor of $ X^{p^r} - X $ in $ K_i\sb{X} $ of degree greater than or equal to two. Set $ K_{i + 1} = K_i\sb{X} / \ab{P_i\rb{X}} $. Then $ K_{i + 1} $ satisfies $ 1 $. Now every element of $ K_i $ is a root of $ X^{p^r} - X $, so $ \#K_i \le p^r $ for all $ i $. So this process terminates.
+\end{proof}
+
+So it suffices to show that over any field $ K $ of characteristic $ p $, $ X^{p^r} - X $ has no repeated roots. Trick is if $ P\rb{X} = r_0 + \dots + r_dX^d $ in $ R\sb{X} $ for $ R $ any ring, define $ P'\rb{X} = r_1 + \dots + dr_dX^{d - 1} $. Check that for $ P, Q \in R\sb{X} $, $ \rb{PQ}'\rb{X} = P\rb{X}Q'\rb{X} + P'\rb{X}Q\rb{X} $ by reducing to $ P, Q $ monomials.
+
+\begin{proposition}
+Let $ P\rb{X} \in K\sb{X} $. If $ P\rb{X} $ has a multiple root in $ K $, then $ P\rb{X} $ and $ P'\rb{X} $ have a common factor.
+\end{proposition}
+
+\begin{proof}
+Can write $ P\rb{X} = \rb{X - \alpha}^2Q\rb{X} $ for $ \alpha \in K $. Then $ P'\rb{X} = 2\rb{X - \alpha}Q\rb{X} + \rb{X - \alpha}^2Q'\rb{X} $. So $ X - \alpha $ divides $ P\rb{X}, P'\rb{X} $.
+\end{proof}
+
+If $ K $ has characteristic $ p $, $ P\rb{X} = X^{p^r} - X $ and $ P'\rb{X} = -1 $. $ P, P' $ have no common factors, so $ X^{p^r} - X $ has no repeated roots. Thus the field $ K $ we constructed has $ p^r $ elements.
 
 \end{document}
