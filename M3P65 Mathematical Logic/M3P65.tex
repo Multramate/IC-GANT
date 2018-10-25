@@ -76,7 +76,7 @@ The module is concerned with some of the foundational issues of mathematics, nam
 
 In propositional logic, we look at the way simple propositions can be built into more complicated ones using connectives and make precise how the truth or falsity of the component statements influences the truth or falsity of the compound statement. This is done using truth tables and can be useful for testing the validity of various forms of reasoning. It provides a way of analysing deductions of the form 'If the following statements are true, ..., then so is ...'. A completely symbolic process of deduction and describe the formal deduction system for propositional calculus. The propositional formulas are regarded as strings of symbols and we give rules for deducing a new formula from a given collection of formulas. We want these deduction rules to have the property that anything that could be deduced using truth tables (so by considering truth or falsity of the various statements), can be deduced in this formal way, and vice versa. This is the soundness and completeness of our formal system.
 
-In predicate logic, we analyse mathematics using quantifiers. We introduce the notion of a first-order structure, which is general enough to include many of the algebraic objects you come across in mathematics, such as groups, rings, and vector spaces. We then have to be precise about the formulas which make statements about these structures, and give a precise definition of what it means for a particular formula to be true in a structure. This is quite intricate, and the clever part is in getting the definitions right, but it corresponds to ordinary mathematical usage. Once this is done, we set up a formal deduction system for predicate logic. This parallels what we did for propositional logic, but is much harder. Nevertheless, the end result is the same. The formulas which are produced by our formal deduction system are precisely the formulas which are true in all first-order structures. This is Gödel's Completeness Theorem.
+In predicate logic, we analyse mathematics using quantifiers. We introduce the notion of a first-order structure, which is general enough to include many of the algebraic objects you come across in mathematics, such as groups, rings, and vector spaces. We then have to be precise about the formulas which make statements about these structures, and give a precise definition of what it means for a particular formula to be true in a structure. This is quite intricate, and the clever part is in getting the definitions right, but it corresponds to ordinary mathematical usage. Once this is done, we set up a formal deduction system for predicate logic. This parallels what we did for propositional logic, but is much harder. Nevertheless, the end result is the same. The formulas which are produced by our formal deduction system are precisely the formulas which are true in all first-order structures. This is Gödel's completeness theorem.
 
 Set theory provides the basic foundations and the language in which most of modern mathematics can be expressed, as well as the means for discussing the various notions of sizes of infinity. For example, although the set of natural numbers, the set of integers and the set of real numbers are all infinite, there is a very natural sense in which the first two have the same size, whereas the third is strictly bigger. This is expressed properly in the notion of cardinality. To avoid paradoxes and inconsistencies, we have to be careful about what collections of objects we allow to be called sets. This is done by the Zermelo-Fraenkel axioms, which essentially tell us how we are allowed to create new sets out of old ones. Of course, having laid down these quite rigid rules, we have to show that they are sufficiently flexible to allow us to talk about everyday objects of mathematics. There are also situations in mathematics where an extra axiom is needed, the Axiom of Choice. For example without this axiom, we cannot show that every vector space has a basis. But it also has some slightly counterintuitive consequences, and we shall also look at some of these.
 
@@ -463,7 +463,7 @@ Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $ using a deduction of length $ n 
 
 \marginpar{Lecture 5 \\ Friday \\ 12/10/18}
 
-\subsection{Soundness and Completeness of $ L $}
+\subsection{Soundness and completeness of $ L $}
 
 \begin{theorem}[Soundness theorem of $ L $]
 \label{thm:1.3.1}
@@ -804,6 +804,7 @@ Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ x_l $ is any varia
 \end{definition}
 
 \begin{definition}
+\label{def:2.2.9}
 Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation in $ \mathcal{A} $. Define, for an $ \mathcal{L} $-formula $ \phi $, what is meant by $ v $ \textbf{satisfies} $ \phi $ in $ \mathcal{A} $ by the following.
 \begin{enumerate}
 \item Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \mathcal{L} $. Then $ v $ satisfies the atomic formula $ R\rb{t_1, \dots, t_n} $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \mathcal{A} $.
@@ -815,5 +816,46 @@ Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation
 \end{enumerate}
 \end{enumerate}
 \end{definition}
+
+\marginpar{Lecture 10 \\ Thursday \\ 25/10/18}
+
+\begin{remark}
+Definition \ref{def:2.2.9} does not work if we allow empty structure.
+\end{remark}
+
+If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy $ \phi $, write $ v\sb{\phi} = F $. If every valuation in $ \mathcal{A} $ satisfies $ \phi $, say that $ \phi $ is \textbf{true} in $ \mathcal{A} $ or $ \mathcal{A} $ is a \textbf{model} of $ \phi $ and write $ \mathcal{A} \vDash \phi $. If $ \mathcal{A} \vDash \phi $ for every $ \mathcal{L} $-structure $ \mathcal{A} $, we say that $ \phi $ is \textbf{logically valid} and write $ \vDash \phi $. These are the analogues of tautologies in the propositional logic. Difference is in propositional logic there is an algorithm to decide whether a given formula is a tautology. There is no such algorithm to decide whether a given $ \mathcal{L} $-formula is logically valid or not, a consequence of Gödel's incompleteness theorem.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Suppose $ \mathcal{L} $ has a binary relation symbol $ R $. The $ \mathcal{L} $ formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \mathcal{A} = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \mathcal{A} $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
+\item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we intrepret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ or $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
+\item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \phi $ and $ \mathcal{L} $-formula. Let $ v $ be a valuation in $ \mathcal{A} $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \mathcal{A} $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using Definition \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
+\end{enumerate}
+\end{example}
+
+\begin{example}
+$ \fab{x_1}\teb{x_2}R\rb{x_1, x_2} $ is true in $ \ab{\Z; <} $ and $ \ab{\N; <} $ but not in $ \ab{\N; >} $.
+\end{example}
+
+TODO Exercise: Suppose $ \phi $ is any $ \mathcal{L} $-formula. Then
+\begin{enumerate}
+\item $ \impb{\teb{x_1}\fab{x_2}\phi}{\fab{x_2}\teb{x_1}\phi} $ is logically valid, and
+\item $ \impb{\fab{x_2}\teb{x_1}\phi}{\teb{x_1}\fab{x_2}\phi} $ is not necessarily logically valid.
+\end{enumerate}
+
+Some logically valid formulas. Consider the propositional formula $ \chi $ by $ \impb{p_1}{\impb{p_2}{p_1}} $. Suppose $ \mathcal{L} $ is a first-order language and $ \phi_1, \phi_2 $ are $ \mathcal{L} $-formulas. Substitute $ \phi_1 $ in place of $ p_1 $ and $ \phi_2 $ in place of $ p_2 $ in $ \chi $. We obtain an $ \mathcal{L} $ formula $ \theta $ by $ \impb{\phi_1}{\impb{\phi_2}{\phi_1}} $. Check that as $ \chi $ is a tautology $ \theta $ is logically valid. (TODO Exercise)
+
+\begin{definition}
+Suppose $ \chi $ is an $ \mathcal{L} $-formula involving propositional variables $ p_1, \dots, p_n $. Suppose $ \mathcal{L} $ is a first-order language and $ \phi_1, \dots, \phi_n $ are $ \mathcal{L} $-formulas. A \textbf{substitution instance} of $ \chi $ is obtained by replacing each $ p_i $ in $ \chi $ by $ \phi_i $ for $ i = 1, \dots, n $. Call the result $ \theta $.
+\end{definition}
+
+\begin{theorem}
+\hfill
+\begin{enumerate}
+\item $ \theta $ is an $ \mathcal{L} $-formula, and
+\item If $ \chi $ is a tautology then $ \theta $ is logically valid.
+\end{enumerate}
+\end{theorem}
 
 \end{document}
