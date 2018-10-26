@@ -472,7 +472,7 @@ $$ \rb{C \subseteq \C^2} \hookrightarrow \rb{\overline{C} \subseteq \P^2}. $$
 
 \begin{notation}
 Fix $ n \ge 0 $ and $ \C^{n + 1} $. Let $ \underline{0} = \rb{0, \dots, 0} \in \C^{n + 1} $ be the origin of the $ \rb{n + 1} $-dimensional complex Euclidean space. We will denote
-$$ W = \C^{n + 1} \setminus \cb{0}, $$
+$$ W = \C^{n + 1} \setminus \cb{\underline{0}}, $$
 that is a point $ x \in W $ is given by $ x = \rb{x_0, \dots, x_n} $ where $ x_0, \dots, x_n \in \C $ are not all zero. We define the equivalence relation on $ W $, for any $ x, y \in W $ by
 $$ x \sim y \qquad \iff \qquad \exists \lambda \in \C^* = \C \setminus \cb{0}, \ x = \lambda y. $$
 \end{notation}
@@ -489,7 +489,7 @@ For simplicity, if $ x = \rb{x_0, \dots, x_n} $ we will denote $ \sb{x} = \sb{x_
 
 \begin{definition}
 The \textbf{$ n $-dimensional projective space} $ \P^n_\C $ or $ \P^n\rb{\C} $ or simply $ \P^n $ is defined as the quotient of $ W $ by $ \sim $, that is
-$$ \P^n = \dfrac{W}{\sim} = \cb{\sb{x} \mid x \in W = \C^{n + 1} \setminus \cb{0}}. $$
+$$ \P^n = \dfrac{W}{\sim} = \cb{\sb{x} \mid x \in W = \C^{n + 1} \setminus \cb{\underline{0}}}. $$
 The coordinates of $ \P^n $ are $ \sb{x} \in \P^n $ except $ \sb{0, \dots, 0} $ and $ \sb{\lambda x_0, \dots, \lambda x_n} = \sb{x_0, \dots, x_n} $ for $ \lambda \in \C^* $. In other words, in $ \P^n $, two points $ \sb{x_0, \dots, x_n} $ and $ \sb{y_0, \dots, y_n} $ are the same point if and only if there exists a non-zero constant $ \lambda $ such that
 $$ x_0 = \lambda y_0, \qquad \dots, \qquad x_n = \lambda y_n. $$
 \end{definition}
@@ -633,7 +633,7 @@ $$ f\rb{x_0, \dots, x_n} = \sum_{\abs{\alpha} = \sum_{i = 0}^n \alpha_i = d} a_\
 \begin{example}
 \hfill
 \begin{enumerate}
-\item The polynomial $ f\rb{x, y, z} = x^2 + y^2 - z^2 $ is homogeneous of degree two, and the polynomial $ g\rb{x_0, x_1, x_2} = x_0^2 + x_1 $ is not homogeneous.
+\item The polynomial $ f\rb{x, y, z} = x^2 + y^2 - z^2 $ is homogeneous of degree two. The polynomial $ g\rb{x_0, x_1, x_2} = x_0^2 + x_1 $ is not homogeneous.
 \item $ f\rb{x, y} = Ax^3 + Bx^2y + Cxy^2 + Dy^3 $ is homogeneous of degree three, and all the homogeneous polynomials of degree three in $ x, y $ can be written in this form.
 \item $ g\rb{x, y, z} = x^4 - 2x^2yz + yz^3 $ is homogeneous of degree four.
 \end{enumerate}
@@ -711,7 +711,7 @@ Hilbert's Nullstellensatz, and Theorem \ref{thm:2.9}, still holds. In particular
 \end{remark}
 
 \begin{definition}
-Let $ C \subseteq P^2 $ be a projective plane curve and $ P $ any homogeneous polynomial with no repeated factor such that $ C = \cb{P = 0} \subseteq \P^2 $. The \textbf{degree} of $ C $ is the degree of $ P $.
+Let $ C \subseteq P^2 $ be a projective plane curve and $ P $ any homogeneous polynomial with no repeated factor such that $ C = \cb{P = 0} \subseteq \P^2 $. The degree of $ C $ is the degree of $ P $.
 \end{definition}
 
 \begin{exercise}
@@ -756,6 +756,7 @@ Idea is to let $ x = x_0 / x_2 $ and $ y = x_1 / x_2 $. $ f\rb{x, y} = x^3 + y +
 \end{example}
 
 \begin{theorem}
+\label{thm:5.2}
 There is a bijective correspondence between
 \begin{enumerate}
 \item projective plane curves $ \overline{C} = \cb{P = 0} \subseteq \P^2 $ that do not contain the line at infinity $ \mathcal{P}_2 = \cb{x_2 = 0} $, and
@@ -779,7 +780,8 @@ Conversely, if $ C = \cb{f = 0} $, then $ C $ is the image by $ \phi $ of the in
 Look at an example where $ \overline{C} $ does contain $ \cb{x_2 = 0} $.
 
 \begin{example}
-Let $ P = x_0x_2^2 + x_1^2x_2 = x_2\rb{x_0x_2 + x_1^2} $. Then $ f\rb{x, y} = P\rb{x, y, 1} = x + y^2 $, so $ P\rb{x_0, x_1, x_2} = \rb{x_0 / x_2 + \rb{x_1 / x_2}^2}x_2^2 = x_0x_2 + x_1^2 $.
+Let $ P = x_0x_2^2 + x_1^2x_2 = x_2\rb{x_0x_2 + x_1^2} $. Then $ f\rb{x, y} = P\rb{x, y, 1} = x + y^2 $, so
+$$ P\rb{x_0, x_1, x_2} = \rb{x_0 / x_2 + \rb{x_1 / x_2}^2}x_2^2 = x_0x_2 + x_1^2. $$
 \end{example}
 
 \begin{remark}
@@ -833,7 +835,7 @@ Projective conics over $ \R $ are defined by degree two equations. In $ \R^2 $, 
 \begin{enumerate}
 \item Let $ f\rb{x, y} = x^2 - y^2 + 1 $. Projectivising, $ P\rb{x_0, x_1, x_2} = x_0^2 - x_1^2 + x_2^2 $. Restrict to $ U_1 = \cb{x_1 \ne 0} \subseteq \R^2 $. $ \overline{C} \cap U_1 $, the equation of the unit circle $ g\rb{x, y} = x^2 - 1 + y^2 = x^2 + y^2 - 1 $ is obtained by setting $ x_1 = 1 $.
 \item Consider the parabola $ C $ with equation $ y = x^2 $ in $ \R^2 $. Projectivising, this becomes the curve $ \overline{C} = \cb{x_1x_2 = x_0^2} \subseteq \P^2\rb{\R} $. The intersection with the line at infinity $ x_2 = 0 $ gives $ x_0^2 = 0 $, so the only point is $ \sb{0, 1, 0} $. The square suggests some kind of tangency, and indeed $ \overline{C} $ is tangent to $ x_2 = 0 $. In the chart $ x_0 \ne 0 $, the equation becomes $ xy = 1 $, and we see a hyperbola. In the chart $ x_1 \ne 0 $ we have again a parabola, $ y = x^2 $.
-\item Consider the unit circle $ C = \cb{x^2 + y^2 - 1 = 0} \subseteq \R^2 $. Projectivising we obtain $ \overline{C} = \cb{x_0^2 + x_1^2 - x_2^2 = 0} \subseteq \P^2\rb{\R} $. The intersection with the line at infinity $ x_2 = 0 $ is empty as we could expect. In the chart $ x_0 \ne 0 $ we obtain the curve $ 1 + x^2 - y^2 = 0 $, which is a hyperbola, and similarly in $ x_1 \ne 0 $.
+\item Consider the unit circle $ C = \cb{x^2 + y^2 - 1 = 0} \subseteq \R^2 $. Projectivising we obtain $ \overline{C} = \cb{x_0^2 + x_1^2 = x_2^2} \subseteq \P^2\rb{\R} $. The intersection with the line at infinity $ x_2 = 0 $ is empty as we could expect. In the chart $ x_0 \ne 0 $ we obtain the curve $ 1 + x^2 - y^2 = 0 $, which is a hyperbola, and similarly in $ x_1 \ne 0 $.
 \end{enumerate}
 \end{example}
 
@@ -923,5 +925,166 @@ Each asymptote meets $ \overline{C} $ at the point $ \sb{-\beta_i, \alpha_i} \in
 \begin{remark}
 It is clear from Lemma \ref{lem:6.2} that asymptotes are well-defined. Note that the asymptotes are lines in $ \C^2 $ because $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $.
 \end{remark}
+
+\begin{example}
+Consider the affine curve
+$$ C = \cb{\rb{x, y} \in \C^2 \mid x^2 + y^2 - 1 = 0}. $$
+The projectivisation of $ C $ is
+$$ \overline{C} = \cb{\sb{x_0, x_1, x_2} \in \P^2 \mid x_0^2 + x_1^2 - x_2^2}. $$
+so that the points at infinity of $ C $ are given by
+$$ \overline{C} \setminus C = \cb{\sb{x_0, x_1, 0} \in \P^2 \mid x_0^2 + x_1^2 = 0}. $$
+This shows that $ C $ has two asymptotes, namely $ L_\pm = \cb{x \pm iy = 0} $, and two points at infinity $ \cb{\sb{\pm i, 1, 0}} $.
+\end{example}
+
+\begin{exercise}
+Find the asymptotes of the affine curve given by the equation $ x^2y + y^3 + xy + x + 1 = 0 $.
+\end{exercise}
+
+\begin{exercise}
+Write an example of an affine curve whose asymptotes include the lines $ x + 2y = 0 $, $ 4x - 3y = 0 $, and $ 7x + 9y = 0 $.
+\end{exercise}
+
+\marginpar{Lecture 8 \\ Thursday \\ 25/10/18}
+
+\section{Smoothness and singularities}
+
+Let $ C \subseteq \C^2, \P^2 $ be an affine or projective algebraic curve. Topologically, $ C $ is a two-dimensional object.
+
+\begin{example}
+A line $ C \subseteq \C^2 $ is a real plane $ \C \cong \R^2 $. $ \P^1 \cong S^2 $ is a two-dimensional sphere.
+\end{example}
+
+Smooth or nonsingular points of $ C $ are points where you do not have angles, pinches, etc.
+
+\begin{example}
+The union of two projective lines $ \P^1 $ in $ \P^2 $ has a non-smooth point. A pinched torus has a non-smooth point.
+\end{example}
+
+Idea is that can make sense of the tangent line at smooth points.
+
+\begin{notation}
+Given a function $ f\rb{x_1, \dots, x_n} $, we will denote by $ f_{x_i} $ or $ \partial_{x_i}f $ the partial derivative of $ f $ with respect to $ x_i $.
+\end{notation}
+
+Let $ C = \cb{f = 0} \subseteq \C^2 $ be an affine algebraic curve for $ f \in \C\sb{x, y} $ and let $ \rb{a, b} \in C $. Then the \textbf{tangent line} of $ C $ at the point $ \rb{a, b} \in C $ is the line defined by the equation
+$$ f_x\rb{a, b}\rb{x - a} + f_y\rb{a, b}\rb{y - b} = 0. $$
+Note that this equation defines a complex line if and only if either $ f_x\rb{a, b} $ or $ f_y\rb{a, b} $ or both is not zero.
+
+\begin{definition}
+The affine curve $ C $ is \textbf{smooth} at a point $ \rb{a, b} \in C $ if at least one of $ f_x\rb{a, b} $ and $ f_y\rb{a, b} $ is not zero, so that the above equation defines a line in $ \C^2 $. On the other hand if $ f_x\rb{a, b} = f_y\rb{a, b} = 0 $, then $ \rb{a, b} $ is called a \textbf{singular} point of $ C $. We will simply say that $ C $ is smooth if $ C $ is smooth at every point.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Any line in $ \C^2 $ is smooth.
+\item $ x^2 + y^2 + 1 = 0 $ is smooth.
+\item $ y^2 - x^2\rb{x + 1} = 0 $ is singular at one point, a node.
+\item $ y^2 - x^3 = 0 $ is singular at one point, a cusp.
+\end{enumerate}
+\end{example}
+
+What about projective curves?
+
+\begin{theorem}[Euler relation]
+\label{thm:7.3}
+Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial of degree $ d $. Then the following relation holds at each point $ \sb{x_0, x_1, x_2} \in \P^2 $.
+$$ x_0 \cdot P_{x_0} + x_1 \cdot P_{x_1} + x_2 \cdot P_{x_2} = d \cdot P. $$
+\end{theorem}
+
+\begin{example}
+Let $ P\rb{x_0, x_1, x_2} = x_0^2 + x_1^2 + x_2^2 $.
+$$ P_{x_0} = 2x_0, \qquad P_{x_1} = 2x_1, \qquad P_{x_2} = 2x_2 \qquad \implies \qquad x_0 \cdot P_{x_0} + x_1 \cdot P_{x_1} + x_2 \cdot P_{x_2} = 2\rb{x_0^2 + x_1^2 + x_2^2} = d \cdot P. $$
+\end{example}
+
+\begin{proof}
+By Lemma \ref{lem:4.4}, for any $ \lambda \in \C $ we have
+$$ P\rb{\lambda x_0, \lambda x_1, \lambda x_2} = \lambda^d \cdot P\rb{x_0, x_1, x_2}. $$
+We now compute the derivative with respect to $ \lambda $ of both sides of this equation,
+$$ \partial_\lambda\rb{\lambda^d \cdot P\rb{x_0, x_1, x_2}} = d\lambda^{d - 1}P\rb{x_0, x_1, x_2}, \qquad \partial_\lambda\rb{P\rb{\lambda x_0, \lambda x_1, \lambda x_2}} = \sum_{i = 0}^2 x_i\partial_{x_i}P\rb{\lambda x_0, \lambda x_1, \lambda x_2}. $$
+By the equality above we have
+$$ \sum_{i = 0}^2 x_i\partial_{x_i}P\rb{\lambda x_0, \lambda x_1, \lambda x_2} = d\lambda^{d - 1}P\rb{x_0, x_1, x_2}, $$
+for all $ \lambda \in \C $. Thus, if we plug in $ \lambda = 1 $, we get the claim.
+\end{proof}
+
+\begin{definition}
+If a point $ p = \sb{z_0, z_1, z_2} $ of a projective curve $ C = \cb{P = 0} \subseteq \P^2 $ for $ P \in \C\sb{x_0, x_1, x_2} $ homogeneous satisfies
+$$ P_{x_i}\rb{z_0, z_1, z_2} = 0, \qquad i = 0, 1, 2, $$
+then we will say that $ C $ is singular at $ p $. $ C $ is smooth at $ p $ if it is not singular. $ C $ is said to be smooth if it does not admit any singular point, so it is smooth at every point.
+\end{definition}
+
+\begin{lemma}
+Let $ C = \cb{P = 0} $ be a projective curve for $ \C^2 \cong U_2 \subseteq \P^2 $ which does not contain the line $ \cb{x_2 = 0} $ and let $ C_0 = \cb{f = 0} \subseteq \C^2 $ be the associated affine curve, where $ f\rb{x, y} = P\rb{x, y, 1} $. Then $ \rb{a, b} $ is a singular point of $ C_0 $ if and only if $ \sb{a, b, 1} $ is a singular point of $ C $.
+\end{lemma}
+
+\begin{proof}
+If $ \rb{a, b} \in C_0 $ is a singular point of $ C_0 $, it is a singular point for $ C $. Note that $ P\rb{x, y, 1} = f\rb{x, y} $ by construction, so $ P_{x_0}\rb{x, y, 1} = f_x\rb{x, y} $, $ P_{x_1}\rb{x, y, 1} = f_y\rb{x, y} $. Then, since $ f\rb{a, b} = 0 $ we have
+$$ P\rb{a, b, 1} = 0. $$
+Since $ f_x\rb{a, b} = f_y\rb{a, b} = 0 $, we have
+$$ P_{x_0}\rb{a, b, 1} = P_{x_1}\rb{a, b, 1} = 0. $$
+Finally by Theorem \ref{thm:7.3}, we have
+$$ P_{x_2}\rb{a, b, 1} = x_0 \cdot P_{x_0}\rb{a, b, 1} + x_1 \cdot P_{x_1}\rb{a, b, 1} + x_2 \cdot P_{x_2}\rb{a, b, 1} = dP\rb{a, b, 1} = 0, $$
+since everything is zero except $ P_{x_2}\rb{a, b, 1} $. Thus, we have
+$$ P_{x_i}\rb{a, b, 1} = 0, \qquad i = 0, 1, 2. $$
+The converse implication is similar.
+\end{proof}
+
+\begin{exercise}
+Show that
+\begin{enumerate}
+\item $ C = \cb{x_0^2 + x_1^2 + x_2^2 = 0} $ is smooth,
+\item $ C = \cb{x_1^2x_0^2 - x_2^3 = 0} $ is singular at the point $ \sb{1, 0, 0} $, and
+\item any projective line is smooth.
+\end{enumerate}
+\end{exercise}
+
+\begin{definition}
+Let $ p = \sb{z_0, z_1, z_2} $ be a smooth point of the projective curve $ C = \cb{P = 0} $. The \textbf{projective tangent line} of the curve $ C = \cb{P = 0} $ at the point $ p $ is given by the equation
+$$ \sum_{i = 0}^2 P_{x_i}\rb{z_1, z_2, z_3} \cdot x_i = 0. $$
+\end{definition}
+
+Note that the line is well-defined since the curve $ C $ is smooth at the point $ p $.
+
+\begin{proposition}
+Let $ C \subseteq \P^2 $ be a projective algebraic curve not containing the line $ \cb{x_2 = 0} $. Then the affine line in $ U_2 $ associated to the projective tangent line at $ \sb{a, b, 1} \in C $ is the tangent line at $ \rb{a, b} $ of the affine curve $ C_0 $ associated to $ C $ in $ U_2 $, for $ \rb{a, b} $ a smooth point in $ C_0 $.
+\end{proposition}
+
+Equivalently, the projectivisation of the tangent line to $ C_0 \subseteq \C^2 $ at $ \rb{a, b} \in C_0 $ is the projective tangent line to the projectivisation $ C $ of $ C_0 $ at $ \sb{a, b, 1} $.
+
+\begin{proof}
+Assume $ C = \cb{P = 0} \subseteq \P^2 $ does not contain the line $ \cb{x_2 = 0} $. Let $ f\rb{x, y} = P\rb{x, y, 1} $ and let $ C_0 = \cb{f = 0} $. The affine line associated to the projective tangent line of $ C $ at the point $ \rb{a, b} \in C_0 $ is given by the equation
+$$ P_{x_0}\rb{a, b, 1} \cdot x_0 + P_{x_1}\rb{a, b, 1} \cdot x_1 + P_{x_2}\rb{a, b, 1} \cdot x_2 = 0. $$
+Since $ P\rb{a, b, 1} = 0 $, by Theorem \ref{thm:7.3} we have
+$$ P_{x_2}\rb{a, b, 1} = -a \cdot P_{x_0}\rb{a, b, 1} - b \cdot P_{x_1}\rb{a, b, 1}. $$
+Moreover, as above we have $ f_x\rb{a, b} = P_{x_0}\rb{a, b, 1} $ and $ f_y\rb{a, b} = P_{x_1}\rb{a, b, 1} $. Combining everything together we get
+$$ f_x\rb{a, b}\rb{x - a} + f_y\rb{a, b}\rb{y - b} = 0, $$
+which is the equation of the tangent line of $ C_0 $ at $ \rb{a, b} $.
+\end{proof}
+
+\begin{theorem}
+Let $ C $ be a smooth projective curve. Then $ C $ is irreducible.
+\end{theorem}
+
+Assume that any two projective curves in $ \P^2 $ intersect in at least one point, so there exists $ p \in C_1 \cap C_2 $. Later on we will prove this.
+
+\begin{proof}
+Suppose not. Then $ \cb{P = 0} = C = C_1 \cup C_2 $ where $ C_i = \cb{P_i = 0} $ is a projective curve for $ i = 1, 2 $. In particular, $ C = \cb{P = Q \cdot R = 0} $, where $ Q $ and $ R $ defines $ C_1 $ and $ C_2 $ respectively. We want to show that $ A = \cb{a, b, c} \in C_1 \cap C_2 \ne 0 $ is a singular point for $ C $, which contradicts the assumption on $ C $. We have
+$$ P_{x_i}\rb{A} = \rb{Q \cdot R}_{x_i}\rb{A} = Q\rb{A} \cdot R_{x_i}\rb{A} + R\rb{A} \cdot Q_{x_i}\rb{A} = 0, \qquad i = 1, 2. $$
+The last equality follows from the fact that $ Q\rb{A} = R\rb{A} = 0 $. Thus $ C $ is singular at $ A $ as claimed, a contradiction.
+\end{proof}
+
+\begin{theorem}
+Let $ C $ be an irreducible projective curve of degree $ d $. Then the number of singular points of $ C $ is at most
+$$ d\rb{d - 1}. $$
+In particular it is finite.
+\end{theorem}
+
+We will prove this later on, after seeing some results on intersections of curves.
+
+\begin{exercise}
+For which values of $ \lambda \in \C $ does the algebraic curve
+$$ y^2 - x\rb{x - 1}\rb{x - \lambda} = 0 $$
+admit at least one singular point? For each of those values of $ \lambda $, what are the singular points?
+\end{exercise}
 
 \end{document}
