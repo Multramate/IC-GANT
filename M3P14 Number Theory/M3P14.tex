@@ -698,10 +698,74 @@ If $ n < 341550071728321 $, then one of $ a = 2, 3, 5, 7, 11, 13, 17 $ will work
 
 \section{Public key cryptography}
 
-How do we turn messages into numbers in $ \Z / n\Z $? Idea is to choose $ n $ very large. Say $ n > 2^{8k} $. Write down your message. Break it up into strings of at most $ k $ characters. Encode each character as an $ 8 $ bit binary number. String these integers together to get an $ 8k $ bit binary number. Regard that as an integer modulo $ n $. Now apply some function $ f : \Z / n\Z \to \Z / n\Z $, and then tell whoever you are trying to communicate with the result of this computation. Then they should apply some other function $ g : \Z / m\Z \to \Z / n\Z $, to get back the number you started with. So want $ f $ to be injective. Want to be able to make $ f $ public without making $ g $ public. If you have functions $ f, g : \Z / n\Z \to \Z / n\Z $ with $ f \circ g = g \circ f = id $, then you can also verify your identity, that is sign messages. Again, make $ f $ public, and any time you publish a message $ m $, you also publish $ g\rb{m} $. Then anyone can apply $ f $ to $ g\rb{m} $ to recover $ m = f\rb{g\rb{m}} $, but without $ g $, no one can forge your signature. Idea of \textbf{Rivest-Shamir-Adleman (RSA)} is to choose two large prime numbers $ p, q $ and set $ n = pq $. Choose $ \rb{e, \Phi\rb{n}} = 1 $. Find $ d $ such that $ de = 1 \mod \Phi\rb{n} = \rb{p - 1}\rb{q - 1} = n - \rb{p + q} + 1 $. Publish $ n $ and $ e $, you keep $ p, q, \Phi\rb{n}, d $ secret. $ f\rb{x} = x^e \mod n $ and $ g\rb{x} = x^d \mod n $. $ x^{de} \equiv x^1 \equiv x \mod n $ because $ de \equiv 1 \mod \Phi\rb{n} $ and $ x^{\Phi\rb{n}} \equiv 1 \mod n $.
+How do we turn messages into numbers in $ \Z / n\Z $? Idea is to choose $ n $ very large. Say $ n > 2^{8k} $. Write down your message. Break it up into strings of at most $ k $ characters. Encode each character as an $ 8 $ bit binary number. String these integers together to get an $ 8k $ bit binary number. Regard that as an integer modulo $ n $. Now apply some function $ f : \Z / n\Z \to \Z / n\Z $, and then tell whoever you are trying to communicate with the result of this computation. Then they should apply some other function $ g : \Z / m\Z \to \Z / n\Z $, to get back the number you started with. So want $ f $ to be injective. Want to be able to make $ f $ public without making $ g $ public. If you have functions $ f, g : \Z / n\Z \to \Z / n\Z $ with $ f \circ g = g \circ f = id $, then you can also verify your identity, that is sign messages. Again, make $ f $ public, and any time you publish a message $ m $, you also publish $ g\rb{m} $. Then anyone can apply $ f $ to $ g\rb{m} $ to recover $ m = f\rb{g\rb{m}} $, but without $ g $, no one can forge your signature.
+
+\subsection{Rivest-Shamir-Adleman (RSA) algorithm}
+
+Idea is to choose two large prime numbers $ p, q $ and set $ n = pq $. Choose $ \rb{e, \Phi\rb{n}} = 1 $. Find $ d $ such that $ de = 1 \mod \Phi\rb{n} = \rb{p - 1}\rb{q - 1} = n - \rb{p + q} + 1 $. Publish $ n $ and $ e $, you keep $ p, q, \Phi\rb{n}, d $ secret. $ f\rb{x} = x^e \mod n $ and $ g\rb{x} = x^d \mod n $. $ x^{de} \equiv x^1 \equiv x \mod n $ because $ de \equiv 1 \mod \Phi\rb{n} $ and $ x^{\Phi\rb{n}} \equiv 1 \mod n $.
 
 \marginpar{Lecture 9 \\ Wednesday \\ 24/10/18}
 
 Lecture 9 is a problem class.
+
+\marginpar{Lecture 10 \\ Friday \\ 26/10/18}
+
+So if someone wants to send you a message $ c \in \Z / n\Z $, they compute $ c^e \in \Z / n\Z $, and send it to you. To decode it, you compute $ \rb{c^e}^d = c^{de} \equiv c \mod n $. This assumes that $ \rb{c, n} = 1 $, but the probability of this is extremely high. The prevailing assumption is that with only the information $ n $ and $ e $, it is hopeless to discover $ d $, or to find any other way of recovering $ c $ from $ c^e $.
+
+\subsection{Discrete logarithms}
+
+Suppose that $ n $ is prime, or more generally that $ \rb{\Z / n\Z}^* $ is cyclic. Let $ g $ be a generator for this group, that is a primitive root. For any $ a \in \rb{\Z / n\Z}^* $, we can write $ a = g^m $ for some unique $ 0 \le m < \Phi\rb{n} $. We call $ m $ the \textbf{discrete logarithm} of $ a $ to base $ g $, write $ m = \log_g\rb{a} $.
+
+\begin{example}
+If you want to solve $ x^r \equiv a \mod n $, write $ x = g^y $, and the congruence becomes equivalent to $ yr \equiv \log_g\rb{a} \mod \Phi\rb{n} $.
+\end{example}
+
+Unfortunately, or fortunately for cryptography, computing $ \log_g $ is believed to be a hard problem. In particular, there is no known polynomial time algorithm.
+
+\begin{example}
+Imagine that you have a system where you need to store passwords for different users, but you do not want to store the actual passwords. One way to do this is to choose a large prime $ p $ and a primitive root $ g $, and if someone inputs $ x $ as their password, you store $ g^x $ modulo $ p $. If they later input $ y $, you compute $ g^y $, and check it matches what you stored. If it does then $ y \equiv x \mod p - 1 $.
+\end{example}
+
+\section{Quadratic residues and quadratic reciprocity}
+
+Let $ p $ be a prime number.
+
+\begin{definition}
+If $ \rb{a, p} = 1 $, then $ a $ is a \textbf{quadratic residue} (QR) if and only if there is a solution to $ x^2 \equiv a \mod p $. If $ \rb{a, p} = 1 $ and is not a quadratic residue, it is called a \textbf{quadratic nonresidue} (QNR).
+\end{definition}
+
+\begin{example}
+If $ p = 2 $, $ 1 $ is a QR. If $ p = 3 $, $ 1 $ is a QR, $ -1 $ is a QNR, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 3 $. If $ p = 5 $, $ 1, 4 $ are QRs, $ 2, 3 $ are QNRs, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 5 $ and $ 2^2 \equiv 3^2 \equiv 4 \mod 5 $.
+\end{example}
+
+\begin{lemma}
+\label{lem:34}
+If $ p > 2 $ then there are exactly $ \rb{p - 1} / 2 $ QRs, and $ \rb{p - 1} / 2 $ QNRs modulo $ p $.
+\end{lemma}
+
+\begin{proof}
+The map $ \rb{\Z / p\Z}^* \to \rb{\Z / p\Z}^* $ by $ x \mapsto x^2 $ is a group homomorphism with kernel is $ \cb{\pm 1} $. So the image has order $ \rb{p - 1} / 2 $, and the image is exactly the QRs.
+\end{proof}
+
+\begin{proposition}
+\label{prop:35}
+Suppose that $ \rb{a, p} = \rb{b, p} = 1 $. Then
+\begin{enumerate}
+\item if $ a, b $ are both QRs, then $ ab $ is a QR,
+\item if one of $ a, b $ is a QR and one is a QNR, then $ ab $ is a QNR, and
+\item if $ a, b $ are both QNRs, then $ ab $ is a QR.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Let $ H $ be the image of $ \rb{\Z / p\Z}^* \to \rb{\Z / p\Z}^* $ by $ x \mapsto x^2 $, that is $ H $ is the QRs. Then $ \rb{\Z / p\Z}^* / H $ is a group of order two by Lemma \ref{lem:34}, so it is cyclic of order two. This statement is a restatement of the proposition, since $ \rb{\Z / p\Z}^* = H \sqcup 1 + H $.
+\end{proof}
+
+\begin{definition}
+Let $ a $ be an integer and $ p $ a prime. Then
+$$ \rb{\dfrac{a}{p}} = \begin{cases} 1 & a \text{ is a QR modulo } p \\ 0 & p \mid a \\ -1 & a \text{ is a QNR modulo } p \end{cases}. $$
+\end{definition}
+
+Proposition \ref{prop:35} can be restated as saying that $ \rb{\Z / p\Z}^* \to \cb{\pm 1} $ by $ a \mapsto \rb{a / p} $ is a group homomorphism, that is $ \rb{ab / p} = \rb{a / p}\rb{b / p} $. Even holds if we do not assume that $ \rb{a, p} = \rb{b, p} = 1 $.
 
 \end{document}
