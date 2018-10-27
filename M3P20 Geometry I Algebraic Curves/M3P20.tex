@@ -64,7 +64,7 @@
 
 \section{Introduction}
 
-This course is intended as a first course in algebraic geometry, the area of mathematics that studies spaces defined by polynomial equations using algebra. It will focus on one dimensional algebraic varieties. The reference books for the course are the following.
+This course is intended as a first course in algebraic geometry, the area of mathematics that studies spaces defined by polynomial equations using algebra. It will focus on one-dimensional algebraic varieties. The reference books for the course are the following.
 \begin{enumerate}
 \item F Kirwan, Complex algebraic curves, 1992
 \item W Fulton, Algebraic curves: an introduction to algebraic geometry, 1969
@@ -107,8 +107,8 @@ Such shapes are called \textbf{algebraic varieties}. Their geometric properties 
 \begin{exercise}
 \hfill
 \begin{enumerate}
-\item Is $ \Z \subseteq \R $ an algebraic variety?
-\item Is the unit square an algebraic variety?
+\item Is $ \Z \subseteq \R $ an algebraic variety? No.
+\item Is the unit square an algebraic variety? No.
 \end{enumerate}
 \end{exercise}
 
@@ -337,8 +337,8 @@ where $ g, h \in K\sb{x, y} $ and $ g $ is non-constant.
 
 \begin{exercise}
 Show that this is equivalent to
-$$ f = P_1 \cdots P_k, $$
-where $ P_1, \cdot, P_k $ are distinct irreducible polynomials.
+$$ f = P_1 \dots P_k, $$
+where $ P_1, \dots, P_k $ are distinct irreducible polynomials.
 \end{exercise}
 
 \begin{corollary}
@@ -352,7 +352,7 @@ Follows immediately from Theorem \ref{thm:2.9}.
 \end{proof}
 
 \begin{remark}
-If $ f = P_1^{a_1} \cdot P_k^{a_k} $ with $ P_i $ irreducible for all $ i $ and $ a_i \in \N $, then $ \cb{f = 0} = \cb{g = 0} $ where $ g = P_1 \cdot P_k $. We do not lose anything by only looking at $ f $ with no repeated factors.
+If $ f = P_1^{a_1} \dots P_k^{a_k} $ with $ P_i $ irreducible for all $ i $ and $ a_i \in \N $, then $ \cb{f = 0} = \cb{g = 0} $ where $ g = P_1 \dots P_k $. We do not lose anything by only looking at $ f $ with no repeated factors.
 \end{remark}
 
 Let $ C \subseteq \C^2 $ be a complex plane curve. We have proved that, up to multiplication by $ \lambda \in \C^* $, there is a unique non-constant polynomial $ f \in \C $ with no repeated factors such that
@@ -581,6 +581,7 @@ $$ \mathcal{P}_i = \cb{\sb{x_0, \dots, x_n} \in \P^n \mid x_i = 0} \subseteq \P^
 \end{notation}
 
 \begin{lemma}
+\label{lem:3.13}
 For any $ i = 0, \dots, n $, we have
 $$ \P^n = U_i \sqcup \mathcal{P}_i. $$
 Moreover if we define $ f_i : \P^{n - 1} \to \mathcal{P}_i $ by
@@ -854,6 +855,7 @@ Define the projectivisation $ \overline{C} $ of $ C $ and determine its points o
 \end{exercise}
 
 \begin{exercise}
+\label{ex:19}
 Let $ P_1, P_2, P_3 $ be three points of $ \P^2 $, and denote
 $$ P_i = \sb{b_{i, 1}, b_{i, 2}, b_{i, 3}}, \qquad i = 1, 2, 3 $$
 for their coordinates. Let $ B = \rb{b_{i, j}} $ be the associated $ 3 \times 3 $ matrix. Show that $ P_1, P_2, P_3 $ lie in the same projective line if and only if $ \det\rb{B} = 0 $.
@@ -1073,6 +1075,16 @@ $$ P_{x_i}\rb{A} = \rb{Q \cdot R}_{x_i}\rb{A} = Q\rb{A} \cdot R_{x_i}\rb{A} + R\
 The last equality follows from the fact that $ Q\rb{A} = R\rb{A} = 0 $. Thus $ C $ is singular at $ A $ as claimed, a contradiction.
 \end{proof}
 
+\marginpar{Lecture 9 \\ Friday \\ 26/10/18}
+
+\begin{example}
+Example of a reducible curve, where the two pieces have the same tangent line where they intersect. $ C_1 = \cb{y - x^2} $ and $ C_2 = \cb{y + x^2} $ has $ \rb{0, 0} $ as the only point of intersection. Tangent line at $ \rb{0, 0} $ to both $ C_1 $ and $ C_2 $ is $ y = 0 $. The definition gives that $ C = C_1 \cup C_2 = \cb{\rb{y - x^2}\rb{y + x^2} = 0} = \cb{y^2 - x^4 = 0} $ is not smooth at $ \rb{0, 0} $. Note that the tangent line at $ \rb{0, 0} \in C $ for some affine curve $ C $ is given by the linear part of $ f = 0 $ where $ \cb{f = 0} = C $. Equation $ f_x\rb{0, 0}\rb{x - 0} + f_y\rb{0, 0}\rb{y - 0} = 0 $ is a linear approximation of $ C $ around $ \rb{0, 0} $. Now $ y^2 - x^4 = 0 $ does not have a linear part. The best possible approximation is a double line $ y^2 = 0 $, the term of lowest degree of $ f $. Thus $ \rb{0, 0} \in \cb{y^2 - x^4 = 0} $ should not be a smooth point.
+\end{example}
+
+\begin{remark}
+When talking about smoothness, take $ f $ for $ C = \cb{f = 0} $ without repeated factors. Otherwise if $ f = g^2 \cdot h $ for $ g $ non-constant, then $ \cb{f = 0} $ would be singular along $ \cb{g = 0} $. We do not want this.
+\end{remark}
+
 \begin{theorem}
 Let $ C $ be an irreducible projective curve of degree $ d $. Then the number of singular points of $ C $ is at most
 $$ d\rb{d - 1}. $$
@@ -1086,5 +1098,115 @@ For which values of $ \lambda \in \C $ does the algebraic curve
 $$ y^2 - x\rb{x - 1}\rb{x - \lambda} = 0 $$
 admit at least one singular point? For each of those values of $ \lambda $, what are the singular points?
 \end{exercise}
+
+\section{Projective transformations}
+
+How do we move around points or change coordinates in $ \P^n $? In linear algebra, that is in $ \C^n $, we do that with linear maps $ L : \C^n \to \C^n $, that is functions such that $ L\rb{\lambda v + \mu w} = \lambda L\rb{v} + \mu L\rb{w} $ for all $ v, w \in \C^n $ and $ \lambda, \mu \in \C $. These correspond to $ n \times n $ matrices $ A = \rb{a_{ij}} $ with coefficients in $ \C $. Given such a matrix, we can define a linear function $ L : \C^n \to \C^n $, by
+$$ L\rb{x_1, \dots, x_n} = A \cdot \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = \begin{pmatrix} \sum_{j = 1}^n a_{ij}x_j \\ \vdots \\ \sum_{j = 1}^n a_{nj}x_j \end{pmatrix}, $$
+and a linear function $ L $ gives a matrix by setting $ a_{ij} $ as the $ i $-th coefficient of the vector $ L\rb{e_j} \in \C^n $. How about in $ \P^n = \C^{n + 1} \setminus \cb{\underline{0}} / \sim $? Use matrices or linear transformations in $ \C^{n + 1} $.
+
+\begin{lemma}
+\label{lem:8.1}
+Assume that $ A $ is an $ \rb{n + 1} \times \rb{n + 1} $ matrix with coefficients in $ \C $ such that
+$$ \det\rb{A} \ne 0, $$
+if and only if it is invertible. Then the function $ \Phi : \P^n \to \P^n $, defined by
+$$ \Phi\sb{x_1, \dots, x_n} = \sb{A \cdot \begin{pmatrix} x_0 \\ \vdots \\ x_n \end{pmatrix}}, $$
+is well-defined and a bijection.
+\end{lemma}
+
+\begin{proof}
+Since $ \det\rb{A} \ne 0 $, we know from linear algebra that if
+$$ A \cdot \begin{pmatrix} x_0 \\ \vdots \\ x_n \end{pmatrix} = 0, $$
+then $ x = \rb{x_0, \dots, x_n} = \underline{0} $. If $ A $ is not invertible there is no associated $ \Phi $. Thus if $ x \in W = \C^{n + 1} \setminus \cb{\underline{0}} $, then $ A \cdot x \in W $. Moreover, if $ x, y \in W $ are such that $ \sb{x} = \sb{y} $, then there exists a non-zero $ \lambda \in \C $ such that $ x = \lambda y $ and
+$$ A \cdot x = \lambda A \cdot y, $$
+which implies that $ \sb{A \cdot x} = \sb{A \cdot y} $. It follows that $ \Phi $ is well-defined. It is a bijection, with inverse given by the same kind of transformation obtained from the inverse matrix $ A^{-1} $.
+\end{proof}
+
+\begin{definition}
+Any such function like $ \Phi $ in Lemma \ref{lem:8.1} is called a \textbf{projective transformation}.
+\end{definition}
+
+\begin{remark}
+Note that an arbitrary $ \rb{n + 1} \times \rb{n + 1} $ matrix $ A $ does not define a well-defined function as above, because there might be non-zero vectors $ v \in \C^{n + 1} $ such that $ A \cdot v = \underline{0} $, and thus $ \sb{A \cdot v} $ would not define a point of projective space.
+\end{remark}
+
+\begin{example}
+You probably have encountered Möbius transformations in complex analysis. They are rational functions $ f : \P^1 \to \P^1 $ of one complex variable $ z $
+$$ f : z \mapsto \dfrac{az + b}{cz + d}, \qquad a, b, c, d \in \C, \qquad ad - bc \ne 0. $$
+In terms of geometry, these are the projective transformations of $ \P^1 $ to itself. Indeed, if $ \sb{x_0, x_1} $ are the homogeneous coordinates on $ \P^1 $, a projective transformation $ \phi $ associated to a $ 2 \times 2 $ invertible matrix $ T $ is given by
+$$ \Phi\sb{x_0, x_1} = \sb{A \cdot \rb{x_0, x_1}} = \sb{ax_0 + bx_1, cx_0 + dx_1}, \qquad T = \two{a & b}{c & d}, \qquad ad - bc \ne 0. $$
+If, as in Lemma \ref{lem:3.13}, we write $ \P^1 = \C \cup \cb{\infty} $, where $ \cb{\infty} = \cb{x_1 = 0} = \cb{\sb{1, 0}} $, then if $ x_1 \ne 0 $, $ \sb{x_0, x_1} = \sb{x_0 / x_1, 1} = \sb{z, 1} $ for $ z = x_0 / x_1 $ and
+$$ \Phi\sb{z, 1} = \sb{ax_0 + bx_1, cx_0 + dx_1} = \sb{az + b, cz + d}, $$
+and if $ cz + d \ne 0 $, that is $ \sb{z, 1} \ne \sb{-d, c} $, this is
+$$ \Phi\sb{z, 1} = \sb{\dfrac{az + b}{cz + d}, 1} = \sb{f\rb{z}, 1}. $$
+Here, unlike in complex analysis, the point $ \cb{\infty} = \sb{1, 0} $ plays no special role, and we see right away that $ \Phi\sb{1, 0} = \sb{a, c} $ and $ \Phi\sb{-d, c} = \sb{1, 0} $.
+\end{example}
+
+\begin{theorem}
+Assume that $ P_1, P_2, P_3 $ are three non-collinear points in $ \P^2 $, that is not on the same line. Then there exists a projective transformation
+$$ \Phi : \P^2 \to \P^2 $$
+such that
+$$ \Phi\rb{P_1} = \sb{1, 0, 0}, \qquad \Phi\rb{P_2} = \sb{0, 1, 0}, \qquad \Phi\rb{P_3} = \sb{0, 0, 1}. $$
+\end{theorem}
+
+\begin{remark}
+Every projective transformation $ \Phi = \sb{A} $ is invertible. Just take $ \Phi^{-1} = \sb{A^{-1}} $.
+\end{remark}
+
+\begin{proof}
+Let $ P_i = \rb{a_{1i}, a_{2i}, a_{3i}} \in \C^3 $ and $ A = \rb{a_{ij}} $. Then, since $ P_1, P_2, P_3 $ are not collinear, it follows that $ \det\rb{A} \ne 0 $ and $ A $ is invertible. Let $ B $ be the inverse matrix of $ A $ and let $ \Phi = \sb{B} : \P^2 \to \P^2 $ be the projective transformation associated to the matrix $ B $. Then
+$$ BP_i = e_i \qquad \implies \qquad \Phi\rb{P_i} = \sb{e_i}, $$
+as desired.
+\end{proof}
+
+\begin{exercise}
+When do two linear transformations $ L, L' : \C^{n + 1} \to \C^{n + 1} $ give rise to the same projective transformation $ \P^n \to \P^n $?
+\end{exercise}
+
+Can do better.
+
+\begin{exercise}
+Show that if $ P_1, P_2, P_3 \in \P^1_\C $ are distinct points, there exists a unique projective transformation $ \Psi : \P_1 \to \P_1 $ such that
+$$ \Psi\rb{P_1} = \sb{1, 0}, \qquad \Psi\rb{P_2} = \sb{0, 1}, \qquad \Psi\rb{P_3} = \sb{1, 1}. $$
+\end{exercise}
+
+\begin{exercise}
+Assume that $ P_1, P_2, P_3, P_4 \in \P^2_\C $ are four points such that no three of them lie in the same line. Show that there exists a unique projective transformation $ \Psi : \P^2 \to \P^2 $ such that
+$$ \Psi\rb{P_1} = \sb{1, 0, 0}, \qquad \Psi\rb{P_2} = \sb{0, 1, 0}, \qquad \Psi\rb{P_3} = \sb{0, 0, 1}, \qquad \Psi\rb{P_4} = \sb{1, 1, 1}. $$
+Take a $ \Phi $ as in the previous theorem. I can scale the representatives of the $ P_i $, so $ \sb{v_i} = P_i $. Choose $ v_4 $ such that $ P_4 = \sb{v_4} $ and $ v_4 = \sum_{i = 1}^3 \lambda_i v_i = \lambda_1 \cdot v_1 + \lambda_2 \cdot v_2 + \lambda_3 \cdot v_3 $ for $ \lambda_i \in \C^* $. We are in $ \C^2 $, and the $ v_1, v_2, v_3 $ are linearly independent, so they are a basis. If $ \lambda_i = 0 $ for some $ i $, the remaining vectors are in the same two-dimensional subspace of $ \C $, contradicting non-collinearity in $ \P^2 $. Take $ \lambda_i \cdot v_i $ as representatives for $ P_i $ for $ i = 1, 2, 3 $ and $ v_4 $ for $ P_4 $. Get matrix $ A $ as before, so $ A \cdot e_i = P_i $ and $ A \cdot \three{1}{1}{1} = \sum_{i = 1}^3 \lambda_iv_i = v_4 $, so $ B = A^{-1} $, $ \Phi = \sb{B} $ and
+$$ \Phi\rb{P_i} = \sb{e_i}, \qquad i = 1, 2, 3, \qquad \Phi\rb{P_4} = \sb{1, 1, 1}. $$
+\end{exercise}
+
+There is a version of the previous statement in higher dimensions.
+
+\begin{definition}
+A \textbf{hyperplane} in $ \P^n $ is the image of a subspace of dimension $ n $ in $ \C^{n + 1} $ via the map $ \Pi : \C^{n + 1} \setminus \cb{\underline{0}} \to \P^n $. Equivalently, it is the locus of points $ \sb{x_0, \dots, x_n} $ of $ \P^n $ satisfying some linear equation $ \sum_{i = 1}^n a_ix_i = 0 $, where $ \rb{a_0, \dots, a_n} \ne \underline{0} $.
+\end{definition}
+
+\begin{example}
+Projective lines are precisely the hyperplanes of $ \P^2 $.
+\end{example}
+
+\begin{exercise}
+Let $ \mathcal{S} = \cb{p_0, \dots, p_n, q} \subseteq \P^n $ be a collection of $ n + 2 $ distinct points such that no $ n + 1 $ points of $ \mathcal{S} $ lie in a hyperplane. Denote by $ e_i $, for $ i = 0, \dots, n $, the vectors of the standard basis of $ \C^{n + 1} $. Then there is a unique projective transformation $ f : \P^n \to \P^n $ such that
+$$ f\rb{p_i} = \sb{e_i} = \sb{0, \dots, 0, 1, 0, \dots, 0}, \qquad i = 0, \dots, n, \qquad f\rb{q} = \sb{1, \dots, 1}. $$
+Sometimes such a set of points is called a \textbf{projective basis}, in analogy with bases of vector spaces.
+\end{exercise}
+
+\begin{exercise}
+Let $ L $ be a line in $ \P^2 $. Then given $ i \in \cb{0, 1, 2} $, there exists a projective transformation $ f : \P^2 \to \P^2 $ such that $ f\rb{L} = \mathcal{P}_i = \cb{x_i = 0} $.
+\end{exercise}
+
+\begin{exercise}
+Let $ C \subseteq \P^2 $ be a projective curve and let $ \Psi : \P^2 \to \P^2 $ be a projective transformation. Show that
+\begin{enumerate}
+\item $ C $ is smooth if and only if $ \Psi\rb{C} $ is smooth, and
+\item if $ p \in C $ is a smooth point and $ l $ is the tangent line of $ C $ at $ p $ then $ \Psi\rb{C} $ is smooth at the point $ \Psi\rb{p} $ and $ \Psi\rb{l} $ is the tangent line of $ \Psi\rb{C} $ at $ \Psi\rb{p} $.
+\end{enumerate}
+\end{exercise}
+
+\begin{remark}
+As this last exercise suggests, one should think of curves only differing from each other via a projective transformation to be the same, since projective transformations preserve their properties. These transformations should be thought of as a change of projective coordinates.
+\end{remark}
 
 \end{document}
