@@ -808,7 +808,7 @@ Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ x_l $ is any varia
 Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation in $ \mathcal{A} $. Define, for an $ \mathcal{L} $-formula $ \phi $, what is meant by $ v $ \textbf{satisfies} $ \phi $ in $ \mathcal{A} $ by the following.
 \begin{enumerate}
 \item Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \mathcal{L} $. Then $ v $ satisfies the atomic formula $ R\rb{t_1, \dots, t_n} $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \mathcal{A} $.
-\item Suppose $ \phi, \psi $ are $ L $ formulas and we already know about valuations satisfying $ \phi, \psi $.
+\item Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas and we already know about valuations satisfying $ \phi, \psi $.
 \begin{enumerate}
 \item $ v $ satisfies $ \notb{\phi} $ in $ \mathcal{A} $ iff $ v $ does not satisfy $ \phi $ in $ \mathcal{A} $.
 \item $ v $ satisfies $ \impb{\phi}{\psi} $ in $ \mathcal{A} $ iff it is not the case that $ v $ satisfies $ \phi $ in $ \mathcal{A} $ and $ v $ does not satisfy $ \psi $ in $ \mathcal{A} $.
@@ -828,9 +828,9 @@ If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy
 \begin{example}
 \hfill
 \begin{enumerate}
-\item Suppose $ \mathcal{L} $ has a binary relation symbol $ R $. The $ \mathcal{L} $ formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \mathcal{A} = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \mathcal{A} $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
-\item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we intrepret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ or $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
-\item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \phi $ and $ \mathcal{L} $-formula. Let $ v $ be a valuation in $ \mathcal{A} $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \mathcal{A} $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using Definition \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
+\item Suppose $ \mathcal{L} $ has a binary relation symbol $ R $. The $ \mathcal{L} $-formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \mathcal{A} = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \mathcal{A} $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
+\item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we intrepret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ and $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
+\item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \phi $ an $ \mathcal{L} $-formula. Let $ v $ be a valuation in $ \mathcal{A} $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \mathcal{A} $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using Definition \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
 \end{enumerate}
 \end{example}
 
@@ -844,7 +844,7 @@ TODO Exercise: Suppose $ \phi $ is any $ \mathcal{L} $-formula. Then
 \item $ \impb{\fab{x_2}\teb{x_1}\phi}{\teb{x_1}\fab{x_2}\phi} $ is not necessarily logically valid.
 \end{enumerate}
 
-Some logically valid formulas. Consider the propositional formula $ \chi $ by $ \impb{p_1}{\impb{p_2}{p_1}} $. Suppose $ \mathcal{L} $ is a first-order language and $ \phi_1, \phi_2 $ are $ \mathcal{L} $-formulas. Substitute $ \phi_1 $ in place of $ p_1 $ and $ \phi_2 $ in place of $ p_2 $ in $ \chi $. We obtain an $ \mathcal{L} $ formula $ \theta $ by $ \impb{\phi_1}{\impb{\phi_2}{\phi_1}} $. Check that as $ \chi $ is a tautology $ \theta $ is logically valid. (TODO Exercise)
+Consider the propositional formula $ \chi $ by $ \impb{p_1}{\impb{p_2}{p_1}} $. Suppose $ \mathcal{L} $ is a first-order language and $ \phi_1, \phi_2 $ are $ \mathcal{L} $-formulas. Substitute $ \phi_1 $ in place of $ p_1 $ and $ \phi_2 $ in place of $ p_2 $ in $ \chi $. We obtain an $ \mathcal{L} $-formula $ \theta $ by $ \impb{\phi_1}{\impb{\phi_2}{\phi_1}} $. Check that as $ \chi $ is a tautology $ \theta $ is logically valid. (TODO Exercise)
 
 \begin{definition}
 Suppose $ \chi $ is an $ \mathcal{L} $-formula involving propositional variables $ p_1, \dots, p_n $. Suppose $ \mathcal{L} $ is a first-order language and $ \phi_1, \dots, \phi_n $ are $ \mathcal{L} $-formulas. A \textbf{substitution instance} of $ \chi $ is obtained by replacing each $ p_i $ in $ \chi $ by $ \phi_i $ for $ i = 1, \dots, n $. Call the result $ \theta $.
@@ -854,8 +854,59 @@ Suppose $ \chi $ is an $ \mathcal{L} $-formula involving propositional variables
 \hfill
 \begin{enumerate}
 \item $ \theta $ is an $ \mathcal{L} $-formula, and
-\item If $ \chi $ is a tautology then $ \theta $ is logically valid.
+\item if $ \chi $ is a tautology then $ \theta $ is logically valid.
 \end{enumerate}
 \end{theorem}
+
+\marginpar{Lecture 11 \\ Friday \\ 26/10/18}
+
+\begin{proof}
+Take an $ \mathcal{L} $-structure $ \mathcal{A} $ and a valuation $ v $ in $ \mathcal{A} $. Use this to define a propositional valuation $ w $ with $ w\rb{p_i} = v\sb{\phi_i} $ for $ i \le n $. Then prove by induction on the number of connectives in $ \chi $ that $ w\rb{\chi} = v\sb{\theta} $. In particular if $ \chi $ is a tautology, then $ v\sb{\theta} = T $. In the inductive step, consider $ \chi $ is $ \impb{\alpha}{\beta} $. So $ \theta $ is $ \impb{\theta_1}{\theta_2} $ where $ \theta_1 $ is obtained from $ \alpha $ and $ \theta_2 $ is obtained from $ \beta $. By inductive hypothesis $ w\rb{\alpha} = v\sb{\theta_1} $ and $ w\rb{\beta} = v\sb{\theta_2} $. So $ w\impb{\alpha}{\beta} = v\sb{\impb{\theta_1}{\theta_2}} $, etc. (TODO Exercise)
+\end{proof}
+
+\begin{note}
+Not all logically valid formulas arise in this way.
+\end{note}
+
+\begin{example}
+$ \impb{\teb{x_2}\fab{x_1}\phi}{\fab{x_1}\teb{x_2}\phi} $.
+\end{example}
+
+\subsection{Bound and free variables in formulas}
+
+\begin{definition}
+Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas and $ \fab{x_i}\phi $ occurs as a subformula of $ \psi $, that is $ \psi $ is $ \dots \fab{x_i}\phi \dots $. We say that $ \phi $ is the \textbf{scope} of that quantifier $ \fab{x_i} $ here in $ \psi $. An occurrence of a variable $ x_j $ in $ \psi $ is \textbf{bound} if it is in the scope of a quantifier $ \fab{x_j} $ in $ \psi $, or it is the $ x_j $ here. Otherwise it is a free occurrence of $ x_j $. Variables having a free occurrence in $ \psi $ are called \textbf{free} variables of $ \psi $. A formula with no free variables is called a \textbf{closed} formula or a \textbf{sentence} of $ \mathcal{L} $.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ \psi_1 $ be $ \impb{R_1\rb{x_1, x_2}}{\fab{x_3}R_2\rb{x_1, x_3}} $. Then $ x_1 $ and $ x_2 $ are free, and $ x_3 $ is bound with scope $ R_2\rb{x_1, x_3} $.
+\item Let $ \psi_2 $ be $ \impb{\fab{x_1}R_1\rb{x_1, x_2}}{R_2\rb{x_1, x_2}} $. Then the first $ x_1 $ is bound with scope $ R_1\rb{x_1, x_2} $, and the second $ x_1 $ and $ x_2 $ are free. Compare with $ \fab{x_1}\impb{R_1\rb{x_1, x_2}}{R_2\rb{x_1, x_2}} $. Then $ x_1 $ is bound with scope $ \impb{R_1\rb{x_1, x_2}}{R_2\rb{x_1, x_2}} $, and $ x_2 $ is free.
+\item Let $ \psi_3 $ be $ \impb{\teb{x_1}R_1\rb{x_1, x_2}}{\fab{x_2}R_2\rb{x_2, x_3}} $. Then $ x_1 $ and the second $ x_2 $ are bound with scope $ R_1\rb{x_1, x_2} $, and the first $ x_2 $ and $ x_3 $ are free.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+If $ \psi $ is an $ \mathcal{L} $-formula with free variables amongst $ x_1, \dots, x_n $, we might write $ \psi\rb{x_1, \dots, x_n} $ instead of $ \psi $. If $ t_1, \dots, t_n $ are terms, by $ \psi\rb{t_1, \dots, t_n} $ we mean the $ \mathcal{L} $-formula obtained by replacing each free occurrence of $ x_i $ in $ \psi $ by $ t_i $.
+\end{definition}
+
+\begin{example}
+Let $ \psi\rb{x_1, x_2} $ be $ \impb{\fab{x_1}R\rb{x_1, x_2}}{\fab{x_3}R\rb{x_1, x_2, x_3}} $, $ t_1 $ be $ f_1\rb{x_1} $, and $ t_2 $ be $ f_2\rb{x_1, x_2} $. Then $ x_2 $ and the second $ x_1 $ are free. So $ \psi\rb{t_1, t_2} $ is
+$$ \impb{\fab{x_1}R_1\rb{x_1, f_2\rb{x_1, x_2}}}{\fab{x_3}R_2\rb{f_1\rb{x_1}, f_2\rb{x_1, x_2}, x_3}}. $$
+\end{example}
+
+\begin{theorem}
+Suppose $ \phi $ is a closed $ \mathcal{L} $-formula and $ \mathcal{A} $ is an $ \mathcal{L} $-structure. Then either $ \mathcal{A} \vDash \phi $ or $ \mathcal{A} \vDash \notb{\phi} $. More generally, if $ \phi $ has free variables amongst $ x_1, \dots, x_n $ and $ v, w $ are valuations in $ \mathcal{A} $ with $ v\rb{x_i} = w\rb{x_i} $ for $ i = 1, \dots, n $, then $ v\sb{\phi} = T $ iff $ w\sb{\phi} = T $. Allow $ n = 0 $ here for no free variables.
+\end{theorem}
+
+\begin{proof}
+Note that the first statement follows from the generalisation. If $ \phi $ has no free variables, then for any valuations $ v, w $ in $ \mathcal{A} $, they agree on the free variables of $ \phi $ so $ v\sb{\phi} = w\sb{\phi} $. Prove the generalisation by induction on the number of connectives and quantifiers in $ \phi $.
+\begin{enumerate}
+\item Base case. $ \phi $ is atomic, so $ \phi $ is $ R\rb{t_1, \dots, t_m} $ for $ t_j $ terms. The $ t_j $ only involve variables amongst $ x_1, \dots, x_n $. As $ v $ and $ w $ agree on these variables $ v\rb{t_j} = w\rb{t_j} $. So
+$$ v\sb{R\rb{t_1, \dots, t_m}} = T \qquad \iff \qquad \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_m}} \qquad \iff \qquad w\sb{R\rb{t_1, \dots, t_m}} = T. $$
+\item Inductive step. $ \phi $ is $ \notb{\psi} $, $ \impb{\psi}{\chi} $, or $ \fab{x_i}\psi $. (TODO Exercise: first two cases) Suppose $ \phi $ is $ \fab{x_i}\psi $. Suppose $ v\sb{\phi} = F $. By \ref{def:2.2.9} there is a valuation $ v' $ $ x_i $-equivalent to $ v $ with $ v'\sb{\psi} = F $. The free variables of $ \psi $ are amongst $ x_1, \dots, x_n, x_i $. Let $ w' $ be the valuation $ x_i $-equivalent to $ w $ with $ w'\rb{x_i} = v'\rb{x_i} $. Then $ v', w' $ agree on the free variables of $ \psi $. By inductive hypothesis $ v'\sb{\psi} = w'\sb{\psi} $ so $ w'\sb{\psi} = F $. As $ w' $ is $ x_i $-equivalent to $ w $ we obtain $ w\sb{\fab{x_i}\psi} = F $.
+\end{enumerate}
+\end{proof}
 
 \end{document}
