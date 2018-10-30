@@ -545,7 +545,7 @@ and
 Apply deduction theorem to $ \rb{\ref{eq:4}} $, $ \Gamma \vdash_L \impb{\notb{\phi}}{\notb{\psi}} $. By A3 and MP we obtain $ \Gamma \vdash_L \impb{\psi}{\phi} $. By this, $ \rb{\ref{eq:3}} $, and MP, $ \Gamma \cup \cb{\notb{\phi}} \vdash_L \phi $. By deduction theorem, $ \Gamma \vdash_L \impb{\notb{\phi}}{\phi} $. By \ref{prop:1.2.7}(3), $ \vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi} $. So by these and MP, $ \Gamma \vdash_L \phi $. This contradicts $ \Gamma \not\vdash_L \phi $.
 \end{proof}
 
-\begin{proposition}[Lindenbaum's Lemma]
+\begin{proposition}[Lindenbaum's lemma]
 \label{prop:1.3.8}
 Suppose $ \Gamma $ is a consistent set of $ L $-formulas. Then there is a consistent set of formulas $ \Gamma^* \supseteq \Gamma $ such that for every $ \phi $ either $ \Gamma^* \vdash_L \phi $ or $ \Gamma^* \vdash_L \notb{\phi} $.
 \end{proposition}
@@ -602,7 +602,7 @@ Suppose $ \Delta $ is a set of $ L $-formulas and $ \phi $ is an $ L $-formula. 
 \end{corollary}
 
 \begin{proof}
-TODO Exercise: deduce these from the preliminaries to Completeness Theorem - warning that in 2 do not assume that $ \Delta $ is consistent.
+TODO Exercise: deduce these from the preliminaries to Completeness theorem - warning that in 2 do not assume that $ \Delta $ is consistent.
 \end{proof}
 
 \begin{theorem}[Compactness theorem for $ L $]
@@ -820,7 +820,7 @@ Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation
 \marginpar{Lecture 10 \\ Thursday \\ 25/10/18}
 
 \begin{remark}
-Definition \ref{def:2.2.9} does not work if we allow empty structure.
+\ref{def:2.2.9} does not work if we allow empty structure.
 \end{remark}
 
 If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy $ \phi $, write $ v\sb{\phi} = F $. If every valuation in $ \mathcal{A} $ satisfies $ \phi $, say that $ \phi $ is \textbf{true} in $ \mathcal{A} $ or $ \mathcal{A} $ is a \textbf{model} of $ \phi $ and write $ \mathcal{A} \vDash \phi $. If $ \mathcal{A} \vDash \phi $ for every $ \mathcal{L} $-structure $ \mathcal{A} $, we say that $ \phi $ is \textbf{logically valid} and write $ \vDash \phi $. These are the analogues of tautologies in the propositional logic. Difference is in propositional logic there is an algorithm to decide whether a given formula is a tautology. There is no such algorithm to decide whether a given $ \mathcal{L} $-formula is logically valid or not, a consequence of Gödel's incompleteness theorem.
@@ -830,7 +830,7 @@ If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy
 \begin{enumerate}
 \item Suppose $ \mathcal{L} $ has a binary relation symbol $ R $. The $ \mathcal{L} $-formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \mathcal{A} = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \mathcal{A} $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
 \item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we intrepret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ and $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
-\item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \phi $ an $ \mathcal{L} $-formula. Let $ v $ be a valuation in $ \mathcal{A} $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \mathcal{A} $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using Definition \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
+\item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \phi $ an $ \mathcal{L} $-formula. Let $ v $ be a valuation in $ \mathcal{A} $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \mathcal{A} $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
 \end{enumerate}
 \end{example}
 
@@ -897,6 +897,7 @@ $$ \impb{\fab{x_1}R_1\rb{x_1, f_2\rb{x_1, x_2}}}{\fab{x_3}R_2\rb{f_1\rb{x_1}, f_
 \end{example}
 
 \begin{theorem}
+\label{thm:2.3.3}
 Suppose $ \phi $ is a closed $ \mathcal{L} $-formula and $ \mathcal{A} $ is an $ \mathcal{L} $-structure. Then either $ \mathcal{A} \vDash \phi $ or $ \mathcal{A} \vDash \notb{\phi} $. More generally, if $ \phi $ has free variables amongst $ x_1, \dots, x_n $ and $ v, w $ are valuations in $ \mathcal{A} $ with $ v\rb{x_i} = w\rb{x_i} $ for $ i = 1, \dots, n $, then $ v\sb{\phi} = T $ iff $ w\sb{\phi} = T $. Allow $ n = 0 $ here for no free variables.
 \end{theorem}
 
@@ -908,5 +909,111 @@ $$ v\sb{R\rb{t_1, \dots, t_m}} = T \qquad \iff \qquad \overline{R}\rb{v\rb{t_1},
 \item Inductive step. $ \phi $ is $ \notb{\psi} $, $ \impb{\psi}{\chi} $, or $ \fab{x_i}\psi $. (TODO Exercise: first two cases) Suppose $ \phi $ is $ \fab{x_i}\psi $. Suppose $ v\sb{\phi} = F $. By \ref{def:2.2.9} there is a valuation $ v' $ $ x_i $-equivalent to $ v $ with $ v'\sb{\psi} = F $. The free variables of $ \psi $ are amongst $ x_1, \dots, x_n, x_i $. Let $ w' $ be the valuation $ x_i $-equivalent to $ w $ with $ w'\rb{x_i} = v'\rb{x_i} $. Then $ v', w' $ agree on the free variables of $ \psi $. By inductive hypothesis $ v'\sb{\psi} = w'\sb{\psi} $ so $ w'\sb{\psi} = F $. As $ w' $ is $ x_i $-equivalent to $ w $ we obtain $ w\sb{\fab{x_i}\psi} = F $.
 \end{enumerate}
 \end{proof}
+
+\marginpar{Lecture 12 \\ Monday \\ 29/10/18}
+
+\begin{remark}
+If $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \psi\rb{x_1, \dots, x_n} $ an $ \mathcal{L} $-formula, whose free variables are amongst $ x_1, \dots, x_n $, and $ a_1, \dots, a_n \in A $ then we write $ \mathcal{A} \vDash \Psi\rb{a_1, \dots, a_n} $ to mean $ v\sb{\psi} = T $ for every valuation $ v $ in $ \mathcal{A} $ with $ v\rb{x_i} = a_i $ for $ i = 1, \dots, n $.
+\end{remark}
+
+\begin{note}
+By the proof of \ref{thm:2.3.3} this holds if $ v\sb{\psi} = T $ for some such valuation.
+\end{note}
+
+\begin{example}
+An example where $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we have term $ t $, and a valuation $ v $ in $ \mathcal{A} $ with $ v\sb{\phi\rb{t}} = F $. Let $ \phi\rb{x_1} $ be $ \impb{\fab{x_2}R\rb{x_1, x_2}}{S\rb{x_1}} $. Scope of $ x_2 $ is $ R\rb{x_1, x_2} $. Let $ t_1 $ be $ x_2 $, then $ \phi\rb{t_1} $ is $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_2}} $. Suppose $ \mathcal{A} = \ab{\N, \le, = 0} $. Domain is $ \N = \cb{0, 1, \dots} $, $ R\rb{x_1, x_2} $ interpreted as $ x_1 \le x_2 $, and $ S\rb{x_1} $ interpreted as $ x_1 = 0 $. So $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we choose a valuation $ v\rb{x_2} = 1 $ then $ v\sb{\phi\rb{t_1}} = F $ in $ \mathcal{A} $.
+\end{example}
+
+\begin{definition}
+Let $ \phi $ be an $ \mathcal{L} $-formula, $ x_i $ a variable, $ t $ an $ \mathcal{L} $-term. We say $ t $ is free for $ x_i $ in $ \phi $ if there is no variable $ x_j $ in $ t $ such that $ x_i $ has a free occurrence within the scope of a quantifier $ \fab{x_j} $ in $ \phi $.
+\end{definition}
+
+TODO Exercise: Let $ t = f\rb{x_3, x_2, x_5} $, $ \phi_1 $ be $ \impb{\impb{\fab{x_2}R\rb{x_1, x_4}}{K\rb{x_1}}}{\fab{x_1}R\rb{x_1, x_1}} $, and $ \phi_2 $ be $ \impb{\fab{x_2}\impb{R\rb{x_2, x_4}}{\fab{x_1}K\rb{x_1}}}{\fab{x_2}R\rb{x_1, x_1}} $. For which $ t $ is $ t $ free for $ x_1 $?
+
+\begin{theorem}
+\label{thm:2.3.6}
+Suppose $ \phi\rb{x_1} $ is an $ \mathcal{L} $-formula, possibly with other free variables. Let $ t $ be a term free for $ x_1 $ in $ \phi $, then $ \vDash \impb{\fab{x_1}\phi\rb{x_1}}{\phi\rb{t}} $. In particular, if $ \mathcal{A} $ is an $ \mathcal{L} $-structure with $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ then $ A \vDash \phi\rb{t} $.
+\end{theorem}
+
+\begin{lemma}
+\label{lem:2.3.7}
+With this notation, suppose $ v $ is a valuation in $ \mathcal{A} $. Let $ v' $ be the valuation in $ \mathcal{A} $ which is $ x_1 $-equivalent to $ v $ with $ v'\rb{x_1} = v\rb{t} $. Then
+$$ v'\sb{\phi\rb{x_1}} = T \qquad \iff \qquad v\sb{\phi\rb{t}} = T. $$
+\end{lemma}
+
+\begin{proof}
+This is by induction on the number of connectives and quantifiers in $ \phi $.
+\begin{enumerate}
+\item Base case. $ \phi $ is an atomic formula $ R\rb{u_1, \dots, u_m} $ where $ R $ is an $ m $-ary relation symbol and $ u_1, \dots, u_m $ are terms. Let $ u^*_i $ be the result of substituting $ t $ for $ x_1 $ in $ u_i $. Then, by induction on the length of the terms, each $ u_i^* $ is a term and $ v'\rb{u_i} = v\rb{u_i^*} $. Moreover, $ \phi\rb{t} $ is $ R\rb{u_1^*, \dots, u_m^*} $. Then
+\begin{align*}
+v'\sb{\phi\rb{x_1}} = T \qquad
+& \iff \qquad \mathcal{A} \vDash R\rb{v'\rb{u_1}, \dots, v'\rb{u_m}} \\
+& \iff \qquad \mathcal{A} \vDash R\rb{v\rb{u_1^*}, \dots, v\rb{u_m^*}} \\
+& \iff \qquad v\sb{\phi\rb{t}} = T.
+\end{align*}
+\item Inductive step. There are three cases,
+\begin{enumerate}
+\item $ \phi $ is $ \notb{\psi} $,
+\item $ \phi $ is $ \impb{\psi}{\chi} $, and
+\item $ \phi $ is $ \fab{x_i}\psi $.
+\end{enumerate}
+We leave the first two cases as exercises and do the third. We can assume that $ i \ne 1 $. Otherwise $ x_1 $ is not free in $ \phi $ and $ \phi\rb{t} $ is just $ \phi $. The lemma then follows from \ref{thm:2.3.3}. Note also that as $ t $ is free for $ x_1 $ in $ \fab{x_i}\psi $, it follows that $ t $ is free for $ x_1 $ in $ \psi $ and $ x_i $ is not a variable in $ t $. Suppose first that $ v'\sb{\phi\rb{x_1}} = F $. We show that $ v\sb{\phi\rb{t}} = F $. By \ref{def:2.2.9}, there is a valuation $ w' $ which is $ x_i $-equivalent to $ v' $ with $ w'\sb{\psi\rb{x_1}} = F $. Note that as $ i \ne 1 $,
+\begin{equation}
+\label{eq:5}
+w'\rb{x_1} = v'\rb{x_1} = v\rb{t}.
+\end{equation}
+Define a valuation $ w $ by
+$$ w\rb{x_j} = \begin{cases} v\rb{x_j} & j \ne 1, i \\ w'\rb{x_i} & j = i \\ v\rb{x_1} & j = 1 \end{cases}. $$
+So $ w $ is $ x_1 $-equivalent to $ w' $ and $ x_i $-equivalent to $ v $, noting that $ v, v' $ are $ x_i $-equivalent and $ w, v' $ are $ x_i $-equivalent. As $ x_i $ does not occur in $ t $ we have, by \ref{thm:2.3.3} and $ \rb{\ref{eq:5}} $,
+$$ w\rb{t} = v\rb{t} = w'\rb{x_1}. $$
+We can now apply the induction hypothesis to $ w $, $ w' $, and $ \psi $. We obtain that $ w\sb{\psi\rb{t}} = w'\sb{\psi\rb{x_1}} = F $. As $ w, v $ are $ x_i $-equivalent, it follows that
+$$ v\sb{\fab{x_i}\psi\rb{t}} = F. $$
+So $ v\sb{\phi\rb{t}} = F $, as required. We now prove the converse direction. We cannot argue by symmetry here. So suppose $ v\sb{\phi\rb{t}} = F $. There is a valuation $ w $ which is $ x_i $-equivalent to $ v $ with $ w\sb{\psi\rb{t}} = F $. Let $ w' $ be the valuation $ x_1 $-equivalent to $ w $ with
+$$ w'\rb{x_1} = w\rb{t} = v\rb{t} = v'\rb{x_1}. $$
+The fact that $ w\rb{t} = v\rb{t} $ is as before. By the inductive hypothesis, $ w'\sb{\psi\rb{x_1}} = w\rb{\psi\rb{t}} = F $. As $ w' $ is $ x_i $-equivalent to $ v' $ we have
+$$ v'\sb{\fab{x_i}\psi\rb{x_1}} = F. $$
+So $ v'\sb{\phi\rb{x_1}} = F $. This completes the inductive step.
+\end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:2.3.6}]
+Suppose $ v $ is a valuation with $ v\sb{\phi\rb{t}} = F $. Show $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $. Then $ v\sb{\impb{\fab{x_1}\phi\rb{x_1}}{\phi\rb{t}}} = \phi\rb{t} = T $. Take $ v' $ $ x_1 $-equivalent to $ v $ and $ v'\rb{x_1} = v\rb{t} $. Then by \ref{lem:2.3.7}, $ v'\sb{\phi\rb{x_1}} = F $, so $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $.
+\end{proof}
+
+\subsection{The formal system $ K_\mathcal{L} $}
+
+\begin{definition}
+Suppose $ \mathcal{L} $ is a first-order language. The formal system \textbf{$ K_\mathcal{L} $} has as formulas $ \mathcal{L} $-formulas, and the following.
+\begin{enumerate}
+\item Axioms. For $ \phi, \chi, \psi $ $ \mathcal{L} $-formulas,
+\begin{enumerate}[label=(A\arabic*)]
+\item $ \impb{\phi}{\impb{\psi}{\phi}} $,
+\item $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} $,
+\item $ \impb{\impb{\notb{\psi}}{\notb{\phi}}}{\impb{\phi}{\psi}} $,
+\item[(K1)] $ \impb{\fab{x_i}\phi\rb{x_i}}{\phi\rb{t}} $, where $ t $ is a term free for $ x_i $ in $ \phi $ and $ \phi $ can have other free variables, and
+\item[(K2)] $ \impb{\fab{x_i}\impb{\phi}{\psi}}{\impb{\phi}{\fab{x_i}\psi}} $, if $ x_i $ is not free in $ \phi $.
+\end{enumerate}
+\item Deduction rules.
+\begin{enumerate}
+\item Modus Ponens (MP), from formulas $ \phi $ and $ \impb{\phi}{\psi} $ deduce $ \psi $, and
+\item \textbf{Generalisation} (Gen), from formula $ \phi $ deduce $ \fab{x_i}\phi $.
+\end{enumerate}
+\end{enumerate}
+A proof in $ K_\mathcal{L} $ is the the last formula in some proof. Write $ \vdash_{K_\mathcal{L}} \phi $ for $ \phi $ is a theorem in $ K_\mathcal{L} $.
+\end{definition}
+
+\begin{note}
+Books do not always use $ K_\mathcal{L} $, that is they write $ \vdash \phi $.
+\end{note}
+
+\begin{definition}
+Suppose $ \Sigma $ is a set of $ \mathcal{L} $-formulas and $ \psi $ an $ \mathcal{L} $-formula. A deduction of $ \psi $ from $ \Sigma $ is a finite sequence of formulas, ending with $ \psi $, each of which is one of
+\begin{enumerate}
+\item an axiom,
+\item a formula in $ \Sigma $, or
+\item obtained from earlier formulas in the deduction using MP or Gen, with the restriction that when Gen is applied it does not involve a variable occurring freely in a formula in $ \Sigma $.
+\end{enumerate}
+Write $ \Sigma \vdash_{K_\mathcal{L}} \psi $ if there is a deduction from $ \Sigma $ to $ \psi $.
+\end{definition}
 
 \end{document}
