@@ -1,0 +1,709 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[UKenglish]{babel}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{csquotes}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\val}[1]{\left. #1 \right\rvert}
+\newcommand{\rb}[1]{\left( #1 \right)}
+\renewcommand{\sb}[1]{\left[ #1 \right]}
+\newcommand{\cb}[1]{\left\{ #1 \right\}}
+\newcommand{\ab}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
+\theoremstyle{definition}\newtheorem*{example}{Example}
+\theoremstyle{definition}\newtheorem*{note}{Note}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{algorithm}[definition]{Algorithm}
+
+\pagestyle{fancy}
+\lhead{M4P32 Number Theory: Elliptic Curves}
+\rhead{Autumn 2018}
+
+\title{M4P32 Number Theory: Elliptic Curves}
+\author{Lectured by Prof Toby Gee \\ Typeset by David Kurniadi Angdinata}
+\date{Autumn 2018}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\maketitle
+
+\vfill
+
+\tableofcontents
+
+\pagebreak
+
+\marginpar{Lecture 1 \\ Thursday \\ 04/10/18}
+
+\section{Introduction}
+
+\subsection{Outline}
+
+\begin{enumerate}
+\item Introduction
+\item Conics
+\begin{enumerate}
+\item The $ p $-adic numbers
+\item Basic algebraic geometry
+\item Plane curves
+\item The Hasse principle
+\end{enumerate}
+\item Cubics
+\begin{enumerate}
+\item Definitions
+\item Elliptic curves over $ \Q_p $
+\item Elliptic curves over $ \Q $
+\item The Mordell-Weil theorem
+\end{enumerate}
+\end{enumerate}
+
+The theme of the course will be studying polynomial equations over $ \Z $ or $ \Q $.
+
+\begin{example}
+For $ x^7 + y^7 + z^7 = 1 $, what are the solutions with $ x, y, z \in \Q $? Answer is hard. However $ x^2 - 1 = 0 $ is easy. In fact any equation in one variable is easy to solve over $ \Q $. For example, $ 3x^5 - 9x^3 + x^2 + 148 / 81 = 0 $ iff $ 243x^5 - 729x^3 + 81x^2 + 148 = 0 $. Letting $ x = r / s $ for $ \rb{r, s} = 1 $ and $ s \ge 1 $, such as $ r = -2 $ and $ s = 5 $ in $ -2 / 5 $, gives $ 243r^5 - 729r^3s^2 + 81r^2s^3 + 148s^5 = 0 $. So $ r^2 \mid 148s^5 $, but $ \rb{r, s} = 1 $, so $ r^2 \mid 148 $. Similarly $ s^2 \mid 243 $. Now check the finitely many possibilities to get $ x = 2 / 3 $ as the only solution in $ \Q $.
+\end{example}
+
+If $ k $ is a field, such as $ \Q $, $ \R $, $ \C $, $ \F_p $, $ \Q_p $, we write $ k\sb{x_1, \dots, x_n} $ for the polynomial ring in $ n $ variables $ x_1, \dots, x_n $. A \textbf{monomial} is an expression $ x_1^{\alpha_1}, \dots, x_n^{\alpha_n} $ for $ a_i \in \Z_{> 0} $. The \textbf{degree} of $ x_1^{\alpha_1}, \dots, x_n^{\alpha_n} $ is $ a_1 + \dots + a_n $. An element of $ k\sb{x_1, \dots, x_n} $ is just a finite sum of multiples of monomials with coefficients in $ k $. Its degree is the largest degree of any monomial occurring in it. For example, $ 5x_{10}^3 + x_2x_3^{10} - \rb{2 / 3}x_1^7 $ has degree $ 11 $. Typically we will be looking at the case of two variables $ x_1, x_2 $, which we will usually call $ x, y $.
+
+\begin{theorem}[Falting's theorem]
+The general equation in two variables of degree greater than four over $ \Q $ is known to only have finitely many solutions in $ \Q $.
+\end{theorem}
+
+\begin{example}
+$ x^4 + y^4 = 17 $ only has $ \rb{\pm 1, \pm 2} $ and $ \rb{\pm 2, \pm 1} $ as solutions, which is proved only in 2001. $ \rb{x^{100} + 5y^{100} - 7}\rb{x - y} = 0 $ is not a general equation and has infinitely many solutions.
+\end{example}
+
+\begin{example}
+$ x^2 + y^2 = -1 $ has no solutions in $ \Q $. $ x^2 + y^2 = 0 $ has finitely many solutions in $ \Q $ $ \rb{x = y = 0} $. $ x^2 + y^2 = 1 $ has infinitely many solutions in $ \Q $. Let $ x = a / c $ and $ y = b / c $ for $ a, b, c \in \Z $ gives Pythagorean triples $ a^2 + b^2 = c^2 $, such as $ 3^2 + 4^2 = 5^2 $, $ 5^2 + 12^2 = 13^2 $, etc.
+\end{example}
+
+\begin{example}
+$ x^2 + y^2 = 3 $ has solutions in $ \R $ but no solutions in $ \Q $. Equivalently, $ a^2 + b^2 = 3c^2 $ has no solutions with $ a, b, c \in \Z $ except $ a = b = c = 0 $. Suppose we have a solution. Then $ a^2 + b^2 \equiv 0 \mod 3 $. A fact is that if $ n \in \Z $, then $ n^2 \equiv 0 \mod 3 $ if $ 3 \mid n $, or $ n^2 \equiv 1 \mod 3 $ if $ 3 \nmid n $. So $ a \equiv b \equiv 0 \mod 3 $, or $ 3 \mid a, b $. Write $ a = 2A $ and $ b = 3B $. Then $ \rb{3A}^2 + \rb{3B}^2 = 3c^2 $ iff $ 9\rb{A^2 + B^2} = 3c^2 $, iff $ 3\rb{A^2 + B^2} = c^2 $. So $ 3 \mid c^2 $ and $ 3 \mid c $. Write $ c = 3C $. Then $ 3\rb{A^2 + B^2} = \rb{3C}^2 $ iff $ 3\rb{A^2 + B^2} = 9C^2 $, iff $ A^2 + B^2 = 3C^2 $. Thus $ a = b = c = 0 $.
+\end{example}
+
+$ x^2 + y^2 = -1 $ has an obstruction in $ \R $. $ x^2 + y^2 = 3 $ has an obstruction in $ \Q_3 $. Hasse principle will tell us that for general equations of degree two in $ x, y $, there are either infinitely many solutions in $ \Q $ or no solutions, and furthermore either no solutions in $ \R $ or no solutions in $ \Q_p $ for some prime $ p $.
+
+\marginpar{Lecture 2 \\ Friday \\ 05/10/18}
+
+We study plane conics and plane cubics. Plane refers to 2 variables $ x, y $. Conic refers to degree two while cubic refers to degree three.
+
+\begin{example}
+$ x^2 + 2y^2 = 6 $ has a rational solution $ \rb{2, 1} $. Drawing lines at $ \rb{2, 1} $ with rational slope $ y - 1 = m\rb{x - 2} $ will get all rational solutions by intersecting with $ x^2 + 2y^2 = 6 $. Then $ x^2 + 2\rb{m\rb{x - 2} + 1}^2 = 6 $ gives $ \rb{2m^2 + 1}x^2 + 4m\rb{1 - 2m}x + 2\rb{2m^2 - 1}^2 = 0 $. The sum of the roots of this equation is $ 4m\rb{2m - 1} / \rb{2m^2 + 1} $. Since $ x = 2 $ is a root, the other root is
+$$ x_0 = \dfrac{4m\rb{2m - 1}}{2m^2 + 1} - 2 = \dfrac{4m^2 - 4m - 2}{2m^2 + 1}, \qquad y_0 = m\rb{x_0 - 2} + 1 = m\rb{\dfrac{-4m - 4}{2m^2 + 1}} + 1 = \dfrac{-2m^2 - 4m + 1}{2m^2 + 1}. $$
+If $ m \in \Q $, $ \rb{x_0, y_0} \in \Q^2 $ and conversely, which is easy. For example, $ m = 1 $ gives $ \rb{x_0, y_0} = \rb{-2 / 3, -5 / 3} $ and $ m \to \infty $ gives $ \rb{x_0, y_0} \to \rb{2, -1} $. Exercises for $ x^2 + y^2 = 1 $, $ x^2 + y^2 = 0 $, $ xy = 0 $, $ x^2 - y^2 = 0 $.
+\end{example}
+
+\subsection{References}
+
+\begin{enumerate}
+\item J W S Cassels, Lectures on elliptic curves, 1991
+\item J H Silverman, The arithmetic of elliptic curves, 1986
+\item J H Silverman and J Tate, 1992
+\end{enumerate}
+
+\pagebreak
+
+\section{The $ p $-adic numbers}
+
+\begin{definition}
+A \textbf{norm} on a field $ k $ is a function $ \abs{\cdot} : k \to \R $ such that:
+\begin{enumerate}
+\item $ \abs{x} \ge 0 $ with equality iff $ x = 0 $,
+\item $ \abs{xy} = \abs{x}\abs{y} $, and
+\item $ \abs{x + y} \le \abs{x} + \abs{y} $.
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+$ \abs{1} = \abs{-1} = 1 $ and $ \abs{-x} = \abs{-1}\abs{x} = \abs{x} $.
+\end{note}
+
+\begin{example}
+Let $ k = \Q $ or $ \R $ and $ \abs{x} $ is the absolute value of $ x $, that is $ \abs{x} = x $ if $ x \ge 0 $ and $ \abs{x} = -x $ if $ x < 0 $.
+\end{example}
+
+\begin{example}
+Discrete norm $ \abs{x} = 0 $ if $ x = 0 $ and $ \abs{x} = 1 $ if $ x \ne 0 $.
+\end{example}
+
+\begin{remark}
+Any norm on $ k $ defines a metric by $ d\rb{x, y} = \abs{x - y} $. In particular, a norm determines a topology.
+\end{remark}
+
+\begin{example}
+The discrete norm determines the discrete topology.
+\end{example}
+
+\begin{definition}
+Let $ p $ be a prime number. Let $ a / b \in \Q $ with $ \rb{a, b} = 1 $. Let $ p^n $ be the biggest power of $ p $ dividing $ a / b $, so $ a / b = p^n \rb{c / d} $ with $ \rb{c, p} = \rb{d, p} = 1 $. Then the \textbf{$ p $-adic norm} is $ \abs{a / b}_p = p^{-n} $.
+\end{definition}
+
+\begin{example}
+$ \abs{1 / 6}_5 = 1 $, $ \abs{1 / 6}_3 = 3 $. $ p^n \to 0 $ into the $ p $-adic topology as $ n \to \infty $.
+\end{example}
+
+\begin{lemma}
+$ \abs{\cdot}_p $ is a norm on $ \Q $.
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Trivial.
+\item Unique factorisation.
+\item Prove $ 3' : \abs{x + y}_p \le \max\rb{\abs{x}_p, \abs{y}_p} $. Without loss of generality, $ x, y, x + y \ne 0 $. Multiplying $ x, y $ by any power of $ p $ does not affect the truth of $ 3' $, so without loss of generality $ x, y \in \Z $. Then we have to show that $ p^r \mid x $ and $ p^r \mid x + y $, which is obvious.
+\end{enumerate}
+\end{proof}
+
+$ 3' $ is the \textbf{ultrametric inequality}.
+
+\begin{definition}
+If $ \abs{\cdot} $ satisfies $ 3' $, we say that $ \abs{\cdot} $ is \textbf{nonarchimedean}. Otherwise $ \abs{\cdot}_p $ is \textbf{archimedean}.
+\end{definition}
+
+Say that two norms $ \abs{\cdot}_1 $, $ \abs{\cdot}_2 $ on a field $ k $ are equivalent if $ \abs{\cdot}_1 = \abs{\cdot}_2^\alpha $ for some $ \alpha > 0 $. If two norms are equivalent, they define the same topology. \textbf{Ostrowski's theorem} states that up to equivalence, the only norms on $ \Q $ are the usual archimedean norm, the discrete norm, and the $ p $-adic norms.
+
+\marginpar{Lecture 3 \\ Tuesday \\ 09/10/18}
+
+\begin{lemma}
+\label{lem:1.6}
+If $ \abs{\cdot} $ is nonarchimedean and $ \abs{x} \ne \abs{y} $, then $ \abs{x + y} = \max\rb{\abs{x}, \abs{y}} $.
+\end{lemma}
+
+\begin{proof}
+Without loss of generality, $ \abs{x} > \abs{y} $. Write $ x = \rb{x + y} + \rb{-y} $, so $ \abs{x} \le \max\rb{\abs{x + y}, \abs{-y}} $. So equality holds in all inequalities, so $ \abs{x} = \abs{x + y} $.
+\end{proof}
+
+\begin{example}
+Think about $ D\rb{a, r} = \cb{x \mid \abs{x - a} < r} $ and $ D\rb{b, r} = \cb{x \mid \abs{x - b} < r} $. What are the possibilities for $ D\rb{a, r} \cap D\rb{b, r} $?
+\end{example}
+
+\begin{example}
+TODO Exercise: directly prove Lemma \ref{lem:1.6} from the definition.
+\end{example}
+
+Let $ k $ be a field, let $ \abs{\cdot} $ be any norm on $ k $. $ d\rb{x, y} = \abs{x - y} $ is a metric, so $ k $ is a metric space with metric $ d $. We have the usual definitions for sequences $ \rb{x_n} $. Say that $ x_n $ \textbf{converges} to $ x $ if for all $ \epsilon > 0 $, there exists $ N $ such that $ n \ge N $ gives $ \abs{x_n - x} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{Cauchy} if $ \epsilon > 0 $, there exists $ N $ such that $ m, n \ge N $ gives $ \abs{x_n - x_m} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{convergent} if $ x_n $ converges to $ x $ for some $ x \in k $. Write $ x_n \to x $. If $ \rb{x_n} $ is convergent, then $ \rb{x_n} $ is Cauchy. Say that $ k $ is \textbf{complete} with respect to $ \abs{\cdot} $ if all Cauchy sequences converge.
+
+\begin{example}
+Let $ k = \Q $ with the usual archimedean norm $ \abs{\cdot} $. $ 1, 1.4, 1.41, 1.414, \dots \to \sqrt{2} \notin \Q $.
+\end{example}
+
+\begin{example}
+Let $ k = \Q $ with $ \abs{\cdot}_2 $. $ 3, 33, 333, 3333, \dots $ is a Cauchy sequence. In fact, if $ m > n $, $ \abs{x_m - x_n}_2 = 2^{-n} $. So if $ m, n \ge N $, $ \abs{x_m - x_n} \le 2^{-N} $. $ x_n = \rb{10^n - 1} / 3 $ so $ x_n + 1 / 3 = 10^n / 3 = 2^n\rb{5^n / 3} $. $ \abs{x_n + 1 / 3}_2 = 2^{-n} $, so $ x_n + 1 / 3 \to 0 $.
+\end{example}
+
+\begin{example}
+Let $ k = \Q $ with $ \abs{\cdot}_5 $. $ \abs{5^{2^n}}_5 = 5^{-2^n} \to 0 $ as $ n \to \infty $.
+\end{example}
+
+\begin{example}
+Let $ k = \Q $ with $ \abs{\cdot}_2 $. $ \rb{5^{2^n}} $ is $ 5, 25, 625, \dots \to 1 $. Want to show that $ 5^{2^n} - 1 \to 0 $, so that bigger and bigger powers of two divide $ 5^{2^n} - 1 $. Use the lemma that $ t \equiv 1 \mod 2^k $ gives $ t^2 \equiv 1 \mod 2^{k + 1} $.
+\end{example}
+
+\begin{example}
+Let $ k = \Q $ with $ \abs{\cdot}_7 $. $ 5^{2^n} $ is not Cauchy. In fact $ \mod 7 $ it looks like $ 5, 4, 2, 4, 2, \dots $, so $ \abs{x_n - x_{n + 1}}_7 = 1 $.
+\end{example}
+
+\begin{example}
+An example of a Cauchy sequence in $ \Q $ for some $ \abs{\cdot}_p $ which does not converge. Want to find a Cauchy sequence $ \rb{x_n} $ with $ x_n^2 \to 7 $, so write down a sequence $ \rb{x_n} $ such that $ \abs{x_n^2 - 7}_3 \to 0 $. If $ x_1 = 1 $, then $ x_1^2 \equiv 7 \mod 3 $. If $ x_2 = 4 $, then $ x_2^2 \equiv 7 \mod 9 $. Find some $ n \in \N $ such that $ x_3 = 4 + 9n $ and $ x_3^2 \equiv 7 \mod 27 $. $ x_3^2 = \rb{4 + 9n^2} = 16 + 8\rb{9n} + \rb{9n}^2 \equiv 16 + 8\rb{9n} \mod 27 $. So want $ 9 + 8\rb{9n} \equiv 0 \mod 27 $, so $ 1 + 8n \equiv 0 \mod 3 $, such as $ n = 1 $. So $ x_3 = 13 $. Similar $ x_4 = 13 + 27n $ and find some $ n \in \N $.
+\end{example}
+
+\begin{example}
+Show that for all primes $ p $ there is a Cauchy sequence $ \rb{x_n} $ in $ \Q $ for $ \abs{\cdot}_p $ with the property that $ x_n^2 \to t $ for some integer $ t $ which is not a perfect square, such as $ t = 1 - p $ if $ p > 2 $ and $ t = -7 $ if $ p = 2 $. (TODO Exercise)
+\end{example}
+
+There is a general notion of completing a field with respect to a norm. The result is a field $ K $ containing $ k $, for which all Cauchy sequences in $ k $ converge, and such that $ K $ is minimal with this property.
+
+\begin{example}
+Let $ k = \Q $ with the archimedean norm $ \abs{\cdot} $, then $ K = \R $.
+\end{example}
+
+\marginpar{Lecture 4 \\ Thursday \\ 11/10/18}
+
+Let $ k $ be a field and $ \abs{\cdot} $ be a norm on $ k $. Let $ R $ be the ring of Cauchy sequences in $ k $, so elements of $ R $ are $ \rb{x_n} $ for $ x_n \in k $, where $ \rb{x_n} + \rb{y_n} = \rb{x_n + y_n} $ and $ \rb{x_n}\rb{y_n} = \rb{x_ny_n} $.
+
+Let $ I = \cb{\rb{x_n} \in R \mid x_n \to 0 \text{ as } n \to \infty} $. Claim that $ I $ is an ideal in $ R $. $ \rb{x_n}, \rb{y_n} \in I $ then $ \rb{x_n + y_n} \in I $ because $ x_n \to 0 $ and $ y_n \to 0 $ gives $ x_n + y_n \to 0 $. If $ \rb{x_n} \in R $, $ \rb{y_n} \in I $ then $ \rb{x_n} $ is bounded, so $ x_ny_n \to 0 $.
+
+Define the completion of $ k $ to be $ \hat{k} = R / I $. Claim that $ \hat{k} $ is a field, so $ I $ is a maximal ideal of $ R $. Need to show that if $ \rb{x_n} \in R $ with $ x_n \not\to 0 $, then there exists $ \rb{y_n} \in R $ such that $ \rb{x_ny_n} \in 1 + I $. $ x_n \not\to 0 $ gives $ \epsilon, N $ such that $ n \ge N $ gives $ \abs{x_n} \ge \epsilon > 0 $. Set $ y_n = 0 $ if $ n < N $ and $ y_n = 1 / x_n $ if $ n \ge N $. Show that $ \rb{y_n} \in R $ (TODO Exercise). Then $ \rb{x_ny_n} = 0 $ if $ n < N $ and $ \rb{x_ny_n} = 1 $ if $ n \ge N $, so $ x_ny_n \to 1 $ as $ n \to \infty $, as required.
+
+$ k $ is a subfield of $ \hat{k} $ by $ x \mapsto \rb{x} $. Check that $ \hat{k} $ has a natural norm extending $ \abs{\cdot} $ on $ k $, and $ \hat{k} $ is complete with respect to this norm, so $ \abs{\rb{x_n}} = \lim_{n \to \infty} \abs{x_n} $. (TODO Exercise)
+
+Prove that if $ \abs{\cdot} $ on $ k $ is a nonarchimedean norm, then so is the induced norm on $ \hat{k} $. (TODO Exercise) Furthermore, the sequence $ \abs{x_n} $ is eventually constant for any Cauchy sequence $ \abs{x_n} \in R \setminus I $. (TODO Exercise)
+
+\begin{note}
+For $ \abs{\cdot}_p $ on $ \Q $ this means that $ \abs{\cdot} $ is taking values in $ p^{\Z} $.
+\end{note}
+
+\begin{definition}
+The \textbf{$ p $-adic numbers} $ \Q_p $ is the completion of $ \Q $ with respect to the $ p $-adic norm. The \textbf{$ p $-adic integers} $ \Z_p $ is the closed unit disc in $ \Q_p $, so $ \Z_p = \cb{x \in \Q_p \mid \abs{x}_p = 1} $.
+\end{definition}
+
+Prove that $ \Z_p $ is a subring of $ \Q_p $. Use that $ \abs{\cdot}_p $ is nonarchimedean. (TODO Exercise) Also $ \Q \cap \Z_p = \cb{r / s \mid \rb{r, s} = 1, \ p \nmid s} $. In particular $ \Z \subset \Z_p $. (TODO Exercise)
+
+Prove that $ \Q $ is dense in $ \Q_p $. Indeed $ k $ is dense in $ \hat{k} $. (TODO Exercise) A less obvious fact is that $ \Z $ is dense in $ \Z_p $.
+
+\begin{definition}
+Let $ k $ be a field with a norm $ \abs{\cdot} $, and $ \rb{x_n} $ be any sequence. Then $ \sum_{n = 1}^\infty = \lim_{N \to \infty} \sum_{n = 1}^N x_n $, if this limit exists.
+\end{definition}
+
+\begin{lemma}
+\label{lem:1.10}
+If $ k $ is nonarchimedean and $ x_1, \dots, x_r $ satisfy $ \abs{x_i} \le R $ for some $ R $, then $ \abs{\sum_{n = 1}^r x_i} \le R $.
+\end{lemma}
+
+\begin{proof}
+Induction with ultrametric inequality.
+\end{proof}
+
+\begin{corollary}
+\label{cor:1.11}
+If $ k $ is nonarchimedean then $ \rb{x_n} $ is Cauchy iff $ x_n - x_{n + 1} \to 0 $ as $ n \to \infty $.
+\end{corollary}
+
+\begin{proof}
+Forward direction is obvious. Conversely, $ m > n $ gives $ x_m - x_n = \rb{x_m - x_{m - 1}} + \dots + \rb{x_{n + 1} - x_n} $. If $ \abs{x_{i + 1} - x_i} \le \epsilon $ for all $ i \ge N $ then $ \abs{x_m - x_n} \le \epsilon $ for all $ m, n \ge N $ by Lemma \ref{lem:1.10}.
+\end{proof}
+
+\begin{lemma}
+\label{lem:1.12}
+If $ k $ is complete and nonarchimedean then $ \sum_{n = 1}^\infty x_n $ converges iff $ x_n \to 0 $ as $ n \to \infty $. If $ \abs{x_n}^{n - 1} \le R $ for all $ n $ and $ x_n \to 0 $ then $ \abs{\sum_{n = 1}^\infty x_n} \le R $.
+\end{lemma}
+
+\begin{proof}
+Apply Lemma \ref{lem:1.10} and Corollary \ref{cor:1.11} to the sequence $ \rb{\sum_{i = 1}^n x_i} $.
+\end{proof}
+
+\begin{lemma}
+\label{lem:1.13}
+If $ a_n \in \Z $ for all $ n \ge 0 $, then $ \sum_{n = 0}^\infty a_np^n $ converges in $ \Q_p $. If $ a_n = 0 $ for $ n < T $ and $ p \nmid a_T $ then $ \abs{\sum_{n = 0}^\infty a_np^n} = p^{-T} $.
+\end{lemma}
+
+\begin{proof}
+$ \abs{a_np^n}_p \le \abs{p^n}_p = p^{-n} \to 0 $ as $ n \to \infty $, so $ \sum_{n = o}^N a_np^n $ converges by Lemma \ref{lem:1.12}. If $ N \ge T $ then $ \abs{\sum_{n = o}^N a_np^n} = p^{-T} $. (TODO: Exercise, use lemma \ref{lem:1.6})
+\end{proof}
+
+\begin{proposition}
+\label{prop:1.14}
+\hfill
+\begin{enumerate}
+\item If $ a_n \in \cb{0, \dots p - 1} $, then $ \sum_{n = 0}^\infty a_np^n \in \Z_p $. Further more if $ a_n, b_n \in \cb{0, \dots, p - 1} $ and $ \sum_{n = 0}^\infty a_np^n = \sum_{n = 0}^\infty b_np^n $ then $ a_n = b_n $ for all $ n $.
+\item If $ x \in \Z_p $ then there is a unique sequence $ \rb{a_n} $ as in 1 with $ x = \sum_{n = 0}^\infty a_np^n $.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Convergence is Lemma \ref{lem:1.13}. If $ \rb{a_n} \ne \rb{b_n} $ let $ T $ be minimal such that $ a_T \ne b_T $. Then
+$$ \abs{\sum_{n = 0}^\infty a_np^n - \sum_{n = 0}^\infty a_np^n} = \abs{\sum_{n = 0}^\infty \rb{a_n - b_n}p^n} = p^{-T} $$
+by Lemma \ref{lem:1.13}, so $ \sum_{n = 0}^\infty a_np^n \ne \sum_{n = 0}^\infty a_np^n $.
+\item Let $ x \in \Z_p $. Since $ \Q $ is dense in $ \Q_p $ by construction, there exists $ r / s \in \Q $, $ \rb{r, s} = 1 $ with $ \abs{x - r / s}_p < 1 $. Since $ \abs{x}_p \le 1 $, $ \abs{r / s}_p \le 1 $, so $ p \nmid s $. So there exists $ \gamma \in \Z $ with $ \abs{\gamma - r / s}_p < 1 $, so $ s\gamma \equiv r \mod p $. Then $ \abs{\gamma - x}_p < 1 $. Now choose $ a_0 \in \cb{0, \dots, p - 1} $ with $ \gamma \equiv a_0 \mod p $. Then $ \abs{a_0 - x}_p < 1 $. So $ \abs{\rb{a_0 - x} / p}_p \le 1 $, and repeating the process, there exists $ a_1 \in \cb{0, \dots, p - 1} $ with $ \abs{\rb{a_0 - x} / p - a_1}_p < 1 $, and so on. $ \abs{x - a_0 - a_1p}_p \le 1 / p^2 $, etc.
+\end{enumerate}
+\end{proof}
+
+\marginpar{Lecture 5 \\ Friday \\ 12/10/18}
+
+\begin{corollary}
+Every element of $ \Q_p $ has a unique expression as $ a = \sum_{n \ge -T} a_np^n $ for $ a_n \in \cb{0, \dots, p - 1} $, $ a_{-T} \ne 0 $, and $ \abs{a}_p = p^T $.
+\end{corollary}
+
+\begin{proof}
+Given $ a \in \Q_p $, let $ T $ be such that $ \abs{a}_p = p^T $. Apply Proposition \ref{prop:1.14} to $ p^Ta $.
+\end{proof}
+
+\begin{corollary}
+$ \Z $ is dense in $ \Z_p $.
+\end{corollary}
+
+\begin{proof}
+If $ a \in \Z_p $, write $ a = \sum_{n = 0}^\infty a_np^n $. Then $ \sum_{n = 0}^N a_np^n $ is a sequence in $ \Z $ which converges to $ a $.
+\end{proof}
+
+For each $ n \ge 1 $ there is a ring homomorphism $ \Z_p \to \Z / p^n\Z $ that sends $ \sum_{i = 0}^\infty a_ip^i \mapsto \sum_{i = 0}^n a_ip^i $. The kernel of this map is $ p^n\Z_p $, so $ \Z_p / p^n\Z_p \cong \Z / p^n\Z $.
+
+\begin{note}
+In fact, $ \Z_p \cong \lim_{\leftarrow n} \Z / p^n\Z $.
+\end{note}
+
+$ p\Z_p $ is a maximal ideal of $ \Z_p $ because $ \Z_p / p\Z_p = \Z / p\Z $ is a field. If $ a \in \Z_p $, $ a \notin p\Z_p $, then $ a \in \Z_p^* $. Write $ a = a_0 + pa_1 + \dots $ for $ a_0 \in \cb{1, \dots, p - 1} $.
+
+\begin{example}
+$ a = a_0 + pA $. Show that $ a $ has an inverse using the formula for the sum of a geometric progression. (TODO Exercise) For example $ \rb{1 - p}^{-1} = 1 + p + \dots $.
+\end{example}
+
+Alternatively, $ a \in \Z_p $ is in $ p\Z_p $ iff $ \abs{a}_p < 1 $. So if $ a \in \Z_p \setminus p\Z_p $, then $ \abs{a}_p = 1 $. Then $ \abs{1 / a}_p = 1 / \abs{a}_p = 1 $, so $ 1 / a \in \Z_p $. $ 1 / a $ exists because $ \Q_p $ is a field. So $ p\Z_p $ is the unique maximal ideal of $ \Z_p $, so $ \Z_p $ is a local ring. $ \Z_p^* = \Z_p \setminus p\Z_p $ is the group of units. Terminology: $ a \in \Q_p $ is a \textbf{unit} iff $ a \in \Z_p^* $, so iff $ \abs{a}_p = 1 $.
+
+\begin{lemma}
+$ a \in \Z_p^* $ iff $ \abs{a}_p = 1 $.
+\end{lemma}
+
+\begin{proof}
+TODO - bring above paragraph down here.
+\end{proof}
+
+\begin{corollary}
+Every element of $ \Q_p^* = \Q_p \setminus \cb{0} $ is uniquely of the form $ p^nu $ for $ n \in \Z $ and $ u \in \Z_p^* $.
+\end{corollary}
+
+\begin{proof}
+Set $ \abs{a}_p = p^{-n} $, then $ \abs{p^{-n}a}_p = 1 $, so $ u = p^{-n}a $, so $ a = up^n $.
+\end{proof}
+
+Aim is to solve the equation $ x^2 - 7 = 0 $ in $ \Z_3 $ starting with a solution to $ x^2 \equiv 7 \mod 3 $. We did this by solving $ x^2 \equiv 7 \mod 3^n $ for $ n = 1, 2, \dots $. Write $ f\rb{x} = x^2 - 7 $. Then $ \abs{f\rb{1}}_3 = 1 / 3 $, $ \abs{f\rb{4}}_3 = 1 / 9 $, $ \abs{f\rb{13}}_3 = 1 / 27 $, etc. So starting with $ x_0 = 1 $, we construct a sequence $ \rb{x_n} $ with $ \abs{x_{n + 1} - x_n} \le 1 / 3^{n + 1} $ and $ \abs{f\rb{x_{n + 1}}}_3 \le 1 / 3^n $. So in particular $ \rb{x_n} $ is Cauchy, and so converges to some $ x \in \Q_3 $ with $ f\rb{x} = 0 $. Newton-Raphson method over $ \R $ works over $ \Q_p $, and this is called \textbf{Hensel's Lemma}.
+
+\begin{definition}
+If $ R $ is a ring and $ f\rb{X} \in R\sb{X} $ is a polynomial, say $ f\rb{x} = \sum_{n = 0}^m a_nx^n $, then $ f'\rb{x} = \sum_{n = 0}^m na_nx^{n - 1} $.
+\end{definition}
+
+In addition, for any $ x, h $ we have $ f\rb{x + h} = f\rb{x} + hf'\rb{x} + \tfrac{1}{2}h^2f''\rb{x} + \dots $. Why is $ \tfrac{1}{2}f''\rb{x} $ defined? If $ f\rb{x} = \sum_{n = 0}^\infty a_nx^n $, $ \tfrac{1}{2}f''\rb{x} = \sum_{n = 2}^\infty \tfrac{1}{2}n\rb{n - 1}a_nx^{n - 2} $, where $ n\rb{n - 1} $ is even.
+
+\begin{theorem}[Hensel's Lemma]
+Let $ k $ be a field which is complete with respect to a nonarchimedean norm $ \abs{\cdot} $. Let $ R = \cb{x \in k \mid \abs{x} \le 1} $, such as $ k = \Q_p $, $ R = \Z_p $, $ \abs{\cdot} = \abs{\cdot}_p $. Let $ f\rb{x} \in R\sb{x} $, and $ t_0 \in R $ with $ \abs{f\rb{t_0}} > \abs{f'\rb{t_0}}^2 $. Then there is a unique $ t \in R $ with $ f\rb{t} = 0 $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $. Moreover, $ \abs{f'\rb{t_0}} = \abs{f'\rb{t_0}} $, and $ \abs{t_- t_0} = \abs{f\rb{t_0}} / \abs{f'\rb{t_0}} < 1 $.
+\end{theorem}
+
+\begin{example}
+Let $ k = \Q_3 $ and $ f\rb{x} = x^2 - 7 $. Then $ f'\rb{x} = 2x $. $ t_0 = 1 $, so $ \abs{f\rb{t_0}}_3 = \abs{-6}_3 = 1/ 3 $. $ \abs{f'\rb{t_0}}_3 = \abs{2}_3 = 1 $. So there is a unique $ t \in \Z_3 $ with $ t^2 = 7 $ and $ \abs{t - 1}_3 < 1 $, so $ t \equiv 1 \mod 3 $.
+\end{example}
+
+Harder part of the proof of Hensel's Lemma is existence, which is done by constructing a sequence $ t_0, t_1, \dots $ as above. For uniqueness, suppose $ s \ne t $ and $ f\rb{s} = f\rb{t} = 0 $, and $ \abs{s - t_0} < \abs{f'\rb{t_0}} $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $, so $ \abs{s - t} \le \max\rb{\abs{s - t_0}, \abs{t - t_0}} < \abs{f'\rb{t_0}} $. Taylor expansion gives $ f\rb{s} = f\rb{t} + \rb{s - t}f'\rb{t} + \dots $. So there exists $ x \in R $ with $ \rb{s - t}f'\rb{t} = \rb{s - t}^2 = x $. So $ f'\rb{t} = \rb{s - t}x $. $ \abs{f'\rb{t}} = \abs{s - t}\abs{x} \le \abs{s - t} < \abs{f'\rb{t_0}} $. So $ \abs{f'\rb{t}} < \abs{f'\rb{t_0}} $. On the other hand it is easy to show that $ \abs{f'\rb{t}} = \abs{f'\rb{t_0}} $, a contradiction. See handout for the full proof of Hensel's Lemma and some remarks about in what sense it is best possible.
+
+\marginpar{Lecture 6 \\ Tuesday \\ 16/10/18}
+
+What are the squares in $ \Q_p^* $? We know that we can write any element of $ \Q_p^* $ uniquely as $ p^nu $ for $ u $ a unit, that is $ \abs{u}_p = 1 $. Suppose that $ p^nu = \rb{p^rv}^2 $ for $ r \in \Z $ and $ v $ a unit. Then $ p^n = p^{2r} $ and $ u = v^2 $, that is $ n = 2r $ and $ u = v^2 $, that is the squares in $ \Q_p^* $ are exactly the $ p^{2r}u $, where $ u \in \Z_p^* $ is a square. If $ p > 2 $, we claim that $ u $ is a square iff $ u $ is a square modulo $ p $, that is $ u $ is a quadratic residue. If $ u = t^2 $, then $ u \equiv t^2 \mod p $. Conversely, suppose that $ u \equiv t_0^2 \mod p $. Now use Hensel's lemma with $ f\rb{X} = X^2 - u $ and $ t_0 $ as above. $ \abs{f\rb{t_0}}_p = \abs{t_0^2 - u}_p \le \abs{p}_p = 1 / p $. $ \abs{f'\rb{t_0}}_p = \abs{2t_0}_p = \abs{t_0}_p = 1 $. If $ p \mid t_0 $ then $ p \mid u $ because $ u \equiv t_0^2 \mod p $. Hensel's lemma gives a unique $ t \in \Z_p $ such that $ t^2 = u $ and $ \abs{t - t_0} < 1 $, that is $ t \equiv t_0 \mod p $. In this case, the equation $ X^2 = u $ has exactly two solutions, namely $ t $ and $ -t $. In any field, a polynomial of degree $ d $ has at most $ d $ roots. For $ p = 2 $, $ u \in \Z_2^* $ is a square iff there exists $ t_0 $ such that $ u \equiv t_0^2 \mod 8 $, that is $ u \equiv 1 \mod 8 $, since $ \rb{2m + 1}^2 = 4m\rb{m + 1} + 1 \equiv 1 \mod 8 $.
+
+(TODO missing)
+
+\section{Basic algebraic geometry}
+
+We want to consider curves in the plane given by the equations $ f\rb{x, y} = 0 $. We want to understand the points of intersection of two such curves.
+
+\begin{example}
+If $ C $ has degree two and $ g $ has degree one, we expect to get in general two points of intersection.
+\end{example}
+
+More generally, if $ f $ has degree $ a $ and $ g $ has degree $ b $, can hope to get $ ab $ points of intersection. This can fail to be true in several different ways.
+\begin{enumerate}
+\item $ y = x^2 $ and $ y = 0 $, that is $ f = y - x^2 $, $ g = y $, meet only at $ \rb{0, 0} $. Solution is to count this point with multiplicity two. In this course, we will explain exactly when the multiplicity is one.
+\item For $ x^2 - y^2 = 0 $ and $ x^3 - y^3 = 0 $, any point with $ x = y $ is on the intersection. Solution is to demand that $ f $ and $ g $ are coprime, that is they have no common factor, unlike $ x^2 - y^2 = \rb{x - y}\rb{x + y} $ and $ x^3 - y^3 = \rb{x - y}\rb{x^2 + xy + y^2} $.
+\item $ y = x^2 $ and $ y = 2 $ intersect at $ \rb{\pm \sqrt{2}, \sqrt{2}} $. But if for example we are working over $ \Q $, these points do not exist. Solution is to only work over fields which are algebraically closed, such as $ \C $.
+\item $ y = x + 1 $ and $ y = x $ meet at infinity in projective space.
+\end{enumerate}
+
+\begin{definition}
+A field $ K $ is \textbf{algebraically closed} if every polynomial over $ K $ of degree at least one factors as a product of linear factors.
+\end{definition}
+
+\begin{example}
+$ K = \C $ is algebraically closed. $ K = \Q, \R $ is not algebraically closed. Any finite field is not algebraically closed.
+\end{example}
+
+A basic fact is if $ k $ is an field, there exists an algebraically closed field $ K $ with $ k \subset K $, and in fact there exists a smallest possible choice, the \textbf{algebraic closure} of $ k $.
+
+\marginpar{Lecture 7 \\ Thursday \\ 18/10/18}
+
+\begin{definition}
+If $ f \in k\sb{x_1, \dots, x_n} $ of degree $ d $, then the \textbf{homogenisation} of $ f $ is the polynomial $ F \in k\sb{X_1, \dots, X_{n + 1}} $ obtained as follows. If
+$$ f = \sum_{\underline{i} = \rb{i_1, \dots, i_n} \in \Z_{\ge 0}^n} a_{\underline{i}}x_1^{i_1} \dots x_n^{i_n} \qquad \implies \qquad F = \sum_{\underline{i}} a_{\underline{i}}X_1^{i_1} \dots X_n^{i_n}X_{n + 1}^{d - \rb{i_1 + \dots + i_n}}. $$
+Given $ G \in k\sb{X_1, \dots, X_{n + 1}} $ homogeneous of degree $ d $, that is every monomial in $ G $ has degree exactly $ d $, then for each $ 1 \le i \le n + 1 $, the $ i $-th \textbf{dehomogenisation} is given by setting $ X_i = 1 $ and writing $ x_j $ for $ X_j $.
+\end{definition}
+
+\begin{example}
+Let $ G = X_1^2X_2^2 + X_3^4 + X_2X_3^2 $, so $ n = 2 $. First dehomogenisation is $ x_2^2 + x_3^4 + x_2x_3^3 $. Second dehomogenisation is $ x_1^2 + x_3^4 + x_3^3 $. Third dehomogenisation is $ x_1^2x_2^2 + 1 + x_2 $.
+\end{example}
+
+If $ n = 2 $, usually write $ x, y $ and $ X, Y, Z $ for our variables.
+
+\begin{example}
+If $ f = y^2 + x^3 + x + 1 $, $ F = Y^2Z + X^3 + XZ^2 + Z^3 $. Dehomogenisations of $ F $ are $ y^2z + 1 + z^2 + z^3 $, $ z + x^3 + xz^2 + z^3 $, and $ y^2 + x^3 + x + 1 $.
+\end{example}
+
+Let $ k $ be a field, and define an equivalence relation on $ k^{n + 1} $ by $ \rb{a_1, \dots, a_{n + 1}} \sim \rb{b_1, \dots, b_{n + 1}} $ iff there exists $ \lambda \in k^* $ such that $ b_i = \lambda a_i $ for $ 1 \le i \le n + 1 $.
+
+\begin{definition}
+For each $ n \ge 0 $, $ \P^n\rb{k} $, \textbf{the $ n $-dimensional projective space over $ k $}, is defined to be
+$$ k^{n + 1} \setminus \cb{\rb{0, \dots, 0}} / \sim. $$
+Write $ \sb{a_1 : \dots : a_{n + 1}} $ for the equivalence class of $ \rb{a_1, \dots, a_{n + 1}} $ in $ \P^n\rb{k} $. This makes sense as long as some $ a_i \ne 0 $.
+\end{definition}
+
+Let us see why we can think of $ \P^n\rb{k} $ as being $ k^n $ together with some points at infinity.
+
+\begin{example}
+$ \P^1\rb{k} $ should be $ k $ together with a point infinity. Any point of $ \P^1\rb{k} $ is of the form $ \sb{a_1 : a_2} $ with $ a_1, a_2 $ not both zero. If $ a_2 \ne 0 $, then $ \sb{a_1 : a_2} = \sb{a_1 / a_2 : 1} $. On the other hand, if $ \sb{a : 1} = \sb{b : 1} $, then there exists $ \lambda \in k^* $ such that $ \rb{a, 1} = \lambda\rb{b, 1} = \rb{b\lambda, \lambda} $, so $ \lambda = 1 $ and $ a = b $. So there is a bijection between $ k $ and the points $ \sb{a_1 : a_2} $ with $ a_2 \ne 0 $, given by $ k \to \P^1\rb{k} $ by $ a \mapsto \sb{a : 1} $. The remaining points of $ \P^1\rb{k} $ are those with $ a_2 = 0 $. Then $ \sb{a_1 : 0} = \sb{1 : 0} $, so we have exactly one point in $ \P^1\rb{k} \setminus k $, the point at infinity.
+\end{example}
+
+For each $ 1 \le i \le n + 1 $, let $ \phi_i : k^n \to \P^n\rb{k} $ be the map putting one in the $ i $-th coordinate, that is $ \rb{a_1, \dots, a_n} \mapsto \sb{a_1 : \dots : a_{i - 1} : 1 : a_i : \dots : a_n} $.
+
+\begin{example}
+$ \phi_{n + 1}\rb{\rb{a_1, \dots, a_n}} = \sb{a_1 : \dots : a_n : 1} $.
+\end{example}
+
+\begin{lemma}
+Each map $ \phi_i $ is injective.
+\end{lemma}
+
+\begin{proof}
+If $ \sb{a_i : \dots : a_{i - 1} : 1 : a_i : \dots a_n} = \sb{b_1 : \dots : b_{i - 1} : 1 : b_i : \dots : b_n} $ then $ \rb{a_1, \dots, a_{i - 1}, 1, a_i, \dots, a_n} = \lambda\rb{b_1, \dots, b_{i - 1}, 1, b_i, \dots, b_n} $. Looking at $ i $-th coordinate, $ \lambda = 1 $, so $ a_j = b_j $ for all $ j $.
+\end{proof}
+
+Usually think of $ k^n $ as lining inside $ \P^n\rb{k} $ via $ \phi_{n + 1} $. Think of the complement as the points at infinity, that is the points $ \sb{x_1 : \dots : x_n : 0} $. Given a polynomial $ F \in k\sb{X_1, \dots, X_{n + 1}} $, it never makes sense to ask what the value of $ F $ at $ \sb{a_1 : \dots : a_{n + 1}} \in \P^n\rb{k} $ is, because $ \sb{a_1 : \dots : a_{n + 1}} = \sb{\lambda a_1 : \dots : \lambda a_{n + 1}} $. On the other hand, if $ F $ is homogeneous of degree $ d $, then $ F\rb{\lambda a_1, \dots, \lambda a_{n + 1}} = \lambda^d F\rb{a_1, \dots, a_{n + 1}} $, so it does makes sense to ask whether or not $ F\rb{\sb{a_1 : \dots : a_{n + 1}}} = 0 $. The \textbf{graph} of $ F\rb{X, Y, Z} $ homogeneous are the points $ P $ of $ \P^2\rb{k} $ where $ F\rb{P} = 0 $. If $ F $ is the homogenisation of $ f $, then the graph of $ F $ is the graph of $ f $ together with points at infinity. (TODO Exercise: $ f\rb{a, b} = 0 $ iff $ F\rb{a, b, 1} = 0 $)
+
+\begin{example}
+$ f $ is a line, say $ f = y - mx - c $, so $ F = Y - mX - cZ $. What are the points at infinity? If $ Z = 0 $ and $ Y = mX $, that is $ \sb{1 : m : 0} $, the line $ y = mx + c $ has one point at infinity, namely $ \sb{1 : m : 0} $. If $ X = 0 $, points at infinity are $ Z = 0 $, $ \sb{0 : Y : 0} = \sb{0 : 1 : 0} $. So two lines meet at infinity iff they are parallel.
+\end{example}
+
+\marginpar{Lecture 8 \\ Friday \\ 19/10/18}
+
+Proof of the following theorem is in Fulton's Algebraic Curves.
+
+\begin{theorem}[Bézout's theorem]
+\label{thm:2.6}
+Let $ F, G $ be homogeneous polynomials in $ k\sb{X, Y, Z} $ of degrees $ a, b $ respectively. If $ F $ and $ G $ have no common factors, and $ k $ is algebraically closed, then the graphs of $ F = 0 $ and $ G = 0 $ meet at $ ab $ points in $ \P^2\rb{k} $, counted with multiplicities.
+\end{theorem}
+
+\begin{corollary}
+If $ F, G $ are as in Theorem \ref{thm:2.6}, and for some $ k $, $ F = 0 $ and $ G = 0 $ meet at more than $ ab $ points with multiplicity, then $ F $ and $ G $ have a common factor.
+\end{corollary}
+
+\begin{definition}
+If $ f \in k\sb{x_1, \dots, x_n} $ is a polynomial, and let $ P = \rb{a_1, \dots, a_n} \in k^n $ with $ f\rb{P} = 0 $. Then $ P $ is a \textbf{smooth} point of the graph of $ f $, or a \textbf{nonsingular} point, if for some $ i $, $ \rb{\partial f / \partial x}\rb{P} \ne 0 $. A singular point is one for which all $ \rb{\partial f / \partial x_i}\rb{P} = 0 $ for $ 1 \le i \le n $.
+\end{definition}
+
+\begin{example}
+$ \rb{\partial / \partial x_2}\rb{x_1x_2^5} = 5x_1x_2^4 $.
+\end{example}
+
+\begin{example}
+If $ f = x^2 - y^5 $, $ \partial f / \partial x = 2x $ and $ \partial f / \partial y = -5y^4 $. $ \rb{0, 0} $ is singular and $ \rb{1, 1} $ is nonsingular.
+\end{example}
+
+Motivation is that tangent space to $ f = 0 $ at $ P $ should be $ \sum_{i = 1}^n \rb{\partial f / \partial x_i}\rb{P}\rb{x_i - a_i} = 0 $. Generalising to projective space, consider $ F \in k\sb{X_1, \dots, X_{n + 1}} $ homogeneous. Consider $ P $ with $ F\rb{P} = 0 $. Say that $ P $ is nonsingular if at least one $ \rb{\partial F / \partial X_i}\rb{P} \ne 0 $ for $ 1 \le i \le n + 1 $, singular if all $ \rb{\partial F / \partial X_i}\rb{P} = 0 $.
+
+A fact is $ Im\rb{P} \in Im\rb{\phi_i} $ for $ \phi_i : k^n \to \P^n\rb{k} $ insert $ 1 $ at $ i $-th coordinate. Then $ P $ is nonsingular as a point of $ F = 0 $ iff the corresponding point $ \phi_i^{-1}\rb{P} $ is nonsingular for the $ i $-th dehomogenisation of $ F $. A key fact is if $ F $ is homogeneous of degree $ d $, then $ dF = \sum_{i = 0}^{n + 1} X_i\rb{\partial F / \partial X_i} $.
+
+\begin{definition}
+Say the graph of $ f $ or $ F $ is nonsingular, or smooth, if it is nonsingular at every point of $ k^n $ or $ \P^n\rb{k} $ respectively.
+\end{definition}
+
+\begin{example}
+Any polynomial of degree one has a nonsingular graph. If $ f = \sum_{i = 1}^n a_ix_i $, then $ \partial f / \partial x_i = a_i $.
+\end{example}
+
+\begin{example}
+Let $ k = \Q $.
+\begin{enumerate}
+\item $ y^2 = x^2\rb{x + 1} = x^3 + x^2 $. If $ f = y^2 - x^3 - x^2 $, then $ \partial f / \partial x = -3x^2 - 2x $ and $ \partial f / \partial y = 2y $. So if $ f $ is singular, $ y = 0 $, so $ x = 0 $ or $ x = -1 $, so $ x = 0 $. So $ \rb{0, 0} $ is the only singular point.
+\item If $ f = y^2 $, then $ \partial f / \partial x = 0 $ and $ \partial f / \partial y = 2y $. So any point $ \rb{x, 0} $ is singular.
+\item $ y^2 = \rb{x^2 - 2}^2 $ has singular points $ \rb{\pm \sqrt{2}, 0} $. Still say that this is singular, even though the singular points are not defined over $ \Q $.
+\end{enumerate}
+\end{example}
+
+\begin{example}
+If $ y = x + 1 $, then $ F = Y - X - Z $. $ \partial F / \partial X = -1 $, $ \partial F / \partial Y = 1 $, $ \partial F / \partial Z = -1 $. This is non singular.
+\end{example}
+
+\begin{example}
+If $ y = x^3 $, then $ F = YZ^2 - X^3 $. $ \partial F / \partial X = -3X^2 $, $ \partial F / \partial Y = Z^2 $, $ \partial F / \partial Z = 2YZ $. So $ X = Z = 0 $, that is $ \sb{0 : 1 : 0} $ is a singular point. Homogenise with respect to $ Y $ gives $ z^2 - x^3 = 0 $ singular at $ \rb{x, z} = \rb{0, 0} $.
+\end{example}
+
+\begin{theorem}
+\label{thm:2.10}
+If $ f, g \in k\sb{x, y} $ then a point $ P $ on $ f = 0 $ and $ g = 0 $ has multiplicity one iff
+\begin{enumerate}
+\item $ P $ is a nonsingular point for both $ f = 0 $ and $ g = 0 $, and
+\item the tangent lines to $ f = 0 $ and $ g = 0 $ at $ P $ are distinct.
+\end{enumerate}
+Tangent line at $ P $ is
+$$ \rb{\partial f / \partial x}\rb{P}\rb{x - x\rb{P}} + \rb{\partial f / \partial y}\rb{P}\rb{x - y\rb{P}} = 0. $$
+\end{theorem}
+
+\section{Plane conics}
+
+Let $ k $ be a field. $ k\sb{X} $ is a PID, so a UFD. $ k\sb{X_1, \dots, X_n} $ is a UFD, but not a PID.
+
+\begin{example}
+$ \rb{X_1, X_2} $ in $ k\sb{X_1, X_2} $ is not principal.
+\end{example}
+
+If $ k $ is algebraically closed, then the prime ideals of $ k\sb{X} $ are just $ \rb{0} $ and $ \rb{X - \alpha} $ for $ \alpha \in K $. If $ k $ is not algebraically closed, you have more.
+
+\begin{example}
+$ \rb{X^2 - 2} $ is a prime ideal of $ \Q\sb{X} $.
+\end{example}
+
+Even if $ k $ is algebraically closed, there are many prime ideals in $ k\sb{X, Y} $ than in $ k\sb{X} $.
+
+\begin{example}
+$ X^2 - Y^2 - 1 $ does not factor in $ \C\sb{X, Y} $.
+\end{example}
+
+\marginpar{Lecture 9 \\ Tuesday \\ 23/10/18}
+
+A plane conic is just the graph of some $ f \in k\sb{x, y} $ where $ f $ has degree two. Same terminology also covers $ F = 0 $ for $ F \in k\sb{X, Y, Z} $ homogeneous of degree two. The next steps are
+\begin{enumerate}
+\item to understand when this is singular,
+\item to understand how to find all solutions to $ f = 0 $ or $ F = 0 $ if it is singular, and
+\item to understand how to find all solutions to $ f = 0 $ in the nonsingular case given one solution.
+\end{enumerate}
+Then in the next section we will specialise to $ k = \Q $ and see how to find solutions, or prove there are not any.
+
+\begin{example}
+$ x^2 - y^2 $ is singular, because $ \rb{0, 0} $ is a singular point.
+\end{example}
+
+\begin{algorithm}[Checking if $ f = 0 $ is singular]
+Suppose $ f \in k\sb{x, y} $ degree two. Then any singular points are given by solving $ \partial f / \partial x = 0 $, $ \partial f / \partial y = 0 $. These are linear, so solve them and substitute back into $ f = 0 $.
+\end{algorithm}
+
+\begin{example}
+Let $ f = x^2 - y^2 - 1 $. $ \partial f / \partial x = 2x $ and $ \partial f / \partial y = -2y $ gives $ x = y = 0 $, so $ f\rb{0, 0} \ne 0 $. So $ f $ is nonsingular.
+\end{example}
+
+\begin{example}
+Let $ f = x^2 - 2xy + y^2 = \rb{x - y}^2 $. $ \partial f / \partial x = 2x - 2y $ and $ \partial f / \partial y = 2y - 2x $. If characteristic of $ k \ne 2 $, solutions are $ x = y $, and any such point is a solution. So every point is singular.
+\end{example}
+
+\begin{theorem}
+Let $ k $ be algebraically closed, and let $ f \in k\sb{X, Y, Z} $ be homogeneous of degree two. Then $ f $ has a singular point in $ \P^2\rb{k} $ iff $ F $ is a product of two linear factors.
+\end{theorem}
+
+\begin{proof}
+If $ F $ factors, then any point of intersection of the two lines is a singular point. (TODO Exercise) The lines do meet, by Bézout. Suppose conversely that $ P $ is a singular point of $ F = 0 $. Let $ Q $ be any other point of $ F = 0 $, and let $ L $ be the line joining $ P $ and $ Q $, so $ L $ is given by some equation $ G = 0 $, where $ G $ has degree one. If $ F = GH $ for some $ H $, then we are done. Otherwise, $ F $ and $ G $ are coprime because $ G $ has degree one, so has no proper factors. So by Bézout's theorem, $ F = 0 $ and $ G = 0 $ meet in exactly two points, counted with multiplicity. Since $ P $ is a singular point of $ F = 0 $, it follows from Theorem \ref{thm:2.10} that the multiplicity of $ P $ is at least $ 2 + 1 = 3 $, a contradiction. So $ G $ is a factor of $ F $, as required.
+\end{proof}
+
+\begin{algorithm}[Finding all rational points on a singular conic]
+\hfill
+\begin{enumerate}
+\item Find the singular point.
+\item Write down another point.
+\item Factor the conic as a product of linear factors.
+\item Solve the two linear equations.
+\end{enumerate}
+\end{algorithm}
+
+\begin{example}
+Let $ F = X^2 - 2Y^2 $. Singular point is $ 2X = -4Y = 0 $, so $ X = Y = 0 $. Any other point is $ Y = 1 $ and $ X = \sqrt{2} $. $ X = \sqrt{2}Y $ is the line through these two points. So $ X - 2Y $ is a factor of $ X^2 - 2Y^2 $, and indeed $ X^2 - 2Y^2 = \rb{X + \sqrt{2}Y}\rb{X - \sqrt{2}Y} $. So if $ k = \C $, then the solutions are $ \rb{\pm\sqrt{2}t, t} $ for $ t \in \C $. If $ k = \Q $, the only solution is $ \rb{0, 0} $.
+\end{example}
+
+\begin{example}
+Now for a nonsingular case, let $ x^2 + 2y^2 = 6 $. Start with one solution, such as $ \rb{2, 1} $. Find all solutions by drawing lines through this point.
+\end{example}
+
+\begin{algorithm}
+Let $ F $ be a nonsingular conic over some field $ k $, and suppose that we are given a point with coordinates in $ k $ where $ F = 0 $. Then we can find all points by drawing lines with rational slope through this point, and finding the second point of intersection with $ F = 0 $.
+\end{algorithm}
+
+\begin{note}
+If $ k $ is algebraically closed, then Bézout tells us that we have exactly two points of intersection, when counted with multiplicity. Since $ f $ is nonsingular, and any line is nonsingular, the only way you can have a multiplicity is if the line you draw is the tangent line at that point. If $ k $ is not algebraically closed, just need to check that the other point of intersection has coordinates in $ k $ iff the slope of the line joining the points is in $ k $. (TODO Exercise)
+\end{note}
+
+\marginpar{Lecture 10 \\ Thursday \\ 25/10/18}
+
+Lecture 10 is a problem class.
+
+\marginpar{Lecture 11 \\ Friday \\ 26/10/18}
+
+\section{The Hasse principle}
+
+We have seen that for any field $ k $, and any plane conic, there are algorithms to
+\begin{enumerate}
+\item check if the conic is singular or not,
+\item if it is singular, write it as a product of two linear factors, and so find all the points over $ k $, and
+\item if it is nonsingular, or smooth, find all points over $ k $ given one such point, by drawing lines through this point.
+\end{enumerate}
+What is missing is given a nonsingular curve, determine if it has any points over $ k $, and find such a point if there is one. For $ k = \Q $, we will do this by using the cases $ k = \Q_p $ for all primes $ p $. Over $ \Q_p $, it is not so hard to check if there are points. Use Hensel's lemma to reduce modulo $ p $, use quadratic reciprocity. Very easy over $ \R $. Hasse's principle says a nonsingular plane conic over $ \Q $ has points over $ \Q $ if and only if it does over $ \Q_p $ and $ \R $ for all $ p $. Forward direction is trivial, converse direction is harder. Crucially, this holds for conics, that is polynomials of degree two, but not true for degree three or higher.
+
+\begin{example}
+$ 3X^3 + 4Y^3 + 5Z^3 $.
+\end{example}
+
+\begin{example}
+$ X^2 + Y^2 = 6 $ has no solution in $ \Q_3 $ gives none in $ \Q $. $ X^2 + Y^2 = -1 $ has no solution in $ \R $ gives none in $ \Q $.
+\end{example}
+
+Basic idea is if we have solutions to some equation in every $ \Q_p $, we have solutions modulo $ N $ for all $ N \in \Z $. Use Chinese remainder theorem to reduce to $ N = p^k $, Hensel's Lemma says that equations have solutions in $ \Z_p $ iff modulo $ p^k $ for all $ k $. We would like a technique for upgrading solutions to congruences to solutions to equations in $ \Q $ or in $ \Z $. Aim is to prove that if $ p \equiv 1 \mod 4 $ then $ p = x^2 + y^2 $ for some $ x, y \in \Z $. Input is $ n $ such that $ n^2 \equiv -1 \mod p $.
+
+\begin{lemma}
+\label{lem:4.1}
+If $ U \subset \R^n $ is measurable, or just open, and its measure, or volume, is bigger than $ m $, then we can find distinct points $ c_0, \dots, c_m $ such that for all $ i $, $ c_0 - c_i \in \Z^n $.
+\end{lemma}
+
+\begin{proof}
+Let $ C $ be the unit cube, $ C = \cb{\rb{x_1, \dots, x_n} \in \R^n \mid \forall i, \ 0 \le x_i < 1} $. By assumption $ \int_{\R^n} 1_U\rb{x} dx > m $ where
+$$ 1_U\rb{x} = \begin{cases} 1 & x \in U \\ 0 & x \notin U \end{cases}. $$
+$ \int_{\R^n} 1_U\rb{x} dx = \int_C \sum_{t \in \Z^n} 1_U\rb{x + t}dx > m $. The measure of $ C $ is $ 1 $, so there exists $ x \in C $ such that $ \sum_{t \in \Z^n} 1_U\rb{x + t} > m $. So there exists $ t_0, \dots, t_m \in \Z^n $, $ x \in C $ such that $ x + t_i \in U $ for all $ i $. Set $ c_i = x + t_i $.
+\end{proof}
+
+\begin{definition}
+Say $ U $ is \textbf{convex} if $ x, y \in U $ and $ \lambda \in \sb{0, 1} $ gives $ \lambda x + \rb{1 - \lambda}y \in U $. Say that $ U $ is \textbf{symmetric} if $ x \in U $ gives $ -x \in U $.
+\end{definition}
+
+\begin{corollary}[Minkowski]
+\label{cor:4.3}
+If $ \Lambda \in \Z^n $ is a finite index subgroup, and if $ V $ is convex and symmetric, with measure greater than $ 2^n\sb{\Z^n : \Lambda} $, then $ V \cap \Lambda \ne \cb{0} $.
+\end{corollary}
+
+\begin{remark}
+$ 0 \in V $, so given $ x \in V $, $ -x \in V $, so $ \tfrac{1}{2}\rb{x + \rb{-x}} \in V $.
+\end{remark}
+
+A \textbf{lattice} is a finite index subgroup of $ \Z^n $.
+
+\begin{proof}
+Set $ U = \tfrac{1}{2}V = \cb{\tfrac{1}{2}x \mid x \in V} $. So measure of $ U $ is greater than $ \sb{\Z^n : \Lambda} = m $. By Lemma \ref{lem:4.1}, there exists $ c_0, \dots, c_m \in U $ such that $ c_i - c_0 \in \Z^n $ for all $ i $. Consider $ c_0 - c_0, \dots, c_m - c_0 \in \Z^n $. We have $ m + 1 $ differences, so there exists $ i \ne j $ such that $ \rb{c_i - c_0} - \rb{c_j - c_0} \in \Lambda $, that is $ c_i - c_j \in \Lambda $, $ c_i - c_j \ne 0 $. Since $ c_i - c_j = \tfrac{1}{2}\rb{2c_i - 2c_j} $, $ 2c_i, 2c_j \in V $ by definition, and $ -2c_j \in V $ by symmetry, so $ \tfrac{1}{2}\rb{2c_i - 2c_j} \in V $ by convexity. How do you use this to prove that $ p = x^2 + y^2 $?
+\end{proof}
+
+\marginpar{Lecture 12 \\ Tuesday \\ 30/10/18}
+
+\begin{theorem}
+If $ n \in \Z $ and there exists $ t $ such that $ t^2 \equiv -1 \mod n $, then there exists $ x, y \in \Z $ such that $ x^2 + y^2 = n $.
+\end{theorem}
+
+\begin{proof}
+$ \Lambda = \cb{\rb{x, y} \mid y \equiv tx \mod n} \subseteq \Z^2 $. $ \Lambda = Ker\rb{\Z^2 \to \Z / n\Z} $ by $ \rb{x, y} \mapsto y - tx $. This is surjective, so by the first isomorphism theorem, $ \Z^2 / \Lambda \cong \Z / n\Z $. So $ \sb{\Z^2 : \Lambda} = \#\rb{\Z / n\Z} = n $. Let $ V = \cb{\rb{x, y} \mid x^2 + y^2 < 2n} $. Measure of $ V $ is $ \pi\rb{\sqrt{n}}^2 = 2\pi n = 2^2\sb{\Z^2 : \Lambda} = 4n $ because $ \pi > 2 $. So by Corollary \ref{cor:4.3}, there exists $ \rb{x, y} \in \Lambda \cap V $ such that $ \rb{x, y} \ne \rb{0, 0} $. $ \rb{x, y} \in V $ gives $ 0 < x^2 + y^2 < 2n $. $ \rb{x, y} \in \Lambda $ gives $ x^2 + y^2 \equiv x^2\rb{t^2 + 1} \equiv 0 \mod n $. So $ x^2 + y^2 = n $, as required.
+\end{proof}
+
+Want to consider plane conics over $ \Q $, that is homogeneous equations of degree two in $ X, Y, Z $ . Completing the square, that is existence of orthogonal basis, can write this in the form $ aX^2 + bY^2 + cZ^2 $. If this is nonsingular, $ abc \ne 0 $. Conversely if $ abc \ne 0 $, this is nonsingular. Rescaling $ X, Y, Z $, we can change $ a, b, c $ by squares of elements of $ \Q^* $. So without loss of generality, $ a, b, c $ are all in $ \Z $. We can then furthermore arrange by rescaling again that each of $ a, b, c $ is squarefree, that is not divisible by the square of any prime. If $ a, b, c $ share a common factor, we can divide by it, so we can assume that $ \rb{a, b, c} = 1 $. If $ p \mid a $, $ p \mid b $, so $ p \mid c $, we can replace $ \rb{a, b, c} $ by $ \rb{a / p, b / p, pc} $ since $ aX^2 + bY^2 + cZ^2 = p\rb{\rb{a / p}X^2 + \rb{b / p}Y^2 + pc\rb{Z / p}^2} $. Repeating this, we can assume that $ \rb{a, b} = 1 $, $ \rb{b, c} = 1 $, $ \rb{c, a} = 1 $. So without loss of generality $ aX^2 + bY^2 + cZ^2 $, $ a, b, c $ nonzero squarefree integers, pairwise coprime. Let $ \Sigma = \cb{p \mid 2abc} $ for $ p $ prime.
+
+\begin{lemma}
+Write $ F = aX^2 + bY^2 + cZ^2 $ as above. Then the following are equivalent.
+\begin{enumerate}
+\item $ F = 0 $ has infinitely many solutions in $ \P^2\rb{\Q} $.
+\item $ F = 0 $ has a solution in $ \P^2\rb{\Q} $.
+\item $ F = 0 $ has solutions in $ \P^2\rb{\Q_p} $ for all $ p $ and in $ \P^2\rb{\R} $.
+\item $ F = 0 $ has solutions in $ \P^2\rb{\Q_p} $ for all $ p \in \Sigma $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$ 1 \implies 2 \implies 3 \implies 4 $. $ 2 \implies 1 $ by drawing lines through a point. So we need to do $ 4 \implies 2 $. Use Corollary \ref{cor:4.3} in $ \Z^3 $. Want to find $ V, \Lambda $ with measure of $ V $ greater than $ 2^3\sb{\Z^3 : \Lambda} $, so that $ V \cap \Lambda = \cb{0} $. Want to know that we will have $ ax^2 + by^2 + cz^2 = 0 $ if $ \rb{x, y, z} \in V \cap \Lambda $. Choose $ V = \cb{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}} $. This has measure $ \tfrac{\pi}{3} \cdot 2^3 \cdot 4\abs{abc} $. So to prove the theorem, it is enough to find $ \Lambda $ with $ \sb{\Z^3 : \Lambda} = 4\abs{abc} $, and satisfying $ \rb{x, y, z} \in \Lambda $ gives $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4\abs{abc} $. So if $ \rb{x, y, z} \in V \cap \Lambda $ then $ 0 \le \abs{ax^2 + by^2 + cz^2} < \abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc} $, so $ ax^2 + by^2 + cz^2 = 0 $.
+\end{proof}
+
+\end{document}
