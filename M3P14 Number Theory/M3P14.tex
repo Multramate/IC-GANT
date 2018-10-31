@@ -31,6 +31,8 @@
 \newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
 \newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
 
+\newcommand{\legendre}[2]{\rb{\tfrac{#1}{#2}}}
+
 \theoremstyle{definition}\newtheorem{definition}{Definition}
 \theoremstyle{definition}\newtheorem*{remark}{Remark}
 \theoremstyle{definition}\newtheorem*{example}{Example}
@@ -731,7 +733,7 @@ Imagine that you have a system where you need to store passwords for different u
 Let $ p $ be a prime number.
 
 \begin{definition}
-If $ \rb{a, p} = 1 $, then $ a $ is a \textbf{quadratic residue} (QR) if and only if there is a solution to $ x^2 \equiv a \mod p $. If $ \rb{a, p} = 1 $ and is not a quadratic residue, it is called a \textbf{quadratic nonresidue} (QNR).
+If $ \rb{a, p} = 1 $, then $ a $ is a \textbf{quadratic residue} (QR) if and only if there is a solution to $ x^2 \equiv a \mod p $. If $ \rb{a, p} = 1 $ and is not a QR, it is called a \textbf{quadratic nonresidue} (QNR).
 \end{definition}
 
 \begin{example}
@@ -763,9 +765,77 @@ Let $ H $ be the image of $ \rb{\Z / p\Z}^* \to \rb{\Z / p\Z}^* $ by $ x \mapsto
 
 \begin{definition}
 Let $ a $ be an integer and $ p $ a prime. Then
-$$ \rb{\dfrac{a}{p}} = \begin{cases} 1 & a \text{ is a QR modulo } p \\ 0 & p \mid a \\ -1 & a \text{ is a QNR modulo } p \end{cases}. $$
+$$ \legendre{a}{p} = \begin{cases} 1 & a \text{ is a QR modulo } p \\ 0 & p \mid a \\ -1 & a \text{ is a QNR modulo } p \end{cases}. $$
 \end{definition}
 
-Proposition \ref{prop:35} can be restated as saying that $ \rb{\Z / p\Z}^* \to \cb{\pm 1} $ by $ a \mapsto \rb{a / p} $ is a group homomorphism, that is $ \rb{ab / p} = \rb{a / p}\rb{b / p} $. Even holds if we do not assume that $ \rb{a, p} = \rb{b, p} = 1 $.
+Proposition \ref{prop:35} can be restated as saying that $ \rb{\Z / p\Z}^* \to \cb{\pm 1} $ by $ a \mapsto \legendre{a}{p} $ is a group homomorphism, that is $ \legendre{ab}{p} = \legendre{a}{p}\legendre{a}{p} $. Even holds if we do not assume that $ \rb{a, p} = \rb{b, p} = 1 $.
+
+\marginpar{Lecture 11 \\ Tuesday \\ 30/10/18}
+
+\begin{theorem}[Euler's criterion]
+If $ p $ is an odd prime, and $ p \nmid a $, then $ \legendre{a}{p} \equiv a^{\rb{p - 1} / 2} \mod p $.
+\end{theorem}
+
+\begin{proof}
+Let $ g $ be a primitive root modulo $ p $, and write $ a \equiv g^r \mod p $ for $ 0 \le r < p - 1 $. Now $ \rb{g^{\rb{p - 1} / 2}}^2 = g^{p - 1} \equiv 1 \mod p $. So $ g^{\rb{p - 1} / 2} \equiv \pm 1 \mod p $. Since $ g $ is a primitive root, $ g^{\rb{p - 1} / 2} \not\equiv 1 \mod p $, so $ g^{\rb{p - 1} / 2} \equiv -1 \mod p $. So $ a^{\rb{p - 1} / 2} \equiv \rb{g^r}^{\rb{p - 1} / 2} \equiv \rb{g^{\rb{p - 1} / 2}}^r = \rb{-1}^2 \mod p $. But
+\begin{align*}
+\legendre{a}{p} = 1 \qquad
+& \iff \qquad \exists s \in \Z, \ \rb{g^s}^2 \equiv a \mod p \\
+& \iff \qquad 2s \equiv r \mod p - 1 \\
+& \iff \qquad \exists n \in \Z, \ r = 2n \\
+& \iff \qquad \rb{-1}^r \equiv 1 \mod p.
+\end{align*}
+\end{proof}
+
+\begin{proposition}
+$ -1 $ is a square modulo $ p $ if and only if $ p = 2 $ or $ p \equiv 1 \mod 4 $.
+\end{proposition}
+
+\begin{proof}
+$ p = 2 $ is trivial. If $ p > 2 $, then by Euler's criterion, $ \legendre{-1}{p} \equiv \rb{-1}^{\rb{p - 1} / 2} \mod p $, so in fact $ \legendre{-1}{p} = \rb{-1}^{\rb{p - 1} / 2} $. Then
+$$ \rb{-1}^{\tfrac{p - 1}{2}} = \begin{cases} 1 & p \equiv 1 \mod 4 \\ -1 & p \equiv 3 \mod 4 \end{cases}. $$
+\end{proof}
+
+\begin{proposition}
+$$ \legendre{2}{p} = \begin{cases}  1 & p \equiv \pm 1 \mod 8 \\ -1 & p \equiv \pm 3 \mod 8 \end{cases}, $$
+that is $ \legendre{2}{p} = \rb{-1}^{\rb{p^2 - 1} / 8} $.
+\end{proposition}
+
+\begin{example}
+$ \legendre{2}{7} = 1 $ since $ 2 \equiv 3^3 \mod 7 $. $ \legendre{2}{11} = -1 $ since squares modulo $ 11 $ are $ 1, 4, 9, 5, 3 $. $ \legendre{-1}{11} = -1 $, so $ \legendre{-2}{11} = \legendre{2}{11}\legendre{-1}{11} = \rb{-1}^2 = 1 $ and $ -2 \equiv 3^2 \mod 11 $.
+\end{example}
+
+\begin{proof}
+$ \legendre{2}{p} \equiv 2^{\rb{p - 1} / 2} \mod p $ by Euler's criterion. Let $ q = \rb{p - 1} / 2 $, and let $ Q = \rb{2}\rb{4} \dots \rb{p - 3}\rb{p - 1} = \rb{\rb{2}\rb{1}}\rb{\rb{2}\rb{2}} \dots \rb{\rb{2}\rb{q - 1}}\rb{\rb{2}\rb{q}} $. So $ Q = 2^qq! = 2^{\rb{p - 1} / 2}q! $. Subtracting $ p $ from every term which is bigger than $ q $, $ Q \equiv \rb{2}\rb{4} \dots \rb{-3}\rb{-1} \equiv \rb{-1}^rq! \mod p $, where $ r $ is the number of odd integers in $ 1, \dots, q $. Since $ p \nmid q! $, we have $ 2^{\rb{p - 1} / 2} \equiv \rb{-1}^r \mod p $. Now it is an exercise to check that
+$$ \rb{-1}^r = \begin{cases} 1 & p \equiv \pm 1 \mod 8 \\ -1 & p \equiv \pm 3 \mod 8 \end{cases}. $$
+\end{proof}
+
+\begin{example}
+If $ p \equiv 1 \mod 8 $, say $ p = 1 + 8n $, so $ q = 4n $. Odd integers in $ 1, \dots, 4n $ are $ 1, \dots, 4n - 1 $, so $ r = 2n $.
+\end{example}
+
+\begin{theorem}[Law of quadratic reciprocity]
+If $ p, q $ are odd primes, then
+$$ \legendre{p}{q} = \legendre{q}{p}\rb{-1}^{\rb{\tfrac{p - 1}{2}}\rb{\tfrac{q - 1}{2}}}, $$
+that is $ \legendre{p}{q} = \legendre{q}{p} $ unless $ p \equiv q \equiv 3 \mod 4 $, when $ \legendre{p}{q} = -\legendre{q}{p} $.
+\end{theorem}
+
+\begin{example}
+$ \legendre{5}{p} = \legendre{p}{5} $ for $ p \ne 5 $. QRs modulo $ 5 $ are $ 1, 4 $. So
+$$ \legendre{5}{p} = \begin{cases} 1 & p \equiv \pm 1 \mod 5 \\ -1 & p \equiv \pm 2 \mod 5 \end{cases}. $$
+What is $ \legendre{3}{p} $ for $ p \ne 3 $? If $ p \equiv 1 \mod 4 $, then
+$$ \legendre{3}{p} = \legendre{p}{3} = \begin{cases} 1 & p \equiv 1 \mod 3 \\ -1 & p \equiv -1 \mod 3 \end{cases}. $$
+If $ p \equiv -1 \mod 4 $, then
+$$ \legendre{3}{p} = -\legendre{p}{3} = \begin{cases} 1 & p \equiv -1 \mod 3 \\ -1 & p \equiv 1 \mod 3 \end{cases}. $$
+So
+$$ \legendre{3}{p} = \begin{cases} 1 & p \equiv \pm 1 \mod 12 \\ -1 & p \equiv \pm 5 \mod 12 \end{cases}. $$
+If $ p = 7 $, QRs are $ 1, 2, 4 $, so $ \legendre{3}{p} = -1 $. If $ p = 11 $, $ 5^2 \equiv 3 \mod 11 $, so $ \legendre{3}{p} = 1 $.
+\end{example}
+
+\begin{example}
+$ \legendre{6}{19} = \legendre{2}{19}\legendre{3}{19} = \rb{-1}\rb{-1} = 1 $. $ \legendre{2}{19} = -1 $ because $ 19 \equiv 3 \mod 8 $. $ \legendre{3}{19} \equiv -1 \mod 12 $ by the above.
+\end{example}
+
+In general to compute $ \legendre{a}{p} $, we could do the following. Use that if $ a \equiv b \mod p $ then $ \legendre{a}{p} = \legendre{b}{p} $. So without loss of generality $ \abs{a} < p $. Then write $ a = \pm \prod_i q_i^{s_i} $ for $ q_i $ prime. Then $ \legendre{a}{p} = \legendre{\pm 1}{p} \prod_i \legendre{q_i}{p}^{s_i} $. If $ s_i $ is even, then $ \legendre{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \legendre{q_i}{p}^{s_i} = \legendre{q_i}{p} $. We have formulas for $ \legendre{-1}{p} $ and $ \legendre{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \legendre{q}{p} $ and $ \legendre{p}{q} $. Then repeat modulo $ q $.
 
 \end{document}
