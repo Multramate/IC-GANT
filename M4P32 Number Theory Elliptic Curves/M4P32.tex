@@ -671,14 +671,16 @@ If $ \Lambda \in \Z^n $ is a finite index subgroup, and if $ V $ is convex and s
 \end{corollary}
 
 \begin{remark}
-$ 0 \in V $, so given $ x \in V $, $ -x \in V $, so $ \tfrac{1}{2}\rb{x + \rb{-x}} \in V $.
+$ 0 \in V $, because given $ x \in V $, $ -x \in V $, so $ \tfrac{1}{2}\rb{x + \rb{-x}} \in V $.
 \end{remark}
 
 A \textbf{lattice} is a finite index subgroup of $ \Z^n $.
 
 \begin{proof}
-Set $ U = \tfrac{1}{2}V = \cb{\tfrac{1}{2}x \mid x \in V} $. So measure of $ U $ is greater than $ \sb{\Z^n : \Lambda} = m $. By Lemma \ref{lem:4.1}, there exists $ c_0, \dots, c_m \in U $ such that $ c_i - c_0 \in \Z^n $ for all $ i $. Consider $ c_0 - c_0, \dots, c_m - c_0 \in \Z^n $. We have $ m + 1 $ differences, so there exists $ i \ne j $ such that $ \rb{c_i - c_0} - \rb{c_j - c_0} \in \Lambda $, that is $ c_i - c_j \in \Lambda $, $ c_i - c_j \ne 0 $. Since $ c_i - c_j = \tfrac{1}{2}\rb{2c_i - 2c_j} $, $ 2c_i, 2c_j \in V $ by definition, and $ -2c_j \in V $ by symmetry, so $ \tfrac{1}{2}\rb{2c_i - 2c_j} \in V $ by convexity. How do you use this to prove that $ p = x^2 + y^2 $?
+Set $ U = \tfrac{1}{2}V = \cb{\tfrac{1}{2}x \mid x \in V} $. So measure of $ U $ is greater than $ \sb{\Z^n : \Lambda} = m $. By Lemma \ref{lem:4.1}, there exists $ c_0, \dots, c_m \in U $ such that $ c_i - c_0 \in \Z^n $ for all $ i $. Consider $ c_0 - c_0, \dots, c_m - c_0 \in \Z^n $. We have $ m + 1 $ differences, so there exists $ i \ne j $ such that $ \rb{c_i - c_0} - \rb{c_j - c_0} \in \Lambda $, that is $ c_i - c_j \in \Lambda $, $ c_i - c_j \ne 0 $. Since $ c_i - c_j = \tfrac{1}{2}\rb{2c_i - 2c_j} $, $ 2c_i, 2c_j \in V $ by definition, and $ -2c_j \in V $ by symmetry, so $ \tfrac{1}{2}\rb{2c_i - 2c_j} \in V $ by convexity.
 \end{proof}
+
+How do you use this to prove that $ p = x^2 + y^2 $?
 
 \marginpar{Lecture 12 \\ Tuesday \\ 30/10/18}
 
@@ -705,5 +707,23 @@ Write $ F = aX^2 + bY^2 + cZ^2 $ as above. Then the following are equivalent.
 \begin{proof}
 $ 1 \implies 2 \implies 3 \implies 4 $. $ 2 \implies 1 $ by drawing lines through a point. So we need to do $ 4 \implies 2 $. Use Corollary \ref{cor:4.3} in $ \Z^3 $. Want to find $ V, \Lambda $ with measure of $ V $ greater than $ 2^3\sb{\Z^3 : \Lambda} $, so that $ V \cap \Lambda = \cb{0} $. Want to know that we will have $ ax^2 + by^2 + cz^2 = 0 $ if $ \rb{x, y, z} \in V \cap \Lambda $. Choose $ V = \cb{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}} $. This has measure $ \tfrac{\pi}{3} \cdot 2^3 \cdot 4\abs{abc} $. So to prove the theorem, it is enough to find $ \Lambda $ with $ \sb{\Z^3 : \Lambda} = 4\abs{abc} $, and satisfying $ \rb{x, y, z} \in \Lambda $ gives $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4\abs{abc} $. So if $ \rb{x, y, z} \in V \cap \Lambda $ then $ 0 \le \abs{ax^2 + by^2 + cz^2} < \abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc} $, so $ ax^2 + by^2 + cz^2 = 0 $.
 \end{proof}
+
+\marginpar{Lecture 13 \\ Thursday \\ 01/11/18}
+
+\begin{lemma}
+If $ p \mid a $ then there is a solution to $ b + cz^2 \equiv 0 \mod p $.
+\end{lemma}
+
+\begin{proof}
+$ p \mid a $ gives $ p \in \Sigma $ so there exists $ x, y, z \in \Q_p $ not all zero such that $ ax^2 + by^2 + cz^2 = 0 $. By multiplying by an appropriate power of $ p $, we can assume that $ \max\rb{\abs{x}_p, \ab{y}_p, \abs{z}_p} = 1 $. $ p \mid a $ and $ \rb{a, b} = \rb{a, c} = 1 $ gives $ p \nmid b $, $ p \nmid c $, that is $ \abs{a}_p < 1 $ and $ \abs{b}_p = \abs{c}_p = 1 $. If $ \abs{y}_p < 1 $ then $ \abs{by^2}_p < 1 $, $ \abs{ax^2}_p \le \abs{a}_p < 1 $, so $ \abs{cz^2}_p = \abs{ax^2 + by^2} < 1 $, so $ \abs{z}_p < 1 $. Then $ \abs{x}_p = 1 $, so $ \abs{ax^2}_p = \abs{a}_p $ but $ \abs{ax^2}_p = \abs{by^2 + cz^2}_p \le \max\rb{\abs{y^2}_p, \abs{z^2}_p} \le 1 / p^2 $. So $ p^2 \mid a $, a contradiction, as $ a $ is squarefree. So $ \abs{y}_p = 1 $. Now divide by $ y $, $ a\rb{x / y}^2 + b + c\rb{z / y}^2 = 0 $ and $ x / y, z / y \in \Z_p $. Reduce modulo $ p $ gives $ b + c\rb{z / y}^2 \equiv 0 \mod p $, as claimed.
+\end{proof}
+
+If $ p \in \Sigma $ and $ p > 2 $, then by symmetry without loss of generality $ p \mid a $. Then the lemma applies, so there exists $ \alpha $ with $ b + c\alpha^2 \equiv 0 \mod p $. So we impose the condition that $ z \equiv \alpha y \mod p $. Then if $ x, y, z \in \Z $ satisfying $ z \equiv \alpha y \mod p $, then $ ax^2 + by^2 + c \equiv by^2 + cz^2 \equiv by^2 + c\alpha^2y^2 \equiv y^2\rb{b + c\alpha^2} \equiv 0 \mod p $. Now have to deal with $ p = 2 $. Suppose $ 2 \mid a $. Lemma gives a solution to $ b + cz^2 \equiv 0 \mod 2 $, and a solution to $ ax^2 + by^2 + cz^2 = 0 $ in $ \Q_2 $ with $ \abs{y}_2 = 1 $, so $ y^2 \equiv 1 \mod 8 $. $ \rb{2m + 1}^2 = 4m\rb{m + 1} + 1 \equiv 1 \mod 8 $. In fact, squares modulo $ 8 $ are $ 0 $, $ 1 $, $ 4 $. Similarly, $ \abs{z}_2 = 1 $ gives $ z^2 \equiv 1 \mod 8 $. Since $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 \equiv 0 \mod 8 $, that is $ ax^2 + b + c \equiv 0 \mod 8 $. If $ \abs{x}_2 = 1 $ then $ x^2 \equiv 1 \mod 8 $, so $ a + b + c \equiv 0 \mod 8 $. Impose
+$$ y \equiv z \mod 4, \qquad x \equiv y \mod 2. $$
+If $ \rb{x, y, z} \in \Z^3 $ satisfies this condition, then either $ x, y, z $ all odd, and $ ax^2 + by^2 + cz^2 \equiv a + b + c \equiv 0 \mod 8 $, or $ x, y, z $ all even, and $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \mod 8 $. $ y \equiv z \mod 4 $ gives either $ 4 \mid y $, $ 4 \mid z $, which is fine, or $ y \equiv z \equiv 2 \mod 4 $, and $ by^2 + cz^2 \equiv 4\rb{b + c} \equiv -4a \equiv 0 \mod 8 $. If $ \abs{x}_2 < 1 $, then $ ax^2 \equiv 0 \mod 8 $, so $ b + c \equiv 0 \mod 8 $. Impose
+$$ y \equiv z \mod 4, \qquad x \equiv 0 \mod 2. $$
+Then if these conditions hold, $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv \rb{b + c}y^2 \equiv 0 \mod 8 $. The cases $ 2 \mid b $, $ 2 \mid c $ are dealt with by symmetry. Now suppose that $ 2 \nmid abc $. Again $ 2 \in \Sigma $ gives by assumption $ x, y, z \in \Q_2 $ not all zero with $ ax^2 + by^2 + cz^2 = 0 $. Again, without loss of generality $ \max\rb{\abs{x}_2, \abs{y}_2, \abs{z}_2} = 1 $ or without loss of generality $ \abs{z}_2 = 1 $, so $ \abs{cz^2}_2 = 1 $, so at least one of $ \abs{x}_2, \abs{y}_2 $ is $ 1 $. Without loss of generality $ \abs{y}_2 = 1 $. If $ \abs{x}_2 = 1 $ then $ ax^2 + by^2 + cz^2 \equiv 1 + 1 + 1 \mod 2 $, a contradiction. So $ \abs{x}_2 < 1 $. So $ ax^2 + by^2 + cz^2 \equiv b + c \mod 4 $, that is $ b + c \equiv 0 \mod 4 $. Impose
+$$ x \equiv 0 \mod 2, \qquad y \equiv z \mod 2. $$
+If these hold, $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv \rb{b + c}y^2 \equiv 0 \mod 4 $. What have we done? If $ p > 2 $ and $ p \in \Sigma $, we found a congruence modulo $ p $ which guaranteed that $ ax^2 + by^2 + cz^2 \equiv 0 \mod p $. If $ 2 \mid abc $, found conditions guaranteeing that $ ax^2 + by^2 + cz^2 \equiv \mod 8 $. If $ 2 \nmid abc $, $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4 $. Define $ \Lambda $ as the subgroup of $ \Z^3 $ satisfying all of these congruence conditions. Since $ abc $ is squarefree, if $ \rb{x, y, z} \in \Lambda $ then $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4abc $. It remains to check that $ \sb{\Z^3 : \Lambda} = \abs{4abc} $. To see this, write $ \Lambda $ as the kernel of a map from $ \Z^3 $ to a product of a group of order four or eight and $ \prod_{p > 2, \ p \mid abc} \Z / p\Z $ and use the Chinese remainder theorem.
 
 \end{document}
