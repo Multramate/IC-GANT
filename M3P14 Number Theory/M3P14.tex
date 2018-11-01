@@ -31,6 +31,7 @@
 \newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
 \newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
 
+\newcommand{\unit}[1]{\rb{\Z / #1\Z}^\times}
 \newcommand{\legendre}[2]{\rb{\tfrac{#1}{#2}}}
 
 \theoremstyle{definition}\newtheorem{definition}{Definition}
@@ -66,7 +67,7 @@
 
 \section{Introduction}
 
-Roughly speaking number theory is the study of the integers. More specifically, problems in number theory often have a lot to do with primes and divisibility, congruences, and include problems about the rational numbers. For example, solving equations in integers or in the rationals, such as $ x^2 - 2y^2 = 1 $, etc. We will be looking at problems that can be tackled by elementary means, but this does not mean easy. Also the statements of problems can be elementary without the solution being elementary, such as Fermat's Last Theorem, or even known, such as the twin prime conjecture. Sometimes we will state interesting things, like the prime number theorem, without proving them. Typically these will be things that we could prove if the course was much longer. We will start the course with a look at prime numbers and factorisation, a review of Euclid's algorithm and consequences, congruences, the structure of $ \rb{\Z / n\Z}^* $, RSA algorithm, and quadratic reciprocity. We will return to primes at the end, too. Typical questions here include the following.
+Roughly speaking number theory is the study of the integers. More specifically, problems in number theory often have a lot to do with primes and divisibility, congruences, and include problems about the rational numbers. For example, solving equations in integers or in the rationals, such as $ x^2 - 2y^2 = 1 $, etc. We will be looking at problems that can be tackled by elementary means, but this does not mean easy. Also the statements of problems can be elementary without the solution being elementary, such as Fermat's Last Theorem, or even known, such as the twin prime conjecture. Sometimes we will state interesting things, like the prime number theorem, without proving them. Typically these will be things that we could prove if the course was much longer. We will start the course with a look at prime numbers and factorisation, a review of Euclid's algorithm and consequences, congruences, the structure of $ \unit{n} $, RSA algorithm, and quadratic reciprocity. We will return to primes at the end, too. Typical questions here include the following.
 \begin{enumerate}
 \item How do you tell if a number is prime?
 \item How many primes are there congruent to $ a $ modulo $ b $ for given $ a, b $?
@@ -78,7 +79,7 @@ A warning is that we will be using plenty of things from previous algebra course
 \end{enumerate}
 Not everything we will do is in that book, though.
 
-\section{Euclidean algorithm and unique factorisation}
+\section{Euclid's algorithm and unique factorisation}
 
 \subsection{Divisibility}
 
@@ -229,7 +230,7 @@ We can now prove the existence and uniqueness of prime factorisations.
 
 \begin{proposition}
 \label{prop:11}
-Every $ n \in \Z^* $ can be written as $ \pm p_1 \dots p_r $ for some $ r \ge 0 $ and some primes $ p_1, \dots, p_r $.
+Every $ n \in \Z^\times $ can be written as $ \pm p_1 \dots p_r $ for some $ r \ge 0 $ and some primes $ p_1, \dots, p_r $.
 \end{proposition}
 
 \begin{proof}
@@ -252,7 +253,7 @@ Put together, these are the fundamental theorem of arithmetic.
 
 \subsection{Linear diophantine equations}
 
-Suppose now that we are given $ a, b, c \in \Z^* $ and we want to solve $ ax + by = c $ for $ x, y \in \Z $. We first note that $ \rb{a, b} $ divides both $ a $ and $ b $, so for there to be any solutions, we must have $ \rb{a, b} \mid c $.
+Suppose now that we are given $ a, b, c \in \Z^\times $ and we want to solve $ ax + by = c $ for $ x, y \in \Z $. We first note that $ \rb{a, b} $ divides both $ a $ and $ b $, so for there to be any solutions, we must have $ \rb{a, b} \mid c $.
 
 \begin{example}
 $ 2x + 6y = 3 $ has no solutions.
@@ -271,7 +272,7 @@ Using the example above where we have $ 8\rb{120} - 11\rb{87} = 3 $, we can solv
 \subsection{Congruences}
 
 \begin{definition}
-Let $ n \in \Z^* $, and let $ a, b \in \Z $. We say $ a $ is \textbf{congruent to $ b $ modulo $ n $}, written $ a \equiv b \mod n $, if $ n \mid \rb{a - b} $.
+Let $ n \in \Z^\times $, and let $ a, b \in \Z $. We say $ a $ is \textbf{congruent to $ b $ modulo $ n $}, written $ a \equiv b \mod n $, if $ n \mid \rb{a - b} $.
 \end{definition}
 
 For $ n $ fixed, it is easy to verify that congruence modulo $ n $ is an equivalence relation, and therefore partitions $ \Z $ into equivalence classes. The set of equivalence classes modulo $ n $ is denoted $ \Z / n\Z $.
@@ -292,23 +293,23 @@ It follows that $ 0, \dots, n - 1 $ are representatives for the elements of $ \Z
 If $ n = 6 $, we could write $ 3 + 4 = 1 $ and $ 3 \times 4 = 0 $.
 \end{example}
 
-Recall that if $ R $ is a commutative ring, a \textbf{unit} of $ R $ is an element with a multiplicative inverse, that is $ x $ such that there exists $ y \in R $ with $ xy = 1 $. Write $ R^* $ for the set of units in $ R $. This is a group under multiplication.
+Recall that if $ R $ is a commutative ring, a \textbf{unit} of $ R $ is an element with a multiplicative inverse, that is $ x $ such that there exists $ y \in R $ with $ xy = 1 $. Write $ R^\times $ for the set of units in $ R $. This is a group under multiplication.
 
 \begin{example}
-$ \Z^* = \cb{\pm 1} $ and $ \Q^* = \Q \setminus \cb{0} = \cb{x \in \Q \mid x \ne 0} $.
+$ \Z^\times = \cb{\pm 1} $ and $ \Q^\times = \Q \setminus \cb{0} = \cb{x \in \Q \mid x \ne 0} $.
 \end{example}
 
-We want to understand $ \rb{\Z / n\Z}^* $. Which elements of $ \cb{0, \dots, n - 1} $ are in $ \rb{\Z / n\Z}^* $? If $ r \in \Z $ and $ \overline{r} \in \rb{\Z / n\Z}^* $ then there exists $ s \in \Z $ such that $ rs \equiv 1 \mod n $. This implies that $ \rb{r, n} = 1 $. Conversely, if $ \rb{r, n} = 1 $, then there exists $ x, y \in \Z $ such that $ rx + ny = 1 $, so $ \overline{rx} = 1 $, so $ \overline{r} $ is a unit. Thus we have $ \rb{\Z / n\Z}^* = \cb{\overline{i} \mid \rb{i, n} = 1} $.
+We want to understand $ \unit{n} $. Which elements of $ \cb{0, \dots, n - 1} $ are in $ \unit{n} $? If $ r \in \Z $ and $ \overline{r} \in \unit{n} $ then there exists $ s \in \Z $ such that $ rs \equiv 1 \mod n $. This implies that $ \rb{r, n} = 1 $. Conversely, if $ \rb{r, n} = 1 $, then there exists $ x, y \in \Z $ such that $ rx + ny = 1 $, so $ \overline{rx} = 1 $, so $ \overline{r} $ is a unit. Thus we have $ \unit{n} = \cb{\overline{i} \mid \rb{i, n} = 1} $.
 
 \begin{note}
-If $ p $ is a prime, then either $ a \equiv 0 \mod p $ or $ \rb{a, p} = 1 $, so $ \rb{\Z / p\Z}^* = \cb{1, \dots, p - 1} $. Thus every non-zero congruence class modulo $ p $ is a unit, that is $ \Z / p\Z $ is a ring with the property that every non-zero element has a multiplicative inverse, so it is a field. Another equivalent way to see this is to check that $ p\Z $ is a maximal ideal of $ \Z $.
+If $ p $ is a prime, then either $ a \equiv 0 \mod p $ or $ \rb{a, p} = 1 $, so $ \unit{p} = \cb{1, \dots, p - 1} $. Thus every non-zero congruence class modulo $ p $ is a unit, that is $ \Z / p\Z $ is a ring with the property that every non-zero element has a multiplicative inverse, so it is a field. Another equivalent way to see this is to check that $ p\Z $ is a maximal ideal of $ \Z $.
 \end{note}
 
 \marginpar{Lecture 3 \\ Wednesday \\ 10/10/18}
 
 \subsection{Linear congruence equations}
 
-Fix $ a, b \in \Z $ and $ c \in \Z^* $. Suppose we want to solve $ ax \equiv b \mod c $. This is equivalent to finding $ x, y $ such that $ ax + cy = b $. In particular, by our analysis of linear diophantine equations, there is a solution precisely when $ \rb{a, c} \mid b $. Furthermore, there is a unique solution modulo $ c' = c / \rb{a, c} $, because all the solutions are obtained by adding multiples of $ c' $ to our given $ x $, and subtracting the corresponding multiple of $ a / \rb{a, c} $ from $ y $. This implies that there are a total of $ \rb{a, c} $ solutions to the original congruence modulo $ c $. If $ x $ is a solution, the other solutions are of the form $ X = x + c'j $ for $ 0 \le j < \rb{a, c} $. In particular, if $ \rb{a, c} = 1 $, then there is a unique solution to $ ax \equiv b \mod c $. Indeed $ a \in \rb{\Z / c\Z}^* $, so it has an inverse $ a^{-1} $, and $ x \equiv a^{-1}b \mod c $ is the unique solution.
+Fix $ a, b \in \Z $ and $ c \in \Z^\times $. Suppose we want to solve $ ax \equiv b \mod c $. This is equivalent to finding $ x, y $ such that $ ax + cy = b $. In particular, by our analysis of linear diophantine equations, there is a solution precisely when $ \rb{a, c} \mid b $. Furthermore, there is a unique solution modulo $ c' = c / \rb{a, c} $, because all the solutions are obtained by adding multiples of $ c' $ to our given $ x $, and subtracting the corresponding multiple of $ a / \rb{a, c} $ from $ y $. This implies that there are a total of $ \rb{a, c} $ solutions to the original congruence modulo $ c $. If $ x $ is a solution, the other solutions are of the form $ X = x + c'j $ for $ 0 \le j < \rb{a, c} $. In particular, if $ \rb{a, c} = 1 $, then there is a unique solution to $ ax \equiv b \mod c $. Indeed $ a \in \unit{c} $, so it has an inverse $ a^{-1} $, and $ x \equiv a^{-1}b \mod c $ is the unique solution.
 
 \begin{example}
 $ 2x \equiv 3 \mod 6 $ has no solutions as $ \rb{2, 6} = 2 \nmid 3 $. $ 2x \equiv 4 \mod 6 $, which is equivalent to $ x \equiv 2 \mod 3 $, has solutions $ x \equiv 2 \mod 6 $ and $ x \equiv 5 \mod 6 $.
@@ -320,7 +321,7 @@ $ 2x \equiv 3 \mod 6 $ has no solutions as $ \rb{2, 6} = 2 \nmid 3 $. $ 2x \equi
 Let $ m_1, \dots, m_n \in \Z_{\ge 0} $ be pairwise coprime. Then the natural map
 $$ \Z / m_1 \dots m_n\Z \to \Z / m_1\Z \times \dots \times \Z / m_n\Z $$
 is an isomorphism of rings, and the induced map
-$$ \rb{\Z / m_1 \dots m_n\Z}^* \to \rb{\Z / m_1\Z}^* \times \dots \times \rb{\Z / m_n\Z}^* $$
+$$ \unit{m_1 \dots m_n} \to \unit{m_1} \times \dots \times \unit{m_n} $$
 is an isomorphism of abelian groups.
 \end{theorem}
 
@@ -329,7 +330,7 @@ This is false without the assumption that $ m_i $ pairwise coprime, for example 
 \end{remark}
 
 \begin{proof}
-Note firstly that the map exists and is a ring homomorphism. This follows from the fact that if $ x \equiv y \mod m_1 \dots m_n $ then certainly $ x \equiv y \mod m_i $ for each $ i $. The source and target of the ring homomorphism both have order $ m_1 \dots m_n $, so it suffices to show that the map is injective to show that it is an isomorphism. So we only need to check that the kernel is zero. So we need to know that if $ m_i \mid N $ for all $ i $, that is $ \overline{N} = 0 $ in $ \Z / m_i\Z $, then $ m_1 \dots m_n \mid N $, that is $ \overline{N} = 0 $ in $ \Z / m_1 \dots m_n\Z $. This is just Corollary \ref{cor:10}. The statement about unit groups follows by noting that if $ R, S $ are rings, then $ \rb{R \times S}^* = R^* \times S^* $.
+Note firstly that the map exists and is a ring homomorphism. This follows from the fact that if $ x \equiv y \mod m_1 \dots m_n $ then certainly $ x \equiv y \mod m_i $ for each $ i $. The source and target of the ring homomorphism both have order $ m_1 \dots m_n $, so it suffices to show that the map is injective to show that it is an isomorphism. So we only need to check that the kernel is zero. So we need to know that if $ m_i \mid N $ for all $ i $, that is $ \overline{N} = 0 $ in $ \Z / m_i\Z $, then $ m_1 \dots m_n \mid N $, that is $ \overline{N} = 0 $ in $ \Z / m_1 \dots m_n\Z $. This is just Corollary \ref{cor:10}. The statement about unit groups follows by noting that if $ R, S $ are rings, then $ \rb{R \times S}^\times = R^\times \times S^\times $.
 \end{proof}
 
 \begin{note}
@@ -338,13 +339,13 @@ $$ x = a_1q_1M_1 + \dots + a_nq_nM_n. $$
 For each $ i $ we have $ M_j \equiv 0 \mod m_i $ if $ i \ne j $, so $ x \equiv a_iq_iM_i \equiv a_i \mod m_i $ for each $ i $.
 \end{note}
 
-\section{The structure of $ \rb{\Z / n\Z}^* $}
+\section{The structure of $ \unit{n} $}
 
-For the next few lecture we will study the abelian group $ \rb{\Z / n\Z}^* $.
+For the next few lecture we will study the abelian group $ \unit{n} $.
 
 \subsection{The Euler $ \Phi $ function}
 
-We define a function $ \Phi\rb{n} $ on $ \Z_{> 0} $ by letting $ \Phi\rb{n} $ denote the order of $ \rb{\Z / n\Z}^* $. Explicitly we have $ \Phi\rb{n} = \#\cb{1 \le i < n \mid \rb{i, n} = 1} $, that is, $ \Phi\rb{n} $ is the number of integers between $ 0 $ and $ n - 1 $ coprime to $ n $.
+We define a function $ \Phi\rb{n} $ on $ \Z_{> 0} $ by letting $ \Phi\rb{n} $ denote the order of $ \unit{n} $. Explicitly we have $ \Phi\rb{n} = \#\cb{1 \le i < n \mid \rb{i, n} = 1} $, that is, $ \Phi\rb{n} $ is the number of integers between $ 0 $ and $ n - 1 $ coprime to $ n $.
 
 \begin{example}
 If $ p $ is prime, $ \Phi\rb{p} = p - 1 $.
@@ -357,7 +358,7 @@ A function $ f $ on $ \Z_{> 0} $ is \textbf{multiplicative} if for all $ m, n \i
 \end{definition}
 
 \begin{note}
-By the Chinese Remainder Theorem, $ \Phi $ is multiplicative, because if $ \rb{m, n} = 1 $ then $ \rb{\Z / mn\Z}^* \cong \rb{\Z / m\Z}^* \times \rb{\Z / n\Z}^* $, but not strongly multiplicative, since $ \Phi\rb{4} = 2 \ne 1 = \Phi\rb{2}\Phi\rb{2} $.
+By the Chinese remainder theorem, $ \Phi $ is multiplicative, because if $ \rb{m, n} = 1 $ then $ \unit{mn} \cong \unit{m} \times \unit{n} $, but not strongly multiplicative, since $ \Phi\rb{4} = 2 \ne 1 = \Phi\rb{2}\Phi\rb{2} $.
 \end{note}
 
 It is clear that a multiplicative function is determined by its values on prime powers. For $ p $ prime we have $ \rb{i, p^a} = 1 $ if and only if $ p $ does not divide $ i $, so $ \Phi\rb{p^a} $ is the number of integers between $ 0 $ and $ p^a - 1 $ that are not divisible by $ p $. There are $ p^{a - 1} $ numbers in this range divisible by $ p $, so we have
@@ -368,7 +369,7 @@ where $ p $ runs over the primes dividing $ n $.
 
 \subsection{Euler's theorem}
 
-The units $ \rb{\Z / n\Z}^* $ form a group under multiplication. By definition, $ \phi\rb{n} $ is the order of this group. Recall that for any group $ G $ of finite order $ d $, Lagrange's theorem states that for all $ g \in G $, $ g^d $ is the identity in $ G $. For the group $ \rb{\Z / n\Z}^* $, this means the following.
+The units $ \unit{n} $ form a group under multiplication. By definition, $ \phi\rb{n} $ is the order of this group. Recall that for any group $ G $ of finite order $ d $, Lagrange's theorem states that for all $ g \in G $, $ g^d $ is the identity in $ G $. For the group $ \unit{n} $, this means the following.
 
 \begin{theorem}[Euler's theorem]
 \label{thm:16}
@@ -376,7 +377,7 @@ Let $ a \in \Z $ with $ \rb{a, n} = 1 $. Then $ a^{\Phi\rb{n}} \equiv 1 \mod n $
 \end{theorem}
 
 \begin{proof}
-This is equivalent to saying that $ \overline{a}^{\Phi\rb{n}} = 1 $ in $ \rb{\Z / n\Z}^* $. This is a group of order $ \Phi\rb{n} $, so this is immediate from Lagrange's theorem.
+This is equivalent to saying that $ \overline{a}^{\Phi\rb{n}} = 1 $ in $ \unit{n} $. This is a group of order $ \Phi\rb{n} $, so this is immediate from Lagrange's theorem.
 \end{proof}
 
 \begin{corollary}[Fermat's little theorem]
@@ -390,15 +391,15 @@ Theorem \ref{thm:16} with $ n = p $, so $ \Phi\rb{n} = p - 1 $.
 Of course knowing the order of an abelian group does not tell you its structure.
 
 \begin{example}
-Let $ n = 5 $. $ \rb{\Z / 5\Z}^* = \cb{1, 2, 3, 4} $. This has order $ 4 $. There are two isomorphism classes of abelian groups of order $ 4 $, namely $ \Z / 4\Z $ and $ \Z / 2\Z \times \Z / 2\Z $. So it is either cyclic of order $ 4 $ or a product of two cyclic groups of order $ 2 $. $ 2^2 = 4 $, $ 2^3 = 3 $, $ 2^4 = 1 $ in $ \rb{\Z / 5\Z}^* $. So $ \rb{\Z / 5\Z}^* $ is cyclic of order $ 4 $.
+Let $ n = 5 $. $ \unit{5} = \cb{1, 2, 3, 4} $. This has order $ 4 $. There are two isomorphism classes of abelian groups of order $ 4 $, namely $ \Z / 4\Z $ and $ \Z / 2\Z \times \Z / 2\Z $. So it is either cyclic of order $ 4 $ or a product of two cyclic groups of order $ 2 $. $ 2^2 = 4 $, $ 2^3 = 3 $, $ 2^4 = 1 $ in $ \unit{5} $. So $ \unit{5} $ is cyclic of order $ 4 $.
 \end{example}
 
-By the Chinese Remainder Theorem, to understand the structure of $ \rb{\Z / n\Z}^* $, it is enough to understand the structure of $ \Z / p^m\Z $ where $ p $ is prime and $ m \ge 1 $. We will do this next, beginning with the case $ m = 1 $.
+By the Chinese remainder theorem, to understand the structure of $ \unit{n} $, it is enough to understand the structure of $ \Z / p^m\Z $ where $ p $ is prime and $ m \ge 1 $. We will do this next, beginning with the case $ m = 1 $.
 
 \marginpar{Lecture 4 \\ Friday \\ 12/10/18}
 
 \begin{definition}
-If $ G $ is a group and $ g \in G $ is an element, the \textbf{order} of $ g $ is the least $ a \ge 1 $ such that $ g^a = 1 $. In particular, if $ \rb{g, n} = 1 $, then we write $ ord_n\rb{g} $ for the order of $ g $ in $ \rb{\Z / n\Z}^* $, or the order of $ g $ modulo $ n $.
+If $ G $ is a group and $ g \in G $ is an element, the \textbf{order} of $ g $ is the least $ a \ge 1 $ such that $ g^a = 1 $. In particular, if $ \rb{g, n} = 1 $, then we write $ ord_n\rb{g} $ for the order of $ g $ in $ \unit{n} $, or the order of $ g $ modulo $ n $.
 \end{definition}
 
 Equivalently, let $ n \in \Z_{> 0} $ and $ g \in \Z $ with $ \rb{g, n} = 1 $, then the order of $ g $ modulo $ n $ is the smallest $ a \in \Z_{\ge 0} $ such that $ g^a \equiv 1 \mod n $.
@@ -414,14 +415,14 @@ Equivalently, let $ g \in \Z $ with $ \rb{g, n} = 1 $, then if $ g^n \equiv \mod
 If $ n = ab $ then $ g^n = \rb{g^a}^b = 1^b = 1 $. Conversely write $ n = ab + r $ with $ b, r \in \Z $ and $ 0 \le r < a $. Then since $ g^a = 1 $ it follows that $ g^r = 1 $. Since $ r < a $, $ r $ cannot be positive by the definition by order, so $ r = 0 $ and $ n = ab $.
 \end{proof}
 
-In particular, if $ \rb{g, n} = 1 $, then $ g^{\Phi\rb{n}} = 1 $ by Euler's theorem, so Proposition \ref{prop:19} gives the order of $ g $ modulo $ n $ divides $ \Phi\rb{n} $. We are going to prove that if $ p $ is prime, then $ \rb{\Z / p\Z}^* $ is cyclic. Equivalently, we need to show that there exists $ g $ such that $ ord_p\rb{g} = \Phi\rb{p} = p - 1 $. We will do this by counting the number of elements of each order. Key point is that $ \Z / p\Z $ is a field. For any $ d \ge 1 $, the elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $ are exactly the roots of the equation $ X^d - 1 $ in $ \Z / p\Z $ by Proposition \ref{prop:19}.
+In particular, if $ \rb{g, n} = 1 $, then $ g^{\Phi\rb{n}} = 1 $ by Euler's theorem, so Proposition \ref{prop:19} gives the order of $ g $ modulo $ n $ divides $ \Phi\rb{n} $. We are going to prove that if $ p $ is prime, then $ \unit{p} $ is cyclic. Equivalently, we need to show that there exists $ g $ such that $ ord_p\rb{g} = \Phi\rb{p} = p - 1 $. We will do this by counting the number of elements of each order. Key point is that $ \Z / p\Z $ is a field. For any $ d \ge 1 $, the elements of $ \unit{p} $ of order dividing $ d $ are exactly the roots of the equation $ X^d - 1 $ in $ \Z / p\Z $ by Proposition \ref{prop:19}.
 
 \begin{example}
 The equation $ X^2 = 1 $ has exactly two solutions modulo $ p $ for any prime $ p $, namely $ \pm 1 $, but it can have more modulo $ n $ if $ n $ is composite. If $ n = 15 $, then $ 4, 11 $ are also solutions. $ X^2 - 1 \equiv 0 \mod n $ if and only if $ n \mid \rb{X + 1}\rb{X - 1} $, so $ 15 \mid \rb{4 + 1}\rb{4 - 1} $.
 \end{example}
 
 \begin{definition}
-$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root modulo $ p $} if the order of $ g $ modulo $ p $ is exactly $ p - 1 $, equivalently, if $ \overline{g} $ is a generator of $ \rb{\Z / p\Z}^* $.
+$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root modulo $ p $} if the order of $ g $ modulo $ p $ is exactly $ p - 1 $, equivalently, if $ \overline{g} $ is a generator of $ \unit{p} $.
 \end{definition}
 
 To prove that primitive roots exist, we require some results about roots of polynomials modulo $ p $. Over the rational numbers we all know that a polynomial of degree $ d $ has at most $ d $ roots. This can fail over other rings.
@@ -457,7 +458,7 @@ As a corollary, we deduce the following.
 
 \begin{corollary}
 \label{cor:23}
-Let $ p $ be a prime, and let $ d $ be any divisor of $ p - 1 $. Then there are exactly $ d $ elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $.
+Let $ p $ be a prime, and let $ d $ be any divisor of $ p - 1 $. Then there are exactly $ d $ elements of $ \unit{p} $ of order dividing $ d $.
 \end{corollary}
 
 Equivalently, we have to show that the polynomial $ X^d - 1 $ has exactly $ d $ roots modulo $ p $.
@@ -468,10 +469,10 @@ $$ X^{p - 1} - 1 = \rb{X^d - 1}\rb{\rb{X^d}^{\tfrac{p - 1}{d} - 1} + \dots + 1} 
 for a polynomial $ Q\rb{X} $. $ Q\rb{X} $ has integer coefficients so we can view it as a polynomial modulo $ p $. Now $ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots, $ X^d - 1 $ has at most $ d $ roots, and $ Q\rb{X} $ has at most $ p - 1 - d $ roots by Theorem \ref{thm:22}. We must therefore have equality in these inequalities, that is $ X^d - 1 $ has exactly $ d $ roots modulo $ p $.
 \end{proof}
 
-Another way of stating the corollary is to say that for any $ d $ dividing $ p - 1 $, there are exactly $ d $ elements of $ \rb{\Z / p\Z}^* $ whose order divides $ d $.
+Another way of stating the corollary is to say that for any $ d $ dividing $ p - 1 $, there are exactly $ d $ elements of $ \unit{p} $ whose order divides $ d $.
 
 \begin{example}
-Let $ p = 7 $. Then $ \rb{\Z / p\Z}^* $ has
+Let $ p = 7 $. Then $ \unit{p} $ has
 \begin{enumerate}
 \item $ 1 $ element of order $ 1 $,
 \item $ 2 $ elements of order dividing $ 2 $, so $ 1 $ element of order $ 2 $,
@@ -491,34 +492,34 @@ For each $ d \mid n $, the elements $ i \in \cb{1, \dots, n} $ with $ \rb{i, n} 
 
 \begin{theorem}
 \label{thm:26}
-Let $ p $ be a prime. Then for any $ d $ dividing $ p - 1 $, there are exactly $ \Phi\rb{d} $ elements of order $ d $ in $ \rb{\Z / p\Z}^* $. In particular there are $ \Phi\rb{p - 1} $ primitive roots modulo $ p $, and $ \rb{\Z / p\Z}^* $ is cyclic.
+Let $ p $ be a prime. Then for any $ d $ dividing $ p - 1 $, there are exactly $ \Phi\rb{d} $ elements of order $ d $ in $ \unit{p} $. In particular there are $ \Phi\rb{p - 1} $ primitive roots modulo $ p $, and $ \unit{p} $ is cyclic.
 \end{theorem}
 
 \begin{proof}
-We prove this by strong induction on $ d $. The case $ d = 1 $ is clear. Fix $ d $. The inductive hypothesis tells us that for any $ d' $ dividing $ d $ and strictly less than $ d $ there are $ \Phi\rb{d'} $ elements of exact order $ d' $. On the other hand by Corollary \ref{cor:23} there are a total of $ d $ elements of $ \rb{\Z / p\Z}^* $ of order dividing $ d $. Thus the number of elements of $ \rb{\Z / p\Z}^* $ of order exactly $ d $ is
+We prove this by strong induction on $ d $. The case $ d = 1 $ is clear. Fix $ d $. The inductive hypothesis tells us that for any $ d' $ dividing $ d $ and strictly less than $ d $ there are $ \Phi\rb{d'} $ elements of exact order $ d' $. On the other hand by Corollary \ref{cor:23} there are a total of $ d $ elements of $ \unit{p} $ of order dividing $ d $. Thus the number of elements of $ \unit{p} $ of order exactly $ d $ is
 $$ \Phi\rb{d} = d - \sum_{d' \mid d, \ d' \ne d} \Phi\rb{d'}. $$
 precisely by Lemma \ref{lem:24}. Now use inductive hypothesis.
 \end{proof}
 
 \marginpar{Lecture 5 \\ Tuesday \\ 16/10/18}
 
-We can now go on to the case of $ \rb{\Z / p^n\Z}^* $ for $ n \ge 2 $. Firstly we do the case $ p > 2 $.
+We can now go on to the case of $ \unit{p^n} $ for $ n \ge 2 $. Firstly we do the case $ p > 2 $.
 
 \begin{proposition}
 \label{prop:26}
-Let $ p $ be an odd prime and let $ n \ge 1 $. Then $ \rb{\Z / p^n\Z}^* $ is cyclic.
+Let $ p $ be an odd prime and let $ n \ge 1 $. Then $ \unit{p^n} $ is cyclic.
 \end{proposition}
 
 \begin{proof}
 Consider three cases.
 \begin{itemize}
 \item[$ n = 1 $] Theorem \ref{thm:26}.
-\item[$ n = 2 $] Let $ g $ be a primitive root modulo $ p $. Claim that either $ g^{p - 1} \not\equiv 1 \mod p^2 $, and $ g $ is a generator for $ \rb{\Z / p^2\Z}^* $, or $ g^{p - 1} \equiv 1 \mod p^2 $, and $ g + p $ is a generator for $ \rb{\Z / p^2\Z}^* $. Either way, $ \rb{\Z / p^2\Z}^* $ is cyclic. Suppose firstly that $ g^{p - 1} \not\equiv 1 \mod p^2 $. $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p^2 $ gives $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p $, so we have by assumption
-$$ p - 1 = ord_p\rb{g} \mid ord_{p^2}\rb{g} \mid \#\rb{\Z / p^2\Z}^* = \Phi\rb{p^2} = p\rb{p - 1}. $$
-But $ ord_{p^2}\rb{g} \ne p - 1 $, as $ g^{p - 1} \not\equiv 1 \mod p^2 $. So $ ord_{p^2}\rb{g} = p\rb{p - 1} $ as required. Now suppose that $ g^{p - 1} \equiv 1 \mod p^2 $, and set $ h = g + p $. It suffices to show that $ h^{p - 1} \not\equiv 1 \mod p^2 $, as we can then apply the analysis above with $ h $ in place of $ g $ to show that $ ord_{p^2}\rb{h} = p\rb{p - 1} $ and $ \rb{\Z / p^2\Z}^* $ is cyclic. To see the claim, observe that if we expand with the binomial theorem, then we get
+\item[$ n = 2 $] Let $ g $ be a primitive root modulo $ p $. Claim that either $ g^{p - 1} \not\equiv 1 \mod p^2 $, and $ g $ is a generator for $ \unit{p^2} $, or $ g^{p - 1} \equiv 1 \mod p^2 $, and $ g + p $ is a generator for $ \unit{p^2} $. Either way, $ \unit{p^2} $ is cyclic. Suppose firstly that $ g^{p - 1} \not\equiv 1 \mod p^2 $. $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p^2 $ gives $ g^{ord_{p^2}\rb{g}} \equiv 1 \mod p $, so we have by assumption
+$$ p - 1 = ord_p\rb{g} \mid ord_{p^2}\rb{g} \mid \#\unit{p^2} = \Phi\rb{p^2} = p\rb{p - 1}. $$
+But $ ord_{p^2}\rb{g} \ne p - 1 $, as $ g^{p - 1} \not\equiv 1 \mod p^2 $. So $ ord_{p^2}\rb{g} = p\rb{p - 1} $ as required. Now suppose that $ g^{p - 1} \equiv 1 \mod p^2 $, and set $ h = g + p $. It suffices to show that $ h^{p - 1} \not\equiv 1 \mod p^2 $, as we can then apply the analysis above with $ h $ in place of $ g $ to show that $ ord_{p^2}\rb{h} = p\rb{p - 1} $ and $ \unit{p^2} $ is cyclic. To see the claim, observe that if we expand with the binomial theorem, then we get
 $$ h^{p - 1} = \rb{g + p}^{p - 1} \equiv g^{p - 1} + \rb{p - 1}pg^{p - 2} \equiv 1 + p\rb{p - 1}g^{p - 2} \mod p^2, $$
 and since $ p \nmid \rb{p - 1}g^{p - 2} $, $ \rb{g + p}^{p - 1} \not\equiv 1 \mod p^2 $, as required.
-\item[$ n \ge 2 $] We claim that if $ ord_{p^2}\rb{g} = p\rb{p - 1} $ then in fact $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $ for all $ n \ge 2 $, so that in particular $ \rb{\Z / p^n\Z}^* $ is cyclic. We do this by induction on $ n $. So assume that $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $. Then
+\item[$ n \ge 2 $] We claim that if $ ord_{p^2}\rb{g} = p\rb{p - 1} $ then in fact $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $ for all $ n \ge 2 $, so that in particular $ \unit{p^n} $ is cyclic. We do this by induction on $ n $. So assume that $ ord_{p^n}\rb{g} = p^{n - 1}\rb{p - 1} $. Then
 $$ p^{n - 1}\rb{p - 1} = ord_{p^n}\rb{g} \mid ord_{p^{n + 1}}\rb{g} \mid \Phi\rb{p^{n + 1}} = p^n\rb{p - 1}. $$
 So either $ ord_{p^{n + 1}}\rb{g} = p^n\rb{p - 1} $, or $ ord_{p^{n + 1}}\rb{g} = p^{n - 1}\rb{p - 1} $. The statement that $ ord_{p^{n + 1}}\rb{g} = p^n\rb{p - 1} $ is equivalent to showing that $ g^{p^{n - 1}\rb{p - 1}} \not\equiv 1 \mod p^{n + 1} $. To do this, consider $ g^{p^{n - 2}\rb{p - 1}} \mod p^{n - 1} $ and $ g^{p^{n - 2}\rb{p - 1}} \mod p^n $. Since $ \Phi\rb{p^{n - 1}} = p^{n - 2}\rb{p - 1} $, $ g^{p^{n - 2}\rb{p - 1}} \equiv 1 \mod p^{n - 1} $ by Euler's theorem, so we may write
 $$ g^{p^{n - 2}\rb{p - 1}} = 1 + p^{n - 1}t. $$
@@ -536,9 +537,9 @@ We used the hypothesis that $ p \ne 2 $ right at the end here. If $ p = 2 $ then
 
 If $ n = 1, 2 $ then the proof of Proposition \ref{prop:26} did not use $ p > 2 $, and indeed
 \begin{enumerate}
-\item $ \rb{\Z / 2\Z}^* = \cb{1} $ is cyclic,
-\item $ \rb{\Z / 4\Z}^* = \cb{1, 3} $ is cyclic of order $ 2 $, with $ 3 $ as a generator, but
-\item this fails for higher powers, say $ \rb{\Z / 8\Z}^* = \cb{1, 3, 5, 7} $ is not cyclic since $ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8 $, so every element has order two.
+\item $ \unit{2} = \cb{1} $ is cyclic,
+\item $ \unit{4} = \cb{1, 3} $ is cyclic of order $ 2 $, with $ 3 $ as a generator, but
+\item this fails for higher powers, say $ \unit{8} = \cb{1, 3, 5, 7} $ is not cyclic since $ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8 $, so every element has order two.
 \end{enumerate}
 The key is the following lemma.
 
@@ -554,19 +555,19 @@ and since $ n + 1 \ge 1 $ and $ t + 2^{n + 1}t^2 $ is odd we are done by inducti
 \end{proof}
 
 \begin{proposition}
-If $ n \ge 2 $ then we have an isomorphism $ \rb{\Z / 2^n\Z}^* \to \rb{\Z / 2\Z} \times \rb{\Z / 2^{n - 2}\Z} $, so that in particular if $ n \ge 3 $ then $ \rb{\Z / 2^n\Z}^* $ is not cyclic.
+If $ n \ge 2 $ then we have an isomorphism $ \unit{2^n} \to \rb{\Z / 2\Z} \times \rb{\Z / 2^{n - 2}\Z} $, so that in particular if $ n \ge 3 $ then $ \unit{2^n} $ is not cyclic.
 \end{proposition}
 
 \begin{proof}
 Consider the natural map
-$$ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^*, $$
-where if $ G $ is a group and $ g \in G $ we write $ \ab{g} $ for the cyclic subgroup $ \cb{1, \dots, g^{ord\rb{g} - 1}} $ of $ G $ generated by $ g $. We claim that this map is an isomorphism. To see this, note that it is injective, because if $ \rb{-1}^r\rb{5}^s \equiv 1 \mod 2^n $ then in particular $ \rb{-1}^r\rb{5}^s \equiv 1 \mod 4 $ so $ \rb{-1}^r \equiv 1 \mod 4 $, so we must have $ r = 1 $ and $ 5^s \equiv 1 \mod 2^n $, that is $ 5^s = 1 $ in $ \ab{5} $. $ \ab{-1} \cong \Z / 2\Z $ has order $ 2 $ and $ \ab{5} \cong \Z / 2^{n - 2}\Z $ has order $ ord_{2^n}\rb{5} = 2^{n - 2} $ by Lemma \ref{lem:27}. So $ \ab{-1} \times \ab{5} $ has order $ 2\rb{2^{n - 2}} = 2^{n - 1} = \Phi\rb{2^n} = \#\rb{\Z / 2^n\Z}^* $. So the map $ \ab{-1} \times \ab{5} \to \rb{\Z / 2^n\Z}^* $ is an injection of groups of the same order, so it is a bijection.
+$$ \ab{-1} \times \ab{5} \to \unit{2^n}, $$
+where if $ G $ is a group and $ g \in G $ we write $ \ab{g} $ for the cyclic subgroup $ \cb{1, \dots, g^{ord\rb{g} - 1}} $ of $ G $ generated by $ g $. We claim that this map is an isomorphism. To see this, note that it is injective, because if $ \rb{-1}^r\rb{5}^s \equiv 1 \mod 2^n $ then in particular $ \rb{-1}^r\rb{5}^s \equiv 1 \mod 4 $ so $ \rb{-1}^r \equiv 1 \mod 4 $, so we must have $ r = 1 $ and $ 5^s \equiv 1 \mod 2^n $, that is $ 5^s = 1 $ in $ \ab{5} $. $ \ab{-1} \cong \Z / 2\Z $ has order $ 2 $ and $ \ab{5} \cong \Z / 2^{n - 2}\Z $ has order $ ord_{2^n}\rb{5} = 2^{n - 2} $ by Lemma \ref{lem:27}. So $ \ab{-1} \times \ab{5} $ has order $ 2\rb{2^{n - 2}} = 2^{n - 1} = \Phi\rb{2^n} = \#\unit{2^n} $. So the map $ \ab{-1} \times \ab{5} \to \unit{2^n} $ is an injection of groups of the same order, so it is a bijection.
 \end{proof}
 
 Using what we have shown so far, one can conclude the following. See the first example sheet.
 
 \begin{theorem}
-Let $ n \in \Z_{> 0} $. The group $ \rb{\Z / n\Z}^* $ is cyclic if and only if either
+Let $ n \in \Z_{> 0} $. The group $ \unit{n} $ is cyclic if and only if either
 \begin{enumerate}
 \item $ n = 1, 2, 4 $,
 \item $ n = p^r $ where $ p $ is an odd prime and $ r \ge 1 $, or
@@ -592,20 +593,24 @@ So $ 3 $ is a primitive root modulo $ 31 $, as required.
 
 \section{Primality testing and factorisation}
 
-Idea is testing whether $ n \in \Z $ is prime is easy. Factoring $ n $ is expected to be hard. Easy here means that there is an algorithm to check whether $ n $ is prime or not which runs in time polynomial in $ \log n $. It is known that a deterministic algorithm exists to do this, the Agrawal-Kayal-Saxena (AKS) algorithm in 2005. We will see an algorithm that runs faster than this in practice. On the other hand, for factoring there are algorithms which are better than exponential in $ \log n $, but there is nothing close to polynomial time, and the general expectation is that no such algorithm should exist.
+The basic idea of this section, which will be exploited in the next brief section on cryptography, is that checking whether $ n \in \Z $ is prime or not is easy, but factorising $ n $ is expected to be hard, even if we know that it is not prime. Actually, there is no proof that factorisation is hard, merely an expectation. We will not make the notions of easy and hard precise, but the difficulty should be measured in terms of $ \log n $, that is in terms of the number of digits of $ n $ in some base. Easy here means that there is an algorithm to check whether $ n $ is prime or not which runs in time polynomial in $ \log n $. Then it is known that there exists a deterministic algorithm, the Agrawal-Kayal-Saxena (AKS) algorithm in 2005, to check whether or not $ n $ is prime which runs in time which is polynomial in $ \log n $. We will not describe this algorithm, although it is fairly elementary. We will discuss another algorithm which is more effective than this in practice. In contrast it is unknown whether or not there is an algorithm for factorising $ n $ that runs in time polynomial in $ \log n $, but it is suspected that no such algorithm should exist. There are algorithms better than exponential in $ \log n $, but nothing close to polynomial time.
 
 \subsection{Factorisation}
 
-How do we factor three digit numbers, or small four digit numbers, say $ n \le 400 $, if we wanted to factor with paper or calculator? If $ n \le 400 $ and $ n $ is composite, then $ n $ has a prime factor $ d \le \sqrt{400} = 20 $. If $ d \mid n $ then $ d\rb{n / d} = n $, so either $ d \le \sqrt{n} $ or $ n / d \le \sqrt{n} $. So you only have to be able to check for divisibility $ 2, 3, 5, 7, 11, 13, 17, 19 $.
+One way to check if $ n $ is prime or not is to try dividing by all primes up to $ \sqrt{n} $, because if $ d $ is a proper divisor of $ n $, then either $ d \le \sqrt{n} $ or $ n / d \le \sqrt{n} $. This is fine if you are factoring a small integer in your head, but hopeless if you want to factor numbers which are hundreds of digits long on a computer.
+
+\begin{note}
+If you want to check primality or factorise relatively small numbers, there are tricks. In particular, if you want to check divisibility by $ 2 $, $ 3 $, $ 5 $, $ 7 $, or $ 11 $ there are the following tests.
 \begin{enumerate}
-\item Checking by divisibility by $ 2 $ or $ 5 $ is easy. Just look at the last digit.
-\item For $ 3 $, $ 11 $, use that $ 10 \equiv 1 \mod 3 $ and $ 10 \equiv -1 \mod 3 $. So
-$$ \sum_{i = 0}^{\log n} a_i10^i \equiv \sum_{i = 0}^{\log n} a_i \mod 3, \qquad \sum_{i = 0}^{\log n} a_i10^i \equiv \sum_{i = 0}^{\log n} a_i\rb{-1}^i \mod 11. $$
-So you can check divisibility by $ 3 $ or $ 9 $ by checking for the sum of the digits, and $ 11 $ by taking the alternating sum.
-\item For $ 7 $, $ 10x + y \equiv 0 \mod 7 $ if and only if $ -2\rb{10x + y} \equiv 0 \mod 7 $, if and only if $ x - 2y \equiv 0 \mod 7 $.
-\item For $ 13 $, $ 17 $, $ 19 $, there are no good tests. If $ n \le 400 $ and $ n $ is not divisible by $ 2, 3, 5, 7, 11 $, then the smallest prime factor of $ n $ is at least $ 13 $. Since $ 13^3 > 400 $, it can have at most $ 2 $ prime factors. So if you want to factor numbers $ \le 400 $, you only have to remember a short list
-$$ 13^2, \qquad 13\rb{17}, \qquad 13\rb{19}, \qquad 13\rb{23}, \qquad 13\rb{29}, \qquad 17^2, \qquad 17\rb{19}, \qquad 17\rb{23}, \qquad 19^2. $$
+\item Checking by divisibility by $ 2 $ or $ 5 $ is easy, just a matter of looking at the last decimal digit.
+\item For $ 3 $ and $ 11 $, we have $ 10 \equiv 1 \mod 3 $ and $ 10 \equiv -1 \mod 11 $, so
+$$ \sum_{i = 0}^{\log n} a_i10^i \equiv \sum_{i = 0}^{\log n} a_i \mod 3, \qquad \sum_{i = 0}^{\log n} a_i10^i \equiv \sum_{i = 0}^{\log n} a_i\rb{-1}^i \mod 11, $$
+so we can check divisibility by taking the sum of the decimal digits for $ 3 $ or $ 9 $, and taking the alternating sum for $ 11 $.
+\item For $ 7 $ things are slightly more awkward, but there is the following observation. $ 10x + y \equiv 0 \mod 7 $ if and only if $ -2\rb{10x + y} \equiv 0 \mod 7 $ if and only if $ x - 2y \equiv 0 \mod 7 $. So we can repeatedly subtract off twice the last digit from the number formed by removing the last digit.
 \end{enumerate}
+\end{note}
+
+If we wanted to factor three digit numbers, or small four digit numbers, say $ n \le 400 $ is composite, with paper or calculator, then $ n $ has a prime factor $ d \le \sqrt{400} = 20 $. Then we only have to worry about checking divisibility by primes up to $ 19 $. If $ n $ is not divisible by $ 2, 3, 5, 7, 11 $, then the smallest prime factor of $ n $ is at least $ 13 $. So with these tests we only have difficulties if the only prime factors are $ 13 $, $ 17 $, $ 19 $, where there are no good tests. Since $ 13^3 > 400 $, it can have at most $ 2 $ prime factors. If you can recognise the squares $ 169 $, $ 289 $, $ 361 $, then you only have to remember a short list $ 13 \times 17 = 221 $, $ 13 \times 19 = 247 $, $ 13 \times 23 = 299 $, $ 13 \times 29 = 377 $, $ 17 \times 19 = 323 $, $ 17 \times 23 = 391 $.
 
 \begin{example}
 $ 143 \equiv 1 - 4 + 3 \equiv 0 \mod 11 $, $ 144 \equiv 1 + 4 + 4 \equiv 0 \mod 9 $, and $ 154 \equiv 15 - 2\rb{4} = 7 \equiv 0 \mod 7 $.
@@ -613,98 +618,141 @@ $ 143 \equiv 1 - 4 + 3 \equiv 0 \mod 11 $, $ 144 \equiv 1 + 4 + 4 \equiv 0 \mod 
 
 \marginpar{Lecture 7 \\ Friday \\ 19/10/18}
 
-Factor four digit numbers by an algorithm due to Fermat. Idea is to first check for small prime factors by hand, say $ p = 2, \dots 19 $. If $ n $ is composite and does not have any small factors, then the prime factors of $ n $ should be close to $ \sqrt{n} $. If $ n = ab $ for $ a, b $ odd and $ a \le b $, then
-$$ n = ab = \rb{\dfrac{a + b}{2}}^2 - \rb{\dfrac{b - a}{2}}^2, \qquad \rb{\dfrac{a + b}{2}}^2 - n = \rb{\dfrac{b - a}{2}}^2. $$
-If you know $ \rb{a + b} / 2 $ and $ \rb{b - a} / 2 $, you can recover $ a, b $. So take $ m $ such that $ m^2 \le n < \rb{m + 1}^2 $. If $ n = m^2 $, done, otherwise check if $ \rb{m + i}^2 - n $ is a square for increasing $ i $.
+In fact, there is a method due to Fermat which allows you to factor even four digit numbers by hand, if you really have to. Idea is to first eliminate small prime factors by hand, up to say $ p = 2, \dots, 19 $. If $ n $ is composite and does not have any small factors, the remaining possibility is that if $ n $ has prime factors, they are close together to $ \sqrt{n} $, as in the exceptional cases we considered in the last paragraph. Now, if $ n = ab $ with $ a \le b $ both odd, then we can write
+$$ n = ab = \rb{\dfrac{a + b}{2}}^2 - \rb{\dfrac{b - a}{2}}^2, \qquad \implies \qquad \rb{\dfrac{a + b}{2}}^2 - n = \rb{\dfrac{b - a}{2}}^2. $$
+If you know $ \rb{a + b} / 2 $ and $ \rb{b - a} / 2 $, you can recover $ a, b $. This suggests the following procedure. If $ n $ is a square, we are done. If not, let $ m $ be the least integer with $ m^2 \le n < \rb{m + 1}^2 $, and check if $ \rb{m + 1}^2 - n $ is a square. If it is not, try $ \rb{m + 2}^2 - n $, and so on. Once you can write $ y^2 - n = x^2 $ then $ n = y^2 - x^2 = \rb{y + x}\rb{y - x} $ and we have a factorisation.
 
 \begin{example}
-Let $ n  = 6077 $. $ 77^2 < 6077 < 78^2 $, so
+If $ n  = 6077 $, then you find that $ 77^2 < 6077 < 78^2 $, and
 \begin{align*}
 78^2 - 6077 & = 7, \\
 79^2 - 6077 & = 164, \\
 80^2 - 6077 & = 323, \\
-81^2 - 6077 & = 484 = 22^2.
+81^2 - 6077 & = 484 = 22^2,
 \end{align*}
-Thus $ 6077 = 81^2 - 22^2 = \rb{103}\rb{59} $.
+so $ 6077 = 81^2 - 22^2 = 103 \times 59 $.
 \end{example}
 
-There exist algorithms for factoring $ n $ which run in better than exponential time in $ \log n $, such as the quadratic sieve and the general number field sieve. The following is the \textbf{quadratic sieve}.
+In the worst case even the combination of trial division and the Fermat method run in time which is exponential in $ \log n $. The fastest algorithms known for factoring $ n $ run in better than exponential time in $ \log n $ are subexponential. They are the quadratic sieve, Lenstra elliptic curve factorisation, and the general number field sieve. They are all significantly more complicated, although at least the \textbf{quadratic sieve} could be described in this course if we wanted to. Rather than go through it in detail, we just give a sense of the idea using an example.
 
 \begin{example}
-Let $ n = 1649 $. $ 40^2 < 1649 < 41^2 $, so
+Imagine trying to factor $ n = 1649 $ using the Fermat method. Since $ 40^2 < 1649 < 41^2 $, we compute
 \begin{align*}
 41^2 - 1649 & = 32 = 2^5, \\
-42^2 - 1649 & = 115, \\
-43^2 - 1649 & = 200 = \rb{2}^3\rb{5}^2.
+42^2 - 1649 & = 115 = 5 \times 23, \\
+43^2 - 1649 & = 200 = 2^3 \times 5^2.
 \end{align*}
-$ 41^2 \equiv 2^5 \mod 1649 $ and $ 43^2 \equiv \rb{2}^3\rb{5}^2 \mod 1649 $, so $ 80^2 \equiv \rb{41}^2\rb{43}^2 = 1763^2 \equiv 114^2 \mod 1649 $. Then $ 0 \equiv 114^2 - 80^2 = \rb{194}\rb{34} = \rb{2}^2\rb{17}\rb{97} \mod 1649 $. In fact, $ 1649 = \rb{17}\rb{97} $. Better for this last step would be to have computed $ \rb{194, 1649} = 97 $ and $ \rb{34, 1649} = 17 $. Can do this quickly using Euclid's algorithm.
+We certainly have not factored it yet, as none of these is a square, and indeed we would have to do another fourteen steps to find a factor. However, $ 32 \times 200 = 2^8 \times 5^2 = 80^2 $. This means that we have a congruence
+$$ \rb{2^5 \times 2^3 \times 5^2}^2 = \rb{41 \times 43}^2 \equiv 80^2 \mod 1649. $$
+Since $ 41 \times 43 = 1763 \equiv 114 \mod 1649 $, this means that $ 1649 \mid \rb{114 + 80}\rb{114 - 80} = 194 \times 34 = 2^2 \times 17 \times 97 $ and indeed $ 1649 = 17 \times 97 $.
 \end{example}
 
-To make this into an efficient algorithm, need to have a way given $ x_1, \dots, x_r $ to find a subset whose product is a square. If we know the prime factorisation for the $ x_i $, we can write $ x_i = p_1^{a_{i1}} \dots p_k^{a_{ik}} $. Want to choose $ \epsilon_i \in \cb{0, 1} $ such that $ \prod_{i = 1}^r x_i^{\epsilon_i} $ is a square. Equivalently, for each $ j $, want the exponent of $ p_j $ to be even, that is $ \sum_{i = 1}^r \epsilon_ia_{ij} \equiv 0 \mod 2 $.
+This is the basic idea of the quadratic sieve. In order to factor $ n $, rather than trying to find numbers $ a, b $ with $ a^2 - b^2 = n $, you try to find them with $ a^2 \equiv b^2 \mod n $. Then you can hope that one of $ a \pm b $ has a common factor with $ n $.
+
+\begin{note}
+For illustration we factored $ a \pm b $ above, but in general a better idea for the last step would be to compute the gcd $ \rb{a \pm b, n} $, $ \rb{194, 1649} = 97 $ and $ \rb{34, 1649} = 17 $, quickly using Euclid's algorithm.
+\end{note}
+
+How do we find congruences like this? To make this into an efficient algorithm, the idea is that it is easy to spot relations like the one we found if the numbers have only small prime factors. In fact, we can turn it into a linear algebra problem over the field with two elements $ \Z / 2\Z $, in the following way. Suppose that we have a set $ x_1, \dots, x_r \in \Z $ and we want to find a product of a subset of them which is a square. If we know the prime factorisation for the $ x_i $, we can write $ x_i = p_1^{a_{i1}} \dots p_k^{a_{ik}} $, then we are trying to find $ \epsilon_i \in \cb{0, 1} $ such that $ \prod_{i = 1}^r x_i^{\epsilon_i} $ is a square. Equivalently, for each $ 1 \le j \le k $, want the exponent of $ p_j $ to be even, that is we have $ \sum_{i = 1}^r \epsilon_ia_{ij} = \epsilon_1a_{1j} + \dots + \epsilon_ra_{rj} \equiv 0 \mod 2 $. This is just a linear algebra question.
 
 \begin{example}
-$ x_1 = 2^5 $, $ x_2 = \rb{5}\rb{23} $, $ x_3 = \rb{2}^3\rb{5}^2 $. $ p_1 = 2 $, $ p_2 = 5 $, $ p_3 = 23 $. Ignore all numbers with a large prime factor, here ignore $ 23 $. Left with $ x_1 = 2^5 $ and $ x_3 = \rb{2}^3\rb{5}^2 $.
+Let $ x_1 = 2^5 $, $ x_2 = 5 \times 23 $, $ x_3 = 2^3 \times 5^2 $. If we just look at the numbers above which only had small primes less than or equal to $ 5 $ in their factorisations, then we are looking at $ x_1 $ and $ x_3 $. Taking $ p_1 = 2 $ and $ p_2 = 5 $, we need to solve
 $$ \begin{pmatrix} \epsilon_1 & \epsilon_2 \end{pmatrix} \two{5 & 0}{3 & 2} \equiv \begin{pmatrix} 0 & 0 \end{pmatrix} \mod 2 \qquad \iff \qquad \begin{pmatrix} \epsilon_1 & \epsilon_2 \end{pmatrix} \two{1 & 0}{1 & 0} = \begin{pmatrix} 0 & 0 \end{pmatrix} $$
-in the field $ \Z / 2\Z = \F_2 $, that is $ \epsilon_1 + \epsilon_2 = 0 $, so choose $ \epsilon_1 = \epsilon_2 = 1 $.
+in the field $ \Z / 2\Z = \F_2 $, that is $ \epsilon_1 + \epsilon_2 = 0 $, which has the non-trivial solution $ \epsilon_1 = \epsilon_2 = 1 $.
 \end{example}
 
-This step, solving linear equations in $ \Z / 2\Z $, can be done efficiently. The remaining difficulty is to find a supply of $ m \in \Z $ such that $ m^2 - n $ has only small prime factors. Idea is if we fix a list of small primes to start with, we get congruence conditions on $ m $. It turns out that there is a straightforward algorithm for solving $ m^2 \equiv n \mod p $. This gives two possible values for $ m $ modulo $ p $. If you do this for lots of primes $ p $, you get a supply of congruence conditions for $ m $, so you can eliminate ever considering $ m $ such that $ m^2 - n $ has large prime factors.
+This step, solving linear equations in $ \Z / 2\Z $, can be done efficiently. In order to make this into a practical algorithm to factor $ n $, the remaining difficulty is to find a good supply of $ m \in \Z $ such that $ m^2 - n $ is smooth, in the sense that it only has small prime factors.
+
+\begin{note}
+This is something that you could try to do by trial division. Once we had decided above that we only wanted prime factors up to $ 5 $, we could just keep dividing $ a^2 - n $ by $ 2 $, $ 3 $, $ 5 $, and if we did not get to $ 1 $ then we could throw the number away. In practice, there are faster ways to proceed, which is where the sieve in quadratic sieve comes from.
+\end{note}
+
+The basic idea is if we fix a list of small primes to start with, we use congruence conditions on $ m $, because for each prime $ 2 < p \nmid n $, there will be zero or two possible values for $ m $ in $ m^2 \equiv n \mod p $. It turns out that there is a straightforward algorithm for solving $ m^2 \equiv n \mod p $, which is part of the theory of quadratic residues, which we will get to shortly. If you do this for lots of primes $ p $, you get a supply of congruence conditions for $ m $, so you can eliminate ever considering $ m $ such that $ m^2 - n $ has large prime factors.
 
 \begin{example}
-$ m^2 = 1649 \equiv 2 \mod 3 $ has no solutions.
+It is easy to check that $ m^2 \equiv 1649 \mod 3 $ has no solutions, so there would have been no point in looking for $ 3 $, and if we want $ 5 $ to be a factor of $ m^2 - 1649 $ then we need $ x \equiv \pm 2 \mod 5 $, and so on.
 \end{example}
 
 \marginpar{Lecture 8 \\ Tuesday \\ 23/10/18}
 
-\subsection{Primality testing}
+\subsection{Testing primality}
 
-Euler's theorem states that if $ \rb{a, n} = 1 $ then $ a^{\Phi\rb{n}} \equiv 1 \mod n $. In particular if $ p $ is prime then $ a^{p - 1} $ then $ a^{p - 1} \equiv 1 \mod p $ for all $ 1 \le a \le p - 1 $. In particular if $ 2^{n - 1} \equiv 1 \mod n $, then $ n $ cannot be prime. Problem is that there exists $ n $ composite such that $ a^{n - 1} \equiv 1 \mod n $ for all $ \rb{a, n} = 1 $. These numbers are called \textbf{Carmichael numbers}. It is known that infinitely many of these exist. Miller-Rabin test is a test for whether $ n \in \Z $ is prime or not. Today let $ n \equiv 3 \mod 4 $. Example sheet is $ n \equiv 1 \mod 4 $.
+By Euler's theorem if $ \rb{a, n} = 1 $ then $ a^{\Phi\rb{n}} \equiv 1 \mod n $. In particular, if $ p $ is prime then $ a^{p - 1} \equiv 1 \mod p $ for all $ 1 \le a \le p - 1 $. Conversely, if we can find an $ 1 \le a < n $ with $ a^{n - 1} \not\equiv 1 \mod n $, then $ n $ is not prime. Even just taking $ a = 2 $ in $ 2^{n - 1} \not\equiv 1 \mod n $ is often enough to show that $ n $ is not prime, and using repeated squaring this can be checked quickly.
+
+\begin{example}
+To check if $ 9 $ is prime, we can compute $ 2^8 \equiv 2^{2^{2^2}} \equiv 4^{2^2} \equiv 7^2 \equiv 4 \mod 9 $.
+\end{example}
+
+However it does not always work. $ 341 = 11 \times 31 $ has $ 2^{340} \equiv 1 \mod 341 $. In general even varying $ a $ is not enough. A \textbf{Carmichael number} is a composite number such that for all $ \rb{a, n} = 1 $ then $ a^{n - 1} \equiv 1 \mod n $. It is known that infinitely many of them exist, a hard theorem, although they are rare. See the example sheet for an example of a few of them. A variant on this idea gives an efficient primality test, the \textbf{Miller-Rabin test}, a test for whether $ n \in \Z $ is prime or not. We restrict ourselves to considering the case that $ n \equiv 3 \mod 4 $, as the essential idea is already clear in this case, but the analysis is more complicated in the case $ n \equiv 1 \mod 4 $, in an example sheet. Of course if $ n $ is even we do not need a primality test. The key point is the following.
 
 \begin{lemma}
 \label{lem:30}
-Let $ n > 1 $ be congruent to $ 3 $ modulo $ 4 $. Then $ n $ is prime if and only if for all $ \rb{a, n} = 1 $, $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $.
+If $ n \equiv 3 \mod 4 $, then $ n $ is prime if and only if for every $ a \in \unit{n} $, we have $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $.
 \end{lemma}
 
 \begin{proof}
-If $ n $ is prime, then $ a^{n - 1} \equiv 1 \mod n $ by Fermat's Little theorem, so $ \rb{a^{\rb{n - 1} / 2}}^2 \equiv 1 \mod n $, so $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $. Suppose firstly that $ n = p^k $ with $ p $ prime, and $ k \ge 2 $. Try $ a = 1 + p $. Then $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv 1 + \rb{\rb{n - 1} / 2}p \mod p^2 $, by the binomial theorem. If $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p^k = n $, then $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p, p^2 $ gives
+Suppose firstly that $ n $ is prime. Then $ a^{n - 1} \equiv 1 \mod n $ by Fermat's little theorem, so $ \rb{a^{\rb{n - 1} / 2}}^2 \equiv 1 \mod n $, so $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $, because $ n $ is prime, the equation $ x^2 = 1 $ has just the roots $ \pm 1 $ in $ \Z / n\Z $. Suppose next that $ n = p^k $ for $ p $ prime is a prime power with $ k \ge 2 $, and take $ a = 1 + p $. Then
+$$ \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\tfrac{n - 1}{2}}p \mod p^2, $$
+by the binomial theorem. If $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p^k = n $, then $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p, p^2 $ gives
 $$ \pm 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \equiv 1 \mod p \qquad \implies \qquad 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \mod p^2, $$
-then $ p \mid \rb{\rb{n - 1} / 2} $, so $ p \mid \rb{n - 1} $. But $ p \mid n $, a contradiction. The remaining case is that $ n $ is composite but not a power of a prime. Write $ n = rs $, for $ r, s > 1  $ and odd, and $ \rb{r, s} = 1 $. By the Chinese remainder theorem, $ \Z / n\Z \cong \Z / r\Z \times \Z / s\Z $. Choose $ a $ such that $ a \equiv -1 \mod r $ and $ a \equiv 1 \mod s $. Then $ \rb{a, r} = \rb{a, s} = 1 $, so $ \rb{a, n} = 1 $. Since $ n \equiv 3 \mod 4 $, $ \rb{n - 1} / 2 $ is odd, so $ a^{\rb{n - 1} / 2} \equiv -1 \mod r $ and $ a^{\rb{n - 1} / 2} \equiv 1 \mod s $. So $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $.
+then $ p \mid \rb{\rb{n - 1} / 2} $, so $ p \mid \rb{n - 1} $. But $ p \mid n $, a contradiction. Finally for the remaining case suppose that $ n $ is composite but not a power of a prime, and write $ n = rs $ for $ r, s > 1 $ and odd, and $ \rb{r, s} = 1 $. By the Chinese remainder theorem, $ \Z / n\Z \cong \Z / r\Z \times \Z / s\Z $. We can choose $ a $ with $ \rb{a, n} = 1 $ such that $ a \equiv -1 \mod r $ and $ a \equiv 1 \mod s $. Then $ \rb{a, r} = \rb{a, s} = 1 $, so $ \rb{a, n} = 1 $. Since $ n \equiv 3 \mod 4 $ by assumption, $ \rb{n - 1} / 2 $ is odd, so $ a^{\rb{n - 1} / 2} \equiv -1 \mod r $ and $ a^{\rb{n - 1} / 2} \equiv 1 \mod s $. So $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $.
 \end{proof}
+
+So we know that if $ n $ is composite, there will exist values of $ a $ with $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $. To understand how efficient the algorithm is, we need to know how many such $ a $ there are.
 
 \begin{lemma}
 \label{lem:31}
-Suppose that $ n \equiv 3 \mod 4 $ is composite. Then the set of $ a \in \rb{\Z / n\Z}^* $ which satisfy $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $ is a proper subgroup of $ \rb{\Z / n\Z}^* $.
+Suppose that $ n \equiv 3 \mod 4 $ and that $ n $ is composite. Then the set of $ a \in \unit{n} $ satisfying $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $ is a proper subgroup of $ \unit{n} $.
 \end{lemma}
 
 \begin{proof}
-Certainly $ 1^{\rb{n - 1} / 2} \equiv 1 \mod n $. If $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $ and $ b^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $,
+That it is a subgroup follows easily from the definition. Just check that it is closed under products and inverses. Certainly $ 1^{\rb{n - 1} / 2} \equiv 1 \mod n $. If $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $ and $ b^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $,
 $$ \rb{ab}^{\rb{n - 1} / 2} \equiv a^{\rb{n - 1} / 2}b^{\rb{n - 1} / 2} \equiv \rb{\pm 1}\rb{\pm 1} \equiv \pm 1, \quad \rb{a^{-1}}^{\rb{n - 1} / 2} \equiv \rb{a^{\rb{n - 1} / 2}}^{-1} \equiv \rb{\pm 1}^{-1} \equiv \pm 1 \mod n. $$
-So this set is a subgroup of $ \rb{\Z / n\Z}^* $. It is a proper subgroup by Lemma \ref{lem:30}.
+So this set is a subgroup of $ \unit{n} $. That it is a proper subgroup is then immediate from Lemma \ref{lem:30}.
 \end{proof}
 
+We immediately get the following bound.
+
 \begin{corollary}
-At most half the elements of $ \rb{\Z / n\Z}^* $ satisfy $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $.
+Suppose that $ n \equiv 3 \mod 4 $ and that $ n $ is composite. Then at most half of the values of $ a \in \unit{n} $ satisfy $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $.
 \end{corollary}
 
 \begin{proof}
-The set of such elements is a proper subgroup of $ \rb{\Z / n\Z}^* $ by Lemma \ref{lem:31}.
+The set of such elements is a proper subgroup of $ \unit{n} $ by Lemma \ref{lem:31}, and any proper subgroup has index at least two.
 \end{proof}
 
-In fact, with a bit more work, you can improve this to show that at least $ 3 / 4 $ of the numbers $ 1 \le a \le n - 1 $ satisfy $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $. So if you randomly choose numbers $ 1 \le a \le n - 1 $ $ x $ times, and $ n $ is composite, the probability that you find some $ a $ with $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $ is at least $ 1 - \rb{1 / 4}^x $. This gives a probabilistic algorithm to check if $ n $ is prime in polynomial time. If you assume generalised Riemann hypothesis (GRH) you can find some $ a \in \Z $ with
-$$ 1 \le a \le \left\lceil 2 \rb{\log n}^2 \right\rceil, \qquad a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n. $$
-In practice it is even better.
+In fact we can do better than this. It can be shown with some more work that you can improve this to show that at least $ 3 / 4 $ of the integers $ 1 \le a \le n - 1 $ satisfy $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $. It follows that if $ n \equiv 3 \mod 4 $ and you choose $ x $ integers $ 1 \le a \le n - 1 $ at random, and $ n $ is composite, then the probability that you find such an $ a $ with $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $ is at least $ 1 - 1 / 4^x $, so this gives an efficient polynomial time probabilistic random algorithm for testing if $ n $ is prime. If you want it to be deterministic, if you assume the generalised Riemann hypothesis (GRH), then it is known that you can find a counterexample $ a \in \Z $ with
+$$ 1 \le a \le \left\lceil 2 \rb{\log n}^2 \right\rceil, \qquad a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n, $$
+and again we have a polynomial time algorithm. In practice it is even better than this.
 
 \begin{example}
-If $ n < 341550071728321 $, then one of $ a = 2, 3, 5, 7, 11, 13, 17 $ will work.
+If $ n < 341550071728321 $, it is enough to test $ a = 2, 3, 5, 7, 11, 13, 17 $.
 \end{example}
 
-\section{Public key cryptography}
+\section{Public-key cryptography}
 
-How do we turn messages into numbers in $ \Z / n\Z $? Idea is to choose $ n $ very large. Say $ n > 2^{8k} $. Write down your message. Break it up into strings of at most $ k $ characters. Encode each character as an $ 8 $ bit binary number. String these integers together to get an $ 8k $ bit binary number. Regard that as an integer modulo $ n $. Now apply some function $ f : \Z / n\Z \to \Z / n\Z $, and then tell whoever you are trying to communicate with the result of this computation. Then they should apply some other function $ g : \Z / m\Z \to \Z / n\Z $, to get back the number you started with. So want $ f $ to be injective. Want to be able to make $ f $ public without making $ g $ public. If you have functions $ f, g : \Z / n\Z \to \Z / n\Z $ with $ f \circ g = g \circ f = id $, then you can also verify your identity, that is sign messages. Again, make $ f $ public, and any time you publish a message $ m $, you also publish $ g\rb{m} $. Then anyone can apply $ f $ to $ g\rb{m} $ to recover $ m = f\rb{g\rb{m}} $, but without $ g $, no one can forge your signature.
+\subsection{Messages as sequences of classes modulo $ n $}
 
-\subsection{Rivest-Shamir-Adleman (RSA) algorithm}
+How do we turn messages into numbers in $ \Z / n\Z $? Since the advent of computers, the idea of representing a message by a string of numbers is a familiar one. In practice, to do this one typically chooses a way of encoding individual characters as binary numbers of a fixed length $ d $, usually eight or sixteen bits, that is binary digits. If we then cut a message up into blocks or strings of at most $ k $ characters and concatenate the binary representations of each character in the block together, we obtain a $ dk $ bit binary number that represents an $ k $ character block as an integer between $ 0 $ and $ 2^{dk} $. If we choose some very large modulus $ n > 2^{dk} $, then we can alternatively represent a block as a class in $ Z / n\Z $. Thus we will be mainly concerned with the problem of communicating a congruence class $ c $ modulo $ n $, for some large $ n $, between a sender $ A $ and a recipient $ B $. The goal is to do this in such a way that any eavesdroppers on the communication cannot deduce what $ c $ is, but $ B $ can.
 
-Idea is to choose two large prime numbers $ p, q $ and set $ n = pq $. Choose $ \rb{e, \Phi\rb{n}} = 1 $. Find $ d $ such that $ de = 1 \mod \Phi\rb{n} = \rb{p - 1}\rb{q - 1} = n - \rb{p + q} + 1 $. Publish $ n $ and $ e $, you keep $ p, q, \Phi\rb{n}, d $ secret. $ f\rb{x} = x^e \mod n $ and $ g\rb{x} = x^d \mod n $. $ x^{de} \equiv x^1 \equiv x \mod n $ because $ de \equiv 1 \mod \Phi\rb{n} $ and $ x^{\Phi\rb{n}} \equiv 1 \mod n $.
+\subsection{The Rivest-Shamir-Adleman (RSA) algorithm}
+
+Most traditional forms of cryptography rely on a shared secret known to both $ A $ and $ B $. This shared secret is effectively some invertible function $ f : \Z / n\Z \to \Z / n\Z $. The idea is that rather than sending $ c $ to $ B $ directly, $ A $ applies $ f $ to $ c $ and computes $ f\rb{c} $, sends that to $ B $, and then $ B $ applies some other function $ g : \Z / n\Z \to \Z / n\Z $ and computes $ g\rb{f\rb{c}} $, where $ g = f^{-1} $, to get back the number $ A $ started with. Since eavesdroppers do not know $ f $, they, at least in principle, cannot recover $ c $ from $ f\rb{c} $. In practice, for $ A $ and $ B $ to agree on a function $ f $ poses problems. In particular, they have to communicate to do so, and if eavesdroppers listen to that communication they can learn $ f $. Want to be able to make $ f $ public without making $ g $ public. The algorithm we describe today avoids this problem completely. It is what is known as a public-key algorithm. Instead of secrets being shared between $ A $ and $ B $, our recipient $ B $ creates a secret known only to $ B $, his \textbf{private key}, and then releases additional information, his \textbf{public key}, to anyone who wants to communicate with him. For anyone to send $ B $ a message, only the public key is required, but decoding the message requires the private key. Here is how the algorithm works.
+\begin{enumerate}
+\item $ B $ first chooses two large prime numbers $ p $ and $ q $ and sets $ n = pq $. In practice, each of these is around $ 2^{1024} $ or so. An integer modulo $ n $ thus allows $ B $ to represent $ 2048 $ bits of information, or $ 256 $ eight bit characters.
+\item $ B $ also chooses a number $ e $ such that $ \rb{e, \Phi\rb{n}} = 1 $, and lets $ d $ be a multiplicative inverse of $ e $ modulo $ \Phi\rb{n} $ such that $ de = 1 \mod \Phi\rb{n} = \rb{p - 1}\rb{q - 1} = n - \rb{p + q} + 1 $.
+\item The public key, that $ B $ publishes and shares with everyone, consists of the numbers $ n $ and $ e $.
+\item The private key, that $ B $ must keep secret, consists of the numbers $ p $, $ q $, $ \Phi\rb{n} $, and $ d $.
+\item To encode a message $ x $, a sender $ A $ computes $ f\rb{x} \equiv x^e \mod n $, and sends it to $ B $.
+\item Given an encoded message $ y $, $ B $ decodes it by computing $ g\rb{y} \equiv y^d \mod n $.
+\end{enumerate}
+The reason this works is that if $ y \equiv x^e \mod n $, then one has $ \rb{x^e}^d \equiv x^{ed} \equiv x^{1 + k\Phi\rb{n}} \mod n $, since, by construction, $ de \equiv 1 \mod \Phi\rb{n} $. Thus $ y^d \equiv x^{ed} \equiv x^1 \equiv x \mod n $ by Euler's theorem, $ x^{\Phi\rb{n}} \equiv 1 \mod n $.
+
+\begin{note}
+This works provided $ x $ is coprime to $ n $, but the probability of this is extremely high. It is still ok even without that, since $ n $ is squarefree. (TODO Exercise using Fermat's little theorem plus Chinese remainder theorem)
+\end{note}
+
+The prevailing assumption is that with only the information $ n $ and $ e $, it is hopeless to discover $ d $. Any eavesdropper who knows $ x^e $ and wants to recover $ x $ from $ x^e $ then has to be able to compute an $ e^{th} $ root of $ x $ modulo $ n $. As far as we know, this is quite difficult computationally. The best publicly known approaches all involve factoring $ n $. For numbers around $ 2^{2048} $, this is not feasible with today's computing equipment, and might well never be feasible. On the other hand, we have no formal proof that factoring is as computationally difficult as it seems to be. As far as I am aware, we do not even have a formal proof that breaking RSA is as computationally difficult as factoring. In spite of these uncertainties, our intuition and experience suggests that recovering $ x $ from $ x^e $ without knowing a factorisation of $ n $ is computationally infeasible. It is this infeasibility that allows the cryptosystem to work.
 
 \marginpar{Lecture 9 \\ Wednesday \\ 24/10/18}
 
@@ -712,29 +760,37 @@ Lecture 9 is a problem class.
 
 \marginpar{Lecture 10 \\ Friday \\ 26/10/18}
 
-So if someone wants to send you a message $ c \in \Z / n\Z $, they compute $ c^e \in \Z / n\Z $, and send it to you. To decode it, you compute $ \rb{c^e}^d = c^{de} \equiv c \mod n $. This assumes that $ \rb{c, n} = 1 $, but the probability of this is extremely high. The prevailing assumption is that with only the information $ n $ and $ e $, it is hopeless to discover $ d $, or to find any other way of recovering $ c $ from $ c^e $.
+\subsection{Signing with RSA}
+
+Public-key cryptography can also be used as verification of identity. Suppose $ B $ wants to make a declaration to the world, and prove beyond all doubt that it was $ B $ who made the declaration, and not an impostor. Perhaps this declaration is a will, or acceptance of a contract, for instance. Suppose $ B $ has functions $ f, g : \Z / n\Z \to \Z / n\Z $ with $ f \circ g = g \circ f = id $. Again, make $ f $ public, and any time $ B $ publishes a message $ m $, $ B $ also publishes $ g\rb{m} $. Then anyone can apply $ f $ to $ g\rb{m} $ to recover $ m = f\rb{g\rb{m}} $, but without $ g $, no one can forge $ B $'s signature. With RSA, $ B $ first represents the message he wants to sign as a class $ m $ modulo $ n $. To sign this class, $ B $ computes $ m^d $ modulo $ n $ using the private part of the key, and sends the world the pair $ \rb{m, m^d} $. Suppose $ A $ wants to verify that a pair $ \rb{m, s} $ was a message signed by $ B $. Then $ A $ computes $ s^e $ modulo $ n $, which requires only the public part of the key. If $ s \equiv m^d \mod n $, then $ s^e = m^{de} \equiv m \mod n $. So $ A $ just needs to check that $ s^e \equiv m \mod n $ and if so the signature is verified. To fake a message signed by $ B $, a forger needs to solve the problem of, given a message $ m $, finding a signature $ s $ such that $ s^e \equiv m \mod n $. This is precisely the same problem as deciphering a message sent by the algorithm above. Thus forging signatures is just as hard as breaking the encryption.
 
 \subsection{Discrete logarithms}
 
-Suppose that $ n $ is prime, or more generally that $ \rb{\Z / n\Z}^* $ is cyclic. Let $ g $ be a generator for this group, that is a primitive root. For any $ a \in \rb{\Z / n\Z}^* $, we can write $ a = g^m $ for some unique $ 0 \le m < \Phi\rb{n} $. We call $ m $ the \textbf{discrete logarithm} of $ a $ to base $ g $, write $ m = \log_g\rb{a} $.
+If $ \unit{n} $ is cyclic, for example, if $ n $ is prime, and $ g $ is a generator for this group, that is a primitive root, then the map $ \Z / \Phi\rb{n}\Z \to \unit{n} $ taking $ a $ modulo $ \Phi\rb{n} $ to $ g^a $ is an isomorphism, from the additive group of $ \Z / \Phi\rb{n}\Z $ to $ \unit{n} $. It thus has an inverse, which we call the \textbf{discrete logarithm to the base $ g $}. Explicitly, if $ g $ is a primitive root modulo $ n $, then the discrete logarithm to the base $ g $, denoted $ \log_g $, is defined for any $ a \in \unit{n} $ by $ \log_g\rb{a} \equiv m \mod \Phi\rb{n} $, for some unique $ m \in \Z $ such that $ 0 \le m < \Phi\rb{n} $ and $ g^m \equiv a \mod n $.
 
 \begin{example}
-If you want to solve $ x^r \equiv a \mod n $, write $ x = g^y $, and the congruence becomes equivalent to $ yr \equiv \log_g\rb{a} \mod \Phi\rb{n} $.
+One use of the discrete logarithm is to solve exponential equations modulo $ n $. By applying $ \log_g $ to both sides of the equation $ x^r \equiv a \mod n $, write $ x = g^y $, we obtain that the congruence becomes equivalent to the linear congruence equation $ yr \equiv \log_g\rb{a} \mod \Phi\rb{n} $, and we can solve those with techniques explained earlier.
 \end{example}
 
-Unfortunately, or fortunately for cryptography, computing $ \log_g $ is believed to be a hard problem. In particular, there is no known polynomial time algorithm.
+Unfortunately, or fortunately for cryptography, it is expected that the discrete logarithm is hard to compute, much in the way that it is expected to be hard to crack RSA, but we do not know for sure. In particular, there is no known polynomial time algorithm.
 
 \begin{example}
-Imagine that you have a system where you need to store passwords for different users, but you do not want to store the actual passwords. One way to do this is to choose a large prime $ p $ and a primitive root $ g $, and if someone inputs $ x $ as their password, you store $ g^x $ modulo $ p $. If they later input $ y $, you compute $ g^y $, and check it matches what you stored. If it does then $ y \equiv x \mod p - 1 $.
+Here is a practical application of this. Imagine that you have a system where you need to safely store passwords for different users, but you do not want to store the actual passwords. One way to do this is to let $ p $ be a large prime, big enough so that all passwords can be thought of as residues mod $ \rb{p - 1} $, and fix a primitive root $ g $ modulo $ p $. Then if someone inputs their password to be $ x $, you can compute and store $ g^x $ modulo $ p $. If they later want to login with input $ y $, you compute $ g^y $, and check if it matches what you stored. If it does then $ y \equiv x \mod p - 1 $. Even if someone has access to what you have stored, and to g, they still cannot recover the password a without solving the discrete logarithm problem. Of
+course, nor can you, so it is not so good if you require people to be able to
+be reminded of their passwords.
 \end{example}
 
-\section{Quadratic residues and quadratic reciprocity}
+\section{Quadratic reciprocity}
 
-Let $ p $ be a prime number.
+\subsection{Quadratic residues}
 
 \begin{definition}
-If $ \rb{a, p} = 1 $, then $ a $ is a \textbf{quadratic residue} (QR) if and only if there is a solution to $ x^2 \equiv a \mod p $. If $ \rb{a, p} = 1 $ and is not a QR, it is called a \textbf{quadratic nonresidue} (QNR).
+Let $ p $ be a prime number and $ a \in \Z $ not divisible by $ p $, that is $ \rb{a, p} = 1 $. We say that $ a $ is a \textbf{quadratic residue modulo $ p $} (QR) if and only if there exists a solution $ x \in \Z $ to $ x^2 \equiv a \mod p $. If no such $ d $ exists, so $ a $ is not a QR, it is called a \textbf{quadratic non-residue modulo $ p $} (QNR).
 \end{definition}
+
+\begin{note}
+By this convention, $ a \in \Z $ divisible by $ p $ are neither QRs nor QNRs modulo $ p $. Other conventions exist, so sometimes zero is a QR.
+\end{note}
 
 \begin{example}
 If $ p = 2 $, $ 1 $ is a QR. If $ p = 3 $, $ 1 $ is a QR, $ -1 $ is a QNR, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 3 $. If $ p = 5 $, $ 1, 4 $ are QRs, $ 2, 3 $ are QNRs, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 5 $ and $ 2^2 \equiv 3^2 \equiv 4 \mod 5 $.
@@ -742,53 +798,59 @@ If $ p = 2 $, $ 1 $ is a QR. If $ p = 3 $, $ 1 $ is a QR, $ -1 $ is a QNR, since
 
 \begin{lemma}
 \label{lem:34}
-If $ p > 2 $ then there are exactly $ \rb{p - 1} / 2 $ QRs, and $ \rb{p - 1} / 2 $ QNRs modulo $ p $.
+If $ p > 2 $ then there are exactly $ \rb{p - 1} / 2 $ QRs modulo $ p $, and $ \rb{p - 1} / 2 $ QNRs modulo $ p $.
 \end{lemma}
 
 \begin{proof}
-The map $ \rb{\Z / p\Z}^* \to \rb{\Z / p\Z}^* $ by $ x \mapsto x^2 $ is a group homomorphism with kernel is $ \cb{\pm 1} $. So the image has order $ \rb{p - 1} / 2 $, and the image is exactly the QRs.
+The QRs are exactly the image of the group homomorphism $ \unit{p} \to \unit{p} $ by $ x \mapsto x^2 $. This has kernel $ x = \pm 1 $, so the image has order $ \rb{p - 1} / 2 $.
 \end{proof}
 
 \begin{proposition}
 \label{prop:35}
-Suppose that $ \rb{a, p} = \rb{b, p} = 1 $. Then
+Let $ a, b \in \Z $ with $ \rb{a, p} = \rb{b, p} = 1 $. Then
 \begin{enumerate}
-\item if $ a, b $ are both QRs, then $ ab $ is a QR,
-\item if one of $ a, b $ is a QR and one is a QNR, then $ ab $ is a QNR, and
-\item if $ a, b $ are both QNRs, then $ ab $ is a QR.
+\item if $ a $ and $ b $ are both QRs modulo $ p $, then so is $ ab $,
+\item if $ a $ is a QR modulo $ p $ and $ b $ is a QNR modulo $ p $, then $ ab $ is a QNR modulo $ p $, and
+\item if $ a $ and $ b $ are both QNRs modulo $ p $, then $ ab $ is a QR modulo $ p $.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-Let $ H $ be the image of $ \rb{\Z / p\Z}^* \to \rb{\Z / p\Z}^* $ by $ x \mapsto x^2 $, that is $ H $ is the QRs. Then $ \rb{\Z / p\Z}^* / H $ is a group of order two by Lemma \ref{lem:34}, so it is cyclic of order two. This statement is a restatement of the proposition, since $ \rb{\Z / p\Z}^* = H \sqcup 1 + H $.
+Note that the set $ H $ of QRs in $ \unit{p} $ is a subgroup, because it is the image of the group homomorphism $ \unit{p} \to \unit{p} $ by $ x \mapsto x^2 $ by Lemma \ref{lem:34}, and by the first isomorphism theorem we have $ \unit{p} / H \cong \Z / 2\Z $. The proposition is a restatement of this, since $ \unit{p} = H \sqcup 1 + H $.
 \end{proof}
 
 \begin{definition}
-Let $ a $ be an integer and $ p $ a prime. Then
+The \textbf{Legendre symbol} $ \legendre{a}{p} $, for $ p $ a prime and $ a \in \Z $, is defined by
 $$ \legendre{a}{p} = \begin{cases} 1 & a \text{ is a QR modulo } p \\ 0 & p \mid a \\ -1 & a \text{ is a QNR modulo } p \end{cases}. $$
 \end{definition}
 
-Proposition \ref{prop:35} can be restated as saying that $ \rb{\Z / p\Z}^* \to \cb{\pm 1} $ by $ a \mapsto \legendre{a}{p} $ is a group homomorphism, that is $ \legendre{ab}{p} = \legendre{a}{p}\legendre{a}{p} $. Even holds if we do not assume that $ \rb{a, p} = \rb{b, p} = 1 $.
+Proposition \ref{prop:35} above then amounts to saying that the map $ \unit{p} \to \cb{\pm 1} $ defined by $ a \mapsto \legendre{a}{p} $ is a group homomorphism, that is $ \legendre{ab}{p} = \legendre{a}{p}\legendre{a}{p} $. Even holds if we do not assume that $ \rb{a, p} = \rb{b, p} = 1 $. In fact, the existence of primitive roots gives us an easy description of the following map.
 
 \marginpar{Lecture 11 \\ Tuesday \\ 30/10/18}
 
 \begin{theorem}[Euler's criterion]
-If $ p $ is an odd prime, and $ p \nmid a $, then $ \legendre{a}{p} \equiv a^{\rb{p - 1} / 2} \mod p $.
+Let $ p $ be an odd prime, and $ a \in \Z $ not divisible by $ p $. Then
+$$ \legendre{a}{p} \equiv a^{\rb{p - 1} / 2} \mod p. $$
 \end{theorem}
 
 \begin{proof}
-Let $ g $ be a primitive root modulo $ p $, and write $ a \equiv g^r \mod p $ for $ 0 \le r < p - 1 $. Now $ \rb{g^{\rb{p - 1} / 2}}^2 = g^{p - 1} \equiv 1 \mod p $. So $ g^{\rb{p - 1} / 2} \equiv \pm 1 \mod p $. Since $ g $ is a primitive root, $ g^{\rb{p - 1} / 2} \not\equiv 1 \mod p $, so $ g^{\rb{p - 1} / 2} \equiv -1 \mod p $. So $ a^{\rb{p - 1} / 2} \equiv \rb{g^r}^{\rb{p - 1} / 2} \equiv \rb{g^{\rb{p - 1} / 2}}^r = \rb{-1}^2 \mod p $. But
+Let $ g $ be a primitive root modulo $ p $, and write $ a \equiv g^r \mod p $ for $ 0 \le r < p - 1 $. Then $ \rb{g^{\rb{p - 1} / 2}}^2 = g^{p - 1} \equiv 1 \mod p $. So $ g^{\rb{p - 1} / 2} \equiv \pm 1 \mod p $. Since $ g $ is a primitive root, $ g^{\rb{p - 1} / 2} \not\equiv 1 \mod p $, so $ g^{\rb{p - 1} / 2} \equiv -1 \mod p $. So $ a^{\rb{p - 1} / 2} \equiv \rb{g^r}^{\rb{p - 1} / 2} \equiv \rb{g^{\rb{p - 1} / 2}}^r = \rb{-1}^2 \mod p $. But
 \begin{align*}
 \legendre{a}{p} = 1 \qquad
-& \iff \qquad \exists s \in \Z, \ \rb{g^s}^2 \equiv a \mod p \\
+& \iff \qquad \rb{g^s}^2 \equiv a \mod p
 & \iff \qquad 2s \equiv r \mod p - 1 \\
-& \iff \qquad \exists n \in \Z, \ r = 2n \\
-& \iff \qquad \rb{-1}^r \equiv 1 \mod p.
+& \iff \qquad 2 \mid r
+& \iff \qquad \rb{-1}^r \equiv 1 \mod p,
 \end{align*}
+and we are done.
 \end{proof}
 
+\subsection{Computing Legendre symbols}
+
+Euler's criterion lets us determine, for fixed $ p $, which $ a $ are QRs modulo $ p $. What if we fix $ a $, and ask for which odd primes $ p $ is $ a $ a QR? When $ a = -1 $, Euler's criterion gives an easy answer. $ \legendre{-1}{p} = \rb{-1}^{\rb{p - 1} / 2} $, so $ -1 $ is a QR modulo $ p $ if and only if $ \rb{p - 1} / 2 $ is even. In other words, the following holds.
+
 \begin{proposition}
-$ -1 $ is a square modulo $ p $ if and only if $ p = 2 $ or $ p \equiv 1 \mod 4 $.
+$ -1 \in \Z $ is a QR modulo $ p $ if and only if $ p = 2 $ or $ p \equiv 1 \mod 4 $.
 \end{proposition}
 
 \begin{proof}
@@ -796,8 +858,14 @@ $ p = 2 $ is trivial. If $ p > 2 $, then by Euler's criterion, $ \legendre{-1}{p
 $$ \rb{-1}^{\tfrac{p - 1}{2}} = \begin{cases} 1 & p \equiv 1 \mod 4 \\ -1 & p \equiv 3 \mod 4 \end{cases}. $$
 \end{proof}
 
-\begin{proposition}
-$$ \legendre{2}{p} = \begin{cases}  1 & p \equiv \pm 1 \mod 8 \\ -1 & p \equiv \pm 3 \mod 8 \end{cases}, $$
+\begin{example}
+If $ p = 5 $ then it is a square, and if $ p = 7 $ it is not, and in each case we can check directly.
+\end{example}
+
+When $ a = 2 $, the situation is more difficult, but still amenable to a direct approach.
+
+\begin{proposition}[A special case of Gauss' Lemma]
+$$ \legendre{2}{p} = \begin{cases} 1 & p \equiv \pm 1 \mod 8 \\ -1 & p \equiv \pm 3 \mod 8 \end{cases}, $$
 that is $ \legendre{2}{p} = \rb{-1}^{\rb{p^2 - 1} / 8} $.
 \end{proposition}
 
@@ -806,36 +874,105 @@ $ \legendre{2}{7} = 1 $ since $ 2 \equiv 3^3 \mod 7 $. $ \legendre{2}{11} = -1 $
 \end{example}
 
 \begin{proof}
-$ \legendre{2}{p} \equiv 2^{\rb{p - 1} / 2} \mod p $ by Euler's criterion. Let $ q = \rb{p - 1} / 2 $, and let $ Q = \rb{2}\rb{4} \dots \rb{p - 3}\rb{p - 1} = \rb{\rb{2}\rb{1}}\rb{\rb{2}\rb{2}} \dots \rb{\rb{2}\rb{q - 1}}\rb{\rb{2}\rb{q}} $. So $ Q = 2^qq! = 2^{\rb{p - 1} / 2}q! $. Subtracting $ p $ from every term which is bigger than $ q $, $ Q \equiv \rb{2}\rb{4} \dots \rb{-3}\rb{-1} \equiv \rb{-1}^rq! \mod p $, where $ r $ is the number of odd integers in $ 1, \dots, q $. Since $ p \nmid q! $, we have $ 2^{\rb{p - 1} / 2} \equiv \rb{-1}^r \mod p $. Now it is an exercise to check that
-$$ \rb{-1}^r = \begin{cases} 1 & p \equiv \pm 1 \mod 8 \\ -1 & p \equiv \pm 3 \mod 8 \end{cases}. $$
+$ \legendre{2}{p} \equiv 2^{\rb{p - 1} / 2} \mod p $ by Euler's criterion. Let $ q = \rb{p - 1} / 2 $, and set
+$$ Q = \rb{2}\rb{4} \dots \rb{p - 3}\rb{p - 1} = \rb{2 \times 1}\rb{2 \times 2} \dots \rb{2 \times \rb{q - 1}}\rb{2 \times q} = 2^qq! = 2^{\tfrac{p - 1}{2}}q!. $$
+Reduce all the factors in the product defining $ Q $ modulo $ p $ so that they lie between $ -q $ and $ q $, that is, subtract $ p $ from every factor which is greater than $ q $. Let $ Q' $ be the resulting product $ \rb{2}\rb{4} \dots \rb{-3}\rb{-1} $. We have $ Q' \equiv Q \mod p $. On the other hand, the factors in the product defining $ Q' $ are the even integers from $ 1 $ to $ q $ and the negatives of the odd integers from $ 1 $ to $ q $. Thus $ Q' = \rb{-1}^rq! $, where $ r $ is the number of odd integers between $ 1 $ and $ q $. We thus have $ 2^qq! \equiv \rb{-1}^rq! \mod p $, and since $ p \nmid q! $, we have $ 2^{\rb{p - 1} / 2} \equiv \rb{-1}^r \mod p $. The result follows by noting that
+$$ \rb{-1}^r = \begin{cases} 1 & p \equiv \pm 1 \mod 8 \\ -1 & p \equiv \pm 3 \mod 8 \end{cases}, $$
+and invoking Euler's criterion.
 \end{proof}
 
 \begin{example}
 If $ p \equiv 1 \mod 8 $, say $ p = 1 + 8n $, so $ q = 4n $. Odd integers in $ 1, \dots, 4n $ are $ 1, \dots, 4n - 1 $, so $ r = 2n $.
 \end{example}
 
+Since we have $ \legendre{ab}{p} = \legendre{a}{p}\legendre{b}{p} $, to answer this question in full generality it suffices to answer it for $ a = -1 $, for $ a = 2 $, and for $ a $ an odd prime. In the latter case we have the following.
+
 \begin{theorem}[Law of quadratic reciprocity]
-If $ p, q $ are odd primes, then
-$$ \legendre{p}{q} = \legendre{q}{p}\rb{-1}^{\rb{\tfrac{p - 1}{2}}\rb{\tfrac{q - 1}{2}}}, $$
-that is $ \legendre{p}{q} = \legendre{q}{p} $ unless $ p \equiv q \equiv 3 \mod 4 $, when $ \legendre{p}{q} = -\legendre{q}{p} $.
+Let $ p $ and $ q $ be odd primes. Then
+$$ \legendre{p}{q} = \begin{cases} -\legendre{q}{p} & p \equiv q \equiv 3 \mod 4 \\ \legendre{q}{p} & \text{otherwise} \end{cases}. $$
+One can rephrase this a bit more tersely as the equivalent statement
+$$ \legendre{p}{q} = \legendre{q}{p}\rb{-1}^{\rb{\tfrac{p - 1}{2}}\rb{\tfrac{q - 1}{2}}}. $$
 \end{theorem}
 
+Note that this implies that for each odd prime $ q $, the question of whether $ q $ is a QR modulo $ p $ has an answer in terms of congruence conditions modulo $ q $ and modulo $ 4 $. From this and the Chinese remainder theorem, we can deduce that the question, for which primes $ p $ is $ a $ a QR modulo $ p $, has an answer in terms of congruence conditions on $ p $.
+
 \begin{example}
-$ \legendre{5}{p} = \legendre{p}{5} $ for $ p \ne 5 $. QRs modulo $ 5 $ are $ 1, 4 $. So
+If $ p \ne 5 $ is an odd prime, then we see that $ 5 $ is QR modulo $ p $ if and only if $ p $ is a QR modulo $ 5 $, so $ \legendre{5}{p} = \legendre{p}{5} $, that is if and only if $ p \equiv \pm 1 \mod 5 $. So
 $$ \legendre{5}{p} = \begin{cases} 1 & p \equiv \pm 1 \mod 5 \\ -1 & p \equiv \pm 2 \mod 5 \end{cases}. $$
-What is $ \legendre{3}{p} $ for $ p \ne 3 $? If $ p \equiv 1 \mod 4 $, then
+\end{example}
+
+\begin{example}
+Slightly more complicated example, let $ p \ne 3 $ be an odd prime. When is $ 3 $ a QR modulo $ p $, that is what is $ \legendre{3}{p} $? Well, if $ p \equiv 1 \mod 4 $ then this is if and only if $ p $ is a QR modulo $ 3 $, so if and only if $ p \equiv 1 \mod 3 $, so
 $$ \legendre{3}{p} = \legendre{p}{3} = \begin{cases} 1 & p \equiv 1 \mod 3 \\ -1 & p \equiv -1 \mod 3 \end{cases}. $$
-If $ p \equiv -1 \mod 4 $, then
+If $ p \equiv -1 \mod 4 $ then if and only if $ p \equiv -1 \mod 3 $, so
 $$ \legendre{3}{p} = -\legendre{p}{3} = \begin{cases} 1 & p \equiv -1 \mod 3 \\ -1 & p \equiv 1 \mod 3 \end{cases}. $$
-So
+Putting this together with the Chinese remainder theorem,
 $$ \legendre{3}{p} = \begin{cases} 1 & p \equiv \pm 1 \mod 12 \\ -1 & p \equiv \pm 5 \mod 12 \end{cases}. $$
 If $ p = 7 $, QRs are $ 1, 2, 4 $, so $ \legendre{3}{p} = -1 $. If $ p = 11 $, $ 5^2 \equiv 3 \mod 11 $, so $ \legendre{3}{p} = 1 $.
 \end{example}
+
+In general to compute $ \legendre{a}{p} $, we could do the following. Use that if $ a \equiv b \mod p $ then $ \legendre{a}{p} = \legendre{b}{p} $. So without loss of generality $ \abs{a} < p $. Then write $ a = \pm \prod_i q_i^{s_i} $ for $ q_i $ prime. Then $ \legendre{a}{p} = \legendre{\pm 1}{p} \prod_i \legendre{q_i}{p}^{s_i} $. If $ s_i $ is even, then $ \legendre{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \legendre{q_i}{p}^{s_i} = \legendre{q_i}{p} $. We have formulas for $ \legendre{-1}{p} $ and $ \legendre{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \legendre{q}{p} $ and $ \legendre{p}{q} $. Then repeat modulo $ q $.
 
 \begin{example}
 $ \legendre{6}{19} = \legendre{2}{19}\legendre{3}{19} = \rb{-1}\rb{-1} = 1 $. $ \legendre{2}{19} = -1 $ because $ 19 \equiv 3 \mod 8 $. $ \legendre{3}{19} \equiv -1 \mod 12 $ by the above.
 \end{example}
 
-In general to compute $ \legendre{a}{p} $, we could do the following. Use that if $ a \equiv b \mod p $ then $ \legendre{a}{p} = \legendre{b}{p} $. So without loss of generality $ \abs{a} < p $. Then write $ a = \pm \prod_i q_i^{s_i} $ for $ q_i $ prime. Then $ \legendre{a}{p} = \legendre{\pm 1}{p} \prod_i \legendre{q_i}{p}^{s_i} $. If $ s_i $ is even, then $ \legendre{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \legendre{q_i}{p}^{s_i} = \legendre{q_i}{p} $. We have formulas for $ \legendre{-1}{p} $ and $ \legendre{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \legendre{q}{p} $ and $ \legendre{p}{q} $. Then repeat modulo $ q $.
+More generally, one can ask, given a monic polynomial $ f $ with integer coefficients, for which primes $ p $ does $ f $ have a root? The above case is the case of the polynomial $ X^2 - a $. This is a very deep question in number theory. Indeed, we are still extremely far from having a complete answer. One question it is natural to ask is, for which $ f $ does the above question have an answer given in terms of congruence conditions on $ p $. A deep branch of algebraic number theory called class field theory tells us that this will happen precisely when the field extension determined by $ f $ has abelian Galois group. Beyond this we know very little, but there are connections to the theory of modular forms.
+
+\marginpar{Lecture 12 \\ Wednesday \\ 31/10/18}
+
+\subsection{Proof of quadratic reciprocity}
+
+Quadratic reciprocity was one of the deepest results of the $ 18^{th} $ century, and there are many approaches to proving it, none of which are particularly simple. The more motivated ones require algebraic number theory, and even then the motivation is really coming from class field theory, which is a long way beyond the boundaries of this course. The proof that we give is due to Rousseau, from 1991. It has the merits of being elementary and relatively easy to remember, and of resembling the proof of Gauss' Lemma that we gave above, that $ \legendre{2}{p} = \rb{-1}^{\rb{p^2 - 1} / 8} $. Let $ p, q $ be distinct odd primes, and consider the group
+$$ \unit{pq} \cong \unit{p} \times \unit{q}. $$
+What are we going to do is to compare the products of different sets of coset representatives for the subgroup $ \cb{\pm 1} $. That is, we will look at different ways of choosing exactly one element of each pair $ \cb{x, -x} $ for each $ x \in \unit{pq} $. We will always write everything as a pair $ \rb{\alpha, \beta} \in \unit{p} \times \unit{q} $. Firstly we recall from the first example sheet.
+
+\begin{theorem}[Wilson's theorem]
+If $ p $ is prime then $ \rb{p - 1}! \equiv -1 \mod p $.
+\end{theorem}
+
+Write $ P = \rb{p - 1} / 2 $, $ Q = \rb{q - 1} / 2 $, and $ R = \rb{pq - 1} / 2 = pQ + P $. As out first set of coset representatives, consider the product of all the pairs
+$$ \cb{\rb{x, y} \in \unit{p} \times \unit{q} \mid 1 \le x \le P, \ 1 \le y \le q - 1}. $$ Let $ A $ be the product of these coset representatives. Then the product of the $ y $-coordinates is $ \rb{q - 1}!^P \equiv \rb{-1}^P \mod q $. The product of the $ x $-coordinates is $ P!^{q - 1} $ in the same way, so
+$$ A = \prod_{1 \le x \le P, \ 1 \le y \le q - 1} \rb{x, y} = \rb{P!^{q - 1}, \rb{-1}^P}. $$
+Similarly we let the second set of representatives be all the pairs
+$$ \cb{\rb{x, y} \in \unit{p} \times \unit{q} \mid 1 \le x \le p - 1, \ 1 \le y \le Q}. $$
+Let $ B $ be the product of these representatives. In the same way by symmetry, we get
+$$ B = \prod_{1 \le x \le p - 1, \ 1 \le y \le Q} \rb{x, y} = \rb{\rb{-1}^Q, Q!^{p - 1}}. $$
+For the third set of representatives, select the pairs in $ \Z / pq\Z $ which correspond via the Chinese remainder theorem to the set
+$$ \cb{1 \le i \le R \mid \rb{i, pq} = 1}. $$
+Let $ C $ be the product of these coset representatives. Let us figure out the product of the $ x $-coordinates. It is
+$$ \prod_{i = 1, \ \rb{i, pq} = 1}^R i. $$
+Since
+\begin{equation}
+\label{eq:1}
+\prod_{i = 1, \ \rb{i, pq} = 1}^R i = \rb{\prod_{i = 1, \ \rb{i, pq} = 1}^{pQ} i}\rb{\prod_{i = pQ + 1, \ \rb{i, p} = 1}^{pQ + P} i},
+\end{equation}
+\begin{equation}
+\label{eq:2}
+\prod_{i = 1, \ \rb{i, pq} = 1}^R i = \rb{\prod_{i = 1, \ \rb{i, p} = 1}^R i} \ \Bigg/ \ \rb{\prod_{i = 1, \ \rb{i, p} = 1, \ q \mid i}^R i},
+\end{equation}
+\begin{equation}
+\label{eq:3}
+\prod_{i = 1, \ \rb{i, p} = 1, \ q \mid i}^{R} i = \prod_{j = 1, \ \rb{j, p} = 1}^{P} qj = q^PP!,
+\end{equation}
+combining $ \rb{\ref{eq:1}} $, $ \rb{\ref{eq:2}} $, $ \rb{\ref{eq:3}} $, get that the $ x $-coordinate of the product is
+$$ \prod_{i = 1, \ \rb{i, pq} = 1}^R i = \dfrac{\rb{p - 1}!^QP!}{q^PP!} = \dfrac{\rb{-1}^Q}{q^P}. $$
+So by symmetry we have the product of these representatives
+$$ C = \rb{\dfrac{\rb{-1}^Q}{q^P}, \dfrac{\rb{-1}^P}{p^Q}} = \rb{\rb{-1}^Q\legendre{q}{p}, \rb{-1}^P\legendre{p}{q}}, $$
+by Euler's criterion. Now, we can compare $ A $, $ B $, $ C $. We know that they all agree up to sign, that is up to possibly multiplication by $ \pm 1 $, that is up to multiplication by the pair $ \rb{-1, -1} \in \unit{p} \times \unit{q} $. Comparing the $ y $-coordinates, we have $ C = \legendre{p}{q}A $ and comparing the $ x $-coordinates, similarly $ C = \legendre{q}{p}B $. So
+$$ B = \legendre{q}{p}\legendre{p}{q}A. $$
+But we can compare $ A $ and $ B $ more directly. To go between $ A $ and $ B $ we need to swap the signs of all the $ PQ $ elements of the form $ \rb{x, y} $ with $ 1 \le x \le P $ and $ Q \le y \le q - 1 $. So $ B = \rb{-1}^{PQ}A $. So $ \legendre{q}{p}\legendre{p}{q} = \rb{-1}^{PQ} $, that is $ \legendre{q}{p} = \rb{-1}^{PQ}\legendre{p}{q} $.
+
+\subsection{Jacobi symbols}
+
+While it is often quite straightforward to compute Legendre symbols using quadratic reciprocity, there is one serious difficulty, which is that in order to compute $ \legendre{a}{p} $, we need to factor $ a $, and we do not know a polynomial time algorithm for factorisation. However it is possible to make computations for Legendre symbols in polynomial time, with the key being the following generalisation due to Jacobi.
+
+\begin{definition}
+Let $ b \in \Z_{> 0} $ be odd, and $ a \in \Z $. Then the \textbf{Jacobi symbol} $ \legendre{a}{b} $ is defined to be $ \prod_{i = 1}^s \legendre{a}{p_i}^{r_i} $, where $ b = \prod_{i = 1}^s p_i^{r_i} $ for $ p_i $ distinct primes is the prime factorisation of $ b $.
+\end{definition}
+
+\begin{note}
+In the special case that $ b $ is prime this agrees with the Legendre symbol. Warning that it is no longer the case that $ \legendre{a}{b} = 1 $ implies that $ a $ is a square modulo $ b $. On the other hand, of course $ \legendre{a}{b} = -1 $ implies that $ a $ is not a square modulo $ b $.
+\end{note}
 
 \end{document}
