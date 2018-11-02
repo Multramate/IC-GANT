@@ -847,6 +847,7 @@ Define the projectivisation $ \overline{C} $ of $ C $ and determine its points o
 \end{exercise}
 
 \begin{exercise}
+\label{ex:18}
 \hfill
 \begin{enumerate}
 \item Show that there exists a unique projective line $ L \subseteq \P^2 $ through two distinct points $ P, Q \in \P^2 $.
@@ -886,7 +887,7 @@ that is a projective variety in $ \mathcal{P}_2 \cong \P^1 $. It is natural to e
 
 \begin{lemma}
 \label{lem:6.2}
-Let $ Q \in \C\sb{x_0, x_1} $ be a non-zero homogeneous polynomial of degree $ d \ge 1 $. Then there exist complex numbers $ \alpha_i, \beta_i \in \C $ with $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $ for $ i = 1, \dots, d $ such that
+Let $ Q \in \C\sb{x_0, x_1} $ be a non-zero homogeneous polynomial of degree $ d \ge 1 $. Then there exist $ \alpha_i, \beta_i \in \C $ with $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $ for $ i = 1, \dots, d $ such that
 $$ Q\rb{x_0, x_1} = \prod_{i = 1}^d \rb{\alpha_ix_0 + \beta_ix_1}. $$
 Therefore, $ \cb{\sb{x_0, x_1} \in \P^1 \mid Q\rb{x_0, x_1} = 0} = \cb{P_i = \sb{-\beta_i, \alpha_i}} \subseteq \P^1 $. Note that the $ P_i $ need not be distinct.
 \end{lemma}
@@ -894,7 +895,7 @@ Therefore, $ \cb{\sb{x_0, x_1} \in \P^1 \mid Q\rb{x_0, x_1} = 0} = \cb{P_i = \sb
 \begin{proof}
 Let us pass to $ U_1 \cong \C^1 \subseteq \P^1 $, one of the two affine charts. Write $ Q\rb{x_0, x_1} = \sum_{r = 0}^d a_rx_0^rx_1^{d - r} $ and let $ e = \max\cb{r \mid a_r \ne 0} $ so
 $$ Q\rb{x_0, x_1} = x_1^d \cdot \sum_{r = 0}^e a_r\rb{\dfrac{x_0}{x_1}^r}. $$
-Define $ f \in \C\sb{x} $ as $ f\rb{x} = \sum_{r = 0}^e a_rx^r $. By the fundamental theorem of algebra, there are complex numbers $ \lambda_1, \dots, \lambda_e $ such that
+Define $ f \in \C\sb{x} $ as $ f\rb{x} = \sum_{r = 0}^e a_rx^r $. By the fundamental theorem of algebra, there are $ \lambda_1, \dots, \lambda_e \in \C $ such that
 $$ f\rb{x} = a_e \cdot \prod_{i = 1}^e \rb{x - \lambda_i}, $$
 where $ \lambda_i $ are the roots of $ f $, and hence
 $$ Q\rb{x_0, x_1} = x_1^d \cdot a_e \cdot \prod_{i = 1}^e \rb{\dfrac{x_0}{x_1} - \lambda_i} = a_e \cdot x_1^{d - e} \cdot \prod_{i = 1}^e \rb{x_0 - \lambda_ix_1}. $$
@@ -1003,9 +1004,9 @@ $$ P_{x_0} = 2x_0, \qquad P_{x_1} = 2x_1, \qquad P_{x_2} = 2x_2 \qquad \implies 
 By Lemma \ref{lem:4.4}, for any $ \lambda \in \C $ we have
 $$ P\rb{\lambda x_0, \lambda x_1, \lambda x_2} = \lambda^d \cdot P\rb{x_0, x_1, x_2}. $$
 We now compute the derivative with respect to $ \lambda $ of both sides of this equation,
-$$ \partial_\lambda\rb{\lambda^d \cdot P\rb{x_0, x_1, x_2}} = d\lambda^{d - 1}P\rb{x_0, x_1, x_2}, \qquad \partial_\lambda\rb{P\rb{\lambda x_0, \lambda x_1, \lambda x_2}} = \sum_{i = 0}^2 x_i\partial_{x_i}P\rb{\lambda x_0, \lambda x_1, \lambda x_2}. $$
+$$ \partial_\lambda\rb{\lambda^d \cdot P\rb{x_0, x_1, x_2}} = d\lambda^{d - 1}P\rb{x_0, x_1, x_2}, \qquad \partial_\lambda\rb{P\rb{\lambda x_0, \lambda x_1, \lambda x_2}} = \sum_{i = 0}^2 x_iP_{x_i}\rb{\lambda x_0, \lambda x_1, \lambda x_2}. $$
 By the equality above we have
-$$ \sum_{i = 0}^2 x_i\partial_{x_i}P\rb{\lambda x_0, \lambda x_1, \lambda x_2} = d\lambda^{d - 1}P\rb{x_0, x_1, x_2}, $$
+$$ \sum_{i = 0}^2 x_iP_{x_i}\rb{\lambda x_0, \lambda x_1, \lambda x_2} = d\lambda^{d - 1}P\rb{x_0, x_1, x_2}, $$
 for all $ \lambda \in \C $. Thus, if we plug in $ \lambda = 1 $, we get the claim.
 \end{proof}
 
@@ -1064,6 +1065,7 @@ which is the equation of the tangent line of $ C_0 $ at $ \rb{a, b} $.
 \end{proof}
 
 \begin{theorem}
+\label{thm:7.9}
 Let $ C $ be a smooth projective curve. Then $ C $ is irreducible.
 \end{theorem}
 
@@ -1086,8 +1088,9 @@ When talking about smoothness, take $ f $ for $ C = \cb{f = 0} $ without repeate
 \end{remark}
 
 \begin{theorem}
+\label{thm:7.11}
 Let $ C $ be an irreducible projective curve of degree $ d $. Then the number of singular points of $ C $ is at most
-$$ d\rb{d - 1}. $$
+$$ d \cdot \rb{d - 1}. $$
 In particular it is finite.
 \end{theorem}
 
@@ -1335,6 +1338,7 @@ The last two terms are equal because $ \sigma $ is a permutation, so this is equ
 Recall that homogeneous polynomials in two variables always factor as a product of linear homogeneous polynomials. We can now prove a weak form of Bézout's theorem. We will refine the statement later on.
 
 \begin{theorem}[Weak Bézout theorem]
+\label{thm:9.8}
 Let $ C, D \subseteq \P^2 $ be projective curves of degrees $ \deg\rb{C} = n $ and $ \deg\rb{D} = m $ respectively. Then
 \begin{enumerate}
 \item $ C $ and $ D $ intersect in at least one point, that is $ C \cap D $ is not empty, and
@@ -1347,14 +1351,56 @@ Let $ C, D \subseteq \P^2 $ be projective curves of degrees $ \deg\rb{C} = n $ a
 \begin{enumerate}
 \item Let $ P, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials of degrees $ n $ and $ m $ with no repeated factors that define $ C $ and $ D $, that is
 $$ C = \cb{P = 0}, \qquad D = \cb{Q = 0}. $$
-$ P\rb{1, 0, 0} \ne 0 $ and $ Q\rb{1, 0, 0} \ne 0 $ if and only if $ p = \sb{1, 0, 0} $ is not in $ C $ and not in $ D $. Use a projective transformation to ensure this. Let $ q \in \P^2 $ be a point that lies neither on $ C $ nor on $ D $, so not on $ C \cup D $. (TODO Exercise: such a point always exists) There is a projective transformation $ \Phi : \P^2 \to \P^2 $ that sends $ p $ to $ \sb{1, 0, 0} $, that is $ \Phi\rb{p} = \sb{1, 0, 0} $. Transform $ C $ and $ D $ using $ \Phi $, so replace them with $ \Phi\rb{C} $ and $ \Phi\rb{D} $. We have seen that $ \Phi\rb{C} $, $ \Phi\rb{D} $ are projective curves of the same degrees $ \deg\rb{\Phi\rb{C}} = \deg\rb{C} $ and $ \deg\rb{\Phi\rb{D}} = \deg\rb{D} $, and that $ \#\cb{C \cap D} = \#\cb{\Phi\rb{C} \cap \Phi\rb{D}} $. Thus, after replacing $ C $ with $ \Phi\rb{C} $ and $ D $ with $ \Phi\rb{D} $ we may assume that $ \sb{1, 0, 0} \notin C \cup D $, so $ P\rb{1, 0, 0} \ne 0 $ and $ Q\rb{1, 0, 0} \ne 0 $. We assume that $ C $ and $ D $ have no common component, as the result is trivial if they do. Denote by $ R $ the resultant polynomial of $ P $ and $ Q $, $ R\rb{x_1, x_2} = R_{P, Q}\rb{x_1, x_2} $ for all $ x_1, x_2 \in \C $, and factor it. By Theorems \ref{thm:9.6} and \ref{thm:9.7}, $ R $ is a homogeneous polynomial of degree $ nm $ that is not identically zero, since $ C $ and $ D $ have no common component. By Lemma \ref{lem:6.2}, there are complex numbers $ \rb{\alpha_i, \beta_i} \in \C^2 \setminus \cb{\rb{0, 0}} $ for $ i = 1, \dots, nm $ such that
+$ P\rb{1, 0, 0} \ne 0 $ and $ Q\rb{1, 0, 0} \ne 0 $ if and only if $ p = \sb{1, 0, 0} $ is not in $ C $ and not in $ D $. Use a projective transformation to ensure this. Let $ q \in \P^2 $ be a point that lies neither on $ C $ nor on $ D $, so not on $ C \cup D $. (TODO Exercise: such a point always exists) There is a projective transformation $ \Phi : \P^2 \to \P^2 $ that sends $ p $ to $ \sb{1, 0, 0} $, that is $ \Phi\rb{p} = \sb{1, 0, 0} $. Transform $ C $ and $ D $ using $ \Phi $, so replace them with $ \Phi\rb{C} $ and $ \Phi\rb{D} $. We have seen that $ \Phi\rb{C}, \Phi\rb{D} $ are projective curves of the same degrees $ \deg\rb{\Phi\rb{C}} = \deg\rb{C} $ and $ \deg\rb{\Phi\rb{D}} = \deg\rb{D} $, and that $ \#\cb{C \cap D} = \#\cb{\Phi\rb{C} \cap \Phi\rb{D}} $. Thus, after replacing $ C $ with $ \Phi\rb{C} $ and $ D $ with $ \Phi\rb{D} $ we may assume that $ \sb{1, 0, 0} \notin C \cup D $, so $ P\rb{1, 0, 0} \ne 0 $ and $ Q\rb{1, 0, 0} \ne 0 $. We assume that $ C $ and $ D $ have no common component, as the result is trivial if they do. Denote by $ R $ the resultant polynomial of $ P $ and $ Q $, $ R\rb{x_1, x_2} = R_{P, Q}\rb{x_1, x_2} $ for all $ x_1, x_2 \in \C $, and factor it. By Theorems \ref{thm:9.6} and \ref{thm:9.7}, $ R $ is a homogeneous polynomial of degree $ nm $ that is not identically zero, since $ C $ and $ D $ have no common component. By Lemma \ref{lem:6.2}, there are $ \rb{\alpha_i, \beta_i} \in \C^2 \setminus \cb{\rb{0, 0}} $ for $ i = 1, \dots, nm $ such that
 $$ R\rb{x_1, x_2} = \prod_{i = 1}^{nm} \rb{\alpha_ix_1 + \beta_ix_2}. $$
 Fix $ \rb{a, b} \in \C^2 \setminus \cb{\rb{0, 0}} $, and let $ p, q \in \C\sb{x} $ be the polynomials defined by
 $$ p\rb{x} = P\rb{x, a, b}, \qquad q\rb{x} = Q\rb{x, a, b}. $$
 Then, $ R\rb{a, b} = R_{p, q} $. In particular, if $ \rb{a, b} = \rb{\beta_1, \alpha_1} $, $ R\rb{-\beta_1, \alpha_1} = 0 $, and by Theorem \ref{thm:9.3}, there is $ \lambda \in \C $ such that
 $$ P\rb{\lambda, -\beta_1, \alpha_1} = p\rb{\lambda} = q\rb{\lambda} = Q\rb{\lambda, -\beta_1, \alpha_1} = 0, $$
 so $ p\rb{x_0}, q\rb{x_0} $ have a common root $ \lambda $. Since $ \rb{-\beta_1, \alpha_1} \ne \rb{0, 0} $, $ \rb{\lambda, \beta_1, \alpha_1} \ne \rb{0, 0, 0} $, so that $ p = \sb{\lambda, -\beta_1, \alpha_1} $ is a well-defined point of $ \P^2 $ and is on both $ C $ and $ D $, so $ p \in C \cap D $.
+
+\marginpar{Lecture 12 \\ Friday \\ 02/11/18}
+
+\item We will show that if $ C \cap D $ contains at least $ nm + 1 $ distinct points, $ C $ and $ D $ have a common factor. Let $ \mathcal{S} = \cb{p_1, \dots, p_{nm + 1}} $ be any set of $ nm + 1 $ distinct points and denote by $ L_{i, j} $ the unique line containing $ p_i $ and $ p_j $ for $ 1 \le i, j \le nm + 1 $. For each $ i $, denote by $ \sb{x_0^i, x_1^i, x_2^i} $ the coordinates of $ p_i $. The point $ x = \sb{x_0, x_1, x_2} \in \P^2 $ belongs to $ L_{i, j} $ if and only if $ \det\rb{A} = 0 $, where
+\begin{equation}
+\label{eq:5}
+A_{i, j} = \begin{pmatrix} x_0 & x_0^i & x_0^j \\ x_1 & x_1^i & x_1^j \\ x_2 & x_2^i & x_2^j \end{pmatrix}.
+\end{equation}
+Let $ p \in \P^2 $ be any point that lies neither on $ C, D $ nor on any $ L_{i, j} $, that is $ p \notin C \cup D \cup \rb{\cup_{i, j} L_{i, j}} $. Can apply a projective transformation $ \Phi : \P^2 \to \P^2 $ that sends $ p $ to $ \sb{1, 0, 0} $. Taking images along $ \Phi $, the image of $ \mathcal{S} $ is a set of $ nm + 1 $ distinct points and the image of $ L_{i, j} $ by $ \Phi $ is the unique line through $ \Phi\rb{p_i} $ and $ \Phi\rb{p_j} $. As in the proof of $ 1 $, after replacing $ C $, $ D $, and $ \mathcal{S} $ by their images by $ \Phi $, we may assume that $ \sb{1, 0, 0} \notin C \cup D $ and that $ \sb{1, 0, 0} $ lies on no line through two points $ p_i, p_j \notin \mathcal{S} $. In particular, by $ \rb{\ref{eq:5}} $,
+$$ \det\begin{pmatrix} 1 & x_0^i & x_0^j \\ 0 & x_1^i & x_1^j \\ 0 & x_2^i & x_2^j \end{pmatrix} \ne 0, $$
+that is, $ \rb{x_1^i, x_2^i} \ne \rb{0, 0} $ for all $ i $, otherwise determinant is zero, so that $ \sb{x_1^i, x_2^i} $ is a well-defined point of $ \P^1 $, and $ \sb{x_1^i, x_2^i} \ne \sb{x_1^j, x_2^j} $ for all $ i \ne j $. Let $ P, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials of degrees $ n $ and $ m $ that define $ C $ and $ D $, that is
+$$ C = \cb{P = 0}, \qquad D = \cb{Q = 0}. $$
+Since $ \sb{1, 0, 0} \notin C \cup D $, $ P\rb{1, 0, 0} \ne 0 $ and $ Q\rb{1, 0 , 0} \ne 0 $. Denote by $ R $ the resultant $ R_{P, Q} $ of $ P, Q $. This is homogeneous of degree $ nm $ and factors into linear factors $ R\rb{x_1, x_2} = \prod_{i = 1}^{nm}\rb{\alpha_ix_1 + \beta_ix_2} $ for $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $, so $ \cb{R = 0} \subseteq \P^1 $ has at most $ nm $ distinct elements. Now assume $ C \cap D $ contains at least $ nm + 1 $ points and let $ \mathcal{S} \subseteq C \cap D $ be a set of $ nm + 1 $ distinct points. Set $ \rb{\alpha_i, \beta_i} = \rb{-x_2^i, x_1^i} $ for $ i = 1, \dots, nm + 1 $. By construction, for all $ i $, $ p\rb{x} = P\rb{x_0, x_1^i, x_2^i} $ and $ q\rb{x} = Q\rb{x_0, x_1^i, x_2^i} $ have a common root so that $ \det\rb{R_{p, q}} = 0 $. But we have
+$$ \det\rb{R_{p, q}} = R\rb{x_1^i, x_2^i}, $$
+so that $ \rb{\alpha_ix_1 + \beta_ix_2} $ is a factor of the polynomial $ R\rb{x_1, x_2} $. Since $ \sb{x_1^i, x_2^i} \ne \sb{x_1^j, x_2^j} $ these factors are distinct, so $ \cb{\sb{x_1^i, x_2^i}} \subseteq \P^1 $ has at least $ nm + 1 $ distinct points and
+\begin{equation}
+\label{eq:6}
+R\rb{x_1, x_2} = \prod_{i = 1}^{nm + 1} \rb{\alpha_ix_1 + \beta_ix_2}S\rb{x_1, x_2},
+\end{equation}
+for some possibly constant homogeneous polynomial $ S $. If $ R\rb{x_1, x_2} $ is not identically zero, by Theorem \ref{thm:9.7}, it has degree $ nm $. Thus, $ \rb{\ref{eq:6}} $ shows that $ R $ is identically zero, because the degree of the polynomial on the right hand side of $ \rb{\ref{eq:6}} $ is at least $ nm + 1 $ if this polynomial is not identically zero. Thus, by Theorem \ref{thm:9.6}, $ P $ and $ Q $ have a common factor and $ C $ and $ D $ have a common component.
 \end{enumerate}
+\end{proof}
+
+This finishes the proof of Theorem \ref{thm:7.9}, and now we can also prove Theorem \ref{thm:7.11}, stated before.
+
+\begin{proof}[Proof of Theorem \ref{thm:7.11}]
+Use Bézout's theorem. Let $ C = \cb{P = 0} $ for $ P $ a polynomial of degree $ d $ defining $ C $. Singular points are solutions $ \sb{x_1, x_2, x_3} $ at
+$$ P = 0, \qquad P_{x_0} = 0, \qquad P_{x_1} = 0, \qquad P_{x_2} = 0. $$
+Without loss of generality we may assume that there exists $ i = 0, 1, 2 $ such that $ Q = P_{x_i} $ is not zero, otherwise $ P $ is constant. Thus $ Q $ is a homogeneous polynomial of degree $ d - 1 $. If $ p $ is a singular point of $ C $ then $ P\rb{p} = Q\rb{p} = 0 $. Clearly the opposite is not true. Let $ D = \cb{Q = 0} $. Then $ D $ is another projective curve of degree $ d - 1 $ and the intersection $ C \cap D $ contains all the singular points of $ C $. Moreover, since $ C $ is irreducible, it follows that $ C $ and $ D $ do not have any common component. By Theorem \ref{thm:9.8}, it follows that the number of intersection points of $ C $ and $ D $ is at most $ \deg\rb{C}\deg\rb{D} = d \cdot \rb{d - 1} $ and the claim follows.
+\end{proof}
+
+\begin{proposition}[Pascal's mystic hexagon]
+Let $ C \subseteq \P^2 $ be an irreducible conic and let $ p_1, \dots, p_6 \in C $ be six distinct points that form a hexagon, that is no three of the points $ p_1, \dots, p_6 $ lie on a projective line. Then the points of intersection of lines passing through opposite sides are collinear.
+\end{proposition}
+
+\begin{proof}
+Assume that $ p_1, \dots, p_6 $ are ordered such that the lines $ L_1, \dots, L_6 $, with $ L_i $ the unique line through $ p_i $ and $ p_{i + 1} $, form the sides of a hexagon. Denote by $ D_1 $ the cubic curve $ L_1 \cup L_3 \cup L_5 $ and by $ D_2 $ the cubic curve $ L_2 \cup L_4 \cup L_6 $. Both cubic curves are reducible by definition, and both contain the points $ p_1, \dots, p_6 $. Let $ q_1 = L_1 \cap L_4 $, $ q_2 = L_3 \cap L_6 $, and $ q_3 = L_5 \cap L_2 $ be the not necessarily distinct points of intersection of opposite sides. We want to prove that there is a projective line $ L $ through $ q_1, q_2, q_3 $. First note that if $ q_1, q_2, q_3 $ are not distinct, there is a projective line through $ q_1, q_2, q_3 $ by Exercise \ref{ex:18}. We therefore assume that $ q_1, q_2, q_3 $ are three distinct points. The points $ q_1, q_2, q_3 $ are not in the set $ \cb{p_1, \dots, p_6} $ because otherwise, one of the lines $ L_1, \dots, L_6 $ would have to contain at least three of the points $ p_1, \dots, p_6 $. Since $ C $ is irreducible, it contains none of the lines $ L_1, \dots, L_6 $, in particular, $ C $ has no common component with $ D_1 $ or with $ D_2 $. Since $ C \cap D_1 \supset \cb{p_1, \dots, p_6} $ and $ C \cap D_2 \supset \cb{p_1, \dots, p_6} $, and since $ C $ and $ D_1 $ and $ C $ and $ D_2 $ have no common component, their intersections consist of at most $ \rb{2}\rb{3} = 6 $ points and therefore $ C \cap D_1 = C \cap D_2 = \cb{p_1, \dots, p_6} $. This shows that the points $ q_1, q_2, q_3 $ do not lie on $ C $. I will construct another cubic, having seven points of intersection with $ C $. Let $ p_0 \in C $ be a point that does not belong to the set $ \cb{p_1, \dots, p_6} $. In particular, the point $ p_0 $ does not lie on $ D_1 $ or on $ D_2 $. Let $ P, Q $ be homogeneous polynomials that define the cubic curves $ D_1 $ and $ D_2 $, products of the equations of the lines, that is
+$$ D_1 = \cb{P = 0}, \qquad D_2 = \cb{Q = 0}. $$
+Since $ p_0 \notin D_1 \cup D_2 $, $ P\rb{p_0} \ne 0 $ and $ Q\rb{p_0} \ne 0 $, so that there exists $ \sb{\lambda, \mu} \in \P^1 $ such that $ \lambda P\rb{p_0} + \mu Q\rb{p_0} = 0 $, such as $ \sb{-Q\rb{p_0}, P\rb{p_0}} $. Consider the cubic curve
+$$ D = \cb{\lambda P + \mu Q = 0} \subseteq \P^2, $$
+where $ \lambda P + \mu Q $ is a homogeneous polynomial of degree three. The points $ p_1, \dots, p_6 $ lie on $ D_1 \cap D_2 $, hence they satisfy $ P\rb{p_i} = Q\rb{p_i} = 0 $ for all $ i $, so $ \rb{\lambda P + \mu Q}\rb{p_i} = 0 $ and $ p_1, \dots, p_6 \in D $. Since $ p_0 \in D $, the intersection $ C \cap D $ thus contains at least seven distinct points $ p_0, \dots, p_6 $. By Bézout's theorem, this implies that $ C $ and $ D $ have a common component, and since $ C $ is irreducible, that has to be $ C $ and $ C \subseteq D $. If $ Q $ is a homogeneous polynomial of degree two that defines $ C $, there is a homogeneous polynomial $ S $ of degree one such that
+$$ D = \cb{Q \cdot S = 0} = C \cup \cb{S = 0}, $$
+of which $ \cb{S = 0} $ has to be a line. Let $ L $ be the projective line $ L = \cb{S = 0} $ that I was looking for. Since the points $ q_1, q_2, q_3 \in D_1 \cap D_2 $, they also lie on $ D $. We have seen that $ q_1, q_2, q_3 \notin C $, thus, they lie on $ L $.
 \end{proof}
 
 \end{document}
