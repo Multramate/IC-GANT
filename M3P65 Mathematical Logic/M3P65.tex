@@ -399,11 +399,11 @@ The formal system \textbf{$ L $} for propositional logic has the following.
 \begin{example}
 Suppose $ \phi $ is an $ L $-formula. Then $ \vdash_L \impb{\phi}{\phi} $. Here is a proof in $ L $.
 \begin{align*}
-& \impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}} & \rb{A1} \\
-& \impb{\impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}}}{\impb{\impb{\phi}{\impb{\phi}{\phi}}}{\impb{\phi}{\phi}}} & \rb{A2} \\
-& \impb{\impb{\phi}{\impb{\phi}{\phi}}}{\impb{\phi}{\phi}} & \rb{1, 2, MP} \\
-& \impb{\phi}{\impb{\phi}{\phi}} & \rb{A1} \\
-& \impb{\phi}{\phi} & \rb{3, 4, MP}
+& \impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}} & \rb{\text{A1}} \\
+& \impb{\impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}}}{\impb{\impb{\phi}{\impb{\phi}{\phi}}}{\impb{\phi}{\phi}}} & \rb{\text{A2}} \\
+& \impb{\impb{\phi}{\impb{\phi}{\phi}}}{\impb{\phi}{\phi}} & \rb{1, 2, \text{MP}} \\
+& \impb{\phi}{\impb{\phi}{\phi}} & \rb{\text{A1}} \\
+& \impb{\phi}{\phi} & \rb{3, 4, \text{MP}}
 \end{align*}
 \end{example}
 
@@ -414,7 +414,7 @@ Suppose $ \Gamma $ is a set of $ L $-formulas. A \textbf{deduction from $ \Gamma
 \end{definition}
 
 \begin{theorem}[Deduction theorem]
-\label{thm:dt}
+\label{thm:1.2.5}
 Suppose $ \Gamma $ is a set of $ L $-formulas and $ \phi, \psi $ are $ L $-formulas. Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $. Then $ \Gamma \vdash_L \impb{\phi}{\psi} $.
 \end{theorem}
 
@@ -428,8 +428,8 @@ Use deduction theorem with $ \Gamma = \emptyset $. Show $ \cb{\phi} \vdash_L \ch
 & \impb{\phi}{\psi} & \rb{\text{theorem of } L} \\
 & \impb{\psi}{\chi} & \rb{\text{theorem of } L} \\
 & \phi & \rb{\text{assumption}} \\
-& \psi & \rb{1, 3, MP} \\
-& \chi & \rb{2, 4, MP}
+& \psi & \rb{1, 3, \text{MP}} \\
+& \chi & \rb{2, 4, \text{MP}}
 \end{align*}
 Thus $ \cb{\phi} \vdash_L \chi $. By deduction theorem, $ \emptyset \vdash_L \impb{\phi}{\chi} $, that is $ \vdash_L \impb{\phi}{\chi} $.
 \end{proof}
@@ -453,7 +453,7 @@ Suppose $ \phi, \psi $ are $ L $-formulas. Then
 \end{enumerate}
 \end{proof}
 
-\begin{proof}[Proof of \ref{thm:dt}]
+\begin{proof}[Proof of \ref{thm:1.2.5}]
 Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $ using a deduction of length $ n $. Show by induction on $ n $ that $ \Gamma \vdash_L \impb{\phi}{\psi} $.
 \begin{enumerate}
 \item Base step is $ n = 1 $. In this case $ \psi $ is either an axiom or in $ \Gamma $ or is $ \phi $. In the first two cases $ \Gamma \vdash_L \psi $ is a one line deduction. Using the A1 axiom $ \impb{\psi}{\impb{\phi}{\psi}} $ and MP we obtain $ \Gamma \vdash_L \impb{\phi}{\psi} $. If $ \phi $ is $ \psi $ we have $ \Gamma \vdash_L \impb{\phi}{\phi} $ by \ref{def:1.2.3}. This finishes the base case.
@@ -697,6 +697,7 @@ $$ I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset, \qquad \overline{R_1}
 \subsection{First-order languages}
 
 \begin{definition}
+\label{def:2.2.1}
 A \textbf{first-order language} $ \mathcal{L} $ has an alphabet of symbols of the following types.
 \begin{enumerate}
 \item Variables $ x_0, x_1, \dots $.
@@ -1019,5 +1020,53 @@ Write $ \Sigma \vdash_{K_\mathcal{L}} \psi $ if there is a deduction from $ \Sig
 \marginpar{Lecture 13 \\ Thursday \\ 01/11/18}
 
 Lecture 13 is a problem class.
+
+\marginpar{Lecture 14 \\ Friday \\ 02/11/18}
+
+\begin{remark}
+\begin{enumerate}
+If $ \Sigma $ consists of closed formula, do not need to worry about the restriction on Gen.
+\end{enumerate}
+\end{remark}
+
+\begin{theorem}
+\label{thm:2.4.4}
+Suppose $ \phi $ is an $ \mathcal{L} $-formula which is a substitution instance of a tautology in propositional logic. Then $ \vdash_{K_\mathcal{L}} \phi $.
+\end{theorem}
+
+\begin{example}
+$ \impb{\notb{\notb{\phi}}}{\phi} $ for an $ \mathcal{L} $-formula $ \phi $, as this is a substitution instance of $ \impb{\notb{\notb{p_1}}}{p_1} $. There is a tautology $ \chi $ with propositional variables $ p_1, \dots, p_n $ and $ \mathcal{L} $-formulas $ \psi_1, \dots, \psi_n $ such that $ \phi $ is obtained from $ \chi $ by substituting $ \psi_i $ for $ p_i $ for $ i = 1, \dots, n $. By Completeness of propositional logic in \ref{thm:1.3.4} there is a proof in $ L $ of $ \chi $ by $ \chi_1, \dots, \chi_r $, where each $ \chi_i $ is a propositional formula, that is in $ L $, and $ \chi_r = \chi $. If we substitute $ \psi_1, \dots, \psi_n $ for $ p_1, \dots, p_n $ in all $ \chi_j $ we obtain a sequence of $ \mathcal{L} $-formulas $ \phi_1, \dots, \phi_r $ which is a proof of $ \phi = \phi_r $ in $ K_\mathcal{L} $.
+\end{example}
+
+\begin{theorem}[Soundness theorem of $ K_\mathcal{L} $]
+If $ \vdash_{K_\mathcal{L}} \phi $ then $ \vDash \phi $, that is it is logically valid.
+\end{theorem}
+
+\begin{proof}
+Like in the proof for $ L $, we need to show
+\begin{enumerate}
+\item axioms are logically valid, and
+\item deduction rules preserve logical validity.
+\end{enumerate}
+For axioms, A1, A2, A3 are substitution instances of propositional tautologies in \ref{def:2.2.1} so are logically valid. K1 is logically valid by \ref{thm:2.3.6}. K2 is $ \impb{\fab{x_i}\impb{\phi}{\psi}}{\impb{\phi}{\fab{x_i}\psi}} $ if $ x_i $ is not free in $ \phi $. Suppose we have valuation $ v $ such that $ v\sb{\impb{\phi}{\fab{x_i}\psi}} = F $. So $ v\sb{\phi} = T $ and $ v\sb{\fab{x_i}\psi} = F $. So there is a valuation $ v' $ $ x_i $-equivalent to $ v $ with $ v'\sb{\psi} = F $. $ v $ and $ v' $ agree on all variables free in $ \phi $. So by \ref{thm:2.3.3} $ v\sb{\phi} = v'\sb{\phi} = T $, so $ v'\sb{\impb{\phi}{\psi}} = F $. So $ v\sb{\fab{x_i}\impb{\phi}{\psi}} = F $. So $ v\sb{K_2} = T $. For deduction rules, MP is if $ \vDash \phi $ and $ \vDash \impb{\phi}{\psi} $ then $ \vDash \psi $, and Gen is if $ \vDash \phi $ then $ \vDash \fab{x_i}\phi $. (TODO Exercise)
+\end{proof}
+
+TODO Exercise: Suppose $ \Sigma \vdash \psi $ then for every valuation $ v $ with $ v\sb{\sigma} = T $ for all $ \sigma \in \Sigma $ we have $ v\sb{\psi} = T $.
+
+\begin{corollary}
+There is no $ \mathcal{L} $-formula $ \phi $ with $ \vdash_{K_\mathcal{L}} \phi $ and $ \vdash_{K_\mathcal{L}} \notb{\phi} $.
+\end{corollary}
+
+\begin{theorem}[Deduction theorem]
+Suppose $ \mathcal{L} $ is a first-order language, $ \Sigma $ is a set of $ \mathcal{L} $-formulas, and $ \phi, \psi $ are $ \mathcal{L} $-formulas. Then if $ \Sigma \cup \cb{\phi} \vdash \psi $ then $ \Sigma \vdash \impb{\phi}{\psi} $.
+\end{theorem}
+
+\begin{proof}
+Follows proof of deduction theorem for $ L $ in \ref{thm:1.2.5} by induction on the length of the deduction.
+\begin{enumerate}
+\item Base case is one line deduction. Argue exactly as in \ref{thm:1.2.5}. Note that $ \vdash_{K_\mathcal{L}} \impb{\phi}{\phi} $ by \ref{thm:2.4.4}.
+\item Inductive step. Suppose $ \psi $ follows from earlier formulas in the deduction using MP or Gen. MP is exactly as in \ref{thm:1.2.5}. For Gen, suppose $ \psi $ is obtained using Gen then $ \psi $ is $ \fab{x_i}\theta $ and $ \Sigma \cup \cb{\phi} \vdash \theta $ and $ x_i $ is not free in any formula in $ \Sigma \cup \cb{\phi} $. By induction we have $ \Sigma \vdash \impb{\phi}{\theta} $. By K2 $ \Sigma \vdash \impb{\fab{x_i}\impb{\phi}{\theta}}{\impb{\phi}{\fab{x_i}\theta}} $. By Gen $ \Sigma \vdash \fab{x_i}\impb{\phi}{\theta} $ for $ x_i $ not free in any formula in $ \Sigma $. So by MP we get $ \Sigma \vdash \impb{\phi}{\fab{x_i}\theta} $ which is $ \Sigma \vdash \impb{\phi}{\psi} $.
+\end{enumerate}
+\end{proof}
 
 \end{document}
