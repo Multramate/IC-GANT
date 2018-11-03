@@ -975,4 +975,78 @@ Let $ b \in \Z_{> 0} $ be odd, and $ a \in \Z $. Then the \textbf{Jacobi symbol}
 In the special case that $ b $ is prime this agrees with the Legendre symbol. Warning that it is no longer the case that $ \legendre{a}{b} = 1 $ implies that $ a $ is a square modulo $ b $. On the other hand, of course $ \legendre{a}{b} = -1 $ implies that $ a $ is not a square modulo $ b $.
 \end{note}
 
+\marginpar{Lecture 13 \\ Friday \\ 02/11/18}
+
+The key properties of the Jacobi symbol are deduced from those of the Legendre symbol in the following lemma.
+
+\begin{lemma}
+\hfill
+\begin{enumerate}
+\item We have $ \legendre{a_1}{b}\legendre{a_2}{b} = \legendre{a_1a_2}{b} $ and $ \legendre{a}{b_1}\legendre{a}{b_2} = \legendre{a}{b_1b_2} $.
+\item $ \legendre{a}{b} $ depends only on $ a $ modulo $ b $.
+\item $ \legendre{a^2}{b} = 1 $.
+\item $ \legendre{-1}{b} = \rb{-1}^{\rb{b - 1} / 2} $.
+\item $ \legendre{2}{b} = \rb{-1}^{\rb{b^2 - 1} / 8} $.
+\item If $ a, b > 0 $ are both odd then $ \legendre{a}{b}\legendre{b}{a} = \rb{-1}^{\rb{\rb{a - 1} / 2}\rb{\rb{b - 1} / 2}} $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+All of these statements are true for Legendre symbols, that is for $ b $ prime, and $ a $ prime in $ 6 $. The first three parts are immediate from the definition and the corresponding results for the Legendre symbol. The same is true of the last three from $ 1 $ and the corresponding statements for Legendre symbols. We give the details for $ \legendre{2}{b} = \rb{-1}^{\rb{b^2 - 1} / 8} $. It is enough to show that if it holds for $ b_1, b_2 $, then it holds for $ b_1b_2 $. Since $ \legendre{2}{b_1b_2} = \legendre{2}{b_1}\legendre{2}{b_2} $, we need to show that $ \rb{-1}^{\rb{b_1^2 - 1} / 8}\rb{-1}^{\rb{b_2^2 - 1} / 8} = \rb{-1}^{\rb{\rb{b_1b_2}^2 - 1} / 8} $, or equivalently that
+$$ \rb{b_1^2 - 1} + \rb{b_2^2 - 1} \equiv \rb{b_1b_2}^2 - 1 \mod 16, $$
+which is equivalent to $ \rb{b_1^2 - 1}\rb{b_2^2 - 1} \equiv 0 \mod 4 $, which is true because $ b_1^2 \equiv b_2^2 \equiv 1 \mod 4 $.
+\end{proof}
+
+The last quadratic reciprocity property means that we can compute Jacobi symbols, and thus Legendre symbols, in a similar way to computing $ \rb{a, b} $ with Euclid's algorithm, although we also have to take care of powers of two in the numerator.
+
+\begin{example}
+$ 9283 $ is prime, and we can compute $ \legendre{7411}{9283} $ as follows.
+\begin{align*}
+\legendre{7411}{9283}
+& = -\legendre{9283}{7411} = -\legendre{1872}{7411} = -\legendre{16}{7411}\legendre{117}{7411} = -\legendre{117}{7411} = -\legendre{7411}{117} = -\legendre{40}{117} \\
+& = -\legendre{8}{117}\legendre{5}{117} = -\legendre{2}{117}\legendre{5}{117} = \legendre{5}{117} = \legendre{117}{5} = \legendre{2}{5} = -1.
+\end{align*}
+So $ 7411 $ is not a square modulo $ 9283 $.
+\end{example}
+
+\section{Sum of squares}
+
+Which integers are the sum of two squares or four squares?
+
+\begin{definition}
+We say that $ n \in \Z $ is a \textbf{sum of two squares} if $ n = x^2 + y^2 $ for $ x, y \in Z $.
+\end{definition}
+
+\begin{example}
+If $ n = x^2 + y^2 $, then since $ x^2, y^2 \equiv 0, 1 \mod 4 $, we cannot have $ n \equiv 3 \mod 4 $.
+\end{example}
+
+\begin{example}
+$ 21 \equiv 1 \mod 4 $, but $ 21 $ is not a sum of two squares. On the other hand, we will see that all primes which are $ 1 $ modulo $ 4 $ are sums of two squares.
+\end{example}
+
+\begin{definition}
+The \textbf{Gaussian integers} $ \Z\sb{i} $ are the subring of $ \C $ consisting of $ a + bi $ for $ a, b \in \Z $. $ N : \Z\sb{i} \to \Z_{> 0} $ is a \textbf{norm} defined by $ N\rb{a + bi} = a^2 + b^2 $, that is $ N\rb{z} = z\overline{z} $.
+\end{definition}
+
+$ N\rb{zw} = \rb{zw}\rb{\overline{zw}} = \rb{z\overline{z}}\rb{w\overline{w}} = N\rb{z}N\rb{w} $. If $ z = a + bi $, $ w = c + di $, then $ zw = \rb{ac - bd} + \rb{ad + bc}i $, so $ \rb{a^2 + b^2}\rb{c^2 + d^2} = \rb{ac - bd}^2 + \rb{ad + bc}^2 $.
+
+\begin{lemma}
+\label{lem:46}
+If $ m, n $ are each a sum of two squares, then so is $ mn $.
+\end{lemma}
+
+\begin{theorem}[Fermat's two square theorem]
+\label{thm:47}
+If $ p \equiv 1 \mod 4 $ is prime, then $ p $ is a sum of two squares.
+\end{theorem}
+
+Lemma \ref{lem:46} and Theorem \ref{thm:47} together allow you to give a complete classification of the integers which are sums of two squares, in terms of their prime factorisations.
+
+\begin{definition}
+A ring $ R $ is a \textbf{Euclidean domain} if it is an integral domain, that is $ ab = 0 $ gives $ a = 0 $ or $ b = 0 $, and there exists a function $ N : R \to \Z_{\ge 0} $ such that for all $ a, b \in R $ with $ b \ne 0 $, there exists $ q, r \in R $ such that $ a = qb + r $, and $ r = 0 $ or $ N\rb{r} < N\rb{b} $.
+\end{definition}
+
+If $ R $ is a Euclidean domain, then you can carry out Euclid's algorithm. In particular, irreducible elements are the same as prime elements, and every element can be factored as a product of primes, uniquely up to reordering and multiplication by units. $ \Z\sb{i} $ together with $ N $ is a Euclidean domain. By definition, $ n \in \Z $ is a sum of two squares if and only if there exists $ z \in \Z\sb{i} $ with $ N\rb{z} = n $. Since $ N\rb{zw} = N\rb{z}N\rb{w} $, all we have to do is to figure out what the primes in $ \Z\sb{i} $ are, and what their norms are. (TODO Exercise: Show that the units in $ \Z\sb{i} $ are $ \pm 1 $, $ \pm i $)
+
 \end{document}
