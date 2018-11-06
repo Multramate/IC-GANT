@@ -235,7 +235,7 @@ If $ S $ is a non-empty partially ordered set such that every chain in $ S $ has
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:4.6}]
-Let $ A $ be a non-zero ring. To apply Zorn's lemma it is enough to show that every growing chain of ideals $ I_1 \subset I_2 \subset \dots $, such that $ 1 \in I_i $ for all $ i $, has an upper bound which is an ideal not equal to $ A $, so not containing $ 1 $. Then Zorn's lemma applied to the set of ideals of $ A $ not containing $ 1 $ and ordered by inclusion, implies the existence of a maximum ideal. So we have a chain $ I_j $, where $ j $ is an element of a set $ J $. Consider $ I = \cup_{j \in J} I_j $. Claim that $ I $ is an ideal in $ A $ and $ 1 \notin I $.
+Let $ A $ be a non-zero ring. To apply Zorn's lemma it is enough to show that every growing chain of ideals $ I_1 \subset I_2 \subset \dots $, such that $ 1 \in I_i $ for all $ i $, has an upper bound which is an ideal not equal to $ A $, so not containing $ 1 $. Then Zorn's lemma applied to the set of ideals of $ A $ not containing $ 1 $ and ordered by inclusion, implies the existence of a maximal ideal. So we have a chain $ I_j $, where $ j $ is an element of a set $ J $. Consider $ I = \cup_{j \in J} I_j $. Claim that $ I $ is an ideal in $ A $ and $ 1 \notin I $.
 \begin{enumerate}
 \item $ 1 \notin I $ is clear. Because otherwise $ 1 \in I $ gives $ 1 \in I_j $ for $ j \in J $, but it is a contradiction.
 \item For any $ a \in A $ we have $ aI \subset I $, so for all $ x \in I $, $ ax \in I $. But then $ x \in I_j $ for some $ j $. Then $ ax \in I_j \subset I $.
@@ -637,15 +637,54 @@ $ \Z $, $ k\sb{x} $, $ k\sb{x_1, \dots, x_n} $. Hilbert's basis theorem says tha
 \end{example}
 
 \begin{proposition}
+\label{prop:10.4}
 Let $ A $ be a ring. Let $ M $ be an $ A $-module and $ N \subset M $ a submodule. Then $ M $ is Noetherian if and only if $ N $ and $ M / N $ are both Noetherian $ A $-modules.
 \end{proposition}
 
 \begin{proof}
-Suppose $ M $ is Noetherian. Then clearly $ N $ is Noetherian. $ M / N $ is Noetherian too. Indeed, let $ L $ be a submodule of $ M / N $. Let $ T $ be the inverse image of $ L $ in $ M $. Then we have a surjective homomorphism of $ A $-modules $ T \to L $. Since $ T $ is finitely generated, so that $ T = \rb{x_1, \dots, x_n} $ for some $ x_i \in T $. Then the images of $ x_1, \dots, x_n $ generate $ L $. Now assume $ N $ and $ M / N $ are Noetherian. This can also be proved using ascending chains.
+Suppose $ M $ is Noetherian. Then clearly $ N $ is Noetherian. $ M / N $ is Noetherian too. Indeed, let $ L $ be a submodule of $ M / N $. Let $ T $ be the inverse image of $ L $ in $ M $. Then we have a surjective homomorphism of $ A $-modules $ T \to L $. Since $ T $ is finitely generated, so that $ T = \rb{x_1, \dots, x_n} $ for some $ x_i \in T $. Then the images of $ x_1, \dots, x_n $ generate $ L $. Now assume $ N $ and $ M / N $ are Noetherian. This can also be proved using ascending chains. Take any ascending chain $ M_1 \subset M_2 \subset \dots $. Then $ N \cap M_1 \subset N \cap M_2 \subset \dots $ is an ascending chain of submodules of $ N $. Let $ n_1 \in \N $ be such that for all $ i \ge 0 $, $ N \cap M_{n + i} = N \cap M_{n_1} $. Consider $ \rb{M_i + N} / N \subset M / N $. This is just the set of cosets $ x + N $, where $ x \in M_i $. In fact $ \rb{M_i + N} / N \cong M_i / M \cap N $. We obtain an ascending chain $ \rb{M_1 + N} / N \subset \rb{M_2 + N} / N \subset \dots \subset \rb{M_{n_2} + N} / N = \rb{M_{n_1} + N} / N = \dots $. Take $ n = \max\rb{n_1, n_2} $. It works, that is $ M_n = M_{n + 1} = \dots $. Indeed, take any $ x \in M_{n + i} $ for $ i \ge 0 $. Then there exists $ y \in M_n $ such that $ x + N = y + N $. Thus $ x - y \in N \cap M_{n + i} $. But this is $ N \cap M_n $. So there exists $ z \in N \cap M_n $ such that $ x - y = z $. Hence $ x = y + z \in M_n $.
 \end{proof}
 
 \marginpar{Lecture 13 \\ Friday \\ 02/11/18}
 
 Lecture 13 is a problem class.
+
+\marginpar{Lecture 14 \\ Monday \\ 05/11/18}
+
+(TODO Exercise: Do the same in the Artinian case)
+
+\begin{corollary}
+Let $ A $ be a Noetherian or Artinian ring. Let $ M $ be a finitely generated $ A $-module. Then $ M $ is Noetherian or Artinian.
+\end{corollary}
+
+\begin{proof}
+Let $ M = \rb{m_1, \dots, m_n} $ for $ m_i \in M $. $ M = \cb{a_1m_1 + \dots + a_nm_n \mid a_i \in A} $. Let $ A^{\oplus n} = \cb{\rb{a_1, \dots, a_n} \mid a_i \in A} $ be a free $ A $-module of rank $ n $. There is a homomorphism of $ A $-modules $ A^{\oplus n} \to M $ sending $ \rb{a_1, \dots, a_n} $ to $ a_1m_1 + \dots + a_nm_n $. It is surjective. By Proposition \ref{prop:10.4} it is enough to show that $ A^{\oplus n} $ is Noetherian. Prove by induction in $ n $. Clearly, $ A $ is Noetherian. $ A^{\oplus \rb{n - 1}} \subset A^{\oplus n} $. The quotient $ A^{\oplus n} / A^{\oplus \rb{n - 1}} \cong A $ by $ \rb{a_1, \dots, a_n} \mapsto a_n $. By Proposition \ref{prop:10.4} $ A^{\oplus \rb{n - 1}} $ and $ A $ Noetherian implies that $ A^{\oplus n} $ is Noetherian too.
+\end{proof}
+
+\begin{corollary}
+Let $ A $ be a ring and let $ M $ be an $ A $-module. Suppose that we have $ 0 = M_0 \subset \dots M_n = M $ are $ A $-submodules of $ M $. Then $ M $ is Noetherian or Artinian if and only if each quotient $ M_{i + 1} / M_i $ is Noetherian or Artinian.
+\end{corollary}
+
+\begin{proof}
+Use Proposition \ref{prop:10.4}.
+\end{proof}
+
+\begin{lemma}
+Let $ A $ be a Noetherian ring. Let $ S \subset A $ be a multiplicative set. Then $ S^{-1}A $ is Noetherian.
+\end{lemma}
+
+\begin{proof}
+Consider a non-empty set $ \Sigma $ of ideals of $ S^{-1}A $. There is a canonical homomorphism of rings $ f : A \to S^{-1}A $ by $ f\rb{a} = a / 1 $. If $ I $ is an ideal of $ S^{-1}A $, then $ f^{-1}\rb{I} $ is an ideal in $ A $. Then $ I = S^{-1}f^{-1}\rb{I} $. Now $ \Sigma $ gives a non-empty set of ideals of $ A $ under $ I \to f^{-1}\rb{I} $. Let $ J $ be a maximal element of this set. Then $ S^{-1}J $ is a maximal element of $ \Sigma $. Hence $ S^{-1}A $ is Noetherian.
+\end{proof}
+
+\section{Primary decomposition}
+
+\begin{definition}
+An ideal $ Q $ in a ring $ R $ not equal to $ R $, that is a proper ideal, is called \textbf{primary} if all $ x, y \in R $ such that $ xy \in Q $ we have $ x \in Q $ or $ y^n \in Q $ for some $ n $.
+\end{definition}
+
+\begin{example}
+Let $ p $ be a prime number. Then $ \rb{p^m} $ for $ m \ge 1 $ is a primary ideal in $ \Z $. $ ab \in \rb{p^m} $ if and only if $ p^m \mid ab $. Consider $ a $. If $ p \nmid a $, then $ p^m \mid b $, hence $ b \in \rb{p^m} $. Otherwise $ p \mid a $, then $ p^m \mid a^m $, so $ a^m \in \rb{p^m} $.
+\end{example}
 
 \end{document}
