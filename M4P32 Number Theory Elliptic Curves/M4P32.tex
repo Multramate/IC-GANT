@@ -307,7 +307,7 @@ If $ a_n \in \Z $ for all $ n \ge 0 $, then $ \sum_{n = 0}^\infty a_np^n $ conve
 \end{lemma}
 
 \begin{proof}
-$ \abs{a_np^n}_p \le \abs{p^n}_p = p^{-n} \to 0 $ as $ n \to \infty $, so $ \sum_{n = o}^N a_np^n $ converges by Lemma \ref{lem:1.12}. If $ N \ge T $ then $ \abs{\sum_{n = o}^N a_np^n} = p^{-T} $. (TODO: Exercise, use lemma \ref{lem:1.6})
+$ \abs{a_np^n}_p \le \abs{p^n}_p = p^{-n} \to 0 $ as $ n \to \infty $, so $ \sum_{n = o}^N a_np^n $ converges by Lemma \ref{lem:1.12}. If $ N \ge T $ then $ \abs{\sum_{n = o}^N a_np^n} = p^{-T} $. (TODO Exercise: use lemma \ref{lem:1.6})
 \end{proof}
 
 \begin{proposition}
@@ -566,7 +566,7 @@ $ X^2 - Y^2 - 1 $ does not factor in $ \C\sb{X, Y} $.
 
 \marginpar{Lecture 9 \\ Tuesday \\ 23/10/18}
 
-A plane conic is just the graph of some $ f \in k\sb{x, y} $ where $ f $ has degree two. Same terminology also covers $ F = 0 $ for $ F \in k\sb{X, Y, Z} $ homogeneous of degree two. The next steps are
+A \textbf{plane conic} is just the graph of some $ f \in k\sb{x, y} $ where $ f $ has degree two. Same terminology also covers $ F = 0 $ for $ F \in k\sb{X, Y, Z} $ homogeneous of degree two. The next steps are
 \begin{enumerate}
 \item to understand when this is singular,
 \item to understand how to find all solutions to $ f = 0 $ or $ F = 0 $ if it is singular, and
@@ -729,5 +729,43 @@ If these hold, $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv \rb{b + c}y^2 \equ
 \marginpar{Lecture 14 \\ Friday \\ 02/11/18}
 
 Lecture 14 is a problem class.
+
+\marginpar{Lecture 15 \\ Tuesday \\ 06/11/18}
+
+\section{Plane cubics}
+
+\begin{definition}
+A \textbf{plane cubic} is a polynomial $ f\rb{x, y} $ of degree three, or a homogeneous $ F\rb{X, Y, Z} $ of degree three.
+\end{definition}
+
+Call $ f $ nonsingular if all its points are nonsingular.
+
+\begin{example}
+$ y^2 - x^3 $ is singular because $ \rb{0, 0} $ is a singular point but it does not factor.
+\end{example}
+
+Main aim of the rest of the course is to try to find all the points where $ f\rb{x, y} = 0 $, particularly in the case that we are working over $ \Q $. We will also think a bit about points over $ \Q_p $.
+
+\begin{example}
+$ 3x^3 + 4y^3 = 5 $ has solutions in $ \Q_p $ for all $ p $ and in $ \R $, but no solution in $ \Q $, so we do not have a version of the Hasse principle. $ x^3 + y^3 = 0 $ has infinitely many rational points, and it is singular. $ x^3 + y^3 = 1 $ has finitely many points over $ \Q $, in fact just $ \rb{1, 0} $ and $ \rb{0, 1} $, and is nonsingular. For $ x^3 + y^3 = 9 $, $ \rb{2, 1} $ and $ \rb{1, 2} $ are rational points. $ x + y = 3 $ is the line through these two points. $ x^3 + \rb{3 - x}^3 = 9 $ is quadratic, so $ x = 1 $ or $ x = 2 $. (TODO Exercise: do this in projective coordinates and find a point at infinity) Instead, try tangent lines. (TODO Exercise: try this with $ x^3 + y^3 = 1 $ and see what happens) Tangent line at $ \rb{1, 2} $ is $ x + 4y = 9 $. Substitute in $ y^3 + \rb{9 - 4y}^3 = 9 $, that is $ -9\rb{y - 2}^2\rb{7y - 20} = 0 $, to give $ \rb{-17 / 7, 20 / 7} $.
+\end{example}
+
+\begin{lemma}
+$ x^3 + y^3 = 9 $ is nonsingular and has infinitely many points over $ \Q $.
+\end{lemma}
+
+Idea to see that there are infinitely many solutions is to show that the $ z $ coordinate is getting bigger. If $ \sb{x : y : z} \in \P^2\rb{\Q} $, we will say for now that the height of $ \sb{x : y : z} $ is $ \abs{z} $, provided that $ x, y, z \in \Z $, and have no common factor.
+
+\begin{example}
+$ \sb{1 : 2 : 1} $ had height $ 1 $. $ \sb{-17 : 22 : 7} $ had height $ 7 $.
+\end{example}
+
+\begin{proof}
+Firstly check for singular points. $ F = X^3 + Y^3 - 9Z^3 $, $ \partial F / \partial X = 3X^2 $ gives $ X = Y = Z = 0 $, which is a contradiction. To prove there are infinitely many points over $ \Q $, we draw tangent lines. Claim that if $ \sb{r : s : t} $ is on $ F = 0 $, then the third point of intersection of the tangent line at $ \sb{r : s : t} $ with $ F = 0 $ is $ \sb{r\rb{r^3 + 2s^3} : -s\rb{2r^3 + s^3} : t\rb{r^3 - s^3}} $. (TODO Exercise: check this in two ways. First way do this as we did for $ \rb{1, 2} $. Second way use that I told you the answer.) If $ \sb{r : s : t} $ is on $ X^3 + Y^3 = 9Z^3 $, and if $ r, s, t \in \Z $ and have no common factor, then since $ 9 $ is cubefree, in fact have $ \rb{r, s} = \rb{s, t} = \rb{r, t} = 1 $. Suppose that some prime $ p $ divides all three factors of $ \sb{r\rb{r^3 + 2s^3} : -s\rb{2r^3 + s^3} : t\rb{r^3 - s^3}} $. Suppose that some prime $ p $ divides all three factors. If $ p \mid r $ then $ p \mid -s\rb{2r^3 + s^3} $, so $ p \mid -s^4 $, so $ p \mid s $, but $ \rb{r, s} = 1 $. So $ p \nmid r $. Similarly if $ p \mid s $ then $ p \mid r^4 $ gives $ p \mid r $, a contradiction. So $ p \nmid s $. Since $ p \mid r\rb{r^3 + 2s^3} $ and $ p \nmid r $, we have $ p \mid \rb{r^3 + 2s^3} $. Similarly $ p \mid \rb{2r^3 + s^3} $. So $ p \mid \rb{2\rb{2r^3 + s^3} - r^3 + 2s^3} $, so $ p \mid 3r^3 $. Again $ p \nmid r $, so $ p \mid 3 $, so $ p = 3 $. (TODO Exercise: in fact, the same analysis shows that the only power of three which could divide all three terms is three itself) So the height of our new point is at least $ \tfrac{1}{3}\abs{t}\abs{r^3 - s^3} $. So we will be unless $ \abs{r^3 - s^3} \le 3 $. But this inequality is only satisfied if $ r, s \in \cb{-1, 0, 1} $. But then $ r^3 + s^3 = 9t^3 $ has no solutions other than $ \sb{-1 : 1 : 0} $. So as long as we start with any other point, such as $ \sb{1 : 2 : 1} $, we get infinitely many points.
+\end{proof}
+
+\begin{algorithm}[Finding all points for a singular cubic]
+First find the singular point. Remark that using Galois theory, you can show that if you are working over a field of characteristic zero, then the singular point will have coordinates in this same field. Then draw lines through this point.
+\end{algorithm}
 
 \end{document}
