@@ -19,8 +19,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\A}{\mathbb{A}}
-\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\H}{\mathbb{H}}
 
 \newcommand{\val}[1]{\left. #1 \right\rvert}
 \newcommand{\rb}[1]{\left( #1 \right)}
@@ -345,7 +344,7 @@ For the next few lecture we will study the abelian group $ \unit{n} $.
 
 \subsection{The Euler $ \Phi $ function}
 
-We define a function $ \Phi\rb{n} $ on $ \Z_{> 0} $ by letting $ \Phi\rb{n} $ denote the order of $ \unit{n} $. Explicitly we have $ \Phi\rb{n} = \#\cb{1 \le i < n \mid \rb{i, n} = 1} $, that is, $ \Phi\rb{n} $ is the number of integers between $ 0 $ and $ n - 1 $ coprime to $ n $.
+We define a function $ \Phi\rb{n} $ on $ \Z_{> 0} $ by letting $ \Phi\rb{n} $ denote the order of $ \unit{n} $. Explicitly we have $ \Phi\rb{n} = \#\cb{1 \le i < n \mid \rb{i, n} = 1} $, that is $ \Phi\rb{n} $ is the number of integers between $ 0 $ and $ n - 1 $ coprime to $ n $.
 
 \begin{example}
 If $ p $ is prime, $ \Phi\rb{p} = p - 1 $.
@@ -876,7 +875,7 @@ $ \legendre{2}{7} = 1 $ since $ 2 \equiv 3^3 \mod 7 $. $ \legendre{2}{11} = -1 $
 \begin{proof}
 $ \legendre{2}{p} \equiv 2^{\rb{p - 1} / 2} \mod p $ by Euler's criterion. Let $ q = \rb{p - 1} / 2 $, and set
 $$ Q = \rb{2}\rb{4} \dots \rb{p - 3}\rb{p - 1} = \rb{2 \times 1}\rb{2 \times 2} \dots \rb{2 \times \rb{q - 1}}\rb{2 \times q} = 2^qq! = 2^{\tfrac{p - 1}{2}}q!. $$
-Reduce all the factors in the product defining $ Q $ modulo $ p $ so that they lie between $ -q $ and $ q $, that is, subtract $ p $ from every factor which is greater than $ q $. Let $ Q' $ be the resulting product $ \rb{2}\rb{4} \dots \rb{-3}\rb{-1} $. We have $ Q' \equiv Q \mod p $. On the other hand, the factors in the product defining $ Q' $ are the even integers from $ 1 $ to $ q $ and the negatives of the odd integers from $ 1 $ to $ q $. Thus $ Q' = \rb{-1}^rq! $, where $ r $ is the number of odd integers between $ 1 $ and $ q $. We thus have $ 2^qq! \equiv \rb{-1}^rq! \mod p $, and since $ p \nmid q! $, we have $ 2^{\rb{p - 1} / 2} \equiv \rb{-1}^r \mod p $. The result follows by noting that
+Reduce all the factors in the product defining $ Q $ modulo $ p $ so that they lie between $ -q $ and $ q $, that is subtract $ p $ from every factor which is greater than $ q $. Let $ Q' $ be the resulting product $ \rb{2}\rb{4} \dots \rb{-3}\rb{-1} $. We have $ Q' \equiv Q \mod p $. On the other hand, the factors in the product defining $ Q' $ are the even integers from $ 1 $ to $ q $ and the negatives of the odd integers from $ 1 $ to $ q $. Thus $ Q' = \rb{-1}^rq! $, where $ r $ is the number of odd integers between $ 1 $ and $ q $. We thus have $ 2^qq! \equiv \rb{-1}^rq! \mod p $, and since $ p \nmid q! $, we have $ 2^{\rb{p - 1} / 2} \equiv \rb{-1}^r \mod p $. The result follows by noting that
 $$ \rb{-1}^r = \begin{cases} 1 & p \equiv \pm 1 \mod 8 \\ -1 & p \equiv \pm 3 \mod 8 \end{cases}, $$
 and invoking Euler's criterion.
 \end{proof}
@@ -1013,6 +1012,8 @@ So $ 7411 $ is not a square modulo $ 9283 $.
 
 Which integers are the sum of two squares or four squares?
 
+\subsection{Sums of two squares}
+
 \begin{definition}
 We say that $ n \in \Z $ is a \textbf{sum of two squares} if $ n = x^2 + y^2 $ for $ x, y \in Z $.
 \end{definition}
@@ -1048,5 +1049,72 @@ A ring $ R $ is a \textbf{Euclidean domain} if it is an integral domain, that is
 \end{definition}
 
 If $ R $ is a Euclidean domain, then you can carry out Euclid's algorithm. In particular, irreducible elements are the same as prime elements, and every element can be factored as a product of primes, uniquely up to reordering and multiplication by units. $ \Z\sb{i} $ together with $ N $ is a Euclidean domain. By definition, $ n \in \Z $ is a sum of two squares if and only if there exists $ z \in \Z\sb{i} $ with $ N\rb{z} = n $. Since $ N\rb{zw} = N\rb{z}N\rb{w} $, all we have to do is to figure out what the primes in $ \Z\sb{i} $ are, and what their norms are. (TODO Exercise: Show that the units in $ \Z\sb{i} $ are $ \pm 1 $, $ \pm i $)
+
+\marginpar{Lecture 14 \\ Tuesday \\ 06/11/18}
+
+Two elements of $ \Z\sb{i} $ are \textbf{associates} if their ratio is a unit, that is $ z, w $ are associates if $ z = uw $ for $ u \in \cb{\pm 1, \pm i} $. $ \Z\sb{i} $ is a Euclidean domain, so in particular we have unique factorisation into primes.
+
+\begin{lemma}
+Let $ p $ be a prime in $ \Z\sb{i} $. Then there is a prime $ q $ of $ \Z $ such that either $ N\rb{p} = q $ or $ N\rb{p} = q^2 $. In the latter case, $ p $ is an associate of $ q $. Given $ q $ a prime in $ \Z $, there exists $ p $ such that $ N\rb{p} = q $ if and only if $ q $ is a sum of two squares.
+\end{lemma}
+
+\begin{proof}
+Write $ n = N\rb{p} $, and let $ n = q_1^{s_1} \dots q_r^{s_r} $ be the prime factorisation of $ n $ in $ \Z $. By definition, $ n = p\overline{p} $, so $ p \mid n $ in $ \Z\sb{i} $, and so since $ p $ is prime, $ p \mid q_i $ for some $ i $. Write $ q = q_i $. Then $ p \mid q $ gives $ q = pv $ for some $ v $, so $ N\rb{p}N\rb{v} = N\rb{pv} = N\rb{q} = q^2 $. If $ N\rb{p} = 1 $, then $ p $ is a unit, a contradiction. So $ N\rb{p} \mid q^2 $ gives $ N\rb{p} = q $ or $ N\rb{p} = q^2 $, as claimed. If $ N\rb{p} = q^2 $, then $ N\rb{v} = 1 $, so $ v $ is a unit, and since $ q = pv $, $ p $ is an associate of $ q $, by definition. If $ N\rb{p} = q $, then writing $ p = a + bi $, we have $ q = a^2 + b^2 $. Conversely, if $ q = a^2 + b^2 = \rb{a + bi}\rb{a - bi} $, then since $ p \mid q $, we have either $ p \mid \rb{a + bi} $ or $ p \mid \rb{a - bi} $, so $ N\rb{p} \mid N\rb{a + bi} = q $ or $ N\rb{p} \mid N\rb{a - bi} = q $, and either way $ N\rb{p} = q $.
+\end{proof}
+
+\begin{corollary}
+\label{cor:50}
+The primes in $ \Z\sb{i} $ are either of the form $ a + bi $ with $ a^2 + b^2 $ a prime in $ \Z $, or are primes of $ \Z $ which are not sums of two squares.
+\end{corollary}
+
+\begin{theorem}
+If $ p = 2 $ or $ p \equiv 1 \mod 4 $, then $ p $ is a sum of two squares.
+\end{theorem}
+
+\begin{proof}
+By Corollary \ref{cor:50}, we just have to show that $ p $ is not a prime in $ \Z\sb{i} $. There exists $ n $ such that $ n^2 \equiv -1 \mod p $. If $ p = 2 $ obvious, and if $ p \equiv 1 \mod 4 $, $ \legendre{-1}{p} = \rb{-1}^{\rb{p - 1} / 2} = 1 $ by Euler's criterion. That is, $ p \mid \rb{n^2 + 1} = \rb{n + i}\rb{n - i} $. If $ p $ were prime, then $ p \mid \rb{n + i} $ or $ p \mid \rb{n - i} $, that is there exist $ c, d \in \Z $ such that $ n \pm i = p\rb{c + di} $, so $ 1 = pd $, a contradiction.
+\end{proof}
+
+\begin{remark}
+If $ p \equiv 3 \mod 4 $ then $ p $ is not a sum of two squares, even modulo $ 4 $.
+\end{remark}
+
+\begin{remark}
+In practice, to go from $ n^2 + 1 \equiv 0 \mod p $ to finding $ a, b $ with $ a^2 + b^2 = p $, you just compute $ \rb{n + i, p} = a + bi $. You can do this computation with Euclid's algorithm in $ \Z\sb{i} $.
+\end{remark}
+
+\begin{theorem}
+$ n \in \Z $ is a sum of two squares if and only if its prime factorisation only contains primes congruent to $ 3 $ modulo $ 4 $ to even powers, that is
+$$ n = 2^a\prod_{p_i \equiv 1 \mod 4} p_i^{r_i}\prod_{q_i \equiv 3 \mod 4} q_i^{2s_i}. $$
+\end{theorem}
+
+\begin{proof}
+Suppose $ n $ is of this form. Then $ 2 $, each $ p_i $, and each $ q_i^2 $ are all sums of two squares, so $ n $ is a sum of two squares by Lemma \ref{lem:46}. Conversely suppose that $ n = a^2 + b^2 $, and write $ a + bi $ as a product of primes in $ \Z\sb{i} $. Then $ n = N\rb{a + bi} $ is the product of the norms of these primes, and we already saw that the norms of primes in $ \Z\sb{i} $ are either $ 2 $, a prime which is $ 1 $ modulo $ 4 $, or the square of a prime which is $ 3 $ modulo $ 4 $.
+\end{proof}
+
+\subsection{Sums of four squares}
+
+Lagrange's theorem states that every positive integer is a sum of four squares.
+
+\begin{definition}
+$ \H $, the \textbf{ring of quaternions}, is the ring of sums $ a + bi + cj + dk $ for $ a, b, c, d \in \R $, such that
+\begin{enumerate}
+\item addition is $ \rb{a + bi + cj + dk} + \rb{A + Bi + Cj + Dk} = \rb{a + A} + \rb{b + B}i + \rb{c + C}j + \rb{d + D}k $, and
+\item multiplication is $ ij = -ji = k $, $ jk = -kj = i $, and $ ki = -ik = j $.
+\end{enumerate}
+If $ z = a + bi + cj + dk $, we write $ z^* = a - bi - cj - dk $, so $ \rb{zw}^* = w^*z^* $.
+\end{definition}
+
+Define $ N\rb{z} = zz^* = a^2 + b^2 + c^2 + d^2 $. Then
+$$ N\rb{zw} = zw\rb{zw}^* = zww^*z^* =  zN\rb{w}z^* = zz^*N\rb{w} = N\rb{z}N\rb{w}, $$
+because $ N\rb{w} \in \R $. So
+\begin{align*}
+\rb{a^2 + b^2 + c^2 + d^2}\rb{x^2 + y^2 + z^2 + w^2}
+& = N\rb{a + bi + cj + dk}N\rb{x + yi + zj + wk} \\
+& = N\rb{\rb{a + bi + cj + dk}\rb{x + yi + zj + wk}} \\
+& = \rb{ax - by - cz - dw}^2 + \rb{ay + bx + cw - dz}^2 \\
+& + \rb{az - bw + cx + dy}^2 + \rb{aw + bz - cy + dx}^2.
+\end{align*}
+In particular, if $ m, n $ are sums of four squares, then $ mn $ is a sum of four squares. So to prove Lagrange's theorem, it suffices to show that all primes are sums of four squares. We already saw that $ 2 $, and any prime congruent to $ 1 $ modulo $ 4 $, is a sum of two squares. It remains to show that any prime congruent to $ 3 $ modulo $ 4 $ is a sum of four squares.
 
 \end{document}
