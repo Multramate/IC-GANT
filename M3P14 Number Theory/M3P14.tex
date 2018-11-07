@@ -189,7 +189,7 @@ Let $ n, a, b \in \Z $, and suppose that $ n \mid ab $ and $ \rb{n, a} = 1 $. Th
 \end{proposition}
 
 \begin{proof}
-Since $ \rb{n, a} = 1 $, there exists $ r, s \in \Z $ such that $ rn + sa = 1 $. Thus $ rnb + sab = b $. But $ n $ clearly divides $ rnb $ and $ sab $, so $ n \mid b $.
+Since $ \rb{n, a} = 1 $, there exist $ r, s \in \Z $ such that $ rn + sa = 1 $. Thus $ rnb + sab = b $. But $ n $ clearly divides $ rnb $ and $ sab $, so $ n \mid b $.
 \end{proof}
 
 By definition, if $ n $ is prime, then either $ n \mid a $ or $ \rb{n, a} = 1 $. If $ \rb{n, a} = 1 $, we say that $ n, a $ are \textbf{coprime}.
@@ -298,7 +298,7 @@ Recall that if $ R $ is a commutative ring, a \textbf{unit} of $ R $ is an eleme
 $ \Z^\times = \cb{\pm 1} $ and $ \Q^\times = \Q \setminus \cb{0} = \cb{x \in \Q \mid x \ne 0} $.
 \end{example}
 
-We want to understand $ \unit{n} $. Which elements of $ \cb{0, \dots, n - 1} $ are in $ \unit{n} $? If $ r \in \Z $ and $ \overline{r} \in \unit{n} $ then there exists $ s \in \Z $ such that $ rs \equiv 1 \mod n $. This implies that $ \rb{r, n} = 1 $. Conversely, if $ \rb{r, n} = 1 $, then there exists $ x, y \in \Z $ such that $ rx + ny = 1 $, so $ \overline{rx} = 1 $, so $ \overline{r} $ is a unit. Thus we have $ \unit{n} = \cb{\overline{i} \mid \rb{i, n} = 1} $.
+We want to understand $ \unit{n} $. Which elements of $ \cb{0, \dots, n - 1} $ are in $ \unit{n} $? If $ r \in \Z $ and $ \overline{r} \in \unit{n} $ then there exists $ s \in \Z $ such that $ rs \equiv 1 \mod n $. This implies that $ \rb{r, n} = 1 $. Conversely, if $ \rb{r, n} = 1 $, then there exist $ x, y \in \Z $ such that $ rx + ny = 1 $, so $ \overline{rx} = 1 $, so $ \overline{r} $ is a unit. Thus we have $ \unit{n} = \cb{\overline{i} \mid \rb{i, n} = 1} $.
 
 \begin{note}
 If $ p $ is a prime, then either $ a \equiv 0 \mod p $ or $ \rb{a, p} = 1 $, so $ \unit{p} = \cb{1, \dots, p - 1} $. Thus every non-zero congruence class modulo $ p $ is a unit, that is $ \Z / p\Z $ is a ring with the property that every non-zero element has a multiplicative inverse, so it is a field. Another equivalent way to see this is to check that $ p\Z $ is a maximal ideal of $ \Z $.
@@ -944,11 +944,11 @@ $$ \prod_{i = 1, \ \rb{i, pq} = 1}^R i. $$
 Since
 \begin{equation}
 \label{eq:1}
-\prod_{i = 1, \ \rb{i, pq} = 1}^R i = \rb{\prod_{i = 1, \ \rb{i, pq} = 1}^{pQ} i}\rb{\prod_{i = pQ + 1, \ \rb{i, p} = 1}^{pQ + P} i},
+\prod_{i = 1, \ \rb{i, pq} = 1}^R i = \rb{\prod_{i = 1, \ \rb{i, p} = 1}^R i} \ \Bigg/ \ \rb{\prod_{i = 1, \ \rb{i, p} = 1, \ q \mid i}^R i},
 \end{equation}
 \begin{equation}
 \label{eq:2}
-\prod_{i = 1, \ \rb{i, pq} = 1}^R i = \rb{\prod_{i = 1, \ \rb{i, p} = 1}^R i} \ \Bigg/ \ \rb{\prod_{i = 1, \ \rb{i, p} = 1, \ q \mid i}^R i},
+\prod_{i = 1, \ \rb{i, p} = 1}^R i = \rb{\prod_{i = 1, \ \rb{i, p} = 1}^{pQ} i}\rb{\prod_{i = pQ + 1, \ \rb{i, p} = 1}^{pQ + P} i},
 \end{equation}
 \begin{equation}
 \label{eq:3}
@@ -1045,7 +1045,7 @@ If $ p \equiv 1 \mod 4 $ is prime, then $ p $ is a sum of two squares.
 Lemma \ref{lem:46} and Theorem \ref{thm:47} together allow you to give a complete classification of the integers which are sums of two squares, in terms of their prime factorisations.
 
 \begin{definition}
-A ring $ R $ is a \textbf{Euclidean domain} if it is an integral domain, that is $ ab = 0 $ gives $ a = 0 $ or $ b = 0 $, and there exists a function $ N : R \to \Z_{\ge 0} $ such that for all $ a, b \in R $ with $ b \ne 0 $, there exists $ q, r \in R $ such that $ a = qb + r $, and $ r = 0 $ or $ N\rb{r} < N\rb{b} $.
+A ring $ R $ is a \textbf{Euclidean domain} if it is an integral domain, that is $ ab = 0 $ gives $ a = 0 $ or $ b = 0 $, and there exists a function $ N : R \to \Z_{\ge 0} $ such that for all $ a, b \in R $ with $ b \ne 0 $, there exist $ q, r \in R $ such that $ a = qb + r $, and $ r = 0 $ or $ N\rb{r} < N\rb{b} $.
 \end{definition}
 
 If $ R $ is a Euclidean domain, then you can carry out Euclid's algorithm. In particular, irreducible elements are the same as prime elements, and every element can be factored as a product of primes, uniquely up to reordering and multiplication by units. $ \Z\sb{i} $ together with $ N $ is a Euclidean domain. By definition, $ n \in \Z $ is a sum of two squares if and only if there exists $ z \in \Z\sb{i} $ with $ N\rb{z} = n $. Since $ N\rb{zw} = N\rb{z}N\rb{w} $, all we have to do is to figure out what the primes in $ \Z\sb{i} $ are, and what their norms are. (TODO Exercise: Show that the units in $ \Z\sb{i} $ are $ \pm 1 $, $ \pm i $)
@@ -1116,5 +1116,85 @@ because $ N\rb{w} \in \R $. So
 & + \rb{az - bw + cx + dy}^2 + \rb{aw + bz - cy + dx}^2.
 \end{align*}
 In particular, if $ m, n $ are sums of four squares, then $ mn $ is a sum of four squares. So to prove Lagrange's theorem, it suffices to show that all primes are sums of four squares. We already saw that $ 2 $, and any prime congruent to $ 1 $ modulo $ 4 $, is a sum of two squares. It remains to show that any prime congruent to $ 3 $ modulo $ 4 $ is a sum of four squares.
+
+\marginpar{Lecture 15 \\ Wednesday \\ 07/11/18}
+
+\begin{lemma}
+If $ p \equiv 3 \mod 4 $ is prime, then there exist $ x, y $ such that $ x^2 + y^2 + 1 \equiv 0 \mod p $.
+\end{lemma}
+
+\begin{proof}
+Firstly, claim there exists $ a $ such that $ \legendre{a}{p} = 1 $ and $ \legendre{a + 1}{p} = -1 $. If not, since $ \legendre{1}{p} = 1 $, we must have $ \legendre{2}{p} = \dots = \legendre{p - 1}{p} = 1 $. But we know that there are $ \rb{p - 1} / 2 $ values of $ b $ with $ 1 \le b \le p - 1 $ and $ \legendre{b}{p} = -1 $, a contradiction. Since $ p \equiv 3 \mod 4 $, $ \legendre{-1}{p} = -1 $ by Euler's criterion. So $ \legendre{-\rb{a + 1}}{p} = \legendre{a + 1}{p}\legendre{-1}{p} = 1 $. Choose $ x $ such that $ x^2 \equiv a \mod p $ and $ y $ such that $ y^2 \equiv -\rb{a + 1} \mod p $. Then $ x^2 + y^2 \equiv -1 \mod p $.
+\end{proof}
+
+By the lemma, there exist $ x, y \in \Z $ such that $ x^2 + y^2 + 1 = pr $ for some $ r $. Since the congruence $ x^2 + y^2 + 1 \equiv 0 \mod p $ only depends on $ x, y $ modulo $ p $, so we can find $ x, y $ with $ -p / 2 < x, y < p / 2 $. Then $ \rb{x^2 + y^2 + 1} / p = r < p $.
+
+\begin{proposition}
+\label{prop:55}
+Suppose that $ x^2 + y^2 + z^2 + w^2 = pr $ for $ 1 \le r < p $. If $ r > 1 $, there exist $ x', y', z', w', r' $ for $ 1 \le r' < r $, and $ x'^2 + y'^2 + z'^2 + w'^2 = pr' $.
+\end{proposition}
+
+Proposition \ref{prop:55} gives $ p $ is a sum of four squares. Start with $ x, y, r $ as above, $ z = 1 $ and $ w = 0 $.
+
+\begin{proof}
+Suppose firstly that $ r $ is even. Then either $ x, y, z, w $ are all even, all odd, or two are even and two are odd. So without loss of generality $ x \equiv y \mod 2 $ and $ z \equiv w \mod 2 $. Then take
+$$ x' = \rb{x + y} / 2, \qquad y' = \rb{x - y} / 2, \qquad z' = \rb{z + w} / 2, \qquad w' = \rb{z - w} / 2, \qquad r' = r / 2. $$
+Suppose now that $ r $ is odd, and choose $ a, b, c, d \in \rb{-r / 2, r / 2} $ such that $ x \equiv a, y \equiv b, z \equiv c, w \equiv d \mod r $. Then $ a^2 + b^2 + c^2 + d^2 \equiv x^2 + y^2 + z^2 + w^2 = pr \equiv 0 \mod r $. Write $ a^2 + b^2 + c^2 + d^2 = rr' $. Then $ rr' < 4\rb{r / 2}^2 = r^2 $, so $ 0 \le r' < r $. If $ r' = 0 $ then $ a = b = c = d = 0 $, so $ r' $ divides each of $ x, y, z, w $. Since $ x^2 + y^2 + z^2 + w^2 = pr $, we get $ r^2 \mid pr $ so $ r \mid p $, and since $ r < p $, we get $ r = 1 $, and we are done. Otherwise $ 1 \le r' < r $.
+\begin{align*}
+\rb{rr'}\rb{rp}
+& = \rb{a^2 + b^2 + c^2 + d^2}\rb{x^2 + y^2 + z^2 + w^2} \\
+& = \rb{ax + by + cz + dw}^2 + \rb{-ay + bx + cw - dz}^2 \\
+& + \rb{-az - bw + cx + dy}^2 + \rb{-aw + bz - cy + dx}^2.
+\end{align*}
+Then
+\begin{align*}
+ax + by + cz + dw \equiv x^2 + y^2 + z^2 + w^2 & \equiv 0 \mod r, \\
+-ay + bx + cw - dz \equiv -xy + yx + zw - wz & \equiv 0 \mod r, \\
+-az - bw + cx + dy \equiv -xz - yw + zx + wy & \equiv 0 \mod r, \\
+-aw + bz - cy + dx \equiv -xw + yz - zy + wx & \equiv 0 \mod r.
+\end{align*}
+So take
+$$ x' = \dfrac{ax + by + cz + dw}{r}, \qquad y' = \dfrac{-ay + bx + cw - dz}{r}, $$
+$$ z' = \dfrac{-az - bw + cx + dy}{r}, \qquad w' = \dfrac{-aw + bz - cy + dx}{r}. $$
+\end{proof}
+
+\begin{corollary}
+This can be interpreted as a version of Euclid's algorithm in the ring
+$$ \cb{\dfrac{a + bi + cj + dk}{2} \ \Bigg| \ a \equiv b \equiv c \equiv d \mod 2}. $$
+\end{corollary}
+
+\begin{note}
+This ring is non-commutative, and also $ 5 = \rb{1 - 2i}\rb{1 - 2i} = \rb{1 + 2j}\rb{1 - 2j} $ for example, so you have to be careful with unique factorisation, etc.
+\end{note}
+
+\subsection{Sums of three squares}
+
+$ 7 $ is the smallest positive integer which is not a sum of three squares. In fact no integer congruent to $ 7 $ modulo $ 8 $ can be a sum of three squares, because the squares modulo $ 8 $ are $ 0, 1, 4 $.
+
+\begin{theorem}
+A positive integer is not a sum of three squares if and only if it is of the form $ 4^a\rb{8k + 7} $.
+\end{theorem}
+
+Proving that numbers are not of this form is beyond this course. Serre's a course in arithmetic is a good place to look.
+
+\section{Pell's equation}
+
+Let $ d \in \Z_{> 1} $ be squarefree. \textbf{Pell's equation} is $ x^2 - dy^2 = 1 $.
+
+\begin{example}
+For $ d = 2 $, $ \rb{x, y} = \rb{3, 2} $ is a solution. In fact, there are infinitely many solutions, and this is true for any $ d $.
+\end{example}
+
+We will find it useful to write $ x^2 - dy^2 = \rb{x + \sqrt{d}y}\rb{x - \sqrt{d}y} $. This suggests that we should look at a ring like $ \Z\sb{\sqrt{d}} = \cb{a + b\sqrt{d} \mid a, b \in \Z} $.
+
+\begin{definition}
+If $ \alpha \in \C $, then $ \Z\sb{\alpha} $ is the smallest subring of $ \C $ containing $ \alpha $.
+\end{definition}
+
+\begin{example}
+If $ \alpha = 1 $, then $ \Z\sb{\alpha} = \Z $. If $ \alpha = i $, $ \Z\sb{i} $ is what we wrote before. On the other hand $ \Z\sb{\pi} $ is the ring of $ a_0 + \dots + a_n\pi^n $ for $ a_i \in \Z $ and $ n $ arbitrary. Also $ \Z\sb{\sqrt[3]{2}} $ is not just the set $ \cb{a + b\sqrt[3]{2} \mid a, b \in \Z} $, because this set does not contain $ \rb{\sqrt[3]{2}}^2 = \sqrt[3]{4} $. Also $ \Z\sb{1 / p} $ contains $ 1 / p^n $ for all $ n $, so in fact $ \Z\sb{1 / p} = \cb{a / p^n \mid a \in \Z, \ n \ge 0} $.
+\end{example}
+
+An alternative definition is that $ \Z\sb{\alpha} $ is the intersection of all subrings of $ \C $ containing $ \alpha $.
 
 \end{document}
