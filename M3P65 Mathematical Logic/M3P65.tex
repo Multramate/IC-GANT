@@ -830,7 +830,7 @@ If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy
 \hfill
 \begin{enumerate}
 \item Suppose $ \mathcal{L} $ has a binary relation symbol $ R $. The $ \mathcal{L} $-formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \mathcal{A} = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \mathcal{A} $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
-\item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we intrepret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ and $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
+\item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we interpret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ and $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
 \item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \phi $ an $ \mathcal{L} $-formula. Let $ v $ be a valuation in $ \mathcal{A} $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \mathcal{A} $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
 \end{enumerate}
 \end{example}
@@ -914,7 +914,7 @@ $$ v\sb{R\rb{t_1, \dots, t_m}} = T \qquad \iff \qquad \overline{R}\rb{v\rb{t_1},
 \marginpar{Lecture 12 \\ Monday \\ 29/10/18}
 
 \begin{remark}
-If $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \psi\rb{x_1, \dots, x_n} $ an $ \mathcal{L} $-formula, whose free variables are amongst $ x_1, \dots, x_n $, and $ a_1, \dots, a_n \in A $ then we write $ \mathcal{A} \vDash \Psi\rb{a_1, \dots, a_n} $ to mean $ v\sb{\psi} = T $ for every valuation $ v $ in $ \mathcal{A} $ with $ v\rb{x_i} = a_i $ for $ i = 1, \dots, n $.
+If $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \psi\rb{x_1, \dots, x_n} $ an $ \mathcal{L} $-formula, whose free variables are amongst $ x_1, \dots, x_n $, and $ a_1, \dots, a_n \in A $ for domain $ A $ then we write $ \mathcal{A} \vDash \psi\rb{a_1, \dots, a_n} $ to mean $ v\sb{\psi} = T $ for every valuation $ v $ in $ \mathcal{A} $ with $ v\rb{x_i} = a_i $ for $ i = 1, \dots, n $.
 \end{remark}
 
 \begin{note}
@@ -922,7 +922,7 @@ By the proof of \ref{thm:2.3.3} this holds if $ v\sb{\psi} = T $ for some such v
 \end{note}
 
 \begin{example}
-An example where $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we have term $ t $, and a valuation $ v $ in $ \mathcal{A} $ with $ v\sb{\phi\rb{t}} = F $. Let $ \phi\rb{x_1} $ be $ \impb{\fab{x_2}R\rb{x_1, x_2}}{S\rb{x_1}} $. Scope of $ x_2 $ is $ R\rb{x_1, x_2} $. Let $ t_1 $ be $ x_2 $, then $ \phi\rb{t_1} $ is $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_2}} $. Suppose $ \mathcal{A} = \ab{\N, \le, = 0} $. Domain is $ \N = \cb{0, 1, \dots} $, $ R\rb{x_1, x_2} $ interpreted as $ x_1 \le x_2 $, and $ S\rb{x_1} $ interpreted as $ x_1 = 0 $. So $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we choose a valuation $ v\rb{x_2} = 1 $ then $ v\sb{\phi\rb{t_1}} = F $ in $ \mathcal{A} $.
+An example where $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we have term $ t $, and a valuation $ v $ in $ \mathcal{A} $ with $ v\sb{\phi\rb{t}} = F $. Let $ \phi\rb{x_1} $ be $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_1}} $. Scope of $ x_2 $ is $ R\rb{x_1, x_2} $. Let $ t_1 $ be $ x_2 $, then $ \phi\rb{t_1} $ is $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_2}} $. Suppose $ \mathcal{A} = \ab{\N, \le, = 0} $. Domain is $ \N = \cb{0, 1, \dots} $, $ R\rb{x_1, x_2} $ interpreted as $ x_1 \le x_2 $, and $ S\rb{x_1} $ interpreted as $ x_1 = 0 $. So $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we choose a valuation $ v\rb{x_2} = 1 $ then $ v\sb{\phi\rb{t_1}} = F $ in $ \mathcal{A} $.
 \end{example}
 
 \begin{definition}
@@ -938,8 +938,7 @@ Suppose $ \phi\rb{x_1} $ is an $ \mathcal{L} $-formula, possibly with other free
 
 \begin{lemma}
 \label{lem:2.3.7}
-With this notation, suppose $ v $ is a valuation in $ \mathcal{A} $. Let $ v' $ be the valuation in $ \mathcal{A} $ which is $ x_1 $-equivalent to $ v $ with $ v'\rb{x_1} = v\rb{t} $. Then
-$$ v'\sb{\phi\rb{x_1}} = T \qquad \iff \qquad v\sb{\phi\rb{t}} = T. $$
+With this notation, suppose $ v $ is a valuation in $ \mathcal{A} $. Let $ v' $ be the valuation in $ \mathcal{A} $ which is $ x_1 $-equivalent to $ v $, with $ v'\rb{x_1} = v\rb{t} $. Then $ v'\sb{\phi\rb{x_1}} = T $ iff $ v\sb{\phi\rb{t}} = T $.
 \end{lemma}
 
 \begin{proof}
@@ -978,7 +977,9 @@ So $ v'\sb{\phi\rb{x_1}} = F $. This completes the inductive step.
 \end{proof}
 
 \begin{proof}[Proof of \ref{thm:2.3.6}]
-Suppose $ v $ is a valuation with $ v\sb{\phi\rb{t}} = F $. Show $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $. Then $ v\sb{\impb{\fab{x_1}\phi\rb{x_1}}{\phi\rb{t}}} = \phi\rb{t} = T $. Take $ v' $ $ x_1 $-equivalent to $ v $ and $ v'\rb{x_1} = v\rb{t} $. Then by \ref{lem:2.3.7}, $ v'\sb{\phi\rb{x_1}} = F $, so $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $.
+Suppose $ v $ is a valuation with $ v\sb{\phi\rb{t}} = F $. Show $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $. Then
+$$ v\sb{\impb{\fab{x_1}\phi\rb{x_1}}{\phi\rb{t}}} = T. $$
+Take $ v' $ $ x_1 $-equivalent to $ v $ and $ v'\rb{x_1} = v\rb{t} $. Then by \ref{lem:2.3.7}, $ v'\sb{\phi\rb{x_1}} = F $, so $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $.
 \end{proof}
 
 \subsection{The formal system $ K_\mathcal{L} $}
@@ -990,7 +991,7 @@ Suppose $ \mathcal{L} $ is a first-order language. The formal system \textbf{$ K
 \begin{enumerate}[label=(A\arabic*)]
 \item $ \impb{\phi}{\impb{\psi}{\phi}} $,
 \item $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} $,
-\item $ \impb{\impb{\notb{\psi}}{\notb{\phi}}}{\impb{\phi}{\psi}} $,
+\item $ \impb{\impb{\notb{\phi}}{\notb{\psi}}}{\impb{\psi}{\phi}} $,
 \item[(K1)] $ \impb{\fab{x_i}\phi\rb{x_i}}{\phi\rb{t}} $, where $ t $ is a term free for $ x_i $ in $ \phi $ and $ \phi $ can have other free variables, and
 \item[(K2)] $ \impb{\fab{x_i}\impb{\phi}{\psi}}{\impb{\phi}{\fab{x_i}\psi}} $, if $ x_i $ is not free in $ \phi $.
 \end{enumerate}
@@ -1000,7 +1001,7 @@ Suppose $ \mathcal{L} $ is a first-order language. The formal system \textbf{$ K
 \item \textbf{Generalisation} (Gen), from formula $ \phi $ deduce $ \fab{x_i}\phi $.
 \end{enumerate}
 \end{enumerate}
-A proof in $ K_\mathcal{L} $ is the the last formula in some proof. Write $ \vdash_{K_\mathcal{L}} \phi $ for $ \phi $ is a theorem in $ K_\mathcal{L} $.
+A proof in $ K_\mathcal{L} $ is a finite sequence of $ \mathcal{L} $-formulas each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A theorem of $ K_\mathcal{L} $ is the last formula in some proof. Write $ \vdash_{K_\mathcal{L}} \phi $ for $ \phi $ is a theorem in $ K_\mathcal{L} $.
 \end{definition}
 
 \begin{note}
@@ -1024,8 +1025,10 @@ Lecture 13 is a problem class.
 \marginpar{Lecture 14 \\ Friday \\ 02/11/18}
 
 \begin{remark}
+\hfill
 \begin{enumerate}
-If $ \Sigma $ consists of closed formula, do not need to worry about the restriction on Gen.
+\item If $ \Sigma $ consists of closed formulas, do not need to worry about the restriction on Gen.
+\item $ \phi \vdash \fab{x_1}\phi $.
 \end{enumerate}
 \end{remark}
 
@@ -1049,7 +1052,7 @@ Like in the proof for $ L $, we need to show
 \item axioms are logically valid, and
 \item deduction rules preserve logical validity.
 \end{enumerate}
-For axioms, A1, A2, A3 are substitution instances of propositional tautologies in \ref{def:2.2.1} so are logically valid. K1 is logically valid by \ref{thm:2.3.6}. K2 is $ \impb{\fab{x_i}\impb{\phi}{\psi}}{\impb{\phi}{\fab{x_i}\psi}} $ if $ x_i $ is not free in $ \phi $. Suppose we have valuation $ v $ such that $ v\sb{\impb{\phi}{\fab{x_i}\psi}} = F $. So $ v\sb{\phi} = T $ and $ v\sb{\fab{x_i}\psi} = F $. So there is a valuation $ v' $ $ x_i $-equivalent to $ v $ with $ v'\sb{\psi} = F $. $ v $ and $ v' $ agree on all variables free in $ \phi $. So by \ref{thm:2.3.3} $ v\sb{\phi} = v'\sb{\phi} = T $, so $ v'\sb{\impb{\phi}{\psi}} = F $. So $ v\sb{\fab{x_i}\impb{\phi}{\psi}} = F $. So $ v\sb{K_2} = T $. For deduction rules, MP is if $ \vDash \phi $ and $ \vDash \impb{\phi}{\psi} $ then $ \vDash \psi $, and Gen is if $ \vDash \phi $ then $ \vDash \fab{x_i}\phi $. (TODO Exercise)
+For axioms, A1, A2, A3 are substitution instances of propositional tautologies in \ref{def:2.2.1} so are logically valid by \ref{thm:2.4.4}. K1 is logically valid by \ref{thm:2.3.6}. K2 is $ \impb{\fab{x_i}\impb{\phi}{\psi}}{\impb{\phi}{\fab{x_i}\psi}} $ if $ x_i $ is not free in $ \phi $. Suppose we have valuation $ v $ such that $ v\sb{\impb{\phi}{\fab{x_i}\psi}} = F $. So $ v\sb{\phi} = T $ and $ v\sb{\fab{x_i}\psi} = F $. So there is a valuation $ v' $ $ x_i $-equivalent to $ v $ with $ v'\sb{\psi} = F $. $ v $ and $ v' $ agree on all variables free in $ \phi $. So by \ref{thm:2.3.3} $ v\sb{\phi} = v'\sb{\phi} = T $, so $ v'\sb{\impb{\phi}{\psi}} = F $. So $ v\sb{\fab{x_i}\impb{\phi}{\psi}} = F $. So $ v\sb{K_2} = T $. For deduction rules, MP is if $ \vDash \phi $ and $ \vDash \impb{\phi}{\psi} $ then $ \vDash \psi $, and Gen is if $ \vDash \phi $ then $ \vDash \fab{x_i}\phi $. (TODO Exercise)
 \end{proof}
 
 TODO Exercise: Suppose $ \Sigma \vdash \psi $ then for every valuation $ v $ with $ v\sb{\sigma} = T $ for all $ \sigma \in \Sigma $ we have $ v\sb{\psi} = T $.
@@ -1108,10 +1111,6 @@ Suppose $ \Sigma $ is a consistent set of closed $ \mathcal{L} $-formulas and $ 
 Suppose $ \Sigma $ is a consistent set of closed $ \mathcal{L} $-formulas. Then there is a countable $ \mathcal{L} $-structure $ \mathcal{A} $ with $ \mathcal{A} \vDash \Sigma $, that is $ \mathcal{A} \vDash \sigma $ for all $ \sigma \in \Sigma $.
 \end{theorem}
 
-\begin{proof}
-Hard part. Later.
-\end{proof}
-
 \begin{theorem}
 \label{thm:2.5.4}
 Let $ \Sigma $ be a set of closed $ \mathcal{L} $-formulas and $ \phi $ a closed $ \mathcal{L} $-formula. If every model of $ \Sigma $ is a model of $ \phi $, that is if $ \mathcal{A} \vDash \Sigma $ or $ \mathcal{A} \vDash \sigma $ for all $ \sigma \in \Sigma $ then $ \mathcal{A} \vDash \phi $, then $ \Sigma \vdash_{K_\mathcal{L}} \phi $.
@@ -1143,5 +1142,64 @@ Suppose $ \Sigma $ is a set of closed $ \mathcal{L} $-formulas and every finite 
 \begin{proof}
 Suppose $ \Sigma $ has no model. By \ref{thm:2.5.3} $ \Sigma $ is inconsistent so there is a formula $ \phi $ with $ \Sigma \vdash \phi $ and $ \Sigma \vdash \notb{\phi} $. Deductions only involve finitely many formulas in $ \Sigma $. So there is a finite $ \Sigma_0 \subseteq \Sigma $ with $ \Sigma_0 \vdash \phi $ and $ \Sigma_0 \vdash \notb{\phi} $. But then $ \Sigma_0 $ is inconsistent so has no model, a contradiction.
 \end{proof}
+
+\marginpar{Lecture 16 \\ Thursday \\ 08/11/18}
+
+\begin{proof}[Sketch of proof of \ref{thm:2.5.3}]
+Proof is in a series of steps. Notation is cumulative.
+\begin{enumerate}
+\item Let $ b_0, b_1, \dots $ be new constant symbols. Form $ \mathcal{L}^+ $ by adding these to the symbols of $ \mathcal{L} $. Regard $ \Sigma $ as a set of $ \mathcal{L}^+ $-formulas. Check $ \Sigma $ is still consistent in the formal system $ K_{\mathcal{L}^+} $. Note that $ \mathcal{L}^+ $ is still a countable language.
+\item Adding witnesses. Use a lemma that there is a consistent set of closed $ \mathcal{L}^+ $-formulas $ \Sigma_\infty \supseteq \Sigma $ such that for every $ \mathcal{L}^+ $-formula $ \theta\rb{x_i} $ with one free variable there is some $ b_j $ with
+$$ \Sigma_\infty \vdash_{K_{\mathcal{L}^+}} \impb{\notb{\fab{x_i}\theta\rb{x_i}}}{\notb{\theta\rb{b_j}}}. $$
+Think of $ \theta\rb{x_i} $ as $ \notb{\chi\rb{x_i}} $. Then this formula is essentially $ \impb{\teb{x_i}\chi\rb{x_i}}{\chi\rb{b_j}} $, so $ b_j $ witnesses the existence of $ x_i $ satisfying $ x_i $.
+\item By the Lindenbaum lemma \ref{prop:2.5.2} there is a consistent set $ \Sigma^* \supseteq \Sigma_\infty $ of closed $ \mathcal{L}^+ $-formulas such that for every closed $ \phi $ either $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \phi $ or $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \notb{\phi} $.
+\item Building a structure. Let $ A = \cb{\overline{t}} $ where $ t $ is a closed term of $ \mathcal{L}^+ $. Note that
+\begin{enumerate}
+\item a term is closed if it only involves constant symbols and function symbols, and no variables,
+\item use the $ \overline{\cdot} $ to distinguish when we are thinking of a term as an element of $ A $, and
+\item as $ \mathcal{L}^+ $ is countable, $ A $ is countable.
+\end{enumerate}
+Make $ A $ into an $ \mathcal{L}^+ $ structure.
+\begin{enumerate}
+\item Each constant symbol $ c $ of $ \mathcal{L}^+ $ is interpreted as $ \overline{c} \in A $.
+\item Suppose $ R $ is an $ n $-ary relation symbol. Define the relation $ \overline{R} \subseteq A^n $ by $ \rb{\overline{t_1}, \dots, \overline{t_n}} \in \overline{R} $ iff $ \Sigma^* \vdash R\rb{t_1, \dots, t_n} $, a closed atomic $ \mathcal{L}^+ $-formula, where $ t_1, \dots, t_n $ are closed $ \mathcal{L}^+ $-terms.
+\item Suppose $ f $ is an $ m $-ary function symbol. Define a function $ \overline{f} : A^m \to A $ by $ \overline{f}\rb{\overline{t_1}, \dots, \overline{t_m}} = \overline{f\rb{t_1, \dots, t_m}} $ for closed terms $ t_1, \dots, t_m $.
+\end{enumerate}
+Call this structure $ \mathcal{A} $. Note that if $ v $ is a valuation in $ \mathcal{A} $ and $ t $ is a closed term, then $ v\rb{t} = \overline{t} $ by (a) and (c) here.
+\item Use the main lemma that for every closed $ \mathcal{L}^+ $-formula $ \phi $
+\begin{equation}
+\label{eq:7}
+\Sigma^* \vdash_{K_{\mathcal{L}^+}} \phi \qquad \iff \qquad \mathcal{A} \vDash \phi.
+\end{equation}
+Proof by induction on number of connectives and quantifiers in $ \phi $.
+\begin{enumerate}
+\item Base case. $ \phi $ is atomic, that is $ \phi $ is $ R\rb{t_1, \dots, t_n} $ for some closed terms $ t_i $, and relation symbol $ R $. $ \rb{\ref{eq:7}} $ holds by $ (b) $ in definition of $ \mathcal{A} $.
+\item Inductive step. Assume $ \rb{\ref{eq:7}} $ holds for closed formulas involving fewer connectives and quantifiers.
+\begin{enumerate}
+\item $ \phi $ is $ \notb{\psi} $.
+\item $ \phi $ is $ \impb{\psi}{\chi} $.
+\item $ \phi $ is $ \fab{x_i}\psi $.
+\end{enumerate}
+In cases i and ii $ \psi, \chi $ are closed. So $ \rb{\ref{eq:7}} $ holds for these.
+\begin{enumerate}
+\item $ \phi $ is $ \notb{\psi} $, so $ \mathcal{A} \vDash \phi $ iff $ \mathcal{A} \not\vDash \psi $ by \ref{thm:2.3.3}, iff $ \Sigma^* \not\vdash \psi $ by $ \rb{\ref{eq:7}} $, iff $ \Sigma^* \vdash \notb{\psi} $ by step $ 3 $.
+\item TODO Exercise.
+\item $ \phi $ is $ \fab{x_i}\psi $.
+\begin{enumerate}
+\item $ x_i $ is not free in $ \psi $. So $ \psi $ is closed and we can use inductive hypothesis.
+\item $ x_i $ is free in $ \psi $. So $ \psi\rb{x_i} $ has a single free variable.
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+Suppose for a contradiction that $ \mathcal{A} \vDash \phi $ and $ \Sigma^* \not\vdash \phi $. Then by step $ 3 $ $ \Sigma^* \vdash \notb{\phi} $. By step $ 2 $, $ \Sigma^* \vdash \impb{\notb{\fab{x_i}\psi\rb{x_i}}}{\notb{\psi\rb{b_j}}} $ for some constant symbol $ b_j $, that is $ \Sigma^* \vdash \impb{\notb{\phi}}{\notb{\psi\rb{b_j}}} $. So $ \Sigma^* \vdash \notb{\psi\rb{b_j}} $. $ \notb{\psi\rb{b_j}} $ is closed and by case $ i $, $ \rb{\ref{eq:7}} $ applies. We obtain
+\begin{equation}
+\label{eq:8}
+\mathcal{A} \vDash \notb{\psi\rb{b_j}}.
+\end{equation}
+This contradicts $ \mathcal{A} \vDash \fab{x_i}\psi $. Take a valuation $ v $ is $ \mathcal{A} $ with $ v\rb{x_i} = \overline{b_j} $, then $ v $ does not satisfy $ \psi $, by $ \rb{\ref{eq:8}} $.
+\end{enumerate}
+\end{proof}
+
+TODO Exercise: think about this where $ \Sigma $ consists of the group axioms. What is $ \mathcal{A} $? Is it a group?
 
 \end{document}
