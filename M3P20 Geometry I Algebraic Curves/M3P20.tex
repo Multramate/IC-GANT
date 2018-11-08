@@ -1201,6 +1201,7 @@ Let $ L $ be a line in $ \P^2 $. Then given $ i \in \cb{0, 1, 2} $, there exists
 \end{exercise}
 
 \begin{exercise}
+\label{ex:29}
 Let $ C = \cb{P = 0} \subseteq \P^2 $ be a projective curve and let $ \Phi = \sb{A} : \P^2 \to \P^2 $ be a projective transformation, a $ 3 \times 3 $ matrix $ A $. Show that
 \begin{enumerate}
 \item $ \Phi\rb{C} $ is again a projective curve of degree $ \deg\rb{\Phi\rb{C}} = \deg\rb{C} $, in particular $ C $ is a line if and only if $ \Phi\rb{C} $ is a line,
@@ -1406,5 +1407,123 @@ of which $ \cb{S = 0} $ has to be a line. Let $ L $ be the projective line $ L =
 \marginpar{Lecture 13 \\ Monday \\ 05/11/18}
 
 Lecture 13 is a problem class.
+
+\marginpar{Lecture 14 \\ Thursday \\ 08/11/18}
+
+\section{Conics}
+
+In $ \R^2 $ there are three types of conics, which are projective curves of degree two,
+\begin{enumerate}
+\item ellipse, which is compact and therefore it does not admit any point at infinity,
+\item parabola, which admits a unique point at infinity, and
+\item hyperbola, which admits two points at infinity.
+\end{enumerate}
+We have seen how looking at them in projective space eliminates the difference, but we still have examples with only one point, or without any points, such as $ x^2 + y^2 = 0 $ and $ x^2 + y^2 = -1 $. In $ \C^2 $, case 1 cannot happen because no affine curve is compact or, in other words, any affine curve has a point at infinity, and we know that in any case there are infinitely many points. Let $ C = \cb{P = 0} $ where $ P $ has degree two for $ P \in \C\sb{x_0, x_1, x_2} $. By Theorem \ref{thm:9.8}, the number of points at infinity in the line at infinity $ \cb{x_2 = 0} $ of any conic $ C $ is either one or two.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item $ \sb{0, 1, 0} $ is the only point at infinity of $ \cb{x_2x_1 - x_0^2 = 0} $ since $ x_2 = 0 $ gives $ x_0^2 = 0 $.
+\item $ \sb{1, \pm i, 0} $ are the two points at infinity of $ \cb{x_0^2 + x_1^2 + x_2^2 = 0} $.
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+\label{thm:10.2}
+Let $ C $ be an irreducible conic, if and only if $ P $ is irreducible. Then there exists a projective transformation $ \Psi : \P^2 \to \P^2 $ such that $ \Psi\rb{C} $ has equation
+$$ x_2^2 + x_1x_0 = 0. $$
+\end{theorem}
+
+\begin{proof}
+By Theorem \ref{thm:7.11} there exists $ p \in C $ smooth point. After taking a projective transformation we may assume that $ p = \sb{0, 1, 0} $ and that the tangent line of $ C $ at the point $ p $ has equation
+$$ x_0 = 0, $$
+by Exercise \ref{ex:29}. Let $ C = \cb{P = 0} $ where $ P \in \C\sb{x_0, x_1, x_2} $ is a homogeneous polynomial of degree two. We may write
+$$ P\rb{x_0, x_1, x_2} = ax_0^2 + bx_1^2 + cx_2^2 + dx_0x_1 + ex_0x_2 + fx_1x_2, $$
+for some $ a, b, c, d, e, f \in \C $. The tangent line of $ C $ at $ \sb{0, 1, 0} $ is given by
+$$ \sum_{i = 0}^2 x_i \cdot P_{x_i}\rb{0, 1, 0} = x_0 \cdot P_{x_0}\rb{0, 1, 0} + x_1 \cdot P_{x_1}\rb{0, 1, 0} + x_2 \cdot P_{x_2}\rb{0, 1, 0} = 0. $$
+But we know that this line is $ x_0 = 0 $ and therefore
+$$ P_{x_1}\rb{0, 1, 0} = P_{x_2}\rb{0, 1, 0} = 0. $$
+Compute these, and see that they are $ b $ and $ f $, so it follows that $ b = f = 0 $ and
+$$ P\rb{x_0, x_1, x_2} = ax_0^2 + cx_2^2 + dx_0x_1 + ex_0x_2 = cx_2^2 + x_0\rb{ax_0 + dx_1 + ex_2}. $$
+Want to change coordinates to get $ x_2^2 + x_1x_0 = 0 $. Let
+$$ A = \begin{pmatrix} 1 & 0 & 0 \\ a & d & e \\ 0 & 0 & \sqrt{c} \end{pmatrix}, $$
+where $ \sqrt{c} $ is any of the two square roots. Check that $ A $ is invertible. Assume that $ \det\rb{A} = 0 $. Then either $ c = 0 $ or $ d = 0 $. If $ c = 0 $ then $ P = x_0\rb{ax_0 + dx_1 + ex_2} $ is not irreducible. If $ d = 0 $ then $ P = cx_2^2 + ax_0^2 + ex_0x_2 $, which can be factored, being a homogeneous polynomial in two variables. In both cases, $ P $ is not irreducible, which contradicts the assumption. Then $ \det\rb{A} \ne 0 $. Let $ \Psi : \P^2 \to \P^2 $ be the projective transformation associated to $ A $ by $ \Psi = \sb{A} $. Then if $ \sb{z_0, z_1, z_2} = \Psi\rb{\sb{x_0, x_1, x_2}} $ we have
+$$ z_0 = x_0, \qquad z_1 = ax_0 + dx_1 + ex_2, \qquad z_2 = \sqrt{c}x_2, $$
+and the equation of $ \Psi\rb{C} $ becomes
+$$ z_2^2 + z_1z_0 = 0, $$
+as claimed. (TODO Exercise: convince yourself that this is the same that you get by doing $ PA^{-1}\rb{z_0, z_1, z_2} $)
+\end{proof}
+
+\begin{corollary}
+Let $ C $ be a conic. Then $ C $ is smooth if and only if it is irreducible.
+\end{corollary}
+
+\begin{proof}
+By Theorem \ref{thm:7.9}, if $ C $ is reducible then it is not smooth, so if $ C $ is smooth then it is irreducible. Assume now that $ C $ is irreducible. Then by Theorem \ref{thm:10.2}, after taking a projective transformation we may assume that $ C $ is given by the equation
+$$ x_2^2 + x_0x_1 = 0, $$
+which defines a smooth conic, by Exercise \ref{ex:29}.
+\end{proof}
+
+\begin{remark}
+In general it is not true that if $ C $ is irreducible then $ C $ is smooth for higher degree curves.
+\end{remark}
+
+\begin{example}
+Let $ C = \cb{x_2^3 - x_0x_1^2 = 0} \subseteq \P^2 $. Then $ C $ is singular at the point $ \sb{1, 0, 0} $ but $ C $ is irreducible otherwise $ C $ would contain a line. (TODO Exercise: check that $ C $ does not contain any line)
+\end{example}
+
+The outcome of thinking of the reducible case is the following. Up to projective transformation, $ C = \cb{f = 0} $ where $ f $ has degree two is one of
+\begin{enumerate}
+\item $ x_0^2 + x_1^2 + x_2^2 = 0 $, which is irreducible and smooth,
+\item $ x_0^2 + x_1^2 = 0 $, which is a pair of distinct lines, or
+\item $ x_0^2 = 0 $, which is a double line.
+\end{enumerate}
+
+\begin{remark}
+There exists a natural bijection between $ \P^1 $ and the conic
+$$ C = \cb{x_2^2 + x_1x_0 = 0} \subseteq \P^2, $$
+defined by $ f : \P^1 \to C $, so that
+$$ f\rb{\sb{z_0, z_1}} = \sb{z_0^2, -z_1^2, z_0z_1} \in \P^2, $$
+which satisfies the equation of $ C $. (TODO Exercise: check that this is a bijection) Why? Points of $ C $ are in bijection with lines through $ p $, by looking at the other point of intersection of $ C $ with a line through $ p $. Lines through $ p $ are in bijection with $ \P^1 $, since lines through $ p $ have an equation as above, so lines through $ p $ are a line in $ \P^2 $. Thus, it follows by Theorem \ref{thm:10.2} that any irreducible conic admits a natural bijection with $ \P^1 $ and therefore with the sphere
+$$ \cb{\rb{x, y, z} \in \R^3 \mid x^2 + y^2 + z^2 = 1} \subseteq \R^3. $$
+Thus, the affine curve defined by the equation
+$$ x^2 + y^2 = 1 $$
+admits a bijection with the sphere minus two distinct points.
+\end{remark}
+
+\begin{exercise}
+Let $ C \subseteq \P^2 $ be a conic. Show that there exists a symmetric $ 3 \times 3 $ matrix $ A = \rb{a_{ij}} $ such that
+$$ P\rb{z_0, z_1, z_2} = \sum_{i, j = 0}^2 a_{ij}z_iz_j $$
+is the homogeneous polynomial which defines $ C $. Show that $ C $ is irreducible if and only if $ \det\rb{A} \ne 0 $.
+\end{exercise}
+
+\section{Multiplicities and strong Bézout}
+
+In order to refine the statement of Bézout's theorem, we need to introduce the intersection multiplicity of curves $ C, D \subseteq \P^2 $ at a point $ p \in \P^2 $. This will encode both how singular $ p $ is as a point of $ C $ and $ D $ and the relative position or tangency of $ C $ and $ D $ at $ p $.
+
+\begin{notation}
+Let $ f \in \C\sb{x_0, \dots, x_n} $ and let $ \alpha \in \N^{n + 1} $ be a multi-index. Recall that $ \abs{\alpha} = \alpha_0 + \dots + \alpha_n $. Denote
+$$ \partial^\alpha f = \partial_{x_0}^{\alpha_0} \dots \partial_{x_n}^{\alpha_n} f = \dfrac{\partial^{\abs{\alpha}} f}{\partial x_0^{\alpha_0} \dots \partial x_n^{\alpha_n}}, $$
+and recall that for all $ \alpha $, $ \partial^\alpha f $ is a polynomial, and that $ \partial^\alpha f \equiv 0 $ whenever all its coefficients are zero. Set $ \partial^{\rb{0, \dots, 0}} f = f $.
+\end{notation}
+
+\begin{example}
+Let $ n = 1 $. $ \partial^{\rb{1, 1}} f = \partial_{x_0} \partial_{x_1} f = \partial_{x_1} \partial_{x_0} f $.
+\end{example}
+
+Let $ f\rb{x} \in \C\sb{x} $ and $ \alpha \in \C $. Multiplicity of $ f $ in $ \alpha $ is $ \max\cb{d \mid \rb{x - \alpha}^d \mid f\rb{x}} $. Let
+$$ f\rb{x} = a \cdot \rb{x - \lambda_1}^{a_1} \dots \rb{x - \lambda_k}^{a_k}. $$
+If $ \alpha = \lambda_i $, the multiplicity is $ a_i $. Multiplicity is zero if $ \alpha $ is not a root, that is $ f\rb{\alpha} \ne 0 $. Note that multiplicity of $ f $ in $ \alpha $ is $ k $ if and only if $ f\rb{\alpha} = \dots = f^{\rb{k - 1}}\rb{\alpha} = 0 $ and $ f^{\rb{k}}\rb{\alpha} \ne 0 $.
+
+\begin{example}
+If multiplicity is one, then $ f\rb{\alpha} = 0 $ and $ f'\rb{\alpha} \ne 0 $.
+\end{example}
+
+\begin{definition}
+Let $ f \in \C\sb{x_0, \dots, x_n} $ be a polynomial and $ p = \rb{a_0, \dots, a_n} \in \C^{n + 1} $. The \textbf{multiplicity of $ f $ at $ p $} is
+$$ mult_p\rb{f} = \min\cb{\abs{\alpha} \mid \partial^\alpha f\rb{p} = \partial^\alpha f\rb{a_0, \dots, a_n} \ne 0}. $$
+Equivalently,
+$$ mult_p\rb{f} = \max\cb{k \in \N \mid \forall \abs{\alpha} < k, \ \partial^\alpha f\rb{a_0, \dots, a_n} = 0}. $$
+\end{definition}
 
 \end{document}
