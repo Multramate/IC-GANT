@@ -914,7 +914,7 @@ Let $ \overline{C} \subseteq P^2 $ be a projective curve defined by a polynomial
 
 \begin{definition}
 Let $ C = \cb{f = 0} \subseteq \C^2 $ for $ f \in \C\sb{x, y} $ be an affine curve of degree $ d $ and let $ \overline{C} $ be its projectivisation, where, as usual, $ C = \psi\rb{\overline{C} \cap U} $. Denote
-$$ f = f_d + \dots + f_0, \qquad \deg f_i = i, \qquad f_d \ne 0, $$
+$$ f = f_d + \dots + f_0, \qquad \deg\rb{f_i} = i, \qquad f_d \ne 0, $$
 the decomposition of $ f $ into its homogeneous polynomial parts, so that
 $$ P\rb{x_0, x_1, x_2} = f_d\rb{x_0, x_1} + \dots + f_0\rb{x_0, x_1}x_2^d = \sum_{i = 0}^d x_2^{d - i}f_i\rb{x_0, x_1}. $$
 Then, if $ \rb{\alpha_i, \beta_i} \in \C^2 \setminus \cb{\underline{0}} $ for $ i = 1, \dots, d $ are such that
@@ -1511,6 +1511,15 @@ and recall that for all $ \alpha $, $ \partial^\alpha f $ is a polynomial, and t
 Let $ n = 1 $. $ \partial^{\rb{1, 1}} f = \partial_{x_0} \partial_{x_1} f = \partial_{x_1} \partial_{x_0} f $.
 \end{example}
 
+\begin{example}
+Let $ f = x_0^2x_1 + x_0x_1x_2 $.
+\begin{enumerate}
+\item $ \alpha = \rb{0, 0, 0} $ gives $ \partial^\alpha f = f = x_0^2x_1 + x_0x_1x_2 $.
+\item $ \alpha = \rb{1, 0, 0} $ gives $ \partial^\alpha f = \partial_{x_0} f = 2x_0x_1 + x_1x_2 $.
+\item $ \alpha = \rb{0, 1, 1} $ gives $ \partial^\alpha f = \partial_{x_1} \partial_{x_2} f = x_0 $.
+\end{enumerate}
+\end{example}
+
 Let $ f\rb{x} \in \C\sb{x} $ and $ \alpha \in \C $. Multiplicity of $ f $ in $ \alpha $ is $ \max\cb{d \mid \rb{x - \alpha}^d \mid f\rb{x}} $. Let
 $$ f\rb{x} = a \cdot \rb{x - \lambda_1}^{a_1} \dots \rb{x - \lambda_k}^{a_k}. $$
 If $ \alpha = \lambda_i $, the multiplicity is $ a_i $. Multiplicity is zero if $ \alpha $ is not a root, that is $ f\rb{\alpha} \ne 0 $. Note that multiplicity of $ f $ in $ \alpha $ is $ k $ if and only if $ f\rb{\alpha} = \dots = f^{\rb{k - 1}}\rb{\alpha} = 0 $ and $ f^{\rb{k}}\rb{\alpha} \ne 0 $.
@@ -1520,10 +1529,84 @@ If multiplicity is one, then $ f\rb{\alpha} = 0 $ and $ f'\rb{\alpha} \ne 0 $.
 \end{example}
 
 \begin{definition}
-Let $ f \in \C\sb{x_0, \dots, x_n} $ be a polynomial and $ p = \rb{a_0, \dots, a_n} \in \C^{n + 1} $. The \textbf{multiplicity of $ f $ at $ p $} is
-$$ mult_p\rb{f} = \min\cb{\abs{\alpha} \mid \partial^\alpha f\rb{p} = \partial^\alpha f\rb{a_0, \dots, a_n} \ne 0}. $$
+Let $ f \in \C\sb{x_0, \dots, x_n} $ be a polynomial and $ p = \rb{a_0, \dots, a_n} \in \C^{n + 1} $ be a point. The \textbf{multiplicity of $ f $ at $ p $} is
+$$ mult_p f = \min\cb{\abs{\alpha} \mid \partial^\alpha f\rb{p} = \partial^\alpha f\rb{a_0, \dots, a_n} \ne 0}. $$
 Equivalently,
-$$ mult_p\rb{f} = \max\cb{k \in \N \mid \forall \abs{\alpha} < k, \ \partial^\alpha f\rb{a_0, \dots, a_n} = 0}. $$
+$$ mult_p f = \max\cb{k \in \N \mid \forall \abs{\alpha} < k, \ \partial^\alpha f\rb{a_0, \dots, a_n} = 0}. $$
 \end{definition}
+
+\marginpar{Lecture 15 \\ Friday \\ 09/11/18}
+
+In other words, this is the order of vanishing of $ f $ at $ p $.
+
+\begin{example}
+Multiplicity of $ f = x_0^2x_1 + x_0x_1x_2 $ at $ p = \rb{0, 0, 0} $.
+\begin{enumerate}
+\item $ \abs{\alpha} = 0 $ gives $ \partial^{\rb{0, 0, 0}} f\rb{p} = f\rb{p} = 0 $.
+\item $ \abs{\alpha} = 1 $ gives
+\begin{enumerate}
+\item $ \partial^{\rb{1, 0, 0}} f\rb{p} = \partial_{x_0} f\rb{p} = \rb{2x_0x_1 + x_1x_2}\rb{0, 0, 0} = 0 $,
+\item $ \partial^{\rb{0, 1, 0}} f\rb{p} = \partial_{x_1} f\rb{p} = \rb{x_0^2 + x_0x_2}\rb{0, 0, 0} = 0 $, and
+\item $ \partial^{\rb{0, 0, 1}} f\rb{p} = \partial_{x_2} f\rb{p} = \rb{x_0x_1}\rb{0, 0, 0} = 0 $.
+\end{enumerate}
+\item $ \abs{\alpha} = 2 $ gives $ \partial^\alpha = 0 $ for all $ \alpha $ with $ \abs{\alpha} = 2 $.
+\item But $ \partial^{\rb{2, 1, 0}} f\rb{p} = \partial_{x_0}^2 \partial_{x_1} f\rb{p} = 2 $.
+\end{enumerate}
+So multiplicity of $ f $ at $ p $ is three.
+\end{example}
+
+Let $ C = \cb{P = 0} \subseteq \P^2 $ be a projective curve defined by a homogeneous polynomial $ P \in \C\sb{x_0, x_1, x_2} $ with no repeated factors.
+
+\begin{definition}
+The multiplicity of $ C $ at $ p = \sb{a, b, c} \in \P^2 $ is
+$$ mult_p C = mult_{\rb{a, b, c}} P. $$
+\end{definition}
+
+Want to check $ mult_{\rb{\lambda a, \lambda b, \lambda c}} P = mult_{\rb{a, b, c}} P $. This is true as $ \partial^\alpha P\rb{\lambda a, \lambda b, \lambda c} = \lambda^{\deg\rb{P} - \abs{\alpha}}\partial^\alpha P\rb{a, b, c} $. Left hand side is zero if and only if $ \partial^\alpha P\rb{a, b, c} $ is zero.
+\begin{enumerate}
+\item $ mult_p C = 0 $ if and only if $ P\rb{p} = \partial^{\rb{0, 0, 0}} P\rb{p} \ne 0 $, that is if and only if $ p \notin C $.
+\item $ mult_p C = 1 $ if and only if $ P\rb{p} = \partial^{\rb{0, 0, 0}} P\rb{p} = 0 $ and there is $ \alpha $ with $ \abs{\alpha} = 1 $ such that $ \partial^{\alpha} P\rb{p} \ne 0 $. Since the only indices $ \alpha $ with $ \abs{\alpha} = 1 $ are $ \rb{1, 0, 0} $, $ \rb{0, 1, 0} $, and $ \rb{0, 0, 1} $, this happens if and only if at least one of $ \partial_{x_0} P\rb{p} $, $ \partial_{x_1} P\rb{p} $, or $ \partial_{x_2} P\rb{p} $ is non-zero, if and only if $ p $ is not a singular point of $ C $. Thus, $ mult_p C = 1 $ if and only if $ p $ is a smooth point of $ C $.
+\item Similarly $ mult_p C \ge 2 $ if and only if $ p $ is a singular point of $ C $.
+\item $ mult_p C \le \deg\rb{C} $. Why? Suppose $ \deg\rb{C} = n $. Pick a monomial $ x_{i_1}, \dots, x_{i_n} $ that appears with non-zero coefficient in $ P $. Then $ \partial_{x_{i_1}} \dots \partial_{x_{i_n}}\rb{p} \ne 0 $ for any $ p \in \P^2 $.
+\end{enumerate}
+
+\begin{example}
+The curve with equation $ P\rb{x_0, x_1, x_2} = x_0^2x_2 - x_1^2\rb{x_1 + x_2} $ has multiplicity two at $ \sb{0, 0, 1} $. Indeed, $ P_{x_0} = 2x_0x_2 $, $ P_{x_1} = -3x_1^2 - 2x_1x_2 $, $ P_{x_2} = x_0^2 - x_1^2 $ all vanish at $ \rb{0, 0, 1} $, and $ P_{x_0x_0} = 2x_2 $ does not vanish at $ \rb{0, 0, 1} $.
+\end{example}
+
+Multiplicity behaves well under projective transformations. (TODO Exercise: if $ C = \cb{P = 0} $ is a projective curve and $ \chi $ is a projective transformation, then $ mult_{\chi\rb{p}} \chi\rb{C} = mult_p C $, a hint is partial derivatives are linear maps)
+
+\begin{exercise}
+\label{ex:31}
+Let $ \overline{C} = \cb{P = 0} $ be a projective curve that does not contain the line $ \cb{x_2 = 0} $. Denote by $ f\rb{x, y} = P\rb{x, y, 1} $ and let $ C = \cb{f = 0} $ be the associated affine curve. Let $ \rb{a, b} \in C $. Then
+$$ mult_{\sb{a, b, 1}} \overline{C} = mult_{\rb{a, b}} f. $$
+\end{exercise}
+
+\begin{remark}
+A consequence of Exercise \ref{ex:31} is that $ mult_p C \le \deg\rb{C} $ for all $ p \in C $. Indeed, if $ f \in \C\sb{x, y} $ is a polynomial of degree $ d $, it is clear that $ mult_{\rb{0, 0} f} \le d $, so that $ mult_{\sb{0, 0, 1}} C \le d $. For any $ p \in \P^2 $, let $ f : \P^2 \to \P^2 $ be a projective transformation with $ f\rb{p} = \sb{0, 0, 1} $. Then $ mult_p C = mult_{\sb{0, 0, 1}} C $, and the result follows because $ f\rb{C} $ is a curve of degree $ \deg\rb{C} $.
+\end{remark}
+
+Another way to think about multiplicity of $ f \in \C\sb{x_0, \dots, x_n} $ at $ p \in \C^{n + 1} $. It is the number of factors of the first non-zero term of the Taylor expansion of $ f $ at $ p $,
+$$ \sum_{\alpha \in \N^{n + 1}} \dfrac{\partial^\alpha f}{\prod_{i = 0}^n \alpha_i!}\rb{p}\prod_{i = 0}^n \rb{x_i - p_i}^{\alpha_i}. $$
+
+\begin{lemma}
+Let $ P \in \C\sb{x_0, x_1} $ be a homogeneous polynomial of degree $ d > 0 $, and denote $ \cb{P = 0} = \cb{p_1, \dots, p_k} \subseteq \P^1 $. Then, $ \sum_{i = 1}^k mult_{p_i} P = d $, and, in particular, $ k \le d $.
+\end{lemma}
+
+\begin{example}
+Let $ P = x_0^2 $ then $ \cb{P = 0} = \cb{\sb{0, 1}} $, then $ mult_{\sb{0, 1}} x_0^2 = 2 $. If $ a \ne 0 $ $ mult_{\sb{a, b}} x_0^2 = 0 $.
+\end{example}
+
+This is essentially the statement that a degree $ d $ polynomial in one variable has $ d $ roots when counted with multiplicity.
+
+\begin{proof}
+As in the proof of Lemma \ref{lem:6.2}, we may write
+$$ P\rb{x_0, x_1} = \lambda x_0^{d - e} \cdot \prod_{i \in I} \rb{x_1 - a_ix_0}^d_i, $$
+where $ \lambda \ne 0 $, $ d_i, e \in \N $ satisfy $ \sum_{i \in I} d_i = e $, and $ a_i \in \C $ are such that $ a_i \ne a_j $ and $ a_i \ne 0 $ for all $ i \ne j \in I $. Note that in the expression of $ P $, $ e $ is not necessarily distinct from zero, in which case $ I = \emptyset $ and the product is empty, or from $ d $. Let us denote
+$$ \cb{p_1, \dots, p_k} = \begin{cases} \cb{\sb{1, a_i}}_{i \in I} \cup \cb{\sb{0, 1}} & 0 < d < e \\ \cb{\sb{0, 1}} & e = 0 \\ \cb{\sb{1, a_i}}_{i \in I} & e = d \end{cases}. $$
+It is easy to check from the definition of multiplicity that, for each $ i $,
+$$ mult_{\sb{1, a_i}} P = d_i, \qquad mult_{\sb{0, 1}} P = d - e, $$
+and the claim follows from $ \sum_{i \in I} d_i = e $.
+\end{proof}
 
 \end{document}
