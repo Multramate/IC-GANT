@@ -206,11 +206,7 @@ Without loss of generality, $ \abs{x} > \abs{y} $. Write $ x = \rb{x + y} + \rb{
 Think about $ D\rb{a, r} = \cb{x \mid \abs{x - a} < r} $ and $ D\rb{b, r} = \cb{x \mid \abs{x - b} < r} $. What are the possibilities for $ D\rb{a, r} \cap D\rb{b, r} $?
 \end{example}
 
-\begin{example}
-TODO Exercise: directly prove Lemma \ref{lem:1.6} from the definition.
-\end{example}
-
-Let $ k $ be a field, let $ \abs{\cdot} $ be any norm on $ k $. $ d\rb{x, y} = \abs{x - y} $ is a metric, so $ k $ is a metric space with metric $ d $. We have the usual definitions for sequences $ \rb{x_n} $. Say that $ x_n $ \textbf{converges} to $ x $ if for all $ \epsilon > 0 $, there exists $ N $ such that $ n \ge N $ gives $ \abs{x_n - x} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{Cauchy} if $ \epsilon > 0 $, there exists $ N $ such that $ m, n \ge N $ gives $ \abs{x_n - x_m} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{convergent} if $ x_n $ converges to $ x $ for some $ x \in k $. Write $ x_n \to x $. If $ \rb{x_n} $ is convergent, then $ \rb{x_n} $ is Cauchy. Say that $ k $ is \textbf{complete} with respect to $ \abs{\cdot} $ if all Cauchy sequences converge.
+(TODO Exercise: directly prove Lemma \ref{lem:1.6} from the definition) Let $ k $ be a field, let $ \abs{\cdot} $ be any norm on $ k $. $ d\rb{x, y} = \abs{x - y} $ is a metric, so $ k $ is a metric space with metric $ d $. We have the usual definitions for sequences $ \rb{x_n} $. Say that $ x_n $ \textbf{converges} to $ x $ if for all $ \epsilon > 0 $, there exists $ N $ such that $ n \ge N $ gives $ \abs{x_n - x} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{Cauchy} if $ \epsilon > 0 $, there exists $ N $ such that $ m, n \ge N $ gives $ \abs{x_n - x_m} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{convergent} if $ x_n $ converges to $ x $ for some $ x \in k $. Write $ x_n \to x $. If $ \rb{x_n} $ is convergent, then $ \rb{x_n} $ is Cauchy. Say that $ k $ is \textbf{complete} with respect to $ \abs{\cdot} $ if all Cauchy sequences converge.
 
 \begin{example}
 Let $ k = \Q $ with the usual archimedean norm $ \abs{\cdot} $. $ 1, 1.4, 1.41, 1.414, \dots \to \sqrt{2} \notin \Q $.
@@ -638,7 +634,7 @@ We have seen that for any field $ k $, and any plane conic, there are algorithms
 \item if it is singular, write it as a product of two linear factors, and so find all the points over $ k $, and
 \item if it is nonsingular, or smooth, find all points over $ k $ given one such point, by drawing lines through this point.
 \end{enumerate}
-What is missing is given a nonsingular curve, determine if it has any points over $ k $, and find such a point if there is one. For $ k = \Q $, we will do this by using the cases $ k = \Q_p $ for all primes $ p $. Over $ \Q_p $, it is not so hard to check if there are points. Use Hensel's lemma to reduce modulo $ p $, use quadratic reciprocity. Very easy over $ \R $. Hasse's principle says a nonsingular plane conic over $ \Q $ has points over $ \Q $ if and only if it does over $ \Q_p $ and $ \R $ for all $ p $. Forward direction is trivial, converse direction is harder. Crucially, this holds for conics, that is polynomials of degree two, but not true for degree three or higher.
+What is missing is given a nonsingular curve, determine if it has any points over $ k $, and find such a point if there is one. For $ k = \Q $, we will do this by using the cases $ k = \Q_p $ for all primes $ p $. Over $ \Q_p $, it is not so hard to check if there are points. Use Hensel's lemma to reduce modulo $ p $, use quadratic reciprocity. Very easy over $ \R $. Hasse's principle says a nonsingular plane conic over $ \Q $ has points over $ \Q $ iff it does over $ \Q_p $ and $ \R $ for all $ p $. Forward direction is trivial, converse direction is harder. Crucially, this holds for conics, that is polynomials of degree two, but not true for degree three or higher.
 
 \begin{example}
 $ 3X^3 + 4Y^3 + 5Z^3 $.
@@ -778,7 +774,7 @@ $ y^2 = x^3 $ has a cusp. $ \rb{0, 0} $ is a singular point. Line through $ \rb{
 $ y^2 = x^2\rb{x + 1} $ has a node. For a singular point, $ 2y = 0 $ and $ 3x^2 + 2x = 0 $. So $ \rb{0, 0} $ is the singular point. Again, a line through $ \rb{0, 0} $ is $ y = tx $. $ t^2x^2 = x^2\rb{x + 1} $. So $ x + 1 = t^2 $ is the third point of intersection. $ x = t^2 - 1 $ and $ y = t\rb{t^2 - 1} = t^3 - t $. So all the rational solutions are given by $ \rb{x, y} = \rb{t^2 - 1, t^3 - t} $, $ t \in \Q $.
 \end{example}
 
-Let $ f $ be an irreducible plane cubic, that is it does not factor, over a field $ k $. Let $ G $ be the set of non-singular points with coordinates in $ k $.
+Let $ f $ be an irreducible plane cubic, that is it does not factor, over a field $ k $. Let $ G $ be the set of nonsingular points with coordinates in $ k $.
 
 \begin{theorem}
 $ G $ has the structure of an abelian group.
@@ -804,5 +800,66 @@ Any cubic in $ X, Y, Z $ homogeneous is a linear combination of
 $$ X^3, Y^3, Z^3, X^2Y, XY^2, X^2Z, XZ^2, Y^2Z, YZ^2, XYZ. $$
 So we have ten coefficients to choose. The condition of passing through the first eight points imposes eight conditions on the coefficients. Overall, we find that for eight points in general position, we have a two-dimensional space of cubics passing through them, that is there exist $ F, G $ cubics such that the general cubic of this form is given by $ \lambda F + \mu G $. By Bézout, $ F, G $ have nine points of intersection, and this gives us the ninth point we want.
 \end{proof}
+
+\marginpar{Lecture 17 \\ Friday \\ 09/11/18}
+
+\begin{center}
+\begin{tikzpicture}
+\node(t) at (0, 0) {$ T $};
+\node(pq) at (2, 0) {$ P + Q $};
+\node(o) at (4, 0) {$ O $};
+\node(q) at (0, 1) {$ Q $};
+\node(r) at (2, 1) {$ R $};
+\node(v) at (4, 1) {$ V $};
+\node(p) at (0, 2) {$ P $};
+\node(pqr) at (2, 2) {$ ? $};
+\node(qr) at (4, 2) {$ Q + R $};
+\draw (p) -- (pqr) -- (qr);
+\draw (q) -- (r) -- (v);
+\draw (t) -- (pq) -- (o);
+\draw (p) -- (q) -- (t);
+\draw (pqr) -- (r) -- (pq);
+\draw (qr) -- (v) -- (o);
+\end{tikzpicture}
+\end{center}
+
+Need to show that $ ? $ lies on the cubic, that is if we find the unique point of intersection of the line joining $ P + Q $ and $ R $, with the line joining $ P $ and $ Q + R $, this lies on the cubic we are considering. Apply Lemma \ref{lem:5.7} to the eight points $ O, P, Q, R, T, V, P + Q, Q + R $. Consider the cubic given by the union of the three horizontal lines, and the cubic given by the union of the three vertical lines. So the ninth point in Lemma \ref{lem:5.7} is $ ? $. Since the eight points all lie on our cubic, Lemma \ref{lem:5.7} gives $ ? $ lies on the cubic, as required.
+
+\begin{definition}
+An \textbf{elliptic curve} over a field $ k $ is a nonsingular plane cubic $ E $ together with a fixed choice of $ O $ defined over $ k $.
+\end{definition}
+
+\begin{definition}
+A \textbf{point of inflexion} on a nonsingular plane cubic is a point where the tangent line does not meet the curve again, that is it meets the curve with multiplicity three.
+\end{definition}
+
+\begin{lemma}
+\label{lem:5.10}
+If $ E $ is an elliptic curve and $ O $ is chosen to be a point of inflexion, then $ P + Q + R = O $ iff $ P, Q, R $ are collinear.
+\end{lemma}
+
+\begin{proof}
+TODO Exercise.
+\end{proof}
+
+\begin{lemma}
+Consider the cubic $ y^2 = f\rb{x} $, where $ f\rb{x} $ is monic of degree three.
+\begin{enumerate}
+\item This curve has a unique point at infinity, which is nonsingular.
+\item The point at infinity is a point of inflexion.
+\item The cubic is irreducible, and if $ char\rb{k} \ne 2 $, then the cubic is nonsingular iff $ f\rb{x} $ has distinct roots.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item $ Y^2Z - X^3 - aX^2Z - bXZ^2 - cZ^3 $. Points at infinity have $ Z = 0 $, so $ X^3 = 0 $, so $ \sb{0 : 1 : 0} $ is the only point at infinity. $ \partial / \partial Z = Y^2 \ne 0 $ at $ \sb{0 : 1 : 0} $.
+\item Since $ \partial / \partial X = \partial / \partial Y = 0 $ at $ \sb{0 : 1 : 0} $, the tangent line through $ \sb{0 : 1 : 0} $ is just $ Z = 0 $. So the tangent line meets the curve at points where $ Z = 0 $, that is at $ \sb{0 : 1 : 0} $.
+\item (TODO Exercise: irreducibility) Nonsingular points at infinity. For $ y^2 - f\rb{x} $, $ \partial / \partial y = 2y $, so any singular point would have $ y = 0 $ using $ char\rb{k} \ne 2 $. $ \partial / \partial x = -f'\rb{x} $, so a singular point would need $ f\rb{x} = f'\rb{x} = 0 $, that is you need a repeated root of $ f $.
+\end{enumerate}
+\end{proof}
+
+A fact is that any nonsingular plane cubic with a given point $ O $ can be put into the form $ y^2 + \gamma xy + \delta y = g\rb{x} $, with $ g\rb{x} $ a cubic, and the given point $ O $ being sent to infinity, by the Riemann-Roch theorem. If $ char\rb{k} \ne 2 $, can complete the square to get rid of the $ xy, y $ terms. If $ char\rb{k} \ne 3 $, can complete the cube, so we can assume that the elliptic curve is $ y^2 = x^3 + ax + b $. Lines through $ O = \sb{0 : 1 : 0} $ are lines $ x = k $ for some $ k $. If $ T = \rb{x_0, y_0} $, then $ P + Q = \rb{x_0, -y_0} $. In fact, since $ O $ is a point of inflexion, we can compute $ P $ as follows. Since $ P + \rb{-P} = O $ so $ O + P + \rb{-P} = O $, so by Lemma \ref{lem:5.10}, $ O, P, -P $ are collinear. So if $ P = \rb{x_1, y_1} $ then $ -P = \rb{x_1, -y_1} $. In particular, $ 2P = O $ iff $ P = O $ or $ P = \rb{x, 0} $ for some $ x $, that is the points with $ 2P = O $ are $ O $ and $ \rb{\alpha, 0}, \rb{\beta, 0}, \rb{\gamma, 0} $ where $ \alpha, \beta, \gamma $ are the roots of $ X^3 + aX + b $. The discriminant $ \Delta $ of $ y^2 = x^3 + ax + b $ is by definition the discriminant of $ x^3 + ax + b $, which is $ 4a^3 + 27b^2 $. So this is an elliptic curve iff $ 4a^3 + 27b^2 \ne 0 $.
 
 \end{document}
