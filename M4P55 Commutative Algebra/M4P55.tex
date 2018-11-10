@@ -200,7 +200,7 @@ An ideal $ P \subset A $ is prime if and only if $ A / P $ is an integral domain
 \end{lemma}
 
 \begin{proof}
-Let $ x, y \in A $ such that $ xy \in P $. Then $ \rb{x + P}\rb{y + P} = xy + P = P $. If $ x \notin P $ and $ y \notin P $, then $ x + P \ne P $ and $ y + P \ne P $. These are zero divisors in $ A / P $. Conversely, if $ A / P $ is not an integral domain, then it has zero divisors. So there exists $ x, y \in A $ such that $ \rb{x + P}\rb{y + P} = P $. This implies $ xy \in P $. Since $ P $ is prime, $ x \in P $ or $ y \in P $. So one of $ x + P $ and $ y + P $ is zero in $ A / P $. Recall that there is a bijection between the ideals in $ A $ containing $ M $ with the ideals in $ A / M $. Thus $ M \subset A $ is maximal if and only if the only ideals in $ A / M $ are $ \rb{0} $ and $ \rb{1} $, if and only if $ A / M $ is a field.
+Let $ x, y \in A $ such that $ xy \in P $. Then $ \rb{x + P}\rb{y + P} = xy + P = P $. If $ x \notin P $ and $ y \notin P $, then $ x + P \ne P $ and $ y + P \ne P $. These are zero-divisors in $ A / P $. Conversely, if $ A / P $ is not an integral domain, then it has zero-divisors. So there exists $ x, y \in A $ such that $ \rb{x + P}\rb{y + P} = P $. This implies $ xy \in P $. Since $ P $ is prime, $ x \in P $ or $ y \in P $. So one of $ x + P $ and $ y + P $ is zero in $ A / P $. Recall that there is a bijection between the ideals in $ A $ containing $ M $ with the ideals in $ A / M $. Thus $ M \subset A $ is maximal if and only if the only ideals in $ A / M $ are $ \rb{0} $ and $ \rb{1} $, if and only if $ A / M $ is a field.
 \end{proof}
 
 \begin{remark}
@@ -680,7 +680,7 @@ Consider a non-empty set $ \Sigma $ of ideals of $ S^{-1}A $. There is a canonic
 \section{Primary decomposition}
 
 \begin{definition}
-An ideal $ Q $ in a ring $ R $ not equal to $ R $, that is a proper ideal, is called \textbf{primary} if all $ x, y \in R $ such that $ xy \in Q $ we have $ x \in Q $ or $ y^n \in Q $ for some $ n $.
+An ideal $ Q $ in a ring $ R $ not equal to $ R $, that is a proper ideal, is called \textbf{primary} if all $ x, y \in R $ such that $ xy \in Q $ we have $ x \in Q $ or $ y^n \in Q $ for some $ n $. Equivalently, $ I \subsetneq R $ is called primary if every zero-divisor in $ R / I $ is nilpotent.
 \end{definition}
 
 \begin{example}
@@ -690,5 +690,57 @@ Let $ p $ be a prime number. Then $ \rb{p^m} $ for $ m \ge 1 $ is a primary idea
 \marginpar{Lecture 15 \\ Tuesday \\ 06/11/18}
 
 Lecture 15 is a test.
+
+\marginpar{Lecture 16 \\ Friday \\ 09/11/18}
+
+\begin{example}
+$ \rb{f\rb{x}^n} \subset k\sb{x} $ for $ f\rb{x} $ irreducible is primary.
+\end{example}
+
+\begin{example}
+Let $ R = k\sb{x, y} $ and $ I = \rb{x^3, y^5, xy} $. Claim that $ I $ is primary. Take any $ f\rb{x, y} = f_0 + xg\rb{x, y} + yh\rb{x, y} $. If $ f_0 = 0 $, since $ x $ and $ y $ are nilpotent, when considered as elements of $ R / I $, $ f\rb{x, y} $ is nilpotent. If $ f_0 \ne 0 $, $ f\rb{x, y} $ is a sum of a unit and a nilpotent, hence a unit. In particular, any zero-divisor in $ R / I $ is nilpotent.
+\end{example}
+
+\begin{example}
+Let $ R = k\sb{x, y} $ and $ I = \rb{xy} $. $ xy \in I $, but $ x^n \notin I $ for all $ n \ge 0 $. Hence $ I $ is not a primary ideal.
+\end{example}
+
+\begin{example}
+Even simpler, $ \rb{6} \subset \Z $ is not a primary ideal.
+\end{example}
+
+\begin{proposition}
+Let $ I \subset R $ be an ideal. If the radical $ r\rb{I} $ is a maximal ideal, then $ I $ is primary. In particular, any power of a maximal ideal is primary.
+\end{proposition}
+
+\begin{proof}
+Consider $ R / I $. $ r\rb{I} / I $ is the nilradical of the ring $ R / I $, which is the intersection of all prime ideals of $ R / I $. We are given that $ r\rb{I} $ is a maximal ideal, so $ r\rb{I} / I $ is a maximal ideal of $ R / I $. Hence $ r\rb{I} / I $ is the unique prime ideal of $ R / I $. If $ x \notin r\rb{I} / I $, then $ x \in \rb{R / I}^* $. Indeed, every non-unit is contained in a maximal ideal by Corollary \ref{cor:4.10}, but there is only one maximal ideal and $ x $ is not in it. If $ x \in r\rb{I} / I $, then $ x $ is nilpotent. So all zero-divisor of $ R / I $ are nilpotent, hence $ I $ is a primary ideal of $ R $. Now let $ M \subset R $ be a maximal ideal. Then $ M^n $ is primary, since $ r\rb{M^n} = M $. Indeed, for any $ x \in M $ $ x^n \in M^n $, so $ M \subset r\rb{M^n} $. Since $ M $ is maximal we must have $ M = r\rb{M^n} $.
+\end{proof}
+
+\begin{example}
+In the example $ I = \rb{x^3, xy, y^5} \supset \rb{x, y}^5 $.
+\end{example}
+
+\begin{proposition}
+Let $ I \subset R $ be a primary ideal. Then the radical $ r\rb{I} $ is a prime ideal of $ R $. It is the smallest prime ideal of $ R $ containing $ I $.
+\end{proposition}
+
+\begin{proof}
+Let $ x, y \in R $ for $ xy \in r\rb{I} $. Then there exists $ n $ such that $ x^ny^n \in I $. If $ x^n \in I $, then $ x \in r\rb{I} $. Suppose $ x^n \notin I $. Since $ I $ is primary, there exists $ m $ such that $ \rb{y^n}^m \in I $. Then $ y \in r\rb{I} $. This proves that $ r\rb{I} $ is prime. Note that $ r\rb{I} $ is the intersection of all prime ideals containing $ I $. Hence if $ r\rb{I} $ is a prime ideal, it is the smallest prime ideal containing $ I $.
+\end{proof}
+
+\begin{definition}
+Let $ P \subset R $ be a prime ideal. An ideal $ I \subset R $ is called \textbf{$ P $-primary}, if $ I $ is a primary ideal such that $ r\rb{I} = P $.
+\end{definition}
+
+\begin{lemma}
+Let $ I_1, \dots, I_n $ be $ P $-primary ideals in $ R $, where $ P $ is a prime ideal. Then $ \cap_{j = 1}^n I_j $ is also a $ P $-primary ideal.
+\end{lemma}
+
+\begin{proof}
+Assume $ n = 2 $. The general case by induction. $ r\rb{I_1} = r\rb{I_2} = P $ and $ r\rb{I_1 \cap I_2} = r\rb{I_1} \cap r\rb{I_2} $. Hence $ r\rb{I_1 \cap I_2} = P $. Let us show that $ I_1 \cap I_2 $ is primary. Take $ x, y \in R $ such that $ xy \in I_1 \cap I_2 \subset I_1 $. If $ x \notin I_1 \cap I_2 $, then, say, $ x \in I_1 $. We know that $ y^n \in I_1 $ for some $ n \ge 0 $. Hence $ y \in r\rb{I_1} = P = r\rb{I_1 \cap I_2} $, so that $ y^m \in I_1 \cap I_2 $.
+\end{proof}
+
+Warning that it is not true in general that if $ r\rb{I} $ is prime, then $ I $ is primary. True if $ r\rb{I} $ is maximal though.
 
 \end{document}
