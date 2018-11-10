@@ -246,7 +246,7 @@ There are $ 2^{2^n} $ truth functions of $ n $ variables.
 \end{lemma}
 
 \begin{proof}
-A truth function is a function $ F : \cb{T, F}^n \to \cb{T, F} $. $ \abs{\cb{T, F}^n} = 2^n $ and for each $ \overline{x} \in \cb{T, F}^n $, $ F\rb{\overline{x}} \in \cb{T, F} $. Hence the result.
+A truth function is a function $ F : \cb{T, F}^n \to \cb{T, F} $. $ \abs{\cb{T, F}^n} = 2^n $ and for each $ \bar{x} \in \cb{T, F}^n $, $ F\rb{\bar{x}} \in \cb{T, F} $. Hence the result.
 \end{proof}
 
 \begin{definition}
@@ -261,17 +261,17 @@ The set $ \cb{\neg, \land, \lor} $ is adequate.
 \begin{proof}
 Let $ G : \cb{T, F}^n \to \cb{T, F} $.
 \begin{enumerate}
-\item If $ G\rb{\overline{v}} = F $ for all $ \overline{v} \in \cb{T, F}^n $, let $ \phi = \andb{p_1}{\notb{p_1}} $. Then $ F_\phi = G $.
-\item Otherwise list the $ \overline{v} \in \cb{T, F}^n $ with $ G\rb{\overline{v}} = T $ as $ \overline{v_1}, \dots, \overline{v_r} $. Write $ \overline{v_i} = \rb{v_{i1}, \dots, v_{in}} $, where each $ v_{ij} \in \cb{T, F} $. Define
+\item If $ G\rb{\bar{v}} = F $ for all $ \bar{v} \in \cb{T, F}^n $, let $ \phi = \andb{p_1}{\notb{p_1}} $. Then $ F_\phi = G $.
+\item Otherwise list the $ \bar{v} \in \cb{T, F}^n $ with $ G\rb{\bar{v}} = T $ as $ \bar{v_1}, \dots, \bar{v_r} $. Write $ \bar{v_i} = \rb{v_{i1}, \dots, v_{in}} $, where each $ v_{ij} \in \cb{T, F} $. Define
 $$ q_{ij} = \begin{cases} p_j & v_{ij} = T \\ \notb{p_j} & v_{ij} = F \end{cases}, \qquad \psi_i = \rb{q_{i1} \land \dots \land q_{in}}, \qquad \theta = \rb{\psi_1 \lor \dots \lor \psi_r}. $$
 Hence
 \begin{align*}
-F_\theta\rb{\overline{v}} = T
-& \iff \exists i \le r, \ F_{\psi_i}\rb{\overline{v}} = T \\
+F_\theta\rb{\bar{v}} = T
+& \iff \exists i \le r, \ F_{\psi_i}\rb{\bar{v}} = T \\
 & \iff \exists i \le r, \ \forall j \le n, \ q_{ij} = T \\
 & \iff \exists i \le r, \ \forall j \le n, \ p_j = v_{ij} \\
-& \iff \exists i \le r, \ \overline{v} = \overline{v_i} \\
-& \iff G\rb{\overline{v}} = T.
+& \iff \exists i \le r, \ \bar{v} = \bar{v_i} \\
+& \iff G\rb{\bar{v}} = T.
 \end{align*}
 Thus $ F_\theta = G $.
 \end{enumerate}
@@ -289,7 +289,7 @@ Take $ G = F_\chi $ and apply case 2 of \ref{thm:1.1.9}.
 \end{proof}
 
 \begin{example}
-Let $ \chi $ be $ \impb{\impb{p_1}{p_2}}{\notb{p_2}} $. Then $ F_\chi\rb{\overline{v}} = T $ iff $ \overline{v} = \rb{T, F}, \rb{F, F} $. Thus its DNF is
+Let $ \chi $ be $ \impb{\impb{p_1}{p_2}}{\notb{p_2}} $. Then $ F_\chi\rb{\bar{v}} = T $ iff $ \bar{v} = \rb{T, F}, \rb{F, F} $. Thus its DNF is
 $$ \orb{\andb{p_1}{\notb{p_2}}}{\andb{\notb{p_1}}{\notb{p_2}}}. $$
 \end{example}
 
@@ -581,13 +581,13 @@ Let $ \Gamma^* $ be a consistent set of $ L $-formulas such that for every $ L $
 \begin{enumerate}
 \item Assume that $ \phi $ is $ \notb{\psi} $.
 \begin{itemize}
-\item[$ \Rightarrow $] $ v\rb{\phi} = T $ gives $ v\rb{\psi} = F $ since $ v $ is a valuation. By inductive hypothesis, $ \Gamma^* \not\vdash_L \psi $. Then Lindenbaum property gives $ \Gamma^* \vdash_L \notb{\psi} $, that is $ \Gamma^* \vdash_L \phi $.
-\item[$ \Leftarrow $] Conversely suppose $ \Gamma^* \vdash_L \phi $. By consistency $ \Gamma^* \not\vdash_L \psi $. By inductive hypothesis, $ v\rb{\psi} = F $. As $ v $ is a valuation we obtain $ v\rb{\notb{\psi}} = T $, that is $ v\rb{\phi} = T $.
+\item[$ \implies $] $ v\rb{\phi} = T $ gives $ v\rb{\psi} = F $ since $ v $ is a valuation. By inductive hypothesis, $ \Gamma^* \not\vdash_L \psi $. Then Lindenbaum property gives $ \Gamma^* \vdash_L \notb{\psi} $, that is $ \Gamma^* \vdash_L \phi $.
+\item[$ \impliedby $] Conversely suppose $ \Gamma^* \vdash_L \phi $. By consistency $ \Gamma^* \not\vdash_L \psi $. By inductive hypothesis, $ v\rb{\psi} = F $. As $ v $ is a valuation we obtain $ v\rb{\notb{\psi}} = T $, that is $ v\rb{\phi} = T $.
 \end{itemize}
 \item Assume that $ \phi $ is $ \impb{\psi}{\chi} $.
 \begin{itemize}
-\item[$ \Leftarrow $] Suppose $ v\rb{\phi} = F $. Show $ \Gamma^* \not\vdash_L \phi $. Then $ v\rb{\psi} = T $ and $ v\rb{\chi} = F $. By inductive hypothesis, $ \Gamma^* \vdash_L \psi $ and $ \Gamma^* \not\vdash_L \chi $. If $ \Gamma^* \vdash_L \phi $ then using $ \Gamma^* \vdash_L \psi $ and MP we get $ \Gamma^* \vdash_L \chi $, which is a contradiction. So $ \Gamma^* \not\vdash_L \phi $.
-\item[$ \Rightarrow $] Suppose $ \Gamma^* \not\vdash_L \phi $, that is $ \Gamma^* \not\vdash_L \impb{\psi}{\chi} $. Then $ \Gamma^* \not\vdash_L \chi $ as $ \vdash_L \impb{\chi}{\impb{\psi}{\chi}} $. Also $ \Gamma^* \not\vdash_L \notb{\psi} $ as $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\chi}} $ by \ref{prop:1.2.7}(1). By inductive hypothesis, $ v\rb{\chi} = F $ and $ v\rb{\notb{\psi}} = F $ so $ v\rb{\psi} = T $. Thus $ v\rb{\phi} = F $, which does the inductive step.
+\item[$ \impliedby $] Suppose $ v\rb{\phi} = F $. Show $ \Gamma^* \not\vdash_L \phi $. Then $ v\rb{\psi} = T $ and $ v\rb{\chi} = F $. By inductive hypothesis, $ \Gamma^* \vdash_L \psi $ and $ \Gamma^* \not\vdash_L \chi $. If $ \Gamma^* \vdash_L \phi $ then using $ \Gamma^* \vdash_L \psi $ and MP we get $ \Gamma^* \vdash_L \chi $, which is a contradiction. So $ \Gamma^* \not\vdash_L \phi $.
+\item[$ \implies $] Suppose $ \Gamma^* \not\vdash_L \phi $, that is $ \Gamma^* \not\vdash_L \impb{\psi}{\chi} $. Then $ \Gamma^* \not\vdash_L \chi $ as $ \vdash_L \impb{\chi}{\impb{\psi}{\chi}} $. Also $ \Gamma^* \not\vdash_L \notb{\psi} $ as $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\chi}} $ by \ref{prop:1.2.7}(1). By inductive hypothesis, $ v\rb{\chi} = F $ and $ v\rb{\notb{\psi}} = F $ so $ v\rb{\psi} = T $. Thus $ v\rb{\phi} = F $, which does the inductive step.
 \end{itemize}
 \end{enumerate}
 \end{proof}
@@ -632,14 +632,14 @@ Predicate logic is first-order logic. Plan is the following.
 \item Introduce the mathematical objects, first-order structures.
 \item Introduce the formulas, first-order languages.
 \item Describe a formal system.
-\item Show that its theorems are precisely the formulas true in all structures.
+\item Show that its theorems are precisely the formulas true in all structures. This is Gödel's completeness theorem.
 \end{enumerate}
-$ 1 $ and $ 2 $ are semantics while $ 3 $ and $ 4 $ are syntax. This is Gödel's completeness theorem.
+$ 1 $ and $ 2 $ are semantics while $ 3 $ and $ 4 $ are syntax.
 
 \subsection{Structures}
 
 \begin{definition}
-Suppose $ A $ is a set and $ n \ge 1 $ and $ n \in \N $. An \textbf{$ n $-ary relation} on $ A $ is a subset $ \overline{R} \subseteq A^n = \cb{\rb{a_1, \dots, a_n} \mid a_i \in A} $ of $ n $-tuples. An \textbf{$ n $-ary function} on $ A $ is a function $ \overline{f} : A^n \to A $.
+Suppose $ A $ is a set and $ n \ge 1 $ and $ n \in \N $. An \textbf{$ n $-ary relation} on $ A $ is a subset $ \bar{R} \subseteq A^n = \cb{\rb{a_1, \dots, a_n} \mid a_i \in A} $ of $ n $-tuples. An \textbf{$ n $-ary function} on $ A $ is a function $ \bar{f} : A^n \to A $.
 \end{definition}
 
 \begin{example}
@@ -651,45 +651,45 @@ Suppose $ A $ is a set and $ n \ge 1 $ and $ n \in \N $. An \textbf{$ n $-ary re
 \end{enumerate}
 \end{example}
 
-If $ \overline{R} \subseteq A^n $ is an $ n $-ary relation and $ a_1, \dots, a_n \in A $, write $ \overline{R}\rb{a_1, \dots, a_n} $ to mean $ \rb{a_1, \dots, a_n} \in \overline{R} $.
+If $ \bar{R} \subseteq A^n $ is an $ n $-ary relation and $ a_1, \dots, a_n \in A $, write $ \bar{R}\rb{a_1, \dots, a_n} $ to mean $ \rb{a_1, \dots, a_n} \in \bar{R} $.
 
 \begin{definition}
 A \textbf{first-order structure} $ \mathcal{A} $ consists of
 \begin{enumerate}
 \item a non-empty set $ A $, the \textbf{domain} of $ \mathcal{A} $,
-\item a set $ \cb{\overline{R_i} \mid i \in I} $ of relations on $ A $ for $ \overline{R_i} \subseteq A^{n_i} $,
-\item a set $ \cb{\overline{f_j} \mid j \in J} $ of functions on $ A $ for $ \overline{f_j} : A^{m_j} \to A $, and
-\item a set $ \cb{\overline{c_k} \mid k \in K} $ of \textbf{constants}, just elements of $ A $.
+\item a set $ \cb{\bar{R_i} \mid i \in I} $ of relations on $ A $ for $ \bar{R_i} \subseteq A^{n_i} $,
+\item a set $ \cb{\bar{f_j} \mid j \in J} $ of functions on $ A $ for $ \bar{f_j} : A^{m_j} \to A $, and
+\item a set $ \cb{\bar{c_k} \mid k \in K} $ of \textbf{constants}, just elements of $ A $.
 \end{enumerate}
 The sets $ I, J, K $ are indexing sets and can be empty. Usually subsets of $ \N $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, and the set $ K $ is called the \textbf{signature} of $ \mathcal{A} $. Might denote the structure by
-$$ \mathcal{A} = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}}. $$
+$$ \mathcal{A} = \ab{A; \rb{\bar{R_i} \mid i \in I}, \rb{\bar{f_j} \mid j \in J}, \rb{\bar{c_k} \mid k \in K}}. $$
 \end{definition}
 
 \begin{example}
 \hfill
 \begin{enumerate}
 \item Orderings on $ A = \N, \Z, \Q, \R $ where
-$$ I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset, \qquad \overline{R_1}\rb{a_1, a_2} \iff a_1 < a_2. $$
+$$ I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset, \qquad \bar{R_1}\rb{a_1, a_2} \iff a_1 < a_2. $$
 \item Groups.
 \begin{enumerate}
-\item $ \overline{R} $, the binary relation for equality,
-\item $ \overline{m} $, the binary function for multiplication,
-\item $ \overline{i} $, the unary function for inversion, and
-\item $ \overline{e} $, the constant for identity element.
+\item $ \bar{R} $, the binary relation for equality,
+\item $ \bar{m} $, the binary function for multiplication,
+\item $ \bar{i} $, the unary function for inversion, and
+\item $ \bar{e} $, the constant for identity element.
 \end{enumerate}
 \item Rings.
 \begin{enumerate}
-\item $ \overline{R} $, the binary relation for equality,
-\item $ \overline{m} $, the binary function for multiplication,
-\item $ \overline{a} $, the binary function for addition,
-\item $ \overline{n} $, the binary function for negation,
-\item $ \overline{0} $, the constant for zero, and
-\item $ \overline{1} $, the constant for one.
+\item $ \bar{R} $, the binary relation for equality,
+\item $ \bar{m} $, the binary function for multiplication,
+\item $ \bar{a} $, the binary function for addition,
+\item $ \bar{n} $, the binary function for negation,
+\item $ \bar{0} $, the constant for zero, and
+\item $ \bar{1} $, the constant for one.
 \end{enumerate}
 \item Graphs.
 \begin{enumerate}
-\item $ \overline{R} $, the binary relation for equality, and
-\item $ \overline{E} $, the binary relation for adjacency.
+\item $ \bar{R} $, the binary relation for equality, and
+\item $ \bar{E} $, the binary relation for adjacency.
 \end{enumerate}
 \end{enumerate}
 \end{example}
@@ -758,7 +758,7 @@ Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas. $ \teb{x}\phi $ means $ \no
 
 \begin{definition}
 Suppose $ \mathcal{L} $ is a first-order language with relation symbols $ R_i $ of arity $ n_i $ for $ i \in I $, function symbols $ f_j $ of arity $ m_j $ for $ j \in J $, and constant symbols $ c_k $ for $ k \in K $. An \textbf{$ \mathcal{L} $-structure} is a structure
-$$ \mathcal{A} = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}} $$
+$$ \mathcal{A} = \ab{A; \rb{\bar{R_i} \mid i \in I}, \rb{\bar{f_j} \mid j \in J}, \rb{\bar{c_k} \mid k \in K}} $$
 of the same signature as $ \mathcal{L} $.
 \end{definition}
 
@@ -767,10 +767,10 @@ There is a correspondence between the relation, function, and constant symbols o
 \begin{definition}
 With the same notation, suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure. A \textbf{valuation} in $ \mathcal{A} $ is a function $ v $ from the set of terms of $ \mathcal{L} $ to $ A $ satisfying
 \begin{enumerate}
-\item $ v\rb{c_k} = \overline{c_k} $, and
+\item $ v\rb{c_k} = \bar{c_k} $, and
 \item if $ t_1, \dots, t_m $ are terms of $ \mathcal{L} $ and $ f $ is an $ m $-ary function symbol then
-$$ v\rb{f\rb{t_1, \dots, t_m}} = \overline{f}\rb{v\rb{t_1}, \dots, v\rb{t_m}}, $$
-where $ \overline{f} $ is the interpretation of $ f $ in $ \mathcal{A} $.
+$$ v\rb{f\rb{t_1, \dots, t_m}} = \bar{f}\rb{v\rb{t_1}, \dots, v\rb{t_m}}, $$
+where $ \bar{f} $ is the interpretation of $ f $ in $ \mathcal{A} $.
 \end{enumerate}
 \end{definition}
 
@@ -782,8 +782,8 @@ Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ a_0, a_1, \dots \i
 By induction on the length of terms. Show that if we let
 \begin{enumerate}
 \item $ v\rb{x_l} = a_l $ for all $ l \in \N $,
-\item $ v\rb{c_k} = \overline{c_k} $ for all $ k \in K $, and
-\item $ v\rb{f\rb{t_1, \dots, t_m}} = \overline{f}\rb{v\rb{t_1}, \dots, v\rb{t_m}} $,
+\item $ v\rb{c_k} = \bar{c_k} $ for all $ k \in K $, and
+\item $ v\rb{f\rb{t_1, \dots, t_m}} = \bar{f}\rb{v\rb{t_1}, \dots, v\rb{t_m}} $,
 \end{enumerate}
 then $ v $ is a well-defined valuation.
 \end{proof}
@@ -797,7 +797,7 @@ Groups with signature of
 \item constant $ e $ for identity element.
 \end{enumerate}
 Let $ G $ be a group and $ g, h \in G $. Let $ v $ be a valuation with $ v\rb{x_0} = g $ and $ v\rb{x_1} = h $. Then
-$$ v\rb{m\rb{m\rb{x_0, x_1}, i\rb{x_0}}} = \overline{m}\rb{v\rb{m\rb{x_0, x_1}}, v\rb{i\rb{x_0}}} = \overline{m}\rb{v\rb{x_0}, v\rb{x_1}}\overline{i}\rb{v\rb{x_0}} = ghg^{-1}. $$
+$$ v\rb{m\rb{m\rb{x_0, x_1}, i\rb{x_0}}} = \bar{m}\rb{v\rb{m\rb{x_0, x_1}}, v\rb{i\rb{x_0}}} = \bar{m}\rb{v\rb{x_0}, v\rb{x_1}}\bar{i}\rb{v\rb{x_0}} = ghg^{-1}. $$
 \end{example}
 
 \begin{definition}
@@ -808,7 +808,7 @@ Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ x_l $ is any varia
 \label{def:2.2.9}
 Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation in $ \mathcal{A} $. Define, for an $ \mathcal{L} $-formula $ \phi $, what is meant by $ v $ \textbf{satisfies} $ \phi $ in $ \mathcal{A} $ by the following.
 \begin{enumerate}
-\item Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \mathcal{L} $. Then $ v $ satisfies the atomic formula $ R\rb{t_1, \dots, t_n} $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \mathcal{A} $.
+\item Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \mathcal{L} $. Then $ v $ satisfies the atomic formula $ R\rb{t_1, \dots, t_n} $ iff $ \bar{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \mathcal{A} $.
 \item Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas and we already know about valuations satisfying $ \phi, \psi $.
 \begin{enumerate}
 \item $ v $ satisfies $ \notb{\phi} $ in $ \mathcal{A} $ iff $ v $ does not satisfy $ \phi $ in $ \mathcal{A} $.
@@ -906,7 +906,7 @@ Suppose $ \phi $ is a closed $ \mathcal{L} $-formula and $ \mathcal{A} $ is an $
 Note that the first statement follows from the generalisation. If $ \phi $ has no free variables, then for any valuations $ v, w $ in $ \mathcal{A} $, they agree on the free variables of $ \phi $ so $ v\sb{\phi} = w\sb{\phi} $. Prove the generalisation by induction on the number of connectives and quantifiers in $ \phi $.
 \begin{enumerate}
 \item Base case. $ \phi $ is atomic, so $ \phi $ is $ R\rb{t_1, \dots, t_m} $ for $ t_j $ terms. The $ t_j $ only involve variables amongst $ x_1, \dots, x_n $. As $ v $ and $ w $ agree on these variables $ v\rb{t_j} = w\rb{t_j} $. So
-$$ v\sb{R\rb{t_1, \dots, t_m}} = T \qquad \iff \qquad \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_m}} \qquad \iff \qquad w\sb{R\rb{t_1, \dots, t_m}} = T. $$
+$$ v\sb{R\rb{t_1, \dots, t_m}} = T \qquad \iff \qquad \bar{R}\rb{v\rb{t_1}, \dots, v\rb{t_m}} \qquad \iff \qquad w\sb{R\rb{t_1, \dots, t_m}} = T. $$
 \item Inductive step. $ \phi $ is $ \notb{\psi} $, $ \impb{\psi}{\chi} $, or $ \fab{x_i}\psi $. (TODO Exercise: first two cases) Suppose $ \phi $ is $ \fab{x_i}\psi $. Suppose $ v\sb{\phi} = F $. By \ref{def:2.2.9} there is a valuation $ v' $ $ x_i $-equivalent to $ v $ with $ v'\sb{\psi} = F $. The free variables of $ \psi $ are amongst $ x_1, \dots, x_n, x_i $. Let $ w' $ be the valuation $ x_i $-equivalent to $ w $ with $ w'\rb{x_i} = v'\rb{x_i} $. Then $ v', w' $ agree on the free variables of $ \psi $. By inductive hypothesis $ v'\sb{\psi} = w'\sb{\psi} $ so $ w'\sb{\psi} = F $. As $ w' $ is $ x_i $-equivalent to $ w $ we obtain $ w\sb{\fab{x_i}\psi} = F $.
 \end{enumerate}
 \end{proof}
@@ -922,7 +922,7 @@ By the proof of \ref{thm:2.3.3} this holds if $ v\sb{\psi} = T $ for some such v
 \end{note}
 
 \begin{example}
-An example where $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we have term $ t $, and a valuation $ v $ in $ \mathcal{A} $ with $ v\sb{\phi\rb{t}} = F $. Let $ \phi\rb{x_1} $ be $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_1}} $. Scope of $ x_2 $ is $ R\rb{x_1, x_2} $. Let $ t_1 $ be $ x_2 $, then $ \phi\rb{t_1} $ is $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_2}} $. Suppose $ \mathcal{A} = \ab{\N, \le, = 0} $. Domain is $ \N = \cb{0, 1, \dots} $, $ R\rb{x_1, x_2} $ interpreted as $ x_1 \le x_2 $, and $ S\rb{x_1} $ interpreted as $ x_1 = 0 $. So $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we choose a valuation $ v\rb{x_2} = 1 $ then $ v\sb{\phi\rb{t_1}} = F $ in $ \mathcal{A} $.
+An example where $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we have term $ t $, and a valuation $ v $ in $ \mathcal{A} $ with $ v\sb{\phi\rb{t}} = F $. Let $ \phi\rb{x_1} $ be $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_1}} $. Scope of $ x_2 $ is $ R\rb{x_1, x_2} $. Let $ t_1 $ be $ x_2 $, then $ \phi\rb{t_1} $ is $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_2}} $. Suppose $ \mathcal{A} = \ab{\N; \le, = 0} $. Domain is $ \N = \cb{0, 1, \dots} $, $ R\rb{x_1, x_2} $ interpreted as $ x_1 \le x_2 $, and $ S\rb{x_1} $ interpreted as $ x_1 = 0 $. So $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we choose a valuation $ v\rb{x_2} = 1 $ then $ v\sb{\phi\rb{t_1}} = F $ in $ \mathcal{A} $.
 \end{example}
 
 \begin{definition}
@@ -1136,6 +1136,7 @@ If $ \theta $ is any formula then $ \vdash \impb{\fab{x_i}\theta}{\theta} $ by t
 \end{proof}
 
 \begin{corollary}[Compactness theorem for $ K_\mathcal{L} $]
+\label{cor:2.5.6}
 Suppose $ \Sigma $ is a set of closed $ \mathcal{L} $-formulas and every finite subset of $ \Sigma $ has a model. Then $ \Sigma $ has a model.
 \end{corollary}
 
@@ -1152,20 +1153,20 @@ Proof is in a series of steps. Notation is cumulative.
 \item Adding witnesses. Use a lemma that there is a consistent set of closed $ \mathcal{L}^+ $-formulas $ \Sigma_\infty \supseteq \Sigma $ such that for every $ \mathcal{L}^+ $-formula $ \theta\rb{x_i} $ with one free variable there is some $ b_j $ with
 $$ \Sigma_\infty \vdash_{K_{\mathcal{L}^+}} \impb{\notb{\fab{x_i}\theta\rb{x_i}}}{\notb{\theta\rb{b_j}}}. $$
 Think of $ \theta\rb{x_i} $ as $ \notb{\chi\rb{x_i}} $. Then this formula is essentially $ \impb{\teb{x_i}\chi\rb{x_i}}{\chi\rb{b_j}} $, so $ b_j $ witnesses the existence of $ x_i $ satisfying $ x_i $.
-\item By the Lindenbaum lemma \ref{prop:2.5.2} there is a consistent set $ \Sigma^* \supseteq \Sigma_\infty $ of closed $ \mathcal{L}^+ $-formulas such that for every closed $ \phi $ either $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \phi $ or $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \notb{\phi} $.
-\item Building a structure. Let $ A = \cb{\overline{t}} $ where $ t $ is a closed term of $ \mathcal{L}^+ $. Note that
+\item By Lindenbaum's lemma \ref{prop:2.5.2} there is a consistent set $ \Sigma^* \supseteq \Sigma_\infty $ of closed $ \mathcal{L}^+ $-formulas such that for every closed $ \phi $ either $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \phi $ or $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \notb{\phi} $.
+\item Building a structure. Let $ A = \cb{\bar{t}} $ where $ t $ is a closed term of $ \mathcal{L}^+ $. Note that
 \begin{enumerate}
 \item a term is closed if it only involves constant symbols and function symbols, and no variables,
-\item use the $ \overline{\cdot} $ to distinguish when we are thinking of a term as an element of $ A $, and
+\item use the $ \bar{\cdot} $ to distinguish when we are thinking of a term as an element of $ A $, and
 \item as $ \mathcal{L}^+ $ is countable, $ A $ is countable.
 \end{enumerate}
 Make $ A $ into an $ \mathcal{L}^+ $ structure.
 \begin{enumerate}
-\item Each constant symbol $ c $ of $ \mathcal{L}^+ $ is interpreted as $ \overline{c} \in A $.
-\item Suppose $ R $ is an $ n $-ary relation symbol. Define the relation $ \overline{R} \subseteq A^n $ by $ \rb{\overline{t_1}, \dots, \overline{t_n}} \in \overline{R} $ iff $ \Sigma^* \vdash R\rb{t_1, \dots, t_n} $, a closed atomic $ \mathcal{L}^+ $-formula, where $ t_1, \dots, t_n $ are closed $ \mathcal{L}^+ $-terms.
-\item Suppose $ f $ is an $ m $-ary function symbol. Define a function $ \overline{f} : A^m \to A $ by $ \overline{f}\rb{\overline{t_1}, \dots, \overline{t_m}} = \overline{f\rb{t_1, \dots, t_m}} $ for closed terms $ t_1, \dots, t_m $.
+\item Each constant symbol $ c $ of $ \mathcal{L}^+ $ is interpreted as $ \bar{c} \in A $.
+\item Suppose $ R $ is an $ n $-ary relation symbol. Define the relation $ \bar{R} \subseteq A^n $ by $ \rb{\bar{t_1}, \dots, \bar{t_n}} \in \bar{R} $ iff $ \Sigma^* \vdash R\rb{t_1, \dots, t_n} $, a closed atomic $ \mathcal{L}^+ $-formula, where $ t_1, \dots, t_n $ are closed $ \mathcal{L}^+ $-terms.
+\item Suppose $ f $ is an $ m $-ary function symbol. Define a function $ \bar{f} : A^m \to A $ by $ \bar{f}\rb{\bar{t_1}, \dots, \bar{t_m}} = \bar{f\rb{t_1, \dots, t_m}} $ for closed terms $ t_1, \dots, t_m $.
 \end{enumerate}
-Call this structure $ \mathcal{A} $. Note that if $ v $ is a valuation in $ \mathcal{A} $ and $ t $ is a closed term, then $ v\rb{t} = \overline{t} $ by (a) and (c) here.
+Call this structure $ \mathcal{A} $. Note that if $ v $ is a valuation in $ \mathcal{A} $ and $ t $ is a closed term, then $ v\rb{t} = \bar{t} $ by (a) and (c) here.
 \item Use the main lemma that for every closed $ \mathcal{L}^+ $-formula $ \phi $
 \begin{equation}
 \label{eq:7}
@@ -1196,10 +1197,81 @@ Suppose for a contradiction that $ \mathcal{A} \vDash \phi $ and $ \Sigma^* \not
 \label{eq:8}
 \mathcal{A} \vDash \notb{\psi\rb{b_j}}.
 \end{equation}
-This contradicts $ \mathcal{A} \vDash \fab{x_i}\psi $. Take a valuation $ v $ is $ \mathcal{A} $ with $ v\rb{x_i} = \overline{b_j} $, then $ v $ does not satisfy $ \psi $, by $ \rb{\ref{eq:8}} $.
+This contradicts $ \mathcal{A} \vDash \fab{x_i}\psi $. Take a valuation $ v $ is $ \mathcal{A} $ with $ v\rb{x_i} = \bar{b_j} $, then $ v $ does not satisfy $ \psi $, by $ \rb{\ref{eq:8}} $.
 \end{enumerate}
 \end{proof}
 
 TODO Exercise: think about this where $ \Sigma $ consists of the group axioms. What is $ \mathcal{A} $? Is it a group?
+
+\marginpar{Lecture 17 \\ Friday \\ 09/11/18}
+
+\subsection{Equality}
+
+\begin{example}
+In the language of groups, have a binary relation symbol $ E\rb{x_1, x_2} $ for equality $ x_1 = x_2 $.
+\end{example}
+
+\begin{definition}
+Suppose $ \mathcal{L}^E $ is a first-order language with a distinguished binary relation symbol $ E $.
+\begin{enumerate}
+\item An $ \mathcal{L}^E $-structure in which $ E $ is interpreted as equality $ = $ is a \textbf{normal} $ \mathcal{L}^E $-structure.
+\item The following are the axioms of equality, $ \Sigma_E $.
+\begin{enumerate}
+\item $ \fab{x_1}E\rb{x_1, x_2} $.
+\item $ \fab{x_1}\fab{x_2}\impb{E\rb{x_1, x_2}}{E\rb{x_2, x_1}} $.
+\item $ \fab{x_1}\fab{x_2}\fab{x_3}\impb{E\rb{x_1, x_2}}{\impb{E\rb{x_2, x_3}}{E\rb{x_1, x_3}}} $.
+\end{enumerate}
+\item For each $ n $-ary relation symbol $ R $ of $ \mathcal{L}^E $,
+$$ \fab{x_1}\dots\fab{x_n}\fab{y_1}\dots\fab{y_n}\impb{\rb{R\rb{x_1, \dots, x_n} \land E\rb{x_1, y_1} \land \dots \land E\rb{x_n, y_n}}}{R\rb{y_1, \dots, y_n}}. $$
+\item For each $ m $-ary function symbol $ f $ of $ \mathcal{L}^E $,
+$$ \fab{x_1}\dots\fab{x_m}\fab{y_1}\dots\fab{y_m}\impb{\rb{E\rb{x_1, y_1} \land \dots \land E\rb{x_m, y_m}}}{E\rb{f\rb{x_1, \dots, x_m}, f\rb{y_1, \dots, y_m}}}. $$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\hfill
+\begin{enumerate}
+\item If $ \mathcal{A} $ is a normal $ \mathcal{L}^E $-structure then $ \mathcal{A} \vDash \Sigma_E $.
+\item Suppose $ \mathcal{A} = \ab{A; \bar{E}, \dots} $ is an $ \mathcal{L}^E $-structure and $ \mathcal{A} \vDash \Sigma_E $. Then $ \bar{E} $ is an equivalence relation on $ A $. Denote, for $ a \in A $ $ \hat{a} = \cb{b \in A \mid \bar{E}\rb{a, b}} $, the equivalence class of $ a $. Let $ \hat{A} = \cb{\hat{a} \mid a \in A} $. Make $ \hat{A} $ into an $ \mathcal{L}^E $-structure $ \hat{\mathcal{A}} $.
+\begin{enumerate}
+\item If $ R $ is an $ n $-ary relation symbol and $ \hat{a_1}, \dots, \hat{a_n} \in \hat{A} $ then say $ \bar{R}\rb{\hat{a_1}, \dots, \hat{a_n}} $ holds in $ \hat{\mathcal{A}} $ iff $ \bar{R}\rb{a_1, \dots, a_n} $ holds in $ \mathcal{A} $. This is well-defined by $ \Sigma_E $.
+\item Similarly if $ f $ is an $ m $-ary function symbol and $ \hat{a_1}, \dots, \hat{a_m} \in \hat{A} $ let $ \bar{f}\rb{\hat{a_1}, \dots, \hat{a_m}} = \widehat{\bar{f}\rb{a_1, \dots, a_m}} $. This is also well-defined by $ \Sigma_E $.
+\item If $ c $ is a constant symbol, then interpret $ c $ as $ \hat{\bar{c}} $ in $ \hat{A} $, where $ \bar{c} $ is the interpretation in $ \mathcal{A} $.
+\end{enumerate}
+Note that in $ \hat{\mathcal{A}} $ $ \bar{E}\rb{\hat{a_1}, \hat{a_2}} $ iff $ \bar{E}\rb{a_1, a_2} $ in $ \mathcal{A} $, iff $ \hat{a_1} = \hat{a_2} $. So $ \hat{\mathcal{A}} $ is a normal $ \mathcal{L}^E $-structure.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+\label{lem:2.6.3}
+Suppose $ \mathcal{A} $ is an $ \mathcal{L}^E $-structure with $ \mathcal{A} \vDash \Sigma_E $. Let $ v $ be a valuation in $ \mathcal{A} $. Let $ \hat{\mathcal{A}} $ be as given above. Let $ \hat{v} $ be the valuation in $ \hat{\mathcal{A}} $ with $ \hat{v}\rb{x_i} = \widehat{v\rb{x_i}} $. Then for every $ \mathcal{L}^E $-formula $ \phi $ $ \hat{v} $ satisfies $ \phi $ in $ \hat{\mathcal{A}} $ iff $ v $ satisfies $ \phi $ in $ \mathcal{A} $. In particular, if $ \phi $ is closed then $ \mathcal{A} \vDash \phi $ iff $ \hat{\mathcal{A}} \vDash \phi $.
+\end{lemma}
+
+\begin{proof}
+By induction on number of connectives and quantifiers in $ \phi $. Note that if $ t $ is a term then by definition of $ \bar{f} $ on $ \hat{\mathcal{A}} $ $ \hat{v}\rb{t} = \widehat{v\rb{t}} $. Using this and definition of $ \bar{R} $ gives the base step, atomic formula $ R\rb{t_1, \dots, t_n} $.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2.6.4}
+Suppose $ \Delta $ is a set of closed $ \mathcal{L}^E $-formulas. Then $ \Delta $ has a normal model, that is a normal $ \mathcal{L}^E $-structure $ \mathcal{B} $ with $ \mathcal{B} \vDash \sigma $ for all $ \sigma \in \Delta $, iff $ \Delta \cup \Sigma_E $ has a model.
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Trivial as $ \Sigma_E $ holds in a normal $ \mathcal{L}^E $-structure.
+\item[$ \impliedby $] If $ \mathcal{A} \vDash \Delta \cup \Sigma_E $ then by \ref{lem:2.6.3} $ \hat{\mathcal{A}} \vDash \Delta $ and $ \hat{\mathcal{A}} $ is a normal $ \mathcal{L}^E $-structure.
+\end{itemize}
+\end{proof}
+
+\begin{theorem}[Compactness theorem for normal models]
+Suppose $ \mathcal{L}^E $ is a countable language with equality and $ \Delta $ is a set of closed $ \mathcal{L}^E $-formulas such that every finite subset of $ \Delta $ has a normal model. Then $ \Delta $ has a normal model.
+\end{theorem}
+
+\begin{proof}
+Every normal $ \mathcal{L}^E $-structure is a model of $ \Sigma_E $, so every finite subset of $ \Delta \cup \Sigma_E $ has a model. By \ref{cor:2.5.6} $ \Delta \cup \Sigma_E $ has a model $ \mathcal{A} $. Then by \ref{lem:2.6.3} or \ref{lem:2.6.4} $ \hat{\mathcal{A}} $ is a normal model of $ \Delta $.
+\end{proof}
+
+From now on, write $ \mathcal{L}^= $ instead of $ \mathcal{L}^E $ and $ x_1 = x_2 $ instead of $ E\rb{x_1, x_2} $ etc.
 
 \end{document}
