@@ -248,11 +248,11 @@ Let $ k $ be a field and $ \abs{\cdot} $ be a norm on $ k $. Let $ R $ be the ri
 
 Let $ I = \cb{\rb{x_n} \in R \mid x_n \to 0 \text{ as } n \to \infty} $. Claim that $ I $ is an ideal in $ R $. $ \rb{x_n}, \rb{y_n} \in I $ then $ \rb{x_n + y_n} \in I $ because $ x_n \to 0 $ and $ y_n \to 0 $ gives $ x_n + y_n \to 0 $. If $ \rb{x_n} \in R $, $ \rb{y_n} \in I $ then $ \rb{x_n} $ is bounded, so $ x_ny_n \to 0 $.
 
-Define the completion of $ k $ to be $ \hat{k} = R / I $. Claim that $ \hat{k} $ is a field, so $ I $ is a maximal ideal of $ R $. Need to show that if $ \rb{x_n} \in R $ with $ x_n \not\to 0 $, then there exists $ \rb{y_n} \in R $ such that $ \rb{x_ny_n} \in 1 + I $. $ x_n \not\to 0 $ gives $ \epsilon, N $ such that $ n \ge N $ gives $ \abs{x_n} \ge \epsilon > 0 $. Set $ y_n = 0 $ if $ n < N $ and $ y_n = 1 / x_n $ if $ n \ge N $. Show that $ \rb{y_n} \in R $ (TODO Exercise). Then $ \rb{x_ny_n} = 0 $ if $ n < N $ and $ \rb{x_ny_n} = 1 $ if $ n \ge N $, so $ x_ny_n \to 1 $ as $ n \to \infty $, as required.
+Define the completion of $ k $ to be $ \widehat{k} = R / I $. Claim that $ \widehat{k} $ is a field, so $ I $ is a maximal ideal of $ R $. Need to show that if $ \rb{x_n} \in R $ with $ x_n \not\to 0 $, then there exists $ \rb{y_n} \in R $ such that $ \rb{x_ny_n} \in 1 + I $. $ x_n \not\to 0 $ gives $ \epsilon, N $ such that $ n \ge N $ gives $ \abs{x_n} \ge \epsilon > 0 $. Set $ y_n = 0 $ if $ n < N $ and $ y_n = 1 / x_n $ if $ n \ge N $. Show that $ \rb{y_n} \in R $ (TODO Exercise). Then $ \rb{x_ny_n} = 0 $ if $ n < N $ and $ \rb{x_ny_n} = 1 $ if $ n \ge N $, so $ x_ny_n \to 1 $ as $ n \to \infty $, as required.
 
-$ k $ is a subfield of $ \hat{k} $ by $ x \mapsto \rb{x} $. Check that $ \hat{k} $ has a natural norm extending $ \abs{\cdot} $ on $ k $, and $ \hat{k} $ is complete with respect to this norm, so $ \abs{\rb{x_n}} = \lim_{n \to \infty} \abs{x_n} $. (TODO Exercise)
+$ k $ is a subfield of $ \widehat{k} $ by $ x \mapsto \rb{x} $. Check that $ \widehat{k} $ has a natural norm extending $ \abs{\cdot} $ on $ k $, and $ \widehat{k} $ is complete with respect to this norm, so $ \abs{\rb{x_n}} = \lim_{n \to \infty} \abs{x_n} $. (TODO Exercise)
 
-Prove that if $ \abs{\cdot} $ on $ k $ is a nonarchimedean norm, then so is the induced norm on $ \hat{k} $. (TODO Exercise) Furthermore, the sequence $ \abs{x_n} $ is eventually constant for any Cauchy sequence $ \abs{x_n} \in R \setminus I $. (TODO Exercise)
+Prove that if $ \abs{\cdot} $ on $ k $ is a nonarchimedean norm, then so is the induced norm on $ \widehat{k} $. (TODO Exercise) Furthermore, the sequence $ \abs{x_n} $ is eventually constant for any Cauchy sequence $ \abs{x_n} \in R \setminus I $. (TODO Exercise)
 
 \begin{note}
 For $ \abs{\cdot}_p $ on $ \Q $ this means that $ \abs{\cdot} $ is taking values in $ p^{\Z} $.
@@ -264,7 +264,7 @@ The \textbf{$ p $-adic numbers} $ \Q_p $ is the completion of $ \Q $ with respec
 
 Prove that $ \Z_p $ is a subring of $ \Q_p $. Use that $ \abs{\cdot}_p $ is nonarchimedean. (TODO Exercise) Also $ \Q \cap \Z_p = \cb{r / s \mid \rb{r, s} = 1, \ p \nmid s} $. In particular $ \Z \subset \Z_p $. (TODO Exercise)
 
-Prove that $ \Q $ is dense in $ \Q_p $. Indeed $ k $ is dense in $ \hat{k} $. (TODO Exercise) A less obvious fact is that $ \Z $ is dense in $ \Z_p $.
+Prove that $ \Q $ is dense in $ \Q_p $. Indeed $ k $ is dense in $ \widehat{k} $. (TODO Exercise) A less obvious fact is that $ \Z $ is dense in $ \Z_p $.
 
 \begin{definition}
 Let $ k $ be a field with a norm $ \abs{\cdot} $, and $ \rb{x_n} $ be any sequence. Then $ \sum_{n = 1}^\infty = \lim_{N \to \infty} \sum_{n = 1}^N x_n $, if this limit exists.
@@ -860,6 +860,28 @@ Consider the cubic $ y^2 = f\rb{x} $, where $ f\rb{x} $ is monic of degree three
 \end{enumerate}
 \end{proof}
 
-A fact is that any nonsingular plane cubic with a given point $ O $ can be put into the form $ y^2 + \gamma xy + \delta y = g\rb{x} $, with $ g\rb{x} $ a cubic, and the given point $ O $ being sent to infinity, by the Riemann-Roch theorem. If $ char\rb{k} \ne 2 $, can complete the square to get rid of the $ xy, y $ terms. If $ char\rb{k} \ne 3 $, can complete the cube, so we can assume that the elliptic curve is $ y^2 = x^3 + ax + b $. Lines through $ O = \sb{0 : 1 : 0} $ are lines $ x = k $ for some $ k $. If $ T = \rb{x_0, y_0} $, then $ P + Q = \rb{x_0, -y_0} $. In fact, since $ O $ is a point of inflexion, we can compute $ P $ as follows. Since $ P + \rb{-P} = O $ so $ O + P + \rb{-P} = O $, so by Lemma \ref{lem:5.10}, $ O, P, -P $ are collinear. So if $ P = \rb{x_1, y_1} $ then $ -P = \rb{x_1, -y_1} $. In particular, $ 2P = O $ iff $ P = O $ or $ P = \rb{x, 0} $ for some $ x $, that is the points with $ 2P = O $ are $ O $ and $ \rb{\alpha, 0}, \rb{\beta, 0}, \rb{\gamma, 0} $ where $ \alpha, \beta, \gamma $ are the roots of $ X^3 + aX + b $. The discriminant $ \Delta $ of $ y^2 = x^3 + ax + b $ is by definition the discriminant of $ x^3 + ax + b $, which is $ 4a^3 + 27b^2 $. So this is an elliptic curve iff $ 4a^3 + 27b^2 \ne 0 $.
+A fact is that any nonsingular plane cubic with a given point $ O $ can be put into the form $ y^2 + \gamma xy + \delta y = g\rb{x} $, with $ g\rb{x} $ a cubic, and the given point $ O $ being sent to infinity, by the Riemann-Roch theorem. If $ char\rb{k} \ne 2 $, can complete the square to get rid of the $ xy, y $ terms. If $ char\rb{k} \ne 3 $, can complete the cube, so we can assume that the elliptic curve is $ y^2 = x^3 + ax + b $. Lines through $ O = \sb{0 : 1 : 0} $ are lines $ x = k $ for some $ k $. If $ T = \rb{x_0, y_0} $, then $ P + Q = \rb{x_0, -y_0} $. In fact, since $ O $ is a point of inflexion, we can compute $ P $ as follows. Since $ P + \rb{-P} = O $ so $ O + P + \rb{-P} = O $, so by Lemma \ref{lem:5.10}, $ O, P, -P $ are collinear. So if $ P = \rb{x_1, y_1} $ then $ -P = \rb{x_1, -y_1} $. In particular, $ 2P = O $ iff $ P = O $ or $ P = \rb{x, 0} $ for some $ x $, that is the points with $ 2P = O $ are $ O $ and $ \rb{\alpha, 0}, \rb{\beta, 0}, \rb{\gamma, 0} $ where $ \alpha, \beta, \gamma $ are the roots of $ X^3 + aX + b $. The discriminant $ \Delta $ of $ y^2 = x^3 + ax + b $ is by definition the discriminant of $ x^3 + ax + b $, which is $ 4a^3 + 27b^2 $. So this is an elliptic curve iff $ x^3 + ax + b $ has three distinct roots, iff $ 4a^3 + 27b^2 \ne 0 $.
+
+\marginpar{Lecture 18 \\ Tuesday \\ 13/11/18}
+
+(TODO Exercise: the only changes of variable that take the equation $ y^2 = x^3 + ax + b $ to an equation of the same form are those of the form $ x' = u^2x $ and $ y' = u^3y $. Such a change of variables scales $ a $ by $ u^4 $ and $ b $ by $ u^6 $, so $ \Delta $ changes by $ u^{12} $.)
+
+\begin{definition}
+Let $ E $ be the elliptic curve $ y^2 = x^3 + ax + b $. Then $ j\rb{E} = -1728\rb{4a}^3 / \Delta $. This is called the \textbf{$ j $-invariant} of $ E $.
+\end{definition}
+
+\begin{proposition}
+If $ k $ is algebraically closed, then two elliptic curves $ E $ and $ E' $ are isomorphic iff $ j\rb{E} = j\rb{E'} $.
+\end{proposition}
+
+\begin{proof}
+Assume $ char\rb{k} \ne 2, 3 $, so that $ y^2 = x^3 + ax + b $ is $ E $ and $ y^2 = x^3 + Ax + B $ is $ E' $. If the two curves are isomorphic, then we can find $ u $ such that $ A = u^4a $ and $ B = u^6B $ and then $ j\rb{E} = j\rb{E'} $. Suppose conversely that $ j\rb{E} = j\rb{E'} $, that is $ A^3 / \rb{4A^3 + 27B^2} = a^3 / \rb{4a^3 + 27b^2} $, that is $ B^2 / A^3 = b^2 / a^3 $, that is $ \rb{B / b}^2 = \rb{A / a}^3 $, assuming that $ a, b, A, B \ne 0 $. Choose $ u $ such that $ u^{12} = \rb{B / b}^2 = \rb{A / a}^3 $. Modifying $ u $ by an appropriate twelfth root of unity, we can arrange that $ A / a = u^4 $, $ B / b = u^6 $. Then $ y' = u^3y $, $ x' = u^2x $ gives the required change of variables. It remains to consider the cases that some of $ a, b, A, B $ are zero. Writing the equation as $ A^3b^2 = a^3B^2 $, if $ A = 0 $ then $ B \ne 0 $ as $ 4A^3 + 27B^2 \ne 0 $, so $ a^3 = 0 $ and $ a = 0 $. Similarly $ B = 0 $ iff $ b = 0 $. In the first case $ A = a = 0 $, choose $ u $ such that $ B / b = u^6 $. In the second case $ B = b = 0 $, choose $ u $ such that $ A / a = u^4 $.
+\end{proof}
+
+Return to the case of irreducible singular cubics. Write as $ y^2 = f\rb{x} $, $ f\rb{x} $ a monic cubic, then this is singular iff $ f\rb{x} $ has a repeated root. There are two cases.
+\begin{enumerate}
+\item All three roots are equal, so $ y^2 = x^3 $. The only singular point is $ \rb{0, 0} $. Consider the group law with $ 0 = \sb{0 : 1 : 0} $. Because $ \sb{0 : 1 : 0} $ is a point of inflexion, Lemma \ref{lem:5.10} tells us that three points add to $ O $ iff they are collinear. Consider a line of the form $ ax + by = 1 $. This is the general form of a line not going through $ \rb{0, 0} $. $ x^3 = y^2 = y^2\rb{1} = y^2\rb{ax + by} $. Since $ \rb{x, y} \ne 0 $ we actually have $ y \ne 0 $, so we can divide by $ y $ and get $ \rb{x / y}^3 = a\rb{x / y} + b $. This is a cubic in $ x / y $, with no quadratic term. Conversely, any cubic in $ x / y $ with no quadratic term is of this form for some $ a, b $. So we see that $ \rb{x_1, y_1} + \rb{x_2, y_3} + \rb{x_3, y_3} = O $ iff $ x_1 / y_1 + x_2 / y_2 + x_3 / y_3 = 0 $. So in this case by mapping $ \rb{x, y} \mapsto x / y $ we get that the group law is given by the usual additive group.
+\item Two roots are equal and the third is distinct, so $ y^2 = x^2\rb{x + 1} $. Again $ \rb{0, 0} $ is singular. $ x^3 = y^2 - x^2 = \rb{y + x}\rb{y - x} $. Let $ U = y + x $ and $ V = y - x $, so $ \rb{U - V}^3 = 8UV $. Again $ \rb{0, 0} $ is the only singular point. Consider lines $ aU + bV = 1 $. $ \rb{U - V}^3 = 8UV\rb{1} = 8UV\rb{aU + bV} $. Write $ t = U / V $, get $ \rb{t - 1}^3 = 8t\rb{at + b} $, so $ t^3 - \rb{8a + 3}t^2 + \rb{8b + 3}t - 1 = 0 $. So we have a general monic cubic with constant term $ -1 $, that is with roots having product equal to one. So sending $ \rb{x, y} \mapsto U / V = \rb{y + x} / \rb{y - x} $ gives an isomorphism between the group law on $ y^2 = x^2\rb{x + 1} $ and the group $ k^* $ under multiplication.
+\end{enumerate}
 
 \end{document}
