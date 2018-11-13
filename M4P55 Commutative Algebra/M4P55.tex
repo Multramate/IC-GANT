@@ -182,11 +182,11 @@ Let $ A $ be a non-zero ring. Then the following are equivalent.
 
 \begin{proof}
 \hfill
-\begin{enumerate}[leftmargin=2cm]
+\begin{itemize}[leftmargin=2cm]
 \item[$ 1 \implies 2 $] Let $ I \subset A $ be a non-zero ideal. Then there exists $ x \in I $, $ x \ne 0 $. Then $ x $ is a unit, i.e. there exists $ y \in A $ such that $ xy = 1 $. For all $ a \in A $, $ a = a.1 = a.y.x \in \rb{x} $. Thus $ I = A $.
 \item[$ 2 \implies 3 $] Let $ f : A \to B $. $ Ker\rb{f} $ is an ideal of $ A $. If $ Ker\rb{f} \ne \cb{0} $, then $ Ker\rb{f} = A $. But then $ 1 \in Ker\rb{f} $ and $ f\rb{1} = 0 $ but $ f\rb{1} = 1 $ so in $ B $ we have that $ 0 = 1 $. Then $ B = \cb{0} $, which is a contradiction.
 \item[$ 3 \implies 1 $] Let $ x \in A $, $ x \ne 0 $. If $ 1 \in \rb{x} = xA $, then $ x $ is a unit. If $ 1 \notin \rb{x} $, then $ x $ is not a unit. If $ 1 \notin \rb{x} $, then consider the map $ A \to A / \rb{x} $ sending $ a \mapsto a + \rb{x} $. Since $ 1 \notin \rb{x} $, $ 1 + \rb{x} $ is not zero in $ A / \rb{x} $. So this is a non-injective homomorphism to a non-zero ring. This contradicts $ 3 $.
-\end{enumerate}
+\end{itemize}
 \end{proof}
 
 \section{Prime ideals and maximal ideals}
@@ -200,7 +200,7 @@ An ideal $ P \subset A $ is prime if and only if $ A / P $ is an integral domain
 \end{lemma}
 
 \begin{proof}
-Let $ x, y \in A $ such that $ xy \in P $. Then $ \rb{x + P}\rb{y + P} = xy + P = P $. If $ x \notin P $ and $ y \notin P $, then $ x + P \ne P $ and $ y + P \ne P $. These are zero-divisors in $ A / P $. Conversely, if $ A / P $ is not an integral domain, then it has zero-divisors. So there exists $ x, y \in A $ such that $ \rb{x + P}\rb{y + P} = P $. This implies $ xy \in P $. Since $ P $ is prime, $ x \in P $ or $ y \in P $. So one of $ x + P $ and $ y + P $ is zero in $ A / P $. Recall that there is a bijection between the ideals in $ A $ containing $ M $ with the ideals in $ A / M $. Thus $ M \subset A $ is maximal if and only if the only ideals in $ A / M $ are $ \rb{0} $ and $ \rb{1} $, if and only if $ A / M $ is a field.
+Let $ x, y \in A $ such that $ xy \in P $. Then $ \rb{x + P}\rb{y + P} = xy + P = P $. If $ x \notin P $ and $ y \notin P $, then $ x + P \ne P $ and $ y + P \ne P $. These are zero-divisors in $ A / P $. Conversely, if $ A / P $ is not an integral domain, then it has zero-divisors. So there exist $ x, y \in A $ such that $ \rb{x + P}\rb{y + P} = P $. This implies $ xy \in P $. Since $ P $ is prime, $ x \in P $ or $ y \in P $. So one of $ x + P $ and $ y + P $ is zero in $ A / P $. Recall that there is a bijection between the ideals in $ A $ containing $ M $ with the ideals in $ A / M $. Thus $ M \subset A $ is maximal if and only if the only ideals in $ A / M $ are $ \rb{0} $ and $ \rb{1} $, if and only if $ A / M $ is a field.
 \end{proof}
 
 \begin{remark}
@@ -279,6 +279,7 @@ Then the principal ideal $ \rb{t} $ is a maximal ideal. Indeed, $ k\sb{\sb{t}} /
 If $ A $ is a local ring with maximal ideal $ M $, then $ A / M $ is called the \textbf{residue field} of $ A $.
 
 \begin{lemma}[Prime avoidance]
+\label{lem:4.12}
 Let $ A $ be a ring and $ P \subset A $ be a prime ideal. Suppose that $ I_1, \dots, I_n $ are ideals in $ A $ such that $ \cap_{i = 1}^n I_i \subset P $. Then there exists $ j $, $ 1 \le j \le n $, such that $ I_j \subset P $. If $ \cap_{i = 1}^n I_i = P $, then there exists $ j $, $ 1 \le j \le n $, such that $ I_j = P $.
 \end{lemma}
 
@@ -304,10 +305,10 @@ The nilradical $ N\rb{A} $ is the intersection of all prime ideals of $ A $.
 
 \begin{proof}
 \hfill
-\begin{enumerate}
-\item $ N\rb{A} \subset \cap_{P \subset A} P $, where $ P $ is a prime ideal of $ A $. Take $ x \in A $, $ x^n = 0 $. Take a prime ideal $ P \subset A $. We have that $ P \ni x^n = x \dots x $ gives $ x \in P $.
-\item Now let $ f \in A $ be a non-nilpotent element, that is $ 0 \notin \cb{f^i \mid i \ge 1} $. Let $ \Sigma $ be the set of ideals of $ A $ that do not intersect $ \cb{f^i \mid i \ge 1} $. $ \Sigma $ contains the zero ideal $ \rb{0} $, so $ \Sigma \ne \emptyset $. Order the elements of $ \Sigma $ by inclusion. Every chain in $ \Sigma $ has an upper bound. If $ I_j $ for $ j \in J $ is a chain, then $ \cup_{j \in J} I_j $ is an ideal of $ A $. Moreover, if $ f^k \in \cup_{j \in J} I_j $, then $ f^k \in I_{j_0} $ for some $ j_0 \in J $, but this is impossible. By Zorn's Lemma, we know that $ \Sigma $ has a maximal element. Call it $ P $. Claim that $ P $ is a prime ideal. To prove this, assume that $ x, y \in A $ such that $ x, y \notin P $. We must show that $ xy \notin P $. Consider $ P + \rb{x} $, all elements of the form $ \alpha + rx $, where $ \alpha \in P $ and $ r \in A $. $ x \notin P $ gives $ P \ne P + \rb{x} $. By construction, $ P $ is maximal in $ \Sigma $, hence $ P + \sigma $ is not in $ \Sigma $, that is, there exists $ n \ge 1 $ such that $ f^n \in P + \rb{x} $. Similarly, there exists $ m $ such that $ f^m \in P + \rb{y} $. Therefore, $ f^{n + m} $ belongs to $ P + \rb{xy} $. If $ xy \in P $, then $ P + \rb{xy} = P $ but then $ f^{n + m} \in P $, which is absurd because $ P \in \Sigma $. Thus $ xy \notin P $. This shows that $ P $ is a prime ideal and $ f \notin P $.
-\end{enumerate}
+\begin{itemize}
+\item[$ \subset $] $ N\rb{A} \subset \cap_{P \subset A} P $, where $ P $ is a prime ideal of $ A $. Take $ x \in A $, $ x^n = 0 $. Take a prime ideal $ P \subset A $. We have that $ P \ni x^n = x \dots x $ gives $ x \in P $.
+\item[$ \supset $] Now let $ f \in A $ be a non-nilpotent element, that is $ 0 \notin \cb{f^i \mid i \ge 1} $. Let $ \Sigma $ be the set of ideals of $ A $ that do not intersect $ \cb{f^i \mid i \ge 1} $. $ \Sigma $ contains the zero ideal $ \rb{0} $, so $ \Sigma \ne \emptyset $. Order the elements of $ \Sigma $ by inclusion. Every chain in $ \Sigma $ has an upper bound. If $ I_j $ for $ j \in J $ is a chain, then $ \cup_{j \in J} I_j $ is an ideal of $ A $. Moreover, if $ f^k \in \cup_{j \in J} I_j $, then $ f^k \in I_{j_0} $ for some $ j_0 \in J $, but this is impossible. By Zorn's Lemma, we know that $ \Sigma $ has a maximal element. Call it $ P $. Claim that $ P $ is a prime ideal. To prove this, assume that $ x, y \in A $ such that $ x, y \notin P $. We must show that $ xy \notin P $. Consider $ P + \rb{x} $, all elements of the form $ \alpha + rx $, where $ \alpha \in P $ and $ r \in A $. $ x \notin P $ gives $ P \ne P + \rb{x} $. By construction, $ P $ is maximal in $ \Sigma $, hence $ P + \sigma $ is not in $ \Sigma $, that is, there exists $ n \ge 1 $ such that $ f^n \in P + \rb{x} $. Similarly, there exists $ m $ such that $ f^m \in P + \rb{y} $. Therefore, $ f^{n + m} $ belongs to $ P + \rb{xy} $. If $ xy \in P $, then $ P + \rb{xy} = P $ but then $ f^{n + m} \in P $, which is absurd because $ P \in \Sigma $. Thus $ xy \notin P $. This shows that $ P $ is a prime ideal and $ f \notin P $.
+\end{itemize}
 \end{proof}
 
 What happens if we consider the intersection of all maximal ideals of $ A $. This intersection is called the \textbf{Jacobson radical} of $ A $. It is denoted by $ J\rb{A} $.
@@ -378,7 +379,7 @@ Define $ 0 $ in $ S^{-1}A $ as $ 0 / 1 $ and we define $ 1 $ in $ S^{-1}A $ as $
 (TODO Exercise: with this definition $ S^{-1}A $ is a ring)
 
 \begin{remark}
-$ \sim $ is indeed an equivalence relation. $ \rb{a, s} \sim \rb{a, s} $, $ \rb{a, s} \sim \rb{b, t} $ gives $ \rb{b, t} \sim \rb{a, s} $. Let us check that if $ \rb{a, s} \sim \rb{b, t} $ and $ \rb{b, t} \sim \rb{c, r} $, then $ \rb{a, s} \sim \rb{c, r} $. There exists $ u, v \in S $ such that $ u\rb{at - bs} = 0 $ and $ v\rb{br - ct} = 0 $. Then $ uv\rb{atr - bsr} = 0 $ and $ uv\rb{brs - cts} = 0 $, so $ uvt\rb{ar - bs} = 0 $.
+$ \sim $ is indeed an equivalence relation. $ \rb{a, s} \sim \rb{a, s} $, $ \rb{a, s} \sim \rb{b, t} $ gives $ \rb{b, t} \sim \rb{a, s} $. Let us check that if $ \rb{a, s} \sim \rb{b, t} $ and $ \rb{b, t} \sim \rb{c, r} $, then $ \rb{a, s} \sim \rb{c, r} $. There exist $ u, v \in S $ such that $ u\rb{at - bs} = 0 $ and $ v\rb{br - ct} = 0 $. Then $ uv\rb{atr - bsr} = 0 $ and $ uv\rb{brs - cts} = 0 $, so $ uvt\rb{ar - bs} = 0 $.
 \end{remark}
 
 \begin{lemma}
@@ -606,10 +607,10 @@ Let $ \Sigma $ be a partially ordered set. Then the following properties are equ
 
 \begin{proof}
 \hfill
-\begin{enumerate}[leftmargin=2cm]
+\begin{itemize}[leftmargin=2cm]
 \item[$ 1 \implies 2 $] Any ascending chain has a maximal element, say $ x_n $. Hence $ x_{m + n} = x_n $, for all $ m \ge 0 $.
 \item[$ 2 \implies 1 $] Suppose $ S \subset \Sigma $ does not have a maximal element. Choose $ x_1 \in S $. There exists $ x_2 \in S $ such that $ x_2 > x_1 $. If $ x_1 < \dots < x_2 $ are chosen, then since $ x_n $ is not a maximal element, we can choose $ x_{n + 1} > x_n $. This constructs an ascending chain that is not stationary.
-\end{enumerate}
+\end{itemize}
 \end{proof}
 
 \begin{definition}
@@ -742,5 +743,53 @@ Assume $ n = 2 $. The general case by induction. $ r\rb{I_1} = r\rb{I_2} = P $ a
 \end{proof}
 
 Warning that it is not true in general that if $ r\rb{I} $ is prime, then $ I $ is primary. True if $ r\rb{I} $ is maximal though.
+
+\marginpar{Lecture 17 \\ Monday \\ 12/11/18}
+
+\begin{definition}
+Let $ R $ be a ring, and let $ I \subsetneq R $ be an ideal. Call $ I $ \textbf{irreducible} if for any two ideals $ J $ and $ K $ in $ R $ such that $ I = J \cap K $ we have either $ J = I $ or $ K = I $. $ I $ is \textbf{reducible}, that is not irreducible, if $ I = J_1 \cap J_2 $, where $ I \subsetneq J_i $ for $ i = 1, 2 $.
+\end{definition}
+
+\begin{note}
+$ x \in R $, which is not a unit, is irreducible if $ x $ is not a product of two non-units.
+\end{note}
+
+\begin{proposition}
+\label{prop:11.5}
+\hfill
+\begin{enumerate}
+\item Any prime ideal is irreducible.
+\item If $ R $ is Noetherian, then any irreducible ideal is primary.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Let $ P $ be a prime ideal. Suppose $ P = I \cap J $. Note that $ IJ \subset I \cap J $. By the prime avoidance lemma \ref{lem:4.12} $ I \cap J \subset P $ implies that $ I \subset P $ or $ J \subset P $. Say, $ I \subset P = I \cap J \subset I $. Thus $ I = P $.
+\item Let $ I \subset R $ be an irreducible ideal. Go over to $ R / I $. An equivalent statement is given that the zero ideal in a ring is irreducible, that is $ \rb{0} $ is not the intersection of two non-zero ideals, show that $ xy = 0 $, $ x \ne 0 $ implies $ y^n = 0 $ for some $ n $. So let $ A = R / I $. We work in $ A $, so $ x, y \in A $. $ R $ Noetherian gives $ A $ is Noetherian. Consider $ \cb{\alpha \in A \mid \alpha y = 0} = Ann\rb{y} \subset Ann\rb{y^2} \subset \dots $. These are ideals in $ A $. There is an $ n > 0 $ such that $ Ann\rb{y^n} = Ann\rb{y^{n + 1}} $. We want to show that some $ y^k = 0 $, that is $ \rb{y^k} = \rb{0} $. Claim that can take $ k = n $. Let us prove that $ 0 = \rb{x} \cap \rb{y^n} \ne \rb{0} \cap \rb{y^n} $. By the irreducibility of the zero ideal, this imply $ \rb{y^n} = 0 $. Suppose that there exists $ a \ne 0 $, $ \rb{a} \in \rb{x} \cap \rb{y^n} $. Then $ a = rx $ for some $ r \in A $. Then $ ay = rxy = 0 $. But $ a \in \rb{y^n} $, so $ a = by^n $ for some $ b \in A $. We obtain $ by^{n + 1} = 0 $. In other words, $ b \in Ann\rb{y^{n + 1}} = Ann\rb{y^n} $ so that $ by^n = 0 $ so $ a = 0 $. We proved that $ y^n = 0 $. Therefore, $ I \subset R $ is a primary ideal.
+\end{enumerate}
+\end{proof}
+
+Let $ R $ be a ring and let $ I \subsetneq R $ be an ideal. A \textbf{primary decomposition} of $ I $ is an expression of $ I $ as an intersection of finitely many primary ideals.
+
+\begin{theorem}[Noether]
+Any proper ideal in a Noetherian ring has a primary decomposition.
+\end{theorem}
+
+\begin{proof}
+Let $ I \subsetneq R $ be an ideal. We want to prove that $ I $ is an intersection of finitely many irreducible ideals using Proposition \ref{prop:11.5}. Suppose that this is not true. Look at all the ideals of $ R $ that cannot be written as intersections of finitely many irreducible ideals. Since $ R $ is Noetherian, this set has a maximal element, say $ J $. By construction, $ J $ is not an irreducible ideal of $ R $. Hence $ J $ is reducible, so $ J = J_1 \cap J_2 $, where $ J \subsetneq J_1 $ and $ J \subsetneq J_2 $. As $ J $ is a maximal element of our set of ideals, $ J_1 $ and $ J_2 $ are not in this set. Therefore, $ J_1 $ and $ J_2 $ each can be written as an intersection of finitely many irreducible ideals. Then $ J = J_1 \cap J_2 $ is also an intersection of finitely many irreducible ideals. This is a contradiction. Thus our set is empty, and so theorem is proved.
+\end{proof}
+
+Recall that if $ I $ and $ J $ are ideals, then $ \rb{I : J} = \cb{r \in R \mid rJ \subset I} $.
+
+\begin{lemma}
+Let $ R $ be a ring with a prime ideal $ P $. Let $ I \subset R $ be a $ P $-primary ideal, that is $ P = r\rb{I} $. Let $ x \in R $. Then
+\begin{enumerate}
+\item $ x \in I $, then $ \rb{I : \rb{x}} = R $.
+\item $ x \notin I $, then $ \rb{I : \rb{x}} $ is a $ P $-primary ideal.
+\item $ x \notin P $, then $ \rb{I : \rb{x}} = I $.
+\end{enumerate}
+\end{lemma}
 
 \end{document}
