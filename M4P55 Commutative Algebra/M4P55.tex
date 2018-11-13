@@ -735,6 +735,7 @@ Let $ P \subset R $ be a prime ideal. An ideal $ I \subset R $ is called \textbf
 \end{definition}
 
 \begin{lemma}
+\label{lem:11.4}
 Let $ I_1, \dots, I_n $ be $ P $-primary ideals in $ R $, where $ P $ is a prime ideal. Then $ \cap_{j = 1}^n I_j $ is also a $ P $-primary ideal.
 \end{lemma}
 
@@ -784,6 +785,7 @@ Let $ I \subsetneq R $ be an ideal. We want to prove that $ I $ is an intersecti
 Recall that if $ I $ and $ J $ are ideals, then $ \rb{I : J} = \cb{r \in R \mid rJ \subset I} $.
 
 \begin{lemma}
+\label{lem:11.7}
 Let $ R $ be a ring with a prime ideal $ P $. Let $ I \subset R $ be a $ P $-primary ideal, that is $ P = r\rb{I} $. Let $ x \in R $. Then
 \begin{enumerate}
 \item $ x \in I $, then $ \rb{I : \rb{x}} = R $.
@@ -791,5 +793,36 @@ Let $ R $ be a ring with a prime ideal $ P $. Let $ I \subset R $ be a $ P $-pri
 \item $ x \notin P $, then $ \rb{I : \rb{x}} = I $.
 \end{enumerate}
 \end{lemma}
+
+\marginpar{Lecture 18 \\ Tuesday \\ 13/11/18}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Obvious. $ x \in I $ gives $ 1 \cdot x \in I $ so $ 1 \in \rb{I : \rb{x}} $.
+\item We want to prove the following.
+\begin{enumerate}
+\item $ r\rb{\rb{I : \rb{x}}} = P $. Take $ y \in \rb{I : \rb{x}} $. Then $ yx \in I $. We know that $ I $ is primary and $ x \notin I $. Hence $ y^n \in I $ for some $ n \ge 1 $. Therefore, $ y \in r\rb{I} = P $. We proved that $ I \subset \rb{I : \rb{x}} \subset P $. This implies $ P = r\rb{I} \subset r\rb{\rb{I : \rb{x}}} \subset r\rb{P} = P $. This shows that $ r\rb{\rb{I : \rb{x}}} = P $. So (a) is proved.
+\item $ \rb{I : \rb{x}} $ is primary. We need to show that if $ yz \in \rb{I : \rb{x}} $, so $ y\rb{xz} = xyz \in I $, and $ y \notin r\rb{\rb{I : \rb{x}}} $, so $ y^n \notin \rb{I : \rb{x}} $ for all $ n $ gives $ y^nx \notin I $, then we must show $ z \in \rb{I : \rb{x}} $. But $ I $ is primary and $ y^n \not I $ for all $ n $, by definition of primary ideals we must have $ xz \in I $. Hence $ z \in \rb{I : \rb{x}} $. So (b) is proved.
+\end{enumerate}
+Hence $ 2 $ is proved.
+\item Let $ y \in \rb{I : \rb{x}} $. Then $ xy \in I $. $ x \notin P = r\rb{I} $ hence no power of $ x $ is in $ I $. Hence $ y $ must be in $ I $.
+\end{enumerate}
+\end{proof}
+
+We know that any ideal of a Noetherian ring has a primary decomposition $ I = I_1 \cap \dots \cap I_n $, where each $ I_i \subset R $ is primary. Let us call this decomposition \textbf{minimal} if $ r\rb{I_i} $ are distinct prime ideals for $ i = 1, \dots, n $. Indeed, this can be arranged with Lemma \ref{lem:11.4} because $ \cap_{s = 1}^n $, where each $ J_s $ is a $ P $-primary ideal, is again a $ P $-primary ideal and we have $ I_j \not\supset \cap_{l \ne j} I_l $, which can clearly be arranged by removing redundant ideals.
+
+\begin{theorem}[First uniqueness theorem]
+Let $ I = \cap_{j = i}^m I_j $ be a minimal primary decomposition. Then the prime ideals $ r\rb{I_1}, \dots, r\rb{I_n} $ are uniquely determined by $ I $, so they do not depend on the choice of a primary decomposition.
+\end{theorem}
+
+\begin{proof}
+Consider $ \rb{I : \rb{x}} $ for $ x \in R $. Look at $ r\rb{\rb{I : \rb{x}}} $ and consider the prime ideals of $ R $ that can be written as $ r\rb{\rb{I : \rb{x}}} $. Claim that such prime ideals are precisely $ r\rb{I_1}, \dots, r\rb{I_n} $. $ \rb{I : \rb{x}} = \rb{\cap_{j = 1}^n I_j : \rb{x}} = \cap_{j = 1}^n \rb{I_j : \rb{x}} $. Hence $ r\rb{\rb{I : \rb{x}}} = \cap_{j = 1}^n r\rb{\rb{I : \rb{x}}} $. Lemma \ref{lem:11.7} gives
+\begin{enumerate}
+\item $ x \in I_j $ gives $ \rb{I_j : \rb{x}} = R $, so $ r\rb{\rb{I_j : \rb{x}}} = R $, and
+\item $ x \notin I_j $ gives $ \rb{I_j : \rb{x}} $ is $ P_j $-primary, so $ r\rb{\rb{I_j : \rb{x}}} = P_j $.
+\end{enumerate}
+Therefore, $ r\rb{\rb{I : \rb{x}}} = \cap_{x \notin I_j} P_j $. If $ r\rb{\rb{I : \rb{x}}} $ is prime, we know by the prime avoidance lemma \ref{lem:4.12} that $ r\rb{\rb{I : \rb{x}}} = P_j $ for some $ P_j $. Conversely, for each $ j $, by minimality of our primary decomposition, there exists $ x_j \notin I_j $, but $ x_j \in \cap_{l \ne j} I_l $. Then $ r\rb{\rb{I_l : \rb{x_j}}} = R $ for $ l \ne j $, so $ r\rb{\rb{I_j : \rb{x_j}}} = P_j $. Hence $ r\rb{\rb{I : \rb{x_j}}} = P_j $.
+\end{proof}
 
 \end{document}
