@@ -696,6 +696,7 @@ A \textbf{projective line} is a projective curve defined by a homogeneous polyno
 We have seen that in the case of affine plane curves $ \cb{f = 0} \subseteq \C^2 $, the irreducible factors of the polynomial $ f $ were important when studying curves. The next lemma ensures that the same type of results hold for projective curves.
 
 \begin{lemma}
+\label{lem:4.10}
 Let $ P \in K\sb{x_0, \dots, x_n} $ be a non-zero homogeneous polynomial. Assume that $ P = Q \cdot R $, where $ Q, R \in K\sb{x_0, \dots, x_n} $. Then the polynomials $ Q $ and $ R $ are homogeneous.
 \end{lemma}
 
@@ -1113,7 +1114,7 @@ and a linear function $ L $ gives a matrix by setting $ a_{ij} $ as the $ i $-th
 Assume that $ A $ is an $ \rb{n + 1} \times \rb{n + 1} $ matrix with coefficients in $ \C $ such that
 $$ \det\rb{A} \ne 0, $$
 if and only if it is invertible. Then the function $ \Phi : \P^n \to \P^n $, defined by
-$$ \Phi\sb{x_1, \dots, x_n} = \sb{A \cdot \begin{pmatrix} x_0 \\ \vdots \\ x_n \end{pmatrix}}, $$
+$$ \Phi\rb{\sb{x_1, \dots, x_n}} = \sb{A \cdot \begin{pmatrix} x_0 \\ \vdots \\ x_n \end{pmatrix}}, $$
 is well-defined and a bijection.
 \end{lemma}
 
@@ -1137,12 +1138,12 @@ Note that an arbitrary $ \rb{n + 1} \times \rb{n + 1} $ matrix $ A $ does not de
 You probably have encountered Möbius transformations in complex analysis. They are rational functions $ f : \P^1 \to \P^1 $ of one complex variable $ z $
 $$ f : z \mapsto \dfrac{az + b}{cz + d}, \qquad a, b, c, d \in \C, \qquad ad - bc \ne 0. $$
 In terms of geometry, these are the projective transformations of $ \P^1 $ to itself. Indeed, if $ \sb{x_0, x_1} $ are the homogeneous coordinates on $ \P^1 $, a projective transformation $ \phi $ associated to a $ 2 \times 2 $ invertible matrix $ T $ is given by
-$$ \Phi\sb{x_0, x_1} = \sb{A \cdot \rb{x_0, x_1}} = \sb{ax_0 + bx_1, cx_0 + dx_1}, \qquad T = \two{a & b}{c & d}, \qquad ad - bc \ne 0. $$
+$$ \Phi\rb{\sb{x_0, x_1}} = \sb{A \cdot \rb{x_0, x_1}} = \sb{ax_0 + bx_1, cx_0 + dx_1}, \qquad T = \two{a & b}{c & d}, \qquad ad - bc \ne 0. $$
 If, as in Lemma \ref{lem:3.13}, we write $ \P^1 = \C \cup \cb{\infty} $, where $ \cb{\infty} = \cb{x_1 = 0} = \cb{\sb{1, 0}} $, then if $ x_1 \ne 0 $, $ \sb{x_0, x_1} = \sb{x_0 / x_1, 1} = \sb{z, 1} $ for $ z = x_0 / x_1 $ and
-$$ \Phi\sb{z, 1} = \sb{ax_0 + bx_1, cx_0 + dx_1} = \sb{az + b, cz + d}, $$
+$$ \Phi\rb{\sb{z, 1}} = \sb{ax_0 + bx_1, cx_0 + dx_1} = \sb{az + b, cz + d}, $$
 and if $ cz + d \ne 0 $, that is $ \sb{z, 1} \ne \sb{-d, c} $, this is
-$$ \Phi\sb{z, 1} = \sb{\dfrac{az + b}{cz + d}, 1} = \sb{f\rb{z}, 1}. $$
-Here, unlike in complex analysis, the point $ \cb{\infty} = \sb{1, 0} $ plays no special role, and we see right away that $ \Phi\sb{1, 0} = \sb{a, c} $ and $ \Phi\sb{-d, c} = \sb{1, 0} $.
+$$ \Phi\rb{\sb{z, 1}} = \sb{\dfrac{az + b}{cz + d}, 1} = \sb{f\rb{z}, 1}. $$
+Here, unlike in complex analysis, the point $ \cb{\infty} = \sb{1, 0} $ plays no special role, and we see right away that $ \Phi\rb{\sb{1, 0}} = \sb{a, c} $ and $ \Phi\rb{\sb{-d, c}} = \sb{1, 0} $.
 \end{example}
 
 \begin{theorem}
@@ -1333,8 +1334,8 @@ $$ \det\rb{A} = \sum_{\sigma \in S_{n + m}} sign\rb{\sigma}\prod_{k = 1}^{n + m}
 The entries of $ A $ are either zero or are homogeneous polynomials, we thus only need to check that for each $ \sigma \in S_{n + m} $ such that $ A_{k, \sigma\rb{k}} \ne 0 $ for all $ k $, $ \prod_{k = 1}^{n + m} A_{k, \sigma\rb{k}} $ is of degree $ nm $. By definition of $ A $, the non-zero entries of $ A $ are
 $$ A_{k, l} = \begin{cases} a_{l - k}\rb{x_1, x_2} & k \le m, \ 0 \le l - k \le n \\ b_{l - k + m}\rb{x_1, x_2} & k \ge m + 1, \ 0 \le l - k + m \le m \end{cases}. $$
 $ \deg\rb{a_{l - k}} = n - \rb{l - k} $ and $ \deg\rb{b_{l - k + m}} = m - \rb{l - k + m} = k - l $, so that when non-zero, $ \prod_{k = 1}^{n + m} A_{k, \sigma\rb{k}} $ has degree
-$$ \deg\rb{\prod_{k = 1}^{n + m} A_{k, \sigma\rb{k}}} = \sum_{k = 1}^m \rb{n - \rb{\sigma\rb{k} - k}} + \sum_{k = m + 1}^{m + n} \rb{k - \sigma\rb{k}} = mn + \sum_{k = 1}^{m + n} k - \sum_{k = 1}^{m + n} \sigma\rb{k}. $$
-The last two terms are equal because $ \sigma $ is a permutation, so this is equal to $ mn $ for all permutations $ \sigma \in S_{m + n} $, and this proves that $ R_{P, Q} $ is a homogeneous polynomial of degree $ mn $.
+$$ \deg\rb{\prod_{k = 1}^{n + m} A_{k, \sigma\rb{k}}} = \sum_{k = 1}^m \rb{n - \rb{\sigma\rb{k} - k}} + \sum_{k = m + 1}^{m + n} \rb{k - \sigma\rb{k}} = nm + \sum_{k = 1}^{m + n} k - \sum_{k = 1}^{m + n} \sigma\rb{k}. $$
+The last two terms are equal because $ \sigma $ is a permutation, so this is equal to $ nm $ for all permutations $ \sigma \in S_{m + n} $, and this proves that $ R_{P, Q} $ is a homogeneous polynomial of degree $ nm $.
 \end{proof}
 
 Recall that homogeneous polynomials in two variables always factor as a product of linear homogeneous polynomials. We can now prove a weak form of Bézout's theorem. We will refine the statement later on.
@@ -1370,7 +1371,7 @@ A_{i, j} = \begin{pmatrix} x_0 & x_0^i & x_0^j \\ x_1 & x_1^i & x_1^j \\ x_2 & x
 \end{equation}
 Let $ p \in \P^2 $ be any point that lies neither on $ C, D $ nor on any $ L_{i, j} $, that is $ p \notin C \cup D \cup \rb{\cup_{i, j} L_{i, j}} $. Can apply a projective transformation $ \Phi : \P^2 \to \P^2 $ that sends $ p $ to $ \sb{1, 0, 0} $. Taking images along $ \Phi $, the image of $ \mathcal{S} $ is a set of $ nm + 1 $ distinct points and the image of $ L_{i, j} $ by $ \Phi $ is the unique line through $ \Phi\rb{p_i} $ and $ \Phi\rb{p_j} $. As in the proof of $ 1 $, after replacing $ C $, $ D $, and $ \mathcal{S} $ by their images by $ \Phi $, we may assume that $ \sb{1, 0, 0} \notin C \cup D $ and that $ \sb{1, 0, 0} $ lies on no line through two points $ p_i, p_j \notin \mathcal{S} $. In particular, by $ \rb{\ref{eq:5}} $,
 $$ \det\begin{pmatrix} 1 & x_0^i & x_0^j \\ 0 & x_1^i & x_1^j \\ 0 & x_2^i & x_2^j \end{pmatrix} \ne 0, $$
-that is, $ \rb{x_1^i, x_2^i} \ne \rb{0, 0} $ for all $ i $, otherwise determinant is zero, so that $ \sb{x_1^i, x_2^i} $ is a well-defined point of $ \P^1 $, and $ \sb{x_1^i, x_2^i} \ne \sb{x_1^j, x_2^j} $ for all $ i \ne j $. Let $ P, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials of degrees $ n $ and $ m $ that define $ C $ and $ D $, that is
+that is $ \rb{x_1^i, x_2^i} \ne \rb{0, 0} $ for all $ i $, otherwise determinant is zero, so that $ \sb{x_1^i, x_2^i} $ is a well-defined point of $ \P^1 $, and $ \sb{x_1^i, x_2^i} \ne \sb{x_1^j, x_2^j} $ for all $ i \ne j $. Let $ P, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials of degrees $ n $ and $ m $ that define $ C $ and $ D $, that is
 $$ C = \cb{P = 0}, \qquad D = \cb{Q = 0}. $$
 Since $ \sb{1, 0, 0} \notin C \cup D $, $ P\rb{1, 0, 0} \ne 0 $ and $ Q\rb{1, 0 , 0} \ne 0 $. Denote by $ R $ the resultant $ R_{P, Q} $ of $ P, Q $. This is homogeneous of degree $ nm $ and factors into linear factors $ R\rb{x_1, x_2} = \prod_{i = 1}^{nm}\rb{\alpha_ix_1 + \beta_ix_2} $ for $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $, so $ \cb{R = 0} \subseteq \P^1 $ has at most $ nm $ distinct elements. Now assume $ C \cap D $ contains at least $ nm + 1 $ points and let $ \mathcal{S} \subseteq C \cap D $ be a set of $ nm + 1 $ distinct points. Set $ \rb{\alpha_i, \beta_i} = \rb{-x_2^i, x_1^i} $ for $ i = 1, \dots, nm + 1 $. By construction, for all $ i $, $ p\rb{x} = P\rb{x_0, x_1^i, x_2^i} $ and $ q\rb{x} = Q\rb{x_0, x_1^i, x_2^i} $ have a common root so that $ R_{p, q} = 0 $. But we have
 $$ R_{p, q} = R\rb{x_1^i, x_2^i}, $$
@@ -1626,6 +1627,7 @@ A hint is that partial derivatives are linear maps.
 Multiplicity is the measure of the singularity of $ C $ at $ p $. Using multiplicities of curves, one can already improve Theorem \ref{thm:9.8}. We will not prove the following, but rather prove directly the strong version of Bézout's theorem, which will have the following as a corollary.
 
 \begin{theorem}
+\label{thm:11.6}
 Let $ C_1 $ and $ C_2 $ be two plane projective curves with no common components of degree $ n $ and $ m $ respectively. Let $ C_1 \cap C_2 = \cb{p_1, \dots, p_k} $. Then
 $$ \sum_{i = 1}^k mult_{p_i}\rb{C_1} \cdot mult_{p_i}\rb{C_2} \le n \cdot m. $$
 In particular, it follows that $ k \le n \cdot m $, as in Theorem \ref{thm:9.8}.
@@ -1640,6 +1642,7 @@ For a line tangent to a conic at a point, the multiplicity of both curves at the
 We have to define a multiplicity of intersection of the two curves, that on top of their singularities also keeps track of how they interact. To also detect tangencies, have to look at multiplicity of resultant. Let us start by proving the following.
 
 \begin{lemma}
+\label{lem:11.7}
 Let $ P, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials such that
 $$ P\rb{1, 0, 0}, \ Q\rb{1, 0, 0} \ne 0, $$
 $ \deg\rb{P} = n $, and $ \deg\rb{Q} = m $. Let $ p = \sb{z_0, z_1, z_2} \in \P^2 $ be such that $ p \ne \sb{1, 0, 0} $ and let
@@ -1652,17 +1655,17 @@ $$ mult_{\sb{z_1, z_2}}\rb{R_{P, Q}} \ge r \cdot s. $$
 After applying a projective transformation we may assume that $ p = \sb{0, 0, 1} $ by Exercise \ref{ex:32}. Note that $ mult_{\sb{0, 1}}\rb{R\rb{x_1, x_2}} = mult_0\rb{R\rb{y, 1}} $ since $ R $ is homogeneous. We may write
 $$ P = \sum_{i = 0}^n a_i\rb{x_1, x_2}x_0^i, \qquad Q = \sum_{i = 0}^m b_i\rb{x_1, x_2}x_0^i, $$
 where $ a_i $ and $ b_i $ are homogeneous polynomials. Let
-$$ f\rb{x, y} = P\rb{x, y, 1} = \sum_{i = 0}^n a_i\rb{y, 1}x^i = \sum_{i = 0}^n \tilde{a_i}\rb{y}x^i, $$
-where $ \tilde{a_i}\rb{y} = a_i\rb{y, 1} $ and similarly let
-$$ g\rb{x, y} = Q\rb{x, y, 1} = \sum_{i = 0}^m b_i\rb{y, 1}x^i = \sum_{i = 0}^m \tilde{b_i}\rb{y}x^i, $$
-where $ \tilde{b_i}\rb{y} = b_i\rb{y, 1} $. Then
+$$ f\rb{x, y} = P\rb{x, y, 1} = \sum_{i = 0}^n a_i\rb{y, 1}x^i = \sum_{i = 0}^n \widetilde{a_i}\rb{y}x^i, $$
+where $ \widetilde{a_i}\rb{y} = a_i\rb{y, 1} $ and similarly let
+$$ g\rb{x, y} = Q\rb{x, y, 1} = \sum_{i = 0}^m b_i\rb{y, 1}x^i = \sum_{i = 0}^m \widetilde{b_i}\rb{y}x^i, $$
+where $ \widetilde{b_i}\rb{y} = b_i\rb{y, 1} $. Then
 $$ mult_{\rb{0, 0}}\rb{f} = r, \qquad mult_{\rb{0, 0}}\rb{g} = s. $$
 In particular, since the minimum degree of any monomial that appears on $ f $ with non-zero coefficient is $ r $, it follows that
-$$ i < r \qquad \implies \qquad mult_0\rb{\tilde{a_i}\rb{y}} \ge r - i, $$
+$$ i < r \qquad \implies \qquad mult_0\rb{\widetilde{a_i}\rb{y}} \ge r - i, $$
 that is
-$$ i < r \qquad \implies \qquad \tilde{a_i}\rb{y} = y^{r - i} \cdot A_i\rb{y}, $$
+$$ i < r \qquad \implies \qquad \widetilde{a_i}\rb{y} = y^{r - i} \cdot A_i\rb{y}, $$
 and similarly
-$$ i < s \qquad \implies \qquad \tilde{b_i}\rb{y} = y^{s - i} \cdot B_i\rb{y}, $$
+$$ i < s \qquad \implies \qquad \widetilde{b_i}\rb{y} = y^{s - i} \cdot B_i\rb{y}, $$
 for some polynomial $ A_i, B_i $ in $ y $. Note that by Remark \ref{rem:11.4}, we have $ r \le n $ and $ s \le m $. By Definition \ref{def:9.5}, it follows that
 $$ R\rb{y, 1} = \begin{pmatrix} y^r \cdot A_0\rb{y} & \dots & y^0 \cdot A_r\rb{y} & \dots & A_n\rb{y} & & 0 \\ & \ddots & & \ddots & & \ddots & \\ 0 & & y^r \cdot A_0\rb{y} & \dots & y^0 \cdot A_r\rb{y} & \dots & A_n\rb{y} \\ y^s \cdot B_0\rb{y} & \dots & y^0 \cdot B_s\rb{y} & \dots & B_m\rb{y} & & 0 \\ & \ddots & & \ddots & & \ddots & \\ 0 & & y^s \cdot B_0\rb{y} & \dots & y^0 \cdot B_s\rb{y} & \dots & B_m\rb{y} \end{pmatrix}. $$
 Want to show $ mult_0\rb{\det\rb{R\rb{y, 1}}} \ge r \cdot s $. Let $ R_1\rb{y} $ be the matrix obtained by multiplying the $ i $-th row of $ R\rb{y, 1} $ by $ y^{s - i + 1} $ for any $ i \le s $ and multiplying its $ \rb{m + j} $-th row by $ y^{r - j + 1} $ for any $ j \le r $. Then we obtain
@@ -1712,6 +1715,7 @@ Assume that $ C $ and $ D $ have no common component, and let $ \cb{p_i = \sb{a_
 \end{remark}
 
 \begin{theorem}[Strong Bézout theorem]
+\label{thm:11.11}
 Let $ C, D \subseteq \P^2 $ be projective curves of degrees $ n $ and $ m $ that have no common component. Let $ C \cap D = \cb{p_i = \sb{a_i, b_i, c_i} \mid 1 \le i \le k} $. Then
 $$ \sum_{i = 1}^k I\rb{p_i, C, D} = n \cdot m. $$
 \end{theorem}
@@ -1721,5 +1725,139 @@ After projective transformation, we may assume that $ \sb{1, 0, 0} $ is containe
 $$ I\rb{p_i, C, D} = mult_{\sb{b_i, c_i}}\rb{\det\rb{R\rb{x_1, x_2}}}. $$
 By Theorem \ref{thm:9.6}, $ \det\rb{R\rb{x_1, x_2}} $ is a homogeneous polynomial of degree $ n \cdot m $, so that the claim follows from Lemma \ref{lem:11.5}.
 \end{proof}
+
+\marginpar{Lecture 17 \\ Thursday \\ 15/11/18}
+
+\begin{example}
+Consider the curves $ C_1 $ and $ C_2 $ defined by
+$$ C_1 = \cb{x_0x_2 - x_1^2 = 0}, \qquad C_2 = \cb{x_0x_2 + x_1^2 = 0}. $$
+We want to compute $ I\rb{p, C_1, C_2} $ for $ p = \sb{0, 0, 1} $. As $ \sb{1, 0, 0} \in C_1 \cap C_2 $, we first need to change variables. We consider the projective transformation
+$$ \Psi\rb{\sb{x_0, x_1, x_2}} = \sb{x_1, x_0, x_2}, $$
+so that
+$$ \Psi\rb{C_1} = \cb{x_1x_2 - x_0^2 = 0}, \qquad \Psi\rb{C_2} = \cb{x_1x_2 + x_0^2 = 0}, $$
+and $ \Psi\rb{C_1} \cap \Psi\rb{C_2} = \cb{\sb{0, 1, 0}, \sb{0, 0, 1}} $. Note that $ \Psi\rb{\sb{0, 0, 1}} = \sb{0, 0, 1} $. The resultant of $ \Psi\rb{C_1} $, $ \Psi\rb{C_2} $ is
+$$ R\rb{x_1, x_2} = \det\begin{pmatrix} x_1x_2 & 0 & -1 & 0 \\ 0 & x_1x_2 & 0 & -1 \\ x_1x_2 & 0 & 1 & 0 \\ 0 & x_1x_2 & 0 & 1 \end{pmatrix} = 4x_1^2x_2^2. $$
+Thus
+$$ I\rb{\sb{0, 0, 1}, C_1, C_2} = I\rb{\sb{0, 0, 1}, \Psi\rb{C_1}, \Psi\rb{C_2}} = mult_{\sb{0, 1}}\rb{R\rb{x_1, x_2}} = 2, $$
+and similarly, $ I\rb{\sb{1, 0, 0}, C_1, C_2} = 2 $. Bézout's theorem is satisfied in this case.
+\end{example}
+
+Now we can note that Theorem \ref{thm:11.6} is a corollary of the strong theorem.
+
+\begin{proof}[Proof of Theorem \ref{thm:11.6}]
+Follows directly from Theorem \ref{thm:11.11} and Lemma \ref{lem:11.7}.
+\end{proof}
+
+\begin{exercise}
+Show that an irreducible projective curve $ C $ of degree $ d $ has at most
+$$ \dfrac{d\rb{d - 1}}{2} $$
+singular points.
+\end{exercise}
+
+\begin{exercise}
+Let $ C $ be an irreducible projective curve of degree $ d $ with a point $ p \in C $ with multiplicity $ q = mult_p\rb{C} $. Show that there exists a line $ L \subseteq \P_\C^2 $ through $ p \in L $ and which intersects the rest of $ C $ in exactly $ d - q + 1 $ points. In particular, for any projective curve $ C $ of degree $ d $ there exists a line which meets $ C $ in $ d $ points.
+\end{exercise}
+
+\section{More about intersection multiplicities}
+
+We now give an alternative description of the resultant of two polynomials in one variable.
+
+\begin{lemma}
+\label{lem:12.1}
+Let $ p, q \in \C\sb{x} $ be monic polynomials of degrees $ n $ and $ m $, so that there are $ \lambda_1, \dots, \lambda_n \in \C $ and $ \mu_1, \dots, \mu_m  \in \C $ such that
+$$ p\rb{x} = \prod_{i = 1}^n \rb{x - \lambda_i}, \qquad q\rb{x} = \prod_{j = 1}^m \rb{x - \mu_j}. $$
+Then, $ R_{p, q} $, the resultant of $ p $ and $ q $, is a homogeneous polynomial of degree $ nm $ in the variables $ \lambda_1, \dots, \lambda_n $ and $ \mu_1, \dots, \mu_m $. More precisely,
+$$ R_{p, q} = \prod_{i, j}\rb{\lambda_i - \mu_j} = \rb{-1}^{nm}\prod_{j = 1}^m p\rb{\mu_j} = \prod_{i = 1}^n q\rb{\lambda_i}. $$
+\end{lemma}
+
+\begin{proof}
+Write $ p\rb{x} = \sum_{i = 1}^n a_i\rb{\lambda_1, \dots, \lambda_n} \cdot x^i $ and $ q\rb{x} = \sum_{j = 1}^m b_j\rb{\mu_1, \dots, \mu_m} \cdot x^j $, where $ a_i $ is a homogeneous polynomial of degree $ n - i $ in the variables $ \lambda_1, \dots, \lambda_n $ and $ b_j $ is a homogeneous polynomial of degree $ m - j $ in the variables $ \mu_1, \dots, \mu_m $. The proof that $ R_{p, q} $ is a homogeneous polynomial of degree $ nm $ in $ \lambda_1, \dots, \lambda_n, \mu_1, \dots, \mu_m $ is identical to the proof of Theorem \ref{thm:9.7}. We now see the expression for $ p $ as a homogeneous polynomial of degree $ n $ in $ \C\sb{x, \lambda_1, \dots, \lambda_n} $ and $ q $ as a homogeneous polynomial of degree $ m $ in $ \C\sb{x, \mu_1, \dots, \mu_m} $. By Theorem \ref{thm:9.3}, for each $ i, j $, if some $ \lambda_i = \mu_j $, $ R_{p, q} = 0 $, so that, as polynomials in $ \lambda_1, \dots, \lambda_n, \mu_1, \dots, \mu_m $, we have $ \rb{\lambda_i - \mu_j} \mid R_{p, q} $, so
+$$ R_{p, q} = \prod_{i, j} \rb{\lambda_i - \mu_j}S, $$
+where $ S $ is a homogeneous polynomial in $ \lambda_1, \dots, \lambda_n, \mu_1, \dots, \mu_m $. $ S $ is homogeneous by Lemma \ref{lem:4.10}. Since $ \deg\rb{R_{p, q}} = nm $, the degree of $ S $ is zero and $ S $ is a constant in $ \C^* $ with
+$$ R_{p, q} = S\prod_{i, j} \rb{\lambda_i - \mu_j}. $$
+The constant $ S = 1 $, as can be checked by computing the resultant of $ p\rb{x} = \rb{x - 1}^n $ and $ q\rb{x} = x^m $.
+\end{proof}
+
+\begin{remark}
+More generally, if the leading coefficients of $ p $ and $ q $ are $ a_n \ne 0 $ and $ b_m \ne 0 $ then $ R_{p, q} = a_n^mb_m^n\prod_{i, j} \rb{\lambda_i - \mu_j} $.
+\end{remark}
+
+\begin{remark}
+\label{rem:12.3}
+Let $ f_1, f_2, g \in \C\sb{x} $ be monic polynomials. An immediate consequence of Lemma \ref{lem:12.1} is that $ R_{f_1f_2, g} = R_{f_1, g} \cdot R_{f_2, g} $.
+\end{remark}
+
+\begin{lemma}
+\label{lem:12.4}
+Let $ P_1, P_2, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials with $ P_i\rb{1, 0, 0}, Q\rb{1, 0, 0} \ne 0 $, and let $ P = P_1 \cdot P_2 $. Let $ R\rb{x_1, x_2} $ be the resultant of $ P $ and $ Q $ and $ R_i\rb{x_1, x_2} $ the resultant of $ P_i $ and $ Q $, for $ i = 1, 2 $. For all $ \sb{b, c} \in \P^1 $, we have
+$$ mult_{\sb{b, c}}\rb{R} = mult_{\sb{b, c}}\rb{R_1} + mult_{\sb{b, c}}\rb{R_2}. $$
+As homogeneous polynomials, $ R\rb{x_1, x_2} = R_1\rb{x_1, x_2}R_2\rb{x_1, x_2} $.
+\end{lemma}
+
+\begin{proof}
+$ P_i\rb{1, 0, 0} \ne 0 $ gives $ a \cdot x_0^{\deg\rb{P_i}} $ is a monomial of $ P_i $ for $ a \ne 0 $. Let $ a_1, a_2, b \in \C^* $ be constants such that $ P_1 = a_1P'_1 $, $ P_2 = a_2P'_2 $, and $ Q = bQ' $, where $ P'_1, P'_2, Q' $ are homogeneous polynomials that are monic in $ x_0 $. Then, if $ m = \deg\rb{Q} $, $ P' = P'_1P'_2 $ and $ a = a_1a_2 \in \C^* $, the resultants are scalar multiples that satisfy
+$$ R_{P_1, Q} = a_1^mb^{\deg\rb{P_1}}R_{P'_1, Q}, \qquad R_{P_2, Q} = a_2^mb^{\deg\rb{P_2}}R_{P'_2, Q}, \qquad R_{P, Q} = a^mb^{\deg\rb{P}}R_{P', Q}. $$
+In particular, for any $ \sb{b, c} \in \P^1 $, the multiplicities of $ R_{P_1, Q} $, $ R_{P_2, Q} $, $ R_{P, Q} $ and of $ R_{P'_1, Q'} $, $ R_{P'_2, Q'} $, $ R_{P', Q'} $ coincide. We may therefore assume that $ P_1 $, $ P_2 $, and $ Q $ are monic with respect to $ x_0 $. Fix $ \sb{b, c} \in \P^1 $ and let $ f_i\rb{x} = P_i\rb{x, b, c} $, $ f\rb{x} = f_1\rb{x} \cdot f_2\rb{x} $, and $ g\rb{x} = Q\rb{x, b, c} $. The polynomials $ f_1 $, $ f_2 $, $ f $, and $ g $ are monic. (TODO Exercise) By Lemma \ref{lem:12.1} and the consequence in Remark \ref{rem:12.3},
+$$ R_{f, g} = R_{f_1, g} \cdot R_{f_2, g}, $$
+that is we have
+$$ R_{P, Q}\rb{b, c} = R_{P_1, Q}\rb{b, c} \cdot R_{P_2, Q}\rb{b, c}. $$
+As this holds for every $ \sb{b, c} \in \P^1 $,
+$$ R_{P, Q} =  R_{P_1, Q} \cdot R_{P_2, Q} $$
+in $ \C\sb{x_1, x_2} $, and $ mult_{\sb{b, c}}\rb{R} = mult_{\sb{b, c}}\rb{R_1} + mult_{\sb{b, c}}\rb{R_2} $ for all $ \sb{b, c} \in \P^1 $.
+\end{proof}
+
+The following proposition gathers a few important properties of intersection multiplicities.
+
+\begin{proposition}
+Let $ C, D \subseteq \P^2 $ be projective curves defined by homogeneous polynomials $ P, Q \in \C\sb{x_0, x_1, x_2} $. Let $ p \in \P^2 $ be a point. The intersection number $ I\rb{p, P, Q} $ satisfies the following.
+\begin{enumerate}
+\item Intersection numbers are symmetric, so $ I\rb{p, C, D} = I\rb{p, D, C} $.
+\item $ I\rb{p, C, D} = \infty $ if $ p $ lies on a common component of $ C $ and $ D $ and $ I\rb{p, C, D} $ is an integer otherwise.
+\item $ I\rb{p, C, D} \ne 0 $ if and only if $ p \in C \cap D $.
+\item If $ C $ and $ D $ are distinct lines and if $ \cb{p} = C \cap D $ then $ I\rb{p, C, D} = 1 $.
+\item If $ P = P_1 \cdot P_2 $, for homogeneous polynomials $ P_1 $ and $ P_2 $, then
+$$ I\rb{p, P_1 \cdot P_2, Q} = I\rb{p, P_1, Q} + I\rb{p, P_2, Q}. $$
+\item If $ P = P_1 \cdot Q + P_2 $, for homogeneous polynomials $ P_1 $ and $ P_2 $, then
+$$ I\rb{p, P, Q} = I\rb{p, P_2, Q}. $$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Since the effect of exchanging the rows of a matrix on its determinant is to multiply it by $ \rb{-1} $,
+$$ R_{P, Q} = \pm R_{Q, P}, $$
+and since multiplication by a constant does not affect the multiplicity of a polynomial, $ 1 $ follows.
+\item $ 2 $ is by definition and is part of Definition \ref{def:11.8}.
+\item $ 3 $ is by construction and was noted in Remark \ref{rem:11.10}.
+\item For $ 4 $, after projective transformation, we may assume that $ C = \cb{x_0 = 0} $, $ D = \cb{x_0 + x_1 = 0} $, so that $ \sb{1, 0, 0} \notin C \cup D $ and $ p = C \cap D = \sb{0, 0, 1} $. Then, $ I\rb{p, C, D} = 1 $ by an easy computation. (TODO Exercise)
+\item $ 5 $ is an application of the statement about multiplicities of resultants in Lemma \ref{lem:12.4}.
+\item We now prove $ 6 $. Let $ R\rb{x_1, x_2} $ be the resultant of $ P_1 \cdot Q + P_2 $ and $ Q $ and let $ R'\rb{x_1, x_2} $ be the resultant of $ P_2 $ and $ Q $. Then, denote by
+$$ P_2\rb{x_0, x_1, x_2} = \sum_{i = 1}^n a_i\rb{x_1, x_2} \cdot x_0^i, \qquad P_1\rb{x_0, x_1, x_2} = \sum_{i = 1}^n c_i\rb{x_1, x_2} \cdot x_0^i, $$
+$$ Q\rb{x_0, x_1, x_2} = \sum_{i = 1}^n b_i\rb{x_1, x_2} \cdot x_0^i. $$
+Then
+$$ P_1 \cdot Q + P_2 = \sum_{i = 1}^n \rb{a_i + \sum_{j = 0}^i c_j \cdot b_{i - j}} \cdot x_0^i, $$
+so
+$$ R\rb{x_1, x_2} = \det\begin{pmatrix} a_0 + b_0c_0 & \dots & a_n + \sum_{j = 0}^n c_jb_{i - j} & & 0 \\ & \ddots & & \ddots & \\ 0 & & a_0 + b_0c_0 & \dots & a_n + \sum_{j = 0}^n c_jb_{i - j} \\ b_0 & \dots & b_n & & 0 \\ & \ddots & & \ddots & \\ 0 & & b_0 & \dots & b_n \end{pmatrix}, $$
+so that the resultant matrix of $ R $ is obtained from the resultant matrix of $ R' $ by adding $ c_{j - 1} $ times the $ m + j + i - 1 $ row to the $ i $ row, for each $ j, i = 1, \dots, n $. Since performing these row operations do not affect the determinant, $ R = R' $ and $ 6 $ follows.
+\end{enumerate}
+This finishes the proof of the proposition.
+\end{proof}
+
+\begin{example}
+Consider the curves
+$$ C_1 = \cb{x_0x_2 - x_1^2 = 0}, \qquad C_2 = \cb{x_0x_2 + x_1^2 = 0}, $$
+and let $ p = \sb{0, 0, 1} \in C_1 \cap C_2 $. Then
+\begin{align*}
+I\rb{p, C_1, C_2}
+& = I\rb{p, x_0x_2 - x_1^2, x_0x_2 + x_1^2} & \text{by definition}, \\
+& = I\rb{p, 2x_0x_2, x_0x_2 + x_1^2} & \text{by } 6, \\
+& = I\rb{p, x_0, x_0x_2 + x_1^2} + I\rb{p, x_2, x_0x_2 + x_1^2} & \text{by } 5, \\
+& = I\rb{p, x_0, x_0x_2 + x_1^2} & \text{by } 3, \\
+& = I\rb{p, x_0, x_1^2} & \text{by } 6, \\
+& = 2 \cdot I\rb{p, x_0, x_1} & \text{by } 5, \\
+& = 2 & \text{by } 4.
+\end{align*}
+\end{example}
 
 \end{document}
