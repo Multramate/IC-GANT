@@ -34,7 +34,7 @@
 \newcommand{\legendre}[2]{\rb{\tfrac{#1}{#2}}}
 
 \theoremstyle{definition}\newtheorem{definition}{Definition}
-\theoremstyle{definition}\newtheorem*{remark}{Remark}
+\theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
 \theoremstyle{definition}\newtheorem*{example}{Example}
 \theoremstyle{definition}\newtheorem*{note}{Note}
 \newtheorem{proposition}[definition]{Proposition}
@@ -91,7 +91,7 @@ If $ a, b, c \in \Z $ such that $ a \mid b $ and $ a \mid c $, then $ a \mid \rb
 \end{note}
 
 \begin{definition}
-Let $ a, b \in \Z $, not both zero. The \textbf{greatest common divisor} (gcd) or \textbf{highest common factor} (hcf) of $ a $ and $ b $, written $ \rb{a, b} $, is the largest positive integer dividing both $ a $ and $ b $.
+Let $ a, b \in \Z $, not both zero. The \textbf{greatest common divisor} (GCD) or \textbf{highest common factor} (HCF) of $ a $ and $ b $, written $ \rb{a, b} $, is the largest positive integer dividing both $ a $ and $ b $.
 \end{definition}
 
 Such an integer always exists since if $ a \ne 0 $ and $ c \mid a $, then $ -a \le c \le a $.
@@ -324,9 +324,9 @@ $$ \unit{m_1 \dots m_n} \to \unit{m_1} \times \dots \times \unit{m_n} $$
 is an isomorphism of abelian groups.
 \end{theorem}
 
-\begin{remark}
+\begin{note}
 This is false without the assumption that $ m_i $ pairwise coprime, for example $ m_1 = m_2 = 2 $.
-\end{remark}
+\end{note}
 
 \begin{proof}
 Note firstly that the map exists and is a ring homomorphism. This follows from the fact that if $ x \equiv y \mod m_1 \dots m_n $ then certainly $ x \equiv y \mod m_i $ for each $ i $. The source and target of the ring homomorphism both have order $ m_1 \dots m_n $, so it suffices to show that the map is injective to show that it is an isomorphism. So we only need to check that the kernel is zero. So we need to know that if $ m_i \mid N $ for all $ i $, that is $ \bar{N} = 0 $ in $ \Z / m_i\Z $, then $ m_1 \dots m_n \mid N $, that is $ \bar{N} = 0 $ in $ \Z / m_1 \dots m_n\Z $. This is just Corollary \ref{cor:10}. The statement about unit groups follows by noting that if $ R, S $ are rings, then $ \rb{R \times S}^\times = R^\times \times S^\times $.
@@ -649,7 +649,7 @@ Since $ 41 \times 43 = 1763 \equiv 114 \mod 1649 $, this means that $ 1649 \mid 
 This is the basic idea of the quadratic sieve. In order to factor $ n $, rather than trying to find numbers $ a, b $ with $ a^2 - b^2 = n $, you try to find them with $ a^2 \equiv b^2 \mod n $. Then you can hope that one of $ a \pm b $ has a common factor with $ n $.
 
 \begin{note}
-For illustration we factored $ a \pm b $ above, but in general a better idea for the last step would be to compute the gcd $ \rb{a \pm b, n} $, $ \rb{194, 1649} = 97 $ and $ \rb{34, 1649} = 17 $, quickly using Euclid's algorithm.
+For illustration we factored $ a \pm b $ above, but in general a better idea for the last step would be to compute the GCD $ \rb{a \pm b, n} $, $ \rb{194, 1649} = 97 $ and $ \rb{34, 1649} = 17 $, quickly using Euclid's algorithm.
 \end{note}
 
 How do we find congruences like this? To make this into an efficient algorithm, the idea is that it is easy to spot relations like the one we found if the numbers have only small prime factors. In fact, we can turn it into a linear algebra problem over the field with two elements $ \Z / 2\Z $, in the following way. Suppose that we have a set $ x_1, \dots, x_r \in \Z $ and we want to find a product of a subset of them which is a square. If we know the prime factorisation for the $ x_i $, we can write $ x_i = p_1^{a_{i1}} \dots p_k^{a_{ik}} $, then we are trying to find $ \epsilon_i \in \cb{0, 1} $ such that $ \prod_{i = 1}^r x_i^{\epsilon_i} $ is a square. Equivalently, for each $ 1 \le j \le k $, want the exponent of $ p_j $ to be even, that is we have $ \sum_{i = 1}^r \epsilon_ia_{ij} = \epsilon_1a_{1j} + \dots + \epsilon_ra_{rj} \equiv 0 \mod 2 $. This is just a linear algebra question.
@@ -732,7 +732,7 @@ If $ n < 341550071728321 $, it is enough to test $ a = 2, 3, 5, 7, 11, 13, 17 $.
 
 \subsection{Messages as sequences of classes modulo $ n $}
 
-How do we turn messages into numbers in $ \Z / n\Z $? Since the advent of computers, the idea of representing a message by a string of numbers is a familiar one. In practice, to do this one typically chooses a way of encoding individual characters as binary numbers of a fixed length $ d $, usually eight or sixteen bits, that is binary digits. If we then cut a message up into blocks or strings of at most $ k $ characters and concatenate the binary representations of each character in the block together, we obtain a $ dk $ bit binary number that represents an $ k $ character block as an integer between $ 0 $ and $ 2^{dk} $. If we choose some very large modulus $ n > 2^{dk} $, then we can alternatively represent a block as a class in $ Z / n\Z $. Thus we will be mainly concerned with the problem of communicating a congruence class $ c $ modulo $ n $, for some large $ n $, between a sender $ A $ and a recipient $ B $. The goal is to do this in such a way that any eavesdroppers on the communication cannot deduce what $ c $ is, but $ B $ can.
+How do we turn messages into numbers in $ \Z / n\Z $? Since the advent of computers, the idea of representing a message by a string of numbers is a familiar one. In practice, to do this one typically chooses a way of encoding individual characters as binary numbers of a fixed length $ d $, usually eight or sixteen bits, that is binary digits. If we then cut a message up into blocks or strings of at most $ k $ characters and concatenate the binary representations of each character in the block together, we obtain a $ dk $ bit binary number that represents an $ k $ character block as an integer between $ 0 $ and $ 2^{dk} $. If we choose some very large modulus $ n > 2^{dk} $, then we can alternatively represent a block as a class in $ \Z / n\Z $. Thus we will be mainly concerned with the problem of communicating a congruence class $ c $ modulo $ n $, for some large $ n $, between a sender $ A $ and a recipient $ B $. The goal is to do this in such a way that any eavesdroppers on the communication cannot deduce what $ c $ is, but $ B $ can.
 
 \subsection{The Rivest-Shamir-Adleman (RSA) algorithm}
 
@@ -774,7 +774,7 @@ One use of the discrete logarithm is to solve exponential equations modulo $ n $
 Unfortunately, or fortunately for cryptography, it is expected that the discrete logarithm is hard to compute, much in the way that it is expected to be hard to crack RSA, but we do not know for sure. In particular, there is no known polynomial time algorithm.
 
 \begin{example}
-Here is a practical application of this. Imagine that you have a system where you need to safely store passwords for different users, but you do not want to store the actual passwords. One way to do this is to let $ p $ be a large prime, big enough so that all passwords can be thought of as residues mod $ \rb{p - 1} $, and fix a primitive root $ g $ modulo $ p $. Then if someone inputs their password to be $ x $, you can compute and store $ g^x $ modulo $ p $. If they later want to login with input $ y $, you compute $ g^y $, and check if it matches what you stored. If it does then $ y \equiv x \mod p - 1 $. Even if someone has access to what you have stored, and to g, they still cannot recover the password a without solving the discrete logarithm problem. Of
+Here is a practical application of this. Imagine that you have a system where you need to safely store passwords for different users, but you do not want to store the actual passwords. One way to do this is to let $ p $ be a large prime, big enough so that all passwords can be thought of as residues modulo $ \rb{p - 1} $, and fix a primitive root $ g $ modulo $ p $. Then if someone inputs their password to be $ x $, you can compute and store $ g^x $ modulo $ p $. If they later want to login with input $ y $, you compute $ g^y $, and check if it matches what you stored. If it does then $ y \equiv x \mod p - 1 $. Even if someone has access to what you have stored, and to g, they still cannot recover the password a without solving the discrete logarithm problem. Of
 course, nor can you, so it is not so good if you require people to be able to
 be reminded of their passwords.
 \end{example}
@@ -1008,63 +1008,73 @@ $ 9283 $ is prime, and we can compute $ \legendre{7411}{9283} $ as follows.
 So $ 7411 $ is not a square modulo $ 9283 $.
 \end{example}
 
-\section{Sum of squares}
+\section{Sums of squares}
 
-Which integers are the sum of two squares or four squares?
+Here we answer the question, which integers are representable as a sum of two squares or four squares?
 
 \subsection{Sums of two squares}
 
 \begin{definition}
-We say that $ n \in \Z $ is a \textbf{sum of two squares} if $ n = x^2 + y^2 $ for $ x, y \in Z $.
+We say that $ n \in \Z $ is a \textbf{sum of two squares} if there exist $ x, y \in \Z $ such that $ n = x^2 + y^2 $.
 \end{definition}
 
-\begin{example}
-If $ n = x^2 + y^2 $, then since $ x^2, y^2 \equiv 0, 1 \mod 4 $, we cannot have $ n \equiv 3 \mod 4 $.
-\end{example}
+Of course there is an algorithm to work this out, which is just to use brute force, as $ \abs{x} $ and $ \abs{y} $ are both at most $ \sqrt{n} $.
 
 \begin{example}
 $ 21 \equiv 1 \mod 4 $, but $ 21 $ is not a sum of two squares. On the other hand, we will see that all primes which are $ 1 $ modulo $ 4 $ are sums of two squares.
 \end{example}
 
+\begin{example}
+In a negative direction, note that any square is congruent to $ 0 $ or $ 1 $ modulo $ 4 $, so if $ n $ is a sum of two squares, then $ n $ cannot be congruent to $ 3 $ modulo $ 4 $.
+\end{example}
+
+It is convenient to make use of the following.
+
 \begin{definition}
-The \textbf{Gaussian integers} $ \Z\sb{i} $ are the subring of $ \C $ consisting of $ a + bi $ for $ a, b \in \Z $. $ N : \Z\sb{i} \to \Z_{> 0} $ is a \textbf{norm} defined by $ N\rb{a + bi} = a^2 + b^2 $, that is $ N\rb{z} = z\bar{z} $.
+The ring of \textbf{Gaussian integers}, denoted $ \Z\sb{i} $, is the subring of $ \C $ consisting of all complex numbers of the form $ a + bi $, where $ a, b \in \Z $.
 \end{definition}
 
-$ N\rb{zw} = \rb{zw}\rb{\bar{zw}} = \rb{z\bar{z}}\rb{w\bar{w}} = N\rb{z}N\rb{w} $. If $ z = a + bi $, $ w = c + di $, then $ zw = \rb{ac - bd} + \rb{ad + bc}i $, so $ \rb{a^2 + b^2}\rb{c^2 + d^2} = \rb{ac - bd}^2 + \rb{ad + bc}^2 $.
+Here are some brief recollections about this. To see that $ \Z\sb{i} $ is a subring one must of course check that it is closed under addition and multiplication. This is easy. There is a natural \textbf{norm} $ N : \Z\sb{i} \to \Z_{\ge 0} $ defined by $ N\rb{z} = z\bar{z} $. We have $ N\rb{a + bi} = a^2 + b^2 $. On the other hand, since $ \bar{z}\bar{w} = \bar{zw} $, we have $ N\rb{zw} = \rb{zw}\rb{\bar{zw}} = \rb{z\bar{z}}\rb{w\bar{w}} = N\rb{z}N\rb{w} $. Let $ z = a + bi $, $ w = c + di $. We then have $ zw = \rb{ac - bd} + \rb{ad + bc}i $. Applying the formula $ N\rb{zw} = N\rb{z}N\rb{w} $, we find that $ \rb{a^2 + b^2}\rb{c^2 + d^2} = \rb{ac - bd}^2 + \rb{ad + bc}^2 $. We record this as the following.
 
 \begin{lemma}
 \label{lem:46}
-If $ m, n $ are each a sum of two squares, then so is $ mn $.
+If $ m $ and $ n $ are sums of two squares, then so is $ mn $.
 \end{lemma}
+
+In light of this result it makes sense to focus first on which primes are a sum of two squares. Indeed, we have the following.
 
 \begin{theorem}[Fermat's two square theorem]
 \label{thm:47}
-If $ p \equiv 1 \mod 4 $ is prime, then $ p $ is a sum of two squares.
+Every prime congruent to $ 1 $ modulo $ 4 $ is a sum of two squares.
 \end{theorem}
 
-Lemma \ref{lem:46} and Theorem \ref{thm:47} together allow you to give a complete classification of the integers which are sums of two squares, in terms of their prime factorisations.
+Lemma \ref{lem:46} and Theorem \ref{thm:47} together allow you to give a complete classification of the integers which are sums of two squares, in terms of their prime factorisations. We will prove this shortly. Recall that in fact $ \Z\sb{i} $ with its norm $ N $ is a Euclidean domain.
 
 \begin{definition}
-A ring $ R $ is a \textbf{Euclidean domain} if it is an integral domain, that is $ ab = 0 $ gives $ a = 0 $ or $ b = 0 $, and there exists a function $ N : R \to \Z_{\ge 0} $ such that for all $ a, b \in R $ with $ b \ne 0 $, there exist $ q, r \in R $ such that $ a = qb + r $, and $ r = 0 $ or $ N\rb{r} < N\rb{b} $.
+A ring $ R $ is a \textbf{Euclidean domain} if it is an integral domain, that is $ ab = 0 $ gives $ a = 0 $ or $ b = 0 $, and there exists a function $ N : R \to \Z_{\ge 0} $ such that for all $ a, b \in R $, with $ b \ne 0 $, there exist $ q, r \in R $ such that
+\begin{enumerate}
+\item $ a = qb + r $, and
+\item either $ r = 0 $, or $ N\rb{r} < N\rb{b} $.
+\end{enumerate}
 \end{definition}
 
-If $ R $ is a Euclidean domain, then you can carry out Euclid's algorithm. In particular, irreducible elements are the same as prime elements, and every element can be factored as a product of primes, uniquely up to reordering and multiplication by units. $ \Z\sb{i} $ together with $ N $ is a Euclidean domain. By definition, $ n \in \Z $ is a sum of two squares if and only if there exists $ z \in \Z\sb{i} $ with $ N\rb{z} = n $. Since $ N\rb{zw} = N\rb{z}N\rb{w} $, all we have to do is to figure out what the primes in $ \Z\sb{i} $ are, and what their norms are. (TODO Exercise: Show that the units in $ \Z\sb{i} $ are $ \pm 1 $, $ \pm i $)
+In particular, in a Euclidean domain $ R $ you can carry out Euclid's algorithm, hence the name. In particular, it follows by the same proof that we gave for $ \Z $ that prime elements and irreducible elements are the same, and that, up to reordering and multiplication by units, which are the elements $ \pm 1 $, $ \pm i $ with $ N\rb{z} = 1 $, we have unique factorisation for every element as a product of irreducibles. $ \Z\sb{i} $ together with $ N $ is a Euclidean domain. By definition, we can rephrase the question of which $ n \in \Z $ are representable as a sum of two squares by asking which $ n \in \Z $ are norms in $ \Z\sb{i} $, so there exists $ z \in \Z\sb{i} $ with $ N\rb{z} = n $. Since the norm is multiplicative, $ N\rb{zw} = N\rb{z}N\rb{w} $, and every element of $ \Z\sb{i} $ is a product of primes, we can answer this question by asking what the primes in $ \Z\sb{i} $ are, and what their norms are. (TODO Exercise: Show that the units in $ \Z\sb{i} $ are $ \pm 1 $, $ \pm i $)
 
 \marginpar{Lecture 14 \\ Tuesday \\ 06/11/18}
 
 Two elements of $ \Z\sb{i} $ are \textbf{associates} if their ratio is a unit, that is $ z, w $ are associates if $ z = uw $ for $ u \in \cb{\pm 1, \pm i} $. $ \Z\sb{i} $ is a Euclidean domain, so in particular we have unique factorisation into primes.
 
 \begin{lemma}
-Let $ p $ be a prime in $ \Z\sb{i} $. Then there is a prime $ q $ of $ \Z $ such that either $ N\rb{p} = q $ or $ N\rb{p} = q^2 $. In the latter case, $ p $ is an associate of $ q $. Given $ q $ a prime in $ \Z $, there exists $ p $ such that $ N\rb{p} = q $ if and only if $ q $ is a sum of two squares.
+Let $ p $ be a prime in $ \Z\sb{i} $. Then there exists a prime $ q \in \Z $ such that either $ N\rb{p} = q $ or $ N\rb{p} = q^2 $. In the latter case, $ p $ is an associate of $ q $, that is $ p = uq $ for some unit $ u $. Moreover, given $ q $ a prime in $ \Z $, there exists a prime $ p \in \Z\sb{i} $ such that $ N\rb{p} = q $ if and only if $ q $ is a sum of two squares.
 \end{lemma}
 
 \begin{proof}
-Write $ n = N\rb{p} $, and let $ n = q_1^{s_1} \dots q_r^{s_r} $ be the prime factorisation of $ n $ in $ \Z $. By definition, $ n = p\bar{p} $, so $ p \mid n $ in $ \Z\sb{i} $, and so since $ p $ is prime, $ p \mid q_i $ for some $ i $. Write $ q = q_i $. Then $ p \mid q $ gives $ q = pv $ for some $ v $, so $ N\rb{p}N\rb{v} = N\rb{pv} = N\rb{q} = q^2 $. If $ N\rb{p} = 1 $, then $ p $ is a unit, a contradiction. So $ N\rb{p} \mid q^2 $ gives $ N\rb{p} = q $ or $ N\rb{p} = q^2 $, as claimed. If $ N\rb{p} = q^2 $, then $ N\rb{v} = 1 $, so $ v $ is a unit, and since $ q = pv $, $ p $ is an associate of $ q $, by definition. If $ N\rb{p} = q $, then writing $ p = a + bi $, we have $ q = a^2 + b^2 $. Conversely, if $ q = a^2 + b^2 = \rb{a + bi}\rb{a - bi} $, then since $ p \mid q $, we have either $ p \mid \rb{a + bi} $ or $ p \mid \rb{a - bi} $, so $ N\rb{p} \mid N\rb{a + bi} = q $ or $ N\rb{p} \mid N\rb{a - bi} = q $, and either way $ N\rb{p} = q $.
+Let $ n = N\rb{p} $, and factor $ n = q_1^{s_1} \dots q_r^{s_r} $ as a product of integer primes. Since by definition, $ n = p\bar{p} $, we have that $ p \mid n = q_1^{s_1} \dots q_r^{s_r} $ in $ \Z\sb{i} $, and so since $ p $ is prime, $ p \mid q_i $ for some $ i $. Let $ q = q_i $. Then we have $ p \mid q $ gives $ q = pv $ for some $ v $, so $ N\rb{p}N\rb{v} = N\rb{pv} = N\rb{q} = q^2 $. If $ N\rb{p} = 1 $, then $ p $ would be a unit, a contradiction. Since $ N\rb{p} $ is not $ 1 $, so $ N\rb{p} \mid q^2 $ gives $ N\rb{p} = q $ or $ N\rb{p} = q^2 $, as claimed. First suppose that $ N\rb{p} = q^2 $. Since $ p $ divides $ q $ we have $ q = pv $. Since $ N\rb{p} = N\rb{q} = q^2 $ we must have $ N\rb{v} = 1 $, so $ v $ is a unit and $ p $ is an associate of $ q $, by definition. Suppose $ N\rb{p} = q $. Writing $ p = a + bi $, we see that $ q = a^2 + b^2 $. Conversely, if $ q = a^2 + b^2 $, then $ q = \rb{a + bi}\rb{a - bi} $. Since $ p $ divides $ q $, we have either $ p $ divides $ \rb{a + bi} $ or $ p $ divides $ \rb{a - bi} $, so $ N\rb{p} \mid N\rb{a + bi} = q $ or $ N\rb{p} \mid N\rb{a - bi} = q $. In either case $ N\rb{p} $ divides $ q $ and must thus equal $ q $.
 \end{proof}
 
 \begin{corollary}
 \label{cor:50}
-The primes in $ \Z\sb{i} $ are either of the form $ a + bi $ with $ a^2 + b^2 $ a prime in $ \Z $, or are primes of $ \Z $ which are not sums of two squares.
+The primes in $ \Z\sb{i} $ are either of the form $ a + bi $, where $ a^2 + b^2 \in \Z $ is a prime, or an associate of $ q $, where $ q \in \Z $ is a prime that is not a sum of two squares.
 \end{corollary}
 
 \begin{theorem}
@@ -1072,42 +1082,37 @@ If $ p = 2 $ or $ p \equiv 1 \mod 4 $, then $ p $ is a sum of two squares.
 \end{theorem}
 
 \begin{proof}
-By Corollary \ref{cor:50}, we just have to show that $ p $ is not a prime in $ \Z\sb{i} $. There exists $ n $ such that $ n^2 \equiv -1 \mod p $. If $ p = 2 $ obvious, and if $ p \equiv 1 \mod 4 $, $ \legendre{-1}{p} = \rb{-1}^{\rb{p - 1} / 2} = 1 $ by Euler's criterion. That is, $ p \mid \rb{n^2 + 1} = \rb{n + i}\rb{n - i} $. If $ p $ were prime, then $ p \mid \rb{n + i} $ or $ p \mid \rb{n - i} $, that is there exist $ c, d \in \Z $ such that $ n \pm i = p\rb{c + di} $, so $ 1 = pd $, a contradiction.
+By Corollary \ref{cor:50}, we just have to show that $ p $ is not a prime in $ \Z\sb{i} $. There exists $ n $ such that $ n^2 \equiv -1 \mod p $. If $ p = 2 $ obvious, and if $ p \equiv 1 \mod 4 $, $ \legendre{-1}{p} = \rb{-1}^{\rb{p - 1} / 2} = 1 $ by Euler's criterion, so $ -1 $ is a QR modulo $ p $. That is, $ p \mid \rb{n^2 + 1} = \rb{n + i}\rb{n - i} $. If $ p $ were prime, then $ p \mid \rb{n + i} $ or $ p \mid \rb{n - i} $, that is there exist $ c, d \in \Z $ such that $ n \pm i = p\rb{c + di} $, so $ 1 = pd $, a contradiction. It follows that $ p $ is not prime, so by Corollary \ref{cor:50}, $ p $ is a sum of two squares.
 \end{proof}
 
-\begin{remark}
-If $ p \equiv 3 \mod 4 $ then $ p $ is not a sum of two squares, even modulo $ 4 $.
-\end{remark}
-
-\begin{remark}
-In practice, to go from $ n^2 + 1 \equiv 0 \mod p $ to finding $ a, b $ with $ a^2 + b^2 = p $, you just compute $ \rb{n + i, p} = a + bi $. You can do this computation with Euclid's algorithm in $ \Z\sb{i} $.
-\end{remark}
+This proof looks non-constructive, but in fact it is not. In practice, if you want to go from $ n^2 + 1 \equiv 0 \mod p $ to finding $ a, b $ such that $ a^2 + b^2 = p $, simply use Euclid's algorithm in $ \Z\sb{i} $ to compute a GCD $ \rb{n + i, p} = a + bi $ of $ p $ and $ n + i $. Since $ p $ divides neither $ n + i $ nor $ n - i $, this GCD is not a unit, nor is it an associate of $ p $, so its norm is neither $ 1 $ nor $ p^2 $. Therefore this GCD has norm exactly $ p $. Since we have also shown that primes congruent to $ 3 $ modulo $ 4 $ are not a sum of two squares, even modulo $ 4 $, we have the following complete characterisation of sums of two squares.
 
 \begin{theorem}
-$ n \in \Z $ is a sum of two squares if and only if its prime factorisation only contains primes congruent to $ 3 $ modulo $ 4 $ to even powers, that is
+$ n \in \Z $ is a sum of two squares if and only if its prime factorisation only contains primes congruent to $ 3 $ modulo $ 4 $ to even powers, that is of the form
 $$ n = 2^a\prod_{p_i \equiv 1 \mod 4} p_i^{r_i}\prod_{q_i \equiv 3 \mod 4} q_i^{2s_i}. $$
 \end{theorem}
 
 \begin{proof}
-Suppose $ n $ is of this form. Then $ 2 $, each $ p_i $, and each $ q_i^2 $ are all sums of two squares, so $ n $ is a sum of two squares by Lemma \ref{lem:46}. Conversely suppose that $ n = a^2 + b^2 $, and write $ a + bi $ as a product of primes in $ \Z\sb{i} $. Then $ n = N\rb{a + bi} $ is the product of the norms of these primes, and we already saw that the norms of primes in $ \Z\sb{i} $ are either $ 2 $, a prime which is $ 1 $ modulo $ 4 $, or the square of a prime which is $ 3 $ modulo $ 4 $.
+Suppose $ n $ is of the above form, and write
+$$ z = \rb{1 + i}^a\rb{a_1 + b_1i}^{r_i} \dots \rb{a_k + b_ki}^{r_k}q_1^{s_1} \dots q_h^{s_h}, $$
+where $ p_i = N\rb{a_i + b_ii} $. Then these are all sums of two squares, so $ N\rb{z} = n $ is a sum of two squares by Lemma \ref{lem:46}. Conversely, if $ n = a^2 + b^2 $ is a sum of two squares, we can write $ a + bi $ as a product of primes in $ \Z\sb{i} $. Then $ n = N\rb{a + bi} $ is the product of the norms of these primes, and we already saw that the norms of primes in $ \Z\sb{i} $ are either $ 2 $, a prime which is $ 1 $ modulo $ 4 $, or the square of a prime which is $ 3 $ modulo $ 4 $. Then $ N\rb{a + bi} $ has the claimed form.
 \end{proof}
 
-\subsection{Sums of four squares}
+\subsection{Sums of four squares - the ring of quaternions}
 
-Lagrange's theorem states that every positive integer is a sum of four squares.
+We have used the arithmetic of the ring $ \Z\sb{i} $ to determine precisely which integers are a sum of two squares. On the other hand, it is a fact, first proved by Lagrange, that every positive integer is a sum of four integer squares. This fact is connected with the arithmetic of a non-commutative ring, which we now describe.
 
 \begin{definition}
-$ \H $, the \textbf{ring of quaternions}, is the ring of sums $ a + bi + cj + dk $ for $ a, b, c, d \in \R $, such that
-\begin{enumerate}
-\item addition is $ \rb{a + bi + cj + dk} + \rb{A + Bi + Cj + Dk} = \rb{a + A} + \rb{b + B}i + \rb{c + C}j + \rb{d + D}k $, and
-\item multiplication is $ ij = -ji = k $, $ jk = -kj = i $, and $ ki = -ik = j $.
-\end{enumerate}
-If $ z = a + bi + cj + dk $, we write $ z^* = a - bi - cj - dk $, so $ \rb{zw}^* = w^*z^* $.
+The ring $ \H $ of \textbf{quaternions} is the ring whose elements are formal sums $ a + bi + cj + dk $, with $ a, b, c, d \in \R $. Addition is given by the rule
+$$ \rb{a + bi + cj + dk} + \rb{A + Bi + Cj + Dk} = \rb{a + A} + \rb{b + B}i + \rb{c + C}j + \rb{d + D}k. $$
+Multiplication is given by the rules
+$$ i^2 = j^2 = k^2 = -1, \qquad ij = -ji = k, \qquad jk = -kj = i, \qquad ki = -ik = j, $$
+extended by $ \R $-linearity and the distributive law.
 \end{definition}
 
-Define $ N\rb{z} = zz^* = a^2 + b^2 + c^2 + d^2 $. Then
+Let $ z = a + bi + cj + dk $ be a quaternion. The \textbf{conjugate} $ z^* $ of $ z $ is the quaternion $ a - bi - cj - dk $. Note that if $ z $ and $ w $ are quaternions, then $ \rb{zw}^* = w^*z^* $. The norm $ N\rb{z} $ of $ z $ is defined by $ N\rb{z} = zz^* = a^2 + b^2 + c^2 + d^2 $. Note that this is a real number, and hence commutes with all elements of $ \H $. Thus we have
 $$ N\rb{zw} = zw\rb{zw}^* = zww^*z^* =  zN\rb{w}z^* = zz^*N\rb{w} = N\rb{z}N\rb{w}, $$
-because $ N\rb{w} \in \R $. So
+because $ N\rb{w} \in \R $. As was the case with $ \Z\sb{i} $, this gives an expression for the product of two sums of four squares as a sum of four squares. Explicitly, one has
 \begin{align*}
 \rb{a^2 + b^2 + c^2 + d^2}\rb{x^2 + y^2 + z^2 + w^2}
 & = N\rb{a + bi + cj + dk}N\rb{x + yi + zj + wk} \\
@@ -1115,53 +1120,61 @@ because $ N\rb{w} \in \R $. So
 & = \rb{ax - by - cz - dw}^2 + \rb{ay + bx + cw - dz}^2 \\
 & + \rb{az - bw + cx + dy}^2 + \rb{aw + bz - cy + dx}^2.
 \end{align*}
-In particular, if $ m, n $ are sums of four squares, then $ mn $ is a sum of four squares. So to prove Lagrange's theorem, it suffices to show that all primes are sums of four squares. We already saw that $ 2 $, and any prime congruent to $ 1 $ modulo $ 4 $, is a sum of two squares. It remains to show that any prime congruent to $ 3 $ modulo $ 4 $ is a sum of four squares.
+In particular, if $ m, n \in \Z $ are representable as sums of four integer squares, then so is their product $ mn $. Thus to prove Lagrange's theorem, it suffices to prove that every prime is a sum of four integer squares.
+
+\subsection{Proof of Lagrange's theorem}
+
+Let $ p $ be a prime. If $ p = 2 $, or $ p \equiv 1 \mod 4 $, then we have already shown that $ p $ is a sum of two squares, hence also a sum of four squares. It thus remains to prove that primes congruent to $ 3 $ modulo $ 4 $ are sums of four squares. We will do this via a descent argument.
 
 \marginpar{Lecture 15 \\ Wednesday \\ 07/11/18}
 
 \begin{lemma}
-If $ p \equiv 3 \mod 4 $ is prime, then there exist $ x, y $ such that $ x^2 + y^2 + 1 \equiv 0 \mod p $.
+\label{lem:54}
+Let $ p $ be a prime congruent to $ 3 $ modulo $ 4 $. Then there exist $ x $ and $ y $ such that $ x^2 + y^2 + 1 \equiv 0 \mod p $.
 \end{lemma}
 
 \begin{proof}
-Firstly, claim there exists $ a $ such that $ \legendre{a}{p} = 1 $ and $ \legendre{a + 1}{p} = -1 $. If not, since $ \legendre{1}{p} = 1 $, we must have $ \legendre{2}{p} = \dots = \legendre{p - 1}{p} = 1 $. But we know that there are $ \rb{p - 1} / 2 $ values of $ b $ with $ 1 \le b \le p - 1 $ and $ \legendre{b}{p} = -1 $, a contradiction. Since $ p \equiv 3 \mod 4 $, $ \legendre{-1}{p} = -1 $ by Euler's criterion. So $ \legendre{-\rb{a + 1}}{p} = \legendre{a + 1}{p}\legendre{-1}{p} = 1 $. Choose $ x $ such that $ x^2 \equiv a \mod p $ and $ y $ such that $ y^2 \equiv -\rb{a + 1} \mod p $. Then $ x^2 + y^2 \equiv -1 \mod p $.
+It suffices to find $ a \in \Z $ such that $ a $ is a square modulo $ p $ and $ a + 1 $ is not, so $ \legendre{a}{p} = 1 $ and $ \legendre{a + 1}{p} = -1 $. Since $ p \equiv 3 \mod 4 $, $ \legendre{-1}{p} = -1 $ by Euler's criterion, so $ -1 $ is not a QR modulo $ p $. So we would then have $ \legendre{-\rb{a + 1}}{p} = \legendre{a + 1}{p}\legendre{-1}{p} = 1 $, so $ -\rb{a + 1} $ is a QR modulo $ p $. Taking $ x $ such that $ x^2 \equiv a \mod p $ and $ y $ such that $ y^2 \equiv -\rb{a + 1} \mod p $. Then $ x^2 + y^2 \equiv -1 \mod p $ and the claim would follow. Suppose that we cannot do this. Then for each square $ a $ modulo $ p $, $ a + 1 $ would also be a square modulo $ p $. In particular since $ \legendre{1}{p} = 1 $, we must have $ \legendre{2}{p} = \dots = \legendre{p - 1}{p} = 1 $, so every congruence class modulo $ p $ would be a square. But we know that there are $ \rb{p - 1} / 2 $ values of $ b $ with $ 1 \le b \le p - 1 $ and $ \legendre{b}{p} = -1 $, a contradiction. Since this does not happen we are done.
 \end{proof}
 
-By the lemma, there exist $ x, y \in \Z $ such that $ x^2 + y^2 + 1 = pr $ for some $ r $. Since the congruence $ x^2 + y^2 + 1 \equiv 0 \mod p $ only depends on $ x, y $ modulo $ p $, so we can find $ x, y $ with $ -p / 2 < x, y < p / 2 $. Then $ \rb{x^2 + y^2 + 1} / p = r < p $.
+Fix a prime congruent to $ 3 $ modulo $ 4 $. By Lemma \ref{lem:54}, we can find $ x, y \in \Z $ such that $ x^2 + y^2 + 1 = pr $ for some $ r \in \Z $. Since we only care about $ x $ and $ y $ modulo $ p $ and the congruence $ x^2 + y^2 + 1 \equiv 0 \mod p $ only depends on $ x, y $ modulo $ p $, we can further arrange $ x, y $ with $ \abs{x}, \abs{y} \le p / 2 $. Then $ \rb{x^2 + y^2 + 1} / p = r < p $. We are now ready to begin our descent.
 
 \begin{proposition}
 \label{prop:55}
-Suppose that $ x^2 + y^2 + z^2 + w^2 = pr $ for $ 1 \le r < p $. If $ r > 1 $, there exist $ x', y', z', w', r' $ for $ 1 \le r' < r $, and $ x'^2 + y'^2 + z'^2 + w'^2 = pr' $.
+Suppose that for some $ 1 \le r < p $, we have $ x, y, z, w $ such that $ x^2 + y^2 + z^2 + w^2 = pr $. Then there exist $ x', y', z', w', r' \in \Z $ with $ 1 \le r' < r $, and $ \rb{x'}^2 + \rb{y'}^2 + \rb{z'}^2 + \rb{w'}^2 = pr' $.
 \end{proposition}
 
-Proposition \ref{prop:55} gives $ p $ is a sum of four squares. Start with $ x, y, r $ as above, $ z = 1 $ and $ w = 0 $.
-
 \begin{proof}
-Suppose firstly that $ r $ is even. Then either $ x, y, z, w $ are all even, all odd, or two are even and two are odd. So without loss of generality $ x \equiv y \mod 2 $ and $ z \equiv w \mod 2 $. Then take
-$$ x' = \rb{x + y} / 2, \qquad y' = \rb{x - y} / 2, \qquad z' = \rb{z + w} / 2, \qquad w' = \rb{z - w} / 2, \qquad r' = r / 2. $$
-Suppose now that $ r $ is odd, and choose $ a, b, c, d \in \rb{-r / 2, r / 2} $ such that $ x \equiv a, y \equiv b, z \equiv c, w \equiv d \mod r $. Then $ a^2 + b^2 + c^2 + d^2 \equiv x^2 + y^2 + z^2 + w^2 = pr \equiv 0 \mod r $. Write $ a^2 + b^2 + c^2 + d^2 = rr' $. Then $ rr' < 4\rb{r / 2}^2 = r^2 $, so $ 0 \le r' < r $. If $ r' = 0 $ then $ a = b = c = d = 0 $, so $ r' $ divides each of $ x, y, z, w $. Since $ x^2 + y^2 + z^2 + w^2 = pr $, we get $ r^2 \mid pr $ so $ r \mid p $, and since $ r < p $, we get $ r = 1 $, and we are done. Otherwise $ 1 \le r' < r $.
+There are two cases we must treat separately. First suppose that $ r $ is even. Then either all of $ x, y, z, w $ have the same parity, so all even or all odd, or two of them are odd and two of them are even. Permuting $ x, y, z, w $ as necessary, we can assume without loss of generality $ x $ and $ y $ have the same parity, as do $ z $ and $ w $, so $ x \equiv y \mod 2 $ and $ z \equiv w \mod 2 $. Then set
+$$ x' = \dfrac{x + y}{2}, \qquad y' = \dfrac{x - y}{2}, \qquad z' = \dfrac{z + w}{2}, \qquad w' = \dfrac{z - w}{2}, \qquad r' = \dfrac{r}{2}. $$
+It is then easy to verify that $ \rb{x'}^2 + \rb{y'}^2 + \rb{z'}^2 + \rb{w'}^2 = pr' $. Now suppose that $ r $ is odd. Choose $ a, b, c, d $ such that
+$$ -\dfrac{r}{2} < a, b, c, d < \dfrac{r}{2}, \qquad x \equiv a \mod r, \qquad y \equiv b \mod r, \qquad z \equiv c \mod r, \qquad w \equiv d \mod r. $$
+We can get away with strict inequalities here because $ r $ is odd. Since $ x^2 + y^2 + z^2 + w^2 = pr \equiv 0 \mod r $, our congruences imply that $ a^2 + b^2 + c^2 + d^2 \equiv 0 \mod r $. Write $ a^2 + b^2 + c^2 + d^2 = rr' $, and note that $ 0 \le r' < r $ since $ a^2, b^2, c^2, d^2 < \rb{r / 2}^2 = r^2 / 4 $. On the other hand if $ r' $ were zero, then $ a = b = c = d = 0 $, so all of $ x, y, z, w $ would be divisible by $ r $. Since $ x^2 + y^2 + z^2 + w^2 = pr $, we would have $ r^2 \mid rp $, hence $ r \mid p $, and since $ r < p $, we get $ r = 1 $, and we are done. Otherwise we have $ 1 \le r' < r $. We then have
 \begin{align*}
 \rb{rr'}\rb{rp}
 & = \rb{a^2 + b^2 + c^2 + d^2}\rb{x^2 + y^2 + z^2 + w^2} \\
 & = \rb{ax + by + cz + dw}^2 + \rb{-ay + bx + cw - dz}^2 \\
 & + \rb{-az - bw + cx + dy}^2 + \rb{-aw + bz - cy + dx}^2.
 \end{align*}
-Then
+Note that
 \begin{align*}
 ax + by + cz + dw \equiv x^2 + y^2 + z^2 + w^2 & \equiv 0 \mod r, \\
 -ay + bx + cw - dz \equiv -xy + yx + zw - wz & \equiv 0 \mod r, \\
 -az - bw + cx + dy \equiv -xz - yw + zx + wy & \equiv 0 \mod r, \\
 -aw + bz - cy + dx \equiv -xw + yz - zy + wx & \equiv 0 \mod r.
 \end{align*}
-So take
+We thus have integers
 $$ x' = \dfrac{ax + by + cz + dw}{r}, \qquad y' = \dfrac{-ay + bx + cw - dz}{r}, $$
-$$ z' = \dfrac{-az - bw + cx + dy}{r}, \qquad w' = \dfrac{-aw + bz - cy + dx}{r}. $$
+$$ z' = \dfrac{-az - bw + cx + dy}{r}, \qquad w' = \dfrac{-aw + bz - cy + dx}{r}, $$
+and $ \rb{x'}^2 + \rb{y'}^2 + \rb{z'}^2 + \rb{w'}^2 = pr' $ as desired.
 \end{proof}
 
-\begin{corollary}
-This can be interpreted as a version of Euclid's algorithm in the ring
+Proposition \ref{prop:55} gives $ p $ is a sum of four squares. To complete the proof, one begins with $ x^2 + y^2 + 1 = pr $ as above with $ z = 1 $ and $ w = 0 $ and repeatedly applies the proposition until $ r = 1 $.
+
+\begin{remark}
+This descent can be interpreted as a version of Euclid's algorithm in a non-commutative setting. The associated ring is the ring of quaternions of the form $ a + bi + cj + dk $, where either $ a, b, c, d \in \Z $, or $ a, b, c, d \in \Z / 2 $, that is fractions of the form $ r / 2 $ with $ r $ odd. That is,
 $$ \cb{\dfrac{a + bi + cj + dk}{2} \ \Bigg| \ a \equiv b \equiv c \equiv d \mod 2}. $$
-\end{corollary}
+\end{remark}
 
 \begin{note}
 This ring is non-commutative, and also $ 5 = \rb{1 - 2i}\rb{1 - 2i} = \rb{1 + 2j}\rb{1 - 2j} $ for example, so you have to be careful with unique factorisation, etc.
@@ -1169,33 +1182,47 @@ This ring is non-commutative, and also $ 5 = \rb{1 - 2i}\rb{1 - 2i} = \rb{1 + 2j
 
 \subsection{Sums of three squares}
 
-$ 7 $ is the smallest positive integer which is not a sum of three squares. In fact no integer congruent to $ 7 $ modulo $ 8 $ can be a sum of three squares, because the squares modulo $ 8 $ are $ 0, 1, 4 $.
+At this point it is natural to ask which positive integers are a sum of three integer squares. This turns out to be much more difficult. $ 7 $ is the smallest positive integer which is not a sum of three squares. In one direction, no integer congruent to $ 7 $ modulo $ 8 $ can be a sum of three squares, because the squares modulo $ 8 $ are $ 0, 1, 4 $. In fact no integer of the form $ 4^a\rb{8k + 7} $ for $ t, k \in \Z $ is a sum of three squares. (TODO Exercise) Conversely, one has the following.
 
 \begin{theorem}
-A positive integer is not a sum of three squares if and only if it is of the form $ 4^a\rb{8k + 7} $.
+Every positive integer is not a sum of three squares if and only if it is of the form $ 4^a\rb{8k + 7} $.
 \end{theorem}
 
-Proving that numbers are not of this form is beyond this course. Serre's a course in arithmetic is a good place to look.
+The proof of this requires tools beyond the scope of the class, such as the Hasse principle for quadratic forms. One good place to read about this is in Serre's a course in arithmetic.
 
 \section{Pell's equation}
 
-Let $ d \in \Z_{> 1} $ be squarefree. \textbf{Pell's equation} is $ x^2 - dy^2 = 1 $.
+\subsection{Pell's equation}
+
+Let $ d \in \Z_{> 1} $ be squarefree, and consider the equation $ x^2 - dy^2 = 1 $. This is called \textbf{Pell's equation}.
 
 \begin{example}
 For $ d = 2 $, $ \rb{x, y} = \rb{3, 2} $ is a solution. In fact, there are infinitely many solutions, and this is true for any $ d $.
 \end{example}
 
-We will find it useful to write $ x^2 - dy^2 = \rb{x + \sqrt{d}y}\rb{x - \sqrt{d}y} $. This suggests that we should look at a ring like $ \Z\sb{\sqrt{d}} = \cb{a + b\sqrt{d} \mid a, b \in \Z} $.
+Here is another way of thinking about this, generalizing what we said about the Gaussian integers. We will find it useful to write $ x^2 - dy^2 = \rb{x + \sqrt{d}y}\rb{x - \sqrt{d}y} $. This suggests that we should look at a ring like $ \Z\sb{\sqrt{d}} = \cb{a + b\sqrt{d} \mid a, b \in \Z} $.
 
 \begin{definition}
-If $ \alpha \in \C $, then $ \Z\sb{\alpha} $ is the smallest subring of $ \C $ containing $ \alpha $.
+Let $ \alpha \in \C $. Then the ring $ \Z\sb{\alpha} $ is the smallest subring of $ \C $ containing $ \alpha $.
 \end{definition}
 
+\begin{note}
+Note that for this course, a ring always contains $ 1 $.
+\end{note}
+
+As usual one has to check that this makes sense. An alternative definition is to take $ \Z\sb{\alpha} $ to be the intersection of all subrings of $ \C $ containing $ \alpha $. This intersection clearly contains $ 0 $, $ 1 $, and $ \alpha $, so it is non-empty. It is also closed under addition and multiplication, since it is an intersection of sets that are closed under these operations. Therefore it is a subring of $ \C $ that, by construction is contained in any subring of $ \C $ that contains $ \alpha $.
+
 \begin{example}
-If $ \alpha = 1 $, then $ \Z\sb{\alpha} = \Z $. If $ \alpha = i $, $ \Z\sb{i} $ is what we wrote before. On the other hand $ \Z\sb{\pi} $ is the ring of $ a_0 + \dots + a_n\pi^n $ for $ a_i \in \Z $ and $ n $ arbitrary. Also $ \Z\sb{\sqrt[3]{2}} $ is not just the set $ \cb{a + b\sqrt[3]{2} \mid a, b \in \Z} $, because this set does not contain $ \rb{\sqrt[3]{2}}^2 = \sqrt[3]{4} $. Also $ \Z\sb{1 / p} $ contains $ 1 / p^n $ for all $ n $, so in fact $ \Z\sb{1 / p} = \cb{a / p^n \mid a \in \Z, \ n \ge 0} $.
+If $ \alpha = 1 $, then $ \Z\sb{\alpha} = \Z $. Let us show that for $ \alpha = i $, this agrees with our earlier definition of $ \Z\sb{i} $. We have already shown that the set of all integers of the form $ a + bi $ is a subring of $ \C $. On the other hand, any subring of $ \C $ containing $ i $ is closed under addition and multiplication, and contains $ 1 $, so it contains every complex number of the form $ a + bi $. Thus our new definition is consistent with our old one.
 \end{example}
 
-An alternative definition is that $ \Z\sb{\alpha} $ is the intersection of all subrings of $ \C $ containing $ \alpha $.
+\begin{note}
+For arbitrary $ \alpha $, it is not necessarily true that $ \Z\sb{\alpha} $ consists of all complex numbers of the form $ a + b\alpha $ for $ a, b \in \Z $, although it always contains all complex numbers of that form.
+\end{note}
+
+\begin{example}
+To see this, consider examples like $ \Z\sb{\pi} $, the ring of $ a_0 + \dots + a_n\pi^n $ for $ a_i \in \Z $ and $ n $ arbitrary. Also $ \Z\sb{1 / p} $ for $ p $ some prime contains $ 1 / p^n $ for all $ n $, so in fact $ \Z\sb{1 / p} = \cb{a / p^n \mid a \in \Z, \ n \ge 0} $. Also $ \Z\sb{\beta} $ where $ \beta = \sqrt[3]{2} $ is a cube root of $ 2 $ is not just the set $ \cb{a + b\sqrt[3]{2} \mid a, b \in \Z} $, because the set does not contain $ \beta^2 = \rb{\sqrt[3]{2}}^2 = \sqrt[3]{4} $, which is not of the form $ a + b\sqrt[3]{2} $ for any $ a, b \in \Z $.
+\end{example}
 
 \marginpar{Lecture 16 \\ Friday \\ 09/11/18}
 
@@ -1203,82 +1230,159 @@ Lecture 16 is a problem class.
 
 \marginpar{Lecture 17 \\ Tuesday \\ 13/11/18}
 
+\subsection{Quadratic subrings of $ \C $}
+
 \begin{definition}
-Say that $ \alpha \in \C $ is an \textbf{algebraic integer of degree two} if it is a root of a polynomial $ x^2 + ax + b $ for $ a, b \in \Z $ and $ \alpha \notin \Z $.
+An element $ \alpha $ of $ \C $ is an \textbf{algebraic integer of degree two}, alternatively a \textbf{quadratic algebraic integer}, if there exists a polynomial of the form $ P\rb{X} = X^2 + aX + b $ with $ a, b \in \Z $ and $ \alpha \notin \Z $ such that $ P\rb{X} $ has no rational, equivalently integer, roots and $ P\rb{\alpha} = 0 $.
 \end{definition}
 
 \begin{example}
-$ \alpha = i $ root of $ X^2 + 1 $. $ \alpha = \sqrt{d} $ root of $ X^2 - d $ for $ d > 1 $ squarefree.
+$ \alpha = i $ is an algebraic integer of degree two and a root of $ X^2 + 1 $ since $ i^2 + 1 = 0 $. $ \alpha = \sqrt{d} $ is a root of $ X^2 - d $ for $ d > 1 $ squarefree.
 \end{example}
 
+We thus have the following.
+
 \begin{proposition}
-If $ \alpha $ is an algebraic integer of degree two, then $ \Z\sb{\alpha} = \cb{x + y\alpha \mid x, y \in \Z} $.
+If $ \alpha $ is an algebraic integer of degree two, then $ \Z\sb{\alpha} $ is equal to the set of complex numbers $ \cb{x + y\alpha \mid x, y \in \Z} $.
 \end{proposition}
 
 \begin{proof}
-Since $ \alpha \notin \Z $, we have $ \alpha \notin \Q $. If $ \alpha = r / s $ for $ \rb{r, s} = 1 $ then $ r^2 + ars + bs^2 = 0 $, so $ s \mid r^2 $, so $ s \mid 1 $, so $ \alpha \in \Z $. So if $ x, y \in \Z $ and $ x + y\alpha = 0 $, then $ x = y = 0 $. Certainly every $ x + y\alpha \in \Z\sb{\alpha} $. The set $ \cb{x + y\alpha} $ is closed under addition and subtraction, so we only have to check that is closed under multiplication. But
+Let $ a, b \in \Z $ such that $ \alpha^2 + a\alpha + b = 0 $. Since $ \alpha \notin \Z $, we have $ \alpha \notin \Q $. If $ \alpha = r / s $ for $ \rb{r, s} = 1 $ then $ r^2 + ars + bs^2 = 0 $, so $ s \mid r^2 $, so $ s \mid 1 $, so $ \alpha \in \Z $. So if $ x, y \in \Z $ and $ x + y\alpha = 0 $, then $ x = y = 0 $. Then, for $ x, y, X, Y \in \Z $, we have
 \begin{align*}
 \rb{x + y\alpha}\rb{X + Y\alpha}
-& = xX + \rb{xY + yX}\alpha + yY\alpha^2
-= xX + \rb{xY + yX}\alpha + yY\rb{a\alpha + b} \\
+& = xX + \rb{xY + yX}\alpha + yY\alpha^2 \\
+& = xX + \rb{xY + yX}\alpha + yY\rb{a\alpha + b} \\
 & = \rb{xX + byY} + \rb{xY + yX + ayY}\alpha.
 \end{align*}
+In particular the set of complex numbers of the form $ x + y\alpha $ for $ x, y \in \Z $ is closed under addition, subtraction, and multiplication and is therefore a subring of $ \C $. Since this subring contains $ \alpha $, it contains $ \Z\sb{\alpha} $. On the other hand it is clear that this subring is certainly contained in $ \Z\sb{\alpha} $, so the two must be equal.
 \end{proof}
 
-If $ \alpha $ is an algebraic integer of degree two, say that $ \Z\sb{\alpha} $ is a \textbf{real quadratic} subring of $ \C $ if $ \alpha \in \R $, and an \textbf{imaginary quadratic} subring of $ \C $ if $ \alpha \notin \R $. Let $ \alpha^* $ be the other root of $ X^2 + aX + b = 0 $.
+For $ \alpha $ an algebraic integer of degree two, we will say that $ \Z\sb{\alpha} $ is a \textbf{real quadratic} subring of $ \C $ if $ \alpha \in \R $, and an \textbf{imaginary quadratic} subring of $ \C $ if $ \alpha \notin \R $. We let $ \alpha^* $ denote the root of $ X^2 + aX + b = 0 $ that is not equal to $ \alpha $. If $ z = x + y\alpha \in \Z\sb{\alpha} $, write $ z^* = x + y\alpha^* $.
 
 \begin{example}
 $ i^* = -i = \bar{i} $. $ \sqrt{d}^* = -\sqrt{d} $.
 \end{example}
 
-If $ z = x + y\alpha \in \Z\sb{\alpha} $, write $ z^* = x + y\alpha^* $. If $ \Z\sb{\alpha} $ is imaginary quadratic, then $ \alpha^* = \bar{\alpha} $, and $ z^* = \bar{z} $. This is not true if $ \Z\sb{\alpha} $ is real quadratic. Define $ N\rb{z} = zz^* $. Since $ \alpha, \alpha^* $ are the roots of $ X^2 + aX + b $, we have $ \alpha + \alpha^* = -a $ and $ \alpha\alpha* = b $. If $ z = x + y\alpha $, then
-$$ N\rb{z} = \rb{x + y\alpha}\rb{x + y\alpha^*} = x^2 + xy\rb{\alpha + \alpha^*} + y^2\alpha\alpha^* = x^2 - axy + by^2 \in \Z. $$
-We have $ \rb{zw}^* = z^*w^* $ gives $ N\rb{z}N\rb{w} = zz^*ww^* = \rb{zw}\rb{zw}^* = N\rb{zw} $. So $ N : \Z\sb{\alpha} \to \Z $ is multiplicative. If $ \Z\sb{\alpha} $ is imaginary quadratic then $ z^* = \bar{z} $, and $ N\rb{z} \ge 0 $. If $ \Z\sb{\alpha} $ is real quadratic, we can have $ N\rb{z} < 0 $.
+If $ \Z\sb{\alpha} $ is imaginary quadratic, $ \alpha^* = \bar{\alpha} $ and $ z^* = \bar{z} $ and then, as with $ \Z\sb{i} $, we can define a norm $ N : \Z\sb{\alpha} \to \Z_{\ge 0} $ by setting $ N\rb{z} = z\bar{z} $. Note that $ \bar{\alpha} $ is also a root of $ X^2 + aX + b $ in this case, so we have $ \alpha + \bar{\alpha} = -a $, and $ \alpha\bar{\alpha} = b $. Thus we have
+$$ N\rb{x + y\alpha} = \rb{x + y\alpha}\rb{x + y\bar{\alpha}} = x^2 + xy\rb{\alpha + \bar{\alpha}} + y^2\alpha\bar{\alpha} = x^2 - axy + by^2 \in \Z_{\ge 0}. $$
+This is multiplicative, $ N\rb{zw} = N\rb{z}N\rb{w} $. If $ \Z\sb{\alpha} $ is real quadratic, note that $ \alpha^* $ is no longer equal to $ \bar{\alpha} $. In this case we define
+$$ N\rb{x + y\alpha} = \rb{x + y\alpha}\rb{x + y\alpha^*} = x^2 - axy + by^2 \in \Z. $$
+We thus get a map $ N : \Z\sb{\alpha} \to \Z $. We have $ \rb{zw}^* = z^*w^* $ gives $ N\rb{z}N\rb{w} = zz^*ww^* = \rb{zw}\rb{zw}^* = N\rb{zw} $. This is again multiplicative, but no longer non-negative, so we can have $ N\rb{z} < 0 $.
 
 \begin{example}
-$ N\rb{\sqrt{d}} = \rb{\sqrt{d}}\rb{-\sqrt{d}} = -d < 0 $.
+In $ \Z\sb{\sqrt{2}} $, $ N\rb{1 + \sqrt{2}} = \rb{1 + \sqrt{2}}\rb{1 - \sqrt{2}} = -1 $. In $ \Z\sb{\sqrt{d}} $, $ N\rb{\sqrt{d}} = \rb{\sqrt{d}}\rb{-\sqrt{d}} = -d < 0 $.
 \end{example}
 
-TODO Exercise: $ N\rb{x + y\alpha} = 0 $ if and only if $ x = y = 0 $.
+(TODO Exercise: $ N\rb{x + y\alpha} = 0 $ if and only if $ x = y = 0 $)
 
-\begin{example}
-If $ \alpha = \sqrt{d} $, $ N\rb{x + y\sqrt{d}} = \rb{x + y\sqrt{d}}\rb{x + y\sqrt{d}}^* = \rb{x + y\sqrt{d}}\rb{x - y\sqrt{d}} = x^2 - dy^2 $. So solutions to Pell's equation are the same thing as elements of $ \Z\sb{\alpha} $ of norm one.
-\end{example}
+\subsection{Factorisation in quadratic rings}
+
+In general, quadratic rings are not Euclidean domains, or even unique factorisation domains. The situation is more complicated, see the algebraic number theory class. First, some definitions.
 
 \begin{definition}
-The units of $ \Z\sb{\alpha} $ are by definition the elements with multiplicative inverses, and they form a group $ \Z\sb{\alpha}^\times $ under multiplication. We say that $ z, w \in \Z\sb{\alpha} $ are associates if $ z = uw $ for $ u \in \Z\sb{\alpha}^\times $.
+An element of $ \Z\sb{\alpha} $ is a unit if it has a multiplicative inverse, that is, if it lies in the group $ \Z\sb{\alpha}^\times $ under multiplication. Two elements $ z, w \in \Z\sb{\alpha} $ are associates if there exists a unit $ u \in \Z\sb{\alpha}^\times $ such that $ z = uw $.
 \end{definition}
 
-If $ u \in \Z\sb{\alpha}^\times $, then write $ 1 = uv $. Then $ 1 = N\rb{1} = N\rb{u}N\rb{v} $, so $ N\rb{u} = \pm 1 $. Conversely if $ N\rb{u} = \pm 1 $, then $ \pm 1 = N\rb{u} = u\rb{u^*} $, so $ u\rb{\pm u^*} = 1 $, so $ u \in \Z\sb{\alpha}^\times $. So $ \Z\sb{\alpha}^\times = \cb{z \in \Z\sb{\alpha} \mid N\rb{z} = \pm 1} $. Write $ \Z\sb{\alpha}^{\times, 1} = \cb{z \in \Z\sb{\alpha} \mid N\rb{z} = 1} $. Then $ \Z\sb{\alpha}^{\times, 1} $ is a multiplicative subgroup of $ \Z\sb{\alpha}^\times $.
+\begin{note}
+If $ u \in \Z\sb{\alpha}^\times $ is a unit, there exists $ v $ such that $ uv = 1 $. Taking norms we find that $ 1 = N\rb{1} = N\rb{u}N\rb{v} $, so $ N\rb{u} = \pm 1 $. If $ \Z\sb{\alpha} $ is imaginary quadratic, then this means $ N\rb{u} = 1 $. Conversely, if $ N\rb{u} = \pm 1 $, then $ \pm 1 = N\rb{u} = u\rb{u^*} $, so $ u\rb{\pm u^*} = 1 $, so either $ u^* $ or $ -u^* $ is a multiplicative inverse of $ u $, so $ u \in \Z\sb{\alpha}^\times $. So $ \Z\sb{\alpha}^\times = \cb{z \in \Z\sb{\alpha} \mid N\rb{z} = \pm 1} $.
+\end{note}
 
-\begin{example}
-If $ \alpha = \sqrt{d} $ for $ d > 1 $ squarefree, then $ \Z\sb{\sqrt{d}}^{\times, 1} = \cb{x + y\sqrt{d} \mid x^2 - dy^2 = 1} $.
-\end{example}
+\subsection{Back to Pell's equation}
 
-TODO Exercise: If $ \Z\sb{\alpha} $ is imaginary quadratic, show that $ \Z\sb{\alpha}^\times = \Z\sb{\alpha}^{\times, 1} $ is finite. What are the possibilities for this group?
-
-What is $ \Z\sb{\sqrt{d}}^{\times, 1} $? Certainly contains $ \pm 1 $. Anything else will be of the form $ x + y\sqrt{d} $ with $ x, y \ne 0 $.
+If $ \alpha = \sqrt{d} $ for $ d > 1 $ squarefree, then $ \Z\sb{\sqrt{d}} $ is a real quadratic subring of $ \C $, and its norm form is given by
+$$ N\rb{x + y\sqrt{d}} = \rb{x + y\sqrt{d}}\rb{x + y\sqrt{d}}^* = \rb{x + y\sqrt{d}}\rb{x - y\sqrt{d}} = x^2 - dy^2. $$
+Thus the problem of finding integer solutions to Pell's equation is equivalent to finding elements of norm one in $ \Z\sb{\sqrt{d}} $. Since such elements are units, and the norm is multiplicative, these elements form a multiplicative subgroup
+$$ \Z\sb{\sqrt{d}}^{\times, 1} = \cb{z \in \Z\sb{\sqrt{d}} \ \Big| \ N\rb{z} = 1} = \cb{x + y\sqrt{d} \ \Big| \ x^2 - dy^2 = 1}, $$
+the \textbf{$ 1 $-units} of $ \Z\sb{\sqrt{d}} $. (TODO Exercise: If $ \Z\sb{\alpha} $ is imaginary quadratic, show that $ \Z\sb{\alpha}^\times = \Z\sb{\alpha}^{\times, 1} $ is finite. What are the possibilities for this group?) There are certainly two obvious elements of $ \Z\sb{\sqrt{d}}^{\times, 1} $, namely $ \pm 1 $. All others are of the form $ x + y\sqrt{d} $, with $ x, y \in \Z $ and $ y $ non-zero. We have the following.
 
 \begin{lemma}
+\label{lem:62}
 Let $ x + y\sqrt{d} $ be an element of $ \Z\sb{\sqrt{d}}^{\times, 1} $. Then
 \begin{enumerate}
-\item $ x > 0 $, $ y > 0 $ if and only if $ x + y\sqrt{d} > 1 $.
-\item $ x > 0 $, $ y < 0 $ if and only if $ 0 < x + y\sqrt{d} < 1 $,
-\item $ x < 0 $, $ y > 0 $ if and only if $ -1 < x + y\sqrt{d} < 0 $, and
-\item $ x < 0 $, $ y < 0 $ if and only if $ x + y\sqrt{d} < -1 $.
+\item We have $ x > 0 $, $ y > 0 $ if and only if $ x + y\sqrt{d} > 1 $.
+\item We have $ x > 0 $, $ y < 0 $ if and only if $ 0 < x + y\sqrt{d} < 1 $,
+\item We have $ x < 0 $, $ y > 0 $ if and only if $ -1 < x + y\sqrt{d} < 0 $, and
+\item We have $ x < 0 $, $ y < 0 $ if and only if $ x + y\sqrt{d} < -1 $.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-If $ x, y > 0 $ then $ x + y\sqrt{d} > y\sqrt{d} \ge \sqrt{d} > 1 $. Then $ x - y\sqrt{d} = 1 / \rb{x + y\sqrt{d}} \in \rb{0, 1} $. So replacing $ y $ by $ -y $, we get $ x > 0 $ and $ y < 0 $, so $ 0 < x + y\sqrt{d} < -1 $. Replacing $ \rb{x, y} $ with $ \rb{-x, -y} $ gives the forward in 3 and 4. Since the four possibilities for the right hand side are exhaustive for $ x, y \ne 0 $, we are done.
+It is clear that if $ x, y > 0 $ then $ x + y\sqrt{d} > y\sqrt{d} \ge \sqrt{d} > 1 $. But then $ x - y\sqrt{d} = 1 / \rb{x + y\sqrt{d}} $ lies between $ 0 $ and $ 1 $. So replacing $ y $ by $ -y $, we get $ x > 0 $ and $ y < 0 $, so $ 0 < x + y\sqrt{d} < 1 $. Similarly, replacing $ \rb{x, y} $ with $ \rb{-x, -y} $, $ -x + y\sqrt{d} $ lies between $ -1 $ and $ 0 $, and $ -x - y\sqrt{d} < -1 $. But since the four cases are mutually exclusive and exhaust all the possibilities for $ x, y \ne 0 $, the leftward implications from the right hand side hold as well.
 \end{proof}
 
 \begin{lemma}
-Let $ z = x + y\sqrt{d} $, $ z' = x' + y'\sqrt{d} $ be two elements of $ \Z\sb{\sqrt{d}}^{\times, 1} $ with $ z, z' > 1 $, that is $ x, y, x', y' > 0 $. Then $ z > z' $ if and only if $ y > y' $.
+\label{lem:63}
+Let $ z = x + y\sqrt{d} $, $ z' = x' + y'\sqrt{d} $ be two elements of $ \Z\sb{\sqrt{d}}^{\times, 1} $ with $ z, z' > 1 $, that is $ x, y, x', y' $ all positive. Then $ z > z' $ if and only if $ y > y' $.
 \end{lemma}
 
 \begin{proof}
-$ z - 1 / z = x + y\sqrt{d} - \rb{x - y\sqrt{d}} = 2y\sqrt{d} $. Just need to check that $ z > z' $ if and only if $ z - 1 / z > z' - 1 / z' $. But $ z - 1 / z $ is increasing, since its derivative is $ 1 + 1 / z^2 > 0 $.
+We have $ z - 1 / z = x + y\sqrt{d} - \rb{x - y\sqrt{d}} = 2y\sqrt{d} $. Since $ z - 1 / z $ is increasing for $ z $ positive, since its derivative is $ 1 + 1 / z^2 > 0 $, we have $ z > z' $ if and only if $ z - 1 / z > z' - 1 / z' $, if and only if $ y > y' $.
+\end{proof}
+
+\marginpar{Lecture 18 \\ Wednesday \\ 14/11/18}
+
+Suppose we have a non-trivial element $ z $ of $ \Z\sb{\sqrt{d}}^{\times, 1} $, that is $ z \ne \pm 1 $. Without loss of generality by replacing $ z $ by $ \pm z^{\pm 1} $, we can take $ z > 1 $. So by Lemma \ref{lem:62}, if $ z = x + y\sqrt{d} $, then $ x, y > 0 $. Then there exists $ \epsilon = x + y\sqrt{d} \in \Z\sb{\sqrt{d}}^{\times, 1} $ such that $ x $ and $ y $ are both positive and $ y $ as small as possible. We will call $ \epsilon $ the \textbf{fundamental $ 1 $-unit} in $ \Z\sb{\sqrt{d}} $. By the previous lemmas it is the smallest element of $ \Z\sb{\sqrt{d}}^{\times, 1} $ that is greater than one.
+
+\begin{example}
+For $ d = 2 $, in $ \Z\sb{\sqrt{2}} $ we have $ y = 2 $, $ x = 3 $. So $ \epsilon = 3 + 2\sqrt{2} $.
+\end{example}
+
+\begin{proposition}
+Suppose that $ \Z\sb{\sqrt{d}}^{\times, 1} \ne \cb{\pm 1} $, so there exists a non-trivial element of $ \Z\sb{\sqrt{d}}^{\times, 1} $. Then every element of $ \Z\sb{\sqrt{d}}^{\times, 1} $ is of the form $ \pm \epsilon^n $ for some $ n \in \Z $, where $ \epsilon $ is the fundamental $ 1 $-unit.
+\end{proposition}
+
+Conversely, $ N\rb{\pm \epsilon^n} = N\rb{\pm 1}N\rb{\epsilon}^n = 1 $.
+
+\begin{proof}
+Let $ z $ be an element of $ \Z\sb{\sqrt{d}}^{\times, 1} $, $ z \ne \pm 1 $. After negating $ z $ or replacing $ z $ by $ 1 / z $, as necessary, we can assume that $ z > 1 $. Since $ \epsilon $ is also greater than one, there exists $ n \ge 0 $ such that $ \epsilon^n \le z < \epsilon^{n + 1} $. Then $ 1 \le z\epsilon^{-n} < \epsilon $, so $ N\rb{z\epsilon^{-n}} = N\rb{z}N\rb{\epsilon}^{-n} = 1 $. Then $ z\epsilon^{-n} $ is a $ 1 $-unit in $ \Z\sb{\sqrt{d}}^{\times, 1} $. Since $ \epsilon $ is the smallest $ 1 $-unit greater than one by choice, and Lemma \ref{lem:63}, we have $ z\epsilon^{-n} = 1 $, that is $ z = \epsilon^n $.
+\end{proof}
+
+\begin{example}
+For $ d = 2 $, $ \epsilon = 3 + 2\sqrt{2} $. $ \epsilon^2 = \rb{3 + 2\sqrt{2}}^2 = 17 + 12\sqrt{2} $, and $ 17^2 - 2\rb{12}^2  = 1 $.
+\end{example}
+
+\subsection{Constructing the fundamental $ 1 $-unit}
+
+In fact, we will show that there are always elements of $ \Z\sb{\sqrt{d}}^{\times, 1} $ other than $ \pm 1 $, so that we are always in the situation of the preceding proposition. The key idea is to note that $ x^2 - dy^2 = 0 $ for $ x, y > 0 $ precisely when $ x / y $ is a square root of $ d $, and thus, when $ d $ is squarefree, $ x^2 - dy^2 = 1 $ when $ x / y $ is in some sense as close as possible to $ \sqrt{d} $. This suggests we should think about approximating $ \sqrt{d} $ by rational numbers. So one way to try to find $ 1 $-units is to find rational numbers which are good approximations to $ \sqrt{d} $. $ \abs{x - y\sqrt{d}} = 1 / \abs{x + y\sqrt{d}} $, which is small. Want to make $ \abs{x / y - \sqrt{d}} $ as small as possible for $ y $ of a given size. More generally, it is clear that if $ x $ and $ y $ are integers, and $ \alpha $ is an irrational number, then we can make $ \abs{x / y - \alpha} $ as small as we want. However, in order to do so we might need to make $ y $ large. We will thus be interested in approximations to $ \alpha $ where the error $ \abs{x / y - \alpha} $ is small compared to $ C / y^n $ for various $ C, n $ fixed. As $ n $ gets larger it will become harder and harder to find such approximations. $ n = 0 $ is trivial. When $ n = 1 $ and $ C = 1 $ the situation is very easy. For any $ \alpha $, and any $ y $, there exists $ x $ such that $ x / y $ is as close to $ \alpha $ as possible, and $ \abs{x / y - \alpha} < 1 / y $. When $ n = 2 $ things are much less obvious, but in fact we have the following important result that there always exist infinitely many $ x, y $ with $ \abs{x / y - \alpha} < 1 / y^2 $, due to Dirichlet.
+
+\begin{theorem}[Dirichlet]
+\label{thm:65}
+Let $ \alpha $ be an irrational number, and let $ Q \in \Z_{> 1} $. Then there exist $ p, q \in \Z $, with $ 1 \le q < Q $, such that $ \abs{p - q\alpha} < 1 / Q $.
+\end{theorem}
+
+\begin{proof}
+For $ 1 \le k \le Q - 1 $, let $ a_k = \left\lfloor k\alpha \right\rfloor $, so that $ 0 < k\alpha - a_k < 1 $. Partition the interval $ \sb{0, 1} $ into $ Q $ subintervals of length $ 1 / Q $, $ \sb{0, 1 / Q}, \dots, \sb{\rb{Q - 1} / Q, 1} $. One of these intervals contains some pair of elements of the set
+$$ \cb{0, \alpha - a_1, \dots, \rb{Q - 1}\alpha - a_{Q - 1}, 1}, $$
+which contains $ Q + 1 $ elements. The difference between these two elements is of the form $ p - q\alpha $, where $ p, q \in \Z $ and $ 1 \le q < Q $, and this difference is less than $ 1 / Q $.
+\end{proof}
+
+\begin{corollary}
+\label{cor:66}
+For any irrational $ \alpha $, there are infinitely many pairs $ p, q \in \Z $ such that $ \abs{\alpha - p / q} < 1 / q^2 $.
+\end{corollary}
+
+\begin{proof}
+Certainly there exists $ p $ for $ q = 1 $. It suffices to show, given any $ p, q $ with $ \abs{\alpha - p / q} < 1 / q^2 $, that we can find another $ p', q' $ with $ \abs{\alpha - p' / q'} < 1 / \rb{q'}^2 $ and $ \abs{\alpha - p' / q'} < \abs{\alpha - p / q} $. Suppose given such a $ p, q $, and choose $ Q $ such that $ 1 / Q < \abs{\alpha - p / q} $. Then by Theorem \ref{thm:65}, there exist $ p', q' $ with $ 1 \le q' < Q $, and $ \abs{\alpha - p' / q'} < 1 / \rb{Qq'} < 1 / \rb{q'}^2 $. Also $ \abs{\alpha - p' / q'} < 1 / \rb{Qq'} \le 1 / Q < \abs{\alpha - p / q} $, as required. The claim follows.
+\end{proof}
+
+We can now show the following.
+
+\begin{theorem}
+For any squarefree $ d > 1 $, there is a nontrivial solution $ x, y \ne 0 $ to $ x^2 - dy^2 = 1 $.
+\end{theorem}
+
+\begin{proof}
+Corollary \ref{cor:66} gives us infinitely many pairs $ \rb{p_i, q_i} $ such that $ p_i, q_i > 0 $ and $ \abs{p_i / q_i - \sqrt{d}} < 1 / q_i^2 $, that is $ \abs{p_i - q_i\sqrt{d}} < 1 / q_i $. Note that then
+$$ \abs{p_i + q_i\sqrt{d}} \le \abs{p_i - q_i\sqrt{d}} + 2q_i\sqrt{d} < 1 / q_i + 2q_i\sqrt{d} < 3q_i\sqrt{d}. $$
+We thus have
+$$ \abs{N\rb{p_i + q_i\sqrt{d}}} = \abs{p_i + q_i\sqrt{d}}\abs{p_i - q_i\sqrt{d}} < \rb{3q_i\sqrt{d}}\rb{1 / q_i} = 3\sqrt{d}. $$
+Thus for some $ M $ between $ -3\sqrt{d} $ and $ 3\sqrt{d} $ there are infinitely many pairs $ \rb{p_i, q_i} $ such that $ N\rb{p_i + q_i\sqrt{d}} = M $ for infinitely many $ i $. Since there are finitely many congruence classes modulo $ M $, there is some pair $ \rb{p_0, q_0} $ such that there are infinitely many pairs $ \rb{p_i, q_i} $ with
+$$ N\rb{p_i + q_i\sqrt{d}} = M, \qquad p_i \equiv p_0 \mod M, \qquad q_i \equiv q_0 \mod M, $$
+for infinitely many $ i $. Now for $ \rb{p_i, q_i} $ and $ \rb{p_j, q_j} $ any two distinct such pairs of this form, that is
+$$ N\rb{p_i + q_i\sqrt{d}} = N\rb{p_j + q_j\sqrt{d}} = M, \qquad p_i \equiv p_j \mod M, \qquad q_i \equiv q_j \mod M, $$
+consider the quotient
+$$ \dfrac{\rb{p_i - q_i\sqrt{d}}}{\rb{p_j + q_j\sqrt{d}}} = \dfrac{\rb{p_i - q_i\sqrt{d}}\rb{p_j + q_j\sqrt{d}}}{M} = \dfrac{\rb{p_ip_j - dq_iq_j} + \rb{p_iq_j - p_jq_i}\sqrt{d}}{M}. $$
+The congruence conditions show that $ p_iq_j \equiv p_jq_i \mod M $ and $ p_ip_j - dq_iq_j \equiv p_i^2 - dq_i^2 = M \equiv 0 \mod M $. So $ \rb{p_i - q_i\sqrt{d}} / \rb{p_j - q_j\sqrt{d}} \in \Z\sb{\sqrt{d}} $, and it has norm $ N\rb{\rb{p_i - q_i\sqrt{d}} / \rb{p_j - q_j\sqrt{d}}} = M / M = 1 $ by multiplicativity of the norm, as required.
 \end{proof}
 
 \end{document}
