@@ -1505,20 +1505,20 @@ In order to refine the statement of Bézout's theorem, we need to introduce the 
 
 \begin{notation}
 Let $ f \in \C\sb{x_0, \dots, x_n} $ and let $ \alpha \in \N^{n + 1} $ be a multi-index. Recall that $ \abs{\alpha} = \alpha_0 + \dots + \alpha_n $. Denote
-$$ \partial^\alpha f = \partial_{x_0}^{\alpha_0} \dots \partial_{x_n}^{\alpha_n} f = \dfrac{\partial^{\abs{\alpha}} f}{\partial x_0^{\alpha_0} \dots \partial x_n^{\alpha_n}}, $$
+$$ \partial^\alpha f = f_{x_0^{\alpha_0} \dots x_n^{\alpha_n}} = \dfrac{\partial^{\abs{\alpha}} f}{\partial x_0^{\alpha_0} \dots \partial x_n^{\alpha_n}}, $$
 and recall that for all $ \alpha $, $ \partial^\alpha f $ is a polynomial, and that $ \partial^\alpha f \equiv 0 $ whenever all its coefficients are zero. Set $ \partial^{\rb{0, \dots, 0}} f = f $.
 \end{notation}
 
 \begin{example}
-Let $ n = 1 $. $ \partial^{\rb{1, 1}} f = \partial_{x_0} \partial_{x_1} f = \partial_{x_1} \partial_{x_0} f $.
+Let $ n = 1 $. $ \partial^{\rb{1, 1}} f = f_{x_1, x_0} = f_{x_0, x_1} $.
 \end{example}
 
 \begin{example}
 Let $ f = x_0^2x_1 + x_0x_1x_2 $.
 \begin{enumerate}
 \item $ \alpha = \rb{0, 0, 0} $ gives $ \partial^\alpha f = f = x_0^2x_1 + x_0x_1x_2 $.
-\item $ \alpha = \rb{1, 0, 0} $ gives $ \partial^\alpha f = \partial_{x_0} f = 2x_0x_1 + x_1x_2 $.
-\item $ \alpha = \rb{0, 1, 1} $ gives $ \partial^\alpha f = \partial_{x_1} \partial_{x_2} f = x_0 $.
+\item $ \alpha = \rb{1, 0, 0} $ gives $ \partial^\alpha f = f_{x_0} = 2x_0x_1 + x_1x_2 $.
+\item $ \alpha = \rb{0, 1, 1} $ gives $ \partial^\alpha f = f_{x_1, x_2} = x_0 $.
 \end{enumerate}
 \end{example}
 
@@ -1547,12 +1547,12 @@ Multiplicity of $ f = x_0^2x_1 + x_0x_1x_2 $ at $ p = \rb{0, 0, 0} $.
 \item $ \abs{\alpha} = 0 $ gives $ \partial^{\rb{0, 0, 0}} f\rb{p} = f\rb{p} = 0 $.
 \item $ \abs{\alpha} = 1 $ gives
 \begin{enumerate}
-\item $ \partial^{\rb{1, 0, 0}} f\rb{p} = \partial_{x_0} f\rb{p} = \rb{2x_0x_1 + x_1x_2}\rb{0, 0, 0} = 0 $,
-\item $ \partial^{\rb{0, 1, 0}} f\rb{p} = \partial_{x_1} f\rb{p} = \rb{x_0^2 + x_0x_2}\rb{0, 0, 0} = 0 $, and
-\item $ \partial^{\rb{0, 0, 1}} f\rb{p} = \partial_{x_2} f\rb{p} = \rb{x_0x_1}\rb{0, 0, 0} = 0 $.
+\item $ \partial^{\rb{1, 0, 0}} f\rb{p} = f_{x_0}\rb{p} = \rb{2x_0x_1 + x_1x_2}\rb{0, 0, 0} = 0 $,
+\item $ \partial^{\rb{0, 1, 0}} f\rb{p} = f_{x_1}\rb{p} = \rb{x_0^2 + x_0x_2}\rb{0, 0, 0} = 0 $, and
+\item $ \partial^{\rb{0, 0, 1}} f\rb{p} = f_{x_2}\rb{p} = \rb{x_0x_1}\rb{0, 0, 0} = 0 $.
 \end{enumerate}
 \item $ \abs{\alpha} = 2 $ gives $ \partial^\alpha = 0 $ for all $ \alpha $ with $ \abs{\alpha} = 2 $.
-\item But $ \partial^{\rb{2, 1, 0}} f\rb{p} = \partial_{x_0}^2 \partial_{x_1} f\rb{p} = 2 $.
+\item But $ \partial^{\rb{2, 1, 0}} f\rb{p} = f_{x_0^2x_1}\rb{p} = 2 $.
 \end{enumerate}
 So multiplicity of $ f $ at $ p $ is three.
 \end{example}
@@ -1569,13 +1569,13 @@ $$ \partial^\alpha P\rb{\lambda a, \lambda b, \lambda c} = \lambda^{\deg\rb{P} -
 Left hand side is zero if and only if $ \partial^\alpha P\rb{a, b, c} $ is zero.
 \begin{enumerate}
 \item $ mult_p\rb{C} = 0 $ if and only if $ P\rb{p} = \partial^{\rb{0, 0, 0}} P\rb{p} \ne 0 $, that is if and only if $ p \notin C $.
-\item $ mult_p\rb{C} = 1 $ if and only if $ P\rb{p} = \partial^{\rb{0, 0, 0}} P\rb{p} = 0 $ and there is $ \alpha $ with $ \abs{\alpha} = 1 $ such that $ \partial^{\alpha} P\rb{p} \ne 0 $. Since the only indices $ \alpha $ with $ \abs{\alpha} = 1 $ are $ \rb{1, 0, 0} $, $ \rb{0, 1, 0} $, and $ \rb{0, 0, 1} $, this happens if and only if at least one of $ \partial_{x_0} P\rb{p} $, $ \partial_{x_1} P\rb{p} $, or $ \partial_{x_2} P\rb{p} $ is non-zero, if and only if $ p $ is not a singular point of $ C $. Thus, $ mult_p\rb{C} = 1 $ if and only if $ p $ is a smooth point of $ C $.
+\item $ mult_p\rb{C} = 1 $ if and only if $ P\rb{p} = \partial^{\rb{0, 0, 0}} P\rb{p} = 0 $ and there is $ \alpha $ with $ \abs{\alpha} = 1 $ such that $ \partial^{\alpha} P\rb{p} \ne 0 $. Since the only indices $ \alpha $ with $ \abs{\alpha} = 1 $ are $ \rb{1, 0, 0} $, $ \rb{0, 1, 0} $, and $ \rb{0, 0, 1} $, this happens if and only if at least one of $ P_{x_0}\rb{p} $, $ P_{x_1}\rb{p} $, or $ P_{x_2}\rb{p} $ is non-zero, if and only if $ p $ is not a singular point of $ C $. Thus, $ mult_p\rb{C} = 1 $ if and only if $ p $ is a smooth point of $ C $.
 \item Similarly $ mult_p\rb{C} \ge 2 $ if and only if $ p $ is a singular point of $ C $.
-\item $ mult_p\rb{C} \le \deg\rb{C} $. Why? Suppose $ \deg\rb{C} = n $. Pick a monomial $ x_{i_1}, \dots, x_{i_n} $ that appears with non-zero coefficient in $ P $. Then $ \partial_{x_{i_1}} \dots \partial_{x_{i_n}}\rb{p} \ne 0 $ for any $ p \in \P^2 $.
+\item $ mult_p\rb{C} \le \deg\rb{C} $. Why? Suppose $ \deg\rb{C} = n $. Pick a monomial $ x_{i_1}, \dots, x_{i_n} $ that appears with non-zero coefficient in $ P $. Then $ P_{x_{i_1} \dots x_{i_n}}\rb{p} \ne 0 $ for any $ p \in \P^2 $.
 \end{enumerate}
 
 \begin{example}
-The curve with equation $ P\rb{x_0, x_1, x_2} = x_0^2x_2 - x_1^2\rb{x_1 + x_2} $ has multiplicity two at $ \sb{0, 0, 1} $. Indeed, $ P_{x_0} = 2x_0x_2 $, $ P_{x_1} = -3x_1^2 - 2x_1x_2 $, $ P_{x_2} = x_0^2 - x_1^2 $ all vanish at $ \rb{0, 0, 1} $, and $ P_{x_0x_0} = 2x_2 $ does not vanish at $ \rb{0, 0, 1} $.
+The curve with equation $ P\rb{x_0, x_1, x_2} = x_0^2x_2 - x_1^2\rb{x_1 + x_2} $ has multiplicity two at $ \sb{0, 0, 1} $. Indeed, $ P_{x_0} = 2x_0x_2 $, $ P_{x_1} = -3x_1^2 - 2x_1x_2 $, $ P_{x_2} = x_0^2 - x_1^2 $ all vanish at $ \rb{0, 0, 1} $, and $ P_{x_0, x_0} = 2x_2 $ does not vanish at $ \rb{0, 0, 1} $.
 \end{example}
 
 \begin{exercise}
@@ -1809,6 +1809,7 @@ in $ \C\sb{x_1, x_2} $, and $ mult_{\sb{b, c}}\rb{R} = mult_{\sb{b, c}}\rb{R_1} 
 The following proposition gathers a few important properties of intersection multiplicities.
 
 \begin{proposition}
+\label{prop:12.5}
 Let $ C, D \subseteq \P^2 $ be projective curves defined by homogeneous polynomials $ P, Q \in \C\sb{x_0, x_1, x_2} $. Let $ p \in \P^2 $ be a point. The intersection number $ I\rb{p, P, Q} $ satisfies the following.
 \begin{enumerate}
 \item Intersection numbers are symmetric, so $ I\rb{p, C, D} = I\rb{p, D, C} $.
@@ -1859,5 +1860,128 @@ I\rb{p, C_1, C_2}
 & = 2 & \text{by } 4.
 \end{align*}
 \end{example}
+
+\marginpar{Lecture 18 \\ Friday \\ 16/11/18}
+
+What about when $ D $ is a line $ L $?
+
+\begin{exercise}
+Let
+$$ C = \cb{x_0x_2^2 - x_1\rb{x_1 - x_0}\rb{x_1 + x_0} = 0} \subseteq \P^2, $$
+$ p = \sb{0 : 0 : 1} $, and let
+$$ L = \cb{ax_0 + bx_2 = 0} \subseteq \P^2, $$
+for some $ a, b \in \C $ not both zero. Compute $ I\rb{p, C, L} $.
+\end{exercise}
+
+\begin{proposition}
+Let $ C \subseteq \P^2 $ be a projective curve and $ p \in C $ a smooth point. If $ L = T_p\rb{C} $ is the tangent line to $ C $ at $ p $, $ I\rb{p, C, T_p\rb{C}} > 1 $.
+\end{proposition}
+
+(TODO Exercise: prove the converse)
+
+\begin{proof}
+Let $ C = \cb{P = 0} $ and $ p = \sb{a, b, c} $. We may assume that $ \sb{1, 0, 0} \notin C \cup T_p\rb{C} $ so that $ P_{x_0}\rb{a, b, c} \ne 0 $. The tangent to $ C $ at $ p $ is
+$$ T_p\rb{C} = \cb{P_{x_0}\rb{a, b, c} \cdot x_0 + P_{x_1}\rb{a, b, c} \cdot x_1 + P_{x_2}\rb{a, b, c} \cdot x_2 = 0}, $$
+so
+$$ x_0 = -\dfrac{P_{x_1}\rb{a, b, c}x_1 + P_{x_2}\rb{a, b, c}x_2}{P_{x_0}\rb{a, b, c}}, $$
+and from applying Lemma \ref{lem:12.1} to
+$$ p\rb{x} = P\rb{x, b', c'}, \qquad q\rb{x} = x + \dfrac{P_{x_1}\rb{a, b, c}b' + P_{x_2}\rb{a, b, c}c'}{P_{x_0}\rb{a, b, c}}, $$
+it follows that the resultant $ R_{C, L} $ is equal to a scalar multiple of the polynomial in $ x_1, x_2 $
+$$ Q\rb{x_1, x_2} = P\rb{-\dfrac{P_{x_1}\rb{a, b, c}x_1 + P_{x_2}\rb{a, b, c}x_2}{P_{x_0}\rb{a, b, c}}, x_1, x_2}. $$
+If $ P $ is not monic in $ x_0 $, there will be a non-zero constant factor, irrelevant when taking multiplicity. The multiplicity $ I\rb{p, C, T_p\rb{C}} > 1 $ if and only if $ Q $ has a repeated factor $ \rb{cx_1 - bx_2} $ at $ p $. This holds because
+$$ Q\rb{b, c} = P\rb{a, b, c} = 0, \qquad Q_{x_1}\rb{b, c} = P_{x_0}\rb{a, b, c}\rb{-\dfrac{P_{x_1}\rb{a, b, c}}{P_{x_0}\rb{a, b, c}}} + P_{x_1}\rb{a, b, c} + 0 = 0, $$
+and same for $ Q_{x_2}\rb{b, c} = 0 $ by the chain rule, so that $ \sb{b, c} $ is a common root of $ Q $ and $ Q_{x_i} $. Claim that this implies that $ Q\rb{x_1, x_2} = \rb{cx_1 - bx_2}^2 \cdot R\rb{x_1, x_2} $ for some polynomial $ R $. This concludes the proof.
+\end{proof}
+
+\begin{exercise}
+Show that the claim holds, so $ \rb{cx_1 - bx_2}^2 \mid Q\rb{x_1, x_2} $.
+\end{exercise}
+
+One can actually define intersection multiplicities of projective curves $ C, D \subseteq \P^2 $ by the properties listed in Proposition \ref{prop:12.5}. We will not prove this, see Theorem 3.18 in Kirwan's book if you are interested.
+
+\begin{proposition}
+\label{prop:12.8}
+Properties $ 1 $ to $ 6 $ in Proposition \ref{prop:12.5} determine uniquely and characterise completely $ I\rb{p, C, D} $ for any point $ p \in \P^2 $ and any projective curves $ C, D \subseteq \P^2 $.
+\end{proposition}
+
+\begin{remark}
+Proposition \ref{prop:12.8} is another proof that the intersection multiplicity is defined independent of the choice of coordinates on $ \P^2 $, that is that $ I\rb{p, C, D} = I\rb{\Psi\rb{p}, \Psi\rb{C}, \Psi\rb{D}} $ for any projective transformation $ \Psi : \P^2 \to \P^2 $.
+\end{remark}
+
+\begin{remark}
+Another consequence is that the intersection multiplicity $ I\rb{p, C, D} $ depends only on the components of $ C $ and $ D $ that contain the point $ p $.
+\end{remark}
+
+The intersection of two distinct lines at their point of intersection is one. The next question we could ask is, when do curves C and D intersect at a point $ p \in C \cap D $ with multiplicity one? The following proposition, that we state without proving, gives the answer.
+
+\begin{proposition}
+Let $ C, D \subseteq \P^2 $ be projective curves and $ p $ a point of $ \P^2 $. Then $ I\rb{p, C, D} = 1 $ if and only if $ p \in C \cap D $ is a smooth point of $ C $ and of $ D $ and if the tangent lines to $ C $ and $ D $ at $ p $ are distinct.
+\end{proposition}
+
+$ C $ and $ D $ meet \textbf{transversely} at $ p $.
+
+\begin{remark}
+By Proposition \ref{prop:12.5}(2), (3), $ I\rb{p, C, D} $ is a non-zero finite number if and only if $ p \in C \cap D $ and $ p $ does not lie on a common component of $ C $ and $ D $, and by Lemma \ref{lem:11.7}, $ 1 \le mult_p\rb{C} \cdot mult_p\rb{D} \le I\rb{p, C, D} = 1 $ implies that $ mult_p\rb{C} = mult_p\rb{D} = 1 $, so that $ p $ is a smooth point of $ C $ and of $ D $. We would therefore have to show that if $ p \in C \cap D $ is a smooth point of $ C $ and of $ D $, $ I\rb{p, C, D} = 1 $ if and only if the tangent lines $ L_C $ and $ L_D $ of $ C $ and $ D $ at $ p $ are distinct.
+\end{remark}
+
+This proposition implies immediately the following corollary.
+
+\begin{corollary}
+Let $ C, D \subseteq \P^2 $ be two projective curves with no common component, $ n = \deg\rb{C} $, and $ m = \deg\rb{D} $. Then for any $ p \in C \cap D $, $ C $ and $ D $ are smooth at $ p $ and have distinct tangent lines at $ p $ if and only if
+$$ \#\cb{C \cap D} = n \cdot m. $$
+\end{corollary}
+
+\begin{example}
+Let $ L $ be a projective line and $ C \subseteq \P^2 $ a curve of degree $ d $. If $ p \in C \cap L $, $ I\rb{p, C, L} > 1 $ if and only if either $ C $ is singular at $ p $ or if $ L $ is the tangent line to $ C $ at $ p $. More generally, $ I\rb{p, C, L} > mult_p\rb{C} $ if and only if $ L $ is one of the higher tangent lines at $ p $, see problem sheet 2.
+\end{example}
+
+\begin{example}
+Let $ y^2 = x^2\rb{x + 1} = x^3 + x^2 $. Lowest degree form is $ y^2 = x^2 $, so higher tangent lines at origin are $ y \pm x $.
+\end{example}
+
+\begin{example}
+Let $ y^2 = x^3 $. Lowest degree form is $ y^2 = 0 $, so higher tangent lines at origin are $ y^2 = 0 $.
+\end{example}
+
+\begin{exercise}
+Let $ C = \cb{x_0x_2^2 - x_1\rb{x_1 - x_0}\rb{x_1 + x_0} = 0} $, $ L = \cb{ax_0 + bx_1 = 0} $ for $ \rb{a, b} \ne \rb{0, 0} $ and $ p = \sb{0, 0, 1} $. Compute $ I\rb{p, C, L} $.
+\end{exercise}
+
+\section{Cubic curves}
+
+In this section, we investigate the geometry of cubic curves. Up to projective transformation,
+\begin{enumerate}
+\item a projective line is $ L = \cb{x_0 = 0} $, and
+\item a smooth irreducible conic is $ C = \cb{x_0^2 + x_1^2 + x_2^2 = 0} \subset \P^2 $.
+\end{enumerate}
+The equation of a smooth line or conic can be brought in a uniquely determined \textbf{standard form}. What about cubics? By contrast, we will see that the equation of a smooth cubic curve can be brought in standard form, but that standard form depends on a parameter. We prove the following.
+
+\begin{theorem}
+\label{thm:13.1}
+Let $ C \subseteq \P^2 $ be a smooth projective cubic curve of degree three. Then, there exists a projective transformation $ \Psi : \P^2 \to \P^2 $ and $ \lambda \in \C \setminus \cb{0, 1} $ such that
+$$ \Psi\rb{C} = \cb{x_1^2x_2 = x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2}} \subset \P^2. $$
+\end{theorem}
+
+Dehomogenising with respect to $ x_2 $, $ y^2 = x\rb{x - 1}\rb{x - \lambda} $ is the Legendre form for elliptic curves. In order to prove Theorem \ref{thm:13.1}, we need to define inflection points of projective curves. These will generalise the points of inflection on graphs of functions.
+
+\begin{definition}
+Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial. The \textbf{Hessian matrix} of $ P $ is the symmetric matrix whose entries are the second order differentials of $ P $
+$$ H_P = \rb{\dfrac{\partial^2 P}{\partial x_i \partial x_j}}_{0 \le i, j \le 2} = \begin{pmatrix} P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0, x_2} \\ P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1, x_2} \\ P_{x_2, x_0} & P_{x_2, x_1} & P_{x_2, x_2} \end{pmatrix}. $$
+The \textbf{Hessian} of $ P $ is $ \mathcal{H}_P\rb{x_0, x_1, x_2} = \det\rb{H_P} $. $ \mathcal{H}_P $ is a homogeneous polynomial of degree $ 3\rb{d - 2} $ when $ d \ge 3 $. An \textbf{inflection point} of $ C $ is a smooth point $ p = \sb{a, b, c} $ of $ C $ such that $ \mathcal{H}_P\rb{a, b, c} = 0 $.
+\end{definition}
+
+The only thing there is to check is that $ \mathcal{H}_P $ is a homogeneous polynomial of the specified degree. When $ d \ge 3 $, all non-zero entries of $ H_P $ are homogeneous polynomials of degree $ d - 2 $, and $ H_P $ is a $ 3 \times 3 $ matrix, so $ \mathcal{H}_P $ is indeed a homogeneous polynomial of degree $ 3\rb{d - 2} $.
+
+\begin{lemma}
+Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial of degree $ d > 1 $. Then
+\begin{equation}
+\label{eq:7}
+x_2^2 \cdot \mathcal{H}_P = \rb{d - 1}^2 \cdot \det\begin{pmatrix} P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0} \\ P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1} \\ P_{x_0} & P_{x_1} & \dfrac{d}{d - 1} \cdot P \end{pmatrix}.
+\end{equation}
+\end{lemma}
+
+\begin{remark}
+Analogous formulae to $ \rb{\ref{eq:7}} $ can be stated for $ x_0 $, $ x_1 $.
+\end{remark}
 
 \end{document}

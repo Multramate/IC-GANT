@@ -1440,4 +1440,86 @@ Warning that quotients of UFDs are only rarely UFDs themselves.
 $ \Z\sb{X} $ is a UFD. $ \Z\sb{X} / \ab{X^2 + 5} = \Z\sb{\sqrt{-5}} $ is not a UFD.
 \end{example}
 
+\marginpar{Lecture 19 \\ Friday \\ 16/11/18}
+
+\subsection{Irreducible polynomials}
+
+A question is how can we test if $ P\rb{X} \in K\sb{X} $ is irreducible. We will now use the results of the previous section to obtain criteria for proving polynomials are irreducible. We begin with some trivial observations.
+
+\begin{lemma}
+Let $ K $ be any field, and $ P\rb{X} \in K\sb{X} $ of degree two or three. Then $ P\rb{X} $ is irreducible if and only if $ P\rb{X} $ has no root in $ K $.
+\end{lemma}
+
+\begin{proof}
+Any nontrivial factor of $ P\rb{X} $ would have to have degree one or two. Either way, if $ P\rb{X} $ is reducible it must have a linear factor.
+\end{proof}
+
+Slightly less trivially, if $ K $ is finite there is a necessary and sufficient
+criterion for irreducibility. Let $ K = \F_q $ be a finite field with $ q = p^s $ elements.
+
+\begin{lemma}
+$ X^{q^r} - X $ is the product of $ P\rb{X} \in \F_q\sb{X} $ irreducible, monic of degree dividing $ r $.
+\end{lemma}
+
+\begin{proof}
+Let $ P\rb{X} $ be irreducible monic of degree $ d \mid r $. Consider $ K\rb{\alpha} $, where $ \alpha $ is a root of $ P\rb{X} $. Thus $ K\rb{\alpha} $ has order $ q^d $. So $ \alpha^{q^d} = \alpha $. Since $ d \mid r $, $ \alpha^{q^r} = \alpha $. So $ \alpha $ is a root of $ X^{q^r} - X $. But $ P\rb{X} $ is the minimal polynomial of $ \alpha $, so $ P\rb{X} \mid X^{q^r} - X $. Suppose $ P\rb{X}^2 \mid X^{q^r} - X $. Write $ X^{q^r} - X = P\rb{X}^2Q\rb{X} $. Take derivatives, $ -1 = 2P\rb{X}P'\rb{X}Q\rb{X} + P\rb{X}^2Q'\rb{X} $. Since $ P\rb{X} \nmid -1 $, this is impossible. Finally, let $ P\rb{X} \in K\sb{X} $ irreducible be a divisor of $ X^{q^r} - X $. Let $ K' = \F_{q^r} $ contain $ K $. $ X^{q^r} - X $ factors into linear factors over $ K' $. So there exists $ \alpha \in K' $ such that $ P\rb{\alpha} = 0 $. $ P\rb{X} $ is the minimal polynomial of $ \alpha $ over $ K $, so have $ K\sb{X} / \ab{P\rb{X}} \hookrightarrow K' $ by $ X \mapsto \alpha $. Order of $ K\sb{X} / \ab{P\rb{X}} $ is $ q^{\deg\rb{P}} $ and order of $ K' $ is $ q^r $, so $ q^r = \rb{q^{\deg\rb{P}}}^n $, so $ \deg\rb{P} \mid r $.
+\end{proof}
+
+\begin{corollary}
+Let $ P\rb{X} $ in $ \F_q\sb{X} $ have degree $ d $. Then $ P\rb{X} $ is irreducible if and only if the greatest common divisor of $ P\rb{X} $ and $ X^{q^r} - X $ is one for all $ 1 \le r < d $.
+\end{corollary}
+
+\begin{proof}
+If the polynomial $ P\rb{X} $ is irreducible, it does not divide $ X^{q^r} - X $ for $ r < d $. Conversely, if $ P\rb{X} $ is reducible, there exists an irreducible polynomial $ Q\rb{X} $ of degree $ 0 < r < d $ such that $ Q\rb{X} \mid P\rb{X} $, and then $ Q\rb{X} \mid X^{q^r} - X $ in $ \F_q\sb{X} $.
+\end{proof}
+
+Having obtained a satisfactory criterion for finite fields, the next simplest case to look at this that of $ \Q\sb{X} $. This is already much more complicated. We will take advantage of the fact that $ \Z\sb{X} $ lives inside $ \Q\sb{X} $. In fact, all of our tricks will work in the following more general situation. $ R $ is a UFD with field of fractions $ K $, and we consider polynomials over $ K\sb{X} $. As we have seen, irreducibility over $ K $ is closely related to irreducibility in $ R\sb{X} $. Let $ P\rb{X} $ be a polynomial in $ K\sb{X} $ and $ d = \deg\rb{P} $. We can multiply $ P\rb{X} $ by scalars without substantially changing its factorisation, so we can assume that $ P\rb{X} $ is monic. In general there might be denominators in the coefficients of $ P\rb{X} $, but note that for any $ r \in R $, if
+$$ P\rb{X} = c_0 + \dots + X^d, $$
+then define a polynomial $ Q_r\rb{X} $ by
+$$ Q_r\rb{X} = r^dP\rb{\dfrac{X}{r}} = c_0r^d + \dots + X^d. $$
+It is easy to see that $ Q_r\rb{X} $ is irreducible in $ K\sb{X} $ if and only if $ P\rb{X} $ is. Moreover, we can choose $ r $ so that $ Q_r\rb{X} $ has coefficients in $ R $. We are thus reduced to the problem of deciding whether a monic polynomial with coefficients in $ R $ is irreducible in $ K\sb{X} $. Moreover, we have shown that such a polynomial $ Q_r\rb{X} $ is irreducible in $ K\sb{X} $ if and only if it is irreducible in $ R\sb{X} $. Therefore a question is given $ Q\rb{X} $ monic in $ R\sb{X} $, how can we prove or test irreducibility? We get the following nice criterion for irreducibility.
+
+\begin{proposition}
+Let $ Q\rb{X} $ be a monic polynomial in $ R\sb{X} $, and let $ \mathfrak{p} $ be a prime ideal of $ R $. Suppose that the modulo $ \mathfrak{p} $ reduction $ \bar{Q}\rb{X} $ is irreducible in $ R / \mathfrak{p}\sb{X} $. Then $ Q\rb{X} $ is irreducible in $ R\sb{X} $.
+\end{proposition}
+
+\begin{proof}
+Suppose $ Q\rb{X} $ were reducible in $ R\sb{X} $. Since $ Q\rb{X} $ is monic, $ Q\rb{X} $ must factor as $ A\rb{X}B\rb{X} $ where both $ A\rb{X} $ and $ B\rb{X} $ are not units. Can assume $ A, B $ are monic of positive degree $ \deg\rb{A}, \deg\rb{B} > 0 $, since leading coefficients of $ A, B $ multiply to one. Then $ \bar{Q}\rb{X} $ factors in $ R / \mathfrak{p}\sb{X} $ as $ \bar{A}\rb{X}\bar{B}\rb{X} $, where both are monic of positive degree between $ 1 $ and $ \deg\rb{\bar{Q}\rb{X}} - 1 $, so $ \bar{Q}\rb{X} $ is also reducible.
+\end{proof}
+
+This means, for instance, that we can show that a monic polynomial in $ \Z\sb{X} $ is irreducible if we can find even one prime $ p $ for which it is irreducible modulo $ p $.
+
+\begin{example}
+$ X^2 + aX + b \in \Z\sb{X} $ with $ a, b $ odd is irreducible in $ \Q\sb{X} $. Its reduction modulo $ 2 $ is $ X^2 + X + 1 $, which is irreducible in $ \F_2\sb{X} $.
+\end{example}
+
+Unfortunately, even when the polynomial is irreducible we will not always be able to do this.
+
+\begin{example}
+The polynomial $ X^4 + 1 $ is irreducible in $ \Z\sb{X} $ and $ \Q\sb{X} $, but reducible modulo $ p $ for every $ p $. You can prove this with some elementary number theory. $ X^4 + 1 = \rb{X + 1}^4 $ in $ \F_2\sb{X} $. If $ p $ is odd, $ X^4 + 1 $ has a common factor, and in fact divides $ X^{p^2} - X $. In fact $ X^4 + 1 \mid X^{p^2 - 1} - 1 $. If $ p = 2k + 1 $, $ p^2 = 4k^2 + 4k + 1 = 4\rb{k^2 + k} + 1 = 8m + 1 $ since $ k^2 + k $ is even. $ X^{p^2 - 1} - 1 = X^{8m} - 1 = \rb{X^4 + 1}\rb{X^{8m - 4} - \dots - 1} $.
+\end{example}
+
+There is another sufficient criterion for irreducibility by reducing modulo $ \mathfrak{p} $, known as Eisenstein's criterion.
+
+\begin{proposition}[Eisenstein's criterion]
+Let $ Q\rb{X} = a_0 + \dots + X^n $ be a monic polynomial in $ R\sb{X} $, and let $ \mathfrak{p} $ be a prime ideal of $ R $. Suppose that
+\begin{enumerate}
+\item for $ 0 \le i \le n - 1 $, $ a_i \in \mathfrak{p} $, and
+\item $ a_0 \notin \mathfrak{p}^2 $.
+\end{enumerate}
+Then $ Q\rb{X} $ is irreducible in $ R\rb{X} $.
+\end{proposition}
+
+\begin{proof}
+Suppose $ Q\rb{X} $ is reducible, then we can write $ Q\rb{X} = A\rb{X}B\rb{X} $ in $ R\sb{X} $, with $ A\rb{X} $ and $ B\rb{X} $ monic of positive degree less than $ \deg\rb{Q\rb{X}} $. Reducing modulo $ \mathfrak{p} $ we find that $ \bar{Q}\rb{X} = X^n = \bar{A}\rb{X}\bar{B}\rb{X} $ in $ R / \mathfrak{p}\sb{X} $. In particular, since $ R / \mathfrak{p} $ is an integral domain, one of $ \bar{A}\rb{0} $ or $ \bar{B}\rb{0} $ is zero, say $ \bar{A}\rb{0} = 0 $. Write $ \bar{A}\rb{X} = X^d\bar{S}\rb{X} $ for $ \bar{S}\rb{0} \ne 0 $. Degree $ d $ term of $ \bar{A}\rb{X}\bar{B}\rb{X} $ is $ \bar{S}\rb{0}\bar{B}\rb{0} $. $ d < n $, so $ \bar{S}\rb{0}\bar{B}\rb{0} = 0 $ gives $ \bar{B}\rb{0} = 0 $, so both $ \bar{A}\rb{0} = \bar{B}\rb{0} = 0 $. But then the constant terms $ A\rb{0} $ and $ B\rb{0} $ of $ A\rb{X} $ and $ B\rb{X} $ both lie in $ \mathfrak{p} $, so the constant term $ a_0 = Q\rb{0} = A\rb{0}B\rb{0} $ of $ Q\rb{X} = A\rb{X}B\rb{X} $ must lie in $ \mathfrak{p}^2 $, contradicting our assumptions.
+\end{proof}
+
+\begin{corollary}
+$ X^4 + 1 $ is irreducible.
+\end{corollary}
+
+\begin{proof}
+$ X^4 + 1 $ is irreducible if and only if $ \rb{X + 1}^4 + 1 $ is irreducible. $ \rb{X + 1}^4 + 1 = X^4 + 4X^3 + 6X^4 + 4X^2 + 2 $ satisfies Eisenstein's criterion modulo $ 2 $.
+\end{proof}
+
 \end{document}
