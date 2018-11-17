@@ -78,7 +78,7 @@ In propositional logic, we look at the way simple propositions can be built into
 
 In predicate logic, we analyse mathematics using quantifiers. We introduce the notion of a first-order structure, which is general enough to include many of the algebraic objects you come across in mathematics, such as groups, rings, and vector spaces. We then have to be precise about the formulas which make statements about these structures, and give a precise definition of what it means for a particular formula to be true in a structure. This is quite intricate, and the clever part is in getting the definitions right, but it corresponds to ordinary mathematical usage. Once this is done, we set up a formal deduction system for predicate logic. This parallels what we did for propositional logic, but is much harder. Nevertheless, the end result is the same. The formulas which are produced by our formal deduction system are precisely the formulas which are true in all first-order structures. This is Gödel's completeness theorem.
 
-Set theory provides the basic foundations and the language in which most of modern mathematics can be expressed, as well as the means for discussing the various notions of sizes of infinity. For example, although the set of natural numbers, the set of integers and the set of real numbers are all infinite, there is a very natural sense in which the first two have the same size, whereas the third is strictly bigger. This is expressed properly in the notion of cardinality. To avoid paradoxes and inconsistencies, we have to be careful about what collections of objects we allow to be called sets. This is done by the Zermelo-Fraenkel axioms, which essentially tell us how we are allowed to create new sets out of old ones. Of course, having laid down these quite rigid rules, we have to show that they are sufficiently flexible to allow us to talk about everyday objects of mathematics. There are also situations in mathematics where an extra axiom is needed, the Axiom of Choice. For example without this axiom, we cannot show that every vector space has a basis. But it also has some slightly counterintuitive consequences, and we shall also look at some of these.
+Set theory provides the basic foundations and the language in which most of modern mathematics can be expressed, as well as the means for discussing the various notions of sizes of infinity. For example, although the set of natural numbers, the set of integers and the set of real numbers are all infinite, there is a very natural sense in which the first two have the same size, whereas the third is strictly bigger. This is expressed properly in the notion of cardinality. To avoid paradoxes and inconsistencies, we have to be careful about what collections of objects we allow to be called sets. This is done by the Zermelo-Fraenkel axioms, which essentially tell us how we are allowed to create new sets out of old ones. Of course, having laid down these quite rigid rules, we have to show that they are sufficiently flexible to allow us to talk about everyday objects of mathematics. There are also situations in mathematics where an extra axiom is needed, the axiom of choice. For example without this axiom, we cannot show that every vector space has a basis. But it also has some slightly counterintuitive consequences, and we shall also look at some of these.
 
 The lecture notes should be fairly self-contained, but the following books might also be of use. You might find that the notation which they use differs form that used in the lectures. You will be able to find various lecture notes on the internet. Some will be good, others not so good.
 
@@ -1307,7 +1307,7 @@ Let $ \Sigma $ be the closed $ \phi $ such that $ \mathcal{B} \vDash \phi $, cal
 
 \subsection{Examples and applications}
 
-Linear orders. Let $ \mathcal{L}^= $ be a first-order language with equality and a binary relation symbol $ \le $.
+Let $ \mathcal{L}^= $ be a first-order language with equality and a binary relation symbol $ \le $.
 
 \begin{definition}
 A linear order $ \mathcal{A} = \ab{A; \le_A} $ is a normal model if
@@ -1376,5 +1376,75 @@ Similarly $ \mathcal{R} \vDash \phi $ iff $ \Sigma \vdash \phi $. So $ \mathcal{
 \marginpar{Lecture 19 \\ Thursday \\ 15/11/18}
 
 Lecture 19 is a problem class.
+
+\marginpar{Lecture 20 \\ Friday \\ 16/11/18}
+
+Want an algorithm which decides, given closed $ \theta $, whether $ \ab{\mathcal{Q}; \le} \vDash \theta $ or $ \ab{\mathcal{Q}; \le} \not\vDash \theta $, that is $ \ab{\mathcal{Q}; \le} \vDash \notb{\theta} $, by \ref{thm:2.3.3}. $ \Sigma $ is a \textbf{recursively enumerable} set of formulas, that is we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_\mathcal{L} $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. Method is to run the algorithm which generates all consequences of $ \Sigma $. By \ref{thm:2.7.2}(1) at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
+
+\begin{note}
+\hfill
+\begin{enumerate}
+\item Depends on
+\begin{enumerate}
+\item the Completeness theorem, and
+\item the axioms $ \Delta $ for $ \ab{\mathcal{Q}; \le} $,
+\end{enumerate}
+\item Works for some other structures. Can have better algorithms.
+\item But there is no such algorithm for $ \ab{\N; +, \cdot, 0} $. This is Gödel's incompleteness theorem.
+\end{enumerate}
+\end{note}
+
+\section{Set theory}
+
+\setcounter{subsection}{-1}
+
+\subsection{Basic set theory}
+
+\begin{enumerate}
+\addtocounter{enumi}{-1}
+\item \textbf{Extensionality}. Sets $ A $ and $ B $ are equal iff $ \fab{x}\iffb{\rb{x \in A}}{\rb{x \in B}} $.
+\item \textbf{Natural numbers} $ \N = \cb{0, 1, \dots} $. Think of $ 0 = \emptyset $, $ 1 = \cb{0} $, $ 2 = \cb{0, 1} $, etc. Note that for $ m, n \in \N $, $ m < n $ iff $ m \in n $ iff $ m \subset n $.
+\item \textbf{Ordered pairs}. The ordered pair $ \rb{x, y} $ is the set $ \cb{\cb{x}, \cb{x, y}} $. For example, for any $ x, y, z, w $, $ \rb{x, y} = \rb{z, w} $ iff $ x = z $ and $ y = w $. If $ A, B $ are sets, then $ A \times B = \cb{\rb{a, b} \mid a \in A, \ b \in B} $. $ A^2 = A \times A $, $ A^3 = A^2 \times A $, etc. The set of \textbf{finite sequences} of elements of $ A $ is $ \cup_{n \in \N} A^n $. $ A^0 = \cb{\emptyset} $.
+\item \textbf{Functions}. Think of a function $ f : A \to B $ as a subset of $ A \times B $. $ A = dom\rb{f} $ is the \textbf{domain} and $ B = ran\rb{f} $ is the \textbf{range}. If $ X \subset A $ $ f\sb{X} = \cb{f\rb{a} \mid a \in X} \subseteq B $. Set of functions from $ A $ to $ B $ is $ B^A \subseteq \wp\rb{A \times B} $, where $ \wp $ is the powerset, that is the set of all subsets.
+\end{enumerate}
+
+\subsection{Cardinality}
+
+\begin{definition}
+Sets $ A, B $ are \textbf{equinumerous}, or of the \textbf{same cardinality}, if there is a bijection $ f : A \to B $. Write $ A \approx B $ or $ \abs{A} = \abs{B} $.
+\end{definition}
+
+\begin{definition}
+A set $ A $ is \textbf{finite} if it is equinumerous with some element of $ \N $. $ n = \cb{0, \dots, n - 1} $. A set $ A $ is \textbf{countably infinite} if it is equinumerous with $ \N $. \textbf{Countable} is finite or countably infinite.
+\end{definition}
+
+\begin{proposition}
+Basic facts.
+\begin{enumerate}
+\item Every subset of a countable set is countable.
+\item A set $ A $ is countable iff there is an injective function $ f : A \to \N $.
+\item If $ A, B $ are countable, then $ A \times B $ is countable.
+\item If $ A_0, A_1, \dots $ are countable then $ \cup_{i \in \N} A_i $ is countable.
+\end{enumerate}
+\end{proposition}
+
+Proof of 4 uses axiom of choice.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item $ \Q $ is countable.
+\item $ \cup_{n \in \N} A^n $ is countable if $ A  $is countable.
+\item $ \R $ is not countable by Cantor.
+\end{enumerate}
+\end{example}
+
+\begin{theorem}[Cantor]
+If $ X $ is any set, then $ \wp\rb{X} $ is the set of all subsets of $ X $. There is no surjective function $ f : X \to \wp\rb{X} $.
+\end{theorem}
+
+\begin{proof}
+Suppose there is such an $ f $. Let $ Y = \cb{y \in X \mid y \notin f\rb{y}} $. There is $ z \in X $ with $ f\rb{z} = Y $. If $ z \in Y $ then $ z \notin f\rb{z} = Y $. If $ z \notin Y $ then $ z \notin f\rb{z} $ so $ z \in Y $. Contradiction.
+\end{proof}
 
 \end{document}
