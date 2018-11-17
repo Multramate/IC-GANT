@@ -701,7 +701,7 @@ Write $ F = aX^2 + bY^2 + cZ^2 $ as above. Then the following are equivalent.
 \end{lemma}
 
 \begin{proof}
-$ 1 \implies 2 \implies 3 \implies 4 $. $ 2 \implies 1 $ by drawing lines through a point. So we need to do $ 4 \implies 2 $. Use Corollary \ref{cor:4.3} in $ \Z^3 $. Want to find $ V, \Lambda $ with measure of $ V $ greater than $ 2^3\sb{\Z^3 : \Lambda} $, so that $ V \cap \Lambda = \cb{0} $. Want to know that we will have $ ax^2 + by^2 + cz^2 = 0 $ if $ \rb{x, y, z} \in V \cap \Lambda $. Choose $ V = \cb{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}} $. This has measure $ \tfrac{\pi}{3} \cdot 2^3 \cdot 4\abs{abc} $. So to prove the theorem, it is enough to find $ \Lambda $ with $ \sb{\Z^3 : \Lambda} = 4\abs{abc} $, and satisfying $ \rb{x, y, z} \in \Lambda $ gives $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4\abs{abc} $. So if $ \rb{x, y, z} \in V \cap \Lambda $ then $ 0 \le \abs{ax^2 + by^2 + cz^2} < \abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc} $, so $ ax^2 + by^2 + cz^2 = 0 $.
+$ 1 \implies 2 \implies 3 \implies 4 $. $ 2 \implies 1 $ by drawing lines through a point. So we need to do $ 4 \implies 2 $. Use Corollary \ref{cor:4.3} in $ \Z^3 $. Want to find $ V, \Lambda $ with measure of $ V $ greater than $ 2^3\sb{\Z^3 : \Lambda} $, so that $ V \cap \Lambda = \cb{0} $. Want to know that we will have $ ax^2 + by^2 + cz^2 = 0 $ if $ \rb{x, y, z} \in V \cap \Lambda $. Choose $ V = \cb{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}} $. This has measure $ \tfrac{\pi}{3}\rb{2}^3\rb{4}\abs{abc} $. So to prove the theorem, it is enough to find $ \Lambda $ with $ \sb{\Z^3 : \Lambda} = 4\abs{abc} $, and satisfying $ \rb{x, y, z} \in \Lambda $ gives $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4\abs{abc} $. So if $ \rb{x, y, z} \in V \cap \Lambda $ then $ 0 \le \abs{ax^2 + by^2 + cz^2} < \abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc} $, so $ ax^2 + by^2 + cz^2 = 0 $.
 \end{proof}
 
 \marginpar{Lecture 13 \\ Thursday \\ 01/11/18}
@@ -886,10 +886,6 @@ Return to the case of irreducible singular cubics. Write as $ y^2 = f\rb{x} $, $
 
 \marginpar{Lecture 19 \\ Thursday \\ 15/11/18}
 
-Doubling and addition formulae in $ y^2 = x^3 + ax + b $ for $ P = \rb{x_1, y_1} $ and $ Q = \rb{x_2, y_2} $ are
-$$ P + Q = \dfrac{-2y_1y_2 + \rb{x_1 + x_2}\rb{x_1x_2 + a} + 2b}{\rb{x_1 - x_2}^2}, $$
-$$ 2P = \dfrac{x_1^4 - 2ax_1^2 - 8bx_1 + a^2}{4\rb{x_0^3 + ax_0 + b}}. $$
-
 \begin{example}
 Good way to practice explicit computations is to work over small fields. Let $ k = \F_5 = \Z / 5\Z $ be the field of five elements and $ y^2 = x^3 + 1 $. $ \Delta = 4 \ne 0 $ in $ k $. So this is an elliptic curve. Squares modulo five are $ 0, 1, 4 $.
 \begin{center}
@@ -922,5 +918,43 @@ We just saw that $ E\rb{C}\sb{n} \cong \rb{\Z / n\Z}^2 $.
 \end{example}
 
 $ k = \Q_p $ is the next few lectures. $ E\rb{\Q_p} $ is locally isomorphic to $ \Z_p $. Approximation of formal groups in the next few lectures. $ k = \Q $ is the Mordell-Weil theorem. $ E\rb{\Q} $ is a finitely generated abelian group, that is there is a surjection $ \Z^N \twoheadrightarrow E\rb{\Q} $ for some $ N $. Structure theorem for finitely generated abelian groups states that any finitely generated abelian group is isomorphic to a group of the form $ \Z^r \oplus X $, where $ X $ is finite. Furthermore, $ r $ is uniquely determined, as is the isomorphism classes of $ X $. Call $ r $ the \textbf{rank} of the group. In fact if $ G $ is a finitely generated abelian group. We can write $ G \cong G^{free} \times G_{tor} $, where $ G^{free} \cong \Z^r $ for some $ r $, and $ G_{tor} $ are the elements of $ G $ of finite order, which are the elements which are $ n $-torsion for some $ n $. $ G_{tor} $ is a finite group.
+
+\marginpar{Lecture 20 \\ Friday \\ 16/11/18}
+
+So $ E\rb{\Q} = T \times F \cong T \times \Z^r $, where $ T $ is a finite torsion subgroup and $ r \ge 0 $ is the rank of $ E $ over $ \Q $. It is a hard theorem of Mazur in 1970s that there are only finitely many possibilities for $ T $. It is unknown whether or not $ r $ can be arbitrarily large. Same results hold if $ \Q $ is replaced by a number field. Main goal of the remaining lectures is to prove that $ E\rb{\Q} $ is finitely generated, and to see how to compute its torsion subgroup, and its rank. $ \Q / \Z $ is an infinite group, all of whose elements have finite order, not finitely generated.
+
+\section{Torsion in $ E\rb{\Q} $}
+
+$ y^2 = x^3 + ax + b $. By choosing $ u $ appropriately in $ x \mapsto u^2x $ and $ y \mapsto u^3y $, we can assume that our equation is of the form $ y^2 = x^3 + Ax + B $ for $ A, B \in \Z $.
+
+\begin{theorem}[Lutz-Nagell]
+The subgroup of $ E\rb{\Q} $ consisting of torsion points is finite. Furthermore, if $ \rb{x, y} $ is a torsion point, then $ x, y \in \Z $. Either $ y = 0 $, or $ y^2 \mid \Delta = 4A^3 + 27B^2 $.
+\end{theorem}
+
+\begin{note}
+Converse is not true, that is there can be points $ \rb{x, y} $ of $ E\rb{\Q} $ with $ y^2 \mid \Delta $, but $ \rb{x, y} $ is not torsion.
+\end{note}
+
+\begin{example}
+$ y^2 = x^3 + 17 $. $ \rb{4, 9} $ has coordinates in $ \Z $, but is not a torsion point, because $ 9^2 \nmid \rb{27}\rb{17}^2 $. So the rank of this curve is at least one.
+\end{example}
+
+To prove $ x, y \in \Z $, it suffices to prove that $ x, y \in \Z_p $ for all $ p $, so it suffices to prove that any torsion point in $ E\rb{\Q_p} $ has coordinates in $ \Z_p $. We will come back to this. Suppose from now on that we have proved that all torsion points coordinates in $ \Z $. Doubling formula is if $ P = \rb{x_0, y_0} $, then $ 2P = \rb{x_d, y_d} $, where $ x_d = m^2 - 2x_0 $ for $ m = \rb{3x_0^2 + A} / \rb{2y_0} $.
+
+\begin{example}
+For $ y^2 = x^3 + 17 $, $ 2\rb{4, 9} = \rb{-8 / 9, 109 / 27} $.
+\end{example}
+
+If $ \rb{x, y} \in E\rb{\Q} $ with $ x, y \in \Z $, and $ \rb{x, y} $ is torsion, then $ 2\rb{x, y} $ is torsion, and thus has coordinates in $ \Z $. If $ y = 0 $, there is nothing to prove, because $ 2\rb{x, y} = 0 $. Otherwise, the doubling formula tells us that $ \rb{3x^2 + A} / \rb{2y} \in \Z $. In particular, $ y^2 \mid \rb{3x^2 + A}^2 $. We also have $ y^2 = x^3 + Ax + B $.
+$$ \rb{3x^2 + A}^2\rb{3x^2 + 4A} - \rb{x^3 + Ax + B}\rb{27x^3 + 27Ax - 27B} = 4A^3 + 27B^2 = \Delta, $$
+by theory of resultants. So $ y^2 \mid \Delta $, as required.
+
+\begin{example}
+Let $ y^2 = x^3 + 1 $. $ y = 0 $ or $ y^2 \mid 27 $, so $ y = \pm 1, \pm 3 $, so $ \rb{-1, 0} $, $ \rb{0, \pm 1} $, $ \rb{2, \pm 3} $. So there are at most six torsion points. $ \rb{-1, 0} $ has order two. $ y = 1 $ meets the curve exactly at $ \rb{0, 1} $, so $ \rb{0, 1} $ is a point of order three. So the torsion subgroup has order a multiple of six, so exactly six, and it is therefore cyclic of order six.
+\end{example}
+
+\begin{example}
+Let $ y^2 = x^3 + 17 $. $ y = 0 $ has no solutions, so $ y^2 \mid \rb{27}\rb{17}^2 $ gives $ y \mid \rb{3}\rb{17} $. If $ y \mid 17 $, then $ x^3 = 17 - y^2 $ is divisible by $ 17 $ but not $ 17^2 $, a contradiction. So $ y \mid 3 $. Only possibilities are $ \rb{x, y} = \rb{-2, \pm 3} $. Applying the doubling formula, get $ \rb{8, \pm 9} $. Since we already showed that the only possibilities for torsion points are $ \rb{-2, \pm 3} $ and $ O $, $ \rb{8, \pm 9} $ is not torsion, so $ \rb{-2, \pm 3} $ is also not torsion. So the only torsion point is $ O $.
+\end{example}
 
 \end{document}
