@@ -663,6 +663,7 @@ Let $ M = \rb{m_1, \dots, m_n} $ for $ m_i \in M $. $ M = \cb{a_1m_1 + \dots + a
 \end{proof}
 
 \begin{corollary}
+\label{cor:10.6}
 Let $ A $ be a ring and let $ M $ be an $ A $-module. Suppose that we have $ 0 = M_0 \subset \dots M_n = M $ are $ A $-submodules of $ M $. Then $ M $ is Noetherian or Artinian if and only if each quotient $ M_{i + 1} / M_i $ is Noetherian or Artinian.
 \end{corollary}
 
@@ -828,5 +829,49 @@ Therefore, $ r\rb{\rb{I : \rb{x}}} = \cap_{x \notin I_j} P_j $. If $ r\rb{\rb{I 
 \marginpar{Lecture 19 \\ Friday \\ 16/11/18}
 
 Lecture 19 is a problem class.
+
+\marginpar{Lecture 20 \\ Monday \\ 19/11/18}
+
+\section{Artinian rings and modules}
+
+\begin{definition}
+Let $ A $ be a ring and let $ M $ be a non-zero $ A $-module. $ M $ is \textbf{simple} if and only if the only submodules of $ M $ are $ 0 $ and $ M $. Any $ A $-module $ M $ has a \textbf{composition series} if it contains submodules $ M = M_0 \supset \dots \supset M_n = 0 $ such that the quotients $ M_i / M_{i + 1} $ are simple $ A $-modules, for $ i = 0, \dots, n - 1 $. Any such collection of submodules is called a composition series.
+\end{definition}
+
+\begin{proposition}
+For any $ A $-module $ M $ the following are equivalent.
+\begin{enumerate}
+\item $ M $ is both Noetherian and Artinian.
+\item $ M $ has a composition series.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}[leftmargin=2cm]
+\item[$ 1 \implies 2 $] Since $ M $ is Noetherian, $ M $ contains a maximal submodule. Any set of submodules of $ M $ has a maximal element. Call it $ M_1 $. Call $ M = M_0 $. Then $ M_1 / M_0 $ is simple by the choice of $ M_1 $. Continue, and find $ M_2 \subset M_1 $ maximal submodule. We construct a decreasing chain of submodules $ M = M_0 \supsetneq \dots \supsetneq M_0 = 0 $ because $ M $ is Artinian. So we obtain a composition series.
+\item[$ 2 \implies 1 $] Assume $ M $ has a composition series $ M = M_0 \supsetneq M_n = 0 $. Any simple module is Noetherian and Artinian. Corollary \ref{cor:10.6} says that if $ L \subset N $ are $ A $-modules such that $ L $ and $ N / L $ are Artinian, then $ N $ is also Artinian. The same for Noetherian. Apply this to $ M_{n - 2} / M_{n - 1} $, where $ M_{n - 1} $ is simple. We know that $ M_{n - 2} / M_{n - 1} $ is also simple. Hence $ M_{n - 2} $ is Noetherian and Artinian. Then apply this to $ M_{n - 3} \supset M_{n - 2} $.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+If $ M $ has a composition series of length $ n $, then any composition series of $ M $ has length $ n $.
+\end{proposition}
+
+\begin{proof}
+Let $ l\rb{M} $ denote the smallest length of a composition series of $ M $. If $ M $ has no composition series, set $ l\rb{M} = \infty $. Let $ N \subsetneq M $ be a proper submodule. Then $ l\rb{N} < l\rb{M} $. Let $ n = l\rb{M} $ and suppose that $ M = M_0 \supsetneq \dots \supsetneq M_n = 0 $ is a composition series. Consider $ N_i = N \cap M_i $. $ N = N_0 \supset \dots \supset N_n = 0 $. $ N_{i + 1} = N_i \cap M_{i + 1} $. $ N_i / N_{i + 1} = N_i / \rb{N_i \cap M_{i + 1}} = \rb{N_i + M_{i + 1}} / M_{i + 1} \subset M_i / M_{i + 1} $, which is a simple module. Hence $ N_i / N_{i + 1} = 0 $ or $ N_i / N_{i + 1} = M_i / M_{i + 1} $. So remove repeated terms in $ N = N_0 \supset \dots N_n = 0 $. We obtain a composition series for $ N $. This proves that $ l\rb{N} \le n = l\rb{M} $. Assume that $ N \ne M $. Let us show that $ l\rb{N} \ne l\rb{M} $. Let us prove that if $ l\rb{N} = l\rb{M} $, then $ N = M $. We started with a composition series of length $ n = l\rb{M} $. If $ l\rb{N} = l\rb{M} $, then there were no repetitions in $ N = N_0 \supsetneq \dots \supsetneq N_n = 0 $. All inclusions here are strict. $ N_n = M_n = 0 $. $ N_{n - 1} = N \cap M_{n - 1} \ne 0 $ is a submodule of $ M_{n - 1} $, which is simple. Thus $ N_{n - 1} = M_{n - 1} $. Then $ N_{n - 2} = N \cap M_{n - 2} \ne N_{n - 1} = N \cap M_{n - 1} $. Therefore, $ 0 \ne N_{n - 2} / N_{n - 1} \subset M_{n - 2} / M_{n - 1} $ is an equality. Hence $ N_{n - 2} = M_{n - 2} $. Continue like this. The final shows that $ N_0 = M_0 $, that is $ N = M $.
+\end{proof}
+
+\begin{definition}
+If $ l\rb{M} < \infty $, then $ l\rb{M} $ is called the \textbf{length} of $ M $.
+\end{definition}
+
+\begin{proposition}
+Let $ M $ be an $ A $-module and let $ N $ be a submodule of $ M $. Then $ N $ and $ M / N $ have finite length, then $ M $ has finite length and $ l\rb{M} = l\rb{N} + l\rb{M / N} $.
+\end{proposition}
+
+\begin{proof}
+Take a composition series of $ M / N $ and pull it back to $ M $ via the map $ M \to M / N $. $ M = M_0 \supsetneq \dots \supsetneq N \supsetneq \dots $. Now take a composition series in $ N $ and combine it with the $ M_i $'s.
+\end{proof}
 
 \end{document}
