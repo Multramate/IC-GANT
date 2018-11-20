@@ -713,7 +713,7 @@ Hilbert's Nullstellensatz, and Theorem \ref{thm:2.9}, still holds. In particular
 \end{remark}
 
 \begin{definition}
-Let $ C \subseteq P^2 $ be a projective plane curve and $ P $ any homogeneous polynomial with no repeated factor such that $ C = \cb{P = 0} \subseteq \P^2 $. The degree of $ C $ is the degree of $ P $.
+Let $ C \subseteq \P^2 $ be a projective plane curve and $ P $ any homogeneous polynomial with no repeated factor such that $ C = \cb{P = 0} \subseteq \P^2 $. The degree of $ C $ is the degree of $ P $.
 \end{definition}
 
 \begin{exercise}
@@ -895,7 +895,7 @@ Therefore, $ \cb{\sb{x_0, x_1} \in \P^1 \mid Q\rb{x_0, x_1} = 0} = \cb{P_i = \sb
 
 \begin{proof}
 Let us pass to $ U_1 \cong \C^1 \subseteq \P^1 $, one of the two affine charts. Write $ Q\rb{x_0, x_1} = \sum_{r = 0}^d a_rx_0^rx_1^{d - r} $ and let $ e = \max\cb{r \mid a_r \ne 0} $ so
-$$ Q\rb{x_0, x_1} = x_1^d \cdot \sum_{r = 0}^e a_r\rb{\dfrac{x_0}{x_1}^r}. $$
+$$ Q\rb{x_0, x_1} = x_1^d \cdot \sum_{r = 0}^e a_r\rb{\dfrac{x_0}{x_1}}^r. $$
 Define $ f \in \C\sb{x} $ as $ f\rb{x} = \sum_{r = 0}^e a_rx^r $. By the fundamental theorem of algebra, there are $ \lambda_1, \dots, \lambda_e \in \C $ such that
 $$ f\rb{x} = a_e \cdot \prod_{i = 1}^e \rb{x - \lambda_i}, $$
 where $ \lambda_i $ are the roots of $ f $, and hence
@@ -910,7 +910,7 @@ The description that $ \cb{Q = 0} \subseteq \P^1 $ is clear, once we note that $
 We have proved the following.
 
 \begin{theorem}
-Let $ \bar{C} \subseteq P^2 $ be a projective curve defined by a polynomial of degree $ d $ that does not contain $ \mathcal{P} $. Then $ \bar{C} \cap \mathcal{P} $ is a non-empty set of at most $ d = \deg\rb{Q} $ points.
+Let $ \bar{C} \subseteq \P^2 $ be a projective curve defined by a polynomial of degree $ d $ that does not contain $ \mathcal{P}_2 $. Then $ \bar{C} \cap \mathcal{P}_2 $ is a non-empty set of at most $ d = \deg\rb{Q} $ points.
 \end{theorem}
 
 \begin{definition}
@@ -958,7 +958,7 @@ Let $ C \subseteq \C^2, \P^2 $ be an affine or projective algebraic curve. Topol
 A line $ C \subseteq \C^2 $ is a real plane $ \C \cong \R^2 $. $ \P^1 \cong S^2 $ is a two-dimensional sphere.
 \end{example}
 
-Smooth or nonsingular points of $ C $ are points where you do not have angles, pinches, etc.
+Smooth or non-singular points of $ C $ are points where you do not have angles, pinches, etc.
 
 \begin{example}
 The union of two projective lines $ \P^1 $ in $ \P^2 $ has a non-smooth point. A pinched torus has a non-smooth point.
@@ -1606,7 +1606,7 @@ This is essentially the statement that a degree $ d $ polynomial in one variable
 
 \begin{proof}
 As in the proof of Lemma \ref{lem:6.2}, we may write
-$$ P\rb{x_0, x_1} = \lambda x_0^{d - e} \cdot \prod_{i \in I} \rb{x_1 - a_ix_0}^d_i, $$
+$$ P\rb{x_0, x_1} = \lambda x_0^{d - e} \cdot \prod_{i \in I} \rb{x_1 - a_ix_0}^{d_i}, $$
 where $ \lambda \ne 0 $, $ d_i, e \in \N $ satisfy $ \sum_{i \in I} d_i = e $, and $ a_i \in \C $ are such that $ a_i \ne a_j $ and $ a_i \ne 0 $ for all $ i \ne j \in I $. Note that in the expression of $ P $, $ e $ is not necessarily distinct from zero, in which case $ I = \emptyset $ and the product is empty, or from $ d $. Let us denote
 $$ \cb{p_1, \dots, p_k} = \begin{cases} \cb{\sb{1, a_i}}_{i \in I} \cup \cb{\sb{0, 1}} & 0 < d < e \\ \cb{\sb{0, 1}} & e = 0 \\ \cb{\sb{1, a_i}}_{i \in I} & e = d \end{cases}. $$
 It is easy to check from the definition of multiplicity that, for each $ i $,
@@ -1965,23 +1965,89 @@ $$ \Psi\rb{C} = \cb{x_1^2x_2 = x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2}} \subset 
 Dehomogenising with respect to $ x_2 $, $ y^2 = x\rb{x - 1}\rb{x - \lambda} $ is the Legendre form for elliptic curves. In order to prove Theorem \ref{thm:13.1}, we need to define inflection points of projective curves. These will generalise the points of inflection on graphs of functions.
 
 \begin{definition}
+\label{def:13.2}
 Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial. The \textbf{Hessian matrix} of $ P $ is the symmetric matrix whose entries are the second order differentials of $ P $
 $$ H_P = \rb{\dfrac{\partial^2 P}{\partial x_i \partial x_j}}_{0 \le i, j \le 2} = \begin{pmatrix} P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0, x_2} \\ P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1, x_2} \\ P_{x_2, x_0} & P_{x_2, x_1} & P_{x_2, x_2} \end{pmatrix}. $$
-The \textbf{Hessian} of $ P $ is $ \mathcal{H}_P\rb{x_0, x_1, x_2} = \det\rb{H_P} $. $ \mathcal{H}_P $ is a homogeneous polynomial of degree $ 3\rb{d - 2} $ when $ d \ge 3 $. An \textbf{inflection point} of $ C $ is a smooth point $ p = \sb{a, b, c} $ of $ C $ such that $ \mathcal{H}_P\rb{a, b, c} = 0 $.
+The \textbf{Hessian} of $ P $ is $ \mathcal{H}_P\rb{x_0, x_1, x_2} = \det\rb{H_P} $. $ \mathcal{H}_P $ is a homogeneous polynomial of degree $ 3\rb{d - 2} $ when $ d \ge 3 $. An \textbf{inflection point} or \textbf{flex point} of $ C $ is a smooth point $ p = \sb{a, b, c} $ of $ C $ such that $ \mathcal{H}_P\rb{a, b, c} = 0 $.
 \end{definition}
 
-The only thing there is to check is that $ \mathcal{H}_P $ is a homogeneous polynomial of the specified degree. When $ d \ge 3 $, all non-zero entries of $ H_P $ are homogeneous polynomials of degree $ d - 2 $, and $ H_P $ is a $ 3 \times 3 $ matrix, so $ \mathcal{H}_P $ is indeed a homogeneous polynomial of degree $ 3\rb{d - 2} $.
+The only thing there is to check is that $ \mathcal{H}_P $ is a homogeneous polynomial of the specified degree. When $ d \ge 3 $, all non-zero entries of $ H_P $ are homogeneous polynomials of degree $ d - 2 $, and $ H_P $ is a $ 3 \times 3 $ matrix, so $ \mathcal{H}_P $ is indeed a homogeneous polynomial of degree $ 3\rb{d - 2} $. (TODO Exercise: an inflection point $ p $ is a smooth point $ p \in C $ whose intersection multiplicity with the tangent line to $ C $ at $ p $ is at least three)
 
 \begin{lemma}
+\label{lem:13.3}
 Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial of degree $ d > 1 $. Then
 \begin{equation}
 \label{eq:7}
-x_2^2 \cdot \mathcal{H}_P = \rb{d - 1}^2 \cdot \det\begin{pmatrix} P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0} \\ P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1} \\ P_{x_0} & P_{x_1} & \dfrac{d}{d - 1} \cdot P \end{pmatrix}.
+x_2^2 \cdot \mathcal{H}_P = \rb{d - 1}^2 \cdot \det\begin{pmatrix} P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0} \\ P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1} \\ P_{x_0} & P_{x_1} & \tfrac{d}{d - 1} \cdot P \end{pmatrix}.
 \end{equation}
 \end{lemma}
 
 \begin{remark}
 Analogous formulae to $ \rb{\ref{eq:7}} $ can be stated for $ x_0 $, $ x_1 $.
 \end{remark}
+
+\marginpar{Lecture 19 \\ Monday \\ 19/11/18}
+
+\begin{proof}
+For ease of notation, let us label the rows and columns of the Hessian matrix as follows.
+$$ H_P = \three{C_0}{C_1}{C_2} = \begin{pmatrix} R_0 \\ R_1 \\ R_2 \end{pmatrix}. $$
+Each $ P_{x_i} $ is a homogeneous polynomial of degree $ d - 1 $, so that by the Euler relation Theorem \ref{thm:7.3}, we have
+$$ \rb{d - 1}P_{x_i} = x_0P_{x_0, x_i} + x_1P_{x_1, x_i} + x_2P_{x_2, x_i}, $$
+and
+$$ x_2 \cdot \mathcal{H}_P = \det\three{C_0}{C_1}{x_0C_0 + x_1C_1 + x_2C_2} = \det\begin{pmatrix} P_{x_0, x_0} & P_{x_0, x_1} & \rb{d - 1}P_{x_0} \\ P_{x_1, x_0} & P_{x_1, x_1} & \rb{d - 1}P_{x_1} \\ P_{x_2, x_0} & P_{x_2, x_1} & \rb{d - 1}P_{x_2} \end{pmatrix}, $$
+that is
+$$ x_2 \cdot \mathcal{H}_P = \rb{d - 1}\det\begin{pmatrix} P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0} \\ P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1} \\ P_{x_2, x_0} & P_{x_2, x_1} & P_{x_2} \end{pmatrix} = \begin{pmatrix} R_0' \\ R_1' \\ R_2' \end{pmatrix}. $$
+Similarly,
+$$ x_2^2 \cdot \mathcal{H}_P = \rb{d - 1}\det\begin{pmatrix} R_0' \\ R_1' \\ x_0R_0' + x_1R_1' + x_2R_2' \end{pmatrix}. $$
+Using the Euler relation for $ P_{x_0} $ and $ P_{x_1} $ and the Euler relation for $ P $
+$$ dP = x_0P_{x_0} + x_1P_{x_1} + x_2P_{x_2}, $$
+we find that this last matrix has the desired form.
+\end{proof}
+
+Note that for a line every point is an inflection point, because the Hessian matrix is zero.
+
+\begin{lemma}
+\label{lem:13.5}
+Let $ C $ be a smooth projective curve of degree $ d $. If $ d \ge 3 $, $ C $ has at least one point of inflection.
+\end{lemma}
+
+\begin{proof}
+Let $ C $ be a projective curve of degree $ d \ge 2 $. If $ d = 2 $, $ \mathcal{H}_P $ is a constant polynomial, and it is non-zero, as one can check directly, using the standard form for a conic that we have seen before. Therefore, $ C $ has no point of inflection, which agrees with the Lemma. We now assume that $ d > 2 $, so that either $ \mathcal{H}_P $ is a homogeneous polynomial of degree $ \deg\rb{\mathcal{H}_P} = 3\rb{d - 2} = 3 $ by Definition \ref{def:13.2}. Then it follows from the weak version of Bézout's Theorem \ref{thm:9.8} that there is at least a point in $ C \cap \cb{\mathcal{H}_P = 0} $, which is then an inflection point, since $ C $ is smooth.
+\end{proof}
+
+\begin{remark}
+It also true that if $ d \ge 2 $, then $ \deg\rb{C} \cdot \deg\rb{\mathcal{H}_P} = 3d\rb{d - 2} $ so $ C $ has at most $ 3d\rb{d - 2} $ points of inflection. Note that this follows from the strong form Bézout's theorem, once we know that $ C $ and $ \cb{\mathcal{H}_P = 0} $ have no common component. Unfortunately this does not immediately follow from irreducibility of $ C $, because $ 3\rb{d - 2} > d $ as soon as $ d \ge 4 $, and $ \cb{\mathcal{H}_P = 0} $ could well be reducible, or have multiple components, for that matter. The way around this is to prove that if every smooth point of an irreducible curve is an inflection point, which would happen if $ C $ were a component of $ \cb{\mathcal{H}_P = 0} $, then $ C $ has to be a line, in Lemma 3.32 in Kirwan's book. (TODO Exercise: if $ \cb{\mathcal{H}_P = 0} $ and $ C $ have a common component, then $ C $ is a line)
+\end{remark}
+
+We now see that the presence of inflection points guarantees that the equation of every smooth cubic curve can be put in a very simple form.
+
+\begin{proof}[Proof of Theorem \ref{thm:13.1}]
+Let $ P $ be the irreducible homogeneous polynomial of degree three such that $ C = \cb{P = 0} $. By Lemma \ref{lem:13.5}, $ C $ has at least one inflection point. Up to projective transformation, we may thus assume that $ q = \sb{0, 1, 0} $ is an inflection point of $ C $, and that the tangent line to $ C $ at $ q $ is $ T_q\rb{C} = \cb{x_2 = 0} $. This implies that
+$$ P\rb{0, 1, 0} = 0, \qquad P_{x_0}\rb{0, 1, 0} = P_{x_1}\rb{0, 1, 0} = 0, \qquad P_{x_2}\rb{0, 1, 0} \ne 0, \qquad \mathcal{H}_P\rb{0, 1, 0} = 0. $$
+We may write the equation of $ P $ as
+$$ P\rb{x_0, x_1, x_2} = Ax_1^3 + Bx_0x_1^2 + Cx_2x_1^2 + Dx_0^2x_1 + Ex_0x_2x_1 + Fx_2^2x_1 + \Phi\rb{x_0, x_2}, $$
+where $ A, B, C, D, E, F \in \C $ and $ \Phi $ is a homogeneous polynomial of degree three in the variables $ x_0, x_2 $. Since $ P\rb{0, 1, 0} = 0 $, $ A = 0 $. Similarly, since $ P_{x_0}\rb{0, 1, 0} = 0 $, $ B = 0 $, and since $ P_{x_2}\rb{0, 1, 0} \ne 0 $, $ C \ne 0 $. Now we would like to say something about the other coefficients. This will involve some manipulation of $ \mathcal{H}_P $. By the analogous result of Lemma \ref{lem:13.3}, we have
+$$ x_1^2 \cdot \mathcal{H}_P = \rb{d - 1}^2 \cdot \det\begin{pmatrix} P_{x_0, x_0} & P_{x_0} & P_{x_0, x_2} \\ P_{x_0} & \tfrac{d}{d - 1} \cdot P & P_{x_2} \\ P_{x_0, x_2} & P_{x_2} & P_{x_2, x_2} \end{pmatrix} = 4\det\begin{pmatrix} P_{x_0, x_0} & P_{x_0} & P_{x_0, x_2} \\ P_{x_0} & \tfrac{3}{2} \cdot P & P_{x_2} \\ P_{x_0, x_2} & P_{x_2} & P_{x_2, x_2} \end{pmatrix}, $$
+so that
+$$ 0 = \mathcal{H}_P\rb{0, 1, 0} = 4\det\begin{pmatrix} P_{x_0, x_0} & 0 & P_{x_0, x_2} \\ 0 & 0 & P_{x_2} \\ P_{x_0, x_2} & P_{x_2} & P_{x_2, x_2} \end{pmatrix} = -4\rb{P_{x_2}\rb{0, 1, 0}}^2P_{x_0, x_0}\rb{0, 1, 0}, $$
+so that $ P_{x_0, x_0}\rb{0, 1, 0} = 0 $ since $ P_{x_2}\rb{0, 1, 0} $ is non-zero. Since $ P_{x_0, x_0}\rb{0, 1, 0} = 0 $, $ D = 0 $. We may thus write
+\begin{align*}
+P\rb{x_0, x_1, x_2}
+& = x_1x_2\rb{Ex_0 + Cx_1 + Fx_2} + \Phi\rb{x_0, x_2} \\
+& = C\rb{x_1^2 + \rb{\dfrac{Ex_0 + Fx_2}{C}}x_1}x_2 + \Phi\rb{x_0, x_2} \\
+& = C\rb{x_1 + \dfrac{Ex_0 + Fx_2}{2C}}^2x_2 + \Phi'\rb{x_0, x_2},
+\end{align*}
+where $ \Phi' \in \C\sb{x_0, x_2} $ is a homogeneous polynomial of degree three. Consider the projective transformation
+$$ \Psi_1 : \sb{x_0, x_1, x_2} \mapsto \sb{x_0, x_1 + \dfrac{Ex_0 + Fx_2}{2C}, x_2}. $$
+Note that $ \Psi_1 $ is well-defined because $ C \ne 0 $. Then I get that the equation of $ \Psi_1\rb{C} $ is
+$$ \Psi_1\rb{C} = \cb{x_1^2x_2 = \Phi''\rb{x_0, x_2}} \subset \P^2, $$
+where $ \Phi'' \in \C\sb{x_0, x_2} $ is a homogeneous polynomial of degree three. By Lemma \ref{lem:6.2}, $ \Phi'' $ is a product of linear factors. Since $ C $ and hence $ \Psi_1\rb{C} $ are irreducible, $ x_2 $ does not divide $ \Phi'' $. Thus $ \Phi''\rb{x_0, x_2} = K\rb{x_0 - ax_2}\rb{x_0 - bx_2}\rb{x_0 - cx_2} $ for $ K \in \C^* $, $ a, b, c \in \C $. After a suitable diagonal projective transformation $ \Psi_2 $, $ K = 1 $ and the equation of $ \Psi_2 \circ \Psi_1\rb{C} $ is
+$$ \Psi_2 \circ \Psi_1\rb{C} = \cb{x_1^2x_2 = \rb{x_0 - ax_2}\rb{x_0 - bx_2}\rb{x_0 - cx_2}} \subset \P^2. $$
+Since $ C $ is non-singular, $ a $, $ b $, and $ c $ are distinct. (TODO Exercise: check) The map
+$$ \Psi_3 : \sb{x_0, x_1, x_2} \mapsto \sb{\dfrac{x_0 - ax_2}{b - a}, \eta x_1, x_2}, $$
+for $ 1 / \eta^2 = \rb{b - a}^3 $ is thus a well-defined projective transformation and
+$$ \Psi_3 \circ \Psi_2 \circ \Psi_1\rb{C} = \cb{x_1^2x_2 = x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2}} \subset \P^2, $$
+for $ \lambda \in \C $. Note that $ \lambda \ne 0, 1 $ because $ C $ is non-singular. This is exactly the form we wanted.
+\end{proof}
 
 \end{document}
