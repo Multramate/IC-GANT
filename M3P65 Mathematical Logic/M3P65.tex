@@ -1402,10 +1402,10 @@ Want an algorithm which decides, given closed $ \theta $, whether $ \ab{\mathcal
 
 \begin{enumerate}
 \addtocounter{enumi}{-1}
-\item \textbf{Extensionality}. Sets $ A $ and $ B $ are equal iff $ \fab{x}\iffb{\rb{x \in A}}{\rb{x \in B}} $.
-\item \textbf{Natural numbers} $ \N = \cb{0, 1, \dots} $. Think of $ 0 = \emptyset $, $ 1 = \cb{0} $, $ 2 = \cb{0, 1} $, etc. Note that for $ m, n \in \N $, $ m < n $ iff $ m \in n $ iff $ m \subset n $.
-\item \textbf{Ordered pairs}. The ordered pair $ \rb{x, y} $ is the set $ \cb{\cb{x}, \cb{x, y}} $. For example, for any $ x, y, z, w $, $ \rb{x, y} = \rb{z, w} $ iff $ x = z $ and $ y = w $. If $ A, B $ are sets, then $ A \times B = \cb{\rb{a, b} \mid a \in A, \ b \in B} $. $ A^2 = A \times A $, $ A^3 = A^2 \times A $, etc. The set of \textbf{finite sequences} of elements of $ A $ is $ \cup_{n \in \N} A^n $. $ A^0 = \cb{\emptyset} $.
-\item \textbf{Functions}. Think of a function $ f : A \to B $ as a subset of $ A \times B $. $ A = dom\rb{f} $ is the \textbf{domain} and $ B = ran\rb{f} $ is the \textbf{range}. If $ X \subset A $ $ f\sb{X} = \cb{f\rb{a} \mid a \in X} \subseteq B $. Set of functions from $ A $ to $ B $ is $ B^A \subseteq \wp\rb{A \times B} $, where $ \wp $ is the powerset, that is the set of all subsets.
+\item Extensionality. Sets $ A $ and $ B $ are equal iff $ \fab{x}\iffb{\rb{x \in A}}{\rb{x \in B}} $.
+\item Natural numbers $ \N = \cb{0, 1, \dots} $. Think of $ 0 = \emptyset $ and $ n + 1 = \cb{0, \dots, n} $. Note that for $ m, n \in \N $, $ m < n $ iff $ m \in n $ iff $ m \subset n $.
+\item Ordered pairs. The ordered pair $ \rb{x, y} $ is the set $ \cb{\cb{x}, \cb{x, y}} $. For example, for any $ x, y, z, w $, $ \rb{x, y} = \rb{z, w} $ iff $ x = z $ and $ y = w $. If $ A, B $ are sets, then $ A \times B = \cb{\rb{a, b} \mid a \in A, \ b \in B} $. $ A^2 = A \times A $ and $ A^{n + 1} = A^n \times A $. The set of finite sequences of elements of $ A $ is $ \cup_{n \in \N} A^n $. $ A^0 = \cb{\emptyset} $.
+\item Functions. Think of a function $ f : A \to B $ as a subset of $ A \times B $. $ A = dom\rb{f} $ is the domain and $ B = ran\rb{f} $ is the range. If $ X \subseteq A $ $ f\sb{X} = \cb{f\rb{a} \mid a \in X} \subseteq B $. Set of functions from $ A $ to $ B $ is $ B^A \subseteq \wp\rb{A \times B} $, where $ \wp $ is the powerset, that is the set of all subsets.
 \end{enumerate}
 
 \subsection{Cardinality}
@@ -1419,7 +1419,7 @@ A set $ A $ is \textbf{finite} if it is equinumerous with some element of $ \N $
 \end{definition}
 
 \begin{proposition}
-Basic facts.
+The following are basic facts.
 \begin{enumerate}
 \item Every subset of a countable set is countable.
 \item A set $ A $ is countable iff there is an injective function $ f : A \to \N $.
@@ -1434,17 +1434,80 @@ Proof of 4 uses axiom of choice.
 \hfill
 \begin{enumerate}
 \item $ \Q $ is countable.
-\item $ \cup_{n \in \N} A^n $ is countable if $ A  $is countable.
+\item $ \cup_{n \in \N} A^n $ is countable if $ A $ is countable.
 \item $ \R $ is not countable by Cantor.
 \end{enumerate}
 \end{example}
 
 \begin{theorem}[Cantor]
+\label{thm:3.1.4}
 If $ X $ is any set, then $ \wp\rb{X} $ is the set of all subsets of $ X $. There is no surjective function $ f : X \to \wp\rb{X} $.
 \end{theorem}
 
 \begin{proof}
 Suppose there is such an $ f $. Let $ Y = \cb{y \in X \mid y \notin f\rb{y}} $. There is $ z \in X $ with $ f\rb{z} = Y $. If $ z \in Y $ then $ z \notin f\rb{z} = Y $. If $ z \notin Y $ then $ z \notin f\rb{z} $ so $ z \in Y $. Contradiction.
 \end{proof}
+
+\marginpar{Lecture 21 \\ Monday \\ 19/11/18}
+
+\begin{definition}
+For sets $ A, B $ write $ \abs{A} \le \abs{B} $ or $ A \le B $ if there is an injective function $ f : A \to B $.
+\end{definition}
+
+\begin{note}
+$ \abs{x} \le \abs{\wp\rb{x}} $ use $ x \mapsto \cb{x} $. So, as $ \abs{x} \ne \abs{\wp\rb{x}} $ by \ref{thm:3.1.4}, we have $ \abs{x} < \abs{ \wp\rb{x}} $.
+\end{note}
+
+\begin{example}
+If $ \abs{A} \le \abs{B} $ and $ \abs{B} \le \abs{C} $ then $ \abs{A} \le \abs{C} $.
+\end{example}
+
+\begin{theorem}[Schröder-Bernstein]
+\label{thm:3.1.6}
+Suppose $ A, B $ are sets and $ f : A \to B $ and $ g : B \to A $ are injective functions. Then $ A \approx B $. That is $ \abs{A} \le \abs{B} $ and $ \abs{B} \le \abs{A} $ then $ \abs{A} = \abs{B} $.
+\end{theorem}
+
+\begin{proof}
+Let $ h = g \circ f : A \to A $. Let $ A_0 = A \setminus g\sb{B} $ and for $ n > 0 $ let $ A_n = h\sb{A_{n - 1}} $. Let $ A^* = \cup_{n \in \N} A_n $ and $ B^* = f\sb{A^*} $. Note that $ h\sb{A^*} \subseteq A^* $ so $ g\sb{B^*} = h\sb{A^*} \subseteq A^* $. Claim that $ g\sb{B \setminus B^*} = A \setminus A^* $. Once we have this $ f $ gives a bijection $ A^* \to B^* $ and $ g $ gives a bijection $ B \setminus B^* \to A \setminus A^*$. So
+$$ k\rb{a} = \begin{cases} f\rb{a} & a \in A^* \\ g^{-1}\rb{a} & a \in A \setminus A^* \end{cases} $$
+is a bijection.
+\begin{enumerate}
+\item Let $ a \in A \setminus A^* $. As $ a \notin A_0 $ there is $ b \in B $ with $ g\rb{b} = a $. Then $ b \notin B^* $ as $ b \in B^* = f\sb{A^*} $ gives $ a = g\rb{b} \in h\sb{A^*} \subseteq A^* $, a contradiction, so $ g\sb{B \setminus B^*} \supseteq A \setminus A^* $.
+\item Let $ b \in B $. Suppose $ g\rb{b} \in A^* $. Show $ b \in B^* $. As $ g\rb{b} \notin A_0 = A \setminus g\sb{B} $ we have $ g\rb{b} \in A_n $ for some $ n > 0 $. So $ g\rb{b} = h\rb{a} $ for some $ a \in A_{n - 1} $. So $ g\rb{b} = g\rb{f\rb{a}} $, so $ b = f\rb{a} $ for some $ a \in A^* $. Thus $ b \in f\sb{A^*} = B^* $.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+The following sets are equinumerous.
+\begin{enumerate}
+\item $ S_1 = \cb{0, 1}^\N $, the set of all sequences of zeroes and ones.
+\item $ S_2 = \R $.
+\item $ S_3 = \wp\rb{\N} $.
+\item $ S_4 = \wp\rb{\N \times \N} $.
+\item $ S_5 = \N^\N $, the set of all sequences of natural numbers.
+\end{enumerate}
+Find injective functions $ f_{i, j} : S_i \to S_j $ for $ i, j \in \cb{1, \dots, 5} $. Then use \ref{thm:3.1.6}. As $ \N \times \N \approx \N $ we get $ S_3 \approx S_4 $. Also $ S_1 \subseteq S_5 \subseteq S_4 $. Have a bijection $ f_{3, 1} : \wp\rb{\N} \to \cb{0, 1}^\N $. For $ X \subseteq \N $ $ f_{3, 1}\rb{X} = \rb{a_n}_{n \in \N} $ where
+$$ a_n = \begin{cases} 0 & n \notin X \\ 1 & n \in X \end{cases}. $$
+$ f_{1, 2} : \cb{0, 1}^\N \to \R $ by $ \rb{a_n}_{n \in \N} \mapsto 0 . a_1a_2 \dots $, the decimal expansion, is injective. $ f_{2, 5} : \R \to \N^\N $ by
+$$ n . m_1m_2 \dots \mapsto \begin{cases} \rb{0, n, m_1, m_2, \dots} & n \ge 0 \\ -n . m_1m_2 \dots \mapsto \rb{1, -n, m_1, m_2, \dots} & n < 0 \end{cases}. $$
+\end{example}
+
+The following are questions.
+\begin{enumerate}
+\item If $ A, B $ are sets do we have $ \abs{A} \le \abs{B} $ or $ \abs{B} \le \abs{A} $? If we assume axiom of choice, yes.
+\item Is there $ X \subseteq \R $ with $ \abs{\N} < \abs{X} < \abs{\R} $? Continuum hypothesis says no.
+\end{enumerate}
+
+\subsection{Axioms for set theory}
+
+\textbf{Zermelo-Fraenkel axioms} say how we are allowed to build sets. All can be expressed in a first-order language with equality using a single binary relation symbol $ \in $. Have to avoid Russell paradox, $ S = \cb{x \mid x \notin x} $. If this is a set, is $ S \in S $? $ \teb{S}\fab{x}\iffb{\rb{x \in S}}{\rb{x \notin x}} $ leads to inconsistency.
+\begin{enumerate}
+\item \textbf{Extensionality}.
+$$ \fab{x}\fab{y}\iffb{\rb{x = y}}{\fab{z}\iffb{\rb{z \in x}}{\rb{z \in y}}}. $$
+Two sets are equal iff they have the same elements.
+\item \textbf{Empty set axiom}.
+$$ \teb{x}\fab{y}\rb{y \notin x}. $$
+There is a unique set $ x $ with this property, $ \emptyset $.
+\end{enumerate}
 
 \end{document}
