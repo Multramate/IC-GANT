@@ -155,7 +155,7 @@ What about polynomial rings in more than one variable? Since the construction of
 \begin{definition}
 Let $ R $ be a ring. A subset $ S $ of $ R $ is a \textbf{subring} of $ R $ if
 \begin{enumerate}
-\item $ 0_R, 1_R, -1_R \in S $.
+\item $ 0_R, 1_R, -1_R \in S $, and
 \item $ S $ is closed under $ +_R $ and $ \cdot_R $, so if $ r, s \in S $, then so are $ r +_R s $ and $ r \cdot_R s $.
 \end{enumerate}
 \end{definition}
@@ -260,7 +260,7 @@ The composition of two homomorphisms is a homomorphism, as is easily checked fro
 \end{example}
 
 \begin{example}
-The map $ \Z \to \Z / n\Z $ that takes an integer $ m $ into its congruence class modulo $ n $ is also a homomorphism. In fact, this is a special case of the following construction.
+The map $ \Z \to \Z / n\Z $ that takes $ m \in \Z $ into its congruence class modulo $ n $ is also a homomorphism. In fact, this is a special case of the following construction.
 \end{example}
 
 \begin{proposition}
@@ -774,21 +774,16 @@ $ \bar{\Q} \subseteq \C $ is the subfield of elements of $ \C $ that are algebra
 
 \begin{example}
 Consider the polynomial $ X^2 + X + 1 $ in $ \F_2\sb{X} $. It has no roots in $ \F2 $, so it is irreducible, as a polynomial of degree 2 any nontrivial factor would be linear. The other polynomials of degree two are $ X^2 $, $ X^2 + X = X\rb{X + 1} $, $ X^2 + 1 = \rb{X + 1}^2 $, so $ X^2 + X + 1 $ is the unique irreducible polynomial of degree two. Let $ \F_4 = \F_2\sb{X} / \ab{X^2 + X + 1} $. Thus the quotient $ \F_2\sb{X} = \ab{X^2 + X + 1} $ is a field extension of degree two of $ \F_2 $, which is denoted $ \F_4 $. Its four elements are $ 0, 1, X, X + 1 $, or more precisely, their classes modulo $ \ab{X^2 + X + 1} $.
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
+$$
+\begin{array}{c|cccc}
+\cdot & 0 & 1 & X & X + 1 \\
 \hline
-$ \cdot $ & $ 0 $ & $ 1 $ & $ X $ & $ X + 1 $ \\
-\hline
-$ 0 $ & $ 0 $ & $ 0 $ & $ 0 $ & $ 0 $ \\
-\hline
-$ 1 $ & $ 0 $ & $ 1 $ & $ X $ & $ X + 1 $ \\
-\hline
-$ X $ & $ 0 $ & $ X $ & $ X + 1 $ & $ 1 $ \\
-\hline
-$ X + 1 $ & $ 0 $ & $ X + 1 $ & $ 1 $ & $ X $ \\
-\hline
-\end{tabular}
-\end{center}
+0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & X & X + 1 \\
+X & 0 & X & X + 1 & 1 \\
+X + 1 & 0 & X + 1 & 1 & X
+\end{array}.
+$$
 Note that $ X^2 = -X - 1 = X + 1 $, $ X^2 + X + 1 = 0 $, $ \rb{X + 1}^2 = X $, and $ X^3 = X\rb{X + 1} = 1 $ in $ \F_4 $. In particular the multiplicative group of $ \F_4 $ is cyclic of order three. This is not particularly surprising, as all groups of order three are cyclic. We will see later, though, that the multiplicative group of any finite field is cyclic.
 \end{example}
 
@@ -1590,6 +1585,10 @@ Let $ t_1, \dots, t_l $ generate $ T $ over $ S $, and let $ s_1, \dots, s_m $ g
 Let $ R \subseteq S \subseteq T $, with $ R $ Noetherian. If $ T $ is integral over $ S $ and $ S $ is integral over $ R $, then $ T $ is integral over $ R $.
 \end{corollary}
 
+\begin{proof}
+Let $ t \in T $. Then $ t $ satisfies a polynomial $ P\rb{X} = X^n + \dots + s_0 $ monic in $ S\sb{X} $ with $ s_i \in S $ such that $ P\rb{t} = 0 $. Consider the subring $ S' = R\sb{s_0, \dots, s_{n - 1}} $ of $ S $. Since each $ s_i $ is integral over $ R $, $ s_0 $ is in particular integral over $ R $ and $ s_i $ is integral over $ R\sb{s_0, \dots, s_{i - 1}} $. Thus $ R\sb{s_0} $ is a finitely generated $ R $-module and $ R\sb{s_0, \dots, s_i} $ is a finitely generated $ R\sb{s_0, \dots, s_{i - 1}} $-module for each $ i $ by induction. By Lemma \ref{lem:10.1.5} above, $ S' $ is a finitely generated $ R $-module. Since $ t $ is integral over $ S' $, $ S'\sb{t} $ is a finitely generated $ S' $-module, and hence a finitely generated $ R $-module by Lemma \ref{lem:10.1.5}. Since $ R\sb{t} $ is contained in $ S'\sb{t} $ and $ R $ is a Noetherian ring, $ R\sb{t} $ is a finitely generated $ R $-module and thus $ t $ is integral over $ R $.
+\end{proof}
+
 \begin{corollary}
 Let $ R $ be a Noetherian subring of $ S $ and suppose $ \alpha, \beta \in S $ are integral over $ R $. Then $ \alpha\beta $ and $ \alpha + \beta $ are integral over $ R $.
 \end{corollary}
@@ -1597,5 +1596,61 @@ Let $ R $ be a Noetherian subring of $ S $ and suppose $ \alpha, \beta \in S $ a
 \begin{proof}
 The ring $ R\sb{\alpha} $ is a finitely generated $ R $-module and thus integral over $ R $. Since $ \beta $ is integral over $ R $ it is integral over $ R\sb{\alpha} $. Thus $ R\sb{\alpha, \beta} = R\sb{\alpha}\sb{\beta} $ is integral over $ R\sb{\alpha} $ and hence over $ R $ by Lemma \ref{lem:10.1.5}. Since $ \alpha + \beta $ and $ \alpha\beta $ lie in $ R\sb{\alpha, \beta} $ they are integral over $ R $.
 \end{proof}
+
+\marginpar{Lecture 21 \\ Wednesday \\ 21/11/18}
+
+\begin{definition}
+Let $ R $ be a Noetherian subring of $ S $. The \textbf{integral closure of $ R $ in $ S $} is the subset of $ S $ consisting of all elements $ s \in S $ that are integral over $ R $. This is a subring of $ R $. We say that $ R $ is \textbf{integrally closed in $ S $} if every element in $ S $ that is integral over $ R $ is contained in $ R $, so $ R $ is equal to its integral closure in $ S $. If $ R $ is an integral domain, we say that $ R $ is integrally closed if $ R $ is integrally closed in its field of fractions $ K $.
+\end{definition}
+
+\begin{lemma}
+Let $ R $ be a Noetherian subring of $ S $, and let $ R' $ be the integral closure of $ R $ in $ S $. Then $ R $ is integrally closed in $ S $.
+\end{lemma}
+
+\begin{proof}
+Let $ t $ be an element of $ R $ integral over $ R' $. Then $ R'\sb{t} $ is a finitely generated $ R' $-module, so is integral over $ R' $, and $ R' $ is integral over $ R $. Thus $ R'\sb{t} $ is integral over $ R $, so $ t $ is integral over $ R $ and thus lies in $ R' $.
+\end{proof}
+
+\begin{example}
+$ \Z\sb{\sqrt{-3}} $ is integral over $ \Z $. As a $ \Z $-module, $ \Z\sb{\sqrt{-3}} $ is generated by $ 1, \sqrt{-3} $. It is not integrally closed. $ \tfrac{1 + \sqrt{-3}}{2} $ is in the field of fractions of $ \Z\sb{\sqrt{-3}} $ and is a root of $ X^2 - X + 1 $.
+\end{example}
+
+\begin{theorem}
+Let $ R $ be a UFD. Then $ R $ is integrally closed.
+\end{theorem}
+
+\begin{proof}
+Let $ K $ be the field of fractions of $ R $, and suppose $ \alpha \in K $ is integral over $ R $. Want $ \alpha \in R $. Then there exists a monic polynomial $ P\rb{X} $ in $ R\sb{X} $ with coefficients in $ R $ such that $ P\rb{\alpha} = 0 $. Then $ \rb{X - \alpha} $ is an element of $ K\sb{X} $ dividing $ P\rb{X} $. By Gauss' lemma there is a $ \lambda \in K^* $ such that $ \lambda\rb{X - \alpha} $ is in $ R\sb{X} $ and divides $ P\rb{X} $ in $ R\sb{X} $. Clearly $ \lambda $ must lie in $ R $, and on the other hand divide the leading coefficient of $ P\rb{X} $, which is one. Thus $ \lambda \in R^* $ is a unit, so since $ \rb{X - \alpha} \in R\sb{X} $ we must have $ \alpha \in R $.
+\end{proof}
+
+This suggests to number theorists to take an extension $ K / \Q $ finite, and let $ \mathcal{O}_K $, the \textbf{ring of integers of $ K $}, be the integral closure of $ \Z $ in $ K $.
+
+\begin{note}
+For $ x, y \in \Q $, $ \Q\rb{\sqrt{x}} = \Q\rb{\sqrt{y^2x}} = \Q\rb{y\sqrt{x}} $.
+\end{note}
+
+We now focus on a specific class of examples. Let $ d \in \Z $ be squarefree and let $ K = \Q\rb{\sqrt{d}} $. This is precisely the set of elements of $ K $ that are integral over $ \Z $. That is, that satisfy a monic polynomial with integral coefficients. What is $ \mathcal{O}_K $? Every element of $ K $ is of the form $ a + b\sqrt{d} $ for $ a, b \in \Q $. Question is when is this an algebraic integer? Need minimal polynomial of $ a + b\sqrt{d} $ to have integer coefficients. We have the following lemma.
+
+\begin{lemma}
+Let $ \alpha \in K $ and suppose $ \alpha $ is integral over $ \Z $. Then the minimal polynomial of $ \alpha $, taken to be monic, has integer coefficients.
+\end{lemma}
+
+\begin{proof}
+Let $ Q\rb{X} $ be the minimal polynomial of $ \alpha $, normalised so it is monic. Since $ \alpha $ is integral over $ \Z $, there is a monic polynomial $ P\rb{X} $, with integer coefficients, such that $ P\rb{\alpha} = 0 $. Then $ Q\rb{X} $ divides $ P\rb{X} $ in $ \Q\sb{X} $. By Gauss' lemma, there exists $ \beta \in \Q^* $ such that $ \beta Q\rb{X} $ has integer coefficients and divides $ P\rb{X} $ in $ \Z\sb{X} $. Since $ Q\rb{X} $ is monic, $ \beta $ lies in $ \Z $. Since $ \beta Q\rb{X} $ divides $ P\rb{X} $ we see that $ \beta $ divides one by comparing leading coefficients, so $ \beta $ is a unit and $ Q\rb{X} $ lies in $ \Z\sb{X} $.
+\end{proof}
+
+Let $ \alpha = a + b\sqrt{d} $, with $ a, b \in \Q $. Then the minimal polynomial of $ \alpha $ over $ \Q $ is
+$$ \rb{X - \rb{a + b\sqrt{d}}}\rb{X - \rb{a - b\sqrt{d}}} = X^2 - 2aX + \rb{a^2 - b^2d}. $$
+Thus $ \alpha $ is an algebraic integer if and only if $ 2a, a^2 - b^2d \in \Z $.
+\begin{enumerate}
+\item Suppose this is the case, and that $ a \in \Z $. Then $ b^2d \in \Z $. Suppose $ b \notin \Z $. There exists a prime $ p $ dividing denominator of $ b $ in lowest terms. Since $ b^2d \in \Z $ must have $ p^2 \mid d $ but we took $ d $ squarefree. So $ b \in \Z $.
+\item On the other hand, suppose that $ a = m / 2 $ where $ m $ is odd. Then if $ a^2 - b^2d \in \Z $ we have $ m^2 / 4 - b^2d \in \Z $ and so $ m^2 - 4b^2d $ is a multiple of four. So $ 4b^2d = x $ where $ m^2 - x \in \Z $ is a multiple of four. Since $ \rb{2k + 1}^2 = 4k^2 + 4k + 1 \equiv 1 \mod 4 $, so $ m^2 \equiv 1 \mod 4 $, this can only happen if $ d $ is odd and $ b = n / 2 $ with $ n $ odd. We then have $ m^2 - n^2d $ is a multiple of four. Since $ m^2, n^2 \in \Z $ are odd they are congruent to $ 1 $ modulo $ 4 $, so this is only possible if $ d $ is congruent to $ 1 $ modulo $ 4 $.
+\end{enumerate}
+Thus if $ \alpha $ is an algebraic integer, either $ \alpha = a + b\sqrt{d} $ with $ a, b \in \Z $, or $ \alpha = \tfrac{m + n\sqrt{d}}{2} $ with $ m, n \in \Z $ odd and $ d $ congruent to $ 1 $ mod $ 4 $. Conversely, it is easy to check that all such elements are algebraic integers. To summarise, if $ K = \Q\sqrt{d} $ for $ d $ squarefree, we thus have
+$$ \mathcal{O}_K = \begin{cases} \Z\sb{\sqrt{d}} = \cb{a + b\sqrt{d} \mid a, b \in \Z} & d \equiv 2, 3 \mod 4 \\ \Z\sb{\tfrac{1 + \sqrt{d}}{2}} = \cb{\tfrac{m + n\sqrt{d}}{2} \mid n, m \in \Z, \ n \equiv m \mod 2} & d \equiv 1 \mod 4 \end{cases}. $$
+
+\begin{note}
+The results in this section are also true without any Noetherian hypotheses, but the proofs are more difficult, and require machinery we have not covered.
+\end{note}
 
 \end{document}
