@@ -27,6 +27,7 @@
 \newcommand{\cb}[1]{\left\{ #1 \right\}}
 \newcommand{\ab}[1]{\left\langle #1 \right\rangle}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\fb}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
 \newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
 
@@ -130,7 +131,7 @@ Let $ a, b \in \Z $ with $ b > 0 $. Then there exist unique $ q, r \in \Z $ such
 \end{theorem}
 
 \begin{proof}
-Let $ q = \lfloor a / b \rfloor $ be the largest integer less than $ a / b $. Then by definition $ 0 \le a / b - q < 1 $. Thus $ 0 \le a - qb < b $, so we can take $ r = a - bq $. Uniqueness is easy.
+Let $ q = \fb{a / b} $ be the largest integer less than $ a / b $. Then by definition $ 0 \le a / b - q < 1 $. Thus $ 0 \le a - qb < b $, so we can take $ r = a - bq $. Uniqueness is easy.
 \end{proof}
 
 This gives us \textbf{Euclid's algorithm} for finding $ \rb{a, b} $ for any $ a, b \in \Z $ not both zero. Without loss of generality, assume $ 0 \le b \le a $ and $ a > 0 $.
@@ -1351,7 +1352,7 @@ Let $ \alpha \in \R \setminus \Q $, and let $ Q \in \Z_{> 1} $. Then there exist
 \end{theorem}
 
 \begin{proof}
-For $ 1 \le k \le Q - 1 $, let $ a_k = \left\lfloor k\alpha \right\rfloor $, so that $ 0 < k\alpha - a_k < 1 $. Partition the interval $ \sb{0, 1} $ into $ Q $ subintervals of length $ 1 / Q $, $ \sb{0, 1 / Q}, \dots, \sb{\rb{Q - 1} / Q, 1} $. One of these intervals contains some pair of elements of the set
+For $ 1 \le k \le Q - 1 $, let $ a_k = \fb{k\alpha} $, so that $ 0 < k\alpha - a_k < 1 $. Partition the interval $ \sb{0, 1} $ into $ Q $ subintervals of length $ 1 / Q $, $ \sb{0, 1 / Q}, \dots, \sb{\rb{Q - 1} / Q, 1} $. One of these intervals contains some pair of elements of the set
 $$ \cb{0, \alpha - a_1, \dots, \rb{Q - 1}\alpha - a_{Q - 1}, 1}, $$
 which contains $ Q + 1 $ elements. The difference between these two elements is of the form $ p - q\alpha $, where $ p, q \in \Z $ and $ 1 \le q < Q $, and this difference is less than $ 1 / Q $.
 \end{proof}
@@ -1362,7 +1363,7 @@ For any $ \alpha \in \R \setminus \Q $, there are infinitely many pairs $ p, q \
 \end{corollary}
 
 \begin{proof}
-Certainly there exists $ p $ for $ q = 1 $. It suffices to show, given any $ p, q $ with $ \abs{\alpha - p / q} < 1 / q^2 $, that we can find another $ p', q' $ with $ \abs{\alpha - p' / q'} < 1 / \rb{q'}^2 $ and $ \abs{\alpha - p' / q'} < \abs{\alpha - p / q} $. Suppose given such a $ p, q $, and choose $ Q $ such that $ 1 / Q < \abs{\alpha - p / q} $. Then by Theorem \ref{thm:65}, there exist $ p', q' $ with $ 1 \le q' < Q $, and $ \abs{\alpha - p' / q'} < 1 / \rb{Qq'} < 1 / \rb{q'}^2 $. Also $ \abs{\alpha - p' / q'} < 1 / \rb{Qq'} \le 1 / Q < \abs{\alpha - p / q} $, as required. The claim follows.
+Certainly there exists $ p $ for $ q = 1 $. It suffices to show, given any $ p, q $ with $ \abs{\alpha - p / q} < 1 / q^2 $, that we can find another $ p', q' $ with $ \abs{\alpha - p' / q'} < 1 / \rb{q'}^2 $ and $ \abs{\alpha - p' / q'} < \abs{\alpha - p / q} $. Suppose given such a $ p, q $, and choose $ Q $ such that $ 1 / Q < \abs{\alpha - p / q} $. Then by Theorem \ref{thm:65}, there exist $ p', q' $ with $ 1 \le q' < Q $, and $ \abs{\alpha - p' / q'} < 1 / Qq' < 1 / \rb{q'}^2 $. Also $ \abs{\alpha - p' / q'} < 1 / Qq' \le 1 / Q < \abs{\alpha - p / q} $, as required. The claim follows.
 \end{proof}
 
 We can now show the following.
@@ -1404,9 +1405,9 @@ Consider $ d = 3 $, where the equation has no solutions modulo three and thus no
 \subsection{Rational continued fractions}
 
 Let $ p / q \in \Q $. Write
-$$ \dfrac{p}{q} = a_0 + r_0, \qquad a_0 = \left\lfloor \dfrac{p}{q} \right\rfloor, \qquad 0 \le r_0 < 1. $$
+$$ \dfrac{p}{q} = a_0 + r_0, \qquad a_0 = \fb{\dfrac{p}{q}}, \qquad 0 \le r_0 < 1. $$
 If $ r_i \ne 0 $, write
-$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \left\lfloor \dfrac{1}{r_i} \right\rfloor \ge 1, \qquad 0 \le r_{i + 1} < 1. $$
+$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fb{\dfrac{1}{r_i}} \ge 1, \qquad 0 \le r_{i + 1} < 1. $$
 Eventually get some $ r_n = 0 $. Write
 $$ \dfrac{p}{q} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_n}}}. $$
 
@@ -1416,8 +1417,8 @@ $$ \dfrac{40}{19} = 2 + \dfrac{2}{19}, \qquad \dfrac{19}{2} = 9 + \dfrac{1}{2} \
 
 \subsection{Infinite continued fractions}
 
-Let $ \alpha \in \R \setminus \Q $. As above, set $ a_0 = \left\lfloor \alpha \right\rfloor $, write $ \alpha = a_0 + r_0 $. Define sequences $ a_i, r_i $ by
-$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \left\lfloor \dfrac{1}{r_i} \right\rfloor \in \Z, \qquad 0 \le r_{i + 1} < 1. $$
+Let $ \alpha \in \R \setminus \Q $. As above, set $ a_0 = \fb{\alpha} $, write $ \alpha = a_0 + r_0 $. Define sequences $ a_i, r_i $ by
+$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fb{\dfrac{1}{r_i}} \in \Z, \qquad 0 \le r_{i + 1} < 1. $$
 By definition, $ a_i \ge 1 $ if $ i > 0 $. Write
 $$ \alpha = a_0 + \dfrac{1}{a_1 + \dfrac{1}{a_2 + \dfrac{1}{\dots}}}. $$
 
@@ -1433,6 +1434,7 @@ If $ a_0, a_1, \dots, a_n \in \R $, then
 $$ \sb{a_0; a_1, \dots, a_n} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_n}}}. $$
 
 \begin{lemma}
+\label{lem:68}
 If $ a_0, \dots, a_n \in \R $, define $ p_i, q_i $ for $ 0 \le i \le n $ by
 $$ p_0 = a_0, \qquad q_0 = 1, \qquad p_1 = a_0a_1 + 1, \qquad q_1 = a_1, \qquad p_i = a_ip_{i - 1} + p_{i - 2}, \qquad q_i = a_iq_{i - 1} + q_{i - 2}. $$
 Assuming that no $ q_i = 0 $, we have $ \sb{a_0; a_1, \dots, a_n} = p_n / q_n $.
@@ -1473,6 +1475,85 @@ p_nq_{n - 1} - q_np_{n - 1}
 If $ a_i \in \Z $, then $ p_i, q_i \in \Z $, and Lemma \ref{lem:69} gives $ \rb{p_n, q_n} = 1 $.
 \end{note}
 
-In general, Lemma \ref{lem:69} gives $ \abs{p_n / q_n - p_{n - 1} / q_{n - 1}} = 1 / \rb{q_nq_{n - 1}} $. If $ a_i \ge 1 $ for all $ i \ge 1 $, then the sequence $ q_i $ increases exponentially. So $ \sum_{i = 1}^n 1 / \rb{q_iq_{i - 1}} $ converges, so that $ \rb{p_n / q_n} $ is a Cauchy sequence, so it converges.
+In general, Lemma \ref{lem:69} gives $ \abs{p_n / q_n - p_{n - 1} / q_{n - 1}} = 1 / q_nq_{n - 1} $. If $ a_i \ge 1 $ for all $ i \ge 1 $, then the sequence $ q_i $ increases exponentially. So $ \sum_{i = 1}^n 1 / q_iq_{i - 1} $ converges, so that $ \rb{p_n / q_n} $ is a Cauchy sequence, so it converges.
+
+\marginpar{Lecture 20 \\ Tuesday \\ 20/11/18}
+
+\begin{lemma}
+\label{lem:70}
+Let $ \alpha \in \R \setminus \Q $, and let $ \sb{a_0; a_1, a_2, \dots} $ be the corresponding continued fraction. Then $ p_n / q_n < \alpha $ if $ n $ is even, and $ p_n / q_n > \alpha $ if $ n $ is odd.
+\end{lemma}
+
+\begin{proof}
+Induction on $ n $. $ n = 0 $ is $ a_0 = \fb{\alpha} < \alpha $ and $ p_0 / q_0 = a_0 / 1 = a_0 $. If $ n $ is odd, then by induction, we have $ \sb{a_1; a_2, \dots, a_n} < 1 / \rb{\alpha - a_0} $, since $ \alpha = a_0 + 1 / \dots $. That is,
+$$ \alpha - a_0 < \dfrac{1}{\sb{a_1; a_2, \dots, a_n}} \qquad \implies \qquad \alpha < a_0 + \dfrac{1}{\sb{a_1; a_2, \dots, a_n}} = \sb{a_0; a_1, \dots, a_n} = \dfrac{p_n}{q_n}. $$
+If $ n $ is even, same argument with $ > $.
+\end{proof}
+
+\begin{corollary}
+Assume $ \alpha \in \R \setminus \Q $, $ a_0, a_1, \dots \in \Z $ be coming from its continued fraction. Let $ p_n / q_n = \sb{a_0; a_1, \dots, a_n} $ be the $ n $-th convergent. Then $ \abs{\alpha - p_n / q_n} < 1 / q_nq_{n + 1} $. In particular, $ p_n / q_n \to \alpha $ as $ n \to \infty $.
+\end{corollary}
+
+\begin{proof}
+Either $ p_n / q_n < \alpha < p_{n + 1} / q_{n + 1} $ or $ p_n / q_n > \alpha > p_{n + 1} / q_{n + 1} $ by Lemma \ref{lem:70}. Either way, $ \abs{p_n / q_n - \alpha} < \abs{p_n / q_n - p_{n + 1} / q_{n + 1}} \le 1 / q_nq_{n + 1} $ by Lemma \ref{lem:69}.
+\end{proof}
+
+\begin{note}
+$ 1 / q_nq_{n + 1} < 1 / q_n^2 $, so the sequence $ \rb{p_n / q_n} $ satisfies the requirements of Dirichlet's theorem.
+\end{note}
+
+Fix $ \alpha \in \R \setminus \Q $. Define $ a_i, r_i $ by
+$$ \alpha = a_0 + r_0, \qquad a_0 = \fb{\alpha} \in \Z, \qquad 0 < r_0 < 1, $$
+If $ i \ge 1 $,
+$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fb{\dfrac{1}{r_i}} \in \Z_{\ge 1}, \qquad 0 < r_{i + 1} < 1. $$
+
+\begin{lemma}
+\label{lem:72}
+For all $ n $,
+$$ \alpha = \dfrac{p_n + p_{n - 1}r_n}{q_n + q_{n - 1}r_n}. $$
+\end{lemma}
+
+\begin{proof}
+$ \alpha = \sb{a_0; a_1, \dots, a_n, 1 / r_n} $. Set $ p_{n + 1} = p_n / r_n + p_{n - 1} $, $ q_{n + 1} = q_n / r_n + q_{n - 1} $. Then by Lemma \ref{lem:68}, $ \alpha = p_{n + 1} / q_{n + 1} $.
+\end{proof}
+
+\begin{corollary}
+For all $ n $, $ \abs{\alpha q_n - p_n} < \abs{\alpha q_{n - 1} - p_{n - 1}} $, and $ \abs{\alpha - p_n / q_n} < \abs{\alpha - p_{n - 1} / q_{n - 1}} $.
+\end{corollary}
+
+\begin{proof}
+By Lemma \ref{lem:72}, $ \alpha\rb{q_n + q_{n - 1}r_n} = p_n + p_{n - 1}r_n $, so $ \alpha q_n - p_n = r_n\rb{p_{n - 1} - \alpha q_{n - 1}} $. So $ \abs{\alpha q_n - p_n} = r_n\abs{\alpha q_{n - 1} - p_{n - 1}} < \abs{\alpha q_{n - 1} - p_{n - 1}} $.
+$$ \abs{\alpha - \dfrac{p_n}{q_n}} = \dfrac{1}{q_n}\abs{\alpha q_n - p_n} < \dfrac{1}{q_n}\abs{\alpha q_{n - 1} - p_{n - 1}} < \dfrac{1}{q_{n - 1}}\abs{\alpha q_{n - 1} - p_{n - 1}} = \abs{\alpha - \dfrac{p_{n - 1}}{q_{n - 1}}}. $$
+\end{proof}
+
+\begin{theorem}
+\label{thm:74}
+Let $ h, k \in \Z $, $ 0 < \abs{k} < q_{n + 1} $. Then $ \abs{k\alpha - h} \ge \abs{\alpha q_n - p_n} $, with equality only if $ \abs{k} = q_n $. If $ \abs{k} \le q_n $, then $ \abs{h / k - \alpha} \ge \abs{p_n / q_n - \alpha} $, with equality if and only if $ h / k = p_n / q_n $.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lem:69} there exist $ u, v \in \Z $ such that $ h = up_n + vp_{n + 1} $ and $ k = uq_n + vq_{n + 1} $, since
+$$ \two{h}{k} = \two{p_n & p_{n + 1}}{q_n & q_{n + 1}}\two{u}{v} \qquad \iff \qquad \two{u}{v} = \two{p_n & p_{n + 1}}{q_n & q_{n + 1}}^{-1}\two{h}{k} = \dfrac{1}{\rb{-1}^n}\two{q_{n + 1} & -p_{n + 1}}{-q_n & p_n}\two{h}{k}. $$
+By assumption, $ 0 < \abs{k} < q_{n + 1} $. So $ u \ne 0 $, else $ k = vq_{n + 1} $, $ \abs{v} < 1 $ is a contradiction. If $ v \ne 0 $, then $ u, v $ have opposite signs, else $ \abs{k} = \abs{uq_n} + \abs{vq_{n + 1}} \ge q_n + q_{n + 1} > q_{n + 1} $. If $ v = 0 $, then $ h = up_n $, $ k = uq_n $, and everything is easy. If $ v \ne 0 $, then write $ k\alpha - h = u\rb{\alpha q_n - p_n} + v\rb{\alpha q_{n + 1} - p_{n + 1}} $. $ u, v $ have opposite signs. By Lemma \ref{lem:70}, $ \alpha q_n - p_n, \alpha q_{n + 1} - p_{n + 1} $ also have opposite signs. So $ u\rb{\alpha q_n - p_n} $ and $ v\rb{\alpha q_{n + 1} - p_{n + 1}} $ have the same sign. So $ \abs{k\alpha - h} = \abs{u\rb{\alpha q_n - p_n}} + \abs{v\rb{\alpha q_{n + 1} - p_{n + 1}}} > \abs{\alpha q_n - p_n} $ if $ u, v \ne 0 $. For the last part, if $ \abs{k} \le q_n $ then $ 1 / \abs{k} \ge 1 / q_n $. So
+$$ \dfrac{1}{\abs{k}}\abs{k\alpha - h} \ge \dfrac{1}{q_n}\abs{q_n\alpha - p_n} \qquad \implies \qquad \abs{\alpha - \dfrac{h}{k}} \ge \abs{\alpha - \dfrac{p_n}{q_n}}. $$
+\end{proof}
+
+\begin{corollary}
+If $ h, k \in \Z $ with $ \abs{\alpha - h / k} < 1 / 2k^2 $, then $ h / k = p_n / q_n $ for some $ n $.
+\end{corollary}
+
+\begin{proof}
+Without loss of generality $ k \ge 1 $, and $ q_n \le k < q_{n + 1} $ for some $ n $. Then
+\begin{align*}
+\abs{\dfrac{p_n}{q_n} - \dfrac{h}{k}}
+& \le \abs{\dfrac{p_n}{q_n} - \alpha} + \abs{\alpha - \dfrac{h}{k}}
+= \dfrac{1}{q_n}\abs{\alpha q_n - p_n} + \dfrac{1}{k}\abs{\alpha k - h} \\
+& \le \rb{\dfrac{1}{q_n} + \dfrac{1}{k}}\abs{\alpha k - h}
+= k\rb{\dfrac{1}{q_n} + \dfrac{1}{k}}\abs{\alpha - \dfrac{k}{h}}
+< \dfrac{1}{2k}\abs{\dfrac{1}{q_n} + \dfrac{1}{k}}
+\le \dfrac{1}{kq_n},
+\end{align*}
+by Theorem \ref{thm:74}. So $ \abs{p_n / q_n - h / k} < 1 / kq_n $. So $ p_n / q_n - h / k = 0 $, as required.
+\end{proof}
 
 \end{document}
