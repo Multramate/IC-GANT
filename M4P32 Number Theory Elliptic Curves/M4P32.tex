@@ -373,7 +373,7 @@ Every element of $ \Q_p^* = \Q_p \setminus \cb{0} $ is uniquely of the form $ p^
 Set $ \abs{a}_p = p^{-n} $, then $ \abs{p^{-n}a}_p = 1 $, so $ u = p^{-n}a $, so $ a = up^n $.
 \end{proof}
 
-Aim is to solve the equation $ x^2 - 7 = 0 $ in $ \Z_3 $ starting with a solution to $ x^2 \equiv 7 \mod 3 $. We did this by solving $ x^2 \equiv 7 \mod 3^n $ for $ n = 1, 2, \dots $. Write $ f\rb{x} = x^2 - 7 $. Then $ \abs{f\rb{1}}_3 = 1 / 3 $, $ \abs{f\rb{4}}_3 = 1 / 9 $, $ \abs{f\rb{13}}_3 = 1 / 27 $, etc. So starting with $ x_0 = 1 $, we construct a sequence $ \rb{x_n} $ with $ \abs{x_{n + 1} - x_n} \le 1 / 3^{n + 1} $ and $ \abs{f\rb{x_{n + 1}}}_3 \le 1 / 3^n $. So in particular $ \rb{x_n} $ is Cauchy, and so converges to some $ x \in \Q_3 $ with $ f\rb{x} = 0 $. Newton-Raphson method over $ \R $ works over $ \Q_p $, and this is called \textbf{Hensel's Lemma}.
+Aim is to solve the equation $ x^2 - 7 = 0 $ in $ \Z_3 $ starting with a solution to $ x^2 \equiv 7 \mod 3 $. We did this by solving $ x^2 \equiv 7 \mod 3^n $ for $ n = 1, 2, \dots $. Write $ f\rb{x} = x^2 - 7 $. Then $ \abs{f\rb{1}}_3 = 1 / 3 $, $ \abs{f\rb{4}}_3 = 1 / 9 $, $ \abs{f\rb{13}}_3 = 1 / 27 $, etc. So starting with $ x_0 = 1 $, we construct a sequence $ \rb{x_n} $ with $ \abs{x_{n + 1} - x_n} \le 1 / 3^{n + 1} $ and $ \abs{f\rb{x_{n + 1}}}_3 \le 1 / 3^n $. So in particular $ \rb{x_n} $ is Cauchy, and so converges to some $ x \in \Q_3 $ with $ f\rb{x} = 0 $. Newton-Raphson method over $ \R $ works over $ \Q_p $, and this is called \textbf{Hensel's lemma}.
 
 \begin{definition}
 If $ R $ is a ring and $ f\rb{X} \in R\sb{X} $ is a polynomial, say $ f\rb{x} = \sum_{n = 0}^m a_nx^n $, then $ f'\rb{x} = \sum_{n = 0}^m na_nx^{n - 1} $.
@@ -381,7 +381,7 @@ If $ R $ is a ring and $ f\rb{X} \in R\sb{X} $ is a polynomial, say $ f\rb{x} = 
 
 In addition, for any $ x, h $ we have $ f\rb{x + h} = f\rb{x} + hf'\rb{x} + \tfrac{1}{2}h^2f''\rb{x} + \dots $. Why is $ \tfrac{1}{2}f''\rb{x} $ defined? If $ f\rb{x} = \sum_{n = 0}^\infty a_nx^n $, $ \tfrac{1}{2}f''\rb{x} = \sum_{n = 2}^\infty \tfrac{1}{2}n\rb{n - 1}a_nx^{n - 2} $, where $ n\rb{n - 1} $ is even.
 
-\begin{theorem}[Hensel's Lemma]
+\begin{theorem}[Hensel's lemma]
 Let $ k $ be a field which is complete with respect to a nonarchimedean norm $ \abs{\cdot} $. Let $ R = \cb{x \in k \mid \abs{x} \le 1} $, such as $ k = \Q_p $, $ R = \Z_p $, $ \abs{\cdot} = \abs{\cdot}_p $. Let $ f\rb{x} \in R\sb{x} $, and $ t_0 \in R $ with $ \abs{f\rb{t_0}} > \abs{f'\rb{t_0}}^2 $. Then there is a unique $ t \in R $ with $ f\rb{t} = 0 $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $. Moreover, $ \abs{f'\rb{t_0}} = \abs{f'\rb{t_0}} $, and $ \abs{t_- t_0} = \abs{f\rb{t_0}} / \abs{f'\rb{t_0}} < 1 $.
 \end{theorem}
 
@@ -389,7 +389,7 @@ Let $ k $ be a field which is complete with respect to a nonarchimedean norm $ \
 Let $ k = \Q_3 $ and $ f\rb{x} = x^2 - 7 $. Then $ f'\rb{x} = 2x $. $ t_0 = 1 $, so $ \abs{f\rb{t_0}}_3 = \abs{-6}_3 = 1/ 3 $. $ \abs{f'\rb{t_0}}_3 = \abs{2}_3 = 1 $. So there is a unique $ t \in \Z_3 $ with $ t^2 = 7 $ and $ \abs{t - 1}_3 < 1 $, so $ t \equiv 1 \mod 3 $.
 \end{example}
 
-Harder part of the proof of Hensel's Lemma is existence, which is done by constructing a sequence $ t_0, t_1, \dots $ as above. For uniqueness, suppose $ s \ne t $ and $ f\rb{s} = f\rb{t} = 0 $, and $ \abs{s - t_0} < \abs{f'\rb{t_0}} $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $, so $ \abs{s - t} \le \max\rb{\abs{s - t_0}, \abs{t - t_0}} < \abs{f'\rb{t_0}} $. Taylor expansion gives $ f\rb{s} = f\rb{t} + \rb{s - t}f'\rb{t} + \dots $. So there exists $ x \in R $ with $ \rb{s - t}f'\rb{t} = \rb{s - t}^2 = x $. So $ f'\rb{t} = \rb{s - t}x $. $ \abs{f'\rb{t}} = \abs{s - t}\abs{x} \le \abs{s - t} < \abs{f'\rb{t_0}} $. So $ \abs{f'\rb{t}} < \abs{f'\rb{t_0}} $. On the other hand it is easy to show that $ \abs{f'\rb{t}} = \abs{f'\rb{t_0}} $, a contradiction. See handout for the full proof of Hensel's Lemma and some remarks about in what sense it is best possible.
+Harder part of the proof of Hensel's lemma is existence, which is done by constructing a sequence $ t_0, t_1, \dots $ as above. For uniqueness, suppose $ s \ne t $ and $ f\rb{s} = f\rb{t} = 0 $, and $ \abs{s - t_0} < \abs{f'\rb{t_0}} $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $, so $ \abs{s - t} \le \max\rb{\abs{s - t_0}, \abs{t - t_0}} < \abs{f'\rb{t_0}} $. Taylor expansion gives $ f\rb{s} = f\rb{t} + \rb{s - t}f'\rb{t} + \dots $. So there exists $ x \in R $ with $ \rb{s - t}f'\rb{t} = \rb{s - t}^2 = x $. So $ f'\rb{t} = \rb{s - t}x $. $ \abs{f'\rb{t}} = \abs{s - t}\abs{x} \le \abs{s - t} < \abs{f'\rb{t_0}} $. So $ \abs{f'\rb{t}} < \abs{f'\rb{t_0}} $. On the other hand it is easy to show that $ \abs{f'\rb{t}} = \abs{f'\rb{t_0}} $, a contradiction. See handout for the full proof of Hensel's lemma and some remarks about in what sense it is best possible.
 
 \marginpar{Lecture 6 \\ Tuesday \\ 16/10/18}
 
@@ -522,7 +522,7 @@ Let $ k = \Q $.
 \end{example}
 
 \begin{example}
-If $ y = x + 1 $, then $ F = Y - X - Z $. $ \partial F / \partial X = -1 $, $ \partial F / \partial Y = 1 $, $ \partial F / \partial Z = -1 $. This is non singular.
+If $ y = x + 1 $, then $ F = Y - X - Z $. $ \partial F / \partial X = -1 $, $ \partial F / \partial Y = 1 $, $ \partial F / \partial Z = -1 $. This is nonsingular.
 \end{example}
 
 \begin{example}
@@ -644,7 +644,7 @@ $ 3X^3 + 4Y^3 + 5Z^3 $.
 $ X^2 + Y^2 = 6 $ has no solution in $ \Q_3 $ gives none in $ \Q $. $ X^2 + Y^2 = -1 $ has no solution in $ \R $ gives none in $ \Q $.
 \end{example}
 
-Basic idea is if we have solutions to some equation in every $ \Q_p $, we have solutions modulo $ N $ for all $ N \in \Z $. Use Chinese remainder theorem to reduce to $ N = p^k $, Hensel's Lemma says that equations have solutions in $ \Z_p $ iff modulo $ p^k $ for all $ k $. We would like a technique for upgrading solutions to congruences to solutions to equations in $ \Q $ or in $ \Z $. Aim is to prove that if $ p \equiv 1 \mod 4 $ then $ p = x^2 + y^2 $ for some $ x, y \in \Z $. Input is $ n $ such that $ n^2 \equiv -1 \mod p $.
+Basic idea is if we have solutions to some equation in every $ \Q_p $, we have solutions modulo $ N $ for all $ N \in \Z $. Use Chinese remainder theorem to reduce to $ N = p^k $, Hensel's lemma says that equations have solutions in $ \Z_p $ iff modulo $ p^k $ for all $ k $. We would like a technique for upgrading solutions to congruences to solutions to equations in $ \Q $ or in $ \Z $. Aim is to prove that if $ p \equiv 1 \mod 4 $ then $ p = x^2 + y^2 $ for some $ x, y \in \Z $. Input is $ n $ such that $ n^2 \equiv -1 \mod p $.
 
 \begin{lemma}
 \label{lem:4.1}
@@ -956,5 +956,50 @@ Let $ y^2 = x^3 + 1 $. $ y = 0 $ or $ y^2 \mid 27 $, so $ y = \pm 1, \pm 3 $, so
 \begin{example}
 Let $ y^2 = x^3 + 17 $. $ y = 0 $ has no solutions, so $ y^2 \mid \rb{27}\rb{17}^2 $ gives $ y \mid \rb{3}\rb{17} $. If $ 17 \mid y $, then $ x^3 = 17 - y^2 $ is divisible by $ 17 $ but not $ 17^2 $, a contradiction. So $ y \mid 3 $. Only possibilities are $ \rb{x, y} = \rb{-2, \pm 3} $. Applying the doubling formula, get $ \rb{8, \pm 9} $. Since we already showed that the only possibilities for torsion points are $ \rb{-2, \pm 3} $ and $ O $, $ \rb{8, \pm 9} $ is not torsion, so $ \rb{-2, \pm 3} $ is also not torsion. So the only torsion point is $ O $.
 \end{example}
+
+\marginpar{Lecture 21 \\ Tuesday \\ 20/11/18}
+
+\section{Elliptic curves over $ \Q_p $}
+
+Let $ y^2 = x^3 + ax + b $ for $ a, b \in \Q_p $ and $ \Delta = 4a^3 + 27b^2 \ne 0 $. Recall that there is a ring homomorphism $ \Z_p \to \F_p = \Z / p\Z $. In fact $ \Z_p / p\Z_p \cong \Z / p\Z $ by $ a_0 + a_1p + \dots \mapsto a_0 $. There is no ring homomorphism $ \Q_p \to \F_p $. There is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $. $ \sb{a_0 : \dots : a_n} = \sb{b_0 : \dots : b_n} $ for $ b_i \in \Z_p $, at least one $ b_i \in \Z_p^* $. Take $ b_i = p^sa_i $ for appropriate $ s $. Then $ \abs{a_0 : \dots : a_n} \mapsto \sb{\bar{b_0} : \dots : \bar{b_n}} $, where $ \bar{b_i} $ is the image of $ b_i $ in $ \F_p $. This is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $.
+
+\begin{example}
+$ \rb{x, y} = \rb{1 / p, 1 / p} $ is $ \sb{x : y : 1} = \sb{1 / p : 1 / p : 1} = \sb{1 : 1 : p} \mapsto \sb{1 : 1 : 0} $.
+\end{example}
+
+By replacing $ x $ with $ p^{2n}x $, $ y $ by $ p^{3n}y $, can assume $ a, b \in \Z_p $. Reduction modulo $ p $ of $ y^2 = x^3 + ax + b $ is $ y^2 = x^3 + \bar{a}x + \bar{b} $ for $ \bar{a}, \bar{b} \in \F_p $. This would be singular if either $ p = 2 $, or $ p \mid \Delta = 4a^3 + 27b^2 $. Even if it is singular, we still have a group law on the nonsingular points.
+
+\begin{example}
+Let $ y^2 = x^3 - 18 $. Modulo $ 3 $, we get $ y^2 = x^3 $, and $ \rb{0, 0} $ is singular. $ \rb{3, 3} $ is a point over $ \Q_3 $, which reduces to the singular point $ \rb{0, 0} $. Claim there is a point over $ \Q_3 $ with $ x = 1 / 9 $. Need to solve $ y^2 = \rb{1 / 9}^3 - 18 = \rb{1 - 2\rb{3}^8} / 3^6 $, that is $ \rb{3^3y}^2 = 1 - 2\rb{3}^8 $, which has two solutions in $ \Q_3 $ by Hensel's lemma. This point $ \rb{1 / 3^2, 1 / 3^3 + \epsilon} $ reduces to $ \sb{0 : 1 : 0} $ modulo $ 3 $, that is to the point $ O $ at infinity.
+\end{example}
+
+\begin{lemma}
+\label{lem:7.1}
+\hfill
+\begin{enumerate}
+\item Let $ y^2 = g\rb{x} $ for $ g\rb{x} \in \Z_p\sb{X} $ monic cubic. If $ \rb{x_0, y_0} $ is a point of this cubic, then either $ x_0, y_0 \in \Z_p $ or there exists $ n \ge 1 $ such that $ \abs{x_0}_p = p^{2n} $, $ \abs{y_0}_p = p^{3n} $.
+\item If $ g\rb{x} $ reduces to $ x^3 $ modulo $ p $ and $ \abs{x_0}_p, \abs{y_0} \le 1 $, then either $ \abs{x_0}_p, \abs{y_0}_p < 1 $, or $ \abs{x_0}_p = \abs{y_0}_p = 1 $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Let $ y^2 = x^3 + \alpha x^2 + \beta x + \gamma $ for $ \alpha, \beta, \gamma \in \Z_p $. If $ \abs{x_p} > 1 $, then $ \abs{x^3}_p > \abs{\alpha x^2}_p, \abs{\beta x}_p, \abs{\gamma}_p $. So by the ultrametric inequality, $ \abs{y}_p^2 = \abs{y^2}_p = \abs{x^3 + \alpha x^2 + \beta x + \gamma}_p = \abs{x^3}_p = \abs{x}_p^3 $.
+\item Need $ p \mid x_0 $ iff $ p \mid y_0 $, but $ x_0^3 \equiv y_0^2 \mod p $, so this is clear.
+\end{enumerate}
+\end{proof}
+
+Write $ E $ for $ y^2 = g\rb{x} $ for $ g\rb{x} \in \Z_p\sb{x} $ monic cubic. Let $ E\rb{\Q_p}^{\rb{0}} $ be $ P \in E\rb{\Q_p} $ such that $ P $ maps to a nonsingular point modulo $ p $, and let $ E\rb{\Q_p}^{\rb{1}} \subseteq E\rb{\Q_p}^{\rb{0}} $ be $ P \in E\rb{\Q_p} $ such that $ P $ maps to $ O $ modulo $ p $. What are the points $ \rb{x, y} \in E\rb{\Q_p}^{\rb{1}} $? They are the points with $ \abs{x}_p, \abs{y}_p > 1 $ by Lemma \ref{lem:7.1}.
+
+\begin{lemma}
+$ E\rb{\Q_p}^{\rb{0}} $ is a subgroup of $ E\rb{\Q_p} $. Reduction modulo $ p $ is a group homomorphism from $ E\rb{\Q_p}^{\rb{0}} $ to the group of nonsingular points modulo $ p $. The kernel of this homomorphism is $ E\rb{\Q_p}^{\rb{1}} $.
+\end{lemma}
+
+\begin{proof}
+The group law is determined by three points add up to $ O $ iff they are collinear. Also, by Bézout, if two points on a line are nonsingular, so is the third. To see that $ E\rb{\Q_p}^{\rb{0}} $ is a subgroup of $ E\rb{\Q_p} $, suppose that $ P + Q + R = O $ and $ P, Q \in E\rb{\Q_p}^{\rb{0}} $. Then $ P, Q, R $ are collinear. Then their images modulo $ p $ are also collinear, and the images of $ P, Q $ are nonsingular. So the image of $ R $ modulo $ p $ is also nonsingular, so $ R \in E\rb{\Q_p}^{\rb{0}} $. This also shows that reduction modulo $ p $ is a group homomorphism. The kernel is $ E\rb{\Q_p}^{\rb{1}} $ by definition.
+\end{proof}
+
+In fact, the homomorphism $ E\rb{\Q_p}^{\rb{0}} $ to the nonsingular points over $ \F_p $ is surjective, in example sheet 4 by Hensel's lemma.
 
 \end{document}
