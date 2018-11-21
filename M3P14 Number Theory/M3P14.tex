@@ -281,13 +281,13 @@ For $ n $ fixed, it is easy to verify that congruence modulo $ n $ is an equival
 If $ a \equiv b \mod n $, $ c \equiv d \mod n $, then $ a + c \equiv b + d \mod n $ and $ ac \equiv bd \mod n $.
 \end{example}
 
-In fact $ \Z / n\Z $ is a ring, with the obvious addition and multiplication. Indeed $ n\Z = \cb{nr \mid r \in \Z} $ is an ideal in $ \Z $, and $ \Z / n\Z $ is just the quotient ring. For any $ a \in \Z $, we sometimes write $ \bar{a} $ for the image of $ a $ in $ \Z / n\Z $. We can write $ a = qn + r $ with $ 0 \le r < n $. Then $ a \equiv r \mod n $, so $ \bar{a} = \bar{r} $.
+In fact $ \Z / n\Z $ is a ring, with the obvious addition and multiplication. Indeed $ n\Z = \cb{nr \mid r \in \Z} $ is an ideal in $ \Z $, and $ \Z / n\Z $ is just the quotient ring. For any $ a \in \Z $, we sometimes write $ \overline{a} $ for the image of $ a $ in $ \Z / n\Z $. We can write $ a = qn + r $ with $ 0 \le r < n $. Then $ a \equiv r \mod n $, so $ \overline{a} = \overline{r} $.
 
 \begin{example}
-If $ n = 12 $, then $ \bar{25} = \bar{1} $.
+If $ n = 12 $, then $ \overline{25} = \overline{1} $.
 \end{example}
 
-It follows that $ 0, \dots, n - 1 $ are representatives for the elements of $ \Z / n\Z $, so every element of $ \Z / n\Z $ is equal to $ \bar{r} $ for some unique $ r \in \cb{0, \dots, n - 1} $. It will also be convenient to write $ \Z / n\Z = \cb{0, \dots, n - 1} $.
+It follows that $ 0, \dots, n - 1 $ are representatives for the elements of $ \Z / n\Z $, so every element of $ \Z / n\Z $ is equal to $ \overline{r} $ for some unique $ r \in \cb{0, \dots, n - 1} $. It will also be convenient to write $ \Z / n\Z = \cb{0, \dots, n - 1} $.
 
 \begin{example}
 If $ n = 6 $, we could write $ 3 + 4 = 1 $ and $ 3 \times 4 = 0 $.
@@ -299,7 +299,7 @@ Recall that if $ R $ is a commutative ring, a \textbf{unit} of $ R $ is an eleme
 $ \Z^\times = \cb{\pm 1} $ and $ \Q^\times = \Q \setminus \cb{0} = \cb{x \in \Q \mid x \ne 0} $.
 \end{example}
 
-We want to understand $ \unit{n} $. Which elements of $ \cb{0, \dots, n - 1} $ are in $ \unit{n} $? If $ r \in \Z $ and $ \bar{r} \in \unit{n} $ then there exists $ s \in \Z $ such that $ rs \equiv 1 \mod n $. This implies that $ \rb{r, n} = 1 $. Conversely, if $ \rb{r, n} = 1 $, then there exist $ x, y \in \Z $ such that $ rx + ny = 1 $, so $ \bar{rx} = 1 $, so $ \bar{r} $ is a unit. Thus we have $ \unit{n} = \cb{\bar{i} \mid \rb{i, n} = 1} $.
+We want to understand $ \unit{n} $. Which elements of $ \cb{0, \dots, n - 1} $ are in $ \unit{n} $? If $ r \in \Z $ and $ \overline{r} \in \unit{n} $ then there exists $ s \in \Z $ such that $ rs \equiv 1 \mod n $. This implies that $ \rb{r, n} = 1 $. Conversely, if $ \rb{r, n} = 1 $, then there exist $ x, y \in \Z $ such that $ rx + ny = 1 $, so $ \overline{rx} = 1 $, so $ \overline{r} $ is a unit. Thus we have $ \unit{n} = \cb{\overline{i} \mid \rb{i, n} = 1} $.
 
 \begin{note}
 If $ p $ is a prime, then either $ a \equiv 0 \mod p $ or $ \rb{a, p} = 1 $, so $ \unit{p} = \cb{1, \dots, p - 1} $. Thus every non-zero congruence class modulo $ p $ is a unit, that is $ \Z / p\Z $ is a ring with the property that every non-zero element has a multiplicative inverse, so it is a field. Another equivalent way to see this is to check that $ p\Z $ is a maximal ideal of $ \Z $.
@@ -312,7 +312,12 @@ If $ p $ is a prime, then either $ a \equiv 0 \mod p $ or $ \rb{a, p} = 1 $, so 
 Fix $ a, b \in \Z $ and $ c \in \Z^\times $. Suppose we want to solve $ ax \equiv b \mod c $. This is equivalent to finding $ x, y $ such that $ ax + cy = b $. In particular, by our analysis of linear diophantine equations, there is a solution precisely when $ \rb{a, c} \mid b $. Furthermore, there is a unique solution modulo $ c' = c / \rb{a, c} $, because all the solutions are obtained by adding multiples of $ c' $ to our given $ x $, and subtracting the corresponding multiple of $ a / \rb{a, c} $ from $ y $. This implies that there are a total of $ \rb{a, c} $ solutions to the original congruence modulo $ c $. If $ x $ is a solution, the other solutions are of the form $ X = x + c'j $ for $ 0 \le j < \rb{a, c} $. In particular, if $ \rb{a, c} = 1 $, then there is a unique solution to $ ax \equiv b \mod c $. Indeed $ a \in \unit{c} $, so it has an inverse $ a^{-1} $, and $ x \equiv a^{-1}b \mod c $ is the unique solution.
 
 \begin{example}
-$ 2x \equiv 3 \mod 6 $ has no solutions as $ \rb{2, 6} = 2 \nmid 3 $. $ 2x \equiv 4 \mod 6 $, which is equivalent to $ x \equiv 2 \mod 3 $, has solutions $ x \equiv 2 \mod 6 $ and $ x \equiv 5 \mod 6 $.
+\hfill
+\begin{enumerate}
+\item $ 2x \equiv 3 \mod 6 $ has no solutions as $ \rb{2, 6} = 2 \nmid 3 $.
+\item $ 2x \equiv 4 \mod 6 $, which is equivalent to $ x \equiv 2 \mod 3 $, has solutions $ x \equiv 2 \mod 6 $ and $ x \equiv 5 \mod 6 $.
+\end{enumerate}
+
 \end{example}
 
 \subsection{Chinese remainder theorem}
@@ -330,7 +335,7 @@ This is false without the assumption that $ m_i $ pairwise coprime, for example 
 \end{note}
 
 \begin{proof}
-Note firstly that the map exists and is a ring homomorphism. This follows from the fact that if $ x \equiv y \mod m_1 \dots m_n $ then certainly $ x \equiv y \mod m_i $ for each $ i $. The source and target of the ring homomorphism both have order $ m_1 \dots m_n $, so it suffices to show that the map is injective to show that it is an isomorphism. So we only need to check that the kernel is zero. So we need to know that if $ m_i \mid N $ for all $ i $, that is $ \bar{N} = 0 $ in $ \Z / m_i\Z $, then $ m_1 \dots m_n \mid N $, that is $ \bar{N} = 0 $ in $ \Z / m_1 \dots m_n\Z $. This is just Corollary \ref{cor:10}. The statement about unit groups follows by noting that if $ R, S $ are rings, then $ \rb{R \times S}^\times = R^\times \times S^\times $.
+Note firstly that the map exists and is a ring homomorphism. This follows from the fact that if $ x \equiv y \mod m_1 \dots m_n $ then certainly $ x \equiv y \mod m_i $ for each $ i $. The source and target of the ring homomorphism both have order $ m_1 \dots m_n $, so it suffices to show that the map is injective to show that it is an isomorphism. So we only need to check that the kernel is zero. So we need to know that if $ m_i \mid N $ for all $ i $, that is $ \overline{N} = 0 $ in $ \Z / m_i\Z $, then $ m_1 \dots m_n \mid N $, that is $ \overline{N} = 0 $ in $ \Z / m_1 \dots m_n\Z $. This is just Corollary \ref{cor:10}. The statement about unit groups follows by noting that if $ R, S $ are rings, then $ \rb{R \times S}^\times = R^\times \times S^\times $.
 \end{proof}
 
 \begin{note}
@@ -377,7 +382,7 @@ Let $ a \in \Z $ with $ \rb{a, n} = 1 $. Then $ a^{\Phi\rb{n}} \equiv 1 \mod n $
 \end{theorem}
 
 \begin{proof}
-This is equivalent to saying that $ \bar{a}^{\Phi\rb{n}} = 1 $ in $ \unit{n} $. This is a group of order $ \Phi\rb{n} $, so this is immediate from Lagrange's theorem.
+This is equivalent to saying that $ \overline{a}^{\Phi\rb{n}} = 1 $ in $ \unit{n} $. This is a group of order $ \Phi\rb{n} $, so this is immediate from Lagrange's theorem.
 \end{proof}
 
 \begin{corollary}[Fermat's little theorem]
@@ -422,7 +427,7 @@ The equation $ X^2 = 1 $ has exactly two solutions modulo $ p $ for any prime $ 
 \end{example}
 
 \begin{definition}
-$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root modulo $ p $} if the order of $ g $ modulo $ p $ is exactly $ p - 1 $, equivalently, if $ \bar{g} $ is a generator of $ \unit{p} $.
+$ g \in \Z $ with $ \rb{g, p} = 1 $ is a \textbf{primitive root modulo $ p $} if the order of $ g $ modulo $ p $ is exactly $ p - 1 $, equivalently, if $ \overline{g} $ is a generator of $ \unit{p} $.
 \end{definition}
 
 To prove that primitive roots exist, we require some results about roots of polynomials modulo $ p $. Over the rational numbers we all know that a polynomial of degree $ d $ has at most $ d $ roots. This can fail over other rings.
@@ -613,7 +618,12 @@ so we can check divisibility by taking the sum of the decimal digits for $ 3 $ o
 If we wanted to factor three digit numbers, or small four digit numbers, say $ n \le 400 $ is composite, with paper or calculator, then $ n $ has a prime factor $ d \le \sqrt{400} = 20 $. Then we only have to worry about checking divisibility by primes up to $ 19 $. If $ n $ is not divisible by $ 2, 3, 5, 7, 11 $, then the smallest prime factor of $ n $ is at least $ 13 $. So with these tests we only have difficulties if the only prime factors are $ 13 $, $ 17 $, $ 19 $, where there are no good tests. Since $ 13^3 > 400 $, it can have at most $ 2 $ prime factors. If you can recognise the squares $ 169 $, $ 289 $, $ 361 $, then you only have to remember a short list $ 13 \times 17 = 221 $, $ 13 \times 19 = 247 $, $ 13 \times 23 = 299 $, $ 13 \times 29 = 377 $, $ 17 \times 19 = 323 $, $ 17 \times 23 = 391 $.
 
 \begin{example}
-$ 143 \equiv 1 - 4 + 3 \equiv 0 \mod 11 $, $ 144 \equiv 1 + 4 + 4 \equiv 0 \mod 9 $, and $ 154 \equiv 15 - 2\rb{4} = 7 \equiv 0 \mod 7 $.
+\hfill
+\begin{enumerate}
+\item $ 143 \equiv 1 - 4 + 3 \equiv 0 \mod 11 $.
+\item $ 144 \equiv 1 + 4 + 4 \equiv 0 \mod 9 $.
+\item $ 154 \equiv 15 - 2\rb{4} = 7 \equiv 0 \mod 7 $.
+\end{enumerate}
 \end{example}
 
 \marginpar{Lecture 7 \\ Friday \\ 19/10/18}
@@ -691,11 +701,16 @@ If $ n \equiv 3 \mod 4 $, then $ n $ is prime if and only if for every $ a \in \
 \end{lemma}
 
 \begin{proof}
-Suppose firstly that $ n $ is prime. Then $ a^{n - 1} \equiv 1 \mod n $ by Fermat's little theorem, so $ \rb{a^{\rb{n - 1} / 2}}^2 \equiv 1 \mod n $, so $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $, because $ n $ is prime, the equation $ x^2 = 1 $ has just the roots $ \pm 1 $ in $ \Z / n\Z $. Suppose next that $ n = p^k $ for $ p $ prime is a prime power with $ k \ge 2 $, and take $ a = 1 + p $. Then
+\hfill
+\begin{enumerate}
+\item Suppose firstly that $ n $ is prime. Then $ a^{n - 1} \equiv 1 \mod n $ by Fermat's little theorem, so $ \rb{a^{\rb{n - 1} / 2}}^2 \equiv 1 \mod n $, so $ a^{\rb{n - 1} / 2} \equiv \pm 1 \mod n $, because $ n $ is prime, the equation $ x^2 = 1 $ has just the roots $ \pm 1 $ in $ \Z / n\Z $.
+\item Suppose next that $ n = p^k $ for $ p $ prime is a prime power with $ k \ge 2 $, and take $ a = 1 + p $. Then
 $$ \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\tfrac{n - 1}{2}}p \mod p^2, $$
 by the binomial theorem. If $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p^k = n $, then $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p, p^2 $ gives
-$$ \pm 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \equiv 1 \mod p \qquad \implies \qquad 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \mod p^2, $$
-then $ p \mid \rb{\rb{n - 1} / 2} $, so $ p \mid \rb{n - 1} $. But $ p \mid n $, a contradiction. Finally for the remaining case suppose that $ n $ is composite but not a power of a prime, and write $ n = rs $ for $ r, s > 1 $ and odd, and $ \rb{r, s} = 1 $. By the Chinese remainder theorem, $ \Z / n\Z \cong \Z / r\Z \times \Z / s\Z $. We can choose $ a $ with $ \rb{a, n} = 1 $ such that $ a \equiv -1 \mod r $ and $ a \equiv 1 \mod s $. Then $ \rb{a, r} = \rb{a, s} = 1 $, so $ \rb{a, n} = 1 $. Since $ n \equiv 3 \mod 4 $ by assumption, $ \rb{n - 1} / 2 $ is odd, so $ a^{\rb{n - 1} / 2} \equiv -1 \mod r $ and $ a^{\rb{n - 1} / 2} \equiv 1 \mod s $. So $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $.
+$$ \pm 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \equiv 1 \mod p \quad \implies \quad 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \mod p^2, $$
+then $ p \mid \rb{\rb{n - 1} / 2} $, so $ p \mid \rb{n - 1} $. But $ p \mid n $, a contradiction.
+\item Finally for the remaining case suppose that $ n $ is composite but not a power of a prime, and write $ n = rs $ for $ r, s > 1 $ and odd, and $ \rb{r, s} = 1 $. By the Chinese remainder theorem, $ \Z / n\Z \cong \Z / r\Z \times \Z / s\Z $. We can choose $ a $ with $ \rb{a, n} = 1 $ such that $ a \equiv -1 \mod r $ and $ a \equiv 1 \mod s $. Then $ \rb{a, r} = \rb{a, s} = 1 $, so $ \rb{a, n} = 1 $. Since $ n \equiv 3 \mod 4 $ by assumption, $ \rb{n - 1} / 2 $ is odd, so $ a^{\rb{n - 1} / 2} \equiv -1 \mod r $ and $ a^{\rb{n - 1} / 2} \equiv 1 \mod s $. So $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $.
+\end{enumerate}
 \end{proof}
 
 So we know that if $ n $ is composite, there will exist values of $ a $ with $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $. To understand how efficient the algorithm is, we need to know how many such $ a $ there are.
@@ -793,7 +808,12 @@ By this convention, $ a \in \Z $ divisible by $ p $ are neither QRs nor QNRs mod
 \end{note}
 
 \begin{example}
-If $ p = 2 $, $ 1 $ is a QR. If $ p = 3 $, $ 1 $ is a QR, $ -1 $ is a QNR, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 3 $. If $ p = 5 $, $ 1, 4 $ are QRs, $ 2, 3 $ are QNRs, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 5 $ and $ 2^2 \equiv 3^2 \equiv 4 \mod 5 $.
+\hfill
+\begin{enumerate}
+\item If $ p = 2 $, $ 1 $ is a QR.
+\item If $ p = 3 $, $ 1 $ is a QR, $ -1 $ is a QNR, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 3 $.
+\item If $ p = 5 $, $ 1, 4 $ are QRs, $ 2, 3 $ are QNRs, since $ 1^2 \equiv \rb{-1}^2 \equiv 1 \mod 5 $ and $ 2^2 \equiv 3^2 \equiv 4 \mod 5 $.
+\end{enumerate}
 \end{example}
 
 \begin{lemma}
@@ -902,13 +922,16 @@ $$ \legendre{5}{p} = \begin{cases} 1 & p \equiv \pm 1 \mod 5 \\ -1 & p \equiv \p
 \end{example}
 
 \begin{example}
-Slightly more complicated example, let $ p \ne 3 $ be an odd prime. When is $ 3 $ a QR modulo $ p $, that is what is $ \legendre{3}{p} $? Well, if $ p \equiv 1 \mod 4 $ then this is if and only if $ p $ is a QR modulo $ 3 $, so if and only if $ p \equiv 1 \mod 3 $, so
+Slightly more complicated example is the following.
+\begin{enumerate}
+\item Let $ p \ne 3 $ be an odd prime. When is $ 3 $ a QR modulo $ p $, that is what is $ \legendre{3}{p} $? Well, if $ p \equiv 1 \mod 4 $ then this is if and only if $ p $ is a QR modulo $ 3 $, so if and only if $ p \equiv 1 \mod 3 $, so
 $$ \legendre{3}{p} = \legendre{p}{3} = \begin{cases} 1 & p \equiv 1 \mod 3 \\ -1 & p \equiv -1 \mod 3 \end{cases}. $$
 If $ p \equiv -1 \mod 4 $ then if and only if $ p \equiv -1 \mod 3 $, so
 $$ \legendre{3}{p} = -\legendre{p}{3} = \begin{cases} 1 & p \equiv -1 \mod 3 \\ -1 & p \equiv 1 \mod 3 \end{cases}. $$
 Putting this together with the Chinese remainder theorem,
 $$ \legendre{3}{p} = \begin{cases} 1 & p \equiv \pm 1 \mod 12 \\ -1 & p \equiv \pm 5 \mod 12 \end{cases}. $$
-If $ p = 7 $, QRs are $ 1, 2, 4 $, so $ \legendre{3}{p} = -1 $. If $ p = 11 $, $ 5^2 \equiv 3 \mod 11 $, so $ \legendre{3}{p} = 1 $.
+\item If $ p = 7 $, QRs are $ 1, 2, 4 $, so $ \legendre{3}{p} = -1 $. If $ p = 11 $, $ 5^2 \equiv 3 \mod 11 $, so $ \legendre{3}{p} = 1 $.
+\end{enumerate}
 \end{example}
 
 In general to compute $ \legendre{a}{p} $, we could do the following. Use that if $ a \equiv b \mod p $ then $ \legendre{a}{p} = \legendre{b}{p} $. So without loss of generality $ \abs{a} < p $. Then write $ a = \pm \prod_i q_i^{s_i} $ for $ q_i $ prime. Then $ \legendre{a}{p} = \legendre{\pm 1}{p} \prod_i \legendre{q_i}{p}^{s_i} $. If $ s_i $ is even, then $ \legendre{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \legendre{q_i}{p}^{s_i} = \legendre{q_i}{p} $. We have formulas for $ \legendre{-1}{p} $ and $ \legendre{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \legendre{q}{p} $ and $ \legendre{p}{q} $. Then repeat modulo $ q $.
@@ -931,14 +954,16 @@ What are we going to do is to compare the products of different sets of coset re
 If $ p $ is prime then $ \rb{p - 1}! \equiv -1 \mod p $.
 \end{theorem}
 
-Write $ P = \rb{p - 1} / 2 $, $ Q = \rb{q - 1} / 2 $, and $ R = \rb{pq - 1} / 2 = pQ + P $. As out first set of coset representatives, consider the product of all the pairs
+Write $ P = \rb{p - 1} / 2 $, $ Q = \rb{q - 1} / 2 $, and $ R = \rb{pq - 1} / 2 = pQ + P $.
+\begin{enumerate}
+\item As our first set of coset representatives, consider the product of all the pairs
 $$ \cb{\rb{x, y} \in \unit{p} \times \unit{q} \mid 1 \le x \le P, \ 1 \le y \le q - 1}. $$ Let $ A $ be the product of these coset representatives. Then the product of the $ y $-coordinates is $ \rb{q - 1}!^P \equiv \rb{-1}^P \mod q $. The product of the $ x $-coordinates is $ P!^{q - 1} $ in the same way, so
 $$ A = \prod_{1 \le x \le P, \ 1 \le y \le q - 1} \rb{x, y} = \rb{P!^{q - 1}, \rb{-1}^P}. $$
-Similarly we let the second set of representatives be all the pairs
+\item Similarly we let the second set of representatives be all the pairs
 $$ \cb{\rb{x, y} \in \unit{p} \times \unit{q} \mid 1 \le x \le p - 1, \ 1 \le y \le Q}. $$
 Let $ B $ be the product of these representatives. In the same way by symmetry, we get
 $$ B = \prod_{1 \le x \le p - 1, \ 1 \le y \le Q} \rb{x, y} = \rb{\rb{-1}^Q, Q!^{p - 1}}. $$
-For the third set of representatives, select the pairs in $ \Z / pq\Z $ which correspond via the Chinese remainder theorem to the set
+\item For the third set of representatives, select the pairs in $ \Z / pq\Z $ which correspond via the Chinese remainder theorem to the set
 $$ \cb{1 \le i \le R \mid \rb{i, pq} = 1}. $$
 Let $ C $ be the product of these coset representatives. Let us figure out the product of the $ x $-coordinates. It is
 $$ \prod_{i = 1, \ \rb{i, pq} = 1}^R i. $$
@@ -959,7 +984,9 @@ combining $ \rb{\ref{eq:1}} $, $ \rb{\ref{eq:2}} $, $ \rb{\ref{eq:3}} $, get tha
 $$ \prod_{i = 1, \ \rb{i, pq} = 1}^R i = \dfrac{\rb{p - 1}!^QP!}{q^PP!} = \dfrac{\rb{-1}^Q}{q^P}. $$
 So by symmetry we have the product of these representatives
 $$ C = \rb{\dfrac{\rb{-1}^Q}{q^P}, \dfrac{\rb{-1}^P}{p^Q}} = \rb{\rb{-1}^Q\legendre{q}{p}, \rb{-1}^P\legendre{p}{q}}, $$
-by Euler's criterion. Now, we can compare $ A $, $ B $, $ C $. We know that they all agree up to sign, that is up to possibly multiplication by $ \pm 1 $, that is up to multiplication by the pair $ \rb{-1, -1} \in \unit{p} \times \unit{q} $. Comparing the $ y $-coordinates, we have $ C = \legendre{p}{q}A $ and comparing the $ x $-coordinates, similarly $ C = \legendre{q}{p}B $. So
+by Euler's criterion.
+\end{enumerate}
+Now, we can compare $ A $, $ B $, $ C $. We know that they all agree up to sign, that is up to possibly multiplication by $ \pm 1 $, that is up to multiplication by the pair $ \rb{-1, -1} \in \unit{p} \times \unit{q} $. Comparing the $ y $-coordinates, we have $ C = \legendre{p}{q}A $ and comparing the $ x $-coordinates, similarly $ C = \legendre{q}{p}B $. So
 $$ B = \legendre{q}{p}\legendre{p}{q}A. $$
 But we can compare $ A $ and $ B $ more directly. To go between $ A $ and $ B $ we need to swap the signs of all the $ PQ $ elements of the form $ \rb{x, y} $ with $ 1 \le x \le P $ and $ Q \le y \le q - 1 $. So $ B = \rb{-1}^{PQ}A $. So $ \legendre{q}{p}\legendre{p}{q} = \rb{-1}^{PQ} $, that is $ \legendre{q}{p} = \rb{-1}^{PQ}\legendre{p}{q} $.
 
@@ -1035,7 +1062,7 @@ It is convenient to make use of the following.
 The ring of \textbf{Gaussian integers}, denoted $ \Z\sb{i} $, is the subring of $ \C $ consisting of all complex numbers of the form $ a + bi $, where $ a, b \in \Z $.
 \end{definition}
 
-Here are some brief recollections about this. To see that $ \Z\sb{i} $ is a subring one must of course check that it is closed under addition and multiplication. This is easy. There is a natural \textbf{norm} $ N : \Z\sb{i} \to \Z_{\ge 0} $ defined by $ N\rb{z} = z\bar{z} $. We have $ N\rb{a + bi} = a^2 + b^2 $. On the other hand, since $ \bar{z}\bar{w} = \bar{zw} $, we have $ N\rb{zw} = \rb{zw}\rb{\bar{zw}} = \rb{z\bar{z}}\rb{w\bar{w}} = N\rb{z}N\rb{w} $. Let $ z = a + bi $, $ w = c + di $. We then have $ zw = \rb{ac - bd} + \rb{ad + bc}i $. Applying the formula $ N\rb{zw} = N\rb{z}N\rb{w} $, we find that $ \rb{a^2 + b^2}\rb{c^2 + d^2} = \rb{ac - bd}^2 + \rb{ad + bc}^2 $. We record this as the following.
+Here are some brief recollections about this. To see that $ \Z\sb{i} $ is a subring one must of course check that it is closed under addition and multiplication. This is easy. There is a natural \textbf{norm} $ N : \Z\sb{i} \to \Z_{\ge 0} $ defined by $ N\rb{z} = z\overline{z} $. We have $ N\rb{a + bi} = a^2 + b^2 $. On the other hand, since $ \overline{z}\overline{w} = \overline{zw} $, we have $ N\rb{zw} = \rb{zw}\rb{\overline{zw}} = \rb{z\overline{z}}\rb{w\overline{w}} = N\rb{z}N\rb{w} $. Let $ z = a + bi $, $ w = c + di $. We then have $ zw = \rb{ac - bd} + \rb{ad + bc}i $. Applying the formula $ N\rb{zw} = N\rb{z}N\rb{w} $, we find that $ \rb{a^2 + b^2}\rb{c^2 + d^2} = \rb{ac - bd}^2 + \rb{ad + bc}^2 $. We record this as the following.
 
 \begin{lemma}
 \label{lem:46}
@@ -1070,7 +1097,7 @@ Let $ p $ be a prime in $ \Z\sb{i} $. Then there exists a prime $ q \in \Z $ suc
 \end{lemma}
 
 \begin{proof}
-Let $ n = N\rb{p} $, and factor $ n = q_1^{s_1} \dots q_r^{s_r} $ as a product of integer primes. Since by definition, $ n = p\bar{p} $, we have that $ p \mid n = q_1^{s_1} \dots q_r^{s_r} $ in $ \Z\sb{i} $, and so since $ p $ is prime, $ p \mid q_i $ for some $ i $. Let $ q = q_i $. Then we have $ p \mid q $ gives $ q = pv $ for some $ v $, so $ N\rb{p}N\rb{v} = N\rb{pv} = N\rb{q} = q^2 $. If $ N\rb{p} = 1 $, then $ p $ would be a unit, a contradiction. Since $ N\rb{p} $ is not $ 1 $, so $ N\rb{p} \mid q^2 $ gives $ N\rb{p} = q $ or $ N\rb{p} = q^2 $, as claimed. First suppose that $ N\rb{p} = q^2 $. Since $ p $ divides $ q $ we have $ q = pv $. Since $ N\rb{p} = N\rb{q} = q^2 $ we must have $ N\rb{v} = 1 $, so $ v $ is a unit and $ p $ is an associate of $ q $, by definition. Suppose $ N\rb{p} = q $. Writing $ p = a + bi $, we see that $ q = a^2 + b^2 $. Conversely, if $ q = a^2 + b^2 $, then $ q = \rb{a + bi}\rb{a - bi} $. Since $ p $ divides $ q $, we have either $ p $ divides $ \rb{a + bi} $ or $ p $ divides $ \rb{a - bi} $, so $ N\rb{p} \mid N\rb{a + bi} = q $ or $ N\rb{p} \mid N\rb{a - bi} = q $. In either case $ N\rb{p} $ divides $ q $ and must thus equal $ q $.
+Let $ n = N\rb{p} $, and factor $ n = q_1^{s_1} \dots q_r^{s_r} $ as a product of integer primes. Since by definition, $ n = p\overline{p} $, we have that $ p \mid n = q_1^{s_1} \dots q_r^{s_r} $ in $ \Z\sb{i} $, and so since $ p $ is prime, $ p \mid q_i $ for some $ i $. Let $ q = q_i $. Then we have $ p \mid q $ gives $ q = pv $ for some $ v $, so $ N\rb{p}N\rb{v} = N\rb{pv} = N\rb{q} = q^2 $. If $ N\rb{p} = 1 $, then $ p $ would be a unit, a contradiction. Since $ N\rb{p} $ is not $ 1 $, so $ N\rb{p} \mid q^2 $ gives $ N\rb{p} = q $ or $ N\rb{p} = q^2 $, as claimed. First suppose that $ N\rb{p} = q^2 $. Since $ p $ divides $ q $ we have $ q = pv $. Since $ N\rb{p} = N\rb{q} = q^2 $ we must have $ N\rb{v} = 1 $, so $ v $ is a unit and $ p $ is an associate of $ q $, by definition. Suppose $ N\rb{p} = q $. Writing $ p = a + bi $, we see that $ q = a^2 + b^2 $. Conversely, if $ q = a^2 + b^2 $, then $ q = \rb{a + bi}\rb{a - bi} $. Since $ p $ divides $ q $, we have either $ p $ divides $ \rb{a + bi} $ or $ p $ divides $ \rb{a - bi} $, so $ N\rb{p} \mid N\rb{a + bi} = q $ or $ N\rb{p} \mid N\rb{a - bi} = q $. In either case $ N\rb{p} $ divides $ q $ and must thus equal $ q $.
 \end{proof}
 
 \begin{corollary}
@@ -1146,9 +1173,12 @@ Suppose that for some $ 1 \le r < p $, we have $ x, y, z, w $ such that $ x^2 + 
 \end{proposition}
 
 \begin{proof}
-There are two cases we must treat separately. First suppose that $ r $ is even. Then either all of $ x, y, z, w $ have the same parity, so all even or all odd, or two of them are odd and two of them are even. Permuting $ x, y, z, w $ as necessary, we can assume without loss of generality $ x $ and $ y $ have the same parity, as do $ z $ and $ w $, so $ x \equiv y \mod 2 $ and $ z \equiv w \mod 2 $. Then set
+There are two cases we must treat separately.
+\begin{enumerate}
+\item First suppose that $ r $ is even. Then either all of $ x, y, z, w $ have the same parity, so all even or all odd, or two of them are odd and two of them are even. Permuting $ x, y, z, w $ as necessary, we can assume without loss of generality $ x $ and $ y $ have the same parity, as do $ z $ and $ w $, so $ x \equiv y \mod 2 $ and $ z \equiv w \mod 2 $. Then set
 $$ x' = \dfrac{x + y}{2}, \qquad y' = \dfrac{x - y}{2}, \qquad z' = \dfrac{z + w}{2}, \qquad w' = \dfrac{z - w}{2}, \qquad r' = \dfrac{r}{2}. $$
-It is then easy to verify that $ \rb{x'}^2 + \rb{y'}^2 + \rb{z'}^2 + \rb{w'}^2 = pr' $. Now suppose that $ r $ is odd. Choose $ a, b, c, d $ such that
+It is then easy to verify that $ \rb{x'}^2 + \rb{y'}^2 + \rb{z'}^2 + \rb{w'}^2 = pr' $.
+\item Now suppose that $ r $ is odd. Choose $ a, b, c, d $ such that
 $$ -\dfrac{r}{2} < a, b, c, d < \dfrac{r}{2}, \qquad x \equiv a \mod r, \qquad y \equiv b \mod r, \qquad z \equiv c \mod r, \qquad w \equiv d \mod r. $$
 We can get away with strict inequalities here because $ r $ is odd. Since $ x^2 + y^2 + z^2 + w^2 = pr \equiv 0 \mod r $, our congruences imply that $ a^2 + b^2 + c^2 + d^2 \equiv 0 \mod r $. Write $ a^2 + b^2 + c^2 + d^2 = rr' $, and note that $ 0 \le r' < r $ since $ a^2, b^2, c^2, d^2 < \rb{r / 2}^2 = r^2 / 4 $. On the other hand if $ r' $ were zero, then $ a = b = c = d = 0 $, so all of $ x, y, z, w $ would be divisible by $ r $. Since $ x^2 + y^2 + z^2 + w^2 = pr $, we would have $ r^2 \mid rp $, hence $ r \mid p $, and since $ r < p $, we get $ r = 1 $, and we are done. Otherwise we have $ 1 \le r' < r $. We then have
 \begin{align*}
@@ -1168,6 +1198,7 @@ We thus have integers
 $$ x' = \dfrac{ax + by + cz + dw}{r}, \qquad y' = \dfrac{-ay + bx + cw - dz}{r}, $$
 $$ z' = \dfrac{-az - bw + cx + dy}{r}, \qquad w' = \dfrac{-aw + bz - cy + dx}{r}, $$
 and $ \rb{x'}^2 + \rb{y'}^2 + \rb{z'}^2 + \rb{w'}^2 = pr' $ as desired.
+\end{enumerate}
 \end{proof}
 
 Proposition \ref{prop:55} gives $ p $ is a sum of four squares. To complete the proof, one begins with $ x^2 + y^2 + 1 = pr $ as above with $ z = 1 $ and $ w = 0 $ and repeatedly applies the proposition until $ r = 1 $.
@@ -1222,7 +1253,12 @@ For arbitrary $ \alpha $, it is not necessarily true that $ \Z\sb{\alpha} $ cons
 \end{note}
 
 \begin{example}
-To see this, consider examples like $ \Z\sb{\pi} $, the ring of $ a_0 + \dots + a_n\pi^n $ for $ a_i \in \Z $ and $ n $ arbitrary. Also $ \Z\sb{1 / p} $ for $ p $ some prime contains $ 1 / p^n $ for all $ n $, so in fact $ \Z\sb{1 / p} = \cb{a / p^n \mid a \in \Z, \ n \ge 0} $. Also $ \Z\sb{\beta} $ where $ \beta = \sqrt[3]{2} $ is a cube root of $ 2 $ is not just the set $ \cb{a + b\sqrt[3]{2} \mid a, b \in \Z} $, because the set does not contain $ \beta^2 = \rb{\sqrt[3]{2}}^2 = \sqrt[3]{4} $, which is not of the form $ a + b\sqrt[3]{2} $ for any $ a, b \in \Z $.
+\hfill
+\begin{enumerate}
+\item To see this, consider examples like $ \Z\sb{\pi} $, the ring of $ a_0 + \dots + a_n\pi^n $ for $ a_i \in \Z $ and $ n $ arbitrary.
+\item Also $ \Z\sb{1 / p} $ for $ p $ some prime contains $ 1 / p^n $ for all $ n $, so in fact $ \Z\sb{1 / p} = \cb{a / p^n \mid a \in \Z, \ n \ge 0} $.
+\item Also $ \Z\sb{\beta} $ where $ \beta = \sqrt[3]{2} $ is a cube root of $ 2 $ is not just the set $ \cb{a + b\sqrt[3]{2} \mid a, b \in \Z} $, because the set does not contain $ \beta^2 = \rb{\sqrt[3]{2}}^2 = \sqrt[3]{4} $, which is not of the form $ a + b\sqrt[3]{2} $ for any $ a, b \in \Z $.
+\end{enumerate}
 \end{example}
 
 \marginpar{Lecture 16 \\ Friday \\ 09/11/18}
@@ -1238,7 +1274,11 @@ An element $ \alpha $ of $ \C $ is an \textbf{algebraic integer of degree two}, 
 \end{definition}
 
 \begin{example}
-$ \alpha = i $ is an algebraic integer of degree two and a root of $ X^2 + 1 $ since $ i^2 + 1 = 0 $. $ \alpha = \sqrt{d} $ is a root of $ X^2 - d $ for $ d > 1 $ squarefree.
+\hfill
+\begin{enumerate}
+\item $ \alpha = i $ is an algebraic integer of degree two and a root of $ X^2 + 1 $ since $ i^2 + 1 = 0 $.
+\item $ \alpha = \sqrt{d} $ is a root of $ X^2 - d $ for $ d > 1 $ squarefree.
+\end{enumerate}
 \end{example}
 
 We thus have the following.
@@ -1261,17 +1301,25 @@ In particular the set of complex numbers of the form $ x + y\alpha $ for $ x, y 
 For $ \alpha $ an algebraic integer of degree two, we will say that $ \Z\sb{\alpha} $ is a \textbf{real quadratic} subring of $ \C $ if $ \alpha \in \R $, and an \textbf{imaginary quadratic} subring of $ \C $ if $ \alpha \notin \R $. We let $ \alpha^* $ denote the root of $ X^2 + aX + b = 0 $ that is not equal to $ \alpha $. If $ z = x + y\alpha \in \Z\sb{\alpha} $, write $ z^* = x + y\alpha^* $.
 
 \begin{example}
-$ i^* = -i = \bar{i} $. $ \sqrt{d}^* = -\sqrt{d} $.
+\hfill
+\begin{enumerate}
+\item $ i^* = -i = \overline{i} $.
+\item $ \sqrt{d}^* = -\sqrt{d} $.
+\end{enumerate}
 \end{example}
 
-If $ \Z\sb{\alpha} $ is imaginary quadratic, $ \alpha^* = \bar{\alpha} $ and $ z^* = \bar{z} $ and then, as with $ \Z\sb{i} $, we can define a norm $ N : \Z\sb{\alpha} \to \Z_{\ge 0} $ by setting $ N\rb{z} = z\bar{z} $. Note that $ \bar{\alpha} $ is also a root of $ X^2 + aX + b $ in this case, so we have $ \alpha + \bar{\alpha} = -a $, and $ \alpha\bar{\alpha} = b $. Thus we have
-$$ N\rb{x + y\alpha} = \rb{x + y\alpha}\rb{x + y\bar{\alpha}} = x^2 + xy\rb{\alpha + \bar{\alpha}} + y^2\alpha\bar{\alpha} = x^2 - axy + by^2 \in \Z_{\ge 0}. $$
-This is multiplicative, $ N\rb{zw} = N\rb{z}N\rb{w} $. If $ \Z\sb{\alpha} $ is real quadratic, note that $ \alpha^* $ is no longer equal to $ \bar{\alpha} $. In this case we define
+If $ \Z\sb{\alpha} $ is imaginary quadratic, $ \alpha^* = \overline{\alpha} $ and $ z^* = \overline{z} $ and then, as with $ \Z\sb{i} $, we can define a norm $ N : \Z\sb{\alpha} \to \Z_{\ge 0} $ by setting $ N\rb{z} = z\overline{z} $. Note that $ \overline{\alpha} $ is also a root of $ X^2 + aX + b $ in this case, so we have $ \alpha + \overline{\alpha} = -a $, and $ \alpha\overline{\alpha} = b $. Thus we have
+$$ N\rb{x + y\alpha} = \rb{x + y\alpha}\rb{x + y\overline{\alpha}} = x^2 + xy\rb{\alpha + \overline{\alpha}} + y^2\alpha\overline{\alpha} = x^2 - axy + by^2 \in \Z_{\ge 0}. $$
+This is multiplicative, $ N\rb{zw} = N\rb{z}N\rb{w} $. If $ \Z\sb{\alpha} $ is real quadratic, note that $ \alpha^* $ is no longer equal to $ \overline{\alpha} $. In this case we define
 $$ N\rb{x + y\alpha} = \rb{x + y\alpha}\rb{x + y\alpha^*} = x^2 - axy + by^2 \in \Z. $$
 We thus get a map $ N : \Z\sb{\alpha} \to \Z $. We have $ \rb{zw}^* = z^*w^* $ gives $ N\rb{z}N\rb{w} = zz^*ww^* = \rb{zw}\rb{zw}^* = N\rb{zw} $. This is again multiplicative, but no longer non-negative, so we can have $ N\rb{z} < 0 $.
 
 \begin{example}
-In $ \Z\sb{\sqrt{2}} $, $ N\rb{1 + \sqrt{2}} = \rb{1 + \sqrt{2}}\rb{1 - \sqrt{2}} = -1 $. In $ \Z\sb{\sqrt{d}} $, $ N\rb{\sqrt{d}} = \rb{\sqrt{d}}\rb{-\sqrt{d}} = -d < 0 $.
+\hfill
+\begin{enumerate}
+\item In $ \Z\sb{\sqrt{2}} $, $ N\rb{1 + \sqrt{2}} = \rb{1 + \sqrt{2}}\rb{1 - \sqrt{2}} = -1 $.
+\item In $ \Z\sb{\sqrt{d}} $, $ N\rb{\sqrt{d}} = \rb{\sqrt{d}}\rb{-\sqrt{d}} = -d < 0 $.
+\end{enumerate}
 \end{example}
 
 (TODO Exercise: $ N\rb{x + y\alpha} = 0 $ if and only if $ x = y = 0 $)
@@ -1539,6 +1587,7 @@ $$ \dfrac{1}{\abs{k}}\abs{k\alpha - h} \ge \dfrac{1}{q_n}\abs{q_n\alpha - p_n} \
 \end{proof}
 
 \begin{corollary}
+\label{cor:75}
 If $ h, k \in \Z $ with $ \abs{\alpha - h / k} < 1 / 2k^2 $, then $ h / k = p_n / q_n $ for some $ n $.
 \end{corollary}
 
@@ -1555,5 +1604,83 @@ Without loss of generality $ k \ge 1 $, and $ q_n \le k < q_{n + 1} $ for some $
 \end{align*}
 by Theorem \ref{thm:74}. So $ \abs{p_n / q_n - h / k} < 1 / kq_n $. So $ p_n / q_n - h / k = 0 $, as required.
 \end{proof}
+
+\marginpar{Lecture 21 \\ Wednesday \\ 21/11/18}
+
+Pell's equation is $ X^2 - dY^2 = 1 $. If $ \rb{x, y} $ is a solution, then $ \abs{\sqrt{d} - x / y} $ is small.
+
+\begin{proposition}
+Let $ d > 1 $ be squarefree, and let $ p_n / q_n $ be the sequence of convergents for the continued fraction for $ \sqrt{d} $. If $ x, y > 0 $ with $ x^2 - dy^2 = \pm 1 $, then $ x = p_n $, $ y = q_n $ for some $ n $.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Firstly suppose $ x^2 - dy^2 = 1 $. It is enough to show that $ x / y = p_n / q_n $ for some $ n $. Since $ \rb{p_n, q_n} = 1 $, this implies that $ x = rp_n $, $ y = rq_n $ for some $ r $, and then $ 1 = x^2 - dy^2 = r^2\rb{p_n^2 - dq_n^2} $, so $ r = 1 $. By Corollary \ref{cor:75}, it suffices to prove that $ \abs{\sqrt{d} - x / y} < 1 / 2y^2 $. $ x - y\sqrt{d} = 1 / \rb{x + y\sqrt{d}} > 0 $. So $ x > y\sqrt{d} $, and $ x / y > \sqrt{d} $. So
+$$ \abs{\dfrac{x}{y} - \sqrt{d}} = \dfrac{x}{y} - \sqrt{d} = \dfrac{1}{y}\rb{x - y\sqrt{d}} = \dfrac{1}{y}\rb{\dfrac{1}{x + y\sqrt{d}}} < \dfrac{1}{y}\rb{\dfrac{1}{y\sqrt{d} + y\sqrt{d}}} = \dfrac{1}{\rb{2\sqrt{d}}y^2} < \dfrac{1}{2y^2}. $$
+\item Now assume $ x^2 - dy^2 = -1 $. Again enough to show that $ x / y = p_n / q_n $. Trick is to rewrite as $ y^2 - x^2 / d = 1 / d $. Then $ y - x / \sqrt{d} = \rb{1 / d} / \rb{y + x / \sqrt{d}} > 0 $. So $ y > x / \sqrt{d} $.
+$$ \abs{\dfrac{y}{x} - \dfrac{1}{\sqrt{d}}} = \dfrac{y}{x} - \dfrac{1}{\sqrt{d}} = \dfrac{1}{x}\rb{y - \dfrac{x}{\sqrt{d}}} = \dfrac{1}{x}\rb{\dfrac{1 / d}{y + x / \sqrt{d}}} < \dfrac{1}{x}\rb{\dfrac{1 / d}{x / \sqrt{d} + x / \sqrt{d}}} = \dfrac{1 / \sqrt{d}}{2x^2} < \dfrac{1}{2x^2}. $$
+So Corollary \ref{cor:75} gives $ y / x $ is a convergent for the continued fraction of $ 1 / \sqrt{d} $. $ \fb{1 / \sqrt{d}} = 0 $, so the continued fraction for $ 1 / \sqrt{d} $ is of the form $ \sb{0; a_0, a_1, \dots} $. Next step is $ 1 / \rb{1 / \sqrt{d}} = \sqrt{d} $. So if $ \sqrt{d} = \sb{a_0; a_1, a_2, \dots} $ then $ 1 / \sqrt{d} = \sb{0; a_0, a_1, \dots} $, since
+$$ \sqrt{d} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots}}, \qquad \dfrac{1}{\sqrt{d}} = 0 + \dfrac{1}{a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots}}}. $$
+So the convergents for $ 1 / \sqrt{d} $ are the $ q_n / p_n $. So $ y / x = q_n / p_n $ for some $ n $, and $ x / y = p_n / q_n $.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item $ \sqrt{3} = \sb{1; 1, 2, 1, 2, \dots} = \sb{1; \overline{1, 2}} $.
+\item $ \sqrt{2} = 1 + \rb{\sqrt{2} - 1} $, $ 1 / \rb{\sqrt{2} - 1} = \sqrt{2} + 1 = 2 + \rb{\sqrt{2} - 1} $, so $ \sqrt{2} = \sb{1; \overline{2}} $.
+\item $ \sqrt{5} = 2 + \rb{\sqrt{5} - 2} $, $ 1 / \rb{\sqrt{5} - 2} = \sqrt{5} + 2 = 4 + \rb{\sqrt{5} - 2} $, so $ \sqrt{5} = \sb{2; \overline{4}} $.
+\item $ \sqrt{7} = \sb{2; \overline{1, 1, 1, 4}} $.
+\item $ \sqrt{13} = \sb{3; \overline{1, 1, 1, 1, 6}} $.
+\item $ \sqrt{43} = \sb{6; \overline{1, 1, 3, 1, 5, 1, 3, 1, 1, 12}} $.
+\item $ \sqrt{n^2 + 1} = \sb{n; \overline{2n}} $.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+We say that $ \sb{a_0; a_1, a_2, \dots} $ is \textbf{eventually periodic} if there exists $ N, d > 0 $ such that $ a_{n + d} = a_n $ for all $ n \ge N $. We say that it is \textbf{periodic} if we can take $ N = 0 $.
+\end{definition}
+
+\begin{remark}
+The following are facts.
+\begin{enumerate}
+\item The continued fraction of $ \sqrt{d} $ is eventually periodic.
+\item In fact, it is of the form $ \sb{a_0; a_1, \dots, a_{m - 1}, 2a_0} $.
+\item $ a_1, \dots, a_{m - 1} $ is symmetric, that is $ a_i = a_{m - i} $ for $ 1 \le i \le m - 1 $.
+\item The $ n $ for which $ p_n^2 - dq_n^2 = \pm 1 $ are exactly the $ n $ for which $ n \equiv -1 \mod m $. If $ n = lm - 1 $, then $ p_n^2 - dq_n^2 = \rb{-1}^{lm} $.
+\item The fundamental $ 1 $-unit is $ p_{m - 1} + q_{m - 1}\sqrt{d} $ if $ m $ is even and $ p_{2m - 1} + q_{2m - 1}\sqrt{d} $ if $ m $ is odd.
+\item There is a solution to $ x^2 - dy^2 = -1 $ if and only if $ m $ is odd, in which case the solutions are $ \rb{x, y} = \rb{p_n, q_n} $ with $ n \equiv m - 1 \mod 2m $.
+\end{enumerate}
+\end{remark}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ x^2 - 43y^2 = \pm 1 $. $ m = 10 $ is even, so no solutions to $ x^2 - 43y^2 = -1 $. Smallest solution for $ x^2 - 43y^2 = 1 $ is $ p_9, q_9 $.
+$$
+\begin{array}{c|cccccccccc}
+i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+a & 6 & 1 & 1 & 3 & 1 & 5 & 1 & 3 & 1 & 1 \\
+p & 6 & 7 & 13 & 46 & 59 & 341 & 400 & 1541 & 1941 & 3482 \\
+q & 1 & 1 & 2 & 7 & 9 & 52 & 61 & 235 & 296 & 531
+\end{array}.
+$$
+$ p_9 = 3482 $, so $ 3482^2 - 43\rb{531}^2 = 1 $ is the smallest solution.
+\item For $ 13 $, $ m = 5 $ so $ p_4, q_4 $ is the smallest solution for $ x^2 - 13y^2 = -1 $ and $ p_9, q_9 $ is the smallest solution for $ x^2 - 13y^2 = 1 $.
+$$
+\begin{array}{c|ccccc}
+i & 0 & 1 & 2 & 3 & 4 \\
+\hline
+a & 3 & 1 & 1 & 1 & 1 \\
+p & 3 & 4 & 7 & 11 & 18 \\
+q & 1 & 1 & 2 & 3 & 5
+\end{array}.
+$$
+$ 18^2 - 13\rb{5}^2 = -1 $ is the smallest solution. $ N\rb{18 + 5\sqrt{13}} = -1 $, so $ N\rb{\rb{18 + 5\sqrt{13}^2}} = 1 $. In fact, it follows from our facts that this is the fundamental $ 1 $-unit, that is $ p_9 + q_9\sqrt{13} $. $ \rb{18 + 5\sqrt{13}}^2 = 649 + 180\sqrt{13} $.
+\end{enumerate}
+\end{example}
 
 \end{document}
