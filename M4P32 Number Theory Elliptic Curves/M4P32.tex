@@ -888,13 +888,13 @@ Return to the case of irreducible singular cubics. Write as $ y^2 = f\rb{x} $, $
 
 \begin{example}
 Good way to practice explicit computations is to work over small fields. Let $ k = \F_5 = \Z / 5\Z $ be the field of five elements and $ y^2 = x^3 + 1 $. $ \Delta = 4 \ne 0 $ in $ k $. So this is an elliptic curve. Squares modulo five are $ 0, 1, 4 $.
-\begin{center}
-\begin{tabular}{c|ccccc}
-$ x $ & $ 0 $ & $ 1 $ & $ 2 $ & $ 3 $ & $ 4 $ \\
+$$
+\begin{array}{c|ccccc}
+x & 0 & 1 & 2 & 3 & 4 \\
 \hline
-$ y $ & $ \pm 1 $ & & $ \pm 2 $ & & 0
-\end{tabular}
-\end{center}
+y & \pm 1 & \times & \pm 2 & \times & 0
+\end{array}
+$$
 Also $ O = \sb{0 : 1 : 0} $. So six points in total. Since $ \Z / 6\Z \cong \Z / \Z / 2\Z \times \Z / 3\Z $ by the Chinese remainder theorem, the points form an abelian group of order six. $ \rb{4, 0} $ is the only point of order two. The line $ Y = Z $ meets the curve at $ \rb{0, 1} $ in projective coordinates, and is actually the tangent line at this point, so this point has order three. If we are identifying our group of points with $ \Z / 6\Z $, then we have to identify $ \rb{4, 0} $ with $ 3 + 6\Z $, $ \rb{0, 1} $ with $ \pm 2 + 6\Z $, and $ \rb{0, -1} = -\rb{0, 1} $ with $ \mp 2 + 6\Z $. So $ \rb{2, \pm 2} $ must be the points of order six. More explicitly, the line through $ \rb{4, 0} $ and $ \rb{0, 1} $ is $ y = x + 1 $, which also passes through $ \rb{2, -2} $. So $ \rb{4, 0} + \rb{0, 1} + \rb{2, -2} = O $, so $ \rb{4, 0} + \rb{0, 1} = -\rb{2, -2} = \rb{2, 2} $. (TODO Exercise: figure out $ n\rb{2, 2} $ for $ 1 \le n \le 5 $)
 \end{example}
 
@@ -961,13 +961,13 @@ Let $ y^2 = x^3 + 17 $. $ y = 0 $ has no solutions, so $ y^2 \mid \rb{27}\rb{17}
 
 \section{Elliptic curves over $ \Q_p $}
 
-Let $ y^2 = x^3 + ax + b $ for $ a, b \in \Q_p $ and $ \Delta = 4a^3 + 27b^2 \ne 0 $. Recall that there is a ring homomorphism $ \Z_p \to \F_p = \Z / p\Z $. In fact $ \Z_p / p\Z_p \cong \Z / p\Z $ by $ a_0 + a_1p + \dots \mapsto a_0 $. There is no ring homomorphism $ \Q_p \to \F_p $. There is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $. $ \sb{a_0 : \dots : a_n} = \sb{b_0 : \dots : b_n} $ for $ b_i \in \Z_p $, at least one $ b_i \in \Z_p^* $. Take $ b_i = p^sa_i $ for appropriate $ s $. Then $ \abs{a_0 : \dots : a_n} \mapsto \sb{\bar{b_0} : \dots : \bar{b_n}} $, where $ \bar{b_i} $ is the image of $ b_i $ in $ \F_p $. This is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $.
+Let $ y^2 = x^3 + ax + b $ for $ a, b \in \Q_p $ and $ \Delta = 4a^3 + 27b^2 \ne 0 $. Recall that there is a ring homomorphism $ \Z_p \to \F_p = \Z / p\Z $. In fact $ \Z_p / p\Z_p \cong \Z / p\Z $ by $ a_0 + a_1p + \dots \mapsto a_0 $. There is no ring homomorphism $ \Q_p \to \F_p $. There is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $. $ \sb{a_0 : \dots : a_n} = \sb{b_0 : \dots : b_n} $ for $ b_i \in \Z_p $, at least one $ b_i \in \Z_p^* $. Take $ b_i = p^sa_i $ for appropriate $ s $. Then $ \abs{a_0 : \dots : a_n} \mapsto \sb{\overline{b_0} : \dots : \overline{b_n}} $, where $ \overline{b_i} $ is the image of $ b_i $ in $ \F_p $. This is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $.
 
 \begin{example}
 $ \rb{x, y} = \rb{1 / p, 1 / p} $ is $ \sb{x : y : 1} = \sb{1 / p : 1 / p : 1} = \sb{1 : 1 : p} \mapsto \sb{1 : 1 : 0} $.
 \end{example}
 
-By replacing $ x $ with $ p^{2n}x $, $ y $ by $ p^{3n}y $, can assume $ a, b \in \Z_p $. Reduction modulo $ p $ of $ y^2 = x^3 + ax + b $ is $ y^2 = x^3 + \bar{a}x + \bar{b} $ for $ \bar{a}, \bar{b} \in \F_p $. This would be singular if either $ p = 2 $, or $ p \mid \Delta = 4a^3 + 27b^2 $. Even if it is singular, we still have a group law on the nonsingular points.
+By replacing $ x $ with $ p^{2n}x $, $ y $ by $ p^{3n}y $, can assume $ a, b \in \Z_p $. Reduction modulo $ p $ of $ y^2 = x^3 + ax + b $ is $ y^2 = x^3 + \overline{a}x + \overline{b} $ for $ \overline{a}, \overline{b} \in \F_p $. This would be singular if either $ p = 2 $, or $ p \mid \Delta = 4a^3 + 27b^2 $. Even if it is singular, we still have a group law on the nonsingular points.
 
 \begin{example}
 Let $ y^2 = x^3 - 18 $. Modulo $ 3 $, we get $ y^2 = x^3 $, and $ \rb{0, 0} $ is singular. $ \rb{3, 3} $ is a point over $ \Q_3 $, which reduces to the singular point $ \rb{0, 0} $. Claim there is a point over $ \Q_3 $ with $ x = 1 / 9 $. Need to solve $ y^2 = \rb{1 / 9}^3 - 18 = \rb{1 - 2\rb{3}^8} / 3^6 $, that is $ \rb{3^3y}^2 = 1 - 2\rb{3}^8 $, which has two solutions in $ \Q_3 $ by Hensel's lemma. This point $ \rb{1 / 3^2, 1 / 3^3 + \epsilon} $ reduces to $ \sb{0 : 1 : 0} $ modulo $ 3 $, that is to the point $ O $ at infinity.
@@ -977,7 +977,7 @@ Let $ y^2 = x^3 - 18 $. Modulo $ 3 $, we get $ y^2 = x^3 $, and $ \rb{0, 0} $ is
 \label{lem:7.1}
 \hfill
 \begin{enumerate}
-\item Let $ y^2 = g\rb{x} $ for $ g\rb{x} \in \Z_p\sb{X} $ monic cubic. If $ \rb{x_0, y_0} $ is a point of this cubic, then either $ x_0, y_0 \in \Z_p $ or there exists $ n \ge 1 $ such that $ \abs{x_0}_p = p^{2n} $, $ \abs{y_0}_p = p^{3n} $.
+\item Let $ y^2 = g\rb{x} $ for $ g\rb{x} \in \Z_p\sb{X} $ monic cubic. If $ \rb{x_0, y_0} $ is a point of this cubic, then either $ x_0, y_0 \in \Z_p $ or there exists $ n \ge 1 $ such that $ \abs{x_0}_p = p^{2n} $, $ \abs{y_0}_p = p^{3n} $. Say that such a point has \textbf{level} $ n $.
 \item If $ g\rb{x} $ reduces to $ x^3 $ modulo $ p $ and $ \abs{x_0}_p, \abs{y_0} \le 1 $, then either $ \abs{x_0}_p, \abs{y_0}_p < 1 $, or $ \abs{x_0}_p = \abs{y_0}_p = 1 $.
 \end{enumerate}
 \end{lemma}
@@ -993,6 +993,7 @@ Let $ y^2 = x^3 - 18 $. Modulo $ 3 $, we get $ y^2 = x^3 $, and $ \rb{0, 0} $ is
 Write $ E $ for $ y^2 = g\rb{x} $ for $ g\rb{x} \in \Z_p\sb{x} $ monic cubic. Let $ E\rb{\Q_p}^{\rb{0}} $ be $ P \in E\rb{\Q_p} $ such that $ P $ maps to a nonsingular point modulo $ p $, and let $ E\rb{\Q_p}^{\rb{1}} \subseteq E\rb{\Q_p}^{\rb{0}} $ be $ P \in E\rb{\Q_p} $ such that $ P $ maps to $ O $ modulo $ p $. What are the points $ \rb{x, y} \in E\rb{\Q_p}^{\rb{1}} $? They are the points with $ \abs{x}_p, \abs{y}_p > 1 $ by Lemma \ref{lem:7.1}.
 
 \begin{lemma}
+\label{lem:7.2}
 $ E\rb{\Q_p}^{\rb{0}} $ is a subgroup of $ E\rb{\Q_p} $. Reduction modulo $ p $ is a group homomorphism from $ E\rb{\Q_p}^{\rb{0}} $ to the group of nonsingular points modulo $ p $. The kernel of this homomorphism is $ E\rb{\Q_p}^{\rb{1}} $.
 \end{lemma}
 
@@ -1001,5 +1002,35 @@ The group law is determined by three points add up to $ O $ iff they are colline
 \end{proof}
 
 In fact, the homomorphism $ E\rb{\Q_p}^{\rb{0}} $ to the nonsingular points over $ \F_p $ is surjective, in example sheet 4 by Hensel's lemma.
+
+\marginpar{Lecture 22 \\ Thursday \\ 22/11/18}
+
+For $ n \ge 1 $, let $ E\rb{\Q_p}^{\rb{n}} $ be the points of $ E\rb{\Q_p} $ with level at least $ n $.
+
+\begin{corollary}
+$ E\rb{\Q_p}^{\rb{n}} $ is a subgroup of $ E\rb{\Q_p} $.
+\end{corollary}
+
+\begin{proof}
+$ n = 0 $, $ n = 1 $ already done. If $ n = 2 $, then let $ E' $ be the elliptic curve obtained from $ E $ by the change of variables $ Y^3 = p^3y $, $ X = p^2x $. Then the map $ E \to E' $ given by $ \rb{x, y} \mapsto \rb{p^2x, p^3y} $ identifies $ E\rb{\Q_p}^{\rb{n}} $ with $ E'\rb{\Q_p}^{\rb{n - 1}} $. So the result follows by induction on $ n $.
+\end{proof}
+
+\begin{corollary}
+For $ n \ge 1 $, there is a natural injection from $ E\rb{\Q_p}^{\rb{n}} / E\rb{\Q_p}^{\rb{n + 1}} \to \Z / p\Z $.
+\end{corollary}
+
+\begin{proof}
+Let $ E_n $ be the curve with equation $ y^2 = x^3 + p^{4n}ax + p^{6n}b $. Then we have a map $ E \to E_n $ by $ \rb{x, y} \mapsto \rb{p^{2n}x, p^{3n}y} $. This map identifies $ E\rb{\Q_p}^{\rb{n}} $ with $ E_n\rb{\Q_p}^{\rb{0}} $, and $ E\rb{\Q_p}^{\rb{n + 1}} $ with $ E_n\rb{\Q_p}^{\rb{1}} $. So $ E\rb{\Q_p}^{\rb{n}} / E\rb{\Q_p}^{\rb{n + 1}} \cong E\rb{\Q_p}^{\rb{0}} / E\rb{\Q_p}^{\rb{1}} $. By Lemma \ref{lem:7.2}, this injects into the group of smooth points of $ E_n $ over $ \F_p $. But $ E_n $ is given by $ y^2 = x^3 \mod p $. We saw that over any field, the nonsingular points are isomorphic to the additive group of the field, via $ \rb{x, y} \mapsto x / y $.
+\end{proof}
+
+Define $ u : E\rb{\Q_p}^{\rb{1}} \to p\Z_p $ by $ O \mapsto O $ and $ \rb{x, y} \mapsto x / y $. If $ \rb{x, y} $ has level exactly $ n $, then $ \abs{x} = p^{2n} $, $ \abs{y} = p^{3n} $, so $ \abs{u\rb{x, y}} = p^{-n} $, so $ u\rb{x, y} \in p^n\Z_p^* $. $ \abs{u\rb{P}} = \abs{u\rb{-P}} $ because if $ P = \rb{x, y} $, then $ -P = \rb{x, -y} $, so $ \abs{u\rb{P}} = \abs{x / y} = \abs{-x / y} = \abs{u\rb{-P}} $.
+
+\begin{lemma}
+If $ P, Q \in E\rb{\Q_p}^{\rb{1}} $, then $ \abs{u\rb{P + Q} - u\rb{P} - u\rb{Q}} \le \max\rb{\abs{u\rb{P}}^5, \abs{u\rb{Q}}^5} $.
+\end{lemma}
+
+\begin{proof}
+If any of $ P, Q, P + Q $ equal $ O $, then left hand side is zero and we are done. Assume by symmetry that $ P $ has level exactly $ n $, and $ Q $ has level at least $ n $. Then $ \abs{u\rb{P}} = \abs{u\rb{Q}} $ and $ \abs{u\rb{P}} = p^{-n} $, so right hand side is $ p^{-5n} $. Since $ P, Q \in E\rb{\Q_p}^{\rb{n}} $, and $ E\rb{\Q_p}^{\rb{n}} $ is a group, we have $ P + Q \in E\rb{\Q_p}^{\rb{n}} $. Let $ P_n, Q_n $ be the points on $ E_n $ corresponding to $ P, Q $. Let $ R $ be the third point of intersection of $ E_n $ and the line through $ P_n, Q_n $. $ P_n $ has level zero, and $ Q_n $ has level at least zero, so both are nonsingular modulo $ p $, so $ R $ is nonsingular modulo $ p $. Since $ P_n $ has level exactly zero, the reduction of $ P_n $ is a nonsingular point of $ E_n\rb{\F_p} $, which is not $ O $. This implies that the line through $ P_n, Q_n $ has an equation of the form $ lx + my = 1 $, with $ l, m \in \Z_p $. A priori we have a line $ lx + my = 1 $ with $ l, m \in \Q_p $, but if either $ l, m \notin \Z_p $, when you reduce modulo $ p $, the line would go through $ \rb{0, 0} $. Since $ P_n, Q_n, R $ are all nonsingular modulo $ p $, this would be a contradiction. The equation of $ E_n $ is $ y^2 = x^3 + p^{4n}ax + p^{6n}b $. To compute the intersection, we can solve $ y^2\rb{lx + my} = x^3 + p^{4n}ax\rb{lx + my}^2 + p^{6n}b\rb{lx + my}^3 $. Write $ t = x / y $. Dividing by $ y^3 $, we get $ lt + m = t^3 + p^{4n}at\rb{lt + m}^2 + p^{6n}b\rb{lt + m}^3 $. Write as $ c_0t^3 + c_1t^2 + c_2t + c_3 = 0 $, with $ c_0 = 1 + p^{4n}al^2 + p^{6n}bl^3 $ and $ c_1 = p^{4n}\rb{2alm + 3p^{2n}bl^2m} $. Therefore the sum of the roots of this polynomial has norm at most $ p^{-4n} $. By definition, the roots of this polynomial are $ p^{-n}u\rb{P} $, $ p^{-n}u\rb{Q} $, $ -p^{-n}u\rb{P + Q} $. So we are done.
+\end{proof}
 
 \end{document}
