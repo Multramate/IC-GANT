@@ -709,6 +709,7 @@ As in the case of affine plane curves, we can therefore make sense of irreducibl
 \end{remark}
 
 \begin{remark}
+\label{rem:4.12}
 Hilbert's Nullstellensatz, and Theorem \ref{thm:2.9}, still holds. In particular, if $ P, Q \in \C\sb{x, y, z} $ are homogeneous polynomials with no repeated factors, $ \cb{P = 0} = \cb{Q = 0} \subseteq \P^2 $ if and only if $ P = \lambda Q $ for $ \lambda \in \C^* $.
 \end{remark}
 
@@ -1474,6 +1475,15 @@ In general it is not true that if $ C $ is irreducible then $ C $ is smooth for 
 Let $ C = \cb{x_2^3 - x_0x_1^2 = 0} \subseteq \P^2 $. Then $ C $ is singular at the point $ \sb{1, 0, 0} $ but $ C $ is irreducible otherwise $ C $ would contain a line. (TODO Exercise: check that $ C $ does not contain any line)
 \end{example}
 
+\begin{exercise}
+\label{ex:30}
+\hfill
+\begin{enumerate}
+\item Show that for every reducible conic $ C $ there exists a projective transformation $ \Psi : \P^2 \to \P^2 $ such that $ \Psi\rb{C} = \cb{x_0^2 + x_1^2 = 0} $.
+\item Show that for any linear homogeneous polynomial $ L\rb{x_0, x_1, x_2} $, there exists a projective transformation $ \Psi : \P^2 \to \P^2 $ such that $ \Psi\rb{C} $ has equation $ x_0^2 = 0 $, where $ C = \cb{L^2 = 0} $.
+\end{enumerate}
+\end{exercise}
+
 The outcome of thinking of the reducible case is the following. Up to projective transformation, $ C = \cb{f = 0} $ where $ f $ has degree two is one of
 \begin{enumerate}
 \item $ x_0^2 + x_1^2 + x_2^2 = 0 $, which is irreducible and smooth,
@@ -2054,5 +2064,97 @@ for $ \lambda \in \C $. Note that $ \lambda \ne 0, 1 $ because $ C $ is non-sing
 \marginpar{Lecture 20 \\ Thursday \\ 22/11/18}
 
 Lecture 20 is a problem class.
+
+\marginpar{Lecture 21 \\ Friday \\ 23/11/18}
+
+\begin{corollary}
+Let $ C \subseteq \P^2 $ be a smooth cubic curve. Then $ C $ has precisely nine points of inflection.
+\end{corollary}
+
+\begin{proof}
+Let $ C = \cb{P = 0} $, where $ P $ is a homogeneous polynomial of degree three. Define $ D = \cb{\mathcal{H}_P = 0} $ be the curve defined by the Hessian of $ P $. Recall that $ \mathcal{H}_P $ may have repeated factors. Note that $ C $ and $ D $ do not have common components. Since $ C $ is irreducible, they would have to coincide, by Theorem \ref{thm:13.1} we can assume that $ C $ has equation $ x_1^2x_2 = x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2} $, and it is easy to check that $ \sb{0, 0, 1} $ is not an inflection point of this particular cubic. (TODO Exercise) By Bézout's Theorem \ref{thm:11.11}, we then have
+$$ 9 = \deg\rb{C} \cdot \deg\rb{D} = \sum_{p \in C \cap D} I\rb{p, C, D}. $$
+It is thus enough to prove that for each inflection point $ p \in C \cap D $, $ I\rb{p, C, D} = 1 $. By Proposition \ref{prop:12.11}, this is equivalent to proving that $ p $ is a smooth point of $ C $ and $ D $ and that $ T_p\rb{C} \ne T_p\rb{D} $. Let $ p \in C \cap D $, then by Theorem \ref{thm:13.1}, up to projective transformation, we may assume that $ p = \sb{0, 1, 0} $, and that the equation of $ C $ is
+$$ \cb{x_1^2x_2 = x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2}}, $$
+for $ \lambda \in \C \setminus \cb{0, 1} $. Then $ T_p\rb{C} = \cb{x_2 = 0} $, while
+$$ \partial_{x_0}\mathcal{H}_P\rb{0, 1, 0} = 24, \qquad \partial_{x_1}\mathcal{H}_P\rb{0, 1, 0} = 0, \qquad \partial_{x_2}\mathcal{H}_P\rb{0, 1, 0} = 8\rb{\lambda - 1}, $$
+so that $ p $ is a smooth point of $ D $ and $ T_p\rb{D} \ne T_p\rb{C} $. This finishes the proof.
+\end{proof}
+
+\section{Linear systems}
+
+Before moving on to Riemann surfaces, we briefly turn our attention to the way curves behave in families. Here are two basic questions.
+\begin{enumerate}
+\item Given two irreducible curves $ C = \cb{P = 0} $ and $ D = \cb{Q = 0} $ of the same degree, we can consider a family of curves $ C_{\lambda, \mu} = \cb{\lambda P + \mu Q = 0} $ parametrised by $ \sb{\lambda, \mu} \in \P^1 $. The curves $ C $ and $ D $ are special members of the family. How do properties of $ C_{\sb{\lambda, \mu}} $ relate to properties of $ C $ and $ D $?
+\item Let $ p_1, \dots, p_k $ be points in $ \P^2 $. When can we find a curve of degree $ d $ that passes through $ p_1, \dots, p_k $? When can we find a curve $ C $ of degree $ d $ with $ mult_{p_i}\rb{C} = q_i $ for a collection $ q_1, \dots, q_k \in \N $?
+\end{enumerate}
+
+\begin{example}
+Let $ d = 1 $, $ k = 2 $, and $ q_1 = q_2 = 1 $. Then there is only one projective line. Let $ d = 1 $, $ k = 2 $, and $ q_1 = q_2 = q_3 = 1 $. Then it depends on whether $ p_1, p_2, p_3 $ are collinear or not.
+\end{example}
+
+\begin{example}
+Let us consider projective lines in $ \P^2 $. Recall that the equation of every line $ L $ is given by
+$$ L = \cb{ax_0 + bx_1 + cx_2 = 0} \subseteq \P^2, $$
+where $ \rb{a, b, c} \in \C^3 $, and $ \rb{a, b, c} \ne \rb{0, 0, 0} $. Then $ \rb{a, b, c} $ and $ \rb{a', b', c'} $ define the same line if and only if there exists $ \lambda \in \C^* $ such that $ \rb{a, b, c} = \rb{\lambda a', \lambda b', \lambda c'} $, that is when $ \sb{a, b, c} = \sb{a', b', c'} $ as points of $ \P^2 $. This shows that
+$$ \cb{L \subseteq \P^2} \cong \P^2. $$
+Let $ p \in \P^2 $ be a point. Then the space of lines passing through $ p = \sb{z_0, z_1, z_2} $ for $ z_i \in \C $ is given by the points $ \sb{a, b, c} $ with $ a \cdot z_0 + b \cdot z_1 + c \cdot z_2 = 0 $, which are lines $ \P^1 $ defined by equations
+$$ \cb{ax_0 + bx_1 + cx_2 = 0} \subseteq \P^2 $$
+in $ \P^2 $. We may assume that $ p = \sb{0, 0, 1} $ after projective transformation. Then the set of lines $ L \subseteq \P^2 $ that contain $ p $ is the set of lines such that $ a \cdot 0 + b \cdot 0 + c \cdot 1 = c = 0 $. In other words,
+$$ \cb{L \subseteq \P^2 \mid p \in L} \cong \cb{\sb{a, b, 0} \in \P^2} \cong \P^1. $$
+We have seen that given two points $ p \ne q \in \P^2 $ there is a unique line $ L_{p, q} $ through $ p $ and $ q $. This shows that passage through $ q $ gives a single line
+$$ \cb{L \subseteq \P^2 \mid p, q \in L} = \cb{L_{p, q}} \cong \P^0. $$
+\end{example}
+
+We can parametrise projective curves of degree $ d $ in a similar way. More precisely, we have seen that any curve of degree $ d $ $ C = \cb{P = 0} $ is defined by a homogeneous polynomial $ P \in \C\sb{x_0, x_1, x_2} $ of degree $ d $ with no repeated factors. Write
+$$ P\rb{x_0, x_1, x_2} = \sum_{\rb{i, j, k} \in \N^3} a_{i, j, k}x_0^ix_1^jx_2^k $$
+where the only non-zero coefficients $ a_{i, j, k} $ correspond to multi-indices $ \rb{i, j, k} $ with $ i + j + k = d $. The set $ I_d = \cb{\rb{i, j, k} \in \N^3 \mid i + j + k = d} $ has precisely $ \rb{d + 1}\rb{d + 2} / 2 $ elements, since the number of $ \rb{i, j} $ such that $ i + j \le e \le d $ is $ e + 1 $ and the number of $ \rb{i, j} $ such that $ i + j \le d $ is $ 1 + \dots + \rb{d + 1} $. We may order the triples $ \rb{i, j, k} \in I $ by lexicographic order. Recall from Remark \ref{rem:4.12} that if $ P, Q $ are two homogeneous polynomials with no repeated factors, $ C = \cb{P = 0} = \cb{Q = 0} $ precisely when $ P = \lambda Q $ for some $ \lambda \in \C^* $. This shows that there is a well-defined map
+$$ \Psi_d : \cb{C = \cb{P = 0} \mid \deg\rb{C} = d} \mapsto \sb{a_{i, j, k}} = \sb{a_{0, 0, d}, \dots, a_{d, 0, 0}} \in \P^{N_d}, $$
+where $ N_d = \tfrac{1}{2}\rb{d + 1}\rb{d + 2} - 1 = \tfrac{1}{2}d\rb{d + 3} $.
+
+\begin{example}
+$ d = 1 $ is $ N_1 = 1 \cdot 4 / 2 = 2 $, $ d = 2 $ is $ N_2 = 2 \cdot 5 / 2 = 5 $, and $ d = 3 $ is $ N_3 = 3 \cdot 6 / 2 = 9 $.
+\end{example}
+
+The map $ \Psi_d $ is not surjective when $ d > 1 $. In $ \P^{N_d} $, there are points that correspond to $ P $ with repeated factors.
+
+\begin{example}
+Indeed, the point $ \sb{1, 0, \dots, 0} \in \P^{N_d} $ corresponds to $ P\rb{x_0, x_1, x_2} = x_0^d $, so that it defines a line $ L = \cb{x_0} $ with multiplicity $ d $.
+\end{example}
+
+We will include this case in our description by counting that curve component with multiplicity $ d $.
+
+\begin{definition}
+Let $ \mathcal{L}_d $ denote the set of curves $ C \subseteq \P^2 $ defined by a homogeneous polynomial of degree $ d $, possibly with repeated factors. Then $ \Psi_d $ defines a bijection
+$$ \Psi_d : \mathcal{L}_d \cong \P^{N_d}, \qquad \sum_{\rb{i, j, k} \in \N^3} a_{i, j, k}x_0^ix_1^jx_2^k \mapsto \sb{a_{i, j, k}}, $$
+where $ N_d = d\rb{d + 3} / 2 $.
+\end{definition}
+
+\begin{example}
+We have seen that $ \mathcal{L}_1 \cong \P^2 $. Similarly, $ \mathcal{L}_2 \cong \P^5 $, and $ \mathcal{L}_2 $ contains smooth conics and a subspace $ F \subseteq \mathcal{L}_2 $ of fake conics that are defined by polynomials with repeated factors, so double lines in $ \P^2 $. The subset $ F $ parametrises lines counted with multiplicity two, $ F \cong \mathcal{L}_1 \cong \P^2 $. Last, $ \mathcal{L}_3 \cong \P^0 $, and $ \mathcal{L}_3 $ contains a subspace $ F_1 \cong \P^2 $ parametrising lines counted with multiplicity three and a subspace $ F_2 $ parametrising the union of a line counted with multiplicity two and a line counted with multiplicity one, $ F_2 \cong \P^2 \times \P^2 $.
+\end{example}
+
+\begin{remark}
+We have proved in previous lectures that up to a projective transformation, there are only three kinds of conics. Here the space of conics $ \mathcal{L}_2 $ on the other hand has infinitely many elements, but in this space we are also remembering the way that the conic sits inside $ \P^2 $ via its equation. What relates the two different points of view, is that the group of projective transformations $ \Psi : \P^2 \to \P^2 $, that is usually denoted by $ PGL\rb{3, \C} $, acts on the space $ \mathcal{L}_2 $, and there are exactly three orbits for the action, described by the three conics mentioned after Exercise \ref{ex:30}. For cubics something similar happens: $ PGL\rb{3, \C} $ acts on the space $ \mathcal{L}_3 $, but this time there are infinitely many orbits. The equation of Theorem \ref{thm:13.1} gives one such cubic for every $ \lambda \in \C \setminus \cb{1, 0} $, and although it is not true that these are all non-isomorphic, for every $ \lambda $ there is a finite number of $ \lambda' $, at most six, for which the two curves are isomorphic, that is one equation can be brought to the other via a projective transformation, so there is still an infinite number of non-isomorphic smooth cubics.
+\end{remark}
+
+\begin{lemma}
+Let $ d, q \in \N $. Let $ p \in \P^2 $, then
+$$ \mathcal{S} = \cb{C \in \mathcal{L}_d \mid mult_p\rb{C} \ge q} \cong \P^{N_{d, q}}, $$
+where $ N_{d, q} = d\rb{d + 3} / 2 - q\rb{q + 1} / 2. $
+\end{lemma}
+
+\begin{proof}
+We will show that $ \Psi_d\rb{\mathcal{S}} \cong \P^{N_{d, q}} $, where as above, $ \Psi_d $ is the map
+$$ \Psi_d : C = \cb{\sum_{\rb{i, j, k} \in I} a_{i, j, k}x_0^ix_1^jx_2^k = 0} \mapsto \sb{a_{i, j, k}} \in \P^{N_d}. $$
+We denote by $ \sb{C} = \Psi_d\rb{C} $ for each $ C \in \mathcal{L}_d $. We show that $ C \in \mathcal{S} $ if and only if $ \sb{C} \in \P^{N_d} $ is in the subspace of solutions of a linear system of $ q\rb{q + 1} / 2 $ independent equations, that is a linear system defined by a matrix of size $ q\rb{q + 1} / 2 \times N_d $ of rank $ q\rb{q + 1} / 2 $. After projective transformation, we may assume that $ p = \sb{0, 0, 1} $. Let $ C \in \mathcal{L}_d $, and denote by $ P $ a homogeneous polynomial of degree $ d $ with $ C = \cb{P = 0} $. Let $ f\rb{x, y} = P\rb{x, y, 1} =  \sum_{\rb{i, j, k} \in I} a_{i, j, k}x^iy^j $. Then
+$$ mult_p\rb{P} = mult_{\rb{0, 0}}\rb{f} \ge q $$
+if and only if $ a_{i, j, k} = 0 $ for all $ \rb{i, j, k} \in I $ with $ i + j < q $. Denote by $ J \subseteq \cb{0, \dots, N_d} $ the set of indices in lexicographic order that correspond to the subset $ \cb{\rb{i, j, k} \in I \mid i + j < q} $ of $ I $. In $ \sb{a_{i, j, k}} $, a bunch of these are zero. As there are $ q\rb{q + 1} / 2 $ triples $ \rb{i, j, k} $ with $ i + j + k = d $ and $ i + j < q $, (TODO Exercise) the ones that are left are the coordinates of the $ \P^{N_{d, q}} $,
+$$ \Psi_d\rb{\mathcal{S}} \cong \P^{N_{d, q}} = \cb{\sb{C} = \sb{C_0, \dots, C_{N_d}} \in \P^{N_d} \mid \forall j \in J, \ C_j = 0}. $$
+\end{proof}
+
+\begin{example}
+Let $ \sb{x_1, x_2, x_3, x_4} \in \P^3 $. $ x_0 = 0 $ and $ x_1 = 0 $ gives $ \sb{0, 0, x_2, x_3} \mapsto \sb{x_2, x_3} \in \P^1 $ since $ 1 = 3 - 2 $.
+\end{example}
 
 \end{document}
