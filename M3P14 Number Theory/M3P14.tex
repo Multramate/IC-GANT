@@ -1683,4 +1683,61 @@ $ 18^2 - 13\rb{5}^2 = -1 $ is the smallest solution. $ N\rb{18 + 5\sqrt{13}} = -
 \end{enumerate}
 \end{example}
 
+\marginpar{Lecture 22 \\ Friday \\ 23/11/18}
+
+\begin{definition}
+$ \alpha \in \R \setminus \Q $ is a \textbf{quadratic irrational} if it is a root of some $ ax^2 + bx + c = 0 $ for $ a, b, c \in \Q $ not all zero.
+\end{definition}
+
+\begin{proposition}
+If $ \alpha $ has an eventually periodic continued fraction, then $ \alpha $ is a quadratic irrational.
+\end{proposition}
+
+\begin{proof}
+Suppose firstly that the continued fraction of $ \alpha $ is periodic. Suppose $ a_{n + d} = a_n $ for all $ n $, for some $ d \ge 1 $. Then
+$$ \alpha = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_{d - 1} + \dfrac{1}{\alpha}}}}. $$
+This gives an equation of the form $ \alpha = \rb{x\alpha + y} / \rb{z\alpha + w} $ for $ w, x, y, z \in \Z $ by applying Lemma \ref{lem:72} to $ \sb{a_0; a_1, \dots, a_{d - 1}, \alpha} $. Then $ \rb{z\alpha + w}\alpha - \rb{x\alpha + y} = 0 $, that is $ z\alpha^2 + \rb{w - x}\alpha - y = 0 $. Since $ \alpha $ is irrational, we conclude that $ \alpha $ is a quadratic irrational. Suppose now that $ \alpha $ is only eventually periodic. Then
+$$ \alpha = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_N + \dfrac{1}{\beta}}}}, $$
+where $ \beta $ has periodic continued fraction. So $ \beta $ is a quadratic irrational. To complete the proof, we need to show that if $ \gamma $ is a quadratic irrational, then $ 1 / \gamma, \gamma + n $ are quadratic rationals for any $ n \in \Z $. If $ \gamma $ is a root of $ aX^2 + bX + c = 0 $, then $ 1 / \gamma $ is a root of $ cX^2 + bX + a = 0 $ and $ \gamma + n $ is a root of $ a\rb{X - n}^2 + b\rb{X - n} + c = 0 $.
+\end{proof}
+
+In fact, the converse is also true. All quadratic irrationals have eventually periodic continued fractions.
+
+\section{Diophantine approximation}
+
+\begin{definition}
+Let $ d \in \Z_{\ge 1} $. Then $ \alpha \in \C $ is \textbf{algebraic of degree $ d $} if there exists a polynomial of degree $ d $ with integer coefficients and $ \alpha $ as a root. There does not exist such a polynomial of smaller degree.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item $ d = 1 $ is $ \Q $.
+\item $ d = 2 $ is quadratic irrationals.
+\end{enumerate}
+\end{example}
+
+\begin{theorem}[Liouville's theorem]
+Let $ \alpha \in \R $ be algebraic of degree $ d $. Then for any real number $ e > d $, there are only finitely many rational numbers $ p / q $ with $ \abs{p / q - \alpha} < 1 / q^e $.
+\end{theorem}
+
+\begin{proof}
+Let $ P\rb{x} $ be a polynomial of degree $ d $ with coefficients in $ \Z $, with $ P\rb{\alpha} = 0 $. Choose $ \epsilon > 0 $ such that the only root of $ P\rb{x} $ in $ \sb{\alpha - \epsilon, \alpha + \epsilon} $ is $ \alpha $. Write $ P\rb{x} = \rb{x - \alpha}Q\rb{x} $. $ Q\rb{x} $ is a polynomial of degree $ d - 1 $ with real coefficients, so in particular it is continuous, so there exists $ K $ such that $ \abs{Q\rb{x}} \le K $ for all $ x \in \sb{\alpha - \epsilon, \alpha + \epsilon} $. Assume that $ \abs{\alpha - p / q} < 1 / q^e $. We may assume that $ q $ is large enough that $ 1 / q^e < \epsilon $. Since $ P $ has integer coefficients and is of degree $ d $, we have $ \abs{P\rb{p / q}} \ge 1 / q^d $. Note that $ P\rb{p / q} \ne 0 $, or we could replace $ P $ by $ P' $ with $ P\rb{x} = \rb{qx - p}P'\rb{x} $. Since $ \abs{p / q - \alpha} < 1 / q^e < \epsilon $, $ p / q \in \sb{\alpha - \epsilon, \alpha + \epsilon} $, so $ \abs{P\rb{p / q}} = \abs{p / q - \alpha} \abs{Q\rb{p / q}} \le K \abs{p / q - \alpha} < K / q^e $. So $ K / q^e > \abs{P\rb{p / q}} \ge 1 / q^d $, so $ K > q^{e - d} $, so $ K^{1 / \rb{e - d}} > q $. So there are only finitely many possible $ q $, so only finitely many $ p / q $.
+\end{proof}
+
+Recall that $ \alpha \in \C $ is \textbf{algebraic} if it is algebraic of degree $ d $, and otherwise it is called \textbf{transcendental}. The set of polynomials with integer coefficients is countable, so the set of algebraic numbers is countable. Since $ \R $ is uncountable, transcendental numbers exist. Liouville's theorem gives a criterion, if for every $ e > 0 $, there are infinitely many $ p / q $ with $ \abs{\alpha - p / q} < 1 / q^e $, then $ \alpha $ cannot be algebraic.
+
+\begin{example}
+Let $ \alpha = \sum_{n \ge 1} 1 / 10^{n!} $ and $ \alpha_k = \sum_{n = 1}^k 1 / 10^{n!} $. $ \alpha_k $ is rational, with denominator $ q = 10^{k!} $.
+\begin{align*}
+\abs{\alpha - \alpha_k}
+& = \sum_{n = k + 1}^\infty \dfrac{1}{10^{n!}}
+= \dfrac{1}{10^{\rb{k + 1}!}}\rb{1 + \dfrac{1}{10^{\rb{k + 2}! - \rb{k + 1}!}} + \dfrac{1}{10^{\rb{k + 3}! - \rb{k + 1}!}} + \dots} \\
+& < \dfrac{1}{10^{\rb{k + 1}!}}\rb{1 + \dfrac{1}{10} + \dfrac{1}{100} + \dots}
+< \dfrac{2}{10^{\rb{k + 1}!}}
+= \dfrac{2}{q^{k + 1}}.
+\end{align*}
+If $ d \in \Z_{> 0} $, and $ k > d $, then $ 2 / q^{k + 1} < 1 / q^d $. So there exists infinitely many $ p / q = \alpha_k $ such that $ \abs{\alpha - p / q} < 1 / q^d $. Taking $ d $ arbitrarily large, $ \alpha $ is transcendental.
+\end{example}
+
 \end{document}
