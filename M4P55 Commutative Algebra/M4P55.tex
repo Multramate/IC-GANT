@@ -83,7 +83,7 @@ Structure of the course:
 \subsection{References}
 
 \begin{enumerate}
-\item M Reid, Undergraduate commutative algebra, 1995
+\item R Y Sharp, Steps in commutative algebra, 1990
 \item M Atiyah and I G Macdonald, Introduction to commutative algebra, 1969
 \end{enumerate}
 
@@ -272,7 +272,7 @@ If $ x \in A $ is a non-unit, consider $ \rb{x} $. $ 1 \notin \rb{x} $, otherwis
 \item Let $ k $ be a field. Consider the ring of formal power series $ k\sb{\sb{t}} = \cb{a_0 + a_1t + \dots \mid a_i \in k} $, such that
 $$ \rb{\sum_{i = 0}^\infty a_it^i}\rb{\sum_{j = 0}^\infty b_jt^j} = a_0b_0 + \rb{a_0b_1 + a_1b_0}t + \dots. $$
 Then the principal ideal $ \rb{t} $ is a maximal ideal. Indeed, $ k\sb{\sb{t}} / \rb{t} \cong k $ is a field. (TODO Exercise: $ k\sb{\sb{t}} \setminus \rb{t} = k\sb{\sb{t}}^* $)
-\item $ \Z_{\rb{p}} = \cb{a / b \mid a, b \in \Z, \ b \ne 0, \ p \nmid b} $. (TODO Exercise: $ \rb{p} $ is a maximal ideal. There are no other maximal ideals)
+\item $ \Z_{\rb{p}} = \cb{a / b \mid a, b \in \Z, \ b \ne 0, \ p \nmid b} $. (TODO Exercise: $ \rb{p} $ is a maximal ideal and there are no other maximal ideals)
 \end{enumerate}
 \end{example}
 
@@ -652,7 +652,7 @@ Lecture 13 is a problem class.
 
 \marginpar{Lecture 14 \\ Monday \\ 05/11/18}
 
-(TODO Exercise: Do the same in the Artinian case)
+(TODO Exercise: do the same in the Artinian case)
 
 \begin{corollary}
 Let $ A $ be a Noetherian or Artinian ring. Let $ M $ be a finitely generated $ A $-module. Then $ M $ is Noetherian or Artinian.
@@ -900,6 +900,7 @@ Let $ x \in A $, $ x \ne 0 $. Consider $ \rb{x} \supset \rb{x^2} \supset \dots $
 \end{proof}
 
 \begin{corollary}
+\label{cor:12.7}
 In an Artinian ring any prime ideal is maximal.
 \end{corollary}
 
@@ -908,10 +909,12 @@ Let $ P \subset A $ be a prime ideal. Then $ A / P $ is also an Artinian ring. $
 \end{proof}
 
 \begin{corollary}
+\label{cor:12.8}
 In an Artinian ring the nilradical coincides with the Jacobson radical.
 \end{corollary}
 
 \begin{lemma}
+\label{lem:12.9}
 Let $ A $ be an Artinian ring. Then $ A $ has only finitely many maximal ideals.
 \end{lemma}
 
@@ -920,11 +923,63 @@ For contradiction suppose we have countably many maximal ideals $ I_1, I_2, \dot
 \end{proof}
 
 \begin{lemma}
+\label{lem:12.10}
 The nilradical of an Artinian ring is nilpotent. In other words, there exist $ n \in \Z_{\ge 1} $ such that $ N\rb{A}^n = 0 $.
 \end{lemma}
 
 \begin{proof}
 $ N\rb{A} \supset \dots \supset N\rb{A}^n = N\rb{A}^{n + 1} = \dots $. Such an $ n $ exists, because $ A $ is Artinian. We want to show that $ N\rb{A}^n = 0 $. Let $ C $ be the set of all ideals $ I \subset A $ such that $ I \cdot N\rb{A}^n \ne 0 $. For contradiction we assume $ N\rb{A}^n \ne 0 $. Then $ C $ is not empty, because $ C $ contains $ N\rb{A} $. Since $ A $ is Artinian, any non-empty set of ideals of $ A $ has a minimal element, say $ I $. So we have $ I \cdot N\rb{A}^n \ne 0 $. So there is an $ x \in I $ such that $ x \cdot N\rb{A}^n \ne 0 $. But then $ \rb{x} \cdot N\rb{A}^n \ne 0 $, so $ \rb{x} $ is in $ C $. Since $ I $ is minimal and $ \rb{x} \subset I $, we must have $ \rb{x} = I $. Let us observe that $ 0 \ne \rb{x} \cdot N\rb{A}^n = \rb{x} \cdot N\rb{A}^n \cdot N\rb{A}^n $. This shows that the ideal $ \rb{x} \cdot N\rb{A}^n $ is in $ C $, but $ \rb{x} \cdot N\rb{A}^n \subset \rb{x} = I $, which is minimal in $ C $. Therefore, $ \rb{x} \cdot N\rb{A}^n = \rb{x} \ni x $. This implies that $ x = xy $, where $ y \in N\rb{A}^n \subset N\rb{A} $. In particular, $ y $ is nilpotent, that is $ y^m = 0 $ for some $ m $. $ x = \dots = xy^m = 0 $, so $ x = 0 $. Hence $ I = 0 $. This is a contradiction as $ I \cdot N\rb{A}^n \ne 0 $. Thus $ N\rb{A}^n = 0 $.
+\end{proof}
+
+\marginpar{Lecture 22 \\ Friday \\ 23/11/18}
+
+\begin{lemma}
+\label{lem:12.11}
+Let $ k $ be a field and let $ V $ be a vector space over $ k $. The following are equivalent.
+\begin{enumerate}
+\item $ V $ is finite dimensional.
+\item $ V $ is a Noetherian $ k $-module.
+\item $ V $ is an Artinian $ k $-module.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{itemize}[leftmargin=2cm]
+\item[$ 1 \implies 2 $] Trivial.
+\item[$ 2 \implies 3 $] Use the fact that $ V $ has a finite generating set.
+\item[$ 3 \implies 1 $] Trivial.
+\end{itemize}
+\end{proof}
+
+\begin{lemma}
+\label{lem:12.12}
+Let $ A $ be a ring. Suppose we have maximal ideals $ I_1, \dots, I_n $, possibly with repetitions. If $ I_1 \dots I_n = 0 $, then $ A $ is Artinian if and only if $ A $ is Noetherian.
+\end{lemma}
+
+\begin{proof}
+Let $ M_1 = I_1 \supset \dots \supset M_n = I_1 \dots I_n = 0 $ and $ A $ be Noetherian, hence all the $ M_i $'s are Noetherian too. Hence $ M_i / M_{i + 1} $ are Noetherian $ A $-modules for all $ i $. Note that $ M_i \cdot I_{i + 1} = M_{i + 1} $, hence $ I_{i + 1} \subset A $ acts as zero on $ M_i / M_{i + 1} $. Therefore, $ M_i / M_{i + 1} $ is naturally a module for the quotient ring $ A / I_{i + 1} $. Since $ I_{i + 1} $ is a maximal ideal, the ring $ A / I_{i + 1} $ is a field, and $ M_i / M_{i + 1} $ is a vector space over $ A / I_{i + 1} $. Since $ M_i / M_{i + 1} $ is a Noetherian $ A $-module, this is a finite dimensional vector space over $ A / I_{i + 1} $. By Lemma \ref{lem:12.11}, $ M_i / M_{i + 1} $ is also an Artinian $ A / I_{i + 1} $-module. Hence, $ M_i / M_{i + 1} $ is an Artinian $ A $-module. In particular, $ M_{n - 1} / M_n = M_{n - 1} $ is Artinian, but $ M_{n - 2} / M_{n - 1} $ is also Artinian. Hence $ M_{n - 2} $ is Artinian. Continue like this. Finally, prove that $ A $ is Artinian. (TODO Exercise: converse)
+\end{proof}
+
+\begin{definition}
+Let $ A $ be a ring. The \textbf{Krull dimension} of $ A $ is the supremum of all $ n \in \Z_{> 0} $ such that $ A $ has a chain of proper prime ideals $ I_0 \subsetneq \dots \subsetneq I_n $. $ \dim\rb{A} $ is a positive integer or infinity.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Any field has dimension zero.
+\item Any principal ideal domain which is not a field has dimension one, such as $ \Z $ or $ k\sb{x} $, where $ k $ is a field. $ \rb{0} \subsetneq P $ for $ P $ a prime ideal. In a PID all non-zero prime ideals are maximal. An integral domain but not a field has $ \dim\rb{A} = 1 $ if and only if all prime ideals are maximal.
+\item $ k\sb{x_1, \dots, x_n} $ has this chain $ \rb{0} \subsetneq \dots \subsetneq \rb{x_1, \dots, x_n} $. $ \dim\rb{k\sb{x_1, \dots, x_n}} \ge n $. In fact dimension is $ n $.
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+A ring is Artinian if and only if it is Noetherian and has dimension zero.
+\end{theorem}
+
+\begin{proof}
+Let us show that $ A $ Artinian gives $ A $ Noetherian and $ \dim\rb{A} = 0 $. Corollary \ref{cor:12.7} says that every prime ideal is maximal, hence $ \dim\rb{A} = 0 $. Lemma \ref{lem:12.9} says that $ A $ has only finitely many maximal ideals, call them $ I_1, \dots, I_n $. $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = J\rb{A} = N\rb{A} $ by Corollary \ref{cor:12.8}. But Lemma \ref{lem:12.10} says $ N\rb{A}^m = 0 $ for some $ m \ge 1 $. We conclude that $ I_1^m \dots I_n^m = 0 $. We can apply Lemma \ref{lem:12.12} and so prove that $ A $ is Noetherian. For the other implication, let us first prove that if $ A $ is Noetherian, then $ N\rb{A}^m = 0 $, for some $ m \ge 1 $. Indeed, $ N\rb{A} $ is finitely generated, so $ N\rb{A} = \rb{m_1, \dots, m_n} $. For each $ i = 1, \dots, m $, there is a $ a_i \ge 1 $ such that $ m_i^{a_i} = 0 $. Take $ a = a_1 + \dots + a_n $. Then $ \rb{m_1, \dots, m_n}^a = 0 $. So $ N\rb{A} $ is a nilpotent ideal.
 \end{proof}
 
 \end{document}
