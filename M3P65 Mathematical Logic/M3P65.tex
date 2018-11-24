@@ -19,8 +19,8 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\A}{\mathbb{A}}
-\renewcommand{\P}{\mathbb{P}}
+\newcommand{\A}{\mathcal{A}}
+\renewcommand{\L}{\mathcal{L}}
 
 \newcommand{\val}[1]{\left. #1 \right\rvert}
 \newcommand{\rb}[1]{\left( #1 \right)}
@@ -273,14 +273,14 @@ Thus $ F_\theta = G $.
 As $ \phi $ and $ \theta $ were constructed using only $ \neg, \land, \lor $, \ref{thm:1.1.9} follows.
 \end{proof}
 
-A formula $ \theta $ as in case 2 is said to be in \textbf{disjunctive normal form} (DNF).
+A formula $ \theta $ as in case $ 2 $ is said to be in \textbf{disjunctive normal form} (DNF).
 
 \begin{corollary}
 Suppose $ \chi $ is a formula whose truth function is not always $ F $. Then $ \chi $ is LE to a formula in DNF.
 \end{corollary}
 
 \begin{proof}
-Take $ G = F_\chi $ and apply case 2 of \ref{thm:1.1.9}.
+Take $ G = F_\chi $ and apply case $ 2 $ of \ref{thm:1.1.9}.
 \end{proof}
 
 \begin{example}
@@ -342,10 +342,10 @@ Idea is to try to generate all tautologies from basic assumptions, or axioms, us
 \begin{enumerate}
 \item a non-zero \textbf{alphabet} $ A $ of symbols,
 \item a non-empty subset $ \mathcal{F} $ of the set of all finite sequences, or \textbf{strings}, of elements of $ A $, the \textbf{formulas} of $ \Sigma $,
-\item a subset $ \mathcal{A} \subseteq \mathcal{F} $ called the \textbf{axioms} of $ \Sigma $, and
+\item a subset $ \A \subseteq \mathcal{F} $ called the \textbf{axioms} of $ \Sigma $, and
 \item a collection of \textbf{deduction rules}.
 \end{enumerate}
-\item A \textbf{proof} in $ \Sigma $ is a finite sequence of formulas in $ \mathcal{F} $ $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom in $ \mathcal{A} $ or is obtained from $ \phi_1, \dots, \phi_{i - 1} $ using one of the deduction rules. The last, or any, formula in a proof is a \textbf{theorem} of $ \Sigma $.
+\item A \textbf{proof} in $ \Sigma $ is a finite sequence of formulas in $ \mathcal{F} $ $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom in $ \A $ or is obtained from $ \phi_1, \dots, \phi_{i - 1} $ using one of the deduction rules. The last, or any, formula in a proof is a \textbf{theorem} of $ \Sigma $.
 \end{enumerate}
 Write $ \vdash_\Sigma \phi $ for '$ \phi $ is a theorem of $ \Sigma $'.
 \end{definition}
@@ -353,7 +353,7 @@ Write $ \vdash_\Sigma \phi $ for '$ \phi $ is a theorem of $ \Sigma $'.
 \begin{remark}
 \hfill
 \begin{enumerate}
-\item If $ \phi \in \mathcal{A} $, then $ \vdash_\Sigma \phi $.
+\item If $ \phi \in \A $, then $ \vdash_\Sigma \phi $.
 \item We should have an algorithm to test whether a string is a formula and whether it is an axiom. Then a computer can systematically generate all possible proofs in $ \Sigma $, and check whether something is a proof. Say $ \Sigma $ is \textbf{recursive} in this case.
 \end{enumerate}
 \end{remark}
@@ -437,9 +437,9 @@ Suppose $ \phi, \psi $ are $ L $-formulas. Then
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Problem sheet 1.
-\item By 1 and MP twice.
-\item Suppose $ \chi $ is any formula. Then $ \cb{\notb{\phi}, \impb{\notb{\phi}}{\phi}} \vdash_L \chi $ by 2 and MP. Let $ \alpha $ be any axiom and let $ \chi $ be $ \notb{\alpha} $. Apply deduction theorem to get $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \impb{\notb{\phi}}{\notb{\alpha}} $. Using A3 and MP we get $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \impb{\alpha}{\phi} $. As $ \alpha $ is an axiom we get from MP $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \phi $. Now use deduction theorem to obtain $ \vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
+\item Problem sheet $ 1 $.
+\item By $ 1 $ and MP twice.
+\item Suppose $ \chi $ is any formula. Then $ \cb{\notb{\phi}, \impb{\notb{\phi}}{\phi}} \vdash_L \chi $ by $ 2 $ and MP. Let $ \alpha $ be any axiom and let $ \chi $ be $ \notb{\alpha} $. Apply deduction theorem to get $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \impb{\notb{\phi}}{\notb{\alpha}} $. Using A3 and MP we get $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \impb{\alpha}{\phi} $. As $ \alpha $ is an axiom we get from MP $ \cb{\impb{\notb{\phi}}{\phi}} \vdash_L \phi $. Now use deduction theorem to obtain $ \vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
 \end{enumerate}
 \end{proof}
 
@@ -465,7 +465,7 @@ A \textbf{propositional valuation} $ v $ is an assignment of truth values to the
 \end{definition}
 
 \begin{note}
-Using the truth table rules, this assigns a truth value $ v\rb{\phi} \in \cb{T, F} $ to every $ L $-formula $ \phi $ satisfying $ v\rb{\notb{\phi}} \ne v\rb{\phi} $, etc. See problem sheet 2, question 3(b).
+Using the truth table rules, this assigns a truth value $ v\rb{\phi} \in \cb{T, F} $ to every $ L $-formula $ \phi $ satisfying $ v\rb{\notb{\phi}} \ne v\rb{\phi} $, etc. See problem sheet $ 2 $, question $ 3 $(b).
 \end{note}
 
 By induction on the length of a proof of $ \phi $ it is enough to show
@@ -592,7 +592,7 @@ Suppose $ \Delta $ is a set of $ L $-formulas and $ \phi $ is an $ L $-formula. 
 \end{corollary}
 
 \begin{proof}
-TODO Exercise: deduce these from the preliminaries to Completeness theorem - warning that in 2 do not assume that $ \Delta $ is consistent.
+TODO Exercise: deduce these from the preliminaries to Completeness theorem - warning that in $ 2 $ do not assume that $ \Delta $ is consistent.
 \end{proof}
 
 \begin{theorem}[Compactness theorem for $ L $]
@@ -604,7 +604,7 @@ Suppose $ \Delta $ is a set of $ L $-formulas. The following are equivalent.
 \end{theorem}
 
 \begin{proof}
-By \ref{cor:1.3.12} 1 holds iff $ \Delta $ is consistent. Similarly 2 holds iff every finite subset of $ \Delta $ is consistent. But if $ \Delta \vdash_L \psi $ and $ \Delta \vdash_L \notb{\psi} $ then as deductions are finite and therefore only involve finitely many formulas in $ \Delta $, for some finite $ \Delta_0 \subseteq \Delta $, $ \Delta_0 \vdash_L \psi $ and $ \Delta_0 \vdash_L \notb{\psi} $.
+By \ref{cor:1.3.12} $ 1 $ holds iff $ \Delta $ is consistent. Similarly $ 2 $ holds iff every finite subset of $ \Delta $ is consistent. But if $ \Delta \vdash_L \psi $ and $ \Delta \vdash_L \notb{\psi} $ then as deductions are finite and therefore only involve finitely many formulas in $ \Delta $, for some finite $ \Delta_0 \subseteq \Delta $, $ \Delta_0 \vdash_L \psi $ and $ \Delta_0 \vdash_L \notb{\psi} $.
 \end{proof}
 
 Let $ P $ be the set of sequences of $ \cb{T, F} $, that is the set of functions $ f : \N \to \cb{T, F} $. Topologise with basic open sets. For $ a_1, \dots, a_n \in \cb{T, F} $ consider $ O\rb{a_1, \dots, a_n} $, all sequences starting $ a_1, \dots, a_n $. (TODO Exercise: use Compactness theorem to prove $ P $ is compact)
@@ -644,15 +644,15 @@ Suppose $ A $ is a set and $ n \ge 1 $ and $ n \in \N $. An \textbf{$ n $-ary re
 If $ \overline{R} \subseteq A^n $ is an $ n $-ary relation and $ a_1, \dots, a_n \in A $, write $ \overline{R}\rb{a_1, \dots, a_n} $ to mean $ \rb{a_1, \dots, a_n} \in \overline{R} $.
 
 \begin{definition}
-A \textbf{first-order structure} $ \mathcal{A} $ consists of
+A \textbf{first-order structure} $ \A $ consists of
 \begin{enumerate}
-\item a non-empty set $ A $, the \textbf{domain} of $ \mathcal{A} $,
+\item a non-empty set $ A $, the \textbf{domain} of $ \A $,
 \item a set $ \cb{\overline{R_i} \mid i \in I} $ of relations on $ A $ for $ \overline{R_i} \subseteq A^{n_i} $,
 \item a set $ \cb{\overline{f_j} \mid j \in J} $ of functions on $ A $ for $ \overline{f_j} : A^{m_j} \to A $, and
 \item a set $ \cb{\overline{c_k} \mid k \in K} $ of \textbf{constants}, just elements of $ A $.
 \end{enumerate}
-The sets $ I, J, K $ are indexing sets and can be empty. Usually subsets of $ \N $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, and the set $ K $ is called the \textbf{signature} of $ \mathcal{A} $. Might denote the structure by
-$$ \mathcal{A} = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}}. $$
+The sets $ I, J, K $ are indexing sets and can be empty. Usually subsets of $ \N $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, and the set $ K $ is called the \textbf{signature} of $ \A $. Might denote the structure by
+$$ \A = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}}. $$
 \end{definition}
 
 \begin{example}
@@ -688,7 +688,7 @@ $$ I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset, \qquad \overline{R_1}
 
 \begin{definition}
 \label{def:2.2.1}
-A \textbf{first-order language} $ \mathcal{L} $ has an alphabet of symbols of the following types.
+A \textbf{first-order language} $ \L $ has an alphabet of symbols of the following types.
 \begin{enumerate}
 \item Variables $ x_0, x_1, \dots $.
 \item Punctuation $ ( $, $ ) $, $ , $.
@@ -698,21 +698,21 @@ A \textbf{first-order language} $ \mathcal{L} $ has an alphabet of symbols of th
 \item Function symbols $ f_j $ for $ j \in J $.
 \item Constant symbols $ c_k $ for $ k \in K $.
 \end{enumerate}
-Here $ I, J, K $ are indexing sets and could have $ J, K = \emptyset $. Each $ R_i $ comes equipped with an \textbf{arity} $ n_i $. Each $ f_j $ comes equipped with an arity $ m_j $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, $ K $ is called the signature of $ \mathcal{L} $. A first-order structure $ \mathcal{A} $ with the same signature as $ \mathcal{L} $ is referred to as an $ \mathcal{L} $-structure.
+Here $ I, J, K $ are indexing sets and could have $ J, K = \emptyset $. Each $ R_i $ comes equipped with an \textbf{arity} $ n_i $. Each $ f_j $ comes equipped with an arity $ m_j $. The information $ \rb{n_i \mid i \in I} $, $ \rb{m_j \mid j \in J} $, $ K $ is called the signature of $ \L $. A first-order structure $ \A $ with the same signature as $ \L $ is referred to as an $ \L $-structure.
 \end{definition}
 
 \begin{definition}
-A \textbf{term} of $ \mathcal{L} $ is defined as follows.
+A \textbf{term} of $ \L $ is defined as follows.
 \begin{enumerate}
 \item Any variable is a term.
 \item Any constant symbol is a term.
-\item If $ f $ is an $ m $-ary function symbol of $ \mathcal{L} $ and $ t_1, \dots, t_m $ are terms, then $ f\rb{t_1, \dots, t_m} $ is also a term.
+\item If $ f $ is an $ m $-ary function symbol of $ \L $ and $ t_1, \dots, t_m $ are terms, then $ f\rb{t_1, \dots, t_m} $ is also a term.
 \item Any term arises in this way.
 \end{enumerate}
 \end{definition}
 
 \begin{example}
-Suppose $ \mathcal{L} $ has a binary function symbol $ f $ and constant symbols $ c_1, c_2 $. Some terms are
+Suppose $ \L $ has a binary function symbol $ f $ and constant symbols $ c_1, c_2 $. Some terms are
 $$ c_1, \qquad c_2, \qquad x_1, \qquad f\rb{c_1, x_1}, \qquad f\rb{f\rb{c_1, x_2}, c_2}, \qquad f\rb{x_1, f\rb{f\rb{c_1, x_2}, c_2}}. $$
 Some not terms are
 $$ ffx_1 \quad \rb{\text{not well-formed}}. $$
@@ -723,18 +723,18 @@ $$ ffx_1 \quad \rb{\text{not well-formed}}. $$
 \begin{definition}
 \hfill
 \begin{enumerate}
-\item An \textbf{atomic formula} of $ \mathcal{L} $ is of the form $ R\rb{t_1, \dots, t_n} $ where $ R $ is an $ n $-ary relation symbol of $ \mathcal{L} $ and $ t_1, \dots, t_n $ are terms.
-\item The \textbf{formulas} of $ \mathcal{L} $ are defined as follows.
+\item An \textbf{atomic formula} of $ \L $ is of the form $ R\rb{t_1, \dots, t_n} $ where $ R $ is an $ n $-ary relation symbol of $ \L $ and $ t_1, \dots, t_n $ are terms.
+\item The \textbf{formulas} of $ \L $ are defined as follows.
 \begin{enumerate}
 \item Any atomic formula is a formula.
-\item If $ \phi, \psi $ are $ \mathcal{L} $-formulas then $ \notb{\phi} $, $ \impb{\phi}{\psi} $, $ \fab{x}\phi $ are $ \mathcal{L} $-formulas, where $ x $ is any variable.
-\item Every $ \mathcal{L} $-formula arises in this way.
+\item If $ \phi, \psi $ are $ \L $-formulas then $ \notb{\phi} $, $ \impb{\phi}{\psi} $, $ \fab{x}\phi $ are $ \L $-formulas, where $ x $ is any variable.
+\item Every $ \L $-formula arises in this way.
 \end{enumerate}
 \end{enumerate}
 \end{definition}
 
 \begin{example}
-Suppose $ \mathcal{L} $ has a binary function symbol $ f $, a unary relation symbol $ P $, a binary relation symbol $ R $, and constant symbols $ c_1, c_2 $. Some terms are
+Suppose $ \L $ has a binary function symbol $ f $, a unary relation symbol $ P $, a binary relation symbol $ R $, and constant symbols $ c_1, c_2 $. Some terms are
 $$ x_1, \qquad c_1, \qquad f\rb{x_1, c_1}, \qquad f\rb{f\rb{x_1, c_1}, x_2}. $$
 Some atomic formulas are
 $$ P\rb{x_1}, \qquad R\rb{f\rb{x_1, c_1}, x_2}. $$
@@ -743,29 +743,29 @@ $$ \fab{x_1}\impb{R\rb{f\rb{x_1, c_1}, x_2}}{P\rb{x_1}}. $$
 \end{example}
 
 \begin{definition}
-Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas. $ \teb{x}\phi $ means $ \notb{\fab{x}\notb{\phi}} $. $ \orb{\phi}{\psi} $ means $ \impb{\notb{\phi}}{\psi} $, etc as in propositional logic.
+Suppose $ \phi, \psi $ are $ \L $-formulas. $ \teb{x}\phi $ means $ \notb{\fab{x}\notb{\phi}} $. $ \orb{\phi}{\psi} $ means $ \impb{\notb{\phi}}{\psi} $, etc as in propositional logic.
 \end{definition}
 
 \begin{definition}
-Suppose $ \mathcal{L} $ is a first-order language with relation symbols $ R_i $ of arity $ n_i $ for $ i \in I $, function symbols $ f_j $ of arity $ m_j $ for $ j \in J $, and constant symbols $ c_k $ for $ k \in K $. An \textbf{$ \mathcal{L} $-structure} is a structure
-$$ \mathcal{A} = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}} $$
-of the same signature as $ \mathcal{L} $.
+Suppose $ \L $ is a first-order language with relation symbols $ R_i $ of arity $ n_i $ for $ i \in I $, function symbols $ f_j $ of arity $ m_j $ for $ j \in J $, and constant symbols $ c_k $ for $ k \in K $. An \textbf{$ \L $-structure} is a structure
+$$ \A = \ab{A; \rb{\overline{R_i} \mid i \in I}, \rb{\overline{f_j} \mid j \in J}, \rb{\overline{c_k} \mid k \in K}} $$
+of the same signature as $ \L $.
 \end{definition}
 
-There is a correspondence between the relation, function, and constant symbols of $ \mathcal{L} $ and the actual relations, functions, and constants in $ \mathcal{A} $, and the arities match up. This correspondence, or $ \mathcal{A} $, is called an \textbf{interpretation} of $ \mathcal{L} $.
+There is a correspondence between the relation, function, and constant symbols of $ \L $ and the actual relations, functions, and constants in $ \A $, and the arities match up. This correspondence, or $ \A $, is called an \textbf{interpretation} of $ \L $.
 
 \begin{definition}
-With the same notation, suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure. A \textbf{valuation} in $ \mathcal{A} $ is a function $ v $ from the set of terms of $ \mathcal{L} $ to $ A $ satisfying
+With the same notation, suppose $ \A $ is an $ \L $-structure. A \textbf{valuation} in $ \A $ is a function $ v $ from the set of terms of $ \L $ to $ A $ satisfying
 \begin{enumerate}
 \item $ v\rb{c_k} = \overline{c_k} $, and
-\item if $ t_1, \dots, t_m $ are terms of $ \mathcal{L} $ and $ f $ is an $ m $-ary function symbol then
+\item if $ t_1, \dots, t_m $ are terms of $ \L $ and $ f $ is an $ m $-ary function symbol then
 $$ v\rb{f\rb{t_1, \dots, t_m}} = \overline{f}\rb{v\rb{t_1}, \dots, v\rb{t_m}}, $$
-where $ \overline{f} $ is the interpretation of $ f $ in $ \mathcal{A} $.
+where $ \overline{f} $ is the interpretation of $ f $ in $ \A $.
 \end{enumerate}
 \end{definition}
 
 \begin{lemma}
-Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ a_0, a_1, \dots \in A $. Then there is a unique valuation $ v $ in $ \mathcal{A} $ with $ v\rb{x_l} = a_l $ for all $ l \in \N $, where the variables of $ \mathcal{L} $ are $ x_0, x_1, \dots $.
+Suppose $ \A $ is an $ \L $-structure and $ a_0, a_1, \dots \in A $. Then there is a unique valuation $ v $ in $ \A $ with $ v\rb{x_l} = a_l $ for all $ l \in \N $, where the variables of $ \L $ are $ x_0, x_1, \dots $.
 \end{lemma}
 
 \begin{proof}
@@ -791,19 +791,19 @@ $$ v\rb{m\rb{m\rb{x_0, x_1}, i\rb{x_0}}} = \overline{m}\rb{v\rb{m\rb{x_0, x_1}},
 \end{example}
 
 \begin{definition}
-Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ x_l $ is any variable. Suppose $ v, w $ are valuations in $ \mathcal{A} $. We say $ v, w $ are $ x_l $-equivalent if $ v\rb{x_m} = w\rb{x_m} $ whenever $ m \ne l $.
+Suppose $ \A $ is an $ \L $-structure and $ x_l $ is any variable. Suppose $ v, w $ are valuations in $ \A $. We say $ v, w $ are $ x_l $-equivalent if $ v\rb{x_m} = w\rb{x_m} $ whenever $ m \ne l $.
 \end{definition}
 
 \begin{definition}
 \label{def:2.2.9}
-Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation in $ \mathcal{A} $. Define, for an $ \mathcal{L} $-formula $ \phi $, what is meant by $ v $ \textbf{satisfies} $ \phi $ in $ \mathcal{A} $ by the following.
+Suppose $ \A $ is an $ \L $-structure and $ v $ is a valuation in $ \A $. Define, for an $ \L $-formula $ \phi $, what is meant by $ v $ \textbf{satisfies} $ \phi $ in $ \A $ by the following.
 \begin{enumerate}
-\item Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \mathcal{L} $. Then $ v $ satisfies the atomic formula $ R\rb{t_1, \dots, t_n} $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \mathcal{A} $.
-\item Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas and we already know about valuations satisfying $ \phi, \psi $.
+\item Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \L $. Then $ v $ satisfies the atomic formula $ R\rb{t_1, \dots, t_n} $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \A $.
+\item Suppose $ \phi, \psi $ are $ \L $-formulas and we already know about valuations satisfying $ \phi, \psi $.
 \begin{enumerate}
-\item $ v $ satisfies $ \notb{\phi} $ in $ \mathcal{A} $ iff $ v $ does not satisfy $ \phi $ in $ \mathcal{A} $.
-\item $ v $ satisfies $ \impb{\phi}{\psi} $ in $ \mathcal{A} $ iff it is not the case that $ v $ satisfies $ \phi $ in $ \mathcal{A} $ and $ v $ does not satisfy $ \psi $ in $ \mathcal{A} $.
-\item $ v $ satisfies $ \fab{x_l}\phi $ in $ \mathcal{A} $ iff whenever $ w $ is a valuation in $ \mathcal{A} $ which is $ x_l $-equivalent to $ v $, then $ w $ satisfies $ \phi $ in $ \mathcal{A} $.
+\item $ v $ satisfies $ \notb{\phi} $ in $ \A $ iff $ v $ does not satisfy $ \phi $ in $ \A $.
+\item $ v $ satisfies $ \impb{\phi}{\psi} $ in $ \A $ iff it is not the case that $ v $ satisfies $ \phi $ in $ \A $ and $ v $ does not satisfy $ \psi $ in $ \A $.
+\item $ v $ satisfies $ \fab{x_l}\phi $ in $ \A $ iff whenever $ w $ is a valuation in $ \A $ which is $ x_l $-equivalent to $ v $, then $ w $ satisfies $ \phi $ in $ \A $.
 \end{enumerate}
 \end{enumerate}
 \end{definition}
@@ -814,14 +814,14 @@ Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ v $ is a valuation
 \ref{def:2.2.9} does not work if we allow empty structure.
 \end{remark}
 
-If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy $ \phi $, write $ v\sb{\phi} = F $. If every valuation in $ \mathcal{A} $ satisfies $ \phi $, say that $ \phi $ is \textbf{true} in $ \mathcal{A} $ or $ \mathcal{A} $ is a \textbf{model} of $ \phi $ and write $ \mathcal{A} \vDash \phi $. If $ \mathcal{A} \vDash \phi $ for every $ \mathcal{L} $-structure $ \mathcal{A} $, we say that $ \phi $ is \textbf{logically valid} and write $ \vDash \phi $. These are the analogues of tautologies in the propositional logic. Difference is in propositional logic there is an algorithm to decide whether a given formula is a tautology. There is no such algorithm to decide whether a given $ \mathcal{L} $-formula is logically valid or not, a consequence of Gödel's incompleteness theorem.
+If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy $ \phi $, write $ v\sb{\phi} = F $. If every valuation in $ \A $ satisfies $ \phi $, say that $ \phi $ is \textbf{true} in $ \A $ or $ \A $ is a \textbf{model} of $ \phi $ and write $ \A \vDash \phi $. If $ \A \vDash \phi $ for every $ \L $-structure $ \A $, we say that $ \phi $ is \textbf{logically valid} and write $ \vDash \phi $. These are the analogues of tautologies in the propositional logic. Difference is in propositional logic there is an algorithm to decide whether a given formula is a tautology. There is no such algorithm to decide whether a given $ \L $-formula is logically valid or not, a consequence of Gödel's incompleteness theorem.
 
 \begin{example}
 \hfill
 \begin{enumerate}
-\item Suppose $ \mathcal{L} $ has a binary relation symbol $ R $. The $ \mathcal{L} $-formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \mathcal{A} = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \mathcal{A} $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
+\item Suppose $ \L $ has a binary relation symbol $ R $. The $ \L $-formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \A = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \A $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
 \item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we interpret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ and $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
-\item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \phi $ an $ \mathcal{L} $-formula. Let $ v $ be a valuation in $ \mathcal{A} $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \mathcal{A} $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
+\item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \A $ is an $ \L $-structure and $ \phi $ an $ \L $-formula. Let $ v $ be a valuation in $ \A $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \A $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
 \end{enumerate}
 \end{example}
 
@@ -829,22 +829,22 @@ If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy
 $ \fab{x_1}\teb{x_2}R\rb{x_1, x_2} $ is true in $ \ab{\Z; <} $ and $ \ab{\N; <} $ but not in $ \ab{\N; >} $.
 \end{example}
 
-TODO Exercise: Suppose $ \phi $ is any $ \mathcal{L} $-formula. Then
+TODO Exercise: Suppose $ \phi $ is any $ \L $-formula. Then
 \begin{enumerate}
 \item $ \impb{\teb{x_1}\fab{x_2}\phi}{\fab{x_2}\teb{x_1}\phi} $ is logically valid, and
 \item $ \impb{\fab{x_2}\teb{x_1}\phi}{\teb{x_1}\fab{x_2}\phi} $ is not necessarily logically valid.
 \end{enumerate}
 
-Consider the propositional formula $ \chi $ by $ \impb{p_1}{\impb{p_2}{p_1}} $. Suppose $ \mathcal{L} $ is a first-order language and $ \phi_1, \phi_2 $ are $ \mathcal{L} $-formulas. Substitute $ \phi_1 $ in place of $ p_1 $ and $ \phi_2 $ in place of $ p_2 $ in $ \chi $. We obtain an $ \mathcal{L} $-formula $ \theta $ by $ \impb{\phi_1}{\impb{\phi_2}{\phi_1}} $. Check that as $ \chi $ is a tautology $ \theta $ is logically valid. (TODO Exercise)
+Consider the propositional formula $ \chi $ by $ \impb{p_1}{\impb{p_2}{p_1}} $. Suppose $ \L $ is a first-order language and $ \phi_1, \phi_2 $ are $ \L $-formulas. Substitute $ \phi_1 $ in place of $ p_1 $ and $ \phi_2 $ in place of $ p_2 $ in $ \chi $. We obtain an $ \L $-formula $ \theta $ by $ \impb{\phi_1}{\impb{\phi_2}{\phi_1}} $. Check that as $ \chi $ is a tautology $ \theta $ is logically valid. (TODO Exercise)
 
 \begin{definition}
-Suppose $ \chi $ is an $ \mathcal{L} $-formula involving propositional variables $ p_1, \dots, p_n $. Suppose $ \mathcal{L} $ is a first-order language and $ \phi_1, \dots, \phi_n $ are $ \mathcal{L} $-formulas. A \textbf{substitution instance} of $ \chi $ is obtained by replacing each $ p_i $ in $ \chi $ by $ \phi_i $ for $ i = 1, \dots, n $. Call the result $ \theta $.
+Suppose $ \chi $ is an $ \L $-formula involving propositional variables $ p_1, \dots, p_n $. Suppose $ \L $ is a first-order language and $ \phi_1, \dots, \phi_n $ are $ \L $-formulas. A \textbf{substitution instance} of $ \chi $ is obtained by replacing each $ p_i $ in $ \chi $ by $ \phi_i $ for $ i = 1, \dots, n $. Call the result $ \theta $.
 \end{definition}
 
 \begin{theorem}
 \hfill
 \begin{enumerate}
-\item $ \theta $ is an $ \mathcal{L} $-formula, and
+\item $ \theta $ is an $ \L $-formula, and
 \item if $ \chi $ is a tautology then $ \theta $ is logically valid.
 \end{enumerate}
 \end{theorem}
@@ -852,7 +852,7 @@ Suppose $ \chi $ is an $ \mathcal{L} $-formula involving propositional variables
 \marginpar{Lecture 11 \\ Friday \\ 26/10/18}
 
 \begin{proof}
-Take an $ \mathcal{L} $-structure $ \mathcal{A} $ and a valuation $ v $ in $ \mathcal{A} $. Use this to define a propositional valuation $ w $ with $ w\rb{p_i} = v\sb{\phi_i} $ for $ i \le n $. Then prove by induction on the number of connectives in $ \chi $ that $ w\rb{\chi} = v\sb{\theta} $. In particular if $ \chi $ is a tautology, then $ v\sb{\theta} = T $. In the inductive step, consider $ \chi $ is $ \impb{\alpha}{\beta} $. So $ \theta $ is $ \impb{\theta_1}{\theta_2} $ where $ \theta_1 $ is obtained from $ \alpha $ and $ \theta_2 $ is obtained from $ \beta $. By inductive hypothesis $ w\rb{\alpha} = v\sb{\theta_1} $ and $ w\rb{\beta} = v\sb{\theta_2} $. So $ w\impb{\alpha}{\beta} = v\sb{\impb{\theta_1}{\theta_2}} $, etc. (TODO Exercise)
+Take an $ \L $-structure $ \A $ and a valuation $ v $ in $ \A $. Use this to define a propositional valuation $ w $ with $ w\rb{p_i} = v\sb{\phi_i} $ for $ i \le n $. Then prove by induction on the number of connectives in $ \chi $ that $ w\rb{\chi} = v\sb{\theta} $. In particular if $ \chi $ is a tautology, then $ v\sb{\theta} = T $. In the inductive step, consider $ \chi $ is $ \impb{\alpha}{\beta} $. So $ \theta $ is $ \impb{\theta_1}{\theta_2} $ where $ \theta_1 $ is obtained from $ \alpha $ and $ \theta_2 $ is obtained from $ \beta $. By inductive hypothesis $ w\rb{\alpha} = v\sb{\theta_1} $ and $ w\rb{\beta} = v\sb{\theta_2} $. So $ w\impb{\alpha}{\beta} = v\sb{\impb{\theta_1}{\theta_2}} $, etc. (TODO Exercise)
 \end{proof}
 
 \begin{note}
@@ -866,7 +866,7 @@ $ \impb{\teb{x_2}\fab{x_1}\phi}{\fab{x_1}\teb{x_2}\phi} $.
 \subsection{Bound and free variables in formulas}
 
 \begin{definition}
-Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas and $ \fab{x_i}\phi $ occurs as a subformula of $ \psi $, that is $ \psi $ is $ \dots \fab{x_i}\phi \dots $. We say that $ \phi $ is the \textbf{scope} of that quantifier $ \fab{x_i} $ here in $ \psi $. An occurrence of a variable $ x_j $ in $ \psi $ is \textbf{bound} if it is in the scope of a quantifier $ \fab{x_j} $ in $ \psi $, or it is the $ x_j $ here. Otherwise it is a free occurrence of $ x_j $. Variables having a free occurrence in $ \psi $ are called \textbf{free} variables of $ \psi $. A formula with no free variables is called a \textbf{closed} formula or a \textbf{sentence} of $ \mathcal{L} $.
+Suppose $ \phi, \psi $ are $ \L $-formulas and $ \fab{x_i}\phi $ occurs as a subformula of $ \psi $, that is $ \psi $ is $ \dots \fab{x_i}\phi \dots $. We say that $ \phi $ is the \textbf{scope} of that quantifier $ \fab{x_i} $ here in $ \psi $. An occurrence of a variable $ x_j $ in $ \psi $ is \textbf{bound} if it is in the scope of a quantifier $ \fab{x_j} $ in $ \psi $, or it is the $ x_j $ here. Otherwise it is a free occurrence of $ x_j $. Variables having a free occurrence in $ \psi $ are called \textbf{free} variables of $ \psi $. A formula with no free variables is called a \textbf{closed} formula or a \textbf{sentence} of $ \L $.
 \end{definition}
 
 \begin{example}
@@ -879,7 +879,7 @@ Suppose $ \phi, \psi $ are $ \mathcal{L} $-formulas and $ \fab{x_i}\phi $ occurs
 \end{example}
 
 \begin{definition}
-If $ \psi $ is an $ \mathcal{L} $-formula with free variables amongst $ x_1, \dots, x_n $, we might write $ \psi\rb{x_1, \dots, x_n} $ instead of $ \psi $. If $ t_1, \dots, t_n $ are terms, by $ \psi\rb{t_1, \dots, t_n} $ we mean the $ \mathcal{L} $-formula obtained by replacing each free occurrence of $ x_i $ in $ \psi $ by $ t_i $.
+If $ \psi $ is an $ \L $-formula with free variables amongst $ x_1, \dots, x_n $, we might write $ \psi\rb{x_1, \dots, x_n} $ instead of $ \psi $. If $ t_1, \dots, t_n $ are terms, by $ \psi\rb{t_1, \dots, t_n} $ we mean the $ \L $-formula obtained by replacing each free occurrence of $ x_i $ in $ \psi $ by $ t_i $.
 \end{definition}
 
 \begin{example}
@@ -889,11 +889,11 @@ $$ \impb{\fab{x_1}R_1\rb{x_1, f_2\rb{x_1, x_2}}}{\fab{x_3}R_2\rb{f_1\rb{x_1}, f_
 
 \begin{theorem}
 \label{thm:2.3.3}
-Suppose $ \phi $ is a closed $ \mathcal{L} $-formula and $ \mathcal{A} $ is an $ \mathcal{L} $-structure. Then either $ \mathcal{A} \vDash \phi $ or $ \mathcal{A} \vDash \notb{\phi} $. More generally, if $ \phi $ has free variables amongst $ x_1, \dots, x_n $ and $ v, w $ are valuations in $ \mathcal{A} $ with $ v\rb{x_i} = w\rb{x_i} $ for $ i = 1, \dots, n $, then $ v\sb{\phi} = T $ iff $ w\sb{\phi} = T $. Allow $ n = 0 $ here for no free variables.
+Suppose $ \phi $ is a closed $ \L $-formula and $ \A $ is an $ \L $-structure. Then either $ \A \vDash \phi $ or $ \A \vDash \notb{\phi} $. More generally, if $ \phi $ has free variables amongst $ x_1, \dots, x_n $ and $ v, w $ are valuations in $ \A $ with $ v\rb{x_i} = w\rb{x_i} $ for $ i = 1, \dots, n $, then $ v\sb{\phi} = T $ iff $ w\sb{\phi} = T $. Allow $ n = 0 $ here for no free variables.
 \end{theorem}
 
 \begin{proof}
-Note that the first statement follows from the generalisation. If $ \phi $ has no free variables, then for any valuations $ v, w $ in $ \mathcal{A} $, they agree on the free variables of $ \phi $ so $ v\sb{\phi} = w\sb{\phi} $. Prove the generalisation by induction on the number of connectives and quantifiers in $ \phi $.
+Note that the first statement follows from the generalisation. If $ \phi $ has no free variables, then for any valuations $ v, w $ in $ \A $, they agree on the free variables of $ \phi $ so $ v\sb{\phi} = w\sb{\phi} $. Prove the generalisation by induction on the number of connectives and quantifiers in $ \phi $.
 \begin{enumerate}
 \item Base case. $ \phi $ is atomic, so $ \phi $ is $ R\rb{t_1, \dots, t_m} $ for $ t_j $ terms. The $ t_j $ only involve variables amongst $ x_1, \dots, x_n $. As $ v $ and $ w $ agree on these variables $ v\rb{t_j} = w\rb{t_j} $. So
 $$ v\sb{R\rb{t_1, \dots, t_m}} = T \qquad \iff \qquad \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_m}} \qquad \iff \qquad w\sb{R\rb{t_1, \dots, t_m}} = T. $$
@@ -904,7 +904,7 @@ $$ v\sb{R\rb{t_1, \dots, t_m}} = T \qquad \iff \qquad \overline{R}\rb{v\rb{t_1},
 \marginpar{Lecture 12 \\ Monday \\ 29/10/18}
 
 \begin{remark}
-If $ \mathcal{A} $ is an $ \mathcal{L} $-structure and $ \psi\rb{x_1, \dots, x_n} $ an $ \mathcal{L} $-formula, whose free variables are amongst $ x_1, \dots, x_n $, and $ a_1, \dots, a_n \in A $ for domain $ A $ then we write $ \mathcal{A} \vDash \psi\rb{a_1, \dots, a_n} $ to mean $ v\sb{\psi} = T $ for every valuation $ v $ in $ \mathcal{A} $ with $ v\rb{x_i} = a_i $ for $ i = 1, \dots, n $.
+If $ \A $ is an $ \L $-structure and $ \psi\rb{x_1, \dots, x_n} $ an $ \L $-formula, whose free variables are amongst $ x_1, \dots, x_n $, and $ a_1, \dots, a_n \in A $ for domain $ A $ then we write $ \A \vDash \psi\rb{a_1, \dots, a_n} $ to mean $ v\sb{\psi} = T $ for every valuation $ v $ in $ \A $ with $ v\rb{x_i} = a_i $ for $ i = 1, \dots, n $.
 \end{remark}
 
 \begin{note}
@@ -912,23 +912,23 @@ By the proof of \ref{thm:2.3.3} this holds if $ v\sb{\psi} = T $ for some such v
 \end{note}
 
 \begin{example}
-An example where $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we have term $ t $, and a valuation $ v $ in $ \mathcal{A} $ with $ v\sb{\phi\rb{t}} = F $. Let $ \phi\rb{x_1} $ be $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_1}} $. Scope of $ x_2 $ is $ R\rb{x_1, x_2} $. Let $ t_1 $ be $ x_2 $, then $ \phi\rb{t_1} $ is $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_2}} $. Suppose $ \mathcal{A} = \ab{\N; \le, = 0} $. Domain is $ \N = \cb{0, 1, \dots} $, $ R\rb{x_1, x_2} $ interpreted as $ x_1 \le x_2 $, and $ S\rb{x_1} $ interpreted as $ x_1 = 0 $. So $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ but we choose a valuation $ v\rb{x_2} = 1 $ then $ v\sb{\phi\rb{t_1}} = F $ in $ \mathcal{A} $.
+An example where $ \A \vDash \fab{x_1}\phi\rb{x_1} $ but we have term $ t $, and a valuation $ v $ in $ \A $ with $ v\sb{\phi\rb{t}} = F $. Let $ \phi\rb{x_1} $ be $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_1}} $. Scope of $ x_2 $ is $ R\rb{x_1, x_2} $. Let $ t_1 $ be $ x_2 $, then $ \phi\rb{t_1} $ is $ \impb{\fab{x_2}R\rb{x_2, x_2}}{S\rb{x_2}} $. Suppose $ \A = \ab{\N; \le, = 0} $. Domain is $ \N = \cb{0, 1, \dots} $, $ R\rb{x_1, x_2} $ interpreted as $ x_1 \le x_2 $, and $ S\rb{x_1} $ interpreted as $ x_1 = 0 $. So $ \A \vDash \fab{x_1}\phi\rb{x_1} $ but we choose a valuation $ v\rb{x_2} = 1 $ then $ v\sb{\phi\rb{t_1}} = F $ in $ \A $.
 \end{example}
 
 \begin{definition}
-Let $ \phi $ be an $ \mathcal{L} $-formula, $ x_i $ a variable, $ t $ an $ \mathcal{L} $-term. We say $ t $ is free for $ x_i $ in $ \phi $ if there is no variable $ x_j $ in $ t $ such that $ x_i $ has a free occurrence within the scope of a quantifier $ \fab{x_j} $ in $ \phi $.
+Let $ \phi $ be an $ \L $-formula, $ x_i $ a variable, $ t $ an $ \L $-term. We say $ t $ is free for $ x_i $ in $ \phi $ if there is no variable $ x_j $ in $ t $ such that $ x_i $ has a free occurrence within the scope of a quantifier $ \fab{x_j} $ in $ \phi $.
 \end{definition}
 
 TODO Exercise: Let $ t = f\rb{x_3, x_2, x_5} $, $ \phi_1 $ be $ \impb{\impb{\fab{x_2}R\rb{x_1, x_4}}{K\rb{x_1}}}{\fab{x_1}R\rb{x_1, x_1}} $, and $ \phi_2 $ be $ \impb{\fab{x_2}\impb{R\rb{x_2, x_4}}{\fab{x_1}K\rb{x_1}}}{\fab{x_2}R\rb{x_1, x_1}} $. For which $ t $ is $ t $ free for $ x_1 $?
 
 \begin{theorem}
 \label{thm:2.3.6}
-Suppose $ \phi\rb{x_1} $ is an $ \mathcal{L} $-formula, possibly with other free variables. Let $ t $ be a term free for $ x_1 $ in $ \phi $, then $ \vDash \impb{\fab{x_1}\phi\rb{x_1}}{\phi\rb{t}} $. In particular, if $ \mathcal{A} $ is an $ \mathcal{L} $-structure with $ \mathcal{A} \vDash \fab{x_1}\phi\rb{x_1} $ then $ A \vDash \phi\rb{t} $.
+Suppose $ \phi\rb{x_1} $ is an $ \L $-formula, possibly with other free variables. Let $ t $ be a term free for $ x_1 $ in $ \phi $, then $ \vDash \impb{\fab{x_1}\phi\rb{x_1}}{\phi\rb{t}} $. In particular, if $ \A $ is an $ \L $-structure with $ \A \vDash \fab{x_1}\phi\rb{x_1} $ then $ A \vDash \phi\rb{t} $.
 \end{theorem}
 
 \begin{lemma}
 \label{lem:2.3.7}
-With this notation, suppose $ v $ is a valuation in $ \mathcal{A} $. Let $ v' $ be the valuation in $ \mathcal{A} $ which is $ x_1 $-equivalent to $ v $, with $ v'\rb{x_1} = v\rb{t} $. Then $ v'\sb{\phi\rb{x_1}} = T $ iff $ v\sb{\phi\rb{t}} = T $.
+With this notation, suppose $ v $ is a valuation in $ \A $. Let $ v' $ be the valuation in $ \A $ which is $ x_1 $-equivalent to $ v $, with $ v'\rb{x_1} = v\rb{t} $. Then $ v'\sb{\phi\rb{x_1}} = T $ iff $ v\sb{\phi\rb{t}} = T $.
 \end{lemma}
 
 \begin{proof}
@@ -937,8 +937,8 @@ This is by induction on the number of connectives and quantifiers in $ \phi $.
 \item Base case. $ \phi $ is an atomic formula $ R\rb{u_1, \dots, u_m} $ where $ R $ is an $ m $-ary relation symbol and $ u_1, \dots, u_m $ are terms. Let $ u^*_i $ be the result of substituting $ t $ for $ x_1 $ in $ u_i $. Then, by induction on the length of the terms, each $ u_i^* $ is a term and $ v'\rb{u_i} = v\rb{u_i^*} $. Moreover, $ \phi\rb{t} $ is $ R\rb{u_1^*, \dots, u_m^*} $. Then
 \begin{align*}
 v'\sb{\phi\rb{x_1}} = T \qquad
-& \iff \qquad \mathcal{A} \vDash R\rb{v'\rb{u_1}, \dots, v'\rb{u_m}} \\
-& \iff \qquad \mathcal{A} \vDash R\rb{v\rb{u_1^*}, \dots, v\rb{u_m^*}} \\
+& \iff \qquad \A \vDash R\rb{v'\rb{u_1}, \dots, v'\rb{u_m}} \\
+& \iff \qquad \A \vDash R\rb{v\rb{u_1^*}, \dots, v\rb{u_m^*}} \\
 & \iff \qquad v\sb{\phi\rb{t}} = T.
 \end{align*}
 \item Inductive step. There are three cases,
@@ -972,12 +972,12 @@ $$ v\sb{\impb{\fab{x_1}\phi\rb{x_1}}{\phi\rb{t}}} = T. $$
 Take $ v' $ $ x_1 $-equivalent to $ v $ and $ v'\rb{x_1} = v\rb{t} $. Then by \ref{lem:2.3.7}, $ v'\sb{\phi\rb{x_1}} = F $, so $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $.
 \end{proof}
 
-\subsection{The formal system $ K_\mathcal{L} $}
+\subsection{The formal system $ K_{\L} $}
 
 \begin{definition}
-Suppose $ \mathcal{L} $ is a first-order language. The formal system \textbf{$ K_\mathcal{L} $} has as formulas $ \mathcal{L} $-formulas, and the following.
+Suppose $ \L $ is a first-order language. The formal system \textbf{$ K_{\L} $} has as formulas $ \L $-formulas, and the following.
 \begin{enumerate}
-\item Axioms. For $ \phi, \chi, \psi $ $ \mathcal{L} $-formulas,
+\item Axioms. For $ \phi, \chi, \psi $ $ \L $-formulas,
 \begin{enumerate}[label=(A\arabic*)]
 \item $ \impb{\phi}{\impb{\psi}{\phi}} $,
 \item $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\psi}}{\impb{\phi}{\chi}}} $,
@@ -991,21 +991,21 @@ Suppose $ \mathcal{L} $ is a first-order language. The formal system \textbf{$ K
 \item \textbf{Generalisation} (Gen), from formula $ \phi $ deduce $ \fab{x_i}\phi $.
 \end{enumerate}
 \end{enumerate}
-A proof in $ K_\mathcal{L} $ is a finite sequence of $ \mathcal{L} $-formulas each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A theorem of $ K_\mathcal{L} $ is the last formula in some proof. Write $ \vdash_{K_\mathcal{L}} \phi $ for $ \phi $ is a theorem in $ K_\mathcal{L} $.
+A proof in $ K_{\L} $ is a finite sequence of $ \L $-formulas each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A theorem of $ K_{\L} $ is the last formula in some proof. Write $ \vdash_{K_{\L}} \phi $ for $ \phi $ is a theorem in $ K_{\L} $.
 \end{definition}
 
 \begin{note}
-Books do not always use $ K_\mathcal{L} $, that is they write $ \vdash \phi $.
+Books do not always use $ K_{\L} $, that is they write $ \vdash \phi $.
 \end{note}
 
 \begin{definition}
-Suppose $ \Sigma $ is a set of $ \mathcal{L} $-formulas and $ \psi $ an $ \mathcal{L} $-formula. A deduction of $ \psi $ from $ \Sigma $ is a finite sequence of formulas, ending with $ \psi $, each of which is one of
+Suppose $ \Sigma $ is a set of $ \L $-formulas and $ \psi $ an $ \L $-formula. A deduction of $ \psi $ from $ \Sigma $ is a finite sequence of formulas, ending with $ \psi $, each of which is one of
 \begin{enumerate}
 \item an axiom,
 \item a formula in $ \Sigma $, or
 \item obtained from earlier formulas in the deduction using MP or Gen, with the restriction that when Gen is applied it does not involve a variable occurring freely in a formula in $ \Sigma $.
 \end{enumerate}
-Write $ \Sigma \vdash_{K_\mathcal{L}} \psi $ if there is a deduction from $ \Sigma $ to $ \psi $.
+Write $ \Sigma \vdash_{K_{\L}} \psi $ if there is a deduction from $ \Sigma $ to $ \psi $.
 \end{definition}
 
 \marginpar{Lecture 13 \\ Thursday \\ 01/11/18}
@@ -1024,16 +1024,16 @@ Lecture 13 is a problem class.
 
 \begin{theorem}
 \label{thm:2.4.4}
-Suppose $ \phi $ is an $ \mathcal{L} $-formula which is a substitution instance of a tautology in propositional logic. Then $ \vdash_{K_\mathcal{L}} \phi $.
+Suppose $ \phi $ is an $ \L $-formula which is a substitution instance of a tautology in propositional logic. Then $ \vdash_{K_{\L}} \phi $.
 \end{theorem}
 
 \begin{example}
-$ \impb{\notb{\notb{\phi}}}{\phi} $ for an $ \mathcal{L} $-formula $ \phi $, as this is a substitution instance of $ \impb{\notb{\notb{p_1}}}{p_1} $. There is a tautology $ \chi $ with propositional variables $ p_1, \dots, p_n $ and $ \mathcal{L} $-formulas $ \psi_1, \dots, \psi_n $ such that $ \phi $ is obtained from $ \chi $ by substituting $ \psi_i $ for $ p_i $ for $ i = 1, \dots, n $. By Completeness of propositional logic in \ref{thm:1.3.4} there is a proof in $ L $ of $ \chi $ by $ \chi_1, \dots, \chi_r $, where each $ \chi_i $ is a propositional formula, that is in $ L $, and $ \chi_r = \chi $. If we substitute $ \psi_1, \dots, \psi_n $ for $ p_1, \dots, p_n $ in all $ \chi_j $ we obtain a sequence of $ \mathcal{L} $-formulas $ \phi_1, \dots, \phi_r $ which is a proof of $ \phi = \phi_r $ in $ K_\mathcal{L} $.
+$ \impb{\notb{\notb{\phi}}}{\phi} $ for an $ \L $-formula $ \phi $, as this is a substitution instance of $ \impb{\notb{\notb{p_1}}}{p_1} $. There is a tautology $ \chi $ with propositional variables $ p_1, \dots, p_n $ and $ \L $-formulas $ \psi_1, \dots, \psi_n $ such that $ \phi $ is obtained from $ \chi $ by substituting $ \psi_i $ for $ p_i $ for $ i = 1, \dots, n $. By Completeness of propositional logic in \ref{thm:1.3.4} there is a proof in $ L $ of $ \chi $ by $ \chi_1, \dots, \chi_r $, where each $ \chi_i $ is a propositional formula, that is in $ L $, and $ \chi_r = \chi $. If we substitute $ \psi_1, \dots, \psi_n $ for $ p_1, \dots, p_n $ in all $ \chi_j $ we obtain a sequence of $ \L $-formulas $ \phi_1, \dots, \phi_r $ which is a proof of $ \phi = \phi_r $ in $ K_{\L} $.
 \end{example}
 
-\begin{theorem}[Soundness theorem of $ K_\mathcal{L} $]
+\begin{theorem}[Soundness theorem of $ K_{\L} $]
 \label{thm:2.4.5}
-If $ \vdash_{K_\mathcal{L}} \phi $ then $ \vDash \phi $, that is it is logically valid.
+If $ \vdash_{K_{\L}} \phi $ then $ \vDash \phi $, that is it is logically valid.
 \end{theorem}
 
 \begin{proof}
@@ -1048,17 +1048,17 @@ For axioms, A1, A2, A3 are substitution instances of propositional tautologies i
 TODO Exercise: Suppose $ \Sigma \vdash \psi $ then for every valuation $ v $ with $ v\sb{\sigma} = T $ for all $ \sigma \in \Sigma $ we have $ v\sb{\psi} = T $.
 
 \begin{corollary}
-There is no $ \mathcal{L} $-formula $ \phi $ with $ \vdash_{K_\mathcal{L}} \phi $ and $ \vdash_{K_\mathcal{L}} \notb{\phi} $.
+There is no $ \L $-formula $ \phi $ with $ \vdash_{K_{\L}} \phi $ and $ \vdash_{K_{\L}} \notb{\phi} $.
 \end{corollary}
 
 \begin{theorem}[Deduction theorem]
-Suppose $ \mathcal{L} $ is a first-order language, $ \Sigma $ is a set of $ \mathcal{L} $-formulas, and $ \phi, \psi $ are $ \mathcal{L} $-formulas. Then if $ \Sigma \cup \cb{\phi} \vdash \psi $ then $ \Sigma \vdash \impb{\phi}{\psi} $.
+Suppose $ \L $ is a first-order language, $ \Sigma $ is a set of $ \L $-formulas, and $ \phi, \psi $ are $ \L $-formulas. Then if $ \Sigma \cup \cb{\phi} \vdash \psi $ then $ \Sigma \vdash \impb{\phi}{\psi} $.
 \end{theorem}
 
 \begin{proof}
 Follows proof of deduction theorem for $ L $ in \ref{thm:1.2.5} by induction on the length of the deduction.
 \begin{enumerate}
-\item Base case is one line deduction. Argue exactly as in \ref{thm:1.2.5}. Note that $ \vdash_{K_\mathcal{L}} \impb{\phi}{\phi} $ by \ref{thm:2.4.4}.
+\item Base case is one line deduction. Argue exactly as in \ref{thm:1.2.5}. Note that $ \vdash_{K_{\L}} \impb{\phi}{\phi} $ by \ref{thm:2.4.4}.
 \item Inductive step. Suppose $ \psi $ follows from earlier formulas in the deduction using MP or Gen. MP is exactly as in \ref{thm:1.2.5}. For Gen, suppose $ \psi $ is obtained using Gen then $ \psi $ is $ \fab{x_i}\theta $ and $ \Sigma \cup \cb{\phi} \vdash \theta $ and $ x_i $ is not free in any formula in $ \Sigma \cup \cb{\phi} $. By induction we have $ \Sigma \vdash \impb{\phi}{\theta} $. By K2 $ \Sigma \vdash \impb{\fab{x_i}\impb{\phi}{\theta}}{\impb{\phi}{\fab{x_i}\theta}} $. By Gen $ \Sigma \vdash \fab{x_i}\impb{\phi}{\theta} $ for $ x_i $ not free in any formula in $ \Sigma $. So by MP we get $ \Sigma \vdash \impb{\phi}{\fab{x_i}\theta} $ which is $ \Sigma \vdash \impb{\phi}{\psi} $.
 \end{enumerate}
 \end{proof}
@@ -1068,42 +1068,42 @@ Follows proof of deduction theorem for $ L $ in \ref{thm:1.2.5} by induction on 
 \subsection{Gödel's completeness theorem}
 
 \begin{definition}
-A set $ \Sigma $ of $ \mathcal{L} $-formulas is consistent if there is no formula $ \phi $ with $ \Sigma \vdash_{K_\mathcal{L}} \phi $ and $ \Sigma \vdash_{K_\mathcal{L}} \notb{\phi} $.
+A set $ \Sigma $ of $ \L $-formulas is consistent if there is no formula $ \phi $ with $ \Sigma \vdash_{K_{\L}} \phi $ and $ \Sigma \vdash_{K_{\L}} \notb{\phi} $.
 \end{definition}
 
-By Soundness theorem \ref{thm:2.4.5} $ \emptyset $ is consistent, so $ K_\mathcal{L} $ is consistent.
+By Soundness theorem \ref{thm:2.4.5} $ \emptyset $ is consistent, so $ K_{\L} $ is consistent.
 
 \begin{remark}
-If $ \Sigma $ is inconsistent then $ \Sigma \vdash \chi $ for any $ \mathcal{L} $-formula $ \chi $.
+If $ \Sigma $ is inconsistent then $ \Sigma \vdash \chi $ for any $ \L $-formula $ \chi $.
 \end{remark}
 
-Recall that a closed $ \mathcal{L} $-formula is one without free variables, sometimes called a sentence of $ \mathcal{L} $. Show that if $ \Sigma $ is a set of closed $ \mathcal{L} $-formulas which is consistent then there is an $ \mathcal{L} $-structure $ \mathcal{A} $ with $ \mathcal{A} \vDash \sigma $ for all $ \sigma \in \Sigma $. For a simplification, suppose that $ \mathcal{L} $ is countable, that is the variables are $ x_0, x_1, \dots $ and there are countably many relation, function, and constant symbols. So we can enumerate the $ \mathcal{L} $-formulas, or any subset thereof, as a list indexed by $ \N $. Enumerate the closed $ \mathcal{L} $-formulas as $ \psi_0, \psi_1, \dots $.
+Recall that a closed $ \L $-formula is one without free variables, sometimes called a sentence of $ \L $. Show that if $ \Sigma $ is a set of closed $ \L $-formulas which is consistent then there is an $ \L $-structure $ \A $ with $ \A \vDash \sigma $ for all $ \sigma \in \Sigma $. For a simplification, suppose that $ \L $ is countable, that is the variables are $ x_0, x_1, \dots $ and there are countably many relation, function, and constant symbols. So we can enumerate the $ \L $-formulas, or any subset thereof, as a list indexed by $ \N $. Enumerate the closed $ \L $-formulas as $ \psi_0, \psi_1, \dots $.
 
 \begin{proposition}
 \label{prop:2.5.2}
-Suppose $ \Sigma $ is a consistent set of closed $ \mathcal{L} $-formulas and $ \phi $ is a closed $ \mathcal{L} $-formula.
+Suppose $ \Sigma $ is a consistent set of closed $ \L $-formulas and $ \phi $ is a closed $ \L $-formula.
 \begin{enumerate}
-\item (Compare \ref{prop:1.3.7}) If $ \Sigma \not\vdash_{K_\mathcal{L}} \phi $ then $ \Sigma \cup \cb{\notb{\phi}} $ is consistent.
-\item (Compare Lindenbaum's lemma \ref{prop:1.3.8}) There is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \mathcal{L} $-formulas such that, for every closed $ \mathcal{L} $-formula $ \psi $ either $ \Sigma^* \vdash \psi $ or $ \Sigma^* \vdash \notb{\psi} $.
+\item (Compare \ref{prop:1.3.7}) If $ \Sigma \not\vdash_{K_{\L}} \phi $ then $ \Sigma \cup \cb{\notb{\phi}} $ is consistent.
+\item (Compare Lindenbaum's lemma \ref{prop:1.3.8}) There is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \L $-formulas such that, for every closed $ \L $-formula $ \psi $ either $ \Sigma^* \vdash \psi $ or $ \Sigma^* \vdash \notb{\psi} $.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item As in \ref{prop:1.3.7}, used deduction theorem and $ \vdash_{K_\mathcal{L}} \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
-\item Uses $ 1 $ and the enumeration $ \psi_0, \psi_1, \dots $ of the closed $ \mathcal{L} $-formulas.
+\item As in \ref{prop:1.3.7}, used deduction theorem and $ \vdash_{K_{\L}} \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
+\item Uses $ 1 $ and the enumeration $ \psi_0, \psi_1, \dots $ of the closed $ \L $-formulas.
 \end{enumerate}
 \end{proof}
 
 \begin{theorem}
 \label{thm:2.5.3}
-Suppose $ \Sigma $ is a consistent set of closed $ \mathcal{L} $-formulas. Then there is a countable $ \mathcal{L} $-structure $ \mathcal{A} $ with $ \mathcal{A} \vDash \Sigma $, that is $ \mathcal{A} \vDash \sigma $ for all $ \sigma \in \Sigma $.
+Suppose $ \Sigma $ is a consistent set of closed $ \L $-formulas. Then there is a countable $ \L $-structure $ \A $ with $ \A \vDash \Sigma $, that is $ \A \vDash \sigma $ for all $ \sigma \in \Sigma $.
 \end{theorem}
 
 \begin{theorem}
 \label{thm:2.5.4}
-Let $ \Sigma $ be a set of closed $ \mathcal{L} $-formulas and $ \phi $ a closed $ \mathcal{L} $-formula. If every model of $ \Sigma $ is a model of $ \phi $, that is if $ \mathcal{A} \vDash \Sigma $ or $ \mathcal{A} \vDash \sigma $ for all $ \sigma \in \Sigma $ then $ \mathcal{A} \vDash \phi $, then $ \Sigma \vdash_{K_\mathcal{L}} \phi $.
+Let $ \Sigma $ be a set of closed $ \L $-formulas and $ \phi $ a closed $ \L $-formula. If every model of $ \Sigma $ is a model of $ \phi $, that is if $ \A \vDash \Sigma $ or $ \A \vDash \sigma $ for all $ \sigma \in \Sigma $ then $ \A \vDash \phi $, then $ \Sigma \vdash_{K_{\L}} \phi $.
 \end{theorem}
 
 Notation is $ \Sigma \vDash \phi $. Then $ \Sigma \vDash \phi $ gives $ \Sigma \vdash \phi $. The converse is Soundness theorem.
@@ -1112,8 +1112,8 @@ Notation is $ \Sigma \vDash \phi $. Then $ \Sigma \vDash \phi $ gives $ \Sigma \
 May assume $ \Sigma $ is consistent, otherwise, everything is a consequence of $ \Sigma $. By assumption there is no model of $ \Sigma \cup \cb{\notb{\phi}} $. So by \ref{thm:2.5.3}, $ \Sigma \cup \cb{\notb{\phi}} $ is inconsistent. So by \ref{prop:2.5.2}(1), $ \Sigma \vdash \phi $.
 \end{proof}
 
-\begin{theorem}[Gödel's completeness theorem for $ K_\mathcal{L} $, 1929]
-If $ \phi $ is an $ \mathcal{L} $-formula with $ \vDash \phi $, then $ \phi $ is a theorem of $ K_\mathcal{L} $, that is $ \vdash_{K_\mathcal{L}} \phi $.
+\begin{theorem}[Gödel's completeness theorem for $ K_{\L} $, 1929]
+If $ \phi $ is an $ \L $-formula with $ \vDash \phi $, then $ \phi $ is a theorem of $ K_{\L} $, that is $ \vdash_{K_{\L}} \phi $.
 \end{theorem}
 
 \begin{proof}
@@ -1122,12 +1122,12 @@ If $ \phi $ is closed this follows from \ref{thm:2.5.4} with $ \Sigma = \emptyse
 \label{eq:6}
 \vdash \fab{x_1} \dots \fab{x_n}\phi.
 \end{equation}
-If $ \theta $ is any formula then $ \vdash \impb{\fab{x_i}\theta}{\theta} $ by the K1 axiom. So from $ \rb{\ref{eq:6}} $ and this fact and MP applied $ n $ times we obtain $ \vdash_{K_\mathcal{L}} \phi $.
+If $ \theta $ is any formula then $ \vdash \impb{\fab{x_i}\theta}{\theta} $ by the K1 axiom. So from $ \rb{\ref{eq:6}} $ and this fact and MP applied $ n $ times we obtain $ \vdash_{K_{\L}} \phi $.
 \end{proof}
 
-\begin{corollary}[Compactness theorem for $ K_\mathcal{L} $]
+\begin{corollary}[Compactness theorem for $ K_{\L} $]
 \label{cor:2.5.6}
-Suppose $ \Sigma $ is a set of closed $ \mathcal{L} $-formulas and every finite subset of $ \Sigma $ has a model. Then $ \Sigma $ has a model.
+Suppose $ \Sigma $ is a set of closed $ \L $-formulas and every finite subset of $ \Sigma $ has a model. Then $ \Sigma $ has a model.
 \end{corollary}
 
 \begin{proof}
@@ -1139,32 +1139,32 @@ Suppose $ \Sigma $ has no model. By \ref{thm:2.5.3} $ \Sigma $ is inconsistent s
 \begin{proof}[Sketch of proof of \ref{thm:2.5.3}]
 Proof is in a series of steps. Notation is cumulative.
 \begin{enumerate}
-\item Let $ b_0, b_1, \dots $ be new constant symbols. Form $ \mathcal{L}^+ $ by adding these to the symbols of $ \mathcal{L} $. Regard $ \Sigma $ as a set of $ \mathcal{L}^+ $-formulas. Check $ \Sigma $ is still consistent in the formal system $ K_{\mathcal{L}^+} $. Note that $ \mathcal{L}^+ $ is still a countable language.
-\item Adding witnesses. Use a lemma that there is a consistent set of closed $ \mathcal{L}^+ $-formulas $ \Sigma_\infty \supseteq \Sigma $ such that for every $ \mathcal{L}^+ $-formula $ \theta\rb{x_i} $ with one free variable there is some $ b_j $ with
-$$ \Sigma_\infty \vdash_{K_{\mathcal{L}^+}} \impb{\notb{\fab{x_i}\theta\rb{x_i}}}{\notb{\theta\rb{b_j}}}. $$
+\item Let $ b_0, b_1, \dots $ be new constant symbols. Form $ \L^+ $ by adding these to the symbols of $ \L $. Regard $ \Sigma $ as a set of $ \L^+ $-formulas. Check $ \Sigma $ is still consistent in the formal system $ K_{\L^+} $. Note that $ \L^+ $ is still a countable language.
+\item Adding witnesses. Use a lemma that there is a consistent set of closed $ \L^+ $-formulas $ \Sigma_\infty \supseteq \Sigma $ such that for every $ \L^+ $-formula $ \theta\rb{x_i} $ with one free variable there is some $ b_j $ with
+$$ \Sigma_\infty \vdash_{K_{\L^+}} \impb{\notb{\fab{x_i}\theta\rb{x_i}}}{\notb{\theta\rb{b_j}}}. $$
 Think of $ \theta\rb{x_i} $ as $ \notb{\chi\rb{x_i}} $. Then this formula is essentially $ \impb{\teb{x_i}\chi\rb{x_i}}{\chi\rb{b_j}} $, so $ b_j $ witnesses the existence of $ x_i $ satisfying $ x_i $.
-\item By Lindenbaum's lemma \ref{prop:2.5.2} there is a consistent set $ \Sigma^* \supseteq \Sigma_\infty $ of closed $ \mathcal{L}^+ $-formulas such that for every closed $ \phi $ either $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \phi $ or $ \Sigma^* \vdash_{K_{\mathcal{L}^+}} \notb{\phi} $.
-\item Building a structure. Let $ A = \cb{\overline{t}} $ where $ t $ is a closed term of $ \mathcal{L}^+ $. Note that
+\item By Lindenbaum's lemma \ref{prop:2.5.2} there is a consistent set $ \Sigma^* \supseteq \Sigma_\infty $ of closed $ \L^+ $-formulas such that for every closed $ \phi $ either $ \Sigma^* \vdash_{K_{\L^+}} \phi $ or $ \Sigma^* \vdash_{K_{\L^+}} \notb{\phi} $.
+\item Building a structure. Let $ A = \cb{\overline{t}} $ where $ t $ is a closed term of $ \L^+ $. Note that
 \begin{enumerate}
 \item a term is closed if it only involves constant symbols and function symbols, and no variables,
 \item use the $ \overline{\cdot} $ to distinguish when we are thinking of a term as an element of $ A $, and
-\item as $ \mathcal{L}^+ $ is countable, $ A $ is countable.
+\item as $ \L^+ $ is countable, $ A $ is countable.
 \end{enumerate}
-Make $ A $ into an $ \mathcal{L}^+ $ structure.
+Make $ A $ into an $ \L^+ $ structure.
 \begin{enumerate}
-\item Each constant symbol $ c $ of $ \mathcal{L}^+ $ is interpreted as $ \overline{c} \in A $.
-\item Suppose $ R $ is an $ n $-ary relation symbol. Define the relation $ \overline{R} \subseteq A^n $ by $ \rb{\overline{t_1}, \dots, \overline{t_n}} \in \overline{R} $ iff $ \Sigma^* \vdash R\rb{t_1, \dots, t_n} $, a closed atomic $ \mathcal{L}^+ $-formula, where $ t_1, \dots, t_n $ are closed $ \mathcal{L}^+ $-terms.
+\item Each constant symbol $ c $ of $ \L^+ $ is interpreted as $ \overline{c} \in A $.
+\item Suppose $ R $ is an $ n $-ary relation symbol. Define the relation $ \overline{R} \subseteq A^n $ by $ \rb{\overline{t_1}, \dots, \overline{t_n}} \in \overline{R} $ iff $ \Sigma^* \vdash R\rb{t_1, \dots, t_n} $, a closed atomic $ \L^+ $-formula, where $ t_1, \dots, t_n $ are closed $ \L^+ $-terms.
 \item Suppose $ f $ is an $ m $-ary function symbol. Define a function $ \overline{f} : A^m \to A $ by $ \overline{f}\rb{\overline{t_1}, \dots, \overline{t_m}} = \overline{f\rb{t_1, \dots, t_m}} $ for closed terms $ t_1, \dots, t_m $.
 \end{enumerate}
-Call this structure $ \mathcal{A} $. Note that if $ v $ is a valuation in $ \mathcal{A} $ and $ t $ is a closed term, then $ v\rb{t} = \overline{t} $ by (a) and (c) here.
-\item Use the main lemma that for every closed $ \mathcal{L}^+ $-formula $ \phi $
+Call this structure $ \A $. Note that if $ v $ is a valuation in $ \A $ and $ t $ is a closed term, then $ v\rb{t} = \overline{t} $ by (a) and (c) here.
+\item Use the main lemma that for every closed $ \L^+ $-formula $ \phi $
 \begin{equation}
 \label{eq:7}
-\Sigma^* \vdash_{K_{\mathcal{L}^+}} \phi \qquad \iff \qquad \mathcal{A} \vDash \phi.
+\Sigma^* \vdash_{K_{\L^+}} \phi \qquad \iff \qquad \A \vDash \phi.
 \end{equation}
 Proof by induction on number of connectives and quantifiers in $ \phi $.
 \begin{enumerate}
-\item Base case. $ \phi $ is atomic, that is $ \phi $ is $ R\rb{t_1, \dots, t_n} $ for some closed terms $ t_i $, and relation symbol $ R $. $ \rb{\ref{eq:7}} $ holds by $ (b) $ in definition of $ \mathcal{A} $.
+\item Base case. $ \phi $ is atomic, that is $ \phi $ is $ R\rb{t_1, \dots, t_n} $ for some closed terms $ t_i $, and relation symbol $ R $. $ \rb{\ref{eq:7}} $ holds by $ (b) $ in definition of $ \A $.
 \item Inductive step. Assume $ \rb{\ref{eq:7}} $ holds for closed formulas involving fewer connectives and quantifiers.
 \begin{enumerate}
 \item $ \phi $ is $ \notb{\psi} $.
@@ -1173,7 +1173,7 @@ Proof by induction on number of connectives and quantifiers in $ \phi $.
 \end{enumerate}
 In cases i and ii $ \psi, \chi $ are closed. So $ \rb{\ref{eq:7}} $ holds for these.
 \begin{enumerate}
-\item $ \phi $ is $ \notb{\psi} $, so $ \mathcal{A} \vDash \phi $ iff $ \mathcal{A} \not\vDash \psi $ by \ref{thm:2.3.3}, iff $ \Sigma^* \not\vdash \psi $ by $ \rb{\ref{eq:7}} $, iff $ \Sigma^* \vdash \notb{\psi} $ by step $ 3 $.
+\item $ \phi $ is $ \notb{\psi} $, so $ \A \vDash \phi $ iff $ \A \not\vDash \psi $ by \ref{thm:2.3.3}, iff $ \Sigma^* \not\vdash \psi $ by $ \rb{\ref{eq:7}} $, iff $ \Sigma^* \vdash \notb{\psi} $ by step $ 3 $.
 \item TODO Exercise.
 \item $ \phi $ is $ \fab{x_i}\psi $.
 \begin{enumerate}
@@ -1182,16 +1182,16 @@ In cases i and ii $ \psi, \chi $ are closed. So $ \rb{\ref{eq:7}} $ holds for th
 \end{enumerate}
 \end{enumerate}
 \end{enumerate}
-Suppose for a contradiction that $ \mathcal{A} \vDash \phi $ and $ \Sigma^* \not\vdash \phi $. Then by step $ 3 $ $ \Sigma^* \vdash \notb{\phi} $. By step $ 2 $, $ \Sigma^* \vdash \impb{\notb{\fab{x_i}\psi\rb{x_i}}}{\notb{\psi\rb{b_j}}} $ for some constant symbol $ b_j $, that is $ \Sigma^* \vdash \impb{\notb{\phi}}{\notb{\psi\rb{b_j}}} $. So $ \Sigma^* \vdash \notb{\psi\rb{b_j}} $. $ \notb{\psi\rb{b_j}} $ is closed and by case $ i $, $ \rb{\ref{eq:7}} $ applies. We obtain
+Suppose for a contradiction that $ \A \vDash \phi $ and $ \Sigma^* \not\vdash \phi $. Then by step $ 3 $ $ \Sigma^* \vdash \notb{\phi} $. By step $ 2 $, $ \Sigma^* \vdash \impb{\notb{\fab{x_i}\psi\rb{x_i}}}{\notb{\psi\rb{b_j}}} $ for some constant symbol $ b_j $, that is $ \Sigma^* \vdash \impb{\notb{\phi}}{\notb{\psi\rb{b_j}}} $. So $ \Sigma^* \vdash \notb{\psi\rb{b_j}} $. $ \notb{\psi\rb{b_j}} $ is closed and by case $ i $, $ \rb{\ref{eq:7}} $ applies. We obtain
 \begin{equation}
 \label{eq:8}
-\mathcal{A} \vDash \notb{\psi\rb{b_j}}.
+\A \vDash \notb{\psi\rb{b_j}}.
 \end{equation}
-This contradicts $ \mathcal{A} \vDash \fab{x_i}\psi $. Take a valuation $ v $ is $ \mathcal{A} $ with $ v\rb{x_i} = \overline{b_j} $, then $ v $ does not satisfy $ \psi $, by $ \rb{\ref{eq:8}} $.
+This contradicts $ \A \vDash \fab{x_i}\psi $. Take a valuation $ v $ is $ \A $ with $ v\rb{x_i} = \overline{b_j} $, then $ v $ does not satisfy $ \psi $, by $ \rb{\ref{eq:8}} $.
 \end{enumerate}
 \end{proof}
 
-TODO Exercise: think about this where $ \Sigma $ consists of the group axioms. What is $ \mathcal{A} $? Is it a group?
+TODO Exercise: think about this where $ \Sigma $ consists of the group axioms. What is $ \A $? Is it a group?
 
 \marginpar{Lecture 17 \\ Friday \\ 09/11/18}
 
@@ -1202,18 +1202,18 @@ In the language of groups, have a binary relation symbol $ E\rb{x_1, x_2} $ for 
 \end{example}
 
 \begin{definition}
-Suppose $ \mathcal{L}^E $ is a first-order language with a distinguished binary relation symbol $ E $.
+Suppose $ \L^E $ is a first-order language with a distinguished binary relation symbol $ E $.
 \begin{enumerate}
-\item An $ \mathcal{L}^E $-structure in which $ E $ is interpreted as equality $ = $ is a \textbf{normal} $ \mathcal{L}^E $-structure.
+\item An $ \L^E $-structure in which $ E $ is interpreted as equality $ = $ is a \textbf{normal} $ \L^E $-structure.
 \item The following are the axioms of equality, $ \Sigma_E $.
 \begin{enumerate}
 \item $ \fab{x_1}E\rb{x_1, x_2} $.
 \item $ \fab{x_1}\fab{x_2}\impb{E\rb{x_1, x_2}}{E\rb{x_2, x_1}} $.
 \item $ \fab{x_1}\fab{x_2}\fab{x_3}\impb{E\rb{x_1, x_2}}{\impb{E\rb{x_2, x_3}}{E\rb{x_1, x_3}}} $.
 \end{enumerate}
-\item For each $ n $-ary relation symbol $ R $ of $ \mathcal{L}^E $,
+\item For each $ n $-ary relation symbol $ R $ of $ \L^E $,
 $$ \fab{x_1}\dots\fab{x_n}\fab{y_1}\dots\fab{y_n}\impb{\rb{R\rb{x_1, \dots, x_n} \land E\rb{x_1, y_1} \land \dots \land E\rb{x_n, y_n}}}{R\rb{y_1, \dots, y_n}}. $$
-\item For each $ m $-ary function symbol $ f $ of $ \mathcal{L}^E $,
+\item For each $ m $-ary function symbol $ f $ of $ \L^E $,
 $$ \fab{x_1}\dots\fab{x_m}\fab{y_1}\dots\fab{y_m}\impb{\rb{E\rb{x_1, y_1} \land \dots \land E\rb{x_m, y_m}}}{E\rb{f\rb{x_1, \dots, x_m}, f\rb{y_1, \dots, y_m}}}. $$
 \end{enumerate}
 \end{definition}
@@ -1221,30 +1221,30 @@ $$ \fab{x_1}\dots\fab{x_m}\fab{y_1}\dots\fab{y_m}\impb{\rb{E\rb{x_1, y_1} \land 
 \begin{definition}
 \hfill
 \begin{enumerate}
-\item If $ \mathcal{A} $ is a normal $ \mathcal{L}^E $-structure then $ \mathcal{A} \vDash \Sigma_E $.
-\item Suppose $ \mathcal{A} = \ab{A; \overline{E}, \dots} $ is an $ \mathcal{L}^E $-structure and $ \mathcal{A} \vDash \Sigma_E $. Then $ \overline{E} $ is an equivalence relation on $ A $. Denote, for $ a \in A $ $ \widehat{a} = \cb{b \in A \mid \overline{E}\rb{a, b}} $, the equivalence class of $ a $. Let $ \widehat{A} = \cb{\widehat{a} \mid a \in A} $. Make $ \widehat{A} $ into an $ \mathcal{L}^E $-structure $ \widehat{\mathcal{A}} $.
+\item If $ \A $ is a normal $ \L^E $-structure then $ \A \vDash \Sigma_E $.
+\item Suppose $ \A = \ab{A; \overline{E}, \dots} $ is an $ \L^E $-structure and $ \A \vDash \Sigma_E $. Then $ \overline{E} $ is an equivalence relation on $ A $. Denote, for $ a \in A $ $ \widehat{a} = \cb{b \in A \mid \overline{E}\rb{a, b}} $, the equivalence class of $ a $. Let $ \widehat{A} = \cb{\widehat{a} \mid a \in A} $. Make $ \widehat{A} $ into an $ \L^E $-structure $ \widehat{\A} $.
 \begin{enumerate}
-\item If $ R $ is an $ n $-ary relation symbol and $ \widehat{a_1}, \dots, \widehat{a_n} \in \widehat{A} $ then say $ \overline{R}\rb{\widehat{a_1}, \dots, \widehat{a_n}} $ holds in $ \widehat{\mathcal{A}} $ iff $ \overline{R}\rb{a_1, \dots, a_n} $ holds in $ \mathcal{A} $. This is well-defined by $ \Sigma_E $.
+\item If $ R $ is an $ n $-ary relation symbol and $ \widehat{a_1}, \dots, \widehat{a_n} \in \widehat{A} $ then say $ \overline{R}\rb{\widehat{a_1}, \dots, \widehat{a_n}} $ holds in $ \widehat{\A} $ iff $ \overline{R}\rb{a_1, \dots, a_n} $ holds in $ \A $. This is well-defined by $ \Sigma_E $.
 \item Similarly if $ f $ is an $ m $-ary function symbol and $ \widehat{a_1}, \dots, \widehat{a_m} \in \widehat{A} $ let $ \overline{f}\rb{\widehat{a_1}, \dots, \widehat{a_m}} = \widehat{\overline{f}\rb{a_1, \dots, a_m}} $. This is also well-defined by $ \Sigma_E $.
-\item If $ c $ is a constant symbol, then interpret $ c $ as $ \widehat{\overline{c}} $ in $ \widehat{A} $, where $ \overline{c} $ is the interpretation in $ \mathcal{A} $.
+\item If $ c $ is a constant symbol, then interpret $ c $ as $ \widehat{\overline{c}} $ in $ \widehat{A} $, where $ \overline{c} $ is the interpretation in $ \A $.
 \end{enumerate}
-Note that in $ \widehat{\mathcal{A}} $ $ \overline{E}\rb{\widehat{a_1}, \widehat{a_2}} $ iff $ \overline{E}\rb{a_1, a_2} $ in $ \mathcal{A} $, iff $ \widehat{a_1} = \widehat{a_2} $. So $ \widehat{\mathcal{A}} $ is a normal $ \mathcal{L}^E $-structure.
+Note that in $ \widehat{\A} $ $ \overline{E}\rb{\widehat{a_1}, \widehat{a_2}} $ iff $ \overline{E}\rb{a_1, a_2} $ in $ \A $, iff $ \widehat{a_1} = \widehat{a_2} $. So $ \widehat{\A} $ is a normal $ \L^E $-structure.
 \end{enumerate}
 \end{definition}
 
 \begin{lemma}
 \label{lem:2.6.3}
-Suppose $ \mathcal{A} $ is an $ \mathcal{L}^E $-structure with $ \mathcal{A} \vDash \Sigma_E $. Let $ v $ be a valuation in $ \mathcal{A} $. Let $ \widehat{\mathcal{A}} $ be as given above. Let $ \widehat{v} $ be the valuation in $ \widehat{\mathcal{A}} $ with $ \widehat{v}\rb{x_i} = \widehat{v\rb{x_i}} $. Then for every $ \mathcal{L}^E $-formula $ \phi $ $ \widehat{v} $ satisfies $ \phi $ in $ \widehat{\mathcal{A}} $ iff $ v $ satisfies $ \phi $ in $ \mathcal{A} $. In particular, if $ \phi $ is closed then $ \mathcal{A} \vDash \phi $ iff $ \widehat{\mathcal{A}} \vDash \phi $.
+Suppose $ \A $ is an $ \L^E $-structure with $ \A \vDash \Sigma_E $. Let $ v $ be a valuation in $ \A $. Let $ \widehat{\A} $ be as given above. Let $ \widehat{v} $ be the valuation in $ \widehat{\A} $ with $ \widehat{v}\rb{x_i} = \widehat{v\rb{x_i}} $. Then for every $ \L^E $-formula $ \phi $ $ \widehat{v} $ satisfies $ \phi $ in $ \widehat{\A} $ iff $ v $ satisfies $ \phi $ in $ \A $. In particular, if $ \phi $ is closed then $ \A \vDash \phi $ iff $ \widehat{\A} \vDash \phi $.
 \end{lemma}
 
 \begin{note}
-If $ t $ is any term then $ \widehat{v}\rb{t} = \widehat{v\rb{t}} $ by definition of $ \overline{f} $ on the structure $ \widehat{\mathcal{A}} $.
+If $ t $ is any term then $ \widehat{v}\rb{t} = \widehat{v\rb{t}} $ by definition of $ \overline{f} $ on the structure $ \widehat{\A} $.
 \end{note}
 
 \begin{proof}
 The result \ref{lem:2.6.3} is proved by induction on the number of connectives and quantifiers in $ \phi $.
 \begin{enumerate}
-\item Base step. $ \phi $ is an atomic formula $ R\rb{t_1, \dots, t_n} $, where $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms. Then $ v\sb{\phi} = T $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \mathcal{A} $, iff $ \overline{R}\rb{\widehat{v\rb{t_1}}, \dots, \widehat{v\rb{t_n}}} $ holds in $ \mathcal{A} $ by definition of $ \overline{R} $ in $ \widehat{\mathcal{A}} $, iff $ \overline{R}\rb{\widehat{v}\rb{t_1}, \dots, \widehat{v}\rb{t_n}} $ in $ \mathcal{A} $, iff $ \widehat{v}\sb{\phi} = T $, as required.
+\item Base step. $ \phi $ is an atomic formula $ R\rb{t_1, \dots, t_n} $, where $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms. Then $ v\sb{\phi} = T $ iff $ \overline{R}\rb{v\rb{t_1}, \dots, v\rb{t_n}} $ holds in $ \A $, iff $ \overline{R}\rb{\widehat{v\rb{t_1}}, \dots, \widehat{v\rb{t_n}}} $ holds in $ \A $ by definition of $ \overline{R} $ in $ \widehat{\A} $, iff $ \overline{R}\rb{\widehat{v}\rb{t_1}, \dots, \widehat{v}\rb{t_n}} $ in $ \A $, iff $ \widehat{v}\sb{\phi} = T $, as required.
 \item Inductive step.
 \begin{enumerate}
 \item $ \phi $ is $ \notb{\psi} $. (TODO Exercise)
@@ -1252,7 +1252,7 @@ The result \ref{lem:2.6.3} is proved by induction on the number of connectives a
 \item $ \phi $ is $ \fab{x_i}\psi $.
 \begin{itemize}
 \item[$ \implies $] If $ v\sb{\fab{x_i}\psi} = F $ there is a $ v' $ $ x_i $-equivalent to $ v $ with $ v'\sb{\psi} = F $. Then $ \widehat{v'} $ is $ x_i $-equivalent to $ \widehat{v} $ and by the induction hypothesis $ \widehat{v'}\sb{\psi} = F $. So $ \widehat{v}\sb{\fab{x_i}\psi} = F $.
-\item[$ \impliedby $] Suppose $ \widehat{v}\sb{\fab{x_i}\psi} = F $. So there is a valuation $ w $ in $ \widehat{\mathcal{A}} $ which is $ x_i $-equivalent to $ \widehat{v} $ and $ w\sb{\psi} = F $. There is a valuation $ v' $ in $ \mathcal{A} $ $ x_i $-equivalent to $ v $ with $ \widehat{v'} = w $. We just change $ v\rb{x_i} $ so $ \widehat{v'\rb{x_i}} = w\rb{x_i} $. Then $ v'\sb{\psi} = F $ by inductive hypothesis. So $ v\sb{\fab{x_i}\psi} = F $.
+\item[$ \impliedby $] Suppose $ \widehat{v}\sb{\fab{x_i}\psi} = F $. So there is a valuation $ w $ in $ \widehat{\A} $ which is $ x_i $-equivalent to $ \widehat{v} $ and $ w\sb{\psi} = F $. There is a valuation $ v' $ in $ \A $ $ x_i $-equivalent to $ v $ with $ \widehat{v'} = w $. We just change $ v\rb{x_i} $ so $ \widehat{v'\rb{x_i}} = w\rb{x_i} $. Then $ v'\sb{\psi} = F $ by inductive hypothesis. So $ v\sb{\fab{x_i}\psi} = F $.
 \end{itemize}
 \end{enumerate}
 \end{enumerate}
@@ -1260,47 +1260,47 @@ The result \ref{lem:2.6.3} is proved by induction on the number of connectives a
 
 \begin{lemma}
 \label{lem:2.6.4}
-Suppose $ \Delta $ is a set of closed $ \mathcal{L}^E $-formulas. Then $ \Delta $ has a normal model, that is a normal $ \mathcal{L}^E $-structure $ \mathcal{B} $ with $ \mathcal{B} \vDash \sigma $ for all $ \sigma \in \Delta $, iff $ \Delta \cup \Sigma_E $ has a model.
+Suppose $ \Delta $ is a set of closed $ \L^E $-formulas. Then $ \Delta $ has a normal model, that is a normal $ \L^E $-structure $ \mathcal{B} $ with $ \mathcal{B} \vDash \sigma $ for all $ \sigma \in \Delta $, iff $ \Delta \cup \Sigma_E $ has a model.
 \end{lemma}
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Trivial as $ \Sigma_E $ holds in a normal $ \mathcal{L}^E $-structure.
-\item[$ \impliedby $] If $ \mathcal{A} \vDash \Delta \cup \Sigma_E $ then by \ref{lem:2.6.3} $ \widehat{\mathcal{A}} \vDash \Delta $ and $ \widehat{\mathcal{A}} $ is a normal $ \mathcal{L}^E $-structure.
+\item[$ \implies $] Trivial as $ \Sigma_E $ holds in a normal $ \L^E $-structure.
+\item[$ \impliedby $] If $ \A \vDash \Delta \cup \Sigma_E $ then by \ref{lem:2.6.3} $ \widehat{\A} \vDash \Delta $ and $ \widehat{\A} $ is a normal $ \L^E $-structure.
 \end{itemize}
 \end{proof}
 
 \begin{theorem}[Compactness theorem for normal models]
-Suppose $ \mathcal{L}^E $ is a countable language with equality and $ \Delta $ is a set of closed $ \mathcal{L}^E $-formulas such that every finite subset of $ \Delta $ has a normal model. Then $ \Delta $ has a normal model.
+Suppose $ \L^E $ is a countable language with equality and $ \Delta $ is a set of closed $ \L^E $-formulas such that every finite subset of $ \Delta $ has a normal model. Then $ \Delta $ has a normal model.
 \end{theorem}
 
 \begin{proof}
-Every normal $ \mathcal{L}^E $-structure is a model of $ \Sigma_E $, so every finite subset of $ \Delta \cup \Sigma_E $ has a model. By \ref{cor:2.5.6} $ \Delta \cup \Sigma_E $ has a model $ \mathcal{A} $. Then by \ref{lem:2.6.3} or \ref{lem:2.6.4} $ \widehat{\mathcal{A}} $ is a normal model of $ \Delta $.
+Every normal $ \L^E $-structure is a model of $ \Sigma_E $, so every finite subset of $ \Delta \cup \Sigma_E $ has a model. By \ref{cor:2.5.6} $ \Delta \cup \Sigma_E $ has a model $ \A $. Then by \ref{lem:2.6.3} or \ref{lem:2.6.4} $ \widehat{\A} $ is a normal model of $ \Delta $.
 \end{proof}
 
-From now on, write $ \mathcal{L}^= $ instead of $ \mathcal{L}^E $ and $ x_1 = x_2 $ instead of $ E\rb{x_1, x_2} $ etc.
+From now on, write $ \L^= $ instead of $ \L^E $ and $ x_1 = x_2 $ instead of $ E\rb{x_1, x_2} $ etc.
 
 \marginpar{Lecture 18 \\ Monday \\ 12/11/18}
 
 \begin{theorem}[Countable downward Löwenheim-Skolem theorem]
-Suppose $ \mathcal{L}^= $ is a countable first-order language with equality, and $ \mathcal{B} $ a normal $ \mathcal{L}^= $ structure. Then there is a countable normal $ \mathcal{L}^= $-structure $ \mathcal{A} $ such that for every closed $ \mathcal{L}^= $-formula $ \phi $ $ \mathcal{B} \vDash \phi $ iff $ \mathcal{A} \vDash \phi $.
+Suppose $ \L^= $ is a countable first-order language with equality, and $ \mathcal{B} $ a normal $ \L^= $ structure. Then there is a countable normal $ \L^= $-structure $ \A $ such that for every closed $ \L^= $-formula $ \phi $ $ \mathcal{B} \vDash \phi $ iff $ \A \vDash \phi $.
 \end{theorem}
 
 \begin{example}
-$ \mathcal{B} = \ab{\R; +, \cdot, 0, 1, \le, \exp} $ has $ \mathcal{A} = ? $.
+$ \mathcal{B} = \ab{\R; +, \cdot, 0, 1, \le, \exp} $ has $ \A = ? $.
 \end{example}
 
 \begin{proof}
-Let $ \Sigma $ be the closed $ \phi $ such that $ \mathcal{B} \vDash \phi $, called the \textbf{theory} of $ \mathcal{B} $. Then $ \Sigma \supseteq \Sigma_E $ with the axioms of equality, and $ \Sigma $ is consistent. By \ref{thm:2.5.3} $ \Sigma $ has a countable model $ \mathcal{C} $. Then $ \widehat{\mathcal{C}} $ is a countable normal model of $ \Sigma $ by \ref{lem:2.6.3}. So if $ \phi $ is closed and $ \mathcal{B} \vDash \phi $ then $ \widehat{\mathcal{C}} \vDash \phi $. Conversely if $ \phi $ is closed and $ \mathcal{B} \not\vDash \phi $ then $ \mathcal{B} \vDash \notb{\phi} $ by \ref{thm:2.3.3}, so $ \widehat{\mathcal{C}} \vDash \notb{\phi} $ so $ \widehat{\mathcal{C}} \not\vDash \phi $. Take $ \mathcal{A} = \widehat{\mathcal{C}} $.
+Let $ \Sigma $ be the closed $ \phi $ such that $ \mathcal{B} \vDash \phi $, called the \textbf{theory} of $ \mathcal{B} $. Then $ \Sigma \supseteq \Sigma_E $ with the axioms of equality, and $ \Sigma $ is consistent. By \ref{thm:2.5.3} $ \Sigma $ has a countable model $ \mathcal{C} $. Then $ \widehat{\mathcal{C}} $ is a countable normal model of $ \Sigma $ by \ref{lem:2.6.3}. So if $ \phi $ is closed and $ \mathcal{B} \vDash \phi $ then $ \widehat{\mathcal{C}} \vDash \phi $. Conversely if $ \phi $ is closed and $ \mathcal{B} \not\vDash \phi $ then $ \mathcal{B} \vDash \notb{\phi} $ by \ref{thm:2.3.3}, so $ \widehat{\mathcal{C}} \vDash \notb{\phi} $ so $ \widehat{\mathcal{C}} \not\vDash \phi $. Take $ \A = \widehat{\mathcal{C}} $.
 \end{proof}
 
 \subsection{Examples and applications}
 
-Let $ \mathcal{L}^= $ be a first-order language with equality and a binary relation symbol $ \le $.
+Let $ \L^= $ be a first-order language with equality and a binary relation symbol $ \le $.
 
 \begin{definition}
-A linear order $ \mathcal{A} = \ab{A; \le_A} $ is a normal model if
+A \textbf{linear order} or \textbf{loset} $ \A = \ab{A; \le_A} $ is a normal model of
 \begin{enumerate}
 \item $ \phi_1 $, $ \fab{x_1}\fab{x_2}\iffb{\andb{\rb{x_1 \le x_2}}{\rb{x_2 \le x_1}}}{\eqb{x_1}{x_2}} $,
 \item $ \phi_2 $, $ \fab{x_1}\fab{x_2}\fab{x_3}\impb{\andb{\rb{x_1 \le x_2}}{\rb{x_2 \le x_3}}}{\rb{x_1 \le x_3}} $, and
@@ -1326,8 +1326,8 @@ Will prove the following.
 \label{thm:2.7.2}
 \hfill
 \begin{enumerate}
-\item For every closed $ \mathcal{L}^= $-formula $ \phi $ $ \mathcal{Q} \vDash \phi $ iff $ \mathcal{R} \vDash \phi $.
-\item There is an algorithm to decide, given a closed $ \mathcal{L}^= $-formula $ \phi $, whether $ \mathcal{Q} \vDash \phi $ or $ \mathcal{Q} \vDash \notb{\phi} $.
+\item For every closed $ \L^= $-formula $ \phi $ $ \mathcal{Q} \vDash \phi $ iff $ \mathcal{R} \vDash \phi $.
+\item There is an algorithm to decide, given a closed $ \L^= $-formula $ \phi $, whether $ \mathcal{Q} \vDash \phi $ or $ \mathcal{Q} \vDash \notb{\phi} $.
 \end{enumerate}
 \end{theorem}
 
@@ -1335,23 +1335,23 @@ Will prove the following.
 \label{def:2.7.3}
 \hfill
 \begin{enumerate}
-\item Linear orders $ \mathcal{A} = \ab{A; \le_A} $ and $ \mathcal{B} = \ab{B; \le_B} $ are isomorphic if there is a bijection $ \alpha : A \to B $ such that for all $ a, a' \in A $ $ a \le_A a' $ iff $ \alpha\rb{a} \le_B \alpha\rb{a'} $.
-\item If $ \mathcal{A}, \mathcal{B} $ are isomorphic and $ \phi $ is closed then $ \mathcal{A} \vDash \phi $ iff $ \mathcal{B} \vDash \phi $.
+\item Losets $ \A = \ab{A; \le_A} $ and $ \mathcal{B} = \ab{B; \le_B} $ are \textbf{isomorphic} if there is a bijection $ \alpha : A \to B $ such that for all $ a, a' \in A $ $ a \le_A a' $ iff $ \alpha\rb{a} \le_B \alpha\rb{a'} $.
+\item If $ \A, \mathcal{B} $ are isomorphic and $ \phi $ is closed then $ \A \vDash \phi $ iff $ \mathcal{B} \vDash \phi $.
 \end{enumerate}
 \end{definition}
 
 \begin{theorem}[Cantor]
 \label{thm:2.7.4}
-If $ \mathcal{A}, \mathcal{B} $ are countable dense linear orders without endpoints, then $ \mathcal{A}, \mathcal{B} $ are isomorphic.
+If $ \A, \mathcal{B} $ are countable dense losets without endpoints, then $ \A, \mathcal{B} $ are isomorphic.
 \end{theorem}
 
-\begin{lemma}[Łos-Vaught test]
+\begin{lemma}[Los-Vaught test]
 \label{lem:2.7.5}
-Let $ \Sigma = \Sigma_E \cup \Delta $. Then for every closed $ \mathcal{L}^= $-formula $ \phi $, we have either $ \Sigma \vdash \phi $ or $ \Sigma \vdash \notb{\phi} $. Say $ \Sigma $ is complete.
+Let $ \Sigma = \Sigma_E \cup \Delta $. Then for every closed $ \L^= $-formula $ \phi $, we have either $ \Sigma \vdash \phi $ or $ \Sigma \vdash \notb{\phi} $. Say $ \Sigma $ is complete.
 \end{lemma}
 
 \begin{proof}
-Suppose not. Then as $ \Sigma $ is consistent, it has a model, we can use \ref{prop:2.5.2} to get $ \Sigma_1 = \Sigma \cup \cb{\notb{\phi}} $ and $ \Sigma_2 = \Sigma \cup \cb{\notb{\notb{\phi}}} $ are consistent. So $ \Sigma \cup \cb{\phi} $ is consistent. By \ref{thm:2.5.3}, \ref{lem:2.6.4} it follows that $ \Sigma_1, \Sigma_2 $ have countable normal models $ \mathcal{A}_1, \mathcal{A}_2 $. So $ \mathcal{A}_1, \mathcal{A}_2 $ are countable dense linear orders without endpoints and $ \mathcal{A}_1 \vDash \notb{\phi} $ and $ \mathcal{A}_2 \vDash \phi $. This contradicts \ref{thm:2.7.4} and \ref{def:2.7.3}(2).
+Suppose not. Then as $ \Sigma $ is consistent, it has a model, we can use \ref{prop:2.5.2} to get $ \Sigma_1 = \Sigma \cup \cb{\notb{\phi}} $ and $ \Sigma_2 = \Sigma \cup \cb{\notb{\notb{\phi}}} $ are consistent. So $ \Sigma \cup \cb{\phi} $ is consistent. By \ref{thm:2.5.3}, \ref{lem:2.6.4} it follows that $ \Sigma_1, \Sigma_2 $ have countable normal models $ \A_1, \A_2 $. So $ \A_1, \A_2 $ are countable dense l without endpoints and $ \A_1 \vDash \notb{\phi} $ and $ \A_2 \vDash \phi $. This contradicts \ref{thm:2.7.4} and \ref{def:2.7.3}(2).
 \end{proof}
 
 \begin{proof}[Proof of \ref{thm:2.7.2}(1)]
@@ -1369,7 +1369,7 @@ Lecture 19 is a problem class.
 
 \marginpar{Lecture 20 \\ Friday \\ 16/11/18}
 
-Want an algorithm which decides, given closed $ \theta $, whether $ \ab{\mathcal{Q}; \le} \vDash \theta $ or $ \ab{\mathcal{Q}; \le} \not\vDash \theta $, that is $ \ab{\mathcal{Q}; \le} \vDash \notb{\theta} $, by \ref{thm:2.3.3}. $ \Sigma $ is a \textbf{recursively enumerable} set of formulas, that is we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_\mathcal{L} $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. Method is to run the algorithm which generates all consequences of $ \Sigma $. By \ref{thm:2.7.2}(1) at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
+Want an algorithm which decides, given closed $ \theta $, whether $ \ab{\Q; \le} \vDash \theta $ or $ \ab{\Q; \le} \not\vDash \theta $, that is $ \ab{\Q; \le} \vDash \notb{\theta} $, by \ref{thm:2.3.3}. $ \Sigma $ is a \textbf{recursively enumerable} set of formulas, that is we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_{\L} $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. Method is to run the algorithm which generates all consequences of $ \Sigma $. By \ref{thm:2.7.2}(1) at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
 
 \begin{note}
 \hfill
@@ -1377,7 +1377,7 @@ Want an algorithm which decides, given closed $ \theta $, whether $ \ab{\mathcal
 \item Depends on
 \begin{enumerate}
 \item the Completeness theorem, and
-\item the axioms $ \Delta $ for $ \ab{\mathcal{Q}; \le} $,
+\item the axioms $ \Delta $ for $ \ab{\Q; \le} $,
 \end{enumerate}
 \item Works for some other structures. Can have better algorithms.
 \item But there is no such algorithm for $ \ab{\N; +, \cdot, 0} $. This is Gödel's incompleteness theorem.
@@ -1418,7 +1418,7 @@ The following are basic facts.
 \end{enumerate}
 \end{proposition}
 
-Proof of 4 uses axiom of choice.
+Proof of $ 4 $ uses axiom of choice.
 
 \begin{example}
 \hfill
@@ -1580,12 +1580,128 @@ Could develop arithmetic in $ \N $, using $ n^+ $ as $ n + 1 $, etc, and in $ \Z
 \subsection{Well orderings}
 
 \begin{definition}
-A linear ordering $ \ab{A; \le} $ is a \textbf{well ordering} or a \textbf{woset} if every non-empty subset of $ A $ has a least element.
+A loset $ \ab{A; \le} $ is a \textbf{well ordering} or a \textbf{woset} if every non-empty subset of $ A $ has a least element.
 $$ \fab{X}\impb{\andb{\subb{X}{A}}{\rb{X \ne \emptyset}}}{\teb{x}\andb{\inb{x}{X}}{\fab{y}\impb{\inb{y}{X}}{\inb{x}{y}}}}. $$
 \end{definition}
 
 \begin{example}
-$ \ab{\Z; \le} $ is not a well ordering. $ \ab{\N; \le} $ is a well ordering.
+$ \ab{\Z; \le} $ is not a woset. $ \ab{\N; \le} $ is a woset.
 \end{example}
+
+\marginpar{Lecture 23 \\ Friday \\ 23/11/18}
+
+Suppose $ \A_1 = \ab{A_1; \le_1} $ and $ \A_2 = \ab{A_2; \le_2} $ are losets.
+
+\begin{definition}
+Say $ \A_1, \A_2 $ are \textbf{similar} or isomorphic if there is a bijection $ \alpha : A_1 \to A_2 $ with for all $ a, b \in A_1 $ $ a <_1 b $ iff $ \alpha\rb{a} <_2 \alpha\rb{b} $. Write $ \A_1 \simeq \mathcal \A_2 $. Say $ \alpha $ is a \textbf{similarity}. If $ a <_1 b $ gives $ \alpha\rb{a} <_2 \alpha\rb{b} $ say $ \alpha $ is \textbf{order-preserving}.
+\end{definition}
+
+\begin{definition}
+\hfill
+\begin{enumerate}
+\item \textbf{Reverse-lexicographic product} $ \A_1 \times \A_2 = \ab{A_1 \times A_2; \le} $. $ \rb{a_1, a_2} \le \rb{a_1', a_2'} $ iff $ a_2 <_2 a_2' $ or ($ \rb{a_2 = a_2'} $ and $ \rb{a_1 \le_1 a_1'} $). In $ \A_2 $ replace each element by a copy of $ \A_1 $.
+\item \textbf{Sum}. Regard $ A_1, A_2 $ as disjoint, by replacing them by similar orderings on disjoint sets, such as $ \cb{\rb{a, 0} : a \in A_1} $ and $ \cb{\rb{b, 1} \mid b \in A_2} $, and define $ \A_1 + \A_2 = \ab{A_1 \cup A_2; \le} $ where $ \le $ is the union of $ \le_1, \le_2 $ and $ a_1 \le a_2 $ for $ a_1 \in A_1 $ and $ a_2 \in A_2 $.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item $ \N + \N $.
+$$
+\begin{array}{ccccccccccc}
+\N & & & \qquad & 0 & 1 & \dots & \quad & & & \\
+& & \N & \qquad & & & & \quad & 0 & 1 & \dots \\
+\N & + & \N & \qquad & 0 & 1 & \dots & \quad & 0 & 1 & \dots
+\end{array}.
+$$
+\item $ \cb{0, 1} \times \N $.
+$$
+\begin{array}{ccccccccccccccc}
+& & \N & \qquad & & 0 & & \quad & & 1 & & \quad & & \dots & \\
+\cb{0, 1} & \times & \N & \qquad & 0 & & 1 & \quad & 0 & & 1 & \quad & \dots & & \dots
+\end{array}.
+$$
+Thus $ \cb{0, 1} \times \N \simeq \N $.
+\item $ \N \times \cb{0, 1} $.
+$$
+\begin{array}{ccccccccccc}
+\cb{0, 1} & & & \qquad & & 0 & & & & 1 & \\
+\cb{0, 1} & \times & \N & \qquad & 0 & 1 & \dots & \quad & 0 & 1 & \dots
+\end{array}.
+$$
+Thus $ \N \times \cb{0, 1} \simeq \N + \N $.
+\end{enumerate}
+\end{example}
+
+\begin{lemma}
+\hfill
+\begin{enumerate}
+\item $ \A_1 + \A_2 $, $ \A_1 \times \A_2 $ are losets.
+\item If $ \A_1, \A_2 $ are wosets then so are $ \A_1 + \A_2 $ and $ \A_1 \times A_2 $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(TODO Exercise: complete proof) $ \A_1 \times \A_2 $ is a woset. Let $ \emptyset \ne X \subset A_1 \times A_2 $. Let $ Y = \cb{b \in A_2 \mid \exists a \in A_1, \ \rb{a, b} \in X} \subseteq A_2 $. Let $ y $ be the least element of $ Y $. Let $ Z = \cb{z \in A_1 \mid \rb{z, y} \in X} $. This has a least element $ x $. Then $ \rb{x, y} $ is the least element of $ X $.
+\end{proof}
+
+\begin{definition}
+Suppose $ \A = \ab{A; \le} $ is a loset. A subset $ X \subseteq A $ is an \textbf{initial segment} of $ A $ if for all $ x \in X $, for all $ a \in A $, if $ a < x $, then $ a \in X $. It is \textbf{proper} if $ X \ne A $.
+\end{definition}
+
+\begin{example}
+Let $ b \in A $.
+\begin{enumerate}
+\item $ A\sb{b} = \cb{x \in A \mid x < b} $ is a proper initial segment.
+\item $ A\sb{\le b} = \cb{x \in A \mid x \le b} $ is an initial segment.
+\end{enumerate}
+\end{example}
+
+\begin{lemma}
+If $ \A = \ab{A; \le} $ is a woset, then every proper initial segment $ X $ is of the form $ A\sb{b} $ for some $ b \in A $.
+\end{lemma}
+
+\begin{note}
+Not true for losets in general.
+\end{note}
+
+\begin{example}
+$ \cb{x \in \Q \mid x < \pi} \subseteq \Q $ is not of the form $ \Q\sb{b} $ for some $ b \in \Q $.
+\end{example}
+
+\begin{proof}
+Let $ b $ be the minimal element of $ A \setminus X $.
+\end{proof}
+
+\begin{theorem}
+Suppose $ \A_1 = \ab{A_1; \le_1} $ and $ \A_2 = \ab{A_2; \le_2} $ are wosets. Then exactly one of the following holds.
+\begin{enumerate}
+\item $ \A_1, \A_2 $ are similar,
+\item $ \A_1 $ is similar to a proper initial segment of $ \A_2 $, or
+\item $ \A_2 $ is similar to a proper initial segment of $ \A_1 $.
+\end{enumerate}
+In each case the similarity is unique.
+\end{theorem}
+
+\begin{proof}
+For uniqueness, suppose we have order preserving $ \alpha, \beta : A_1 \to A_2 $ whose images are initial segments of $ A_2 $. Show $ \alpha = \beta $.
+\begin{enumerate}
+\item Check that if $ b \in A_1 $ then $ \alpha\rb{A_1\sb{b}} = A_2\sb{\alpha\rb{b}} $.
+\item If $ \alpha \ne \beta $ take $ b \in A_1 $ minimal with $ \alpha\rb{b} \ne \beta\rb{b} $, so $ \alpha\rb{A_1\sb{b}} = \beta\rb{A_1\sb{b}} $. By step $ 1 $ $ A_2\sb{\alpha\rb{b}} = A_2\sb{\beta\rb{b}} $. Conclude that $ \alpha\rb{b} = \beta\rb{b} $, a contradiction.
+\end{enumerate}
+This shows
+\begin{enumerate}
+\item by taking $ A_1 = A_2 $ and $ \alpha $ the identity obtain that $ A_1 $ is not similar to a proper initial segment of itself, and
+\item it follows that we cannot have two of $ 1 $, $ 2 $, $ 3 $ holding.
+\end{enumerate}
+For existence, suppose $ A_2 $ is not similar to an initial segment of $ A_1 $. Show $ A_1 $ is similar to a proper initial segment of $ A_2 $. Look at $ C $, where $ C $ is the $ c \in A_1 $ such that there is a similarity between $ A_1\sb{\le c} $ and an initial segment of $ A_2 $. If $ c \in C $ there is a unique $ \alpha_c : A_1\sb{\le c} \to A_2 $ with image an initial segment, by uniqueness part. Note that
+\begin{enumerate}
+\item $ C $ is an initial segment of $ A_1 $,
+\item if $ c_1 < c_2 \in C $ then $ \alpha_{c_1} $ is the restriction of $ \alpha_{c_2} $ to $ A_1\sb{\le c_1} $, and
+\item let $ \alpha = \cup \cb{\alpha_c \mid c \in C} $, then $ \alpha $ is a similarity between $ C $ and an initial segment of $ A_2 $.
+\end{enumerate}
+If $ C = A_1 $, done. Suppose $ C \ne A_1 $. Let $ a $ be the minimal element of $ A_1 \setminus C $. $ \alpha\rb{C} \ne A_2 $ otherwise $ A_2 $ is similar to $ C $ so $ 3 $ holds. So $ \alpha\rb{C} = A_2\sb{b} $ for some $ b \in A_2 $. Can extend $ \alpha $ by sending $ a $ to $ b $ and get $ A_1\sb{\le a} \simeq A_2\sb{\le b} $. Thus $ a \in C $, a contradiction.
+\end{proof}
 
 \end{document}
