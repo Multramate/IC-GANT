@@ -1393,7 +1393,7 @@ Want an algorithm which decides, given closed $ \theta $, whether $ \ab{\Q; \le}
 \begin{enumerate}
 \addtocounter{enumi}{-1}
 \item Extensionality. Sets $ A $ and $ B $ are equal iff $ \fab{x}\iffb{\inb{x}{A}}{\inb{x}{B}} $.
-\item Natural numbers $ \N = \cb{0, 1, \dots} $. Think of $ 0 = \emptyset $ and $ n + 1 = \cb{0, \dots, n} $. Note that for $ m, n \in \N $, $ m < n $ iff $ m \in n $, iff $ m \subset n $.
+\item Natural numbers $ \N = \cb{0, 1, \dots} $. Think of $ 0 = \emptyset $ and $ n + 1 = \cb{0, \dots, n} $. Note that for $ m, n \in \N $, $ m < n $ iff $ m \in n $, iff $ m \subsetneq n $.
 \item Ordered pairs. The ordered pair $ \rb{x, y} $ is the set $ \cb{\cb{x}, \cb{x, y}} $. For example, for any $ x, y, z, w $, $ \rb{x, y} = \rb{z, w} $ iff $ x = z $ and $ y = w $. If $ A, B $ are sets, then $ A \times B = \cb{\rb{a, b} \mid a \in A, \ b \in B} $. $ A^2 = A \times A $ and $ A^{n + 1} = A^n \times A $. The set of finite sequences of elements of $ A $ is $ \cup_{n \in \N} A^n $. $ A^0 = \cb{\emptyset} $.
 \item Functions. Think of a function $ f : A \to B $ as a subset of $ A \times B $. $ A = dom\rb{f} $ is the domain and $ B = ran\rb{f} $ is the range. If $ X \subseteq A $ $ f\sb{X} = \cb{f\rb{a} \mid a \in X} \subseteq B $. Set of functions from $ A $ to $ B $ is $ B^A \subseteq \wp\rb{A \times B} $, where $ \wp $ is the powerset, that is the set of all subsets.
 \end{enumerate}
@@ -1537,16 +1537,16 @@ So this guarantees we can form the subset of $ A $, $ B = \cb{x \in A \mid P\rb{
 \end{example}
 
 \begin{definition}
-For a set $ a $ the \textbf{successor} of $ a $ is $ a^+ = a \cup \cb{a} $. A set $ A $ is \textbf{inductive} if
-$$ \andb{\inb{\emptyset}{A}}{\fab{x}\impb{\inb{x}{A}}{\inb{x^+}{A}}}. $$
+For a set $ a $ the \textbf{successor} of $ a $ is $ a^\dagger = a \cup \cb{a} $. A set $ A $ is \textbf{inductive} if
+$$ \andb{\inb{\emptyset}{A}}{\fab{x}\impb{\inb{x}{A}}{\inb{x^\dagger}{A}}}. $$
 \end{definition}
 
 \begin{example}
-$ 2 = \cb{0, 1} = \cb{0} \cup \cb{1} = 1^+ $.
+$ 2 = \cb{0, 1} = \cb{0} \cup \cb{1} = 1^\dagger $.
 \end{example}
 
 \noindent 7. \textbf{Axiom of infinity}.
-$$ \teb{A}\andb{\inb{\emptyset}{A}}{\fab{x}\impb{\inb{x}{A}}{\inb{x^+}{A}}}. $$
+$$ \teb{A}\andb{\inb{\emptyset}{A}}{\fab{x}\impb{\inb{x}{A}}{\inb{x^\dagger}{A}}}. $$
 
 \begin{definition}
 Let $ A $ be an inductive set. We can form using specification the set
@@ -1555,13 +1555,14 @@ Informally, this is the intersection of all inductive sets. This does not depend
 \end{definition}
 
 \begin{theorem}
+\label{thm:3.2.3}
 \hfill
 \begin{enumerate}
 \item $ \N $ is an inductive set, and if $ B $ is an inductive set, then $ \N \subseteq B $.
 \item Proof by induction works. Suppose $ P\rb{x} $ is a property of sets, that is a formula, such that
 \begin{enumerate}
 \item $ P\rb{\emptyset} $ holds, and
-\item for every $ k \in \N $, if $ P\rb{k} $ holds, then $ P\rb{k^+} $ holds.
+\item for every $ k \in \N $, if $ P\rb{k} $ holds, then $ P\rb{k^\dagger} $ holds.
 \end{enumerate}
 Then $ P\rb{n} $ holds for all $ n \in \N $.
 \end{enumerate}
@@ -1575,12 +1576,12 @@ Then $ P\rb{n} $ holds for all $ n \in \N $.
 \end{enumerate}
 \end{proof}
 
-Could develop arithmetic in $ \N $, using $ n^+ $ as $ n + 1 $, etc, and in $ \Z, \Q, \R $ in the usual way using Zermelo-Fraenkel $ 1 $ to $ 7 $. (TODO Exercise: hard, for $ m, n \in \N $ write $ m \le n $ to mean $ \orb{\eqb{m}{n}}{\inb{m}{n}} $, then this is a well ordering on $ \N $)
+Could develop arithmetic in $ \N $, using $ n^\dagger $ as $ n + 1 $, etc, and in $ \Z, \Q, \R $ in the usual way using Zermelo-Fraenkel $ 1 $ to $ 7 $. (TODO Exercise: hard, for $ m, n \in \N $ write $ m \le n $ to mean $ \orb{\eqb{m}{n}}{\inb{m}{n}} $, then this is a well-ordering on $ \N $)
 
 \subsection{Well orderings}
 
 \begin{definition}
-A loset $ \ab{A; \le} $ is a \textbf{well ordering} or a \textbf{woset} if every non-empty subset of $ A $ has a least element.
+A loset $ \ab{A; \le} $ is a \textbf{well-ordering} or a \textbf{woset} if every non-empty subset of $ A $ has a least element.
 $$ \fab{X}\impb{\andb{\subb{X}{A}}{\rb{X \ne \emptyset}}}{\teb{x}\andb{\inb{x}{X}}{\fab{y}\impb{\inb{y}{X}}{\inb{x}{y}}}}. $$
 \end{definition}
 
@@ -1643,7 +1644,7 @@ Thus $ \N \times \cb{0, 1} \simeq \N + \N $.
 \end{lemma}
 
 \begin{proof}
-(TODO Exercise: complete proof) $ \A_1 \times \A_2 $ is a woset. Let $ \emptyset \ne X \subset A_1 \times A_2 $. Let $ Y = \cb{b \in A_2 \mid \exists a \in A_1, \ \rb{a, b} \in X} \subseteq A_2 $. Let $ y $ be the least element of $ Y $. Let $ Z = \cb{z \in A_1 \mid \rb{z, y} \in X} $. This has a least element $ x $. Then $ \rb{x, y} $ is the least element of $ X $.
+(TODO Exercise: complete proof) $ \A_1 \times \A_2 $ is a woset. Let $ \emptyset \ne X \subsetneq A_1 \times A_2 $. Let $ Y = \cb{b \in A_2 \mid \exists a \in A_1, \ \rb{a, b} \in X} \subseteq A_2 $. Let $ y $ be the least element of $ Y $. Let $ Z = \cb{z \in A_1 \mid \rb{z, y} \in X} $. This has a least element $ x $. Then $ \rb{x, y} $ is the least element of $ X $.
 \end{proof}
 
 \begin{definition}
@@ -1675,6 +1676,7 @@ Let $ b $ be the minimal element of $ A \setminus X $.
 \end{proof}
 
 \begin{theorem}
+\label{thm:3.3.7}
 Suppose $ \A_1 = \ab{A_1; \le_1} $ and $ \A_2 = \ab{A_2; \le_2} $ are wosets. Then exactly one of the following holds.
 \begin{enumerate}
 \item $ \A_1, \A_2 $ are similar,
@@ -1702,6 +1704,126 @@ For existence, suppose $ A_2 $ is not similar to an initial segment of $ A_1 $. 
 \item let $ \alpha = \cup \cb{\alpha_c \mid c \in C} $, then $ \alpha $ is a similarity between $ C $ and an initial segment of $ A_2 $.
 \end{enumerate}
 If $ C = A_1 $, done. Suppose $ C \ne A_1 $. Let $ a $ be the minimal element of $ A_1 \setminus C $. $ \alpha\rb{C} \ne A_2 $ otherwise $ A_2 $ is similar to $ C $ so $ 3 $ holds. So $ \alpha\rb{C} = A_2\sb{b} $ for some $ b \in A_2 $. Can extend $ \alpha $ by sending $ a $ to $ b $ and get $ A_1\sb{\le a} \simeq A_2\sb{\le b} $. Thus $ a \in C $, a contradiction.
+\end{proof}
+
+\marginpar{Lecture 24 \\ Monday \\ 26/11/18}
+
+\begin{note}
+In the notation of \ref{thm:3.3.7}, we have, in particular, an injective function $ A_1 \to A_2 $ for cases $ 1 $ and $ 2 $ or an injective function $ A_2 \to A_1 $. So either $ \abs{A_1} \le \abs{A_2} $ or $ \abs{A_2} \le \abs{A_1} $.
+\end{note}
+
+Axiom of choice gives any set $ A $ can be well-ordered. Putting this together with \ref{thm:3.3.7} gives for any sets $ A_1, A_2 $ $ \abs{A_1} \le \abs{A_2} $ or $ \abs{A_2} \le \abs{A_1} $.
+
+\subsection{Ordinals}
+
+Special wosets generalising notion of natural numbers are
+$$ 0 = \emptyset, \qquad 1 = 0^\dagger = \cb{\emptyset}, \qquad 2 = 1^\dagger = \cb{0, 1}, \qquad 3 = 2^\dagger = \cb{0, 1, 2}, \qquad \dots. $$
+For $ m, n \in \omega $ $ m < n $ iff $ m \in n $.
+
+\begin{definition}
+\hfill
+\begin{enumerate}
+\item A set $ X $ is a \textbf{transitive set} if every element of $ X $ is a subset of $ X $, that is if $ y \in x \in X $ then $ y \in X $.
+\item A set $ \alpha $ is an \textbf{ordinal} if
+\begin{enumerate}
+\item $ \alpha $ is a transitive set, and
+\item the relation $ < $ on $ \alpha $ given by for $ x, y \in \alpha $ $ x < y $ iff $ x \in y $ is a strict well-ordering.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+If $ \alpha $ is an ordinal, then by definition $ \alpha \notin \alpha $.
+\end{note}
+
+\begin{lemma}
+\label{lem:3.4.2}
+If $ \alpha $ is an ordinal, then so is $ \alpha^\dagger = \alpha \cup \cb{\alpha} $.
+\end{lemma}
+
+\begin{proof}
+As $ \alpha $ is a transitive set, so is $ \alpha^\dagger $. The ordering $ \in $ on $ \alpha^\dagger $ is that on $ \alpha $ with the extra element $ \alpha $ added as a greatest element.
+\end{proof}
+
+\begin{corollary}
+If $ n \in \omega $ then $ n $ is an ordinal.
+\end{corollary}
+
+\begin{proof}
+$ \phi $ is an ordinal, so this follows from \ref{lem:3.4.2} using induction \ref{thm:3.2.3}.
+\end{proof}
+
+\begin{proposition}
+\label{prop:3.4.4}
+\hfill
+\begin{enumerate}
+\item If $ \alpha $ is an ordinal, then $ \alpha \notin \alpha $.
+\item If $ \alpha $ is an ordinal and $ \beta \in \alpha $ then $ \beta $ is an ordinal.
+\item If $ \alpha, \beta $ are ordinals and $ \alpha \subsetneq \beta $ then $ \alpha \in \beta $.
+\item If $ \alpha $ is an ordinal then $ \alpha $ is the set of $ \beta $ such that $ \beta $ is an ordinal and $ \beta \in \alpha $.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Trivial.
+\item Just check definition.
+\item As $ \alpha \subsetneq \beta $, $ \beta \setminus \alpha $ is non-empty, so has a least element $ \gamma $. Show $ \gamma = \alpha $.
+\item By $ 2 $.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+If $ \alpha, \beta $ are ordinals, write $ \alpha < \beta $ to mean $ \alpha \in \beta $, and $ \alpha \le \beta $ means either $ \alpha < \beta $ or $ \alpha = \beta $.
+\end{definition}
+
+\begin{theorem}
+\label{thm:3.4.6}
+Suppose $ \alpha, \beta, \gamma $ are ordinals.
+\begin{enumerate}
+\item If $ \alpha < \beta $ and $ \beta < \gamma $ then $ \alpha < \gamma $.
+\item If $ \alpha \le \beta $ and $ \beta \le \alpha $ then $ \alpha = \beta $.
+\item Exactly one of $ \alpha < \beta $, $ \alpha = \beta $, $ \beta < \alpha $ holds.
+\item If $ X $ is an non-empty set of ordinals then $ X $ has a least element $ \delta $. Moreover, $ \delta = \cap X $. The collection of ordinals is well-ordered.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Trivial.
+\item By $ 1 $ and $ \alpha \notin \alpha $.
+\item Show that if $ \alpha \ne \beta $ then $ \alpha \subsetneq \beta $ or $ \beta \subsetneq \alpha $. Consider $ \alpha \cap \beta $. Show this is an ordinal. If $ \alpha \nsubseteq \beta $ then $ \alpha \cap \beta \subsetneq \alpha $ and if $ \beta \nsubseteq \alpha $ then $ \alpha \cap \beta \subsetneq \beta $. By \ref{prop:3.4.4}(3) we get $ \alpha \cap \beta \in \alpha $ and $ \alpha \cap \beta \in \beta $ so $ \alpha \cap \beta \in \alpha \cap \beta $, a contradiction, all using $ \alpha \cap \beta $ is an ordinal.
+\item See notes.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+\hfill
+\begin{enumerate}
+\item If $ X $ is a non-empty set of ordinals, then $ \cup X $ is an ordinal.
+\item $ \omega $ is an ordinal.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item By \ref{thm:3.4.6}, $ X $ is well-ordered by $ \in $. So it is enough to show that $ \cup X $ is a transitive set. (TODO Exercise)
+\item Check that $ \cup \omega = \omega $, then apply $ 1 $.
+\end{enumerate}
+\end{proof}
+
+Now form ordinals
+$$ \omega^\dagger = \cb{0, 1, \dots, \omega}, \qquad \rb{\omega^\dagger}^\dagger = \cb{0, 1, \dots, \omega, \omega^+}, \qquad \dots. $$
+
+\begin{theorem}
+If $ \ab{A; \le} $ is a woset, then there is a unique ordinal $ \alpha $ which is similar to $ \ab{A; \le} $.
+\end{theorem}
+
+\begin{proof}
+For uniqueness, suppose $ \ab{A; \le} $ is similar to ordinals $ \alpha, \beta $. So $ \alpha, \beta $ are similar. May assume $ \alpha \le \beta $, so if $ \alpha \ne \beta $, then $ \alpha < \beta $. $ \alpha $ is therefore a proper initial segment of $ \beta $. By \ref{thm:3.3.7} no woset is similar to a proper initial segment of itself, a contradiction. For existence, let $ X $ be the $ x \in A $ such that the initial segment $ A\sb{x} $ is similar to an ordinal. Note that if $ A \ne \emptyset $, then the least element of $ A $ is in $ X $.
 \end{proof}
 
 \end{document}
