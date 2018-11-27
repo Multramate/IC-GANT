@@ -724,6 +724,7 @@ In the example $ I = \rb{x^3, xy, y^5} \supset \rb{x, y}^5 $.
 \end{example}
 
 \begin{proposition}
+\label{prop:11.3}
 Let $ I \subset R $ be a primary ideal. Then the radical $ r\rb{I} $ is a prime ideal of $ R $. It is the smallest prime ideal of $ R $ containing $ I $.
 \end{proposition}
 
@@ -979,7 +980,44 @@ A ring is Artinian if and only if it is Noetherian and has dimension zero.
 \end{theorem}
 
 \begin{proof}
-Let us show that $ A $ Artinian gives $ A $ Noetherian and $ \dim\rb{A} = 0 $. Corollary \ref{cor:12.7} says that every prime ideal is maximal, hence $ \dim\rb{A} = 0 $. Lemma \ref{lem:12.9} says that $ A $ has only finitely many maximal ideals, call them $ I_1, \dots, I_n $. $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = J\rb{A} = N\rb{A} $ by Corollary \ref{cor:12.8}. But Lemma \ref{lem:12.10} says $ N\rb{A}^m = 0 $ for some $ m \ge 1 $. We conclude that $ I_1^m \dots I_n^m = 0 $. We can apply Lemma \ref{lem:12.12} and so prove that $ A $ is Noetherian. For the other implication, let us first prove that if $ A $ is Noetherian, then $ N\rb{A}^m = 0 $, for some $ m \ge 1 $. Indeed, $ N\rb{A} $ is finitely generated, so $ N\rb{A} = \rb{m_1, \dots, m_n} $. For each $ i = 1, \dots, m $, there is a $ a_i \ge 1 $ such that $ m_i^{a_i} = 0 $. Take $ a = a_1 + \dots + a_n $. Then $ \rb{m_1, \dots, m_n}^a = 0 $. So $ N\rb{A} $ is a nilpotent ideal.
+Let us show that $ A $ Artinian gives $ A $ Noetherian and $ \dim\rb{A} = 0 $. Corollary \ref{cor:12.7} says that every prime ideal is maximal, hence $ \dim\rb{A} = 0 $. Lemma \ref{lem:12.9} says that $ A $ has only finitely many maximal ideals, call them $ I_1, \dots, I_n $. $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = J\rb{A} = N\rb{A} $ by Corollary \ref{cor:12.8}. But Lemma \ref{lem:12.10} says $ N\rb{A}^m = 0 $ for some $ m \ge 1 $. We conclude that $ I_1^m \dots I_n^m = 0 $. We can apply Lemma \ref{lem:12.12} and so prove that $ A $ is Noetherian. For the other implication, let us first prove that if $ A $ is Noetherian, then $ N\rb{A}^m = 0 $, for some $ m \ge 1 $. Indeed, $ N\rb{A} $ is finitely generated, so $ N\rb{A} = \rb{m_1, \dots, m_n} $. For each $ i = 1, \dots, m $, there is a $ a_i \ge 1 $ such that $ m_i^{a_i} = 0 $. Take $ a = a_1 + \dots + a_n $. Then $ \rb{m_1, \dots, m_n}^a = 0 $. So $ N\rb{A} $ is a nilpotent ideal. As a consequence, we obtain that any ideal in a Noetherian ring contains some power of its radical $ I \subset A $. There exists $ n $ such that $ r\rb{I}^n \subset I $ by applying the fact that the nilradical is nilpotent to $ A / I $ and $ N\rb{A / I} = r\rb{I} / I $, so $ N\rb{A / I}^n = 0 $ gives $ r\rb{I}^n \subset I $. Now $ \rb{0} $ in $ A $ has a primary decomposition, since $ A $ is Noetherian. Write $ \rb{0} = J_1 \cap \dots \cap J_n $, where $ J_i $ are primary ideals. We know that $ P = r\rb{J_i} $ is a prime ideal of $ A $ by Proposition \ref{prop:11.3}. Since $ \dim\rb{A} = 0 $, each $ P_i $ is actually a maximal ideal. For each $ i = 1, \dots, n $ there is a $ k_i \ge 1 $ such that $ P_i^{k_i} \subset J_i $, since $ P_i = r\rb{J_i} $. Hence $ \rb{0} = J_1 \cap \dots \cap J_n \supset J_1 \cdot \dots \cdot J_n \supset P_1^{k_1} \dots P_n^{k_n} $, hence $ P_1^{k_1} \dots P_n^{k_n} = 0 $. By Lemma \ref{lem:12.12} we conclude that $ A $ is Artinian.
+\end{proof}
+
+\marginpar{Lecture 23 \\ Monday \\ 26/11/18}
+
+\begin{theorem}[Structure theorem]
+\label{thm:12.15}
+Any Artinian ring is isomorphic to a product of local Artinian rings.
+\end{theorem}
+
+Recall that a ring is local if it has only one maximal ideal.
+
+\begin{example}
+Let $ R = k\sb{x} $. Let $ f\rb{x} $ be a non-zero polynomial and $ A = R / \rb{f} $. $ \dim_k\rb{A} < \infty $ so $ A $ is Artinian. $ f\rb{x} = \prod_{i = 1}^n f_i\rb{x}^{m_i} $, where $ f_i\rb{x} $ are pairwise different irreducible polynomials. The ideals of $ A $ correspond to factors of $ f\rb{x} $. Maximal ideals correspond to $ f_i\rb{x} $. Chinese remainder theorem gives $ A = R / \rb{f} \cong \prod_{i = 1}^n R / \rb{f_i\rb{x}^{m_i}} $.
+\end{example}
+
+\begin{definition}
+The ideal $ I, J \subset R $ are \textbf{coprime} if $ I + J = R $.
+\end{definition}
+
+Suppose $ I_1, \dots, I_n $ are ideals of $ R $. Consider the natural homomorphism $ \phi : R \to \prod_{i = 1}^n R / I_i $ by $ \phi\rb{r} = \rb{r + I_1, \dots, r + I_n} $.
+
+\begin{lemma}
+\label{lem:12.17}
+\hfill
+\begin{enumerate}
+\item If $ I_j + I_k = R $ for any $ j \ne k $, then $ \prod_{j = 1}^n = \cap_{j = 1}^n I_j $.
+\item $ \phi $ is surjective if and only if $ I_j + I_k = R $ for any pair $ j \ne k $.
+\item $ \phi $ is injective if and only if $ \cap_{j = 1}^n I_j = 0 $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+See problem sheet 4.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:12.15}]
+Recall that $ A $ is an Artinian ring. By Lemma \ref{lem:12.9} $ A $ has only finitely many maximal ideals, say $ I_1, \dots, I_n $, all pairwise different. $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = J\rb{A} = N\rb{A} $ by Corollary \ref{cor:12.8}. By Lemma \ref{lem:12.10} $ N\rb{A}^m = 0 $. Hence $ \rb{I_1 \dots I_n}^m = 0 $. $ I_j \subsetneq I_j + I_k = R $ for $ j \ne k $, where $ I_j $ is maximal. By Lemma \ref{lem:12.17} $ \cap_{j = 1}^n I_j = \prod_{j = 1}^n I_j $. Claim that if $ j \ne k $, then $ I_j^a + I_k^a = R $ for any $ a \ge 1 $. Indeed, $ I_j + I_k = R $ so there exist $ x \in I_j $, $ y \in I_K $ such that $ 1 = x + y $. Hence $ 1^{2a} = \rb{x + y}^{2a} $, which is a sum of a multiple of $ x^a $ and a multiple of $ y^a $, which is in $ I_j^a + I_k^a $. By Lemma \ref{lem:12.17} we have $ \cap_{j = 1}^n I_j^a = \prod_{j = 1}^n I_k^a $. So $ \phi $ gives an isomorphism $ A / \prod_{j = 1}^n I_j^a \cong \prod_{j = 1}^n A / I_j^a $. It is enough to show that each $ A / I_j^a $ is a local ring. Take $ a $ large enough, say $ a = m $. Then $ \prod_{j = 1}^n I_j^a = 0 $. Note that $ N\rb{A / I_j^a} = I_j / I_j^a $. Indeed, for all $ x \in I_j $ we have $ x^a \in I_j^a $. Since $ I_j / I_j^a $ is a maximal ideal of $ A / I_j^a $, this is $ N\rb{A / I_j^a} $. This is the intersection of all prime ideals of $ A_j^a $. Thus all of them coincide with $ I_j / I_j^a $, so are maximal. Hence, $ I_j / I_j^a $ is a unique maximal ideal of $ A / I_j^a $.
 \end{proof}
 
 \end{document}
