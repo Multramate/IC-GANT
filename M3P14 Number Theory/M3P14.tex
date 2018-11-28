@@ -88,7 +88,7 @@ Let $ a, b \in \Z $. We say that $ a $ \textbf{divides} $ b $, written $ a \mid 
 \end{definition}
 
 \begin{note}
-If $ a, b, c \in \Z $ such that $ a \mid b $ and $ a \mid c $, then $ a \mid \rb{rb + sc} $ for any $ r, s \in \Z $.
+If $ a, b, c \in \Z $ such that $ a \mid b $ and $ a \mid c $, then $ a \mid rb + sc $ for any $ r, s \in \Z $.
 \end{note}
 
 \begin{definition}
@@ -259,7 +259,7 @@ Suppose now that we are given $ a, b, c \in \Z^\times $ and we want to solve $ a
 $ 2x + 6y = 3 $ has no solutions.
 \end{example}
 
-From now on, suppose this is true. Let $ a' = a / \rb{a, b} $, $ b' = b / \rb{a, b} $, and $ c' = c / \rb{a, b} $. Then $ ax + by = c $ if and only if $ a'x + b'y = c' $. By Theorem \ref{thm:6}, since $ \rb{a', b'} = 1 $, we can find $ r, s \in \Z $ with $ a'r + b's = 1 $, so $ a'rc' + b'sc' = c' $. So $ x = rc' $, $ y = sc' $ is a solution. $ X, Y $ is another solution if and only if $ a'X + b'Y = a'x + b'y $, if and only if $ a'\rb{X - x} = b'\rb{y - Y} $. For this to hold, we need $ a' \mid \rb{y - Y} $, $ b' \mid \rb{X - x} $. Putting this all together, we find that if $ x, y $ is one solution to $ ax + by = c $, then the other solutions are exactly of the form
+From now on, suppose this is true. Let $ a' = a / \rb{a, b} $, $ b' = b / \rb{a, b} $, and $ c' = c / \rb{a, b} $. Then $ ax + by = c $ if and only if $ a'x + b'y = c' $. By Theorem \ref{thm:6}, since $ \rb{a', b'} = 1 $, we can find $ r, s \in \Z $ with $ a'r + b's = 1 $, so $ a'rc' + b'sc' = c' $. So $ x = rc' $, $ y = sc' $ is a solution. $ X, Y $ is another solution if and only if $ a'X + b'Y = a'x + b'y $, if and only if $ a'\rb{X - x} = b'\rb{y - Y} $. For this to hold, we need $ a' \mid y - Y $, $ b' \mid X - x $. Putting this all together, we find that if $ x, y $ is one solution to $ ax + by = c $, then the other solutions are exactly of the form
 $$ X = x + n\dfrac{b}{\rb{a, b}}, \qquad Y = y - n\dfrac{a}{\rb{a, b}} $$
 for all $ n \in \Z $.
 
@@ -272,7 +272,7 @@ Using the example above where we have $ 8\rb{120} - 11\rb{87} = 3 $, we can solv
 \subsection{Congruences}
 
 \begin{definition}
-Let $ n \in \Z^\times $, and let $ a, b \in \Z $. We say $ a $ is \textbf{congruent to $ b $ modulo $ n $}, written $ a \equiv b \mod n $, if $ n \mid \rb{a - b} $.
+Let $ n \in \Z^\times $, and let $ a, b \in \Z $. We say $ a $ is \textbf{congruent to $ b $ modulo $ n $}, written $ a \equiv b \mod n $, if $ n \mid a - b $.
 \end{definition}
 
 For $ n $ fixed, it is easy to verify that congruence modulo $ n $ is an equivalence relation, and therefore partitions $ \Z $ into equivalence classes. The set of equivalence classes modulo $ n $ is denoted $ \Z / n\Z $.
@@ -582,7 +582,7 @@ Let $ n \in \Z_{> 0} $. The group $ \unit{n} $ is cyclic if and only if either
 
 \marginpar{Lecture 6 \\ Wednesday \\ 17/10/18}
 
-Note that while the existence of primitive roots is very useful both theoretically and computationally, there is no simple procedure for finding them in practice, beyond trial and error by guessing small values of $ g $, and see if $ g $ is a generator. If $ p $ is prime then there are $ \Phi\rb{p - 1} $ primitive roots modulo $ p $, so they are plentiful, which means that you have a high probability of success, and so trying $ 2, 3, 5, 6, \dots $ is a reasonable strategy, but note that trying $ 4 $ would not be a good idea. We could work out $ 1, \dots, g^{p - 2} $ and check these are distinct, but this would be inefficient. Better is to check that if $ q $ is any prime factor of $ p - 1 $, then $ g^{\rb{p - 1} / q} \ne 1 $. This works, because if $ g $ is not a primitive root, then the order of $ g $ modulo $ p $ is a proper factor of $ p - 1 $, so divides some $ \rb{p - 1} / q $, so $ g^{\rb{p - 1} / q} = 1 $, while if $ g^{\rb{p - 1} / q} \ne 1 $ then $ ord_p\rb{g} \mid \rb{p - 1} $ and $ ord_p\rb{g} \nmid \rb{p - 1} / q $. If this holds for all $ q \mid \rb{p - 1} $, then $ ord_p\rb{g} = p - 1 $, because otherwise it would be a proper divisor, and so would divide $ \rb{p - 1} / q $ for some prime $ q \mid \rb{p - 1} $.
+Note that while the existence of primitive roots is very useful both theoretically and computationally, there is no simple procedure for finding them in practice, beyond trial and error by guessing small values of $ g $, and see if $ g $ is a generator. If $ p $ is prime then there are $ \Phi\rb{p - 1} $ primitive roots modulo $ p $, so they are plentiful, which means that you have a high probability of success, and so trying $ 2, 3, 5, 6, \dots $ is a reasonable strategy, but note that trying $ 4 $ would not be a good idea. We could work out $ 1, \dots, g^{p - 2} $ and check these are distinct, but this would be inefficient. Better is to check that if $ q $ is any prime factor of $ p - 1 $, then $ g^{\rb{p - 1} / q} \ne 1 $. This works, because if $ g $ is not a primitive root, then the order of $ g $ modulo $ p $ is a proper factor of $ p - 1 $, so divides some $ \rb{p - 1} / q $, so $ g^{\rb{p - 1} / q} = 1 $, while if $ g^{\rb{p - 1} / q} \ne 1 $ then $ ord_p\rb{g} \mid p - 1 $ and $ ord_p\rb{g} \nmid \rb{p - 1} / q $. If this holds for all $ q \mid p - 1 $, then $ ord_p\rb{g} = p - 1 $, because otherwise it would be a proper divisor, and so would divide $ \rb{p - 1} / q $ for some prime $ q \mid p - 1 $.
 
 \begin{note}
 This does rely on being able to factor $ p - 1 $, which is a hard problem in general. See the next section.
@@ -708,7 +708,7 @@ If $ n \equiv 3 \mod 4 $, then $ n $ is prime if and only if for every $ a \in \
 $$ \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\tfrac{n - 1}{2}}p \mod p^2, $$
 by the binomial theorem. If $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p^k = n $, then $ \rb{1 + p}^{\rb{n - 1} / 2} \equiv \pm 1 \mod p, p^2 $ gives
 $$ \pm 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \equiv 1 \mod p \quad \implies \quad 1 \equiv \rb{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \rb{\dfrac{n - 1}{2}}p \mod p^2, $$
-then $ p \mid \rb{\rb{n - 1} / 2} $, so $ p \mid \rb{n - 1} $. But $ p \mid n $, a contradiction.
+then $ p \mid \rb{n - 1} / 2 $, so $ p \mid n - 1 $. But $ p \mid n $, a contradiction.
 \item Finally for the remaining case suppose that $ n $ is composite but not a power of a prime, and write $ n = rs $ for $ r, s > 1 $ and odd, and $ \rb{r, s} = 1 $. By the Chinese remainder theorem, $ \Z / n\Z \cong \Z / r\Z \times \Z / s\Z $. We can choose $ a $ with $ \rb{a, n} = 1 $ such that $ a \equiv -1 \mod r $ and $ a \equiv 1 \mod s $. Then $ \rb{a, r} = \rb{a, s} = 1 $, so $ \rb{a, n} = 1 $. Since $ n \equiv 3 \mod 4 $ by assumption, $ \rb{n - 1} / 2 $ is odd, so $ a^{\rb{n - 1} / 2} \equiv -1 \mod r $ and $ a^{\rb{n - 1} / 2} \equiv 1 \mod s $. So $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $.
 \end{enumerate}
 \end{proof}
@@ -1110,7 +1110,7 @@ If $ p = 2 $ or $ p \equiv 1 \mod 4 $, then $ p $ is a sum of two squares.
 \end{theorem}
 
 \begin{proof}
-By Corollary \ref{cor:50}, we just have to show that $ p $ is not a prime in $ \Z\sb{i} $. There exists $ n $ such that $ n^2 \equiv -1 \mod p $. If $ p = 2 $ obvious, and if $ p \equiv 1 \mod 4 $, $ \legendre{-1}{p} = \rb{-1}^{\rb{p - 1} / 2} = 1 $ by Euler's criterion, so $ -1 $ is a QR modulo $ p $. That is, $ p \mid \rb{n^2 + 1} = \rb{n + i}\rb{n - i} $. If $ p $ were prime, then $ p \mid \rb{n + i} $ or $ p \mid \rb{n - i} $, that is there exist $ c, d \in \Z $ such that $ n \pm i = p\rb{c + di} $, so $ 1 = pd $, a contradiction. It follows that $ p $ is not prime, so by Corollary \ref{cor:50}, $ p $ is a sum of two squares.
+By Corollary \ref{cor:50}, we just have to show that $ p $ is not a prime in $ \Z\sb{i} $. There exists $ n $ such that $ n^2 \equiv -1 \mod p $. If $ p = 2 $ obvious, and if $ p \equiv 1 \mod 4 $, $ \legendre{-1}{p} = \rb{-1}^{\rb{p - 1} / 2} = 1 $ by Euler's criterion, so $ -1 $ is a QR modulo $ p $. That is, $ p \mid n^2 + 1 = \rb{n + i}\rb{n - i} $. If $ p $ were prime, then $ p \mid n + i $ or $ p \mid n - i $, that is there exist $ c, d \in \Z $ such that $ n \pm i = p\rb{c + di} $, so $ 1 = pd $, a contradiction. It follows that $ p $ is not prime, so by Corollary \ref{cor:50}, $ p $ is a sum of two squares.
 \end{proof}
 
 This proof looks non-constructive, but in fact it is not. In practice, if you want to go from $ n^2 + 1 \equiv 0 \mod p $ to finding $ a, b $ such that $ a^2 + b^2 = p $, simply use Euclid's algorithm in $ \Z\sb{i} $ to compute a GCD $ \rb{n + i, p} = a + bi $ of $ p $ and $ n + i $. Since $ p $ divides neither $ n + i $ nor $ n - i $, this GCD is not a unit, nor is it an associate of $ p $, so its norm is neither $ 1 $ nor $ p^2 $. Therefore this GCD has norm exactly $ p $. Since we have also shown that primes congruent to $ 3 $ modulo $ 4 $ are not a sum of two squares, even modulo $ 4 $, we have the following complete characterisation of sums of two squares.
@@ -1739,5 +1739,98 @@ Let $ \alpha = \sum_{n \ge 1} 1 / 10^{n!} $ and $ \alpha_k = \sum_{n = 1}^k 1 / 
 \end{align*}
 If $ d \in \Z_{> 0} $, and $ k > d $, then $ 2 / q^{k + 1} < 1 / q^d $. So there exists infinitely many $ p / q = \alpha_k $ such that $ \abs{\alpha - p / q} < 1 / q^d $. Taking $ d $ arbitrarily large, $ \alpha $ is transcendental.
 \end{example}
+
+\marginpar{Lecture 23 \\ Tuesday \\ 27/11/18}
+
+\begin{theorem}[Roth's theorem]
+Suppose that $ \alpha $ is algebraic. Then for any $ \epsilon > 0 $, there exist only finitely many $ x / y \in \Q $ with $ \abs{\alpha - x / y} < 1 / y^{2 + \epsilon} $.
+\end{theorem}
+
+This can be used to show that many more numbers are transcendental than Liouville's theorem could.
+
+\begin{example}
+$ \sum_{n \ge 1} 1 / 10^{3^n} $ is transcendental.
+\end{example}
+
+\begin{example}
+We saw that if $ d > 1 $ is squarefree, then $ x^2 - dy^2 = 1 $ has infinitely many solutions with $ x, y \in \Z $. Suppose now that $ d > 1 $, and consider $ x^3 - dy^3 = 1 $.
+\begin{enumerate}
+\item $ d = e^3 $ is a cube. Then $ x^3 - dy^3 = x^3 - \rb{ey}^3 = 1 $, so either $ \rb{x, y} = \rb{1, 0} $ or $ \rb{x, y} = \rb{0, \pm1} $ and $ d = 1 $.
+\item $ d $ is not a cube. Then $ \sqrt[3]{d} $ is algebraic and irrational, as it is a root of $ X^3 - d = 0 $. Suppose $ x > 1 $, so $ x > \sqrt[3]{d}y $. Then
+$$ x - \sqrt[3]{d}y = \dfrac{x^3 - dy^3}{x^2 + x\sqrt[3]{d}y + \sqrt[3]{d^2}y^2} = \dfrac{1}{x^2 + x\sqrt[3]{d}y + \sqrt[3]{d^2}y^2} < \dfrac{1}{3\rb{\sqrt[3]{d}y}^2} = \dfrac{1}{3\sqrt[3]{d^2}y^2}. $$
+So $ \abs{x / y - \sqrt[3]{d}} < 1 / 3\sqrt[3]{d^2}y^3 $. Choose any $ 0 < \epsilon < 1 $. Then $ 3\sqrt[3]{d^2}y^3  < 1 / y^{2 + \epsilon} $ for any $ y $ sufficiently large. So Roth's theorem tells us that there are only finitely many solutions. Similarly if $ x < 0 $.
+\end{enumerate}
+\end{example}
+
+\section{Primes in arithmetic progressions}
+
+Question is how are the prime numbers distributed modulo $ n $? Are there infinitely many primes congruent to $ a $ modulo $ n $ for each $ a, n $? Answer is no in general.
+
+\begin{example}
+There are finitely many primes congruent to $ 2 $ modulo $ 4 $, or $ 0 $ modulo $ 2 $.
+\end{example}
+
+If $ \rb{a, n} \ne 1 $ then since any number is congruent to $ a $ modulo $ n $ is divisible by $ \rb{a, n} $, we can have at most one prime. If $ \rb{a, n} = 1 $, there is no obvious obstruction.
+
+\begin{example}
+There are infinitely many primes congruent to $ 1 $ modulo $ 2 $.
+\end{example}
+
+\begin{theorem}
+If $ \rb{a, n} = 1 $, then there are infinitely many primes congruent to $ a $ modulo $ n $.
+\end{theorem}
+
+We will prove this for $ a = 1 $.
+
+\begin{theorem}
+There are infinitely many primes.
+\end{theorem}
+
+\begin{proof}
+Let $ S $ be a finite set of primes, and let $ Q = 1 + \prod_{p \in S} p $. Then $ Q > 1 $, so it has a prime factor $ q $. Then $ q \notin S $, so we are done.
+\end{proof}
+
+\begin{theorem}
+There are infinitely many primes congruent to $ 3 $ modulo $ 4 $.
+\end{theorem}
+
+\begin{proof}
+Let $ S $ be a finite set of primes which are congruent to $ 3 $ modulo $ 4 $. Let $ Q = 2 + \prod_{p \in S} p^2 $. Then $ Q > 1 $, and $ Q \equiv 3 \mod 4 $, so $ Q $ has a prime factor $ q $ which has $ q \equiv 3 \mod 4 $. Then $ q \notin S $, so we are done.
+\end{proof}
+
+\begin{lemma}
+\label{lem:87}
+Let $ x $ be even, and $ p $ a prime factor of $ x^2 + 1 $, then $ p \equiv 1 \mod 4 $.
+\end{lemma}
+
+\begin{proof}
+Certainly $ p $ is odd. $ x^2 + 1 \equiv 0 \mod p $, so $ x^2 \equiv -1 \mod p $, so $ \legendre{-1}{p} = 1 $, so $ p \equiv 1 \mod 4 $.
+\end{proof}
+
+\begin{theorem}
+There are infinitely many primes congruent to $ 1 $ modulo $ 4 $.
+\end{theorem}
+
+\begin{proof}
+Let $ S $ be a finite set of primes congruent to $ 1 $ modulo $ 4 $. Let $ Q = 1 + 4\prod_{p \in S} p^2 = 1 + \rb{2\prod_{p \in S} p}^2 $. Then $ Q > 1 $, and if $ q $ is a prime factor of $ Q $ then $ q \notin S $, and $ q \equiv 1 \mod 4 $ by Lemma \ref{lem:87}.
+\end{proof}
+
+General ideal is to find a polynomial $ P\rb{x} $ such that every prime factor of $ P\rb{nx} $ is congruent to $ a $ modulo $ n $, or at least one. Turns out that this can be done only when $ a^2 \equiv 1 \mod n $. We will find such polynomials for $ a = 1 $.
+
+\begin{theorem}
+For any prime $ q $, there are infinitely many primes congruent to $ 1 $ modulo $ q $.
+\end{theorem}
+
+\begin{definition}
+The $ q $-th cyclotomic polynomial is $ \Phi_q\rb{X} = \rb{X^q - 1} / \rb{X - 1} = X^{q - 1} + \dots + 1 $.
+\end{definition}
+
+\begin{theorem}
+Let $ p \ne q $ be prime, and let $ a \in \Z $. Then $ p \mid \Phi_q\rb{a} $ if and only if $ a $ has order $ q $ modulo $ p $.
+\end{theorem}
+
+\begin{proof}
+$ a $ has order $ q $ modulo $ p $ if and only if $ a^q \equiv 1 \mod p $ and $ a \not\equiv 1 \mod p $. If $ p \mid \Phi_q\rb{a} $ then $ p \mid a^q - 1 $. If also $ a \equiv 1 \mod p $, then $ \Phi_q\rb{a} \equiv \Phi_q\rb{1} \equiv q \not\equiv 0 \mod p $, a contradiction. Conversely if $ a^q \equiv 1 \mod p $, $ a \not\equiv 1 \mod p $, then $ \rb{a^q - 1} / \rb{a - 1} \equiv 0 \mod p $.
+\end{proof}
 
 \end{document}
