@@ -51,6 +51,7 @@
 \newtheorem{lemma}[definition]{Lemma}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{corollary}[definition]{Corollary}
+\newtheorem{axiom}{Axiom}
 
 \pagestyle{fancy}
 \lhead{M3P65 Mathematical Logic}
@@ -256,19 +257,10 @@ The set $ \cb{\neg, \land, \lor} $ is adequate.
 \begin{proof}
 Let $ G : \cb{T, F}^n \to \cb{T, F} $.
 \begin{enumerate}
-\item If $ G\rb{\overline{v}} = F $ for all $ \overline{v} \in \cb{T, F}^n $, let $ \phi = \andb{p_1}{\notb{p_1}} $. Then $ F_\phi = G $.
-\item Otherwise list the $ \overline{v} \in \cb{T, F}^n $ with $ G\rb{\overline{v}} = T $ as $ \overline{v_1}, \dots, \overline{v_r} $. Write $ \overline{v_i} = \rb{v_{i1}, \dots, v_{in}} $, where each $ v_{ij} \in \cb{T, F} $. Define
-$$ q_{ij} = \begin{cases} p_j & v_{ij} = T \\ \notb{p_j} & v_{ij} = F \end{cases}, \qquad \psi_i = \rb{q_{i1} \land \dots \land q_{in}}, \qquad \theta = \rb{\psi_1 \lor \dots \lor \psi_r}. $$
-Hence
-\begin{align*}
-F_\theta\rb{\overline{v}} = T
-& \iff \exists i \le r, \ F_{\psi_i}\rb{\overline{v}} = T \\
-& \iff \exists i \le r, \ \forall j \le n, \ q_{ij} = T \\
-& \iff \exists i \le r, \ \forall j \le n, \ p_j = v_{ij} \\
-& \iff \exists i \le r, \ \overline{v} = \overline{v_i} \\
-& \iff G\rb{\overline{v}} = T.
-\end{align*}
-Thus $ F_\theta = G $.
+\item $ G\rb{\overline{v}} = F $ for all $ \overline{v} \in \cb{T, F}^n $. Take $ \phi $ to be $ \andb{p_1}{\notb{p_1}} $. Then $ F_\phi = G $.
+\item List the $ \overline{v} \in \cb{T, F}^n $ with $ G\rb{\overline{v}} = T $ as $ \overline{v_1}, \dots, \overline{v_r} $. Write $ \overline{v_i} = \rb{v_{i1}, \dots, v_{in}} $, where each $ v_{ij} $ is $ T $ or $ F $. Define
+$$ q_{ij} = \begin{cases} p_j & v_{ij} = T \\ \notb{p_j} & v_{ij} = F \end{cases}. $$
+So $ q_{ij} $ has value $ T $ iff $ p_j $ has value $ v_{ij} $. Let $ \psi_i $ be $ \rb{q_{i1} \land \dots \land q_{in}} $. Then $ F_{\psi_i}\rb{\overline{v}} = T $ iff each $ q_{ij} $ has value $ T $, iff $ \overline{v} = \overline{v_i} $. Let $ \theta $ be $ \rb{\psi_1 \lor \dots \lor \psi_r} $. Then $ F_\theta\rb{\overline{v}} = T $ iff $ F_{\psi_i}\rb{\overline{v}} = T $ for some $ i $, iff $ \overline{v} = \overline{v_i} $ for some $ i \le r $. Thus $ F_\theta\rb{\overline{v}} = T $ iff $ G\rb{\overline{v}} = T $, that is $ F_\theta = G $.
 \end{enumerate}
 As $ \phi $ and $ \theta $ were constructed using only $ \neg, \land, \lor $, \ref{thm:1.1.9} follows.
 \end{proof}
@@ -947,7 +939,7 @@ v'\sb{\phi\rb{x_1}} = T \qquad
 \item $ \phi $ is $ \impb{\psi}{\chi} $, and
 \item $ \phi $ is $ \fab{x_i}\psi $.
 \end{enumerate}
-We leave the first two cases as exercises and do the third. We can assume that $ i \ne 1 $. Otherwise $ x_1 $ is not free in $ \phi $ and $ \phi\rb{t} $ is just $ \phi $. The lemma then follows from \ref{thm:2.3.3}. Note also that as $ t $ is free for $ x_1 $ in $ \fab{x_i}\psi $, it follows that $ t $ is free for $ x_1 $ in $ \psi $ and $ x_i $ is not a variable in $ t $. Suppose first that $ v'\sb{\phi\rb{x_1}} = F $. We show that $ v\sb{\phi\rb{t}} = F $. By \ref{def:2.2.9}, there is a valuation $ w' $ which is $ x_i $-equivalent to $ v' $ with $ w'\sb{\psi\rb{x_1}} = F $. Note that as $ i \ne 1 $,
+We leave the first two cases as exercises and do the third. We can assume that $ i \ne 1 $. Otherwise $ x_1 $ is not free in $ \phi $ and $ \phi\rb{t} $ is just $ \phi $. \ref{lem:2.3.7} then follows from \ref{thm:2.3.3}. Note also that as $ t $ is free for $ x_1 $ in $ \fab{x_i}\psi $, it follows that $ t $ is free for $ x_1 $ in $ \psi $ and $ x_i $ is not a variable in $ t $. Suppose first that $ v'\sb{\phi\rb{x_1}} = F $. We show that $ v\sb{\phi\rb{t}} = F $. By \ref{def:2.2.9}, there is a valuation $ w' $ which is $ x_i $-equivalent to $ v' $ with $ w'\sb{\psi\rb{x_1}} = F $. Note that as $ i \ne 1 $,
 \begin{equation}
 \label{eq:5}
 w'\rb{x_1} = v'\rb{x_1} = v\rb{t}.
@@ -1492,17 +1484,22 @@ The following are questions.
 
 \textbf{Zermelo-Fraenkel axioms} say how we are allowed to build sets. All can be expressed in a first-order language with equality using a single binary relation symbol $ \in $. Have to avoid Russell paradox, $ S = \cb{x \mid x \notin x} $. If this is a set, is $ S \in S $? $ \teb{S}\fab{x}\iffb{\inb{x}{S}}{\nib{x}{x}} $ leads to inconsistency.
 
-\noindent 1. \textbf{Axiom of extensionality}. Two sets are equal iff they have the same elements.
+\begin{axiom}[Axiom of extensionality]
+Two sets are equal iff they have the same elements.
 $$ \fab{x}\fab{y}\iffb{\eqb{x}{y}}{\fab{z}\iffb{\inb{z}{x}}{\inb{z}{y}}}. $$
+\end{axiom}
 
-\noindent 2. \textbf{Empty set axiom}.
+\begin{axiom}[Empty set axiom]
 $$ \teb{x}\fab{y}\nib{y}{x}. $$
 There is a unique set $ x $ with this property, $ \emptyset $.
+\end{axiom}
 
 \marginpar{Lecture 22 \\ Thursday \\ 22/11/18}
 
-\noindent 3. \textbf{Pairing axiom}. Given sets $ x, y $ then we can form $ z = \cb{x, y} $.
+\begin{axiom}[Pairing axiom]
+Given sets $ x, y $ then we can form $ z = \cb{x, y} $.
 $$ \fab{x}\fab{y}\teb{z}\fab{w}\iffb{\inb{w}{z}}{\orb{\eqb{w}{x}}{\eqb{w}{y}}}. $$
+\end{axiom}
 
 \begin{note}
 \hfill
@@ -1512,21 +1509,27 @@ $$ \fab{x}\fab{y}\teb{z}\fab{w}\iffb{\inb{w}{z}}{\orb{\eqb{w}{x}}{\eqb{w}{y}}}. 
 \end{enumerate}
 \end{note}
 
-\noindent 4. \textbf{Union axiom}. For any set $ A $ there is a set $ B = \cup A $.
+\begin{axiom}[Union axiom]
+For any set $ A $ there is a set $ B = \cup A $.
 $$ \fab{A}\teb{B}\fab{x}\iffb{\inb{x}{B}}{\teb{z}\andb{\inb{z}{A}}{\inb{x}{z}}}. $$
 So $ B = \cup \cb{z \mid z \in A} $. If $ A = \cb{x, y} $ then $ B = x \cup y $.
+\end{axiom}
 
 \begin{example}
 $ 3 = \cb{0, 1, 2} = \cb{0, 1} \cup \cb{2} $.
 \end{example}
 
-\noindent 5. \textbf{Power set axiom}. For any set $ A $, there is a set $ \wp\rb{A} $ whose elements are the subsets of $ A $.
+\begin{axiom}[Power set axiom]
+For any set $ A $, there is a set $ \wp\rb{A} $ whose elements are the subsets of $ A $.
 $$ \fab{A}\teb{B}\fab{z}\iffb{\inb{z}{B}}{\subb{z}{A}}. $$
 $ \subb{z}{A} $ means $ \fab{y}\impb{\inb{y}{z}}{\inb{y}{A}} $.
+\end{axiom}
 
-\noindent 6. \textbf{Axiom scheme of specification}. Suppose $ P\rb{x, y_1, \dots, y_r} $ is a formula in our language. Then we have an axiom
+\begin{axiom}[Axiom scheme of specification]
+Suppose $ P\rb{x, y_1, \dots, y_r} $ is a formula in our language. Then we have an axiom
 $$ \fab{A}\fab{y_1} \dots \fab{y_r}\teb{B}\fab{x}\iffb{\inb{x}{B}}{\andb{\inb{x}{A}}{P\rb{x, y_1, \dots, y_r}}}. $$
 So this guarantees we can form the subset of $ A $, $ B = \cb{x \in A \mid P\rb{x, y_1, \dots, y_r}} $, for all given sets $ A, y_1, \dots, y_r $.
+\end{axiom}
 
 \begin{example}
 \hfill
@@ -1545,8 +1548,9 @@ $$ \andb{\inb{\emptyset}{A}}{\fab{x}\impb{\inb{x}{A}}{\inb{x^\dagger}{A}}}. $$
 $ 2 = \cb{0, 1} = \cb{0} \cup \cb{1} = 1^\dagger $.
 \end{example}
 
-\noindent 7. \textbf{Axiom of infinity}.
+\begin{axiom}[Axiom of infinity]
 $$ \teb{A}\andb{\inb{\emptyset}{A}}{\fab{x}\impb{\inb{x}{A}}{\inb{x^\dagger}{A}}}. $$
+\end{axiom}
 
 \begin{definition}
 Let $ A $ be an inductive set. We can form using specification the set
@@ -1660,6 +1664,7 @@ Let $ b \in A $.
 \end{example}
 
 \begin{lemma}
+\label{lem:3.3.6}
 If $ \A = \ab{A; \le} $ is a woset, then every proper initial segment $ X $ is of the form $ A\sb{b} $ for some $ b \in A $.
 \end{lemma}
 
@@ -1716,25 +1721,31 @@ Axiom of choice gives any set $ A $ can be well-ordered. Putting this together w
 
 \subsection{Ordinals}
 
-Special wosets generalising notion of natural numbers are
+We now define some very particular wosets which generalise the natural
+numbers,
 $$ 0 = \emptyset, \qquad 1 = 0^\dagger = \cb{\emptyset}, \qquad 2 = 1^\dagger = \cb{0, 1}, \qquad 3 = 2^\dagger = \cb{0, 1, 2}, \qquad \dots. $$
-For $ m, n \in \omega $ $ m < n $ iff $ m \in n $.
+to the transfinite. For $ m, n \in \omega $ $ m < n $ iff $ m \in n $.
+
 
 \begin{definition}
 \hfill
 \begin{enumerate}
-\item A set $ X $ is a \textbf{transitive set} if every element of $ X $ is a subset of $ X $, that is if $ y \in x \in X $ then $ y \in X $.
+\item A set $ X $ is a \textbf{transitive set} if every element of $ X $ is also a subset of $ X $, that is if $ y \in x \in X $ then $ y \in X $.
 \item A set $ \alpha $ is an \textbf{ordinal} if
 \begin{enumerate}
 \item $ \alpha $ is a transitive set, and
-\item the relation $ < $ on $ \alpha $ given by for $ x, y \in \alpha $ $ x < y $ iff $ x \in y $ is a strict well-ordering.
+\item the relation $ < $ on $ \alpha $ given by, for $ x, y \in \alpha $,
+$$ x < y \qquad \iff \qquad x \in y $$
+is a strict well-ordering on $ \alpha $.
 \end{enumerate}
 \end{enumerate}
 \end{definition}
 
 \begin{note}
-If $ \alpha $ is an ordinal, then by definition $ \alpha \notin \alpha $.
+As part of the definition, we have $ \alpha \notin \alpha $ for an ordinal $ \alpha $.
 \end{note}
+
+It is standard to use lower case Greek letters for ordinals. The ordering on an ordinal $ \alpha $ is sometimes denoted by $ \in_\alpha $.
 
 \begin{lemma}
 \label{lem:3.4.2}
@@ -1742,22 +1753,24 @@ If $ \alpha $ is an ordinal, then so is $ \alpha^\dagger = \alpha \cup \cb{\alph
 \end{lemma}
 
 \begin{proof}
-As $ \alpha $ is a transitive set, so is $ \alpha^\dagger $. The ordering $ \in $ on $ \alpha^\dagger $ is that on $ \alpha $ with the extra element $ \alpha $ added as a greatest element.
+As $ \alpha $ is a transitive set, then so is $ \alpha^\dagger = \alpha \cup \cb{\alpha} $. Moreover, the ordering $ \in $ restricted to $ \alpha^\dagger $ is an ordering. We have the ordering on $ \alpha $ with the extra element $ \alpha $ added on the end as the greatest element. This is a well-ordering, as the ordering on $ \alpha $ is a well-ordering.
 \end{proof}
 
+We also denote the ordinal $ \alpha^\dagger $ by $ \alpha + 1 $. It is of course similar to the ordered set $ \alpha + 1 $ as defined previously.
+
 \begin{corollary}
-If $ n \in \omega $ then $ n $ is an ordinal.
+If $ n \in \omega $, then $ n $ is an ordinal.
 \end{corollary}
 
 \begin{proof}
-$ \phi $ is an ordinal, so this follows from \ref{lem:3.4.2} using induction \ref{thm:3.2.3}.
+As $ \emptyset $ is an ordinal, this follows by induction \ref{thm:3.2.3} using \ref{lem:3.4.2} above.
 \end{proof}
 
 \begin{proposition}
 \label{prop:3.4.4}
 \hfill
 \begin{enumerate}
-\item If $ \alpha $ is an ordinal, then $ \alpha \notin \alpha $.
+\item If $ \alpha $ is an ordinal then $ \alpha \notin \alpha $.
 \item If $ \alpha $ is an ordinal and $ \beta \in \alpha $ then $ \beta $ is an ordinal.
 \item If $ \alpha, \beta $ are ordinals and $ \alpha \subsetneq \beta $ then $ \alpha \in \beta $.
 \item If $ \alpha $ is an ordinal then $ \alpha $ is the set of $ \beta $ such that $ \beta $ is an ordinal and $ \beta \in \alpha $.
@@ -1767,16 +1780,22 @@ $ \phi $ is an ordinal, so this follows from \ref{lem:3.4.2} using induction \re
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Trivial.
-\item Just check definition.
-\item As $ \alpha \subsetneq \beta $, $ \beta \setminus \alpha $ is non-empty, so has a least element $ \gamma $. Show $ \gamma = \alpha $.
-\item By $ 2 $.
+\item Otherwise $ \alpha $ has an element $ x = \alpha $ with $ x \in x $. But in terms of the ordering on $ \alpha $ this says $ x < x $, which is impossible.
+\item First show $ \beta $ is a transitive set. So let $ x \in \beta $ and $ y \in x $. We want $ y \in \beta $. But we have $ y \in x \in \beta \in \alpha $. Using twice that $ \alpha $ is a transitive set we get that $ x, y \in \alpha $. So as the restriction of $ \in $ to $ \alpha $ is an ordering we get $ y \in \beta $. As $ \alpha $ is a transitive set $ \in_\beta $ is simply the restriction of $ \in_\alpha $ to $ \beta $, so this is a well-ordering.
+\item Note that as $ \alpha \subsetneq \beta $, $ \beta \setminus \alpha $ is non-empty, so has a least element $ \gamma $, under $ \in_\beta $. We aim to show that $ \alpha = \gamma $. Think about $ \alpha $ and $ \beta $ as natural numbers to see why this is plausible. If $ x \in \gamma $ then $ x \in \beta $, so $ x \in \alpha $, as $ \gamma $ is the least element of $ \beta \setminus \alpha $. Thus $ \gamma \subseteq \alpha $. Conversely suppose there is some $ y \in \alpha \setminus \gamma $. Then, as $ \in $ is an ordering on $ \beta $ and $ y \notin \gamma $, either $ y = \gamma $ or $ \gamma \in y $. But in either case we get $ \gamma \in \alpha $ as $ \alpha $ is a transitive set. A contradiction. So $ \alpha \subseteq \gamma $.
+\item Trivial, by $ 2 $.
 \end{enumerate}
 \end{proof}
 
 \begin{definition}
-If $ \alpha, \beta $ are ordinals, write $ \alpha < \beta $ to mean $ \alpha \in \beta $, and $ \alpha \le \beta $ means either $ \alpha < \beta $ or $ \alpha = \beta $.
+If $ \alpha, \beta $ are ordinals we write $ \alpha < \beta $ to indicate that $ \alpha \in \beta $, and $ \alpha \le \beta $ has the obvious meaning.
 \end{definition}
+
+\begin{note}
+By \ref{prop:3.4.4} above $ \alpha \le \beta $ iff $ \alpha \subseteq \beta $.
+\end{note}
+
+The following theorems can be paraphrased informally as saying that the class of all ordinals is well-ordered by $ \le $.
 
 \begin{theorem}
 \label{thm:3.4.6}
@@ -1785,17 +1804,17 @@ Suppose $ \alpha, \beta, \gamma $ are ordinals.
 \item If $ \alpha < \beta $ and $ \beta < \gamma $ then $ \alpha < \gamma $.
 \item If $ \alpha \le \beta $ and $ \beta \le \alpha $ then $ \alpha = \beta $.
 \item Exactly one of $ \alpha < \beta $, $ \alpha = \beta $, $ \beta < \alpha $ holds.
-\item If $ X $ is an non-empty set of ordinals then $ X $ has a least element $ \delta $. Moreover, $ \delta = \cap X $. The collection of ordinals is well-ordered.
+\item If $ X $ is a non-empty set of ordinals, then $ X $ has a least element $ \delta $, and moreover, $ \delta = \cap X $.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Trivial.
-\item By $ 1 $ and $ \alpha \notin \alpha $.
-\item Show that if $ \alpha \ne \beta $ then $ \alpha \subsetneq \beta $ or $ \beta \subsetneq \alpha $. Consider $ \alpha \cap \beta $. Show this is an ordinal. If $ \alpha \nsubseteq \beta $ then $ \alpha \cap \beta \subsetneq \alpha $ and if $ \beta \nsubseteq \alpha $ then $ \alpha \cap \beta \subsetneq \beta $. By \ref{prop:3.4.4}(3) we get $ \alpha \cap \beta \in \alpha $ and $ \alpha \cap \beta \in \beta $ so $ \alpha \cap \beta \in \alpha \cap \beta $, a contradiction, all using $ \alpha \cap \beta $ is an ordinal.
-\item See notes.
+\item If $ \alpha \in \beta \in \gamma $ then $ \alpha \in \gamma $ as $ \gamma $ is a transitive set.
+\item Otherwise we have $ \alpha \in \beta $ and $ \beta \in \gamma $ whence $ \alpha \in \alpha $, contradicting \ref{prop:3.4.4}.
+\item Certainly we already know that no more than one of these holds. Consider $ \alpha \cap \beta $. This is also an ordinal by $ 4 $. (TODO Exercise) Show that if $ \alpha \ne \beta $ then $ \alpha \subsetneq \beta $ or $ \beta \subsetneq \alpha $. If, for example $ \alpha \cap \beta = \alpha $ then $ \alpha \subseteq \beta $ and so $ \alpha \le \beta $. So for a contradiction, suppose $ \alpha \cap \beta $ is a proper subset of both $ \alpha $ and $ \beta $. Thus, by \ref{prop:3.4.4}(3), $ \alpha \cap \beta \in \alpha $ and $ \alpha \cap \beta \in \beta $. So $ \alpha \cap \beta \in \alpha \cap \beta $, a contradiction, all using $ \alpha \cap \beta $ is an ordinal.
+\item Let $ \alpha \in X $ be any element and consider $ \alpha \cap X $. So this is the set of elements of $ X $ which are less than $ \alpha $. If this is empty then $ \alpha $ is the least element of $ X $. Otherwise, it is a non-empty subset of $ \alpha $ so has a least element $ \beta $. It is then obvious that $ \beta $ is the least element of $ X $. If $ \delta $ is the least element of $ X $, then $ \delta \subseteq \eta $ for all $ \eta \in X $. It follows that $ \delta = \cap X $.
 \end{enumerate}
 \end{proof}
 
@@ -1810,20 +1829,78 @@ Suppose $ \alpha, \beta, \gamma $ are ordinals.
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item By \ref{thm:3.4.6}, $ X $ is well-ordered by $ \in $. So it is enough to show that $ \cup X $ is a transitive set. (TODO Exercise)
-\item Check that $ \cup \omega = \omega $, then apply $ 1 $.
+\item By \ref{thm:3.4.6}, $ X $ is well-ordered by $ \in $. So it is enough to show that $ \cup X $ is a transitive set. If $ y \in z \in \cup X $, there is $ x \in X $ with $ z \in x $. So $ y \in z \in x $ and therefore $ y \in x $. So $ y \in \cup X $, as required.
+\item Check that $ \cup \omega = \omega $, and use $ 1 $.
 \end{enumerate}
 \end{proof}
 
-Now form ordinals
+So we can now form ordinals
 $$ \omega^\dagger = \cb{0, 1, \dots, \omega}, \qquad \rb{\omega^\dagger}^\dagger = \cb{0, 1, \dots, \omega, \omega^+}, \qquad \dots. $$
+Just as the natural numbers provided us with canonical examples of finite sets, we will now show that ordinals do the same thing for all wosets.
 
 \begin{theorem}
+\label{thm:3.4.8}
 If $ \ab{A; \le} $ is a woset, then there is a unique ordinal $ \alpha $ which is similar to $ \ab{A; \le} $.
 \end{theorem}
 
 \begin{proof}
-For uniqueness, suppose $ \ab{A; \le} $ is similar to ordinals $ \alpha, \beta $. So $ \alpha, \beta $ are similar. May assume $ \alpha \le \beta $, so if $ \alpha \ne \beta $, then $ \alpha < \beta $. $ \alpha $ is therefore a proper initial segment of $ \beta $. By \ref{thm:3.3.7} no woset is similar to a proper initial segment of itself, a contradiction. For existence, let $ X $ be the $ x \in A $ such that the initial segment $ A\sb{x} $ is similar to an ordinal. Note that if $ A \ne \emptyset $, then the least element of $ A $ is in $ X $.
+For uniqueness, suppose $ \ab{A; \le} $ is similar to ordinals $ \alpha, \beta $. Then $ \alpha $ and $ \beta $ are similar. Without loss of generality, may assume $ \alpha \le \beta $, so if $ \alpha \ne \beta $ we have that $ \alpha < \beta $. $ \alpha $ is therefore a proper initial segment of $ \beta $, and so $ \beta $ is similar to a proper initial segment of itself, which contradicts \ref{thm:3.3.7}. This establishes the uniqueness part of the statement. Now for existence, we show that there is some ordinal similar to $ A $. Let
+$$ X = \cb{x \in A \mid \text{the initial segment } A\sb{x} \text{ is similar to an ordinal}}. $$
+Note that if $ A \ne \emptyset $, then the least element of $ A $ is in $ X $. Note that by uniqueness, if $ x \in X $ then $ A\sb{x} $ is similar to a unique ordinal $ \alpha_x $. Let
+$$ S = \cb{\alpha_x \mid x \in X}. $$
+So $ S $ is a set of ordinals. In fact, $ S $ is an ordinal. To see this note that we need to only show that it is a transitive set, that is if $ \beta \in \alpha_x \in S $ then $ \beta \in S $. Let $ \alpha_x \in S $ and let $ \pi : A\sb{x} \to \alpha_x $ be a similarity. If $ \beta \in \alpha_x $ let $ y = \pi^{-1}\rb{\beta} $. Then the restriction of $ \pi $ to $ A\sb{y} $ gives a similarity $ A\sb{y} \to \cb{\delta \in \alpha_x \mid \delta < \beta} = \beta $. So $ \beta = \alpha_y \in S $. So now write $ \alpha $ instead of $ S $. By what we already did, this argument also shows that $ X $ is an initial segment of $ A $. If we knew that $ A = X $, then we would be done as the function $ X \to \alpha $ given by $ x \mapsto \alpha_x $ is easily seen to be a similarity $ A \to \alpha $. So suppose that $ X \ne A $, so $ X $ is a proper initial segment of $ A $. By \ref{lem:3.3.6} we have that $ X = A\sb{z} $ for some $ z \in A \setminus X $. Know that $ x \mapsto \alpha_x $ gives a similarity $ X \to \alpha $. But then $ z \in X = A\sb{z} $, by definition of $ X $, a contradiction. So $ X = A $ and $ A \simeq \alpha $.
 \end{proof}
+
+\marginpar{Lecture 25 \\ Thursday \\ 29/11/18}
+
+There is a problem with this proof. Why is $ S $ a set? No combination of the axioms we have given so far actually justifies the existence of such a set. There is no alternative but to assume another axiom about how we are allowed to create new sets from old ones.
+
+\begin{definition}
+Suppose $ F\rb{x, y, z_1, \dots, z_r} $ is a property of sets, expressible in our first-order language such that, whenever $ s_1, \dots, s_r $ are sets, for every set $ b $ there is a unique set $ a $ where $ F\rb{a, b, s_1, \dots, s_r} $ holds. $ F $ is called an \textbf{operation} on sets, with $ z_1, \dots, z_r $ being \textbf{parameter variables}, and the $ s_1, \dots, s_r $ are referred to as the \textbf{parameters} of the operation, and $ F\rb{x, y, s_1, \dots, s_r} $ gives us a function on sets $ b \mapsto a $.
+\end{definition}
+
+\begin{example}
+$ F\rb{a, b} $ says $ a $ is the power set of $ b $ has no parameter variables. $ F\rb{a, b, c} $ says $ a $ is the set of functions from $ b $ to $ c $ has a parameter $ c $.
+\end{example}
+
+\begin{axiom}[Axiom of replacement]
+Suppose $ F\rb{x, y, z_1, \dots, z_r} $ is an operation on sets as above and $ s_1, \dots, s_r $ are sets and $ B $ is a set. Then there is a set $ A $ such that
+$$ A = \cb{a \mid \exists b \in B, \ F\rb{a, b, s_1, \dots, s_r}}. $$
+\end{axiom}
+
+So here the set $ A $ is obtained from $ B $ by replacing each $ b \in B $ by the corresponding set $ a $ for which $ F\rb{a, b, s_1, \dots, s_r} $ holds. If we allow ourselves this axiom then the set $ S $ in the above proof of \ref{thm:3.4.8} is justified. Obtain $ S $ from $ X $ using the operation $ F\rb{a, b} $ to say either $ b $ is a woset similar to the ordinal $ a $, or $ b $ is not a woset and $ a = \emptyset $. Then apply this to $ B = \cb{A\sb{x} \mid x \in X} $ to get $ S = \cb{x \mid \exists y \in X, \ F\rb{x, A\sb{y}}} $.
+
+\subsection{Transfinite induction}
+
+\begin{theorem}[Transfinite induction]
+Suppose $ P\rb{x} $ is a property of sets. Assume that for all ordinals $ \alpha $, if $ P\rb{\beta} $ holds for all ordinals $ \beta < \alpha $, then $ P\rb{\alpha} $ holds. Then $ P\rb{\gamma} $ holds for all ordinals $ \gamma $.
+\end{theorem}
+
+\begin{proof}
+Note that if $ \alpha = 0 = \emptyset $ then $ P\rb{\beta} $ holds for all $ \beta < \alpha $, vacuously. So by assumption $ P\rb{0} $ holds. Suppose for a contradiction that there is some ordinal $ \gamma $ such that $ P\rb{\gamma} $ does not hold. There is a least such $ \gamma $, call it $ \alpha $, by applying \ref{thm:3.4.6}(4) to $ \cb{\beta \mid \beta \le \gamma, \ \neg P\rb{\beta}} $. Thus, for an ordinal $ \beta < \alpha $, $ P\rb{\beta} $ holds. By assumption, $ P\rb{\alpha} $ holds, a contradiction.
+\end{proof}
+
+\begin{theorem}
+\label{thm:3.5.2}
+Suppose $ \alpha $ is an infinite ordinal, that is $ \omega \le \alpha $. Then $ \alpha \approx \alpha \times \alpha $.
+\end{theorem}
+
+\begin{corollary}
+\hfill
+\begin{enumerate}
+\item If $ \ab{A; \le} $ is an infinite woset then $ \abs{A} = \abs{A \times A} $.
+\item Assuming axiom of choice, if $ A $ is any infinite set then $ \abs{A} = \abs{A \times A} $.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item By \ref{thm:3.4.8}, there is an ordinal $ \alpha $ with $ \alpha \approx A $. So $ \abs{A} = \abs{A \times A} $ follows from \ref{thm:3.5.2}.
+\item By axiom of choice, $ A $ can be well-ordered, so $ 2 $ follows from $ 1 $.
+\end{enumerate}
+\end{proof}
+
+$ 2 $ is called the \textbf{fundamental theorem of cardinal arithmetic}.
 
 \end{document}
