@@ -2249,8 +2249,85 @@ It follows that if $ p_9 \in C_1 \cap C_2 $, $ P_1\rb{p_9} = P_2\rb{p_9} = 0 $, 
 
 \section{Riemann surfaces}
 
-In this section, we will see that a smooth projective curve has a single topological invariant that characterises its topology, its genus, and we will introduce the formalism of Riemann surfaces to study this genus. We have seen that a projective line $ \P^1 $ is homeomorphic to the sphere $ S^2 \subseteq \R^3 $. We also saw that stereographic projection defined a homeomorphism (TODO Exercise: check that it is in fact a diffeomorphism) between any smooth conic $ C $ and $ \P^1 $, by a bijection between $ C $ and lines through $ p_0 $, or a bijection to any line $ L_0 $ not containing $ p_0 $, so that a smooth conic is also homeomorphic to a sphere $ S^2 \subseteq \R^3 $. If $ C \subseteq \P^2 $ is a smooth projective plane curve of degree $ d \ge 3 $, can do a similar projection. We will see that $ C $ is a homeomorphic to a sphere with $ g $ handles, where $ g $ is the genus of $ C $ and can be determined in terms of $ d $. In these cases, stereographic projection turns out to be a bit more complicated than for smooth conics. We now look at the case $ d = 3 $, where the study of stereographic projection gives us a good grasp of the topology of a smooth cubic. Stereographic projection of $ C $ with respect to $ p_0 \in C $ is defined as follows. Fix a smooth point $ p_0 \in C $, recall that $ \mathcal{S} = \cb{L \in \mathcal{L}_1 \mid p_0 \in L} \cong \P^1 $, and we can identify $ \mathcal{S} $ with any line $ L_0 \subseteq \P^2 $ that does not contain $ p_0 $ by the bijection $ L \in \mathcal{S} \mapsto L \cap L_0 \in L_0 $. Then, the stereographic projection is the map
+In this section, we will see that a smooth projective curve has a single topological invariant that characterises its topology, its genus, and we will introduce the formalism of Riemann surfaces to study this genus. We have seen that a projective line $ \P^1 $ is homeomorphic to the sphere $ S^2 \subseteq \R^3 $. We also saw that stereographic projection defined a homeomorphism (TODO Exercise: check that it is in fact a diffeomorphism) between any smooth conic $ C $ and $ \P^1 $, by a bijection between $ C $ and lines through $ p_0 $, or a bijection to any line $ L_0 $ not containing $ p_0 $, so that a smooth conic is also homeomorphic to a sphere $ S^2 \subseteq \R^3 $. If $ C \subseteq \P^2 $ is a smooth projective plane curve of degree $ d \ge 3 $, can do a similar projection. We will see that $ C $ is a homeomorphic to a sphere with $ g $ handles, where $ g $ is the genus of $ C $ and can be determined in terms of $ d $. In these cases, stereographic projection turns out to be a bit more complicated than for smooth conics. We now look at the case $ d = 3 $, where the study of stereographic projection gives us a good grasp of the topology of a smooth cubic. Stereographic projection of $ C $ with respect to $ p_0 \in C $ is defined as follows. Fix a smooth point $ p_0 \in C $, recall that $ \mathcal{S} = \cb{L \in \mathcal{L}_1 \mid p_0 \in L} \cong \P^1 $, and we can identify $ \mathcal{S} $ with any line $ L_0 \subseteq \P^2 $ that does not contain $ p_0 $ by the bijection $ L \in \mathcal{S} \mapsto L \cap L_0 \in L_0 $. Then, the stereographic projection is the surjective map
 $$ \pi : p \in C \mapsto L_{p, p_0} \cap L_0, $$
 where $ L_{p, p_0} $ is the unique line through $ p $ and $ p_0 $ if $ p \ne p_0 $ or $ T_{p_0}\rb{C} $ if $ p = p_0 $, which is not one to one anymore. Equivalently, $ L_{p, p_0} $ is the line through $ p_0 $ and $ \pi\rb{p} $. By Proposition \ref{prop:12.14} and Bézout's Theorem \ref{thm:11.11}, $ \pi^{-1}\rb{\pi\rb{p}} \subseteq C $ consists of $ d - 1 $ points unless $ L_{p, p_0} $ is tangent to $ C $ at some point in $ \pi^{-1}\rb{p} $. $ \pi $ is a $ d - 1 $ to one covering space of $ \P^1 $.
+
+\marginpar{Lecture 23 \\ Thursday \\ 29/11/18}
+
+\begin{example}
+The covering space
+\begin{align*}
+f : S^1 \subseteq \C & \to S^1 \subseteq \C \\
+z & \mapsto z^2
+\end{align*}
+is two to one everywhere. Pretend I do not know the source $ S^1 $. Could have a disjoint union of two copies of $ S^1 $ with the identity map on each copy, which is a trivial covering space. Glue back with a cross to give the $ S^1 $ from before, which is a non-trivial covering space.
+\end{example}
+
+\begin{example}
+Assume $ d = 3 $. Recall that up to projective transformation, a smooth cubic is defined by an equation of the form
+$$ C = \cb{P\rb{x_0, x_1, x_2} = x_1^2x_2 - x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2} = 0}, \qquad \lambda \ne 0, 1. $$
+Affine equation is $ C = \cb{y^2 = x\rb{x - 1}\rb{\lambda}} $. If $ \pi : C \to \P^1 $ is the stereographic projection from the inflection point $ p_0 = \sb{0, 1, 0} $, we see by direct calculation that $ \pi $ is two to one and the fiber $ \pi^{-1}\rb{\pi\rb{p}} $ consists of precisely two points unless $ p = p_0 = \sb{0, 1, 0} $, or $ p_0 \in T_p\rb{C} $, that is $ P_{x_1}\rb{p} = 0 $, which occurs when $ p $ is $ p_0 $ or one of the points $ p_1 = \sb{0, 0, 1} $, $ p_2 = \sb{1, 0, 1} $, $ p_3 = \sb{\lambda, 0, 1} $. The projection $ \pi $ presents $ C $ as a two sheeted cover of $ \P^1 $ ramified at the points $ p_0, p_1, p_2, p_3 $. Informally, in the neighbourhood of a ramification point, the stereographic projection $ \pi $ behaves like
+\begin{align*}
+C_0 & \to \C = \cb{y = 0} \\
+\rb{x, y} & \mapsto x.
+\end{align*}
+Projectively, $ \sb{x_0, x_1, x_2} \mapsto \sb{x_0, x_1} \in \P^1 $. From this, we construct a topological model of $ C $ as follows. Take two spheres $ \P^1 \cong S^2 $ and slit each sphere twice in identical ways along paths from $ \pi\rb{p_0} $ and $ \pi\rb{p_1} $ and $ \pi\rb{p_2} $ and $ \pi\rb{p_3} $. Open up the slits to make two holes, then turn one of the spheres over and glue it to the other respecting the markings. In this way, you obtain a torus. For any value of $ \lambda $, we obtain a fixed topological object, the torus $ T \cong S^1 \times S^1 $. So $ C $ is homeomorphic to a torus. Where did $ \lambda $ go? It is in the structure of the Riemann surface. The parameter $ \lambda $ that distinguishes different non-isomorphic cubics will influence the complex structure that we obtain on $ T $, that is the structure of complex-analytic manifold.
+\end{example}
+
+\begin{example}
+Similarly, if
+$$ C = \cb{y^2 = \prod_{i = 1}^{2g + 1} \rb{x - a_i}} \subseteq \C^2, $$
+for distinct $ a_i \in \C $, the projectivisation of $ C $ is a hyper elliptic curve $ \overline{C} \subseteq \P^2 $. Just like the cubic above, the stereographic projection from $ p_0 = \sb{0, 1, 0} $ is a two-sheeted cover ramified at $ 2g + 2 $ points $ p_0, \dots, p_{2g + 1} $, where $ p_i = \sb{a_i, 0, 1} $. The topological model of $ \overline{C} $ is then a sphere with $ g $ holes.
+\end{example}
+
+We will now adopt a more analytic viewpoint on the study of smooth projective plane curves, and see how this complements the algebraic approach. We will see that a smooth projective curve $ C \subseteq \P^2 $ is topologically an orientable compact surface. Those are classified by a single number, the Euler characteristic, or equivalently, the genus, the number of holes or handles in the surface. The degree-genus formula says that a smooth projective curve $ C \subseteq \P^2 $ of degree $ d $ has genus $ g = \rb{d - 1}\rb{d - 2} / 2 $.
+
+\begin{definition}
+A \textbf{Riemann surface} is
+\begin{enumerate}
+\item a Hausdorff topological space $ S $, endowed with
+\item an \textbf{atlas} $ \cb{\rb{U_i, \phi_i}}_{i \in I} $, where
+\begin{enumerate}
+\item for each $ i \in I $, $ U_i \subseteq S $ is an open subset,
+\item for each $ i \in I $, $ \phi_i : U_i \to V_i $ is a homeomorphism, where $ V_i \subseteq \C $ is an open subset,
+\item for each $ i \in I $, $ U_i $ form an open cover of $ S $, that is $ S = \cup_{i \in I} U_i $, and
+\item if $ U_i \cap U_j \ne \empty $, the \textbf{transition function}
+$$ \phi_j \circ \phi_i^{-1} : \phi_i\rb{U_i \cap U_j} \to \phi_j\rb{U_i \cap U_j}, $$
+where $ \phi_i\rb{U_i \cap U_j} $ and $ \phi_i\rb{U_i \cap U_j} $ are open subsets of $ \C $, is \textbf{biholomorphic}, so holomorphic and invertible with holomorphic inverse.
+\end{enumerate}
+This is to talk about holomorphicity of functions defined on $ S $.
+\end{enumerate}
+\end{definition}
+
+For each $ i \in I $, $ U_i $ is a \textbf{coordinate neighbourhood} and $ \phi_i : U_i \to \C $ is a \textbf{holomorphic coordinate} on $ U_i $.
+
+\begin{remark}
+Being locally homeomorphic to an open subset of $ \C \cong \R^2 $, a Riemann surface is really a surface in the sense of differential geometry, that is a space with two real dimensions.
+\end{remark}
+
+\begin{remark}
+Keeping the notation of the above definition, let $ f_i : V_i \to f_i\rb{V_i} \subseteq \C $ be a biholomorphic function. If $ S $ is a Riemann surface, and $ \cb{\rb{U_i, \phi_i}}_{i \in I} $ is an atlas, then for each $ i \in I $, $ f_i \circ \phi_i $ is also a holomorphic coordinate on $ U_i \subseteq S $, so that $ \cb{\rb{U_i, f_i \circ \phi_i}}_{i \in I} $ is another atlas for $ S $.
+\end{remark}
+
+We are interested in properties of Riemann surfaces that are independent of the choice of holomorphic coordinates. In some cases, we will use holomorphic functions to change the atlas to more suitable holomorphic coordinates.
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ S = \P^1 $, and consider $ \cb{\rb{U_0, \phi_0}, \rb{U_1, \phi_1}} $, where
+$$ U_0 = \cb{\sb{x_0, x_1} \in \P^1 \mid x_0 \ne 0}, \qquad \phi_0 : \sb{x_0, x_1} \in U_0 \mapsto x_1 / x_0 \in \C, $$
+$$ U_1 = \cb{\sb{x_0, x_1} \in \P^1 \mid x_1 \ne 0}, \qquad \phi_1 : \sb{x_0, x_1} \in U_1 \mapsto x_0 / x_1 \in \C. $$
+Then $ S = U_0 \cup U_1 $, $ \phi_0, \phi_1 $ are homeomorphic, and on $ U_0 \cap U_1 = \cb{x_0 \ne 0, x_1 \ne 0} $,
+\begin{alignat*}{3}
+\phi_0 \circ \phi_1^{-1} : \C \setminus \cb{0} & \qquad \to \qquad & U_1 \cap U_0 & \qquad \to \qquad & \C \\
+z & \qquad \mapsto \qquad & \sb{z, 1} & \qquad \mapsto \qquad & 1 / z,
+\end{alignat*}
+which is biholomorphic because $ z \ne 0 $ on $ \C^* = \phi_1\rb{U_0 \cap U_1} $. So this is an atlas, and $ \P^1 $ acquires the structure of a Riemann surface.
+\item Let $ \omega_1, \omega_2 \in \C^* $ be complex numbers that are linearly independent over $ \R $, that is $ \omega_1 / \omega_2 \notin \R $, and let $ \Lambda = \Z\omega_1 + \Z\omega_2 = \cb{n\omega_1 + m\omega_2 \mid \rb{n, m} \in \Z^2} \subseteq \C^2 $ be a subgroup of $ \C $ with respect to $ + $. Define an equivalence relation $ \sim $ on $ \C $ by
+$$ z_1 \sim z_2 \qquad \iff \qquad z_1 - z_2 \in \Lambda, $$
+and we are going to consider the quotient $ X = \C / \Lambda = \C / \sim $.
+\end{enumerate}
+\end{example}
 
 \end{document}
