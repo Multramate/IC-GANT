@@ -2284,6 +2284,7 @@ for distinct $ a_i \in \C $, the projectivisation of $ C $ is a hyper elliptic c
 We will now adopt a more analytic viewpoint on the study of smooth projective plane curves, and see how this complements the algebraic approach. We will see that a smooth projective curve $ C \subseteq \P^2 $ is topologically an orientable compact surface. Those are classified by a single number, the Euler characteristic, or equivalently, the genus, the number of holes or handles in the surface. The degree-genus formula says that a smooth projective curve $ C \subseteq \P^2 $ of degree $ d $ has genus $ g = \rb{d - 1}\rb{d - 2} / 2 $.
 
 \begin{definition}
+\label{def:15.1}
 A \textbf{Riemann surface} is
 \begin{enumerate}
 \item a Hausdorff topological space $ S $, endowed with
@@ -2324,10 +2325,45 @@ Then $ S = U_0 \cup U_1 $, $ \phi_0, \phi_1 $ are homeomorphic, and on $ U_0 \ca
 z & \qquad \mapsto \qquad & \sb{z, 1} & \qquad \mapsto \qquad & 1 / z,
 \end{alignat*}
 which is biholomorphic because $ z \ne 0 $ on $ \C^* = \phi_1\rb{U_0 \cap U_1} $. So this is an atlas, and $ \P^1 $ acquires the structure of a Riemann surface.
-\item Let $ \omega_1, \omega_2 \in \C^* $ be complex numbers that are linearly independent over $ \R $, that is $ \omega_1 / \omega_2 \notin \R $, and let $ \Lambda = \Z\omega_1 + \Z\omega_2 = \cb{n\omega_1 + m\omega_2 \mid \rb{n, m} \in \Z^2} \subseteq \C^2 $ be a subgroup of $ \C $ with respect to $ + $. Define an equivalence relation $ \sim $ on $ \C $ by
+
+\marginpar{Lecture 24 \\ Friday \\ 30/11/18}
+
+\item Let $ \omega_1, \omega_2 \in \C^* $ be complex numbers that are linearly independent over $ \R $, that is $ \omega_1 / \omega_2 \notin \R $, and let $ \Lambda = \Z\omega_1 + \Z\omega_2 = \cb{n\omega_1 + m\omega_2 \mid \rb{n, m} \in \Z^2} \subseteq \C $ be a subgroup of $ \C $ with respect to $ + $. Define an equivalence relation $ \sim $ on $ \C $ by
 $$ z_1 \sim z_2 \qquad \iff \qquad z_1 - z_2 \in \Lambda, $$
-and we are going to consider the quotient $ X = \C / \Lambda = \C / \sim $.
+and we are going to consider the quotient $ X = \C / \Lambda = \C / \sim $. There is a natural quotient map $ \pi : \C \to X = \C / \Lambda $ and we endow $ X $ with the quotient topology, that is $ U \subseteq X $ is open if and only if $ \pi^{-1}\rb{U} \subseteq \C $ is open. Note that for all $ z \in \C $, $ z $ has a unique representative in the \textbf{fundamental parallelogram} $ \mathcal{P} $ with vertices at $ 0 $, $ \omega_1 $, $ \omega_2 $, and $ \omega_1 + \omega_2 $, where opposite sides of $ \mathcal{P} $ are identified. Topologically, $ X \cong T $, where $ T $ is a complex torus. From this description, is not very hard to see that $ X $ is compact. If $ z \in \C $, then for $ \epsilon > 0 $ small enough, the open disc $ D\rb{z, \epsilon} = \cb{\omega \in \C \mid \abs{z - \omega} < \epsilon} $ is homeomorphic to $ \pi\rb{D\rb{z, \epsilon}} $. Denote $ \phi_z $ the resulting homeomorphism $ \phi_z : \pi\rb{D\rb{z, \epsilon}} \to D\rb{z, \epsilon} $. If $ \epsilon $ is as above, since $ \C = \cup_{z \in \C} D\rb{z, \epsilon} $ and $ X $ is compact, I can choose a finite subcover, so we may choose $ z_1, \dots, z_N \in X $ such that $ X = \cup_{1 \le i \le N} \pi\rb{D\rb{z_i, \epsilon}} $, and use these as coordinate neighbourhoods. Then, $ \cb{\rb{U_i = \pi\rb{D\rb{z_i, \epsilon}} \subseteq \C, \phi_{z_i}}} $ is an atlas for $ X $. Indeed, the only thing left to check is that transition functions are biholomorphic, but this is clear, indeed note that $ \phi_j \circ \phi_i^{-1} : z \mapsto z + \lambda $ are all translations by an element $ \lambda \in \Lambda $. Hint is to pick $ x \in U_i \cap U_j $ then its preimages are $ x_i \in D\rb{z_i, \epsilon} $ and $ x_j \in D\rb{z_j, \epsilon} $, so we have $ x_i = \lambda + x_j $ for some $ \lambda \in \Lambda $. $ \lambda $ cannot vary as you move around in $ U_i \cap U_j $. These things are exactly the smooth cubics in $ \P^2 $. Note that $ \C / \Lambda $ is a group. Every cubic in $ \P^2 $ also has a group structure.
 \end{enumerate}
 \end{example}
+
+Next, we consider what will be for us the fundamental example of Riemann surfaces, smooth plane projective curves.
+
+\begin{lemma}
+Let $ C = \cb{P\rb{x_0, x_1, x_2} = 0} \subseteq \P^2 $ be a smooth plane projective curve. Then $ C $ is naturally a Riemann surface.
+\end{lemma}
+
+To prove this, we need a version of the implicit function theorem for holomorphic functions, and polynomials in particular.
+
+\begin{theorem}[Implicit function theorem for complex polynomials]
+Let $ f\rb{x, y} \in \C\sb{x, y} $ be a polynomial and assume that $ \rb{a, b} \in \C^2 $ satisfies
+$$ f\rb{a, b} = 0, \qquad \dfrac{\partial f}{\partial x}\rb{a, b} \ne 0. $$
+Let $ C = \cb{f\rb{x, y} = 0} $. Then locally around $ \rb{a, b} $, $ C $ is the graph of a holomorphic function. There are open neighbourhoods $ a \in U \subseteq \C $ and $ b \in V \subseteq \C $ and a holomorphic function $ \lambda : V \to U $ such that
+$$ \lambda\rb{b} = a, \qquad f\rb{\lambda\rb{y}, y} = 0, $$
+for all $ y \in V $, so $ C \cap \rb{U \times V} = \cb{\rb{\lambda\rb{y}, y} \mid y \in V} $ is the graph of $ \lambda $. In particular, $ V \to C \cap \rb{U \times V} $ by $ y \mapsto \rb{\lambda\rb{y}, y} $ is a homeomorphism, with inverse $ \rb{x, y} \mapsto y $. Further, for all $ \rb{x, y} \in U \times V $,
+$$ f\rb{x, y} = \rb{x - \lambda\rb{y}} \cdot g\rb{x, y}, $$
+where $ g $ is a polynomial in one complex variable $ x $ whose coefficients are holomorphic functions of $ y $, that is $ g $ can be written
+$$ g\rb{x, y} = \sum_{i = 0}^n a_i\rb{y}x^i, $$
+where each $ a_i : \C \to \C $ is a holomorphic function.
+\end{theorem}
+
+\begin{example}
+\hfill
+\begin{enumerate}
+\item Let $ x^2 + y^2 - 1 = 0 $. Around $ \rb{0, 1} $, use $ y = \sqrt{x^2 + 1} $. Around $ \rb{1, 0} $, use $ x = \sqrt{y^2 + 1} $.
+\item If $ f\rb{x, y} = x - p\rb{y} $ then $ \partial f / \partial x \equiv 1 $, so $ f\rb{x, y} = 0 $ gives $ x = p\rb{y} $.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+We define an atlas that gives $ C $ the structure of a Riemann surface. Recall that $ U_i \subseteq \P^2 $ were the open covers $ U_i = \cb{x_i \ne 0} $, we denote by $ U_i \setminus C $ the affine curve that is the restriction of $ C $ to the open set $ U_i \cong \C^2 $. We show that each $ p \in C $ lies in an open coordinate neighbourhood $ p \in U_p \subseteq C $ and construct homeomorphisms $ \phi_p : U_p \to \phi_p\rb{U_p} \subseteq \C $ such that $ \cb{\rb{U_p, \phi_p}}_{p \in C} $ form an atlas. We may assume that $ p = \sb{a, b, 1} \in U_2 $, and write $ C \cap U_2 = \cb{f\rb{x, y} = P\rb{x, y, 1} = 0} = C_0 $, where $ x = x_0 / x_2 $ and $ y = x_1 / x_2 $. Since $ C $ is smooth, $ p \in C $ is a smooth point, so $ \rb{f_x\rb{a, b}, f_y\rb{a, b}} \ne \rb{0, 0} $. If $ f_y\rb{a, b} \ne 0 $, then, by the implicit function theorem, there are neighbourhoods $ a \in V \subseteq \C $ and $ b \in W \subseteq \C $ and a holomorphic function $ g : V \to W $ such that $ C_0 \cap \rb{V \times W} = \cb{x = g\rb{x} \mid x \in V} $. We may further assume, since $ f_y $ is continuous that $ f_y\rb{x, y} \ne 0 $ for all $ \rb{x, y} \in C_0 \cap \rb{V \times W} $. Define $ p \in U_p^{2, y} = C_0 \cap \rb{V \times W} $ and $ \phi_p^y : U_p^{2, y} \to \C $ by $ \sb{x, y, 1} \mapsto x $, which is a homeomorphism onto its image with inverse $ x \mapsto \sb{x, g\rb{x}, 1} $. If on the other hand $ f_y\rb{a, b} = 0 $, then we have $ f_x\rb{a, b} \ne 0 $, and we define in the same way using $ x $ as a function of $ y $ to get $ U_p^{2, x} $ and $ \phi_p^x : U_p^{2, x} $ by $ \sb{x, y, 1} \mapsto y $. Moreover, if $ p \in U_1 \setminus U_2 $ or $ p \in U_0 \setminus \rb{U1 \cup U2} $, we also define $ U_p^{1, y}, U_p^{1, x}, U_p^{0, y}, U_p^{0, x} $ in the exact same manner. Note that $ x $ and $ y $ mean different things in different affine charts. We have to check that transition functions between these open sets are biholomorphic. If $ U_p^{2, y} \cap U_{p'}^{2, y} \ne \emptyset $, then $ \phi_p^y = \phi_{p'}^y $, so that the transition function is the identity. If $ \sb{a, b, 1} \in U_p^{2, y} \cap U_{p'}^{2, x} $, then $ f_x\rb{a, b} \ne 0 $ and $ f_y\rb{a, b} \ne 0 $ and on $ U_p^{2, y} \cap U_{p'}^{2, x} $, there are holomorphic functions $ g : V \to W $ and $ h : W \to V $ such that $ y = g\rb{x} $ and $ x = h\rb{y} $. By construction, $ g, h $ are the transition functions between the holomorphic coordinates $ \sb{x, y, 1} \mapsto x $ and $ \sb{x, y, 1} \mapsto y $. Now we have to look at open subsets that we get from points that live in different affine charts $ U_i $. Assume for example that $ U_p^{2, ?} \cap U_{p'}^{1, ?'} \ne \emptyset $. Write $ C \cap U_1 = \cb{P\rb{\widetilde{x}, 1, \widetilde{z}} = 0} $, where $ \tilde{x} = x_0 / x_1 $ and $ \tilde{z} = x_2 / x_1 $ and $ C \cap U_2 = \cb{P\rb{x, y, 1} = 0} $, where $ x, y $ are as above. Say also that $ ? = y $ and $ ?' = \widetilde{z} $. The other cases are analogous. Then in points of $ U_p^{2, y} \cap U_{p'}^{1, \widetilde{z}} $ the two charts $ \phi_p $ and $ \phi_{p'} $ are given by $ \sb{x, y, 1} \mapsto x $ and $ \sb{\widetilde{x}, 1, \widetilde{z}} \mapsto \widetilde{x} $ respectively. If $ y = g\rb{x} $ and $ \widetilde{z} = g'\rb{\widetilde{x}} $ are the two holomorphic functions coming from the implicit function theorem, then the transition function $ \phi_{p'} \circ \phi_p^{-1} $ is given by $ x \mapsto \widetilde{x} = x / g\rb{x} $, which is biholomorphic where defined. Note that we already know that this function is bijective, the new bit is the fact that it is holomorphic. This shows that we may cover $ C $ with open sets $ U_p $ endowed with homeomorphisms $ \phi_p $ such that the transition functions are biholomorphic. This atlas $ \cb{\rb{U_p, \phi_p}}_{p \in C} $ gives $ C $ the structure of a Riemann surface.
+\end{proof}
 
 \end{document}
