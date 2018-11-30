@@ -1117,4 +1117,18 @@ Thus $ \#E\rb{\F_7} = 13 $. $ \rb{6, 13} = 1 $ so $ E\rb{\Q}_{tors} = \cb{1} $.
 
 Lecture 24 is a problem class.
 
+\marginpar{Lecture 25 \\ Thursday \\ 29/11/18}
+
+\section{$ E\rb{\Q} / 2E\rb{\Q} $}
+
+Goal is if $ E\rb{\Q} $ is an elliptic curve then $ E\rb{\Q} / 2E\rb{\Q} $ is finite. Assume from now on that we can write $ E $ as $ y^2 = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3} $ for $ e_1, e_2, e_3 \in \Q $. This is equivalent to all of the $ 2 $-torsion points being defined over $ \Q $, by Silverman's arithmetic of elliptic curves.
+
+\begin{example}
+Let $ y^2 = x^3 - x = \rb{x - 1}x\rb{x + 1} $. Suppose that we have a point $ \rb{x, y} $ with $ x, y \in \Q $, $ y \ne 0 $. Write $ x - 1 = au^2 $, $ x = bv^2 $, $ x + 1 = cw^2 $, where $ u, v, w \in \Q^* $ and $ a, b, c \in Z $ are squarefree, such as $ -3 / 25 = \rb{-3}\rb{1 / 5}^2 $. $ y^2 = \rb{x - 1}x\rb{x + 1} = \rb{abc}\rb{uvw}^2 $ gives $ abc = \rb{y / uvw}^2 $ is a square. Claim that $ a, b, c \in \cb{\pm 1, \pm 2} $. Let $ p $ be an odd prime. We need to show that $ \abs{x}_p, \abs{x + 1}_p, \abs{x - 1}_p $ are all squares. If $ \abs{x}_p > 1 $, then by the ultrametric inequality, $ \abs{x}_p = \abs{x + 1}_p = \abs{x - 1}_p $, and since $ \abs{y}_p^2 = \abs{x}_p\abs{x + 1}_p\abs{x - 1}_p $, so each of $ \abs{x}_p, \abs{x + 1}_p, \abs{x - 1}_p $ is a square. If $ \abs{x}_p \le 1 $, then since $ a, b, c $ are squarefree and their product is a square, we either have $ \abs{x}_p = \abs{x + 1}_p = \abs{x - 1}_p = 1 $, or at least two of $ x, x + 1, x - 1 $ are divisible by $ p $. Then $ p $ would have to divide the difference of these two quantities, which is one or two. But $ p $ is odd, a contradiction. Since $ abc $ is a square, $ a $ and $ b $ determine $ c $, such as $ a = -1 $, $ b = -2 $, then $ c = 2 $. Since $ x + 1 > x > x - 1 $, and $ \rb{x + 1}x\rb{x - 1} = y^2 > 0 $, we either have $ x + 1 > x > x - 1 > 0 $, or $ x + 1 > 0 > x > x - 1 $. So either $ a, b < 0 $ and $ c > 0 $ or $ a, b, c > 0 $. So the only possibilities for $ a, b, c $ are
+$$ \rb{1, 1, 1}, \rb{-1, -1, 1}, \rb{1, 2, 2}, \rb{-1, -2, 2}, \rb{2, 1, 2}, \rb{-2, -1, 2}, \rb{2, 2, 1}, \rb{-2, -2, 1}. $$
+Consider the point $ \rb{x, y} = \rb{0, 0} $. Then $ x - 1 = -1 = -1\rb{1}^2 $, $ x = 0 $, $ x + 1 = 1 = 1\rb{1}^2 $, so $ a = -1 $, $ b = -1 $, $ c = 1 $. $ \rb{-1, 0} $ gives $ \rb{-2, -1, 2} $ and $ \rb{1, 0} $ gives $ \rb{2, 1, 2} $. Claim that there are no points $ \rb{x, y} $ of $ E\rb{\Q} $ giving $ \rb{a, b, c} = \rb{1, 2, 2} $, so $ x - 1 = u^2 $, $ x = 2v^2 $, $ x + 1 = 2w^2 $. Eliminating $ x $, we must solve $ 2v^2 - 1 = u^2 $, $ 2v^2 + 1 = 2w^2 $. Write $ u = U / Z $, $ v = V / Z $, $ w = W / Z $, for $ U, V, W, Z \in \Z $. $ 2V^2 - Z^2 = U^2 $, $ 2V^2 + Z^2 = 2W^2 $ so $ 2 \mid Z $ and $ 2 \mid U $. Then $ 2V^2 = U^2 + Z^2 \equiv 0 \mod 4 $ gives $ 2 \mid V $. Then $ 2 \mid W $. So $ 2 \mid U, V, W, Z $. Dividing by two and repeating, $ U = V = W = Z = 0 $, a contradiction. We will soon prove that the map
+$$ \delta : E\rb{\Q} \to \Q^* / \rb{\Q^*}^2 \times \Q^* / \rb{\Q^*}^2 \times \Q^* / \rb{\Q^*}^2, \qquad \rb{x, y} \mapsto \rb{a, b, c} $$
+is a group homomorphism. In particular, the image of $ \delta $ is a subgroup of the right hand side. We have seen that it contains $ \rb{1, 1, 1}, \rb{-1, -1, 1}, \rb{2, 1, 2}, \rb{-2, -1, 2} $. It does not contain $ \rb{1, 2, 2} $. So it also cannot contain $ \rb{-1, -2, 2}, \rb{2, 2, 1}, \rb{-2, -2, 1} $. So the image of $ \delta $ has order four. We will also show that $ Ker\rb{\delta} = 2E\rb{\Q} $. So by the first isomorphism theorem, we have $ E\rb{\Q} / 2E\rb{\Q} \cong \rb{\Z / 2\Z}^2 $. In particular, $ E\rb{\Q} / 2E\rb{\Q} $ is finite, for this choice of $ E $.
+\end{example}
+
 \end{document}
