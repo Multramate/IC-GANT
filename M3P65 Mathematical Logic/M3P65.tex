@@ -20,6 +20,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \renewcommand{\L}{\mathcal{L}}
 
 \newcommand{\val}[1]{\left. #1 \right\rvert}
@@ -812,7 +813,7 @@ If $ v $ satisfies $ \phi $, write $ v\sb{\phi} = T $. If $ v $ does not satisfy
 \hfill
 \begin{enumerate}
 \item Suppose $ \L $ has a binary relation symbol $ R $. The $ \L $-formula $ \impb{R\rb{x_1, x_2}}{\impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}}} $ is true in $ \A = \ab{\N; <} $, where $ R $ is interpreted as $ < $. If not, there is a valuation $ v $ in $ \A $ such that $ v $ satisfies $ R\rb{x_1, x_2} $ or $ v $ does not satisfy $ \impb{R\rb{x_2, x_3}}{R\rb{x_1, x_3}} $. So $ v\sb{R\rb{x_2, x_3}} = T $ and $ v\sb{R\rb{x_1, x_3}} = F $. Let $ v\rb{x_i} = a_i \in \N $. So $ a_1 < a_2 $, $ a_2 < a_3 $, and $ a_1 \not< a_3 $. As $ < $ is transitive on $ \N $, this is a contradiction.
-\item The same formula is not true in the structure $ \mathcal{B} $ with domain $ \N $ where we interpret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \mathcal{B} $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ and $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \mathcal{B} $.
+\item The same formula is not true in the structure $ \B $ with domain $ \N $ where we interpret $ R\rb{x_i, x_j} $ as $ x_i \ne x_j $. Take a valuation in $ \B $ with $ v\rb{x_1} = 1 = v\rb{x_3} $ and $ v\rb{x_2} = 2 $. $ v $ does not satisfy the formula in $ \B $.
 \item Recall that $ \teb{x_1}\phi $ is an abbreviation for $ \notb{\fab{x_1}\notb{\phi}} $. Suppose $ \A $ is an $ \L $-structure and $ \phi $ an $ \L $-formula. Let $ v $ be a valuation in $ \A $. Then $ v $ satisfies $ \teb{x_1}\phi $ in $ \A $ iff there is a valuation $ w $ which is $ x_1 $-equivalent to $ v $ such that $ w $ satisfies $ \phi $. Suppose $ v $ satisfies $ \notb{\fab{x_1}\notb{\phi}} $. Using \ref{def:2.2.9} $ v $ does not satisfy $ \fab{x_1}\notb{\phi} $. So there is valuation $ w $ $ x_1 $-equivalent to $ v $ such that $ w $ does not satisfy $ \notb{\phi} $. Such a $ w $ satisfies $ \phi $. (TODO Exercise: converse)
 \end{enumerate}
 \end{example}
@@ -1075,8 +1076,8 @@ Recall that a closed $ \L $-formula is one without free variables, sometimes cal
 \label{prop:2.5.2}
 Suppose $ \Sigma $ is a consistent set of closed $ \L $-formulas and $ \phi $ is a closed $ \L $-formula.
 \begin{enumerate}
-\item (Compare \ref{prop:1.3.7}) If $ \Sigma \not\vdash_{K_{\L}} \phi $ then $ \Sigma \cup \cb{\notb{\phi}} $ is consistent.
-\item (Compare Lindenbaum's lemma \ref{prop:1.3.8}) There is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \L $-formulas such that, for every closed $ \L $-formula $ \psi $ either $ \Sigma^* \vdash \psi $ or $ \Sigma^* \vdash \notb{\psi} $.
+\item Compare \ref{prop:1.3.7}. If $ \Sigma \not\vdash_{K_{\L}} \phi $ then $ \Sigma \cup \cb{\notb{\phi}} $ is consistent.
+\item Compare Lindenbaum's lemma \ref{prop:1.3.8}. There is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \L $-formulas such that, for every closed $ \L $-formula $ \psi $ either $ \Sigma^* \vdash \psi $ or $ \Sigma^* \vdash \notb{\psi} $.
 \end{enumerate}
 \end{proposition}
 
@@ -1252,7 +1253,7 @@ The result \ref{lem:2.6.3} is proved by induction on the number of connectives a
 
 \begin{lemma}
 \label{lem:2.6.4}
-Suppose $ \Delta $ is a set of closed $ \L^E $-formulas. Then $ \Delta $ has a normal model, that is a normal $ \L^E $-structure $ \mathcal{B} $ with $ \mathcal{B} \vDash \sigma $ for all $ \sigma \in \Delta $, iff $ \Delta \cup \Sigma_E $ has a model.
+Suppose $ \Delta $ is a set of closed $ \L^E $-formulas. Then $ \Delta $ has a normal model, that is a normal $ \L^E $-structure $ \B $ with $ \B \vDash \sigma $ for all $ \sigma \in \Delta $, iff $ \Delta \cup \Sigma_E $ has a model.
 \end{lemma}
 
 \begin{proof}
@@ -1276,15 +1277,15 @@ From now on, write $ \L^= $ instead of $ \L^E $ and $ x_1 = x_2 $ instead of $ E
 \marginpar{Lecture 18 \\ Monday \\ 12/11/18}
 
 \begin{theorem}[Countable downward Löwenheim-Skolem theorem]
-Suppose $ \L^= $ is a countable first-order language with equality, and $ \mathcal{B} $ a normal $ \L^= $ structure. Then there is a countable normal $ \L^= $-structure $ \A $ such that for every closed $ \L^= $-formula $ \phi $ $ \mathcal{B} \vDash \phi $ iff $ \A \vDash \phi $.
+Suppose $ \L^= $ is a countable first-order language with equality, and $ \B $ a normal $ \L^= $ structure. Then there is a countable normal $ \L^= $-structure $ \A $ such that for every closed $ \L^= $-formula $ \phi $ $ \B \vDash \phi $ iff $ \A \vDash \phi $.
 \end{theorem}
 
 \begin{example}
-$ \mathcal{B} = \ab{\R; +, \cdot, 0, 1, \le, \exp} $ has $ \A = ? $.
+$ \B = \ab{\R; +, \cdot, 0, 1, \le, \exp} $ has $ \A = ? $.
 \end{example}
 
 \begin{proof}
-Let $ \Sigma $ be the closed $ \phi $ such that $ \mathcal{B} \vDash \phi $, called the \textbf{theory} of $ \mathcal{B} $. Then $ \Sigma \supseteq \Sigma_E $ with the axioms of equality, and $ \Sigma $ is consistent. By \ref{thm:2.5.3} $ \Sigma $ has a countable model $ \mathcal{C} $. Then $ \widehat{\mathcal{C}} $ is a countable normal model of $ \Sigma $ by \ref{lem:2.6.3}. So if $ \phi $ is closed and $ \mathcal{B} \vDash \phi $ then $ \widehat{\mathcal{C}} \vDash \phi $. Conversely if $ \phi $ is closed and $ \mathcal{B} \not\vDash \phi $ then $ \mathcal{B} \vDash \notb{\phi} $ by \ref{thm:2.3.3}, so $ \widehat{\mathcal{C}} \vDash \notb{\phi} $ so $ \widehat{\mathcal{C}} \not\vDash \phi $. Take $ \A = \widehat{\mathcal{C}} $.
+Let $ \Sigma $ be the closed $ \phi $ such that $ \B \vDash \phi $, called the \textbf{theory} of $ \B $. Then $ \Sigma \supseteq \Sigma_E $ with the axioms of equality, and $ \Sigma $ is consistent. By \ref{thm:2.5.3} $ \Sigma $ has a countable model $ \mathcal{C} $. Then $ \widehat{\mathcal{C}} $ is a countable normal model of $ \Sigma $ by \ref{lem:2.6.3}. So if $ \phi $ is closed and $ \B \vDash \phi $ then $ \widehat{\mathcal{C}} \vDash \phi $. Conversely if $ \phi $ is closed and $ \B \not\vDash \phi $ then $ \B \vDash \notb{\phi} $ by \ref{thm:2.3.3}, so $ \widehat{\mathcal{C}} \vDash \notb{\phi} $ so $ \widehat{\mathcal{C}} \not\vDash \phi $. Take $ \A = \widehat{\mathcal{C}} $.
 \end{proof}
 
 \subsection{Examples and applications}
@@ -1327,14 +1328,14 @@ Will prove the following.
 \label{def:2.7.3}
 \hfill
 \begin{enumerate}
-\item Losets $ \A = \ab{A; \le_A} $ and $ \mathcal{B} = \ab{B; \le_B} $ are \textbf{isomorphic} if there is a bijection $ \alpha : A \to B $ such that for all $ a, a' \in A $ $ a \le_A a' $ iff $ \alpha\rb{a} \le_B \alpha\rb{a'} $.
-\item If $ \A, \mathcal{B} $ are isomorphic and $ \phi $ is closed then $ \A \vDash \phi $ iff $ \mathcal{B} \vDash \phi $.
+\item Losets $ \A = \ab{A; \le_A} $ and $ \B = \ab{B; \le_B} $ are \textbf{isomorphic} if there is a bijection $ \alpha : A \to B $ such that for all $ a, a' \in A $ $ a \le_A a' $ iff $ \alpha\rb{a} \le_B \alpha\rb{a'} $.
+\item If $ \A, \B $ are isomorphic and $ \phi $ is closed then $ \A \vDash \phi $ iff $ \B \vDash \phi $.
 \end{enumerate}
 \end{definition}
 
 \begin{theorem}[Cantor]
 \label{thm:2.7.4}
-If $ \A, \mathcal{B} $ are countable dense losets without endpoints, then $ \A, \mathcal{B} $ are isomorphic.
+If $ \A, \B $ are countable dense losets without endpoints, then $ \A, \B $ are isomorphic.
 \end{theorem}
 
 \begin{lemma}[Los-Vaught test]
@@ -1856,6 +1857,7 @@ So $ S $ is a set of ordinals. In fact, $ S $ is an ordinal. To see this note th
 There is a problem with this proof. Why is $ S $ a set? No combination of the axioms we have given so far actually justifies the existence of such a set. There is no alternative but to assume another axiom about how we are allowed to create new sets from old ones.
 
 \begin{definition}
+\label{def:3.4.9}
 Suppose $ F\rb{x, y, z_1, \dots, z_r} $ is a property of sets, expressible in our first-order language such that, whenever $ s_1, \dots, s_r $ are sets, for every set $ b $ there is a unique set $ a $ where $ F\rb{a, b, s_1, \dots, s_r} $ holds. $ F $ is called an \textbf{operation} on sets, with $ z_1, \dots, z_r $ being \textbf{parameter variables}, and the $ s_1, \dots, s_r $ are referred to as the \textbf{parameters} of the operation, and $ F\rb{x, y, s_1, \dots, s_r} $ gives us a function on sets $ b \mapsto a $.
 \end{definition}
 
@@ -1902,5 +1904,39 @@ Suppose $ \alpha $ is an infinite ordinal, that is $ \omega \le \alpha $. Then $
 \end{proof}
 
 $ 2 $ is called the \textbf{fundamental theorem of cardinal arithmetic}.
+
+\marginpar{Lecture 26 \\ Friday \\ 30/11/18}
+
+\begin{proof}[Proof of Theorem \ref{thm:3.5.2}]
+Assume if $ \omega \ne \beta < \alpha $ then $ \beta \approx \beta \times \beta $, by transfinite induction hypothesis, and deduce $ \alpha \approx \alpha \times \alpha $. May assume if $ \beta < \alpha $ then $ \abs{\beta} < \abs{\alpha} $. Implies $ \abs{\beta^\dagger} < \abs{\alpha} $. Enough to show $ \abs{\alpha \times \alpha} \le \abs{\alpha} $, by \ref{thm:3.1.6}.
+\begin{enumerate}
+\item Prove that suppose we have a well-ordering $ \le $ of $ A = \alpha \times \alpha $ such that for all $ x \in A $ $ \abs{A\sb{x}} = \cb{y \in A \mid y \le x} < \abs{\alpha} $, then $ \abs{\alpha \times \alpha} = \abs{\alpha} $. By \ref{thm:3.4.6} there is an ordinal $ \gamma $ which is similar to $ \ab{A; \le} $. Let $ f : \gamma \to A $ be the similarity. Show $ \gamma \subseteq \alpha $, so $ \abs{\gamma} \le \abs{\alpha} $, so $ \abs{A} \le \abs{\alpha} $. Let $ \eta \in \gamma $, so $ \eta < \gamma $. As $ f $ is a similarity, it gives a bijection $ \eta = \cb{\delta \in \gamma \mid \delta < \eta} \to A\sb{f\rb{\eta}} $. So $ \abs{\eta} = \abs{A\sb{f\rb{\eta}}} < \abs{\alpha} $. Thus $ \eta < \alpha $, otherwise $ \alpha \le \eta $, so $ \alpha \subseteq \eta $ and then $ \abs{\alpha} \le \abs{\eta} $, a contradiction. Thus $ \eta \in \alpha $.
+\item Find an ordering $ \le $ on $ \alpha \times \alpha = A $ as in step $ 1 $. For $ \lambda < \alpha $ let $ A_\lambda = \cb{\rb{\theta, \zeta} \in \alpha \times \alpha \mid \max\rb{\theta, \zeta} = \lambda} $. Define $ \le $ on $ A $ by $ \rb{\theta', \zeta'} < \rb{\theta, \zeta} $ iff $ \max\rb{\theta', \zeta'} < \max\rb{\theta, \zeta} $ or $ \max\rb{\theta', \zeta'} = \lambda = \max\rb{\theta, \zeta} $ and one of
+\begin{enumerate}
+\item $ \zeta = \zeta' = \lambda $ and $ \theta' < \theta $,
+\item $ \zeta' < \zeta = \lambda $, or
+\item $ \theta = \theta' = \lambda $ and $ \zeta < \zeta' $.
+\end{enumerate}
+(TODO Exercise: check $ \le $ is a well-ordering on $ A $) Show property in step $ 1 $ holds. Let $ x = \rb{\theta, \zeta} \in A $. Let $ \lambda = \max\rb{\theta, \zeta} $. May assume $ \lambda \ge \omega $. Let $ \mu = \lambda^\dagger $. So $ \mu < \alpha $ and by inductive hypothesis $ \abs{\mu \times \mu} = \abs{\mu} < \abs{\alpha} $. $ \cb{y \in A \mid y < x} \subseteq \cb{\rb{\theta', \zeta'} \in A \mid \max\rb{\theta', \zeta'} \le \lambda} \subseteq \mu \times \mu $. Thus $ \abs{A\sb{x}} \le \abs{\mu \times \mu} < \abs{\alpha} $.
+\end{enumerate}
+\end{proof}
+
+\subsection{Transfinite recursion}
+
+Allows us to construct, for ordinals $ \alpha $, sets $ G\rb{\alpha} $ so that $ G\rb{\alpha} $ is obtained from sets $ G\rb{\beta} $ for $ \beta < \alpha $ by applying some operation $ F : G\rb{0}, \dots, G\rb{\beta} \to G\rb{\alpha} $, where $ G \upharpoonright \alpha = G\rb{0}, \dots, G\rb{\beta} $. $ G $ is also an operation. $ G \upharpoonright \alpha : \alpha \to \cb{G\rb{\beta} \mid \beta < \alpha} $, which is a set by axiom of replacement. Let $ F $ be an operation on sets. Denote by $ F\rb{b} $ the result of applying $ F $ to the set $ b $ by \ref{def:3.4.9}.
+
+\begin{theorem}[Transfinite recursion]
+Suppose $ F $ is an operation. Then there is an operation $ G $ such that for all ordinals $ \alpha $ we have $ G\rb{\alpha} = F\rb{G \upharpoonright \alpha} $. If $ G' $ is another such operation then $ G\rb{\alpha} = G'\rb{\alpha} $ for all ordinals $ \alpha $.
+\end{theorem}
+
+In practice, we usually do not write $ F $ down explicitly as a first-order formula.
+
+\begin{remark}
+An application is Lindenbaum's lemma, compare \ref{prop:1.3.8} and \ref{prop:2.5.2}. Suppose $ \L $ is a first order language whose alphabet of symbols can be well-ordered. Suppose $ \Sigma $ is a consistent set of closed $ \L $-formulas. Then there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \L $-formulas such that for every closed $ \L $-formula $ \psi $ either $ \Sigma^* \vdash \psi $ or $ \Sigma^* \vdash \notb{\psi} $.
+\end{remark}
+
+\begin{proof}
+The set of $ \L $-formulas can be well-ordered. Any subset of a woset is well-ordered so the set of closed $ \L $-formulas is well-ordered. Any woset is similar to some ordinal by \ref{thm:3.4.8}. So we can write the set of closed $ \L $-formulas as $ \cb{\phi_\alpha \mid \alpha < \lambda} $ for some ordinal $ \lambda $.
+\end{proof}
 
 \end{document}
