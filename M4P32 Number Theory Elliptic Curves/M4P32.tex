@@ -1131,4 +1131,66 @@ $$ \delta : E\rb{\Q} \to \Q^* / \rb{\Q^*}^2 \times \Q^* / \rb{\Q^*}^2 \times \Q^
 is a group homomorphism. In particular, the image of $ \delta $ is a subgroup of the right hand side. We have seen that it contains $ \rb{1, 1, 1}, \rb{-1, -1, 1}, \rb{2, 1, 2}, \rb{-2, -1, 2} $. It does not contain $ \rb{1, 2, 2} $. So it also cannot contain $ \rb{-1, -2, 2}, \rb{2, 2, 1}, \rb{-2, -2, 1} $. So the image of $ \delta $ has order four. We will also show that $ Ker\rb{\delta} = 2E\rb{\Q} $. So by the first isomorphism theorem, we have $ E\rb{\Q} / 2E\rb{\Q} \cong \rb{\Z / 2\Z}^2 $. In particular, $ E\rb{\Q} / 2E\rb{\Q} $ is finite, for this choice of $ E $.
 \end{example}
 
+\marginpar{Lecture 26 \\ Friday \\ 30/11/18}
+
+\begin{theorem}
+\label{thm:8.2}
+Let $ K $ be a field with $ char\rb{K} \ne 2 $, such as $ K = \Q $. Let $ E : y^2 = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3} $ for $ e_i \in K $ distinct. Define
+\begin{align*}
+\delta : E\rb{K} & \to \rb{K^* / \rb{K^*}^2}^3 \\
+O & \mapsto \rb{1, 1, 1} \\
+\rb{e_1, 0} & \mapsto \rb{\rb{e_1 - e_2}\rb{e_1 - e_3}, e_1 - e_2, e_1 - e_3} \\
+\rb{e_2, 0} & \mapsto \rb{e_2 - e_1, \rb{e_2 - e_1}\rb{e_2 - e_3}, e_2 - e_3} \\
+\rb{e_3, 0} & \mapsto \rb{e_3 - e_1, e_3 - e_2, \rb{e_3 - e_1}\rb{e_3 - e_2}} \\
+\rb{x, y} & \mapsto \rb{x - e_1, x - e_2, x - e_3} & y \ne 0.
+\end{align*}
+Then
+\begin{enumerate}
+\item $ \delta $ is a group homomorphism.
+\item $ Ker\rb{\delta} = 2E\rb{K} $.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+\label{lem:8.3}
+Take $ E, K $ as above. If $ x - e_1, x - e_2, x - e_3 $ are all squares for some $ P = \rb{x, y} \in E\rb{K} $, then there exists $ Q \in E\rb{K} $ such that $ 2Q = P $.
+\end{lemma}
+
+\begin{proof}
+By assumption there exist $ t_1, t_2, t_3 \in K $ such that $ x - e_i = t_i^2 $ for $ i = 1, 2, 3 $. Then
+$$ y^2 = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3} = t_1^2t_2^2t_3^2 = \rb{t_1t_2t_3}^2. $$
+Changing the signs of the $ t_i $ if necessary, assume that $ y = t_1t_2t_3 $. Set $ x_0 = x + t_1t_2 + t_2t_3 + t_3t_1 $ and $ y_0 = \rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1} $. Set $ Q = \rb{x_0, y_0} $. Claim that $ Q \in E\rb{K} $, and $ 2Q = P $.
+$$ x_0 - e_1 = \rb{x - e_1} + t_1t_2 + t_2t_3 + t_3t_1 = t_1^2 + t_1t_2 + t_2t_3 + t_3t_1 = \rb{t_1 + t_2}\rb{t_1 + t_3}, $$
+$$ x_0 - e_2 = \rb{t_2 + t_1}\rb{t_2 + t_3}, \qquad x_0 - e_3 = \rb{t_3 + t_1}\rb{t_3 + t_2}. $$
+$ \rb{x_0 - e_1}\rb{x_0 - e_2}\rb{x_0 - e_3} = \rb{t_1 + t_2}^2\rb{t_2 + t_3}^2\rb{t_3 + t_1}^2 = y_0^2 $. So $ Q \in E\rb{K} $. Let $ y = mx + c $ be the tangent at $ Q $. $ y^2 = f\rb{x} = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3} $ gives
+\begin{align*}
+m
+& = \dfrac{f'\rb{x_0}}{2y_0} \\
+& = \dfrac{\rb{x_0 - e_2}\rb{x_0 - e_3} + \rb{x_0 - e_1}\rb{x_0 - e_3} + \rb{x_0 - e_1}\rb{x_0 - e_2}}{2y_0} \\
+& = \dfrac{\rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1}\rb{\rb{t_2 + t_3} + \rb{t_3 + t_1} + \rb{t_1 + t_2}}}{2\rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1}} \\
+& = t_1 + t_2 + t_3.
+\end{align*}
+Want $ P = 2Q $, that is $ -P + 2Q = O $, that is $ \rb{x, -y} $ needs to lie on the tangent line at $ Q $, that is $ -y = mx + c $. We know that $ y_0 = mx_0 + c $. So we need $ y + y_0 = \rb{x_0 - x} $. But
+$$ m\rb{x_0 - x} = \rb{t_1 + t_2 + t_3}\rb{t_1t_2 + t_2t_3 + t_3t_1} = \rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1} + t_1t_2t_3 = y_0 + y, $$
+as required.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:8.2}]
+\hfill
+\begin{enumerate}
+\item $ \delta\rb{O} = \rb{1, 1, 1} $. Sufficient to prove that if $ P_1 + P_2 + P_3 = O $ then $ \delta\rb{P_1}\delta\rb{P_2}\delta\rb{P_3} = 1 $. By definition, $ \delta\rb{P} = \delta\rb{-P} $ since $ -\rb{x, y} = \rb{x, -y} $.
+\begin{enumerate}
+\item If all $ P_i = O $, trivial.
+\item If $ P_1 = O $, then $ P_2 + P_3 = O $ so $ P_3 = -P_2 $. Then $ \delta\rb{P_3} = \delta\rb{-P_2} = \delta\rb{P_2} $. So $ \delta\rb{P_1}\delta\rb{P_2}\delta\rb{P_3} = \delta\rb{P_2}^2 = 1 $.
+\item By symmetry $ P_2 = O $ or $ P_3 = O $ also trivial.
+\end{enumerate}
+So we may assume that no $ P_i $ is $ O $. So all the $ P_i $ lie on some line $ Y = mX + c $. Write $ P_i = \rb{x_i, y_i} $. Assume firstly that each $ y_i \ne 0 $. We need to prove that for each $ i $, $ \rb{x_1 - e_i}\rb{x_2 - e_i}\rb{x_3 - e_i} $ is a square. $ Y^2 = \rb{X - e_1}\rb{X - e_2}\rb{X - e_3} $ and $ Y = mX + c $, so
+$$ \rb{X - e_1}\rb{X - e_2}\rb{X - e_3} - \rb{mX + c}^2 = \rb{X - x_1}\rb{X - x_2}\rb{X - x_3}. $$
+So for each $ i $, $ -\rb{me_i + c}^2 = \rb{e_i - x_1}\rb{e_i - x_2}\rb{e_i - x_3} $, that is $ \rb{x_1 - e_i}\rb{x_2 - e_i}\rb{x_3 - e_i} = \rb{me_i + c}^2 $ is a square, as required. Suppose now that exactly one of $ P_1, P_2, P_3 $ has $ y_i = 0 $. Say $ P_1 = \rb{e_1, 0} $. The calculation we just did shows that the second and third coordinates of $ \delta\rb{P_1}, \delta\rb{P_2}, \delta\rb{P_3} $ are still squares. By the definition of $ \delta $, for any element of $ \rb{K^* / \rb{K^*}^2}^3 $ in $ Im\rb{\delta} $, the product of the three coordinates is always a square, so the first coordinate of $ \delta\rb{P_1}\delta\rb{P_2}\delta\rb{P_2} $ is also a square, as required. Now assume that at least two of the $ P_i $ have $ y_i = 0 $, that is satisfy $ 2P_i = O $. Since $ P_1 + P_2 + P_3 = O $, we have $ 2P_1 + 2P_2 + 2P_3 = O $. So in fact $ 2P_i = O $ for all $ i $. If for example also $ P_1 = P_2 $, then $ O = P_1 + P_2 + P_3 = 2P_1 + P_3 = P_3 $, but we are assuming that each $ P_i \ne O $. So without loss of generality $ P_1 = \rb{e_1, 0} $, $ P_2 = \rb{e_2, 0} $, $ P_3 = \rb{e_3, 0} $. Now follows from the definition. So $ \delta $ is a homomorphism.
+\item If $ P \in 2E\rb{K} $ gives $ \delta\rb{P} = 1 $ trivially as $ \delta\rb{2Q} = \delta\rb{Q}^2 = 1 $. Conversely, $ \delta\rb{P} = 1 $ gives $ P \in 2E\rb{K} $ by Lemma \ref{lem:8.3}.
+\end{enumerate}
+\end{proof}
+
+$ \delta : E\rb{\Q} / 2E\rb{\Q} \cong Im\rb{\delta} $. Next is prove that if $ K = \Q $, $ Im\rb{\delta} $ is finite.
+
 \end{document}
