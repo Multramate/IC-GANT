@@ -230,7 +230,7 @@ What is the truth function of $ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\n
 \hfill
 \begin{enumerate}
 \item $ \phi, \psi $ are logically equivalent if and only if $ \iffb{\phi}{\psi} $ is a tautology.
-\item Suppose $ \phi $ is a formula with variables $ p_1, \dots, p_n $, and $ \phi_1, \dots, \phi_n $ are formulas with variables $ q_1, \dots q_r $. For each $ i \le n $, substitute $ \phi_i $ in place of $ p_i $ in $ \phi $. Then the result is a formula $ \theta $, and if $ \phi $ is a tautology, then so is $ \theta $.
+\item Suppose $ \phi $ is a formula with variables $ p_1, \dots, p_n $, and $ \phi_1, \dots, \phi_n $ are formulas with variables $ q_1, \dots, q_r $. For each $ i \le n $, substitute $ \phi_i $ in place of $ p_i $ in $ \phi $. Then the result is a formula $ \theta $, and if $ \phi $ is a tautology, then so is $ \theta $.
 \end{enumerate}
 \end{remark1}
 
@@ -468,7 +468,7 @@ $$ \notb{\phi}, \qquad \impb{\phi}{\psi}. $$
 \end{definition}
 
 \begin{example1}
-\label{def:1.2.3}
+\label{eg:1.2.3}
 Theorem $ 0 $. Suppose $ \phi $ is an $ L $-formula. Then $ \vdash_L \impb{\phi}{\phi} $. Here is a proof in $ L $.
 \begin{align*}
 1 \qquad & \impb{\phi}{\impb{\impb{\phi}{\phi}}{\phi}} & \rb{\text{A1}} \\
@@ -545,7 +545,7 @@ $$ \vdash_L \impb{\impb{\notb{\phi}}{\phi}}{\phi}. $$
 \begin{proof}[Proof of \ref{thm:1.2.5}]
 Suppose $ \Gamma \cup \cb{\phi} \vdash_L \psi $ using a deduction of length $ n $. Show, by induction on $ n $, that $ \Gamma \vdash_L \impb{\phi}{\psi} $.
 \begin{itemize}
-\item Base case. $ n = 1 $. In this case, $ \psi $ is either an axiom, or in $ \Gamma $, or is $ \phi $. In the first two cases, $ \Gamma \vdash_L \psi $, a one line deduction. Using the A1 axiom $ \impb{\psi}{\impb{\phi}{\psi}} $ and MP, we obtain $ \Gamma \vdash_L \impb{\phi}{\psi} $. If $ \phi $ is $ \psi $, we have $ \Gamma \vdash_L \impb{\phi}{\phi} $, by \ref{def:1.2.3}. This finishes the base case.
+\item Base case. $ n = 1 $. In this case, $ \psi $ is either an axiom, or in $ \Gamma $, or is $ \phi $. In the first two cases, $ \Gamma \vdash_L \psi $, a one line deduction. Using the A1 axiom $ \impb{\psi}{\impb{\phi}{\psi}} $ and MP, we obtain $ \Gamma \vdash_L \impb{\phi}{\psi} $. If $ \phi $ is $ \psi $, we have $ \Gamma \vdash_L \impb{\phi}{\phi} $, by \ref{eg:1.2.3}. This finishes the base case.
 \item Inductive step. In our deduction of $ \psi $ from $ \Gamma \cup \cb{\phi} $, either
 \begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
 \item $ \psi $ is an axiom, or in $ \Gamma $, or is $ \phi $,
@@ -627,12 +627,14 @@ Exercise. Same proof.
 Suppose $ \phi $ is a tautology, that is $ v\rb{\phi} = T $ for every valuation $ v $. Then $ \vdash_L \phi $.
 \end{theorem}
 
+\begin{remark1}
 Steps in proof.
 \begin{itemize}
 \item If $ v\rb{\phi} = T $ for all valuations $ v $, want to show $ \vdash_L \phi $.
 \item Try to prove a generalisation. Suppose that, for every $ v $ with $ v\rb{\Gamma} = T $, that is $ v\rb{\psi} = T $ for all $ \psi \in \Gamma $, we have $ v\rb{\phi} = T $. Then $ \Gamma \vdash_L \phi $.
 \item Equivalently, if $ \Gamma \not\vdash_L \phi $, show there is a valuation $ v $ with $ v\rb{\Gamma} = T $ and $ v\rb{\phi} = F $.
 \end{itemize}
+\end{remark1}
 
 \begin{definition}
 A set $ \Gamma $ of $ L $-formulas is \textbf{consistent} if there is no $ L $-formula $ \phi $ such that
@@ -782,7 +784,7 @@ so $ v\rb{\psi} = T $. Thus $ v\rb{\phi} = F $, which does the inductive step.
 \end{proof}
 
 \begin{corollary}
-\label{cor:1.3.12}
+\label{cor:1.3.11}
 Suppose $ \Delta $ is a set of $ L $-formulas and $ \phi $ is an $ L $-formula. Then
 \begin{enumerate}
 \item $ \Delta $ is consistent if and only if there is a valuation $ v $ with $ v\rb{\Delta} = T $, and
@@ -803,7 +805,7 @@ Suppose $ \Delta $ is a set of $ L $-formulas. The following are equivalent.
 \end{theorem}
 
 \begin{proof}
-By \ref{cor:1.3.12},
+By \ref{cor:1.3.11},
 $$ 1 \ \text{holds} \qquad \iff \qquad \Delta \ \text{is consistent}. $$
 Similarly,
 $$ 2 \ \text{holds} \qquad \iff \qquad \text{every finite subset of} \ \Delta \ \text{is consistent}. $$
@@ -1391,7 +1393,6 @@ which is a proof of $ \phi = \phi_r $ in $ K_{\L} $.
 \end{proof}
 
 \begin{theorem}[Soundness of $ K_{\L} $]
-\label{thm:2.4.5}
 If $ \vdash_{K_{\L}} \phi $, then $ \vDash \phi $, that is it is logically valid.
 \end{theorem}
 
