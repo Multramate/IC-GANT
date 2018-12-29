@@ -1,0 +1,129 @@
+\documentclass{article}
+
+% Packages
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[UKenglish]{babel}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{csquotes}
+
+% Environments
+
+\ifx \thm\undefined
+  \newtheorem{n}{}
+\else
+  \newtheorem{n}{}[\thm]
+\fi
+
+\theoremstyle{plain}
+\newtheorem{algorithm}[n]{Algorithm}
+\newtheorem{conjecture}[n]{Conjecture}
+\newtheorem{corollary}[n]{Corollary}
+\newtheorem{lemma}[n]{Lemma}
+\newtheorem{proposition}[n]{Proposition}
+\newtheorem{theorem}[n]{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{definition}[n]{Definition}
+\newtheorem{example1}[n]{Example}
+\newtheorem*{example2}{Example}
+\newtheorem{exercise}{Exercise}
+\newtheorem{fact}{Fact}
+
+\theoremstyle{remark}
+\newtheorem{notation1}[n]{Notation}
+\newtheorem*{notation2}{Notation}
+\newtheorem*{note}{Note}
+\newtheorem{remark1}[n]{Remark}
+\newtheorem*{remark2}{Remark}
+
+% Macros
+
+\newcommand{\two}[2]{
+  \begin{pmatrix}
+    #1 \\
+    #2
+  \end{pmatrix}
+} % 2 x 1 matrix
+\newcommand{\three}[3]{
+  \begin{pmatrix}
+    #1 & #2 & #3
+  \end{pmatrix}
+} % 1 x 3 matrix
+
+\newcommand{\lecture}[3]{
+  \marginpar{
+    Lecture #1 \\
+    #2 \\
+    #3
+  }
+}
+
+% Commands
+
+\newcommand{\ab}[1]{\left\langle #1 \right\rangle} % Angle brackets
+\newcommand{\cb}[1]{\left\{ #1 \right\}} % Curly brackets
+\newcommand{\fb}[1]{\left\langle #1 \right\rangle} % Floor brackets
+\newcommand{\rb}[1]{\left( #1 \right)} % Round brackets
+\renewcommand{\sb}[1]{\left[ #1 \right]} % Square brackets
+
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} % Absolute
+\newcommand{\val}[1]{\left. #1 \right\rvert} % Valuation
+
+\newcommand{\F}{\mathbb{F}} % Finite fields
+\newcommand{\N}{\mathbb{N}} % Natural numbers
+\newcommand{\Z}{\mathbb{Z}} % Integral numbers
+\newcommand{\Q}{\mathbb{Q}} % Rational numbers
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\renewcommand{\H}{\mathbb{H}} % Quaternion numbers
+
+\newcommand{\A}{\mathbb{A}} % Affine space
+\renewcommand{\P}{\mathbb{P}} % Projective space
+
+\renewcommand{\AA}{\mathcal{A}} % Calligraphic A
+\newcommand{\BB}{\mathcal{B}} % Calligraphic B
+\newcommand{\HH}{\mathcal{H}} % Calligraphic H
+\newcommand{\LL}{\mathcal{L}} % Calligraphic L
+\renewcommand{\SS}{\mathcal{S}} % Calligraphic S
+
+\newcommand{\notb}[1]{\rb{\neg #1}} % Negation
+\newcommand{\orb}[2]{\rb{#1 \lor #2}} % Disjunction
+\newcommand{\andb}[2]{\rb{#1 \land #2}} % Conjunction
+\newcommand{\impb}[2]{\rb{#1 \rightarrow #2}} % Implication
+\newcommand{\iffb}[2]{\rb{#1 \leftrightarrow #2}} % Biconditional
+\newcommand{\fab}[1]{\rb{\forall #1}} % Universal quantifier
+\newcommand{\teb}[1]{\rb{\exists #1}} % Existential quantifier
+
+\newcommand{\eqb}[2]{\rb{#1 = #2}} % Equal to
+\newcommand{\ltb}[2]{\rb{#1 < #2}} % Less than
+\newcommand{\leb}[2]{\rb{#1 \le #2}} % Less than or equal to
+\newcommand{\neb}[2]{\rb{#1 \ne #2}} % Not equal to
+\newcommand{\inb}[2]{\rb{#1 \in #2}} % An element of
+\newcommand{\nib}[2]{\rb{#1 \notin #2}} % Not an element of
+\newcommand{\subb}[2]{\rb{#1 \subseteq #2}} % Subset of
+
+\newcommand{\jacobi}[2]{\rb{\tfrac{#1}{#2}}} % Jacobi symbol
+\newcommand{\Unit}[1]{\rb{\dfrac{\Z}{#1\Z}}^\times} % Unit group vertical
+\newcommand{\unit}[1]{\rb{\Z / #1\Z}^\times} % Unit group horizontal
+
+% Fancy header
+
+\pagestyle{fancy}
+\lhead{\module}
+\rhead{\term}
+
+% Make title
+
+\title{\module}
+\author{Lectured by \lecturer \\ Typeset by David Kurniadi Angdinata}
+\date{\term}

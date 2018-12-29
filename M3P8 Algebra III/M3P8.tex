@@ -1,72 +1,20 @@
-\documentclass{article}
+\def\module{M3P8 Algebra III}
+\def\lecturer{Dr David Helm}
+\def\term{Autumn 2018}
 
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage[UKenglish]{babel}
-\usepackage{enumitem}
-\usepackage{fancyhdr}
-\usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-\usepackage{listings}
-\usepackage{mathtools}
-\usepackage{tikz-cd}
-\usepackage{csquotes}
+\def\thm{subsection}
 
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\A}{\mathbb{A}}
-\renewcommand{\P}{\mathbb{P}}
-
-\newcommand{\val}[1]{\left. #1 \right\rvert}
-\newcommand{\rb}[1]{\left( #1 \right)}
-\renewcommand{\sb}[1]{\left[ #1 \right]}
-\newcommand{\cb}[1]{\left\{ #1 \right\}}
-\newcommand{\ab}[1]{\left\langle #1 \right\rangle}
-\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
-\newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
-\newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
-
-\theoremstyle{definition}\newtheorem{definition}{Definition}[subsection]
-\theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
-\theoremstyle{definition}\newtheorem*{example}{Example}
-\theoremstyle{definition}\newtheorem*{note}{Note}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{corollary}[definition]{Corollary}
-
-\pagestyle{fancy}
-\lhead{M3P8 Algebra III}
-\rhead{Autumn 2018}
-
-\title{M3P8 Algebra III}
-\author{Lectured by Dr David Helm \\ Typeset by David Kurniadi Angdinata}
-\date{Autumn 2018}
-
-\setcounter{section}{-1}
+\input{../style/header}
 
 \begin{document}
 
-\maketitle
+\input{../style/main}
 
-\vfill
-
-\tableofcontents
-
-\pagebreak
-
-\marginpar{Lecture 1 \\ Friday \\ 05/10/18}
+\lecture{1}{Friday}{05/10/18}
 
 \section{Introduction}
 
-This course is an introduction to ring theory. The topics covered will include ideals, factorisation, the theory of field extensions, finite fields, polynomial rings in several variables, and the theory of modules.
-
-In addition to the lecture notes, the following will cover much of the material we will be studying.
+This course is an introduction to ring theory. The topics covered will include ideals, factorisation, the theory of field extensions, finite fields, polynomial rings in several variables, and the theory of modules. In addition to the lecture notes, the following will cover much of the material we will be studying.
 
 \begin{enumerate}
 \item M Artin, Algebra, 1991
@@ -84,6 +32,8 @@ The applications of rings include
 \item topology, by cohomology classes of topological spaces.
 \end{itemize}
 
+\pagebreak
+
 \section{Basic definitions and examples}
 
 \subsection{Rings}
@@ -91,7 +41,11 @@ The applications of rings include
 Recall the definition of a commmutative ring.
 
 \begin{definition}
-A \textbf{commutative ring with identity} $ R $ is a set together with two binary operations $ +_R, \cdot_R : R \times R \to R $, addition and multiplication, and two distinguished elements $ 0_R $ and $ 1_R $ such that the following holds.
+A \textbf{commutative ring with identity} $ R $ is a set together with two binary operations
+$$ +_R : R \times R \to R, \qquad \cdot_R : R \times R \to R, $$
+\textbf{addition} and \textbf{multiplication}, and two distinguished elements
+$$ 0_R, \qquad 1_R, $$
+such that the following holds.
 \begin{itemize}
 \item The operation $ +_R $ makes $ R $ into an abelian group with identity $ 0_R $, that is
 \begin{itemize}
@@ -142,18 +96,21 @@ If $ 0_R = 1_R $, then $ R $ is the one-element ring $ \cb{0_R} $.
 \end{proposition}
 
 \begin{proof}
-We certainly have $ r = 1_R \cdot_R r = 0_R \cdot_R r $. On the other hand
+We certainly have
+$$ r = 1_R \cdot_R r = 0_R \cdot_R r. $$
+On the other hand
 $$ 0_R \cdot_R r = \rb{0_R +_R 0_R} \cdot_R r = 0_R \cdot_R r +_R 0_R \cdot_R r, $$
 and subtracting $ 0_R \cdot_R r $ from both sides we find that $ 0_R \cdot_R r = 0_R $.
 \end{proof}
 
 \begin{definition}
-A ring $ R $ is a \textbf{field} if $ R \ne \cb{0_R} $ and every nonzero element of $ R $ has a multiplicative inverse. That is, for every $ r \in R \setminus \cb{0_R} $ there exists $ r^{-1} \in R $ such that $ rr^{-1} = r^{-1}r = 1_R $.
+A ring $ R $ is a \textbf{field} if $ R \ne \cb{0_R} $ and every nonzero element of $ R $ has a multiplicative inverse. That is, for every $ r \in R \setminus \cb{0_R} $ there exists $ r^{-1} \in R $ such that
+$$ rr^{-1} = r^{-1}r = 1_R. $$
 \end{definition}
 
 We do not consider the zero ring $ \cb{0_R} $ to be a field. We have seen many examples of rings at this point.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item The sets $ \Z $, $ \Q $, $ \R $, $ \C $ are all rings with their usual notion of addition and multiplication. All of them but $ \Z $ are in fact fields.
@@ -166,9 +123,9 @@ is a complete list of the equivalence classes under this relation, where $ \sb{a
 \end{align*}
 This defines a ring structure on $ \Z / n\Z $, once one checks that it is well-defined. This is the first example of a general construction we will see more of later, the quotient of a ring by an ideal.
 \end{itemize}
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 2 \\ Monday \\ 08/10/18}
+\lecture{2}{Monday}{08/10/18}
 
 \subsection{Polynomial rings}
 
@@ -201,9 +158,9 @@ Let $ R $ be a ring. A subset $ S $ of $ R $ is a \textbf{subring} of $ R $ if
 \end{itemize}
 \end{definition}
 
-\begin{example}
+\begin{example2}
 $ \Z $ is a subring of $ \R $, which is itself a subring of $ \C $.
-\end{example}
+\end{example2}
 
 Subrings inherit the additive and multiplicative structures from the ring that contains them, and are thus themselves rings. It is easy to see that the intersection of two subrings of $ R $, or even an arbitrary collection of subrings of $ R $, is also a subring of $ R $.
 
@@ -213,9 +170,9 @@ $$ r_0 + \dots + r_n\alpha^n, \qquad n \in \Z^*, \qquad r_0, \dots, r_n \in S. $
 This operation is known as \textbf{adjoining} the element $ \alpha $ to the ring $ S $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 Let $ i $ denote a square root of $ -1 $ in $ \C $, and consider the subring $ \Z\sb{i} $ of $ \C $ formed by $ \Z \subseteq \C $ and $ i $. This consists of all complex numbers that can be expressed as polynomials in $ i $ with integer coefficients. Note that such an expression need not be unique. For instance the element $ 1 + i $ of $ \Z\sb{i} $ can also be written as $ 2 + i + i^2 $, and $ -1 = i^2 = i^6 = i + i^3 + i^{10} $.
-\end{example}
+\end{example2}
 
 Indeed, since $ i^2 = -1 $, the following holds.
 
@@ -226,12 +183,14 @@ We can uniquely express any element $ a_0 + \dots + a_ni^n $ of $ \Z\sb{i} $ as 
 \begin{proof}
 Given $ \sum_{n = 0}^\infty a_ni^n $ with only finitely many $ a_n $ nonzero, set
 $$ a = a_0 - a_2 + \dots \in \Z, \qquad b = a_1 - a_3 + \dots \in \Z. $$
-Then $ \sum_{n = 0}^\infty a_ni^n = a + bi $. This expression is clearly unique, as if $ a + bi = c + di $ in $ \C $ for $ a, b, c, d \in \Z $, then $ a = c $ and $ b = d $.
+Then
+$$ \sum_{n = 0}^\infty a_ni^n = a + bi. $$
+This expression is clearly unique, as if $ a + bi = c + di $ in $ \C $ for $ a, b, c, d \in \Z $, then $ a = c $ and $ b = d $.
 \end{proof}
 
 If $ \alpha $ is more complicated then the elements of $ R\sb{\alpha} $ may well be harder to describe, and indeed, a nice description might not exist at all.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item If $ \alpha $ is the real cube root of $ 2 $, then every element of $ \Z\sb{\alpha} $ can be uniquely expressed as $ a + b\alpha + c\alpha^2 $, where $ a, b, c \in \Z $.
@@ -240,11 +199,11 @@ $$ 0 = \sum_{n = 0}^\infty \rb{a_n - b_n}\pi^n. $$
 Since $ \pi $ is transcendental, this polynomial must be zero. Thus each $ a_n = b_n $.
 \item The elements of $ \Z\sb{1 / 2} $ can be expressed uniquely as $ a / b $, where $ b $ is a power of $ 2 $ and $ a $ is odd unless $ b = 1 $. If $ \alpha $ is a root of the polynomial $ x^2 - x / 2 + 1 $ then $ \alpha^2 \in \Z\sb{\alpha} $ and $ \alpha^2 = \alpha / 2 - 1 $. Can show that every element of $ \Z\sb{\alpha} $ can be uniquely expressed as $ a + b\alpha $, where $ a, b $ lies in $ \Z\sb{1 / 2} $, but there are pairs $ a, b $ such that $ a + b\alpha $ does not lie in $ \Z\sb{\alpha} $. For which pairs $ a, b $ of elements of $ \Z\sb{1 / 2} $ does $ a + b\alpha $ lie in $ \Z\sb{\alpha} $?
 \end{itemize}
-\end{example}
+\end{example2}
 
 An alternative way of defining the ring $ S\sb{\alpha} $ is to note that it is the smallest subring of $ R $ containing $ S $ and $ \alpha $. In one direction, any such subring contains every expression of the form $ r_0 + \dots + r_n\alpha^n $, with $ r_i \in S $, so any subring of $ R $ containing $ S $ and $ \alpha $ contains $ S\sb{\alpha} $. One can thus construct $ S\sb{\alpha} $ as the intersection of every subring of $ R $ containing $ S $ and $ \alpha $. Since the intersection of any collection of subrings of $ R $ is a subring of $ R $ it is clear that this intersection is equal to $ S\sb{\alpha} $ as defined above.
 
-\marginpar{Lecture 3 \\ Wednesday \\ 10/10/18}
+\lecture{3}{Wednesday}{10/10/18}
 
 \subsection{Integral domains and rings of fractions}
 
@@ -252,9 +211,9 @@ An alternative way of defining the ring $ S\sb{\alpha} $ is to note that it is t
 A \textbf{zero divisor} in a ring $ R $ is a nonzero element $ r $ of $ R $ such that there exists a nonzero $ s \in R $ with $ rs = 0 $. A ring $ R $ in which there are no zero divisors is called an \textbf{integral domain}.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 $ \Z $ is an integral domain and any subring of a field is an integral domain, but $ \Z / 6\Z $ is not an integral domain, as $ \sb{2}\sb{3} $ is zero mod $ 6 $ even though neither $ \sb{2} $ nor $ \sb{3} $ is zero mod $ 6 $.
-\end{example}
+\end{example2}
 
 If $ R $ is an integral domain, then we can form the field of fractions of $ R $ in analogy to the way we build $ \Q $ from $ \Z $.
 
@@ -264,14 +223,17 @@ Let $ R $ be an integral domain. The \textbf{field of fractions} $ K\rb{R} $ is 
 \dfrac{a}{b} + \dfrac{a'}{b'} & = \dfrac{ab' + ba'}{bb'}, \\
 \dfrac{a}{b} \cdot \dfrac{a'}{b'} & = \dfrac{aa'}{bb'}.
 \end{align*}
-Then $ K\rb{R} $ is a field, and it contains $ R $ in a natural way as a subring if we identify $ r $ with $ r / 1_R \in K\rb{R} $. $ 0_{K\rb{R}} = 0_R / 1_R $ and $ 1_{K\rb{R}} = 1_R / 1_R $. If $ a \ne 0 $ in $ R $, then $ b / a \in K\rb{R} $, so $ \rb{a / b} \cdot \rb{b / a} = ab / ba \sim 1 / 1 $.
+Then $ K\rb{R} $ is a field, and it contains $ R $ in a natural way as a subring if we identify $ r $ with $ r / 1_R \in K\rb{R} $.
+$$ 0_{K\rb{R}} = \dfrac{0_R}{1_R}, \qquad 1_{K\rb{R}} = \dfrac{1_R}{1_R}. $$
+If $ a \ne 0 $ in $ R $, then $ b / a \in K\rb{R} $, so
+$$ \dfrac{a}{b} \cdot \dfrac{b}{a} = \dfrac{ab}{ba} \sim \dfrac{1}{1}. $$
 \end{definition}
 
 The field $ K\rb{R} $ is in some sense the smallest field containing $ R $ as a subring. When we talk about homomorphisms and isomorphisms, we will be able to state this more precisely. More generally, let the \text{multiplicative system} $ S $ be a subset of $ R $ that contains $ 1_R $, does not contain $ 0_R $ and is closed under multiplication. That is, if $ a, b $ are in $ S $ then so is $ ab $. For any integral domain $ R $ and any multiplicative system $ S $, we can define $ S^{-1}R $ to be the subring of $ K\rb{R} $ consisting of all fractions of the form $ a / b $ with $ b \in S $. It is easy to see that this is closed under addition and multiplication, and defines a ring in between $ R $ and $ K\rb{R} $.
 
-\begin{example}
+\begin{example2}
 If $ R = \Z $ and $ S $ is the set of powers of $ 2 $, then $ S^{-1}R = \Z\sb{1 / 2} $. On the other hand, if $ S $ is the set of odd integers, then $ S^{-1}R $ is the set of all rational numbers of the form $ a / b $ with $ b $ odd.
-\end{example}
+\end{example2}
 
 In general $ S^{-1}R $ is the smallest subring of $ K\rb{R} $ containing $ R $ in which every element of $ S $ has a multiplicative inverse, that is $ 1 / b \in S $ for all $ b \in S $. The process of obtaining $ S^{-1}R $ from $ R $ is called \textbf{localisation} and is an extremely powerful tool. One can even make sense of it when $ R $ is not an integral domain, but one has to be more careful. The equivalence relation on fractions is trickier, for example. We will not discuss this in this course but it will be quite useful in future courses.
 
@@ -302,14 +264,14 @@ Adding the additive inverse, in $ S $, of $ f\rb{0_R} $ to both sides gives $ 0_
 A bijective homomorphism $ f : R \to S $ is called an \textbf{isomorphism}. Write $ S \cong R $ for $ S $ is isomorphic to $ R $. In this case one verifies easily that the inverse map $ f^{-1} : S \to R $ is also a bijective homomorphism.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item If $ R $ is a subring of $ S $, then the inclusion of $ R $ into $ S $ is a homomorphism. This is just a fancy way of saying that the addition and multiplication on $ R $ are induced from the corresponding operations on $ S $. In particular the inclusions $ \Z \subset \Q \subset \R \subset \C $ are all homomorphisms.
 \item The composition of two homomorphisms is a homomorphism, as is easily checked from the definitions.
 \item The map $ \Z \to \Z / n\Z $ that takes $ m \in \Z $ into its congruence class mod $ n $ is a ring homomorphism.
 \end{itemize}
-\end{example}
+\end{example2}
 
 In fact, this is a special case of the following construction.
 
@@ -361,13 +323,13 @@ $$ Ker\rb{f} = \cb{r \in R \mid f\rb{r} = 0} \subseteq R. $$
 
 The image of a homomorphism $ f : R \to S $ is easily seen to be a subring of $ S $.
 
-\begin{example}
+\begin{example2}
 If $ R $ is a subring of $ S $, $ f : R \to S $ is the inclusion and $ s $ lies in $ S $, then the image of the map $ \phi_{s, f} : R\sb{X} \to S $ is precisely the subring $ R\sb{s} $ of $ S $.
-\end{example}
+\end{example2}
 
 By contrast, the kernel of a homomorphism $ f $ is almost never a subring of $ R $. For instance, subrings contain the identity. However, we have the following.
 
-\marginpar{Lecture 4 \\ Friday \\ 12/10/18}
+\lecture{4}{Friday}{12/10/18}
 
 \begin{definition}
 A nonempty subset $ I $ of $ R $ is an \textbf{ideal} of $ R $ if $ I $ is closed under addition, that is for all elements $ i, j $ of $ I $, $ i + j $ is an element of $ I $, and for all elements $ i $ of $ I $ and $ r $ of $ R $, $ ri $ is an element of $ I $.
@@ -398,7 +360,7 @@ The set of all elements of this form is an ideal of $ R $, known as the \textbf{
 If $ S $ has one element, $ \ab{S} $ is a principal ideal. We will show soon that any ideal of $ \Z $ is a principal ideal, as is any ideal of the ring $ K\sb{X} $ for any field $ K $. You may well have seen this in last year's
 algebra course. On the other hand, there are rings in which not every ideal is principal. For example, the ideal $ \ab{X, Y} $ of $ K\sb{X, Y} $ is not a principal ideal. Given ideals $ I $ and $ J $ there are several ways to create new ideals.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item If $ I, J $ are ideals, then the intersection $ I \cap J $ is an ideal. Note that if $ I $ and $ J $ are given by generators, it might be hard to find generators for the intersection. Certainly it is not enough to intersect the generating sets.
@@ -407,7 +369,7 @@ algebra course. On the other hand, there are rings in which not every ideal is p
 \item If $ I, J $ are ideals, the product $ I \cdot J $ or $ IJ $ is the ideal generated by elements of the form $ ij $ with $ i \in I $ and $ j \in J $. This may be strictly larger than the set of such products. For example, consider the product of the ideals $ I = \ab{X, Y} $ and $ J = \ab{Z, W} $ in $ R = K\sb{X, Y, Z, W} $ for $ K $ a field. The product $ IJ = \ab{XZ, XW, YZ, YW} $ contains $ XZ + YW $, but the latter is not a product of an element in $ I $ with an element in $ J $.
 \item If $ I, J $ are general ideals, the product of ideals $ I $ and $ J $ is always contained in the intersection of $ I $ and $ J $, but the two need not be equal, even in simple rings like $ \Z $. $ \ab{3} \cdot \ab{3} = \ab{9} \subseteq \Z $ and $ \ab{3} \cap \ab{3} = \ab{3} $.
 \end{itemize}
-\end{example}
+\end{example2}
 
 \subsection{Quotients}
 
@@ -418,9 +380,9 @@ Let $ R $ be a ring and let $ I $ be an ideal of $ R $. If $ x, y $ are elements
 \end{align*}
 respectively. One has to check that these are well-defined, but this is not difficult. The ring $ R / I $ is called the \textbf{quotient} of $ R $ by the ideal $ I $.
 
-\begin{example}
+\begin{example2}
 If $ R = \Z $ and $ I $ is the ideal generated by $ n $, then $ R / I $ is the ring $ \Z / n\Z $ that we have already seen.
-\end{example}
+\end{example2}
 
 There is a natural quotient homomorphism, \textbf{reduction mod $ I $},
 \begin{align*}
@@ -442,11 +404,11 @@ Note that $ \overline{f} $ is necessarily unique, as every element of $ R / I $ 
 
 Note that the kernel of $ \overline{f} $ in Proposition \ref{prop:2.5.1} above is just the image of the kernel of $ f $ in $ R / I $. If the kernel of $ f $ is equal to $ I $, this image is the zero ideal and $ \overline{f} $ is injective. In particular, any homomorphism of $ R $ to $ S $ can be thought of as an isomorphism of some quotient of $ R $ with a subring of $ S $.
 
-\begin{example}
+\begin{example2}
 Let $ R \subseteq S $ be a subring, $ \alpha \in S $, and $ \iota : R \to S $ be the inclusion map. Recall that we have an evaluation at $ \alpha $ by $ \phi_{\iota, \alpha} : R\sb{X} \to S $. Image of this is $ R\sb{\alpha} $. Let $ I = Ker\rb{\phi_{\iota, \alpha}} $. Then $ \phi_{\iota, \alpha} $ descends to a map $ \phi_{\iota, \alpha} : R\sb{\alpha} / I \to S $ that is injective with image $ R\sb{\alpha} $. So $ R\sb{\alpha} $ is isomorphic to a quotient of $ R\sb{X} $.
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 5 \\ Monday \\ 15/10/18}
+\lecture{5}{Monday}{15/10/18}
 
 \subsection{Prime and maximal ideals}
 
@@ -515,7 +477,7 @@ are two factorisations of $ r $ as products of irreducibles $ p_i, q_i $, then $
 
 Both conditions can fail.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item There are certainly domains in which $ 1 $ can fail, although they are somewhat exotic. One example is to take the rational polynomial ring $ R = \C\sb{X^\Q} $ with coefficients in $ \C $, whose entries are finite formal sums
@@ -526,7 +488,7 @@ $$ 2, \qquad 3, \qquad 1 + \sqrt{-5}, \qquad 1 - \sqrt{-5} $$
 are all irreducibles, none are associates of each other, yet
 $$ \rb{2}\rb{3} = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}}. $$
 \end{itemize}
-\end{example}
+\end{example2}
 
 We will show later that a very mild finiteness condition on a domain $ R $, the condition that $ R $ is Noetherian, actually guarantees that $ 1 $ holds. Another way to interpret condition $ 2 $ is as follows.
 
@@ -597,7 +559,7 @@ Now we show $ 2 $.
 It suffices to show that in a PID every irreducible is prime. Let $ r \in R $ be irreducible, and suppose that $ r $ divides $ st $. Want $ r \mid s $ or $ r \mid t $. Let $ q $ be a generator of the ideal $ \ab{r, s} $ of $ R $, so $ \ab{r, s} = \ab{q} $. Then $ q $ divides $ r $, so either $ q $ is a unit or $ q $ is an associate of $ r $. If $ q $ is an associate of $ r $, then since $ q $ divides $ s $, $ r $ divides $ s $. On the other hand, if $ q $ is a unit, then the ideal generated by $ r $ and $ s $ is the unit ideal and $ 1 \in \ab{r, s} $, so we can write $ 1 = xr + ys $ for $ x, y $ elements of $ R $. We then have $ t = xrt + yst $, and since $ r $ divides both $ yst $ and $ xrt $, $ r $ divides $ t $.
 \end{proof}
 
-\marginpar{Lecture 6 \\ Wednesday \\ 16/10/18}
+\lecture{6}{Wednesday}{16/10/18}
 
 \subsection{Euclidean domains}
 
@@ -621,7 +583,7 @@ Let $ R $ be a Euclidean domain, $ N $ be a Euclidean norm on $ R $, and $ I \su
 
 \subsection{Examples}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item The classic example of a Euclidean domain is $ \Z $, with
@@ -651,7 +613,7 @@ $$ S\rb{X} = P\rb{X} - \dfrac{a_{n + 1}}{b_d}X^{n + 1 - d}T\rb{X} $$
 has degree $ n $. By inductive hypothesis there exist $ Q\rb{X}, R\rb{X} $ with $ \deg\rb{R\rb{X}} < \deg\rb{T\rb{X}} $ such that $ S\rb{X} = Q\rb{X}T\rb{X} + R\rb{X} $, so
 $$ P\rb{X} = \rb{\dfrac{a_{n + 1}}{b_d}X^{n + 1 - d} + Q\rb{X}}T\rb{X} + R\rb{X}. $$
 \end{itemize}
-\end{example}
+\end{example2}
 
 Later, will show if $ R $ is a UFD, then $ R\sb{X} $ is also a UFD.
 
@@ -789,7 +751,7 @@ such that $ P\rb{a_i} = c_i $ for all $ i $.
 
 \pagebreak
 
-\marginpar{Lecture 7 \\ Friday \\ 19/10/18}
+\lecture{7}{Friday}{19/10/18}
 
 \section{Fields and field extensions}
 
@@ -850,7 +812,7 @@ $$ \sum_i d_{i, j}e_i = 0, $$
 for all $ j $. Since the $ e_i $ are linearly independent over $ K $ we must have $ d_{i, j} = 0 $ for all $ i, j $.
 \end{proof}
 
-\marginpar{Lecture 8 \\ Monday \\ 22/10/18}
+\lecture{8}{Monday}{22/10/18}
 
 \subsection{Extensions generated by one element}
 
@@ -940,13 +902,13 @@ For any extension $ L / K $, let $ L^{alg} $ be the subset of $ L $ consisting o
 We have seen that $ L^{alg} $ is closed under addition, multiplication, and taking inverses. For example, if $ a_0 + \dots + a_n\alpha^n = 0 $, then $ a_0\rb{\alpha^{-1}}^n + \dots + a_n = 0 $.
 \end{proof}
 
-\begin{example}
+\begin{example2}
 In particular, the subfield $ \overline{\Q} \subseteq \C $ of complex numbers that are algebraic over $ \Q $ is a field, called the \textbf{field of algebraic numbers}.
-\end{example}
+\end{example2}
 
 \subsection{Example}
 
-\begin{example}
+\begin{example2}
 Consider the polynomial $ X^2 + X + 1 $ in $ \F_2\sb{X} $. It has no roots in $ \F_2 $, so it is irreducible, as a polynomial of degree two any nontrivial factor would be linear. The other polynomials of degree two are
 $$ X^2, \qquad X^2 + X = X\rb{X + 1}, \qquad X^2 + 1 = \rb{X + 1}^2, $$
 so $ X^2 + X + 1 $ is the unique irreducible polynomial of degree two. Thus the quotient $ \F_2\sb{X} / \ab{X^2 + X + 1} $ is a field extension of degree two of $ \F_2 $, which is denoted $ \F_4 $. Its four elements are $ 0, 1, X, X + 1 $, or more precisely, their classes mod $ \ab{X^2 + X + 1} $.
@@ -963,7 +925,7 @@ $$
 Note that
 $$ X^2 = -X - 1 = X + 1, \qquad X^2 + X + 1 = 0, \qquad \rb{X + 1}^2 = X, \qquad X^3 = X\rb{X + 1} = 1 $$
 in $ \F_4 $. In particular the multiplicative group of $ \F_4 $ is cyclic of order three. This is not particularly surprising, as all groups of order three are cyclic. We will see later, though, that the multiplicative group of any finite field is cyclic.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 Let $ K $ be a field with four elements. Then $ K \cong \F_4 $.
@@ -980,7 +942,7 @@ descends to $ \F_2\sb{X} / \ab{X^2 + X + 1} \to K $. So $ \F_4 $ embeds in $ K $
 
 \pagebreak
 
-\marginpar{Lecture 9 \\ Wednesday \\ 24/10/18}
+\lecture{9}{Wednesday}{24/10/18}
 
 \section{Finite fields}
 
@@ -1000,10 +962,10 @@ for $ 1 \le i \le p - 1 $, so if $ R $ has characteristic $ p $, we have
 $$ \rb{x + y}^p = x^p + y^p. $$
 Thus, when $ R $ has characteristic $ p $, the map $ x \mapsto x^p $ is a ring homomorphism from $ R $ to $ R $, called the \textbf{Frobenius endomorphism} of $ R $. If $ R $ is a field of characteristic $ p $, then the Frobenius endomorphism is injective. If in addition $ R $ is finite, then any injective map from $ R $ to $ R $ is surjective. In particular the Frobenius endomorphism is a bijective and an isomorphism from $ R $ to $ R $ when $ R $ is a finite field of characteristic $ p $. In this case we call the map $ x \mapsto x^p $ the \textbf{Frobenius automorphism}. Composing the Frobenius endomorphism with itself, we find that for any $ r $, $ x \mapsto x^{p^r} $ is also an endomorphism of any ring $ R $ of characteristic $ p $.
 
-\begin{example}
+\begin{example2}
 Let $ R = \F_4 $. $ y \mapsto y^2 $ gives
 $$ 0 \mapsto 0, \qquad 1 \mapsto 1, \qquad X \mapsto X + 1, \qquad X + 1 \mapsto X. $$
-\end{example}
+\end{example2}
 
 Let $ K $ be a field of $ p^r $ elements. Then $ \alpha^{p^r} = \alpha $ for all $ \alpha \in K $. If $ \alpha = 0 $, clear. Otherwise $ \alpha \in K^* $, $ K^* $ is an abelian group of order $ p^r - 1 $. Lagrange's theorem gives $ \alpha^{p^r - 1} = 1 $, so $ \alpha^{p^r} = \alpha $. We have the following.
 
@@ -1079,7 +1041,7 @@ There exists a finite field of $ p^r $ elements.
 The field $ K $ we constructed has $ p^r $ elements.
 \end{proof}
 
-\marginpar{Lecture 10 \\ Friday \\ 26/10/18}
+\lecture{10}{Friday}{26/10/18}
 
 \subsection{The multiplicative group}
 
@@ -1202,13 +1164,13 @@ Since this is map of fields from $ K $ to $ K' $ that takes $ \alpha $ to $ \alp
 
 If $ k = \Q $, $ \Q\sb{X} / \ab{X^2 - p} $ are pairwise nonisomorphic extensions of degree $ \alpha $ for every prime $ p $.
 
-\marginpar{Lecture 11 \\ Monday \\ 29/10/18}
+\lecture{11}{Monday}{29/10/18}
 
 Lecture 11 is a problem class.
 
 \pagebreak
 
-\marginpar{Lecture 12 \\ Wednesday \\ 31/10/18}
+\lecture{12}{Wednesday}{31/10/18}
 
 \section{$ R $-modules}
 
@@ -1233,7 +1195,7 @@ $$ 1_R \cdot m = m. $$
 
 Note that for an abelian group $ M $, let $ End\rb{M} $ denote the set of homomorphisms $ M \to M $ of abelian groups. $ End\rb{M} $ is a noncommutative ring. $ 2 $ if and only if for all $ r \in R $, $ \cdot r : M \to M $ lives in $ End\rb{M} $. $ 3 $, $ 4 $, and $ 5 $ if and only if the map $ R \to End\rb{M} $ given by $ 2 $ is a homomorphism of rings.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item The usual addition and multiplication on $ R $ naturally makes $ R $ into an $ R $-module. More generally, any ideal $ I $ of $ R $ is an $ R $-module with the usual addition and multiplication.
@@ -1263,7 +1225,7 @@ rf & = s \mapsto r \cdot f\rb{s}.
 $ M_S $ is clearly an $ R $-module.
 \item Also of interest is the $ R $-submodule $ F_S $ of $ M_S $ that consists of functions $ f : S \to R $ such that $ f\rb{s} = 0_R $ for all but finitely many $ s $. The $ R $-module $ F_S $ is called the free $ R $-module on the set $ S $ and will be very important for us.
 \end{itemize}
-\end{example}
+\end{example2}
 
 \subsection{Submodules, quotients, and direct sums}
 
@@ -1301,7 +1263,7 @@ r\rb{m_1, m_2} & = \rb{rm_1, rm_2},
 for $ m_1, m_1' \in M_1 $, $ m_2, m_2' \in M_2 $, and $ r \in R $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 Let $ M $ be an $ R $-module and $ I $ an ideal of $ R $. Then we can form the $ R $-submodule $ IM $ of $ M $ consisting of all elements of $ M $ of the form
 $$ i_1m_1 + \dots + i_rm_r, $$
 where the $ i_j $ are in $ I $ and the $ m_j $ are in $ M $. This is an $ R $-submodule of $ M $, so we can form the quotient $ M / IM $. Then $ M / IM $ is certainly an $ R $-module, but it is also an $ R / I $-module. One can define multiplication
@@ -1312,7 +1274,7 @@ where the $ i_j $ are in $ I $ and the $ m_j $ are in $ M $. This is an $ R $-su
 As always one has to check that this is well-defined, but this is straightforward. We need that if $ r - r' $ lies in $ I $, and $ m - m' $ lies in $ IM $, then $ rm - r'm' $ lies in $ IM $. But
 $$ rm - r'm' = \rb{r - r'}m + r'\rb{m - m'}, $$
 which is clearly in $ IM $.
-\end{example}
+\end{example2}
 
 \subsection{Module homomorphisms, kernels, and images}
 
@@ -1368,15 +1330,15 @@ Let $ M $ be an $ R $-module. A subset $ S $ of $ M $ is a \textbf{basis} for $ 
 An $ R $-module $ M $ that has a basis $ S $ is called a \textbf{free} $ R $-module. The cardinality $ n $ of the basis $ S $ is called the \textbf{rank} of the free $ R $-module $ M $ over $ R $.
 \end{definition}
 
-\marginpar{Lecture 13 \\ Friday \\ 02/11/18}
+\lecture{13}{Friday}{02/11/18}
 
-\begin{remark}
+\begin{remark1}
 If $ R $ is a field, then the notion of a basis for an $ R $-module coincides with the usual notion for vector spaces. In this case, at least if one assumes the axiom of choice, every $ R $-module has a basis. When $ R $ is not a field only very special $ R $-modules have bases. For instance any quotient $ R / I $ of $ R $, for $ I $ a nonzero ideal, has no basis.
-\end{remark}
+\end{remark1}
 
-\begin{example}
+\begin{example2}
 The ring $ R $ is a free $ R $-module of rank one over $ R $, with basis $ \cb{1_R} $. More generally any unit $ u \in R^* $ gives a basis of $ R $ as an $ R $-module.
-\end{example}
+\end{example2}
 
 Recall that the free $ R $-module $ F_S $ on a set $ S $ was defined to be the set of functions $ f : S \to R $ such that $ f\rb{s} = 0 $ for all but finitely many $ s \in S $. For each $ s \in S $, we have an element $ e_s $ of $ F_S $ defined by $ e_s\rb{t} = 0 $ for all $ t \in S $ with $ t \ne s $, $ e_s\rb{s} = 1 $. Claim that the $ e_s $ form a basis for $ F_S $. In particular, given $ f : R \to S $ with $ f\rb{s} = 0 $ for all but finitely many $ s $, let $ s_1, \dots, s_n $ be the set of elements in $ S $ on which $ f\rb{s_i} $ is nonzero. Set $ r_i = f\rb{s_i} $. Claim that
 $$ f = r_1e_{s_1} + \dots + r_ne_{s_n}. $$
@@ -1441,7 +1403,7 @@ Thus $ M $ is isomorphic to $ F_S $. Since $ M $ was arbitrary, any $ R $-module
 
 Note that it is also true, but harder to prove, that if $ M, N $ are free of different ranks, then $ M \ncong N $.
 
-\marginpar{Lecture 14 \\ Monday \\ 05/11/18}
+\lecture{14}{Monday}{05/11/18}
 
 \subsection{Generators and relations}
 
@@ -1459,7 +1421,7 @@ When $ S $ and $ T $ are finite we can encode a presentation in a matrix, called
 $$ \sum_{j = 1}^t r_{ij}e_{s_j}, $$
 and let $ A $ be the $ s $ by $ t $ matrix whose $ i, j $ entry is $ r_{ij} $. Then $ A $ gives a map from $ R^t $ to $ R^s $, and the quotient of $ R^s $ by the $ R $-submodule $ AR^t $ of $ R^s $ is isomorphic to $ M $.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item Let $ R = \Z $ and $ M = \Z / n\Z $ generated by $ \sb{1}_n $. Map $ \Z \to M $ is the quotient map with kernel $ \ab{n} $. So presentation matrix is just $ \rb{n} $.
@@ -1475,7 +1437,7 @@ $$ \rb{1 + \sqrt{-5}}e_1 - 2e_2, \qquad 3e_1 - \rb{1 - \sqrt{-5}}e_2 $$
 generate $ K $. Let $ ae_1 + be_2 $ be a relation, so $ a, b \in R $ and $ 2a + \rb{1 - \sqrt{-5}}b = 0 $, that is $ a = \rb{\rb{1 + \sqrt{-5}} / 2}b $. A question is for which $ b $ does $ \rb{\rb{1 + \sqrt{-5}} / 2}b $ lie in $ R $? Claim that the set of such $ b $ is an ideal $ J $ of $ R $. $ 2 \in J $ and $ 1 - \sqrt{-5} \in J $ so $ J $ contains $ \ab{2, 1 - \sqrt{-5}} $. $ 1 \notin J $, since $ \ab{2, 1 - \sqrt{-5}} $ is maximal, $ J = \ab{2, 1 - \sqrt{-5}} $. So we have a presentation matrix
 $$ \two{1 + \sqrt{-5} & 3}{-2 & -1 + \sqrt{-5}} : R^2 \to R^2. $$
 \end{itemize}
-\end{example}
+\end{example2}
 
 General idea is if we have a presentation matrix $ A : R^t \to R^s $ for $ M $, with $ s $ rows and $ t $ columns, then $ BAC $ is also a presentation matrix for $ M $, where $ B $ is $ s \times s $ and $ C $ is $ t \times t $, and $ B $ and $ C $ are invertible matrices with inverse matrix entries in $ R $.
 
@@ -1509,7 +1471,7 @@ $$ N \subseteq M_d \subseteq M_{d'} \subseteq N, $$
 so $ N = M_d = M_{d'} $ for all such $ d' $ and the chain is constant after $ M_d $.
 \end{proof}
 
-\marginpar{Lecture 15 \\ Wednesday \\ 07/11/18}
+\lecture{15}{Wednesday}{07/11/18}
 
 \begin{corollary}
 Let $ R $ be a PID. Then $ R $ is Noetherian.
@@ -1519,13 +1481,13 @@ Let $ R $ be a PID. Then $ R $ is Noetherian.
 Every ideal of $ R $ is principal, hence finitely generated.
 \end{proof}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item Any field is Noetherian.
 \item The ring $ \C\sb{X^{\Q_{\ge 0}}} $ is not Noetherian. The ideal consisting of all elements with no constant term is not finitely generated.
 \end{itemize}
-\end{example}
+\end{example2}
 
 \subsection{Finitely generated modules over Noetherian rings}
 
@@ -1638,7 +1600,7 @@ In this section, we will use the ideas of the previous section to establish the 
 Let $ R $ be a Noetherian ring. Then $ R\sb{X} $ is Noetherian.
 \end{theorem}
 
-\marginpar{Lecture 16 \\ Friday \\ 09/11/18}
+\lecture{16}{Friday}{09/11/18}
 
 Over a field, if
 $$ Q\rb{X} = a_nX^n + \dots, \qquad P\rb{X} = b_mX^m + \dots, \qquad m \ge n, \qquad a_n, b_m \ne 0, $$
@@ -1727,20 +1689,20 @@ is surjective.
 
 Note that any finitely generated $ R $-algebra $ S $ is isomorphic to a quotient $ R\sb{X_1, \dots, X_n} / I $ for some $ n $ and some ideal $ I $. Thus we can rephrase the Hilbert basis theorem as saying that if $ R $ is Noetherian, then any finitely generated $ R $-algebra is Noetherian.
 
-\marginpar{Lecture 17 \\ Monday \\ 12/11/18}
+\lecture{17}{Monday}{12/11/18}
 
 Lecture 17 is a problem class.
 
-\marginpar{Lecture 18 \\ Wednesday \\ 14/11/18}
+\lecture{18}{Wednesday}{14/11/18}
 
 \subsection{Polynomial rings over UFDs are UFDs}
 
 Our next goal is to study factorisation in polynomial rings of the form $ R\sb{X} $. $ \Z\sb{X} $ is not a PID nor a UFD. Idea is to relate factorisations in $ \Z\sb{X} $ to factorisations in $ \Q\sb{X} $. Warning that irreducibles in $ \Q\sb{X} $ does not give irreducibles in $ \Z\sb{X} $.
 
-\begin{example}
+\begin{example2}
 $ 3x + 15 $ is irreducible in $ \Q\sb{X} $. In $ \Z\sb{X} $
 $$ 3x + 15 = 3\rb{x + 15}. $$
-\end{example}
+\end{example2}
 
 Certainly if $ R $ is not a UFD then we cannot expect to have unique factorisation in $ R\sb{X} $, since we do not even have it in $ R $. Assume $ R $ is a UFD. Then the ring $ R\sb{X} $ might be quite complicated, but $ R\sb{X} $ is contained in a much simpler ring where we do understand factorisation, the ring $ K\sb{X} $, where $ K $ is the field of fractions of $ R $. Our goal will thus be to compare factorisations in $ K\sb{X} $ with factorisations in $ R\sb{X} $. Fundamental question is can we turn factorisations in $ K\sb{X} $ of $ P\rb{X} \in R\sb{X} $ into factorisations in $ R\sb{X} $? The key to doing this is the following result, often called Gauss' lemma.
 
@@ -1766,9 +1728,9 @@ $$ P\rb{X} = e_1Q\rb{X}\dfrac{1}{d}e_2T\rb{X}, \qquad e_1Q\rb{X}, \dfrac{1}{d}e_
 
 Note that the converse to the last claim of Theorem \ref{thm:9.2.1} is not true. If $ P\rb{X} $ is reducible in $ R\sb{X} $, it might be irreducible in $ K\sb{X} $.
 
-\begin{example}
+\begin{example2}
 The polynomial $ 7x $ factors into irreducibles as $ 7 \cdot x $ in $ \Z\sb{X} $, but since $ 7 $ is a unit in $ \Q\sb{X} $, $ 7x $ is irreducible in $ \Q\sb{X} $.
-\end{example}
+\end{example2}
 
 The following lemma shows that this kind of thing is all that can happen, however.
 
@@ -1819,11 +1781,11 @@ If $ K $ is a UFD, a field, or a PID, then $ K\sb{X_1, \dots, X_n} $ is a UFD fo
 
 Warning that quotients of UFDs are only rarely UFDs themselves.
 
-\begin{example}
+\begin{example2}
 $ \Z\sb{X} $ is a UFD, but $ \Z\sb{X} / \ab{X^2 + 5} = \Z\sb{\sqrt{-5}} $ is not a UFD.
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 19 \\ Friday \\ 16/11/18}
+\lecture{19}{Friday}{16/11/18}
 
 \subsection{Irreducible polynomials}
 
@@ -1889,16 +1851,16 @@ where both are monic of positive degree between $ 1 $ and $ \deg\rb{\overline{Q}
 
 This means, for instance, that we can show that a monic polynomial in $ \Z\sb{X} $ is irreducible if we can find even one prime $ p $ for which it is irreducible mod $ p $.
 
-\begin{example}
+\begin{example2}
 $$ X^2 + aX + b \in \Z\sb{X}, $$
 with $ a, b $ odd is irreducible in $ \Q\sb{X} $. Its reduction mod $ 2 $ is
 $$ X^2 + X + 1, $$
 which is irreducible in $ \F_2\sb{X} $.
-\end{example}
+\end{example2}
 
 Unfortunately, even when the polynomial is irreducible we will not always be able to do this.
 
-\begin{example}
+\begin{example2}
 The polynomial $ X^4 + 1 $ is irreducible in $ \Z\sb{X} $ and $ \Q\sb{X} $, but reducible mod $ p $ for every $ p $. You can prove this with some elementary number theory.
 $$ X^4 + 1 = \rb{X + 1}^4 $$
 in $ \F_2\sb{X} $. If $ p $ is odd, $ X^4 + 1 $ has a common factor, and in fact divides $ X^{p^2} - X $. In fact
@@ -1907,7 +1869,7 @@ If $ p = 2k + 1 $,
 $$ p^2 = 4k^2 + 4k + 1 = 4\rb{k^2 + k} + 1 = 8m + 1, $$
 since $ k^2 + k $ is even.
 $$ X^{p^2 - 1} - 1 = X^{8m} - 1 = \rb{X^4 + 1}\rb{X^{8m - 4} - \dots - 1}. $$
-\end{example}
+\end{example2}
 
 There is another sufficient criterion for irreducibility by reducing mod $ \mathfrak{p} $, known as Eisenstein's criterion.
 
@@ -1946,9 +1908,9 @@ $$ \rb{X + 1}^4 + 1 = X^4 + 4X^3 + 6X^4 + 4X^2 + 2 $$
 satisfies Eisenstein's criterion mod $ 2 $.
 \end{proof}
 
-\marginpar{Lecture 20 \\ Monday \\ 19/11/18}
+\lecture{20}{Monday}{19/11/18}
 
-\begin{example}
+\begin{example2}
 Let $ F\sb{X, Y, Z} $ for $ F $ field be a polynomial ring, such as $ \Z\sb{X, Y, Z} $. Can write
 $$ F\sb{X, Y, Z} = F\sb{X, Y}\sb{Z}, \qquad R = F\sb{X, Y}, $$
 or
@@ -1969,7 +1931,7 @@ is irreducible if it is irreducible mod $ X $.
 $$ \overline{P}\rb{Y, Z} = Z^5 + Y^3 \in \C\sb{Z}\sb{Y} $$
 is irreducible if and only if it is irreducible in $ \C\rb{Z}\sb{Y} $, if and only if it has no root, if and only if $ -Z^5 $ is not a cube in $ \C\rb{Z} $, if and only if $ -Z^5 $ is not a cube in $ \C\sb{Z} $, which is clear from unique factorisation.
 \end{itemize}
-\end{example}
+\end{example2}
 
 \pagebreak
 
@@ -2058,7 +2020,7 @@ Let $ R $ be a Noetherian subring of $ S $ and suppose $ \alpha, \beta \in S $ a
 The ring $ R\sb{\alpha} $ is a finitely generated $ R $-module and thus integral over $ R $. Since $ \beta $ is integral over $ R $ it is integral over $ R\sb{\alpha} $. Thus $ R\sb{\alpha, \beta} = R\sb{\alpha}\sb{\beta} $ is integral over $ R\sb{\alpha} $ and hence over $ R $ by Lemma \ref{lem:10.1.6}. Since $ \alpha + \beta $ and $ \alpha\beta $ lie in $ R\sb{\alpha, \beta} $ they are integral over $ R $.
 \end{proof}
 
-\marginpar{Lecture 21 \\ Wednesday \\ 21/11/18}
+\lecture{21}{Wednesday}{21/11/18}
 
 \begin{definition}
 Let $ R $ be a Noetherian subring of $ S $. The \textbf{integral closure} of $ R $ in $ S $ is the subset of $ S $ consisting of all elements $ s \in S $ that are integral over $ R $. This is a subring of $ R $. We say that $ R $ is \textbf{integrally closed} in $ S $ if every element in $ S $ that is integral over $ R $ is contained in $ R $, so $ R $ is equal to its integral closure in $ S $. If $ R $ is an integral domain, we say that $ R $ is integrally closed if $ R $ is integrally closed in its field of fractions $ K $.
@@ -2072,9 +2034,9 @@ Let $ R $ be a Noetherian subring of $ S $, and let $ R' $ be the integral closu
 Let $ t $ be an element of $ R $ integral over $ R' $. Then $ R'\sb{t} $ is a finitely generated $ R' $-module, so is integral over $ R' $, and $ R' $ is integral over $ R $. Thus $ R'\sb{t} $ is integral over $ R $, so $ t $ is integral over $ R $ and thus lies in $ R' $.
 \end{proof}
 
-\begin{example}
+\begin{example2}
 $ \Z\sb{\sqrt{-3}} $ is integral over $ \Z $. As a $ \Z $-module, $ \Z\sb{\sqrt{-3}} $ is generated by $ 1, \sqrt{-3} $. It is not integrally closed. $ \tfrac{1 + \sqrt{-3}}{2} $ is in the field of fractions of $ \Z\sb{\sqrt{-3}} $ and is a root of $ X^2 - X + 1 $.
-\end{example}
+\end{example2}
 
 \begin{theorem}
 Let $ R $ be a UFD. Then $ R $ is integrally closed.
@@ -2115,7 +2077,7 @@ Note that the results in this section are also true without any Noetherian hypot
 
 \pagebreak
 
-\marginpar{Lecture 22 \\ Friday \\ 23/11/18}
+\lecture{22}{Friday}{23/11/18}
 
 \section{Dedekind domains}
 
@@ -2132,7 +2094,7 @@ An integral domain $ R $ is called a \textbf{Dedekind domain} if
 \end{itemize}
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item In particular, any PID is a Dedekind domain. We have seen that every nonzero prime ideal is maximal in a PID, and PIDs are certainly Noetherian. They are integrally closed because any UFD is integrally closed.
@@ -2143,7 +2105,7 @@ $$ \mathcal{O}_K = \begin{cases}
 \end{cases}. $$
 $ \mathcal{O}_K \subseteq K $ is an integral domain. $ \mathcal{O}_K $ is finitely generated by a single element as a $ \Z $-algebra. It is thus Noetherian. $ \mathcal{O}_K $ is also integrally closed. We proved on example sheet 2 that $ \Z\sb{X} / \ab{P\rb{X}} $ for $ P\rb{X} $ monic and irreducible with coefficients in $ \Z $ has dimension one, that is every nonzero prime of such a ring is maximal.
 \end{itemize}
-\end{example}
+\end{example2}
 
 More generally, we have the following.
 
@@ -2153,10 +2115,10 @@ Let $ R $ be a PID with field of fractions $ K $, and let $ L $ be a finite exte
 
 We will prove this later in the course, under a mild additional hypothesis on the extension $ L / K $. In particular, let $ R = \Z $ and $ K = \Q $. The ring of integers $ \mathcal{O}_L $ in $ L / \Q $ a finite extension is a Dedekind domain. Also in particular let $ R = F\sb{X} $ for $ F $ a field, $ K = F\rb{X} $, and $ L / K $ finite. Integral closure of $ R $ in $ K $ is also Dedekind.
 
-\begin{example}
+\begin{example2}
 $$ \dfrac{K\sb{X, Y}}{\ab{Y^2 - X^3 - aX - b}}, $$
 where $ X^3 + aX + b $ is a squarefree polynomial in $ K\sb{X, Y} $.
-\end{example}
+\end{example2}
 
 The reason Dedekind domains are interesting to us is that the nonzero ideals in a Dedekind domain factor uniquely as products of prime ideals. The idea to study factorisation of ideals into prime ideals comes from the following observation.
 
@@ -2173,13 +2135,13 @@ Note the resemblance of this to the property, $ p \mid ab $ implies $ p \mid a $
 $$ r_1s_1, \dots, r_1s_m, \dots, r_ns_1, \dots, r_ns_m $$
 generate $ IJ $.
 
-\begin{example}
+\begin{example2}
 $ R = \Z\sb{\sqrt{-3}} $ is not a Dedekind domain, since it fails to be integrally closed. Then the ideal $ I = \ab{2, 1 + \sqrt{-3}} $ is prime, and we have
 $$ \ab{2, 1 + \sqrt{-3}}^2 = \ab{4, 2 + 2\sqrt{-3}, -2 + 2\sqrt{-3}} = \ab{4, 2 + 2\sqrt{-3}}. $$
 There is thus a chain of inclusions
 $$ \ab{2, 1 + \sqrt{-3}} = I \supsetneq \ab{2} \supsetneq I^2 = \ab{4, 2 + 2\sqrt{-3}}, $$
 so the ideal $ \ab{2} $ is not a product of prime ideals. Worse is $ I^2 = \ab{2}I $ but $ I \ne \ab{2} $, so cannot cancel ideals.
-\end{example}
+\end{example2}
 
 Dedekind domains give precisely the context where this does not happen. In order to make this precise, we first define the following.
 
@@ -2187,9 +2149,9 @@ Dedekind domains give precisely the context where this does not happen. In order
 Let $ R $ be a Noetherian integral domain. A \textbf{fractional ideal} of $ R $ is a finitely generated nonzero $ R $-submodule of the field of fractions $ K $ of $ R $. A \textbf{principal fractional ideal} is an $ R $-submodule $ R \cdot x \subseteq K $ of $ K $ finitely generated by a single nonzero element $ x $ for $ x \in K^* $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 The subgroup of $ \Q $ generated by $ 3 / 5 $ is a principal fractional ideal of $ \Z $. Indeed, every fractional ideal of $ \Z $, or any PID, is principal.
-\end{example}
+\end{example2}
 
 More generally, let $ R $ be a Noetherian integral domain, and let $ I $ be the $ R $-submodule of $ K $ generated by $ r_1, \dots, r_n \in K $. Then by definition $ I $ is a fractional ideal of $ R $. On the other hand, we can clear denominators. There exists an $ r \in R $, nonzero, such that $ rr_i $ lies in $ R $ for all $ i $. Then $ rI $ is generated by elements of $ R $, so is an ideal $ J $ of $ R $, and $ I = \tfrac{1}{r}J $. Thus the fractional ideals of $ R $ are precisely the subsets of $ K $ of the form $ \tfrac{1}{r}J $, where $ r $ is a nonzero element of $ R $ and $ J $ is an ideal of $ R $. Let $ I $ and $ J $ be fractional ideals of $ R $. The product $ IJ $ is the $ R $-submodule of $ K $ generated by all products of the form $ rs $ for $ r \in I $, $ s \in J $. It is a fractional ideal of $ R $. The multiplication $ I, J \mapsto IJ $ is an associative and commutative operation. Note that $ R $ is a fractional ideal of $ R $, and $ RJ = J $ for any fractional ideal $ J $, so $ R $ is an identity element for this operation. For a nonzero ideal $ I $ of $ R $, let $ I^{-1} $ denote the set
 $$ \cb{r \in K^* \mid rI \subseteq R}. $$
@@ -2205,7 +2167,7 @@ where $ n_i \in \Z $ and the $ \mathfrak{p}_i $ are nonzero prime ideals.
 \end{itemize}
 \end{theorem}
 
-\marginpar{Lecture 23 \\ Monday \\ 26/11/18}
+\lecture{23}{Monday}{26/11/18}
 
 The proof of this statement will occur in several steps. We first show the following.
 
@@ -2250,10 +2212,10 @@ gives $ x $ satisfies a monic polynomial with coefficients in $ R $. Thus $ x $ 
 
 When $ R $ is not integrally closed this is false.
 
-\begin{example}
+\begin{example2}
 If $ R = \Z\sb{\sqrt{-3}} $, $ I \subset R $, and $ x = \tfrac{1 + \sqrt{-3}}{2} $, then
 $$ xI = \ab{1 + \sqrt{-3}, -1 + \sqrt{-3}} = \ab{2, 1 + \sqrt{-3}} = I. $$
-\end{example}
+\end{example2}
 
 \begin{proposition}
 \label{prop:11.1.8}
@@ -2292,11 +2254,11 @@ We must show that every fractional ideal of $ R $ is invertible. Let $ I $ be su
 $$ II^{-1} = \tfrac{1}{r}J^{-1} \cdot rJ = JJ^{-1} = R. $$
 \end{proof}
 
-\marginpar{Lecture 24 \\ Wednesday \\ 28/11/18}
+\lecture{24}{Wednesday}{28/11/18}
 
 Lecture 24 is a problem class.
 
-\marginpar{Lecture 25 \\ Friday \\ 30/11/18}
+\lecture{25}{Friday}{30/11/18}
 
 It remains to show that every fractional ideal of $ R $ factors uniquely as a product of prime powers. The hard part is showing such factorisations exist, and we make heavy use of the fact that the fractional ideals are a group. Uniqueness is then almost an afterthought.
 
@@ -2344,9 +2306,9 @@ The \textbf{ideal class group} of $ R $, denoted $ \mathcal{A}\rb{R} $, is
 $$ \mathcal{A} = \dfrac{\mathcal{I}\rb{R}}{\mathcal{P}\rb{R}}. $$
 \end{definition}
 
-\begin{example}
+\begin{example2}
 If $ R $ is a PID, $ \mathcal{A}\rb{R} = \cb{e} $.
-\end{example}
+\end{example2}
 
 In general $ \mathcal{A}\rb{R} $ is a measure of the failure of fractional ideals of $ R $ to be principal. That is, it measures the failure of $ R $ to be a PID. We will show that if $ K $ is a finite extension of $ \Q $ then the integral closure $ \mathcal{O}_K $ of $ \Z $ in $ K $ is a Dedekind domain. A fundamental result of algebraic number theory, which we will not prove, is the following.
 
@@ -2356,11 +2318,11 @@ If $ R $ is a Dedekind domain with field of fractions a finite extension of $ K 
 
 The order of the ideal class group of $ \mathcal{O}_K $ is called the \textbf{class number} of $ K $. In particular, if $ \mathcal{A}\rb{R} $ is finite, say of order $ n $, then $ \mathfrak{p}^n $ is principal for every prime $ \mathfrak{p} $. Warning that it is not true that $ \mathcal{A}\rb{R} $ is finite for $ R $ Dedekind. The study of class groups and class numbers is a central part of modern number theory and there are many, many open questions.
 
-\begin{example}
+\begin{example2}
 If
 $$ R = \dfrac{\C\sb{x, y}}{\ab{y^2 - x\rb{x - 1}\rb{x + 1}}}, $$
 $ \mathcal{A}\rb{R} $ is uncountable.
-\end{example}
+\end{example2}
 
 \pagebreak
 
@@ -2404,7 +2366,7 @@ $$ N_{L / K}\rb{\alpha\alpha'} = \det\rb{M_{\alpha\alpha'}} = \det\rb{M_\alpha}\
 
 We will prove that if $ R $ is a PID or a Dedekind domain, such as $ \Z $, $ K $ its field of fractions, $ L / K $ finite such that $ Tr_{L / K} $ is not the zero map, then the integral closure of $ R $ in $ L $ is Dedekind.
 
-\marginpar{Lecture 26 \\ Monday \\ 03/12/18}
+\lecture{26}{Monday}{03/12/18}
 
 \begin{proposition}
 \label{prop:12.2.2}
@@ -2468,19 +2430,19 @@ so the claim follows.
 \end{itemize}
 \end{proof}
 
-\begin{remark}
+\begin{remark1}
 If $ L / K $ is finite, $ Tr_{L / K}\rb{1} = \sb{L : K} $, considered as an element of $ K $. The map $ Tr_{L / K} : L \to K $ is sometimes the zero map. However, this does not happen if $ K $ has characteristic $ char\rb{K} = 0 $ or if the degree $ d = \sb{L : K} $ is relatively prime to the characteristic of $ K $, since the above Proposition \ref{prop:12.2.2} shows that $ Tr_{L / K}\rb{1} = d \ne 0 $.
-\end{remark}
+\end{remark1}
 
 Warning that $ Tr_{L / K} $ can be zero if $ char\rb{K} $ is finite.
 
-\begin{example}
+\begin{example2}
 Let $ K = \F_2\rb{t} $, the rational functions with coefficients in $ \F_2 $.
 $$ L = \dfrac{K\sb{X}}{\ab{X^2 - t}} = \F_2\rb{t^{\tfrac{1}{2}}}. $$
 $ Tr_{L / K} $ is $ K $-linear.
 $$ Tr_{L / K}\rb{1} = 0, \qquad Tr_{L / K}\rb{X} = 0, $$
 so $ Tr_{L / K}\rb{aX + b} = 0 $ for all $ a, b \in K $.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 If $ L / K $ are finite fields, then $ Tr_{L / K} $ is not zero map.
@@ -2524,7 +2486,7 @@ S \arrow[twoheadrightarrow]{r} & L
 \end{tikzcd}.
 $$
 
-\marginpar{Lecture 27 \\ Wednesday \\ 05/12/18}
+\lecture{27}{Wednesday}{05/12/18}
 
 To do this, choose a $ K $-basis $ \beta_1, \dots, \beta_d $ for $ L $ over $ K $. We have seen that for each $ i $ there exists $ r_i \in R^* $ such that $ r_i\beta_i \in S $, so, replacing $ \beta_i $ by $ r_i\beta_i $, we may assume that the $ \beta_i $ all lie in $ S $. Let $ M \subseteq S $ be the $ R $-module in $ S $ spanned by the $ \beta_i $, and let $ M^* $ denote
 $$ M^* = \cb{x \in L \mid \forall m \in M, \ Tr_{L / K}\rb{xm} \in R} \subseteq L. $$
@@ -2628,7 +2590,7 @@ Lemma \ref{lem:12.3.7} shows that $ S / I $ is a field, so $ I $ is maximal. We 
 
 \pagebreak
 
-\marginpar{Lecture 28 \\ Friday \\ 07/12/18}
+\lecture{28}{Friday}{07/12/18}
 
 \section{Introduction to algebraic geometry}
 
@@ -2654,13 +2616,13 @@ The field $ \C $ is algebraically closed.
 
 We will not prove this in this course. Ultimately it requires some analysis. This is unsurprising, since the construction of $ \C $ is fundamentally an analytic one. We have the following characterisation of algebraically closed fields.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item By contrast, $ \Q $, $ \R $, $ \F_{p^r} $, $ \F_p\rb{t} $ are all not algebraically closed.
 \item $ \overline{\Q} $ is algebraically closed.
 \end{itemize}
-\end{example}
+\end{example2}
 
 \begin{lemma}
 A field $ K $ is algebraically closed if and only if every field extension $ L / K $ is either trivial, that is $ L = K $, or transcendental.
@@ -2682,7 +2644,7 @@ For $ S $ an arbitrary collection of elements of $ K\sb{X_1, \dots, X_n} $, we l
 $$ Z\rb{S} = \cb{\rb{x_1, \dots, x_n} \in \A_K^n \mid \forall P \in S, \ P\rb{x_1, \dots, x_n} = 0} \subseteq \A_K^n. $$
 In other words, $ Z\rb{S} $ is the set of \textbf{common zeros} of all the polynomials in $ S $.
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item $ S = \cb{y - x\rb{x - 1}\rb{x + 1}} $ is $ y = x\rb{x - 1}\rb{x + 1} $.
@@ -2690,7 +2652,7 @@ In other words, $ Z\rb{S} $ is the set of \textbf{common zeros} of all the polyn
 \item $ S = \cb{y, y - x\rb{x - 1}\rb{x + 1}} $ is $ y = 0 $ and $ y = x\rb{x - 1}\rb{x + 1} $.
 \item $ S = \cb{y^2 - x\rb{x - 1}\rb{x + 1}} $ is connected.
 \end{itemize}
-\end{example}
+\end{example2}
 
 Note that we have the following.
 
@@ -2733,10 +2695,10 @@ First observe that certainly any element of $ I\rb{X} $ vanishes at all points o
 
 This need not be equal for $ X $ arbitrary. If $ X $ is not an affine algebraic set, then $ Z\rb{I\rb{X}} $ is the smallest affine algebraic set containing $ X $. If $ Y = Z\rb{J} $ contains $ X $, then $ I\rb{Y} \subseteq I\rb{X} $, so $ Z\rb{I\rb{X}} \subseteq Z\rb{I\rb{Y}} = Y $. We call $ Z\rb{I\rb{X}} $ the \textbf{Zariski closure} of $ X $. This operation is the closure operation for a topology on $ \A_K^n $ called the \textbf{Zariski topology} which we will define later.
 
-\begin{example}
+\begin{example2}
 $$ X = \cb{\rb{n, 0} \mid \rb{n \in \Z}} \subseteq \A_\C^2, \qquad I\rb{X} = \cb{P \in \C\sb{X, Y} \mid \forall n \in \Z, \ P\rb{n, 0} = 0}. $$
 $ P\rb{X, 0} \in \C\sb{X} $ is a polynomial that vanishes at every $ n \in \Z $, so $ P\rb{X, 0} = 0 $. So $ Y \mid P\rb{X, Y} $, so $ I\rb{X} = \ab{Y} $. Thus $ Z\rb{I\rb{X}} $ is the $ Y $-axis.
-\end{example}
+\end{example2}
 
 One might thus hope that similarly $ I\rb{Z\rb{J}} = J $ for any ideal $ J $ of $ K\sb{X_1, \dots, X_n} $. This cannot be literally true, for the following reason. Recall that
 $$ rad\rb{I} = \cb{r \in K\sb{X_1, \dots, X_n} \mid \exists m, \ r^m \in I}. $$
@@ -2751,11 +2713,11 @@ Let $ K $ be an algebraically closed field. For any ideal $ J $ of $ K\sb{X_1, \
 
 Note that this can only possibly hold over algebraically closed fields.
 
-\begin{example}
+\begin{example2}
 For $ n = 1 $, let $ P\rb{X} \in K\sb{X} $.
 $$ I\rb{Z\rb{P\rb{X}}} = rad\rb{P\rb{X}} \ne R, $$
 unless $ P\rb{X} $ is constant, so $ Z\rb{P\rb{X}} \ne \emptyset $.
-\end{example}
+\end{example2}
 
 \begin{corollary}
 If $ J \in K\sb{X_1, \dots, X_n} $ an ideal is not the unit ideal, then $ Z\rb{J} \ne \emptyset $.
@@ -2765,7 +2727,7 @@ If $ J \in K\sb{X_1, \dots, X_n} $ an ideal is not the unit ideal, then $ Z\rb{J
 $ I\rb{Z\rb{J}} = rad\rb{J} \ne \ab{1} $, so $ Z\rb{J} \ne \emptyset $.
 \end{proof}
 
-\marginpar{Lecture 29 \\ Monday \\ 10/12/18}
+\lecture{29}{Monday}{10/12/18}
 
 We will prove this theorem later on. For now, we note that since $ rad\rb{rad\rb{J}} = rad\rb{J} $ for all ideals $ J $, the maps $ X \mapsto I\rb{X} $ and $ J \mapsto Z\rb{J} $ define a bijection
 $$ \cb{\text{radical ideals } J \subseteq K\sb{X_1, \dots, X_n}} \leftrightsquigarrow \cb{\text{affine algebraic subsets of } \A_K^n}. $$
@@ -2823,13 +2785,13 @@ Follows from $ Z\rb{J_1 + J_2} = Z\rb{J_1} \cap Z\rb{J_1} $ and using the Nullst
 An affine algebraic set $ X $ is irreducible if $ X $ cannot be written as the union $ Y \cup Z $ of two proper affine algebraic subsets $ Y $ and $ Z $, that is $ Y, Z \ne X, \emptyset $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 Let
 $$ X = Z\rb{\cb{y\rb{y - x\rb{x - 1}\rb{x + 1}}}}. $$
 Then
 $$ Z\rb{\cb{y\rb{y - x\rb{x - 1}\rb{x + 1}}}} = Z\rb{\cb{y}} \cup Z\rb{\cb{y - x\rb{x - 1}\rb{x + 1}}}, $$
 so $ X $ is not irreducible.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 An affine algebraic set $ X $ is irreducible if and only if $ I\rb{X} $ is prime.
@@ -2854,14 +2816,14 @@ An affine algebraic set $ X $ has \textbf{Krull dimension} $ d $ if $ d $ is the
 $$ X_0 \subsetneq \dots \subsetneq X_d \subseteq X. $$
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{itemize}
 \item Points have dimension zero.
 \item In $ \A^1 $, affine algebraic sets are zeros of polynomials, so irreducibles in $ \A^1 $ are points on $ \A^1 $, so $ \A^1 $ has Krull dimension one.
 \item In fact, $ \A^n $ has Krull dimension $ n $ for every $ n $.
 \end{itemize}
-\end{example}
+\end{example2}
 
 \begin{definition}
 A ring $ R $ has Krull dimension $ d $ if $ d $ is the length of the largest increasing tower
@@ -2869,15 +2831,15 @@ $$ \mathfrak{p}_0 \subsetneq \dots \subsetneq \mathfrak{p}_d $$
 of prime ideals of $ R $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 If $ R $ is a domain,
 \begin{itemize}
 \item dimension zero gives $ R $ is a field, and
 \item dimension one gives every nonzero prime ideal is maximal.
 \end{itemize}
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 30 \\ Wednesday \\ 12/12/18}
+\lecture{30}{Wednesday}{12/12/18}
 
 Lecture 30 is a problem class.
 

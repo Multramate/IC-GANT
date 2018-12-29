@@ -1,70 +1,18 @@
-\documentclass{article}
+\def\module{M4P55 Commutative Algebra}
+\def\lecturer{Prof Alexei Skorobogatov}
+\def\term{Autumn 2018}
 
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage[UKenglish]{babel}
-\usepackage{enumitem}
-\usepackage{fancyhdr}
-\usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-\usepackage{listings}
-\usepackage{mathtools}
-\usepackage{tikz-cd}
-\usepackage{csquotes}
+\def\thm{section}
 
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\A}{\mathbb{A}}
-\renewcommand{\P}{\mathbb{P}}
-
-\newcommand{\val}[1]{\left. #1 \right\rvert}
-\newcommand{\rb}[1]{\left( #1 \right)}
-\renewcommand{\sb}[1]{\left[ #1 \right]}
-\newcommand{\cb}[1]{\left\{ #1 \right\}}
-\newcommand{\ab}[1]{\left\langle #1 \right\rangle}
-\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
-\newcommand{\two}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
-\newcommand{\three}[3]{\begin{pmatrix} #1 & #2 & #3 \end{pmatrix}}
-
-\theoremstyle{definition}\newtheorem{definition}{Definition}[section]
-\theoremstyle{definition}\newtheorem{remark}[definition]{Remark}
-\theoremstyle{definition}\newtheorem*{example}{Example}
-\theoremstyle{definition}\newtheorem*{note}{Note}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{corollary}[definition]{Corollary}
-
-\pagestyle{fancy}
-\lhead{M4P55 Commutative Algebra}
-\rhead{Autumn 2018}
-
-\title{M4P55 Commutative Algebra}
-\author{Lectured by Prof Alexei Skorobogatov \\ Typeset by David Kurniadi Angdinata}
-\date{Autumn 2018}
-
-\setcounter{section}{-1}
+\input{../style/header}
 
 \begin{document}
 
-\maketitle
+\input{../style/main}
 
-\vfill
-
-\tableofcontents
-
-\pagebreak
-
-\marginpar{Lecture 1 \\ Friday \\ 05/10/18}
+\lecture{1}{Friday}{05/10/18}
 
 \section{Introduction}
-
-\subsection{Outline}
 
 Why study commutative algebra? Number theory and algebraic geometry use this language. Structure of the course is
 \begin{enumerate}
@@ -78,12 +26,13 @@ Why study commutative algebra? Number theory and algebraic geometry use this lan
 \item valuation rings and discrete valuation rings.
 \end{enumerate}
 
-\subsection{References}
-
+The following are references.
 \begin{enumerate}
 \item M Reid, Undergraduate commutative algebra, 1995
 \item M Atiyah and I G Macdonald, Introduction to commutative algebra, 1969
 \end{enumerate}
+
+\pagebreak
 
 \section{Rings and ideals}
 
@@ -101,13 +50,13 @@ A commutative \textbf{ring} with 1 is a set $ A $ with two operations $ + $ and 
 \end{enumerate}
 \end{definition}
 
-\begin{example}
+\begin{example2}
 $ \Z $ is a ring. The set of even integers $ 2\Z $ is not a ring because it does not contain $ 1 $.
-\end{example}
+\end{example2}
 
-\begin{remark}
+\begin{remark1}
 Can it happen that $ 0 = 1 $? $ x \cdot 0 = x \cdot \rb{0 + 0} = x \cdot 0 + x \cdot 0 $ gives $ x \cdot 0 = 0 $. But $ x \cdot 1 = x $. Then $ x = 0 $ for all $ x \in A $, so $ A = \cb{0} $.
-\end{remark}
+\end{remark1}
 
 Let $ A $ be a commutative ring with $ 1 $.
 
@@ -121,7 +70,7 @@ A composition of homomorphisms is a homomorphism.
 
 An \textbf{isomorphism} is a bijective homomorphism. If $ f : A \to B $ is an isomorphism, we write $ A \cong B $.
 
-\marginpar{Lecture 2 \\ Monday \\ 08/10/18}
+\lecture{2}{Monday}{08/10/18}
 
 \begin{definition}
 A subset $ I \subset A $ is called an \textbf{ideal} if $ I $ is a subgroup of $ \rb{A, +} $ and $ AI = I $. Equivalently, for any $ a \in A $ and any $ x \in I $ we have $ ax \in I $. The \textbf{quotient ring} $ A / I $ is the quotient group $ \cb{a + I \mid a \in A} $, which is actually a ring by $ \rb{a + I}\rb{b + I} = ab + I $. $ 1 + I $ is the $ 1 $ in $ A / I $. $ f : A \to A / I $ such that $ f\rb{a} = a + I $ is a surjective ring homomorphism. An ideal $ I \subset A $ is \textbf{principal} if there is $ r \in A $ such that $ I = rA $.
@@ -141,11 +90,13 @@ Let $ g : A \to B $ be a homomorphism of rings. The \textbf{image} is the subset
 
 The image is a subring of $ \rb{B, +} $ but not necessarily an ideal, but the kernel is.
 
-\begin{example}
+\begin{example2}
 Let $ g : \Z \hookrightarrow \Q $. $ 2\Z $ is an ideal in $ \Z $, but not in $ \Q $.
-\end{example}
+\end{example2}
 
 An isomorphism theorem states that $ A / Ker\rb{g} \cong Im\rb{g} = g\rb{A} $ by $ a \mapsto a + Ker\rb{g} $.
+
+\pagebreak
 
 \section{Polynomial rings}
 
@@ -153,17 +104,19 @@ Let $ R $ be a ring. Define $ R\sb{X} $ as the ring of polynomials $ \sum_{i = 0
 $$ \rb{\sum_{i = 0}^k a_iX^i}\rb{\sum_{j = 0}^m b_jX^i} = \sum_{k = 0}^{n + m} \rb{\sum_{k = i + j} a_ib_j}X^k. $$
 Define $ R\sb{X_1, X_2} $ to be the ring $ R\sb{X_1}\sb{X_2} $. In general, $ R\sb{X_1, \dots, X_n} = R\sb{X_1} \dots \sb{X_2} $.
 
+\pagebreak
+
 \section{Zero-divisors, nilpotents, units}
 
 \begin{definition}
 A \textbf{zero-divisor} in $ A $ is an element $ x \in A $ such that there exists $ y \in A $, $ y \ne 0 $, with the property that $ xy = 0 $. A ring with no non-zero zero-divisors is called an \textbf{integral domain}. A \textbf{nilpotent} is an element $ x \in A $ such that $ x^n = 0 $ for some $ n \ge 1 $. A \textbf{unit} $ a \in A $ is an element such that there exists $ b \in A $ with the property that $ ab = 1 $. Such elements are also called \textbf{invertible}. $ b $ is denoted by $ a^{-1} $. The units form a group under multiplication, denoted by $ A^* $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 In $ A = \Z $, $ \Z^* = \cb{1, -1} $ and $ \Z $ is an integral domain. In $ A = \Z / 4 = \cb{4\Z, 1 + 4\Z, 2 + 4\Z, 3 + 4\Z} $, $ 2 + 4\Z $ is a zero-divisor in $ \Z / 4 $ that is also nilpotent.
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 3 \\ Tuesday \\ 09/10/18}
+\lecture{3}{Tuesday}{09/10/18}
 
 \begin{definition}
 A \textbf{field} is a ring in which $ 0 \ne 1 $ and every non-zero element is a unit. So if $ k $ is a field, then $ k \setminus \cb{0} = k^* $.
@@ -187,6 +140,8 @@ Let $ A $ be a non-zero ring. Then the following are equivalent.
 \end{itemize}
 \end{proof}
 
+\pagebreak
+
 \section{Prime ideals and maximal ideals}
 
 \begin{definition}
@@ -201,9 +156,9 @@ An ideal $ P \subset A $ is prime if and only if $ A / P $ is an integral domain
 Let $ x, y \in A $ such that $ xy \in P $. Then $ \rb{x + P}\rb{y + P} = xy + P = P $. If $ x \notin P $ and $ y \notin P $, then $ x + P \ne P $ and $ y + P \ne P $. These are zero-divisors in $ A / P $. Conversely, if $ A / P $ is not an integral domain, then it has zero-divisors. So there exist $ x, y \in A $ such that $ \rb{x + P}\rb{y + P} = P $. This implies $ xy \in P $. Since $ P $ is prime, $ x \in P $ or $ y \in P $. So one of $ x + P $ and $ y + P $ is zero in $ A / P $. Recall that there is a bijection between the ideals in $ A $ containing $ M $ with the ideals in $ A / M $. Thus $ M \subset A $ is maximal if and only if the only ideals in $ A / M $ are $ \rb{0} $ and $ \rb{1} $, if and only if $ A / M $ is a field.
 \end{proof}
 
-\begin{remark}
+\begin{remark1}
 Every field is an integral domain, hence every maximal ideal is prime. The converse is false. Take any integral domain which is not a field, such as $ \Z $. Then $ \rb{0} \in \Z $ is a prime ideal which is not a maximal ideal.
-\end{remark}
+\end{remark1}
 
 \begin{proposition}
 If $ f : A \to B $ is a homomorphism of rings, and $ P \subset B $ is a prime ideal, then $ f^{-1}\rb{P} $ is a prime ideal in $ A $.
@@ -213,9 +168,9 @@ If $ f : A \to B $ is a homomorphism of rings, and $ P \subset B $ is a prime id
 Assume that for some $ x, y \in A $ we have $ xy \in f^{-1}\rb{P} $. Then $ f\rb{xy} = f\rb{x}f\rb{y} \in P $. Then $ f\rb{x} \in P $ or $ f\rb{y} \in P $. Then $ x \in f^{-1}\rb{P} $ or $ y \in f^{-1}\rb{P} $.
 \end{proof}
 
-\begin{remark}
+\begin{remark1}
 This does not hold for maximal ideals. Let $ f : \Z \hookrightarrow \Q $. $ f^{-1}\rb{\rb{0}} = \rb{0} $, but $ \rb{0} $ is maximal in $ \Q $ and not maximal in $ \Z $. But if $ f : A \to B $ is a surjective homomorphism of rings, then $ f^{-1} $ sends maximal ideals of $ B $ to maximal ideals of $ A $. (Exercise)
-\end{remark}
+\end{remark1}
 
 \begin{theorem}
 \label{thm:4.6}
@@ -226,7 +181,7 @@ We need Zorn's lemma, which belongs to set theory. A \textbf{partially ordered s
 $$ x \le x, \qquad x \le y, y \le z \implies x \le z, \qquad x \le y, y \le x \implies x = y. $$
 We don't require that for arbitrary $ x $ and $ y $ in $ S $, we have either $ x \le y $ or $ y \le x $. A subset $ T \subset S $ is called a \textbf{chain} if for any $ x \in T $, $ y \in T $ we have $ x \le y $ or $ y \le x $. An \textbf{upper bound} for a subset $ T \subset S $ is an element $ x \in S $ such that for any $ t \in T $ we have $ t \le s $. A \textbf{maximal element} in $ S $ is an element $ x \in S $ such that if $ y \in S $ and $ y \ge x $, then $ y = x $.
 
-\marginpar{Lecture 4 \\ Friday \\ 12/10/18}
+\lecture{4}{Friday}{12/10/18}
 
 \begin{theorem}[Zorn's lemma]
 If $ S $ is a non-empty partially ordered set such that every chain in $ S $ has an upper bound in $ S $, then $ S $ contains a maximal element.
@@ -263,7 +218,7 @@ Every non-unit is contained in a maximal ideal.
 If $ x \in A $ is a non-unit, consider $ \rb{x} $. $ 1 \notin \rb{x} $, otherwise $ x $ is a unit. By Corollary \ref{cor:4.9} $ \rb{x} $ is contained in a maximal ideal of $ A $.
 \end{proof}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item Every field is a local ring. In this case $ \rb{0} $ is a maximal ideal.
@@ -272,7 +227,7 @@ $$ \rb{\sum_{i = 0}^\infty a_it^i}\rb{\sum_{j = 0}^\infty b_jt^j} = a_0b_0 + \rb
 Then the principal ideal $ \rb{t} $ is a maximal ideal. Indeed, $ k\sb{\sb{t}} / \rb{t} \cong k $ is a field. (Exercise: $ k\sb{\sb{t}} \setminus \rb{t} = k\sb{\sb{t}}^* $)
 \item $ \Z_{\rb{p}} = \cb{a / b \mid a, b \in \Z, \ b \ne 0, \ p \nmid b} $. (Exercise: $ \rb{p} $ is a maximal ideal and there are no other maximal ideals)
 \end{enumerate}
-\end{example}
+\end{example2}
 
 If $ A $ is a local ring with maximal ideal $ M $, then $ A / M $ is called the \textbf{residue field} of $ A $.
 
@@ -285,7 +240,9 @@ Let $ A $ be a ring and $ P \subset A $ be a prime ideal. Suppose that $ I_1, \d
 Suppose our claim is false. Then there exists $ a_j \in I_j $ such that $ a_j \notin P $ for $ j = 1, \dots, n $. Then $ a_1 \dots a_n \in \bigcap_{j = 1}^n I_i \subset P $. $ \rb{a_1 \dots a_{n - 1}}a_n \in P $ gives $ a_1 \dots a_{n - 1} \in P $ or $ a_n \in P $. But $ a_n \notin P $, so $ a_1 \dots a_{n - 2} \in P $, a contradiction. The second statement follows. We know that $ I_k \subset P $ for some $ k $, $ 1 \le k \le n $, but $ P = \bigcap_{j = 1}^n I_j \subset I_k $. Hence $ P = I_k $.
 \end{proof}
 
-\marginpar{Lecture 5 \\ Monday \\ 15/10/18}
+\pagebreak
+
+\lecture{5}{Monday}{15/10/18}
 
 \section{Nilradical and the Jacobson radical}
 
@@ -330,7 +287,7 @@ $ r\rb{I} $ is the intersection of all prime ideals of $ A $ that contain $ I $.
 Use the bijection between ideals containing $ I $ and the ideals in $ A / I $.
 \end{proof}
 
-\marginpar{Lecture 6 \\ Tuesday \\ 16/10/18}
+\lecture{6}{Tuesday}{16/10/18}
 
 \begin{definition}
 Let $ J $ be an index set. Suppose we have a ring $ R_j $ for $ j \in J $. $ \prod_{j \in J} R_j $ has a natural structure of a ring. $ 0 $ in $ \prod_{j \in J} R_j $ is $ \rb{0, \dots, 0} $ and $ 1 $ in $ \prod_{j \in J} $ is defined as $ \rb{1, \dots, 1} $, and
@@ -340,19 +297,21 @@ $ \prod_{j \in J} R_j $ is called the \textbf{product of rings} $ R_j $ for $ j 
 
 Recall that $ N\rb{R} = \bigcap_{P \subset R} P $, where $ P $ are prime ideals of $ R $. Consider the product ring $ \prod_{P \subset R} R / P $. Putting together the canonical surjective maps $ R \to R / P $ by $ x \mapsto x + P $ for all $ P \subset R $ we obtain a homomorphism $ f : R \to \prod_{P \subset R} R / P $. $ Ker\rb{f} = \bigcup_{P \subset R} Ker\sb{R \to R / P} = \bigcap_{P \subset R} = N\rb{R} $. Hence we get an injective homomorphism $ R / N\rb{R} \to \prod_{P \subset R} R / P $. Similarly, we get an injective homomorphism $ R / J\rb{R} \to \prod_{M \subset R} R / M $, where $ M $ are maximal ideals of $ R $ and $ J\rb{R} $ is the Jacobson radical of $ R $.
 
+\pagebreak
+
 \section{Localisation of rings}
 
 Localisation refers to introducing denominators.
 
-\begin{example}
+\begin{example2}
 From $ R = \Z $ to $ \Q = \cb{a / b \mid a, b \in \Z, \ b \ne 0} $.
-\end{example}
+\end{example2}
 
 \begin{definition}
 A subset $ S \subset A $ is called a \textbf{multiplicative set} if $ 1 \in S $, $ 0 \not\in S $, and if $ a, b \in S $, then $ ab \in S $, that is $ S $ is closed under multiplication.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item Take any $ a \in A $ which is not nilpotent, that is $ a^n = 0 $ for $ n \ge 1 $. Then $ \cb{1, a, a^2, \dots} $ is a multiplicative set.
@@ -362,7 +321,7 @@ A subset $ S \subset A $ is called a \textbf{multiplicative set} if $ 1 \in S $,
 \item The set of all non-zero-divisors of $ A $ is a multiplicative set.
 \item Let $ I \subset A $ be an ideal. Then $ 1 + I = \cb{1 + x \mid x \in I} $ is a multiplicative set.
 \end{enumerate}
-\end{example}
+\end{example2}
 
 \begin{definition}
 Let $ A $ be a ring with a multiplicative set $ S $. Consider $ A \times S $, that is the set of pairs of elements $ \rb{a, s} $, where $ a \in A $ and $ s \in S $. Define an equivalence relation $ \sim $ as follows. $ \rb{a, s} \sim \rb{b, t} $ if and only if there exists $ u \in S $ such that $ u\rb{at - bs} = 0 $. Define $ S^{-1}A $ to be the set of equivalence classes of $ \sim $. Write the equivalence class of $ \rb{a, s} $ as $ a / s $. Define multiplication on $ S^{-1}A $ as
@@ -378,9 +337,9 @@ Define $ 0 $ in $ S^{-1}A $ as $ 0 / 1 $ and we define $ 1 $ in $ S^{-1}A $ as $
 
 (Exercise: with this definition $ S^{-1}A $ is a ring)
 
-\begin{remark}
+\begin{remark1}
 $ \sim $ is indeed an equivalence relation. $ \rb{a, s} \sim \rb{a, s} $, $ \rb{a, s} \sim \rb{b, t} $ gives $ \rb{b, t} \sim \rb{a, s} $. Let us check that if $ \rb{a, s} \sim \rb{b, t} $ and $ \rb{b, t} \sim \rb{c, r} $, then $ \rb{a, s} \sim \rb{c, r} $. There exist $ u, v \in S $ such that $ u\rb{at - bs} = 0 $ and $ v\rb{br - ct} = 0 $. Then $ uv\rb{atr - bsr} = 0 $ and $ uv\rb{brs - cts} = 0 $, so $ uvt\rb{ar - bs} = 0 $.
-\end{remark}
+\end{remark1}
 
 \begin{lemma}
 Let $ A $ be a ring with a multiplicative set $ S $. Then $ f : A \to S^{-1}A $ defined by $ f\rb{x} = x / 1 $ is a homomorphism of rings. $ Ker\rb{f} = 0 $ if and only if $ S $ contains no zero-divisors.
@@ -391,15 +350,15 @@ $$ f\rb{x + y} = \dfrac{x + y}{1} = \dfrac{x}{1} + \dfrac{y}{1}, \qquad f\rb{xy}
 $ Ker\rb{f} = \cb{x \mid \exists u \in S, \ ux = 0} $ since $ x / 1 = 0 / 1 $ if and only if there exists $ u \in S $ such that $ u\rb{x \cdot 1 - 0 \cdot 1} = 0 $.
 \end{proof}
 
-\begin{example}
+\begin{example2}
 Let $ k $ be a field. Explore what happens when $ A = k\sb{x, y} / \rb{xy} $ and $ S = \cb{1, x, \dots} $. Determine $ S^{-1}A $ and $ Ker\rb{f} $.
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 7 \\ Friday \\ 19/10/18}
+\lecture{7}{Friday}{19/10/18}
 
 Lecture 7 is a problem class.
 
-\marginpar{Lecture 8 \\ Monday \\ 22/10/18}
+\lecture{8}{Monday}{22/10/18}
 
 \begin{lemma}[Universal property of localisation]
 Let $ A $ be a ring with a multiplicative set $ S \subset A $. Suppose $ g : A \to B $ is a homomorphism such that $ g\rb{S} \subset B^* $, that is for all $ s \in S $, $ g\rb{s} $ is a unit in $ B $. Then there exists a unique homomorphism $ h : S^{-1}A \to B $ such that $ g = h \circ f $, where $ f : A \to S^{-1}A $ is the canonical map.
@@ -439,7 +398,9 @@ The prime ideals in $ S^{-1}A $ are the ideals $ S^{-1}P $, where $ P $ is a pri
 Suppose that $ P $ is a prime ideal in $ A $, $ P \cap S \ne \emptyset $. Claim that $ S^{-1}P $ is a prime ideal in $ S^{-1}A $. If $ \rb{a / s}\rb{b / t} \in S^{-1}P $, then $ \rb{a / s}\rb{b / t} = c / u $, where $ c \in P $, $ u \in S $. This is equivalent to $ v\rb{abu - cst} = 0 $ for some $ v \in S $. $ \rb{ab}\rb{vu} = c \in P $ such that $ v \in P $. $ vu \in S $ and $ S \cap P = \emptyset $, so $ vu \notin P $. But $ P \subset A $ is a prime ideal, hence $ ab \in P $. Thus $ a \in P $ gives $ a / s \in S^{-1}P $ or $ b \in P $ gives $ b / t \in S^{-1}P $. This proves $ S^{-1}P \subset S^{-1}A $ is prime. For any ideal $ J \subset S^{-1}A $, we know that $ f^{-1}J $ is an ideal in $ S $. Moreover, if $ J $ is prime, then $ f^{-1}J \subset A $ is prime. Let us show that $ f^{-1}J \cap S = \emptyset $. Otherwise, take $ s \in S \cap f^{-1}J $, so $ s / 1 \in J $. But $ 1 / s \in J^{-1}A $, hence $ 1 = \rb{1 / s}s \in J $, so $ J = S^{-1}A $. But $ J $ is a prime ideal, so $ J \ne S^{-1}A $. To show that $ P \mapsto S^{-1}P $ and $ J \mapsto f^{-1}J $ are the identity maps, we need to check that $ P = f^{-1}\rb{S^{-1}P} $ and $ J = S^{-1}f^{-1}\rb{J} $. $ S^{-1}P = \cb{x / s \mid x \in P, \ s \in S} $. If $ y \in f^{-1}\rb{S^{-1}P} \subset A $  is such that $ f\rb{y} = x / s $, then $ y / 1 = x / s $. Hence $ ys = x \in P $. Since $ P \cap S = \emptyset $, $ s \notin P $. Therefore, $ y \in P $. Hence $ P = f^{-1}\rb{S^{-1}A} $. Now let us prove that $ J = S^{-1}f^{-1}\rb{J} $. But in Proposition \ref{prop:6.8} we showed that there is an ideal $ I \subset A $ such that $ J = S^{-1}I $. In the proof of Proposition \ref{prop:6.8} we have taken $ I = f^{-1}\rb{J} $. So we are done.
 \end{proof}
 
-\marginpar{Lecture 9 \\ Tuesday \\ 23/10/18}
+\pagebreak
+
+\lecture{9}{Tuesday}{23/10/18}
 
 \section{Determinants}
 
@@ -451,14 +412,14 @@ Let $ f\rb{x_1, \dots, x_n} \in \Z\sb{x_1, \dots, x_n} $. If $ f $ as a function
 Induction in $ n $. If $ n = 1 $, then $ f\rb{x} $ is a polynomial with infinitely many roots. So $ f\rb{x} $ is the zero polynomial, so cannot have more than $ \deg\rb{f} $ roots. Assume we know the lemma for $ n - 1 $ variables. Write $ f\rb{x_1, \dots, x_n} = \sum_{i = 0}^N f_i\rb{x_1, \dots, x_{n - 1}}x_n^i $ for $ f_j\rb{x_1, \dots, x_{n - 1}} \in \Z\sb{x_1, \dots, x_{n - 1}} $. Fix $ x_1, \dots, x_{n - 1} $. We get a polynomial in one variable $ x_n $, so this polynomial has zero coefficients. This implies that each $ f_i\rb{x_1, \dots, x_n} $ takes only zero values. By the induction assumption, each $ f_i $ is the zero polynomial.
 \end{proof}
 
-\begin{remark}
+\begin{remark1}
 \label{rem:7.2}
 This means that if a polynomial formula with coefficients in $ \Z $ is true in $ \Z $, this is true in an arbitrary commutative ring.
-\end{remark}
+\end{remark1}
 
-\begin{example}
+\begin{example2}
 $ \rb{x + y}^n = \sum_{i = 0}^n \two{n}{i}x^iy^{n - i} $ is true in any ring.
-\end{example}
+\end{example2}
 
 The underlying fact is the existence of a canonical map $ \Z \to R $ by $ 1 \mapsto 1 $.
 
@@ -474,11 +435,11 @@ $ \det\rb{A} = \rb{-1}^{i + 1}a_{i1}M_{i1} + \dots \rb{-1}^{i + n}a_{in}M_{in} $
 This is known for matrices with entries in $ \C $, so by Remark \ref{rem:7.2} this holds in any commutative ring.
 \end{proof}
 
-\begin{remark}
+\begin{remark1}
 The official definition is
 $$ \det\rb{A} = \sum_{\pi \in S_n} sgn\rb{\pi}a_{1\pi\rb{1}} \dots a_{n\pi\rb{n}}, $$
 where $ sgn : S_n \to \cb{\pm 1} $.
-\end{remark}
+\end{remark1}
 
 \begin{proposition}
 For $ i \ne j $,
@@ -492,7 +453,9 @@ Define the \textbf{adjacent} matrix as an $ n \times n $ matrix $ A^v_{ij} = \rb
 $ A \cdot A^v = A^v \cdot A = \det\rb{A} I_n $.
 \end{theorem}
 
-\marginpar{Lecture 10 \\ Friday \\ 26/10/18}
+\pagebreak
+
+\lecture{10}{Friday}{26/10/18}
 
 \section{Modules}
 
@@ -506,7 +469,7 @@ Let $ A $ be a ring. A \textbf{module} $ M $ over $ A $ is an abelian group $ \r
 \end{enumerate}
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item $ M = A $. More generally, consider an ideal $ I \subset A $. $ A $ acts on $ I $ by $ A \times I \to I $ by $ a \cdot x = ax $.
@@ -514,7 +477,7 @@ Let $ A $ be a ring. A \textbf{module} $ M $ over $ A $ is an abelian group $ \r
 \item Take $ M $ to be any abelian group. Take $ A = \Z $. Define an action of $ \Z $ as follows. $ 1 \cdot m = m $ and $ n \cdot m = \rb{1 + \dots + 1} \cdot m = m + \dots + m = nm $. $ 0 = n + \rb{- n} \in \Z $, then $ 0 = \rb{n + \rb{-n}} \cdot m = nm + \rb{-n}m $. Hence $ \rb{-n} \cdot m = -\rb{n \cdot m} = -\rb{m + \dots + m} $. So, there is exactly one way to equip any abelian group with the structure of a $ \Z $-module.
 \item Let $ k $ be a field and let $ A = k\sb{x} $. A $ k\sb{x} $-module is a vector space over $ k $ with extra structure $ x \times M \to M $. This is a linear transformation of $ M $. It can be arbitrary. Thus a $ k\sb{x} $-module is a pair $ \rb{M, f} $, where $ M $ is a $ k $-vector space and $ f : M \to M $ is linear transformation of $ M $.
 \end{enumerate}
-\end{example}
+\end{example2}
 
 \begin{definition}
 Let $ M $ and $ N $ be $ A $-modules. A map $ f : M \to N $ is called a \textbf{homomorphism of $ A $-modules} if $ f $ is a homomorphism of abelian groups and $ f\rb{a, m} = af\rb{m} $ for any $ a \in A $ and $ m \in M $. If $ f : M \to N $ and $ g : M \to N $ are homomorphisms of $ A $-modules, then so is $ f + g $, so we get $ Hom_A\rb{M, N} $, a group of such homomorphisms. This is also an $ A $-module via the action $ \rb{a, f\rb{a}} \mapsto a \cdot f\rb{a} $.
@@ -532,9 +495,9 @@ If $ f : M \to N $ is a homomorphism of $ A $-modules, then $ Ker\rb{f} $ is an 
 An $ A $-module $ M $ is \textbf{finitely generated} if there exist $ m_1, \dots, m_n $ in $ M $ such that $ M = \cb{a_1m_1 + \dots + a_nm_n \mid a_i \in A} $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 A \textbf{free} $ A $-module of rank $ n $ is the set $ A^n = \cb{\rb{a_1, \dots, a_n} \mid a_i \in A} $ with coordinate-wise addition. $ a \in A $ acts on $ \rb{a_1, \dots, a_n} $ by sending it to $ \rb{aa_1, \dots, aa_n} $. If $ f\rb{1, 0, \dots, 0} = m_1 $, $ f : A^m \to M $ is an example of an $ A $-module homomorphism.
-\end{example}
+\end{example2}
 
 \begin{lemma}
 \label{lem:8.7}
@@ -561,7 +524,7 @@ m_n
 $ \det\rb{I_n - X} = \prod_{i = 1}^n \rb{1 - x_{ii}} + J \equiv 1 \mod J $. So $ \det\rb{I_n - X} = 1 - a $, where $ a \in J $. $ \rb{1 - a}m_i = 0 $ for all $ i $ gives $ \rb{1 - a}M = 0 $.
 \end{proof}
 
-\marginpar{Lecture 11 \\ Monday \\ 29/10/18}
+\lecture{11}{Monday}{29/10/18}
 
 \begin{corollary}[Nakayama's lemma]
 Let $ A $ be a ring and let $ M $ be an $ A $-module, which is finitely generated. Let $ I \subset A $ be an ideal contained in the Jacobson radical $ J\rb{A} $. Then $ IM = M $ implies $ M = 0 $.
@@ -572,6 +535,8 @@ Lemma \ref{lem:8.7} gives an $ a \in I $ such that $ \rb{1 - a}M $. But $ a \in 
 \end{proof}
 
 Another proof considers $ M = \rb{m_1, \dots, m_n} $. Let us call a generating set minimal, if no proper set is a generating set. Assume that $ m_1, \dots, m_n $ is a minimal generating set. $ IM = M $ implies that $ m_1 = a_1m_1 + \dots + a_nm_n $, where $ a_i \in I $. $ \rb{1 - a_1}m_1 = a_2m_2 + \dots + a_nm_n $. Proposition \ref{prop:5.3} says that $ 1 - a_1 \in A^* $. Hence $ m_1 = \rb{1 - a_1}^{-1}a_2m_2 + \dots + \rb{1 - a_1}^{-1}a_nm_n $. This is a contradiction, because $ m_2, \dots, m_n $ is a generating set.
+
+\pagebreak
 
 \section{Localisation of modules}
 
@@ -591,11 +556,11 @@ Let $ A $ be a ring with a prime ideal $ P $. Then $ a \in A_P $ is a unit if an
 Suppose $ a / s \in A_P $ is a unit. Then for some $ b / t \in A_P $ we have $ \rb{a / s}\rb{b / t} = 1 $. $ ab / st - 1 / 1 = 0 $ if and only if there exists $ u \in S $ such that $ u\rb{ab - st} = 0 $. $ uab = ust \in S = A \setminus P $. Hence $ a \notin P $, so that $ a / s \notin PA_P $. Conversely, if $ a / s \notin PA_P $, then $ a \notin P $ and $ s \in S $ gives $ a \in S = A \setminus P $. So $ a / s $ is a unit whose inverse is $ s / a $. $ PA_P $ is a maximal ideal, because joining any new element will be the whole ring, as this element must be a unit.
 \end{proof}
 
-\begin{example}
+\begin{example2}
 $ \Z_{\rb{p}} = \cb{a / b \mid a, b \in \Z, \ \rb{p, b} = 1} $ and
 $$ p\Z_{\rb{p}} = \cb{\dfrac{a}{b} \ \Bigg| \ a, b \in \Z, \ p \mid a, \ \rb{p, b} = 1}, \qquad \Z_{\rb{p}}^* = \cb{\dfrac{a}{b} \ \Bigg| \ a, b \in \Z, \ p \nmid a, \ \rb{p, b} = 1}. $$
 Do the same for $ A = k\sb{x} $ and $ P = \rb{f\rb{x}} $, where $ f\rb{x} $ is irreducible.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 Let $ M $ be an $ A $-module. Then $ M = 0 $ if and only if $ M_P = 0 $ for all maximal ideals $ P \subset A $.
@@ -605,7 +570,9 @@ Let $ M $ be an $ A $-module. Then $ M = 0 $ if and only if $ M_P = 0 $ for all 
 Suppose $ M \ne 0 $. Choose $ x \in M $, $ x \ne 0 $. Define $ I = Ann\rb{x} = \cb{a \in A \mid ax = 0} $. This is an ideal in $ A $, and $ I \ne A $ because $ 1 \cdot x = x $, so $ 1 \notin I $. Let $ P $ be a maximal ideal such that $ I \subset P $. Claim that $ M_P \ne 0 $. Consider $ x / 1 \in M_P $. If $ M_P = 0 $, then $ x / 0 = 0 / 1 $, so $ ux = 0 $ for some $ u \in A \setminus P $. $ u \in I = Ann\rb{x} $ but $ u \notin P $. This is a contradiction because $ I \subset P $.
 \end{proof}
 
-\marginpar{Lecture 12 \\ Tuesday \\ 30/10/18}
+\pagebreak
+
+\lecture{12}{Tuesday}{30/10/18}
 
 \section{Chain conditions: Noetherian and Artinian rings}
 
@@ -629,9 +596,9 @@ Let $ \Sigma $ be a partially ordered set. Then the following properties are equ
 A ring $ A $ is called \textbf{Noetherian} if every ascending chain of ideals in $ A $ is stationary. An $ A $-module $ M $ is Noetherian if every chain of submodules of $ M $ is stationary. In particular, a ring $ A $ is Noetherian if it is a Noetherian module over $ A $. A ring $ A $ is called \textbf{Artinian} if every descending chain of ideals is stationary. An $ A $-module $ M $ is Artinian if every descending chain of submodules is stationary.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 Let $ \Z \supset \rb{n} $ is Noetherian. $ \rb{a} \subset \rb{b} $ if and only if $ b $ divides $ a $. $ \rb{15} \subsetneq \rb{5} \subsetneq \rb{1} = \Z $. But $ \rb{2} \supsetneq \rb{4} \supsetneq \dots \supsetneq \rb{2^n} \supsetneq \dots $ is an infinite descending chain of ideals so $ \Z $ is not Artinian. If $ A $ is a finite ring, then it is trivially both Noetherian and Artinian.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 Let $ A $ be a ring and let $ M $ be an $ A $-module. Then $ M $ is Noetherian if and only if every submodule of $ M $ is finitely generated.
@@ -641,13 +608,13 @@ Let $ A $ be a ring and let $ M $ be an $ A $-module. Then $ M $ is Noetherian i
 Suppose $ M $ is Noetherian, but $ N \subset M $ is a submodule that is not finitely generated. Then take $ x_1 \in N $. Since $ N \ne \rb{x_1} $, the submodule generated by $ x_1 $, we can find $ x_2 \in N \setminus \rb{x_1} $. This gives $ \rb{x_1} \subsetneq \rb{x_1, x_2} $ and so on. This produces an ascending chain which is not stationary, a contradiction. Now suppose that every submodule of $ M $ is $ f \cdot g $. Consider any ascending chain $ M_1 \subset M_2 \subset \dots $. Let $ N = \bigcup_{i \ge 1} M_i $. This is a submodule of $ M $. By assumption $ N = \rb{x_1, \dots, x_n} $ for some $ x_i \in N $. For each $ x_i $ there is an $ M_j $ in our chain such that $ x_i \in M_j $. So there will be some $ M_l $ that contains $ x_1, \dots, x_n $. Then $ N = M_l $. And clearly for any $ m \ge 0 $ we have $ M_l \subset M_{l + m} \subset N = M_l $, so $ M_{l + m} = M_l $. So $ M $ is Noetherian.
 \end{proof}
 
-\begin{remark}
+\begin{remark1}
 Applying this to the $ A $-module $ A $ we see that $ A $ is Noetherian if and only if every ideal is finitely generated. Hence every principal ideal domain is Noetherian.
-\end{remark}
+\end{remark1}
 
-\begin{example}
+\begin{example2}
 $ \Z $, $ k\sb{x} $, $ k\sb{x_1, \dots, x_n} $. Hilbert's basis theorem says that if $ R $ is Noetherian, then $ R\sb{x} $ is also Noetherian.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 \label{prop:10.4}
@@ -658,11 +625,11 @@ Let $ A $ be a ring. Let $ M $ be an $ A $-module and $ N \subset M $ a submodul
 Suppose $ M $ is Noetherian. Then clearly $ N $ is Noetherian. $ M / N $ is Noetherian too. Indeed, let $ L $ be a submodule of $ M / N $. Let $ T $ be the inverse image of $ L $ in $ M $. Then we have a surjective homomorphism of $ A $-modules $ T \to L $. Since $ T $ is finitely generated, so that $ T = \rb{x_1, \dots, x_n} $ for some $ x_i \in T $. Then the images of $ x_1, \dots, x_n $ generate $ L $. Now assume $ N $ and $ M / N $ are Noetherian. This can also be proved using ascending chains. Take any ascending chain $ M_1 \subset M_2 \subset \dots $. Then $ N \cap M_1 \subset N \cap M_2 \subset \dots $ is an ascending chain of submodules of $ N $. Let $ n_1 \in \N $ be such that for all $ i \ge 0 $, $ N \cap M_{n + i} = N \cap M_{n_1} $. Consider $ \rb{M_i + N} / N \subset M / N $. This is just the set of cosets $ x + N $, where $ x \in M_i $. In fact $ \rb{M_i + N} / N \cong M_i / M \cap N $. We obtain an ascending chain $ \rb{M_1 + N} / N \subset \rb{M_2 + N} / N \subset \dots \subset \rb{M_{n_2} + N} / N = \rb{M_{n_1} + N} / N = \dots $. Take $ n = \max\cb{n_1, n_2} $. It works, that is $ M_n = M_{n + 1} = \dots $. Indeed, take any $ x \in M_{n + i} $ for $ i \ge 0 $. Then there exists $ y \in M_n $ such that $ x + N = y + N $. Thus $ x - y \in N \cap M_{n + i} $. But this is $ N \cap M_n $. So there exists $ z \in N \cap M_n $ such that $ x - y = z $. Hence $ x = y + z \in M_n $.
 \end{proof}
 
-\marginpar{Lecture 13 \\ Friday \\ 02/11/18}
+\lecture{13}{Friday}{02/11/18}
 
 Lecture 13 is a problem class.
 
-\marginpar{Lecture 14 \\ Monday \\ 05/11/18}
+\lecture{14}{Monday}{05/11/18}
 
 (Exercise: do the same in the Artinian case)
 
@@ -693,37 +660,39 @@ Let $ A $ be a Noetherian ring. Let $ S \subset A $ be a multiplicative set. The
 Consider a non-empty set $ \Sigma $ of ideals of $ S^{-1}A $. There is a canonical homomorphism of rings $ f : A \to S^{-1}A $ by $ f\rb{a} = a / 1 $. If $ I $ is an ideal of $ S^{-1}A $, then $ f^{-1}\rb{I} $ is an ideal in $ A $. Then $ I = S^{-1}f^{-1}\rb{I} $. Now $ \Sigma $ gives a non-empty set of ideals of $ A $ under $ I \to f^{-1}\rb{I} $. Let $ J $ be a maximal element of this set. Then $ S^{-1}J $ is a maximal element of $ \Sigma $. Hence $ S^{-1}A $ is Noetherian.
 \end{proof}
 
+\pagebreak
+
 \section{Primary decomposition}
 
 \begin{definition}
 An ideal $ Q $ in a ring $ R $ not equal to $ R $, that is a proper ideal, is called \textbf{primary} if all $ x, y \in R $ such that $ xy \in Q $ we have $ x \in Q $ or $ y^n \in Q $ for some $ n $. Equivalently, $ I \subsetneq R $ is called primary if every zero-divisor in $ R / I $ is nilpotent.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 Let $ p $ be a prime number. Then $ \rb{p^m} $ for $ m \ge 1 $ is a primary ideal in $ \Z $. $ ab \in \rb{p^m} $ if and only if $ p^m \mid ab $. Consider $ a $. If $ p \nmid a $, then $ p^m \mid b $, hence $ b \in \rb{p^m} $. Otherwise $ p \mid a $, then $ p^m \mid a^m $, so $ a^m \in \rb{p^m} $.
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 15 \\ Tuesday \\ 06/11/18}
+\lecture{15}{Tuesday}{06/11/18}
 
 Lecture 15 is a test.
 
-\marginpar{Lecture 16 \\ Friday \\ 09/11/18}
+\lecture{16}{Friday}{09/11/18}
 
-\begin{example}
+\begin{example2}
 $ \rb{f\rb{x}^n} \subset k\sb{x} $ for $ f\rb{x} $ irreducible is primary.
-\end{example}
+\end{example2}
 
-\begin{example}
+\begin{example2}
 Let $ R = k\sb{x, y} $ and $ I = \rb{x^3, y^5, xy} $. Claim that $ I $ is primary. Take any $ f\rb{x, y} = f_0 + xg\rb{x, y} + yh\rb{x, y} $. If $ f_0 = 0 $, since $ x $ and $ y $ are nilpotent, when considered as elements of $ R / I $, $ f\rb{x, y} $ is nilpotent. If $ f_0 \ne 0 $, $ f\rb{x, y} $ is a sum of a unit and a nilpotent, hence a unit. In particular, any zero-divisor in $ R / I $ is nilpotent.
-\end{example}
+\end{example2}
 
-\begin{example}
+\begin{example2}
 Let $ R = k\sb{x, y} $ and $ I = \rb{xy} $. $ xy \in I $, but $ x^n \notin I $ for all $ n \ge 0 $. Hence $ I $ is not a primary ideal.
-\end{example}
+\end{example2}
 
-\begin{example}
+\begin{example2}
 Even simpler, $ \rb{6} \subset \Z $ is not a primary ideal.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 Let $ I \subset R $ be an ideal. If the radical $ r\rb{I} $ is a maximal ideal, then $ I $ is primary. In particular, any power of a maximal ideal is primary.
@@ -733,9 +702,9 @@ Let $ I \subset R $ be an ideal. If the radical $ r\rb{I} $ is a maximal ideal, 
 Consider $ R / I $. $ r\rb{I} / I $ is the nilradical of the ring $ R / I $, which is the intersection of all prime ideals of $ R / I $. We are given that $ r\rb{I} $ is a maximal ideal, so $ r\rb{I} / I $ is a maximal ideal of $ R / I $. Hence $ r\rb{I} / I $ is the unique prime ideal of $ R / I $. If $ x \notin r\rb{I} / I $, then $ x \in \rb{R / I}^* $. Indeed, every non-unit is contained in a maximal ideal by Corollary \ref{cor:4.10}, but there is only one maximal ideal and $ x $ is not in it. If $ x \in r\rb{I} / I $, then $ x $ is nilpotent. So all zero-divisor of $ R / I $ are nilpotent, hence $ I $ is a primary ideal of $ R $. Now let $ M \subset R $ be a maximal ideal. Then $ M^n $ is primary, since $ r\rb{M^n} = M $. Indeed, for any $ x \in M $ $ x^n \in M^n $, so $ M \subset r\rb{M^n} $. Since $ M $ is maximal we must have $ M = r\rb{M^n} $.
 \end{proof}
 
-\begin{example}
+\begin{example2}
 In the example $ I = \rb{x^3, xy, y^5} \supset \rb{x, y}^5 $.
-\end{example}
+\end{example2}
 
 \begin{proposition}
 \label{prop:11.3}
@@ -761,7 +730,7 @@ Assume $ n = 2 $. The general case by induction. $ r\rb{I_1} = r\rb{I_2} = P $ a
 
 Warning that it is not true in general that if $ r\rb{I} $ is prime, then $ I $ is primary. True if $ r\rb{I} $ is maximal though.
 
-\marginpar{Lecture 17 \\ Monday \\ 12/11/18}
+\lecture{17}{Monday}{12/11/18}
 
 \begin{definition}
 Let $ R $ be a ring, and let $ I \subsetneq R $ be an ideal. Call $ I $ \textbf{irreducible} if for any two ideals $ J $ and $ K $ in $ R $ such that $ I = J \cap K $ we have either $ J = I $ or $ K = I $. $ I $ is \textbf{reducible}, that is not irreducible, if $ I = J_1 \cap J_2 $, where $ I \subsetneq J_i $ for $ i = 1, 2 $.
@@ -810,7 +779,7 @@ Let $ R $ be a ring with a prime ideal $ P $. Let $ I \subset R $ be a $ P $-pri
 \end{enumerate}
 \end{lemma}
 
-\marginpar{Lecture 18 \\ Tuesday \\ 13/11/18}
+\lecture{18}{Tuesday}{13/11/18}
 
 \begin{proof}
 \hfill
@@ -841,11 +810,13 @@ Consider $ \rb{I : \rb{x}} $ for $ x \in R $. Look at $ r\rb{\rb{I : \rb{x}}} $ 
 Therefore, $ r\rb{\rb{I : \rb{x}}} = \bigcap_{x \notin I_j} P_j $. If $ r\rb{\rb{I : \rb{x}}} $ is prime, we know by the prime avoidance lemma \ref{lem:4.12} that $ r\rb{\rb{I : \rb{x}}} = P_j $ for some $ P_j $. Conversely, for each $ j $, by minimality of our primary decomposition, there exists $ x_j \notin I_j $, but $ x_j \in \bigcap_{l \ne j} I_l $. Then $ r\rb{\rb{I_l : \rb{x_j}}} = R $ for $ l \ne j $, so $ r\rb{\rb{I_j : \rb{x_j}}} = P_j $. Hence $ r\rb{\rb{I : \rb{x_j}}} = P_j $.
 \end{proof}
 
-\marginpar{Lecture 19 \\ Friday \\ 16/11/18}
+\lecture{19}{Friday}{16/11/18}
 
 Lecture 19 is a problem class.
 
-\marginpar{Lecture 20 \\ Monday \\ 19/11/18}
+\pagebreak
+
+\lecture{20}{Monday}{19/11/18}
 
 \section{Artinian rings and modules}
 
@@ -893,9 +864,9 @@ Let $ M $ be an $ A $-module and let $ N $ be a submodule of $ M $. Then $ N $ a
 Take a composition series of $ M / N $ and pull it back to $ M $ via the map $ M \to M / N $. $ M = M_0 \supsetneq \dots \supsetneq N \supsetneq \dots $. Now take a composition series in $ N $ and combine it with the $ M_i $'s.
 \end{proof}
 
-\marginpar{Lecture 21 \\ Tuesday \\ 20/11/18}
+\lecture{21}{Tuesday}{20/11/18}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item Any field is an Artinian ring.
@@ -903,7 +874,7 @@ Take a composition series of $ M / N $ and pull it back to $ M $ via the map $ M
 \item Finite rings and finite modules are Artinian.
 \item An example of a non-Artinian ring is $ k\sb{t} $.
 \end{enumerate}
-\end{example}
+\end{example2}
 
 \begin{lemma}
 \label{lem:12.6}
@@ -946,7 +917,7 @@ The nilradical of an Artinian ring is nilpotent. In other words, there exist $ n
 $ N\rb{A} \supset \dots \supset N\rb{A}^n = N\rb{A}^{n + 1} = \dots $. Such an $ n $ exists, because $ A $ is Artinian. We want to show that $ N\rb{A}^n = 0 $. Let $ C $ be the set of all ideals $ I \subset A $ such that $ I \cdot N\rb{A}^n \ne 0 $. For contradiction we assume $ N\rb{A}^n \ne 0 $. Then $ C $ is not empty, because $ C $ contains $ N\rb{A} $. Since $ A $ is Artinian, any non-empty set of ideals of $ A $ has a minimal element, say $ I $. So we have $ I \cdot N\rb{A}^n \ne 0 $. So there is an $ x \in I $ such that $ x \cdot N\rb{A}^n \ne 0 $. But then $ \rb{x} \cdot N\rb{A}^n \ne 0 $, so $ \rb{x} $ is in $ C $. Since $ I $ is minimal and $ \rb{x} \subset I $, we must have $ \rb{x} = I $. Let us observe that $ 0 \ne \rb{x} \cdot N\rb{A}^n = \rb{x} \cdot N\rb{A}^n \cdot N\rb{A}^n $. This shows that the ideal $ \rb{x} \cdot N\rb{A}^n $ is in $ C $, but $ \rb{x} \cdot N\rb{A}^n \subset \rb{x} = I $, which is minimal in $ C $. Therefore, $ \rb{x} \cdot N\rb{A}^n = \rb{x} \ni x $. This implies that $ x = xy $, where $ y \in N\rb{A}^n \subset N\rb{A} $. In particular, $ y $ is nilpotent, that is $ y^m = 0 $ for some $ m $. $ x = \dots = xy^m = 0 $, so $ x = 0 $. Hence $ I = 0 $. This is a contradiction as $ I \cdot N\rb{A}^n \ne 0 $. Thus $ N\rb{A}^n = 0 $.
 \end{proof}
 
-\marginpar{Lecture 22 \\ Friday \\ 23/11/18}
+\lecture{22}{Friday}{23/11/18}
 
 \begin{lemma}
 \label{lem:12.11}
@@ -980,14 +951,14 @@ Let $ M_1 = I_1 \supset \dots \supset M_n = I_1 \dots I_n = 0 $ and $ A $ be Noe
 Let $ A $ be a ring. The \textbf{Krull dimension} of $ A $ is the supremum of all $ n \in \Z_{> 0} $ such that $ A $ has a chain of proper prime ideals $ I_0 \subsetneq \dots \subsetneq I_n $. $ \dim\rb{A} $ is a positive integer or infinity.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item Any field has dimension zero.
 \item Any principal ideal domain which is not a field has dimension one, such as $ \Z $ or $ k\sb{x} $, where $ k $ is a field. $ \rb{0} \subsetneq P $ for $ P $ a prime ideal. In a PID all non-zero prime ideals are maximal. An integral domain but not a field has $ \dim\rb{A} = 1 $ if and only if all prime ideals are maximal.
 \item $ k\sb{x_1, \dots, x_n} $ has this chain $ \rb{0} \subsetneq \dots \subsetneq \rb{x_1, \dots, x_n} $. $ \dim\rb{k\sb{x_1, \dots, x_n}} \ge n $. In fact dimension is $ n $.
 \end{enumerate}
-\end{example}
+\end{example2}
 
 \begin{theorem}
 A ring is Artinian if and only if it is Noetherian and has dimension zero.
@@ -997,7 +968,7 @@ A ring is Artinian if and only if it is Noetherian and has dimension zero.
 Let us show that $ A $ Artinian gives $ A $ Noetherian and $ \dim\rb{A} = 0 $. Corollary \ref{cor:12.7} says that every prime ideal is maximal, hence $ \dim\rb{A} = 0 $. Lemma \ref{lem:12.9} says that $ A $ has only finitely many maximal ideals, call them $ I_1, \dots, I_n $. $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = J\rb{A} = N\rb{A} $ by Corollary \ref{cor:12.8}. But Lemma \ref{lem:12.10} says $ N\rb{A}^m = 0 $ for some $ m \ge 1 $. We conclude that $ I_1^m \dots I_n^m = 0 $. We can apply Lemma \ref{lem:12.12} and so prove that $ A $ is Noetherian. For the other implication, let us first prove that if $ A $ is Noetherian, then $ N\rb{A}^m = 0 $, for some $ m \ge 1 $. Indeed, $ N\rb{A} $ is finitely generated, so $ N\rb{A} = \rb{m_1, \dots, m_n} $. For each $ i = 1, \dots, m $, there is a $ a_i \ge 1 $ such that $ m_i^{a_i} = 0 $. Take $ a = a_1 + \dots + a_n $. Then $ \rb{m_1, \dots, m_n}^a = 0 $. So $ N\rb{A} $ is a nilpotent ideal. As a consequence, we obtain that any ideal in a Noetherian ring contains some power of its radical $ I \subset A $. There exists $ n $ such that $ r\rb{I}^n \subset I $ by applying the fact that the nilradical is nilpotent to $ A / I $ and $ N\rb{A / I} = r\rb{I} / I $, so $ N\rb{A / I}^n = 0 $ gives $ r\rb{I}^n \subset I $. Now $ \rb{0} $ in $ A $ has a primary decomposition, since $ A $ is Noetherian. Write $ \rb{0} = J_1 \cap \dots \cap J_n $, where $ J_i $ are primary ideals. We know that $ P = r\rb{J_i} $ is a prime ideal of $ A $ by Proposition \ref{prop:11.3}. Since $ \dim\rb{A} = 0 $, each $ P_i $ is actually a maximal ideal. For each $ i = 1, \dots, n $ there is a $ k_i \ge 1 $ such that $ P_i^{k_i} \subset J_i $, since $ P_i = r\rb{J_i} $. Hence $ \rb{0} = J_1 \cap \dots \cap J_n \supset J_1 \cdot \dots \cdot J_n \supset P_1^{k_1} \dots P_n^{k_n} $, hence $ P_1^{k_1} \dots P_n^{k_n} = 0 $. By Lemma \ref{lem:12.12} we conclude that $ A $ is Artinian.
 \end{proof}
 
-\marginpar{Lecture 23 \\ Monday \\ 26/11/18}
+\lecture{23}{Monday}{26/11/18}
 
 \begin{theorem}[Structure theorem]
 \label{thm:12.15}
@@ -1006,9 +977,9 @@ Any Artinian ring is isomorphic to a product of local Artinian rings.
 
 Recall that a ring is local if it has only one maximal ideal.
 
-\begin{example}
+\begin{example2}
 Let $ R = k\sb{x} $. Let $ f\rb{x} $ be a non-zero polynomial and $ A = R / \rb{f} $. $ \dim_k\rb{A} < \infty $ so $ A $ is Artinian. $ f\rb{x} = \prod_{i = 1}^n f_i\rb{x}^{m_i} $, where $ f_i\rb{x} $ are pairwise different irreducible polynomials. The ideals of $ A $ correspond to factors of $ f\rb{x} $. Maximal ideals correspond to $ f_i\rb{x} $. Chinese remainder theorem gives $ A = R / \rb{f} \cong \prod_{i = 1}^n R / \rb{f_i\rb{x}^{m_i}} $.
-\end{example}
+\end{example2}
 
 \begin{definition}
 The ideal $ I, J \subset R $ are \textbf{coprime} if $ I + J = R $.
@@ -1034,15 +1005,17 @@ See problem sheet 4.
 Recall that $ A $ is an Artinian ring. By Lemma \ref{lem:12.9} $ A $ has only finitely many maximal ideals, say $ I_1, \dots, I_n $, all pairwise different. $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = J\rb{A} = N\rb{A} $ by Corollary \ref{cor:12.8}. By Lemma \ref{lem:12.10} $ N\rb{A}^m = 0 $. Hence $ \rb{I_1 \dots I_n}^m = 0 $. $ I_j \subsetneq I_j + I_k = R $ for $ j \ne k $, where $ I_j $ is maximal. By Lemma \ref{lem:12.17} $ \cap_{j = 1}^n I_j = \prod_{j = 1}^n I_j $. Claim that if $ j \ne k $, then $ I_j^a + I_k^a = R $ for any $ a \ge 1 $. Indeed, $ I_j + I_k = R $ so there exist $ x \in I_j $, $ y \in I_K $ such that $ 1 = x + y $. Hence $ 1^{2a} = \rb{x + y}^{2a} $, which is a sum of a multiple of $ x^a $ and a multiple of $ y^a $, which is in $ I_j^a + I_k^a $. By Lemma \ref{lem:12.17} we have $ \cap_{j = 1}^n I_j^a = \prod_{j = 1}^n I_k^a $. So $ \phi $ gives an isomorphism $ A / \prod_{j = 1}^n I_j^a \cong \prod_{j = 1}^n A / I_j^a $. It is enough to show that each $ A / I_j^a $ is a local ring. Take $ a $ large enough, say $ a = m $. Then $ \prod_{j = 1}^n I_j^a = 0 $. Note that $ N\rb{A / I_j^a} = I_j / I_j^a $. Indeed, for all $ x \in I_j $ we have $ x^a \in I_j^a $. Since $ I_j / I_j^a $ is a maximal ideal of $ A / I_j^a $, this is $ N\rb{A / I_j^a} $. This is the intersection of all prime ideals of $ A_j^a $. Thus all of them coincide with $ I_j / I_j^a $, so are maximal. Hence, $ I_j / I_j^a $ is a unique maximal ideal of $ A / I_j^a $.
 \end{proof}
 
-\marginpar{Lecture 24 \\ Tuesday \\ 27/11/18}
+\lecture{24}{Tuesday}{27/11/18}
 
 Lecture 24 is a test.
 
-\marginpar{Lecture 25 \\ Friday \\ 30/11/18}
+\lecture{25}{Friday}{30/11/18}
 
 Lecture 25 is a problem class.
 
-\marginpar{Lecture 26 \\ Monday \\ 03/12/18}
+\pagebreak
+
+\lecture{26}{Monday}{03/12/18}
 
 \section{Integral closure}
 
@@ -1069,14 +1042,14 @@ Let $ R $ be a ring. Let $ A \subset R $ be a subring. Let $ x \in R $. The foll
 Let $ A \subset R $ be rings. An element $ x \in B $ is \textbf{integral} over $ A $ if the equivalent conditions of Theorem \ref{thm:13.1} hold. A monic polynomial $ p\rb{t} \in A\sb{t} $ such that $ p\rb{x} = 0 $ is called the \textbf{equation of integral dependence} of $ x $ over $ A $. $ R $ is called integral over $ A $ if every element in $ R $ is integral over $ A $.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item Let $ R = k\sb{x} \supset k\sb{x^2} = A $. $ k\sb{x} $ is integral over $ k\sb{x^2} $. $ t^2 - x^2 = 0 $, hence $ x $ is integral. (Exercise: check that all elements are integral, without using Theorem \ref{thm:13.1})
 \item Let $ \Z\sb{\rb{-1 + \sqrt{-3}} / 2} $ and $ \zeta = \rb{-1 + \sqrt{-3}} / 2 $. $ \zeta^2 + \zeta + 1 = 0 $. $ \Z\sb{\rb{-1 + \sqrt{-3}} / 2} $ is integral over $ \Z $.
 \item But $ \Z\sb{1 / 5} $ is not an integral extension of $ \Z $. $ 1 / 5 $ is not integral over $ \Z $.
 \end{enumerate}
-\end{example}
+\end{example2}
 
 \begin{lemma}
 \hfill
@@ -1098,22 +1071,24 @@ Let $ A \subset R $ be rings. An element $ x \in B $ is \textbf{integral} over $
 \end{enumerate}
 \end{proof}
 
-\marginpar{Lecture 27 \\ Tuesday \\ 04/12/18}
+\lecture{27}{Tuesday}{04/12/18}
 
 \begin{definition}
 Let $ A $ be an integral domain, and let $ B $ be the field of fractions of $ A $. In this case $ \widetilde{A} $ is called the \textbf{normalisation} of $ A $. If $ \widetilde{A} = A $, then $ A $ is called a \textbf{normal} ring.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item Any UFD is normal (Exercise), for example $ \Z $ is normal. $ k\sb{x_1, \dots, x_n} $ is a UFD, hence a normal ring.
 \item Number theory examples. Let $ \zeta = e^{2\pi i / n} $ for $ n \ge 2 $. $ \Q\rb{\zeta} $ is a cyclotomic field. $ \Z \subset \Q\rb{\zeta} $ and $ \zeta^n - 1 = 0 $, hence $ \zeta $ is integral over $ \Z $. Assume $ F $ is a field extension of $ \Q $. Define the ring of integers of $ F $ as the integral closure of $ \Z $ in $ F $. A fact is that the ring of integers of $ \Q\rb{\zeta} $ is $ \Z\sb{\zeta} $. Another class of interesting number fields is $ \Q\rb{\sqrt{a}} $ for $ a \in \Z $ square-free. What is the integral closure of $ \Z $ in $ \Q\rb{\sqrt{a}} $? Is it $ \Z\sb{\sqrt{a}} $? $ \sqrt{a}^2 - a = 0 $. Yes, if $ a \equiv 2 \mod 4 $ or $ a \equiv 3 \mod 4 $. No, if $ a \equiv 1 \mod 4 $. It is bigger than $ \Z\sb{\sqrt{a}} $. $ \Q\rb{\sqrt{-3}} = \Q\rb{\rb{-1 + \sqrt{3}} / 2} = \Q\rb{\zeta_3} \supset \Z\sb{\zeta_3} $, the normalisation of $ \Z\sb{\sqrt{a}} $.
 \item Normalisation in algebraic geometry. $ y^2 = x^3 $ has a cusp at $ \rb{0, 0} $, since $ f\rb{x, y} = x^3 - y^2 $ and $ \rb{\rb{\partial f / \partial x}\rb{0, 0}, \rb{\partial f / \partial x}\rb{0, 0}} = \rb{0, 0} $, a singular point. Let $ A = k\sb{x, y} / \rb{y - x^3} $. $ A $ is the ring of functions on this curve. Is $ A $ normal? No. Let $ t = y / x $. $ t^2 = y^2 / x^2 $, so $ t^2 - x = 0 $ hence $ t $ is an element of the field of fractions of $ A $, which is not in $ A $, but is integral over $ A $. So $ A \subset k\sb{t} $ is in the field of fractions of $ A $. But $ k\sb{t} $ is a UFD, hence normal. Thus $ k\sb{t} $ is the normalisation of $ A $. The map $ t \mapsto \rb{t^2, t^3} $ is a map from the affine line to our curve. It is a desingularisation of our singular curve.
 \end{enumerate}
-\end{example}
+\end{example2}
 
-\marginpar{Lecture 28 \\ Friday \\ 07/12/18}
+\pagebreak
+
+\lecture{28}{Friday}{07/12/18}
 
 \section{Discrete valuation rings}
 
@@ -1143,9 +1118,9 @@ Recall that a set has a total order $ x < y $ if for every two elements exactly 
 $$ x < y, \qquad x = y, \qquad x > y. $$
 An abelian group $ G $ is an \textbf{ordered group} if $ G $ has a total order compatible with the group structure, that is if $ x < y $ then $ x + z < y + z $ for any $ z \in G $.
 
-\begin{example}
+\begin{example2}
 $ \Z, \Q, \R $ with the usual order.
-\end{example}
+\end{example2}
 
 \begin{definition}
 Let $ K $ be a field. A \textbf{valuation} in $ K $ is a surjective homomorphism $ v : K^* \to G $, where $ G $ is an ordered group, such that $ v\rb{x \pm y} \ge \min\cb{v\rb{x}, v\rb{y}} $. One defines $ v\rb{0} = \infty $.
@@ -1159,7 +1134,7 @@ Let $ K $ be a field. A \textbf{valuation} in $ K $ is a surjective homomorphism
 A ring is called a \textbf{valuation ring} if its field of fractions $ K $ has a valuation $ v : K^* \to G $, for some ordered group $ G $, such that $ R = \cb{x \in K \mid v\rb{x} \ge 0} $. A valuation ring is a \textbf{discrete valuation ring} if the ordered group is $ \Z $, with the usual order.
 \end{definition}
 
-\begin{example}
+\begin{example2}
 \hfill
 \begin{enumerate}
 \item $ \Z_{\rb{p}} = \cb{a / b \mid a, b \in \Z, \ \rb{p, b} = 1} $ is a DVR, where $ K = \Q $. $ v\rb{p^n \cdot \rb{c / d}} = n \in \Z $, where $ c, d \in \Z $ and $ p \nmid c, d $.
@@ -1168,7 +1143,7 @@ A ring is called a \textbf{valuation ring} if its field of fractions $ K $ has a
 $$ k\sb{\sb{t^{1 / n}}} = \cb{\sum_{i \ge n} a_it^i \ \Bigg| \ a_i \in k}. $$
 Let $ R = \bigcup_{n \ge 1} k\sb{\sb{t^{1 / n}}} $. Define $ v $ as the highest power of $ t $ dividing our element. $ v : K^* \to \Q $ by $ v\rb{at^{c / d} + \dots} = c / d $ is not a discrete valuation. Note that the power series with zero constant term form a maximal ideal of $ R $. $ t \subsetneq t^{1 / 2} \subsetneq \dots $. So $ R $ is not a Noetherian ring.
 \end{enumerate}
-\end{example}
+\end{example2}
 
 \begin{theorem}
 A valuation ring is Noetherian if and only if it is a DVR.
@@ -1178,7 +1153,7 @@ A valuation ring is Noetherian if and only if it is a DVR.
 Let $ R $ be a Noetherian valuation ring. Then I claim that the maximal ideal $ I $ is principal. Any ideal in $ R $ is finitely generated, say $ I = \rb{x_1, \dots, x_n} $. By induction, it is enough to show that any ideal with two generators, say $ \rb{x, y} $, is generated by $ x $ or $ y $. Consider $ v\rb{x} $ and $ v\rb{y} $. $ v\rb{x} < v\rb{y} $, $ v\rb{x} = v\rb{y} $, or $ v\rb{x} > v\rb{y} $. Without loss of generality assume that $ v\rb{x} < v\rb{y} $. Then $ y \in \rb{x} $ because $ R = \cb{z \in K \mid v\rb{z} \ge 0} $. In particular, $ v\rb{y / x} = v\rb{y} - v\rb{y} \ge 0 $ gives $ y / x \in R $.
 \end{proof}
 
-\marginpar{Lecture 29 \\ Monday \\ 10/12/18}
+\lecture{29}{Monday}{10/12/18}
 
 \begin{theorem}
 \hfill
@@ -1210,7 +1185,7 @@ $ \det\rb{M} \cdot x_i = 0 $ for $ i = 1, \dots, n $. Without loss of generality
 \end{enumerate}
 \end{proof}
 
-\marginpar{Lecture 30 \\ Tuesday \\ 11/12/18}
+\lecture{30}{Tuesday}{11/12/18}
 
 Lecture 30 is a problem class.
 
