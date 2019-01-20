@@ -23,7 +23,6 @@ The next level of the subject is predicate logic. This is what is needed to anal
 Set theory provides the basic foundations and the language in which most of modern mathematics can be expressed, as well as the means for discussing the various notions of sizes of infinity. For example, although the set of natural numbers, the set of integers and the set of real numbers are all infinite, there is a very natural sense in which the first two have the same size, whereas the third is strictly bigger. This is expressed properly in the notion of cardinality. To avoid paradoxes and inconsistencies, we have to be careful about what collections of objects we allow to be called sets. This is done by the Zermelo-Fraenkel axioms, which essentially tell us how we are allowed to create new sets out of old ones. Of course, having laid down these quite rigid rules, we have to show that they are sufficiently flexible to allow us to talk about everyday objects of mathematics. There are also situations in mathematics where an extra axiom is needed, the axiom of choice. For example without this axiom, or rather, method of construction of a new set from given ones, we cannot show that every vector space has a basis. But it also has some slightly counterintuitive consequences, and we shall also look at some of these.
 
 The lecture notes should be fairly self-contained, but the following books might also be of use. You might find that the notation which they use differs form that used in the lectures. You will be able to find various lecture notes on the internet. Some will be good, others not so good.
-
 \begin{enumerate}
 \item P Johnstone, Notes on logic and set theory, 1987
 \item P J Cameron, Sets, logic and categories, 1999
@@ -31,7 +30,6 @@ The lecture notes should be fairly self-contained, but the following books might
 \item R Cori and D Lascar, Mathematical logic: a course with exercises parts I and II, 2001
 \item K Hrbaček and T Jech, Introduction to set theory 3rd edition, 1999
 \end{enumerate}
-
 $ 1 $ is very concise, but covers a surprising amount. $ 2 $ is friendlier, but skips some of the harder material. $ 4 $ is quite comprehensive and also available in the original French. $ 3 $ is useful for the logic part and $ 5 $ is a very nice introduction to set theory.
 
 \pagebreak
@@ -236,10 +234,12 @@ $$ \overline{v_1}, \dots, \overline{v_r}. $$
 Write
 $$ \overline{v_i} = \rb{v_{i1}, \dots, v_{in}}, $$
 where each $ v_{ij} $ is $ T $ or $ F $. Define
-$$ q_{ij} = \begin{cases}
+$$ q_{ij} =
+\begin{cases}
 p_j & v_{ij} = T \\
 \notb{p_j} & v_{ij} = F
-\end{cases}. $$
+\end{cases}.
+$$
 So
 $$ q_{ij} \ \text{has value} \ T \qquad \iff \qquad p_j \ \text{has value} \ v_{ij}. $$
 Let
@@ -372,11 +372,13 @@ The following is the main example.
 The formal system $ L $ for propositional logic has the following.
 \begin{itemize}
 \item Alphabet.
-\begin{alignat*}{2}
-& \text{Variables} & \qquad & p_1 \quad p_2 \quad \dots \\
-& \text{Connectives} & \qquad & \neg \quad \rightarrow \\
-& \textbf{Punctuation} & \qquad & ( \quad )
-\end{alignat*}
+$$
+\begin{array}{ll}
+\text{Variables} & p_1 \quad p_2 \quad \dots \\
+\text{Connectives} & \neg \quad \rightarrow \\
+\textbf{Punctuation} & ( \quad )
+\end{array}
+$$
 \item Formulas. $ L $-formulas defined in \ref{def:1.1.2} for $ \neg, \rightarrow $.
 \begin{itemize}
 \item Any variable $ p_i $ is a formula.
@@ -617,10 +619,12 @@ Sometimes say $ \Gamma^* $ is \textbf{complete}.
 The set of $ L $-formulas is countable, so we can list the $ L $-formulas as $ \phi_0, \phi_1, \dots $. This is countable, since the alphabet
 $$ \neg \quad \rightarrow \qquad ) \quad ( \qquad p_1 \quad p_2 \quad \dots $$
 is countable, and the formulas are finite sequences from this alphabet, so only countable many. Define inductively sets of formulas
-$$ \Gamma_0 \subseteq \Gamma_1 \subseteq \dots, \qquad \Gamma_0 = \Gamma, \qquad \Gamma_{n + 1} = \begin{cases}
+$$ \Gamma_0 \subseteq \Gamma_1 \subseteq \dots, \qquad \Gamma_0 = \Gamma, \qquad \Gamma_{n + 1} =
+\begin{cases}
 \Gamma_n & \Gamma_n \vdash_L \phi_n \\
 \Gamma_n \cup \cb{\notb{\phi_n}} & \Gamma_n \not\vdash_L \phi_n
-\end{cases}. $$
+\end{cases}.
+$$
 An easy induction using \ref{prop:1.3.7} shows that each $ \Gamma_i $ is consistent. Then let $ \Gamma^* = \bigcup_{i \in \N} \Gamma_i $. Claim that $ \Gamma^* $ is consistent. If $ \Gamma^* \vdash_L \phi $ and $ \Gamma^* \vdash_L \notb{\phi} $, then as deductions are finite sequence of formulas,
 $$ \Gamma_n \vdash_L \phi, \qquad \Gamma_n \vdash_L \notb{\phi} $$
 for some $ n \in \N $, a contradiction. Let $ \phi $ be any formula. So $ \phi = \phi_n $ for some $ n $. If $ \Gamma^* \not\vdash_L \phi $, then $ \Gamma_n \not\vdash_L \phi $. So by construction,
@@ -757,9 +761,9 @@ Lecture 7 is a problem class.
 
 \pagebreak
 
-\lecture{8}{Friday}{19/10/18}
-
 \section{Predicate logic}
+
+\lecture{8}{Friday}{19/10/18}
 
 Plan.
 \begin{itemize}
@@ -831,26 +835,32 @@ is called the \textbf{signature} of $ \AA $. Might denote the structure by
 $$ A \in \cb{\N, \Z, \Q, \R}, \qquad I = \cb{1}, \qquad J = \emptyset, \qquad K = \emptyset $$
 $$ \overline{R_1}\rb{a_1, a_2} \qquad \text{to mean} \qquad a_1 < a_2 $$
 \item Groups.
-\begin{alignat*}{2}
-& \overline{R} & \qquad & \text{the binary relation for equality} \\
-& \overline{m} & \qquad & \text{the binary function for multiplication} \\
-& \overline{i} & \qquad & \text{the unary function for inversion} \\
-& \overline{e} & \qquad & \text{the constant for identity element}
-\end{alignat*}
+$$
+\begin{array}{ll}
+\overline{R} & \text{the binary relation for equality} \\
+\overline{m} & \text{the binary function for multiplication} \\
+\overline{i} & \text{the unary function for inversion} \\
+\overline{e} & \text{the constant for identity element}
+\end{array}
+$$
 \item Rings.
-\begin{alignat*}{2}
-& \overline{R} & \qquad & \text{the binary relation for equality} \\
-& \overline{m} & \qquad & \text{the binary function for multiplication} \\
-& \overline{a} & \qquad & \text{the binary function for addition} \\
-& \overline{n} & \qquad & \text{the binary function for negation} \\
-& \overline{0} & \qquad & \text{the constant for zero} \\
-& \overline{1} & \qquad & \text{the constant for one}
-\end{alignat*}
+$$
+\begin{array}{ll}
+\overline{R} & \text{the binary relation for equality} \\
+\overline{m} & \text{the binary function for multiplication} \\
+\overline{a} & \text{the binary function for addition} \\
+\overline{n} & \text{the binary function for negation} \\
+\overline{0} & \text{the constant for zero} \\
+\overline{1} & \text{the constant for one}
+\end{array}
+$$
 \item Graphs.
-\begin{alignat*}{2}
-& \overline{R} & \qquad & \text{the binary relation for equality} \\
-& \overline{E} & \qquad & \text{the binary relation for adjacency}
-\end{alignat*}
+$$
+\begin{array}{ll}
+\overline{R} & \text{the binary relation for equality} \\
+\overline{E} & \text{the binary relation for adjacency}
+\end{array}
+$$
 \end{itemize}
 \end{example1}
 
@@ -859,15 +869,17 @@ $$ \overline{R_1}\rb{a_1, a_2} \qquad \text{to mean} \qquad a_1 < a_2 $$
 \begin{definition}
 \label{def:2.2.1}
 A \textbf{first-order language} $ \LL $ has an alphabet of \textbf{symbols} of the following types.
-\begin{alignat*}{2}
-& \text{Variables} & \qquad & x_0 \quad x_1 \quad \dots \\
-& \text{Connectives} & \qquad & \neg \quad \rightarrow \\
-& \text{Punctuation} & \qquad & ( \quad ) \quad , \\
-& \textbf{Quantifier} & \qquad & \forall \\
-& \textbf{Relation symbols} & \qquad & R_i, \quad i \in I \\
-& \textbf{Function symbols} & \qquad & f_j, \quad j \in J \\
-& \textbf{Constant symbols} & \qquad & c_k, \quad k \in K
-\end{alignat*}
+$$
+\begin{array}{ll}
+\text{Variables} & x_0 \quad x_1 \quad \dots \\
+\text{Connectives} & \neg \quad \rightarrow \\
+\text{Punctuation} & ( \quad ) \quad , \\
+\textbf{Quantifier} & \forall \\
+\textbf{Relation symbols} & R_i, \quad i \in I \\
+\textbf{Function symbols} & f_j, \quad j \in J \\
+\textbf{Constant symbols} & c_k, \quad k \in K
+\end{array}
+$$
 Here $ I, J, K $ are indexing sets, which could have $ J, K = \emptyset $.
 \begin{itemize}
 \item Each $ R_i $ comes equipped with an arity $ n_i $.
@@ -1831,10 +1843,12 @@ $$ A^* = \bigcup_{n \in \N} A_n, \qquad B^* = f\sb{A^*}. $$
 Note that $ h\sb{A^*} \subseteq A^* $, so $ g\sb{B^*} = h\sb{A^*} \subseteq A^* $. Claim that
 $$ g\sb{B \setminus B^*} = A \setminus A^*. $$
 Once we have this, $ f $ gives a bijection $ A^* \to B^* $, and $ g $ gives a bijection $ B \setminus B^* \to A \setminus A^* $. So
-$$ k\rb{a} = \begin{cases}
+$$ k\rb{a} =
+\begin{cases}
 f\rb{a} & a \in A^* \\
 g^{-1}\rb{a} & a \in A \setminus A^*
-\end{cases} $$
+\end{cases}
+$$
 is a bijection.
 \begin{itemize}
 \item Let $ a \in A \setminus A^* $. As $ a \notin A_0 $, there is $ b \in B $ with $ g\rb{b} = a $. Then $ b \notin B^* $, as
@@ -1863,17 +1877,21 @@ Then use \ref{thm:3.1.6}.
 \item As $ \N \times \N \approx \N $, we get $ S_3 \approx S_4 $.
 \item Also $ S_1 \subseteq S_5 \subseteq S_4 $.
 \item $ f_{3, 1} : \mathcal{P}\rb{\N} \to \cb{0, 1}^\N $.
-$$ X \subseteq \N \mapsto \rb{a_n}_{n \in \N}, \qquad a_n = \begin{cases}
+$$ X \subseteq \N \mapsto \rb{a_n}_{n \in \N}, \qquad a_n =
+\begin{cases}
 0 & n \notin X \\
 1 & n \in X
-\end{cases} $$
+\end{cases}
+$$
 \item $ f_{1, 2} : \cb{0, 1}^\N \to \R $.
 $$ \rb{a_n}_{n \in \N} \mapsto 0 . a_1a_2 \dots $$
 \item $ f_{2, 5} : \R \to \N^\N $.
-$$ n . m_1m_2 \dots \mapsto \begin{cases}
+$$ n . m_1m_2 \dots \mapsto
+\begin{cases}
 \rb{0, n, m_1, m_2, \dots} & n \ge 0 \\
 \rb{1, -n, m_1, m_2, \dots} & n < 0
-\end{cases} $$
+\end{cases}
+$$
 \end{itemize}
 \end{proof}
 
@@ -2366,10 +2384,7 @@ $$ y = \pi^{-1}\rb{\beta}. $$
 Then the restriction of $ \pi $ to $ A\sb{y} $ gives a similarity
 $$ A\sb{y} \to \cb{\delta \in \alpha_x \mid \delta < \beta} = \beta. $$
 So $ \beta = \alpha_y \in S $. So now write $ \alpha $ instead of $ S $. By what we already did, this argument also shows that $ X $ is an initial segment of $ A $. If we knew that $ A = X $, then we would be done, as the function
-\begin{align*}
-X & \to \alpha \\
-x & \mapsto \alpha_x
-\end{align*}
+$$ \function{X}{\alpha}{x}{\alpha_x} $$
 is easily seen to be a similarity $ A \to \alpha $. So suppose that $ X \ne A $, so $ X $ is a proper initial segment of $ A $. By \ref{lem:3.3.6}, we have that $ X = A\sb{z} $ for some $ z \in A \setminus X $. Know that $ x \mapsto \alpha_x $ gives a similarity $ X \to \alpha $. But then
 $$ z \in X = A\sb{z}, $$
 by definition of $ X $, a contradiction. So $ X = A $ and $ A \simeq \alpha $.
@@ -2489,14 +2504,17 @@ Thus $ \eta < \alpha $. Otherwise $ \alpha \le \eta $, so $ \alpha \subseteq \et
 \item Find an ordering $ \le $ on $ \alpha \times \alpha = A $ as in step $ 1 $. For $ \lambda < \alpha $, let
 $$ A_\lambda = \cb{\rb{\theta, \zeta} \in \alpha \times \alpha \mid \max\rb{\theta, \zeta} = \lambda}. $$
 Define $ \le $ on $ A $ by
-$$ \rb{\theta', \zeta'} < \rb{\theta, \zeta} \qquad \iff \qquad \begin{cases}
+$$ \rb{\theta', \zeta'} < \rb{\theta, \zeta} \qquad \iff \qquad
+\begin{cases}
 \max\rb{\theta', \zeta'} < \max\rb{\theta, \zeta} \\
-\max\rb{\theta', \zeta'} = \lambda = \max\rb{\theta, \zeta} \ \text{and} \ \begin{cases}
+\max\rb{\theta', \zeta'} = \lambda = \max\rb{\theta, \zeta} \ \text{and}
+\begin{cases}
 \zeta = \zeta' = \lambda \ \text{and} \ \theta' < \theta \\
 \zeta' < \zeta = \lambda \\
 \theta = \theta' = \lambda \ \text{and} \ \zeta' < \zeta
 \end{cases}
-\end{cases}. $$
+\end{cases}.
+$$
 Check that $ \le $ is a well ordering on $ A $. Show that property in step $ 1 $ holds. Let $ x = \rb{\theta, \zeta} \in A $. Let $ \lambda = \max\rb{\theta, \zeta} $. May assume $ \lambda \ge \omega $. Let $ \mu = \lambda^\dagger $. So $ \mu < \alpha $, and by inductive hypothesis, $ \abs{\mu \times \mu} = \abs{\mu} < \abs{\alpha} $.
 $$ \cb{y \in A \mid y < x} \subseteq \cb{\rb{\theta', \zeta'} \in A \mid \max\rb{\theta', \zeta'} \le \lambda} \subseteq \mu \times \mu. $$
 Thus $ \abs{A\sb{x}} \le \abs{\mu \times \mu} < \abs{\alpha} $.
@@ -2543,11 +2561,13 @@ An application is the Lindenbaum lemma, comparing \ref{prop:1.3.8} and \ref{prop
 The set of $ \LL $-formulas can be well ordered. Any subset of a well ordered set is well ordered, so the set of closed $ \LL $-formulas is well ordered. Any well ordered set is similar to some ordinal, by \ref{thm:3.4.8}. So we can write the set of closed $ \LL $-formulas as
 $$ \cb{\phi_\alpha \mid \alpha < \lambda}, $$
 for some ordinal $ \lambda $. Define, for each ordinal $ \alpha $, a consistent set $ G\rb{\alpha} \supseteq \Sigma $ of closed $ \LL $-formulas
-$$ G\rb{\alpha} = \begin{cases}
+$$ G\rb{\alpha} =
+\begin{cases}
 \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \vdash_{K_{\LL}} \phi_\alpha \\
 \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \cup \cb{\notb{\phi_\alpha}} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \not\vdash_{K_{\LL}} \phi_\alpha \\
 \Sigma \cup \bigcup_{\beta < \lambda} G\rb{\beta} & \alpha \ge \lambda
-\end{cases}. $$
+\end{cases}.
+$$
 Let $ \Sigma^* = G\rb{\lambda} $. Proof that it works is just as in the countable case.
 \end{proof}
 
@@ -2614,10 +2634,12 @@ $$ h : \alpha \to X. $$
 Let $ \alpha $ be such an ordinal. Consider
 $$ \widetilde{X} = X \cup \cb{\infty}, $$
 where $ \infty $ is some set with $ \infty \notin X $. Use transfinite recursion and the choice function $ f $ to define an operation $ G $, for an ordinal $ \gamma $,
-$$ G\rb{\gamma} = \begin{cases}
+$$ G\rb{\gamma} =
+\begin{cases}
 f\rb{X \setminus \cb{G\rb{\beta} \mid \beta < \gamma}} & X \setminus \cb{G\rb{\beta} \mid \beta < \gamma} \ne \emptyset \\
 \infty & \text{otherwise}
-\end{cases}. $$
+\end{cases}.
+$$
 Note that, if $ \infty \notin Im\rb{G \upharpoonright \gamma} $, then $ G \upharpoonright \gamma $ is an injective function
 $$ \gamma \to X. $$
 By Hartogs' lemma, there is some ordinal $ \alpha $ with $ G\rb{\alpha} = \infty $. Take the least such ordinal and call it $ \beta $. Then
@@ -2790,15 +2812,9 @@ $$ \abs{\bigcup A} \le \lambda \cdot \kappa. $$
 Can assume $ \emptyset \notin A $. For each $ a \in A $, the set
 $$ S_a = \cb{\text{surjective functions} \ \kappa \to a} $$
 is non-empty, by \ref{lem:4.1.7}. Assuming axiom of choice, there is a function
-\begin{align*}
-F : A & \to \bigcup_{a \in A} S_a \\
-F\rb{a} & = \kappa \to \alpha,
-\end{align*}
+$$ \function[F]{A}{\bigcup_{a \in A} S_a}{a}{\kappa \to \alpha}, $$
 which is a surjective function. Denote this by $ F_a $. Let $ h : \lambda \to A $ be a bijection. Now define
-\begin{align*}
-G : \lambda \times \kappa & \to \bigcup A \\
-G\rb{\alpha, \beta} & = F_{h\rb{\alpha}}\rb{\beta}
-\end{align*}
+$$ \function[G]{\lambda \times \kappa}{\bigcup A}{\rb{\alpha, \beta}}{F_{h\rb{\alpha}}\rb{\beta}}. $$
 This is surjective. So by \ref{lem:4.1.7}, $ \abs{\lambda \times \kappa} \ge \abs{\bigcup A} $, that is $ \abs{\bigcup A} \le \lambda \cdot \kappa $.
 \end{proof}
 
@@ -2825,10 +2841,7 @@ $$ S_1 = \cb{\text{finite sequences from} \ \Q}, \qquad S_2 = \cb{\text{finite s
 Consider
 $$ S_1 \times S_2 \supseteq T = \cb{\rb{\rb{q_0, \dots, q_n}, \rb{b_0, \dots, b_n}} \mid q_i \in \Q, \ b_i \in B}. $$
 We have a surjection
-\begin{align*}
-T & \to \R \\
-\rb{\rb{q_0, \dots, q_n}, \rb{b_0, \dots, b_n}} & \mapsto x = \sum_{i = 0}^n q_ib_i.
-\end{align*}
+$$ \function{T}{\R}{\rb{\rb{q_0, \dots, q_n}, \rb{b_0, \dots, b_n}}}{x = \sum_{i = 0}^n q_ib_i}. $$
 By $ 1 $, $ \abs{S_1} = \abs{\Q} = \omega $ and $ \abs{S_2} = \abs{B} $. By \ref{lem:4.1.7},
 $$ \abs{\R} \le \abs{T} \le \abs{S_1 \times S_2} = \omega \cdot \abs{B} = \max\rb{\omega, \abs{B}}, $$
 by \ref{thm:4.2.5}. As $ \abs{\R} > \omega $, we get $ \abs{B} = \abs{\R} $.
@@ -2837,9 +2850,9 @@ by \ref{thm:4.2.5}. As $ \abs{\R} > \omega $, we get $ \abs{B} = \abs{\R} $.
 
 \pagebreak
 
-\lecture{30}{Monday}{10/12/18}
-
 \subsection{Zorn's lemma}
+
+\lecture{30}{Monday}{10/12/18}
 
 A \textbf{partially ordered set (poset)} $ \ab{A; \le} $ satisfies
 \begin{align*}
@@ -2905,10 +2918,10 @@ By Hartogs' lemma, or by cardinality, this is impossible.
 \subsection{Postscript}
 
 Assume ZFC. For a first-order language $ \LL $, the cardinality of $ \LL $ is the cardinality of the set of $ \LL $-formulas, which is the cardinality of the alphabet. Assuming ZFC, the following hold for $ \LL $ of arbitrary cardinality.
-\begin{enumerate}
+\begin{itemize}
 \item G\"odel's completeness theorem, and results leading to it. Compare 3.6.
 \item Compactness theorem, and compactness theorem for normal models in $ \LL^= $.
-\end{enumerate}
+\end{itemize}
 
 \pagebreak
 
@@ -2940,11 +2953,13 @@ v'\sb{\phi\rb{x_1}} = T \qquad
 w'\rb{x_1} = v'\rb{x_1} = v\rb{t}.
 \end{equation}
 Define a valuation $ w $ by
-$$ w\rb{x_j} = \begin{cases}
+$$ w\rb{x_j} =
+\begin{cases}
 v\rb{x_j} & j \ne 1, i \\
 w'\rb{x_i} & j = i \\
 v\rb{x_1} & j = 1
-\end{cases}. $$
+\end{cases}.
+$$
 So $ w $ is $ x_1 $-equivalent to $ w' $ and $ x_i $-equivalent to $ v $, noting that $ v, v' $ are $ x_i $-equivalent, and $ w, v' $ are $ x_i $-equivalent. As $ x_i $ does not occur in $ t $, we have, by \ref{thm:2.3.3} and $ \rb{\ref{eq:12}} $,
 $$ w\rb{t} = v\rb{t} = w'\rb{x_1}. $$
 We can now apply the inductive hypothesis to $ w $, $ w' $, and $ \psi $. We obtain that

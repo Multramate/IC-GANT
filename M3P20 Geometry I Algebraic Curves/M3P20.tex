@@ -17,11 +17,10 @@
 \lecture{1}{Monday}{08/10/18}
 
 This course is intended as a first course in algebraic geometry. It will focus on one-dimensional algebraic varieties. The reference books for the course are the following.
-\begin{enumerate}
+\begin{itemize}
 \item F Kirwan, Complex algebraic curves, 1992
 \item W Fulton, Algebraic curves, an introduction to algebraic geometry, 1969
-\end{enumerate}
-
+\end{itemize}
 Geometry is the study of shapes in suitable spaces, such as sets of points on the real line $ \R $, lines and circles in $ \R^2 $, spheres in higher dimensional Euclidean spaces $ \R^n $, etc. One way to think about shapes is to see them as the locus of zeroes defined by
 $$ \cb{\rb{x_1, \dots, x_n} \in \R^n \mid f\rb{x_1, \dots, x_n} = 0} \subseteq \R^n, $$
 for some suitable function $ f $.
@@ -41,13 +40,12 @@ $$ \cb{f_3\rb{x_1, \dots, x_n} = x_1^2 + \dots + x_n^2 - R^2 = 0}, \qquad R \in 
 
 \begin{remark1}
 Note that every subset $ S \subseteq \R^n $ is the zero set of some function, by just defining
-\begin{align*}
-\chi_S : \R^n & \to \R \\
-x & \mapsto \begin{cases}
+$$ \function[\chi_S]{\R^n}{\R}{x}{
+\begin{cases}
 0 & x \in S \\
 1 & x \notin S
-\end{cases}.
-\end{align*}
+\end{cases}
+}. $$
 \end{remark1}
 
 The class of functions used to define our shapes has great consequences on their geometry. In Example \ref{eg:1.1}, $ f_1 $ is a polynomial so that it is differentiable and also $ C^\infty $. $ f_2 $ is continuous but not differentiable at $ \cb{\rb{0, \pm 1}, \rb{\pm 1, 0}} $, the vertices of the square. The function $ \chi_S $ is not even continuous, unless $ S $ is empty, or the whole $ \R^n $. As these examples illustrate, an underlying principle is the following equivalence.
@@ -186,24 +184,23 @@ Very different questions can be approached through algebraic curves. For example
 The unit circle is the curve
 $$ C = \cb{x^2 + y^2 = 1} \subseteq \R^2. $$
 Several parametrisations are known, such as
-\begin{align*}
-[0, 2\pi) & \to \R^2 \\
-t & \mapsto \rb{\cos t, \sin t}.
-\end{align*}
+$$ \function{[0, 2\pi)}{\R^2}{t}{\rb{\cos\rb{t}, \sin\rb{t}}}. $$
 We can write down another parametrisation of $ C $ by considering lines through the point $ P = \rb{-1, 0} $, using a stereographic projection. A line through $ P $ with slope $ t \in \R $ has equation
 $$ L_t = \cb{y = t\rb{x + 1}} \subseteq \R^2 $$
 and meets $ C $ in two points, $ P $ and $ P_t = \rb{x\rb{t}, y\rb{t}} $. We can determine the coordinate of $ P_t $ by solving the system
-$$ L_t \cap C = \begin{cases}
+$$ L_t \cap C =
+\begin{cases}
 y = t\rb{x + 1} \\
 x^2 + y^2 = 1
-\end{cases}. $$
+\end{cases}.
+$$
 Replacing the value of $ y $ given by the first equation into the second yields two solutions for $ x\rb{t} $. The first one is $ x = -1 $ and corresponds to the point $ P = \rb{-1, 0} $. The second is $ \rb{x\rb{t}, y\rb{t}} $, where
 \begin{equation}
 \label{eq:1}
 \begin{cases}
 x\rb{t} = \dfrac{1 - t^2}{1 + t^2}, \\
-y\rb{t} = \dfrac{2t}{1 + t^2}.
-\end{cases}
+y\rb{t} = \dfrac{2t}{1 + t^2}
+\end{cases}.
 \end{equation}
 Note that when $ t \to \infty $, $ \rb{x\rb{t}, y\rb{t}} \to \rb{-1, 0} $, so that
 $$ t \mapsto \rb{x\rb{t}, y\rb{t}} $$
@@ -349,10 +346,12 @@ Describing intersections is also easier.
 Consider
 $$ C = \cb{x^2 + y^2 - 1 = 0} \subseteq \C^2, \qquad L = \cb{ax + by + c = 0} \subseteq \C^2. $$
 If $ b \ne 0 $, we determine the intersection $ C \cap L $ by solving the linear system
-$$ \begin{cases}
+$$
+\begin{cases}
 x^2 + y^2 = 1, \\
 y = -\dfrac{a}{b}x - \dfrac{c}{b}
-\end{cases}. $$
+\end{cases}.
+$$
 Unless $ a^2 = -b^2 $ and $ c = 0 $, there are one or two solutions. Again, it is hard to imagine a two-dimensional real surface which meets a real plane in two points.
 \end{example1}
 
@@ -520,9 +519,9 @@ Want to show that some points in $ \C $ are outside this open ball. Let $ y_0 \i
 
 \pagebreak
 
-\lecture{4}{Monday}{15/10/18}
-
 \section{Projective space}
+
+\lecture{4}{Monday}{15/10/18}
 
 Recall that it is difficult to determine when two affine plane curves $ C, C' \in \C^2 $ intersect, and some curves do not in fact intersect, even over $ \C $. We want to fix that, and the key is adding points at infinity.
 
@@ -532,7 +531,7 @@ Recall that it is difficult to determine when two affine plane curves $ C, C' \i
 \item Consider two distinct lines
 $$ L_1 = \cb{ax + by + c = 0}, \qquad L_2 = \cb{a'x + b'y + c' = 0}. $$
 Then $ L_1 $ and $ L_2 $ meet at exactly one point if and only if
-$$ \det\two{a & b}{a' & b'} \ne 0. $$
+$$ \det\twobytwo{a}{b}{a'}{b'} \ne 0. $$
 But we can pretend that parallel lines meet at a point at infinity corresponding to the direction vector.
 \item Consider the asymptotic curve and line
 $$ C = \cb{xy - 1 = 0}, \qquad L = \cb{x = 0}. $$
@@ -554,27 +553,37 @@ $$ z = 0. $$
 \item Consider the lines
 $$ L_1 = \cb{x + y + 1 = 0}, \qquad L_2 = \cb{x + y - 1 = 0}. $$
 Clearly $ L_1 $ and $ L_2 $ do not meet. Let us apply the trick. By $ 1 $ and $ 2 $ we get
-$$ \begin{cases}
+$$
+\begin{cases}
 \dfrac{x}{z} + \dfrac{y}{z} + 1 = 0 \\
 \dfrac{x}{z} + \dfrac{y}{z} - 1 = 0
-\end{cases} \qquad \implies \qquad \begin{cases}
+\end{cases}
+\qquad \implies \qquad
+\begin{cases}
 x + y + z = 0 \\
 x + y - z = 0
-\end{cases} \qquad \implies \qquad \begin{cases}
+\end{cases}
+\qquad \implies \qquad
+\begin{cases}
 x + y = 0 \\
 x + y = 0
-\end{cases}. $$
+\end{cases}.
+$$
 We get that the point $ \rb{1, -1, 0} $ is a common solution. This will be called the point at infinity.
 \item Consider the asymptotic curve and line
 $$ C = \cb{xy - 1 = 0}, \qquad L = \cb{x = 0}. $$
 Apply $ 1 $ and $ 2 $ to get
-$$ \begin{cases}
+$$
+\begin{cases}
 xy - z^2 = 0 \\
 \dfrac{x}{z} = 0
-\end{cases} \qquad \implies \qquad \begin{cases}
+\end{cases}
+\qquad \implies \qquad
+\begin{cases}
 xy = 0 \\
 x = 0
-\end{cases}. $$
+\end{cases}.
+$$
 We get that $ \rb{0, 1, 0} $ is a common solution. Again, this will be called the point at infinity.
 \end{itemize}
 \end{example1}
@@ -598,7 +607,9 @@ Show that $ \sim $ is an equivalence relation on $ W $.
 \begin{notation1}
 Given $ x \in W $, we denote
 $$ \sb{x} = \cb{y \in W \mid x \sim y}. $$
-For simplicity, if $ x = \rb{x_0, \dots, x_n} $ we will denote $ \sb{x} = \sb{x_0, \dots, x_n} $, instead of $ x = \sb{\rb{x_0, \dots, x_n}} $.
+For simplicity, if $ x = \rb{x_0, \dots, x_n} $ we will denote
+$$ \sb{x} = \sb{x_0, \dots, x_n}, $$
+instead of $ x = \sb{\rb{x_0, \dots, x_n}} $.
 \end{notation1}
 
 \begin{exercise}
@@ -622,7 +633,7 @@ The point $ \sb{1, 2, i} $ is the same as the point $ \sb{i, 2i, -1} $.
 
 \begin{exercise}
 Show that there exists a bijection
-$$ \P^n \qquad \leftrightsquigarrow \qquad \cb{\text{one-dimensional subspaces of } \C^{n + 1}}. $$
+$$ \P^n \qquad \leftrightsquigarrow \qquad \cb{\text{one-dimensional subspaces of} \ \C^{n + 1}}. $$
 In fact, if $ V $ is a finite-dimensional vector space over $ \C $ without the choice of a basis, we can define the associated projective space $ \P\rb{V} $ as the set of one-dimensional linear subspaces of $ V $.
 \end{exercise}
 
@@ -653,46 +664,34 @@ where at least one of the coefficients is non-zero, say $ x_i \ne 0 $. Then $ \s
 \begin{lemma}
 \label{lem:3.10}
 Pick $ i = 0, \dots, n $. Define
-\begin{align*}
-\phi_i : \C^n & \to U_i \\
-\rb{y_1, \dots, y_n} & \mapsto \sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n}.
-\end{align*}
+$$ \function[\phi_i]{\C^n}{U_i}{\rb{y_1, \dots, y_n}}{\sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n}}. $$
 Then $ \phi_i $ is a bijection and its inverse is given by
-\begin{align*}
-\rho_i : U_i & \to \C^n \\
-\sb{x_0, \dots, x_n} & \mapsto \rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}}.
-\end{align*}
+$$ \function[\psi_i]{U_i}{\C^n}{\sb{x_0, \dots, x_n}}{\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}}}. $$
 \end{lemma}
 
 \begin{proof}
-First note that both $ \phi_i $ and $ \rho_i $ is well-defined, indeed, if
+First note that both $ \phi_i $ and $ \psi_i $ is well-defined, indeed, if
 $$ \rb{y_1, \dots, y_n} \in \C^n, $$
 then
 $$ \rb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n} \in W $$
 and therefore
 $$ \sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n} \in \P^n. $$
 Similarly, if $ \sb{x_0, \dots, x_n} = \sb{x_0', \dots, x_n'} $ then it follows that
-$$ \rho_i\sb{x_0, \dots, x_n} = \rho_i\sb{x_0', \dots, x_n'}. $$
-Thus, it is enough to show that both $ \phi_i \circ \rho_i $ and $ \rho_i \circ \phi_i $ coincide with the identity. We have
-$$ \rho_i\rb{\phi_i\rb{y_1, \dots, y_n}} = \rho_i\sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n} = \rb{\dfrac{y_1}{1}, \dots, \dfrac{y_i}{1}, \dfrac{y_{i + 1}}{1}, \dots, \dfrac{y_n}{1}} = \rb{y_1, \dots, y_n}. $$
+$$ \psi_i\sb{x_0, \dots, x_n} = \psi_i\sb{x_0', \dots, x_n'}. $$
+Thus, it is enough to show that both $ \phi_i \circ \psi_i $ and $ \psi_i \circ \phi_i $ coincide with the identity. We have
+$$ \psi_i\rb{\phi_i\rb{y_1, \dots, y_n}} = \psi_i\sb{y_1, \dots, y_i, 1, y_{i + 1}, \dots, y_n} = \rb{\dfrac{y_1}{1}, \dots, \dfrac{y_i}{1}, \dfrac{y_{i + 1}}{1}, \dots, \dfrac{y_n}{1}} = \rb{y_1, \dots, y_n}. $$
 Similarly,
-$$ \phi_i\rb{\rho_i\sb{x_0, \dots, x_n}} = \phi_i\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}} = \sb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, 1, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}} = \sb{x_0, \dots, x_n}. $$
+$$ \phi_i\rb{\psi_i\sb{x_0, \dots, x_n}} = \phi_i\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}} = \sb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_{i - 1}}{x_i}, 1, \dfrac{x_{i + 1}}{x_i}, \dots, \dfrac{x_n}{x_i}} = \sb{x_0, \dots, x_n}. $$
 Thus they are inverses.
 \end{proof}
 
 \begin{example2}
 Let $ n = 2 $ and $ \sb{x_0, x_1, x_2} \in \P^2 $. Let
-\begin{align*}
-\phi_1 : \C^2 & \to U_1 \\
-\rb{0, 0} & \mapsto \sb{0, 1, 0},
-\end{align*}
+$$ \function[\phi_1]{\C^2}{U_1}{\rb{0, 0}}{\sb{0, 1, 0}}, $$
 and
-\begin{align*}
-\phi_2 : \C^2 & \to U_2 \\
-\rb{0, 0} & \mapsto \sb{0, 0, 1}.
-\end{align*}
+$$ \function[\phi_2]{\C^2}{U_2}{\rb{0, 0}}{\sb{0, 0, 1}}. $$
 Check that
-$$ \rho_i\rb{\phi_i\rb{y_1, \dots, y_n}} = \rho_i\rb{\sb{y_1, \dots, 1, \dots, y_n}} = \rb{y_1, \dots, y_n}. $$
+$$ \psi_i\rb{\phi_i\rb{y_1, \dots, y_n}} = \psi_i\rb{\sb{y_1, \dots, 1, \dots, y_n}} = \rb{y_1, \dots, y_n}. $$
 \end{example2}
 
 Lemma \ref{lem:3.9} and Lemma \ref{lem:3.10} can be used to define a topology on $ \P^n $. Let $ U \subseteq \P^n $, then $ U $ is open if and only if $ \phi_i^{-1}\rb{U \cap U_i} \subseteq \C^n $ is open, in $ U_i \cong \C^n $, for any $ i = 0, \dots, n $.
@@ -704,10 +703,7 @@ Show that $ U_i \subseteq \P^n $ is open in $ \P^n $ for all $ i = 0, \dots, n $
 \begin{exercise}
 \label{ex:11}
 We can define another topology on $ \P^n $ as the quotient topology induced by the map
-\begin{align*}
-\pi : W & \to \P^n \\
-\rb{x_0, \dots, x_n} & \mapsto \sb{x_0, \dots, x_n}.
-\end{align*}
+$$ \function[\pi]{W}{\P^n}{\rb{x_0, \dots, x_n}}{\sb{x_0, \dots, x_n}}. $$
 A subset $ U \subseteq \P^n $ is open if and only if its preimage $ \pi^{-1}\rb{U} \subseteq W $ is open in $ W $. Show that this indeed defines a topology, and that this topology coincides with the one defined above using the maps $ \phi_i $. Check that with this topology on $ \P^n $, $ \pi $ is continuous.
 \end{exercise}
 
@@ -724,20 +720,11 @@ $$ \P^1 = \cb{\sb{x_0, x_1} \mid \rb{x_0, x_1} \in \C^2 \setminus \cb{\underline
 is the union of two copies $ U_0 $ and $ U_1 $ of $ \C^1 $. The intersection of $ U_0 $ and $ U_1 $ is
 $$ U_0 \cap U_1 = \cb{\sb{x_0, x_1} \mid x_0 \ne 0, \ x_1 \ne 0}, $$
 which can be identified with $ \C^* = \C \setminus \cb{0} $ via the map
-\begin{align*}
-U_0 \cap U_1 & \to \C^* \\
-\sb{x_0, x_1} & \mapsto \dfrac{x_1}{x_0}.
-\end{align*}
-Using this identification and the maps $ \rho_i $, the inclusion $ U_0 \cap U_1 \subseteq U_0 $ is the map
-\begin{align*}
-\C^* & \to \C^1 \\
-z & \mapsto z,
-\end{align*}
+$$ \function{U_0 \cap U_1}{\C^*}{\sb{x_0, x_1}}{\dfrac{x_1}{x_0}}. $$
+Using this identification and the maps $ \psi_i $, the inclusion $ U_0 \cap U_1 \subseteq U_0 $ is the map
+$$ \function{\C^*}{\C^1}{z}{z}, $$
 and the inclusion $ U_0 \cap U_1 \subseteq U_1 $ is the map
-\begin{align*}
-\C^* & \to \C^1 \\
-z & \mapsto \dfrac{1}{z}.
-\end{align*}
+$$ \function{\C^*}{\C^1}{z}{\dfrac{1}{z}}. $$
 $ \P^1 $ is glued together from two copies of $ \C $ along $ U_0 \cap U_1 $ by these inclusions, so
 $$ \P^1 = \C^1 \cup \cb{\infty}. $$
 Over the real numbers, $ \P^1\rb{\R} $ is built up in the same way from two copies of $ \R^1 $, and can be identified with the circle $ S^1 $.
@@ -767,10 +754,7 @@ $$ \mathcal{P}_i = \cb{\sb{x_0, \dots, x_n} \in \P^n \mid x_i = 0} \subseteq \P^
 For any $ i = 0, \dots, n $, we have
 $$ \P^n = U_i \sqcup \mathcal{P}_i. $$
 Moreover if we define
-\begin{align*}
-f_i : \P^{n - 1} & \to \mathcal{P}_i \\
-\sb{z_0, \dots, z_{n - 1}} & \mapsto \sb{z_0, \dots, z_{i - 1}, 0, z_i, \dots, z_{n - 1}},
-\end{align*}
+$$ \function[f_i]{\P^{n - 1}}{\mathcal{P}_i}{\sb{z_0, \dots, z_{n - 1}}}{\sb{z_0, \dots, z_{i - 1}, 0, z_i, \dots, z_{n - 1}}}, $$
 then $ f_i $ is a bijection.
 \end{lemma}
 
@@ -793,10 +777,7 @@ $ \mathcal{P}_i $ is called the \textbf{hyperplane at infinity}.
 \item
 $$ \P^1 \cong \C^1 \cup \P^0. $$
 In other words, $ \P^1 $ is obtained by adding a point at infinity to the complex line $ \C $. It is a way to compactify the real plane. If $ \C^1 $ above is $ U_0 $, this point at infinity is the origin of the other open subset $ U_1 \cong \C^1 $. One can show that there is an bijection, which is also a homeomorphism,
-\begin{align*}
-\P^1 & \to S^2 \subseteq \R^3 \\
-r & \mapsto \dfrac{1}{r}.
-\end{align*}
+$$ \function{\P^1}{S^2 \subseteq \R^3}{r}{\dfrac{1}{r}}. $$
 $ \P^1 $ is called the projective line, by problem sheet $ 1 $.
 \item
 $$ \P^2 \cong \C^2 \cup \P^1. $$
@@ -810,9 +791,9 @@ The point at infinity or the line at infinity is not unique. It depends on the c
 
 \pagebreak
 
-\lecture{5}{Thursday}{18/10/18}
-
 \section{Projective curves}
+
+\lecture{5}{Thursday}{18/10/18}
 
 Recall that an algebraic curve is given by
 $$ C = \cb{f\rb{x, y} = 0} \subseteq \C^2, \qquad f \in \C\sb{x, y}. $$
@@ -992,10 +973,7 @@ Recall that affine curves are never compact.
 Recall that a closed subset of a compact is compact itself. Since $ \P^2 $ is compact, by Exercise \ref{ex:12}, we only need to prove that $ C $ is closed, or equivalently, that
 $$ \pi^{-1}\rb{C} \subseteq W = \C^3 \setminus \cb{\underline{0}} $$
 is closed, where
-\begin{align*}
-\pi : W & \to \dfrac{W}{\sim} = \P^2 \\
-\rb{x_0, x_1, x_2} & \mapsto \sb{x_0, x_1, x_2},
-\end{align*}
+$$ \function[\pi]{W}{\dfrac{W}{\sim} = \P^2}{\rb{x_0, x_1, x_2}}{\sb{x_0, x_1, x_2}}, $$
 by Remark \ref{rem:2.19}. Assume that
 $$ C = \cb{P = 0} $$
 for a homogeneous polynomial $ P $. Then, $ P : W \to \C $ is a continuous map, so that
@@ -1028,15 +1006,9 @@ $$ C = \cb{f = 0} \subseteq \C^2, \qquad f \in \C\sb{x, y} \setminus \cb{0}, $$
 want to construct a projective curve $ \overline{C} \subseteq \P^2 $, a projectivisation of $ C $. Recall that we have identified $ \C^2 $ with the open subset
 $$ U_2 = \cb{x_2 \ne 0} \subseteq \P^2, $$
 via the function
-\begin{align*}
-\phi : U_2 & \to \C^2 \\
-\sb{x_0, x_1, x_2} & \mapsto \rb{\dfrac{x_0}{x_2}, \dfrac{x_1}{x_2}}.
-\end{align*}
+$$ \function[\phi_2]{U_2}{\C^2}{\sb{x_0, x_1, x_2}}{\rb{\dfrac{x_0}{x_2}, \dfrac{x_1}{x_2}}}. $$
 and its inverse
-\begin{align*}
-\psi : \C^2 & \to U_2 \\
-\rb{x, y} & \mapsto \sb{x, y, 1}.
-\end{align*}
+$$ \function[\psi_2]{\C^2}{U_2}{\rb{x, y}}{\sb{x, y, 1}}. $$
 We now want to identify $ U_2 \cap \overline{C} \subseteq \C^2 $ with the original curve $ C $ for a suitable projective plane curve
 $$ \overline{C} = \cb{P = 0} \subseteq \P^2, $$
 for $ P $ homogeneous, picking $ \C^2 \cong U_2 \subseteq \P^2 $ to be the points not at infinity.
@@ -1055,21 +1027,11 @@ $ \cb{P = 0} = \overline{C} $ is the projectivisation of $ \cb{f = 0} = C $.
 
 \begin{theorem}
 There is a one-to-one correspondence
-$$ \cb{\begin{array}{c}
-\text{projective plane curves } \overline{C} = \cb{P = 0} \subseteq \P^2 \text{ that} \\
-\text{do not contain the line at infinity } \mathcal{P}_2 = \cb{x_2 = 0}
-\end{array}} \qquad \leftrightsquigarrow \qquad \cb{\text{affine curves } C = \cb{f = 0} \subseteq \C^2}. $$
+$$ \correspondence{\text{projective plane curves} \ \overline{C} = \cb{P = 0} \subseteq \P^2 \ \text{that} \\ \text{do not contain the line at infinity} \ \mathcal{P}_2 = \cb{x_2 = 0}}{\text{affine curves} \ C = \cb{f = 0} \subseteq \C^2}. $$
 The bijection $ C \leftrightarrow \overline{C} $ is obtained by
-$$
-\begin{array}{ccc}
-C & \ \to \ & \overline{C} \\
-f & \ \mapsto \ & \sb{P : \rb{x_0, x_1, x_2} \mapsto x_2^d \cdot f\rb{\dfrac{x_0}{x_2}, \dfrac{x_1}{x_2}}} \\
-\overline{C} & \ \to \ & C \\
-P & \ \mapsto \ & \sb{f : \rb{x, y} \mapsto P\rb{x, y, 1}}
-\end{array},
-$$
+$$ \function{C}{\overline{C}}{f}{\sb{P : \rb{x_0, x_1, x_2} \mapsto x_2^d \cdot f\rb{\dfrac{x_0}{x_2}, \dfrac{x_1}{x_2}}}}, \qquad \function{\overline{C}}{C}{P}{\sb{f : \rb{x, y} \mapsto P\rb{x, y, 1}}}, $$
 for $ d = \deg\rb{f} $. The affine curve $ \cb{f = 0} \subseteq \C^2 $ is
-$$ \phi\rb{U \cap \overline{C}}, \qquad \overline{C} = \cb{P = 0}. $$
+$$ \phi_2\rb{U_2 \cap \overline{C}}, \qquad \overline{C} = \cb{P = 0}. $$
 \end{theorem}
 
 \begin{notation1}
@@ -1083,9 +1045,9 @@ be a projective curve that does not contain $ \cb{x_2 = 0} $, as in the statemen
 $$ f : \rb{x, y} \mapsto P\rb{x, y, 1} $$
 is a polynomial in $ x, y $. If not, $ P = x_2 \cdot Q $ and
 $$ \cb{P = 0} = \cb{x_2 = 0} \cup \cb{Q = 0}. $$
-So $ f\rb{x, y} $ has degree equal to $ d = \deg\rb{P} $. Under the identification $ \phi : U \to \C^2 $ defined in the previous section,
-$$ \phi\rb{U \cap \overline{C}} = \cb{\rb{x, y} \in \C^2 \mid f\rb{x, y} = 0}. $$
-Conversely, if $ C = \cb{f = 0} $, then $ C $ is the image by $ \phi $ of the intersection of $ U $ and $ \overline{C} $, where
+So $ f\rb{x, y} $ has degree equal to $ d = \deg\rb{P} $. Under the identification $ \phi_2 : U_2 \to \C^2 $ defined in the previous section,
+$$ \phi_2\rb{U_2 \cap \overline{C}} = \cb{\rb{x, y} \in \C^2 \mid f\rb{x, y} = 0}. $$
+Conversely, if $ C = \cb{f = 0} $, then $ C $ is the image by $ \phi_2 $ of the intersection of $ U_2 $ and $ \overline{C} $, where
 $$ \overline{C} = \cb{P = 0}, $$
 where the polynomial $ P $ is defined by
 $$ P\rb{x_0, x_1, x_2} = x_2^d \cdot f\rb{\dfrac{x_0}{x_2}, \dfrac{x_1}{x_2}}. $$
@@ -1113,7 +1075,7 @@ $$ \rb{\lambda x_0, \lambda x_1, \lambda x_2} = \rb{x_0, x_1, x_2}. $$
 \begin{itemize}
 \item Let $ \overline{C} $ be the projective curve
 $$ \overline{C} = \cb{P\rb{x_0, x_1, x_2} = x_0^2 + x_1^2 + x_2^2 = 0}. $$
-Then $ C = \phi\rb{\overline{C} \cap U_2} $ is $ \cb{f = 0} \subseteq \C^2 $, where
+Then $ C = \phi_2\rb{\overline{C} \cap U_2} $ is $ \cb{f = 0} \subseteq \C^2 $, where
 $$ f\rb{x, y} = x^2 + y^2 + 1. $$
 \item Let $ C $ be the affine curve
 $$ C = \cb{x^2y + y - 1 = 0}. $$
@@ -1140,13 +1102,17 @@ $$ L_1 = \cb{x + y + 1 = 0}, \qquad L_2 = \cb{x + y - 1 = 0}. $$
 The corresponding projective lines are given by
 $$ \overline{L_1} = \cb{x_0 + x_1 + x_2 = 0}, \qquad \overline{L_2} = \cb{x_0 + x_1 - x_2 = 0}, $$
 then solve to give
-$$ \begin{cases}
+$$
+\begin{cases}
 x_0 + x_1 = -x_2 \\
 x_0 + x_1 = x_2
-\end{cases} \qquad \implies \qquad \begin{cases}
+\end{cases}
+\qquad \implies \qquad
+\begin{cases}
 x_0 + x_1 = 0 \\
 x_2 = 0
-\end{cases}. $$
+\end{cases}.
+$$
 Inside $ \P^2 $, the intersection $ L_1 \cap L_2 $ consists of exactly one point
 $$ p = \sb{1, -1, 0}. $$
 Thus, the two projective lines meet at one point $ p \in \mathcal{P}_0 $, that is $ p $ is a point at infinity.
@@ -1155,13 +1121,17 @@ $$ C = \cb{xy - 1 = 0}, \qquad L = \cb{x = 0}, $$
 then the projectivisations are
 $$ \overline{C} = \cb{x_0 \cdot x_1 - x_2^2 = 0}, \qquad \overline{L} = \cb{x_0 = 0}, $$
 then intersect to give
-$$ \begin{cases}
+$$
+\begin{cases}
 x_0 = 0 \\
 x_0x_1 - x_2^2 = 0
-\end{cases} \qquad \implies \qquad \begin{cases}
+\end{cases}
+\qquad \implies \qquad
+\begin{cases}
 x_0 = 0 \\
 x_2 = 0
-\end{cases}. $$
+\end{cases}.
+$$
 As above, in $ \P^2 $, $ \overline{C} \cap \overline{L} $ consists of a single point
 $$ \cb{\sb{0, 1, 0}} $$
 lying on $ \mathcal{P}_2 = \cb{x_2 = 0} $, the hyperplane at infinity.
@@ -1227,17 +1197,7 @@ be the associated $ 3 \times 3 $ matrix. Show that $ P_1, P_2, P_3 $ lie in the 
 \section{Points at infinity}
 
 Given an affine curve $ C \subseteq \C^2 $ and its projectivisation $ \overline{C} \subseteq \P^2 $, we study the points at infinity of $ C $, that is the points of $ \overline{C} $ that do not lie on $ C $. Let us first recall the notation in use. Denote by $ U_2 $ the open set of $ \P^2 $ defined by $ \C^2 \cong U_2 = \cb{x_2 \ne 0} \subseteq \P^2 $, and let $ \mathcal{P}_2 = \P^2 \setminus U_2 = \cb{x_2 = 0} $ be the corresponding hyperplane or line at infinity. The homeomorphism is defined by inverses
-$$
-\begin{array}{cccc}
-\phi : & \C^2 & \ \to \ & U_2 \\
-& \rb{x, y} & \ \mapsto \ & \sb{x, y, 1},
-\end{array},
-\qquad
-\begin{array}{cccc}
-\psi : & U_2 & \ \to \ & \C^2 \\
-& \sb{x_0, x_1, x_2} & \ \mapsto \ & \sb{\dfrac{x_0}{x_2}, \dfrac{x_1}{x_2}}.
-\end{array}.
-$$
+$$ \function[\phi]{\C^2}{U_2}{\rb{x, y}}{\sb{x, y, 1}}, \qquad \function[\psi]{U_2}{\C^2}{\sb{x_0, x_1, x_2}}{\sb{\dfrac{x_0}{x_2}, \dfrac{x_1}{x_2}}}. $$
 Let $ C $ be the affine curve
 $$ C = \cb{\rb{x, y} \in \C^2 \mid f\rb{x, y} = 0}, $$
 where $ f \in \C\sb{x, y} $ is a polynomial of degree $ d $ with no repeated factors. The projectivisation of $ C $ is then the curve $ \overline{C} $ such that $ \overline{C} \cap U_2 = \phi\rb{C} $, or equivalently such that $ \psi\rb{\overline{C} \cap U_2} = C $. The curve $ \overline{C} $ is
@@ -1278,11 +1238,13 @@ $$ f\rb{x} = a_e \cdot \prod_{i = 1}^e \rb{x - \lambda_i}, $$
 where $ \lambda_i $ are the roots of $ f $, and hence
 $$ Q\rb{x_0, x_1} = x_1^d \cdot a_e \cdot \prod_{i = 1}^e \rb{\dfrac{x_0}{x_1} - \lambda_i} = a_e \cdot x_1^{d - e} \cdot \prod_{i = 1}^e \rb{x_0 - \lambda_ix_1}. $$
 This proves Lemma \ref{lem:6.2}, if we set
-$$ \rb{\alpha_i, \beta_i} = \begin{cases}
+$$ \rb{\alpha_i, \beta_i} =
+\begin{cases}
 \rb{1, -\lambda_i} & i < e \\
 \rb{a_e, -a_e\lambda_e} & i = e \\
 \rb{0, 1} & i > e
-\end{cases}. $$
+\end{cases}.
+$$
 The description that $ \cb{Q = 0} \subseteq \P^1 $ is clear, once we note that $ \rb{\alpha_i, \beta_i} \ne \rb{0, 0} $.
 \end{proof}
 
@@ -1334,9 +1296,9 @@ $$ x + 2y = 0, \qquad 4x - 3y = 0, \qquad 7x + 9y = 0. $$
 
 \pagebreak
 
-\lecture{8}{Thursday}{25/10/18}
-
 \section{Smoothness and singularities}
+
+\lecture{8}{Thursday}{25/10/18}
 
 Smoothness is a very important notion in algebraic geometry, and in geometry in general. The idea is that an algebraic, affine or projective, curve $ C \subseteq \C^2, \P^2 $ will be called smooth at a point $ p $ is $ C $ does not have an angle, a corner, or a pinched point, etc. at $ p $. We are going to formalise this by requiring that we can make sense of the tangent line of $ C $ at $ p $, and this will involve derivatives of a defining equation, without repeated factors, of $ C $. When $ C $ is smooth at a point $ p $, topologically around $ p $ it will look like a two-dimensional small disk in the complex plane $ \C $.
 
@@ -1402,7 +1364,7 @@ $$ C = \cb{P = 0} $$
 be a projective curve which does not contain the line $ \C^2 \cong U_2 = \cb{x_2 = 0} \subseteq \P^2 $, and let
 $$ C_0 = \cb{f = 0} \subseteq \C^2 $$
 be the associated affine curve, where $ f\rb{x, y} = P\rb{x, y, 1} $. Then
-$$ \rb{a, b} \text{ is a singular point of } C_0 \qquad \iff \qquad \sb{a, b, 1} \text{ is a singular point of } C. $$
+$$ \rb{a, b} \ \text{is a singular point of} \ C_0 \qquad \iff \qquad \sb{a, b, 1} \ \text{is a singular point of} \ C. $$
 \end{lemma}
 
 For the proof we need the following.
@@ -1550,18 +1512,7 @@ admit at least one singular point? For each of those values of $ \lambda $, what
 How do we move around points, or change coordinates, in $ \P^n $? In linear algebra, that is in $ \C^n $, we do that with linear maps $ L : \C^n \to \C^n $, that is functions such that
 $$ L\rb{\lambda v + \mu w} = \lambda L\rb{v} + \mu L\rb{w}, \qquad v, w \in \C^n, \qquad \lambda, \mu \in \C. $$
 These correspond to $ n \times n $ matrices $ A = \rb{a_{ij}} $ with coefficients in $ \C $. Given such a matrix, we can define a linear function by
-\begin{align*}
-L : \C^n & \to \C^n \\
-\rb{x_1, \dots, x_n} & \mapsto A \cdot \begin{pmatrix}
-x_1 \\
-\vdots \\
-x_n
-\end{pmatrix} = \begin{pmatrix}
-\sum_{j = 1}^n a_{ij}x_j \\
-\vdots \\
-\sum_{j = 1}^n a_{nj}x_j
-\end{pmatrix},
-\end{align*}
+$$ \function[L]{\C^n}{\C^n}{\rb{x_1, \dots, x_n}}{A \cdot \threebyone{x_1}{\vdots}{x_n} = \threebyone{\sum_{j = 1}^n a_{ij}x_j}{\vdots}{\sum_{j = 1}^n a_{nj}x_j}}, $$
 and a linear function $ L $ gives a matrix by setting $ a_{ij} $ as the $ i $-th coefficient of the vector $ L\rb{e_j} \in \C^n $. How about in $ \P^n = \C^{n + 1} \setminus \cb{\underline{0}} / \sim $? Use matrices or linear transformations in $ \C^{n + 1} $.
 
 \begin{lemma}
@@ -1569,25 +1520,16 @@ and a linear function $ L $ gives a matrix by setting $ a_{ij} $ as the $ i $-th
 Assume that $ A $ is an $ \rb{n + 1} \times \rb{n + 1} $ matrix with coefficients in $ \C $ such that
 $$ \det\rb{A} \ne 0, $$
 if and only if it is invertible. Then the function defined by
-\begin{align*}
-\Phi : \P^n & \to \P^n \\
-\sb{x_0, \dots, x_n} & \mapsto \sb{A \cdot \begin{pmatrix}
-x_0 \\
-\vdots \\
-x_n
-\end{pmatrix}},
-\end{align*}
+$$ \function[\Phi]{\P^n}{\P^n}{\sb{x_0, \dots, x_n}}{\sb{A \cdot \threebyone{x_0}{\vdots}{x_n}}} $$
 is well-defined, and a bijection.
 \end{lemma}
 
 \begin{proof}
 Since $ \det\rb{A} \ne 0 $, we know from linear algebra that if
-$$ A \cdot \begin{pmatrix}
-x_0 \\
-\vdots \\
-x_n
-\end{pmatrix} = 0, $$
-then $ \rb{x_0, \dots, x_n} = \underline{0} $. If $ A $ is not invertible there is no associated $ \Phi $. Thus if $ x \in W = \C^{n + 1} \setminus \cb{\underline{0}} $, then $ A \cdot x \in W $. Moreover, if $ x, y \in W $ are such that $ \sb{x} = \sb{y} $, then there exists a non-zero $ \lambda \in \C $ such that $ x = \lambda y $ and
+$$ A \cdot \threebyone{x_0}{\vdots}{x_n} = \underline{0}, $$
+then
+$$ \threebyone{x_0}{\vdots}{x_n} = \underline{0}. $$
+If $ A $ is not invertible there is no associated $ \Phi $. Thus if $ x \in W = \C^{n + 1} \setminus \cb{\underline{0}} $, then $ A \cdot x \in W $. Moreover, if $ x, y \in W $ are such that $ \sb{x} = \sb{y} $, then there exists a non-zero $ \lambda \in \C $ such that $ x = \lambda y $ and
 $$ A \cdot x = \lambda A \cdot y, $$
 which implies that
 $$ \sb{A \cdot x} = \sb{A \cdot y}. $$
@@ -1607,14 +1549,7 @@ Note that an arbitrary $ \rb{n + 1} \times \rb{n + 1} $ matrix $ A $ does not de
 You probably have encountered M\"obius transformations in complex analysis. They are rational functions $ f : \P^1 \to \P^1 $ of one complex variable $ z $
 $$ f : z \mapsto \dfrac{az + b}{cz + d}, \qquad a, b, c, d \in \C, \qquad ad - bc \ne 0. $$
 In terms of geometry, these are the projective transformations of $ \P^1 $ to itself. Indeed, if $ \sb{x_0, x_1} $ are the homogeneous coordinates on $ \P^1 $, a projective transformation $ \Phi $ associated to a $ 2 \times 2 $ invertible matrix $ T $ is given by
-$$
-\begin{array}{cccc}
-\Phi : & \P^2 & \ \to \ & \P^2 \\
-& \sb{x_0, x_1} & \ \mapsto \ & \sb{A \cdot \rb{x_0, x_1}} = \sb{ax_0 + bx_1, cx_0 + dx_1}
-\end{array},
-\qquad
-T = \two{a & b}{c & d},
-$$
+$$ \function[\Phi]{\P^2}{\P^2}{\sb{x_0, x_1}}{\sb{A \cdot \rb{x_0, x_1}} = \sb{ax_0 + bx_1, cx_0 + dx_1}}, \qquad T = \twobytwo{a}{b}{c}{d}, $$
 where $ T $ is invertible. If, as in Lemma \ref{lem:3.13}, we write $ \P^1 = \C \cup \cb{\infty} $, where $ \cb{\infty} = \cb{x_1 = 0} = \cb{\sb{1, 0}} $, then if $ x_1 \ne 0 $,
 $$ \sb{x_0, x_1} = \sb{\dfrac{x_0}{x_1}, 1} = \sb{z, 1}, \qquad z = \dfrac{x_0}{x_1}, $$
 and
@@ -1658,11 +1593,7 @@ $$ \Psi\rb{P_1} = \sb{1, 0, 0}, \qquad \Psi\rb{P_2} = \sb{0, 1, 0}, \qquad \Psi\
 Take a $ \Phi $ as in Theorem \ref{thm:8.5}. I can scale the representatives of the $ P_i $, so $ \sb{v_i} = P_i $. Choose $ v_4 $ such that
 $$ P_4 = \sb{v_4}, \qquad v_4 = \sum_{i = 1}^3 \lambda_i v_i = \lambda_1 \cdot v_1 + \lambda_2 \cdot v_2 + \lambda_3 \cdot v_3, \qquad \lambda_i \in \C^*. $$
 We are in $ \C^2 $, and the $ v_1, v_2, v_3 $ are linearly independent, so they are a basis. If $ \lambda_i = 0 $ for some $ i $, the remaining vectors are in the same two-dimensional subspace of $ \C $, contradicting non-collinearity in $ \P^2 $. Take $ \lambda_i \cdot v_i $ as representatives for $ P_i $ for $ i = 1, 2, 3 $ and $ v_4 $ for $ P_4 $. Get matrix $ A $ as before, so $ A \cdot e_i = P_i $ and
-$$ A \cdot \begin{pmatrix}
-1 \\
-1 \\
-1
-\end{pmatrix} = \sum_{i = 1}^3 \lambda_iv_i = v_4, $$
+$$ A \cdot \threebyone{1}{1}{1} = \sum_{i = 1}^3 \lambda_iv_i = v_4, $$
 so $ B = A^{-1} $, $ \Phi = \sb{B} $ and
 $$ \Phi\rb{P_1} = \sb{1, 0, 0}, \qquad \Phi\rb{P_2} = \sb{0, 1, 0}, \qquad \Phi\rb{P_3} = \sb{0, 0, 1}, \qquad \Phi\rb{P_4} = \sb{1, 1, 1}. $$
 \end{exercise}
@@ -1671,7 +1602,7 @@ There is a version of the previous statement in higher dimensions.
 
 \begin{definition}
 A \textbf{hyperplane} in $ \P^n $ is the image of a subspace of dimension $ n $ in $ \C^{n + 1} $ via the map
-$$ \Pi : \C^{n + 1} \setminus \cb{\underline{0}} \to \P^n. $$
+$$ \pi : \C^{n + 1} \setminus \cb{\underline{0}} \to \P^n. $$
 Equivalently, it is the locus of points $ \sb{x_0, \dots, x_n} $ of $ \P^n $ satisfying some linear equation
 $$ \sum_{i = 1}^n a_ix_i = 0, \qquad \rb{a_0, \dots, a_n} \ne \underline{0}. $$
 \end{definition}
@@ -1710,25 +1641,29 @@ As Exercise \ref{ex:29} suggests, one should think of curves only differing from
 
 \pagebreak
 
-\lecture{10}{Monday}{29/10/18}
-
 \section{Resultants and weak B\'ezout}
+
+\lecture{10}{Monday}{29/10/18}
 
 Now we start studying how projective curves intersect in the projective plane, heading towards B\'ezout's theorem. Let
 $$ C = \cb{P = 0}, \qquad D = \cb{Q = 0} $$
 be two projective curves of degree $ n $ and $ m $ defined by homogeneous polynomials $ P, Q \in \C\sb{x_0, x_1, x_2} $. We want to study
 $$ C \cap D = \cb{P = 0} \cap \cb{Q = 0}, $$
 where $ P, Q $ no repeated factors, that is points $ \sb{x_0, x_1, x_2} $ that are solutions up to scaling of the equations for $ C $ and $ D $,
-$$ \begin{cases}
+$$
+\begin{cases}
 P\rb{x_0, x_1, x_2} = 0 \\
 Q\rb{x_0, x_1, x_2} = 0
-\end{cases}, $$
+\end{cases},
+$$
 where $ \rb{x_0, x_1, x_2} \ne \rb{0, 0, 0} $. B\'ezout's theorem states that $ C \cap D $ has $ n \cdot m $ points, unless $ C $ and $ D $ have a common component, and count points with multiplicity.
 
 \begin{example2}
 If you do not use multiplicity, there might be less than $ n \cdot m $ points.
 \begin{itemize}
-\item Tangencies. Let $ C = \cb{y = x^2} $ and $ D = \cb{y = 0} $. In $ \P^2 $, they intersect in
+\item Tangencies. Let
+$$ C = \cb{y = x^2}, \qquad D = \cb{y = 0}. $$
+In $ \P^2 $, they intersect in
 $$ 1 \ne \rb{2}\rb{1} = \deg\rb{C}\deg\rb{D} $$
 point in this case.
 \item Singularities of $ C $ and $ D $. Let $ C $ be two lines and $ D $ be a line passing through the intersection of $ C $.
@@ -1738,12 +1673,12 @@ point of intersection.
 Think of perturbing the equations.
 \end{example2}
 
-We first have to develop some algebraic tools, the resultant. We first take a step back to the case of polynomials in one variable and study solutions of $ p\rb{x} = q\rb{x} = 0 $ for polynomials $ p, q \in \C\sb{x} $. Let $ p, q $ be
+We first have to develop some algebraic tools, the resultant. We first take a step back to the case of polynomials in one variable and study solutions of
+$$ p\rb{x} = q\rb{x} = 0, \qquad p, q \in \C\sb{x}. $$
+Let $ p, q $ be
 $$ p\rb{x} = a_0 + \dots + a_nx^n = \sum_{i = 0}^n a_ix^i, \qquad a_n \ne 0, \qquad a_i \in \C, \qquad \deg\rb{p} = n, $$
 $$ q\rb{x} = b_0 + \dots + b_mx^m = \sum_{i = 0}^m b_ix^i, \qquad b_m \ne 0, \qquad b_i \in \C, \qquad \deg\rb{q} = m. $$
-When does
-$$ p\rb{x} = q\rb{x} = 0 $$
-have solutions? Transform this question into linear algebra. The polynomials $ p $ and $ q $ have a common root, that is there is $ \lambda \in \C $ such that
+When does $ p\rb{x} = q\rb{x} = 0 $ have solutions? Transform this question into linear algebra. The polynomials $ p $ and $ q $ have a common root, that is there is $ \lambda \in \C $ such that
 $$ p\rb{\lambda} = q\rb{\lambda} = 0, $$
 precisely if there is a non-constant polynomial $ l \in \C\sb{x} $ such that
 $$ p\rb{x} = l\rb{x}r\rb{x}, \qquad q\rb{x} = l\rb{x}s\rb{x}, $$
@@ -1779,25 +1714,29 @@ Since this is a polynomial of degree $ n + m - 1 $, we thus have a system of $ n
 A \cdot v = 0,
 \end{equation}
 where $ A $ is an $ \rb{n + m} \times \rb{n + m} $ matrix
-$$ A = \begin{pmatrix}
+$$ A =
+\begin{pmatrix}
 a_0 & & 0 & b_0 & & 0 \\
 \vdots & \ddots & & \vdots & \ddots & \\
 a_n & & a_0 & b_m & & b_0 \\
 & \ddots & \vdots & & \ddots & \vdots \\
 0 & & a_n & 0 & & b_m
-\end{pmatrix}, $$
+\end{pmatrix},
+$$
 where there are $ m $ columns of $ a_i $ and $ n $ columns of $ b_i $. From linear algebra, we know that $ \rb{\ref{eq:7}} $ has a non-trivial solution if and only if $ \det\rb{A} = 0 $. This motivates the following definition.
 
 \begin{definition}
 Let $ p, q \in \C\sb{x} $ be as above. Then the \textbf{resultant} of $ p $ and $ q $ is the determinant of the $ \rb{n + m} \times \rb{n + m} $ matrix $ A^T $,
-$$ R_{p, q} = \det\rb{A^T} = \det\begin{pmatrix}
+$$ R_{p, q} = \det\rb{A^T} = \det
+\begin{pmatrix}
 a_0 & \dots & a_n & & 0 \\
 & \ddots & & \ddots & \\
 0 & & a_0 & \dots & a_n \\
 b_0 & \dots & b_m & & 0 \\
 & \ddots & & \ddots & \\
 0 & & b_0 & \dots & b_m
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 \end{definition}
 
 Thus, Lemma \ref{lem:9.1} can be reformulated as the following.
@@ -1815,44 +1754,46 @@ $$ p\rb{x} = x^2 - 1, \qquad q\rb{x} = x^2 + 2x + 1, $$
 so
 $$ a_0 = 1, \qquad a_1 = 0, \qquad a_2 = -1, \qquad b_0 = 1, \qquad b_1 = 2, \qquad b_2 = 1. $$
 Then the resultant of $ p $ and $ q $ is the determinant of a $ 4 \times 4 $ matrix,
-$$ R_{p, q} = \det\begin{pmatrix}
+$$ R_{p, q} = \det
+\begin{pmatrix}
 -1 & 0 & 1 & 0 \\
 0 & -1 & 0 & 1 \\
 1 & 2 & 1 & 0 \\
 0 & 1 & 2 & 1
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 (Exercise: check that the determinant is $ R_{p, q} = 0 $) Thus, $ p $ and $ q $ have a common solution, $ x = -1 $.
 \item Let $ n = 1 $ and $ m = 4 $, so
 $$ p\rb{x} = a_0 + a_1x, \qquad q\rb{x} = b_0 + b_1x + b_2x^2 + b_3x^3 + b_4x^4. $$
 Then $ A $ is a $ 5 \times 5 $ matrix
-$$ A = \begin{pmatrix}
+$$ A =
+\begin{pmatrix}
 a_0 & 0 & 0 & 0 & b_0 \\
 a_1 & a_0 & 0 & 0 & b_1 \\
 0 & a_1 & a_0 & 0 & b_2 \\
 0 & 0 & a_1 & a_0 & b_3 \\
 0 & 0 & 0 & a_1 & b_4
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 \item Recall that $ p \in \C\sb{x} $ has a repeated root if and only if $ p $ and $ p' $ have a common root, that is by what precedes if and only if $ R_{p, p'} = 0 $. If
 $$ p\rb{x} = ax^2 + bx + c, \qquad a \ne 0, $$
 then
-$$ R_{p, p'} = \det\begin{pmatrix}
-c & b & a \\
-b & 2a & 0 \\
-0 & b & 2a
-\end{pmatrix} = a\rb{4ac - b^2}. $$
+$$ R_{p, p'} = \det\threebythree{c}{b}{a}{b}{2a}{0}{0}{b}{2a} = a\rb{4ac - b^2}. $$
 We see that
 $$ -R_{p, p'} = a \cdot \Delta, $$
 where $ \Delta $ is the discriminant of the quadratic equation $ p\rb{x} = 0 $.
 \item Let $ n = 2 $ and $ m = 3 $, so
 $$ p\rb{x} = a_0 + a_1x + a_2x^2, \qquad q\rb{x} = b_0 + b_1x + b_2x^2 + b_3x^3. $$
 Then $ A $ is a $ 5 \times 5 $ matrix
-$$ A = \begin{pmatrix}
+$$ A =
+\begin{pmatrix}
 a_0 & 0 & 0 & b_0 & 0 \\
 a_1 & a_0 & 0 & b_1 & b_0 \\
 a_2 & a_1 & a_0 & b_2 & b_1 \\
 0 & a_2 & a_1 & b_3 & b_2 \\
 0 & 0 & a_2 & 0 & b_3
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 \end{itemize}
 \end{example1}
 
@@ -1867,14 +1808,16 @@ are constants.
 \begin{definition}
 \label{def:9.5}
 Assume that $ P\rb{1, 0, 0} \ne 0 $ and $ Q\rb{1, 0, 0} \ne 0 $. The \textbf{resultant} of $ P $ and $ Q $ is the determinant of a $ \rb{n + m} \times \rb{n + m} $ matrix,
-$$ R_{P, Q}\rb{x_1, x_2} = \det\begin{pmatrix}
+$$ R_{P, Q}\rb{x_1, x_2} = \det
+\begin{pmatrix}
 a_0\rb{x_1, x_2} & \dots & a_n\rb{x_1, x_2} & & 0 \\
 & \ddots & & \ddots & \\
 0 & & a_0\rb{x_1, x_2} & \dots & a_n\rb{x_1, x_2} \\
 b_0\rb{x_1, x_2} & \dots & b_m\rb{x_1, x_2} & & 0 \\
 & \ddots & & \ddots & \\
 0 & & b_0\rb{x_1, x_2} & \dots & b_m\rb{x_1, x_2}
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 \end{definition}
 
 The entries of the matrix above are homogeneous polynomials in $ \C\sb{x_1, x_2} $. If you specify $ x_1 = a $ and $ x_2 = b $ for $ a, b \in \C $, then $ R_{P, Q} $ is the resultant of $ P\rb{x_0, a, b} $ and $ Q\rb{x_0, a, b} $. We admit the following theorem, which can be proven using tools from commutative algebra.
@@ -1896,10 +1839,12 @@ Let $ P, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials such that $ P\r
 Let $ A $ be the $ \rb{n + m} \times \rb{n + m} $ matrix above, that is such that $ R_{P, Q} = \det\rb{A} $. Recall from linear algebra that
 $$ \det\rb{A} = \sum_{\sigma \in S_{n + m}} sign\rb{\sigma}\prod_{k = 1}^{n + m}A_{k, \sigma\rb{k}}. $$
 The entries of $ A $ are either zero or are homogeneous polynomials. We thus only need to check that for each $ \sigma \in S_{n + m} $ such that $ A_{k, \sigma\rb{k}} \ne 0 $ for all $ k $, $ \prod_{k = 1}^{n + m} A_{k, \sigma\rb{k}} $ is of degree $ nm $. By definition of $ A $, the non-zero entries of $ A $ are
-$$ A_{k, l} = \begin{cases}
+$$ A_{k, l} =
+\begin{cases}
 a_{l - k}\rb{x_1, x_2} & k \le m, \ 0 \le l - k \le n \\
 b_{l - k + m}\rb{x_1, x_2} & k \ge m + 1, \ 0 \le l - k + m \le m
-\end{cases}. $$
+\end{cases}.
+$$
 Then
 $$ \deg\rb{a_{l - k}} = n - \rb{l - k}, \qquad \deg\rb{b_{l - k + m}} = m - \rb{l - k + m} = k - l, $$
 so that when non-zero, $ \prod_{k = 1}^{n + m} A_{k, \sigma\rb{k}} $ has degree
@@ -1925,10 +1870,7 @@ $$ \P^2 \setminus \bigcup_{i = 1}^k C. $$
 \hfill
 \begin{enumerate}
 \item We first prove $ 1 $. Let $ p \in \P^2 $ be a point that lies neither on $ C $ nor on $ D $, so not on $ C \cup D $. There is a projective transformation
-\begin{align*}
-\Phi : \P^2 & \to \P^2 \\
-p & \mapsto \sb{1, 0, 0}.
-\end{align*}
+$$ \function[\Phi]{\P^2}{\P^2}{p}{\sb{1, 0, 0}}. $$
 Transform $ C $ and $ D $ using $ \Phi $, so replace them with $ \Phi\rb{C} $ and $ \Phi\rb{D} $. We have seen that $ \Phi\rb{C}, \Phi\rb{D} $ are projective curves such that
 $$ \deg\rb{\Phi\rb{C}} = \deg\rb{C}, \qquad \deg\rb{\Phi\rb{D}} = \deg\rb{D}, \qquad \#\cb{C \cap D} = \#\cb{\Phi\rb{C} \cap \Phi\rb{D}}, $$
 by Exercise \ref{ex:29}. Thus, after replacing $ C $ with $ \Phi\rb{C} $ and $ D $ with $ \Phi\rb{D} $ we may assume that $ p \notin C \cup D $. Let $ P, Q \in \C\sb{x_0, x_1, x_2} $ be homogeneous polynomials of degrees $ n $ and $ m $ with no repeated factors that define $ C $ and $ D $, that is
@@ -1958,25 +1900,14 @@ $$ \sb{x_0^i, x_1^i, x_2^i}, $$
 the coordinates of $ p_i $. The point $ x = \sb{x_0, x_1, x_2} \in \P^2 $ belongs to $ L_{i, j} $ if and only if $ \det\rb{A} = 0 $, where
 \begin{equation}
 \label{eq:8}
-A_{i, j} = \begin{pmatrix}
-x_0 & x_0^i & x_0^j \\
-x_1 & x_1^i & x_1^j \\
-x_2 & x_2^i & x_2^j
-\end{pmatrix}.
+A_{i, j} = \threebythree{x_0}{x_0^i}{x_0^j}{x_1}{x_1^i}{x_1^j}{x_2}{x_2^i}{x_2^j}.
 \end{equation}
 Let $ p \in \P^2 $ be any point that lies neither on $ C, D $ nor on any $ L_{i, j} $, that is
 $$ p \notin C \cup D \cup \rb{\bigcup_{i, j} L_{i, j}}. $$
 Can apply a projective transformation
-\begin{align*}
-\Phi : \P^2 & \to \P^2 \\
-p & \mapsto \sb{1, 0, 0}
-\end{align*}
+$$ \function[\Phi]{\P^2}{\P^2}{p}{\sb{1, 0, 0}}. $$
 Taking images along $ \Phi $, the image of $ \SS $ is a set of $ nm + 1 $ distinct points and the image of $ L_{i, j} $ by $ \Phi $ is the unique line through $ \Phi\rb{p_i} $ and $ \Phi\rb{p_j} $. As in the proof of $ 1 $, after replacing $ C, D, \SS $ by their images by $ \Phi $, we may assume that $ \sb{1, 0, 0} \notin C \cup D $ and that $ \sb{1, 0, 0} $ lies on no line through two points $ p_i, p_j \in \SS $. In particular, by $ \rb{\ref{eq:8}} $,
-$$ \det\begin{pmatrix}
-1 & x_0^i & x_0^j \\
-0 & x_1^i & x_1^j \\
-0 & x_2^i & x_2^j
-\end{pmatrix} \ne 0, $$
+$$ \det\threebythree{1}{x_0^i}{x_0^j}{0}{x_1^i}{x_2^j}{0}{x_2^i}{x_2^j} \ne 0, $$
 that is $ \rb{x_1^i, x_2^i} \ne \rb{0, 0} $ for all $ i $, otherwise determinant is zero, so that
 $$ \sb{x_1^i, x_2^i} $$
 is a well-defined point of $ \P^1 $, and
@@ -2114,11 +2045,7 @@ $$ P_{x_1}\rb{0, 1, 0} = P_{x_2}\rb{0, 1, 0} = 0. $$
 Compute these, and see that they are $ b $ and $ f $, so it follows that $ b = f = 0 $ and
 $$ P\rb{x_0, x_1, x_2} = ax_0^2 + cx_2^2 + dx_0x_1 + ex_0x_2 = cx_2^2 + x_0\rb{ax_0 + dx_1 + ex_2}. $$
 Want to change coordinates to get $ x_2^2 + x_1x_0 = 0 $. Let
-$$ A = \begin{pmatrix}
-1 & 0 & 0 \\
-a & d & e \\
-0 & 0 & \sqrt{c}
-\end{pmatrix}, $$
+$$ A = \threebythree{1}{0}{0}{a}{d}{e}{0}{0}{\sqrt{c}}, $$
 where $ \sqrt{c} $ denotes any one of the complex square roots of $ c $. Check that $ A $ is invertible. Assume that
 $$ \det\rb{A} = d \cdot \sqrt{c} = 0. $$
 Then either $ c = 0 $ or $ d = 0 $. If $ c = 0 $ then
@@ -2180,10 +2107,7 @@ These three forms are clearly distinct, that is they cannot be brought into one 
 There exists a natural bijection between $ \P^1 $ and the conic
 $$ C = \cb{x_2^2 + x_1x_0 = 0} \subseteq \P^2, $$
 defined by
-\begin{align*}
-f : \P^1 & \to C \\
-\sb{z_0, z_1} & \mapsto \sb{z_0^2, -z_1^2, z_0z_1} \in \P^2
-\end{align*}
+$$ \function[f]{\P^1}{\C}{\sb{z_0, z_1}}{\sb{z_0^2, -z_1^2, z_0z_1} \in \P^2}, $$
 which satisfies the equation of $ C $. (Exercise: check that this is a bijection) Thus, it follows by Theorem \ref{thm:10.2} that any irreducible conic admits a natural bijection with $ \P^1 $ and therefore with the sphere
 $$ \cb{\rb{x, y, z} \in \R^3 \mid x^2 + y^2 + z^2 = 1} \subseteq \R^3. $$
 Thus, the affine curve defined by the equation
@@ -2194,7 +2118,9 @@ admits a bijection with the sphere minus two distinct points.
 \begin{remark1}
 The bijection between a smooth conic and $ \P^1 $, of which there are actually many, can be seen geometrically as follows. Fix a point $ p \in C $, and look at the set $ S $ of lines through $ p $. On the one hand, $ S $ is in bijection with $ C $ itself, via the map that sends a line $ L $ through $ p $ to the other point of $ L \cap C $, which we take to be $ p $ itself if $ L $ is the tangent line to $ C $ in $ p $. On the other hand, $ S $ is also naturally in bijection with $ \P^1 $, in the following way. The space of lines in $ \P^2 $ can be identified itself with $ \P^2 $. Every line has an equation
 $$ ax_0 + bx_1 + cx_2 = 0, \qquad \rb{a, b, c} \ne \rb{0, 0, 0}, $$
-and this represents the same line as another equation $ a'x_0 + b'x_1 + c'x_2 = 0 $ if and only if $ \sb{a, b, c} = \sb{a', b', c'} $ as points of $ \P^2 $. Moreover, the space of lines passing through $ p = \sb{z_0, z_1, z_2} $ is given by the equation $ az_0 + bz_1 + cz_2 = 0 $ inside this $ \P^2 $ with coordinates $ \sb{a, b, c} $. Here, $ a, b, c $ play the role usually played by $ x_0, x_1, x_2 $, and $ z_0, z_1, z_2 $ are numbers. This identifies the space of lines through $ p $ with a copy of $ \P^1 $. Another way is the following. Fix equations $ L_1\rb{x_0, x_1, x_2} $ and $ L_2\rb{x_0, x_1, x_2} $ passing through $ p $. Then every other line passing through $ p $ has equation
+and this represents the same line as another equation
+$$ a'x_0 + b'x_1 + c'x_2 = 0 $$
+if and only if $ \sb{a, b, c} = \sb{a', b', c'} $ as points of $ \P^2 $. Moreover, the space of lines passing through $ p = \sb{z_0, z_1, z_2} $ is given by the equation $ az_0 + bz_1 + cz_2 = 0 $ inside this $ \P^2 $ with coordinates $ \sb{a, b, c} $. Here, $ a, b, c $ play the role usually played by $ x_0, x_1, x_2 $, and $ z_0, z_1, z_2 $ are numbers. This identifies the space of lines through $ p $ with a copy of $ \P^1 $. Another way is the following. Fix equations $ L_1\rb{x_0, x_1, x_2} $ and $ L_2\rb{x_0, x_1, x_2} $ passing through $ p $. Then every other line passing through $ p $ has equation
 $$ \lambda L_1 + \mu L_2 = 0, $$
 for a uniquely determined point $ \sb{\lambda, \mu} \in \P^1 $. (Exercise: prove this) This also identifies the space of lines through $ p $ with a $ \P^1 $.
 \end{remark1}
@@ -2354,11 +2280,13 @@ This is essentially the statement that a degree $ d $ polynomial in one variable
 As in the proof of Lemma \ref{lem:6.2}, we may write
 $$ P\rb{x_0, x_1} = \lambda x_0^{d - e} \cdot \prod_{i \in I} \rb{x_1 - a_ix_0}^{d_i}, \qquad \lambda \ne 0, \qquad d_i, e \in \N, \qquad \sum_{i \in I} d_i = e, $$
 where $ a_i \in \C $ are such that $ a_i \ne a_j $ and $ a_i \ne 0 $ for all $ i \ne j \in I $. Note that in the expression of $ P $, $ e $ is not necessarily distinct from zero, in which case $ I = \emptyset $ and the product is empty, or from $ d $. Let us denote
-$$ \cb{p_1, \dots, p_k} = \begin{cases}
+$$ \cb{p_1, \dots, p_k} =
+\begin{cases}
 \cb{\sb{1, a_i}}_{i \in I} \cup \cb{\sb{0, 1}} & 0 < d < e \\
 \cb{\sb{0, 1}} & e = 0 \\
 \cb{\sb{1, a_i}}_{i \in I} & e = d
-\end{cases}. $$
+\end{cases}.
+$$
 It is easy to check from the definition of multiplicity that, for each $ i $,
 $$ mult_{\sb{1, a_i}}\rb{P} = d_i, \qquad mult_{\sb{0, 1}}\rb{P} = d - e, $$
 and the claim follows from $ \sum_{i \in I} d_i = e $.
@@ -2405,14 +2333,16 @@ $$ i < s \qquad \implies \qquad \widetilde{b_i}\rb{y} = y^{s - i} \cdot B_i\rb{y
 for some polynomial $ A_i, B_i $ in $ y $. Note that by Remark \ref{rem:11.4}, we have
 $$ r \le n, \qquad s \le m. $$
 By Definition \ref{def:9.5}, it follows that
-$$ R\rb{y, 1} = \begin{pmatrix}
+$$ R\rb{y, 1} =
+\begin{pmatrix}
 y^r \cdot A_0\rb{y} & \dots & y^0 \cdot A_r\rb{y} & \dots & A_n\rb{y} & & 0 \\
 & \ddots & & \ddots & & \ddots & \\
 0 & & y^r \cdot A_0\rb{y} & \dots & y^0 \cdot A_r\rb{y} & \dots & A_n\rb{y} \\
 y^s \cdot B_0\rb{y} & \dots & y^0 \cdot B_s\rb{y} & \dots & B_m\rb{y} & & 0 \\
 & \ddots & & \ddots & & \ddots & \\
 0 & & y^s \cdot B_0\rb{y} & \dots & y^0 \cdot B_s\rb{y} & \dots & B_m\rb{y}
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 Want to show
 $$ mult_0\rb{\det\rb{R\rb{y, 1}}} \ge r \cdot s. $$
 Let $ R_1\rb{y} $ be the matrix obtained by
@@ -2421,27 +2351,31 @@ Let $ R_1\rb{y} $ be the matrix obtained by
 \item multiplying its $ \rb{m + j} $-th row by $ y^{r - j + 1} $ for any $ j \le r $.
 \end{itemize}
 Then we obtain
-$$ R_1\rb{y} = \begin{pmatrix}
+$$ R_1\rb{y} =
+\begin{pmatrix}
 y^{r + s} \cdot A_0\rb{y} & \dots & y^s \cdot A_r\rb{y} & \dots & y^s \cdot A_n\rb{y} & & 0 \\
 & \ddots & & \ddots & & \ddots & \\
 0 & & y^{r + 1} \cdot A_0\rb{y} & \dots & y^1 \cdot A_r\rb{y} & \dots & y^1 \cdot A_n\rb{y} \\
 y^{r + s} \cdot B_0\rb{y} & \dots & y^r \cdot B_s\rb{y} & \dots & y^r \cdot B_m\rb{y} & & 0 \\
 & \ddots & & \ddots & & \ddots & \\
 0 & & y^{s + 1} \cdot B_0\rb{y} & \dots & y^1 \cdot B_s\rb{y} & \dots & y^1 \cdot B_m\rb{y}
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 Now let $ R_2\rb{y} $ be the matrix obtained by
 \begin{itemize}
 \item dividing the $ i $-th column of $ R_1\rb{y} $ by $ y^{r + s + 1 - i} $ for any $ i \le r + s $.
 \end{itemize}
 Then we obtain
-$$ R_2\rb{y} = \begin{pmatrix}
+$$ R_2\rb{y} =
+\begin{pmatrix}
 A_0\rb{y} & \dots & A_r\rb{y} & \dots & y^s \cdot A_n\rb{y} & & 0 \\
 & \ddots & & \ddots & & \ddots & \\
 0 & & A_0\rb{y} & \dots & A_r\rb{y} & \dots & y \cdot A_n\rb{y} \\
 B_0\rb{y} & \dots & B_s\rb{y} & \dots & y^r \cdot B_m\rb{y} & & 0 \\
 & \ddots & & \ddots & & \ddots & \\
 0 & & B_0\rb{y} & \dots & B_s\rb{y} & \dots & y \cdot B_m\rb{y}
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 In particular $ \det\rb{R_2} $ is a polynomial in $ y $ and it follows from linear algebra that
 \begin{align*}
 \det\rb{R\rb{y, 1}}
@@ -2467,10 +2401,12 @@ be projective curves defined by homogeneous polynomials $ P, Q \in \C\sb{x_0, x_
 \item Assume that $ C $ and $ D $ have no common component, and let
 $$ \cb{p_1, \dots, p_k} = C \cap D, \qquad \sb{a_i, b_i, c_i} = p_i. $$
 Assume that $ \sb{1, 0, 0} $ lies on none of the lines through $ p_i $ and $ p_j $, where $ 1 \le i, j \le k $. The \textbf{intersection multiplicity}, or \textbf{intersection number}, of $ C $ and $ D $ at $ p = \sb{a, b, c} \in \P^2 $ is
-$$ I\rb{p, C, D} = I\rb{p, P, Q} = \begin{cases}
+$$ I\rb{p, C, D} = I\rb{p, P, Q} =
+\begin{cases}
 mult_{\sb{b, c}}\rb{R_{P, Q}\rb{x_1, x_2}} & p \in C \cap D \\
 0 & p \notin C \cap D
-\end{cases}. $$
+\end{cases}.
+$$
 \item If $ E $ is a common component of $ C $ and $ D $, set $ I\rb{p, C, D} = \infty $ for all $ p \in E $.
 \end{itemize}
 \end{definition}
@@ -2534,12 +2470,14 @@ $$ \Psi\rb{C_1} = \cb{x_1x_2 - x_0^2 = 0}, \qquad \Psi\rb{C_2} = \cb{x_1x_2 + x_
 and
 $$ \Psi\rb{C_1} \cap \Psi\rb{C_2} = \cb{\sb{0, 1, 0}, \sb{0, 0, 1}}. $$
 Note that $ \Psi\rb{\sb{0, 0, 1}} = \sb{0, 0, 1} $. The resultant of $ \Psi\rb{C_1} $, $ \Psi\rb{C_2} $ is
-$$ R\rb{x_1, x_2} = \det\begin{pmatrix}
+$$ R\rb{x_1, x_2} = \det
+\begin{pmatrix}
 x_1x_2 & 0 & -1 & 0 \\
 0 & x_1x_2 & 0 & -1 \\
 x_1x_2 & 0 & 1 & 0 \\
 0 & x_1x_2 & 0 & 1
-\end{pmatrix} = 4x_1^2x_2^2. $$
+\end{pmatrix}
+= 4x_1^2x_2^2. $$
 Thus
 $$ I\rb{\sb{0, 0, 1}, C_1, C_2} = I\rb{\sb{0, 0, 1}, \Psi\rb{C_1}, \Psi\rb{C_2}} = mult_{\sb{0, 1}}\rb{R\rb{x_1, x_2}} = 2, $$
 and similarly,
@@ -2672,13 +2610,16 @@ $$ Q\rb{x_0, x_1, x_2} = \sum_{i = 1}^n b_i\rb{x_1, x_2} \cdot x_0^i. $$
 Then
 $$ P_1 \cdot Q + P_2 = \sum_{i = 1}^n \rb{a_i + \sum_{j = 0}^i c_j \cdot b_{i - j}} \cdot x_0^i, $$
 so
-$$ R\rb{x_1, x_2} = \det\begin{pmatrix}
+$$ R\rb{x_1, x_2} = \det
+\begin{pmatrix}
 a_0 + b_0c_0 & \dots & a_n + \sum_{j = 0}^n c_jb_{i - j} & & 0 \\
 & \ddots & & \ddots & \\
 0 & & a_0 + b_0c_0 & \dots & a_n + \sum_{j = 0}^n c_jb_{i - j} \\
 b_0 & \dots & b_n & & 0 \\
 & \ddots & & \ddots & \\
-0 & & b_0 & \dots & b_n \end{pmatrix}, $$
+0 & & b_0 & \dots & b_n
+\end{pmatrix},
+$$
 so that the resultant matrix of $ R $ is obtained from the resultant matrix of $ R' $ by performing the following row operations.
 \begin{itemize}
 \item Add $ c_{j - 1} $ times the $ m + j $ row to the $ 1 $-st row, for each $ j = 1, \dots, n $.
@@ -2699,12 +2640,12 @@ and let $ p = \sb{0, 0, 1} \in C_1 \cap C_2 $. Then
 \begin{align*}
 I\rb{p, C_1, C_2}
 & = I\rb{p, x_0x_2 - x_1^2, x_0x_2 + x_1^2} & \text{by definition}, \\
-& = I\rb{p, 2x_0x_2, x_0x_2 + x_1^2} & \text{by } 6, \\
-& = I\rb{p, x_0, x_0x_2 + x_1^2} + I\rb{p, x_2, x_0x_2 + x_1^2} & \text{by } 5, \\
-& = I\rb{p, x_0, x_0x_2 + x_1^2} & \text{by } 3, \\
-& = I\rb{p, x_0, x_1^2} & \text{by } 6, \\
-& = 2 \cdot I\rb{p, x_0, x_1} & \text{by } 5, \\
-& = 2 & \text{by } 4.
+& = I\rb{p, 2x_0x_2, x_0x_2 + x_1^2} & \text{by} \ 6, \\
+& = I\rb{p, x_0, x_0x_2 + x_1^2} + I\rb{p, x_2, x_0x_2 + x_1^2} & \text{by} \ 5, \\
+& = I\rb{p, x_0, x_0x_2 + x_1^2} & \text{by} \ 3, \\
+& = I\rb{p, x_0, x_1^2} & \text{by} \ 6, \\
+& = 2 \cdot I\rb{p, x_0, x_1} & \text{by} \ 5, \\
+& = 2 & \text{by} \ 4.
 \end{align*}
 \end{example1}
 
@@ -2766,10 +2707,12 @@ The intersection of two distinct lines at their point of intersection is one. Th
 \begin{proposition}
 \label{prop:12.11}
 Let $ C, D \subseteq \P^2 $ be projective curves and $ p $ a point of $ \P^2 $. Then
-$$ I\rb{p, C, D} = 1 \qquad \iff \qquad \begin{array}{c}
-p \in C \cap D \text{ is a smooth point of } C \text{ and of } D, \text{ and} \\
-\text{the tangent lines to } C \text{ and } D \text{ at } p \text{ are distinct}
-\end{array}. $$
+$$ I\rb{p, C, D} = 1 \qquad \iff \qquad
+\begin{array}{c}
+p \in C \cap D \ \text{is a smooth point of} \ C \ \text{and of} \ D, \\
+\text{and the tangent lines to} \ C \ \text{and} \ D \ \text{at} \ p \ \text{are distinct}
+\end{array}.
+$$
 $ C $ and $ D $ meet \textbf{transversely} at $ p $.
 \end{proposition}
 
@@ -2789,9 +2732,9 @@ $$ \#\cb{C \cap D} = n \cdot m. $$
 \begin{proposition}
 \label{prop:12.14}
 Let $ L $ be a projective line and $ C \subseteq \P^2 $ a curve of degree $ d $. If $ p \in C \cap L $,
-$$ I\rb{p, C, L} > 1 \qquad \iff \qquad \text{either } C \text{ is singular at } p \text{ or } L \text{ is the tangent line to } C \text{ at } p. $$
+$$ I\rb{p, C, L} > 1 \qquad \iff \qquad \text{either} \ C \ \text{is singular at} \ p \ \text{or} \ L \ \text{is the tangent line to} \ C \ \text{at} \ p. $$
 Moreover, more generally, if $ C $ is singular at $ p $, then
-$$ I\rb{p, C, L} > mult_p\rb{C} \qquad \iff \qquad L \text{ is one of the higher tangent lines to } C \text{ at } p. $$
+$$ I\rb{p, C, L} > mult_p\rb{C} \qquad \iff \qquad L \ \text{is one of the higher tangent lines to} \ C \ \text{at} \ p. $$
 \end{proposition}
 
 \begin{proof}
@@ -2841,15 +2784,11 @@ is the \textbf{Legendre form} for \textbf{elliptic curves}. In order to prove Th
 
 \begin{definition}
 \label{def:13.2}
-Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial. The \textbf{Hessian matrix} of $ P $ is the symmetric matrix whose entries are the second order differentials of $ P $
+Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial. The \textbf{Hessian matrix} of $ P $ is the symmetric matrix whose entries are the second order differentials of $ P $,
 \begin{align*}
 H_P
 & = \rb{\dfrac{\partial^2 P}{\partial x_i \partial x_j}}_{0 \le i, j \le 2} \\
-& = \begin{pmatrix}
-P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0, x_2} \\
-P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1, x_2} \\
-P_{x_2, x_0} & P_{x_2, x_1} & P_{x_2, x_2}
-\end{pmatrix}.
+& = \threebythree{P_{x_0, x_0}}{P_{x_0, x_1}}{P_{x_0, x_2}}{P_{x_1, x_0}}{P_{x_1, x_1}}{P_{x_1, x_2}}{P_{x_2, x_0}}{P_{x_2, x_1}}{P_{x_2, x_2}}.
 \end{align*}
 The \textbf{Hessian} of $ P $ is
 $$ \HH_P\rb{x_0, x_1, x_2} = \det\rb{H_P}. $$
@@ -2864,11 +2803,7 @@ The only thing there is to check is that $ \HH_P $ is a homogeneous polynomial o
 Let $ P \in \C\sb{x_0, x_1, x_2} $ be a homogeneous polynomial of degree $ d > 1 $. Then
 \begin{equation}
 \label{eq:10}
-x_2^2 \cdot \HH_P = \rb{d - 1}^2 \cdot \det\begin{pmatrix}
-P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0} \\
-P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1} \\
-P_{x_0} & P_{x_1} & \tfrac{d}{d - 1} \cdot P
-\end{pmatrix}.
+x_2^2 \cdot \HH_P = \rb{d - 1}^2 \cdot \det\threebythree{P_{x_0, x_0}}{P_{x_0, x_1}}{P_{x_0}}{P_{x_1, x_0}}{P_{x_1, x_1}}{P_{x_1}}{P_{x_0}}{P_{x_1}}{\tfrac{d}{d - 1} \cdot P}.
 \end{equation}
 \end{lemma}
 
@@ -2880,35 +2815,16 @@ Analogous formulae to $ \rb{\ref{eq:10}} $ can be stated for $ x_0 $, $ x_1 $.
 
 \begin{proof}
 For ease of notation, let us label the rows and columns of the Hessian matrix as follows.
-$$ H_P = \three{C_0}{C_1}{C_2} = \begin{pmatrix}
-R_0 \\
-R_1 \\
-R_2
-\end{pmatrix}. $$
+$$ H_P = \onebythree{C_0}{C_1}{C_2} = \threebyone{R_0}{R_1}{R_2}.
+$$
 Each $ P_{x_i} $ is a homogeneous polynomial of degree $ d - 1 $, so that by the Euler relation, in Theorem \ref{thm:7.6}, we have
 $$ \rb{d - 1}P_{x_i} = x_0P_{x_0, x_i} + x_1P_{x_1, x_i} + x_2P_{x_2, x_i}, $$
 and
-$$ x_2 \cdot \HH_P = \det\three{C_0}{C_1}{x_0C_0 + x_1C_1 + x_2C_2} = \det\begin{pmatrix}
-P_{x_0, x_0} & P_{x_0, x_1} & \rb{d - 1}P_{x_0} \\
-P_{x_1, x_0} & P_{x_1, x_1} & \rb{d - 1}P_{x_1} \\
-P_{x_2, x_0} & P_{x_2, x_1} & \rb{d - 1}P_{x_2}
-\end{pmatrix}, $$
+$$ x_2 \cdot \HH_P = \det\onebythree{C_0}{C_1}{x_0C_0 + x_1C_1 + x_2C_2} = \det\threebythree{P_{x_0, x_0}}{P_{x_0, x_1}}{\rb{d - 1}P_{x_0}}{P_{x_1, x_0}}{P_{x_1, x_1}}{\rb{d - 1}P_{x_1}}{P_{x_2, x_0}}{P_{x_2, x_1}}{\rb{d - 1}P_{x_2}}, $$
 that is
-$$ x_2 \cdot \HH_P = \rb{d - 1}\det\begin{pmatrix}
-P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0} \\
-P_{x_1, x_0} & P_{x_1, x_1} & P_{x_1} \\
-P_{x_2, x_0} & P_{x_2, x_1} & P_{x_2}
-\end{pmatrix} = \begin{pmatrix}
-R_0' \\
-R_1' \\
-R_2'
-\end{pmatrix}. $$
+$$ x_2 \cdot \HH_P = \rb{d - 1}\det\threebythree{P_{x_0, x_0}}{P_{x_0, x_1}}{P_{x_0}}{P_{x_1, x_0}}{P_{x_1, x_1}}{P_{x_1}}{P_{x_2, x_0}}{P_{x_2, x_1}}{P_{x_2}} = \threebyone{R_0'}{R_1'}{R_2'}. $$
 Similarly,
-$$ x_2^2 \cdot \HH_P = \rb{d - 1}\det\begin{pmatrix}
-R_0' \\
-R_1' \\
-x_0R_0' + x_1R_1' + x_2R_2'
-\end{pmatrix}. $$
+$$ x_2^2 \cdot \HH_P = \rb{d - 1}\det\threebyone{R_0'}{R_1'}{x_0R_0' + x_1R_1' + x_2R_2'}. $$
 Using the Euler relation for $ P_{x_0} $ and $ P_{x_1} $ and the Euler relation for $ P $,
 $$ dP = x_0P_{x_0} + x_1P_{x_1} + x_2P_{x_2}. $$
 We find that this last matrix has the desired form.
@@ -2944,12 +2860,14 @@ We now see that the presence of inflection points guarantees that the equation o
 Let $ P $ be the irreducible homogeneous polynomial of degree three such that $ C = \cb{P = 0} $. By Lemma \ref{lem:13.5}, $ C $ has at least one inflection point. Up to projective transformation, we may thus assume that $ q = \sb{0, 1, 0} $ is an inflection point of $ C $, and that the tangent line to $ C $ at $ q $ is
 $$ T_q\rb{C} = \cb{x_2 = 0}. $$
 This implies that
-$$ \begin{cases}
+$$
+\begin{cases}
 P\rb{0, 1, 0} = 0, \\
 P_{x_0}\rb{0, 1, 0} = P_{x_1}\rb{0, 1, 0} = 0, \\
 P_{x_2}\rb{0, 1, 0} \ne 0, \\
 \HH_P\rb{0, 1, 0} = 0
-\end{cases}. $$
+\end{cases}.
+$$
 We may write the equation of $ P $ as
 $$ P\rb{x_0, x_1, x_2} = Ax_1^3 + Bx_0x_1^2 + Cx_2x_1^2 + Dx_0^2x_1 + Ex_0x_2x_1 + Fx_2^2x_1 + \Phi\rb{x_0, x_2}, \qquad A, B, C, D, E, F \in \C, $$
 where $ \Phi $ is a homogeneous polynomial of degree three in the variables $ x_0, x_2 $.
@@ -2959,21 +2877,9 @@ where $ \Phi $ is a homogeneous polynomial of degree three in the variables $ x_
 \item Since $ P_{x_2}\rb{0, 1, 0} \ne 0 $, $ C \ne 0 $.
 \end{itemize}
 Now we would like to say something about the other coefficients. This will involve some manipulation of $ \HH_P $. By the analogous result of Lemma \ref{lem:13.3}, we have
-$$ x_1^2 \cdot \HH_P = \rb{d - 1}^2 \cdot \det\begin{pmatrix}
-P_{x_0, x_0} & P_{x_0} & P_{x_0, x_2} \\
-P_{x_0} & \tfrac{d}{d - 1} \cdot P & P_{x_2} \\
-P_{x_0, x_2} & P_{x_2} & P_{x_2, x_2}
-\end{pmatrix} = 4\det\begin{pmatrix}
-P_{x_0, x_0} & P_{x_0} & P_{x_0, x_2} \\
-P_{x_0} & \tfrac{3}{2} \cdot P & P_{x_2} \\
-P_{x_0, x_2} & P_{x_2} & P_{x_2, x_2}
-\end{pmatrix}, $$
+$$ x_1^2 \cdot \HH_P = \rb{d - 1}^2 \cdot \det\threebythree{P_{x_0, x_0}}{P_{x_0}}{P_{x_0, x_2}}{P_{x_0}}{\tfrac{d}{d - 1} \cdot P}{P_{x_2}}{P_{x_0, x_2}}{P_{x_2}}{P_{x_2, x_2}} = 4\det{P_{x_0, x_0}}{P_{x_0}}{P_{x_0, x_2}}{P_{x_0}}{\tfrac{3}{2} \cdot P}{P_{x_2}}{P_{x_0, x_2}}{P_{x_2}}{P_{x_2, x_2}}, $$
 so that
-$$ 0 = \HH_P\rb{0, 1, 0} = 4\det\begin{pmatrix}
-P_{x_0, x_0} & 0 & P_{x_0, x_2} \\
-0 & 0 & P_{x_2} \\
-P_{x_0, x_2} & P_{x_2} & P_{x_2, x_2}
-\end{pmatrix} = -4P_{x_2}\rb{0, 1, 0}^2P_{x_0, x_0}\rb{0, 1, 0}, $$
+$$ 0 = \HH_P\rb{0, 1, 0} = 4\det\threebythree{P_{x_0, x_0}}{0}{P_{x_0, x_2}}{0}{0}{P_{x_2}}{P_{x_0, x_2}}{P_{x_2}}{P_{x_2, x_2}} = -4P_{x_2}\rb{0, 1, 0}^2P_{x_0, x_0}\rb{0, 1, 0}, $$
 so that $ P_{x_0, x_0}\rb{0, 1, 0} = 0 $, since $ P_{x_2}\rb{0, 1, 0} $ is non-zero.
 \begin{itemize}
 \item Since $ P_{x_0, x_0}\rb{0, 1, 0} = 0 $, $ D = 0 $.
@@ -2986,10 +2892,7 @@ P\rb{x_0, x_1, x_2}
 & = C\rb{x_1 + \dfrac{Ex_0 + Fx_2}{2C}}^2x_2 + \Phi'\rb{x_0, x_2},
 \end{align*}
 where $ \Phi' \in \C\sb{x_0, x_2} $ is a homogeneous polynomial of degree three. Consider the projective transformation
-\begin{align*}
-\Psi_1 : \P^2 & \to \P^2 \\
-\sb{x_0, x_1, x_2} & \mapsto \sb{x_0, x_1 + \dfrac{Ex_0 + Fx_2}{2C}, x_2}.
-\end{align*}
+$$ \function[\Psi_1]{\P^2}{\P^2}{\sb{x_0, x_1, x_2}}{\sb{x_0, x_1 + \dfrac{Ex_0 + Fx_2}{2C}, x_2}}. $$
 Note that $ \Psi_1 $ is well-defined because $ C \ne 0 $. Then I get that the equation of $ \Psi_1\rb{C} $ is
 $$ \Psi_1\rb{C} = \cb{x_1^2x_2 = \Phi''\rb{x_0, x_2}} \subseteq \P^2, $$
 where $ \Phi'' \in \C\sb{x_0, x_2} $ is a homogeneous polynomial of degree three. By Lemma \ref{lem:6.2}, $ \Phi'' $ is a product of linear factors. Since $ C $ and hence $ \Psi_1\rb{C} $ are irreducible, $ x_2 $ does not divide $ \Phi'' $. Thus
@@ -2997,10 +2900,7 @@ $$ \Phi''\rb{x_0, x_2} = K\rb{x_0 - ax_2}\rb{x_0 - bx_2}\rb{x_0 - cx_2}, \qquad 
 After a suitable diagonal projective transformation $ \Psi_2 $, $ K = 1 $, and the equation of $ \Psi_2 \circ \Psi_1\rb{C} $ is
 $$ \Psi_2 \circ \Psi_1\rb{C} = \cb{x_1^2x_2 = \rb{x_0 - ax_2}\rb{x_0 - bx_2}\rb{x_0 - cx_2}} \subseteq \P^2. $$
 Since $ C $ is non-singular, $ a, b, c $ are distinct. (Exercise: check) The map
-\begin{align*}
-\Psi_3 : \P^2 & \to \P^2 \\
-\sb{x_0, x_1, x_2} & \mapsto \sb{\dfrac{x_0 - ax_2}{b - a}, \eta x_1, x_2}, \qquad \dfrac{1}{\eta^2} = \rb{b - a}^3
-\end{align*}
+$$ \function[\Psi_3]{\P^2}{\P^2}{\sb{x_0, x_1, x_2}}{\sb{\dfrac{x_0 - ax_2}{b - a}, \eta x_1, x_2}}, \qquad \dfrac{1}{\eta^2} = \rb{b - a}^3 $$
 is thus a well-defined projective transformation and
 $$ \Psi_3 \circ \Psi_2 \circ \Psi_1\rb{C} = \cb{x_1^2x_2 = x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2}} \subseteq \P^2, $$
 for $ \lambda \in \C $. Note that $ \lambda \ne 0, 1 $ because $ C $ is non-singular. This is exactly the form we wanted.
@@ -3056,13 +2956,13 @@ parametrised by $ \sb{\lambda, \mu} \in \P^1 $. The curves $ C $ and $ D $ are s
 Let us consider projective lines in $ \P^2 $. Recall that the equation of every line $ L $ is given by
 $$ L = \cb{ax_0 + bx_1 + cx_2 = 0} \subseteq \P^2, \qquad \rb{a, b, c} \in \C^3, \qquad \rb{a, b, c} \ne \rb{0, 0, 0}. $$
 Then $ \rb{a, b, c} $ and $ \rb{a', b', c'} $ define the same line if and only if there exists $ \lambda \in \C^* $ such that $ \rb{a, b, c} = \rb{\lambda a', \lambda b', \lambda c'} $, that is when $ \sb{a, b, c} = \sb{a', b', c'} $ as points of $ \P^2 $. This shows that
-$$ \cb{\text{projective lines } L \subseteq \P^2} \cong \P^2. $$
+$$ \cb{\text{projective lines} \ L \subseteq \P^2} \cong \P^2. $$
 Let $ p \in \P^2 $ be a point. Then the space of lines passing through $ p = \sb{z_0, z_1, z_2} $ for $ z_i \in \C $ is given by the points $ \sb{a, b, c} $ with $ a \cdot z_0 + b \cdot z_1 + c \cdot z_2 = 0 $, which are lines $ \P^1 $ defined by equations
 $$ \cb{ax_0 + bx_1 + cx_2 = 0} \subseteq \P^2 $$
 in $ \P^2 $. We may assume that $ p = \sb{0, 0, 1} $, after projective transformation. Then the set of lines $ L \subseteq \P^2 $ that contain $ p $ is the set of lines such that $ a \cdot 0 + b \cdot 0 + c \cdot 1 = c = 0 $. In other words,
-$$ \cb{\text{projective lines } L \subseteq \P^2 \mid p \in L} \cong \cb{\sb{a, b, 0} \in \P^2} \cong \P^1. $$
+$$ \cb{\text{projective lines} \ L \subseteq \P^2 \mid p \in L} \cong \cb{\sb{a, b, 0} \in \P^2} \cong \P^1. $$
 We have seen that given two points $ p \ne q \in \P^2 $ there is a unique line $ L_{p, q} $ through $ p $ and $ q $. This shows that passage through $ q $ gives a single line
-$$ \cb{\text{projective lines } L \subseteq \P^2 \mid p, q \in L} = \cb{L_{p, q}} \cong \P^0. $$
+$$ \cb{\text{projective lines} \ L \subseteq \P^2 \mid p, q \in L} = \cb{L_{p, q}} \cong \P^0. $$
 \end{example1}
 
 We can parametrise projective curves of degree $ d $ in a similar way. More precisely, we have seen that any curve of degree $ d $, $ C = \cb{P = 0} $, is defined by a homogeneous polynomial $ P \in \C\sb{x_0, x_1, x_2} $ of degree $ d $ with no repeated factors. Write
@@ -3074,10 +2974,9 @@ $$ 1 + \dots + \rb{d + 1} = \dfrac{\rb{d + 1}\rb{d + 2}}{2}. $$
 We may order the triples $ \rb{i, j, k} \in I $ by lexicographic order. Recall from Remark \ref{rem:4.12} that if $ P, Q $ are two homogeneous polynomials with no repeated factors,
 $$ C = \cb{P = 0} = \cb{Q = 0} \qquad \iff \qquad P = \lambda Q, \qquad \lambda \in \C^*. $$
 This shows that there is a well-defined map
-\begin{align*}
-\Psi_d : \cb{C = \cb{P = 0} \mid \deg\rb{C} = d} & \to \P^{N_d} \\
-\sum_{\rb{i, j, k} \in \N^3} a_{i, j, k}x_0^ix_1^jx_2^k & \mapsto \sb{a_{i, j, k}} = \sb{a_{0, 0, d}, \dots, a_{d, 0, 0}}, \qquad N_d = \dfrac{\rb{d + 1}\rb{d + 2}}{2} - 1 = \dfrac{d\rb{d + 3}}{2}.
-\end{align*}
+$$ \function[\Psi_d]{\cb{C = \cb{P = 0} \mid \deg\rb{C} = d}}{\P^{N_d}}{C = \cb{\sum_{\rb{i, j, k} \in \N^3} a_{i, j, k}x_0^ix_1^jx_2^k = 0}}{\sb{a_{i, j, k}} = \sb{a_{0, 0, d}, \dots, a_{d, 0, 0}}}, $$
+where
+$$ N_d = \dfrac{\rb{d + 1}\rb{d + 2}}{2} - 1 = \dfrac{d\rb{d + 3}}{2}. $$
 
 \begin{example2}
 \hfill
@@ -3102,10 +3001,7 @@ we have $ I\rb{p, C, D} = de $ in the only point of intersection $ p = \sb{0, 0,
 
 \begin{definition}
 Let $ \LL_d $ denote the set of curves $ C \subseteq \P^2 $ defined by a homogeneous polynomial of degree $ d $, possibly with repeated factors. Then $ \Psi_d $ defines a bijection
-\begin{align*}
-\Psi_d : \LL_d & \to \P^{N_d} \\
-C = \cb{\sum_{\rb{i, j, k} \in I} a_{i, j, k}x_0^ix_1^jx_2^k = 0} & \mapsto \sb{a_{i, j, k}}, \qquad N_d = \dfrac{d\rb{d + 3}}{2}.
-\end{align*}
+$$ \function[\Psi_d]{\LL_d}{\P^{N_d}}{C = \cb{\sum_{\rb{i, j, k} \in I} a_{i, j, k}x_0^ix_1^jx_2^k = 0}}{\sb{a_{i, j, k}}}, \qquad N_d = \dfrac{d\rb{d + 3}}{2}. $$
 \end{definition}
 
 \begin{example1}
@@ -3135,10 +3031,7 @@ $$ \SS = \cb{C \in \LL_d \mid mult_p\rb{C} \ge q} \cong \P^{N_{d, q}}, \qquad N_
 
 \begin{proof}
 We will show that $ \Psi_d\rb{\SS} \cong \P^{N_{d, q}} $, where as above, $ \Psi_d $ is the map
-\begin{align*}
-\Psi_d : \LL_d & \to \P^{N_d} \\
-C = \cb{\sum_{\rb{i, j, k} \in I} a_{i, j, k}x_0^ix_1^jx_2^k = 0} & \mapsto \sb{a_{i, j, k}}.
-\end{align*}
+$$ \function[\Psi_d]{\LL_d}{\P^{N_d}}{C = \cb{\sum_{\rb{i, j, k} \in I} a_{i, j, k}x_0^ix_1^jx_2^k = 0}}{\sb{a_{i, j, k}}}. $$
 We denote by $ \sb{C} = \Psi_d\rb{C} $ for each $ C \in \LL_d $. We show that $ C \in \SS $ if and only if $ \sb{C} \in \P^{N_d} $ is in the subspace of solutions of a linear system of $ q\rb{q + 1} / 2 $ independent equations, that is a linear system defined by a matrix of size
 $$ \dfrac{q\rb{q + 1}}{2} \times N_d, $$
 of rank $ q\rb{q + 1} / 2 $. After projective transformation, we may assume that $ p = \sb{0, 0, 1} $. Let $ C \in \LL_d $, and denote by $ P $ a homogeneous polynomial of degree $ d $ with $ C = \cb{P = 0} $. Let
@@ -3153,10 +3046,7 @@ $$ \Psi_d\rb{\SS} \cong \P^{N_{d, q}} = \cb{\sb{C} = \sb{C_0, \dots, C_{N_d}} \i
 
 \begin{example2}
 Let $ \sb{x_1, x_2, x_3, x_4} \in \P^3 $. $ x_0 = 0 $ and $ x_1 = 0 $ gives
-\begin{align*}
-\Psi_d : \LL_d & \to \P^1 \\
-\sb{0, 0, x_2, x_3} & \mapsto \sb{x_2, x_3},
-\end{align*}
+$$ \function[\Psi_d]{\LL_d}{\P^1}{\sb{0, 0, x_2, x_3}}{\sb{x_2, x_3}}, $$
 since $ 1 = 3 - 2 $.
 \end{example2}
 
@@ -3262,16 +3152,12 @@ then $ P_{\sb{\lambda, \mu}}\rb{p_9} = 0 $ and $ p_9 \in P $ for every $ P \in \
 
 \section{Riemann surfaces}
 
-In this part of the course, we will see that a smooth projective curve has a single topological invariant that characterises its topology, its genus, and we will introduce the formalism of Riemann surfaces to study this genus. We have seen that a projective line $ \P^1 $ is homeomorphic to the sphere $ S^2 \subseteq \R^3 $. We also saw that stereographic projection defined a homeomorphism (Exercise: check that it is in fact a diffeomorphism) between any smooth conic $ C $ and $ \P^1 $, by a bijection between $ C $ and lines through $ p_0 $, or a bijection to any line $ L_0 $ not containing $ p_0 $, so that a smooth conic is also homeomorphic to a sphere $ S^2 \subseteq \R^3 $. If $ C \subseteq \P^2 $ is a smooth projective plane curve of degree $ d \ge 3 $, can do a similar projection. We will see that $ C $ is a homeomorphic to a sphere with $ g $ handles, where $ g $ is the genus of $ C $ and can be determined in terms of $ d $. In these cases, stereographic projection turns out to be a bit more complicated than for smooth conics. We now look at the case $ d = 3 $, where the study of stereographic projection gives us a good grasp of the topology of a smooth cubic. Stereographic projection of $ C $ with respect to $ p_0 \in C $ is defined as follows. Fix a smooth point $ p_0 \in C $, recall that $ \SS = \cb{L \in \LL_1 \mid p_0 \in L} \cong \P^1 $, and we can identify $ \SS $ with any line $ L_0 \subseteq \P^2 $ that does not contain $ p_0 $ by the bijection
-\begin{align*}
-\SS & \to L_0 \\
-L & \mapsto L \cap L_0.
-\end{align*}
+In this part of the course, we will see that a smooth projective curve has a single topological invariant that characterises its topology, its genus, and we will introduce the formalism of Riemann surfaces to study this genus. We have seen that a projective line $ \P^1 $ is homeomorphic to the sphere $ S^2 \subseteq \R^3 $. We also saw that stereographic projection defined a homeomorphism (Exercise: check that it is in fact a diffeomorphism) between any smooth conic $ C $ and $ \P^1 $, by a bijection between $ C $ and lines through $ p_0 $, or a bijection to any line $ L_0 $ not containing $ p_0 $, so that a smooth conic is also homeomorphic to a sphere $ S^2 \subseteq \R^3 $. If $ C \subseteq \P^2 $ is a smooth projective plane curve of degree $ d \ge 3 $, can do a similar projection. We will see that $ C $ is a homeomorphic to a sphere with $ g $ handles, where $ g $ is the genus of $ C $ and can be determined in terms of $ d $. In these cases, stereographic projection turns out to be a bit more complicated than for smooth conics. We now look at the case $ d = 3 $, where the study of stereographic projection gives us a good grasp of the topology of a smooth cubic. Stereographic projection of $ C $ with respect to $ p_0 \in C $ is defined as follows. Fix a smooth point $ p_0 \in C $, recall that
+$$ \SS = \cb{L \in \LL_1 \mid p_0 \in L} \cong \P^1, $$
+and we can identify $ \SS $ with any line $ L_0 \subseteq \P^2 $ that does not contain $ p_0 $ by the bijection
+$$ \function{\SS}{L_0}{L}{L \cap L_0}. $$
 Then, the stereographic projection is the surjective map
-\begin{align*}
-\pi : C & \to L_0 \\
-p & \mapsto L_{p, p_0} \cap L_0,
-\end{align*}
+$$ \function[\pi]{C}{L_0}{p}{L_{p, p_0} \cap L_0}, $$
 where $ L_{p, p_0} $ is the unique line through $ p $ and $ p_0 $ if $ p \ne p_0 $ or $ T_{p_0}\rb{C} $ if $ p = p_0 $, which is not one-to-one anymore. Equivalently, $ L_{p, p_0} $ is the line through $ p_0 $ and $ \pi\rb{p} $. By Proposition \ref{prop:12.14} and B\'ezout's Theorem \ref{thm:11.11}, $ \pi^{-1}\rb{\pi\rb{p}} \subseteq C $ consists of $ d - 1 $ points unless $ L_{p, p_0} $ is tangent to $ C $ at some point in $ \pi^{-1}\rb{p} $. $ \pi $ is a $ \rb{d - 1} $-to-one covering space of $ \P^1 $.
 
 \lecture{23}{Thursday}{29/11/18}
@@ -3280,10 +3166,7 @@ where $ L_{p, p_0} $ is the unique line through $ p $ and $ p_0 $ if $ p \ne p_0
 \hfill
 \begin{itemize}
 \item The covering space
-\begin{align*}
-f : S^1 \subseteq \C & \to S^1 \subseteq \C \\
-z & \mapsto z^2
-\end{align*}
+$$ \function[f]{S^1 \subseteq \C}{S^1 \subseteq \C}{z}{z^2} $$
 is two-to-one everywhere. Pretend I do not know the source $ S^1 $. Could have a disjoint union of two copies of $ S^1 $ with the identity map on each copy, which is a trivial covering space. Glue back with a cross to give the $ S^1 $ from before, which is a non-trivial covering space.
 \item Assume $ d = 3 $. Recall that up to projective transformation, a smooth cubic is defined by an equation of the form
 $$ C = \cb{P\rb{x_0, x_1, x_2} = x_1^2x_2 - x_0\rb{x_0 - x_2}\rb{x_0 - \lambda x_2} = 0}, \qquad \lambda \ne 0, 1. $$
@@ -3292,11 +3175,10 @@ $$ C_0 = \cb{y^2 = x\rb{x - 1}\rb{x - \lambda}}. $$
 If $ \pi : C \to \P^1 $ is the stereographic projection from the inflection point $ p_0 = \sb{0, 1, 0} $, we see by direct calculation that $ \pi $ is two-to-one and the fibre $ \pi^{-1}\rb{\pi\rb{p}} $ consists of precisely two points unless $ p = p_0 = \sb{0, 1, 0} $, or $ p_0 \in T_p\rb{C} $, that is $ P_{x_1}\rb{p} = 0 $, which occurs when $ p $ is one of the points
 $$ p_0 = \sb{0, 1, 0}, \qquad p_1 = \sb{0, 0, 1}, \qquad p_2 = \sb{1, 0, 1}, \qquad p_3 = \sb{\lambda, 0, 1}. $$
 The projection $ \pi $ presents $ C $ as a two sheeted cover of $ \P^1 $ ramified at the points $ p_0, \dots, p_3 $. Informally, in the neighbourhood of a ramification point, the stereographic projection $ \pi $ behaves like
-\begin{align*}
-C_0 & \to \C = \cb{y = 0} \\
-\rb{x, y} & \mapsto x.
-\end{align*}
-Projectively, $ \sb{x_0, x_1, x_2} \mapsto \sb{x_0, x_1} \in \P^1 $. From this, we construct a topological model of $ C $ as follows. Take two spheres $ \P^1 \cong S^2 $ and slit each sphere twice in identical ways along paths from $ \pi\rb{p_0} $ to $ \pi\rb{p_1} $ and from $ \pi\rb{p_2} $ to $ \pi\rb{p_3} $. Open up the slits to make two holes, then turn one of the spheres over and glue it to the other respecting the markings. In this way, you obtain a torus. For any value of $ \lambda $, we obtain a fixed topological object, the torus $ T \cong S^1 \times S^1 $. So $ C $ is homeomorphic to a torus. Where did $ \lambda $ go? It is in the structure of the Riemann surface. The parameter $ \lambda $ that distinguishes different, non-isomorphic, cubics will influence the complex structure that we obtain on $ T $, that is the structure of complex-analytic manifold.
+$$ \function{C_0}{\C = \cb{y = 0}}{\rb{x, y}}{x}. $$
+Projectively, $ \sb{x_0, x_1, x_2} \mapsto \sb{x_0, x_1} \in \P^1 $. From this, we construct a topological model of $ C $ as follows. Take two spheres $ \P^1 \cong S^2 $ and slit each sphere twice in identical ways along paths
+$$ \pi\rb{p_0} \longrightarrow \pi\rb{p_1}, \qquad \pi\rb{p_2} \longrightarrow \pi\rb{p_3}. $$
+Open up the slits to make two holes, then turn one of the spheres over and glue it to the other respecting the markings. In this way, you obtain a torus. For any value of $ \lambda $, we obtain a fixed topological object, the torus $ T \cong S^1 \times S^1 $. So $ C $ is homeomorphic to a torus. Where did $ \lambda $ go? It is in the structure of the Riemann surface. The parameter $ \lambda $ that distinguishes different, non-isomorphic, cubics will influence the complex structure that we obtain on $ T $, that is the structure of complex-analytic manifold.
 \item Similarly, if
 $$ C = \cb{y^2 = \prod_{i = 1}^{2g + 1} \rb{x - a_i}} \subseteq \C^2, $$
 for distinct $ a_i \in \C $, the projectivisation of $ C $ is a hyper elliptic curve $ \overline{C} \subseteq \P^2 $. Just like the cubic above, the stereographic projection from $ p_0 = \sb{0, 1, 0} $ is a two-sheeted cover ramified at $ 2g + 2 $ points
@@ -3340,17 +3222,11 @@ We are interested in properties of Riemann surfaces that are independent of the 
 \hfill
 \begin{itemize}
 \item Let $ S = \P^1 $, and consider $ \cb{\rb{U_0, \phi_0}, \rb{U_1, \phi_1}} $, where
-\begin{align*}
-U_0 = \cb{\sb{x_0, x_1} \in \P^1 \mid x_0 \ne 0}, \qquad \phi_0 : U_0 & \to \C \\
-\sb{x_0, x_1} & \mapsto \dfrac{x_1}{x_0},
-\end{align*}
-\begin{align*}
-U_1 = \cb{\sb{x_0, x_1} \in \P^1 \mid x_1 \ne 0}, \qquad \phi_1 : U_1 & \to \C \\
-\sb{x_0, x_1} & \mapsto \dfrac{x_0}{x_1}.
-\end{align*}
+$$ U_0 = \cb{\sb{x_0, x_1} \in \P^1 \mid x_0 \ne 0}, \qquad \function[\phi_0]{U_0}{\C}{\sb{x_0, x_1}}{\dfrac{x_1}{x_0}}, $$
+$$ U_1 = \cb{\sb{x_0, x_1} \in \P^1 \mid x_1 \ne 0}, \qquad \function[\phi_1]{U_1}{\C}{\sb{x_0, x_1}}{\dfrac{x_0}{x_1}}. $$
 Then $ S = U_0 \cup U_1 $, $ \phi_0, \phi_1 $ are homeomorphic, and on $ U_0 \cap U_1 = \cb{x_0 \ne 0, \ x_1 \ne 0} $,
 $$
-\begin{array}{cccccc}
+\begin{array}{crcccl}
 \phi_0 \circ \phi_1^{-1} : & \C \setminus \cb{0} & \to & U_1 \cap U_0 & \to & \C \\
 & z & \mapsto & \sb{z, 1} & \mapsto & \dfrac{1}{z}
 \end{array},
@@ -3399,46 +3275,37 @@ In particular,
 \begin{itemize}
 \item around $ \rb{a, b} $, the function $ \lambda $ is uniquely determined, because two functions having the same graph are equal, and
 \item the function
-\begin{align*}
-V & \to C \cap \rb{U \times V} \\
-y & \mapsto \rb{\lambda\rb{y}, y}
-\end{align*}
+$$ \function{V}{C \cap \rb{U \times V}}{y}{\rb{\lambda\rb{y}, y}} $$
 is a homeomorphism, with inverse
-\begin{align*}
-C \cap \rb{U \times V} & \to V \\
-\rb{x, y} & \mapsto y.
-\end{align*}
+$$ \function{C \cap \rb{U \times V}}{V}{\rb{x, y}}{y}. $$
 \end{itemize}
 \end{note}
 
 \begin{example2}
 \hfill
 \begin{itemize}
-\item Let $ x^2 + y^2 - 1 = 0 $. Use $ y = \sqrt{x^2 + 1} $ around $ \rb{0, 1} $ and use $ x = \sqrt{y^2 + 1} $ around $ \rb{1, 0} $.
-\item If $ f\rb{x, y} = x - p\rb{y} $ then $ \partial f / \partial x \equiv 1 $, so $ f\rb{x, y} = 0 $ gives $ x = p\rb{y} $.
+\item Let
+$$ x^2 + y^2 - 1 = 0. $$
+Use $ y = \sqrt{x^2 + 1} $ around $ \rb{0, 1} $ and use $ x = \sqrt{y^2 + 1} $ around $ \rb{1, 0} $.
+\item If
+$$ f\rb{x, y} = x - p\rb{y} $$
+then $ \partial f / \partial x \equiv 1 $, so $ f\rb{x, y} = 0 $ gives $ x = p\rb{y} $.
 \end{itemize}
 \end{example2}
 
 \begin{proof}[Proof of Lemma \ref{lem:15.5}]
 We define an atlas that gives $ C $ the structure of a Riemann surface. Recall that $ U_i \subseteq \P^2 $ were the open covers $ U_i = \cb{x_i \ne 0} $, we denote by $ U_i \cap C $ the affine curve that is the restriction of $ C $ to the open set $ U_i \cong \C^2 $. We show that each $ p \in C $ lies in an open coordinate neighbourhood $ p \in U_p \subseteq C $ and construct homeomorphisms $ \phi_p : U_p \to \phi_p\rb{U_p} \subseteq \C $ such that $ \cb{\rb{U_p, \phi_p}}_{p \in C} $ form an atlas. Let us first assume that $ p = \sb{a, b, 1} \in U_2 $, and write
 $$ C_2 = C \cap U_2 = \cb{f\rb{x, y} = P\rb{x, y, 1} = 0}, \qquad x = \dfrac{x_0}{x_2}, \qquad y = \dfrac{x_1}{x_2}. $$
-Since $ C $ is smooth, $ p \in C $ is a smooth point, so $ \rb{f_x\rb{a, b}, f_y\rb{a, b}} \ne \rb{0, 0} $. If $ f_y\rb{a, b} \ne 0 $, then, by the implicit function theorem, there are neighbourhoods $ a \in V \subseteq \C $ and $ b \in W \subseteq \C $ and a holomorphic function $ g : V \to W $ such that
+Since $ C $ is smooth, $ p \in C $ is a smooth point, so
+$$ \rb{f_x\rb{a, b}, f_y\rb{a, b}} \ne \rb{0, 0}. $$
+If $ f_y\rb{a, b} \ne 0 $, then, by the implicit function theorem, there are neighbourhoods $ a \in V \subseteq \C $ and $ b \in W \subseteq \C $ and a holomorphic function $ g : V \to W $ such that
 $$ C_2 \cap \rb{V \times W} = \cb{\rb{x, g\rb{x}} \mid x \in V}. $$
 We may further assume, since $ f_y $ is continuous that $ f_y\rb{x, y} \ne 0 $ for all $ \rb{x, y} \in C_2 \cap \rb{V \times W} $. Define
-\begin{align*}
-U_p^{2, y} = C_2 \cap \rb{V \times W}, \qquad \phi_p : U_p^{2, y} & \to \C \\
-\sb{x, y, 1} & \mapsto x.
-\end{align*}
+$$ U_p^{2, y} = C_2 \cap \rb{V \times W}, \qquad \function[\phi_p]{U_p^{2, y}}{\C}{\sb{x, y, 1}}{x}. $$
 This is a homeomorphism onto its image with inverse
-\begin{align*}
-\rb{\phi_p}^{-1} : Im\rb{\phi_p} & \to U_p^{2, y} \\
-x & \mapsto \sb{x, g\rb{x}, 1}.
-\end{align*}
+$$ \function[\phi_p^{-1}]{Im\rb{\phi_p}}{U_p^{2, y}}{x}{\sb{x, g\rb{x}, 1}}. $$
 If on the other hand $ f_y\rb{a, b} = 0 $, then we have $ f_x\rb{a, b} \ne 0 $, and we define in the same way using $ x $ as a function of $ y $ to get
-\begin{align*}
-U_p^{2, x} = \cb{\rb{h\rb{y}, y} \mid y \in W}, \qquad \phi_p : U_p^{2, x} & \to \C \\
-\sb{x, y, 1} & \mapsto y.
-\end{align*}
+$$ U_p^{2, x} = \cb{\rb{h\rb{y}, y} \mid y \in W}, \qquad \function[\phi_p]{U_p^{2, x}}{\C}{\sb{x, y, 1}}{y}. $$
 Moreover, if $ p \in U_1 \setminus U_2 $ or $ p \in U_0 \setminus \rb{U_1 \cup U_2} $, we also define
 $$ U_p^{1, y}, \qquad U_p^{1, x}, \qquad U_p^{0, y}, \qquad U_p^{0, x}, $$
 in the exact same manner. Note that $ x $ and $ y $ mean different things in different affine charts. We have to check that transition functions between these open sets are biholomorphic. There are three cases.
@@ -3448,13 +3315,10 @@ in the exact same manner. Note that $ x $ and $ y $ mean different things in dif
 \item Now we have to look at open subsets that we get from points that live in different affine charts $ U_i $. Assume for example that $ U_p^{2, y} \cap U_{p'}^{1, \widetilde{z}} \ne \emptyset $. The other cases are analogous. Write
 $$ C \cap U_1 = \cb{P\rb{\widetilde{x}, 1, \widetilde{z}} = 0}, \qquad \tilde{x} = \dfrac{x_0}{x_1}, \qquad \tilde{z} = \dfrac{x_2}{x_1}, $$
 and $ C \cap U_2 = \cb{P\rb{x, y, 1} = 0} $, where $ x, y $ are as above. Then in points of $ U_p^{2, y} \cap U_{p'}^{1, \widetilde{z}} $ the two charts are given by
-\begin{alignat*}{2}
-\phi_p : U_p^{2, y} & \to \C & \qquad \phi_{p'} : U_{p'}^{1, \widetilde{z}} & \to \C \\
-\sb{x, y, 1} & \mapsto x, & \qquad \sb{\widetilde{x}, 1, \widetilde{z}} & \mapsto \widetilde{x}
-\end{alignat*}
+$$ \function[\phi_p]{U_p^{2, y}}{\C}{\sb{x, y, 1}}{x}, \qquad \function[\phi_{p'}]{U_{p'}^{1, \widetilde{z}}}{\C}{\sb{\widetilde{x}, 1, \widetilde{z}}}{\widetilde{x}} $$
 respectively. If $ y = g\rb{x} $ on $ U_p^{2, y} $ and $ \widetilde{z} = h\rb{\widetilde{x}} $ on $ U_{p'}^{1, \widetilde{z}} $ are the two holomorphic functions coming from the implicit function theorem, then the transition function is given by
 $$
-\begin{array}{cccccc}
+\begin{array}{crcccl}
 \phi_{p'} \circ \phi_p^{-1} : & \phi_p\rb{U_p^{2, y} \cap U_{p'}^{1, \widetilde{z}}} & \to & U_p^{2, y} \cap U_{p'}^{1, \widetilde{z}} & \to & \phi_{p'}\rb{U_p^{2, y} \cap U_{p'}^{1, \widetilde{z}}} \\
 & x & \mapsto & \sb{x, g\rb{x}, 1} = \sb{\dfrac{x}{g\rb{x}}, 1, \dfrac{1}{g\rb{x}}} & \mapsto & \dfrac{x}{g\rb{x}} = \widetilde{x}
 \end{array},
@@ -3525,10 +3389,7 @@ be holomorphic functions. Show that $ g \circ f : S_1 \to S_3 $ is holomorphic.
 \begin{example1}
 \label{eg:15.12}
 Let $ C \subseteq \P^2 $ be a smooth plane projective curve and assume that $ \sb{0, 0, 1} \notin C $.
-\begin{align*}
-\pi : C & \to \P^1 \\
-\sb{x_0, x_1, x_2} & \mapsto \sb{x_0, x_1}
-\end{align*}
+$$ \function[\pi]{C}{\P^1}{\sb{x_0, x_1, x_2}}{\sb{x_0, x_1}} $$
 is not defined on $ \sb{0, 0, 1} $, so assume $ \sb{0, 0, 1} \notin C $. This function defines a holomorphic map (Exercise) that we will eventually use to prove the degree-genus formula.
 \end{example1}
 
@@ -3656,17 +3517,7 @@ is a meromorphic function, so only has poles.
 
 \begin{lemma}
 If $ X $ is connected, there is a one-to-one correspondence
-$$ \cb{
-\begin{array}{c}
-\text{meromorphic functions } \\
-f : X \to \C \cup \cb{\infty}
-\end{array}
-} \qquad \leftrightsquigarrow \qquad \cb{
-\begin{array}{c}
-\text{holomorphic functions } \widetilde{f} : X \to \P^1 \\
-\text{ that are not constantly } \infty
-\end{array}
-}. $$
+$$ \correspondence{\text{meromorphic functions} \\ f : X \to \C \cup \cb{\infty}}{\text{holomorphic functions} \ \widetilde{f} : X \to \P^1 \\ \text{that are not constantly} \ \infty}. $$
 \end{lemma}
 
 A fact is that one can prove that there always are non-constant meromorphic functions on any Riemann surface.
@@ -3675,16 +3526,13 @@ A fact is that one can prove that there always are non-constant meromorphic func
 We cover $ \P^1 $ with the two standard charts
 $$ U_0 = \cb{\sb{x_0, x_1} \mid x_0 \ne 0}, \qquad U_1 = \cb{\sb{x_0, x_1} \mid x_1 \ne 0}, $$
 and identify $ \P^1 $ with $ \C \cup \cb{\infty} $, with $ \C = U_1 $ and $ \infty = \sb{1, 0} $. This gives a bijection
-$$ \cb{\text{functions } f : X \to \C \cup \cb{\infty}} \qquad \leftrightsquigarrow \qquad \cb{\text{functions } \widetilde{f} : X \to \P^1}. $$
+$$ \correspondence{\text{functions} \ f : X \to \C \cup \cb{\infty}}{\text{functions} \ \widetilde{f} : X \to \P^1}. $$
 We just have to prove that $ f $ is meromorphic if and only if $ \widetilde{f} $ is holomorphic. Let $ a \in X $ be such that $ f\rb{a} \ne \infty $. Then there is a chart $ \rb{U, \phi_U} $ around $ a $, where $ f $ never takes the value $ \infty $, so $ f $ restricts to
 $$ f : U \to \C \subseteq \C \cup \cb{\infty} = U_1 \cup \cb{\infty} = \P^1, $$
 and the function $ F = f \circ \phi_U^{-1} $ is holomorphic if and only if it is meromorphic. All that is left is to look at points with $ f\rb{a} = \infty $. Around such a point $ a $, assume first that $ f $ is meromorphic. Then there is a chart $ \rb{U, \phi_U} $ around $ a $ such that the function
 $$ F = f \circ \phi_U^{-1} : \phi_U\rb{U} \to \C \cup \cb{\infty} $$
 is meromorphic. By shrinking $ U $ we may assume that $ a $ is the only pole in $ U $ and $ U $ contains no zeroes of $ f $. To pass to the chart $ U_0 $ in $ \P^1 $, where $ \infty \in \P^1 $ becomes $ 0 \in \C $, just have to take $ 1 / F\rb{z} $, which is a well-defined holomorphic map on $ \phi_U\rb{U} $, and it is the function that represents $ \widetilde{f} $ using the chart $ U_0 $ on the target $ \P^1 $. Therefore $ \widetilde{f} $ is holomorphic around $ a $. On the other hand, assume that $ \widetilde{f} $ is holomorphic around $ a $. Choose a chart $ \rb{U, \phi_U} $ around $ a $ such that $ a $ is the only point such that $ f\rb{a} = \infty $, $ \phi_U\rb{a} = 0 $, and $ U $ contains no zeroes of $ \widetilde{f} $. And let $ \rb{V, \psi_V} $ be the chart of $ \P^1 $ around $ \infty $ given by $ V = U_0 $, and
-\begin{align*}
-\psi_V : U_0 & \to \C \\
-\sb{x_0, x_1} & \mapsto \dfrac{x_1}{x_0}.
-\end{align*}
+$$ \function[\psi_V]{U_0}{\C}{\sb{x_0, x_1}}{\dfrac{x_1}{x_0}}. $$
 In this chart, $ \infty \in \P^1 $ corresponds to $ 0 \in \C $. Then by assumption the function
 $$ F = \psi_V \circ f \circ \phi_U^{-1} $$
 is holomorphic. Assume that $ \phi_U\rb{U} $ is a small disc and $ a \mapsto 0 $ in this disc. Then $ F\rb{a} = 0 $, so write, after possibly shrinking $ U $,
@@ -3696,14 +3544,13 @@ where $ h\rb{z} = 1 / g\rb{z} $ is holomorphic around $ z = 0 $, and therefore i
 
 \begin{example1}
 Recall that a rational function over $ \C $ is of the form $ f\rb{z} = p\rb{z} / q\rb{z} $, where $ p, q \in \C\sb{z} $ are polynomials with no common factor. Then $ f $ defines a meromorphic function on $ \P^1 $, or equivalently a holomorphic function $ f : \P^1 \to \P^1 $. Explicitly, if $ f : \C \to \C $ is rational, the associated map is defined by
-\begin{align*}
-f : \P^1 = \C \cup \cb{\infty} & \to \C \cup \cb{\infty} \\
-z & \mapsto \begin{cases}
+$$ \function[f]{\P^1 = \C \cup \cb{\infty}}{\C \cup \cb{\infty}}{z}{
+\begin{cases}
 \dfrac{p\rb{z}}{q\rb{z}} & q\rb{z} \ne 0 \\
 \infty & q\rb{z} = 0 \\
 \lim_{\abs{z} \to \infty} \dfrac{p\rb{z}}{q\rb{z}} & z = \infty
-\end{cases}.
-\end{align*}
+\end{cases}
+}. $$
 This is holomorphic. (Exercise) Note that if $ f = p / q $ is non-constant, $ f : \P^1 \to \P^1 $ is surjective. Indeed, if $ f $ is non-constant, $ \max\cb{\deg\rb{p}, \deg\rb{q}} > 0 $. Assume for example that $ \deg\rb{p} > \deg\rb{q} $. Other cases are similar. Then if $ a \in \C $,
 $$ f\rb{z} = a \qquad \iff \qquad \dfrac{p\rb{z}}{q\rb{z}} = a \qquad \iff \qquad p\rb{z} - aq\rb{z} = 0. $$
 This is a polynomial equation of degree $ \deg\rb{p} $, so has $ \deg\rb{p} $ solutions, counted with multiplicity, for $ z \in \C $. It remains to check that there is $ z \in \C $ for which $ f\rb{z} = \infty $, which is also true. But since $ \deg\rb{p} > \deg\rb{q} $, $ p\rb{z} / q\rb{z} $ behaves like a polynomial of degree $ \deg\rb{p} - \deg\rb{q} $ when $ z \to \infty $, so $ f $ has a pole of order $ \deg\rb{p} - \deg\rb{q} $ at $ \infty $, and the other poles of $ f $ are solutions to $ q\rb{z} = 0 $ counted with multiplicity, which are the $ \deg\rb{q} $ zeroes of $ q $, so that $ f\rb{z} = \infty $ also has $ \deg\rb{p} $ solutions counted with multiplicity.
@@ -3727,21 +3574,15 @@ Any holomorphic map $ f : \P^1 \to \P^1 $ is defined by a rational function.
 
 \begin{remark1}
 The example of
-$$ \cb{\text{holomorphic maps } \P^1 \to \P^1} \qquad \leftrightsquigarrow \qquad \cb{\text{rational functions}} $$
+$$ \correspondence{\text{holomorphic maps} \ \P^1 \to \P^1}{\text{rational functions}} $$
 illustrates an important point. We have combined the notions of holomorphy and compactness, both on the source and target, and have found that the result is algebraic, defined by polynomials. This is the first instance of a remarkable phenomenon connecting algebraic and analytic geometries, here Riemann surfaces and algebraic curves, called the \textbf{GAGA principle}, from the paper g\'eom\'etrie alg\'ebrique et g\'eom\'etrie analytique by J P Serre, that turns out to be very general.
 \end{remark1}
 
 \begin{example1}
 Recall the holomorphic map
-\begin{align*}
-f : \P^2 \supseteq C & \to \P^1 \\
-\sb{x_0, x_1, x_2} & \mapsto \sb{x_0, x_1},
-\end{align*}
+$$ \function[f]{C \subseteq \P^2}{\P^1}{\sb{x_0, x_1, x_2}}{\sb{x_0, x_1}}, $$
 for $ \sb{0, 0, 1} \notin C $ defined in Example \ref{eg:15.12}. $ f $ is the meromorphic function
-\begin{align*}
-f : C & \to \C \cup \cb{\infty} \\
-\sb{x_0, x_1, x_2} & \mapsto \dfrac{x_0}{x_1},
-\end{align*}
+$$ \function[f]{C}{\C \cup \cb{\infty}}{\sb{x_0, x_1, x_2}}{\dfrac{x_0}{x_1}}, $$
 using the chart $ U_1 = \C $ on the target $ \P^1 $. Note that the only point where $ x_0 / x_1 $ is undefined is $ \sb{0, 0, 1} $, which we are assuming is not contained in $ C $. To check carefully that $ f $ is meromorphic, use the charts constructed in Lemma \ref{lem:15.5}. (Exercise)
 \end{example1}
 
@@ -3752,7 +3593,7 @@ We could define more complicated holomorphic maps $ C \to \P^1 $ by taking any p
 \begin{exercise}
 \label{ex:48}
 Prove that if $ f $ is non-constant, then it has to be non-constant on any non-empty open subset of $ X $. Hint is to suppose that $ f $ is constant on a non-empty open $ U \subseteq X $, with value $ a \in Y $. Show that the union
-$$ \emptyset \ne U \subseteq \bigcup_{V \subseteq X \text{ open}, \ f\rb{V} = \cb{a} \subseteq Y} \subseteq X $$
+$$ \emptyset \ne U \subseteq \bigcup_{V \subseteq X \ \text{open}, \ f\rb{V} = \cb{a} \subseteq Y} \subseteq X $$
 is both open and closed in $ X $, and non-empty. Then by connectedness it is equal to $ X $.
 \end{exercise}
 
@@ -3768,10 +3609,7 @@ are isolated on $ U $. If $ f^{-1}\rb{a} $ is not discrete at $ x $, then there 
 
 \begin{example1}
 Let $ a = \sb{a_0, a_1} \in \P^1 $, and consider
-\begin{align*}
-f : C & \to \P^1 \\
-\sb{x_0, x_1, x_2} & \mapsto \sb{x_0, x_1},
-\end{align*}
+$$ \function[f]{C}{\P^1}{\sb{x_0, x_1, x_2}}{\sb{x_0, x_1}}, $$
 the map defined in Example \ref{eg:15.12}. The set
 $$ f^{-1}\rb{a} = \cb{\sb{ta_0, ta_1, z} \mid t \in \C^*, \ z \in \C, \ P\rb{ta_0, ta_1, z} = 0} $$
 is almost the set of solutions of the homogeneous polynomial
@@ -3814,10 +3652,7 @@ at $ x \in X $.
 \begin{example1}
 \label{eg:17.9}
 Let $ n \in \N $, and consider the holomorphic function
-\begin{align*}
-f : \C & \to \C \\
-z & \mapsto z^n.
-\end{align*}
+$$ \function[f]{\C}{\C}{z}{z^n}. $$
 Then $ 0 \in \C $ is the only ramification point of $ f $, unless $ n = 1 $, in which case there is not any.
 \end{example1}
 
@@ -3873,12 +3708,9 @@ For all but finitely many points of $ Y $, we have $ v_f\rb{x} = 1 $ for all $ x
 \begin{example1}
 \label{eg:17.11}
 If
-\begin{align*}
-f : \P^2 \supseteq C = \cb{P = 0} & \to \P^1 \\
-\sb{x_0, x_1, x_2} & \mapsto \sb{x_0, x_1},
-\end{align*}
-for $ \sb{0, 0, 1} \notin C $ is as in Example \ref{eg:15.12}. For fixed $ \sb{a_0, a_1} \in \P^1 $,
-$$ f^{-1}\rb{a_0, a_1} = \cb{\sb{ta_0, ta_1, z} \mid t \in \C^*, \ z \in \C, \ P\rb{ta_0, ta_1, z} = 0}. $$
+$$ \function[f]{C = \cb{P = 0} \subseteq \P^2}{\P^1}{\sb{x_0, x_1, x_2}}{\sb{x_0, x_1}}, $$
+for $ \sb{0, 0, 1} \notin C $ is as in Example \ref{eg:15.12}, for fixed $ \sb{a_0, a_1} \in \P^1 $,
+$$ f^{-1}\rb{a_0, a_1} = \cb{\sb{ta_0, ta_1, z} \mid t \in \C^*, \ z \in \C, \ P\rb{ta_0, ta_1, z} = 0}, $$
 where
 $$ Q\rb{t, z} = P\rb{ta_0, ta_1, z} $$
 is a homogeneous polynomial of two variables of degree $ \deg\rb{P} $. A point $ \sb{ta_0, ta_1, z} $ is a ramification point of $ f $ over $ \sb{a_0, a_1} $ if and only if $ \cb{P\rb{ta_0, ta_1, z} = 0} $ has repeated roots, if and only if $ \rb{t_0, z_0} $ is a repeated root of $ Q\rb{t, z} $, and the multiplicity of the root corresponds to the ramification index. (Exercise) We thus have $ \deg\rb{f} = \deg\rb{P} $.
@@ -3975,17 +3807,11 @@ $$ g\rb{X} \ge g\rb{Y}. $$
 \hfill
 \begin{itemize}
 \item Compute $ g\rb{\P^1} $.
-\begin{align*}
-f : \P^1 & \to \P^1 \\
-z & \mapsto z^2
-\end{align*}
+$$ \function[f]{\P^1}{\P^1}{z}{z^2} $$
 is non-constant. Degree is two, ramified at $ 0 $ and $ \infty $, so $ v_f\rb{0} = v_f\rb{\infty} = 2 $. By Riemann-Hurwitz,
 $$ 2g\rb{\P^1} - 2 = 2\rb{2g\rb{\P^1} - 2} + 2 \qquad \implies \qquad g = 0. $$
 \item Compute $ g\rb{C} $ where $ C $ is a smooth plane cubic.
-\begin{align*}
-f : C = \cb{y^2 = x\rb{x - 1}\rb{x - \lambda}} & \to \P^1 \\
-\rb{x, y} & \mapsto x.
-\end{align*}
+$$ \function[f]{C = \cb{y^2 = x\rb{x - 1}\rb{x - \lambda}}}{\P^1}{\rb{x, y}}{x}. $$
 for $ \lambda \in \C \setminus \cb{0, 1} $, so $ \deg\rb{f} = 2 $. There are four ramification points $ x = 0, 1, \lambda, \infty $, so $ v_f\rb{p} = 2 $ at all of these points. By Riemann-Hurwitz,
 $$ 2g\rb{C} - 2 = 2\rb{-2} + 4 = 0 \qquad \implies \qquad g\rb{C} = 1. $$
 \end{itemize}
@@ -4022,10 +3848,7 @@ For $ d = 1, 2 $ we get $ g\rb{C} = 0 $, and for $ d = 3 $ we get $ g\rb{C} = 1 
 
 \begin{proof}
 Let $ C = \cb{P = 0} \subseteq \P^2 $, where $ P $ is a homogeneous polynomial of degree $ d $. Up to projective transformation, we may assume that $ \sb{0, 0, 1} \notin C $ and we consider, as above, the holomorphic map
-\begin{align*}
-f : C & \to \P^1 \\
-\sb{x_0, x_1, x_2} & \mapsto \sb{x_0, x_1},
-\end{align*}
+$$ \function[f]{C}{\P^1}{\sb{x_0, x_1, x_2}}{\sb{x_0, x_1}}, $$
 defined in Example \ref{eg:15.12}. Then as noted in Example \ref{eg:17.11}, the degree of $ f $ is $ n $, so that, by the Riemann-Hurwitz formula, the genus of $ C $ satisfies
 $$ 2g\rb{C} - 2 = \deg\rb{f}\rb{-2} + \sum_{p \in C} \rb{v_f\rb{p} - 1} \qquad \implies \qquad g\rb{C} = 1 - d + \dfrac{1}{2}\sum_{p \in C} \rb{v_f\rb{p} - 1}. $$
 since we have seen $ \deg\rb{f} = \deg\rb{P} = d $. Claim that, after possibly applying a projective transformation, I can assume $ v_f\rb{p} = 2 $ for all ramification points in $ C $.
@@ -4041,7 +3864,7 @@ Check that $ p $ has multiplicity at least three in this, if and only if $ \HH_P
 \item As mentioned in Remark \ref{rem:13.6}, $ C $ has finitely many points of inflection.
 \end{itemize}
 Consider
-$$ C' = C \cup \bigcup_{q \text{ inflection point of } C} T_q\rb{C} \subseteq \P^2. $$
+$$ C' = C \cup \bigcup_{q \ \text{inflection point of} \ C} T_q\rb{C} \subseteq \P^2. $$
 Pick $ p_0 $ in the complement of $ C' $ and send that to $ \sb{0, 0, 1} $, and consider the new $ f : C \to \P^1 $. We may therefore assume, up to projective transformation of $ \P^2 $, that $ \sb{0, 0, 1} $ does not lie on $ C' $, so that
 $$ v_f\rb{p} = I\rb{p, C, T_p\rb{C}} = 2, $$
 for every ramification point of $ C $. Let $ N $ be the number of ramification points of $ f $. We have
@@ -4050,7 +3873,7 @@ so that in order to prove the degree-genus formula, we have to show that
 $$ N = d\rb{d - 1}. $$
 We use B\'ezout's theorem to count ramification points. Since
 \begin{align*}
-p \in C \text{ is a ramification point} \qquad
+p \in C \ \text{is a ramification point} \qquad
 & \iff \qquad \sb{0, 0, 1} \in T_p\rb{C} \\
 & \iff \qquad P_{x_0}\rb{p} \cdot x_0 + P_{x_1}\rb{p} \cdot x_1 + P_{x_2}\rb{p} \cdot x_2 = 0 \\
 & \iff \qquad P_{x_2}\rb{p} = 0,
@@ -4070,31 +3893,15 @@ $$ P_{x_i, x_j} = \dfrac{\partial^2 P}{\partial x_i\partial x_j}, $$
 recalling that $ \rb{p_0, p_1} \ne \rb{0, 0} $, since $ \sb{0, 0, 1} \notin C $. The point $ p $ is a smooth point of $ D $, because otherwise
 $$ \rb{P_{x_2, x_0}\rb{p}, P_{x_2, x_1}\rb{p}, P_{x_2, x_2}\rb{p}} = \rb{0, 0, 0}, $$
 and then $ p $ would be an inflection point of $ C $, by Definition \ref{def:13.2}. If these vanish, then
-$$ \HH_P\rb{p} = \det\begin{pmatrix}
-P_{x_0, x_0} & P_{x_0, x_1} & P_{x_0, x_2} \\
-P_{x_0, x_1} & P_{x_1, x_1} & P_{x_1, x_2} \\
-P_{x_0, x_2} & P_{x_1, x_2} & P_{x_2, x_2}
-\end{pmatrix} = 0. $$
+$$ \HH_P\rb{p} = \det\threebythree{P_{x_0, x_0}}{P_{x_0, x_1}}{P_{x_0, x_2}}{P_{x_0, x_1}}{P_{x_1, x_1}}{P_{x_1, x_2}}{P_{x_0, x_2}}{P_{x_1, x_2}}{P_{x_2, x_2}} = 0. $$
 So $ p $ is a smooth point of $ D $. Finally let us prove that $ T_p\rb{C} \ne T_p\rb{D} $. Otherwise, we would have $ \sb{0, 0, 1} \in T_p\rb{D} $, because $ \sb{0, 0, 1} \in T_p\rb{C} $, and therefore
 $$ P_{x_2}\rb{p} = P_{x_2, x_2}\rb{p} = 0. $$
 Recall that, by Lemma \ref{lem:13.3},
-$$ x_1^2 \cdot \HH_P = \rb{d - 1}^2 \cdot \det \begin{pmatrix}
-P_{x_0, x_0} & P_{x_0} & P_{x_0, x_2} \\
-P_{x_0} & \tfrac{d}{d - 1} \cdot P & P_{x_2} \\
-P_{x_0, x_2} & P_{x_2} & P_{x_2, x_2}
-\end{pmatrix}, $$
+$$ x_1^2 \cdot \HH_P = \rb{d - 1}^2 \cdot \det\threebythree{P_{x_0, x_0}}{P_{x_0}}{P_{x_0, x_2}}{P_{x_0}}{\tfrac{d}{d - 1} \cdot P}{P_{x_2}}{P_{x_0, x_2}}{P_{x_2}}{P_{x_2, x_2}}, $$
 so that
-$$ p_1^2 \cdot \HH_P\rb{p} = \rb{d - 1}^2 \cdot \det\begin{pmatrix}
-P_{x_0, x_0} & P_{x_0} & P_{x_0, x_2} \\
-P_{x_0} & 0 & 0 \\
-P_{x_0, x_2} & 0 & 0
-\end{pmatrix} = 0. $$
+$$ p_1^2 \cdot \HH_P\rb{p} = \rb{d - 1}^2 \cdot \det\threebythree{P_{x_0, x_0}}{P_{x_0}}{P_{x_0, x_2}}{P_{x_0}}{0}{0}{P_{x_0, x_2}}{0}{0} = 0. $$
 Do the same for $ p_0 $,
-$$ p_0^2 \cdot \HH_P\rb{p} = \rb{d - 1}^2 \cdot \det\begin{pmatrix}
-0 & P_{x_1} & 0 \\
-P_{x_1} & P_{x_1, x_1} & P_{x_1, x_2} \\
-0 & P_{x_1, x_2} & 0
-\end{pmatrix} = 0. $$
+$$ p_0^2 \cdot \HH_P\rb{p} = \rb{d - 1}^2 \cdot \det\threebythree{0}{P_{x_1}}{0}{P_{x_1}}{P_{x_1, x_1}}{P_{x_1, x_2}}{0}{P_{x_1, x_2}}{0} = 0. $$
 Since $ \rb{p_0, p_1} \ne \rb{0, 0} $, $ p $ would be an inflection point, a contradiction. We have thus proved that $ I\rb{p, C, D} = 1 $ for all $ p \in C \cap D $, and this finishes the proof of the degree-genus formula.
 \end{proof}
 
@@ -4108,17 +3915,19 @@ In this course, we have only looked at complex projective plane curves, or compl
 \item Moduli spaces. Classify smooth curves up to isomorphism. One discrete invariant is the genus. For $ g = 0 $, there is only $ \P^1 $. For $ g = 1 $, cubics, there is an infinite family
 $$ y^2 = x\rb{x - 1}\rb{x - \lambda}, \qquad \lambda \in \C \setminus \cb{0, 1}. $$
 The space of curves of genus one is isomorphic to $ \C $. Coordinate is the $ j $-invariant. The moduli space of isomorphism classes of genus $ g $,
-$$ M_g = \cb{\text{isomorphism classes of genus } g \text{ curves}}, $$
+$$ M_g = \cb{\text{isomorphism classes of genus} \ g \ \text{curves}}, $$
 has a natural structure of an algebraic variety, defined by polynomial equations in some $ \P^N $.
 \item Arithmetic geometry. Work over other fields, such as $ \Q $, or over rings, such as $ \Z $,
 $$ 2x^2 + 3y^2 = 100. $$
 Characteristic zero talks to characteristic $ p $.
 \item Computational or combinatorial algebraic geometry. Algorithms to find nice sets of equations to
-$$ \begin{cases}
+$$
+\begin{cases}
 p_1 = 0 \\
 \vdots \\
 p_k = 0
-\end{cases}. $$
+\end{cases}.
+$$
 \end{itemize}
 
 \end{document}

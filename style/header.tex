@@ -12,6 +12,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{mathtools}
+\usepackage{stmaryrd}
 \usepackage{tikz-cd}
 \usepackage{csquotes}
 
@@ -48,24 +49,84 @@
 
 % Macros
 
-\newcommand{\two}[2]{
+\newcommand{\lecture}[3]{
+  \marginpar{
+    Lecture #1 \\
+    #2
+    #3
+  }
+}
+
+\newcommand{\function}[5][]{
+  \ifx &#1&
+    \begin{array}{rcl}
+      #2 & \to     & #3 \\
+      #4 & \mapsto & #5
+    \end{array}
+  \else
+    \begin{array}{crcl}
+      #1 : & #2 & \to     & #3 \\
+           & #4 & \mapsto & #5
+    \end{array}
+  \fi
+}
+
+\newcommand{\correspondence}[2]{
+  \cb{
+    \begin{array}{c}
+      #1
+    \end{array}
+  }
+  \qquad
+  \leftrightsquigarrow
+  \qquad
+  \cb{
+    \begin{array}{c}
+      #2
+    \end{array}
+  }
+}
+
+\newcommand{\onebytwo}[2]{
+  \begin{pmatrix}
+    #1 & #2
+  \end{pmatrix}
+}
+
+\newcommand{\onebythree}[3]{
+  \begin{pmatrix}
+    #1 & #2 & #3
+  \end{pmatrix}
+}
+
+\newcommand{\twobyone}[2]{
   \begin{pmatrix}
     #1 \\
     #2
   \end{pmatrix}
-} % 2 x 1 matrix
-\newcommand{\three}[3]{
-  \begin{pmatrix}
-    #1 & #2 & #3
-  \end{pmatrix}
-} % 1 x 3 matrix
+}
 
-\newcommand{\lecture}[3]{
-  \marginpar{
-    Lecture #1 \\
+\newcommand{\twobytwo}[4]{
+  \begin{pmatrix}
+    #1 & #2 \\
+    #3 & #4
+  \end{pmatrix}
+}
+
+\newcommand{\threebyone}[3]{
+  \begin{pmatrix}
+    #1 \\
     #2 \\
     #3
-  }
+  \end{pmatrix}
+}
+
+\newcommand{\threebythree}[9]{
+  \begin{pmatrix}
+    #1 & #2 & #3 \\
+    #4 & #5 & #6 \\
+    #7 & #8 & #9
+  \end{pmatrix}
 }
 
 % Commands
@@ -75,9 +136,7 @@
 \newcommand{\fb}[1]{\left\langle #1 \right\rangle} % Floor brackets
 \newcommand{\rb}[1]{\left( #1 \right)} % Round brackets
 \renewcommand{\sb}[1]{\left[ #1 \right]} % Square brackets
-
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert} % Absolute
-\newcommand{\val}[1]{\left. #1 \right\rvert} % Valuation
 
 \newcommand{\F}{\mathbb{F}} % Finite fields
 \newcommand{\N}{\mathbb{N}} % Natural numbers
@@ -95,6 +154,8 @@
 \newcommand{\HH}{\mathcal{H}} % Calligraphic H
 \newcommand{\LL}{\mathcal{L}} % Calligraphic L
 \renewcommand{\SS}{\mathcal{S}} % Calligraphic S
+
+\newcommand{\acts}{\curvearrowright}
 
 \newcommand{\notb}[1]{\rb{\neg #1}} % Negation
 \newcommand{\orb}[2]{\rb{#1 \lor #2}} % Disjunction

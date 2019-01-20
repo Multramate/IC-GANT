@@ -10,16 +10,14 @@
 
 \input{../style/main}
 
-\lecture{1}{Friday}{05/10/18}
-
 \section{Introduction}
 
+\lecture{1}{Friday}{05/10/18}
+
 This course is an introduction to ring theory. The topics covered will include ideals, factorisation, the theory of field extensions, finite fields, polynomial rings in several variables, and the theory of modules. In addition to the lecture notes, the following will cover much of the material we will be studying.
-
-\begin{enumerate}
+\begin{itemize}
 \item M Artin, Algebra, 1991
-\end{enumerate}
-
+\end{itemize}
 Rings are contexts in which it makes sense to add and multiply. For example, $ \Z $, $ \Q $, $ \R $, $ \C $, polynomials, functions $ \cb{0, 1} \to \R $, and $ \Z / n\Z $ are rings. The goals of this course include
 \begin{itemize}
 \item to unify arguments that apply in all of the above contexts, and
@@ -89,7 +87,11 @@ Thus
 $$ 0_R = -\rb{r \cdot_R 0_R} +_R \rb{r \cdot_R 0_R} = -\rb{r \cdot_R 0_R} +_R \rb{r \cdot_R 0_R +_R r \cdot_R 0_R} = r \cdot_R 0_R. $$
 \end{proof}
 
-Note that some definitions of rings require $ 1_R \ne 0_R $ in $ R $. We will not do this. However, it is not hard to see the following.
+\begin{note}
+Some definitions of rings require $ 1_R \ne 0_R $ in $ R $.
+\end{note}
+
+We will not do this. However, it is not hard to see the following.
 
 \begin{proposition}
 If $ 0_R = 1_R $, then $ R $ is the one-element ring $ \cb{0_R} $.
@@ -229,7 +231,7 @@ If $ a \ne 0 $ in $ R $, then $ b / a \in K\rb{R} $, so
 $$ \dfrac{a}{b} \cdot \dfrac{b}{a} = \dfrac{ab}{ba} \sim \dfrac{1}{1}. $$
 \end{definition}
 
-The field $ K\rb{R} $ is in some sense the smallest field containing $ R $ as a subring. When we talk about homomorphisms and isomorphisms, we will be able to state this more precisely. More generally, let the \text{multiplicative system} $ S $ be a subset of $ R $ that contains $ 1_R $, does not contain $ 0_R $ and is closed under multiplication. That is, if $ a, b $ are in $ S $ then so is $ ab $. For any integral domain $ R $ and any multiplicative system $ S $, we can define $ S^{-1}R $ to be the subring of $ K\rb{R} $ consisting of all fractions of the form $ a / b $ with $ b \in S $. It is easy to see that this is closed under addition and multiplication, and defines a ring in between $ R $ and $ K\rb{R} $.
+The field $ K\rb{R} $ is in some sense the smallest field containing $ R $ as a subring. When we talk about homomorphisms and isomorphisms, we will be able to state this more precisely. More generally, let the \textbf{multiplicative system} $ S $ be a subset of $ R $ that contains $ 1_R $, does not contain $ 0_R $ and is closed under multiplication. That is, if $ a, b $ are in $ S $ then so is $ ab $. For any integral domain $ R $ and any multiplicative system $ S $, we can define $ S^{-1}R $ to be the subring of $ K\rb{R} $ consisting of all fractions of the form $ a / b $ with $ b \in S $. It is easy to see that this is closed under addition and multiplication, and defines a ring in between $ R $ and $ K\rb{R} $.
 
 \begin{example2}
 If $ R = \Z $ and $ S $ is the set of powers of $ 2 $, then $ S^{-1}R = \Z\sb{1 / 2} $. On the other hand, if $ S $ is the set of odd integers, then $ S^{-1}R $ is the set of all rational numbers of the form $ a / b $ with $ b $ odd.
@@ -256,9 +258,11 @@ $$ f\rb{r \cdot_R r'} = f\rb{r} \cdot_S f\rb{r'}. $$
 \end{enumerate}
 \end{definition}
 
-Note that if $ f $ is a homomorphism then $ f\rb{0_R} = 0_S $. This is because
+\begin{note}
+If $ f $ is a homomorphism then $ f\rb{0_R} = 0_S $. This is because
 $$ f\rb{0_R} = f\rb{0_R + 0_R} = f\rb{0_R} +_S f\rb{0_R}. $$
 Adding the additive inverse, in $ S $, of $ f\rb{0_R} $ to both sides gives $ 0_S = f\rb{0_R} $. Thus we do not need to require this as an axiom. On the other hand we do need to require $ f\rb{1_R} = 1_S $. For certain $ R, S $ one can construct examples of maps $ f : R \to S $ that satisfy properties $ 2 $ and $ 3 $ of the definition without satisfying property $ 1 $.
+\end{note}
 
 \begin{definition}
 A bijective homomorphism $ f : R \to S $ is called an \textbf{isomorphism}. Write $ S \cong R $ for $ S $ is isomorphic to $ R $. In this case one verifies easily that the inverse map $ f^{-1} : S \to R $ is also a bijective homomorphism.
@@ -277,11 +281,13 @@ In fact, this is a special case of the following construction.
 
 \begin{proposition}
 Let $ R $ be any ring. Then there is a unique ring homomorphism $ f : \Z \to R $ such that
-$$ f\rb{n} = \begin{cases}
+$$ f\rb{n} =
+\begin{cases}
 1_R + \dots + 1_R & n > 0 \\
 0_R & n = 0 \\
 -\rb{1_R + \dots + 1_R} & n < 0
-\end{cases}. $$
+\end{cases}.
+$$
 \end{proposition}
 
 \begin{proof}
@@ -301,15 +307,9 @@ $$ P\rb{X} = r_0 + \dots + r_nX^n, \qquad n \in \Z_{\ge 0}, \qquad r_i \in R. $$
 Then $ P\rb{s} $ for $ s \in R $ is defined to be
 $$ P\rb{s} = r_0 + \dots + r_ns^n \in R. $$
 Consider the map
-\begin{align*}
-\phi_s : R\sb{X} & \to R \\
-P\rb{X} & \mapsto P\rb{s}.
-\end{align*}
+$$ \function[\phi_s]{R\sb{X}}{R}{P\rb{X}}{P\rb{s}}. $$
 In effect, it substitutes $ s $ for $ X $. It is easy to check that this is in fact a ring homomorphism. More generally, if $ R $ and $ S $ are rings and $ f : R \to S $ is a homomorphism, and $ s $ is an element of $ S $, then we can define a map
-\begin{align*}
-\phi_{s, f} : R\sb{X} & \to S \\
-r_0 + \dots + r_nX^n & \mapsto f\rb{r_0} + \dots + f\rb{r_n}s^n
-\end{align*}
+$$ \function[\phi_{s, f}]{R\sb{X}}{S}{r_0 + \dots + r_nX^n}{f\rb{r_0} + \dots + f\rb{r_n}s^n}. $$
 That is, by applying $ f $ to the coefficients and substituting $ s $ for $ X $. Again, this is clearly a homomorphism. The evaluation homomorphisms $ \phi_{s, f} $ are a fundamental property of polynomial rings. In some sense, they are the reason polynomial rings are worth studying. In fact, the ring $ R\sb{X} $ is uniquely characterised by the fact that homomorphisms from $ R\sb{X} $ to $ S $ are in bijection with pairs $ \rb{s, f} $, where $ f : R \to S $ is a homomorphism and $ s $ is an element of $ S $.
 
 \subsection{Images, kernels, and ideals}
@@ -335,11 +335,21 @@ By contrast, the kernel of a homomorphism $ f $ is almost never a subring of $ R
 A nonempty subset $ I $ of $ R $ is an \textbf{ideal} of $ R $ if $ I $ is closed under addition, that is for all elements $ i, j $ of $ I $, $ i + j $ is an element of $ I $, and for all elements $ i $ of $ I $ and $ r $ of $ R $, $ ri $ is an element of $ I $.
 \end{definition}
 
-Then one can verify, directly from the definition, that the kernel of any homomorphism $ f : R \to S $ is an ideal of $ R $. Any ideal of $ R $ contains $ 0_R $, and conversely the subset $ \cb{0_R} $ of $ R $ is an ideal, called the \textbf{zero ideal}. Note that a homomorphism $ f : R \to S $ is injective if and only if its kernel is the zero ideal. Forward direction is easy. Conversely, if $ f\rb{x} = f\rb{y} $, $ f\rb{x - y} = 0 $, so $ x - y \in Ker\rb{f} $. If $ Ker\rb{f} = \cb{0} $, $ x = y $. The kernel of the homomorphism $ \Z \to R $ is either the zero ideal, or the ideal of multiples of $ n $ in $ \Z $ for some $ n > 0 $. We say that $ R $ has \textbf{characteristic zero} or \textbf{characteristic $ n $}, respectively. If not zero, the characteristic of $ R $ is the smallest $ n $ such that the sum of $ n $ copies of $ 1_R $ is equal to zero.
+Then one can verify, directly from the definition, that the kernel of any homomorphism $ f : R \to S $ is an ideal of $ R $. Any ideal of $ R $ contains $ 0_R $, and conversely the subset $ \cb{0_R} $ of $ R $ is an ideal, called the \textbf{zero ideal}.
+
+\begin{note}
+A homomorphism $ f : R \to S $ is injective if and only if its kernel is the zero ideal. Forward direction is easy. Conversely, if $ f\rb{x} = f\rb{y} $, $ f\rb{x - y} = 0 $, so $ x - y \in Ker\rb{f} $. If $ Ker\rb{f} = \cb{0} $, $ x = y $.
+\end{note}
+
+The kernel of the homomorphism $ \Z \to R $ is either the zero ideal, or the ideal of multiples of $ n $ in $ \Z $ for some $ n > 0 $. We say that $ R $ has \textbf{characteristic zero} or \textbf{characteristic $ n $}, respectively. If not zero, the characteristic of $ R $ is the smallest $ n $ such that the sum of $ n $ copies of $ 1_R $ is equal to zero.
 
 \subsection{Ideals: examples and basic operations}
 
-If $ r $ is an element of $ R $, then any ideal containing $ R $ contains any multiple $ sr $ of $ R $, for any $ r $ in $ S $. Conversely, one checks easily that the set $ \cb{sr \mid s \in R} $ is an ideal of $ R $. It is known as the ideal of $ R $ generated by $ r $, and denoted $ \ab{r} $. An ideal generated by one element in this way is called a \textbf{principal ideal}. Note that the ideal generated by $ 1_R $, or more generally by any element of $ R $ with a multiplicative inverse, is all of $ R $. This ideal is called the \textbf{unit ideal} of $ R $.
+If $ r $ is an element of $ R $, then any ideal containing $ R $ contains any multiple $ sr $ of $ R $, for any $ r $ in $ S $. Conversely, one checks easily that the set $ \cb{sr \mid s \in R} $ is an ideal of $ R $. It is known as the ideal of $ R $ generated by $ r $, and denoted $ \ab{r} $. An ideal generated by one element in this way is called a \textbf{principal ideal}.
+
+\begin{note}
+The ideal generated by $ 1_R $, or more generally by any element of $ R $ with a multiplicative inverse, is all of $ R $. This ideal is called the \textbf{unit ideal} of $ R $.
+\end{note}
 
 \begin{proposition}
 $ R $ is a field if and only if the only ideals of $ R $ are the zero ideal $ \cb{0} $ and unit ideal $ R $.
@@ -385,10 +395,7 @@ If $ R = \Z $ and $ I $ is the ideal generated by $ n $, then $ R / I $ is the r
 \end{example2}
 
 There is a natural quotient homomorphism, \textbf{reduction mod $ I $},
-\begin{align*}
-R & \to \dfrac{R}{I} \\
-r & \mapsto r + I.
-\end{align*}
+$$ \function{R}{\dfrac{R}{I}}{r}{r + I}. $$
 This homomorphism is surjective with kernel $ I $. We then have the following.
 
 \begin{proposition}[Universal property of the quotient]
@@ -402,7 +409,9 @@ such that for all $ r \in R $, $ f\rb{r} = \overline{f}\rb{r + I} $.
 Note that $ \overline{f} $ is necessarily unique, as every element of $ R / I $ has the form $ r + I $ for some $ r $. We must thus show that it is well-defined and gives a homomorphism. If $ r + I = r' + I $, then $ r $ and $ r' $ differ by an element of $ I $, so $ f\rb{r - r'} = 0 $, so $ f\rb{r} = f\rb{r'} $ since $ I $ is contained in the kernel of $ f $. Thus $ \overline{f} $ is well-defined. Checking that it is a homomorphism follows from $ f $ is a homomorphism.
 \end{proof}
 
-Note that the kernel of $ \overline{f} $ in Proposition \ref{prop:2.5.1} above is just the image of the kernel of $ f $ in $ R / I $. If the kernel of $ f $ is equal to $ I $, this image is the zero ideal and $ \overline{f} $ is injective. In particular, any homomorphism of $ R $ to $ S $ can be thought of as an isomorphism of some quotient of $ R $ with a subring of $ S $.
+\begin{note}
+The kernel of $ \overline{f} $ in Proposition \ref{prop:2.5.1} above is just the image of the kernel of $ f $ in $ R / I $. If the kernel of $ f $ is equal to $ I $, this image is the zero ideal and $ \overline{f} $ is injective. In particular, any homomorphism of $ R $ to $ S $ can be thought of as an isomorphism of some quotient of $ R $ with a subring of $ S $.
+\end{note}
 
 \begin{example2}
 Let $ R \subseteq S $ be a subring, $ \alpha \in S $, and $ \iota : R \to S $ be the inclusion map. Recall that we have an evaluation at $ \alpha $ by $ \phi_{\iota, \alpha} : R\sb{X} \to S $. Image of this is $ R\sb{\alpha} $. Let $ I = Ker\rb{\phi_{\iota, \alpha}} $. Then $ \phi_{\iota, \alpha} $ descends to a map $ \phi_{\iota, \alpha} : R\sb{\alpha} / I \to S $ that is injective with image $ R\sb{\alpha} $. So $ R\sb{\alpha} $ is isomorphic to a quotient of $ R\sb{X} $.
@@ -417,7 +426,9 @@ Let $ R \subseteq S $ be a subring, $ \alpha \in S $, and $ \iota : R \to S $ be
 An ideal $ I $ of $ R $ is \textbf{prime} if the quotient $ R / I $ is an integral domain. It is \textbf{maximal} if $ R / I $ is a field.
 \end{definition}
 
-Note that as fields are integral domains, every maximal ideal is prime. The converse need not hold, of course. The zero ideal in $ \Z $ is prime but not maximal.
+\begin{note}
+As fields are integral domains, every maximal ideal is prime. The converse need not hold, of course. The zero ideal in $ \Z $ is prime but not maximal.
+\end{note}
 
 \begin{lemma}
 An ideal $ I $ is prime if and only if for every pair of elements $ s, r $ in $ R $ such that $ rs $ is in $ I $, either $ r $ is in $ I $ or $ s $ is in $ I $.
@@ -455,7 +466,11 @@ For any element $ r \in R $ and any unit $ u $ of $ R $, both $ u $ and $ ur $ d
 The set of elements of $ R $ of the form $ ur $, with $ r \in R^* $ are called \textbf{associates} of $ R $.
 \end{definition}
 
-That is, $ r, r' $ are associates if $ r = ur' $ for a unit $ u \in R^* $. This implies $ r \mid r' $, that is there exists $ u' $ with $ u'u = 1 $ and $ u'r = r' $. Note that the principal ideals $ \ab{r} $ and $ \ab{r'} $ are equal if and only if $ r $ and $ r' $ are associates.
+That is, $ r, r' $ are associates if $ r = ur' $ for a unit $ u \in R^* $. This implies $ r \mid r' $, that is there exists $ u' $ with $ u'u = 1 $ and $ u'r = r' $.
+
+\begin{note}
+The principal ideals $ \ab{r} $ and $ \ab{r'} $ are equal if and only if $ r $ and $ r' $ are associates.
+\end{note}
 
 \begin{definition}
 A nonzero element $ r $ of $ R $ is called \textbf{irreducible} if $ r $ is not a unit and the only elements of $ R $ that divide $ r $ are the units and the associates of $ r $.
@@ -636,12 +651,12 @@ Let $ R_1, \dots, R_n $ be rings. The \textbf{direct product} $ R_1 \times \dots
 \end{align*}
 \end{definition}
 
-Note that the product comes with natural homomorphisms $ \pi_i $ for all $ i $, the \textbf{projection} onto the $ i $-th factor, defined by
-\begin{align*}
-\pi_i : R_1 \times \dots \times R_n & \to R_i \\
-\rb{r_1, \dots, r_n} & \mapsto r_i,
-\end{align*}
-and the following universal property.
+\begin{note}
+The product comes with natural homomorphisms $ \pi_i $ for all $ i $, the \textbf{projection} onto the $ i $-th factor, defined by
+$$ \function[\pi_i]{R_1 \times \dots \times R_n}{R_i}{\rb{r_1, \dots, r_n}}{r_i}. $$
+\end{note}
+
+The product also comes with the following universal property.
 
 \begin{theorem}[Universal property of the product]
 Let $ S, R_1, \dots, R_n $ be any rings. For any homomorphisms
@@ -659,10 +674,7 @@ $$ g\rb{s} = \rb{f_1\rb{s}, \dots, f_n\rb{s}} = f\rb{s}. $$
 \end{proof}
 
 More generally, if $ I $ is any index set, and for each $ i \in I $ we have a ring $ R_i $, we can define the product $ \prod_i R_i $. An element $ r $ of this product is a choice, for each $ i \in I $, of an element of $ R_i $. We write such an element as $ \rb{r_i}_{i \in I} $. For each $ j \in I $ we have a map
-\begin{align*}
-\pi_j : \prod_i R_i & \to R_j \\
-\rb{r_i}_{i \in I} & \mapsto r_j.
-\end{align*}
+$$ \function[\pi_j]{\prod_i R_i}{R_j}{\rb{r_i}_{i \in I}}{r_j}. $$
 Such a product satisfies a very similar universal property. For any collection
 $$ f_i : S \to R_i $$
 of maps for each $ i \in I $, we get a unique map
@@ -679,7 +691,13 @@ It is easy to see that the kernel of this map is the set of $ r \in R $ such tha
 $$ I_1 \cap \dots \cap I_r. $$
 Call this ideal $ J $. We thus have an injective embedding
 $$ \dfrac{R}{J} \hookrightarrow \dfrac{R}{I_1} \times \dots \times \dfrac{R}{I_r}. $$
-A natural question to ask is, what can we say about the image? In other words, given congruence classes mod $ I_1, \dots, I_r $, when is there a single element of $ R $ that lives in all those congruence classes simultaneously? Note that, because the above map is injective, if one such element exists, then there is a unique congruence class mod $ J $ that satisfies all of the required congruences. Of course, without further hypotheses we cannot expect this map to be surjective. Think about what happens when $ I_1 = I_2 $, for instance. Nonetheless, we have the following.
+A natural question to ask is, what can we say about the image? In other words, given congruence classes mod $ I_1, \dots, I_r $, when is there a single element of $ R $ that lives in all those congruence classes simultaneously?
+
+\begin{note}
+Because the above map is injective, if one such element exists, then there is a unique congruence class mod $ J $ that satisfies all of the required congruences.
+\end{note}
+
+Of course, without further hypotheses we cannot expect this map to be surjective. Think about what happens when $ I_1 = I_2 $, for instance. Nonetheless, we have the following.
 
 \begin{definition}
 We will say $ I_1, \dots, I_r $ are \textbf{pairwise relatively prime} if for each $ i \ne j $, the sum $ I_i + I_j $ is the unit ideal in $ R $.
@@ -720,15 +738,9 @@ $$ I_i = \ab{X - c_i} \subseteq R $$
 are such that
 $$ I_i + I_j = \ab{X - c_i} + \ab{X - c_j} \ni c_i - c_j \in K^*, $$
 so contains $ 1 $. That is, $ I_i + I_j $ is the unit ideal in $ R $ and the ideals $ I_i $ are pairwise relatively prime. Moreover, for each $ i $, $ I_i $ is the kernel of the evaluation map
-\begin{align*}
-f_i : R & \to K \\
-P\rb{X} & \mapsto P\rb{c_i}.
-\end{align*}
+$$ \function[f_i]{R}{K}{P\rb{X}}{P\rb{c_i}}. $$
 Let
-\begin{align*}
-f : R & \to K \times \dots \times K \\
-P\rb{X} & \mapsto \rb{P\rb{c_1}, \dots, P\rb{c_r}}.
-\end{align*}
+$$ \function[f]{R}{K \times \dots \times K}{P\rb{X}}{\rb{P\rb{c_1}, \dots, P\rb{c_r}}}. $$
 Then the following diagram commutes.
 $$
 \begin{tikzcd}[column sep=1in]
@@ -737,10 +749,7 @@ R \arrow{r}{f} \arrow[twoheadrightarrow]{d} & K \times \dots \times K \\
 \end{tikzcd}.
 $$
 Chinese remainder theorem gives that $ f $ is surjective. We thus have an isomorphism
-\begin{align*}
-R / I_i & \to K \\
-P\rb{X} & \mapsto P\rb{c_i},
-\end{align*}
+$$ \function{\dfrac{R}{I_i}}{K}{P\rb{X}}{P\rb{c_i}}, $$
 for all polynomials $ P $. We thus obtain the following.
 
 \begin{theorem}
@@ -751,24 +760,18 @@ such that $ P\rb{a_i} = c_i $ for all $ i $.
 
 \pagebreak
 
-\lecture{7}{Friday}{19/10/18}
-
 \section{Fields and field extensions}
+
+\lecture{7}{Friday}{19/10/18}
 
 Next we will use $ K\sb{X} $ is a PID for $ K $ a field to study fields systematically.
 
 \subsection{Prime fields}
 
 Let $ K $ be a field. We have a unique ring homomorphism
-\begin{align*}
-\iota : \Z & \to K \\
-n & \mapsto n_K = 1_K + \dots + 1_K,
-\end{align*}
+$$ \function[\iota]{\Z}{K}{n}{n_K = 1_K + \dots + 1_K}, $$
 where $ n \ge 0 $. Let $ I $ be the kernel. Then $ \Z / I \hookrightarrow K $ so $ \Z / I $ is an integral domain, so $ I $ is a prime ideal. Thus $ I $ is either the zero ideal $ \cb{0} $, if $ K $ has characteristic zero, or the ideal $ \ab{p} $ for some prime $ p $ of $ \Z $. In the former case $ I = \cb{0} $, the injection $ \Z \hookrightarrow K $ extends to an inclusion
-\begin{align*}
-\Q & \hookrightarrow K \\
-\dfrac{a}{b} & \mapsto \rb{\iota a}\rb{\iota b^{-1}} = \dfrac{a_K}{b_K}.
-\end{align*}
+$$ \function{\Q}{K}{\dfrac{a}{b}}{\rb{\iota a}\rb{\iota b^{-1}} = \dfrac{a_K}{b_K}}. $$
 In the latter case $ I = \ab{p} $, we get an injection of the field $ \F_p $,
 $$ \Z / p\Z \hookrightarrow K, $$
 which we often denote $ \F_p $ when we think of it as a field. Upshot is that every field $ K $ contains exactly one of $ \Q $ or $ \F_p $ for $ p $ prime, in exactly one way depending on its characteristic. This field is called the \textbf{prime field} of $ K $, and it is contained in $ K $ in a unique way.
@@ -781,7 +784,9 @@ The prime fields are in some sense the smallest possible fields. Once we know th
 A \textbf{field extension} is such a pair of fields $ K, L $ with $ K \subseteq L $, and is often denoted $ L / K $.
 \end{definition}
 
-Note that such an inclusion of fields $ L / K $ makes $ L $ into a $ K $-vector space, that is a vector space over $ K $.
+\begin{note}
+Such an inclusion of fields $ L / K $ makes $ L $ into a $ K $-vector space, that is a vector space over $ K $.
+\end{note}
 
 \begin{definition}
 We say that a field extension $ L / K $ is \textbf{finite} if $ L $ is finite dimensional as a $ K $-vector space. If this is the case, the \textbf{degree} of such an extension is the dimension of $ L $ as a $ K $-vector space $ \dim_K\rb{L} $, and is denoted $ \sb{L : K} $.
@@ -819,44 +824,39 @@ for all $ j $. Since the $ e_i $ are linearly independent over $ K $ we must hav
 Let $ L / K $ be a field extension, and let $ \alpha $ be an element of $ L $.
 
 \begin{definition}
-We let $ K\rb{\alpha} $ denote the subfield of $ L $ consisting of all elements of $ L $ that can be expressed in the form $ P\rb{\alpha} / Q\rb{\alpha} $, where $ P $ and $ Q $ are polynomials with coefficients in $ K $ and $ Q\rb{\alpha} $ is not zero. This is the smallest subfield of $ L $ containing $ K $ and $ \alpha $.
+We let $ K\rb{\alpha} $ denote the subfield of $ L $ consisting of all elements of $ L $ that can be expressed in the form
+$$ \dfrac{P\rb{\alpha}}{Q\rb{\alpha}}, $$
+where $ P $ and $ Q $ are polynomials with coefficients in $ K $ and $ Q\rb{\alpha} $ is not zero. This is the smallest subfield of $ L $ containing $ K $ and $ \alpha $.
 \end{definition}
 
 Recall that if $ R, S $ are rings, $ f : R \to S $ is a homomorphism, and $ \alpha \in S $, then have
-\begin{align*}
-\phi_{f, a} : R\sb{X} & \to S \\
-\sum_{i = 1}^n r_iX^i & \mapsto \sum_{i = 1}^n f\rb{r_i}\alpha^i.
-\end{align*}
+$$ \function[\phi_{f, a}]{R\sb{X}}{S}{\sum_{i = 1}^n r_iX^i}{\sum_{i = 1}^n f\rb{r_i}\alpha^i}. $$
 We also have a natural map
-\begin{align*}
-K\sb{X} & \to K\rb{\alpha} \subseteq L \\
-P\rb{X} & \mapsto P\rb{\alpha}.
-\end{align*}
+$$ \function{K\sb{X}}{K\rb{\alpha} \subseteq L}{P\rb{X}}{P\rb{\alpha}}. $$
 the inclusion on $ K $. It is a ring homomorphism. Let $ I $ be the kernel of this homomorphism. We then get an injection of $ K\sb{X} / I $ into the field $ K\rb{\alpha} $. Thus $ K\sb{X} / I $ is an integral domain, so $ I $ is a prime ideal of $ K\sb{X} $. Since $ K\sb{X} $ is a PID, every nonzero prime ideal is maximal. There are thus two cases. In the first $ I $ is the zero ideal that is not maximal. That is, there is no nonzero polynomial $ Q $ in $ K\sb{X} $ such that $ Q\rb{\alpha} $ is zero in $ L $. We say that $ \alpha $ is \textbf{transcendental} over $ K $ in this case. In the second $ I $ is an ideal $ \ab{Q} $ for $ Q \in K\sb{X} $ a nonzero irreducible polynomial that is a maximal ideal of $ K\sb{X} $. In this case we say $ \alpha $ is \textbf{algebraic} over $ K $.
 
 \begin{definition}
 $ K\rb{X} $ is the \textbf{field of rational functions} on $ X $,
-$$ K\rb{X} = \cb{\dfrac{P\rb{X}}{Q\rb{X}} \ \Bigg| \ P, Q \in K\sb{X}, \ Q \ne 0} / \sim. $$
+$$ K\rb{X} = \dfrac{\cb{\dfrac{P\rb{X}}{Q\rb{X}} \ \Bigg| \ P, Q \in K\sb{X}, \ Q \ne 0}}{\sim}. $$
 \end{definition}
 
-\begin{itemize}
-\item Assume first that $ \alpha $ is transcendental over $ K $, that is $ I = \cb{0} $. Recall
+Assume first that $ \alpha $ is transcendental over $ K $, that is $ I = \cb{0} $. Recall
 $$ I = \cb{P\rb{X} \in K\sb{X} \mid P\rb{\alpha} = 0}. $$
 So in this case there is no nonzero polynomial $ P \in K\sb{X} $ with $ P\rb{\alpha} = 0 $. In this case the map taking $ P\rb{X} $ to $ P\rb{\alpha} $ is an injection of $ K\sb{X} $ into $ K\rb{\alpha} \subseteq L $. In particular every nonzero element of $ K\sb{X} $ gets sent to a nonzero, hence invertible, element of $ L $. Thus the map from $ K\sb{X} $ to $ L $ extends to an injective map from the field of fractions of $ K\sb{X} $,
-\begin{align*}
-K\rb{X} & \to L \\
-\dfrac{P\rb{X}}{Q\rb{X}} & \mapsto \dfrac{P\rb{\alpha}}{Q\rb{\alpha}}.
-\end{align*}
-By definition of $ K\rb{\alpha} $, this map is surjective so the image of this map is $ K\rb{\alpha} $. In particular $ K\rb{X} $ and $ K\rb{\alpha} $ are isomorphic. Note that in this case $ K\rb{\alpha} $ is infinite dimensional as a $ K $-vector space. It contains a subspace isomorphic to $ K\sb{X} $, for instance.
-\item If $ \alpha $ is algebraic over $ K $, then $ I $ is a nonzero maximal ideal of the PID $ K\sb{X} $, so it is generated by a single irreducible polynomial $ Q\rb{X} $ in $ K\sb{X} $. As a consequence, since the units in $ K\sb{X} $ are just the constant polynomials, the polynomial $ Q\rb{X} $ is well-defined up to a constant factor. It is called the \textbf{minimal polynomial} of $ \alpha $. By definition, it divides every polynomial $ P\rb{X} $ such that $ P\rb{\alpha} = 0 $. Since $ \ab{Q\rb{X}} $ is maximal, the ring $ K\sb{X} / \ab{Q\rb{X}} $ is a field. Recall that for any $ P \in K\sb{X} $, can write $ P\rb{X} $ uniquely as
+$$ \function{K\rb{X}}{L}{\dfrac{P\rb{X}}{Q\rb{X}}}{\dfrac{P\rb{\alpha}}{Q\rb{\alpha}}}. $$
+By definition of $ K\rb{\alpha} $, this map is surjective so the image of this map is $ K\rb{\alpha} $. In particular $ K\rb{X} $ and $ K\rb{\alpha} $ are isomorphic.
+
+\begin{note}
+In this case $ K\rb{\alpha} $ is infinite dimensional as a $ K $-vector space. It contains a subspace isomorphic to $ K\sb{X} $, for instance.
+\end{note}
+
+If $ \alpha $ is algebraic over $ K $, then $ I $ is a nonzero maximal ideal of the PID $ K\sb{X} $, so it is generated by a single irreducible polynomial $ Q\rb{X} $ in $ K\sb{X} $. As a consequence, since the units in $ K\sb{X} $ are just the constant polynomials, the polynomial $ Q\rb{X} $ is well-defined up to a constant factor. It is called the \textbf{minimal polynomial} of $ \alpha $. By definition, it divides every polynomial $ P\rb{X} $ such that $ P\rb{\alpha} = 0 $. Since $ \ab{Q\rb{X}} $ is maximal, the ring $ K\sb{X} / \ab{Q\rb{X}} $ is a field. Recall that for any $ P \in K\sb{X} $, can write $ P\rb{X} $ uniquely as
 $$ A\rb{X}Q\rb{X} + R\rb{X}, \qquad \deg\rb{R} < \deg\rb{Q}. $$
 So
 $$ 1, \dots, X^{\deg\rb{Q} - 1} $$
 are a $ K $-basis of $ K\sb{X} / \ab{Q\rb{X}} $. So its dimension as a $ K $-vector space is equal to the degree of $ Q\rb{X} $. The map $ K\sb{X} \to K\rb{\alpha} \subseteq L $ descends to an injection of $ K\sb{X} / \ab{Q\rb{X}} $ into $ L $. Since its image is a subfield of $ K\rb{\alpha} $ containing $ K $ and $ \alpha $, this map is an isomorphism
 $$ K\rb{\alpha} \cong \dfrac{K\sb{X}}{\ab{Q\rb{X}}}. $$
-Thus in this case the extension $ K\rb{\alpha} / K $ is a finite extension, of degree equal to the degree of $ Q\rb{X} $.
-\end{itemize}
-To summarise, extend $ K $ by a single element by
+Thus in this case the extension $ K\rb{\alpha} / K $ is a finite extension, of degree equal to the degree of $ Q\rb{X} $. To summarise, extend $ K $ by a single element by
 \begin{itemize}
 \item building $ K\sb{X} $, and
 \item either passing to field of fractions $ K\rb{X} $ to form a transcendental extension, or choosing an irreducible polynomial $ Q $ to form an algebraic extension $ K\sb{X} / \ab{Q\rb{X}} $.
@@ -875,10 +875,7 @@ If $ L / K $ is finite, then $ L / K $ is algebraic.
 
 \begin{proof}
 Suppose not. Let $ L / K $ be finite, and suppose $ \alpha \in L $ is transcendental over $ K $. Then we have an injection
-\begin{align*}
-K\sb{X} & \to K\rb{\alpha} \subseteq L \\
-X & \mapsto \alpha.
-\end{align*}
+$$ \function{K\sb{X}}{K\rb{\alpha} \subseteq L}{X}{\alpha}. $$
 Since $ K\sb{X} $ is a polynomial ring in $ K\rb{\alpha} $, it is an infinite dimensional $ K $-vector space, so $ L $ cannot be finite over $ K $. More explicitly, there is also the following argument. Let $ d $ be the dimension of $ L $ over $ K $. Then for any $ \alpha $, the set $ 1, \dots, \alpha^d $ must be linearly dependent over $ K $. This gives a nonzero polynomial $ P $ such that $ P\rb{\alpha} = 0 $.
 \end{proof}
 
@@ -933,18 +930,15 @@ Let $ K $ be a field with four elements. Then $ K \cong \F_4 $.
 
 \begin{proof}
 Let $ \alpha \in K $ with $ \alpha \ne 0 $ and $ \alpha \ne 1 $. Consider $ 1, \alpha, \alpha^2 $. Since $ K $ has dimension two over $ \F_2 $, there is a linear dependence. So there exists a polynomial $ P $ in $ \F_2\sb{X} $ of degree at most two such that $ P\rb{\alpha} = 0 $. In fact $ P $ must be irreducible of degree two. If it is divisible by something of degree one, then a polynomial of degree one vanishes on $ \alpha $, so $ \alpha = 0 $ or $ \alpha = 1 $. So $ \alpha^2 + \alpha + 1 = 0 $. The map
-\begin{align*}
-\F_2\sb{X} & \to K \\
-X & \mapsto \alpha.
-\end{align*}
+$$ \function{\F_2\sb{X}}{K}{X}{\alpha}. $$
 descends to $ \F_2\sb{X} / \ab{X^2 + X + 1} \to K $. So $ \F_4 $ embeds in $ K $. Thus $ K \cong \F_4 $.
 \end{proof}
 
 \pagebreak
 
-\lecture{9}{Wednesday}{24/10/18}
-
 \section{Finite fields}
+
+\lecture{9}{Wednesday}{24/10/18}
 
 \subsection{Finite fields}
 
@@ -955,9 +949,9 @@ Let $ K $ be a finite field. That is, a field with only finitely many elements. 
 Let $ p $ be a prime. For any ring $ R $, the map $ x \mapsto x^p $ on $ R $ certainly satisfies
 $$ \rb{xy}^p = x^py^p, $$
 for all $ x, y \in R $. On the other hand,
-$$ \rb{x + y}^p = x^p + \two{p}{1}xy^{p - 1} + \dots + \two{p}{p - 1}x^{p - 1}y + y^p. $$
+$$ \rb{x + y}^p = x^p + \twobyone{p}{1}xy^{p - 1} + \dots + \twobyone{p}{p - 1}x^{p - 1}y + y^p. $$
 Now the binomial coefficients satisfy
-$$ p \ \Bigg| \ \two{p}{i} = \dfrac{p!}{i!\rb{p - i}!}, $$
+$$ p \ \Bigg| \ \twobyone{p}{i} = \dfrac{p!}{i!\rb{p - i}!}, $$
 for $ 1 \le i \le p - 1 $, so if $ R $ has characteristic $ p $, we have
 $$ \rb{x + y}^p = x^p + y^p. $$
 Thus, when $ R $ has characteristic $ p $, the map $ x \mapsto x^p $ is a ring homomorphism from $ R $ to $ R $, called the \textbf{Frobenius endomorphism} of $ R $. If $ R $ is a field of characteristic $ p $, then the Frobenius endomorphism is injective. If in addition $ R $ is finite, then any injective map from $ R $ to $ R $ is surjective. In particular the Frobenius endomorphism is a bijective and an isomorphism from $ R $ to $ R $ when $ R $ is a finite field of characteristic $ p $. In this case we call the map $ x \mapsto x^p $ the \textbf{Frobenius automorphism}. Composing the Frobenius endomorphism with itself, we find that for any $ r $, $ x \mapsto x^{p^r} $ is also an endomorphism of any ring $ R $ of characteristic $ p $.
@@ -1009,9 +1003,13 @@ be an element of $ R\sb{X} $. The \textbf{derivative} $ P'\rb{X} $ of $ P\rb{X} 
 $$ r_1 + \dots + dr_dX^{d - 1}. $$
 \end{definition}
 
-Note that just as for differentiation in calculus, we have a Leibniz rule. For $ P, Q \in R\sb{X} $,
+\begin{note}
+Just as for differentiation in calculus, we have a Leibniz rule. For $ P, Q \in R\sb{X} $,
 $$ \rb{PQ}'\rb{X} = P\rb{X}Q'\rb{X} + P'\rb{X}Q\rb{X}, $$
-by reducing to $ P, Q $ monomials. From this we deduce the following.
+by reducing to $ P, Q $ monomials.
+\end{note}
+
+From this we deduce the following.
 
 \begin{lemma}
 Let $ K $ be a field, and let $ P\rb{X} $ be a polynomial in $ K\sb{X} $ with a multiple root in $ K $. Then $ P\rb{X} $ and $ P'\rb{X} $ have a common factor of degree greater than zero.
@@ -1045,14 +1043,18 @@ The field $ K $ we constructed has $ p^r $ elements.
 
 \subsection{The multiplicative group}
 
-Rather than show immediately that there is a unique finite field of $ p^r $ elements, we make a detour to study the multiplicative group of a finite field. This is not strictly necessary to prove uniqueness, but will simplify the proof, and is of interest in its own right. Let $ K $ denote a field of $ p^r $ elements. The goal of this section is to show that $ K^* $ is cyclic. Note that as a multiplicative group, $ K^* $ is an abelian group of order $ p^r - 1 $, so by Lagrange's theorem, we have $ \alpha^{p^r - 1} = 1 $ for all $ \alpha \in K^* $. Recall for an abelian group $ A $, operation written additively, that the order of an element $ a $ of $ A $ is the smallest $ d \in \Z_{> 0} $ such that $ da = 0 $.
+Rather than show immediately that there is a unique finite field of $ p^r $ elements, we make a detour to study the multiplicative group of a finite field. This is not strictly necessary to prove uniqueness, but will simplify the proof, and is of interest in its own right. Let $ K $ denote a field of $ p^r $ elements. The goal of this section is to show that $ K^* $ is cyclic.
+
+\begin{note}
+As a multiplicative group, $ K^* $ is an abelian group of order $ p^r - 1 $, so by Lagrange's theorem, we have $ \alpha^{p^r - 1} = 1 $ for all $ \alpha \in K^* $.
+\end{note}
+
+Recall for an abelian group $ A $, operation written additively, that the order of an element $ a $ of $ A $ is the smallest $ d \in \Z_{> 0} $ such that $ da = 0 $.
 \begin{itemize}
 \item The order of an element $ a $ of $ A $ divides the order of $ A $.
 \item If $ d'a = 0 $ for some $ d' \in \Z $ then the order of $ a $ divides $ d' $.
 \end{itemize}
-The order of an element $ a $ of $ K^* $ is the smallest $ d \in \Z_{> 0} $ such that $ a^d = 1 $. Since $ a^{p^r - 1} = 1 $, the order of $ a $ is a divisor of $ p^r - 1 $. On the other hand, if $ d $ is a divisor of $ p^r - 1 $, then any element of order dividing $ d $ is a root of the polynomial $ X^d - 1 $. Since $ K $ is a field, this polynomial has at most $ d $ roots, so we find that there are at most $ d $ elements of $ K^* $ of order dividing $ d $. Order of any element divides $ p^r - 1 $. Know $ X^{p^r - 1} - 1 $ has $ p^r - 1 $ distinct roots in $ K $. For $ d \mid p^r - 1 $,
-$$ X^d - 1 \mid X^{p^r - 1} - 1, $$
-so $ X^d - 1 $ has exactly $ d $ roots in $ K $. That is, for all $ d \mid p^r - 1 $, $ K^* $ has exactly $ d $ elements of order dividing $ d $. In fact, we have the following.
+The order of an element $ a $ of $ K^* $ is the smallest $ d \in \Z_{> 0} $ such that $ a^d = 1 $. Since $ a^{p^r - 1} = 1 $, the order of $ a $ is a divisor of $ p^r - 1 $. On the other hand, if $ d $ is a divisor of $ p^r - 1 $, then any element of order dividing $ d $ is a root of the polynomial $ X^d - 1 $. Since $ K $ is a field, this polynomial has at most $ d $ roots, so we find that there are at most $ d $ elements of $ K^* $ of order dividing $ d $. Order of any element divides $ p^r - 1 $. Know $ X^{p^r - 1} - 1 $ has $ p^r - 1 $ distinct roots in $ K $. For $ d \mid p^r - 1 $, $ X^d - 1 \mid X^{p^r - 1} - 1 $, so $ X^d - 1 $ has exactly $ d $ roots in $ K $. That is, for all $ d \mid p^r - 1 $, $ K^* $ has exactly $ d $ elements of order dividing $ d $. In fact, we have the following.
 
 \begin{proposition}
 \label{prop:6.4.1}
@@ -1065,7 +1067,9 @@ In particular $ K^* $ is cyclic. The remainder of this section will be devoted t
 For $ n \in \Z $, we let $ \Phi\rb{n} $ denote the number of elements in $ \rb{\Z / n\Z, +} $ of exact order $ n $. This equals to the number of elements $ t \in \Z $ for $ 1 \le t \le n $ such that $ \rb{t, n} = 1 $.
 \end{definition}
 
-Note that since $ \sb{1} $ in $ \Z / n\Z $ has order $ n $, $ \Phi\rb{n} $ is nonzero for all $ n $.
+\begin{note}
+Since $ \sb{1} $ in $ \Z / n\Z $ has order $ n $, $ \Phi\rb{n} $ is nonzero for all $ n $.
+\end{note}
 
 \begin{lemma}
 For any $ d $ dividing $ n $, the cyclic group $ \Z / n\Z $ contains a unique subgroup of order $ d $, and any element of $ \Z / n\Z $ of order dividing $ d $ is contained in this subgroup.
@@ -1124,10 +1128,7 @@ For any prime $ p $ and any $ r \in \Z_{> 0} $, there exists an irreducible poly
 
 \begin{proof}
 Let $ K $ be a finite field of $ p^r $ elements, let $ \alpha $ be an element of $ K $ that generates $ K $ over $ \F_p $, and let $ P $ the minimal polynomial of $ \alpha $ over $ \F_p $. We then have a surjective map
-\begin{align*}
-\F_p\sb{X} & \to K \\
-X & \mapsto \alpha
-\end{align*}
+$$ \function{\F_p\sb{X}}{K}{X}{\alpha}. $$
 Its kernel is generated by the irreducible polynomial $ P\rb{X} $ of degree $ \deg\rb{P} = \sb{\F_p\rb{\alpha} : \F_p} = r $.
 \end{proof}
 
@@ -1149,15 +1150,13 @@ Any two finite fields $ K, K' $ of cardinality $ p^r $ are isomorphic.
 Choose $ \alpha \in K $ such that $ \alpha $ generates $ K $ over $ \F_p $. We can then write
 $$ K = \F_p\rb{\alpha} \cong \dfrac{\F_p\sb{X}}{\ab{P\rb{X}}}, $$
 where $ P\rb{X} $ is the minimal polynomial of $ \alpha $ over $ \F_p $. In particular $ P\rb{X} $ is irreducible of degree $ r $. Since $ P\rb{X} $ divides $ X^{p^r - 1} - 1 $ in $ \F_p\sb{X} $, it also divides $ X^{p^r - 1} - 1 $ in $ K'\sb{X} $. Since in $ K'\sb{X} $, the latter factors into linear factors, $ P\rb{X} $ also factors into linear factors over $ K' $. In particular there exists a root $ \alpha' \in K' $ of $ P\rb{X} $ in $ K'\sb{X} $ such that $ P\rb{\alpha'} = 0 $. Then the map
-\begin{align*}
-\F_p\sb{X} & \to K' \\
-X & \mapsto \alpha'
-\end{align*}
+$$ \function{\F_p\sb{X}}{K'}{X}{\alpha'} $$
 has kernel $ \ab{P\rb{X}} $ and induces a map
 $$
-\begin{tikzcd}[column sep=1in]
-K \arrow{r}{Q\rb{\alpha} \mapsto Q\rb{X}}[swap]{\sim} & \dfrac{\F_p\sb{X}}{\ab{P\rb{X}}} \arrow[hookrightarrow]{r}{Q\rb{X} \mapsto Q\rb{\alpha'}} & K'
-\end{tikzcd}.
+\begin{array}{rcccl}
+K & \to & \dfrac{\F_p\sb{X}}{\ab{P\rb{X}}} & \to & K' \\
+Q\rb{\alpha} & \mapsto & Q\rb{X} & \mapsto & Q\rb{\alpha'}
+\end{array}.
 $$
 Since this is map of fields from $ K $ to $ K' $ that takes $ \alpha $ to $ \alpha' $ it is injective. Since both fields $ K, K' $ have the same cardinality $ p^r $, it is also surjective and an isomorphism.
 \end{proof}
@@ -1170,9 +1169,9 @@ Lecture 11 is a problem class.
 
 \pagebreak
 
-\lecture{12}{Wednesday}{31/10/18}
-
 \section{$ R $-modules}
+
+\lecture{12}{Wednesday}{31/10/18}
 
 \subsection{Definitions}
 
@@ -1193,7 +1192,9 @@ $$ 1_R \cdot m = m. $$
 \end{enumerate}
 \end{definition}
 
-Note that for an abelian group $ M $, let $ End\rb{M} $ denote the set of homomorphisms $ M \to M $ of abelian groups. $ End\rb{M} $ is a noncommutative ring. $ 2 $ if and only if for all $ r \in R $, $ \cdot r : M \to M $ lives in $ End\rb{M} $. $ 3 $, $ 4 $, and $ 5 $ if and only if the map $ R \to End\rb{M} $ given by $ 2 $ is a homomorphism of rings.
+\begin{note}
+For an abelian group $ M $, let $ End\rb{M} $ denote the set of homomorphisms $ M \to M $ of abelian groups. $ End\rb{M} $ is a noncommutative ring. $ 2 $ if and only if for all $ r \in R $, $ \cdot r : M \to M $ lives in $ End\rb{M} $. $ 3 $, $ 4 $, and $ 5 $ if and only if the map $ R \to End\rb{M} $ given by $ 2 $ is a homomorphism of rings.
+\end{note}
 
 \begin{example2}
 \hfill
@@ -1210,11 +1211,13 @@ If $ r + I = r' + I $, then $ r - r' \in I $, so
 $$ rm - r'm = \rb{r - r'}m = 0, $$
 by assumption.
 \item Let $ R = \Z $, and let $ M $ be an abelian group. Then $ M $ has the unique natural structure of $ \Z $-module, as follows. Property $ 3 $ from the module axioms shows that
-$$ n \cdot m = \begin{cases}
+$$ n \cdot m =
+\begin{cases}
 m + \dots + m & n > 0 \\
 0 & n = 0 \\
 \rb{-m} + \dots + \rb{-m} & n < 0
-\end{cases}. $$
+\end{cases}.
+$$
 Thus the multiplication law $ \Z \times M \to M $ is forced on us, and one checks that it does satisfy properties $ 2 $ to $ 5 $ above. Informally, we say that abelian groups are $ \Z $-modules.
 \item If $ R $ is a field, then $ R $-modules are just $ R $-vector spaces.
 \item Let $ S $ be a set, and let $ M_S $ be the set of $ R $-valued functions $ f : S \to R $. We add and multiply pointwise. For $ f, g \in M_S $, we can define
@@ -1267,10 +1270,7 @@ for $ m_1, m_1' \in M_1 $, $ m_2, m_2' \in M_2 $, and $ r \in R $.
 Let $ M $ be an $ R $-module and $ I $ an ideal of $ R $. Then we can form the $ R $-submodule $ IM $ of $ M $ consisting of all elements of $ M $ of the form
 $$ i_1m_1 + \dots + i_rm_r, $$
 where the $ i_j $ are in $ I $ and the $ m_j $ are in $ M $. This is an $ R $-submodule of $ M $, so we can form the quotient $ M / IM $. Then $ M / IM $ is certainly an $ R $-module, but it is also an $ R / I $-module. One can define multiplication
-\begin{align*}
-\dfrac{R}{I} \times \dfrac{M}{IM} & \to \dfrac{M}{IM} \\
-\rb{r + I, m + IM} & \mapsto rm + IM.
-\end{align*}
+$$ \function{\dfrac{R}{I} \times \dfrac{M}{IM}}{\dfrac{M}{IM}}{\rb{r + I, m + IM}}{rm + IM}. $$
 As always one has to check that this is well-defined, but this is straightforward. We need that if $ r - r' $ lies in $ I $, and $ m - m' $ lies in $ IM $, then $ rm - r'm' $ lies in $ IM $. But
 $$ rm - r'm' = \rb{r - r'}m + r'\rb{m - m'}, $$
 which is clearly in $ IM $.
@@ -1299,11 +1299,13 @@ and the image of $ f : M \to N $ is the set
 $$ \cb{n \in N \mid \exists m \in M, \ f\rb{m} = n}. $$
 \end{definition}
 
-It is easy to see that the kernel and image of a homomorphism of $ R $-modules $ f : M \to N $ are $ R $-submodules of $ M $ and $ N $, respectively. Note that in particular there is a natural homomorphism
-\begin{align*}
-M & \to \dfrac{M}{N} \\
-m & \mapsto m + N.
-\end{align*}
+It is easy to see that the kernel and image of a homomorphism of $ R $-modules $ f : M \to N $ are $ R $-submodules of $ M $ and $ N $, respectively.
+
+\begin{note}
+In particular there is a natural homomorphism
+$$ \function{M}{\dfrac{M}{N}}{m}{m + N}. $$
+\end{note}
+
 This homomorphism has the following universal property, exactly analogous to the universal property of the quotient construction for rings.
 
 \begin{proposition}[Universal property of the quotient]
@@ -1401,18 +1403,19 @@ $$ \phi_f\rb{\sum_i r_ie_{s_i}} = \sum_i r_it_i = m. $$
 Thus $ M $ is isomorphic to $ F_S $. Since $ M $ was arbitrary, any $ R $-module of rank equal to the cardinality of $ S $ is isomorphic to $ F_S $ and the result follows.
 \end{proof}
 
-Note that it is also true, but harder to prove, that if $ M, N $ are free of different ranks, then $ M \ncong N $.
+\begin{note}
+It is also true, but harder to prove, that if $ M, N $ are free of different ranks, then $ M \ncong N $.
+\end{note}
 
 \lecture{14}{Monday}{05/11/18}
 
 \subsection{Generators and relations}
 
 Now let $ M $ be any $ R $-module, and let $ S = \cb{m_1, \dots, m_t} $ be a finite subset of $ M $ generating $ M $. Then we have a natural map
-\begin{align*}
-F_S & \to M \\
-e_i & \mapsto m_i \in S,
-\end{align*}
-and this map is surjective. In particular, let $ K $ be the kernel of this map, then $ M \cong F_S / K $. Elements of the kernel $ K $ are called \textbf{relations} among $ S $. Explicitly, an element of $ K $ is a map $ f : S \to R $ such that $ f\rb{s} = 0 $ for all but finitely many $ s $, and $ \sum_{s \in S} f\rb{s}s = 0 $. In other words, each element of $ K $ encodes a linear relation among the elements of $ S $. It is a measure of how far the elements of $ S $ are from being linearly independent. Let $ T = \cb{k_1, \dots, k_s} $ be a subset of $ K $ that generates $ K $. Then in the same way as above, we get a surjection $ F_T \twoheadrightarrow K $ taking $ e_i $ to $ k_i $, with $ F_T $ a free module of rank $ s $. Composing with the inclusion of $ K $ in $ F_S $ gives us a map $ \phi : F_T \to F_S $ whose image is $ K $. The map $ \phi $ determines $ M $ up to isomorphism with the quotient $ F_S / K $, and hence with $ F_S / \phi\rb{F_T} $. A description of a module as a quotient of a free module by the image of a map of free modules is called a \textbf{presentation} of $ M $. If both modules have finite rank the presentation is called finite. A module that has a finite presentation is called \textbf{finitely presented}. Put another way, a presentation is a description of a module $ M $ in terms of
+$$ \function{F_S}{M}{e_i}{m_i \in S}, $$
+and this map is surjective. In particular, let $ K $ be the kernel of this map, then $ M \cong F_S / K $. Elements of the kernel $ K $ are called \textbf{relations} among $ S $. Explicitly, an element of $ K $ is a map $ f : S \to R $ such that $ f\rb{s} = 0 $ for all but finitely many $ s $, and $ \sum_{s \in S} f\rb{s}s = 0 $. In other words, each element of $ K $ encodes a linear relation among the elements of $ S $. It is a measure of how far the elements of $ S $ are from being linearly independent. Let $ T = \cb{k_1, \dots, k_s} $ be a subset of $ K $ that generates $ K $. Then in the same way as above, we get a surjection
+$$ \function{F_T}{K}{e_i}{k_i}, $$
+with $ F_T $ a free module of rank $ s $. Composing with the inclusion of $ K $ in $ F_S $ gives us a map $ \phi : F_T \to F_S $ whose image is $ K $. The map $ \phi $ determines $ M $ up to isomorphism with the quotient $ F_S / K $, and hence with $ F_S / \phi\rb{F_T} $. A description of a module as a quotient of a free module by the image of a map of free modules is called a \textbf{presentation} of $ M $. If both modules have finite rank the presentation is called finite. A module that has a finite presentation is called \textbf{finitely presented}. Put another way, a presentation is a description of a module $ M $ in terms of
 \begin{itemize}
 \item a generating set $ S $ for $ M $, and
 \item a generating set $ T $ for the linear relations satisfied by $ S $.
@@ -1426,16 +1429,11 @@ and let $ A $ be the $ s $ by $ t $ matrix whose $ i, j $ entry is $ r_{ij} $. T
 \begin{itemize}
 \item Let $ R = \Z $ and $ M = \Z / n\Z $ generated by $ \sb{1}_n $. Map $ \Z \to M $ is the quotient map with kernel $ \ab{n} $. So presentation matrix is just $ \rb{n} $.
 \item Let $ R = \Z\sb{\sqrt{-5}} $ and $ I = \ab{2, 1 + \sqrt{-5}} $.
-\begin{align*}
-R^2 & \twoheadrightarrow I \\
-\rb{e_1, e_2} & \mapsto \rb{2, 1 + \sqrt{-5}}.
-\end{align*}
+$$ \function{R^2}{I}{\rb{e_1, e_2}}{\rb{2, 1 + \sqrt{-5}}}. $$
 Since $ \rb{2}\rb{3} = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}} $,
 $$ 2e_2 - \rb{1 + \sqrt{-5}}e_1 \mapsto 0, \qquad 3e_1 - \rb{1 - \sqrt{-5}}e_2 \mapsto 0. $$
-Claim that the two relations
-$$ \rb{1 + \sqrt{-5}}e_1 - 2e_2, \qquad 3e_1 - \rb{1 - \sqrt{-5}}e_2 $$
-generate $ K $. Let $ ae_1 + be_2 $ be a relation, so $ a, b \in R $ and $ 2a + \rb{1 - \sqrt{-5}}b = 0 $, that is $ a = \rb{\rb{1 + \sqrt{-5}} / 2}b $. A question is for which $ b $ does $ \rb{\rb{1 + \sqrt{-5}} / 2}b $ lie in $ R $? Claim that the set of such $ b $ is an ideal $ J $ of $ R $. $ 2 \in J $ and $ 1 - \sqrt{-5} \in J $ so $ J $ contains $ \ab{2, 1 - \sqrt{-5}} $. $ 1 \notin J $, since $ \ab{2, 1 - \sqrt{-5}} $ is maximal, $ J = \ab{2, 1 - \sqrt{-5}} $. So we have a presentation matrix
-$$ \two{1 + \sqrt{-5} & 3}{-2 & -1 + \sqrt{-5}} : R^2 \to R^2. $$
+Claim that the two relations $ \rb{1 + \sqrt{-5}}e_1 - 2e_2 $ and $ 3e_1 - \rb{1 - \sqrt{-5}}e_2 $ generate $ K $. Let $ ae_1 + be_2 $ be a relation, so $ a, b \in R $ and $ 2a + \rb{1 - \sqrt{-5}}b = 0 $, that is $ a = \rb{\rb{1 + \sqrt{-5}} / 2}b $. A question is for which $ b $ does $ \rb{\rb{1 + \sqrt{-5}} / 2}b $ lie in $ R $? Claim that the set of such $ b $ is an ideal $ J $ of $ R $. $ 2 \in J $ and $ 1 - \sqrt{-5} \in J $ so $ J $ contains $ \ab{2, 1 - \sqrt{-5}} $. $ 1 \notin J $, since $ \ab{2, 1 - \sqrt{-5}} $ is maximal, $ J = \ab{2, 1 - \sqrt{-5}} $. So we have a presentation matrix
+$$ \twobytwo{1 + \sqrt{-5}}{3}{-2}{-1 + \sqrt{-5}} : R^2 \to R^2. $$
 \end{itemize}
 \end{example2}
 
@@ -1554,15 +1552,9 @@ Let $ M $ and $ N $ are Noetherian $ R $-modules, then so is $ M \oplus N $.
 
 \begin{proof}
 We have a surjection
-\begin{align*}
-M \oplus N & \to M \\
-\rb{m, n} & \mapsto m.
-\end{align*}
+$$ \function{M \oplus N}{M}{\rb{m, n}}{m}. $$
 Its kernel $ K $ is the set of pairs of $ M \oplus N $ of the form $ \rb{0, n} $, which is isomorphic to $ N $ by the map
-\begin{align*}
-N & \to K \\
-n & \mapsto \rb{0, n},
-\end{align*}
+$$ \function{N}{K}{n}{\rb{0, n}}, $$
 and hence Noetherian. The surjection $ M \oplus N \to M $ descends to an isomorphism
 $$ \dfrac{M \oplus N}{K} \cong M, $$
 so that $ \rb{M \oplus N} / K $ is Noetherian. Thus $ M \oplus N $ is Noetherian.
@@ -1580,10 +1572,7 @@ A free $ R $-module of rank $ s $ is the direct sum of $ s $ copies of $ R $, ea
 
 \begin{proof}[Proof of Theorem \ref{thm:8.2.1}]
 Let $ M $ be a finitely generated $ R $-module, and let $ m_1, \dots, m_s $ be a set of generators for $ M $. Then if $ R^s $ is a free $ R $-module of rank $ s $, with generators $ e_1, \dots, e_s $, we have a surjection
-\begin{align*}
-R^s & \to M \\
-e_i & \mapsto m_i.
-\end{align*}
+$$ \function{R^s}{M}{e_i}{m_i}. $$
 Let $ K $ be the kernel. Then $ M $ is isomorphic to $ R^s / K $, and $ R^s $ is a Noetherian $ R $-module, so $ M $ is Noetherian as well.
 \end{proof}
 
@@ -1679,15 +1668,13 @@ An observation is that if $ R $ is Noetherian and $ I \subseteq R $ is an ideal,
 
 \begin{definition}
 Let $ R $ be a ring. An \textbf{$ R $-algebra} is a ring $ S $ together with a homomorphism $ f : R \to S $. If $ S $ is an $ R $-algebra, we say that $ S $ is finitely generated as an $ R $-algebra over $ R $ if there exists a finite set of elements $ s_1, \dots, s_n \in S $ such that every element of $ S $ can be expressed as a polynomial in the $ s_i $ with coefficients in $ R $. Equivalently, $ S $ is generated over $ R $ by $ s_1, \dots, s_n $ if the homomorphism
-\begin{align*}
-R\sb{X_1, \dots, X_n} & \to S \\
-f : R & \mapsto S \\
-X_i & \mapsto s_i
-\end{align*}
-is surjective.
+$$ \function{R\sb{X_1, \dots, X_n}}{S}{X_i}{s_i}, $$
+where $ f : R \to S $, is surjective.
 \end{definition}
 
-Note that any finitely generated $ R $-algebra $ S $ is isomorphic to a quotient $ R\sb{X_1, \dots, X_n} / I $ for some $ n $ and some ideal $ I $. Thus we can rephrase the Hilbert basis theorem as saying that if $ R $ is Noetherian, then any finitely generated $ R $-algebra is Noetherian.
+\begin{note}
+Any finitely generated $ R $-algebra $ S $ is isomorphic to a quotient $ R\sb{X_1, \dots, X_n} / I $ for some $ n $ and some ideal $ I $. Thus we can rephrase the Hilbert basis theorem as saying that if $ R $ is Noetherian, then any finitely generated $ R $-algebra is Noetherian.
+\end{note}
 
 \lecture{17}{Monday}{12/11/18}
 
@@ -1726,7 +1713,9 @@ and $ Q_2\rb{X} $ is a multiple of $ Q_1\rb{X} $ in $ K\sb{X} $. Repeat, contrad
 $$ P\rb{X} = e_1Q\rb{X}\dfrac{1}{d}e_2T\rb{X}, \qquad e_1Q\rb{X}, \dfrac{1}{d}e_2T\rb{X} \in R\sb{X}. $$
 \end{proof}
 
-Note that the converse to the last claim of Theorem \ref{thm:9.2.1} is not true. If $ P\rb{X} $ is reducible in $ R\sb{X} $, it might be irreducible in $ K\sb{X} $.
+\begin{note}
+The converse to the last claim of Theorem \ref{thm:9.2.1} is not true. If $ P\rb{X} $ is reducible in $ R\sb{X} $, it might be irreducible in $ K\sb{X} $.
+\end{note}
 
 \begin{example2}
 The polynomial $ 7x $ factors into irreducibles as $ 7 \cdot x $ in $ \Z\sb{X} $, but since $ 7 $ is a unit in $ \Q\sb{X} $, $ 7x $ is irreducible in $ \Q\sb{X} $.
@@ -1813,11 +1802,8 @@ Suppose $ P\rb{X}^2 \mid X^{q^r} - X $. Write
 $$ X^{q^r} - X = P\rb{X}^2Q\rb{X}. $$
 Take derivatives,
 $$ -1 = 2P\rb{X}P'\rb{X}Q\rb{X} + P\rb{X}^2Q'\rb{X}. $$
-Since $ P\rb{X} \nmid -1 $, this is impossible. Finally, let $ P\rb{X} \in K\sb{X} $ irreducible be a divisor of $ X^{q^r} - X $. Let $ K' = \F_{q^r} $ contain $ K $. $ X^{q^r} - X $ factors into linear factors over $ K' $. So there exists $ \alpha \in K' $ such that $ P\rb{\alpha} = 0 $. $ P\rb{X} $ is the minimal polynomial of $ \alpha $ over $ K $, so have
-\begin{align*}
-\dfrac{K\sb{X}}{\ab{P\rb{X}}} & \hookrightarrow K' \\
-X & \mapsto \alpha.
-\end{align*}
+Since $ P\rb{X} \nmid -1 $, this is impossible. Finally, let $ P\rb{X} \in K\sb{X} $ irreducible be a divisor of $ X^{q^r} - X $. Let $ K' = \F_{q^r} $ contain $ K $. $ X^{q^r} - X $ factors into linear factors over $ K' $. So there exists $ \alpha \in K' $ such that $ P\rb{\alpha} = 0 $. $ P\rb{X} $ is the minimal polynomial of $ \alpha $ over $ K $, so have an injection
+$$ \function{\dfrac{K\sb{X}}{\ab{P\rb{X}}}}{K'}{X}{\alpha}. $$
 Order of $ K\sb{X} / \ab{P\rb{X}} $ is $ q^{\deg\rb{P}} $ and order of $ K' $ is $ q^r $, so
 $$ q^r = \rb{q^{\deg\rb{P}}}^n, $$
 so $ \deg\rb{P} \mid r $.
@@ -1943,9 +1929,11 @@ is irreducible if and only if it is irreducible in $ \C\rb{Z}\sb{Y} $, if and on
 $ \alpha \in \C $ is an \textbf{algebraic integer} if there exists a monic polynomial $ P\rb{X} \in \Z\sb{X} $ such that $ P\rb{\alpha} = 0 $.
 \end{definition}
 
-Note that if $ Q\rb{X} $ is the minimal polynomial of $ \alpha $ over $ \Q $, monic, then $ Q\rb{X} \mid P\rb{X} $. By Gauss' lemma, there exists $ \alpha \in \Q^* $ such that
+\begin{note}
+If $ Q\rb{X} $ is the minimal polynomial of $ \alpha $ over $ \Q $, monic, then $ Q\rb{X} \mid P\rb{X} $. By Gauss' lemma, there exists $ \alpha \in \Q^* $ such that
 $$ \alpha Q\rb{X} \in \Z\sb{X}, \qquad \alpha Q\rb{X} \mid P\rb{X} \in \Z\sb{X}. $$
 Since $ Q\rb{X} $ is monic, $ \alpha \in \Z $. Since $ P\rb{X} $ is monic, $ \alpha \mid 1 $. So $ \alpha = \pm 1 $. $ Q\rb{X} \in \Z\sb{X} $.
+\end{note}
 
 \begin{definition}
 Let $ R $ be a subring of a ring $ S $, and $ \alpha $ an element of $ S $. We say $ \alpha $ is \textbf{integral} over $ R $ if there exists a monic polynomial $ P\rb{X} \in R\sb{X} $ with coefficients in $ R $ such that $ P\rb{\alpha} = 0 $ in $ S $.
@@ -2046,8 +2034,13 @@ Let $ R $ be a UFD. Then $ R $ is integrally closed.
 Let $ K $ be the field of fractions of $ R $, and suppose $ \alpha \in K $ is integral over $ R $. Want $ \alpha \in R $. Then there exists a monic polynomial $ P\rb{X} $ in $ R\sb{X} $ with coefficients in $ R $ such that $ P\rb{\alpha} = 0 $. Then $ \rb{X - \alpha} $ is an element of $ K\sb{X} $ dividing $ P\rb{X} $. By Gauss' lemma there is a $ \lambda \in K^* $ such that $ \lambda\rb{X - \alpha} $ is in $ R\sb{X} $ and divides $ P\rb{X} $ in $ R\sb{X} $. Clearly $ \lambda $ must lie in $ R $, and on the other hand divide the leading coefficient of $ P\rb{X} $, which is one. Thus $ \lambda \in R^* $ is a unit, so since $ \rb{X - \alpha} \in R\sb{X} $ we must have $ \alpha \in R $.
 \end{proof}
 
-This suggests to number theorists to take an extension $ K / \Q $ finite, and let $ \mathcal{O}_K $, the ring of integers of $ K $, be the integral closure of $ \Z $ in $ K $. Note that for $ x, y \in \Q $,
+This suggests to number theorists to take an extension $ K / \Q $ finite, and let $ \mathcal{O}_K $, the ring of integers of $ K $, be the integral closure of $ \Z $ in $ K $.
+
+\begin{note}
+For $ x, y \in \Q $,
 $$ \Q\rb{\sqrt{x}} = \Q\rb{\sqrt{y^2x}} = \Q\rb{y\sqrt{x}}. $$
+\end{note}
+
 We now focus on a specific class of examples. Let $ d \in \Z $ be squarefree and let $ K = \Q\rb{\sqrt{d}} $. This is precisely the set of elements of $ K $ that are integral over $ \Z $. That is, that satisfy a monic polynomial with integral coefficients. What is $ \mathcal{O}_K $? Every element of $ K $ is of the form $ a + b\sqrt{d} $ for $ a, b \in \Q $. A question is when is this an algebraic integer? Need the minimal polynomial of $ a + b\sqrt{d} $ to have integer coefficients. We have the following lemma.
 
 \begin{lemma}
@@ -2068,18 +2061,22 @@ $$ \rb{2k + 1}^2 = 4k^2 + 4k + 1 \equiv 1 \mod 4, $$
 so $ m^2 \equiv 1 \mod 4 $, this can only happen if $ d $ is odd and $ b = n / 2 $ with $ n $ odd. We then have $ m^2 - n^2d $ is a multiple of four. Since $ m^2, n^2 \in \Z $ are odd they are congruent to $ 1 \mod 4 $, so this is only possible if $ d $ is congruent to $ 1 \mod 4 $.
 \end{itemize}
 Thus if $ \alpha $ is an algebraic integer, either $ \alpha = a + b\sqrt{d} $ with $ a, b \in \Z $, or $ \alpha = \tfrac{m + n\sqrt{d}}{2} $ with $ m, n \in \Z $ odd and $ d $ congruent to $ 1 \mod 4 $. Conversely, it is easy to check that all such elements are algebraic integers. To summarise, if $ K = \Q\rb{\sqrt{d}} $ for $ d $ squarefree, we thus have
-$$ \mathcal{O}_K = \begin{cases}
+$$ \mathcal{O}_K =
+\begin{cases}
 \Z\sb{\sqrt{d}} = \cb{a + b\sqrt{d} \mid a, b \in \Z} & d \equiv 2, 3 \mod 4 \\
 \Z\sb{\tfrac{1 + \sqrt{d}}{2}} = \cb{\tfrac{m + n\sqrt{d}}{2} \mid n, m \in \Z, \ n \equiv m \mod 2} & d \equiv 1 \mod 4
-\end{cases}. $$
+\end{cases}.
+$$
 
-Note that the results in this section are also true without any Noetherian hypotheses, but the proofs are more difficult, and require machinery we have not covered.
+\begin{note}
+The results in this section are also true without any Noetherian hypotheses, but the proofs are more difficult, and require machinery we have not covered.
+\end{note}
 
 \pagebreak
 
-\lecture{22}{Friday}{23/11/18}
-
 \section{Dedekind domains}
+
+\lecture{22}{Friday}{23/11/18}
 
 \subsection{Dedekind domains}
 
@@ -2099,10 +2096,12 @@ An integral domain $ R $ is called a \textbf{Dedekind domain} if
 \begin{itemize}
 \item In particular, any PID is a Dedekind domain. We have seen that every nonzero prime ideal is maximal in a PID, and PIDs are certainly Noetherian. They are integrally closed because any UFD is integrally closed.
 \item The rings $ \mathcal{O}_K $, the integral closure of $ \Z $ in $ K $, with $ K $ a quadratic extension of $ \Q $ are
-$$ \mathcal{O}_K = \begin{cases}
+$$ \mathcal{O}_K =
+\begin{cases}
 \Z\sb{\sqrt{d}} & d \equiv 2, 3 \mod 4 \\
 \Z\sb{\tfrac{1 + \sqrt{d}}{2}} & d \equiv 1 \mod 4
-\end{cases}. $$
+\end{cases}.
+$$
 $ \mathcal{O}_K \subseteq K $ is an integral domain. $ \mathcal{O}_K $ is finitely generated by a single element as a $ \Z $-algebra. It is thus Noetherian. $ \mathcal{O}_K $ is also integrally closed. We proved on example sheet 2 that $ \Z\sb{X} / \ab{P\rb{X}} $ for $ P\rb{X} $ monic and irreducible with coefficients in $ \Z $ has dimension one, that is every nonzero prime of such a ring is maximal.
 \end{itemize}
 \end{example2}
@@ -2153,7 +2152,13 @@ Let $ R $ be a Noetherian integral domain. A \textbf{fractional ideal} of $ R $ 
 The subgroup of $ \Q $ generated by $ 3 / 5 $ is a principal fractional ideal of $ \Z $. Indeed, every fractional ideal of $ \Z $, or any PID, is principal.
 \end{example2}
 
-More generally, let $ R $ be a Noetherian integral domain, and let $ I $ be the $ R $-submodule of $ K $ generated by $ r_1, \dots, r_n \in K $. Then by definition $ I $ is a fractional ideal of $ R $. On the other hand, we can clear denominators. There exists an $ r \in R $, nonzero, such that $ rr_i $ lies in $ R $ for all $ i $. Then $ rI $ is generated by elements of $ R $, so is an ideal $ J $ of $ R $, and $ I = \tfrac{1}{r}J $. Thus the fractional ideals of $ R $ are precisely the subsets of $ K $ of the form $ \tfrac{1}{r}J $, where $ r $ is a nonzero element of $ R $ and $ J $ is an ideal of $ R $. Let $ I $ and $ J $ be fractional ideals of $ R $. The product $ IJ $ is the $ R $-submodule of $ K $ generated by all products of the form $ rs $ for $ r \in I $, $ s \in J $. It is a fractional ideal of $ R $. The multiplication $ I, J \mapsto IJ $ is an associative and commutative operation. Note that $ R $ is a fractional ideal of $ R $, and $ RJ = J $ for any fractional ideal $ J $, so $ R $ is an identity element for this operation. For a nonzero ideal $ I $ of $ R $, let $ I^{-1} $ denote the set
+More generally, let $ R $ be a Noetherian integral domain, and let $ I $ be the $ R $-submodule of $ K $ generated by $ r_1, \dots, r_n \in K $. Then by definition $ I $ is a fractional ideal of $ R $. On the other hand, we can clear denominators. There exists an $ r \in R $, nonzero, such that $ rr_i $ lies in $ R $ for all $ i $. Then $ rI $ is generated by elements of $ R $, so is an ideal $ J $ of $ R $, and $ I = \tfrac{1}{r}J $. Thus the fractional ideals of $ R $ are precisely the subsets of $ K $ of the form $ \tfrac{1}{r}J $, where $ r $ is a nonzero element of $ R $ and $ J $ is an ideal of $ R $. Let $ I $ and $ J $ be fractional ideals of $ R $. The product $ IJ $ is the $ R $-submodule of $ K $ generated by all products of the form $ rs $ for $ r \in I $, $ s \in J $. It is a fractional ideal of $ R $. The multiplication $ I, J \mapsto IJ $ is an associative and commutative operation.
+
+\begin{note}
+$ R $ is a fractional ideal of $ R $, and $ RJ = J $ for any fractional ideal $ J $, so $ R $ is an identity element for this operation.
+\end{note}
+
+For a nonzero ideal $ I $ of $ R $, let $ I^{-1} $ denote the set
 $$ \cb{r \in K^* \mid rI \subseteq R}. $$
 Then $ I^{-1} $ is clearly an $ R $-submodule of $ K $. If $ r \in I $ is nonzero, then $ rI^{-1} $, by definition, is contained in $ R $, so $ I^{-1} $ is contained in $ \tfrac{1}{r} \cdot R $ and is thus a fractional ideal. Warning that in a general ring, $ I \mapsto I^{-1} $ is not always a good inverse operation. $ II^{-1} \subseteq R $ but need not equal $ R $. For a prime ideal $ \mathfrak{p} $ of $ R $, and $ n \in \Z_{> 0} $, define $ \mathfrak{p}^{-n} = \rb{\mathfrak{p}^{-1}}^n $. We then have the following.
 
@@ -2193,7 +2198,11 @@ $$ \mathfrak{p}_1 \dots \mathfrak{p}_r\mathfrak{q}_1 \dots \mathfrak{q}_s \subse
 as well and we have a contradiction to $ 1 $.
 \end{proof}
 
-Note that if the claim holds for an ideal $ I $ then it holds for any ideal containing $ I $, and that if the claim holds for $ I $ and $ J $ then it holds for $ I \cap J $. Next, we show that prime ideals have multiplicative inverses. To do so we use the following lemma.
+\begin{note}
+If the claim holds for an ideal $ I $ then it holds for any ideal containing $ I $, and that if the claim holds for $ I $ and $ J $ then it holds for $ I \cap J $.
+\end{note}
+
+Next, we show that prime ideals have multiplicative inverses. To do so we use the following lemma.
 
 \begin{lemma}
 \label{lem:11.1.7}
@@ -2335,24 +2344,18 @@ At one point I claimed that if $ R $ is a PID, $ K $ its field of fractions, $ L
 \subsection{Trace and norm}
 
 Let $ L / K $ be a finite extension of fields, and let $ \alpha $ be an element of $ L $. Then we can regard $ L $ as a finite dimensional $ K $-vector space. Multiplication by $ \alpha $ is then a $ K $-linear map from $ L $ to $ L $. If we choose a $ K $-basis $ \beta_1, \dots, \beta_d $ for $ L $, such a map
-$$ x \mapsto x\alpha : L \to L $$
+$$ \function{L}{L}{x}{x\alpha} $$
 is given by a $ d $ by $ d $ matrix $ M_\alpha \in M_d\rb{K} $, with entries in $ K $ where $ d $ is the degree of $ L $ over $ K $. That is, $ \rb{M_\alpha}_{i, j} $ is defined by
 $$ \alpha\beta_i = \sum_{j = 1}^d \rb{M_\alpha}_{i, j}\beta_j. $$
 The matrix of course depends on the basis $ \beta_1, \dots, \beta_d $ chosen, but its trace and determinant are elements of $ K $ that depend only on $ \alpha $. We denote the trace of $ M_\alpha $ by $ Tr_{L / K}\rb{\alpha} \in K $ and call it the \textbf{trace} of $ \alpha $ with respect to $ L / K $. Similarly, the determinant of $ M_\alpha $ is denoted $ N_{L / K}\rb{\alpha} \in K $ and called the \textbf{norm} of $ \alpha $.
 
 \begin{lemma}
 The map
-\begin{align*}
-Tr_{L / K} : L & \to K \\
-\alpha & \mapsto Tr_{L / K}\rb{\alpha}
-\end{align*}
+$$ \function[Tr_{L / K}]{L}{K}{\alpha}{Tr_{L / K}\rb{\alpha}} $$
 is $ K $-linear. If $ \alpha, \alpha' \in L $, and $ \lambda \in K $, then
 $$ Tr_{L / K}\rb{\lambda\alpha + \alpha'} = \lambda Tr_{L / K}\rb{\alpha} + Tr_{L / K}\rb{\alpha'}. $$
 The map
-\begin{align*}
-N_{L / K} : L & \to K \\
-\alpha & \mapsto N_{L / K}\rb{\alpha}
-\end{align*}
+$$ \function[N_{L / K}]{L}{K}{\alpha}{N_{L / K}\rb{\alpha}} $$
 is multiplicative.
 $$ N_{L / K}\rb{\alpha\alpha'} = \rb{N_{L / K}\rb{\alpha}}\rb{N_{L / K}\rb{\alpha'}}. $$
 \end{lemma}
@@ -2395,12 +2398,14 @@ $$
 \end{array}.
 $$
 $ M_\alpha $ has the matrix
-$$ M_\alpha = \begin{pmatrix}
+$$ M_\alpha =
+\begin{pmatrix}
 0 & \dots & 0 & -a_0 \\
 1 & \dots & 0 & -a_1 \\
 \vdots & \ddots & \vdots & \vdots \\
 0 & \dots & 1 & -a_{n - 1}
-\end{pmatrix}. $$
+\end{pmatrix}.
+$$
 This matrix is called the \textbf{companion matrix} $ C_\alpha $ of the polynomial $ Q\rb{X} $.
 $$ Tr\rb{M} = -a_{n - 1}, \qquad \det\rb{M} = \rb{-1}^na_0, $$
 from which both claims can be easily deduced.
@@ -2420,11 +2425,7 @@ $$
 \end{array}.
 $$
 $ M_\alpha $ is block diagonal, consisting of $ d $ blocks along the diagonal, each of which is the $ n $ by $ n $ matrix above,
-$$ M_\alpha = \begin{pmatrix}
-C_\alpha & \dots & 0 \\
-\vdots & \ddots & \vdots \\
-0 & \dots & C_\alpha
-\end{pmatrix}. $$
+$$ M_\alpha = \threebythree{C_\alpha}{\dots}{0}{\vdots}{\ddots}{\vdots}{0}{\dots}{C_\alpha}. $$
 $$ Tr\rb{M_\alpha} = \rb{Tr\rb{C_\alpha}} \cdot d = -da_{n - 1}, \qquad \det\rb{M_\alpha} = \rb{\det\rb{C_\alpha}}^d = \rb{\rb{-1}^na_0}^d, $$
 so the claim follows.
 \end{itemize}
@@ -2500,40 +2501,29 @@ Suffices to show $ M^* $ is finitely generated as an $ R $-module.
 
 \begin{proposition}
 There exist $ \beta_1^*, \dots, \beta_d^* \in L $ such that
-$$ Tr_{L / K}\rb{\beta_i\beta_j^*} = \begin{cases} 1 & i = j \\ 0 & i \ne j \end{cases}. $$
+$$ Tr_{L / K}\rb{\beta_i\beta_j^*} =
+\begin{cases}
+1 & i = j \\
+0 & i \ne j
+\end{cases}.
+$$
 \end{proposition}
 
 \begin{proof}
 Let $ A $ be the matrix where
 $$ A_{ij} = Tr_{L / K}\rb{\beta_i\beta_j}, $$
 a $ d \times d $ matrix with entries in $ K $. If $ x = r_1\beta_1 + \dots + r_d\beta_d $, then
-$$ A\begin{pmatrix}
-r_1 \\
-\vdots \\
-r_d
-\end{pmatrix} = \begin{pmatrix}
-r_1Tr\rb{\beta_1\beta_1} + \dots + r_dTr\rb{\beta_1\beta_d} \\
-\vdots \\
-r_1Tr\rb{\beta_d\beta_1} + \dots + r_dTr\rb{\beta_d\beta_d}
-\end{pmatrix} = \begin{pmatrix}
-Tr\rb{\beta_1}\rb{r_1\beta_1 + \dots + r_d\beta_d} \\
-\vdots \\
-Tr\rb{\beta_d}\rb{r_1\beta_1 + \dots + r_d\beta_d}
-\end{pmatrix} = \begin{pmatrix}
-Tr\rb{\beta_1x} \\
-\vdots \\
-Tr\rb{\beta_dx}
-\end{pmatrix}. $$
+$$ A\threebyone{r_1}{\vdots}{r_d} = \threebyone{r_1Tr\rb{\beta_1\beta_1} + \dots + r_dTr\rb{\beta_1\beta_d}}{\vdots}{r_1Tr\rb{\beta_d\beta_1} + \dots + r_dTr\rb{\beta_d\beta_d}} = \threebyone{Tr\rb{\beta_1}\rb{r_1\beta_1 + \dots + r_d\beta_d}}{\vdots}{Tr\rb{\beta_d}\rb{r_1\beta_1 + \dots + r_d\beta_d}} = \threebyone{Tr\rb{\beta_1x}}{\vdots}{Tr\rb{\beta_dx}}. $$
 If I have $ y_1, \dots, y_d \in K $, finding an element $ x = r_1\beta_1 + \dots + r_d\beta_d \in L $ such that
 $$ Tr\rb{\beta_1x} = y_1, \qquad \dots, \qquad Tr\rb{\beta_dx} = y_d, $$
 is equivalent to solving
-$$ A\three{r_1}{\dots}{r_d}^T = \three{y_1}{\dots}{y_d}^T, $$
+$$ A\onebythree{r_1}{\dots}{r_d}^T = \onebythree{y_1}{\dots}{y_d}^T, $$
 so $ \beta_j^* $, if it exists, is
 $$ \beta_j^* = r_1\beta_1 + \dots + r_d\beta_d, $$
 for $ r_1, \dots, r_d $ a solution to
-$$ A\three{r_1}{\dots}{r_d}^T = \three{0}{\dots & 1 & \dots}{0}^T. $$
+$$ A\onebythree{r_1}{\dots}{r_d}^T = \onebythree{0}{\dots & 1 & \dots}{0}^T. $$
 So suffices to show $ A $ is invertible. Suppose otherwise. Then there exists $ r_1, \dots, r_d $ not all zero.
-$$ A\three{r_1}{\dots}{r_d}^T = 0. $$
+$$ A\onebythree{r_1}{\dots}{r_d}^T = 0. $$
 Then $ x = r_1\beta_1 + \dots + r_d\beta_d \in L^* $ is such that $ Tr_{L / K}\rb{\beta_ix} = 0 $ for all $ i $. If this is true, can write $ y \in L $ as $ b_1\beta_1 + \dots + b_d\beta_d $.
 $$ Tr_{L / K}\rb{xy} = b_1Tr_{L / K}\rb{\beta_1x} + \dots + \beta_dTr_{L / K}\rb{\beta_dx} = 0. $$
 So $ Tr_{L / K}\rb{xy} = 0 $ for all $ y \in L $. But $ x \ne 0 $. Setting $ y = x^{-1}z $, we find $ Tr_{L / K}\rb{z} = 0 $ for all $ z \in L $. But we assumed $ Tr_{L / K} \ne 0 $.
@@ -2574,25 +2564,19 @@ Let $ K $ be an integral domain and let $ R $ be an integral domain containing $
 
 \begin{proof}
 Let $ r $ be a nonzero element of $ R $. Have map
-\begin{align*}
-K\sb{X} & \to R \\
-x & \mapsto r
-\end{align*}
+$$ \function{K\sb{X}}{R}{x}{r}. $$
 Let $ I $ be the kernel. Since $ R $ is finite dimensional $ I = 0 $. Since $ R $ is an integral domain $ I $ is prime. So
-\begin{align*}
-\dfrac{K\sb{X}}{I} & \hookrightarrow R \\
-x & \mapsto R,
-\end{align*}
-with $ K\sb{X} / I $ is a field. Then $ x $ has an inverse in $ K\sb{X} / I $, and this inverse maps to a multiplicative inverse for $ r $ in $ R $.
+$$ \function{\dfrac{K\sb{X}}{I}}{R}{x}{r} $$
+is an injection, with $ K\sb{X} / I $ a field. Then $ x $ has an inverse in $ K\sb{X} / I $, and this inverse maps to a multiplicative inverse for $ r $ in $ R $.
 \end{proof}
 
 Lemma \ref{lem:12.3.7} shows that $ S / I $ is a field, so $ I $ is maximal. We have thus shown that $ S $ is Noetherian, integrally closed, and that every nonzero prime ideal in $ S $ is maximal, so $ S $ is indeed a Dedekind domain. In particular, for any finite extension $ K / \Q $, the integral closure $ \mathcal{O}_K $ of $ \Z $ in $ K $ is a Dedekind domain, and thus has unique factorisation of ideals. Another class of examples comes by taking $ K $ a field, letting $ L $ be a finite extension of $ K\rb{t} $ such that $ Tr_{L / K\rb{t}} $ is nonzero, and letting $ R $ be the integral closure of $ K\sb{t} $ in $ L $. The field $ L $ is called a function field, and the ring $ R $ is the \textbf{ring of regular functions on a smooth affine algebraic curve}. Such rings $ R $ are also Dedekind domains, and they are of considerable interest in algebraic geometry. They of course also have the unique factorisation property for ideals, and just like in ring of integers one can consider the ideal class group. In this context, the ideal class group is also known as the \textbf{Picard group}. It has a geometric interpretation in terms of line bundles on algebraic curves. Unlike in the number field setting, the Picard group is often not a finite group.
 
 \pagebreak
 
-\lecture{28}{Friday}{07/12/18}
-
 \section{Introduction to algebraic geometry}
+
+\lecture{28}{Friday}{07/12/18}
 
 Idea is
 \begin{itemize}
@@ -2619,7 +2603,9 @@ We will not prove this in this course. Ultimately it requires some analysis. Thi
 \begin{example2}
 \hfill
 \begin{itemize}
-\item By contrast, $ \Q $, $ \R $, $ \F_{p^r} $, $ \F_p\rb{t} $ are all not algebraically closed.
+\item By contrast,
+$$ \Q, \qquad \R, \qquad \F_{p^r}, \qquad \F_p\rb{t} $$
+are all not algebraically closed.
 \item $ \overline{\Q} $ is algebraically closed.
 \end{itemize}
 \end{example2}
@@ -2678,11 +2664,16 @@ Conversely, subsets of $ \A_K^n $ define ideals of $ K\sb{X_1, \dots, X_n} $. Fo
 $$ I\rb{T} = \cb{P\rb{X_1, \dots, X_n} \in K\sb{X_1, \dots, X_n} \mid \forall t \in T, \ P\rb{t} = 0} \subseteq K. $$
 Claim that $ I\rb{T} $ is an ideal. If $ P\rb{t} = 0 $ and $ Q\rb{t} = 0 $ for all $ t \in T $,
 $$ P\rb{t} + Q\rb{t} = 0, \qquad R\rb{t}P\rb{t} = 0, $$
-for all $ t \in T $ and $ R\rb{X_1, \dots, X_n} \in K\sb{X_1, \dots, X_n} $. Note that the operations $ T \mapsto I\rb{T} $ and $ I \mapsto Z\rb{I} $ are both inclusion-reversing.
+for all $ t \in T $ and $ R\rb{X_1, \dots, X_n} \in K\sb{X_1, \dots, X_n} $.
+
+\begin{note}
+The operations $ T \mapsto I\rb{T} $ and $ I \mapsto Z\rb{I} $ are both inclusion-reversing.
 \begin{itemize}
 \item If $ T \subseteq T' \subseteq \A_K^n $ then $ I\rb{T} \supseteq I\rb{T'} $.
 \item If $ J \subseteq J' \subseteq K\sb{X_1, \dots, X_n} $ then $ Z\rb{J} \supseteq Z\rb{J'} $.
 \end{itemize}
+\end{note}
+
 We have the following.
 
 \begin{lemma}
@@ -2702,16 +2693,24 @@ $ P\rb{X, 0} \in \C\sb{X} $ is a polynomial that vanishes at every $ n \in \Z $,
 
 One might thus hope that similarly $ I\rb{Z\rb{J}} = J $ for any ideal $ J $ of $ K\sb{X_1, \dots, X_n} $. This cannot be literally true, for the following reason. Recall that
 $$ rad\rb{I} = \cb{r \in K\sb{X_1, \dots, X_n} \mid \exists m, \ r^m \in I}. $$
-An ideal $ I $ is \textbf{radical} if $ rad\rb{I} = I $. Note that in fact, for any $ T $, the ideal $ I\rb{T} $ is a radical ideal.
+An ideal $ I $ is \textbf{radical} if $ rad\rb{I} = I $.
+
+\begin{note}
+In fact, for any $ T $, the ideal $ I\rb{T} $ is a radical ideal.
 $$ P^m \in I\rb{T} \qquad \iff \qquad \forall t \in T, \ P\rb{t}^m = 0 \qquad \iff \qquad \forall t \in T, \ P\rb{t} = 0 \qquad \iff \qquad P \in I\rb{T}. $$
-Thus if $ J $ is not a radical ideal we cannot have $ I\rb{Z\rb{J}} = J $. However, one does have the following.
+Thus if $ J $ is not a radical ideal we cannot have $ I\rb{Z\rb{J}} = J $.
+\end{note}
+
+However, one does have the following.
 
 \begin{theorem}[Hilbert's Nullstellensatz]
 \label{thm:13.2.5}
 Let $ K $ be an algebraically closed field. For any ideal $ J $ of $ K\sb{X_1, \dots, X_n} $, we have $ I\rb{Z\rb{J}} = rad\rb{J} $.
 \end{theorem}
 
-Note that this can only possibly hold over algebraically closed fields.
+\begin{note}
+This can only possibly hold over algebraically closed fields.
+\end{note}
 
 \begin{example2}
 For $ n = 1 $, let $ P\rb{X} \in K\sb{X} $.
@@ -2730,7 +2729,7 @@ $ I\rb{Z\rb{J}} = rad\rb{J} \ne \ab{1} $, so $ Z\rb{J} \ne \emptyset $.
 \lecture{29}{Monday}{10/12/18}
 
 We will prove this theorem later on. For now, we note that since $ rad\rb{rad\rb{J}} = rad\rb{J} $ for all ideals $ J $, the maps $ X \mapsto I\rb{X} $ and $ J \mapsto Z\rb{J} $ define a bijection
-$$ \cb{\text{radical ideals } J \subseteq K\sb{X_1, \dots, X_n}} \leftrightsquigarrow \cb{\text{affine algebraic subsets of } \A_K^n}. $$
+$$ \correspondence{\text{radical ideals} \ J \subseteq K\sb{X_1, \dots, X_n}}{\text{affine algebraic subsets of} \ \A_K^n}. $$
 This bijection is inclusion-reversing, and it is interesting to ask what geometric properties of $ X $ are carried to algebraic properties of $ I\rb{X} $ via this bijection. For instance, the following holds.
 
 \begin{proposition}
@@ -2743,12 +2742,8 @@ $$ X_1 - p_1, \dots, X_n - p_n \in I\rb{\cb{p}}. $$
 Then
 $$ m_p = \ab{X_1 - p_1, \dots, X_n - p_n} \subseteq I\rb{\cb{p}} \subsetneq K\sb{X_1, \dots, X_n}. $$
 Note that $ m_p $ is maximal. Consider the map
-\begin{align*}
-K\sb{X_1, \dots, X_n} & \to K \\
-K & \mapsto K \\
-X_i & \mapsto p_i.
-\end{align*}
-The kernel of this map is $ \ab{X_i - p_i} = m_p $, so
+$$ \function{K\sb{X_1, \dots, X_n}}{K}{X_i}{p_i}, $$
+and $ K \mapsto X $. The kernel of this map is $ \ab{X_i - p_i} = m_p $, so
 $$ \dfrac{K\sb{X_1, \dots, X_n}}{m_p} \cong K. $$
 So $ m_p $ is maximal, must have $ I\rb{\cb{p}} = m_p $. Thus
 $$ J = rad\rb{J} = I\rb{Z\rb{J}} = m_p. $$
@@ -2890,12 +2885,8 @@ $$ 1 - tP\rb{x_1, \dots, x_n} = 1. $$
 Thus $ Z\rb{\widetilde{J}} $ is empty. By the weak Nullstellensatz, $ \widetilde{J} $ is the unit ideal, so there are polynomials $ Q_0, \dots, Q_s $ in $ K\sb{X_1, \dots, X_n, T} $, and $ R_1, \dots, R_s \in I $, such that
 $$ 1 = Q_0\rb{1 - TP} + Q_1R_1 + \dots + Q_sR_s. $$
 Consider the map
-\begin{align*}
-K\sb{X_1, \dots, X_n, T} & \to K\sb{X_1, \dots, X_n, \dfrac{1}{P}} \\
-K\sb{X_1, \dots, X_n} & \mapsto K\sb{X_1, \dots, X_n} \\
-T & \mapsto \dfrac{1}{P}.
-\end{align*}
-Applying this map we find that
+$$ \function{K\sb{X_1, \dots, X_n, T}}{K\sb{X_1, \dots, X_n, \dfrac{1}{P}}}{T}{\dfrac{1}{P}}, $$
+and $ K\sb{X_1, \dots, X_n} \mapsto K\sb{X_1, \dots, X_n} $. Applying this map we find that
 $$ 1 = Q_1\rb{X_1, \dots, X_n, \dfrac{1}{P}}R_1\rb{X_1, \dots, X_n} + \dots + Q_s\rb{X_1, \dots, X_n, \dfrac{1}{P}}R_s\rb{X_1, \dots, X_n}, $$
 in $ K\sb{X_1, \dots, X_n, 1 / P} $. Multiplying by a sufficiently large power of $ P $, we get
 $$ P^m = P^mQ_1\rb{X_1, \dots, X_n, \dfrac{1}{P}}R_1\rb{X_1, \dots, X_n} + \dots + P^mQ_s\rb{X_1, \dots, X_n, \dfrac{1}{P}}R_s\rb{X_1, \dots, X_n}. $$
@@ -2908,10 +2899,7 @@ It remains to prove the weak Nullstellensatz. This requires some new ideas. The 
 
 \begin{definition}
 Let $ R $ be a $ K $-algebra, that is a ring together with a map $ K \to R $. We say that elements $ y_1, \dots, y_s $ of $ R $ are \textbf{algebraically independent} over $ K $ if there is no nonzero polynomial $ P\rb{X_1, \dots, X_s} \in K\sb{X_1, \dots, X_s} $ such that $ P\rb{y_1, \dots, y_s} = 0 $. Equivalently, $ y_1, \dots, y_s $ are algebraically independent if and only if the map
-\begin{align*}
-K\sb{X_1, \dots, X_s} & \to R \\
-X_i & \mapsto y_i
-\end{align*}
+$$ \function{K\sb{X_1, \dots, X_s}}{R}{X_i}{y_i} $$
 is injective.
 \end{definition}
 
@@ -2935,10 +2923,7 @@ $$ \dfrac{1}{c}Q\rb{X_1, \dots, X_m} = \sum_{n = 0}^N H_n\rb{X_1, \dots, X_{m - 
 Since $ Q\rb{Y_1, \dots, Y_{m - 1}, X_m} = 0 $, we have
 $$ \sum_{n = 0}^N H_n\rb{Y_1, \dots, Y_{m - 1}}X_m = 0. $$
 That is, $ X_m $ is integral over the subalgebra $ S = K\sb{Y_1, \dots, Y_{m - 1}} $ of $ R $. Since $ X_m $ generates $ R $ over $ S $, it follows that $ R $ is integral over $ S $. On the other hand we have a map
-\begin{align*}
-K\sb{Z_1, \dots, Z_{m - 1}} & \to S \\
-Z_i & \mapsto Y_i.
-\end{align*}
+$$ \function{K\sb{Z_1, \dots, Z_{m - 1}}}{S}{Z_i}{Y_i}. $$
 Let $ J $ be the kernel. Then
 $$ S = \dfrac{K\sb{Z_1, \dots, Z_{m - 1}}}{J}. $$
 Then by the inductive hypothesis there are algebraically independent elements $ y_1, \dots, y_s \in S $ such that $ S $ is integral over $ K\sb{y_1, \dots, y_s} $. Since $ R $ is integral over $ S $, it follows that $ R $ is integral over $ K\sb{y_1, \dots, y_s} $ and we are done.
