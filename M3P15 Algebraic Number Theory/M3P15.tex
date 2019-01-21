@@ -1,0 +1,430 @@
+\def\module{M3P15 Algebraic Number Theory}
+\def\lecturer{Dr Ana Caraiani}
+\def\term{Spring 2019}
+
+\def\thm{section}
+
+\input{../style/header}
+
+\begin{document}
+
+\input{../style/main}
+
+\section{Motivation and overview}
+
+\lecture{1}{Friday}{11/01/19}
+
+The goal of this course will be to introduce algebraic number theory, specifically the arithmetic of finite extensions of $ \Q $, with an emphasis on quadratic extensions as a rich source of examples. We will start with some motivation and then review the necessary background from ring theory. We will then discuss unique factorisation domains, principal ideal domains and Euclidean domains. These tools will be enough to study Gaussian integers and Eisenstein integers in-depth. To understand more general number fields, we will need some more commutative algebra. We will discuss the structure theorem for finitely generated abelian groups and the notion of integral closure. We will also introduce norms, traces, and discriminants. We will show that rings of integers in number fields are Dedekind domains and we will state and prove unique factorisation for Dedekind domains. We will then study the splitting of prime ideals in quadratic fields. We will define the class group and prove that it is always finite. We will end with a discussion of the groups of units. For quadratic fields, a good reference with many examples is $ 2 $. Another reference we will use is $ 1 $.
+\begin{enumerate}
+\item P Samuel, Algebraic theory of numbers, 1970
+\item M Trifkovic, Algebraic theory of quadratic numbers, 2013
+\end{enumerate}
+
+Algebraic number theory developed from
+\begin{itemize}
+\item trying to generalise known properties of integers, such as unique factorisation, to finite extensions of $ \Q $,
+\item trying to solve Diophantine equations in a systematic way. For example, Fermat's equation
+$$ x^n + y^n = z^n, \qquad n \ge 2, \qquad x, y, z \in \Z. $$
+\end{itemize}
+
+Let $ n \in \Z_{\ge 0} $. A question is when can we write $ n $ as
+$$ n = a^2 + b^2, \qquad a, b \in \Z? $$
+Some observations.
+\begin{itemize}
+\item If $ n = a_1^2 + b_1^2 $, $ m = a_2^2 + b_2^2 $,
+$$ m \cdot n = \rb{a_1a_2 + b_1b_2}^2 + \rb{a_1b_2 - a_2b_1}^2. $$
+\item Every $ n \ge 0 $ can be written as a product
+$$ n = p_1^{k_1} \dots p_r^{k_r}, \qquad k_i \in \Z_{\ge 1}, $$
+where $ p_i $ are prime numbers. Irreducibles are such that only divisors are $ 1 $ and $ p_i $. Primes are such that $ p_i \mid mn $ gives $ p_i \mid m $ or $ p_i \mid n $. Irreducibles and primes are equivalent in $ \Z $.
+\item Only care about $ p_i $ with odd exponent.
+\end{itemize}
+When can we write
+$$ p = a^2 + b^2, \qquad a, b \in \Z, $$
+where $ p $ is prime? An observation is that
+$$ p = 2, 5, 13, 17, 29, 37, \dots $$
+is ok, and
+$$ p \ne 3, 7, 11, 19, 23, \dots $$
+is not ok. A conjecture is if $ p \equiv 3 \mod 4 $, then $ p \ne a^2 + b^2 $, otherwise this is ok.
+
+\begin{theorem}
+If $ p \equiv 3 \mod 4 $ then $ p \ne a^2 + b^2 $.
+\end{theorem}
+
+\begin{proof}
+$ a^2 + b^2 \equiv 0 \mod p $ and $ a, b \not\equiv 0 \mod p $ if and only if
+$$ \rb{\dfrac{a}{b}}^2 \equiv -1 \mod p, $$
+if and only if $ \jacobi{-1}{p} = 1 $, so $ p \equiv 3 \mod 4 $.
+\end{proof}
+
+\begin{remark1}
+Proof tells us that $ n \ne a^2 + b^2 $ whenever $ n $ has a prime factor $ p_i \equiv 3 \mod 4 $ with odd exponent $ k_i $ for $ i = 1, \dots, r $. If every $ p \equiv 1 \mod 4 $ is of the form $ p = a^2 + b^2 $, then we understand the general case,
+$$ n = a^2 + b^2 \qquad \iff \qquad \forall p_i \mid n, \ p_i \equiv 3 \mod 4, \ k_i \in 2\Z. $$
+\end{remark1}
+
+\begin{theorem}
+If $ p \equiv 1 \mod 4 $ then
+$$ p = a^2 + b^2, \qquad a, b \in \Z. $$
+\end{theorem}
+
+Factorisation in $ \Z\sb{i} $ for $ i^2 = 1 $ is $ p = a^2 + b^2 = \rb{a + bi}\rb{a - bi} $ for $ a, b \in \Z $.
+$$ \Z\sb{i} = \Z \oplus \Z i = \cb{a + bi \mid a, b \in \Z} $$
+is the subring of \textbf{Gaussian integers} in $ \Q\rb{i} / \Q $, an extension $ \Q\sb{x} / \rb{x^2 + 1} $ of $ \Q $ of degree two, a quadratic field. We will understand prime factorisation in $ \Z\sb{i} $, and in more general finite extensions of $ \Q $.
+
+\begin{theorem}[Unique factorisation in $ \Z $]
+\label{thm:ufiz}
+Any $ n \in \Z \setminus \cb{0, \pm 1} $ can be written uniquely as a product of primes, up to permuting the prime factors or changing their signs.
+\end{theorem}
+
+\begin{proposition}[Division algorithm]
+Given $ a, b \in \Z $, $ b \ne 0 $, there exist $ q, r \in \Z $ such that $ a = qb + r $ such that $ 0 \le r < \abs{b} $.
+\end{proposition}
+
+\begin{proposition}[Euclid's algorithm]
+Let $ a, b \in \Z $, $ ab \ne 0 $. There exist a greatest common divisor $ \gcd\rb{a, b} \mid a $ and $ \gcd\rb{a, b} \mid b $, and $ r, s \in \Z $ such that $ ar + bs = \gcd\rb{a, b} $.
+\end{proposition}
+
+\begin{proof}
+Consider $ I = \cb{ma + nb \mid m, n \in \Z} $. $ \gcd\rb{a, b} $ will be the smallest positive element of $ I $.
+\end{proof}
+
+Let $ I \subseteq \Z $ be the ideal of $ \Z $ generated by $ a, b $. Proof of Euclid's algorithm shows $ I $ is generated by $ \gcd\rb{a, b} $. In fact, every ideal of $ \Z $ is generated by one element, that is it is \textbf{principal}.
+
+\begin{proposition}[Euclid's lemma]
+If $ p \in \Z $ is prime, then
+$$ p \mid ab, \qquad a, b \in \Z \qquad \implies \qquad p \mid a \ \text{or} \ p \mid b. $$
+\end{proposition}
+
+\begin{proof}[Proof of Theorem \ref{thm:ufiz}]
+\hfill
+\begin{itemize}
+\item All $ n \in \Z $ has a prime divisor by taking $ p \in \Z_{\ge 2} $, the smallest divisor of $ n $.
+\item Prime factorisation exists. Let $ n $ be the smallest integer which does not have one.
+\item Uniqueness. $ n = p_2 \dots p_n = q_2 \dots q_? $ Euclid's lemma gives $ p_1 \mid q_1 $, up to reordering, so $ p_1 = \pm q_1 $, and continue.
+\end{itemize}
+\end{proof}
+
+\lecture{2}{Monday}{14/01/19}
+
+\section{Rings}
+
+\begin{definition}
+A \textbf{ring} is commutative and with unity. A \textbf{unit} in a ring $ R $ is an element $ a \in R $ such that there exists $ b \in R $ with $ a \cdot b = 1 $.
+\begin{itemize}
+\item The set of units forms a group under multiplication, denoted by $ R^\times $.
+\item If $ b \in R $ exists such that $ ab = 1 $ then $ b $ is unique.
+\end{itemize}
+If $ R \setminus \cb{0} = R^\times $, then $ R $ is a \textbf{field}.
+\end{definition}
+
+\begin{example1}
+\hfill
+\begin{itemize}
+\item $ \Z^\times = \cb{\pm 1} $.
+\item $ \Q^\times = \Q \setminus \cb{0} $.
+\item $ \Z\sb{\sqrt{2}}^\times \supseteq \cb{\pm 1, \epsilon^n} $, where $ \epsilon = 1 + \sqrt{2} $.
+$$ \Z\sb{\sqrt{2}} = \cb{a + b\sqrt{2} \mid a, b \in \Z}. $$
+$ \rb{1 + \sqrt{2}}\rb{-1 + \sqrt{2}} = 2 - 1 = 1 $. $ \epsilon^n = \epsilon^m $ for $ n, m \in \Z $ and $ n \ge m $ if and only if $ \epsilon^{n - m} = 1 $.
+\end{itemize}
+\end{example1}
+
+\begin{definition}
+Let $ R $ be a ring. An \textbf{ideal} $ I \subseteq R $ is an additive subgroup, so $ x, y \in I $ gives $ x + y \in I $, which absorbs multiplication. If $ x \in I $ and $ a \in R $ then $ ax \in I $.
+\end{definition}
+
+A fact is that if $ \phi : R \to S $ a ring homomorphism then $ Ker\rb{\phi} \subseteq R $ is an ideal. Conversely, if $ I \subseteq R $ is an ideal, can define
+$$ \dfrac{R}{I} = \dfrac{R}{\sim} $$
+as the set of equivalence classes modulo $ I $, that is $ a + I $ for $ a \in R $, via $ a \sim b $ for $ a, b \in R $ if $ a - b \in I $.
+
+\begin{proposition}
+$ R / I $ has ring structure induced by
+\begin{align*}
+\rb{a + I} + \rb{b + I} & = \rb{a + b} + I, \\
+\rb{a + I} \cdot \rb{b + I} & = \rb{a \cdot b} + I,
+\end{align*}
+and a canonical surjective ring homomorphism
+$$ \function{R}{\dfrac{R}{I}}{a}{a + I}. $$
+\end{proposition}
+
+Check that $ a - a' \in I $ and $ b - b' \in I $ gives
+$$ \rb{a + b} - \rb{a' + b'} = \rb{a - a'} + \rb{b - b'} \in I, $$
+$$ ab - a'b' = a\rb{b - b'} + b'\rb{a - a'} \in I. $$
+
+\begin{theorem}[First isomorphism theorem for rings]
+\label{thm:fitfr}
+Let $ \phi : R \to S $ be a ring homomorphism. Then we have a canonical ring isomorphism
+$$ \function{\dfrac{R}{Ker\rb{\phi}}}{\phi\rb{R} \subset S}{r + Ker\rb{\phi}}{\phi\rb{r}}, $$
+for $ r \in R $.
+\end{theorem}
+
+\begin{example1}
+Let $ R = \Z\sb{\sqrt{5}} = \cb{a + b\sqrt{5} \mid a, b \in \Z} $.
+\begin{itemize}
+\item Let $ I $ be the ideal $ 11\Z \oplus \rb{4 - \sqrt{5}}\Z $. A question is what is $ R / I $? Claim that
+$$ \dfrac{R}{I} \cong \dfrac{\Z}{11\Z} = \F_{11}, $$
+the finite field with $ 11 $ elements. Write down $ \phi : R \twoheadrightarrow \Z / 11\Z $ such that $ Ker\rb{\phi} = I $, then result follows from Theorem \ref{thm:fitfr}. Such a $ \phi $ would have to satisfy
+$$ \phi\rb{4 - \sqrt{5}} = 0, \qquad \phi\rb{11} = 0. $$
+$ \phi\rb{\sqrt{5}} = \phi\rb{4} = 4 \mod 11 $.
+$$ \function[\phi]{\Z \oplus \Z\sb{\sqrt{5}}}{\dfrac{\Z}{11\Z}}{\sqrt{5}}{4}. $$
+Still have to check that
+$$ 16 = \phi\rb{5}^2 = \phi\rb{\sqrt{5}^2} = \phi\rb{5} = 5 \mod 11. $$
+Ok because $ 16 \equiv 5 \mod 11 $.
+\item What can we say about $ R / J $, where
+$$ J = \ab{9, 4 - \sqrt{5}} = 9R + \rb{4 - \sqrt{5}}R $$
+is generated over $ R $? $ R / J $ is trivial and $ \ab{9, 4 - \sqrt{5}} = R $.
+\end{itemize}
+\end{example1}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item If $ I, J $ are ideals in a ring $ R $, we say that $ I $ \textbf{divides} $ J $ if $ J \subseteq I $.
+\item We can form ideals
+\begin{align*}
+I \cap J & = \cb{r \mid r \in I, \ r \in J}, \\
+I + J & = \cb{r + s \mid r \in I, \ s \in J}, \\
+I \cdot J & = \cb{\sum_{i = 1}^n r_is_i \ \Bigg| \ r_i \in I, \ s_i \in J, \ i = 1, \dots, n}.
+\end{align*}
+\item $ I, J $ are said to be \textbf{relatively prime} if $ I + J = R $.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Chinese remainder theorem]
+\label{thm:crt}
+Let $ I, J $ be two relatively prime ideals of $ R $. Then
+$$ \dfrac{R}{IJ} \cong \dfrac{R}{I} \times \dfrac{R}{J}. $$
+\end{theorem}
+
+\begin{remark1}
+If $ R = \Z $, all ideals are principal and Theorem \ref{thm:crt} specialises to usual Chinese remainder theorem.
+\end{remark1}
+
+\begin{proof}
+Find surjective ring homomorphism
+$$ \function{R}{\dfrac{R}{I} \times \dfrac{R}{J}}{r}{\rb{r \mod I, r \mod J}}, $$
+with kernel $ I \cdot J $.
+\end{proof}
+
+\begin{definition}
+A ring $ R $ is \textbf{Noetherian} if it satisfies the \textbf{ascending chain condition} on ideals, that is any infinite sequence of ideals
+$$ I_1 \subseteq I_2 \subseteq \dots $$
+stabilises.
+\end{definition}
+
+\begin{example1}
+$ \Z $ and $ \Z\sb{x} $ are Noetherian. $ \Z\sb{x_1, x_2, \dots} $ is not Noetherian.
+\end{example1}
+
+\lecture{3}{Tuesday}{15/01/19}
+
+\section{Integral domains}
+
+\begin{definition}
+A ring $ R $ is an \textbf{integral domain (ID)} if $ ab = 0 $ for $ a, b \in R $ gives $ a = 0 $ or $ b = 0 $.
+\end{definition}
+
+\begin{example1}
+\hfill
+\begin{itemize}
+\item $ \Z $ and $ \Z\sb{\sqrt{5}} $ are IDs.
+\item $ \Z\sb{\sqrt{5}} / \ab{4 - \sqrt{5}} = \Z / 11\Z = \F_{11} $, since
+$$ I = 11\Z \oplus \rb{4 - \sqrt{5}}\Z = \rb{4 - \sqrt{5}} \cdot \Z\sb{\sqrt{5}}, $$
+because $ 11 = \rb{4 - \sqrt{5}}\rb{4 + \sqrt{5}} = 16 - 5 $. Thus
+$$ \dfrac{\Z\sb{\sqrt{5}}}{\ab{11}} \cong \dfrac{\Z\sb{\sqrt{5}}}{\ab{4 - \sqrt{5}}} \times \dfrac{\Z\sb{\sqrt{5}}}{\ab{4 - \sqrt{5}}} = \F_{11} \times \F_{11}, $$
+which is no longer an ID.
+\end{itemize}
+\end{example1}
+
+\begin{remark1}
+An ideal $ \mathfrak{p} \subsetneq R $ is \textbf{prime} if $ ab \in \mathfrak{p} $ gives $ a \in \mathfrak{p} $ or $ b \in \mathfrak{p} $. $ \rb{a + \mathfrak{p}}\rb{b + \mathfrak{p}} = 0 $ in $ R / \mathfrak{p} $ gives $ a + \mathfrak{p} = 0 $, that is $ a \in \mathfrak{p} $, or $ b + \mathfrak{p} = 0 $, that is $ b \in \mathfrak{p} $. This is equivalent to asking that $ R / \mathfrak{p} $ is an ID.
+\end{remark1}
+
+IDs are well-suited to studying divisibility. $ a \mid b $ in $ R $ if there exists $ c $ such that $ ac = b $.
+
+\begin{lemma}
+Let $ R $ be an ID. If $ a \mid b $ and $ b \mid a $, then there exist $ c, d \in R^\times $ such that $ ac = b $ and $ bd = a $.
+\end{lemma}
+
+\begin{proof}
+$ a \mid b $ gives there exists $ c $ such that $ ac = b $ and $ b \mid a $ gives there exists $ d $ such that $ bd = a $ for $ c, d \in R $. $ acd = bd = a $ if and only if $ a\rb{cd - 1} = 0 $. $ R $ is an ID gives $ a = 0 $ or $ cd = 1 $. If $ a = 0 $, then $ b = 0 $, so $ c = d = 1 $.
+\end{proof}
+
+\begin{definition}
+Let $ R $ be an ID.
+\begin{itemize}
+\item We say $ a \in R $ is \textbf{irreducible} if
+\begin{itemize}
+\item $ a $ is not a unit, and
+\item $ a = bc $ for $ b, c \in R $ then either $ b $ or $ c $ is in $ R^\times $, and
+\end{itemize}
+\item We say $ a \in R $ is \textbf{prime} if
+\begin{itemize}
+\item $ a $ is not a unit, and
+\item $ a \mid bc $ gives $ a \mid b $ or $ a \mid c $.
+\end{itemize}
+\end{itemize}
+\end{definition}
+
+$ \ab{0} $ is prime if and only if $ R $ is an ID.
+
+\begin{remark1}
+Over $ \Z $, these two notions are equivalent, but not in general. If $ R $ is an ID and $ a \in R \setminus \cb{0} $ is prime, then $ a $ is irreducible.
+\end{remark1}
+
+\begin{proof}
+Let $ b, c \in R $ be such that $ a = bc $, so $ b \mid a $ and $ c \mid a $. Because $ a $ is prime, $ a = bc $ gives $ a \mid b $ or $ a \mid c $. Say $ a \mid b $ happens. There exists $ d \in R^\times $ such that $ a = bd $. $ a = bc $ gives $ b\rb{d - c} = 0 $. $ b \ne 0 $, because $ a \ne 0 $, so $ d = c $, that is $ c $ is a unit.
+\end{proof}
+
+\begin{remark1}
+If $ a \in R \setminus \cb{0} $ is irreducible, $ a $ does not have to be prime.
+\end{remark1}
+
+\begin{example1}
+$ \Z\sb{\sqrt{-5}} = \cb{a + b\sqrt{-5} \mid a, b \in \Z} $ is the ring of integers of $ \Q\rb{\sqrt{-5}} $, an extension of $ \Q $ of degree two, a subring of $ \C $. $ 6 = 2 \cdot 3 = \rb{1 + \sqrt{-5}} \cdot \rb{1 - \sqrt{-5}} $. Claim that these are two factorisations of $ 6 $ into irreducible elements.
+\begin{itemize}
+\item $ 2 $ is irreducible. Why? Assume $ 2 = \alpha\beta $ for $ \alpha, \beta \in \Z\sb{\sqrt{-5}} $. Goal is that $ \alpha $ or $ \beta $ is a unit. We will use
+$$ \function[N]{\Z\sb{\sqrt{-5}}}{\Z_{\ge 0}}{a + \sqrt{-5}b}{\rb{a + \sqrt{-5}b}\rb{a - \sqrt{-5}b} = a^2 + 5b^2}, $$
+which is multiplicative. $ N\rb{2} = 4 = N\rb{\alpha}N\rb{\beta} $. If $ N\rb{\alpha} = 1 $, then $ \alpha $ is a unit. $ N\rb{\alpha} = N\rb{\beta} = 2 $ gives $ a^2 + 5b^2 = 2 $, which has no solutions, a contradiction.
+\item $ 2 $ and $ 1 + \sqrt{-5} $ do not differ by units, since $ N\rb{2} = 4 $ and $ N\rb{1 + \sqrt{-5}} = 6 $.
+\end{itemize}
+Upshot is that $ 2 $ is irreducible in $ \Z\sb{\sqrt{-5}} $ but not prime.
+\end{example1}
+
+\section{Unique factorisation domains}
+
+Let $ R $ be an ID. We define an equivalence relation $ \sim $ on $ R $ by $ a \sim b $ if $ a \mid b $ and $ b \mid a $, or there exist $ c, d \in R^\times $ such that $ a = bc $ and $ b = da $.
+
+\begin{definition}
+An ID $ R $ has \textbf{unique factorisation} if for all $ a \in R \setminus \cb{0} $ there is a factorisation $ a = u \cdot p_1 \cdot \dots \cdot p_r $, where $ u \in R^\times $ and the $ p_i $ are irreducible. This is unique in the sense that, if there exists another factorisation $ v \cdot q_1 \cdot \dots \cdot q_s $, where $ v \in R^\times $ and the $ q_i $ are irreducible, then $ r = s $, and up to reordering $ p_i \sim q_i $, for $ i = 1, \dots, r = s $. An ID with this property is called an \textbf{unique factorisation domain (UFD)},
+\end{definition}
+
+\begin{example1}
+$ \Z $, but not $ \Z\sb{\sqrt{-5}} $.
+\end{example1}
+
+\begin{lemma}
+If $ R $ is a UFD, then $ p \in R \setminus \cb{0} $ is irreducible gives $ p $ is prime.
+\end{lemma}
+
+\begin{proof}
+Exercise.
+\end{proof}
+
+\begin{theorem}
+\label{thm:ufdacc}
+Let $ R $ be an ID. The following conditions are equivalent.
+\begin{itemize}
+\item $ R $ is a UFD.
+\item $ R $ satisfies ascending chain condition for principal ideals, that is every infinite sequence
+$$ \ab{a_1} \subseteq \ab{a_2} \subseteq \dots $$
+stabilises after finitely many steps, and every irreducible in $ R $ is prime.
+\end{itemize}
+\end{theorem}
+
+If $ R $ is a UFD, can define $ d\rb{a} \in \Z_{\ge 0} $ as the number of irreducible factorisations of $ a $. $ d\rb{a} = 0 $ if and only if $ a \in R^\times $ is a unit.
+
+\begin{lemma}
+Let $ R $ be a UFD and $ a \mid b $ for $ a, b \in R $. Then
+\begin{itemize}
+\item $ d\rb{a} \le d\rb{b} $, and
+\item $ b \mid a $ if and only if $ d\rb{a} = d\rb{b} $.
+\end{itemize}
+\end{lemma}
+
+\lecture{4}{Friday}{18/01/19}
+
+\begin{proof}
+Let $ a = u \cdot p_1 \cdot \dots \cdot p_{d\rb{a}} $ and $ b = v \cdot q_1 \cdot \dots \cdot q_{d\rb{b}} $. $ a \mid b $ gives $ b = a \cdot c $ for $ c \in R \setminus \cb{0} $. Let $ c = w \cdot r_1 \cdot \dots \cdot r_{d\rb{c}} $.
+$$ v \cdot q_1 \cdot \dots \cdot q_{d\rb{b}} = u \cdot w \cdot p_1 \cdot \dots \cdot p_{d\rb{a}} \cdot r_1 \cdot \dots \cdot r_{d\rb{c}}. $$
+Uniqueness of factorisation gives $ d\rb{b} = d\rb{a} + d\rb{c} $, so $ d\rb{b} \ge d\rb{a} $. Equality if and only if $ d\rb{c} = 0 $ if and only if $ c $ is a unit, if and only if $ b \mid a $.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:ufdacc}]
+\hfill
+\begin{itemize}
+\item[$ \implies $] Assume $ R $ is a UFD. Irreducibles are prime. Let
+$$ \ab{a_1} \subseteq \ab{a_2} \subseteq \dots \qquad \implies \qquad \dots \mid a_2 \mid a_1 \qquad \implies \qquad d\rb{a_1} \ge \dots \ge 0. $$
+This sequence stabilises after finitely many steps. There exists $ n $ such that
+$$ d\rb{a_n} = d\rb{a_{n + 1}} = \dots \qquad \implies \qquad a_n \sim a_{n + 1} \sim \dots \qquad \implies \qquad \ab{a_n} = \ab{a_{n + 1}} = \dots. $$
+\item[$ \impliedby $] For all $ a \in R \setminus \cb{0} $, claim that $ a $ has a factorisation into irreducibles. If $ a_1 = a $, irreducible. Otherwise $ a = b \cdot c $ for $ b, c \in R \setminus \cb{0} $ not units. If both irreducible, done. If not, say $ b $ not irreducible, $ a_2 = b $. $ a = bc $ for $ c $ not a unit gives $ \ab{a} \subsetneq \ab{b} $. Redoing the process here,
+$$ \ab{a_1} \subsetneq \ab{a_2} \subsetneq \dots. $$
+By ascending chain condition, this process terminates, getting a contradiction, so $ a $ has factorisation into irreducibles. The factorisation of $ a $ is unique, up to units and reordering. Let
+$$ a = u \cdot p_1 \cdot \dots \cdot p_r = v \cdot q_1 \cdot \dots \cdot q_s. $$
+$ p_1 $ irreducible gives $ p_1 $ is prime, so $ p_1 \mid q_i $ for some $ i $, where $ q_i $ is irreducible, so $ p_1 \sim q_i $. Cancel out $ p_1, q_i $ and repeat.
+\end{itemize}
+\end{proof}
+
+\begin{remark1}
+$ \Z\sb{\sqrt{-5}} $ is not a UFD because $ 2 $ is irreducible but not prime.
+\end{remark1}
+
+\section{Principal ideal domains}
+
+\begin{definition}
+An ID $ R $ is a \textbf{principal ideal domain (PID)} if every ideal of $ R $ is principal.
+\end{definition}
+
+\begin{example1}
+\hfill
+\begin{itemize}
+\item Fields.
+\item $ \Z $ follows from Euclid's algorithm.
+\end{itemize}
+\end{example1}
+
+\begin{theorem}
+\label{thm:pidufd}
+A PID $ R $ is a UFD.
+\end{theorem}
+
+\begin{proof}
+Check two characterising properties.
+\begin{itemize}
+\item Ascending chain condition. Let
+$$ \ab{a_1} \subseteq \ab{a_2} \subseteq \dots. $$
+Consider
+$$ I = \bigcup_{n = 1}^\infty \ab{a_n}. $$
+Claim that $ I $ is an ideal of $ R $. Say $ x \in I $ and $ r \in R $. Want $ rx \in I $. There exists $ n \in \Z_{\ge 1} $ such that $ x \in \ab{a_n} $, so $ rx \in \ab{a_n} $ and $ rx \in I $. Say $ x, y \in I $. Then $ x \in \ab{a_n} $ for $ n \in \Z_{\ge 1} $ and $ y \in \ab{a_m} $ for $ m \in \Z_{\ge 1} $. If $ m \ge n $ then $ x \in \ab{a_m} $, so $ x + y \in \ab{a_m} $ gives $ x + y \in I $. Otherwise $ y \in \ab{a_n} $, so $ x + y \in \ab{a_n} $ gives $ x + y \in I $. Hence $ I \subseteq R $ is an ideal, so $ I $ is principal, that is there exists $ a \in R $ such that $ I = \ab{a} $. There exists $ n \in \Z_{\ge 1} $ such that $ a \in \ab{a_n} $. Have inclusions
+$$ \ab{a} \subseteq \ab{a_n} \subseteq \ab{a_m} \subseteq \ab{a}. $$
+All inclusions are equalities, so $ \ab{a_m} = \ab{a_n} $ for all $ m \ge n $.
+\item Exercise: irreducibles are prime.
+\end{itemize}
+\end{proof}
+
+\begin{remark1}
+\hfill
+\begin{itemize}
+\item $ \Z\sb{\sqrt{-5}} $ is not a PID. Follows from Theorem \ref{thm:pidufd} and failure of unique factorisation. $ \ab{2, 1 + \sqrt{-5}} $ is not a principal ideal. (Exercise: check this)
+\item A UFD that is not a PID. $ \Q\sb{x, y} $ is a UFD but $ \ab{x, y} $ is not principal. $ \Z\sb{x} $ is a UFD but $ \ab{2, x} $ is not principal.
+\end{itemize}
+\end{remark1}
+
+\section{Euclidean domains}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item A \textbf{Euclidean norm} on an ID $ R $ is a function $ \phi : R \setminus \cb{0} \to \Z_{\ge 1} $ such that for all $ a, b \in R \setminus \cb{0} $ there exist $ q, r \in R $ such that $ a = qb + r $ and
+\begin{itemize}
+\item $ \phi\rb{r} < \phi\rb{b} $, or
+\item $ r = 0 $.
+\end{itemize}
+\item An ID that admits a Euclidean norm is called a \textbf{Euclidean domain}.
+\end{itemize}
+\end{definition}
+
+Sometimes, add condition
+\begin{equation}
+\label{eq:1}
+\phi\rb{ab} \ge \phi\rb{b}.
+\end{equation}
+If $ \phi $ is a Euclidean norm as in definition, can use $ \phi $ to construct $ \psi $ Euclidean norm satisfying $ \rb{\ref{eq:1}} $.
+
+\begin{theorem}
+A Euclidean domain is a principal ideal domain.
+\end{theorem}
+
+\begin{example1}
+$ \Z $ with Euclidean norm $ b \mapsto \abs{b} $.
+\end{example1}
+
+\end{document}
