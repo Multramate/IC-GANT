@@ -1,0 +1,445 @@
+\def\module{M3P21 Geometry II: Algebraic Topology}
+\def\lecturer{Dr Christian Urech}
+\def\term{Spring 2019}
+
+\def\thm{section}
+
+\input{../style/header}
+
+\begin{document}
+
+\input{../style/main}
+
+\section{Some underlying geometric notions}
+
+\subsection{Introduction}
+
+\lecture{1}{Friday}{11/01/19}
+
+Combines topological spaces with algebraic objects, groups.
+\begin{itemize}
+\item How to show that a torus is not homeomorphic to a sphere?
+\item How to show that $ \R^n \ncong \R^m $ if $ n \ne m $?
+\end{itemize}
+
+Content is fundamental groups and homology. We will follow chapter one and two from
+\begin{itemize}
+\item A Hatcher, Algebraic topology, 2002
+\end{itemize}
+
+Prerequisites are the following.
+\begin{itemize}
+\item Point set topology. Topological spaces, continuous maps, product and quotient topologies, Hausdorff spaces, etc.
+\item Basic group theory. Normal subgroups and quotients, isomorphism theorems, free groups, presentation of groups, etc.
+\end{itemize}
+
+\subsection{Homotopy}
+
+Let $ X, Y $ be topological spaces and $ I = \sb{0, 1} $.
+
+\begin{definition}
+A \textbf{homotopy} is a continuous map $ F : X \times I \to Y $. For every $ t \in I $ we obtain a continuous map
+$$ \function[f_t]{X}{Y}{x}{f_t\rb{x} = F\rb{x, t}}. $$
+\end{definition}
+
+\begin{definition}
+Two continuous maps $ f_0, f_1 : X \to Y $ are \textbf{homotopic} if there exists a homotopy $ F : X \times I \to Y $ such that
+$$ f_0\rb{x} = F\rb{x, 0}, \qquad f_1\rb{x} = F\rb{x, 1}, $$
+for all $ x \in X $. We write $ f_0 \cong f_1 $.
+\end{definition}
+
+(Exercise: this is an equivalence relation)
+
+\begin{definition}
+Let $ A \subseteq X $ be a subspace. A retraction of $ X $ onto $ A $ is a continuous map $ r : X \to A $ such that
+\begin{itemize}
+\item $ r\rb{X} = A $, and
+\item $ r\mid_A = id_A $.
+\end{itemize}
+\end{definition}
+
+\begin{example1}
+If $ X \ne \emptyset $, $ p \in X $, then $ X $ retracts to $ p $ by the constant map $ X \to \cb{p} $.
+\end{example1}
+
+\begin{definition}
+A \textbf{deformation retraction} of $ X $ onto $ A \subseteq X $ is a retraction that is homotopic to the identity. That is, there is a continuous map
+$$ \function[F]{X \times I}{A}{\rb{x, t}}{f_t\rb{x}}, $$
+such that $ f_0 = id_X $ and $ f_1 : X \to A $ is the deformation retraction.
+\end{definition}
+
+\begin{example1}
+In the closed $ n $-dimensional disk
+$$ D^n = \cb{x \in \R^n \mid \abs{x} \le 1}, $$
+deformation retracts to $ \rb{0, \dots, 0} \in \R^n $. $ f_t\rb{x} = t \cdot x $. $ t = 1 $ gives $ f_1 = id_{D^n} $ and $ t = 0 $ gives $ f_0 : D^n \to \rb{0, \dots, 0} $.
+\end{example1}
+
+\begin{example1}
+Let $ S^n $ be the $ n $-sphere,
+$$ S^n = \cb{x \in \R^n \mid \abs{x} = 1}. $$
+The cylinder $ S^n \times I $ deformation retracts to $ S^n \times \cb{0} $, by defining $ f_t\rb{x, r} = \rb{x, t \cdot r} $.
+\end{example1}
+
+An observation is if $ X $ is a topological space, $ f : X \to \cb{p} $, and $ p \in X $ is a deformation retraction of $ X $ to $ p $, then $ X $ is path connected. Indeed, if $ F : X \to I \to X $ is a homotopy from $ id_X $ to $ f $ and $ x \in X $ is a point, then this gives a path
+$$ \function{I}{X}{t}{F\rb{x, t}} $$
+that connects $ x $ to $ p $. This implies that not all retractions are deformation retractions. For example, take a space that is not path connected and retract it to a point.
+
+\begin{definition}
+A continuous map $ f : X \to Y $ is a \textbf{homotopy equivalence} if there is a continuous map $ g : Y \to X $ such that $ fg \cong id_Y $ and $ gf = id_X $. If there exists a homotopy equivalence between $ X $ and $ Y $, $ X $ and $ Y $ are \textbf{homotopy equivalent} or they have the same \textbf{homotopy type}.
+\end{definition}
+
+\begin{lemma}
+A deformation retraction $ f : X \to A $ is a homotopy equivalence.
+\end{lemma}
+
+\begin{proof}
+Let $ i : A \hookrightarrow X $ be the inclusion map. Then $ fi = id_A $ and $ if = f \cong id_X $ by definition.
+\end{proof}
+
+\begin{example1}
+The disk with two holes is equivalent to $ \infty $.
+\end{example1}
+
+\begin{example1}
+$ \R^n $ deformation retracts to a point, by $ f_t\rb{x} = t \cdot x $.
+\end{example1}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item $ X $ is \textbf{contractible} if it is homotopy equivalent to a point.
+\item A contractible map is \textbf{nullhomotopic} if it is homotopy equivalent to a constant map.
+\end{itemize}
+\end{definition}
+
+\subsection{Cell complexes}
+
+\begin{example1}
+Torus $ S^1 \times S^1 $ is the union of a point, two open intervals, and the open disk $ Int\rb{D^2} $.
+\end{example1}
+
+These are called \textbf{cells}. Can think of disks $ D^n $ glued together.
+
+\lecture{2}{Tuesday}{15/01/19}
+
+\begin{definition}
+A \textbf{CW-complex}, or \textbf{cell complex}, is a topological space $ X $ such that there exists a decomposition $ X = \cup_{n \in \N} X^n $, where the $ X^n $ are constructed inductively in the following way.
+\begin{itemize}
+\item $ X^n $ is a discrete set.
+\item For each $ n \ge 0 $ there is an collection of closed $ n $ disks $ \cb{D_\alpha^n} $ together with continuous maps $ \phi_\alpha : \partial D_\alpha^n \to X^{n - 1} $ such that
+$$ X^n = \dfrac{X^{n - 1} \sqcup \bigsqcup_\alpha D_\alpha^n}{\sim}, $$
+where $ x \sim \phi_\alpha\rb{x} $ for all $ x \in \partial D_\alpha^n $ for all $ \alpha $.
+\item A subset $ U \subseteq X $ is open if and only if $ U \cap X^n $ is open for all $ n $.
+\end{itemize}
+\end{definition}
+
+\begin{remark1}
+\hfill
+\begin{itemize}
+\item As a set,
+$$ X^n = X^{n - 1} \sqcup \bigsqcup_\alpha e_\alpha^n, $$
+where each $ e_\alpha^n $ is homeomorphic to an open $ n $-disk. These $ e_\alpha^n $ are called the \textbf{$ n $-cells} of $ X $.
+\item If $ X = X^m $ for some $ m $, then $ X $ is called \textbf{finite dimensional}. The minimal $ m $ such that $ X = X^m $ is the dimension of $ X $.
+\end{itemize}
+\end{remark1}
+
+\begin{example1}
+\hfill
+\begin{itemize}
+\item $ \sb{0, 1} $ is a CW-complex.
+\item $ \R $ is a CW-complex.
+\item $ S^1 $ is a CW-complex.
+\item A graph is a CW-complex.
+\item $ S^n = D^{n - 1} / \partial D^n $ is a CW-complex.
+\item Can also decompose $ S^2 $ into one $ 0 $-cell, one $ 1 $-cell, and two $ 2 $-cells.
+\item The torus $ S^1 \times S^1 $ is one $ 0 $-cell, two $ 1 $-cells, and one $ 2 $-cell.
+\item The M\"obius strip is two $ 0 $-cells, three $ 1 $-cells, and one $ 2 $-cell.
+\item The Klein bottle is one $ 0 $-cell, two $ 1 $-cells, and one $ 2 $-cell.
+\end{itemize}
+\end{example1}
+
+\begin{definition}
+If $ X $ is a CW-complex with finitely many cells the \textbf{Euler characteristic} $ \chi\rb{X} $ of $ X $ is the number of even cells minus the number of odd cells.
+\end{definition}
+
+A fact is that $ \chi\rb{X} $ does not depend of the choice of cells decomposition.
+
+\begin{example1}
+\hfill
+\begin{itemize}
+\item
+$$ \chi\rb{S^1} =
+\begin{cases}
+0 & n \ \text{odd} \\
+1 & n \ \text{even} \\
+\end{cases}.
+$$
+\item $ \chi\rb{S^1 \times S^1} = 0 $.
+\end{itemize}
+\end{example1}
+
+This is the generalisation of the following observation by Leonhard Euler. Let $ P $ be a convex polyhedron, where
+\begin{itemize}
+\item $ V $ is the number of vertices of $ P $,
+\item $ E $ is the number of edges of $ P $, and
+\item $ F $ is the nubmer of faces of $ P $.
+\end{itemize}
+Then $ V - E + F = 2 $.
+
+\section{The fundamental group}
+
+Let $ X $ be a topological space. A path is a continuous map $ f : I \to X $, where $ I = \sb{0, 1} $.
+
+\begin{definition}
+Two paths $ f_0, f_1 $ are \textbf{homotopic} if there exists a homotopy between $ f_0 $ and $ f_1 $ preserving the endpoints, that is a continuous map
+$$ \function[F]{I \times I}{X}{\rb{s, t}}{f_t\rb{s}}, $$
+such that
+$$ f_t\rb{0} = f_0\rb{0}, \qquad f_t\rb{1} = f_0\rb{1}, $$
+for all $ t \in I $, and
+$$ F\rb{s, 0} = f_0\rb{s}, \qquad F\rb{s, 1} = f_1\rb{s}. $$
+\end{definition}
+
+\begin{example1}
+Let $ X \subseteq \R^n $ be a convex set. Then all the paths in $ X $ are homotopic if they have the same endpoints.
+\end{example1}
+
+\begin{proof}
+If $ f_0, f_1 : I \to X $ are two paths such that $ f_0\rb{0} = f_1\rb{0} $ and $ f_0\rb{1} = f_1\rb{1} $. Define $ f_t\rb{s} = \rb{1 - t}f_0\rb{s} + tf_1\rb{s} $.
+\end{proof}
+
+\begin{lemma}
+Being homotopic is an equivalence relation on the set of paths with fixed endpoints. We will write $ f_0 \sim f_1 $ for two homotopic paths $ f_0 $ and $ f_1 $.
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item $ f $ is homotopic to $ f $.
+\item If $ f_0 $ is homotopic to $ f_1 $ by a homotopy $ f_t $, then $ f_1 $ is homotopic to $ f_0 $ by the homotopy $ f_{1 - t} $.
+\item If $ f_0 $ is homotopic to $ f_1 $ by a homotopy $ f_t $ and $ f_1 = g_0 $ is homotopic to $ g_1 $ by a homotopy $ g_t $, then $ f_0 $ is homotopic to $ g_1 $ by the homotopy
+$$ h_t =
+\begin{cases}
+f_{2t} & 0 \le t \le \tfrac{1}{2} \\
+g_{2t - 1} & \tfrac{1}{2} \le t \le 1
+\end{cases}.
+$$
+Then
+$$ \function[H]{I \times I}{X}{\rb{s, t}}{h_t\rb{s}} $$
+is continuous because its restriction to the closed subsets $ I \times \sb{0, 1 / 2} $ and $ I \times \sb{1 / 2, 1} $ is continuous. If the restriction to two closed subsets is continuous then the restriction to the union of these subsets is continuous.
+\end{itemize}
+\end{proof}
+
+\lecture{3}{Wednesday}{16/01/19}
+
+Let $ X $ be a topological space and $ I = \sb{0, 1} $. If $ f : I \to X $ is a path, $ \sb{f} $ is the class of all paths on $ X $ homotopic to $ f $.
+
+\begin{definition}
+Let $ f, g : I \to X $ be two paths such that $ f\rb{1} = g\rb{0} $. The \textbf{product path} $ f \cdot g $ is the path
+$$ \rb{f \cdot g}\rb{s} =
+\begin{cases}
+f\rb{2s} & 0 \le s \le \tfrac{1}{2} \\
+g\rb{2s - 1} & \tfrac{1}{2} \le s \le 1
+\end{cases}.
+$$
+\end{definition}
+
+A convention is that whenever we write $ f \cdot g $ we implicitly assume $ f\rb{1} = g\rb{0} $.
+
+\begin{lemma}
+\label{lem:1.2}
+Let $ f_0, f_1, g_0, g_1 $ be paths on $ X $ such that $ f_1 \cong f_0 $ and $ g_0 \cong g_1 $. Then $ f_0 \cdot g_0 \cong f_1 \cdot g_1 $.
+\end{lemma}
+
+\begin{proof}
+$$ \function{I \times I}{X}{\rb{s, t}}{\rb{f_t \cdot g_t}\rb{s}} $$
+is a homotopy between $ f_0 \cdot g_0 $ and $ f_1 \cdot g_1 $.
+\end{proof}
+
+\begin{remark1}
+\textbf{Reparametrisation} is a continuous $ \phi : \sb{0, 1} \to \sb{0, 1} $ such that $ \phi\rb{0} = 0 $ and $ \phi\rb{1} = 1 $. If $ f : I \to X $ is a path, then $ f \cdot \phi \cong f $
+\end{remark1}
+
+\begin{proof}
+Define $ \phi_t\rb{s} = \rb{1 - t}\phi\rb{s} + ts $, then $ f \cdot \phi_t $ is a homotopy between $ f \cdot \phi $ and $ f $.
+\end{proof}
+
+For $ x \in X $, let
+$$ \function[c_x]{I}{X}{s}{x} $$
+be the \textbf{constant path} at $ x $. For a path $ f : I \to X $, define
+$$ \function[f^{-1}]{I}{X}{s}{f\rb{1 - s}}. $$
+
+\begin{lemma}
+\label{lem:1.3}
+Let $ f, g, h : I \to X $ be paths. Then
+\begin{enumerate}
+\item $ \rb{f \cdot g} \cdot h \cong f \cdot \rb{g \cdot h} $,
+\item $ f \cdot c_{f\rb{1}} \cong f $ and $ c_{f\rb{0}} \cdot f \cong f $, and
+\item $ f \cdot f^{-1} \cong c_{f\rb{0}} $ and $ f^{-1} \cdot f \cong c_{f\rb{1}} $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item $ \rb{\rb{f \cdot g} \cdot h} \cdot \phi = f \cdot \rb{g \cdot h} $, where
+$$ \phi\rb{s} =
+\begin{cases}
+\tfrac{s}{2} & s \in \sb{0, \tfrac{1}{2}} \\
+s - \tfrac{1}{4} & s \in \sb{\tfrac{1}{2}, \tfrac{3}{4}} \\
+2s - 1 & s \in \sb{\tfrac{3}{4}, 1}
+\end{cases},
+$$
+so $ \rb{f \cdot g} \cdot h \cong f \cdot \rb{g \cdot h} $ by reparametrisation.
+\item Again reparametrisation.
+\item Define
+$$ H\rb{s, t} =
+\begin{cases}
+f\rb{\max\cb{1 - 2s, t}} & s \in \sb{0, \tfrac{1}{2}} \\
+f\rb{\max\cb{2s - 1, t}} & s \in \sb{\tfrac{1}{2}, 1}
+\end{cases}.
+$$
+$ H $ is continuous, $ H\rb{s, 0} = f^{-1} \cdot f $, and $ H\rb{s, 1} = c_{f\rb{1}} $.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+A \textbf{loop} with \textbf{basepoint} $ x_0 \in X $ is a path $ f : I \to X $ such that $ f\rb{0} = f\rb{1} = x_0 $.
+\end{definition}
+
+\begin{definition}
+Denote by $ \Pi_1\rb{X, x_0} $ the set of homotopy classes $ \sb{f} $ of loops $ f : I \to X $ with basepoint $ x_0 $.
+\end{definition}
+
+\begin{proposition}
+$ \Pi_1\rb{X, x_0} $ is a group with product $ \sb{f}\sb{g} = \sb{f \cdot g} $ and neutral element $ c_{x_0} : I \to X $, the constant path at $ x_0 $.
+\end{proposition}
+
+\begin{proof}
+Follows directly from Lemma \ref{lem:1.2} and Lemma \ref{lem:1.3}.
+\end{proof}
+
+\begin{definition}
+$ \Pi_1\rb{X, x_0} $ is the \textbf{fundamental group} of $ X $ at $ x_0 $.
+\end{definition}
+
+\begin{example1}
+Let $ X \subseteq \R^n $ be a convex set and $ x_0 \in X $. Then $ \Pi_1\rb{X, x_0} = 0 $.
+\end{example1}
+
+\begin{proof}
+$ X $ is convex gives all loops are homotopic to each other.
+\end{proof}
+
+Assume $ x_0, x_1 \in X $ such that $ x_0 $ and $ x_1 $ are in the same path component of $ X $. Let $ h : I \to X $ be a path such that $ h\rb{0} = x_0 $ and $ h\rb{1} = x_1 $. Define
+$$ \function[\beta_h]{\Pi_1\rb{X, x_1}}{\Pi_1\rb{X, x_0}}{\sb{f}}{\sb{h \cdot f \cdot h^{-1}}}. $$
+This is well-defined by Lemma \ref{lem:1.2}.
+
+\begin{proposition}
+$ \beta_h : \Pi_1\rb{X, x_1} \to \Pi_1\rb{X, x_0} $ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+It is a homomorphism.
+$$ \beta_h\sb{f \cdot g} = \sb{h \cdot f \cdot g \cdot h^{-1}} = \sb{h \cdot f \cdot h^{-1}}\sb{h \cdot g \cdot h^{-1}} = \beta_h\sb{f} \cdot \beta_h\sb{g}, $$
+and $ \beta_h\sb{c_{x_1}} = \sb{c_{x_1}} $. It is bijective with $ \beta_h^{-1} = \beta_{h^{-1}} $.
+\end{proof}
+
+If $ X $ is path connected, we often write $ \Pi_1\rb{X} $ instead of $ \Pi_1\rb{X, x_0} $.
+
+\begin{definition}
+$ X $ is \textbf{simply connected} if it is path connected and $ \Pi_1\rb{X} = 0 $.
+\end{definition}
+
+\begin{proposition}
+$ X $ is simply connected if and only if there exists a unique homotopy class of paths between any two points of $ X $.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] There exists a path between any two points. Let $ f, g $ be two paths from $ x_0 $ to $ x_1 $ for $ x_0, x_1 \in X $. $ f \cdot g^{-1} \cong g \cdot g^{-1} $ gives $ f \cong f \cdot g^{-1} \cdot g \cong g \cdot g^{-1} \cdot g \cong g $.
+\item[$ \impliedby $] Let $ X $ be path connected. $ x_1 = x_0 $ gives that all loops at $ x_0 $ are homotopic to each other, so $ \Pi_1\rb{X} = 0 $.
+\end{itemize}
+\end{proof}
+
+\subsection{The fundamental group of the circle}
+
+Goal is to show that $ \Pi_1\rb{S^1} \cong \Z $.
+
+\lecture{4}{Friday}{18/01/19}
+
+\begin{definition}
+A \textbf{covering space} of a space $ X $ is a space $ \widetilde{X} $ and a continuous map $ p : \widetilde{X} \to X $ such that for each $ x \in X $ there is an open $ U \subseteq X $ such that
+\begin{itemize}
+\item $ p^{-1}\rb{U} = \bigcup_{j \in J} \widetilde{U_j} $, where $ \widetilde{U_j} \subseteq \widetilde{X} $ is open,
+\item $ \widetilde{U_i} \cap \widetilde{U_j} = \emptyset $ if $ i \ne j $, and
+\item $ p \mid_{\widetilde{U_j}} \to U $ is a homeomorphism for all $ j \in J $.
+\end{itemize}
+Such a $ U $ is called \textbf{evenly covered}. The $ \widetilde{U_j} $ are called \textbf{sheets}.
+\end{definition}
+
+\begin{example1}
+$ \function[p]{\R}{S^1}{s}{\rb{\cos\rb{2\pi s, \sin\rb{2\pi s}}}} $.
+\end{example1}
+
+\begin{definition}
+Let $ p : \widetilde{X} \to X $ be a covering space. A \textbf{lift} of a continuous map $ f : Y \to X $ is a continuous map $ \widetilde{f} : Y \to \widetilde{X} $ such that $ p \cdot \widetilde{f} = f $.
+\end{definition}
+
+\begin{proposition}
+\label{prop:1.34}
+Let $ p : \widetilde{X} \to X $ be a covering space and $ f : Y \to X $ be a continuous map. If there are two lifts $ \widetilde{f_1}, \widetilde{f_2} : Y \to \widetilde{X} $ of $ f $ such that $ \widetilde{f_1}\rb{y} = \widetilde{f_2}\rb{y} $ for some $ y \in Y $ and if $ Y $ is connected, then $ \widetilde{f_1} = \widetilde{f_2} $.
+\end{proposition}
+
+This is the \textbf{unique lifting property}.
+
+\begin{proof}
+Let $ y \in Y $ and $ U \subseteq X $ be an evenly convered of $ f\rb{y} $, so $ p^{-1}\rb{U} = \bigcup_j \widetilde{U_j} $. Let $ \widetilde{U_1} $ be the sheet such that $ \widetilde{f_1}\rb{y} \in \widetilde{U_1} $, and let $ \widetilde{U_2} $ be the sheet such that $ \widetilde{f_2}\rb{y} \in \widetilde{U_2} $. Let $ N \subseteq Y $ be open and $ y \in N $ such that $ \widetilde{f_1}\rb{N} \subseteq \widetilde{U_1} $ and $ \widetilde{f_2}\rb{N} \subseteq \widetilde{U_2} $. We have $ p \cdot \widetilde{f_1} = p \cdot \widetilde{f_2} $.
+$$ \widetilde{f_1}\rb{y} = \widetilde{f_2}\rb{y} \qquad \iff \qquad \widetilde{U_1} = \widetilde{U_2} \qquad \iff \qquad \widetilde{f_1 \mid_N} = \widetilde{f_2 \mid_N}. $$
+Let $ A = \cb{y \in Y \mid \widetilde{f_1}\rb{y} = \widetilde{f_2}\rb{y}} $, so $ A $ is open, $ Y \setminus A $ is open, and $ A \ne \emptyset $. Thus $ A = Y $.
+\end{proof}
+
+\begin{proposition}
+\label{prop:1.30}
+Let $ p : \widetilde{X} \to X $ be a covering space and $ F : Y \times I \to X $ be a continuous map such that there exists a lift $ \widetilde{f_0} : Y \times \cb{0} \to \widetilde{X} $ of $ F \mid_{Y \times \cb{0}} $. Then there is a unique lift $ \widetilde{F} : Y \times I \to \widetilde{X} $ of $ F $ such that $ \widetilde{F} \mid_{Y \times \cb{0}} = \widetilde{f_0} $.
+\end{proposition}
+
+This is the \textbf{homotopy lifting property}.
+
+\begin{proof}
+Let $ y_0 \in Y $ and $ t \in I $. There are open $ y_0 \in N_t \subseteq Y $ and $ t \in \rb{a_t, b_t} \subseteq I $ such that $ F\rb{N_t \times \rb{a_t, b_t}} \subseteq U \times X $, where $ U $ is open in $ X $ and evenly covered. Compactness of $ I $ gives that there exist $ 0 = t_0 < \dots < t_m = 1 $ and there exists $ y_0 \in N \subseteq Y $ open such that $ F\rb{N \times \sb{t_i, t_{i + 1}}} \subseteq U_i \subseteq X $, where $ U_i $ is open in $ X $ and evenly covered. We inductively construct a lift $ \widetilde{F} \mid_{N \times I} $ of $ F \mid_{N \times I} $. $ \widetilde{F} \mid_{N \times \sb{0, 0}} = \widetilde{f_0} \mid_{N \times \sb{0, 0}} $ exists. Assume the lift has been constructed on $ N \times \sb{0, t_i} $. Let $ \widetilde{U_i} \subseteq \widetilde{X} $ be such that $ p \mid_{\widetilde{U_i}} : \widetilde{U_i} \to U_i $ such that $ \widetilde{F}\rb{F}\rb{y_0, t_i} \subseteq \widetilde{U_i} $. After shrinking $ N $, may assume $ \widetilde{F}\rb{N \times \cb{t_i}} \subseteq \widetilde{U_i} $. Define $ \widetilde{F} $ on $ N \times \sb{t_i, t_{i + 1}} $ to be composition of $ F $ with the homeomorphism $ p_i^{-1} : U_i \to \widetilde{U_i} $. After finitely many steps we obtain a lift $ \widetilde{F} : N \times I \to \widetilde{X} $, where $ y_0 \in N \subseteq Y $ is open, so for each $ y \in Y $ there is a neighbourhood $ N_y \subseteq Y $ such that $ F \mid_{N \times I} : N \times I \to X $ lifts. For all $ y \in Y $, $ \cb{y} \times I $ is connected and can be lifted, so by Proposition \ref{prop:1.34} the lift of $ N \times I $ is unique. Thus there is a unique lift $ \widetilde{F} : Y \times I \to \widetilde{X} $.
+\end{proof}
+
+\begin{corollary}
+Let $ f : I \to X $ be a path, $ f\rb{0} = x_0 $, and $ p : \widetilde{X} \to X $ be a covering space. For each $ \widetilde{x_0} \in p^{-1}\rb{x_0} $, there is a unique lift $ \widetilde{f} : I \to \widetilde{X} $ such that $ \widetilde{f}\rb{0} = \widetilde{x_0} $.
+\end{corollary}
+
+\begin{proof}
+Proposition \ref{prop:1.30} for $ Y $ a point.
+\end{proof}
+
+\begin{theorem}
+\label{thm:1.7}
+Let $ x_0 = \rb{1, 0} \in S^1 $. $ \Pi_1\rb{S^1, x_0} $ is the infinite cyclic group generated by the homotopy class of the loop
+$$ \function[\omega]{I}{S^1}{s}{\rb{\cos\rb{2\pi s}, \sin\rb{2\pi s}}}. $$
+\end{theorem}
+
+\begin{remark1}
+\hfill
+\begin{itemize}
+\item $ \sb{\omega}^n = \sb{\omega_n} $, where $ \omega_1\rb{s} = \rb{\cos\rb{2\pi ns}, \sin\rb{2\pi ns}} $.
+\item
+$$ \function[p]{\R}{S^1}{s}{{\cos\rb{2\pi s}, \sin\rb{2\pi s}}} $$
+is a covering space. $ \omega_n $ lifts to $ \widetilde{\omega_n} : I \to \R $ by $ \widetilde{\omega_n}\rb{s} = ns $, $ \widetilde{\omega_n}\rb{0} = 0 $, and $ \widetilde{\omega_n}\rb{1} = n $.
+\end{itemize}
+\end{remark1}
+
+\begin{proof}[Proof of Theorem \ref{thm:1.7}]
+\hfill
+\begin{itemize}
+\item If $ f : I \to S^1 $ be a loop at $ x_0 = \rb{1, 0} $, then $ \sb{f} = \sb{\omega_n} $ for some $ n $.
+\item If $ \sb{\omega_n} = \sb{\omega_m} $, then $ n = m $.
+\end{itemize}
+\end{proof}
+
+\end{document}
