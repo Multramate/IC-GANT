@@ -26,6 +26,8 @@ The following are references.
 
 \section{What is Galois theory?}
 
+\subsection{Fields}
+
 \begin{notation1}
 If $ K $ is a field, or a ring, I denote
 $$ K\sb{x} = \cb{a_0 + \dots + a_nx^n \mid a_i \in K}, $$
@@ -53,9 +55,9 @@ is also a field, the field of rational functions with coefficients in $ K $. For
 \begin{example1}
 Consider algebraic equations in a field $ K $.
 \begin{itemize}
-\item Quadratic $ ax^2 + bx^2 + c = 0 $ for $ a, b, c \in K $. There is a formula
+\item Let $ ax^2 + bx^2 + c = 0 $ for $ a, b, c \in K $ be a quadratic. There is a formula
 $$ x = \dfrac{-b + \sqrt{b^2 - 4ac}}{2a}. $$
-\item For cubic $ y^3 + 3py + 2q = 0 $,
+\item For a cubic $ y^3 + 3py + 2q = 0 $,
 $$ y = \sqrt[3]{-q + \sqrt{q^2 + p^3}} + \sqrt[3]{-q - \sqrt{q^2 + p^3}}. $$
 \item There is a formula for quartic equations.
 \item It is a theorem that there can be no such formula for equations of degree at least five.
@@ -88,7 +90,7 @@ There are two very different cases exemplified in $ \Q \subset \C $.
 \hfill
 \begin{itemize}
 \item $ \alpha $ is \textbf{algebraic} over $ k $ if $ f\rb{\alpha} = 0 $ for some $ 0 \ne f \in k\sb{x} $. Otherwise we say that $ \alpha $ is \textbf{transcendental} over $ k $.
-\item The extension $ k \subset K $ is algebraic if for all $ \alpha \in K $, $ \alpha $ is algebraic over $ k $.
+\item The extension $ k \subset K $ is \textbf{algebraic} if for all $ \alpha \in K $, $ \alpha $ is algebraic over $ k $.
 \end{itemize}
 \end{definition}
 
@@ -110,7 +112,9 @@ $$ x^3 - 2 = \rb{x - \sqrt[3]{2}}\rb{x - \omega\sqrt[3]{2}}\rb{x - \omega^2\sqrt
 \end{itemize}
 \end{example1}
 
-\begin{theorem}[Fundamental theorem of Galois theory / Galois correspondence]
+\subsection{Galois correspondence}
+
+\begin{theorem}[Fundamental theorem of Galois theory]
 \label{thm:galoiscorrespondence}
 Assume characteristic zero. Let $ k \subset K $ be the splitting field of $ f\rb{x} \in k\sb{x} $. Let
 $$ G = \cb{\text{field isomorphisms} \ \sigma : K \to K \mid \sigma \ \text{is a field automorphism of} \ K \ \text{such that} \ \sigma\mid_{k} = id_k}. $$
@@ -329,5 +333,99 @@ $ \Q\rb{\omega} / \Q $ is the splitting field of $ x^2 + x + 1 $ and of $ x^2 + 
 \end{example1}
 
 We can learn the following. Let $ k \subset L $ be a splitting field. Consider $ k \subset K \subset L $. Then $ K \subset L $ is also a splitting field. The corresponding $ H \le G $ is the Galois group $ Gal_K\rb{L} $. On the other hand $ k \subset K $ is not always a splitting field. It is a splitting field if and only if the corresponding $ H \le G $ is a normal subgroup and in that case $ Gal_k\rb{K} = G / H $.
+
+\pagebreak
+
+\section{Fields}
+
+\lecture{6}{Tuesday}{22/01/19}
+
+Let $ K \subset L $ and $ a \in L $. The \textbf{evaluation homomorphism}
+$$ \function[e_a]{K\sb{x}}{K\sb{a} \subset L}{f\rb{x}}{f\rb{a}} $$
+is a surjective ring homomorphism, where $ K\sb{a} $ is the smallest subring of $ L $ containing $ K $ and $ a $.
+
+\begin{definition}
+$ f\rb{x} = a_0x^n + \dots + a_n \in K\sb{x} $ is \textbf{monic} if $ a_0 = 1 $.
+\end{definition}
+
+\begin{lemma}
+\hfill
+\begin{itemize}
+\item If $ a $ is transcendental, $ e_a $ is injective and it extends to $ \widetilde{e_a} : K\rb{X} \to K\rb{a} $, by
+$$
+\begin{tikzcd}
+K\rb{X} \arrow{dr}{\widetilde{e_a}} \\
+K\sb{X} \arrow{u}{\subset} \arrow[swap]{r}{e_a} & L
+\end{tikzcd}.
+$$
+\item If $ a $ is algebraic, then $ Ker\rb{e_a} = \ab{f_a} $, where $ f_a \in K\sb{x} $ is irreducible, or prime, and unique if monic, then called the minimal polynomial of $ a \in L / K $. In this case
+$$
+\begin{tikzcd}
+K\sb{x} \arrow{r}{e_a} & K\sb{a} \cong K\rb{a} \\
+\dfrac{K\sb{x}}{\ab{f_a}} \arrow{u}{\subset} \arrow{ur}{\sim}[swap]{\sb{e_a}}
+\end{tikzcd}.
+$$
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+There is nothing to prove.
+\end{proof}
+
+Let $ g\rb{x} \in K\sb{x} $ and $ g\rb{a} \ne 0 $. Claim that $ 1 / g\rb{a} \in K\sb{a} $. Indeed $ \gcd\rb{f, g} = 1 $ in $ K\sb{x} $ and $ f \nmid g $. There exists $ \phi, \psi \in K\sb{x} $ such that $ f\phi + g\psi = 1 $ and $ g\rb{a}\psi\rb{a} = 1 $.
+
+\begin{remark1}
+All of this is saying
+\begin{itemize}
+\item $ K\sb{a} \cong K\rb{a} $, and
+\item $ K\sb{x} / \ab{f_a} \cong K\rb{a} $.
+\end{itemize}
+\end{remark1}
+
+Let
+$$ Emb_K\rb{K\rb{a}, F} = \cb{\sigma : K\rb{a} \to F \ \text{field homomorphism} \mid \forall \lambda \in K, \ \sigma\rb{\lambda} = \lambda}. $$
+
+\begin{corollary}
+For $ K \subset L $ and $ a \in L $ algebraic over $ K $,
+\begin{itemize}
+\item $ \sb{K\rb{a} : K} = \deg\rb{f_a} $, and
+\item If $ K \subset F $ is an extension,
+$$ Emb_K\rb{K\rb{a}, F} = \cb{b \in F \mid f_a\rb{b} = 0}. $$
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+Since $ K\rb{a} = K\sb{a} $, $ \sb{K\rb{a} : K} = \dim_K\rb{K\rb{a}} = \dim_K\sb{K\rb{a}} $. Suppose
+$$ f\rb{x} = x^n + \mu_1x^{n - 1} + \dots + \mu_n \in K\sb{x} $$
+is the minimal polynomial of $ a $ over $ K $. Claim that $ 1, \dots, a^{n - 1} $ is a basis of $ K\sb{a} $ over $ K $.
+\begin{itemize}
+\item The set generates $ K\sb{a} $. Let $ c \in K\sb{a} $. There exists $ g \in K\sb{x} $ such that $ g\rb{a} = c $. Long division gives
+$$ g\rb{x} = f\rb{x}q\rb{x} + r\rb{x}, \qquad m = \deg\rb{r\rb{x}} < n. $$
+Then $ r\rb{x} = \lambda_0 + \dots + \lambda_mx^m $ and $ g\rb{a} = r\rb{a} = \lambda_0 + \dots + \lambda_ma^m $.
+\item The set is linearly independent, otherwise there exists
+$$ g\rb{x} = \lambda_0 + \dots + \lambda_{n - 1}x^{n- 1} \in K\sb{x}, $$
+where $ g\rb{a} = 0 $, and $ f $ was not the minimal polynomial.
+\end{itemize}
+$ \sigma\rb{a} $ is a root of $ f $, since applying $ \sigma $ to $ f\rb{a} = 0 $ gives
+$$ 0 = \sigma\rb{a^n + \mu_1a^{n - 1} + \dots + \mu_n} = \sigma\rb{a}^n + \mu_1^{n - 1}\sigma\rb{a}^{n - 1} + \dots + \mu_n = f\rb{\sigma\rb{a}}. $$
+Vice versa, if $ b \in F $ is a root of $ f $,
+$$ K\rb{b} \xleftarrow{\sb{e_b}} \dfrac{K\sb{x}}{\ab{f}} \xrightarrow{\sb{e_a}} K\rb{a}, $$
+then $ \sigma = \sb{e_b}\sb{e_a}^{-1} $. Thus there is a one-to-one correspondence
+$$
+\begin{array}{rcl}
+Emb_K\rb{K\rb{a}, F} & \leftrightarrow & \cb{b \in F \mid f\rb{b} = 0} \\
+\sigma & \mapsto & \sigma\rb{a} \\
+\sb{e_b}\sb{e_a}^{-1} & \mapsfrom & b
+\end{array}.
+$$
+\end{proof}
+
+\begin{corollary}
+Let $ K $ be a field and $ f \in K\sb{x} $. Then there exists $ K \subset L $ such that $ f $ has a root in $ L $.
+\end{corollary}
+
+\begin{proof}
+Take $ g $ a prime factor of $ f $. Take $ L = K\sb{x} / \ab{g} $. In here $ a = \sb{x} $ is a root of $ g $ hence a root of $ f $.
+\end{proof}
 
 \end{document}
