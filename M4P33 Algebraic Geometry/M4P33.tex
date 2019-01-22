@@ -380,7 +380,9 @@ so $ f - f_d \in \sqrt{I} $, by induction $ f_i \in \sqrt{I} $.
 \end{proof}
 
 \begin{definition}
-If $ f $ is homogeneous of degree $ k $ then $ f\rb{\lambda \cdot x} = \lambda^k \cdot f\rb{x} $, in particular $ f\rb{x} = 0 $ if and only if $ f\rb{\lambda \cdot x} = 0 $, so it makes sense to define
+If $ f $ is homogeneous of degree $ k $ then
+$$ f\rb{\lambda \cdot x} = \lambda^k \cdot f\rb{x}, $$
+in particular $ f\rb{x} = 0 $ if and only if $ f\rb{\lambda \cdot x} = 0 $, so it makes sense to define
 $$ Z\rb{f} = \cb{x \in \P^n \mid f\rb{x} = 0}. $$
 More generally, if $ I \subseteq S $ is a homogeneous ideal then
 $$ Z\rb{I} = \cb{x \in \P^n \mid f \in I \ \text{homogeneous}, \ f\rb{x} = 0}. $$
@@ -477,5 +479,86 @@ moreover $ S\rb{Y}_{x_i} \cong A\rb{Y_i}\sb{x_i, x_i^{-1}} $. So
 $$ \dim\rb{S\rb{Y}} = \dim\rb{S\rb{Y}_{x_i}} = \dim\rb{A\rb{Y_i}\sb{x_i, x_i^{-1}}} = tra\rb{K\rb{Y_i}\rb{x_i}} = \dim\rb{Y_i} + 1. $$
 Therefore if $ Y_i \ne \emptyset $, $ \dim\rb{Y_i} = \dim\rb{S\rb{Y}} - 1 $ for all $ i $, but since $ U_i $ cover $ Y $ we have $ \dim\rb{Y} = \max\cb{\dim\rb{Y_i}} $. (Exercise: if $ \cb{U_n}_n $ is a finite cover of a topological space $ Y $ then $ \dim\rb{Y} = \max\cb{\dim\rb{Y_i}} $) Since $ \dim\rb{Y_i} $ are the same if $ Y_i \ne \emptyset $, we conclude that $ \dim\rb{Y} = \dim\rb{Y_d} $ for some $ d $.
 \end{proof}
+
+\lecture{6}{Monday}{22/01/19}
+
+\begin{proposition}
+Every Noetherian topological space is compact.
+\end{proposition}
+
+\begin{proof}
+Let $ X $ be a Noetherian topological space and let $ \cb{U_n} $ be a cover of $ X $. So consider $ C $, the collection of the union of finitely many open sets of $ \cb{U_n} $. Since $ X $ is Noetherian $ C $ has a maximum element, say $ U_1 \cup \dots \cup U_n $. If $ U_1 \cup \dots \cup U_n \subsetneq X $ then there is $ x \in X $ not in the union, and we can find another $ U_{\alpha_0} \ni x $. But then
+$$ U_1 \cup \dots \cup U_n \cup U_{\alpha_0} \supsetneq U_1 \cup \dots \cup U_n, $$
+a contradiction. So $ X = U_1 \cup \dots \cup U_n $.
+\end{proof}
+
+\begin{corollary}
+$ \P^n $, $ \A^n $, affine varieties, and projective varieties are all compact in the Zariski topology.
+\end{corollary}
+
+\begin{definition}
+A variety $ X $ is \textbf{complete} if for any other variety $ Y $, the projection $ X \times Y \to Y $ is closed.
+\end{definition}
+
+\begin{example1}
+$ \P^n $ is complete. $ \A^n $ is not complete.
+\end{example1}
+
+\pagebreak
+
+\section{Morphisms of varieties}
+
+\begin{definition}
+Suppose $ Y $ is a quasi-affine variety and $ p \in Y $. We say that a function $ f : Y \to \A^1 $ is \textbf{regular} at $ p $ if there are $ g, h \in K\sb{x_1, \dots, x_n} $ and $ U \ni p $ such that $ f = g / h $ in $ U $ with $ h \ne 0 $. A function is \textbf{regular} if it is regular for every $ p \in Y $.
+\end{definition}
+
+\begin{example1}
+Local is not global. Let $ X = Z\rb{x_1x_4 - x_2x_3} \subseteq \A^4 $ and $ U = X \setminus Z\rb{x_2, x_4} $. Then
+$$ \function[\phi]{U}{\A^1}{\rb{x_1, x_2, x_3, x_4}}{
+\begin{cases}
+\dfrac{x_1}{x_2} & x_2 \ne 0 \\
+\dfrac{x_3}{x_4} & x_4 \ne 0
+\end{cases}
+} $$
+is a regular function.
+\end{example1}
+
+\begin{definition}
+Let $ Y $ be a quasi-projective variety, $ f : Y \to \A^1 $, and $ p \in Y $. We say that $ f $ is \textbf{regular} at $ p $ if there are $ g, h $ homogeneous polynomials of the same degree and an open set $ U \ni p $ such that $ f = g / h $ on $ U $ and $ h \ne 0 $.
+\end{definition}
+
+\begin{lemma}
+A regular function is continuous.
+\end{lemma}
+
+\begin{proof}
+It is enough to show that $ f^{-1}\rb{p} $ is closed. Since $ f $ is regular $ f = g / h $ on some neighbourhood $ U $, then $ f^{-1}\rb{p} \cap U = Z\rb{g - ph} \cap U $.
+\end{proof}
+
+\begin{remark1}
+If $ X $ is irreducible then $ f = g $ on $ U \subseteq X $, then $ f = g $ on $ X $. Because the set where $ f - g = 0 $ is closed and dense.
+\end{remark1}
+
+\begin{definition}
+We will use the term \textbf{variety} to denote an affine, quasi-affine, projective, or quasi-projective variety.
+\end{definition}
+
+\begin{definition}
+A \textbf{morphism} $ f : X \to Y $ if $ f $ is continuous and for every $ U \subseteq Y $ and every function $ g : U \to \A^1 $ the composition $ g \circ f $ is regular.
+\end{definition}
+
+\begin{remark1}
+\hfill
+\begin{itemize}
+\item Let $ f : X \to Y $ and $ g : Y \to Z $ then the \textbf{composition} $ g \cdot f $ of these two morphisms is the composition of $ f $ and $ g $ as functions.
+\item A morphism $ f : X \to Y $ is an \textbf{isomorphism} if there is a morphism $ g : Y \to X $ such that $ f \circ g = id $ and $ g \circ f = id $.
+\end{itemize}
+\end{remark1}
+
+\begin{definition}
+Let $ X $ be a variety. Denote the set of all regular functions of $ X $ by $ \OO\rb{X} $. If $ p \in X $ the \textbf{local ring} at $ p \in X $ is
+$$ \OO_p = \lim_{\xrightarrow[U \ni p]{}}\rb{\OO\rb{U}}. $$
+An element of $ \OO_p $ is a pair $ \rb{U, f} $, where $ p \in U $ and $ f $ is regular at $ p $, moreover $ \rb{U, f} \sim \rb{V, g} $ if $ f = g $ on $ U \cap V $.
+\end{definition}
 
 \end{document}
