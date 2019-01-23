@@ -56,10 +56,10 @@ $$ \rb{\dfrac{a}{b}}^2 \equiv -1 \mod p, $$
 if and only if $ \jacobi{-1}{p} = 1 $, so $ p \equiv 3 \mod 4 $.
 \end{proof}
 
-\begin{remark1}
+\begin{remark}
 Proof tells us that $ n \ne a^2 + b^2 $ whenever $ n $ has a prime factor $ p_i \equiv 3 \mod 4 $ with odd exponent $ k_i $ for $ i = 1, \dots, r $. If every $ p \equiv 1 \mod 4 $ is of the form $ p = a^2 + b^2 $, then we understand the general case,
 $$ n = a^2 + b^2 \qquad \iff \qquad \forall p_i \mid n, \ p_i \equiv 3 \mod 4, \ k_i \in 2\Z. $$
-\end{remark1}
+\end{remark}
 
 \begin{theorem}
 If $ p \equiv 1 \mod 4 $ then
@@ -118,7 +118,7 @@ A \textbf{ring} is commutative and with unity. A \textbf{unit} in a ring $ R $ i
 If $ R \setminus \cb{0} = R^\times $, then $ R $ is a \textbf{field}.
 \end{definition}
 
-\begin{example1}
+\begin{example}
 \hfill
 \begin{itemize}
 \item $ \Z^\times = \cb{\pm 1} $.
@@ -127,15 +127,17 @@ If $ R \setminus \cb{0} = R^\times $, then $ R $ is a \textbf{field}.
 $$ \Z\sb{\sqrt{2}} = \cb{a + b\sqrt{2} \mid a, b \in \Z}. $$
 $ \rb{1 + \sqrt{2}}\rb{-1 + \sqrt{2}} = 2 - 1 = 1 $. $ \epsilon^n = \epsilon^m $ for $ n, m \in \Z $ and $ n \ge m $ if and only if $ \epsilon^{n - m} = 1 $.
 \end{itemize}
-\end{example1}
+\end{example}
 
 \begin{definition}
 Let $ R $ be a ring. An \textbf{ideal} $ I \subseteq R $ is an additive subgroup, so $ x, y \in I $ gives $ x + y \in I $, which absorbs multiplication. If $ x \in I $ and $ a \in R $ then $ ax \in I $.
 \end{definition}
 
-A fact is that if $ \phi : R \to S $ a ring homomorphism then $ Ker\rb{\phi} \subseteq R $ is an ideal. Conversely, if $ I \subseteq R $ is an ideal, can define
+\begin{fact*}
+If $ \phi : R \to S $ a ring homomorphism then $ Ker\rb{\phi} \subseteq R $ is an ideal. Conversely, if $ I \subseteq R $ is an ideal, can define
 $$ \dfrac{R}{I} = \dfrac{R}{\sim} $$
 as the set of equivalence classes modulo $ I $, that is $ a + I $ for $ a \in R $, via $ a \sim b $ for $ a, b \in R $ if $ a - b \in I $.
+\end{fact*}
 
 \begin{proposition}
 $ R / I $ has ring structure induced by
@@ -158,7 +160,7 @@ $$ \function{\dfrac{R}{Ker\rb{\phi}}}{\phi\rb{R} \subset S}{r + Ker\rb{\phi}}{\p
 for $ r \in R $.
 \end{theorem}
 
-\begin{example1}
+\begin{example}
 Let $ R = \Z\sb{\sqrt{5}} = \cb{a + b\sqrt{5} \mid a, b \in \Z} $.
 \begin{itemize}
 \item Let $ I $ be the ideal $ 11\Z \oplus \rb{4 - \sqrt{5}}\Z $. A question is what is $ R / I $? Claim that
@@ -174,7 +176,7 @@ Ok because $ 16 \equiv 5 \mod 11 $.
 $$ J = \ab{9, 4 - \sqrt{5}} = 9R + \rb{4 - \sqrt{5}}R $$
 is generated over $ R $? $ R / J $ is trivial and $ \ab{9, 4 - \sqrt{5}} = R $.
 \end{itemize}
-\end{example1}
+\end{example}
 
 \begin{definition}
 \hfill
@@ -196,9 +198,9 @@ Let $ I, J $ be two relatively prime ideals of $ R $. Then
 $$ \dfrac{R}{IJ} \cong \dfrac{R}{I} \times \dfrac{R}{J}. $$
 \end{theorem}
 
-\begin{remark1}
+\begin{remark}
 If $ R = \Z $, all ideals are principal and Theorem \ref{thm:crt} specialises to usual Chinese remainder theorem.
-\end{remark1}
+\end{remark}
 
 \begin{proof}
 Find surjective ring homomorphism
@@ -212,9 +214,9 @@ $$ I_1 \subseteq I_2 \subseteq \dots $$
 stabilises.
 \end{definition}
 
-\begin{example1}
+\begin{example}
 $ \Z $ and $ \Z\sb{x} $ are Noetherian. $ \Z\sb{x_1, x_2, \dots} $ is not Noetherian.
-\end{example1}
+\end{example}
 
 \lecture{3}{Tuesday}{15/01/19}
 
@@ -224,7 +226,7 @@ $ \Z $ and $ \Z\sb{x} $ are Noetherian. $ \Z\sb{x_1, x_2, \dots} $ is not Noethe
 A ring $ R $ is an \textbf{integral domain (ID)} if $ ab = 0 $ for $ a, b \in R $ gives $ a = 0 $ or $ b = 0 $.
 \end{definition}
 
-\begin{example1}
+\begin{example}
 \hfill
 \begin{itemize}
 \item $ \Z $ and $ \Z\sb{\sqrt{5}} $ are IDs.
@@ -234,11 +236,11 @@ because $ 11 = \rb{4 - \sqrt{5}}\rb{4 + \sqrt{5}} = 16 - 5 $. Thus
 $$ \dfrac{\Z\sb{\sqrt{5}}}{\ab{11}} \cong \dfrac{\Z\sb{\sqrt{5}}}{\ab{4 - \sqrt{5}}} \times \dfrac{\Z\sb{\sqrt{5}}}{\ab{4 - \sqrt{5}}} = \F_{11} \times \F_{11}, $$
 which is no longer an ID.
 \end{itemize}
-\end{example1}
+\end{example}
 
-\begin{remark1}
-An ideal $ \mathfrak{p} \subsetneq R $ is \textbf{prime} if $ ab \in \mathfrak{p} $ gives $ a \in \mathfrak{p} $ or $ b \in \mathfrak{p} $. $ \rb{a + \mathfrak{p}}\rb{b + \mathfrak{p}} = 0 $ in $ R / \mathfrak{p} $ gives $ a + \mathfrak{p} = 0 $, that is $ a \in \mathfrak{p} $, or $ b + \mathfrak{p} = 0 $, that is $ b \in \mathfrak{p} $. This is equivalent to asking that $ R / \mathfrak{p} $ is an ID.
-\end{remark1}
+\begin{remark}
+An ideal $ \pp \subsetneq R $ is \textbf{prime} if $ ab \in \pp $ gives $ a \in \pp $ or $ b \in \pp $. $ \rb{a + \pp}\rb{b + \pp} = 0 $ in $ R / \pp $ gives $ a + \pp = 0 $, that is $ a \in \pp $, or $ b + \pp = 0 $, that is $ b \in \pp $. This is equivalent to asking that $ R / \pp $ is an ID.
+\end{remark}
 
 IDs are well-suited to studying divisibility. $ a \mid b $ in $ R $ if there exists $ c $ such that $ ac = b $.
 
@@ -268,19 +270,19 @@ Let $ R $ be an ID.
 
 $ \ab{0} $ is prime if and only if $ R $ is an ID.
 
-\begin{remark1}
+\begin{remark}
 Over $ \Z $, these two notions are equivalent, but not in general. If $ R $ is an ID and $ a \in R \setminus \cb{0} $ is prime, then $ a $ is irreducible.
-\end{remark1}
+\end{remark}
 
 \begin{proof}
 Let $ b, c \in R $ be such that $ a = bc $, so $ b \mid a $ and $ c \mid a $. Because $ a $ is prime, $ a = bc $ gives $ a \mid b $ or $ a \mid c $. Say $ a \mid b $ happens. There exists $ d \in R^\times $ such that $ a = bd $. $ a = bc $ gives $ b\rb{d - c} = 0 $. $ b \ne 0 $, because $ a \ne 0 $, so $ d = c $, that is $ c $ is a unit.
 \end{proof}
 
-\begin{remark1}
+\begin{remark}
 If $ a \in R \setminus \cb{0} $ is irreducible, $ a $ does not have to be prime.
-\end{remark1}
+\end{remark}
 
-\begin{example1}
+\begin{example}
 $ \Z\sb{\sqrt{-5}} = \cb{a + b\sqrt{-5} \mid a, b \in \Z} $ is the ring of integers of $ \Q\rb{\sqrt{-5}} $, an extension of $ \Q $ of degree two, a subring of $ \C $. $ 6 = 2 \cdot 3 = \rb{1 + \sqrt{-5}} \cdot \rb{1 - \sqrt{-5}} $. Claim that these are two factorisations of $ 6 $ into irreducible elements.
 \begin{itemize}
 \item $ 2 $ is irreducible. Why? Assume $ 2 = \alpha\beta $ for $ \alpha, \beta \in \Z\sb{\sqrt{-5}} $. Goal is that $ \alpha $ or $ \beta $ is a unit. We will use
@@ -289,7 +291,7 @@ which is multiplicative. $ N\rb{2} = 4 = N\rb{\alpha}N\rb{\beta} $. If $ N\rb{\a
 \item $ 2 $ and $ 1 + \sqrt{-5} $ do not differ by units, since $ N\rb{2} = 4 $ and $ N\rb{1 + \sqrt{-5}} = 6 $.
 \end{itemize}
 Upshot is that $ 2 $ is irreducible in $ \Z\sb{\sqrt{-5}} $ but not prime.
-\end{example1}
+\end{example}
 
 \subsection{Unique factorisation domains}
 
@@ -299,9 +301,9 @@ Let $ R $ be an ID. We define an equivalence relation $ \sim $ on $ R $ by $ a \
 An ID $ R $ has \textbf{unique factorisation} if for all $ a \in R \setminus \cb{0} $ there is a factorisation $ a = u \cdot p_1 \cdot \dots \cdot p_r $, where $ u \in R^\times $ and the $ p_i $ are irreducible. This is unique in the sense that, if there exists another factorisation $ v \cdot q_1 \cdot \dots \cdot q_s $, where $ v \in R^\times $ and the $ q_i $ are irreducible, then $ r = s $, and up to reordering $ p_i \sim q_i $, for $ i = 1, \dots, r = s $. An ID with this property is called an \textbf{unique factorisation domain (UFD)},
 \end{definition}
 
-\begin{example1}
+\begin{example}
 $ \Z $, but not $ \Z\sb{\sqrt{-5}} $.
-\end{example1}
+\end{example}
 
 \begin{lemma}
 If $ R $ is a UFD, then $ p \in R \setminus \cb{0} $ is irreducible gives $ p $ is prime.
@@ -355,9 +357,9 @@ $ p_1 $ irreducible gives $ p_1 $ is prime, so $ p_1 \mid q_i $ for some $ i $, 
 \end{itemize}
 \end{proof}
 
-\begin{remark1}
+\begin{remark}
 $ \Z\sb{\sqrt{-5}} $ is not a UFD because $ 2 $ is irreducible but not prime.
-\end{remark1}
+\end{remark}
 
 \subsection{Principal ideal domains}
 
@@ -365,13 +367,13 @@ $ \Z\sb{\sqrt{-5}} $ is not a UFD because $ 2 $ is irreducible but not prime.
 An ID $ R $ is a \textbf{principal ideal domain (PID)} if every ideal of $ R $ is principal.
 \end{definition}
 
-\begin{example1}
+\begin{example}
 \hfill
 \begin{itemize}
 \item Fields.
 \item $ \Z $ follows from Euclid's algorithm.
 \end{itemize}
-\end{example1}
+\end{example}
 
 \begin{theorem}
 \label{thm:pidufd}
@@ -392,13 +394,13 @@ All inclusions are equalities, so $ \ab{a_m} = \ab{a_n} $ for all $ m \ge n $.
 \end{itemize}
 \end{proof}
 
-\begin{remark1}
+\begin{remark}
 \hfill
 \begin{itemize}
 \item $ \Z\sb{\sqrt{-5}} $ is not a PID. Follows from Theorem \ref{thm:pidufd} and failure of unique factorisation. $ \ab{2, 1 + \sqrt{-5}} $ is not a principal ideal. (Exercise: check this)
 \item A UFD that is not a PID. $ \Q\sb{x, y} $ is a UFD but $ \ab{x, y} $ is not principal. $ \Z\sb{x} $ is a UFD but $ \ab{2, x} $ is not principal.
 \end{itemize}
-\end{remark1}
+\end{remark}
 
 \pagebreak
 
@@ -433,7 +435,7 @@ If $ R $ is a Euclidean domain, then $ R $ is a PID, so $ R $ is a unique factor
 Let $ I \subseteq R $ be an ideal. Assume $ I \ne \ab{0} $ Goal is that $ I $ is generated by one element $ a \in R \setminus \cb{0} $. Let $ 0 \ne a \in I $ be an element such that $ \phi\rb{a} $ is minimal along the values of $ \phi $ on $ I $. $ \ab{a} \subseteq I $. We will show that we have an equality. Let $ b \in I \setminus \ab{a} $. Apply property of $ \phi $ to $ b $ and $ a $, $ b = qa + r $. $ r \ne 0 $, otherwise $ a \mid b $ gives $ b \in \ab{a} $. $ r = b - qa \in I $ but $ \phi\rb{r} < \phi\rb{a} $, a contradiction.
 \end{proof}
 
-\begin{example1}
+\begin{example}
 \hfill
 \begin{itemize}
 \item $ \Z $, with Euclidean norm
@@ -445,15 +447,15 @@ $$ \Z\sb{\omega} = \cb{a + b\omega \mid a, b \in \Z} \subset \C $$
 is Euclidean, with Euclidean norm given by
 $$ \function{\Z^2 \setminus \cb{\rb{0, 0}}}{\Z_{\ge 1}}{a + b\omega}{a^2 - ab + b^2}. $$
 \end{itemize}
-\end{example1}
+\end{example}
 
-\begin{remark1}
+\begin{remark}
 \hfill
 \begin{itemize}
 \item In all these examples, norm is multiplicative. This does not have to hold true, such as $ \Q\sb{x} $, with Euclidean norm $ f \mapsto \deg\rb{f} $.
 \item There are PIDs that do not admit a Euclidean norm, such as $ \Z\sb{\tfrac{1 + \sqrt{-19}}{2}} $.
 \end{itemize}
-\end{remark1}
+\end{remark}
 
 \subsection{Summary}
 
@@ -473,9 +475,9 @@ We will crucially use the norm
 $$ \function[N]{\Z\sb{i}}{\Z_{\ge 0}}{a + bi}{\rb{a + bi}\rb{a - bi} = a^2 + b^2}, $$
 which is not the same as the Euclidean norm.
 
-\begin{note}
+\begin{note*}
 This is multiplicative.
-\end{note}
+\end{note*}
 
 \subsection{Units}
 
@@ -500,9 +502,9 @@ $$ u = a + bi \in \Z\sb{i}^\times \qquad \iff \qquad a^2 + b^2 = 1 \qquad \iff \
 \end{cases}.
 $$
 
-\begin{remark1}
+\begin{remark}
 $ \Z\sb{i}^\times \cong \rb{\Z / 4\Z, +} $ as groups.
-\end{remark1}
+\end{remark}
 
 \subsection{Unique factorisation}
 
@@ -544,7 +546,7 @@ The only solutions to the Diophantine equation $ x^2 + 1 = y^3 $ are $ x = 0 $ a
 \hfill
 \begin{itemize}
 \item $ \rb{x + i}\rb{x - i} = y^3 $.
-\item Are $ x + i, x - i $ coprime in $ \Z\sb{i} $? If $ \mathfrak{p} $ is a prime of $ \Z\sb{i} $ dividing both, then $ \mathfrak{p} \mid 2i $, that is $ N\rb{\mathfrak{p}} \mid 4 $, so $ 2 \mid y $ gives $ 8 \mid y^3 $. But $ x^3 + 1 \equiv 1, 2, 5 \mod 8 $ gives $ \gcd\rb{x + i, x - i} = 1 $, so
+\item Are $ x + i, x - i $ coprime in $ \Z\sb{i} $? If $ \pp $ is a prime of $ \Z\sb{i} $ dividing both, then $ \pp \mid 2i $, that is $ N\rb{\pp} \mid 4 $, so $ 2 \mid y $ gives $ 8 \mid y^3 $. But $ x^3 + 1 \equiv 1, 2, 5 \mod 8 $ gives $ \gcd\rb{x + i, x - i} = 1 $, so
 $$
 \begin{cases}
 x + i = uz^3 = \rb{uz}^3 \\
