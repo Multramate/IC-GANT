@@ -218,7 +218,8 @@ Let $ X \subseteq \R^n $ be a convex set. Then all the paths in $ X $ are homoto
 \end{example1}
 
 \begin{proof}
-Let $ f_0, f_1 : I \to X $ be two paths such that $ f_0\rb{0} = f_1\rb{0} $ and $ f_0\rb{1} = f_1\rb{1} $. Define $ f_t\rb{s} = \rb{1 - t}f_0\rb{s} + tf_1\rb{s} $.
+Let $ f_0, f_1 : I \to X $ be two paths such that $ f_0\rb{0} = f_1\rb{0} $ and $ f_0\rb{1} = f_1\rb{1} $. Define
+$$ f_t\rb{s} = \rb{1 - t}f_0\rb{s} + tf_1\rb{s}. $$
 \end{proof}
 
 \begin{lemma}
@@ -270,11 +271,13 @@ is a homotopy between $ f_0 \cdot g_0 $ and $ f_1 \cdot g_1 $.
 \end{proof}
 
 \begin{remark1}
-\textbf{Reparametrisation}. Let $ \phi : \sb{0, 1} \to \sb{0, 1} $ be continuous such that $ \phi\rb{0} = 0 $ and $ \phi\rb{1} = 1 $. If $ f : I \to X $ is a path, then $ f \circ \phi \cong f $.
+Let $ \phi : \sb{0, 1} \to \sb{0, 1} $ be continuous such that $ \phi\rb{0} = 0 $ and $ \phi\rb{1} = 1 $. If $ f : I \to X $ is a path, then $ f \circ \phi \cong f $. This is a \textbf{reparametrisation}.
 \end{remark1}
 
 \begin{proof}
-Define $ \phi_t\rb{s} = \rb{1 - t}\phi\rb{s} + ts $, then $ f \circ \phi_t $ is a homotopy between $ f \circ \phi $ and $ f $.
+Define
+$$ \phi_t\rb{s} = \rb{1 - t}\phi\rb{s} + ts, $$
+then $ f \circ \phi_t $ is a homotopy between $ f \circ \phi $ and $ f $.
 \end{proof}
 
 For $ x \in X $, let the \textbf{constant path} at $ x $ be
@@ -325,6 +328,7 @@ f\rb{\max\cb{2s - 1, t}} & s \in \sb{\tfrac{1}{2}, 1}
 $$
 $ H $ is continuous, and
 $$ H\rb{s, 0} = f^{-1} \cdot f, \qquad H\rb{s, 1} = c_{f\rb{1}}. $$
+The inverse is similar.
 \end{enumerate}
 \end{proof}
 
@@ -502,6 +506,86 @@ for all $ s, t \in I $. The unique lifting property gives that $ \widetilde{\ome
 \lecture{5}{Tuesday}{22/01/19}
 
 Lecture 5 is a problem class.
+
+\lecture{6}{Wednesday}{23/01/19}
+
+\begin{theorem}
+Every non-constant polynomial $ p \in \C\sb{z} $ has a root in $ \C $.
+\end{theorem}
+
+\begin{proof}
+May assume
+$$ p\rb{z} = z^n + a_1z^{n - 1} + \dots + a_n. $$
+Assume $ p $ has no roots in $ \C $. For each $ r \in \R_{\ge 0} $ we obtain a loop
+$$ \function[f_r]{I}{\C}{s}{\dfrac{p\rb{re^{2\pi is}} / p\rb{r}}{\abs{p\rb{re^{2\pi is}} / p\rb{r}}}}, $$
+so $ \abs{f_r\rb{s}} = 1 $. $ f_r\rb{0} = 1 $ and $ f_r\rb{1} = 1 $, so $ f_r $ is a loop based at $ 1 $. $ f_0 $ is the constant loop at $ 1 $. $ f_r\rb{s} $ depends continuously on $ r $, so $ f_r \cong f_0 $ for all $ r \in \R_{\ge 0} $ and $ \sb{f_r} = \sb{f_0} = 0 \in \pi_1\rb{S^1} $. Fix $ r \in \R_{\ge 0} $ such that $ r > 1 $ and $ r > \abs{a_1} + \dots + \abs{a_n} $. For $ \abs{z} = r $ we have
+$$ \abs{z^n} > \rb{\abs{a_1} + \dots + \abs{a_n}}\abs{z^{n - 1}} \ge \abs{a_1z^{n - 1}} + \dots + \abs{a_n} \ge \abs{a_1z^{n - 1} + \dots + a_n}. $$
+Hence, for $ 0 \le t \le 1 $ the polynomial $ p_t\rb{z} = z^n + t\rb{a_1z^{n - 1} + \dots + a_n} $ has no root $ z $ with $ \abs{z} = r $. Define
+$$ F_r\rb{t, s} = \dfrac{p_t\rb{re^{2\pi is}} / p_t\rb{r}}{\abs{p_t\rb{re^{2\pi is}} / p_t\rb{r}}}. $$
+$ F_r\rb{0, s} = \omega_n\rb{s} $ and $ F_r\rb{1, s} = f_r\rb{s} $, so $ \sb{\omega_n} = \sb{f_r} = 0 \in \pi_1\rb{S^1} $. Theorem \ref{thm:1.7} gives that $ n = 0 $, so $ p $ is constant.
+\end{proof}
+
+See Hatcher Theorem 1.9 and Theorem 1.10 for more applications.
+
+\begin{proposition}
+Let $ X, Y $ be topological spaces, $ x_0 \in X $, and $ y_0 \in Y $. Then
+$$ \pi_1\rb{X \times Y, \rb{x_0, y_0}} \cong \pi_1\rb{X, x_0} \times \pi_1\rb{Y, y_0}. $$
+\end{proposition}
+
+\begin{proof}
+A map
+$$ \function[f]{Z}{X \times Y}{z}{\rb{g\rb{z}, h\rb{z}}} $$
+is continuous if and only if $ g : Z \to X $ and $ h : Z \to Y $ are continuous. For $ Z = I $,
+$$ \correspondence{\text{loops in} \ X \times Y \ \text{based at} \ \rb{x_0, y_0}}{\text{loops in} \ X \ \text{based at} \ x_0 \ \} \times \{ \ \text{loops in} \ Y \ \text{based at} \ y_0}. $$
+Two loops
+$$ \function[f_1]{I}{X \times Y}{s}{\rb{g_1\rb{s}, h_1\rb{s}}}, \qquad \function[f_2]{I}{X \times Y}{s}{\rb{g_2\rb{s}, h_2\rb{s}}} $$
+are homotopic if and only if $ g_1 \cong g_2 $ and $ h_1 \cong h_2 $, so there is a bijection
+$$ \pi_1\rb{X \times Y, \rb{x_0, y_0}} \cong \pi_1\rb{X, x_0} \times \pi_1\rb{Y, y_0}. $$
+$ f_1 \cdot f_2 = \rb{g_1 \cdot g_2, h_1 \cdot h_2} $ and the constant loop is mapped to the constant loop, so this is also a group isomorphism.
+\end{proof}
+
+\begin{example1}
+The torus $ S^1 \times S^1 $ has
+$$ \pi_1\rb{S^1 \times S^1} \cong \pi_1\rb{S^1} \times \pi_1\rb{S^1} \cong \Z^2. $$
+\end{example1}
+
+\subsection{Induced homomorphisms}
+
+Let $ X, Y $ be topological spaces, $ x_0 \in X $, and $ \phi : X \to Y $. An observation is that $ \phi $ induces a homomorphism
+$$ \function[\phi_*]{\pi_1\rb{X, x_0}}{\pi_1\rb{Y, \phi\rb{x_0}}}{\sb{f}}{\sb{\phi \circ f}}. $$
+$ \phi_* $ is well-defined, since if $ f_t $ is a homotopy between the loops $ f_0 $ and $ f_1 $ based at $ x_0 $, then $ \phi \circ f_t $ is a homotopy of loops between $ \phi \circ f_0 $ and $ \phi \circ f_1 $. Moreover,
+$$ \phi \circ \rb{f \cdot g} = \rb{\phi \circ f} \cdot \rb{\phi \circ g}, $$
+and $ \phi $ maps the constant path at $ x_0 $ to the constant path at $ \phi\rb{x_0} $, so $ \phi $ is a homomorphism.
+
+\begin{proposition}
+\hfill
+\begin{enumerate}
+\item Let $ \psi : X \to Y $ and $ \phi : Y \to Z $ be continuous maps between topological spaces, $ x_0 \in X $, and
+$$ \psi_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Y, \psi\rb{x_0}}, \qquad \phi_* : \pi_1\rb{Y, \psi\rb{x_0}} \to \pi_1\rb{Z, \rb{\phi \cdot \psi}\rb{x_0}}, $$
+$$ \rb{\phi \circ \psi}_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Z, \rb{\phi \cdot \psi}\rb{x_0}}. $$
+Then $ \rb{\phi \circ \psi}_* = \phi_* \circ \psi_* $.
+\item Let $ id_X : X \to X $ be the identity then
+$$ \rb{id_X}_* : \pi_1\rb{X, x_0} \to \pi_1\rb{X, x_0} $$
+is the identity.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Let $ f : I \to X $ be a loop at $ x_0 $, then
+$$ \rb{\phi \circ \psi}_*\rb{\sb{f}} = \sb{\rb{\phi \circ \psi} \circ f} = \sb{\phi \circ \rb{\psi \circ f}} = \phi_*\rb{\sb{\psi \circ f}} = \phi_*\rb{\psi_*\rb{\sb{f}}} = \rb{\phi_* \circ \psi_*}\rb{\sb{f}}. $$
+\item $ \rb{id_X}_*\rb{\sb{f}} = \sb{id_X \circ f} = \sb{f} $.
+\end{enumerate}
+\end{proof}
+
+These two observations yield in particular that if $ \phi : X \to Y $ is a homeomorphism with inverse $ \psi : Y \to X $, then
+$$ \phi_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Y, \phi\rb{x_0}} $$
+is an isomorphism with inverse $ \psi_* $.
+
+\begin{proposition}
+If $ n \ge 2 $, then $ \pi_1\rb{S^n} = 0 $.
+\end{proposition}
 
 \pagebreak
 
