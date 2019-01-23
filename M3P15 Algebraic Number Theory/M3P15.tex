@@ -107,6 +107,8 @@ $$ p \mid ab, \qquad a, b \in \Z \qquad \implies \qquad p \mid a \ \text{or} \ p
 
 \section{Rings}
 
+\subsection{Commutative rings}
+
 \begin{definition}
 A \textbf{ring} is commutative and with unity. A \textbf{unit} in a ring $ R $ is an element $ a \in R $ such that there exists $ b \in R $ with $ a \cdot b = 1 $.
 \begin{itemize}
@@ -216,7 +218,7 @@ $ \Z $ and $ \Z\sb{x} $ are Noetherian. $ \Z\sb{x_1, x_2, \dots} $ is not Noethe
 
 \lecture{3}{Tuesday}{15/01/19}
 
-\section{Integral domains}
+\subsection{Integral domains}
 
 \begin{definition}
 A ring $ R $ is an \textbf{integral domain (ID)} if $ ab = 0 $ for $ a, b \in R $ gives $ a = 0 $ or $ b = 0 $.
@@ -289,7 +291,7 @@ which is multiplicative. $ N\rb{2} = 4 = N\rb{\alpha}N\rb{\beta} $. If $ N\rb{\a
 Upshot is that $ 2 $ is irreducible in $ \Z\sb{\sqrt{-5}} $ but not prime.
 \end{example1}
 
-\section{Unique factorisation domains}
+\subsection{Unique factorisation domains}
 
 Let $ R $ be an ID. We define an equivalence relation $ \sim $ on $ R $ by $ a \sim b $ if $ a \mid b $ and $ b \mid a $, or there exist $ c, d \in R^\times $ such that $ a = bc $ and $ b = da $.
 
@@ -357,7 +359,7 @@ $ p_1 $ irreducible gives $ p_1 $ is prime, so $ p_1 \mid q_i $ for some $ i $, 
 $ \Z\sb{\sqrt{-5}} $ is not a UFD because $ 2 $ is irreducible but not prime.
 \end{remark1}
 
-\section{Principal ideal domains}
+\subsection{Principal ideal domains}
 
 \begin{definition}
 An ID $ R $ is a \textbf{principal ideal domain (PID)} if every ideal of $ R $ is principal.
@@ -400,7 +402,7 @@ All inclusions are equalities, so $ \ab{a_m} = \ab{a_n} $ for all $ m \ge n $.
 
 \pagebreak
 
-\section{Euclidean domains}
+\subsection{Euclidean domains}
 
 \begin{definition}
 \hfill
@@ -453,7 +455,8 @@ $$ \function{\Z^2 \setminus \cb{\rb{0, 0}}}{\Z_{\ge 1}}{a + b\omega}{a^2 - ab + 
 \end{itemize}
 \end{remark1}
 
-A sequence of class inclusions.
+\subsection{Summary}
+
 $$ \cb{\text{commutative rings}} \supsetneq \cb{\text{IDs}} \supsetneq \cb{\text{UFDs}} \supsetneq \cb{\text{PIDs}} \supsetneq \cb{\text{Euclidean domains}}. $$
 \begin{itemize}
 \item $ \Q\sb{x, y} / xy $, $ \Z / 6\Z $, $ \F_3\sb{x} / x^2 $ are commutative rings but not IDs.
@@ -466,12 +469,6 @@ $$ \cb{\text{commutative rings}} \supsetneq \cb{\text{IDs}} \supsetneq \cb{\text
 
 The \textbf{Gaussian integers} are
 $$ \Z\sb{i} = \cb{a + bi \mid a, b \in \Z} \subset \Q\rb{i} \subset \C. $$
-\begin{itemize}
-\item What are the units?
-\item Is there unique factorisation?
-\item How to decompose primes?
-\end{itemize}
-
 We will crucially use the norm
 $$ \function[N]{\Z\sb{i}}{\Z_{\ge 0}}{a + bi}{\rb{a + bi}\rb{a - bi} = a^2 + b^2}, $$
 which is not the same as the Euclidean norm.
@@ -479,6 +476,8 @@ which is not the same as the Euclidean norm.
 \begin{note}
 This is multiplicative.
 \end{note}
+
+\subsection{Units}
 
 \begin{proposition}
 If $ u \in \Z\sb{i}^\times $ then $ N\rb{u} = 1 $.
@@ -488,11 +487,24 @@ If $ u \in \Z\sb{i}^\times $ then $ N\rb{u} = 1 $.
 $ N \mid_{\Z\sb{i} \setminus \cb{0}} \ge 1 $, $ N $ is multiplicative, and $ N\rb{1} = 1 $. $ uv = 1 $ gives $ N\rb{u} \cdot N\rb{v} = 1 $, so $ N\rb{u} \ge 1 $ and $ N\rb{v} \ge 1 $ gives $ N\rb{u} = N\rb{v} = 1 $.
 \end{proof}
 
-$ u = a + bi \in \Z\sb{i}^\times $ if and only if $ a^2 + b^2 = 1 $. $ \rb{a, b} = \rb{\pm 1, 0} $, that is $ u = \pm 1 $, or $ \rb{a, b} = \rb{0, \pm 1} $, that is $ u = \pm i $. $ N\rb{u} = u \cdot \overline{u} = 1 $.
+$ N\rb{u} = u \cdot \overline{u} = 1 $.
+$$ u = a + bi \in \Z\sb{i}^\times \qquad \iff \qquad a^2 + b^2 = 1 \qquad \iff \qquad \rb{a, b} =
+\begin{cases}
+\rb{\pm 1, 0} \\
+\rb{0, \pm 1}
+\end{cases}
+\qquad \iff \qquad u =
+\begin{cases}
+\pm 1 \\
+\pm i
+\end{cases}.
+$$
 
 \begin{remark1}
 $ \Z\sb{i}^\times \cong \rb{\Z / 4\Z, +} $ as groups.
 \end{remark1}
+
+\subsection{Unique factorisation}
 
 \begin{proposition}
 Given $ \alpha, \beta \in \Z\sb{i} $, $ \beta \ne 0 $, there exist $ \kappa, \lambda \in \Z\sb{i} $ such that $ \alpha = \kappa\beta + \lambda $ and either $ \lambda = 0 $ or $ N\rb{\lambda} < N\rb{\beta} $, so $ N $ is Euclidean and $ \Z\sb{i} $ has unique factorisation.
@@ -506,11 +518,90 @@ $ \Z\sb{i} \subset \C $ is a lattice. $ \alpha = \kappa\beta + \lambda $ if and 
 If $ p $ is an odd prime, then $ -1 $ is a square mod $ p $ if and only if $ p \equiv 1 \mod 4 $.
 \end{lemma}
 
-Decomposition of primes in $ \Z\sb{i} $.
+\subsection{Decomposition of primes}
+
 \begin{itemize}
 \item $ 2 = \rb{1 + i}\rb{1 - i} = \rb{-i}\rb{1 + i}^2 $. Notice that $ i\rb{1 + i} = i - 1 = -\rb{1 - i} $. Up to units in $ \Z\sb{i}^\times $ these prime factors are the same. This is a ramified prime.
-\item $ p \equiv 1 \mod 4 $. $ p = \rb{a + bi}\rb{a - bi} $, which are distinct primes. This is a split prime.
+\item $ p \equiv 1 \mod 4 $. $ p = \rb{a + bi}\rb{a - bi} $, which are distinct primes in $ \Z\sb{i} $. This is a split prime.
 \item $ p \equiv 3 \mod 4 $. $ p $ stays prime. If not, $ a + bi \mid p $, so $ N\rb{a + bi} \mid N\rb{p} = p^2 $ gives $ N\rb{a + bi} = p = a^2 + b^2 $, which cannot happen. This is an inert prime.
 \end{itemize}
+
+\lecture{6}{Tuesday}{22/01/19}
+
+Quadratic reciprocity gives that there exists $ n \in \Z $ such that $ p \mid n^2 + 1 = \rb{n + i}\rb{n - i} $. Assume $ p $ stays prime, or irreducible, in $ \Z\sb{i} $, so $ p \mid n + i $ or $ p \mid n - i $. By conjugating, we see $ p \mid n + i $ if and only if $ p \mid n - i $, so $ p \mid \rb{n + i} - \rb{n - i} = 2i $. Taking $ N $, see $ N\rb{p} = p^2 \nmid 4 = N\rb{2i} $, a contradiction.
+
+\subsection{Applications}
+
+\begin{theorem}
+$ n \in \Z_{> 0} $ is of the form $ n = a^2 + b^2 $ for $ a, b \in \Z $ if and only if for all $ p \mid n $ such that $ p \equiv 3 \mod 4 $ the exponent of $ p $ in $ n $ is even.
+\end{theorem}
+
+\begin{theorem}
+The only solutions to the Diophantine equation $ x^2 + 1 = y^3 $ are $ x = 0 $ and $ y = 1 $.
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item $ \rb{x + i}\rb{x - i} = y^3 $.
+\item Are $ x + i, x - i $ coprime in $ \Z\sb{i} $? If $ \mathfrak{p} $ is a prime of $ \Z\sb{i} $ dividing both, then $ \mathfrak{p} \mid 2i $, that is $ N\rb{\mathfrak{p}} \mid 4 $, so $ 2 \mid y $ gives $ 8 \mid y^3 $. But $ x^3 + 1 \equiv 1, 2, 5 \mod 8 $ gives $ \gcd\rb{x + i, x - i} = 1 $, so
+$$
+\begin{cases}
+x + i = uz^3 = \rb{uz}^3 \\
+x - i = \overline{u}\overline{z}^3 = \rb{\overline{u}\overline{z}}^3
+\end{cases},
+$$
+for $ u \in \cb{\pm 1, \pm i} $.
+$$ x - i = \rb{a + bi}^3 = a^3 - b^3i + 3a^2bi - 3ab^2, $$
+for some $ a, b \in \Z $. Looking at coefficients of $ i $, $ 1 = 3a^2b - b^3 $, so $ a = 0 $ and $ b = -1 $. Plugging this back in we get $ x = 0 $ and $ y = 1 $.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+\section{Eisenstein integers}
+
+The \textbf{Eisenstein integers} are $ \Z\sb{\omega} $ for $ \omega = \tfrac{-1 + \sqrt{-3}}{2} $. This is a subring of $ \C $, since
+$$ \rb{a + b\omega}\rb{c + d\omega} = ac + \rb{ad + bc}\omega + bd\omega^2 = \rb{ac - bd} + \rb{ad + bc - bd}\omega. $$
+What is $ \Z\sb{\sqrt{-3}} \subset \Z\sb{\omega} $? Both are subrings of $ \Q\rb{\sqrt{-3}} = \Q\sb{x} / \ab{x^3 + 3} $.
+\begin{itemize}
+\item In $ \Z\sb{\sqrt{-3}} $,
+$$ 4 = 2 \cdot 2 = \rb{1 + \sqrt{-3}} \cdot \rb{1 - \sqrt{-3}}, $$
+where $ 2, 1 + \sqrt{-3}, 1 - \sqrt{-3} $ are all irreducible.
+\item $ \pi = \tfrac{1 + \sqrt{-3}}{2} $ is a unit in $ \Z\sb{\omega} $ and $ \pi^6 = 1 $, but $ \pi \notin \Z\sb{\sqrt{-3}} $.
+\item $ \Z\sb{\sqrt{-3}} $ is not integrally closed in $ \Q\rb{\sqrt{-3}} $, but $ \Z\sb{\omega} $ is its integral closure and it is integrally closed in $ \Q\rb{\sqrt{-3}} $.
+\item $ \omega^2 + \omega + 1 = 0 $, so $ \omega $ is an algebraic integer in $ \Z\sb{\omega} \setminus \Z\sb{\sqrt{-3}} $.
+\end{itemize}
+
+\subsection{Units}
+
+If $ u \in \Z\sb{\omega}^\times $ then $ N\rb{u} = 1 $, where
+$$ \function[N]{\Z\sb{\omega}}{\Z}{a + b\omega}{\rb{a + b\omega}\rb{a + b\overline{\omega}} = a^2 - ab + b^2}. $$
+Multiplicative because it is the restriction of $ z \in \C \mapsto \abs{z}^2 $ to $ \Z\sb{\omega} $. Holds true in any imaginary quadratic field $ \Q\rb{\sqrt{-d}} $.
+$$ a^2 - ab + b^2 = 1 \qquad \iff \qquad \rb{a, b} =
+\begin{cases}
+\rb{\pm 1, 0} \\
+\rb{0, \pm 1} \\
+\pm\rb{1, 1}
+\end{cases}
+\qquad \iff \qquad u =
+\begin{cases}
+\pm 1 \\
+\pm \omega \\
+\pm\rb{1 + \omega} = \pm\pi
+\end{cases}.
+$$
+$ \Z\sb{\omega}^\times \cong \rb{\Z / 6\Z, +} $.
+
+\subsection{Unique factorisation}
+
+\begin{theorem}
+$ \Z\sb{\omega} $ is a Euclidean domain, with Euclidean norm given by
+$$ N\rb{a + b\omega} = a^2 - ab + b^2. $$
+\end{theorem}
+
+\begin{proof}
+Let $ \alpha, \beta \in \Z\sb{\omega} \setminus \cb{0} $. There exists $ \kappa, \lambda \in \Z\sb{\omega} $ such that $ \alpha = \kappa\beta + \lambda $ and $ N\rb{\lambda} < N\rb{\beta} $. Use geometric proof. $ \Z\sb{\omega} = \cb{a + b\omega \mid a, b \in \Z} \subset \C $ is tiled by parallelograms of $ \C $, which are translates of a parallelogram at $ \pi $. Want to take $ \kappa $ to be a vertex of a parallelogram such that $ N\rb{\kappa - \alpha / \beta} < 1 $. Parallelogram covered by interior of unit discs centred at lattice points, so ok. Let $ \lambda = \beta\rb{\alpha / \beta - \kappa} $, so $ N\rb{\lambda} / N\rb{\lambda} < 1 $.
+\end{proof}
 
 \end{document}
