@@ -10,7 +10,7 @@
 
 \input{../style/main}
 
-\section{Introduction}
+\section{What is Galois theory?}
 
 \lecture{1}{Thursday}{10/01/19}
 
@@ -22,19 +22,13 @@ The following are references.
 \item M Reid, Galois theory, 2014
 \end{itemize}
 
-\pagebreak
-
-\section{What is Galois theory?}
-
-\subsection{Fields}
-
-\begin{notation}
+\begin{notation*}
 If $ K $ is a field, or a ring, I denote
 $$ K\sb{x} = \cb{a_0 + \dots + a_nx^n \mid a_i \in K}, $$
 the ring of polynomials with coefficients in $ K $.
-\end{notation}
+\end{notation*}
 
-\begin{example}
+\begin{example*}
 \hfill
 \begin{itemize}
 \item $ \Q, \R, \C $.
@@ -42,17 +36,15 @@ the ring of polynomials with coefficients in $ K $.
 $$ \Q\rb{\sqrt{2}} = \cb{a + b\sqrt{2} \mid a, b \in \Q} = \dfrac{\Q\sb{x}}{\ab{x^2 - 2}}. $$
 It is also a field, since
 $$ \dfrac{1}{\rb{a + b\sqrt{2}}} = \dfrac{a - b\sqrt{2}}{a^2 - 2b^2}. $$
-\item If $ p $ is prime, $ \Z / p\Z = \F_p $ is a finite field. If $ f\rb{x} \in K\sb{x} $ is irreducible,
-$$ \dfrac{K\sb{x}}{\ab{f\rb{x}}} $$
-is a field. For example, $ x^2 - 2 $. Both $ \Z $ and $ K\sb{x} $ have a division algorithm. For example, let $ \sb{a} \in \Z / p\Z $ and $ \sb{a} \ne 0 $, that is $ p \mid a $. Since $ p $ is prime, $ \gcd\rb{p, a} = 1 $, so there exist $ x, y \in \Z $ such that $ ax + py = 1 $. Thus $ \sb{a} \cdot \sb{x} = 1 $ in $ \Z / p\Z $.
+\item If $ p $ is prime, $ \Z / p\Z = \F_p $ is a finite field. If $ f\rb{x} \in K\sb{x} $ is irreducible, $ K\sb{x} / \ab{f\rb{x}} $ is a field. For example, $ x^2 - 2 $. Both $ \Z $ and $ K\sb{x} $ have a division algorithm. For example, let $ \sb{a} \in \Z / p\Z $ and $ \sb{a} \ne 0 $, that is $ p \mid a $. Since $ p $ is prime, $ \gcd\rb{p, a} = 1 $, so there exist $ x, y \in \Z $ such that $ ax + py = 1 $. Thus $ \sb{a} \cdot \sb{x} = 1 $ in $ \Z / p\Z $.
 \item For $ K $ a field, either for all $ m \in \Z $, $ m \ne 0 $ in $ K $, so $ K $ has characteristic $ ch\rb{K} = 0 $, or there exists $ p $ prime such that $ m = 0 $ if and only if $ p \mid m $, so $ K $ has characteristic $ ch\rb{K} = p $.
 \item For $ K $ a field,
 $$ K\rb{x} = Frac\rb{K\sb{x}} = \cb{\phi\rb{x} = \dfrac{f\rb{x}}{g\rb{x}} \ \Bigg| \ f, g \in K\sb{x}, \ g \ne 0}. $$
 is also a field, the field of rational functions with coefficients in $ K $. For example, $ \F_p\rb{x, Y} = \F_p\rb{x}\rb{Y} $.
 \end{itemize}
-\end{example}
+\end{example*}
 
-\begin{example}
+\begin{example*}
 Consider algebraic equations in a field $ K $.
 \begin{itemize}
 \item Let $ ax^2 + bx^2 + c = 0 $ for $ a, b, c \in K $ be a quadratic. There is a formula
@@ -63,28 +55,32 @@ $$ y = \sqrt[3]{-q + \sqrt{q^2 + p^3}} + \sqrt[3]{-q - \sqrt{q^2 + p^3}}. $$
 \item It is a theorem that there can be no such formula for equations of degree at least five.
 \end{itemize}
 Galois theory deals with these easily.
-\end{example}
+\end{example*}
 
 \lecture{2}{Friday}{11/01/19}
 
 \begin{definition}
 A \textbf{field homomorphism} is a function $ \phi : K_1 \to K_2 $ that preserves the field operations, for all $ a, b \in K_1 $,
-$$ \phi\rb{a + b} = \phi\rb{a} + \phi\rb{b}, \qquad \phi\rb{ab} = \phi\rb{a}\phi\rb{b}, \qquad \phi\rb{0_{K_1}} = 0_{K_2}, \qquad \phi\rb{1_{K_1}} = 1_{K_2}. $$
+\begin{align*}
+\phi\rb{a + b} & = \phi\rb{a} + \phi\rb{b}, \\
+\phi\rb{ab} & = \phi\rb{a}\phi\rb{b},
+\end{align*}
+and $ \phi\rb{0_{K_1}} = 0_{K_2} $ and $ \phi\rb{1_{K_1}} = 1_{K_2} $.
 \end{definition}
 
-\begin{remark}
-All field homomorphisms are injective. If $ a \in K_1 \setminus \cb{0} $, then there exists $ b \in K_1 $ such that $ ab = 1 $, then $ \phi\rb{a}\phi\rb{b} = 1 $, so $ \phi\rb{a} \ne 0 $. This easily implies $ \phi $ is injective. If $ a_1 \ne a_2 $, then $ a_1 - a_n \ne 0 $, so $ \phi\rb{a_1 - a_2} = \phi\rb{a_1} - \phi\rb{a_2} \ne 0 $. Then $ \phi\rb{a_1} \ne \phi\rb{a_2} $.
-\end{remark}
+\begin{remark*}
+All field homomorphisms are injective. If $ a \in K_1 \setminus \cb{0} $, then there exists $ b \in K_1 $ such that $ ab = 1 $, then $ \phi\rb{a}\phi\rb{b} = 1 $, so $ \phi\rb{a} \ne 0 $. This easily implies $ \phi $ is injective. If $ a_1 \ne a_2 $, then $ a_1 - a_n \ne 0 $, so $ 0 \ne \phi\rb{a_1 - a_2} = \phi\rb{a_1} - \phi\rb{a_2} $. Then $ \phi\rb{a_1} \ne \phi\rb{a_2} $.
+\end{remark*}
 
 We concern ourselves with field extensions $ k \subset K $, and every homomorphism is an extension. Consider a field extension $ k \subset K $ and $ \alpha \in K $. Then $ k\rb{\alpha} \subset K $ denotes the smallest subfield of $ K $ that contains $ k, \alpha $. Not to be confused with $ k\rb{x} $.
 
-\begin{example}
+\begin{example*}
 There are two very different cases exemplified in $ \Q \subset \C $.
 \begin{itemize}
 \item $ \alpha = \sqrt{2} $, $ \Q\rb{\sqrt{2}} $.
 \item $ \alpha = \pi $, $ \Q\rb{\pi} $.
 \end{itemize}
-\end{example}
+\end{example*}
 
 \begin{definition}
 \hfill
@@ -96,10 +92,14 @@ There are two very different cases exemplified in $ \Q \subset \C $.
 
 \begin{definition}
 Consider a field $ k $ and $ f \in k\sb{x} $. We say that $ k \subset K $ is a \textbf{splitting field} for $ f $ if
-$$ f\rb{x} = a\prod_{i = 1}^n \rb{x - \lambda_i} \in K\sb{x}, \qquad a \in k \setminus \cb{0}, \qquad K = k\rb{\lambda_1, \dots, \lambda_n}. $$
+\begin{itemize}
+\item $ f\rb{x} = a\prod_{i = 1}^n \rb{x - \lambda_i} \in K\sb{x} $ for $ a \in k \setminus \cb{0} $, and
+\item $ K = k\rb{\lambda_1, \dots, \lambda_n} $.
+\end{itemize}
+
 \end{definition}
 
-\begin{example}
+\begin{example*}
 \hfill
 \begin{itemize}
 \item If $ f\rb{x} = x^2 - 2 \in \Q\sb{x} $, then $ K = \Q\rb{\sqrt{2}} $ is a splitting field for $ f $. Indeed
@@ -110,18 +110,18 @@ $$ \Q\rb{\sqrt[3]{2}} = \cb{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q}
 is not a splitting field. $ K = \Q\rb{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + \sqrt{3}}{2} $, is a splitting field.
 $$ x^3 - 2 = \rb{x - \sqrt[3]{2}}\rb{x - \omega\sqrt[3]{2}}\rb{x - \omega^2\sqrt[3]{2}}. $$
 \end{itemize}
-\end{example}
+\end{example*}
 
-\subsection{Galois correspondence}
+\pagebreak
 
 \begin{theorem}[Fundamental theorem of Galois theory]
 \label{thm:galoiscorrespondence}
 Assume characteristic zero. Let $ k \subset K $ be the splitting field of $ f\rb{x} \in k\sb{x} $. Let
-$$ G = \cb{\text{field isomorphisms} \ \sigma : K \to K \mid \sigma \ \text{is a field automorphism of} \ K \ \text{such that} \ \sigma\mid_{k} = id_k}. $$
+$$ G = \cb{\sigma : K \to K \mid \sigma \ \text{field automorphism}, \ \sigma\mid_{k} = id_k}. $$
 We call this group the \textbf{Galois group}. There is a one-to-one correspondence
 $$
 \begin{array}{rcl}
-\cb{k \subset K_1 \subset K \mid K_1 \ \text{is a field}} & \leftrightarrow & \cb{H \le G \mid H \ \text{a subgroup}} \\
+\cb{k \subset K_1 \subset K \mid K_1 \ \text{subfield}} & \leftrightarrow & \cb{H \le G \mid H \ \text{subgroup}} \\
 K_1 & \mapsto & \cb{\sigma \in G \mid \forall \lambda \in K_1, \ \sigma\rb{\lambda} = \lambda} \\
 \cb{\lambda \in K \mid \forall \sigma \in H, \ \sigma\rb{\lambda} = \lambda} & \mapsfrom & H \le G.
 \end{array}.
@@ -132,13 +132,13 @@ Why is this cool? Fields are hard, groups are easy. We will see that there is a 
 
 \lecture{3}{Tuesday}{15/01/19}
 
-\begin{example}
+\begin{example*}
 Let $ \deg\rb{f} = 2 $ and $ f\rb{x} = x^2 + 2Ax + B \in K\sb{x} $. If $ K $ already contains the roots then $ L = K $ and $ G = \cb{id} $. Suppose $ K $ does not contain the roots. We still have quadratic formula
 $$ \lambda_{1, 2} = -A \pm \sqrt{A^2 - B}. $$
 If $ \Delta = A^2 - B $ then $ \sqrt{\Delta} $ does not exist in $ K $. We must have
 $$ L = K\rb{\sqrt{\Delta}} = \cb{a + b\sqrt{\Delta} \mid a, b \in K}. $$
 Then $ K \subset L $ and
-$$ G = \cb{\sigma : L \to L \mid \sigma \mid_K = id} = C_2 $$
+$$ G = \cb{\sigma : L \to L \mid \sigma \mid_K = id_K} = C_2 $$
 is generated by
 $$ \sigma : a + b\sqrt{\Delta} \mapsto a - b\sqrt{\Delta}. $$
 Further specialisation is the following.
@@ -153,29 +153,30 @@ $$ L = \cb{a + b\sqrt{2} \mid a, b \in \Q}, $$
 and $ G = C_2 $ is generated by
 $$ \sigma : a + b\sqrt{2} \mapsto a - b\sqrt{2}. $$
 \end{itemize}
-Theorem \ref{thm:galoiscorrespondence} implies there does not exist $ K \subsetneq K_1 \subsetneq K\rb{\sqrt{\Delta}} = L $. Is this obvious? Consider $ x \in L \setminus K $, so $ x = a + b\sqrt{\Delta} $, and $ b \ne 0 $, and then
+The fundamental theorem implies there does not exist
+$$ K \subsetneq K_1 \subsetneq K\rb{\sqrt{\Delta}} = L. $$
+Is this obvious? Consider $ x \in L \setminus K $, so $ x = a + b\sqrt{\Delta} $, and $ b \ne 0 $, and then
 $$ \sqrt{\Delta} = \dfrac{x - a}{b}, $$
 so $ K\rb{x} = L $.
-\end{example}
+\end{example*}
 
-\begin{example}
-Let $ f\rb{x} = x^3 - 2 \in \Q\sb{x} $ and $ L = \Q\rb{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + i\sqrt{3}}{2} $. $ \omega $ is a solution of $ x^2 + x + 1 = 0 $. Then
+\begin{example*}
+Let $ f\rb{x} = x^3 - 2 \in \Q\sb{x} $ and $ L = \Q\rb{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + i\sqrt{3}}{2} $ is a solution of $ x^2 + x + 1 = 0 $. Then
 $$ \Q\rb{\omega} = \Q\rb{\sqrt{-3}}, \qquad \Q\rb{\sqrt[3]{2}} = \cb{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q}. $$
-\end{example}
+\end{example*}
 
-\begin{remark}
-\label{rem:inclusionhomomorphism}
+\begin{remark*}
 For any splitting field of $ f $, there is always a natural inclusion group homomorphism
-$$ \rho : G \subset S\rb{\lambda_1, \dots, \lambda_n}, $$
-the group of permutations of the roots of $ f = x^n + a_1x^{n - 1} + \dots + a_n $.
+$$ \rho : G \hookrightarrow S\rb{\lambda_1, \dots, \lambda_n}, $$
+where $ S\rb{\lambda_1, \dots, \lambda_n} $ is the group of permutations of the roots of $ f = x^n + a_1x^{n - 1} + \dots + a_n $.
 \begin{itemize}
 \item If $ \sigma \in G $, $ f\rb{\lambda} = 0 $, so $ \lambda^n + a_1\lambda^{n - 1} + \dots + a_n = 0 $.
 $$ 0 = \sigma\rb{0} = \sigma\rb{\lambda^n + a_1\lambda^{n - 1} + \dots + a_n} = \sigma\rb{\lambda}^n + a_1\sigma\rb{\lambda}^{n - 1} + \dots + a_n. $$
 \item $ \rho $ is injective. If for all $ i $, $ \sigma\rb{\lambda_i} = \lambda_i $, then $ \sigma = id $ on $ K\rb{\lambda_1, \dots, \lambda_n} = L $.
 \end{itemize}
-\end{remark}
+\end{remark*}
 
-Theorem \ref{thm:galoiscorrespondence} and Remark \ref{rem:inclusionhomomorphism} gives $ G = \mathfrak{S}_3 $.
+The fundamental theorem and remark gives $ G = \mathfrak{S}_3 $.
 
 \lecture{4}{Thursday}{17/01/19}
 
@@ -191,66 +192,68 @@ Let $ K \subset L \subset F $. Then $ \sb{F : K} = \sb{F : L}\sb{L : K} $.
 \end{theorem}
 
 \begin{theorem}
-\label{thm:2}
+\label{thm:degree}
 Suppose $ f\rb{x} \in K\sb{x} $ is irreducible of degree $ d = \deg\rb{f} $ and $ L = K\rb{\lambda} $ where $ f\rb{\lambda} = 0 $, then $ \sb{K\rb{\lambda} : K} = d $.
 \end{theorem}
 
-\begin{example}
+\begin{example*}
 $$ K = \Q\rb{\sqrt[3]{2}} = \cb{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q} $$
 is a field, and $ \sb{K : \Q} = 3 $.
-\end{example}
+\end{example*}
 
-\begin{example}
+\begin{example*}
 Let $ L = \Q\rb{\sqrt[3]{2}, \omega} $ be the splitting field of $ x^3 - 2 $ over $ \Q $. The lattice of subfields is
 $$
-\begin{tikzpicture}
-\node (L) at (0, 3) {$ L $};
-\node (K1) at (-4, 2) {$ \Q\rb{\sqrt[3]{2}} $};
-\node (K2) at (-2, 2) {$ \Q\rb{\omega^2\sqrt[3]{2}} $};
-\node (K3) at (-0, 2) {$ \Q\rb{\omega\sqrt[3]{2}} $};
-\node (K) at (2, 1) {$ \Q\rb{\omega} $};
-\node (Q) at (0, 0) {$ \Q $};
-\draw (L) -- node[fill=white]{2} (K1) -- node[fill=white]{3} (Q);
-\draw (L) -- node[fill=white]{2} (K2) -- node[fill=white]{3} (Q);
-\draw (L) -- node[fill=white]{2} (K3) -- node[fill=white]{3} (Q);
-\draw (L) -- node[fill=white]{3} (K) -- node[fill=white]{2} (Q);
-\end{tikzpicture}.
+\begin{tikzcd}
+& & L & \\
+\Q\rb{\sqrt[3]{2}} \arrow[dash]{urr}{2} & \Q\rb{\omega\sqrt[3]{2}} \arrow[dash]{ur}{2} & \Q\rb{\omega^2\sqrt[3]{2}} \arrow[dash]{u}{2} & \\
+& & & \Q\rb{\omega} \arrow[dash, swap]{uul}{3} \\
+& & \Q \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash, swap]{ur}{2} &
+\end{tikzcd}.
 $$
-(Exercise: $ \Q\rb{\sqrt[3]{2} + \omega} = L $, $ \Q\rb{\omega^2\sqrt[3]{2}} \cap \Q\rb{\omega\sqrt[3]{2}} = \Q $, and $ \Q\rb{\sqrt[3]{2}, \omega\sqrt[3]{2}} = L $) What is $ \sb{L : \Q\rb{\sqrt[3]{2}}} $? Note $ L = \Q\rb{\sqrt[3]{2}}\rb{\sqrt{-3}} $. Could $ \sqrt{-3} \in \Q\rb{\sqrt[3]{2}} $? Consider $ x^2 + 3 \in \Q\rb{\sqrt[3]{2}}\sb{x} $. By Theorem \ref{thm:towerlaw},
-\begin{align*}
-\sb{L : \Q} & = \sb{L : \Q\rb{\omega}}\sb{\Q\rb{\omega} : \Q} = 2\sb{L : \Q\rb{\omega}}, \\
-\sb{L : \Q} & = \sb{L : \Q\rb{\sqrt[3]{2}}}\sb{\Q\rb{\sqrt[3]{2}} : \Q} = 3\sb{L : \Q\rb{\sqrt[3]{2}}}.
-\end{align*}
-$ 2 \mid \sb{L : \Q} $ and $ 3 \mid \sb{L : \Q} $, so $ 6 \mid \sb{L : \Q} $. Either $ x^2 + 3 $ is irreducible over $ \Q\rb{\sqrt[3]{2}} $, so by Theorem \ref{thm:2} $ \sb{L : \Q\rb{\sqrt[3]{2}}} = 2 $ and $ \sb{L : \Q} = 6 $. Or $ x^2 + 3 $ is not irreducible, so $ \Q\rb{\sqrt[3]{2}} = L $ and $ \sb{L : \Q} = 3 $, a contradiction. Are there any other fields? Claim that there are no other fields. Suppose $ \Q \subsetneq K \subsetneq L $ is such a field. By Theorem \ref{thm:towerlaw} $ \sb{K : \Q} = 2 $ or $ \sb{K : \Q} = 3 $.
+Then
+$$ \Q\rb{\sqrt[3]{2} + \omega} = L, \qquad \Q\rb{\omega^2\sqrt[3]{2}} \cap \Q\rb{\omega\sqrt[3]{2}} = \Q, \qquad \Q\rb{\sqrt[3]{2}, \omega\sqrt[3]{2}} = L. $$
+(Exercise) What is $ \sb{L : \Q\rb{\sqrt[3]{2}}} $? Note that $ L = \Q\rb{\sqrt[3]{2}}\rb{\sqrt{-3}} $. Could $ \sqrt{-3} \in \Q\rb{\sqrt[3]{2}} $? Consider $ x^2 + 3 \in \Q\rb{\sqrt[3]{2}}\sb{x} $. By the tower law,
+$$
+\begin{cases}
+\sb{L : \Q} = \sb{L : \Q\rb{\omega}}\sb{\Q\rb{\omega} : \Q} = 2\sb{L : \Q\rb{\omega}} & \implies 2 \mid \sb{L : \Q} \\
+\sb{L : \Q} = \sb{L : \Q\rb{\sqrt[3]{2}}}\sb{\Q\rb{\sqrt[3]{2}} : \Q} = 3\sb{L : \Q\rb{\sqrt[3]{2}}} & \implies 3 \mid \sb{L : \Q}
+\end{cases}
+\qquad \implies \qquad 6 \mid \sb{L : \Q}.
+$$
+\begin{itemize}
+\item Either $ x^2 + 3 $ is irreducible over $ \Q\rb{\sqrt[3]{2}} $, so by Theorem \ref{thm:degree} $ \sb{L : \Q\rb{\sqrt[3]{2}}} = 2 $ and $ \sb{L : \Q} = 6 $.
+\item Or $ x^2 + 3 $ is not irreducible, so $ \Q\rb{\sqrt[3]{2}} = L $ and $ \sb{L : \Q} = 3 $, a contradiction.
+\end{itemize}
+Are there any other fields? Claim that there are no other fields. Suppose $ \Q \subsetneq K \subsetneq L $ is such a field. By the tower law $ \sb{K : \Q} = 2 $ or $ \sb{K : \Q} = 3 $.
 \begin{itemize}
 \item Suppose $ \sb{K : \Q} = 2 $.
 $$
-\begin{tikzpicture}
-\node (L) at (0, 2) {$ L $};
-\node (K') at (0, 1) {$ K\rb{\omega} $};
-\node (K) at (-1, 0) {$ K $};
-\node (Q') at (1, 0) {$ \Q\rb{\omega} $};
-\node (Q) at (0, -1) {$ \Q $};
-\draw (L) -- (K');
-\draw (K') -- (K) -- node[fill=white]{2} (Q);
-\draw (K') -- (Q') -- node[fill=white]{2} (Q);
-\end{tikzpicture}
+\begin{tikzcd}
+& L & \\
+& K\rb{\omega} \arrow[dash]{u} & \\
+K \arrow[dash]{uur}{3} \arrow[dash]{ur} & & \Q\rb{\omega} \arrow[dash]{ul} \\
+& \Q \arrow[dash]{ul}{2} \arrow[dash, swap]{ur}{2} &
+\end{tikzcd}.
 $$
-Either $ \omega \in K $, that is $ \Q\rb{\omega} \subset K $, so by Theorem \ref{thm:towerlaw} $ \Q\rb{\omega} = K $. Or $ \omega \notin K $ gives $ \sb{K\rb{\omega} : K} = 2 $, so $ \sb{K\rb{\omega} : \Q} = 4 $ contradicts the tower law for $ \Q \subset K\rb{\omega} \subset L $.
+\begin{itemize}
+\item Either $ \omega \in K $, that is $ \Q\rb{\omega} \subset K $, so by the tower law $ \Q\rb{\omega} = K $.
+\item Or $ \omega \notin K $ gives $ \sb{K\rb{\omega} : K} = 2 $, so $ \sb{K\rb{\omega} : \Q} = 4 $ contradicts the tower law for $ \Q \subset K\rb{\omega} \subset L $.
+\end{itemize}
 \item Suppose $ \sb{K : \Q} = 3 $.
 $$
-\begin{tikzpicture}
-\node (L) at (0, 1) {$ L $};
-\node (K) at (0, 0) {$ K\rb{\omega} $};
-\node (Q) at (0, -1) {$ \Q $};
-\draw (L) -- node[fill=white]{2} (K) -- node[fill=white]{3} (Q);
-\end{tikzpicture}.
+\begin{tikzcd}
+L & \\
+& K\rb{\sqrt[3]{2}} \arrow[dash]{ul} \\
+K \arrow[dash]{uu}{2} \arrow[dash]{ur} & \\
+\Q \arrow[dash]{u}{3} &
+\end{tikzcd}.
 $$
-Claim that $ x^3 - 2 \in K\sb{x} $ splits, so it has a root in $ K $. Either $ \sqrt[3]{2} \in K $, $ \omega\sqrt[3]{2} \in K $, or $ \omega^2\sqrt[3]{2} \in K $.
+Claim that $ x^3 - 2 \in K\sb{x} $ splits. Suppose that it were irreducible, then $ \sb{K\rb{\sqrt[3]{2}} : K} = 3 $, which contradicts the tower law for $ K \subset K\rb{\sqrt[3]{2}} \subset L $. So it has a root in $ K $. Either $ \sqrt[3]{2} \in K $, $ \omega\sqrt[3]{2} \in K $, or $ \omega^2\sqrt[3]{2} \in K $. Thus $ \Q\rb{\sqrt[3]{2}} = K $, $ \Q\rb{\omega\sqrt[3]{2}} = K $, or $ \Q\rb{\omega^2\sqrt[3]{2}} = K $.
 \end{itemize}
 I want to prove that
 $$ G = Aut_\Q\rb{L} = \cb{\sigma : L \to L \mid \sigma \mid_\Q = id_\Q} = \mathfrak{S}_3. $$
-\end{example}
+\end{example*}
 
 \lecture{5}{Friday}{18/01/19}
 
@@ -275,7 +278,7 @@ so for all $ j $, $ \sum_i \lambda_{ij}x_i = 0 $, so for all $ j $ and all $ i $
 \end{itemize}
 \end{proof}
 
-\begin{example}
+\begin{example*}
 To show $ G = \mathfrak{S}_3 $. Let $ \sigma = \onebytwo{1}{2} $. A basis of $ L / \Q $ is
 $$ 1, \sqrt[3]{2}, \sqrt[3]{4}, \omega, \omega\sqrt[3]{2}, \omega\sqrt[3]{4}. $$
 \begin{itemize}
@@ -297,7 +300,9 @@ $$ \sigma =
 0 & 0 & -1 & 0 & 0 & 1
 \end{pmatrix}.
 $$
-A question is if there were $ \sigma \in G $ such that $ \rho\rb{\sigma} = \onebytwo{1}{2} $ then we have written the matrix of $ \sigma $ as a $ \Q $-linear map of $ L $ in a basis. But how to check that this $ \Q $-linear map is a field homomorphism? We know the Galois correspondence for extensions of degree two. $ Gal_{\Q\rb{\sqrt[3]{2}}}\rb{L}, Gal_{\Q\rb{\omega^2\sqrt[3]{2}}}\rb{L}, Gal_{\Q\rb{\omega\sqrt[3]{2}}}\rb{L} \subset G $ contain an element of order two, and
+A question is if there were $ \sigma \in G $ such that $ \rho\rb{\sigma} = \onebytwo{1}{2} $ then we have written the matrix of $ \sigma $ as a $ \Q $-linear map of $ L $ in a basis. But how to check that this $ \Q $-linear map is a field homomorphism? We know the Galois correspondence for extensions of degree two.
+$$ Gal_{\Q\rb{\sqrt[3]{2}}}\rb{L}, Gal_{\Q\rb{\omega^2\sqrt[3]{2}}}\rb{L}, Gal_{\Q\rb{\omega\sqrt[3]{2}}}\rb{L} \subset G $$
+contain an element of order two, and
 $$
 \begin{array}{rrl}
 \rho : & Gal_{\Q\rb{\sqrt[3]{2}}}\rb{L} & \mapsto \onebytwo{2}{3} \\
@@ -307,27 +312,21 @@ $$
 $$
 The lattice of subgroups is
 $$
-\begin{tikzpicture}
-\node (E) at (0, 3) {$ \cb{e} $};
-\node (K1) at (-4, 2) {$ \ab{\onebytwo{2}{3}} $};
-\node (K2) at (-2, 2) {$ \ab{\onebytwo{1}{2}} $};
-\node (K3) at (0, 2) {$ \ab{\onebytwo{1}{3}} $};
-\node (K) at (2, 1) {$ \ab{\onebythree{1}{2}{3}} $};
-\node (G) at (0, 0) {$ G $};
-\draw (E) -- node[fill=white]{2} (K1) -- node[fill=white]{3} (G);
-\draw (E) -- node[fill=white]{2} (K2) -- node[fill=white]{3} (G);
-\draw (E) -- node[fill=white]{2} (K3) -- node[fill=white]{3} (G);
-\draw (E) -- node[fill=white]{3} (K) -- node[fill=white]{2} (G);
-\end{tikzpicture}.
+\begin{tikzcd}
+& & \cb{e} & \\
+\ab{\onebytwo{2}{3}} \arrow[dash]{urr}{2} & \ab{\onebytwo{1}{2}} \arrow[dash]{ur}{2} & \ab{\onebytwo{1}{3}} \arrow[dash]{u}{2} & \\
+& & & \onebythree{1}{2}{3} \arrow[dash, swap]{uul}{3} \\
+& & G \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash, swap]{ur}{2} &
+\end{tikzcd}.
 $$
 $ \Q\rb{\omega} / \Q $ is the splitting field of $ x^2 + x + 1 $ and of $ x^2 + 3 $.
-\end{example}
+\end{example*}
 
 We can learn the following. Let $ k \subset L $ be a splitting field. Consider $ k \subset K \subset L $. Then $ K \subset L $ is also a splitting field. The corresponding $ H \le G $ is the Galois group $ Gal_K\rb{L} $. On the other hand $ k \subset K $ is not always a splitting field. It is a splitting field if and only if the corresponding $ H \le G $ is a normal subgroup and in that case $ Gal_k\rb{K} = G / H $.
 
 \pagebreak
 
-\section{Fields}
+\section{Elementary facts}
 
 \lecture{6}{Tuesday}{22/01/19}
 
@@ -342,18 +341,18 @@ $ f\rb{x} = a_0x^n + \dots + a_n \in K\sb{x} $ is \textbf{monic} if $ a_0 = 1 $.
 \begin{lemma}
 \hfill
 \begin{itemize}
-\item If $ a $ is transcendental, $ e_a $ is injective and it extends to $ \widetilde{e_a} : K\rb{X} \to K\rb{a} $, by
+\item If $ a $ is transcendental, $ e_a $ is injective and it extends to $ \widetilde{e_a} : K\rb{x} \to K\rb{a} $, by
 $$
 \begin{tikzcd}
-K\rb{X} \arrow{dr}{\widetilde{e_a}} & \\
-K\sb{X} \arrow{u}{\subset} \arrow[swap]{r}{e_a} & L
+K\rb{x} \arrow{dr}{\widetilde{e_a}} & \\
+K\sb{x} \arrow[subset]{u} \arrow[swap]{r}{e_a} & L
 \end{tikzcd}.
 $$
 \item If $ a $ is algebraic, then $ Ker\rb{e_a} = \ab{f_a} $, where $ f_a \in K\sb{x} $ is irreducible, or prime, and unique if monic, then called the minimal polynomial of $ a \in L / K $. In this case
 $$
 \begin{tikzcd}
-K\sb{x} \arrow{r}{e_a} & K\sb{a} \cong K\rb{a} \\
-\dfrac{K\sb{x}}{\ab{f_a}} \arrow{u}{\subset} \arrow{ur}{\sim}[swap]{\sb{e_a}}
+K\sb{x} \arrow{r}{e_a} & K\sb{a} \cong K\rb{a} \subset L \\
+\dfrac{K\sb{x}}{\ab{f_a}} \arrow[subset]{u} \arrow{ur}{\sim}[swap]{\sb{e_a}}
 \end{tikzcd}.
 $$
 \end{itemize}
@@ -363,18 +362,24 @@ $$
 There is nothing to prove.
 \end{proof}
 
-Let $ g\rb{x} \in K\sb{x} $ and $ g\rb{a} \ne 0 $. Claim that $ 1 / g\rb{a} \in K\sb{a} $. Indeed $ \gcd\rb{f, g} = 1 $ in $ K\sb{x} $ and $ f \nmid g $. There exists $ \phi, \psi \in K\sb{x} $ such that $ f\phi + g\psi = 1 $ and $ g\rb{a}\psi\rb{a} = 1 $.
-
-\begin{remark}
-All of this is saying
+\begin{remark*}
+Let $ g\rb{x} \in K\sb{x} $ and $ g\rb{a} \ne 0 $. Claim that $ 1 / g\rb{a} \in K\sb{a} $. Indeed $ \gcd\rb{f, g} = 1 $ in $ K\sb{x} $ and $ f \nmid g $. There exists $ \phi, \psi \in K\sb{x} $ such that $ f\phi + g\psi = 1 $ and $ g\rb{a}\psi\rb{a} = 1 $. All of this is saying
 \begin{itemize}
 \item $ K\sb{a} \cong K\rb{a} $, and
 \item $ K\sb{x} / \ab{f_a} \cong K\rb{a} $.
 \end{itemize}
-\end{remark}
+\end{remark*}
 
 Let
-$$ Emb_K\rb{K\rb{a}, F} = \cb{\sigma : K\rb{a} \to F \ \text{field homomorphism} \mid \forall \lambda \in K, \ \sigma\rb{\lambda} = \lambda}. $$
+$$ Emb_K\rb{K\rb{a}, F} = \cb{\sigma : K\rb{a} \to F \mid \sigma \ \text{field homomorphism}, \ \sigma_K = id_K}, $$
+where
+$$
+\begin{tikzcd}
+& K\rb{a} \arrow[dotted]{dd}{\sigma} \\
+k \arrow[subset]{ur}{\sigma} \arrow[subset, swap]{dr}{\sigma} & \\
+& F
+\end{tikzcd}.
+$$
 
 \begin{corollary}
 For $ K \subset L $ and $ a \in L $ algebraic over $ K $,
@@ -394,8 +399,8 @@ is the minimal polynomial of $ a $ over $ K $. Claim that $ 1, \dots, a^{n - 1} 
 $$ g\rb{x} = f\rb{x}q\rb{x} + r\rb{x}, \qquad m = \deg\rb{r\rb{x}} < n. $$
 Then $ r\rb{x} = \lambda_0 + \dots + \lambda_mx^m $ and $ g\rb{a} = r\rb{a} = \lambda_0 + \dots + \lambda_ma^m $.
 \item The set is linearly independent, otherwise there exists
-$$ g\rb{x} = \lambda_0 + \dots + \lambda_{n - 1}x^{n- 1} \in K\sb{x}, $$
-where $ g\rb{a} = 0 $, and $ f $ was not the minimal polynomial.
+$$ g\rb{x} = \lambda_0 + \dots + \lambda_{n - 1}x^{n- 1} \in K\sb{x}, g\rb{a} = 0, $$
+and $ f $ was not the minimal polynomial.
 \end{itemize}
 $ \sigma\rb{a} $ is a root of $ f $, since applying $ \sigma $ to $ f\rb{a} = 0 $ gives
 $$ 0 = \sigma\rb{a^n + \mu_1a^{n - 1} + \dots + \mu_n} = \sigma\rb{a}^n + \mu_1^{n - 1}\sigma\rb{a}^{n - 1} + \dots + \mu_n = f\rb{\sigma\rb{a}}. $$
@@ -418,5 +423,87 @@ Let $ K $ be a field and $ f \in K\sb{x} $. Then there exists $ K \subset L $ su
 \begin{proof}
 Take $ g $ a prime factor of $ f $. Take $ L = K\sb{x} / \ab{g} $. In here $ a = \sb{x} $ is a root of $ g $ hence a root of $ f $.
 \end{proof}
+
+\lecture{7}{Thursday}{24/01/19}
+
+From now on in this course, we study field extensions $ K \subset L $, always assumed to be finite, so $ \sb{L : K} = \dim_K\rb{L} < \infty $.
+
+\begin{remark*}
+$ K \subset L $ is finite if and only if
+\begin{itemize}
+\item it is algebraic, that is for all $ a \in L $, $ a $ is algebraic over $ K $, and
+\item it is finitely generated, that is there exist $ a_1, \dots, a_m \in L $ such that $ L = K\rb{a_1, \dots, a_m} $.
+\end{itemize}
+\end{remark*}
+
+An important point of view is that we study all possible field homomorphisms
+$$ Emb\rb{K, L} = \cb{\sigma : K \to L \mid \sigma \ \text{field homomorphism}}. $$
+Often there is a field $ k \subset K, L $ in the background which we want to stay fixed, so
+$$ Emb_k\rb{K, L} = \cb{\sigma : K \to L \mid \sigma \ \text{field homomorphism}, \ \sigma \mid_k = id_k}. $$
+
+\begin{example*}
+Let $ K = \Q\rb{\sqrt[3]{2}} $. The minimal polynomial of $ \sqrt[3]{2} $ is $ x^3 - 2 $. Let $ L = \Q\rb{\sqrt[3]{2}, \sqrt{-3}} $ be the splitting field of $ x^3 - 2 $. Then
+$$ Emb_\Q\rb{K, L} = Emb\rb{K, L} = \cb{\text{roots of} \ x^3 - 2 \ \text{in} \ L} = \cb{\sqrt[3]{2}, \omega\sqrt[3]{2}, \omega^2\sqrt[3]{2}}. $$
+\end{example*}
+
+\begin{remark*}
+Suppose $ k \subset K $. $ Emb_k\rb{K, K} = G = Gal_k\rb{K} $. Indeed every $ k $-homomorphism $ \sigma : K \to K $ is automatically invertible. We know $ \sigma $ is injective. $ \sigma $ is also surjective because $ \sigma $ is a $ k $-linear endomorphism of a finite-dimensional $ k $-vector space.
+\end{remark*}
+
+\section{Axiomatics}
+
+\begin{proposition}
+Fix $ k \subset K $ and $ k \subset L $. Then $ \#Emb_k\rb{K, L} \le \sb{K : k} $.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}[leftmargin=1in]
+\item[Special case.] If $ K = k\rb{a} $, let $ f\rb{x} \in k\sb{x} $ be the minimal polynomial of $ a $. Then $ Emb_k\rb{k\rb{a}, L} $ is the roots of $ f\rb{x} $ in $ L $, so
+$$ \#Emb_k\rb{K, L} = \#\cb{\text{roots}} \le \deg\rb{f} = \sb{k\rb{a} : k}, $$
+as proved last time.
+\item[General case.] If $ k = K $, nothing to do. Otherwise choose $ a \in K \setminus k $.
+$$
+\begin{tikzcd}
+& & L \\
+k \arrow[subset]{urr} \arrow[subset]{r} & k\rb{a} \arrow[dotted, swap]{ur}{y} \arrow[subset]{r} & K \arrow[dotted]{u}
+\end{tikzcd}.
+$$
+Consider the restriction map
+$$ \rho : Emb_k\rb{K, L} \to Emb_k\rb{k\rb{a}, L}. $$
+Fix $ y \in Emb_k\rb{k\rb{a}, L} $. Then
+$$ \rho^{-1}\rb{y} = \cb{x : K \to L \mid x \mid_{k\rb{a}} = id_{k\rb{a}}}. $$
+Since $ \sb{k\rb{a} : k} > 1 $, by the tower law $ \sb{K : k\rb{a}} < \sb{K : k} $. By induction we may assume $ \#\rho^{-1}\rb{y} \le \sb{K : k\rb{a}} $. So
+$$ \#Emb_k\rb{K, L} \le \sum_{y \in Emb_k\rb{k\rb{a}, L}} \#\rho^{-1}\rb{y} \le \sb{k\rb{a} : k}\sb{K : k\rb{a}} = \sb{K : k}, $$
+by the tower law.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+Suppose given two field extensions $ k \subset K $ and $ k \subset L $. Then there is a bigger field
+$$
+\begin{tikzcd}
+& K \arrow[subset]{dr}{\phi_1} & \\
+k \arrow[subset]{ur}{\sigma_1} \arrow[subset, swap]{dr}{\sigma_2} & & \Omega \\
+& L \arrow[subset, swap]{ur}{\phi_2} &
+\end{tikzcd}
+$$
+that contains both.
+\end{proposition}
+
+\begin{remark*}
+\hfill
+\begin{itemize}
+\item More formally, suppose given $ \sigma_1 \in Emb\rb{k, K} $ and $ \sigma_2 \in Emb\rb{k, L} $, then there exists $ \Omega $, $ \phi_1 \in Emb\rb{K, \Omega} $, and $ \phi_2 \in Emb\rb{L, \Omega} $ such that $ \phi_1 \circ \sigma_1 = \phi_2 \circ \sigma_2 $.
+\item I never said that $ \Omega $ is unique. For example, let $ K = \Q\rb{\sqrt[3]{2}} $ and $ L = \Q\rb{\sqrt[3]{2}} $. One choice is $ \Omega = k $. Another choice is $ \Omega = \Q\rb{\sqrt[3]{2}, \sqrt{-3}} $, where
+$$
+\begin{tikzcd}
+& \Q\rb{\sqrt[3]{2}} \arrow[subset]{dr}{\phi_1 : \sqrt[3]{2} \mapsto \sqrt[3]{2}} & \\
+\Q \arrow[subset]{ur}{\sigma} \arrow[subset, swap]{dr}{\sigma} & & \Q\rb{\sqrt[3]{2}, \sqrt{-3}} \\
+& \Q\rb{\sqrt[3]{2}} \arrow[subset, swap]{ur}{\phi_2 : \sqrt[3]{2} \mapsto \sqrt{-3}} &
+\end{tikzcd}.
+$$
+\end{itemize}
+\end{remark*}
 
 \end{document}
