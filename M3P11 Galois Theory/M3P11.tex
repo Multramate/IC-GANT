@@ -123,7 +123,7 @@ $$
 \begin{array}{rcl}
 \cb{k \subset K_1 \subset K \mid K_1 \ \text{subfield}} & \leftrightarrow & \cb{H \le G \mid H \ \text{subgroup}} \\
 K_1 & \mapsto & \cb{\sigma \in G \mid \forall \lambda \in K_1, \ \sigma\rb{\lambda} = \lambda} \\
-\cb{\lambda \in K \mid \forall \sigma \in H, \ \sigma\rb{\lambda} = \lambda} & \mapsfrom & H \le G.
+\cb{\lambda \in K \mid \forall \sigma \in H, \ \sigma\rb{\lambda} = \lambda} & \mapsfrom & H \le G
 \end{array}.
 $$
 \end{theorem}
@@ -376,7 +376,7 @@ where
 $$
 \begin{tikzcd}
 & K\rb{a} \arrow[dotted]{dd}{\sigma} \\
-k \arrow[subset]{ur}{\sigma} \arrow[subset, swap]{dr}{\sigma} & \\
+k \arrow[subset]{ur} \arrow[subset]{dr} & \\
 & F
 \end{tikzcd}.
 $$
@@ -453,6 +453,7 @@ Suppose $ k \subset K $. $ Emb_k\rb{K, K} = G = Gal_k\rb{K} $. Indeed every $ k 
 \section{Axiomatics}
 
 \begin{proposition}
+\label{prop:1}
 Fix $ k \subset K $ and $ k \subset L $. Then $ \#Emb_k\rb{K, L} \le \sb{K : k} $.
 \end{proposition}
 
@@ -480,7 +481,7 @@ by the tower law.
 \end{proof}
 
 \begin{proposition}
-Suppose given two field extensions $ k \subset K $ and $ k \subset L $. Then there is a bigger field
+Suppose given two field extensions $ k \subset K $ and $ k \subset L $. Then there is a non-unique bigger common field
 $$
 \begin{tikzcd}
 & K \arrow[subset]{dr}{\phi_1} & \\
@@ -505,5 +506,65 @@ $$
 $$
 \end{itemize}
 \end{remark*}
+
+Another more precise way to state this is there exists $ k \subset \Omega $ such that $ Emb_k\rb{K, \Omega} $ and $ Emb_k\rb{L, \Omega} $ are both non-empty.
+
+\lecture{8}{Friday}{25/01/19}
+
+\begin{proof}
+\hfill
+\begin{itemize}[leftmargin=1in]
+\item[Special case.] If $ K = k\rb{a} $, let $ f\rb{x} \in k\sb{x} $ be the minimal polynomial of $ a $ over $ k $. Let $ L \subset E $ be such that $ f\rb{x} \in L\sb{x} $ has a root $ \alpha \in E $. Then there exists $ \sigma \in Emb_k\rb{k\rb{a}, E} $ such that $ \sigma\rb{a} = \alpha $.
+$$
+\begin{tikzcd}
+& k\rb{a} \arrow[dotted]{dr}{\sigma} & \\
+k \arrow[subset]{ur} \arrow[subset]{dr} & & E \\
+& L \arrow[subset]{ur} &
+\end{tikzcd}.
+$$
+\item[General case.] By induction on $ \sb{K : k} $. If $ \sb{K : k} = 1 $, take $ \Omega = L $. If $ \sb{K : k} > 1 $, take $ a \in K \setminus k $.
+$$
+\begin{tikzcd}
+& & K \arrow[subset]{dr} & \\
+& k\rb{a} \arrow[subset]{ur} \arrow[subset]{dr} & & \Omega \\
+k \arrow[subset]{ur} \arrow[subset]{dr} & & E \arrow[subset]{ur} & \\
+& L \arrow[subset]{ur} & &
+\end{tikzcd}.
+$$
+By special case there exists $ E $ as in the diagram. By tower law $ \sb{K : k\rb{a}} < \sb{K : k} $ hence by induction find $ \Omega $ as in the diagram. $ \Omega $ solves the original problem.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+\label{prop:3}
+Let $ L $ be any field and $ G $ be a finite group acting on $ L $ as automorphisms. Let
+$$ K = G^* = Fix\rb{G} = \cb{\lambda \in L \mid \forall \sigma \in G, \ \sigma\rb{\lambda} = \lambda}. $$
+Consider $ Aut_K\rb{L} = K^\dagger $. Then the obvious inclusion $ G \subset K^\dagger = \rb{G^*}^\dagger $ is an equality, so $ G $ is all of $ K^\dagger $.
+\end{proposition}
+
+\begin{remark*}
+Contextualising, this thing is half of the Galois correspondence.
+$$
+\begin{array}{rcl}
+\cb{F \mid k \subset F \subset \Omega} & \leftrightarrow & \cb{G \mid G \le Aut_k\rb{\Omega}} \\
+F & \mapsto & Aut_F\rb{\Omega} = F^\dagger \\
+Fix\rb{G} = G^* & \mapsfrom & G
+\end{array}.
+$$
+Then to prove the Galois correspondence, we need for all $ G $, $ G = \rb{G^*}^\dagger $. We also need for all $ F $, $ F = \rb{F^\dagger}^* $.
+\end{remark*}
+
+Proposition \ref{prop:3} follows from the following lemma.
+
+\begin{lemma}
+\label{lem:3}
+$ K \subset L $ is a finite extension of degree $ \sb{L : K} \le \abs{G} $.
+\end{lemma}
+
+\begin{proof}[Proof of Proposition \ref{prop:3}]
+From Proposition \ref{prop:1}, $ Aut_K\rb{L} = Emb_K\rb{L, L} $ because $ K \subset L $ is finite, and $ \#Emb_K\rb{L, L} \le \sb{L : K} $. By Lemma \ref{lem:3},
+$$ \sb{L : K} \le \#Emb_K\rb{L, L} \le \sb{L : K}, $$
+so $ \abs{G} = \#Emb_K\rb{L, L} $. By what we said, $ G \subset Emb_K\rb{L, L} $, so $ G = Emb_K\rb{L, L} $.
+\end{proof}
 
 \end{document}
