@@ -585,10 +585,6 @@ These two observations yield in particular that if $ \phi : X \to Y $ is a homeo
 $$ \phi_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Y, \phi\rb{x_0}} $$
 is an isomorphism with inverse $ \psi_* $.
 
-\begin{proposition}
-If $ n \ge 2 $, then $ \pi_1\rb{S^n} = 0 $.
-\end{proposition}
-
 \lecture{7}{Friday}{25/01/19}
 
 \begin{proposition}
@@ -653,13 +649,14 @@ Have to show that $ \phi_* $ is bijective. The observation above gives that $ \r
 \end{proof}
 
 \begin{lemma}
+\label{lem:1.15}
 Let $ X $ be a topological space and $ x_0 \in X $. Assume
 $$ X = \bigcup_{\alpha \in \Lambda} A_\alpha, $$
 such that
 \begin{itemize}
-\item the $ A_\alpha $ are all open and path-connected,
+\item the $ A_\alpha $ are all open and path connected,
 \item $ x_0 \in A_\alpha $ for all $ \alpha \in \Lambda $, and
-\item all the intersections $ A_\alpha \cap A_\beta $ are path-connected for all $ \alpha, \beta \in \Lambda $.
+\item all the intersections $ A_\alpha \cap A_\beta $ are path connected for all $ \alpha, \beta \in \Lambda $.
 \end{itemize}
 If $ f $ is a loop in $ X $ at $ x_0 $, then we can write $ \sb{f} = \sb{h_1} \dots \sb{h_m} $, such that the $ h_i $ are loops at $ x_0 $, and each contained in a single $ A_{\alpha_i} $.
 \end{lemma}
@@ -667,12 +664,104 @@ If $ f $ is a loop in $ X $ at $ x_0 $, then we can write $ \sb{f} = \sb{h_1} \d
 \begin{proof}
 $ f $ is continuous, so for all $ s \in I $ there is an open neighbourhood $ V_s $ such that $ f\rb{V_s} $ such that $ f\rb{V_s} \subseteq A_\alpha $ for some $ \alpha $. We can choose $ V_s $ to be an interval $ \rb{a_s, b_s} $ such that $ f\rb{\sb{a_s, b_s}} \subseteq A_\alpha $. $ I $ is compact gives that a finite number of such intervals cover $ I $, so there is a partition
 $$ 0 = s_0 < \dots < s_m = 1, $$
-such that $ f\rb{\sb{s_{i - 1}, s_i}} \subseteq A_{\alpha_i} $ for some $ \alpha_i $. Let $ f_i $ be the path obtained by restricting $ f $ to $ \sb{s_{i - 1}, s_i} $, and rescaling.
-$$ f \cong f_1 \cdot \dots \cdot f_m, $$
-for $ f_i \subseteq A_{\alpha_i} $ and $ A_{\alpha_i} \cap A_{\alpha_j} $ is path-connected. Let $ g_i $ be a path from $ x_0 $ to $ f\rb{s_i} $ in $ A_{\alpha_i} \cap A_{\alpha_{i + 1}} $. Let $ g_0, g_m $ be the constant loops at $ x_0 $. $ h_i = g_{i - 1} \cdot f_i \cdot g_i^{-1} $ is a loop based at $ x_0 $ and $ h_i \subseteq A_{\alpha_i} $. Thus
+such that $ f\rb{\sb{s_{i - 1}, s_i}} \subseteq A_{\alpha_i} $ for some $ \alpha_i $. Let $ f_i $ be the path obtained by restricting $ f $ to $ \sb{s_{i - 1}, s_i} $, and rescaling. $ f \cong f_1 \cdot \dots \cdot f_m $ for $ f_i \subseteq A_{\alpha_i} $ and $ A_{\alpha_i} \cap A_{\alpha_j} $ is path connected. Let $ g_i $ be a path from $ x_0 $ to $ f\rb{s_i} $ in $ A_{\alpha_i} \cap A_{\alpha_{i + 1}} $. Let $ g_0, g_m $ be the constant loops at $ x_0 $. $ h_i = g_{i - 1} \cdot f_i \cdot g_i^{-1} $ is a loop based at $ x_0 $ and $ h_i \subseteq A_{\alpha_i} $. Thus
 $$ f \cong \rb{g_0 \cdot f_1 \cdot g_1^{-1}} \cdot \dots \cdot \rb{g_{m - 1} \cdot f_m \cdot g_m^{-1}}, $$
 so $ \sb{f} = \sb{h_1} \dots \sb{h_m} $.
 \end{proof}
+
+\lecture{8}{Tuesday}{29/01/19}
+
+\begin{example*}
+M\"obius strip $ M $ deformation retracts to $ S^1 $. Thus $ \phi : M \to S^1 $ is a homotopy equivalence, so $ \pi_1\rb{M} \cong \pi_1\rb{S^1} \cong \Z $.
+\end{example*}
+
+\begin{example*}
+There is no deformation retraction of $ S^1 $ to a point $ p \in S^1 $ because $ \pi_1\rb{S^1} \ncong \pi_1\rb{p} $.
+\end{example*}
+
+\begin{example*}
+There is no retraction of the disc $ D^2 $ to its boundary $ S^1 \subseteq D^2 $.
+\end{example*}
+
+\begin{proof}
+Assume there is a retraction $ r : D^2 \to S^1 $, consider the embedding $ i : S^1 \hookrightarrow D^2 $. Then $ ri = id_{S^1} $. Thus
+$$
+\begin{tikzcd}[row sep=tiny]
+\pi_1\rb{S^1} \arrow{r}{i_*} \arrow[cong]{d} & \pi_1\rb{D^2} \arrow{r}{r_*} \arrow[cong]{d} & \pi_1\rb{S^1} \arrow[cong]{d} \\
+\Z & 0 & \Z
+\end{tikzcd},
+$$
+so $ r_*i_*\rb{\pi_1\rb{S^1}} = 0 $ but $ r_*i_* = \rb{ri}_* = id_{\pi_1\rb{S^1}} $, a contradiction.
+\end{proof}
+
+\begin{theorem}[Brouwer fixed point theorem]
+Let $ h : D^2 \to D^2 $ be a continuous map. Then $ h $ has a fixed point, that is there exists $ x \in D^2 $ such that $ h\rb{x} = x $.
+\end{theorem}
+
+\begin{proof}
+Assume $ h\rb{x} \ne x $ for all $ x \in D^2 $. Define $ r : D^2 \to S^1 $ by defining $ r\rb{x} $ to be the intersection of the ray starting at $ h\rb{x} $ towards $ x $ with $ S^1 $. $ r $ is continuous, and if $ x \in S^1 $, then $ r\rb{x} = x $, so $ r $ is a retraction, a contradiction.
+\end{proof}
+
+Lemma \ref{lem:1.15} gives that if $ U_1, U_2 \subseteq X $ are open and path connected such that $ U_1 \cup U_2 = X $ and $ U_1 \cap U_2 $ is path connected and $ x_0 \in U_1 \cap U_2 $, then every $ \sb{f} \in \pi_1\rb{X, x_0} $ can be factorised as $ \sb{f} = \sb{g_1}\sb{h_1} \dots \sb{g_n}\sb{h_n} $ such that the $ g_i $ are loops at $ x_0 $ contained in $ U_1 $ and the $ h_i $ are loops at $ x_0 $ contained in $ U_2 $. In other words, $ i_1 : U_1 \hookrightarrow X $ and $ i_2 : U_2 \hookrightarrow X $, so
+$$ \rb{i_1}_* : \pi_1\rb{U_1, x_0} \to \pi_1\rb{X, x_0}, \qquad \rb{i_2}_* : \pi_1\rb{U_2, x_0} \to \pi_1\rb{X, x_0}. $$
+Lemma \ref{lem:1.15} gives that $ \rb{i_1}_*\rb{\pi_1\rb{U_1, x_0}} \cup \rb{i_2}_*\rb{\pi_1\rb{U_2, x_0}} $ generate $ \pi_1\rb{X, x_0} $.
+
+\begin{proposition}
+$ \pi_1\rb{S^n} = 0 $ if $ n \ge 2 $.
+\end{proposition}
+
+\begin{proof}
+Let $ U_1 = S^n \setminus \cb{\rb{1, 0, \dots, 0}} $ and $ U_2 = S^n \setminus \cb{\rb{-1, 0, \dots, 0}} $. Then $ U_1 \cong \R^n $ and $ U_2 \cong \R^n $, by stereographic projection. $ U_1 \cup U_2 = S^n $ and $ U_1 \cap U_2 $ is path connected. Let $ x_0 \in U_1 \cap U_2 $. $ \pi_1\rb{U_1, x_0} = 0 $ and $ \pi_1\rb{U_2, x_0} = 0 $, so Lemma \ref{lem:1.15} gives that $ \pi_1\rb{S^n, x_0} $.
+\end{proof}
+
+\pagebreak
+
+\subsection{Free products with amalgamation}
+
+\begin{definition*}
+If $ S $ is a set, then $ F_S $ is \textbf{the free group} on $ S $. We can write any group $ G $ as a quotient of some free group $ F_S $, $ G = F / \ab{\ab{R}} $, where $ \ab{\ab{R}} $ is the \textbf{normal closure} of $ R \subseteq F_S $, the smallest normal subgroup of $ F_S $ containing $ R $. We write $ G = \ab{S \mid R} $. This is called a \textbf{presentation} of $ G $.
+\end{definition*}
+
+Let $ G_0, G_1, G_2 $ be groups, and $ f_1 : G_0 \to G_1 $ and $ f_2 : G_0 \to G_2 $ be homomorphisms.
+
+\begin{definition*}
+A group $ H $ together with homomorphisms $ h_1 : G_1 \to H $ and $ h_2 : G_2 \to H $ such that $ h_1f_1 = h_2f_2 $ is an \textbf{amalgamated product} of $ G_1 $ and $ G_2 $ over $ G_0 $, if satisfies the following universal property. For every group $ G $ and all homomorphisms $ h_1' : G_1 \to G $ and $ h_2' : G_2 \to G $ such that $ h_1'f_1 = h_2'f_2 $, there exists a unique homomorphism $ \alpha : H \to G $ such that $ h_1' = \alpha h_1 $ and $ h_2' = \alpha h_2 $.
+$$
+\begin{tikzcd}
+G_0 \arrow{r}{f_1} \arrow[swap]{d}{f_2} & G_1 \arrow{d}{h_1} \arrow[bend left=30]{ddr}{h_1'} & \\
+G_2 \arrow[swap]{r}{h_2} \arrow[bend right=30, swap]{drr}{h_2'} & H \arrow{dr}{\exists !\alpha} & \\
+& & G.
+\end{tikzcd}
+$$
+\end{definition*}
+
+\begin{theorem}
+Given $ f_1 : G_0 \to G_1 $ and $ f_2 : G_0 \to G_2 $. Then there exists an amalgamated product, unique up to isomorphism. We denote it by
+$ G_1 \underset{G_0}{*} G_2 $.
+\end{theorem}
+
+\begin{proof}
+Worksheet $ 2 $.
+\end{proof}
+
+\subsection{The Seifert-van Kampen Theorem}
+
+\begin{theorem}[Theorem of Seifert and van Kampen]
+Let $ X $ be a topological space and $ U_1, U_2 \subseteq X $ be open and path connected such that $ X = U_1 \cup U_2 $ and $ U_1 \cap U_2 $ is path connected and let $ x_0 \in U_1 \cap U_2 $. Then
+$$ \pi_1\rb{X, x_0} \cong \pi_1\rb{U_1, x_0} \underset{\pi_1\rb{U_1 \cap U_2, x_0}}{*} \pi_2\rb{U_2, x_0}. $$
+Thus
+$$
+\begin{tikzcd}
+U_1 \cap U_2 \arrow[hookrightarrow]{r}{i_1} \arrow[hookrightarrow, swap]{d}{i_2} & U_1 \arrow[hookrightarrow]{d}{j_1} \\
+U_2 \arrow[hookrightarrow, swap]{r}{j_2} & X
+\end{tikzcd}
+\qquad \implies \qquad
+\begin{tikzcd}
+\pi_1\rb{U_1 \cap U_2, x_0} \arrow{r}{\rb{i_1}_*} \arrow[swap]{d}{\rb{i_2}_*} & \pi_1\rb{U_1, x_0} \arrow{d}{\rb{j_1}_*} \\
+\pi_1\rb{U_2, x_0} \arrow[swap]{r}{\rb{j_2}_*} & \pi_1\rb{U_1, x_0} \underset{\pi_1\rb{U_1 \cap U_2, x_0}}{*} \pi_2\rb{U_2, x_0}
+\end{tikzcd}.
+$$
+\end{theorem}
 
 \pagebreak
 
