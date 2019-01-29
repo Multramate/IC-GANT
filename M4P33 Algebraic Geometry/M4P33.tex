@@ -48,8 +48,7 @@ Some authors call \textbf{algebraic set} the object $ Z\rb{S} $. We will not fol
 \begin{example}
 \hfill
 \begin{itemize}
-\item Single points $ p = \rb{p_1, \dots, p_n} $. $ p = Z\rb{S} $ where
-$$ S = \cb{x_1 - p_1, \dots, x_n - p_n}. $$
+\item Single points $ p = \rb{p_1, \dots, p_n} $. $ p = Z\rb{S} $ where $ S = \cb{x_1 - p_1, \dots, x_n - p_n} $.
 \item $ \A^n = Z\rb{0} $.
 \item $ \emptyset = Z\rb{1} $.
 \item Subspaces of $ \A^n = K^n $.
@@ -214,7 +213,7 @@ $ \A^n $.
 
 \begin{definition}
 If $ X \subseteq \A^n $, the \textbf{coordinate ring} of $ X $ is
-$$ A\rb{X} = \dfrac{K\sb{x_1, \dots, x_n}}{I\rb{X}}. $$
+$$ A\rb{X} = \dfrac{A}{I\rb{X}} = \dfrac{K\sb{x_1, \dots, x_n}}{I\rb{X}}. $$
 \end{definition}
 
 \lecture{3}{Tuesday}{15/01/19}
@@ -470,9 +469,9 @@ $$ \dim\rb{S\rb{Y}} = \dim\rb{Y} + 1. $$
 Let
 $$ \function[\phi_i]{U = \P^n \setminus Z\rb{x_i}}{\A^n}{\sb{x_0 : \dots : x_n}}{\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}}, $$
 and $ Y_i = \phi_i\rb{Y \cap U_i} $. Let
-$$ \function{K\sb{x_1, \dots, x_n}}{\rb{S_{x_i}}_0}{f\rb{x_1, \dots, x_n}}{\dfrac{x_i^{\partial f}f\rb{\dfrac{x_1}{x_i}, \dots, \dfrac{x_n}{x_i}}}{x_i^{\partial f}}}, $$
+$$ \function{K\sb{x_1, \dots, x_n}}{\rb{S\rb{Y}_{x_i}}_0}{f\rb{x_1, \dots, x_n}}{\dfrac{x_i^{\partial f}f\rb{\dfrac{x_1}{x_i}, \dots, \dfrac{x_n}{x_i}}}{x_i^{\partial f}}}, $$
 then
-$$ A\rb{Y_i} = \dfrac{K\sb{x_1, \dots, x_n}}{I\rb{Y_i}} \cong \rb{S_{x_i}}_0, $$
+$$ A\rb{Y_i} = \dfrac{K\sb{x_1, \dots, x_n}}{I\rb{Y_i}} \cong \rb{S\rb{Y}_{x_i}}_0, $$
 moreover $ S\rb{Y}_{x_i} \cong A\rb{Y_i}\sb{x_i, x_i^{-1}} $. So
 $$ \dim\rb{S\rb{Y}} = \dim\rb{S\rb{Y}_{x_i}} = \dim\rb{A\rb{Y_i}\sb{x_i, x_i^{-1}}} = tra\rb{K\rb{Y_i}\rb{x_i}} = \dim\rb{Y_i} + 1. $$
 Therefore if $ Y_i \ne \emptyset $, $ \dim\rb{Y_i} = \dim\rb{S\rb{Y}} - 1 $ for all $ i $, but since $ U_i $ cover $ Y $ we have $ \dim\rb{Y} = \max\cb{\dim\rb{Y_i}} $. (Exercise: if $ \cb{U_n}_n $ is a finite cover of a topological space $ Y $ then $ \dim\rb{Y} = \max\cb{\dim\rb{Y_i}} $) Since $ \dim\rb{Y_i} $ are the same if $ Y_i \ne \emptyset $, we conclude that $ \dim\rb{Y} = \dim\rb{Y_d} $ for some $ d $.
@@ -504,7 +503,7 @@ $ \P^n $ is complete. $ \A^n $ is not complete.
 
 \pagebreak
 
-\section{Morphisms of varieties}
+\section{Morphisms}
 
 \begin{definition}
 Suppose $ Y $ is a quasi-affine variety and $ p \in Y $. We say that a function $ f : Y \to \A^1 $ is \textbf{regular} at $ p $ if there are $ g, h \in K\sb{x_1, \dots, x_n} $ and $ U \ni p $ such that $ f = g / h $ in $ U $ with $ h \ne 0 $. A function is \textbf{regular} if it is regular for every $ p \in Y $.
@@ -542,7 +541,7 @@ We will use the term \textbf{variety} to denote an affine, quasi-affine, project
 \end{definition}
 
 \begin{definition}
-A \textbf{morphism} $ f : X \to Y $ if $ f $ is continuous and for every $ U \subseteq Y $ and every function $ g : U \to \A^1 $ the composition $ g \circ f $ is regular.
+A \textbf{morphism} is $ f : X \to Y $ if $ f $ is continuous and for every $ U \subseteq Y $ and every function $ g : U \to \A^1 $ the composition $ g \circ f $ is regular.
 \end{definition}
 
 \begin{remark}
@@ -593,8 +592,7 @@ $$ \correspondence{\text{points of} \ Y}{\text{maximal ideals of} \ A\rb{Y}}, $$
 $$ A\rb{Y} \subseteq \OO\rb{Y} \subseteq \bigcap_{p \in Y} \OO_p = \bigcap_{\mm_p} A\rb{Y}_{\mm_p} = A\rb{Y}, $$
 so $ A\rb{Y} = \OO\rb{Y} $.
 \item We know that points of $ Y $ correspond to maximal ideals $ \mm_p \supseteq I\rb{Y} $. Taking the quotient, we get maximal ideals inside $ A\rb{Y} $.
-\item There is a natural map $ A\rb{Y}_{\mm_p} \to \OO_p $, which is injective by $ \alpha : A\rb{Y} \hookrightarrow \OO\rb{Y} $, and it is surjective by definition of $ \OO_p $. Moreover,
-$$ \dim\rb{\OO_p} = \dim\rb{A_p}_{\mm_p} = height\rb{\mm_p} = \dim\rb{Y}. $$
+\item There is a natural map $ A\rb{Y}_{\mm_p} \to \OO_p $, which is injective by $ \alpha : A\rb{Y} \hookrightarrow \OO\rb{Y} $, and it is surjective by definition of $ \OO_p $. Moreover, $ \dim\rb{\OO_p} = \dim\rb{A_p}_{\mm_p} = height\rb{\mm_p} = \dim\rb{Y} $.
 \item The quotient field of $ A\rb{Y} $ is the quotient field of $ \OO_p $ for all $ p $, by $ 3 $, which is $ K\rb{Y} $ by definition.
 \end{enumerate}
 \end{proof}
@@ -613,10 +611,41 @@ Recall that
 $$ \function[\phi_i]{U_i = \P^n \setminus Z\rb{x_i}}{\A^n}{\sb{x_0 : \dots : x_n}}{\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}} $$
 gives $ \phi_i^* : A\rb{Y_i} \cong \rb{S\rb{Y}_{x_i}}_0 $ and $ Y_i = \phi_i\rb{Y \cap U_i} $.
 \begin{enumerate}
-\item
+\item $ K \subseteq \OO\rb{Y} $. Take $ f \in \OO\rb{Y} $, so $ f $ is regular at each $ Y_i $, but $ \OO\rb{Y_i} \cong A\rb{Y_i} $, also by $ \phi_i^* $, $ A\rb{Y_i} \cong \rb{S\rb{Y}_{x_i}}_0 $. Thus $ f = g_i / x_i^{n_i} $, where $ n_i = \deg\rb{g_i} $, in particular $ x_i^{n_i}f \in S\rb{Y}_{n_i} $. Now, set $ N \ge \sum_i n_i $, then $ S\rb{Y}_N \cdot f \subseteq S\rb{Y}_N $, so we can iterate this process to obtain $ S\rb{Y}_N \cdot f^q \subseteq S\rb{Y}_N $. In particular $ x_0^Nf \subset S $, hence $ S\rb{Y}\sb{f} $ is contained in $ x_0^{-N}S\rb{Y} $. Therefore $ f $ is integral since $ S\rb{Y}\sb{f} $ is finitely generated. There are $ a_i \in S $ such that $ f^k + a_1f^{k - 1} + \dots + a_k = 0 $. Since $ f $ is homogeneous of degree zero we can take the constant terms of $ a_i $ and still have an equation, hence $ a_i \in K $.
 \item Let $ p \in Y $, then $ p \in Y_i $, by the previous theorem we know that $ \OO_p \cong A\rb{Y_i}_{\mm_p} $. By $ \phi_i^* $, $ \OO_p \cong \rb{\rb{S\rb{Y}_{x_i}}_{\mm_p}}_0 $, but since $ x_i \notin \mm_p $, hence $ \OO_p \cong \rb{S\rb{Y}_{\mm_p}}_0 $.
 \item Recall that the quotient field of $ Y $ is $ K\rb{Y} = K\rb{Y_i} $, but $ K\rb{Y_i} $ is the quotient field of the coordinate ring $ A\rb{Y_i} $, by $ \phi_i^* $, this is $ \rb{S\rb{Y}_{\rb{0}}}_0 $.
 \end{enumerate}
 \end{proof}
+
+\lecture{8}{Monday}{28/01/19}
+
+\begin{proposition}
+Let $ X $ be an irreducible variety and $ Y $ be an irreducible affine variety, then we have a bijection
+$$ \alpha : Hom\rb{X, Y} \xrightarrow{\sim} Hom\rb{A\rb{Y}, \OO\rb{X}}, $$
+the set of morphisms from $ X $ to $ Y $ to the set of $ K $-algebra homomorphisms.
+\end{proposition}
+
+\begin{proof}
+Given a morphism $ \phi : X \to Y $, by definition of morphism, $ \phi $ takes regular functions at $ Y $ to regular functions at $ X $. So if $ f \in A\rb{Y} $ then $ \phi \circ f \in \OO\rb{X} $. Conversely, let $ h : A\rb{Y} \to \OO\rb{X} $ be a homomorphism of $ K $-algebras. Recall that $ A\rb{Y} = A / I\rb{Y} = k\sb{x_1, \dots, x_n} / I\rb{Y} $. Take $ \overline{x_i} \in A\rb{Y} $ and let $ y_i = h\rb{\overline{x_i}} \in \OO\rb{X} $ and define
+$$ \function[\psi]{X}{\A^n}{p}{\rb{y_1\rb{p}, \dots, y_n\rb{p}}}. $$
+We claim that $ Im\rb{\psi} \subseteq Y $, but since $ Y = Z\rb{I\rb{Y}} $, it is enough to show that if $ f \in I\rb{Y} $ then $ f\rb{\psi\rb{p}} = 0 $.
+$$ f\rb{\psi\rb{p}} = f\rb{y_1\rb{p}, \dots, y_n\rb{p}} = f\rb{h\rb{\overline{x_1}\rb{p}}, \dots, h\rb{\overline{x_n}\rb{p}}} = h\rb{f\rb{x_1, \dots, x_n}}\rb{p} = 0. $$
+\end{proof}
+
+\begin{lemma}
+If $ X, Y $ are as before then $ \psi : X \to Y $ is a morphism if and only if $ \psi_i = x_i \circ \psi $ are regular functions.
+\end{lemma}
+
+\begin{proof}
+Suppose $ \psi_i $ are regular functions, then if $ p $ is a polynomial $ p \circ \psi $ is regular, but since regular functions are quotients of polynomials, we conclude that $ f \circ \psi $ is regular for any regular function $ f $.
+\end{proof}
+
+\begin{corollary}
+If $ X, Y $ are affine then $ X \cong Y $ if and only if $ A\rb{X} \cong A\rb{Y} $.
+\end{corollary}
+
+\begin{corollary}
+The correspondence $ X \mapsto A\rb{X} $ induces an arrow reversing correspondence between the category of affine varieties and the category of $ K $-integral domains.
+\end{corollary}
 
 \end{document}
