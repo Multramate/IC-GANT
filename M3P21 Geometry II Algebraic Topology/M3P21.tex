@@ -719,13 +719,13 @@ Let $ U_1 = S^n \setminus \cb{\rb{1, 0, \dots, 0}} $ and $ U_2 = S^n \setminus \
 \subsection{Free products with amalgamation}
 
 \begin{definition*}
-If $ S $ is a set, then $ F_S $ is \textbf{the free group} on $ S $. We can write any group $ G $ as a quotient of some free group $ F_S $, $ G = F / \ab{\ab{R}} $, where $ \ab{\ab{R}} $ is the \textbf{normal closure} of $ R \subseteq F_S $, the smallest normal subgroup of $ F_S $ containing $ R $. We write $ G = \ab{S \mid R} $. This is called a \textbf{presentation} of $ G $.
+If $ S $ is a set, then $ F_S $ is the \textbf{free group} on $ S $. We can write any group $ G $ as a quotient of some free group $ F_S $, $ G = F / \ab{\ab{R}} $, where $ \ab{\ab{R}} $ is the \textbf{normal closure} of $ R \subseteq F_S $, the smallest normal subgroup of $ F_S $ containing $ R $. We write $ G = \ab{S \mid R} $. This is called a \textbf{presentation} of $ G $.
 \end{definition*}
 
 Let $ G_0, G_1, G_2 $ be groups, and $ f_1 : G_0 \to G_1 $ and $ f_2 : G_0 \to G_2 $ be homomorphisms.
 
 \begin{definition*}
-A group $ H $ together with homomorphisms $ h_1 : G_1 \to H $ and $ h_2 : G_2 \to H $ such that $ h_1f_1 = h_2f_2 $ is an \textbf{amalgamated product} of $ G_1 $ and $ G_2 $ over $ G_0 $, if satisfies the following universal property. For every group $ G $ and all homomorphisms $ h_1' : G_1 \to G $ and $ h_2' : G_2 \to G $ such that $ h_1'f_1 = h_2'f_2 $, there exists a unique homomorphism $ \alpha : H \to G $ such that $ h_1' = \alpha h_1 $ and $ h_2' = \alpha h_2 $.
+A group $ H $ together with homomorphisms $ h_1 : G_1 \to H $ and $ h_2 : G_2 \to H $ such that $ h_1f_1 = h_2f_2 $ is an \textbf{amalgamated product} of $ G_1 $ and $ G_2 $ over $ G_0 $ if it satisfies the following universal property. For every group $ G $ and all homomorphisms $ h_1' : G_1 \to G $ and $ h_2' : G_2 \to G $ such that $ h_1'f_1 = h_2'f_2 $, there exists a unique homomorphism $ \alpha : H \to G $ such that $ h_1' = \alpha h_1 $ and $ h_2' = \alpha h_2 $.
 $$
 \begin{tikzcd}
 G_0 \arrow{r}{f_1} \arrow[swap]{d}{f_2} & G_1 \arrow{d}{h_1} \arrow[bend left=30]{ddr}{h_1'} & \\
@@ -744,12 +744,20 @@ $ G_1 \underset{G_0}{*} G_2 $.
 Worksheet $ 2 $.
 \end{proof}
 
-\subsection{The Seifert-van Kampen Theorem}
+\lecture{9}{Thursday}{30/01/19}
+
+$ G_0 = \cb{id} $ is the \textbf{free product}. We write $ G_1 * G_2 $ instead of $ G_1 \underset{\cb{id}}{*} G_2 $. Let $ G_1 = \ab{S_1 \mid R_1} $ and $ G_2 = \ab{S_2 \mid R_2} $. Then $ G_1 * G_2 = \ab{S_1 \sqcup S_2 \mid R_1 \cup R_2} $, with injections $ G_i \hookrightarrow G_1 * G_2 $ for $ i = 1, 2 $. More generally
+$$ G_1 * G_2 \cong \dfrac{G_1 \underset{G_0}{*} G_2}{N}. $$
+where $ N $ is the normal closure of the set
+$$ \cb{f_1\rb{g}f_2\rb{g}^{-1} \mid g \in G_0} \subseteq G_1 * G_2. $$
 
 \begin{theorem}[Theorem of Seifert and van Kampen]
+\label{thm:seifertvankampen}
 Let $ X $ be a topological space and $ U_1, U_2 \subseteq X $ be open and path connected such that $ X = U_1 \cup U_2 $ and $ U_1 \cap U_2 $ is path connected and let $ x_0 \in U_1 \cap U_2 $. Then
-$$ \pi_1\rb{X, x_0} \cong \pi_1\rb{U_1, x_0} \underset{\pi_1\rb{U_1 \cap U_2, x_0}}{*} \pi_2\rb{U_2, x_0}. $$
-Thus
+$$ \pi_1\rb{X, x_0} \cong \pi_1\rb{U_1, x_0} \underset{\pi_1\rb{U_1 \cap U_2, x_0}}{*} \pi_2\rb{U_2, x_0} \cong \dfrac{\pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0}}{N}, $$
+where $ N $ is the normal closure of the set
+$$ \cb{\rb{j_1}_*\rb{\omega}\rb{j_2}_*\rb{\omega}^{-1} \mid \omega \in \pi_1\rb{U_1 \cap U_2, x_0}}, $$
+and $ j_i : U_1 \cap U_2 \hookrightarrow U_i $.
 $$
 \begin{tikzcd}
 U_1 \cap U_2 \arrow[hookrightarrow]{r}{i_1} \arrow[hookrightarrow, swap]{d}{i_2} & U_1 \arrow[hookrightarrow]{d}{j_1} \\
@@ -762,6 +770,8 @@ U_2 \arrow[hookrightarrow, swap]{r}{j_2} & X
 \end{tikzcd}.
 $$
 \end{theorem}
+
+Proof of Theorem \ref{thm:seifertvankampen} is in B.
 
 \pagebreak
 
@@ -807,5 +817,41 @@ D^n \arrow{dr}{f} \arrow[swap]{d}{\pi} & \\
 $$
 \end{itemize}
 \end{remark*}
+
+\pagebreak
+
+\section{Proof of the theorem of Seifert and van Kampen}
+
+\begin{proof}[Proof of Theorem \ref{thm:seifertvankampen}]
+Consider the natural homomorphism
+$$ \Phi : \pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0} \to \pi_1\rb{X, x_0}. $$
+$ \Phi $ is surjective by Lemma \ref{lem:1.15}. $ N \subseteq Ker\rb{\Phi} $. Want to show that $ N = Ker\rb{\Phi} $. A \textbf{factorisation} of an element $ \sb{f} \in \pi_1\rb{X, x_0} $ is a formal product $ \sb{f_1} \dots \sb{f_k} $ such that
+\begin{itemize}
+\item each $ f_i $ is a loop at $ x_0 $ in one of the $ U_i $ and $ \sb{f_i} \in \pi_1\rb{U_i, x_0} $ is its homotopy class, and
+\item the loop $ f_1 \cdot \dots \cdot f_k $ is homotopic to $ f $ in $ X $.
+\end{itemize}
+A factorisation of $ \sb{f} $ is a word in $ \pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0} $ that is mapped to $ \sb{f} $ by $ \Phi $. Two factorisations of $ \sb{f} $ are \textbf{equivalent} if they are related by finitely many of the following two moves.
+\begin{itemize}
+\item If $ \sb{f_i} $ and $ \sb{f_{i + 1}} $ lie in the same group $ \pi_1\rb{U_i, x_0} $, exchange $ \sb{f_i}\sb{f_{i + 1}} $ with $ \sb{f_i \cdot f_{i + 1}} $. These are the relations in $ \pi_1\rb{U_i, x_0} * \pi_1\rb{U_i, x_0} $.
+\item If $ f_i $ is a loop in $ U_1 \cap U_2 $, consider $ \sb{f_i} $ as an element in $ \pi_1\rb{U_1, x_0} $ instead of $ \pi_1\rb{U_2, x_0} $, and vice versa. These are the relations in $ \pi_1\rb{U_1, x_0} * \pi\rb{U_2, x_0} / N $.
+\end{itemize}
+Given $ \sb{f} \in \pi_1\rb{X, x_0} $, we want to show that any two factorisations of $ \sb{f} $ are equivalent. Let $ \sb{f_1} \dots \sb{f_k} $ and $ \sb{f_1'} \dots \sb{f_l'} $ be two factorisations of $ \sb{f} $, so the two loops $ f_1 \cdot \dots \cdot f_k $ and $ f_1' \cdot \dots \cdot f_k' $ are homotopic. Let $ F : I \times I \to X $ be a homotopy. By compactness, there exist
+$$ 0 = s_0 < \dots < s_m = 1, \qquad 0 = t_0 < \dots < t_n = 1, $$
+such that $ R_{i, j} = \sb{s_{i - 1}, s_i} \times \sb{t_{j - 1}, t_j} $ and $ F\rb{R_{ij}} \subseteq U_1 $ or $ F\rb{R_{ij}} \subseteq U_2 $. May assume $ 0 = s_0 < \dots < s_m = 1 $ subdivides the products $ f_1 \cdot \dots \cdot f_k $ and $ f_1' \cdot \dots \cdot f_l' $. Relabel the $ R_{ij} $ to $ R_1, \dots, R_{mn} $.
+$$
+\begin{array}{|c|c|c|}
+\hline
+mn - m + 1 & \dots & mn \\
+\hline
+\vdots & \ddots & \vdots \\
+\hline
+1 & \dots & m \\
+\hline
+\end{array}
+$$
+A path $ \gamma $ in $ I \times I $ from left to right gives a loop $ F \mid_\gamma $ in $ X $ at $ x_0 $. Let $ \gamma_r $ be the path separating the first $ r $ rectangles from the others, so
+$$ F \mid_{\gamma_0} \cong f_1 \cdot \dots \cdot f_k, \qquad F \mid_{\gamma_{mn}} = f_1' \cdot \dots \cdot f_l'. $$
+Let $ v $ be a grid point. Choose a path $ g_v $ in $ X $ from $ x_0 $ to $ F\rb{v} $, such that $ g_v $ is contained in $ U_1 \cap U_2 $ if $ F\rb{v} \in U_1 \cap U_2 $ and in a single $ U_i $ otherwise. This gives us a factorisation of $ \sb{F \mid_{\gamma_r}} $ into loops only contained in $ U_1 $ or $ U_2 $. The factorisations associated to $ \gamma_r $ and $ \gamma_{r + 1} $ are equivalent, because the homotopy between $ F \mid_{\gamma_r} $ and $ F \mid_{\gamma_{r + 1}} $ by pushing $ \gamma_r $ through $ R_r $ takes place within a single $ U_i $.
+\end{proof}
 
 \end{document}
