@@ -538,7 +538,7 @@ By special case there exists $ E $ as in the diagram. By tower law $ \sb{K : k\r
 \begin{proposition}
 \label{prop:3}
 Let $ L $ be any field and $ G $ be a finite group acting on $ L $ as automorphisms. Let
-$$ K = G^* = Fix\rb{G} = \cb{\lambda \in L \mid \forall \sigma \in G, \ \sigma\rb{\lambda} = \lambda}. $$
+$$ K = G^* = Fix\rb{G} = L^G = \cb{\lambda \in L \mid \forall \sigma \in G, \ \sigma\rb{\lambda} = \lambda}. $$
 Consider $ Aut_K\rb{L} = K^\dagger $. Then the obvious inclusion $ G \subset K^\dagger = \rb{G^*}^\dagger $ is an equality, so $ G $ is all of $ K^\dagger $.
 \end{proposition}
 
@@ -567,8 +567,70 @@ $$ \sb{L : K} \le \#Emb_K\rb{L, L} \le \sb{L : K}, $$
 so $ \abs{G} = \#Emb_K\rb{L, L} $. By what we said, $ G \subset Emb_K\rb{L, L} $, so $ G = Emb_K\rb{L, L} $.
 \end{proof}
 
-\lecture{9}{Tuesday}{29/11/18}
+\lecture{9}{Tuesday}{29/01/19}
 
 Lecture 9 is a problem class.
+
+\lecture{10}{Thursday}{31/01/19}
+
+\begin{proof}[Proof of Lemma \ref{lem:3}]
+Write $ G = \cb{\sigma_1, \dots, \sigma_n} $ for $ n = \abs{G} $. Want that all $ \rb{n + 1} $-tuples $ a_1, \dots, a_{n + 1} \in L $ are linearly dependent over $ K $. Let $ a_1, \dots, a_{n + 1} \in L $. Consider the $ n + 1 $ vectors in $ L^n $. Let
+$$ \overline{a_1} = \threebyone{\sigma_1\rb{a_1}}{\vdots}{\sigma_n\rb{a_1}}, \ \dots, \ \overline{a_{n + 1}} = \threebyone{\sigma_1\rb{a_{n + 1}}}{\vdots}{\sigma_n\rb{a_{n + 1}}} \in L^n. $$
+These are linearly dependent over $ L $. There exist $ x_1, \dots, x_{n + 1} \in L $ not all zero such that
+$$ x_1\overline{a_1} + \dots + x_{n + 1}\overline{a_{n + 1}} = \overline{0}. $$
+By reordering the $ \overline{a_i} $, may assume
+\begin{equation}
+\label{eq:3}
+x_1\overline{a_1} + \dots + x_k\overline{a_k} = \overline{0},
+\end{equation}
+for some $ 1 \le k \le n + 1 $ with
+\begin{itemize}
+\item for all $ i \in \cb{1, \dots, k} $, $ x_i \ne 0 $,
+\item such $ k $ is the smallest, and
+\item $ x_1 = 1 $.
+\end{itemize}
+Claim that all these $ x_i \in K $. This does it, by reading $ j $-th row where $ \sigma_j = id_G $. We need to show for all $ i $ $ x_i \in L^G $. Take $ \sigma \in G $.
+$$ \sigma\rb{x_1}\threebyone{\sigma\rb{\sigma_1\rb{a_1}}}{\vdots}{\sigma\rb{\sigma_n\rb{a_1}}} + \dots + \sigma\rb{x_k}\threebyone{\sigma\rb{\sigma_1\rb{a_k}}}{\vdots}{\sigma\rb{\sigma_n\rb{a_k}}} = \overline{0} \in L^n. $$
+Note that
+$$ \function{G}{G}{\tau}{\sigma \circ \tau} $$
+is a bijective function and $ \cb{\sigma \circ \sigma_1, \dots, \sigma \circ \sigma_n} = G $. Multiplying by $ \sigma $ reshuffles the rows. So in fact,
+\begin{equation}
+\label{eq:4}
+\sigma\rb{x_1}\overline{a_1} + \dots + \sigma\rb{x_k}\overline{a_k} = \overline{0}.
+\end{equation}
+Claim that for all $ i $ $ \sigma\rb{x_i} = x_i $. Otherwise $ \rb{\ref{eq:3}} - \rb{\ref{eq:4}} $,
+$$ \rb{x_2 - \sigma\rb{x_2}}\overline{a_2} + \dots + \rb{x_k - \sigma\rb{x_k}}\overline{a_k} = \overline{0} $$
+is a shorter solution, contradicting $ k $ minimal.
+\end{proof}
+
+\pagebreak
+
+\section{Galois correspondence}
+
+\begin{definition}
+$ k \subset K $ is \textbf{normal} if
+\begin{equation}
+\label{eq:5}
+\forall k \subset \Omega, \ \forall \sigma_1, \sigma_2 \in Emb_k\rb{K, \Omega}, \ \exists \sigma \in Emb_k\rb{K, K}, \ \sigma_2 = \sigma_1 \circ \sigma.
+\end{equation}
+Equivalently,
+\begin{equation}
+\label{eq:6}
+\forall k \subset \Omega, \ \forall \sigma_1, \sigma_2 \in Emb_k\rb{K, \Omega}, \ \sigma_2\rb{K} \subset \sigma_1\rb{K}.
+\end{equation}
+\end{definition}
+
+\begin{example*}
+$ \Q \subset \Q\rb{\sqrt[3]{2}} $ is not normal. Take $ \Omega = \Q\rb{\sqrt[3]{2}, \sqrt{-3}} $.
+\end{example*}
+
+\begin{itemize}[leftmargin=1in]
+\item[$ \rb{\ref{eq:5}} \implies \rb{\ref{eq:6}} $] Indeed for all $ \lambda \in K $, $ \sigma_2\rb{\lambda} = \sigma_1\rb{\sigma\rb{\lambda}} \in \sigma_1\rb{K} $, so $ \sigma_2\rb{K} \subset \sigma_1\rb{K} $.
+\item[$ \rb{\ref{eq:6}} \implies \rb{\ref{eq:5}} $] Work inside $ \Omega $.
+$$ k \subset \sigma_2\rb{K} \subset \sigma_1\rb{K} \subset \Omega. $$
+Tower law gives
+$$ \sb{K : k} = \sb{\sigma_1\rb{K} : k} = \sb{\sigma_1\rb{K} : \sigma_2\rb{K}}\sb{\sigma_2\rb{K} : k} = \sb{\sigma_1\rb{K} : \sigma_2\rb{K}}\sb{K : k}. $$
+So $ \sb{\sigma_1\rb{K} : \sigma_2\rb{K}} = 1 $, so $ \sigma_1\rb{K} = \sigma_2\rb{K} $. Take $ \sigma = \sigma_1^{-1} \circ \sigma_2 $. $ \sigma $ is clearly bijective and it is more or less obvious that $ \sigma \in Emb_k\rb{K, K} $.
+\end{itemize}
 
 \end{document}
