@@ -644,7 +644,7 @@ Useful for describing the ring of integers $ \OO_K \subset K $ for a finite exte
 \subsection{Modules}
 
 \begin{definition}
-Let $ R $ be a ring. An $ R $-module $ M $ is a set, together with
+Let $ R $ be a ring. An \textbf{$ R $-module} $ M $ is a set, together with
 \begin{itemize}
 \item an additive structure on $ M $
 $$ m_1, m_2 \in M \qquad \implies \qquad m_1 + m_2 \in M, $$
@@ -681,8 +681,8 @@ A \textbf{free $ \Z $-module of rank $ n $} is a $ \Z $-module $ M $ which has a
 \item $ \Z / 3\Z $ is not free because $ 3 \cdot 1 = 0 $. $ 0 $ is not written uniquely in terms of basis.
 \item Any finite abelian group is a $ \Z $-module, but not free.
 \item $ \Q = \cb{r / s \mid \rb{r, s} = 1, \ r, s \in \Z, \ s > 0} $ is a $ \Z $-module but it is not free of finite rank. Assume that $ \Q $ was free of rank $ n $, for some $ n \in \Z_{\ge 0} $. Let $ e_1 = r_1 / s_1, \dots, e_n = r_n / s_n $ be a basis. Then
-$$ \dfrac{1}{s_1 \cdot \dots \cdot s_n + 1} \notin \dfrac{r_1}{s_1}\Z \oplus \dots \oplus \dfrac{r_n}{s_n}\Z, $$
-a contradiction. Alternatively, prove that $ r_1 / s_1 $ and $ r_2 / s_2 $ are linearly dependent over $ \Z $, so rank would have to be one, and argue as above.
+$$ \dfrac{1}{s_1 \cdot \dots \cdot s_n + 1} \notin e_1\Z \oplus \dots \oplus e_n\Z, $$
+a contradiction. Alternatively, prove that $ e_1 $ and $ e_2 $ are linearly dependent over $ \Z $, so rank would have to be one, and argue as above.
 \item $ \Z\sb{i}, \Z\sb{\omega}, \Z\sb{\sqrt{-5}} $ are free $ \Z $-modules of rank two. We will later see that the ring of integers $ \OO_K \subset K $ is a free $ \Z $-module of rank equal to the rank of $ K / \Q $, or $ \dim_\Q\rb{K} $.
 \end{itemize}
 \end{example*}
@@ -711,17 +711,82 @@ $$ N' \oplus x\Z = \cb{n' + n \cdot x \mid n' \in N', \ n \in \Z} \cong M'. $$
 \subsection{Strong structure theorem}
 
 \begin{theorem}[Structure theorem, strong form]
+\label{thm:structuretheorem}
 Let $ M $ be a free $ \Z $-module of rank $ n $. Let $ M' \subseteq M $ be a submodule. Then there exist
 \begin{itemize}
 \item a basis $ \rb{e_1, \dots, e_n} $ of $ M $, and
-\item $ a_1, \dots, a_q \in \Z $ for $ q \le n $ such that $ M' $ has a basis $ \rb{a_1e_1, \dots, a_qe_q} $ and such that $ a_1 \mid \dots \mid a_q $.
+\item $ a_1, \dots, a_q \in \Z \setminus \cb{0} $ for $ q \le n $ such that $ M' $ has a basis $ \rb{a_1e_1, \dots, a_qe_q} $ and such that $ a_1 \mid \dots \mid a_q $.
 \end{itemize}
 \end{theorem}
 
 \begin{corollary}
-Any finitely generated abelian group $ G $ is of the form
-$$ \Z^{n - q} \times \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_q\Z}, $$
-where $ a_1 \mid \dots \mid a_q $.
+\label{cor:fgag}
+Let $ G $ be a finitely generated abelian group. Then there exist $ a_1, \dots, a_n \in \Z $ such that $ a_1 \mid \dots \mid a_n $ and
+$$ G \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_n\Z}. $$
 \end{corollary}
+
+\lecture{10}{Friday}{01/02/19}
+
+\begin{remark}
+In Corollary \ref{cor:fgag}, we are allowing $ a_i = 0 $ for some $ i \in \cb{1, \dots, n} $.
+\end{remark}
+
+\begin{proof}
+Consider $ e_1, \dots, e_n $, the generators of $ G $, and let $ M $ be the free $ \Z $-module spanned by $ e_1, \dots, e_n $. $ \phi : M \twoheadrightarrow G $ is a surjective $ \Z $-module homomorphism. Have isomorphism of $ \Z $-modules $ M / M' \subseteq G $, induced by $ \phi $. Theorem \ref{thm:structuretheorem} gives
+$$ M = e_1\Z \oplus \dots \oplus e_n\Z, \qquad M' = a_1e_1\Z \oplus \dots \oplus a_qe_q\Z, $$
+where $ a_{q + 1} = \dots = a_n = 0 $. Thus
+$$ \dfrac{M}{M'} \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_q\Z} \times \dfrac{\Z}{a_{q + 1}\Z} \times \dots \times \dfrac{\Z}{a_n\Z} \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_q\Z} \times \Z \times \dots \times \Z. $$
+\end{proof}
+
+\begin{lemma}
+\label{lem:1}
+Let $ M $ be a free $ \Z $-module of rank $ n $, and $ x \in M $. Let $ p_1 : M \to \Z $ and $ p_2 : M \to \Z $. There exists a homomorphism $ M \to \Z $ such that $ p\rb{x} \mid p_1\rb{x} $ and $ p\rb{x} \mid p_2\rb{x} $.
+\end{lemma}
+
+\begin{proof}
+Find $ a, b \in \Z $ such that $ \gcd\rb{p_1\rb{x}, p_2\rb{x}} = ap_1\rb{x} + bp_2\rb{x} $, by Euclid's algorithm. Define $ p = ap_1 + bp_2 $.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2}
+Let $ R $ be a PID. Let $ S $ be a set of ideals of $ R $. There exists an ideal $ I \in S' $ such that $ I \subseteq J $ and $ J \in S' $ gives $ I = J $, that is such that $ I $ is maximal with respect to inclusion.
+\end{lemma}
+
+\begin{proof}
+We will use the ascending chain condition, ok because $ R $ is a PID, to argue by contradiction. If Lemma \ref{lem:2} were not true, would set
+$$ I_1 \subsetneq I_2 \subsetneq \dots, $$
+with $ I_i \in S $, a contradiction.
+\end{proof}
+
+\begin{lemma}
+\label{lem:3}
+Let $ M $ be a free $ \Z $-module of rank $ n $, and $ x \in M $. Then there exists a homomorphism $ p : M \to \Z $ such that $ p\rb{x} \mid q\rb{x} $ for every $ q : M \to \Z $.
+\end{lemma}
+
+\begin{proof}
+Look at the set of all ideals $ \ab{q\rb{x}} \subseteq \Z $. Applying Lemma \ref{lem:2}, there exists $ \ab{p\rb{x}} \subseteq \Z $, where $ p : M \to \Z $, which is maximal with respect to inclusion. Want $ p\rb{x} \mid q\rb{x} $ for all $ q : M \to \Z $. Applying Lemma \ref{lem:1} to $ p, q $ gives $ r : M \to \Z $ such that $ r\rb{x} \mid q\rb{x} $ and $ r\rb{x} \mid p\rb{x} $, so $ \ab{r\rb{x}} \supseteq \ab{p\rb{x}} $. Because $ p $ is maximal, have equality $ r\rb{x} \sim p\rb{x} $, so $ p\rb{x} \mid q\rb{x} $.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:structuretheorem}]
+Argue by induction on $ n = rk_\Z\rb{M} $.
+\begin{itemize}
+\item Let $ M' \subseteq M $. If $ p : M \to \Z $, then $ p\rb{M'} \subseteq M $. Choose $ p $ such that $ p\rb{M'} $ is maximal with respect to inclusion among all $ q : M \to \Z $.
+\item What is $ p\rb{M} \subseteq \Z $? We have $ p\rb{M} = a\Z $ for $ a \in \Z \setminus \cb{0} $. If $ a \ne \pm 1 $, could define $ p'\rb{x} = p\rb{x} / a $ for all $ x \in M $. $ p'\rb{M'} \supsetneq p\rb{M'} $ contradicts the maximality of $ p $ with respect to $ M' $. Thus $ p\rb{M} = \Z $.
+\item Let $ N = Ker\rb{p} \subseteq M $, where $ p : M \twoheadrightarrow \Z $. $ N $ is free of rank $ n - 1 $.
+\item Let $ N' = M' \cap N $ be a submodule, where
+$$
+\begin{tikzcd}
+N' \arrow[hookrightarrow]{r} \arrow[hookrightarrow]{d} & N \arrow[hookrightarrow]{d} \\
+M' \arrow[hookrightarrow]{r} \arrow[twoheadrightarrow]{d} & M \arrow[twoheadrightarrow]{d} \\
+p\rb{M'} \arrow[hookrightarrow]{r} & \Z
+\end{tikzcd}.
+$$
+\item Apply induction hypothesis to $ \rb{N, N'} $. $ N $ has a basis $ \rb{e_2, \dots, e_n} $. There exist $ a_2, \dots, a_q \in \Z \setminus \cb{0} $ such that $ N' $ has a basis $ \rb{a_2e_2, \dots, a_qe_q} $ and $ a_2 \mid \dots \mid a_q $. Can complete $ \rb{e_2, \dots, e_n} $ to a basis for $ M $. Choose $ e_1' \in M $ such that $ p\rb{e_1'} = 1 $. Have a basis $ \rb{e_1', e_2, \dots, e_n} $ of $ M $.
+\item $ M' \twoheadrightarrow p\rb{M'} = a_1\Z $ for $ a_1 \in \Z \setminus \cb{0} $, assuming $ M' \ne 0 $. Choose $ x \in M' $ such that $ p\rb{x} = a_1 $. We may assume $ p\rb{x} \mid q\rb{x} $ for every $ q : M \to \Z $. Look at $ \rb{e_1', e_2, \dots, e_n} $, a basis of $ M $. Let $ p_i : M \to \Z $ be the projection onto the $ i $-th coordinate. $ a_1 \mid p_i\rb{x} $ for all $ i = 1, \dots, n $, by maximality property of $ p $ and $ p\rb{x} = a_1 $. Can find a basis $ \rb{e_1, \dots, e_n} $ of $ M $ such that $ x = a_1e_1 $, where
+$$ e_1 = e_1' + \dfrac{p_2\rb{x}}{a_1}e_2 + \dots + \dfrac{p_n\rb{x}}{a_1}e_n, $$
+and $ p_2\rb{x} / a_1, \dots, p_n\rb{x} / a_1 \in \Z $.
+\item Left to prove that $ a_1 \mid a_2 $. Let $ d = \rb{a_1, a_2} = b_1a_1 + b_2a_2 $. There exists $ d : M \to \Z $ such that $ d\rb{x} = b_1p_1\rb{x} + b_2p_2\rb{x} $, where $ p_1\rb{x} = p\rb{x} = a_1 $ and $ p_2\rb{x} = a_2 $. This will contradict maximality of $ p_1 = p $.
+\end{itemize}
+\end{proof}
 
 \end{document}
