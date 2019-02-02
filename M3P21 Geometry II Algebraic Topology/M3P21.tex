@@ -719,7 +719,9 @@ Let $ U_1 = S^n \setminus \cb{\rb{1, 0, \dots, 0}} $ and $ U_2 = S^n \setminus \
 \subsection{Free products with amalgamation}
 
 \begin{definition*}
-If $ S $ is a set, then $ F_S $ is the \textbf{free group} on $ S $. We can write any group $ G $ as a quotient of some free group $ F_S $, $ G = F / \ab{\ab{R}} $, where $ \ab{\ab{R}} $ is the \textbf{normal closure} of $ R \subseteq F_S $, the smallest normal subgroup of $ F_S $ containing $ R $. We write $ G = \ab{S \mid R} $. This is called a \textbf{presentation} of $ G $.
+If $ S $ is a set, then $ F_S $ is the \textbf{free group} on $ S $. We can write any group $ G $ as a quotient of some free group $ F_S $,
+$$ G = \dfrac{F}{\ab{\ab{R}}}, $$
+where $ \ab{\ab{R}} $ is the \textbf{normal closure} of $ R \subseteq F_S $, the smallest normal subgroup of $ F_S $ containing $ R $. We write $ G = \ab{S \mid R} $. This is called a \textbf{presentation} of $ G $.
 \end{definition*}
 
 Let $ G_0, G_1, G_2 $ be groups, and $ f_1 : G_0 \to G_1 $ and $ f_2 : G_0 \to G_2 $ be homomorphisms.
@@ -744,14 +746,14 @@ $ G_1 \underset{G_0}{*} G_2 $.
 Worksheet $ 2 $.
 \end{proof}
 
-\lecture{9}{Thursday}{30/01/19}
+\lecture{9}{Wednesday}{30/01/19}
 
-$ G_0 = \cb{id} $ is the \textbf{free product}. We write $ G_1 * G_2 $ instead of $ G_1 \underset{\cb{id}}{*} G_2 $. Let $ G_1 = \ab{S_1 \mid R_1} $ and $ G_2 = \ab{S_2 \mid R_2} $. Then $ G_1 * G_2 = \ab{S_1 \sqcup S_2 \mid R_1 \cup R_2} $, with injections $ G_i \hookrightarrow G_1 * G_2 $ for $ i = 1, 2 $. More generally
+$ G_0 = \cb{id} $ is the \textbf{free product}. We write $ G_1 * G_2 $ instead of $ G_1 \underset{\cb{id}}{*} G_2 $. Let $ G_1 = \ab{S_1 \mid R_1} $ and $ G_2 = \ab{S_2 \mid R_2} $. Then $ G_1 * G_2 = \ab{S_1 \sqcup S_2 \mid R_1 \cup R_2} $, with injections $ G_i \hookrightarrow G_1 * G_2 $ for $ i = 1, 2 $. More generally,
 $$ G_1 * G_2 \cong \dfrac{G_1 \underset{G_0}{*} G_2}{N}. $$
 where $ N $ is the normal closure of the set
 $$ \cb{f_1\rb{g}f_2\rb{g}^{-1} \mid g \in G_0} \subseteq G_1 * G_2. $$
 
-\begin{theorem}[Theorem of Seifert and van Kampen]
+\begin{theorem}[Seifert-van Kampen]
 \label{thm:seifertvankampen}
 Let $ X $ be a topological space and $ U_1, U_2 \subseteq X $ be open and path connected such that $ X = U_1 \cup U_2 $ and $ U_1 \cap U_2 $ is path connected and let $ x_0 \in U_1 \cap U_2 $. Then
 $$ \pi_1\rb{X, x_0} \cong \pi_1\rb{U_1, x_0} \underset{\pi_1\rb{U_1 \cap U_2, x_0}}{*} \pi_2\rb{U_2, x_0} \cong \dfrac{\pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0}}{N}, $$
@@ -772,6 +774,80 @@ $$
 \end{theorem}
 
 Proof of Theorem \ref{thm:seifertvankampen} is in B.
+
+\lecture{10}{Friday}{01/02/19}
+
+\begin{theorem}[Seifert-van Kampen, strong version]
+Let $ X $ be a path connected topological space such that
+\begin{itemize}
+\item $ X = \bigcup_\alpha A_\alpha $,
+\item $ A_\alpha $, $ A_\alpha \cap A_\beta $, and $ A_\alpha \cap A_\beta \cap A_\gamma $ are open and path-connected for all $ \alpha, \beta, \gamma $, and
+\item $ x_0 \in \cap_\alpha A_\alpha $.
+\end{itemize}
+Then
+$$ \pi_1\rb{X, x_0} \cong \dfrac{\underset{\alpha}{*} \pi_1\rb{A_\alpha, x_0}}{N}, $$
+where $ N \subseteq \underset{\alpha}{*} \pi_1\rb{A_\alpha, x_0} $ is the normal closure of the set
+$$ \cb{\rb{i_{\alpha\beta}}_*\rb{\omega}\rb{i_{\beta\alpha}}_*\rb{\omega}^{-1} \mid \omega \in \pi_1\rb{A_\alpha \cap A_\beta}}, $$
+and $ i_{\alpha\beta} : A_\alpha \cap A_\beta \hookrightarrow A_\alpha $ is the inclusion.
+\end{theorem}
+
+\begin{example*}
+Let $ S^1 \vee S^1 $ be the wedge product. Fix $ x \in S^1 $ and $ y \in S^1 $. Then
+$$ S^1 \vee S^1 = \dfrac{S^1 \sqcup S^1}{x \sim y} = \overset{b}{\text{O}}\cdot\overset{a}{\text{O}}. $$
+Let
+$$ A = \text{O}\cdot(, \qquad B = \ )\cdot\text{O}, \qquad A \cap B = \ )\cdot(. $$
+$ \pi_1\rb{A} \cong \ab{b} \cong \Z $, $ \pi_1\rb{B} \cong \ab{a} \cong \Z $, and $ \pi\rb{A \cap B} = \cb{id} $. $ A $, $ B $, and $ A \cap B $ are open and path connected. Van Kampen gives
+$$ \pi_1\rb{S^1 \vee S^1} \cong \pi_1\rb{A} * \pi_1\rb{B} \cong \Z * \Z \cong F_{\cb{a, b}}. $$
+More generally, let $ X = S_{a_1}^1 \vee \dots \vee S_{a_n}^1 $. By induction,
+$$ \pi_1\rb{X} = \Z * \dots * \Z \cong F_{\cb{a_1, \dots, a_n}}. $$
+Similarly, let $ X = \bigvee_{\alpha \in \Lambda} S_\alpha^1 $. Strong version of van Kampen gives
+$$ \pi_1\rb{X} = \underset{\alpha \in \Lambda}{*} \Z = F_\Lambda. $$
+\end{example*}
+
+\begin{example*}
+Let $ T $ be a torus and $ x_0 \in T $. Let
+$$ A = T \setminus \cb{\text{small closed disc} \ D}, \qquad B = \cb{\text{open set that contains} \ D \ \text{and} \ x_0}. $$
+\begin{itemize}
+\item $ A $ is homotopy equivalent to $ S^1 \vee S^1 $, so $ \pi_1\rb{A} \cong F_{\cb{a, b}} $.
+\item $ B $ is homeomorphic to $ D^2 $, so $ \pi_1\rb{B} = \cb{id} $.
+\item $ A \cap B $ is homotopy equivalent to $ S^1 $, so $ \pi_1\rb{A \cap B} \cong \Z $.
+\end{itemize}
+$ A $, $ B $, and $ A \cap B $ are open and path connected. Van Kampen gives
+$$ \pi_1\rb{T} \cong \dfrac{\pi_1\rb{A}}{\ab{\ab{i_*\rb{\pi_1\rb{A \cap B}}}}}, $$
+where $ i : A \cap B \hookrightarrow A $. Then
+$$ \function[i_*]{\pi_1\rb{A \cap B} = \ab{\omega}}{\pi_1\rb{A}}{\omega}{aba^{-1}b^{-1}}, $$
+so
+$$ \pi_1\rb{T} \cong \dfrac{F_{\cb{a, b}}}{\ab{\ab{aba^{-1}b^{-1}}}} = \ab{a, b \mid aba^{-1}b^{-1}} \cong \Z^2. $$
+\end{example*}
+
+\pagebreak
+
+\subsection{Applications to CW-complexes}
+
+Let $ X $ be a path connected topological space. Let $ Y $ be the space obtained by attaching $ 2 $-cells $ \cb{e_\alpha^2} $ to $ X $ along maps $ \phi_\alpha : \partial D^2 = S^1 \to X $. Consider the loops
+$$ \function[\phi_\alpha']{I}{X}{s}{\phi_\alpha\rb{\cos\rb{2\pi s}, \sin\rb{2\pi s}}}, $$
+based at $ \phi_\alpha'\rb{0} $. Let $ \gamma_\alpha $ be a path from $ x_0 $ to $ \phi_\alpha'\rb{0} $ for each $ \alpha $. Then $ \gamma_\alpha \cdot \phi_\alpha \cdot \gamma_\alpha^{-1} $ is a loop at $ x_0 $. After attaching $ e_\alpha^2 $, the loop $ \gamma_\alpha \cdot \phi_\alpha \cdot \gamma_\alpha^{-1} $ is homotopic to the constant loop at $ x_0 $. Let $ N \subseteq \pi_1\rb{X, x_0} $ be the normal closure of all the elements of the form $ \sb{\gamma_\alpha \cdot \phi_\alpha \cdot \gamma_\alpha^{-1}} $. The inclusion $ i : X \hookrightarrow Y $ yields
+$$ i_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Y, x_0}, $$
+and $ N \subseteq Ker\rb{i_*} $.
+
+\begin{proposition}
+This inclusion $ i : X \hookrightarrow Y $ induces a surjection $ i_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Y, x_0} $ and $ Ker\rb{i_*} = N $, so
+$$ \pi_1\rb{Y, x_0} \cong \dfrac{\pi_1\rb{X, x_0}}{N}. $$
+\end{proposition}
+
+\begin{proof}
+Construct a space $ Z $ from $ Y $ by attaching a strip $ I \times I $ to $ Y $ by identifying the lower edge $ I \times \cb{0} $ with the path $ \gamma_\alpha $ and the right edge $ \cb{1} \times I $ with an arch on $ e_\alpha^2 $. Attach all the left edges of the strips with each other. $ Z $ deformation retracts to $ Y $. Choose a point $ y_\alpha \in e_\alpha^2 $ for each $ \alpha $, such that $ y_\alpha $ is not contained in $ X $ or in the attached strip. Let
+$$ A = Z \setminus \bigcup_\alpha \cb{y_\alpha}, \qquad B = Z \setminus X. $$
+\begin{itemize}
+\item $ A $ deformation retracts to $ X $.
+\item $ B $ is homotopy equivalent to a point.
+\item $ A \cap B $ is homotopy equivalent to
+$$ \cb{\text{paths} \ \gamma_\alpha \ \text{from} \ x_0 \ \text{to loops} \ \phi_\alpha'} = \overset{\phi_\alpha'}{\text{O}}\overset{\gamma_\alpha}{-}\overset{x_0}{\cdot}\overset{\gamma_\alpha}{-}\overset{\phi_\alpha'}{\text{O}}. $$
+\end{itemize}
+$ A $, $ B $, and $ A \cap B $ are open and path connected. Van Kampen gives
+$$ \pi_1\rb{Y} \cong \pi_1\rb{Z} = \dfrac{\pi_1\rb{A}}{\ab{\ab{j_*\rb{\pi_1\rb{A \cap B}}}}}, $$
+where $ j : A \cap B \hookrightarrow A $ is the inclusion. So $ \ab{\ab{j_*\rb{\pi\rb{A \cap B}}}} $ is exactly $ N $. Thus $ \pi_1\rb{A} = \pi_1\rb{X} $.
+\end{proof}
 
 \pagebreak
 
@@ -820,7 +896,7 @@ $$
 
 \pagebreak
 
-\section{Proof of the theorem of Seifert and van Kampen}
+\section{Proof of the Seifert-van Kampen theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:seifertvankampen}]
 Consider the natural homomorphism
