@@ -580,7 +580,7 @@ $$ \rb{U, f} + \rb{V, g} = \rb{U \cap V, f + g}. $$
 If $ Y \subseteq \A^n $ is an irreducible affine variety with coordinate ring $ A\rb{Y} $ then
 \begin{enumerate}
 \item $ \OO\rb{Y} = A\rb{Y} $,
-\item for all $ p \in Y $, let $ \mm_p = \cb{f \in A\rb{Y} \mid f\rb{p} = 0} $ then we have a one-to-one correspondence
+\item for all $ p \in Y $, if $ \mm_p = \cb{f \in A\rb{Y} \mid f\rb{p} = 0} $ then we have a one-to-one correspondence
 $$ \correspondence{\text{points of} \ Y}{\text{maximal ideals of} \ A\rb{Y}}, $$
 \item for all $ p \in Y $, $ \OO_p \cong A\rb{Y}_{\mm_p} $ and $ \dim\rb{\OO_p} = \dim\rb{Y} $, and
 \item $ K\rb{Y} $ is the quotient field of $ A\rb{Y} $.
@@ -594,7 +594,8 @@ $$ \correspondence{\text{points of} \ Y}{\text{maximal ideals of} \ A\rb{Y}}, $$
 $$ A\rb{Y} \subseteq \OO\rb{Y} \subseteq \bigcap_{p \in Y} \OO_p = \bigcap_{\mm_p} A\rb{Y}_{\mm_p} = A\rb{Y}, $$
 so $ A\rb{Y} = \OO\rb{Y} $.
 \item We know that points of $ Y $ correspond to maximal ideals $ \mm_p \supseteq I\rb{Y} $. Taking the quotient, we get maximal ideals inside $ A\rb{Y} $.
-\item There is a natural map $ A\rb{Y}_{\mm_p} \to \OO_p $, which is injective by $ \alpha : A\rb{Y} \hookrightarrow \OO\rb{Y} $, and it is surjective by definition of $ \OO_p $. Moreover, $ \dim\rb{\OO_p} = \dim\rb{A_p}_{\mm_p} = height\rb{\mm_p} = \dim\rb{Y} $.
+\item There is a natural map $ A\rb{Y}_{\mm_p} \to \OO_p $, which is injective by $ \alpha : A\rb{Y} \hookrightarrow \OO\rb{Y} $, and it is surjective by definition of $ \OO_p $. Moreover,
+$$ \dim\rb{\OO_p} = \dim\rb{A_p}_{\mm_p} = height\rb{\mm_p} = \dim\rb{Y}. $$
 \item The quotient field of $ A\rb{Y} $ is the quotient field of $ \OO_p $ for all $ p $, by $ 3 $, which is $ K\rb{Y} $ by definition.
 \end{enumerate}
 \end{proof}
@@ -613,7 +614,9 @@ Recall that
 $$ \function[\phi_i]{U_i = \P^n \setminus Z\rb{x_i}}{\A^n}{\sb{x_0 : \dots : x_n}}{\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}} $$
 gives $ \phi_i^* : A\rb{Y_i} \cong \rb{S\rb{Y}_{x_i}}_0 $ and $ Y_i = \phi_i\rb{Y \cap U_i} $.
 \begin{enumerate}
-\item $ K \subseteq \OO\rb{Y} $. Take $ f \in \OO\rb{Y} $, so $ f $ is regular at each $ Y_i $, but $ \OO\rb{Y_i} \cong A\rb{Y_i} $, also by $ \phi_i^* $, $ A\rb{Y_i} \cong \rb{S\rb{Y}_{x_i}}_0 $. Thus $ f = g_i / x_i^{n_i} $, where $ n_i = \deg\rb{g_i} $, in particular $ x_i^{n_i}f \in S\rb{Y}_{n_i} $. Now, set $ N \ge \sum_i n_i $, then $ S\rb{Y}_N \cdot f \subseteq S\rb{Y}_N $, so we can iterate this process to obtain $ S\rb{Y}_N \cdot f^q \subseteq S\rb{Y}_N $. In particular $ x_0^Nf \subset S $, hence $ S\rb{Y}\sb{f} $ is contained in $ x_0^{-N}S\rb{Y} $. Therefore $ f $ is integral since $ S\rb{Y}\sb{f} $ is finitely generated. There are $ a_i \in S $ such that $ f^k + a_1f^{k - 1} + \dots + a_k = 0 $. Since $ f $ is homogeneous of degree zero we can take the constant terms of $ a_i $ and still have an equation, hence $ a_i \in K $.
+\item $ K \subseteq \OO\rb{Y} $. Take $ f \in \OO\rb{Y} $, so $ f $ is regular at each $ Y_i $, but $ \OO\rb{Y_i} \cong A\rb{Y_i} $, also by $ \phi_i^* $, $ A\rb{Y_i} \cong \rb{S\rb{Y}_{x_i}}_0 $. Thus $ f = g_i / x_i^{n_i} $, where $ n_i = \deg\rb{g_i} $, in particular $ x_i^{n_i}f \in S\rb{Y}_{n_i} $. Now, set $ N \ge \sum_i n_i $, then $ S\rb{Y}_N \cdot f \subseteq S\rb{Y}_N $, so we can iterate this process to obtain $ S\rb{Y}_N \cdot f^q \subseteq S\rb{Y}_N $. In particular $ x_0^Nf \subset S $, hence $ S\rb{Y}\sb{f} $ is contained in $ x_0^{-N}S\rb{Y} $. Therefore $ f $ is integral since $ S\rb{Y}\sb{f} $ is finitely generated. There are $ a_i \in S $ such that
+$$ f^k + a_1f^{k - 1} + \dots + a_k = 0. $$
+Since $ f $ is homogeneous of degree zero we can take the constant terms of $ a_i $ and still have an equation, hence $ a_i \in K $.
 \item Let $ p \in Y $, then $ p \in Y_i $, by the previous theorem we know that $ \OO_p \cong A\rb{Y_i}_{\mm_p} $. By $ \phi_i^* $, $ \OO_p \cong \rb{\rb{S\rb{Y}_{x_i}}_{\mm_p}}_0 $, but since $ x_i \notin \mm_p $, hence $ \OO_p \cong \rb{S\rb{Y}_{\mm_p}}_0 $.
 \item Recall that the quotient field of $ Y $ is $ K\rb{Y} = K\rb{Y_i} $, but $ K\rb{Y_i} $ is the quotient field of the coordinate ring $ A\rb{Y_i} $, by $ \phi_i^* $, this is $ \rb{S\rb{Y}_{\rb{0}}}_0 $.
 \end{enumerate}
@@ -657,5 +660,57 @@ Lecture 9 is a problem class.
 \lecture{10}{Friday}{01/02/19}
 
 Lecture 10 is a problem class.
+
+\pagebreak
+
+\section{Rational maps}
+
+\lecture{11}{Monday}{04/02/19}
+
+\begin{definition}
+Let $ X, Y $ be varieties. A \textbf{rational map} $ f : X \dashrightarrow Y $ is a pair $ \rb{U, f_U} $ where $ U \subseteq X $ is open and $ f_U $ is a morphism on $ U $ and we identify $ \rb{U, f_U} \sim \rb{V, g_V} $ if $ f_U = g_V $ on $ U \cap V $.
+\end{definition}
+
+\begin{lemma}
+If $ X, Y $ are varieties and $ \phi, \psi : X \to Y $ such that $ \phi = \psi $ on $ U \subseteq X $, then $ \phi = \psi $ on $ X $.
+\end{lemma}
+
+\begin{proof}
+We can assume that $ Y \subseteq \P^n $ for some $ n $, and hence we reduce to the case where $ Y = \P^n $. So the product is $ \phi \times \psi : X \to \P^n \times \P^n $. Let $ \Delta \subseteq \P^n \times \P^n = Z\rb{x_iy_j - x_jy_i} $. Since $ \phi = \psi $ on $ U $, $ \rb{\phi \times \psi}\rb{U} \subseteq A $, so $ \rb{\phi \times \psi}\rb{\overline{U}} = \rb{\phi \times \psi}\rb{X} \subseteq \Delta $.
+\end{proof}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item A \textbf{dominant rational map} is a rational map $ f : X \dashrightarrow Y $, such that $ f_U\rb{U} $ is dense for some, and hence all, $ \rb{U, f_U} $.
+\item A \textbf{birational map} is a dominant rational map $ f : X \dashrightarrow Y $ such that $ f $ admits an inverse $ g : Y \dashrightarrow X $.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}
+For any two varieties $ X, Y $ we have a correspondence
+$$ \correspondence{\text{dominant rational maps} \ f : X \to Y}{K \text{-algebra homomorphisms} \ K\rb{Y} \to K\rb{X}}. $$
+\end{theorem}
+
+\begin{proof}
+Given a rational map $ f : X \dashrightarrow Y $ and let $ g \in K\rb{Y} $. Let $ f_U $ be a representative of $ f $ then we have that if $ \rb{V, g} = g $, $ g \circ f_U \in K\rb{X} $. Since we can cover $ Y $ using affine varieties, we can assume $ Y $ is affine then $ K\rb{Y} = K\rb{A\rb{Y}} $. If we start with a homomorphism $ \theta : K\rb{Y} \to K\rb{X} $, let $ y_1, \dots, y_n \in A\rb{Y} $ be the generators of $ A\rb{Y} $, then $ \theta\rb{y_i} \in K\rb{X} $. We can find $ U $ such that $ \theta\rb{y_i} $ are regular at $ U $. Then this induces a map $ A\rb{Y} \to \OO\rb{U} $. But then we have a morphism $ U \to Y $, and moreover this is the inverse of the map we defined previously.
+\end{proof}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item A field extension $ L / K $ is \textbf{separably generated} if there is a transcendence basis $ \cb{x_i} $ for $ L / K $ such that $ L $ is a separable algebraic extension of $ K\rb{\cb{x_i}} $.
+\item Primitive element theorem. If $ L / K $ is finite and separable then $ L / K\rb{\alpha} $ for some $ \alpha \in L $. If $ L $ is infinite and $ \beta_1, \dots, \beta_n $ are generators for $ L / K $ then $ \alpha = c_1\beta_1 + \dots + c_n\beta_n $ for $ c_i \in K $.
+\item If $ K $ is perfect, any finitely generated extension $ L / K $ is separably generated.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}
+Any variety $ X $ of dimension $ n $ is birational to a hypersurface $ Y \subseteq \P^{n + 1} $.
+\end{theorem}
+
+\begin{proof}
+Since $ K\rb{X} = K $ is finitely generated, by the theorem above it is separably generated. So we can find a transcendence basis $ x_1, \dots, x_n \in K $ such that $ K / k\rb{x_1, \dots, x_n} $ is finite and separable. By the primitive element theorem, $ K = k\rb{x_1, \dots, x_n, y} $ for some $ y $ which is  algebraic over $ k\rb{x_1, \dots, x_n} $, so $ y $ is the solution of a polynomial equation $ f $ in $ k\rb{x_1, \dots, x_n} $. In particular if we clear denominators we get a polynomial $ f\rb{x_1, \dots, x_n, y} $ in $ \A^{n + 1} $, by taking $ Z\rb{f} $ we get a hypersurface and taking its projective closure we get a hypersurface in $ \P^n $.
+\end{proof}
 
 \end{document}
