@@ -2,7 +2,7 @@
 \def\lecturer{Dr Ana Caraiani}
 \def\term{Spring 2019}
 
-\def\thm{section}
+\def\thm{subsection}
 
 \input{../style/header}
 
@@ -596,7 +596,7 @@ The following is the decomposition of primes in $ \Z\sb{\omega} $.
 \begin{itemize}
 \item $ 3 $ ramifies. $ 3 = -\rb{\sqrt{-3}}^2 $, which is irreducible in $ \Z\sb{\omega} $.
 \item $ p \equiv 2 \mod 3 $ stays inert in $ \Z\sb{\omega} $. Because $ N $ is multiplicative and $ p $ cannot be written as $ a^2 - ab + b^2 $ with $ a, b \in \Z $.
-\item $ p \equiv 1 \mod 3 $ splits as a product of distinct prime factors $ \pp, \overline{\pp} \in \Z\sb{\omega} $. $ p $ divides $ a^2 - ab + b^2 $ with $ a, b \in \Z $ and $ p \nmid a, b $, so $ p $ divides $ \rb{2a - b}^2 + 3b^2 $. Take $ z \in \Z $ odd such that $ z^2 \equiv -3 \mod p $, and let $ b = 1 \in \Z $ and $ a = \rb{z + 1} / 2 \in \Z $. To show that $ p $ splits in $ \Z\sb{\omega} $, let $ p \mid a^2 - a + 1 = \rb{a + \omega}\rb{a + \overline{\omega}} $ for $ z \in \Z $. Using unique factorisation, $ p \mid a + \omega $ or $ p \mid a + \overline{\omega} $. In fact, since $ a + \omega, a + \overline{\omega} $ are complex conjugates, $ p \mid a + \omega $ and $ p \mid a + \overline{\omega} $, so $ p \mid \omega\overline{\omega} = \tfrac{-1 + \sqrt{-3}}{2} - \tfrac{-1 - \sqrt{-3}}{2} = \sqrt{-3} $. But $ \rb{3, p} = 1 $, a contraduction. Thus $ p = \pp\overline{\pp} = N\rb{\pp} $. Check that $ \pp / \overline{\pp} \ne u \in \Z\sb{\omega}^\times $, (Exercise) so $ p $ splits.
+\item $ p \equiv 1 \mod 3 $ splits as a product of distinct prime factors $ \pp, \overline{\pp} \in \Z\sb{\omega} $. $ p $ divides $ a^2 - ab + b^2 $ with $ a, b \in \Z $ and $ p \nmid a, b $, so $ p $ divides $ \rb{2a - b}^2 + 3b^2 $. Take $ z \in \Z $ odd such that $ z^2 \equiv -3 \mod p $, and let $ b = 1 \in \Z $ and $ a = \rb{z + 1} / 2 \in \Z $. To show that $ p $ splits in $ \Z\sb{\omega} $, let $ p \mid a^2 - a + 1 = \rb{a + \omega}\rb{a + \overline{\omega}} $ for $ z \in \Z $. Using unique factorisation, $ p \mid a + \omega $ or $ p \mid a + \overline{\omega} $. In fact, since $ a + \omega, a + \overline{\omega} $ are complex conjugates, $ p \mid a + \omega $ and $ p \mid a + \overline{\omega} $, so $ p \mid \omega - \overline{\omega} = \tfrac{-1 + \sqrt{-3}}{2} - \tfrac{-1 - \sqrt{-3}}{2} = \sqrt{-3} $. But $ \rb{3, p} = 1 $, a contradiction. Thus $ p = \pp\overline{\pp} = N\rb{\pp} $. Check that $ \pp / \overline{\pp} \ne u \in \Z\sb{\omega}^\times $, (Exercise) so $ p $ splits.
 \end{itemize}
 
 \begin{remark}
@@ -604,7 +604,7 @@ These three possible behaviours have to do with the structure of $ \Z\sb{\omega}
 \begin{itemize}
 \item If this is a field, $ p $ is inert.
 \item If this is of the form $ \F_1 \times \F_2 $, $ p $ is split.
-\item If this is of the form $ \F\sb{\epsilon} / \epsilon^2 $, $ p $ os ra,ofoed.
+\item If this is of the form $ \F\sb{\epsilon} / \epsilon^2 $, $ p $ is ramified.
 \end{itemize}
 \end{remark}
 
@@ -705,7 +705,7 @@ which are module homomorphisms. If $ p_i\rb{M'} = 0 $ for every $ i = 1, \dots, 
 \end{itemize}
 Consider $ N' = N \cap M' $, a submodule of $ N, M', M $. We have an isomorphism of $ \Z $-modules
 $$ N' \oplus x\Z = \cb{n' + n \cdot x \mid n' \in N', \ n \in \Z} \cong M'. $$
-(Exercise: prove) $ N $ is free of rank $ n - 1 $, so by induction hypothesis $ N' $ is free of rank $ m' \le n - 1 $. $ M' $ is free of rank $ m' + 1 \le n $. Have a basis $ e_1', \dots, e_m', x $ for $ M' $, where $ e_1, \dots, e_m' $ is a basis for $ N' $.
+(Exercise: prove) $ N $ is free of rank $ n - 1 $, so by induction hypothesis $ N' $ is free of rank $ m' \le n - 1 $. $ M' $ is free of rank $ m' + 1 \le n $. Have a basis $ \rb{e_1', \dots, e_m', x} $ for $ M' $, where $ \rb{e_1, \dots, e_m'} $ is a basis for $ N' $.
 \end{proof}
 
 \subsection{Strong structure theorem}
@@ -781,12 +781,139 @@ M' \arrow[hookrightarrow]{r} \arrow[twoheadrightarrow]{d} & M \arrow[twoheadrigh
 p\rb{M'} \arrow[hookrightarrow]{r} & \Z
 \end{tikzcd}.
 $$
-\item Apply induction hypothesis to $ \rb{N, N'} $. $ N $ has a basis $ \rb{e_2, \dots, e_n} $. There exist $ a_2, \dots, a_q \in \Z \setminus \cb{0} $ such that $ N' $ has a basis $ \rb{a_2e_2, \dots, a_qe_q} $ and $ a_2 \mid \dots \mid a_q $. Can complete $ \rb{e_2, \dots, e_n} $ to a basis for $ M $. Choose $ e_1' \in M $ such that $ p\rb{e_1'} = 1 $. Have a basis $ \rb{e_1', e_2, \dots, e_n} $ of $ M $.
-\item $ M' \twoheadrightarrow p\rb{M'} = a_1\Z $ for $ a_1 \in \Z \setminus \cb{0} $, assuming $ M' \ne 0 $. Choose $ x \in M' $ such that $ p\rb{x} = a_1 $. We may assume $ p\rb{x} \mid q\rb{x} $ for every $ q : M \to \Z $. Look at $ \rb{e_1', e_2, \dots, e_n} $, a basis of $ M $. Let $ p_i : M \to \Z $ be the projection onto the $ i $-th coordinate. $ a_1 \mid p_i\rb{x} $ for all $ i = 1, \dots, n $, by maximality property of $ p $ and $ p\rb{x} = a_1 $. Can find a basis $ \rb{e_1, \dots, e_n} $ of $ M $ such that $ x = a_1e_1 $, where
+\item Apply induction hypothesis to $ \rb{N, N'} $.
+\item $ N $ has a basis $ \rb{e_2, \dots, e_n} $. Can complete $ \rb{e_2, \dots, e_n} $ to a basis for $ M $. Choose $ e_1' \in M $ such that $ p\rb{e_1'} = 1 $. Have a basis $ \rb{e_1', e_2, \dots, e_n} $ of $ M $.
+\item There exist $ a_2, \dots, a_q \in \Z \setminus \cb{0} $ such that $ N' $ has a basis $ \rb{a_2e_2, \dots, a_qe_q} $ and $ a_2 \mid \dots \mid a_q $. $ M' \twoheadrightarrow p\rb{M'} = a_1\Z $ for $ a_1 \in \Z \setminus \cb{0} $, assuming $ M' \ne 0 $. Choose $ x \in M' $ such that $ p\rb{x} = a_1 $. We may assume $ p\rb{x} \mid q\rb{x} $ for every $ q : M \to \Z $. Look at $ \rb{e_1', e_2, \dots, e_n} $, a basis of $ M $. Let $ p_i : M \to \Z $ be the projection onto the $ i $-th coordinate. $ a_1 \mid p_i\rb{x} $ for all $ i = 1, \dots, n $, by maximality property of $ p $ and $ p\rb{x} = a_1 $. Can find a basis $ \rb{e_1, \dots, e_n} $ of $ M $ such that $ x = a_1e_1 $, where
 $$ e_1 = e_1' + \dfrac{p_2\rb{x}}{a_1}e_2 + \dots + \dfrac{p_n\rb{x}}{a_1}e_n, $$
 and $ p_2\rb{x} / a_1, \dots, p_n\rb{x} / a_1 \in \Z $.
 \item Left to prove that $ a_1 \mid a_2 $. Let $ d = \rb{a_1, a_2} = b_1a_1 + b_2a_2 $. There exists $ d : M \to \Z $ such that $ d\rb{x} = b_1p_1\rb{x} + b_2p_2\rb{x} $, where $ p_1\rb{x} = p\rb{x} = a_1 $ and $ p_2\rb{x} = a_2 $. This will contradict maximality of $ p_1 = p $.
 \end{itemize}
 \end{proof}
+
+\lecture{11}{Monday}{04/02/19}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item If $ M $ is a $ \Z $-module, an element $ x \in M \setminus \cb{0} $ is called a \textbf{torsion element} if there exists $ a \in \Z \setminus \cb{0} $ such that $ ax = 0 $.
+\item We say that a $ \Z $-module $ M $ is \textbf{torsion-free} if it does not contain torsion elements, that is if $ ax = 0 $ for $ a \in \Z $ and $ x \in M $, then $ a = 0 $ or $ x = 0 $.
+\end{itemize}
+\end{definition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item If $ G $ is any finite group, all elements of $ G $ are torsion.
+\item If $ M $ is a free $ \Z $-module, then $ M $ is torsion-free, such as $ \Z^n $ for $ n \in \Z_{\ge 1} $.
+\item $ \Q $ is torsion-free, even though it is not free of finite rank.
+\end{itemize}
+\end{example*}
+
+\begin{proposition}
+If $ M $ is a finitely generated $ \Z $-module and $ M $ is torsion-free, then $ M $ is free of finite rank.
+\end{proposition}
+
+\begin{proof}
+Use structure theorem.
+$$ M \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_n\Z}, $$
+with $ a_1, \dots, a_n \in \Z $ satisfying $ a_1 \mid \dots \mid a_n $. Want $ a_1 = \dots = a_n = 0 $. If not, there exists $ a_i \ne 0 $ such that all $ x \in \Z / a_i\Z \setminus \cb{0} $ are torsion elements, so $ M $ cannot be a torsion-free, a contradiction.
+\end{proof}
+
+\pagebreak
+
+\section{Integral closure}
+
+\subsection{Integral closure}
+
+\begin{definition}
+An element $ x \in \C $ is called
+\begin{itemize}
+\item an \textbf{algebraic number} if it satisfies an equation
+$$ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0, $$
+with all $ a_i \in \Q $, and
+\item an \textbf{algebraic integer} if $ a_i \in \Z $.
+\end{itemize}
+\end{definition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ x = i $ is an algebraic integer, since $ x^2 + 1 = 0 $.
+\item $ x = \sqrt{2} $ is an algebraic integer, since $ x^2 - 2 = 0 $.
+\item $ x = \sqrt{2} + i $ is an algebraic integer, since
+$$ x - \sqrt{2} = i \qquad \implies \qquad x^2 - 2\sqrt{2}x + 3 = 0 \qquad \implies \qquad x^4 - 2x^2 + 9 = 0. $$
+\end{itemize}
+\end{example*}
+
+In general, sum of product of algebraic integers are algebraic integers.
+
+\begin{definition}
+Let $ R $ be a ring and $ A \subseteq R $. An element $ x \in R $ is said to be \textbf{integral} over $ A $ if there exists a monic polynomial equation
+$$ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0, $$
+with $ a_i \in A $ for $ i = 0, \dots, n - 1 $.
+\end{definition}
+
+\begin{theorem}
+\label{thm:integralsubring}
+Let $ R $ be an integral domain and $ A \subseteq R $ a subring. Then if $ a, b \in R $ are integral over $ A $, so are $ a + b, a - b, ab $.
+\end{theorem}
+
+\begin{lemma}
+\label{lem:cayleyhamilton}
+Let $ R $ be an integral domain. Let
+$$ M = \rb{a_{ij}}_{1 \le i, j \le n} \in M_n\rb{R} $$
+be an $ n \times n $ matrix with coefficients in $ R $. Assume $ v = \rb{v_1, \dots, v_n} \in R^n $ for $ x \in R $ such that $ Mv = x \cdot v $, that is $ v $ is an eigenvector of $ M $ with eigenvalue $ x $. Let $ P \in R\sb{X} $ be the characteristic polynomial of $ M $. Then $ P\rb{x} = 0 $, that is $ x $ is a root of $ P $.
+\end{lemma}
+
+\begin{proof}
+$$ P\rb{X} = \det\rb{X \cdot I_n - M} = X^n + a_{n - 1}X^{n - 1} + \dots + a_0 $$
+is monic of degree $ n $ with coefficients in $ R $. Cayley-Hamilton theorem gives
+$$ M^n + a_{n - 1}M^{n - 1} + \dots + a_0I_n = 0_n \in R^n \qquad \implies \qquad M^nv + a_{n - 1}M^{n - 1}v + \dots + a_0I_nv = 0_n \in R^n. $$
+Since $ Mv = x \cdot v $, we get
+$$ x^n \cdot v + a_{n - 1}x^{n - 1} \cdot v + \dots + a_0 \cdot v = 0_n \in R^n \qquad \implies \qquad \rb{x^n + a_{n - 1}x^{n - 1} + \dots + a_0} \cdot v = 0_n \in R^n. $$
+$ v \ne 0 $ gives
+$$ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0 \in R, $$
+so $ x $ is a root of $ P $.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:integralsubring}]
+Let $ x = a + b $. Proof is similar for $ a - b $ and $ ab $. $ a $ is integral over $ A $, so there exists a polynomial $ f \in A\sb{x} $ for $ n = \deg\rb{f} $ such that
+\begin{equation}
+\label{eq:2}
+f\rb{a} = a^n + a_{n - 1}a^{n - 1} + \dots + a_0 = 0,
+\end{equation}
+so $ a^n = -a_{n - 1}a^{n - 1} - \dots - a_0 $ is in the $ A $-linear span of $ a^{n - 1}, \dots, 1 $. Similarly for $ b $, there exists $ g \in A\sb{x} $ for $ m = \deg\rb{g} $ such that
+\begin{equation}
+\label{eq:3}
+g\rb{b} = b^m + b_{m - 1}b^{m - 1} + \dots + b_0 = 0,
+\end{equation}
+so $ b^m $ is in the $ A $-linear span of $ b^{m - 1}, \dots, 1 $.
+$$ \rb{a + b} \cdot a^ib^j = a^{i + 1}b^j + a^ib^{j + 1}, $$
+for $ i = 0, \dots, n - 1 $ and $ j = 0, \dots, m - 1 $. If $ i + 1 = n $ use equation $ \rb{\ref{eq:2}} $. If $ j + 1 = m $ use equation $ \rb{\ref{eq:3}} $. Then $ \rb{a + b} \cdot a^ib^j $ is an $ A $-linear combination of $ a^kb^l $ for $ k \in \cb{0, \dots, n - 1} $ and $ l \in \cb{0, \dots, m - 1} $. Consider
+$$ v = \threebyone{1}{\vdots}{a^{n - 1}b^{m - 1}} \in R^{m \cdot n}. $$
+$ \rb{a + b} \cdot v = M \cdot v $ for some $ n \cdot m \times n \cdot m $ matrix $ M \in M_{n \cdot m}\rb{A} $. Lemma \ref{lem:cayleyhamilton} gives that $ a + b $ is a root of $ \det\rb{I_{n \cdot m}X - M} \in A\sb{X} $, that is $ a + b $ is integral over $ A $.
+\end{proof}
+
+\begin{corollary}
+If $ R $ is an integral domain and $ A \subseteq R $. Then the set $ A' = \cb{x \in R \mid x \ \text{integral over} \ A} $ is a subring of $ R $, containing $ A $. $ A' $ is the \textbf{integral closure} of $ A $ in $ R $.
+\end{corollary}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item Let $ R $ be an integral domain with field of fractions $ K $. The \textbf{integral closure} of $ R $ is the integral closure of $ R $ in $ K $.
+\item We say $ R $ is \textbf{integrally closed} if $ R $ is the integral closure of $ R $.
+\end{itemize}
+\end{definition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ \Z $ is integrally closed.
+\item $ \Z\sb{x} $ is integrally closed.
+\item $ R = \Z\sb{\sqrt{-3}} $ is not integrally closed. If $ \omega = \tfrac{-1 + \sqrt{-3}}{2} $ then $ \omega \in K = \Q\rb{\sqrt{-3}} $ and $ \omega^2 + \omega + 1 = 0 $, so $ \omega $ is integral over $ \Z\sb{\sqrt{-3}} $ but not in $ \Z\sb{\sqrt{-3}} $. Integral closure of $ \Z\sb{\sqrt{-3}} $ is $ \Z\sb{\omega} $, the Eisenstein integers.
+\item $ \Q\sb{x, y} / \ab{x^2 - y^3} $ is not integrally closed.
+\end{itemize}
+\end{example*}
 
 \end{document}
