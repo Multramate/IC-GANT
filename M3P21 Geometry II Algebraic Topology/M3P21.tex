@@ -16,7 +16,7 @@
 
 \lecture{1}{Friday}{11/01/19}
 
-Combines topological spaces with algebraic objects, groups.
+Combines topological spaces with algebraic objects, which are groups.
 \begin{itemize}
 \item How to show that a torus is not homeomorphic to a sphere?
 \item How to show that $ \R^n \ncong \R^m $ if $ n \ne m $?
@@ -27,7 +27,7 @@ Content is fundamental groups and homology. We will follow chapter one and two f
 \item A Hatcher, Algebraic topology, 2002
 \end{itemize}
 
-Prerequisites are the following.
+The following are prerequisites.
 \begin{itemize}
 \item Point set topology. Topological spaces, continuous maps, product and quotient topologies, Hausdorff spaces, etc.
 \item Basic group theory. Normal subgroups and quotients, isomorphism theorems, free groups, presentation of groups, etc.
@@ -199,7 +199,7 @@ CW-complexes are always Hausdorff.
 
 \pagebreak
 
-\section{The fundamental group}
+\section{The fundamental group - basic constructions}
 
 \subsection{Paths and homotopy}
 
@@ -413,7 +413,7 @@ A \textbf{covering space} of a space $ X $ is a space $ \widetilde{X} $ and a co
 \begin{itemize}
 \item $ p^{-1}\rb{U} = \bigcup_{j \in J} \widetilde{U_j} $, where $ \widetilde{U_j} \subseteq \widetilde{X} $ is open,
 \item $ \widetilde{U_i} \cap \widetilde{U_j} = \emptyset $ if $ i \ne j $, and
-\item $ p \mid_{\widetilde{U_j}} : \widetilde{U_j} \to U_i $ is a homeomorphism for all $ j \in J $.
+\item $ p \mid_{\widetilde{U_j}} : \widetilde{U_j} \to U $ is a homeomorphism for all $ j \in J $.
 \end{itemize}
 Such a $ U $ is called \textbf{evenly covered}. The $ \widetilde{U_j} $ are called \textbf{sheets}.
 \end{definition*}
@@ -716,6 +716,8 @@ Let $ U_1 = S^n \setminus \cb{\rb{1, 0, \dots, 0}} $ and $ U_2 = S^n \setminus \
 
 \pagebreak
 
+\section{The fundamental group - Seifert-van Kampen theorem}
+
 \subsection{Free products with amalgamation}
 
 \begin{definition*}
@@ -753,8 +755,9 @@ $$ G_1 * G_2 \cong \dfrac{G_1 \underset{G_0}{*} G_2}{N}. $$
 where $ N $ is the normal closure of the set
 $$ \cb{f_1\rb{g}f_2\rb{g}^{-1} \mid g \in G_0} \subseteq G_1 * G_2. $$
 
+\subsection{The Seifert van-Kampen theorem}
+
 \begin{theorem}[Seifert-van Kampen]
-\label{thm:seifertvankampen}
 Let $ X $ be a topological space and $ U_1, U_2 \subseteq X $ be open and path connected such that $ X = U_1 \cup U_2 $ and $ U_1 \cap U_2 $ is path connected and let $ x_0 \in U_1 \cap U_2 $. Then
 $$ \pi_1\rb{X, x_0} \cong \pi_1\rb{U_1, x_0} \underset{\pi_1\rb{U_1 \cap U_2, x_0}}{*} \pi_2\rb{U_2, x_0} \cong \dfrac{\pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0}}{N}, $$
 where $ N $ is the normal closure of the set
@@ -773,7 +776,37 @@ U_2 \arrow[hookrightarrow, swap]{r}{j_2} & X
 $$
 \end{theorem}
 
-Proof of Theorem \ref{thm:seifertvankampen} is in B.
+\begin{proof}
+Consider the natural homomorphism
+$$ \Phi : \pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0} \to \pi_1\rb{X, x_0}. $$
+$ \Phi $ is surjective by Lemma \ref{lem:1.15}. $ N \subseteq Ker\rb{\Phi} $. Want to show that $ N = Ker\rb{\Phi} $. A \textbf{factorisation} of an element $ \sb{f} \in \pi_1\rb{X, x_0} $ is a formal product $ \sb{f_1} \dots \sb{f_k} $ such that
+\begin{itemize}
+\item each $ f_i $ is a loop at $ x_0 $ in one of the $ U_i $ and $ \sb{f_i} \in \pi_1\rb{U_i, x_0} $ is its homotopy class, and
+\item the loop $ f_1 \cdot \dots \cdot f_k $ is homotopic to $ f $ in $ X $.
+\end{itemize}
+A factorisation of $ \sb{f} $ is a word in $ \pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0} $ that is mapped to $ \sb{f} $ by $ \Phi $. Two factorisations of $ \sb{f} $ are \textbf{equivalent} if they are related by finitely many of the following two moves.
+\begin{itemize}
+\item If $ \sb{f_i} $ and $ \sb{f_{i + 1}} $ lie in the same group $ \pi_1\rb{U_i, x_0} $, exchange $ \sb{f_i}\sb{f_{i + 1}} $ with $ \sb{f_i \cdot f_{i + 1}} $. These are the relations in $ \pi_1\rb{U_i, x_0} * \pi_1\rb{U_i, x_0} $.
+\item If $ f_i $ is a loop in $ U_1 \cap U_2 $, consider $ \sb{f_i} $ as an element in $ \pi_1\rb{U_1, x_0} $ instead of $ \pi_1\rb{U_2, x_0} $, and vice versa. These are the relations in $ \pi_1\rb{U_1, x_0} * \pi\rb{U_2, x_0} / N $.
+\end{itemize}
+Given $ \sb{f} \in \pi_1\rb{X, x_0} $, we want to show that any two factorisations of $ \sb{f} $ are equivalent. Let $ \sb{f_1} \dots \sb{f_k} $ and $ \sb{f_1'} \dots \sb{f_l'} $ be two factorisations of $ \sb{f} $, so the two loops $ f_1 \cdot \dots \cdot f_k $ and $ f_1' \cdot \dots \cdot f_k' $ are homotopic. Let $ F : I \times I \to X $ be a homotopy. By compactness, there exist
+$$ 0 = s_0 < \dots < s_m = 1, \qquad 0 = t_0 < \dots < t_n = 1, $$
+such that $ R_{i, j} = \sb{s_{i - 1}, s_i} \times \sb{t_{j - 1}, t_j} $ and $ F\rb{R_{ij}} \subseteq U_1 $ or $ F\rb{R_{ij}} \subseteq U_2 $. May assume $ 0 = s_0 < \dots < s_m = 1 $ subdivides the products $ f_1 \cdot \dots \cdot f_k $ and $ f_1' \cdot \dots \cdot f_l' $. Relabel the $ R_{ij} $ to $ R_1, \dots, R_{mn} $.
+$$
+\begin{array}{|c|c|c|}
+\hline
+mn - m + 1 & \dots & mn \\
+\hline
+\vdots & \ddots & \vdots \\
+\hline
+1 & \dots & m \\
+\hline
+\end{array}
+$$
+A path $ \gamma $ in $ I \times I $ from left to right gives a loop $ F \mid_\gamma $ in $ X $ at $ x_0 $. Let $ \gamma_r $ be the path separating the first $ r $ rectangles from the others, so
+$$ F \mid_{\gamma_0} \cong f_1 \cdot \dots \cdot f_k, \qquad F \mid_{\gamma_{mn}} = f_1' \cdot \dots \cdot f_l'. $$
+Let $ v $ be a grid point. Choose a path $ g_v $ in $ X $ from $ x_0 $ to $ F\rb{v} $, such that $ g_v $ is contained in $ U_1 \cap U_2 $ if $ F\rb{v} \in U_1 \cap U_2 $ and in a single $ U_i $ otherwise. This gives us a factorisation of $ \sb{F \mid_{\gamma_r}} $ into loops only contained in $ U_1 $ or $ U_2 $. The factorisations associated to $ \gamma_r $ and $ \gamma_{r + 1} $ are equivalent, because the homotopy between $ F \mid_{\gamma_r} $ and $ F \mid_{\gamma_{r + 1}} $ by pushing $ \gamma_r $ through $ R_r $ takes place within a single $ U_i $.
+\end{proof}
 
 \lecture{10}{Friday}{01/02/19}
 
@@ -781,7 +814,7 @@ Proof of Theorem \ref{thm:seifertvankampen} is in B.
 Let $ X $ be a path connected topological space such that
 \begin{itemize}
 \item $ X = \bigcup_\alpha A_\alpha $,
-\item $ A_\alpha $, $ A_\alpha \cap A_\beta $, and $ A_\alpha \cap A_\beta \cap A_\gamma $ are open and path-connected for all $ \alpha, \beta, \gamma $, and
+\item $ A_\alpha $, $ A_\alpha \cap A_\beta $, and $ A_\alpha \cap A_\beta \cap A_\gamma $ are open and path connected for all $ \alpha, \beta, \gamma $, and
 \item $ x_0 \in \cap_\alpha A_\alpha $.
 \end{itemize}
 Then
@@ -820,8 +853,6 @@ so
 $$ \pi_1\rb{T} \cong \dfrac{F_{\cb{a, b}}}{\ab{\ab{aba^{-1}b^{-1}}}} = \ab{a, b \mid aba^{-1}b^{-1}} \cong \Z^2. $$
 \end{example*}
 
-\pagebreak
-
 \subsection{Applications to CW-complexes}
 
 Let $ X $ be a path connected topological space. Let $ Y $ be the space obtained by attaching $ 2 $-cells $ \cb{e_\alpha^2} $ to $ X $ along maps $ \phi_\alpha : \partial D^2 = S^1 \to X $. Consider the loops
@@ -831,6 +862,7 @@ $$ i_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Y, x_0}, $$
 and $ N \subseteq Ker\rb{i_*} $.
 
 \begin{proposition}
+\label{prop:1.26}
 This inclusion $ i : X \hookrightarrow Y $ induces a surjection $ i_* : \pi_1\rb{X, x_0} \to \pi_1\rb{Y, x_0} $ and $ Ker\rb{i_*} = N $, so
 $$ \pi_1\rb{Y, x_0} \cong \dfrac{\pi_1\rb{X, x_0}}{N}. $$
 \end{proposition}
@@ -849,85 +881,70 @@ $$ \pi_1\rb{Y} \cong \pi_1\rb{Z} = \dfrac{\pi_1\rb{A}}{\ab{\ab{j_*\rb{\pi_1\rb{A
 where $ j : A \cap B \hookrightarrow A $ is the inclusion. So $ \ab{\ab{j_*\rb{\pi\rb{A \cap B}}}} $ is exactly $ N $. Thus $ \pi_1\rb{A} = \pi_1\rb{X} $.
 \end{proof}
 
-\pagebreak
+\lecture{11}{Tuesday}{05/02/19}
 
-\appendix
+\begin{corollary}
+For every group $ G $ there exists a two-dimensional CW-complex $ X_G $ such that $ \pi_1\rb{X_G} = G $.
+\end{corollary}
 
-\section{Quotient topology}
-
-Recall that if $ X $ is a set with equivalence relation $ \sim $, there is a quotient set $ X / \sim $. The quotient map
-$$ \function[\pi]{X}{\dfrac{X}{\sim}}{x}{\sb{x}} $$
-is characterised by the following universal property. For every map $ g : X \to Y $ such that
-$$ a \sim b \qquad \implies \qquad g\rb{a} = g\rb{b}, $$
-there exists a unique $ f : X / \sim \to Y $ such that $ g = f \cdot \pi $, so
-$$
-\begin{tikzcd}
-X \arrow{dr}{g} \arrow[swap]{d}{\pi} & \\
-\dfrac{X}{\sim} \arrow[swap]{r}{\exists !f} & Y
-\end{tikzcd}.
-$$
-Let $ X $ be a topological space and $ \sim $ be an equivalence relation on $ X $. We define a topology on $ X / \sim $ by
-$$ U \subseteq \dfrac{X}{\sim} \ \text{open} \qquad \iff \qquad \pi^{-1}\rb{U} \ \text{open}. $$
+\begin{proof}
+Let $ G = \ab{\cb{g_\alpha} \mid \cb{r_\beta}} $ be a presentation of $ G $, that is
+$$ G = \dfrac{F_{\cb{g_\alpha}}}{\ab{\ab{\cb{r_\beta}}}}. $$
+Seen last time that $ \pi_1\rb{\bigvee_{g_\alpha} S_{g_\alpha}^1} = F_{\cb{g_\alpha}} $. Each word $ r_\beta $ defines a loop in $ \bigvee_{g_\alpha} S_{g_\alpha}^1 $. Attach $ 2 $-cells to $ \bigvee_{g_\alpha} S_{g_\alpha}^1 $ along the loops defined by the relations $ \cb{r_\beta} $. Call this new CW-complex $ Y $. Proposition \ref{prop:1.26} gives that
+$$ \pi_1\rb{Y, x_0} \cong \dfrac{\pi_1\rb{X, x_0}}{\ab{\ab{\cb{r_\beta}}}} \cong \dfrac{F_{\cb{g_\alpha}}}{\ab{\ab{\cb{r_\beta}}}} \cong G. $$
+\end{proof}
 
 \begin{remark*}
-\hfill
+Let $ X = \bigcup_n X^n $ be a CW-complex, path connected. Proposition \ref{prop:1.26} can be used to show the following two facts.
 \begin{itemize}
-\item This is the largest topology on $ X / \sim $ such that $ \pi $ is continuous. Exercise $ 1 $ states that if $ Z $ is a topological space and $ f : X / \sim \to Z $ is a map, then $ f $ is continuous if and only if $ f\pi : X \to Z $ is continuous. This implies that the topological quotient $ \pi : X \to X / \sim $ is characterised by the following universal property. For any topological space $ Z $ and a continuous $ g : X \to Z $ such that
-$$ a \sim b \qquad \implies \qquad g\rb{a} = g\rb{b}, $$
-there exists a unique continuous map $ f : X / \sim \to Z $ such that $ g f \cdot \pi $, so
-$$
-\begin{tikzcd}
-X \arrow[swap]{d}{\pi} \arrow{dr}{g} & \\
-\dfrac{X}{\sim} \arrow[swap]{r}{\exists !f} & Z
-\end{tikzcd}.
-$$
-\item The quotient map is in general not open. For example, if $ \pi : \sb{0, 1} \to S^1 $, then $ \sb{0, 1} \subset [0, 1) $ is open but $ \pi\rb{[0, 1)} \subseteq S^1 $ is not open.
-\item If $ X $ is Hausdorff, in general $ X / \sim $ is not Hausdorff.
-\item If $ \sim $ is the trivial relation, then $ \pi : X \to X / \sim $ is a homeomorphism. Exercise $ 3 $ states that if $ X, Y $ are topological spaces, $ X $ is compact, $ Y $ is Hausdorff, and $ \pi : X \to Y $ is surjective and continuous, then $ \pi $ is a quotient, that is there exists $ \sim $ on $ X $ and $ \pi : X \to Y \cong X / \sim $ is a quotient map.
-\item In particular, if $ \pi : X \to Y $ is bijective, then $ \pi $ is a homeomorphism. Exercise $ 4, 5, 6 $ state that if $ f $ is continuous and surjective, $ f\rb{\partial D^n} $ is a point, and $ f $ is a bijection on $ D^n \setminus \partial D^n $, then
-$$
-\begin{tikzcd}
-D^n \arrow{dr}{f} \arrow[swap]{d}{\pi} & \\
-\dfrac{D^n}{\partial D^n} \arrow[swap]{r}{\sim} & S^1
-\end{tikzcd}.
-$$
+\item The inclusion $ X^1 \hookrightarrow X $ induces a surjective homomorphism $ \pi_1\rb{X^1} \to \pi_1\rb{X} $.
+\item The inclusion $ X^2 \hookrightarrow X $ induces an isomorphism $ \pi_1\rb{X^2} \to \pi_1\rb{X} $.
 \end{itemize}
 \end{remark*}
 
 \pagebreak
 
-\section{Proof of the Seifert-van Kampen theorem}
+\section{The fundamental group - covering spaces}
 
-\begin{proof}[Proof of Theorem \ref{thm:seifertvankampen}]
-Consider the natural homomorphism
-$$ \Phi : \pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0} \to \pi_1\rb{X, x_0}. $$
-$ \Phi $ is surjective by Lemma \ref{lem:1.15}. $ N \subseteq Ker\rb{\Phi} $. Want to show that $ N = Ker\rb{\Phi} $. A \textbf{factorisation} of an element $ \sb{f} \in \pi_1\rb{X, x_0} $ is a formal product $ \sb{f_1} \dots \sb{f_k} $ such that
+\subsection{Lifting properties}
+
+Let $ X $ be a topological space. Recall that a \textbf{covering space} is $ p : \widetilde{X} \to X $ such that each $ x \in X $ has an open neighbourhood $ U $ such that $ p^{-1}\rb{U} = \bigcup_\alpha \widetilde{U_\alpha} $, where $ U_\alpha $ are pairwise disjoint and $ p \mid_{\widetilde{U_\alpha}} : \widetilde{U_\alpha} \to U $ is a homeomorphism for all $ \alpha $.
+
+\begin{example*}
+$$ \function[p]{\R}{S^1}{s}{\rb{\cos\rb{2\pi s}, \sin\rb{2\pi s}}}, \qquad \function[p]{S^1}{S^1}{z}{z^n}, \qquad \text{O} \cdot \text{O} \cdot \text{O} \to S^1 \vee S^1. $$
+\end{example*}
+
+Let $ f : Y \to X $ be a continuous map. A \textbf{lift} of $ f $ is a continuous map $ \widetilde{f} : Y \to \widetilde{X} $ such that $ p\widetilde{f} = f $, where $ p : \widetilde{X} \to X $ is a covering space. Let $ Y $ be connected.
 \begin{itemize}
-\item each $ f_i $ is a loop at $ x_0 $ in one of the $ U_i $ and $ \sb{f_i} \in \pi_1\rb{U_i, x_0} $ is its homotopy class, and
-\item the loop $ f_1 \cdot \dots \cdot f_k $ is homotopic to $ f $ in $ X $.
+\item \textbf{Unique lifting property} states that if two lifts $ \widetilde{f_1} $ and $ \widetilde{f_2} $ of $ f $ coincide at one point, then they coincide on all of $ Y $.
+\item \textbf{Homotopy lifting property} states that if $ f_t : Y \to X $ is a homotopy and $ \widetilde{f_0} : Y \to \widetilde{X} $ is a lift of $ f_0 $ then there exists a unique homotopy $ \widetilde{f_t} : Y \to \widetilde{X} $ of $ \widetilde{f_0} $ that lifts $ f_t $.
 \end{itemize}
-A factorisation of $ \sb{f} $ is a word in $ \pi_1\rb{U_1, x_0} * \pi_1\rb{U_2, x_0} $ that is mapped to $ \sb{f} $ by $ \Phi $. Two factorisations of $ \sb{f} $ are \textbf{equivalent} if they are related by finitely many of the following two moves.
+
+\begin{remark*}
+\hfill
 \begin{itemize}
-\item If $ \sb{f_i} $ and $ \sb{f_{i + 1}} $ lie in the same group $ \pi_1\rb{U_i, x_0} $, exchange $ \sb{f_i}\sb{f_{i + 1}} $ with $ \sb{f_i \cdot f_{i + 1}} $. These are the relations in $ \pi_1\rb{U_i, x_0} * \pi_1\rb{U_i, x_0} $.
-\item If $ f_i $ is a loop in $ U_1 \cap U_2 $, consider $ \sb{f_i} $ as an element in $ \pi_1\rb{U_1, x_0} $ instead of $ \pi_1\rb{U_2, x_0} $, and vice versa. These are the relations in $ \pi_1\rb{U_1, x_0} * \pi\rb{U_2, x_0} / N $.
+\item If $ Y $ is a point, this is called the \textbf{path lifting property}. Let $ f : I \to X $ be a path with $ f\rb{0} = x_0 $. If $ \widetilde{x_0} \in p^{-1}\rb{x_0} $, then there is a unique path $ \widetilde{f} : I \to \widetilde{X} $ lifting $ f $ and starting at $ \widetilde{x_0} $.
+\item In particular, the lift of a constant path is constant.
+\item This implies in particular that the lift of a homotopy of paths is again a homotopy of paths. The endpoints $ f_t\rb{0} $ and $ f_t\rb{1} $ define constant paths as $ t $ varies.
 \end{itemize}
-Given $ \sb{f} \in \pi_1\rb{X, x_0} $, we want to show that any two factorisations of $ \sb{f} $ are equivalent. Let $ \sb{f_1} \dots \sb{f_k} $ and $ \sb{f_1'} \dots \sb{f_l'} $ be two factorisations of $ \sb{f} $, so the two loops $ f_1 \cdot \dots \cdot f_k $ and $ f_1' \cdot \dots \cdot f_k' $ are homotopic. Let $ F : I \times I \to X $ be a homotopy. By compactness, there exist
-$$ 0 = s_0 < \dots < s_m = 1, \qquad 0 = t_0 < \dots < t_n = 1, $$
-such that $ R_{i, j} = \sb{s_{i - 1}, s_i} \times \sb{t_{j - 1}, t_j} $ and $ F\rb{R_{ij}} \subseteq U_1 $ or $ F\rb{R_{ij}} \subseteq U_2 $. May assume $ 0 = s_0 < \dots < s_m = 1 $ subdivides the products $ f_1 \cdot \dots \cdot f_k $ and $ f_1' \cdot \dots \cdot f_l' $. Relabel the $ R_{ij} $ to $ R_1, \dots, R_{mn} $.
-$$
-\begin{array}{|c|c|c|}
-\hline
-mn - m + 1 & \dots & mn \\
-\hline
-\vdots & \ddots & \vdots \\
-\hline
-1 & \dots & m \\
-\hline
-\end{array}
-$$
-A path $ \gamma $ in $ I \times I $ from left to right gives a loop $ F \mid_\gamma $ in $ X $ at $ x_0 $. Let $ \gamma_r $ be the path separating the first $ r $ rectangles from the others, so
-$$ F \mid_{\gamma_0} \cong f_1 \cdot \dots \cdot f_k, \qquad F \mid_{\gamma_{mn}} = f_1' \cdot \dots \cdot f_l'. $$
-Let $ v $ be a grid point. Choose a path $ g_v $ in $ X $ from $ x_0 $ to $ F\rb{v} $, such that $ g_v $ is contained in $ U_1 \cap U_2 $ if $ F\rb{v} \in U_1 \cap U_2 $ and in a single $ U_i $ otherwise. This gives us a factorisation of $ \sb{F \mid_{\gamma_r}} $ into loops only contained in $ U_1 $ or $ U_2 $. The factorisations associated to $ \gamma_r $ and $ \gamma_{r + 1} $ are equivalent, because the homotopy between $ F \mid_{\gamma_r} $ and $ F \mid_{\gamma_{r + 1}} $ by pushing $ \gamma_r $ through $ R_r $ takes place within a single $ U_i $.
+\end{remark*}
+
+Fix $ x_0 \in X $ and $ \widetilde{x_0} \in \widetilde{X} $ such that $ p\rb{\widetilde{x_0}} = x_0 $, so $ p_* : \pi_1\rb{\widetilde{X}, \widetilde{x_0}} \to \pi_1\rb{X, x_0} $. To every element in $ \pi_1\rb{X, x_0} $ we can associate a homotopy class of paths in $ \widetilde{X} $ starting at $ \widetilde{x_0} $.
+
+\begin{proposition}
+\hfill
+\begin{enumerate}
+\item $ p_* : \pi_1\rb{\widetilde{X}, \widetilde{x_0}} \to \pi_1\rb{X, x_0} $ is injective.
+\item $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} \subseteq \pi_1\rb{X, x_0} $ consists of the homotopy classes of loops at $ x_0 $ whose lifts to $ \widetilde{X} $ starting at $ \widetilde{x_0} $ are loops.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Let $ \widetilde{f_0} : I \to \widetilde{X} $ be a loop at $ \widetilde{x_0} $ such that $ \sb{\widetilde{f_0}} \in Ker\rb{p_*} $, so $ p\widetilde{f_0} = f_0 $ is homotopic to the constant loop at $ x_0 $. Let $ f_t : I \to X $ be a homotopy between $ f_0 $ and the constant loop. Homotopy lifting property and remark gives that $ f_t $ lifts to a homotopy $ \widetilde{f_t} $ of paths between $ \widetilde{f_0} $ and the constant loop, so $ \sb{\widetilde{f_0}} = id \in \pi_1\rb{\widetilde{X}, \widetilde{x_0}} $ and $ p_* $ is injective.
+\item Let $ f : I \to X $ be a loop at $ x_0 $ that lifts to a loop $ \widetilde{f} $ at $ \widetilde{x_0} $. Then $ p\widetilde{f} = f $, so $ p_*\rb{\sb{\widetilde{f}}} = \sb{f} $. On the other hand, if $ f : I \to X $ is a loop at $ x_0 $ such that there exists a loop $ \widetilde{f} : I \to \widetilde{X} $ at $ \widetilde{x_0} $ with $ p_*\rb{\sb{\widetilde{f}}} = \sb{f} $, then $ f $ is homotopic to $ p\widetilde{f} $. Homotopy lifting property gives that there exists a loop $ \widetilde{f'} : I \to \widetilde{X} $ at $ x_0 $ such that $ p\widetilde{f'} = f $.
+\end{enumerate}
 \end{proof}
 
 \end{document}
