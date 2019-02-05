@@ -562,7 +562,7 @@ $ K \subset L $ is a finite extension of degree $ \sb{L : K} \le \abs{G} $.
 \end{lemma}
 
 \begin{proof}[Proof of Proposition \ref{prop:3}]
-From Proposition \ref{prop:1}, $ Aut_K\rb{L} = Em_K\rb{L, L} $ because $ K \subset L $ is finite, and $ \#Em_K\rb{L, L} \le \sb{L : K} $. By Lemma \ref{lem:3},
+From Proposition \ref{prop:1}, $ Aut_K\rb{L} = Em_K\rb{L, L} $ because $ K \subset L $ is finite, and $ \#Em_K\rb{L, L} \le \sb{L : K} $. By the lemma,
 $$ \sb{L : K} \le \#Em_K\rb{L, L} \le \sb{L : K}, $$
 so $ \abs{G} = \#Em_K\rb{L, L} $. By what we said, $ G \subset Em_K\rb{L, L} $, so $ G = Em_K\rb{L, L} $.
 \end{proof}
@@ -642,11 +642,11 @@ So $ \sb{\sigma_1\rb{K} : \sigma_2\rb{K}} = 1 $, so $ \sigma_1\rb{K} = \sigma_2\
 
 \lecture{11}{Friday}{01/02/19}
 
-Equivalently, $ k \subset K $ is normal if for all $ K \subset \Omega $, for all $ x \in Em_k\rb{K, \Omega} $, $ x\rb{K} \subset K $.
+Equivalently, $ k \subset K $ is normal if for all $ K \subset \Omega $, for all $ \sigma \in Em_k\rb{K, \Omega} $, $ \sigma\rb{K} \subset K $.
 $$
 \begin{tikzcd}
 & \Omega & \\
-K \arrow[subset]{ur} \arrow[dotted]{rr}{x} & & x\rb{K} \arrow[subset]{ul} \\
+K \arrow[subset]{ur} \arrow[dotted]{rr}{\sigma} & & \sigma\rb{K} \arrow[subset]{ul} \\
 & k \arrow[subset]{ul} \arrow[subset]{ur} &
 \end{tikzcd}
 $$
@@ -660,7 +660,7 @@ Suppose $ k \subset K $ is normal. Consider $ k \subset L \subset K $. Then also
 \end{lemma}
 
 \begin{proof}
-If $ x \in Em_L\rb{K, \Omega} $, then $ x \in Em_k\rb{K, \Omega} $.
+If $ \sigma \in Em_L\rb{K, \Omega} $, then $ \sigma \in Em_k\rb{K, \Omega} $.
 \end{proof}
 
 Warning.
@@ -717,7 +717,7 @@ $$
 We show that for all $ H \le G $, $ \rb{H^*}^\dagger = H $ and for all $ k \subset L \subset K $, $ \rb{L^\dagger}^* = L $. We already did the former. We just prove the latter now. Note that $ L \subset K $ is normal and separable so all I need to show is $ \rb{k^\dagger}^* = k $, that is $ k = G^* $ is the fixed field of $ G $. That is, if $ \lambda \notin k $, there exists $ \sigma : K \to K $ in $ G $ such that $ \sigma\rb{\lambda} \ne \lambda $. By separability, there exists $ \Omega $ and $ x_1 \ne x_2 \in Em_k\rb{k\rb{\lambda}, \Omega} $ such that
 $$
 \begin{tikzcd}
-K \arrow{dr}{\widetilde{x_1}, \widetilde{x_2}} & \\
+K \arrow[dotted]{dr}{\widetilde{x_1}, \widetilde{x_2}} & \\
 k\rb{\lambda} \arrow[dash]{u} \arrow[swap]{r}{x_1, x_2} & \Omega \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd},
@@ -730,14 +730,84 @@ so $ x_1\rb{\lambda} \ne x_2\rb{\lambda} $. Two steps.
 \end{proof}
 
 \begin{lemma}
-Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K $, for all $ \Omega $, for all $ x \in Em_k\rb{F, \Omega} $, there exists $ \widetilde{x} \in Em_k\rb{K, \Omega} $ such that $ \widetilde{x} \mid_F = x $.
+Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $, the natural restriction $ \rho : Em_k\rb{K, \Omega} \to Em_k\rb{F, \Omega} $ is surjective.
+\end{lemma}
+
+\lecture{12}{Tuesday}{05/02/19}
+
+The statement says for all $ \sigma \in Em_k\rb{F, \Omega} $, there exists $ \widetilde{\sigma} \in Em_k\rb{K, \Omega} $ such that $ \widetilde{\sigma} \mid_F = \sigma $.
 $$
 \begin{tikzcd}
-K \arrow{dr}{\widetilde{x}} & \\
-F \arrow[swap]{r}{x} \arrow[dash]{u} & \Omega \\
+K \arrow[dotted]{dr}{\widetilde{\sigma}} & \\
+F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \Omega \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
 $$
-\end{lemma}
+
+\begin{proof}
+We know that there exists $ \widetilde{\Omega} $ as follows.
+$$
+\begin{tikzcd}
+K \arrow{r}{\phi_2} \arrow[dotted, swap]{dr}{\widetilde{\sigma}} & \widetilde{\Omega} \\
+F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \Omega \arrow[swap]{u}{\psi} \\
+k \arrow[dash]{u} \arrow[dash]{ur} &
+\end{tikzcd}.
+$$
+There are two $ K \subset \widetilde{\Omega} $,
+$$
+\phi_1 : K \subset \Omega \xhookrightarrow{\psi} \widetilde{\Omega}, \qquad \phi_2 : K \hookrightarrow \widetilde{\Omega}.
+$$
+Because $ k \subset K $ is normal $ \phi_2\rb{K} \subset \phi_1\rb{K} \subset \psi\rb{\Omega} $. That proves that $ \widetilde{\sigma} $ exists.
+\end{proof}
+
+\begin{corollary}
+Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $, $ Em_k\rb{F, K} \to Em_k\rb{F, \Omega} $ is also surjective.
+\end{corollary}
+
+The corollary states that for all $ \sigma \in Em_k\rb{F, \Omega} $, $ \sigma\rb{F} \subset K $.
+$$
+\begin{tikzcd}
+\Omega & \\
+K \arrow[dash]{u} \arrow[dotted]{r}{\widetilde{\sigma}} & \widetilde{\sigma}\rb{K} \arrow[dash]{ul} \\
+F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \sigma\rb{F} \arrow[dash]{ul} \arrow[dash]{u} \\
+k \arrow[dash]{u} \arrow[dash]{ur} &
+\end{tikzcd}.
+$$
+
+\begin{proof}
+This clearly follows from the lemma. $ \sigma\rb{F} \subset \widetilde{\sigma}\rb{K} \subset K $ by definition of normal.
+\end{proof}
+
+\pagebreak
+
+\section{Normal extensions}
+
+\begin{theorem}
+For finite $ k \subset K $, the following are equivalent.
+\begin{enumerate}
+\item For all $ f \in k\sb{x} $ irreducible either $ f $ has no root in $ K $ or $ f $ splits completely in $ K $.
+\item There exists $ f \in k\sb{x} $ not necessarily irreducible such that $ K $ is a splitting field of $ f $.
+\item $ k \subset K $ is normal.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{itemize}[leftmargin=0.5in]
+\item[$ 1 \implies 2 $] There are $ \lambda_1, \dots, \lambda_m \in K $ such that $ K = k\rb{\lambda_1, \dots, \lambda_m} $. For all $ i $ let $ f_i \in k\sb{x} $ be the minimal polynomial of $ \lambda_i $. $ f_i $ is irreducible and by $ 1 $ it splits completely. $ K $ is the splitting field of $ f\rb{x} = \prod_{i = 1}^m f_i\rb{x} $.
+\item[$ 2 \implies 3 $] Suppose $ K \subset \Omega $. Let $ \sigma : K \to \Omega $ be another embedding. For all $ \lambda_i $, $ \sigma\rb{\lambda_i} $ is a root of $ f $, so $ \sigma\rb{\lambda_i} \subset K $ hence $ \sigma\rb{K} \subset K $.
+\item[$ 3 \implies 1 $] Let $ f\rb{x} \in k\sb{x} $ be irreducible. Suppose there exists $ \lambda \in K $ such that $ f\rb{\lambda} = 0 $. Let $ \Omega $ be a splitting field of $ f\rb{x} \in K\sb{x} $. Let $ \mu \in \Omega $ be a root of $ f $. There exists a unique $ \sigma \in Em_k\rb{k\rb{\lambda}, \Omega} $ such that $ \sigma\rb{\lambda} = \mu $.
+$$
+\begin{tikzcd}
+K & \\
+F = k\rb{\lambda} \arrow[dash]{u} \arrow{r}{\sigma} & \sigma\rb{F} \subset \Omega \ni \mu \\
+k \arrow[dash]{u} \arrow[dash]{ur} &
+\end{tikzcd}.
+$$
+By corollary, $ \sigma\rb{F} \subset K $, so $ \mu \in K $.
+\end{itemize}
+\end{proof}
+
+(Exercise: prove that any two splitting fields of $ f \in k\sb{x} $ are $ k $-isomorphic, not necessarily in a unique way)
 
 \end{document}
