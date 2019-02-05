@@ -713,4 +713,78 @@ Any variety $ X $ of dimension $ n $ is birational to a hypersurface $ Y \subset
 Since $ K\rb{X} = K $ is finitely generated, by the theorem above it is separably generated. So we can find a transcendence basis $ x_1, \dots, x_n \in K $ such that $ K / k\rb{x_1, \dots, x_n} $ is finite and separable. By the primitive element theorem, $ K = k\rb{x_1, \dots, x_n, y} $ for some $ y $ which is  algebraic over $ k\rb{x_1, \dots, x_n} $, so $ y $ is the solution of a polynomial equation $ f $ in $ k\rb{x_1, \dots, x_n} $. In particular if we clear denominators we get a polynomial $ f\rb{x_1, \dots, x_n, y} $ in $ \A^{n + 1} $, by taking $ Z\rb{f} $ we get a hypersurface and taking its projective closure we get a hypersurface in $ \P^n $.
 \end{proof}
 
+\lecture{12}{Tuesday}{05/02/19}
+
+\begin{corollary}
+The following are equivalent.
+\begin{itemize}
+\item $ F : X \dashrightarrow Y $ is birational.
+\item There exist $ U, V $ such that $ F : U \to V $ is an isomorphism.
+\item $ K\rb{Y} \cong K\rb{X} $.
+\end{itemize}
+\end{corollary}
+
+\begin{definition}
+The \textbf{blow-up} of $ \A^n $ at the origin $ 0 $, denoted by $ \widetilde{\A^n} $, is $ Z\rb{x_iy_j - x_jy_i} \subseteq \A^n \times \P^{n - 1} $.
+$$
+\begin{tikzcd}
+\widetilde{\A^n} \arrow[hookrightarrow]{r} \arrow[swap]{dr}{\pi} & \A^n \times \P^{n - 1} \arrow{d}{\pi_1 : \rb{x, y} \mapsto x} \\
+& \A^n
+\end{tikzcd}.
+$$
+\end{definition}
+
+\begin{proposition}
+\hfill
+\begin{enumerate}
+\item Let $ P \in \A^n $, if $ P \ne 0 $ then $ \pi^{-1}\rb{P} $ is a single point, and $ \widetilde{\A^n} \setminus \pi^{-1}\rb{0} \cong \A^n \setminus \cb{0} $.
+\item $ \pi^{-1}\rb{0} \cong \P^{n - 1} $.
+\item Points of $ \pi^{-1}\rb{0} $ are in one-to-one correspondence with the set of lines through the origin.
+\item $ \widetilde{\A^n} $ is irreducible.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item If $ P \ne 0 $ then $ y_j = x_jy_i/x_i $ and this is true for every $ j $, so this gives a unique point in $ \P^{n - 1} $.
+\item Obvious.
+\item A line through the origin is given by $ x_i = ta_i $ for $ t \ne 0 $. Taking $ \pi^{-1} $ of this line we get $ x_i = ta_i $ and $ y_i = ta_i = a_i $. In other words if $ x \ne 0 $, $ \pi^{-1}\rb{X} = \rb{X, \sb{X}} $.
+\item $ \widetilde{\A^n} \setminus \pi^{-1}\rb{0} \cong \A^n \setminus \cb{0} $ is dense and irreducible, by $ 3 $.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+If $ Y \ni 0 $ is a closed subvariety of $ \A^n $ we define the \textbf{blow-up} of $ Y $ at $ 0 $ by $ \widetilde{Y} = \overline{\pi^{-1}\rb{Y \setminus \cb{0}}} $. More generally, we can blow-up any point by taking an affine change of coordinates. We also get a birational map $ \pi : \widetilde{Y} \to Y $.
+\end{definition}
+
+\begin{example}
+Let $ Y = Z\rb{y^2 - x^2\rb{x + 1}} $. The equations of the blow-up are
+$$
+\begin{cases}
+y^2 = x^2\rb{x + 1} \\
+xu = yt
+\end{cases},
+$$
+where $ \sb{t : u} \in \P^1 $. Suppose $ t \ne 0 $.
+$$
+\begin{cases}
+y^2 = x^2\rb{x + 1} \\
+y = xu
+\end{cases}
+\qquad \implies \qquad \rb{xu}^2 = x^2\rb{x + 1} \qquad \implies \qquad x^2\rb{u^2 - x - 1} = 0.
+$$
+\end{example}
+
+\begin{example}
+Let $ y^2 = x^3 $.
+$$
+\begin{cases}
+y^2 = x^3 \\
+y = xu
+\end{cases}
+\qquad \implies \qquad \rb{xu}^2 = x^3 \qquad \implies \qquad x^2\rb{u^2 - x} = 0.
+$$
+\end{example}
+
 \end{document}
