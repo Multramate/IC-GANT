@@ -787,4 +787,57 @@ y = xu
 $$
 \end{example}
 
+\pagebreak
+
+\section{Nonsingular varieties}
+
+\lecture{13}{Friday}{08/02/19}
+
+\begin{definition}
+Let $ Y \subseteq \A^n $ be an affine variety of dimension $ r $, and suppose $ I\rb{Y} = \ab{f_1, \dots, f_k} $. $ Y $ is \textbf{nonsingular} at $ P \in Y $ if $ rank\rb{\tfrac{\partial f_i\rb{P}}{\partial x_j}} = n - r $. $ Y $ is \textbf{nonsingular} if it is nonsingular at every $ P \in Y $.
+\end{definition}
+
+\begin{example}
+Let $ x^2 = x^4 + y^4 \subseteq \A^2 $, so $ f = x^2 - x^4 - y^4 $.
+$$ \dfrac{\partial f}{\partial x} = 2x - 4x^3 = 0 \qquad \implies \qquad x\rb{1 - 2x^2} = 0 \qquad \implies \qquad x = 0 \ \text{or} \ 2x^2 = 1, $$
+$$ \dfrac{\partial f}{\partial y} = -9y^3 = 0 \qquad \implies \qquad y = 0 \qquad \implies \qquad x^2 = x^4 \qquad \implies \qquad x = 0 \ \text{or} \ x^2 = 1, $$
+so $ Sing\rb{Y} = \cb{\rb{0, 0}} $.
+\end{example}
+
+\begin{example}
+Let $ Y = Z\rb{f} = Z\rb{y^2 - x^3} $.
+$$ \dfrac{\partial f}{\partial x} = -3x^2 = 0, \qquad \dfrac{\partial f}{\partial y} = 2y = 0, $$
+so $ Sing\rb{Y} = \cb{\rb{0, 0}} $.
+\end{example}
+
+\begin{definition}
+Let $ A $ be a Noetherian local ring with maximal ideal $ \mm $, and residue field $ A / \mm = K $. $ A $ is a \textbf{regular local ring} if $ \dim_K\rb{\mm / \mm^2} = \dim\rb{A} $.
+\end{definition}
+
+\begin{note*}
+$ \rb{\mm / \mm^2}^* $ is called the \textbf{Zariski-tangent space}.
+\end{note*}
+
+Claim that $ \mm / \mm^2 $ is a $ K $-vector space for $ K = A / \mm $.
+
+\begin{theorem}
+Let $ Y \subseteq \A^n $ be an affine variety. Then $ Y $ is nonsingular at $ P $ if and only if $ \OO_P $ is a regular local ring.
+\end{theorem}
+
+\begin{proof}
+Let $ P = \rb{a_1, \dots, a_n} \in Y $ with corresponding maximal ideal $ I_P = \ab{x_1 - a_1, \dots, x_n - a_n} $. We define a map
+$$ \function[\theta_P]{A = K\sb{x_1, \dots, x_n}}{K^n}{f}{\rb{\dfrac{\partial f\rb{P}}{\partial x_1}, \dots, \dfrac{\partial f\rb{P}}{\partial x_n}}}. $$
+Note that $ \theta\rb{\rb{x_i - a_i}\rb{x_j - a_j}} = 0 $, hence $ \theta_P\rb{I_P^2} = 0 $, in particular we have an isomorphism $ I_P / I_P^2 \cong K^n $. By the isomorphism, if $ \alpha = I\rb{Y} = \ab{f_1, \dots, f_t} $ then the rank of $ \tfrac{\partial f_i\rb{P}}{\partial x_j} $ corresponds to the dimension of $ \alpha $ under the isomorphism, which is $ \overline{\alpha} $ in $ I_P / I_P^2 $, $ \rb{\alpha + I_P} / I_P^2 $. Now $ \OO_P = \rb{A / \alpha}_{I_P} $. If $ \mm = \rb{I_P + \alpha} / \alpha $ then $ \mm^2 = \rb{I_P^2 + \alpha} / \alpha $, so $ \mm / \mm^2 = I_P / \rb{I_P^2 + \alpha} $. So
+$$ r = \dim\rb{\dfrac{\mm}{\mm^2}} = \dim\rb{\dfrac{I_P}{I_P^2 + \alpha}} = \dim\rb{\dfrac{I_P}{I_P^2}} - \dim\rb{\dfrac{I_P^2 + \alpha}{I_P^2}} = n - rank\rb{\dfrac{\partial f_i}{\partial x_j}}. $$
+So $ \OO_P $ is regular if and only if $ rank\rb{\tfrac{\partial f_i}{\partial x_j}} = n - r $.
+\end{proof}
+
+\begin{definition}
+Let $ X $ be a variety. $ X $ is \textbf{nonsingular} at $ P $ if $ \OO_P $ is a regular local ring.
+\end{definition}
+
+\begin{theorem}
+$ Sing\rb{Y} $ is closed and proper. The set of points where $ Y $ is nonsingular is open and dense.
+\end{theorem}
+
 \end{document}
