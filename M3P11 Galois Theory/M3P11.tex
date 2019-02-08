@@ -665,7 +665,7 @@ If $ \sigma \in Em_L\rb{K, \Omega} $, then $ \sigma \in Em_k\rb{K, \Omega} $.
 
 Warning.
 \begin{itemize}
-\item It is not true in general that $ k \subset K $ normal gives $ k \subset L $ normal. For example, let
+\item It is not true in general that $ k \subset K $ is normal gives that $ k \subset L $ is normal. For example, let
 $$ k = \Q \subset \Q\rb{\sqrt[3]{2}} \subset \Q\rb{\sqrt[3]{2}, \sqrt{-3}} = K. $$
 $ k \subset K $ is normal because it is a splitting field but $ \Q \subset \Q\rb{\sqrt[3]{2}} $ is not normal.
 \item Suppose $ k \subset L $ is normal and $ L \subset K $ is normal. This does not imply $ k \subset K $ is normal. This will be in an example sheet.
@@ -854,34 +854,98 @@ $$ D\rb{fg} = fDg + gDf. $$
 Most important thing to know in characteristic $ p $, if $ p \mid n $ then $ Dx^n = nx^{n - 1} = 0 $. If $ Df = 0 $ that does not mean $ f $ is constant. This just means that there exists $ h \in k\sb{x} $ such that $ f\rb{x} = h\rb{x^p} $.
 
 \begin{proposition}
+\label{prop:separable}
 $ f\rb{x} \in k\sb{x} $ is separable if and only if $ \gcd\rb{f, Df} = 1 $.
 \end{proposition}
 
 In $ \R\sb{x} $, $ f $ is inseparable if and only if there exists a multiple root, a critical point, which is a root of $ Df $.
 
+\lecture{14}{Friday}{08/02/19}
+
+\begin{lemma}
+Let $ f, g \in k\sb{x} $ and $ c = \gcd\rb{f, g} $ in $ k\sb{x} $. Let $ k \subset L $ be an extension. Then $ c = \gcd\rb{f, g} $ in $ L\sb{x} $.
+\end{lemma}
+
+\begin{proof}
+Indeed, if $ c \mid f $, $ c \mid g $ in $ k\sb{x} $ then also in $ L\sb{x} $. We also know that there exists $ \phi, \psi \in k\sb{x} $ such that
+\begin{equation}
+\label{eq:7}
+f\phi + g\psi = c
+\end{equation}
+in $ k\sb{x} $, and hence also in $ L\sb{x} $. Suppose that $ u \mid f $, $ u \mid g $ in $ L\sb{x} $, so $ u \mid c $ in $ L\sb{x} $ by $ \rb{\ref{eq:7}} $.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:separable}]
+Let $ k \subset L $ be any field where $ f $ splits completely. We can do the proof in $ L\sb{x} $. That is, we may assume that $ f $ splits completely. $ f\rb{x} = \prod_i \rb{x - \lambda i} $.
+\begin{itemize}
+\item[$ \impliedby $] Assume for a contradiction that $ f $ is not separable then $ f\rb{x} = \rb{x - \lambda}^2g\rb{x} $.
+$$ Df\rb{x} = 2\rb{x - \lambda}g\rb{x} + \rb{x - \lambda}^2Dg\rb{x} = \rb{x - \lambda}\rb{2y\rb{x} + \rb{x - \lambda}Dg\rb{x}}. $$
+That is, $ \rb{x - \lambda} \mid f $ and $ \rb{x - \lambda} \mid Df $, so $ \gcd\rb{f, Df} \ne 1 $.
+\item[$ \implies $] For all $ i \ne j $, $ \lambda_i \ne \lambda_j $.
+$$ Df = \sum_{i = 1}^j \rb{\prod_{j \ne i} \rb{x - \lambda_j}}. $$
+Claim that for all $ i $, $ \rb{x - \lambda_i} \nmid Df $. I hope you see this. This shows $ \gcd\rb{f, Df} = 1 $.
+\end{itemize}
+\end{proof}
+
+\begin{theorem}
+$ f \in k\sb{x} $ irreducible is inseparable if and only if
+\begin{itemize}
+\item $ ch\rb{k} = p > 0 $, and
+\item there exists $ h \in k\sb{x} $ such that $ f\rb{x} = h\rb{x^p} $.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+Indeed $ f $ is inseparable if and only if $ \gcd\rb{f, Df} \ne 1 $, if and only if $ Df = 0 $, since $ f $ is irreducible so $ \gcd\rb{f, Df} \ne 1 $ if and only if $ f \mid Df $, and $ \deg\rb{Df} < \deg\rb{f} $.
+\end{proof}
+
+\begin{definition}
+A field $ k $ in $ ch\rb{k} = p > 0 $ is \textbf{perfect} if for all $ a \in k $ there exists $ b \in k $ such that $ b^p = a $.
+\end{definition}
+
 \begin{proposition}
-Let $ k \subset L $ be any extension and $ f, g \in k\sb{x} $. Then the following are equivalent.
-\begin{enumerate}
-\item $ \gcd\rb{f, g} = 1 $ in $ k\sb{x} $.
-\item $ \gcd\rb{f, g} = 1 $ in $ L\sb{x} $.
-\item $ f, g $ have no common root in a splitting field of $ fg $.
-\end{enumerate}
+If $ k $ is perfect then $ f \in k\sb{x} $ is irreducible gives that $ f\rb{x} $ is separable.
 \end{proposition}
 
 \begin{proof}
-\hfill
-\begin{itemize}[leftmargin=0.5in]
-\item[$ 1 \implies 2 $] There exists $ \phi, \psi \in k\sb{x} $ such that $ \phi f + \psi g = 1 $, so $ \gcd\rb{f, g} = 1 $ in $ L\sb{x} $.
-\item[$ 2 \implies 3 $] Let
-$$
-\begin{tikzcd}
-& L \arrow[subset]{dr} & \\
-k \arrow[subset]{ur} \arrow[subset]{dr} & & E \\
-& F \arrow[subset]{ur} &
-\end{tikzcd}.
-$$
-I know $ \gcd\rb{f, g} = 1 $ in $ L $, so $ \gcd\rb{f, g} = 1 $ in $ E $. Thus $ f, g \in E\sb{x} $ split completely, then we know the prime factorisation of $ f, g $, so $ f, g $ have no common root in $ E $.
-\end{itemize}
+If $ f $ were inseparable then $ f\rb{x} = h\rb{x^p} $. For all $ i $, find $ b_i^p = a_i $,
+$$ h\rb{x} = x^n + a_1x^{n - 1} \dots + a_n = x^n + b_1^px^{n - 1} \dots + b_n^p. $$
+Thus
+$$ f\rb{x} = h\rb{x^p} = \rb{x^n + b_1x^{n - 1} + \dots + b_n}^p, $$
+so $ f $ is not irreducible.
 \end{proof}
+
+\begin{example*}
+All finite fields are perfect. Suppose $ F $ is a finite field. Then $ ch\rb{F} = p > 0 $ so $ \F_p \subset F $ therefore $ \sb{\F : \F_p} = n < 0 $. $ \dim_{\F_p}\rb{F} = n < \infty $, so $ F \cong \rb{\F_p}^n $ as a vector space over $ \F_p $ gives that $ F $ has $ p^n $ elements. The group $ F^\times = F \setminus \cb{0} $ has $ p^n - 1 $ elements. So for all $ a \in F^\times $, $ a^{p^n - 1} = 1 $. For all $ a \in F $, $ a^{p^n} = a $, so
+$$ \rb{a^{p^{n - 1}}}^p = a, $$
+and this shows $ F $ is perfect.
+\end{example*}
+
+\begin{definition}
+Consider $ k \subset K $. An element $ a \in L $ is \textbf{separable} over $ k $ if the minimal polynomial $ f\rb{x} \in k\sb{x} $ of $ a $ is a separable polynomial.
+\end{definition}
+
+\pagebreak
+
+\section{Separable degree}
+
+\begin{definition}
+Let $ K \subset L $. Then
+$$ \sb{L : K}_s = \abs{Em_K\rb{L, \Omega}}, $$
+where $ K \subset L \subset \Omega $ is any such that $ K \subset \Omega $ is normal.
+\end{definition}
+
+\begin{proposition}
+$ \sb{L : K}_s $ does not depend on $ \Omega $.
+\end{proposition}
+
+\begin{theorem}
+\hfill
+\begin{enumerate}
+\item $ k \subset L $ is separable if and only if $ \sb{L : K}_s = \sb{L : K} $.
+\item For all $ k \subset K \subset L $, $ k \subset K $ and $ K \subset L $ are separable gives that $ k \subset L $ is separable.
+\item $ k \subset L $ is separable if and only if for all $ \lambda \in L $, $ \lambda $ is separable over $ k $.
+\end{enumerate}
+\end{theorem}
 
 \end{document}
