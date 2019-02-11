@@ -492,7 +492,7 @@ If $ u \in \Z\sb{i}^\times $ then $ N\rb{u} = 1 $.
 \end{proposition}
 
 \begin{proof}
-$ N \mid_{\Z\sb{i} \setminus \cb{0}} \ge 1 $, $ N $ is multiplicative, and $ N\rb{1} = 1 $. $ uv = 1 $ gives $ N\rb{u} \cdot N\rb{v} = 1 $, so $ N\rb{u} \ge 1 $ and $ N\rb{v} \ge 1 $ gives $ N\rb{u} = N\rb{v} = 1 $.
+$ N \mid_{\Z\sb{i} \setminus \cb{0}}\rb{u} \ge 1 $, $ N $ is multiplicative, and $ N\rb{1} = 1 $. $ uv = 1 $ gives $ N\rb{u} \cdot N\rb{v} = 1 $, so $ N\rb{u} \ge 1 $ and $ N\rb{v} \ge 1 $ gives $ N\rb{u} = N\rb{v} = 1 $.
 \end{proof}
 
 $ N\rb{u} = u \cdot \overline{u} = 1 $. $ u = a + bi \in \Z\sb{i}^\times $ if and only if $ a^2 + b^2 = 1 $, if and only if $ \rb{a, b} = \rb{\pm 1, 0} $, that is $ u = \pm 1 $, or $ \rb{a, b} = \rb{0, \pm 1} $, that is $ u = \pm i $.
@@ -565,10 +565,10 @@ $$ \function[N]{\Z\sb{\omega}}{\Z}{a + b\omega}{\rb{a + b\omega}\rb{a + b\overli
 \end{proposition}
 
 \begin{proof}
-Multiplicative because it is the restriction of $ z \in \C \mapsto \abs{z}^2 $ to $ \Z\sb{\omega} $.
+Multiplicative because it is the restriction of $ z \in \C \mapsto \abs{z}^2 $ to $ \Z\sb{\omega} $. Holds true in any imaginary quadratic field $ \Q\rb{\sqrt{-d}} $.
 \end{proof}
 
-Holds true in any imaginary quadratic field $ \Q\rb{\sqrt{-d}} $. $ a^2 - ab + b^2 = 1 $ if and only if $ \rb{a, b} = \rb{\pm 1, 0} $, that is $ u = \pm 1 $, or $ \rb{a, b} = \rb{0, \pm 1} $, that is $ u = \pm \omega $, or $ \rb{a, b} = \pm\rb{1, 1} $, that is $ u = \pm\rb{1 + \omega} = \pm\pi $.
+$ a^2 - ab + b^2 = 1 $ if and only if $ \rb{a, b} = \rb{\pm 1, 0} $, that is $ u = \pm 1 $, or $ \rb{a, b} = \rb{0, \pm 1} $, that is $ u = \pm \omega $, or $ \rb{a, b} = \pm\rb{1, 1} $, that is $ u = \pm\rb{1 + \omega} = \pm\pi $.
 
 \begin{remark*}
 $ \Z\sb{\omega}^\times \cong \rb{\Z / 6\Z, +} $.
@@ -579,7 +579,7 @@ $ \Z\sb{\omega} $ is a Euclidean domain, with Euclidean norm given by $ N\rb{a +
 \end{theorem}
 
 \begin{proof}
-Let $ \alpha, \beta \in \Z\sb{\omega} \setminus \cb{0} $. There exists $ \kappa, \lambda \in \Z\sb{\omega} $ such that $ \alpha = \kappa\beta + \lambda $ and $ N\rb{\lambda} < N\rb{\beta} $. Use geometric proof. $ \Z\sb{\omega} = \cb{a + b\omega \mid a, b \in \Z} \subset \C $ is tiled by parallelograms of $ \C $, which are translates of a parallelogram at $ \pi $. Want to take $ \kappa $ to be a vertex of a parallelogram such that $ N\rb{\kappa - \alpha / \beta} < 1 $. Parallelogram covered by interior of unit discs centred at lattice points, so ok. Let $ \lambda = \beta\rb{\alpha / \beta - \kappa} $, so $ N\rb{\lambda} / N\rb{\lambda} < 1 $.
+Let $ \alpha, \beta \in \Z\sb{\omega} \setminus \cb{0} $. There exists $ \kappa, \lambda \in \Z\sb{\omega} $ such that $ \alpha = \kappa\beta + \lambda $ and $ N\rb{\lambda} < N\rb{\beta} $. Use geometric proof. $ \Z\sb{\omega} = \cb{a + b\omega \mid a, b \in \Z} \subset \C $ is tiled by parallelograms of $ \C $, which are translates of a parallelogram at $ \pi $. Want to take $ \kappa $ to be a vertex of a parallelogram such that $ N\rb{\kappa - \alpha / \beta} < 1 $. Parallelogram covered by interior of unit discs centred at lattice points, so ok. Let $ \lambda = \beta\rb{\alpha / \beta - \kappa} $, so $ N\rb{\lambda} / N\rb{\beta} < 1 $.
 \end{proof}
 
 \lecture{7}{Friday}{25/01/19}
@@ -604,7 +604,7 @@ These three possible behaviours have to do with the structure of $ \Z\sb{\omega}
 \begin{itemize}
 \item If this is a field, $ p $ is inert.
 \item If this is of the form $ \F_1 \times \F_2 $, $ p $ is split.
-\item If this is of the form $ \F\sb{\epsilon} / \epsilon^2 $, $ p $ is ramified.
+\item If this is of the form $ \F\sb{\epsilon} / \ab{\epsilon^2} $, $ p $ is ramified.
 \end{itemize}
 \end{remark*}
 
@@ -792,6 +792,8 @@ and $ p_2\rb{x} / a_1, \dots, p_n\rb{x} / a_1 \in \Z $.
 
 \lecture{11}{Monday}{04/02/19}
 
+\subsection{Torsion elements}
+
 \begin{definition}
 \hfill
 \begin{itemize}
@@ -821,7 +823,7 @@ with $ a_1, \dots, a_n \in \Z $ satisfying $ a_1 \mid \dots \mid a_n $. Want $ a
 
 \pagebreak
 
-\section{Integral closure}
+\section{Integers in number fields}
 
 \subsection{Integral closure}
 
@@ -982,7 +984,7 @@ In this case $ \OO_K $ is the $ \Z $-linear span of $ 1 $ and $ \tfrac{1 + \sqrt
 
 \begin{proof}
 Let $ \OO_K $ be the integral closure of $ \Z $ in $ \Q\rb{\sqrt{d}} = K $. Let $ x = a + b\sqrt{d} $ for $ a, b \in \Q $. Assume $ x $ is an algebraic integer. Let
-$$ \function{x}{\overline{x}}{a + b\sqrt{d}}{a - b\sqrt{d}}. $$
+$$ x = a + b\sqrt{d} \mapsto \overline{x} = a - b\sqrt{d}. $$
 $ x, \overline{x} $ satisfy the same polynomial equation with $ \Z $ coefficients, so $ \overline{x} = a - b\sqrt{d} $ is also an algebraic integer.
 \begin{itemize}
 \item $ x\overline{x} = \rb{a + b\sqrt{d}}\rb{a - b\sqrt{d}} = a^2 - b^2d \in \Q $ is an algebraic integer, so $ a^2 - b^2d \in \Z $.
@@ -1001,5 +1003,66 @@ $$ a^2 - db^2 = \dfrac{u^2 - v^2d}{4} \in \Z \qquad \implies \qquad 4 \mid u^2 -
 \lecture{13}{Friday}{08/02/19}
 
 Lecture 13 is a problem class.
+
+\pagebreak
+
+\subsection{Trace and norm}
+
+\lecture{14}{Monday}{11/02/19}
+
+Let $ K / \Q $ be a quadratic field. The conjugate is
+$$ \function{K}{K}{\alpha = a + b\sqrt{d}}{\overline{\alpha} = a - b\sqrt{d}}. $$
+Then
+$$ \function[Tr]{K}{\Q}{\alpha}{\alpha + \overline{\alpha}}, \qquad \function[Nm]{K}{\Q}{\alpha}{\alpha \cdot \overline{\alpha}}, $$
+and
+$$ \function[Tr]{\OO_K}{\Z}{\alpha}{\alpha + \overline{\alpha}}, \qquad \function[Nm]{\OO_K}{\Z}{\alpha}{\alpha \cdot \overline{\alpha}}. $$
+$ \OO_K $ is a free $ \Z $-module of rank $ 2 $. Goal is to discuss trace and norm for general number fields. Motivation is that $ \OO_K $ is a free $ \Z $-module of rank $ \deg\rb{K / \Q} $.
+
+\begin{proposition}
+\label{prop:embeddings}
+Let $ F \subseteq \C $ be a subfield. Let $ K / F $ be a finite extension of degree $ n $. Then there exist exactly $ n $ embeddings $ \sigma : K \hookrightarrow \C $ such that $ \sigma \mid_F = id_F $.
+\end{proposition}
+
+\begin{proof}
+Assume first that $ K = F\rb{x} $, where $ x $ is a root of a minimal polynomial $ P\rb{t} \in F\sb{t} $. $ P $ has degree $ n $, since $ x^n $ is an $ F $-linear combination of $ 1, \dots, x^{n - 1} $. $ P $ has $ n $ distinct roots in $ \C $. Let $ \alpha $ be a root of $ P\rb{t} $ in $ \C $. This determines
+$$ \function[\sigma]{K}{\C}{x}{\sigma\rb{x} = \alpha}, $$
+where $ \sigma \mid_F = id_F $. Conversely, if $ \sigma : K \hookrightarrow \C $ such that $ \sigma \mid_F = id_F $, $ \sigma\rb{P\rb{t}} = P\rb{t} $ and $ \sigma\rb{x} $ is some root of $ P\rb{t} $ in $ \C $. In general, use induction on $ \deg\rb{K / F} = n $.
+\begin{itemize}
+\item $ n = 1 $ is ok. $ K = F $, so only one embedding.
+\item $ n > 1 $. Choose $ x \in K \setminus F $. $ K / F\rb{x} / F $, so apply induction hypothesis on $ \deg\rb{K / F\rb{x}} < \deg\rb{K / F} $.
+$$ n = \deg\rb{K / F} = \deg\rb{K / F\rb{x}} \cdot \deg\rb{F\rb{x} / F} = k \cdot m. $$
+Have $ m $ embeddings $ \tau : F\rb{x} \hookrightarrow \C $ such that $ \tau \mid_F = id_F $. By induction, have $ k $ embeddings $ \sigma : K \hookrightarrow \C $ such that $ \sigma \mid_{F\rb{x}} = \tau $. Overall, have $ n = k \cdot m $ embeddings $ K \hookrightarrow \C $ which are $ id_F $ on $ F $.
+\end{itemize}
+\end{proof}
+
+\begin{notation*}
+Let $ e\rb{K / F} $ denote the set of embeddings as in Proposition \ref{prop:embeddings}.
+\end{notation*}
+
+Let $ x \in K $. Think of
+$$ \function{K}{K}{y}{x \cdot y} $$
+as an $ F $-linear transformation on $ K $. Let $ char_{K / F}\rb{x} $ denote the characteristic polynomial of multiplication by $ x $ in $ K $. $ char_{K / F}\rb{x} \in F\sb{t} $ has degree $ n = \sb{K : F} $.
+
+\begin{example*}
+Let $ K / \Q $ be quadratic and $ x = \sqrt{d} $. Then
+$$ a + b\sqrt{d} \mapsto x \cdot \rb{a + b\sqrt{d}} = a\sqrt{d} + bd. $$
+If $ K \cong \Q^2 $, then
+$$ x = \twobytwo{0}{d}{1}{0}, \qquad char_{K / \Q}\rb{x} = t^2 - d = \rb{t - \sqrt{d}}\rb{t + \sqrt{d}}. $$
+\end{example*}
+
+\begin{proposition}
+Let $ K / F $ be a finite extension of degree $ n $. Then
+$$ char_{K / F}\rb{x} = \prod_{\sigma \in e\rb{K / F}} \rb{t - \sigma\rb{x}} \in F\sb{t}, $$
+for all $ x \in K $.
+\end{proposition}
+
+\begin{proof}
+First assume $ K = F\rb{x} $. Then the right hand side is just the minimal polynomial $ P\rb{t} \in F\sb{t} $ of $ x $. For any root $ \alpha $ of $ P\rb{t} $, $ char_{K / F}\rb{x}\rb{\alpha} = 0 $, since
+$$ \function{K}{\C}{x}{\alpha} $$
+has an $ F $-basis given by $ 1, \dots, \alpha^{n - 1} $, and multiplication by $ \alpha $ shifts this. Every root of $ P\rb{t} $ is also a root of $ char_{K / F}\rb{x} $, and they are both monic polynomials of degree $ n $, so $ P\rb{t} = char_{K / F}\rb{x} $. In general, $ K / F\rb{x} / F $. Choose a basis $ e_1, \dots, e_m $ of $ K $ over $ F\rb{x} $. For any $ i = 1, \dots, m $ multiplication by $ x $ leaves $ e_iF\rb{x} \subset K $ stable and has characteristic polynomial equal to
+$$ \prod_{\sigma \in e\rb{F\rb{x} / F}} \rb{t - \sigma\rb{x}}, $$
+where $ e_iF\rb{x} \subset K $ is an $ F $-vector subspace of dimension $ \deg\rb{F\rb{x} / F} $. Thus
+$$ char_{K / F}\rb{x} = \prod_{\sigma \in e\rb{F\rb{x} / F}} \rb{t - \sigma\rb{x}}^m = \prod_{\sigma \in e\rb{F\rb{x} / F}} \rb{\prod_{\tau \in e\rb{K / F\rb{x}}, \ \tau_{F\rb{x}} = \sigma} \rb{t - \tau\rb{x}}}. $$
+\end{proof}
 
 \end{document}
