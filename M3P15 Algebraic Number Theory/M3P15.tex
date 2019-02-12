@@ -1014,9 +1014,7 @@ Let $ K / \Q $ be a quadratic field. The conjugate is
 $$ \function{K}{K}{\alpha = a + b\sqrt{d}}{\overline{\alpha} = a - b\sqrt{d}}. $$
 Then
 $$ \function[Tr]{K}{\Q}{\alpha}{\alpha + \overline{\alpha}}, \qquad \function[Nm]{K}{\Q}{\alpha}{\alpha \cdot \overline{\alpha}}, $$
-and
-$$ \function[Tr]{\OO_K}{\Z}{\alpha}{\alpha + \overline{\alpha}}, \qquad \function[Nm]{\OO_K}{\Z}{\alpha}{\alpha \cdot \overline{\alpha}}. $$
-$ \OO_K $ is a free $ \Z $-module of rank $ 2 $. Goal is to discuss trace and norm for general number fields. Motivation is that $ \OO_K $ is a free $ \Z $-module of rank $ \deg\rb{K / \Q} $.
+and $ Tr : \OO_K \to \Z $ and $ Nm : \OO_K \to \Z $. $ \OO_K $ is a free $ \Z $-module of rank $ 2 $. Goal is to discuss trace and norm for general number fields. Motivation is that $ \OO_K $ is a free $ \Z $-module of rank $ \deg\rb{K / \Q} $.
 
 \begin{proposition}
 \label{prop:embeddings}
@@ -1064,5 +1062,81 @@ $$ \prod_{\sigma \in e\rb{F\rb{x} / F}} \rb{t - \sigma\rb{x}}, $$
 where $ e_iF\rb{x} \subset K $ is an $ F $-vector subspace of dimension $ \deg\rb{F\rb{x} / F} $. Thus
 $$ char_{K / F}\rb{x} = \prod_{\sigma \in e\rb{F\rb{x} / F}} \rb{t - \sigma\rb{x}}^m = \prod_{\sigma \in e\rb{F\rb{x} / F}} \rb{\prod_{\tau \in e\rb{K / F\rb{x}}, \ \tau_{F\rb{x}} = \sigma} \rb{t - \tau\rb{x}}}. $$
 \end{proof}
+
+\lecture{15}{Tuesday}{12/02/19}
+
+\begin{definition}
+$ Tr : K \to F $ is the trace of multiplication by $ x $ and $ Nm : K \to F $ is the determinant of multiplication by $ x $. These are coefficients of $ char_{K / F}\rb{x} $.
+\end{definition}
+
+\begin{theorem}
+\label{thm:integralclosure}
+Let $ R \subseteq F $ be an integrally closed domain. Let $ S $ be the integral closure of $ R $ in $ K $. Then if $ x \in S $, $ char_{K / F}\rb{x} \in R\sb{t} $.
+\end{theorem}
+
+\begin{corollary}
+Let $ K, F, S, R $ as in Theorem \ref{thm:integralclosure}. We have $ Tr : S \to R $ and $ Nm : S \to R $.
+\end{corollary}
+
+\begin{example*}
+Let $ K / \Q $ be quadratic. Then $ Tr : \OO_K \to \Z $ and $ Nm : \OO_K \to \Z $.
+\end{example*}
+
+\begin{proof}[Proof of Theorem \ref{thm:integralclosure}]
+Let $ x \in S $. Is
+$$ char_{K / F}\rb{x} = \prod_{\sigma \in e\rb{K / F}} \rb{t - \sigma\rb{x}} \in R\sb{t}? $$
+Let $ L $ be the \textbf{composite} of extensions $ \sigma\rb{K} \subseteq \C $, the smallest field extension of $ F $ containing all $ \sigma\rb{K} $. Let $ T $ be the integral closure of $ R $ in $ L $.
+$$
+\begin{tikzcd}
+T \arrow[subset]{r} & L \\
+S \arrow[hookrightarrow]{u} \arrow[subset]{r} & K \arrow[hookrightarrow]{u} \\
+R \arrow[hookrightarrow]{u} \arrow[subset]{r} & F \arrow[hookrightarrow]{u}
+\end{tikzcd}.
+$$
+For all $ \sigma \in e\rb{K / F} $, $ \sigma\rb{x} $ is a root of the minimal polynomial $ P\rb{t} \in F\sb{t} $ of $ x $ over $ F $, and $ x \in S $ gives $ P\rb{t} \in R\sb{t} $, so $ \sigma\rb{x} \in T $. The coefficients of $ char_{K / F}\rb{x} $ are symmetric polynomials in the $ \sigma\rb{x} $,
+$$ \sum_{\sigma \in e\rb{K / F}} \sigma\rb{x}, \sum_{\sigma, \sigma' \in e\rb{K / F}} \sigma\rb{x}\sigma'\rb{x}, \dots \in T, $$
+therefore they are elements of $ T $. Upshot is that $ char_{K / F}\rb{x} \in \rb{F \cap T}\sb{t} = R\sb{t} $, since $ F \cap T $ is the integral closure of $ R $ in $ F $, which is $ R $.
+\end{proof}
+
+\begin{corollary}
+If $ K / \Q $ is a finite extension, so $ F = \Q $, and $ \OO_K \subset K $ is the ring of integers, so $ R = \Z $. Then $ Tr : \OO_K \to \Z $ and $ Nm : \OO_K \to \Z $.
+\end{corollary}
+
+\subsection{Symmetric bilinear forms}
+
+\begin{definition}
+Let $ V $ be a finite dimensional $ \Q $-vector space. A function
+$$ \function[\ab{,}]{V \times V}{\Q}{\rb{v, w}}{\ab{v, w}} $$
+is
+\begin{itemize}
+\item \textbf{$ \Q $-bilinear} if it is $ \Q $-linear as a function of $ v $ and $ \Q $-linear as a function of $ w $,
+\item \textbf{symmetric} if $ \ab{v, w} = \ab{w, v} $, and
+\item \textbf{non-degenerate} if for all $ v \in V $ such that $ v \ne 0 $, there exists $ w \in V $ such that $ \ab{v, w} \ne 0 $.
+\end{itemize}
+\end{definition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Let $ V = \Q $.
+$$ \function{V \times V}{\Q}{\rb{v, w}}{0} $$
+is symmetric and bilinear.
+\item Let $ V = \Q^2 $.
+$$ \function{V \times V}{\Q}{\rb{v, w}}{\ab{v, w} = v \cdot w = v\twobytwo{1}{0}{0}{1}w^t} $$
+is the inner product, which is non-degenerate.
+\item Let $ K / \Q $ be quadratic.
+$$ \function[Tr\rb{,}]{K \times K}{\Q}{\rb{x, y}}{Tr_{K / \Q}\rb{x \cdot y} \in \Q} $$
+is
+\begin{itemize}
+\item symmetric, because $ x \cdot y = y \cdot x $, that is multiplication in $ K $ is commutative,
+\item non-degenerate, because for all $ x \in K^\times $, take $ y = x^{-1} $,
+$$ Tr_{K / \Q}\rb{x, y} = Tr_{K / \Q}\rb{xx^{-1}} = Tr_{K / \Q}\rb{1} = 2 \ne 0, $$
+\item bilinear, because $ Tr_{K / \Q} $ is $ \Q $-linear.
+\end{itemize}
+\item Let $ K = \Q\rb{i} $, $ x = a + bi $, and $ y = c + di $.
+$$ Tr_{\Q\rb{i} / \Q}\rb{x, y} = Tr_{\Q\rb{i} / \Q}\rb{\rb{a + bi}\rb{c + di}} = Tr_{\Q\rb{i} / \Q}\rb{ac - bd + ibc + iad} = 2\rb{ac - bd}, $$
+so $ x, y \in \Z\sb{i} $ gives $ Tr_{\Q\rb{i} / \Q}\rb{x, y} \in \Z $.
+\end{itemize}
+\end{example*}
 
 \end{document}
