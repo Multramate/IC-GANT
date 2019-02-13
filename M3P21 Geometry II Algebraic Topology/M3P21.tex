@@ -994,6 +994,7 @@ $ X $ is locally path-connected or $ X $ is locally simply-connected.
 \end{example*}
 
 \begin{proposition}
+\label{prop:1.33}
 Let
 $$ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} $$
 be a covering space and
@@ -1065,16 +1066,12 @@ Let $ X $ be path-connected, locally path-connected, and semilocally simply-conn
 If
 $$ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} $$
 is a universal cover, each point $ \widetilde{x} \in \widetilde{X} $ can be joined to $ \widetilde{x_0} $ by a unique homotopy class of paths, by Proposition \ref{prop:1.6}.
-\begin{align*}
-\cb{\text{points in} \ \widetilde{X}} \qquad
-& \leftrightsquigarrow \qquad \cb{\text{homotopy classes of paths in} \ \widetilde{X} \ \text{starting at} \ \widetilde{x_0}} \\
-& \leftrightsquigarrow \qquad \cb{\text{homotopy classes of paths in} \ X \ \text{starting at} \ x_0},
-\end{align*}
+$$ \cb{\text{points in} \ \widetilde{X}} \ \leftrightsquigarrow \ \cb{\sb{\gamma} \mid \gamma \ \text{is a path in} \ \widetilde{X} \ \text{starting at} \ \widetilde{x_0}} \ \leftrightsquigarrow \ \cb{\sb{\gamma} \mid \gamma \ \text{is a path in} \ X \ \text{starting at} \ x_0}, $$
 by the homotopy lifting property.
 \end{remark*}
 
 \begin{proof}
-Let $ x_0 \in X $,
+Let $ x_0 \in X $, and
 $$ \widetilde{X} = \cb{\sb{\gamma} \mid \gamma \ \text{is a path in} \ X \ \text{starting at} \ x_0}, \qquad \function[p]{\widetilde{X}}{X}{\sb{\gamma}}{\gamma\rb{1}}. $$
 Have to
 \begin{enumerate}
@@ -1091,24 +1088,100 @@ A basis defines a topology on $ Y $, by $ A \subseteq Y $ is open if and only if
 \begin{enumerate}
 \item Let $ \UU $ be the collection of all path-connected open sets $ U \subseteq X $ such that $ \pi_1\rb{U} \to \pi_1\rb{X} $ is trivial. Then $ X = \bigcup_{U \in \UU} U $ because $ X $ is semilocally simply-connected. Let $ U_1, U_2 \in \UU $ and $ y \in U_1 \cap U_2 $, and let $ y \in V \subseteq U_1 \cap U_2 $ be path-connected and open.
 $$
-\begin{tikzcd}[row sep=tiny]
+\begin{tikzcd}
 V \arrow[hookrightarrow]{r} & U_1 \arrow[hookrightarrow]{r} & X \\
 \pi_1\rb{V} \arrow{r} \arrow[bend right=15, swap]{rr}{\text{trivial}} & \pi_1\rb{U_1} \arrow{r}{\text{trivial}} & \pi_1\rb{X}
 \end{tikzcd},
 $$
 so $ V \in \UU $ gives that $ \UU $ is a basis for the topology on $ X $. For $ U \in \UU $ and $ \gamma $ a path in $ X $ from $ x_0 $ to a point in $ U $, we define
-$$ U_{\sb{\gamma}} = \cb{\sb{\gamma \cdot \eta} \mid \eta \ \text{a path in} \ U \ \text{such that} \ \eta\rb{0} = \eta\rb{1}} \subseteq \widetilde{X}. $$
+$$ U_{\sb{\gamma}} = \cb{\sb{\gamma \cdot \eta} \mid \eta \ \text{a path in} \ U \ \text{such that} \ \eta\rb{0} = \gamma\rb{1}} \subseteq \widetilde{X}. $$
 $ U_{\sb{\gamma}} $ only depends on the class $ \sb{\gamma} $, so $ p \mid_{U_{\sb{\gamma}}} : U_{\sb{\gamma}} \to U $ is bijective. Surjective because $ U $ is path-connected and injective because all paths $ \eta $ in $ U $ with the same endpoint are homotopic. Claim that $ \cb{U_{\sb{\gamma}}} $ forms a basis on $ \widetilde{X} $.
 \begin{itemize}
 \item $ \bigcup_{U \in \UU, \ \gamma} U_{\sb{\gamma}} = \widetilde{X} $, because $ \bigcup_{U \in \UU} U = X $.
 \item Observe that if $ \sb{\gamma'} \in U_{\sb{\gamma}} $ then $ U_{\sb{\gamma}} = U_{\sb{\gamma'}} $. If $ \gamma' = \gamma \cdot \eta $ for $ \eta $ a path in $ U $, then elements in $ U_{\sb{\gamma'}} $ have the form $ \sb{\gamma \cdot \eta \cdot \mu} $, so $ U_{\sb{\gamma'}} \subseteq U_{\sb{\gamma}} $. Elements in $ U_{\sb{\gamma}} $ have the form $ \sb{\gamma \cdot \mu} = \sb{\gamma \cdot \eta \cdot \eta^{-1} \cdot \mu} = \sb{\gamma' \cdot \eta^{-1} \cdot \mu} $, so $ U_{\sb{\gamma}} \subseteq U_{\sb{\gamma'}} $. Consider $ U_{\sb{\gamma}} $ and $ V_{\sb{\gamma'}} $ and let $ \sb{\gamma''} \in U_{\sb{\gamma}} \cap V_{\sb{\gamma'}} $, so $ U_{\sb{\gamma}} = U_{\sb{\gamma''}} $ and $ V_{\sb{\gamma'}} = V_{\sb{\gamma''}} $. Let $ W \in \UU $ such that $ W \subseteq U \cap V $ and such that $ \gamma''\rb{1} \in W $, so $ W_{\sb{\gamma''}} \subseteq U_{\sb{\gamma''}} \cap V_{\sb{\gamma''}} $ and $ \sb{\gamma''} \in W_{\sb{\gamma''}} $. This proves the claim.
 \end{itemize}
 \item $ p \mid_{U_{\sb{\gamma}}} : U_{\sb{\gamma}} \to U $ is a homeomorphism. It is bijective, let $ V_{\sb{\gamma'}} \subseteq U_{\sb{\gamma}} $ be an element of the basis, so $ p\rb{V_{\sb{\gamma'}}} = V \in \UU $. $ p^{-1}\rb{V} \cap U_{\sb{\gamma}} = V_{\sb{\gamma'}} $. Thus $ p : \widetilde{X} \to X $ is continuous. If $ U \in \UU $, then $ p^{-1}\rb{U} = \bigsqcup_{\sb{\gamma}} U_{\sb{\gamma}} $, so $ p : \widetilde{X} \to X $ is a covering space.
+\item Let $ \widetilde{x_0} \in \widetilde{X} $ be the class of the constant path at $ x_0 $. Let $ \sb{\gamma} \in \widetilde{X} $ be arbitrary. $ \gamma : \sb{0, 1} \to X $ and $ \gamma\rb{0} = x_0 $. Let $ \gamma_t $ be the path in $ X $ defined by
+$$ \gamma_t\rb{s} =
+\begin{cases}
+\gamma\rb{s} & s \in \sb{0, t} \\
+\gamma\rb{t} & s \in \sb{t, 1}
+\end{cases}.
+$$
+Then
+$$ \function[\widetilde{\gamma}]{I}{\widetilde{X}}{t}{\sb{\gamma_t}} $$
+is a path in $ \widetilde{X} $ from $ \widetilde{x_0} $ to $ \sb{\gamma} $, so $ \widetilde{X} $ is path-connected. Recall that $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} $ consists of the classes of loops at $ x_0 $ in $ X $ that lifts to loops in $ \widetilde{X} $ at $ \widetilde{x_0} $. Let $ \sb{\gamma} \in p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} $. Then $ \gamma $ lifts to a loop at $ \widetilde{x_0} $ by $ t \mapsto \sb{\gamma_t} $. Because it is a loop we have $ \widetilde{x_0} = \sb{\gamma_1} = \sb{\gamma} $, so $ \gamma $ is homotopic to the constant loop. Thus $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} = \cb{id} $, so $ \widetilde{X} $ is simply-connected.
 \end{enumerate}
 \end{proof}
 
 \lecture{14}{Tuesday}{12/02/19}
 
 Lecture 14 is a problem class.
+
+\lecture{15}{Wednesday}{13/02/19}
+
+Let $ p : \widetilde{X} \to X $ be a covering space, so $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} \subseteq \pi_1\rb{X, x_0} $.
+
+\begin{proposition}
+Let $ X $ be path-connected, locally path-connected, and semilocally simply-connected. Then for every subgroup $ H \subseteq \pi_1\rb{X, x_0} $ there is a covering space $ p : X_H \to X $ such that $ p_*\rb{\pi_1\rb{X_H, \widetilde{x_0}}} = H $ for some basepoint $ x_0 $.
+\end{proposition}
+
+\begin{proof}
+Let $ \widetilde{X} $ be as constructed above. Define $ X_H = \widetilde{X} / \sim $, where $ \sb{\gamma} \sim \sb{\gamma'} $ if $ \gamma\rb{1} = \gamma'\rb{1} $ and $ \sb{\gamma \cdot \rb{\gamma'}^{-1}} \in H $. This is an equivalence relation.
+\begin{itemize}
+\item $ \sb{\gamma} \sim \sb{\gamma} $ because $ id \in H $.
+\item $ \sb{\gamma} \sim \sb{\gamma'} $ gives $ \sb{\gamma'} \sim \sb{\gamma} $ because $ H $ contains all its inverses.
+\item $ \sb{\gamma} \sim \sb{\gamma'} $ and $ \sb{\gamma'} \sim \sb{\gamma''} $ gives $ \sb{\gamma} \sim \sb{\gamma''} $ because $ H $ is closed under product.
+\end{itemize}
+$$
+\begin{tikzcd}
+\widetilde{X} \arrow{r} \arrow{d} & \dfrac{\widetilde{X}}{\sim} = X_H \arrow{dl}{p} \\
+X &
+\end{tikzcd}.
+$$
+Let $ U_{\sb{\gamma}}, U_{\sb{\gamma'}} $ be basis neighbourhoods. If $ \sb{\gamma} \sim \sb{\gamma'} $ then $ \sb{\gamma \cdot \eta} \sim \sb{\gamma' \cdot \eta} $, so $ p $ is a covering space, and $ p^{-1}\rb{U} = \bigcup_\gamma U_{\sb{\gamma}} $. Let $ \widetilde{x_0} \in X_H $ be the equivalence class of the constant path $ c_{x_0} $ at $ x_0 $. Let $ \gamma $ be a loop in $ X $ at $ x_0 $ such that $ \sb{\gamma} \in p_*\rb{\pi_1\rb{X_H, \widetilde{x_0}}} $. Again $ t \mapsto \sb{\gamma_t} $ is a lift of $ \gamma $ at $ \widetilde{x_0} $.
+$$ t \mapsto \sb{\gamma_t} \ \text{is a loop in} \ X_H \quad \iff \quad \sb{\gamma_1} = \sb{\gamma} = \sb{c_{x_0}} \ \text{in} \ X_H \quad \iff \quad \sb{\gamma} \sim \sb{c_{x_0}} \quad \iff \quad \gamma \in H. $$
+\end{proof}
+
+\begin{definition*}
+We say that two covering spaces $ p_1 : \widetilde{X_1} \to X $ and $ p_2 : \widetilde{X_2} \to X $ are \textbf{isomorphic} if there exists a homeomorphism $ f : \widetilde{X_1} \to \widetilde{X_2} $ such that
+$$
+\begin{tikzcd}
+\widetilde{X_1} \arrow{rr}{f} \arrow[swap]{dr}{p_1} & & \widetilde{X_2} \arrow{dl}{p_2} \\
+& X &
+\end{tikzcd}.
+$$
+\end{definition*}
+
+\begin{proposition}
+Let $ X $ be path-connected and locally path-connected and $ x_0 \in X $. Two path-connected covering spaces $ p_1 : \widetilde{X_1} \to X $ and $ p_2 : \widetilde{X_2} \to X $ are isomorphic via an isomorphism $ f : \widetilde{X_1} \to \widetilde{X_2} $ mapping a basepoint $ \widetilde{x_1} \in p_1^{-1}\rb{x_0} $ to a basepoint $ \widetilde{x_2} \in p_2^{-1}\rb{x_0} $ if and only if
+$$ \rb{p_1}_*\rb{\pi_1\rb{\widetilde{X_1}, \widetilde{x_1}}} = \rb{p_2}_*\rb{\pi_1\rb{\widetilde{X_2}, \widetilde{x_2}}}. $$
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] If
+$$ f : \rb{\widetilde{X_1}, \widetilde{x_1}} \to \rb{\widetilde{X_2}, \widetilde{x_2}} $$
+is an isomorphism, then $ p_1 = p_2f $, so
+$$ \rb{p_1}_*\rb{\pi_1\rb{\widetilde{X_1}, \widetilde{x_1}}} \subseteq \rb{p_2}_*\rb{\pi_1\rb{\widetilde{X_2}, \widetilde{x_2}}}, $$
+and $ p_2 = p_1f^{-1} $, so
+$$ \rb{p_2}_*\rb{\pi_1\rb{\widetilde{X_2}, \widetilde{x_2}}} \subseteq \rb{p_1}_*\rb{\pi_1\rb{\widetilde{X_1}, \widetilde{x_1}}}. $$
+\item[$ \impliedby $] Assume
+$$ \rb{p_1}_*\rb{\pi_1\rb{\widetilde{X_1}, \widetilde{x_1}}} = \rb{p_2}_*\rb{\pi_1\rb{\widetilde{X_2}, \widetilde{x_2}}}. $$
+By lifting criterion in Proposition \ref{prop:1.33}, we can lift $ p_1 $ to a continuous map
+$$ \widetilde{p_1} : \rb{\widetilde{X_1}, \widetilde{x_1}} \to \rb{\widetilde{X_2}, \widetilde{x_2}}, $$
+and $ p_2 $ to a continuous map
+$$ \widetilde{p_2} : \rb{\widetilde{X_2}, \widetilde{x_2}} \to \rb{\widetilde{X_1}, \widetilde{x_1}}, $$
+so $ p_1\widetilde{p_2} = p_2 $ and $ p_2\widetilde{p_1} = p_1 $.
+$$
+\begin{tikzcd}
+\rb{\widetilde{X_1}, \widetilde{x_1}} \arrow[bend left=15]{rr}{\widetilde{p_1}} \arrow[swap]{dr}{p_1} & & \rb{\widetilde{X_2}, \widetilde{x_2}} \arrow{dl}{p_2} \arrow[bend left=15]{ll}{\widetilde{p_2}} \\
+& \rb{X, x_0} &
+\end{tikzcd}.
+$$
+$ \widetilde{p_1}\widetilde{p_2} $ fixes the point $ \widetilde{x_2} \in \widetilde{X_2} $. By the unique lifting property in Proposition \ref{prop:1.34}, $ \widetilde{p_1}\widetilde{p_2} = id_{\widetilde{x_2}} $. Similarly, $ \widetilde{p_2}\widetilde{p_1} = id_{\widetilde{x_1}} $, so $ \widetilde{p_1} $ is an isomorphism.
+\end{itemize}
+\end{proof}
 
 \end{document}
