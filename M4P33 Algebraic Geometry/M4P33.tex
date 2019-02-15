@@ -852,4 +852,80 @@ Lecture 14 is a problem class.
 
 Lecture 15 is a problem class.
 
+\pagebreak
+
+\section{Intersections in projective space}
+
+\lecture{16}{Friday}{15/02/19}
+
+\begin{theorem}
+Let $ Y, Z \subseteq \A^n $ be varieties, with $ \dim\rb{Y} = r $ and $ \dim\rb{Z} = s $ then every irreducible component has dimension at least $ r + s - n $.
+\end{theorem}
+
+\begin{proof}
+Suppose $ Z $ is a hypersurface. Then if $ Y \subseteq Z $ the theorem holds, and if $ Y \nsubseteq Z $ the theorem is true by homework $ 1 $. Let $ Z $ be general. Consider the diagonal in $ \A^{2n} $ given by the image of the isomorphism $ P \mapsto P \times P $, then $ Y \cap Z $ corresponds to $ \rb{Y \times Z} \cap \Delta $. Recall that
+$$ \Delta = Z\rb{x_1 - y_1} \cap \dots \cap Z\rb{x_n - y_n}, $$
+by the first case $ n $ times we have that each irreducible component has dimension $ \rb{r + s} - n - 2n = r + s - n $.
+\end{proof}
+
+\begin{theorem}
+Let $ Y, Z \subseteq \P^n $ be varieties, where $ \dim\rb{Y} = r $ and $ \dim\rb{Z} = s $, then each irreducible component of $ Y \cap Z $ has dimension at least $ r + s - n $. Moreover, if $ r + s - n \ge 0 $ then $ Y \cap Z \ne \emptyset $.
+\end{theorem}
+
+\begin{proof}
+Take the affine cone of $ Y $ and $ Z $, $ C\rb{Y} $ and $ C\rb{Z} $, since $ 0 \in C\rb{Y} \cap C\rb{Z} $ we apply the previous theorem to get
+$$ \rb{r + 1} + \rb{s + 1} - \rb{n + 1} = r + s - n + 1, $$
+so therefore $ Y \cap Z \ne \emptyset $.
+\end{proof}
+
+\begin{definition}
+A \textbf{numerical polynomial} is a polynomial $ f \in \Q\sb{x} $ such that $ f\rb{n} \in \Z $ for $ n \gg 0 $, for $ n $ sufficiently large.
+\end{definition}
+
+\begin{theorem}
+\hfill
+\begin{enumerate}
+\item If $ f \in \Q\sb{x} $ is a numerical polynomial then there are $ c_0, \dots, c_r \in \Z $ such that
+$$ f\rb{x} = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}. $$
+\item If for $ n \gg 0 $ $ \Delta f = f\rb{n + 1} - f\rb{n} = q $ and $ q $ is a numerical polynomial, then there exists $ p $ such that for $ n \gg 0 $ $ p\rb{n} = f\rb{n} $.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item By linear algebra we can find $ c_0, \dots, c_r \in \Q $ such that
+$$ f\rb{x} = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}, $$
+then
+$$ \Delta f = c_0\twobyone{x}{r - 1} + \dots + c_{r - 1}\twobyone{x}{0}. $$
+By induction on the degree of $ f $ we have that $ c_0, \dots, c_{r - 1} \in \Z $, but since $ f\rb{n} \in \Z $ for $ n \gg 0 $ then $ c_r \in \Z $.
+\item If
+$$ q = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}, $$
+set
+$$ p = c_0\twobyone{x}{r + 1} + \dots + c_r\twobyone{x}{1}. $$
+$ \Delta p = q $ gives $ \Delta \rb{f - p}\rb{n} = 0 $.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item Let $ S $ be a graded ring. A graded $ S $-module is a module $ M $ with a decomposition
+$$ M = \bigoplus_{d \in \Z} M_d, $$
+such that $ S_k \cdot M_d \subseteq M_{d + k} $.
+\item Let $ l \in \Z $. The twisted module $ M\rb{l} $ is the graded $ S $-module given by $ M\rb{l}_k = M_{l + k} $.
+\item $ Ann\rb{M} = \cb{x \in S \mid xM = 0} $.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}
+Let $ M $ be a finitely generated graded $ S $-module. Then there is a filtration
+$$ 0 = M^0 \subseteq \dots \subseteq M^r = M, $$
+such that $ M^i / M^{i - 1} \cong \rb{S / \pp_i}\rb{l} $ for some $ \pp_i $ prime ideals and $ l_i \in \Z $, such that
+\begin{itemize}
+\item prime $ \pp \supseteq Ann\rb{M} $ if and only if $ \pp \subseteq \pp_i $, that is $ \pp_i $ are minimal primes of $ M $, and
+\item for each minimal prime $ \pp $ of $ M $ the number of times $ \pp $ appears in the set $ \cb{\pp_1, \dots, \pp_r} $ is $ len_{S_\pp}\rb{M_\pp} $.
+\end{itemize}
+\end{theorem}
+
 \end{document}
