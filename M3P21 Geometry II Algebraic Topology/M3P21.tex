@@ -1100,7 +1100,9 @@ $ U_{\sb{\gamma}} $ only depends on the class $ \sb{\gamma} $, so $ p \mid_{U_{\
 \item $ \bigcup_{U \in \UU, \ \gamma} U_{\sb{\gamma}} = \widetilde{X} $, because $ \bigcup_{U \in \UU} U = X $.
 \item Observe that if $ \sb{\gamma'} \in U_{\sb{\gamma}} $ then $ U_{\sb{\gamma}} = U_{\sb{\gamma'}} $. If $ \gamma' = \gamma \cdot \eta $ for $ \eta $ a path in $ U $, then elements in $ U_{\sb{\gamma'}} $ have the form $ \sb{\gamma \cdot \eta \cdot \mu} $, so $ U_{\sb{\gamma'}} \subseteq U_{\sb{\gamma}} $. Elements in $ U_{\sb{\gamma}} $ have the form $ \sb{\gamma \cdot \mu} = \sb{\gamma \cdot \eta \cdot \eta^{-1} \cdot \mu} = \sb{\gamma' \cdot \eta^{-1} \cdot \mu} $, so $ U_{\sb{\gamma}} \subseteq U_{\sb{\gamma'}} $. Consider $ U_{\sb{\gamma}} $ and $ V_{\sb{\gamma'}} $ and let $ \sb{\gamma''} \in U_{\sb{\gamma}} \cap V_{\sb{\gamma'}} $, so $ U_{\sb{\gamma}} = U_{\sb{\gamma''}} $ and $ V_{\sb{\gamma'}} = V_{\sb{\gamma''}} $. Let $ W \in \UU $ such that $ W \subseteq U \cap V $ and such that $ \gamma''\rb{1} \in W $, so $ W_{\sb{\gamma''}} \subseteq U_{\sb{\gamma''}} \cap V_{\sb{\gamma''}} $ and $ \sb{\gamma''} \in W_{\sb{\gamma''}} $. This proves the claim.
 \end{itemize}
-\item $ p \mid_{U_{\sb{\gamma}}} : U_{\sb{\gamma}} \to U $ is a homeomorphism. It is bijective, let $ V_{\sb{\gamma'}} \subseteq U_{\sb{\gamma}} $ be an element of the basis, so $ p\rb{V_{\sb{\gamma'}}} = V \in \UU $. $ p^{-1}\rb{V} \cap U_{\sb{\gamma}} = V_{\sb{\gamma'}} $. Thus $ p : \widetilde{X} \to X $ is continuous. If $ U \in \UU $, then $ p^{-1}\rb{U} = \bigsqcup_{\sb{\gamma}} U_{\sb{\gamma}} $, so $ p : \widetilde{X} \to X $ is a covering space.
+\item $ p \mid_{U_{\sb{\gamma}}} : U_{\sb{\gamma}} \to U $ is a homeomorphism. It is bijective, let $ V_{\sb{\gamma'}} \subseteq U_{\sb{\gamma}} $ be an element of the basis, so $ p\rb{V_{\sb{\gamma'}}} = V \in \UU $. $ p^{-1}\rb{V} \cap U_{\sb{\gamma}} = V_{\sb{\gamma'}} $. Thus $ p : \widetilde{X} \to X $ is continuous. If $ U \in \UU $, then
+$$ p^{-1}\rb{U} = \bigsqcup_{\sb{\gamma}} U_{\sb{\gamma}}, $$
+so $ p : \widetilde{X} \to X $ is a covering space.
 \item Let $ \widetilde{x_0} \in \widetilde{X} $ be the class of the constant path at $ x_0 $. Let $ \sb{\gamma} \in \widetilde{X} $ be arbitrary. $ \gamma : \sb{0, 1} \to X $ and $ \gamma\rb{0} = x_0 $. Let $ \gamma_t $ be the path in $ X $ defined by
 $$ \gamma_t\rb{s} =
 \begin{cases}
@@ -1123,6 +1125,7 @@ Lecture 14 is a problem class.
 Let $ p : \widetilde{X} \to X $ be a covering space, so $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} \subseteq \pi_1\rb{X, x_0} $.
 
 \begin{proposition}
+\label{prop:1.36}
 Let $ X $ be path-connected, locally path-connected, and semilocally simply-connected. Then for every subgroup $ H \subseteq \pi_1\rb{X, x_0} $ there is a covering space $ p : X_H \to X $ such that $ p_*\rb{\pi_1\rb{X_H, \widetilde{x_0}}} = H $ for some basepoint $ x_0 $.
 \end{proposition}
 
@@ -1154,6 +1157,7 @@ $$
 \end{definition*}
 
 \begin{proposition}
+\label{prop:1.37}
 Let $ X $ be path-connected and locally path-connected and $ x_0 \in X $. Two path-connected covering spaces $ p_1 : \widetilde{X_1} \to X $ and $ p_2 : \widetilde{X_2} \to X $ are isomorphic via an isomorphism $ f : \widetilde{X_1} \to \widetilde{X_2} $ mapping a basepoint $ \widetilde{x_1} \in p_1^{-1}\rb{x_0} $ to a basepoint $ \widetilde{x_2} \in p_2^{-1}\rb{x_0} $ if and only if
 $$ \rb{p_1}_*\rb{\pi_1\rb{\widetilde{X_1}, \widetilde{x_1}}} = \rb{p_2}_*\rb{\pi_1\rb{\widetilde{X_2}, \widetilde{x_2}}}. $$
 \end{proposition}
@@ -1182,6 +1186,93 @@ $$
 $$
 $ \widetilde{p_1}\widetilde{p_2} $ fixes the point $ \widetilde{x_2} \in \widetilde{X_2} $. By the unique lifting property in Proposition \ref{prop:1.34}, $ \widetilde{p_1}\widetilde{p_2} = id_{\widetilde{x_2}} $. Similarly, $ \widetilde{p_2}\widetilde{p_1} = id_{\widetilde{x_1}} $, so $ \widetilde{p_1} $ is an isomorphism.
 \end{itemize}
+\end{proof}
+
+\lecture{16}{Friday}{15/02/19}
+
+Fix $ x_0 \in X $, $ \widetilde{x_1} \in p_1^{-1}\rb{x_0} $, and $ \widetilde{x_2} \in p_2^{-1}\rb{x_0} $. A \textbf{basepoint preserving isomorphism}
+$$ f : \rb{\widetilde{X_1}, \widetilde{x_1}} \to \rb{\widetilde{X_2}, \widetilde{x_2}} $$
+is an isomorphism such that $ f\rb{\widetilde{x_1}} = \widetilde{x_2} $.
+
+\begin{theorem}[Galois correspondence]
+Let $ X $ be path-connected, locally path-connected, and semilocally simply-connected, and $ x_0 \in X $. Then
+\begin{enumerate}
+\item there is a bijection
+$$ \correspondence{\text{path-connected covering spaces} \ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} \\ \text{modulo basepoint preserving isomorphisms}}{\text{subgroups} \\ H \subseteq \pi_1\rb{X, x_0}}, $$
+\item if we ignore the basepoints, this correspondence gives a bijection
+$$ \correspondence{\text{path-connected covering spaces} \ p : \widetilde{X} \to X \\ \text{modulo isomorphisms}}{\text{conjugacy classes of subgroups} \\ H \subseteq \pi_1\rb{X, x_0}}. $$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item To a covering space $ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} $ we associate the subgroup $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} $. Proposition \ref{prop:1.36} and Proposition \ref{prop:1.37} show that this is well-defined on the isomorphism classes and it is bijective.
+\item Let $ p : \widetilde{X} \to X $ be a covering space and $ \widetilde{x_1}, \widetilde{x_2} \in p^{-1}\rb{x_0} $. Let $ H_i = p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_i}}} \subseteq \pi_1\rb{X, x_0} $, for $ i = 1, 2 $. Let $ \widetilde{\gamma} $ be a path from $ \widetilde{x_1} $ to $ \widetilde{x_2} $. Let $ \gamma = p\widetilde{\gamma} $ be a loop at $ x_0 $. Let $ \sb{f} \in \pi_1\rb{X, x_0} $. Then $ \sb{f} \in H_1 $ if and only if the lift $ \widetilde{f} $ is a loop at $ \widetilde{x_1} $. $ \widetilde{\gamma}^{-1} \cdot \widetilde{f} \cdot \widetilde{\gamma} $ is a loop at $ \widetilde{x_2} $ gives $ p_*\rb{\widetilde{\gamma}^{-1} \cdot \widetilde{f} \cdot \widetilde{\gamma}} = \gamma^{-1} \cdot f \cdot \gamma $, so $ \sb{\gamma}^{-1}\sb{f}\sb{\gamma} \in H_2 $. Thus $ \sb{\gamma}^{-1}H_1\sb{\gamma} \subseteq H_2 $. Similarly, $ \sb{\gamma}H_2\sb{\gamma}^{-1} \subseteq H_1 $. Conversely, let $ H_1 \subseteq \pi_1\rb{X, x_0} $ as above and $ \sb{\delta} \in \pi_1\rb{X, x_0} $ be an arbitrary element. Let $ \widetilde{\delta} $ be a lift of $ \delta $ such that $ \widetilde{\delta}\rb{0} = \widetilde{x_0} $ and define $ x_3 = \widetilde{\delta}\rb{1} $. Then the same construction yields $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_3}}} = \sb{\delta}^{-1}H_1\sb{\delta} $.
+\end{enumerate}
+\end{proof}
+
+\subsubsection{Deck transformations and group actions}
+
+\begin{definition*}
+Let $ p : \widetilde{X} \to X $ be a covering space. A \textbf{deck-transformation} is an isomorphism from $ \widetilde{X} $ to itself.
+$$
+\begin{tikzcd}
+\widetilde{X} \arrow{rr}{f} \arrow[swap]{dr}{p} & & \widetilde{X} \arrow{dl}{p} \\
+& X &
+\end{tikzcd}.
+$$
+The group of deck-transformations is denoted by $ G\rb{\widetilde{X}} $.
+\end{definition*}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Let
+$$ \function[p]{\R}{S^1 \subset \C}{t}{e^{2\pi i t}}. $$
+$ f : \R \to \R $ such that $ p\rb{f\rb{t}} = p\rb{t} $ if and only if $ e^{2\pi if\rb{t}} = e^{2\pi it} $, if and only if $ f\rb{t} = t + n $, so $ G\rb{\R} \cong \Z $.
+\item Let
+$$ \function[p]{S^1}{S^1}{z}{z^n}. $$
+Then $ G\rb{S^1} \cong \Z / n\Z $.
+\end{itemize}
+\end{example*}
+
+An observation is that if $ \widetilde{X} $ is path-connected then $ f \in G\rb{\widetilde{X}} $ is uniquely determined by where it sends a single point.
+$$
+\begin{tikzcd}
+\widetilde{X} \arrow[swap]{rr}{f} \arrow[bend left=30]{rr}{f'} \arrow[swap]{dr}{p} & & \widetilde{X} \arrow{dl}{p} \\
+& X &
+\end{tikzcd}.
+$$
+If $ f\rb{x} = f'\rb{x} $ for a single $ x $, by unique lifting $ f = f' $. So the identity is the only deck-transformation with a fixed point.
+
+\begin{definition*}
+A covering space $ p : \widetilde{X} \to X $ is \textbf{normal}, or \textbf{regular}, or \textbf{Galois}, if for each $ x \in X $ and every pair $ \widetilde{x}, \widetilde{x'} \in p^{-1}\rb{x} $ there is an $ f \in G\rb{\widetilde{X}} $ such that $ f\rb{\widetilde{x}} = \widetilde{x'} $.
+\end{definition*}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ p : \R \to S^1 $ is normal.
+\item $ p : S^1 \to S^1 $ is normal.
+\end{itemize}
+\end{example*}
+
+\begin{proposition}
+Let
+$$ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} $$
+be a path-connected covering space, and $ X $ be path-connected and locally path-connected. Then $ p : \widetilde{X} \to X $ is normal if and only if $ H = p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} \subseteq \pi_1\rb{X, x_0} $ is a normal subgroup.
+\end{proposition}
+
+\begin{proof}
+Let $ \widetilde{x_1} \in p^{-1}\rb{x_0} $, let $ \widetilde{\gamma} $ be a path from $ \widetilde{x_0} $ to $ \widetilde{x_1} $ and $ \gamma = p\rb{\widetilde{\gamma}} $. Then $ \sb{\gamma} $ conjugates $ H $ to $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_1}}} $ so $ \sb{\gamma}H\sb{\gamma}^{-1} = H $, if and only if $ H = p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_1}}} $, by Proposition \ref{prop:1.37} if and only if $ f\rb{\widetilde{x_0}} = \widetilde{x_1} $. So $ G\rb{\widetilde{X}} $ acts transitively on $ p^{-1}\rb{x_0} $ if and only if $ H \subseteq \pi_1\rb{X, x_0} $ is a normal subgroup. Let $ x_0' \in X $ be another point and $ h $ a path from $ x_0 $ to $ \widetilde{x_0} $. Let $ \widetilde{h} $ be a lift of $ h $ such that $ \widetilde{h}\rb{0} = \widetilde{x_0} $. Set $ \widetilde{x_0} = \widetilde{h}\rb{1} $ and $ p\rb{\widetilde{x_0'}} = x_0' $. Then
+$$
+\begin{tikzcd}
+\pi_1\rb{\widetilde{X}, \widetilde{x_0}} \arrow{r}{\beta_{\widetilde{h}}} \arrow[swap]{d}{p_*} & \pi_1\rb{\widetilde{X}, \widetilde{x_0'}} \arrow{d}{p_*} \\
+\pi_1\rb{X, x_0} \arrow[swap]{r}{\beta_h} & \pi_1\rb{X, x_0'}
+\end{tikzcd}.
+$$
+$ H \subseteq \pi_1\rb{X, x_0} $ is normal if and only if $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0'}}} \subseteq \pi_1\rb{X, x_0'} $ is normal, as before if and only if $ G\rb{\widetilde{X}} $ acts transitively on $ p^{-1}\rb{x_0'} $.
 \end{proof}
 
 \end{document}
