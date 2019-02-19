@@ -1198,16 +1198,16 @@ is an isomorphism such that $ f\rb{\widetilde{x_1}} = \widetilde{x_2} $.
 Let $ X $ be path-connected, locally path-connected, and semilocally simply-connected, and $ x_0 \in X $. Then
 \begin{enumerate}
 \item there is a bijection
-$$ \correspondence{\text{path-connected covering spaces} \ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} \\ \text{modulo basepoint preserving isomorphisms}}{\text{subgroups} \\ H \subseteq \pi_1\rb{X, x_0}}, $$
+$$ \correspondence{\text{path-connected covering spaces} \ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} \\ \text{up to basepoint preserving isomorphisms}}{\text{subgroups} \\ H \subseteq \pi_1\rb{X, x_0}}, $$
 \item if we ignore the basepoints, this correspondence gives a bijection
-$$ \correspondence{\text{path-connected covering spaces} \ p : \widetilde{X} \to X \\ \text{modulo isomorphisms}}{\text{conjugacy classes of subgroups} \\ H \subseteq \pi_1\rb{X, x_0}}. $$
+$$ \correspondence{\text{path-connected covering spaces} \ p : \widetilde{X} \to X \\ \text{up to isomorphisms}}{\text{conjugacy classes of subgroups} \\ H \subseteq \pi_1\rb{X, x_0}}. $$
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item To a covering space $ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} $ we associate the subgroup $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} $. Proposition \ref{prop:1.36} and Proposition \ref{prop:1.37} show that this is well-defined on the isomorphism classes and it is bijective.
+\item To a covering space $ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} $ we associate the subgroup $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} \subseteq \pi_1\rb{X, x_0} $. Proposition \ref{prop:1.36} and Proposition \ref{prop:1.37} show that this is well-defined on the isomorphism classes and it is bijective.
 \item Let $ p : \widetilde{X} \to X $ be a covering space and $ \widetilde{x_1}, \widetilde{x_2} \in p^{-1}\rb{x_0} $. Let $ H_i = p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_i}}} \subseteq \pi_1\rb{X, x_0} $, for $ i = 1, 2 $. Let $ \widetilde{\gamma} $ be a path from $ \widetilde{x_1} $ to $ \widetilde{x_2} $. Let $ \gamma = p\widetilde{\gamma} $ be a loop at $ x_0 $. Let $ \sb{f} \in \pi_1\rb{X, x_0} $. Then $ \sb{f} \in H_1 $ if and only if the lift $ \widetilde{f} $ is a loop at $ \widetilde{x_1} $. $ \widetilde{\gamma}^{-1} \cdot \widetilde{f} \cdot \widetilde{\gamma} $ is a loop at $ \widetilde{x_2} $ gives $ p_*\rb{\widetilde{\gamma}^{-1} \cdot \widetilde{f} \cdot \widetilde{\gamma}} = \gamma^{-1} \cdot f \cdot \gamma $, so $ \sb{\gamma}^{-1}\sb{f}\sb{\gamma} \in H_2 $. Thus $ \sb{\gamma}^{-1}H_1\sb{\gamma} \subseteq H_2 $. Similarly, $ \sb{\gamma}H_2\sb{\gamma}^{-1} \subseteq H_1 $. Conversely, let $ H_1 \subseteq \pi_1\rb{X, x_0} $ as above and $ \sb{\delta} \in \pi_1\rb{X, x_0} $ be an arbitrary element. Let $ \widetilde{\delta} $ be a lift of $ \delta $ such that $ \widetilde{\delta}\rb{0} = \widetilde{x_0} $ and define $ x_3 = \widetilde{\delta}\rb{1} $. Then the same construction yields $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_3}}} = \sb{\delta}^{-1}H_1\sb{\delta} $.
 \end{enumerate}
 \end{proof}
@@ -1274,5 +1274,58 @@ $$
 $$
 $ H \subseteq \pi_1\rb{X, x_0} $ is normal if and only if $ p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0'}}} \subseteq \pi_1\rb{X, x_0'} $ is normal, as before if and only if $ G\rb{\widetilde{X}} $ acts transitively on $ p^{-1}\rb{x_0'} $.
 \end{proof}
+
+\lecture{17}{Tuesday}{19/02/19}
+
+\begin{proposition}
+Let
+$$ p : \rb{\widetilde{X}, \widetilde{x_0}} \to \rb{X, x_0} $$
+be a covering space, and $ X, \widetilde{X} $ be path-connected and locally path-connected. Let $ H = p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} $ and $ N\rb{H} \subseteq \pi_1\rb{X, x_0} $ be the normaliser of $ H $. Then $ G\rb{\widetilde{X}} $ is isomorphic to $ N\rb{H} / H $. In particular,
+\begin{itemize}
+\item if $ \widetilde{X} $ is normal, then $ G\rb{\widetilde{X}} \cong \pi_1\rb{X, x_0} / H $, and
+\item if $ \widetilde{X} $ is the universal cover, then $ G\rb{\widetilde{X}} \cong \pi_1\rb{X, x_0} $.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+Exercise: read the proof of this in Hatcher.
+\end{proof}
+
+\begin{example*}
+Let $ X = S^1 \vee S^1 $, so $ \pi_1\rb{X} = F_{\cb{a, b}} $. Then the following are covering spaces.
+\begin{itemize}
+\item A normal covering space
+$$ \widetilde{X} = \overset{a}{\text{O}} \overset{\widetilde{x_0}}{\cdot} \overset{b}{\text{O}} \cdot \overset{a}{\text{O}} \to \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} = X, \qquad p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} = \ab{a, b^2, bab^{-1}} \overset{2}{\subseteq} F_{\cb{a, b}}. $$
+In general, a two-oriented graph is a covering space of $ X $.
+\item Not a normal covering space
+$$ \widetilde{X} = \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} \overset{\widetilde{x_0}}{\cdot} \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} \to \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} = X, \qquad p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} = \ab{b^2, bab^{-1}, a^2, aba^{-1}}. $$
+\item A normal covering space
+$$ \widetilde{X} = \dots \underset{b}{\_\_} \overset{a}{\text{O}} \underset{b}{\_\_} \underset{\widetilde{x_0}}{\overset{a}{\text{O}}} \underset{b}{\_\_} \overset{a}{\text{O}} \underset{b}{\_\_} \dots \to \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} = X, \qquad p_*\rb{\pi_1\rb{\widetilde{X}, \widetilde{x_0}}} = \ab{b^nab^{-n} \mid n \in \Z}. $$
+Universal cover is a tree.
+\end{itemize}
+\end{example*}
+
+\begin{example*}
+Let $ T = S^1 \times S^1 $, so $ \pi_1\rb{T} = \Z^2 $. This is abelian, so all covering spaces are normal. Universal cover is
+$$ \function{\R^2}{S^1 \times S^1}{\rb{s, t}}{\rb{e^{2\pi is}, e^{2\pi it}}}, $$
+since $ \R^2 $ is simply connected. (Exercise: check that it is a covering space) More generally, if $ p : \widetilde{X} \to X $ and $ q : \widetilde{X} \to X $ are covering spaces then
+$$ \function{\widetilde{X} \times \widetilde{Y}}{X \times Y}{\rb{x, y}}{\rb{p\rb{x}, q\rb{y}}} $$
+is again a covering space. For example,
+$$ \function{S^1 \times S^1}{S^1 \times S^1}{\rb{z_1, z_2}}{\rb{z_1^n, z_2^m}}. $$
+\end{example*}
+
+\begin{example*}
+Worksheet $ 3 $ exercise $ 7 $. Let
+$$ \R\P^n = \dfrac{\R^{n + 1} \setminus \cb{0}}{\sim} = \dfrac{S^n}{\sim} $$
+be the \textbf{projective $ n $-space}, the space of all lines through the origin in $ \R^{n + 1} $, where $ x \sim -x $. Let $ p : S^n \to \R\P^n $ be the quotient map. Claim that this is a covering space. Let $ \sb{x} \in \R\P^n $. Then $ p^{-1}\rb{\sb{x}} = \cb{\pm x} $. Let $ U $ be an open neighbourhood of $ x $ such that $ U \cap \rb{-U} = \emptyset $, so $ p\rb{U} = \cb{\sb{x} \mid x \in U} $. Then $ p^{-1}\rb{p\rb{U}} = U \cup \rb{-U} $ is open and disjoint. Thus $ p \mid_U : U \to p\rb{U} $ is a homeomorphism, so it is a covering space.
+\begin{itemize}
+\item $ n \ge 2 $ gives that $ S^n $ is simply-connected, so $ S^n \to \R\P^n $ is a universal cover. Then
+$$ \cb{id} = p_*\rb{\pi_1\rb{S^n}} \overset{2}{\subseteq} \pi_1\rb{\R\P^n}, $$
+so $ \abs{\pi_1\rb{\R\P^n}} = 2 $. Thus $ \pi_1\rb{\R\P^n} \cong \Z / 2\Z $.
+\item $ n = 1 $ gives $ \R\P^1 = S^1 $, so
+$$ \function[p]{S^1}{S^1}{z}{z^2} $$
+is a covering space.
+\end{itemize}
+\end{example*}
 
 \end{document}
