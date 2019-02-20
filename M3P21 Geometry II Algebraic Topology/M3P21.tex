@@ -1328,4 +1328,113 @@ is a covering space.
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
+\section{Homology}
+
+\lecture{18}{Wednesday}{20/02/19}
+
+Higher homotopy groups $ \pi_n\rb{X, x_0} $ are groups of basepoint preserving homotopies of continuous $ \phi : I^n \to X $ such that $ \phi\rb{\partial I^n} = x_0 $.
+
+\begin{example*}
+$$ \pi_1\rb{S^n} =
+\begin{cases}
+\Z & n = 1 \\
+0 & \text{otherwise}
+\end{cases},
+\qquad \pi_2\rb{S^n} =
+\begin{cases}
+\Z & n = 2 \\
+0 & \text{otherwise}
+\end{cases},
+$$
+$$ \pi_3\rb{S^n} =
+\begin{cases}
+\Z & n = 2, 3 \\
+0 & \text{otherwise}
+\end{cases},
+\qquad \pi_i\rb{S^2} =
+\begin{cases}
+\dfrac{\Z}{2\Z} & i = 4, 5 \\
+\dfrac{\Z}{12\Z} & i = 6
+\end{cases}.
+$$
+\end{example*}
+
+Homology is more suitable. The following is the plan.
+\begin{itemize}
+\item Simplicial homology.
+\item Singular homology.
+\item Technical machinery to show that they coincide.
+\item Applications.
+\end{itemize}
+
+\subsection{Simplicial and singular homology}
+
+\subsubsection{$ \Delta $-complexes}
+
+\begin{definition*}
+Let $ m, n \ge 0 $.
+\begin{itemize}
+\item An \textbf{$ n $-simplex} in $ \R^m $ is the convex hull of a set $ V $ of $ n + 1 $ points in $ \R^m $ that are not all contained in an affine $ \rb{n - 1} $-dimensional subspace of $ \R^m $.
+\item The \textbf{standard $ n $-simplex} is the convex hull of the standard basis $ \cb{e_1, \dots, e_{n + 1}} $ in $ \R^{n + 1} $,
+$$ \cb{\rb{x_0, \dots, x_n} \in \R^{n + 1} \mid x_i \ge 0, \ x_0 + \dots + x_n = 1}. $$
+\item An \textbf{ordered $ n $-simplex} is an $ n $-simplex with an ordering on the vertices. We denote it by $ \sb{v_0, \dots, v_n} $, where $ v_0, \dots, v_n $ are the vertices in ascending order.
+\item The \textbf{standard ordered $ n $-simplex} is the ordered $ n $-simplex $ \sb{e_1, \dots, e_{n + 1}} $ in $ \R^{n + 1} $. It is denoted by $ \Delta^n $.
+\item Let $ \sb{v_0, \dots, v_{n + 1}} $ be an $ n $-simplex in $ \R^m $ and let $ L \subseteq \R^m $ be the affine subspace spanned by $ v_0, \dots, v_n $. Then there exists a unique affine morphism
+$$ \function{L}{\R^{n + 1}}{v_i}{e_{i + 1}}, $$
+for $ i = 0, \dots, n $. This gives a homeomorphism from $ \sb{v_0, \dots, v_n} $ to $ \Delta^n $ that preserves this ordering.
+\item For $ n \ge 1 $, the \textbf{faces} of an ordered $ n $-simplex $ \sb{v_0, \dots, v_n} $ are the ordered $ \rb{n - 1} $-simplices
+$$ \sb{v_0, \dots, \widehat{v_i}, \dots, v_n}. $$
+$ \widehat{v_i} $ means we omit the vertex $ v_i $.
+\item The union of all the faces of a simplex $ \Delta $ is the \textbf{boundary} $ \partial\Delta $.
+\item The \textbf{interior} of $ \Delta $ is $ \mathring{\Delta} = \Delta \setminus \partial\Delta $.
+\end{itemize}
+\end{definition*}
+
+\begin{example*}
+Let $ \Delta^2 = \sb{e_1, e_2, e_3} $. Then $ \partial\Delta^2 = \sb{e_1, e_2} \cup \sb{e_1, e_3} \cup \sb{e_2, e_3} $.
+\end{example*}
+
+\begin{definition*}
+Let $ X $ be a topological space. A \textbf{$ \Delta $-complex structure} on $ X $ is a collection of continuous maps $ \sigma_\alpha : \Delta^{n\rb{\alpha}} \to X $ for $ \alpha \in A $ and $ n\rb{\alpha} \in \N $ such that
+\begin{enumerate}
+\item the restriction $ \sigma_\alpha \mid_{\mathring{\Delta}^{n\rb{\alpha}}} $ is injective for all $ \alpha \in A $ and for each $ x \in X $ there is a unique $ \alpha \in A $ such that $ x \in \sigma_\alpha\rb{\mathring{\Delta}^{n\rb{\alpha}}} $,
+\item the restriction of $ \sigma_\alpha $ to a face of $ \Delta^{n\rb{\alpha}} $ is equal to $ \sigma_\beta $ for some $ \beta \in A $ and $ n\rb{\beta} = n\rb{\alpha} - 1 $, and
+\item $ U \subseteq X $ is open if and only if $ \sigma_\alpha^{-1}\rb{U} $ is open in $ \Delta^{n\rb{\alpha}} $ for all $ \alpha \in A $.
+\end{enumerate}
+\end{definition*}
+
+An observation is that
+$$ \sigma : \bigsqcup_{\alpha \in A} \Delta^{n\rb{\alpha}} \to X $$
+induced by the $ \sigma_\alpha $ is a quotient map, since it is surjective by $ 1 $ and $ U \subseteq X $ is open if and only if $ \sigma^{-1}\rb{U} $ is open by $ 3 $.
+
+\begin{remark*}
+One can show that an $ X $ with a $ \Delta $-complex structure is a CW-complex.
+\end{remark*}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Torus or Klein bottle is two $ \Delta^2 $, three $ \Delta^1 $, and one $ \Delta^0 $.
+\item $ S^2 $ is a tetrahedron.
+\end{itemize}
+\end{example*}
+
+\subsubsection{Simplicial homology}
+
+Let $ X $ be a $ \Delta $-complex. The group of \textbf{$ n $-chains} $ \Delta_n\rb{X} $ is the free abelian group on the $ n $-simplices $ \sigma_\alpha : \Delta^{n\rb{\alpha}} \to X $, where $ n\rb{\alpha} = n $. So an element in $ \Delta_n\rb{X} $ is of the form
+$$ \sum_{\alpha \in A, \ n\rb{\alpha} = n} c_\alpha \cdot \sigma_\alpha, $$
+where $ c_\alpha \in \Z $ and all but finitely many of the $ c_\alpha $ are zero.
+
+\begin{example*}
+Let $ K $ be a Klein bottle.
+\begin{itemize}
+\item $ \Delta_0\rb{K} = \cb{n \cdot v \mid n \in \Z} \cong \Z $.
+\item $ \Delta_1\rb{K} = \cb{n_1 \cdot a + n_2 \cdot b + n_3 \cdot c \mid n_1, n_2, n_3 \in \Z} \cong \Z^3 $.
+\item $ \Delta_2\rb{K} = \cb{n_1 \cdot U + n_2 \cdot V \mid n_1, n_2 \in \Z} \cong \Z^2 $.
+\item $ \Delta_n\rb{K} = 0 $ for $ n \ge 3 $.
+\end{itemize}
+\end{example*}
+
 \end{document}
