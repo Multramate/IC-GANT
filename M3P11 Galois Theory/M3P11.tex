@@ -818,7 +818,7 @@ Claim that $ K $ is the splitting field of $ f $ over $ k $. Key point is argue 
 
 \pagebreak
 
-\section{Separable extensions}
+\section{Separable polynomials}
 
 \begin{definition}
 A polynomial $ f \in k\sb{x} $ is \textbf{separable} if it has $ n = \deg\rb{f} $ distinct roots in any field $ k \subset K $ such that $ f \in K\sb{x} $ splits completely.
@@ -991,30 +991,104 @@ $ \rho $ is surjective. For all $ x \in Em_k\rb{K, \Omega} $, there exists $ y \
 $$ \sb{L : k}_s = \abs{Em_k\rb{L, \Omega}} = \sum_{x \in Em_k\rb{K, \Omega}} \abs{\rho^{-1}\rb{x}} = \sum_{x \in Em_k\rb{K, \Omega}} \sb{L : K}_s = \sb{L : K}_s\sb{K : k}_s. $$
 \end{proof}
 
+\pagebreak
+
+\section{Separable extensions}
+
 Recall that for $ k \subset K $, we said $ a \in K $ is separable over $ k $ if the minimal polynomial $ f\rb{x} \in k\sb{x} $ of $ a $ is a separable polynomial.
 
 \begin{theorem}
-\hfill
-\begin{enumerate}
-\item $ k \subset K $ is separable if and only if $ \sb{K : k}_s = \sb{K : k} $.
-\item For all towers $ k \subset K \subset L $, if $ k \subset K $ and $ K \subset L $ are separable then $ k \subset L $ is separable.
-\item $ k \subset K $ is separable if and only if for all $ a \in K $, $ a $ is separable over $ k $.
-\end{enumerate}
+$ k \subset K $ is separable if and only if $ \sb{K : k}_s = \sb{K : k} $.
 \end{theorem}
 
 \begin{proof}
 \hfill
-\begin{enumerate}
-\item
 \begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
 \item $ \sb{K : k}_s = \sb{K : k} $ gives $ k \subset K $ is separable. Recall $ \sb{K : k}_s \le \sb{K : k} $. Statement follows from two tower laws for $ k \subset K_1 \subset K_2 \subset K $, so $ \sb{K_2 : K_1}_s = \sb{K_2 : K_1} $. So if $ \sb{K_2 : K_1}_s = 1 $ then $ \sb{K_2 : K_1} = 1 $ then $ K_1 = K_2 $.
 \item Suppose that $ k \subset k\rb{a} $ is separable then $ a $ is separable. Let $ f\rb{x} \in k\sb{x} $ be the minimal polynomial. Suppose for a contradiction that it is not a separable polynomial. $ f $ is irreducible and $ f \mid Df $ gives that $ Df \equiv 0 $ so $ ch\rb{k} = p $ and there exists $ h\rb{x} \in k\sb{x} $ irreducible such that $ f = h\rb{x^p} $. Let $ b = a^p $ and consider $ k \subset k\rb{b} \subset k\rb{a} $. $ a $ is a root of $ x^p - b \in k\rb{b}\sb{x} $.
 $$ p\deg\rb{h} = \sb{k\rb{a} : k} = \sb{k\rb{a} : k\rb{b}}\sb{k\rb{b} : k} = \sb{k\rb{a} : k\rb{b}}\deg\rb{h}, $$
 so $ \sb{k\rb{a} : k\rb{b}} = p $. Thus $ x^p - b = \rb{x - a}^p $ is the minimal polynomial of $ a $ over $ k\rb{b} $, so $ \sb{k\rb{a} : k\rb{b}}_s = 1 $ contradicts step $ 1 $ and two tower laws.
 \item For $ k \subset k\rb{a} $, $ k \subset k\rb{a} $ is separable gives $ \sb{k\rb{a} : k}_s = \sb{k\rb{a} : k} $. This is obvious from step $ 2 $. $ \sb{k\rb{a} : k} $ is the degree of the minimal polynomial and $ \sb{k\rb{a} : k}_s $ is the number of roots of minimal polynomial.
-\item End of proof of $ 1 $, by a familiar method, with induction and two tower laws.
-\end{enumerate}
+\item End of proof of $ 1 $, by a familiar method. Let us do the general case by induction on $ \sb{K : k} $. If $ k = K $ then there is nothing to prove. Otherwise pick $ a \in K \setminus k $. We know that both $ k \subset k\rb{a} $ and $ k\rb{a} \subset K $ are separable. $ \sb{K : k\rb{a}} < \sb{K : k} $ by tower law, hence by induction $ \sb{K : k\rb{a}}_s = \sb{K : k\rb{a}} $. We also know $ \sb{k\rb{a} : k}_s = \sb{k\rb{a} : k} $. Two tower laws give $ \sb{K : k}_s = \sb{K : k} $.
 \end{enumerate}
 \end{proof}
+
+\lecture{19}{Thursday}{21/02/19}
+
+\begin{corollary}
+For all towers $ k \subset K \subset L $, if $ k \subset K $ and $ K \subset L $ are separable then $ k \subset L $ is separable.
+\end{corollary}
+
+\begin{corollary}
+$ k \subset K $ is separable if and only if for all $ a \in K $, $ a $ is separable over $ k $.
+\end{corollary}
+
+\begin{proof}
+Suppose $ k \subset K $ is separable. Pick $ a \in K $ then $ k \subset k\rb{a} $ is also separable. By step $ 2 $ last time, $ a $ is separable. Conversely, suppose for all $ a \in K $, $ a $ is separable over $ k $. Pick $ a \in K \setminus k $. I claim $ k \subset k\rb{a} $ is separable. Then
+$$ \sb{k\rb{a} : k}_s = \abs{\cb{\text{roots of minimal polynomial} \ f}} = \deg\rb{f} = \sb{k\rb{a} : k}, $$
+so $ k \subset k\rb{a} $ is separable. We want to show that $ k\rb{a} \subset K $ is separable, by the following lemma.
+\end{proof}
+
+\begin{lemma}
+Let $ k \subset L \subset K $. For $ \lambda \in K $, $ \lambda $ is separable over $ k $ gives that $ \lambda $ is separable over $ L $.
+\end{lemma}
+
+\begin{proof}
+The minimal polynomial over $ L $ divides the minimal polynomial over $ k $.
+\end{proof}
+
+\pagebreak
+
+\section{Biquadratic extensions}
+
+Let
+$$ K \subset K\rb{\sqrt{a \pm \sqrt{b}}} = L, \qquad \beta = \sqrt{b}, \qquad \alpha = \sqrt{a + \beta}, \qquad \alpha' = \sqrt{a - \beta}, \qquad c = a^2 - b. $$
+We know that $ \pm\alpha, \pm\alpha' $ are the roots of
+\begin{equation}
+\label{eq:8}
+x^4 - 2ax^2 + c.
+\end{equation}
+This time we are not assuming $ \rb{\ref{eq:8}} $ is irreducible. Assume
+\begin{enumerate}
+\item $ ch\rb{K} \ne 2 $, and
+\item $ b $ is not a square in $ K $, that is $ \sb{K\rb{\beta} : K} = 2 $.
+\end{enumerate}
+Claim that the extension $ K \subset L $ is separable. It is the splitting field of $ f\rb{x} $. I need to check $ \gcd\rb{f, Df} = 1 $. $ Df = 4x^3 - 4ax = 4x\rb{x^2 - a} $. $ f, Df $ have no common roots, since $ x = 0 $ is not a root of $ f $, and $ x = \pm\sqrt{a} $ is not a root of $ f $, since $ b \ne 0 $.
+
+\begin{theorem}
+Assume $ 1 $ and $ 2 $.
+\begin{enumerate}
+\item Suppose $ bc, c $ are not squares. Then
+$$ \sb{L : K} = 8, \qquad G = D_8, \qquad f\rb{x} \text{irreducible}. $$
+\item Suppose $ c $ is not a square and $ bc $ is a square. Then
+$$ \sb{L : K} = 4, \qquad G = C_4, \qquad f\rb{x} \text{irreducible}. $$
+\item Suppose $ c $ is a square in $ K $. Let $ \gamma \in K $ such that $ \gamma^2 = c $. Then
+\begin{enumerate}
+\item either $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ both not squares in $ K $, then
+$$ \sb{L : K} = 4, \qquad G = C_2 \times C_2, \qquad f\rb{x} \text{irreducible}, $$
+\item or one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is a square in $ K $, but not the other, then
+$$ \sb{L : K} = \sb{K\rb{\sqrt{b}} : K} = 2, \qquad G = C_2, \qquad f\rb{x} \text{reducible}. $$
+Say for example $ 2\rb{a + \gamma} = \delta^2 $ and $ \delta \in K $, so $ f\rb{x} = \rb{x^2 - \delta x + \gamma}\rb{x^2 + \delta x + \gamma} $ is reducible. Something similar if $ 2\rb{a - \gamma} = \delta'^2 $ and $ \delta' \in K $.
+\end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+\begin{example*}
+All over $ \Q $.
+\begin{itemize}
+\item Let
+$$ f\rb{x} = x^4 - 2, \qquad L = \Q\rb{\sqrt{\pm\sqrt{2}}}. $$
+Then $ \sb{L : \Q} = 8 $ and $ G = D_8 $.
+\item Let
+$$ f\rb{x} = x^4 - 4x^2 + 2, \qquad L = \Q\rb{\sqrt{2 + \sqrt{2}}}. $$
+Then $ \sb{L : \Q} = 4 $ and $ G = C_4 $. Note that $ 2 - \sqrt{2} \in L $. (Exercise: why?)
+\item Let
+$$ f\rb{x} = x^4 - x^2 + 1, \qquad L = \Q\rb{e^{\tfrac{2\pi i}{12}}} = \Q\rb{i, \sqrt{3}}. $$
+Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
+\item Let
+$$ f\rb{x} = x^4 - 10x^2 + 1, \qquad L = \Q\rb{\sqrt{5 + 2\sqrt{6}}} = \Q\rb{\sqrt{2} + \sqrt{3}} = \Q\rb{\sqrt{2}, \sqrt{3}}. $$
+Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
+\end{itemize}
+\end{example*}
 
 \end{document}
