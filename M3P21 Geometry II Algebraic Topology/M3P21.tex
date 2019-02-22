@@ -1418,6 +1418,7 @@ One can show that an $ X $ with a $ \Delta $-complex structure is a CW-complex.
 \begin{itemize}
 \item Torus or Klein bottle is two $ \Delta^2 $, three $ \Delta^1 $, and one $ \Delta^0 $.
 \item $ S^2 $ is a tetrahedron.
+\item Dunce hat, by identifying all the three faces of the standard $ 2 $-simplex with each other, has one $ \Delta^2 $, one $ \Delta^1 $, and one $ \Delta^0 $.
 \end{itemize}
 \end{example*}
 
@@ -1430,10 +1431,78 @@ where $ c_\alpha \in \Z $ and all but finitely many of the $ c_\alpha $ are zero
 \begin{example*}
 Let $ K $ be a Klein bottle.
 \begin{itemize}
-\item $ \Delta_0\rb{K} = \cb{n \cdot v \mid n \in \Z} \cong \Z $.
-\item $ \Delta_1\rb{K} = \cb{n_1 \cdot a + n_2 \cdot b + n_3 \cdot c \mid n_1, n_2, n_3 \in \Z} \cong \Z^3 $.
-\item $ \Delta_2\rb{K} = \cb{n_1 \cdot U + n_2 \cdot V \mid n_1, n_2 \in \Z} \cong \Z^2 $.
+\item $ \Delta_0\rb{K} = \cb{n \cdot v \mid n \in \Z} = \Z \cdot v \cong \Z $.
+\item $ \Delta_1\rb{K} = \cb{n_1 \cdot a + n_2 \cdot b + n_3 \cdot c \mid n_1, n_2, n_3 \in \Z} = \Z \cdot a \oplus \Z \cdot b \oplus \Z \cdot c \cong \Z^3 $.
+\item $ \Delta_2\rb{K} = \cb{n_1 \cdot U + n_2 \cdot V \mid n_1, n_2 \in \Z} = \Z \cdot U \oplus \Z \cdot V \cong \Z^2 $.
 \item $ \Delta_n\rb{K} = 0 $ for $ n \ge 3 $.
+\end{itemize}
+Similarly for a torus $ T $.
+\end{example*}
+
+\lecture{19}{Friday}{22/02/19}
+
+Define the \textbf{boundary homomorphism} by
+$$ \function[\partial_n]{\Delta_n\rb{X}}{\Delta_{n - 1}\rb{X}}{\sigma_\alpha}{\sum_{i = 0}^n \rb{-1}^i\sigma_\alpha \mid_{\sb{v_0, \dots, \widehat{v_i}, \dots, v_n}}}. $$
+Moreover, we define $ \partial_0 = 0 $.
+
+\begin{example*}
+Let $ \sigma : \sb{v_0, v_1, v_2, v_3} \to X $. Then
+$$ \partial_3\rb{\sigma} = \sigma \mid_{\sb{v_1, v_2, v_3}} - \sigma \mid_{\sb{v_0, v_2, v_3}} + \sigma \mid_{\sb{v_0, v_1, v_3}} - \sigma \mid_{\sb{v_0, v_1, v_2}}. $$
+\end{example*}
+
+\begin{lemma}
+\label{lem:2.1}
+The composition
+$$ \Delta_n\rb{X} \xrightarrow{\partial_n} \Delta_{n - 1}\rb{X} \xrightarrow{\partial_{n - 1}} \Delta_{n - 2}\rb{X} $$
+is the zero map.
+\end{lemma}
+
+\begin{proof}
+Let $ \sigma : \sb{v_0, \dots, v_n} \to X $ be an $ n $-simplex. Then
+$$ \partial_n\rb{\sigma} = \sum_{i = 0}^n \rb{-1}^i\sigma \mid_{\sb{v_0, \dots, \widehat{v_i}, \dots, v_n}}, $$
+so
+$$ \rb{\partial_{n - 1} \circ \partial_n}\rb{\sigma} = \sum_{j < i} \rb{-1}^i\rb{-1}^j\sigma \mid_{\sb{v_0, \dots, \widehat{v_j}, \dots, \widehat{v_i}, \dots, v_n}} + \sum_{j > i} \rb{-1}^i\rb{-1}^{j - 1}\sigma \mid_{\sb{v_0, \dots, \widehat{v_i}, \dots, \widehat{v_j}, \dots, v_n}} = 0. $$
+If $ n = 1 $, clear.
+\end{proof}
+
+The following is the algebraic situation. A \textbf{chain complex} of abelian groups is a diagram $ \rb{C_\cdot, \partial} $ of the form
+$$ \dots \xrightarrow{\partial_{n + 1}} C_n \xrightarrow{\partial_n} \dots \xrightarrow{\partial_1} C_0 \xrightarrow{\partial_0} 0, $$
+where the $ C_i $ are abelian groups and the $ \partial_n $ are group homomorphisms such that $ \partial_n \circ \partial_{n - 1} = 0 $ for all $ n $. $ \partial_n $ are \textbf{boundary homomorphisms}. Elements in $ C_n $ are \textbf{$ n $-chains}.
+$$ Z_n = Ker\rb{\partial_n} \subseteq C_n, \qquad B_n = Im\rb{\partial_{n + 1}} \subseteq C_n. $$
+Elements in $ Z_n $ are \textbf{cycles} and elements in $ B_n $ are \textbf{boundaries}. Since $ \partial_{n + 1} \circ \partial_n = 0 $, we have that $ B_n \subset Z_n $. The \textbf{$ n $-th homology group} of this chain complex is defined by
+$$ H_n\rb{C_\cdot, \partial} = \dfrac{Z_n}{B_n}. $$
+So, by Lemma \ref{lem:2.1}
+$$ \dots \xrightarrow{\partial_{n + 1}} \Delta_n\rb{X} \xrightarrow{\partial_n} \dots \xrightarrow{\partial_1} \Delta_0\rb{X} \xrightarrow{\partial_0} 0 $$
+is a chain complex. The \textbf{$ n $-th simplicial homology group} is
+$$ H_n^\Delta\rb{X} = \dfrac{Ker\rb{\partial_n}}{Im\rb{\partial_{n + 1}}}. $$
+
+\begin{example*}
+Let $ X = S^1 $.
+$$
+\begin{tikzcd}[row sep=tiny]
+\dots \arrow{r}{\partial_3} & \Delta_2\rb{X} \arrow{r}{\partial_2} \arrow[cong]{d} & \Delta_1\rb{X} \arrow{r}{\partial_1} \arrow[cong]{d} & \Delta_0\rb{X} \arrow{r}{\partial_0} \arrow[cong]{d} & 0 \\
+& 0 & \Z & \Z &
+\end{tikzcd}.
+$$
+\begin{itemize}
+\item $ Ker\rb{\partial_0} = \Z $ and $ Im\rb{\partial_1} = 0 $, so $ H_0^\Delta\rb{X} \cong \Z $.
+\item $ Ker\rb{\partial_1} = \Delta_1\rb{X} $ and $ Im\rb{\partial_2} = 0 $, so $ H_1^\Delta\rb{X} \cong \Z $.
+\item $ H_n^\Delta\rb{X} = 0 $ if $ n \ge 2 $.
+\end{itemize}
+\end{example*}
+
+\begin{example*}
+Let $ T $ be a torus.
+$$
+\begin{tikzcd}[row sep=tiny]
+\dots \arrow{r}{\partial_4} & \Delta_3\rb{T} \arrow{r}{\partial_3} \arrow[cong]{d} & \Delta_2\rb{T} \arrow{r}{\partial_2} \arrow[cong]{d} & \Delta_1\rb{T} \arrow{r}{\partial_1} \arrow[cong]{d} & \Delta_0\rb{T} \arrow{r}{\partial_0} \arrow[cong]{d} & 0 \\
+& 0 & \Z \cdot U \oplus \Z \cdot V & \Z \cdot a \oplus \Z \cdot b \oplus \Z \cdot c & \Z \cdot v &
+\end{tikzcd}.
+$$
+\begin{itemize}
+\item $ Ker\rb{\partial_0} = \Z $ and $ Im\rb{\partial_1} = 0 $, so $ H_0^\Delta\rb{T} \cong \Z $.
+\item $ \partial_2\rb{U} = a + b - c $ and $ \partial_2\rb{V} = a + b - c $, and $ \cb{a, b, a + b - c} $ is a basis for $ \Delta_1\rb{T} $. $ Ker\rb{\partial_1} = \Delta_1\rb{T} $ and $ Im\rb{\partial_2} = \Z \cdot \rb{a + b - c} $, so $ H_1^\Delta\rb{T} \cong \Z \oplus \Z $.
+\item $ H_2^\Delta\rb{T} \cong \Z $. (Exercise)
 \end{itemize}
 \end{example*}
 
