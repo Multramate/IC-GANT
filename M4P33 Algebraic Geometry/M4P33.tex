@@ -1019,4 +1019,51 @@ $$ \dfrac{\sum_{j = 1}^k i\rb{Y, H; Z_j}\deg\rb{Z_j}}{\rb{r - 1}!} + \dots. $$
 
 \pagebreak
 
+\section{The $ 27 $ lines on a smooth cubic surface}
+
+\lecture{19}{Friday}{22/02/19}
+
+\begin{theorem}
+Let $ S \subseteq \P^3 $ be a nonsingular cubic surface given by a polynomial $ f\rb{x, y, z, t} $. Then $ S $ has exactly $ 27 $ lines.
+\end{theorem}
+
+We start with a lemma.
+
+\begin{lemma}
+\hfill
+\begin{enumerate}
+\item Given a point $ p \in S $ then there are at most three lines through $ p $. If there are two or three they must be spheres.
+\item Every plane $ \pi $ intersect $ S $ in
+\begin{itemize}
+\item an irreducible cubic,
+\item a conic and a line, or
+\item three distinct lines.
+\end{itemize}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item $ l \subseteq S $ gives $ T_p\rb{l} = l \subseteq T_p\rb{S} $, by $ 2 $ $ T_p\rb{S} $ intersect $ S $ in at most three lines.
+\item We have to prove that there are no multiple lines in the intersection $ S \cap \pi $. Changing coordinates if necessary, we can suppose $ \pi = \cb{f = 0} $ and $ l = \cb{z = 0} $ is the line in the intersection.
+$$ f = z^2 \cdot a\rb{x, y, z, t} + t \cdot b\rb{x, y, z, t}. $$
+Claim that $ S $ is singular at $ z = t = b = 0 $.
+$$ Jac\rb{f} = \onebytwo{z^2a_x + tb_x & z^2a_y + tb_y}{2za + z^2a_z + tb_z & z^2a_t + b + tb_t}. $$
+Since $ S $ is smooth there are no multiple lines.
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+$ S $ has a line.
+\end{lemma}
+
+\begin{proof}
+Let $ P \in S $ and consider $ T_P\rb{S} $. Then $ T_P\rb{S} $ intersects $ S $ in a plane cubic $ C = S \cap T_P\rb{S} $ which is singular at $ P $. Otherwise we are done. Then $ C $ has to be a nodal or a cuspidal curve. So assume that $ C $ is a cuspidal curve, and change coordinates if necessary, assume that $ P = \sb{0 : 0 : 1 : 0} $ and $ T_P\rb{S} = \cb{t = 0} $. So the equation of $ f $ has the shape
+$$ f = x^2z - y^3 + gt, $$
+for some $ g $ of homogeneous degree two. We consider the point $ P_\alpha = \sb{1 : \alpha : \alpha^3 : 0} \in C \subset S $, consider the plane $ x = 0 $ and the line $ P_\alpha Q $ in $ \P^3 $ passing through $ P_\alpha $ and intersecting this plane $ x = 0 $ at $ Q = \rb{0, y, z, t} $. The line through $ P_\alpha $ and $ Q $ is $ \lambda P_\alpha + \mu Q $ and it lies inside $ S $ if
+$$ f\rb{\lambda P_\alpha + \mu Q} = 0. $$
+After expanding this we have $ P_\alpha Q \subset S $ if and only if $ a\rb{y, z, t} = b\rb{y, z, t} = c\rb{y, z, t} = 0 $ for $ a, b, c $ to be determined. There is a polynomial $ R\rb{\alpha} $ of degree $ 27 $ such that $ R\rb{\alpha} = 0 $ if and only if $ a = b = c $ have a common zero.
+\end{proof}
+
 \end{document}
