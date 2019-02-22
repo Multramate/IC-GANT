@@ -1042,13 +1042,19 @@ The minimal polynomial over $ L $ divides the minimal polynomial over $ k $.
 \section{Biquadratic extensions}
 
 Let
-$$ K \subset K\rb{\sqrt{a \pm \sqrt{b}}} = L, \qquad \beta = \sqrt{b}, \qquad \alpha = \sqrt{a + \beta}, \qquad \alpha' = \sqrt{a - \beta}, \qquad c = a^2 - b. $$
+$$ K \subset K\rb{\sqrt{a \pm \sqrt{b}}} = L, \qquad \beta = \sqrt{b} \notin K, \qquad \alpha = \sqrt{a + \beta}, \qquad \alpha' = \sqrt{a - \beta}, \qquad c = a^2 - b. $$
 We know that $ \pm\alpha, \pm\alpha' $ are the roots of
 \begin{equation}
 \label{eq:8}
-x^4 - 2ax^2 + c.
+f\rb{x} = x^4 - 2ax^2 + c.
 \end{equation}
-This time we are not assuming $ \rb{\ref{eq:8}} $ is irreducible. Assume
+This time we are not assuming $ \rb{\ref{eq:8}} $ is irreducible. Let
+$$ \delta = \alpha + \alpha', \qquad \delta' = \alpha - \alpha', \qquad \gamma = \alpha\alpha'. $$
+Then
+$$ \gamma = \sqrt{c}, \qquad \delta^2 = 2\rb{a + \gamma}, \qquad \delta'^2 = 2\rb{a - \gamma}, \qquad \delta\delta' = 2\beta, \qquad \delta = \sqrt{2a + 2\gamma}, $$
+and $ \pm\delta, \pm\delta' $ are the roots of
+$$ g\rb{y} = y^4 - 4ay^2 + 4b. $$
+Assume
 \begin{enumerate}
 \item $ ch\rb{K} \ne 2 $, and
 \item $ b $ is not a square in $ K $, that is $ \sb{K\rb{\beta} : K} = 2 $.
@@ -1056,19 +1062,19 @@ This time we are not assuming $ \rb{\ref{eq:8}} $ is irreducible. Assume
 Claim that the extension $ K \subset L $ is separable. It is the splitting field of $ f\rb{x} $. I need to check $ \gcd\rb{f, Df} = 1 $. $ Df = 4x^3 - 4ax = 4x\rb{x^2 - a} $. $ f, Df $ have no common roots, since $ x = 0 $ is not a root of $ f $, and $ x = \pm\sqrt{a} $ is not a root of $ f $, since $ b \ne 0 $.
 
 \begin{theorem}
+\label{thm:biquadratic}
 Assume $ 1 $ and $ 2 $.
 \begin{enumerate}
 \item Suppose $ bc, c $ are not squares. Then
-$$ \sb{L : K} = 8, \qquad G = D_8, \qquad f\rb{x} \text{irreducible}. $$
+$$ \sb{L : K} = 8, \qquad G = D_8, \qquad f\rb{x} \ \text{irreducible}. $$
 \item Suppose $ c $ is not a square and $ bc $ is a square. Then
-$$ \sb{L : K} = 4, \qquad G = C_4, \qquad f\rb{x} \text{irreducible}. $$
+$$ \sb{L : K} = 4, \qquad G = C_4, \qquad f\rb{x} \ \text{irreducible}. $$
 \item Suppose $ c $ is a square in $ K $. Let $ \gamma \in K $ such that $ \gamma^2 = c $. Then
 \begin{enumerate}
 \item either $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ both not squares in $ K $, then
-$$ \sb{L : K} = 4, \qquad G = C_2 \times C_2, \qquad f\rb{x} \text{irreducible}, $$
+$$ \sb{L : K} = 4, \qquad G = C_2 \times C_2, \qquad f\rb{x} \ \text{irreducible}, $$
 \item or one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is a square in $ K $, but not the other, then
-$$ \sb{L : K} = \sb{K\rb{\sqrt{b}} : K} = 2, \qquad G = C_2, \qquad f\rb{x} \text{reducible}. $$
-Say for example $ 2\rb{a + \gamma} = \delta^2 $ and $ \delta \in K $, so $ f\rb{x} = \rb{x^2 - \delta x + \gamma}\rb{x^2 + \delta x + \gamma} $ is reducible. Something similar if $ 2\rb{a - \gamma} = \delta'^2 $ and $ \delta' \in K $.
+$$ \sb{L : K} = \sb{K\rb{\beta} : K} = 2, \qquad G = C_2, \qquad f\rb{x} \ \text{reducible}. $$
 \end{enumerate}
 \end{enumerate}
 \end{theorem}
@@ -1090,5 +1096,86 @@ $$ f\rb{x} = x^4 - 10x^2 + 1, \qquad L = \Q\rb{\sqrt{5 + 2\sqrt{6}}} = \Q\rb{\sq
 Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
 \end{itemize}
 \end{example*}
+
+\begin{lemma}
+Let $ B \in F $ and $ A \in F $ be not square in $ F $. If $ B $ is square in $ F\rb{\sqrt{A}} $ then either $ B $ is square in $ F $ or $ AB $ is square in $ F $.
+\end{lemma}
+
+\lecture{20}{Friday}{22/02/19}
+
+\begin{proof}
+Let
+$$ B = \rb{x + y\sqrt{A}}^2 = \rb{x^2 + Ay^2} + 2xy\sqrt{A}. $$
+Then
+\begin{itemize}
+\item either $ x = 0 $, so $ B = Ay^2 $ gives that $ AB = \rb{Ay}^2 $ is square in $ F $,
+\item or $ y = 0 $, so $ B = x^2 $ gives that $ B = x^2 $ is square in $ F $.
+\end{itemize}
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:biquadratic}]
+\hfill
+\begin{enumerate}
+\item Strategy is $ \sb{K\rb{\alpha} : K\rb{\beta}} = \sb{K\rb{\alpha'} : K\rb{\beta}} = 2 $ and $ K\rb{\alpha} \ne K\rb{\alpha'} $.
+$$
+\begin{tikzcd}
+& L & \\
+K\rb{\alpha} \arrow[dash]{ur}{2} & & K\rb{\alpha'} \arrow[dash, swap]{ul}{2} \\
+& K\rb{\beta} \arrow[dash]{ul}{2} \arrow[dash, swap]{ur}{2} & \\
+& K \arrow[dash]{u}{2} &
+\end{tikzcd}.
+$$
+\begin{itemize}
+\item Key idea is that suppose $ \alpha \in K\rb{\beta} = \cb{x + y\beta \mid x, y \in K} $. There exist $ x, y \in K $ such that $ \alpha = x + y\beta $. $ \rb{x + y\beta}^2 = a + \beta $ and $ \rb{x - y\beta}^2 = a - \beta $ gives
+$$ K \ni \rb{x^2 - y^2b}^2 = \rb{\rb{x + y\beta}\rb{x - y\beta}}^2 = \rb{a + \beta}\rb{a - \beta} = a^2 - b = c, $$
+so $ c $ is a square in $ K $. Similarly, $ \alpha' \in K\rb{\beta} $ gives $ \alpha \in K\rb{\beta} $, so $ c $ is a square in $ K $. $ c $ is not a square therefore $ \alpha \notin K\rb{\beta} $ and $ \alpha' \notin K\rb{\beta} $, that is $ \sb{K\rb{\alpha} : K\rb{\beta}} = \sb{K\rb{\alpha'} : K\rb{\beta}} = 2 $.
+\item Suppose for a contradiction $ \alpha' \in K\rb{\alpha} $, that is $ a - \beta $ is square in $ K\rb{\alpha} = K\rb{\beta}\rb{\sqrt{a + \beta}} $. Apply lemma with
+$$ F = K\rb{\beta}, \qquad A = a + \beta, \qquad B = a - \beta. $$
+Then either $ B $ is square in $ F $, a contradiction, or $ AB $ is square in $ F $, that is $ \rb{a + \beta}\rb{a - \beta} = a^2 - b = c $ is a square in $ K\rb{\beta} $. Apply lemma again with
+$$ F = K, \qquad A = b, \qquad B = c. $$
+Then either $ c $ is square in $ K $ or $ bc $ is square in $ K $, which are contradictions. Thus $ K\rb{\alpha} \ne K\rb{\alpha'} $.
+\end{itemize}
+$ \abs{G} = 8 $. Let $ \sigma \in G $. Then
+\begin{itemize}
+\item either $ \sigma\rb{\beta} = \beta $, so there are four possibilities $ \sigma\rb{\alpha} = \pm\alpha $ and $ \sigma\rb{\alpha'} = \pm\alpha' $,
+\item or $ \sigma\rb{\beta} = -\beta $, so there are four possibilities $ \sigma\rb{\alpha} = \pm\alpha' $ and $ \sigma\rb{\alpha'} = \pm\alpha $, since $ \sigma\rb{y^2 - a - \beta} = y^2 - a + \beta $.
+\end{itemize}
+Because $ \abs{G} = 8 $ all these permutations are elements of $ G $. Thus $ G = D_8 $ is the group of symmetries of the square
+$$
+\begin{tikzcd}
+& \alpha' & & \\
+-\alpha \arrow[dash]{ur} & \curvearrowleft \sigma & \alpha \arrow[dash]{ul} & \updownarrow \tau \\
+& -\alpha' \arrow[dash]{ul} \arrow[dash]{ur} & &
+\end{tikzcd},
+$$
+where $ \sigma $ is a rotation and $ \tau $ is a reflection. The lattice of subgroups is
+$$
+\begin{tikzcd}
+& & \cb{e} & & \\
+\ab{\tau} \arrow[dash]{urr} & \ab{\sigma^2\tau} \arrow[dash]{ur} & \ab{\sigma^2} \arrow[dash]{u} & \ab{\sigma\tau} \arrow[dash]{ul} & \ab{\sigma^3\tau} \arrow[dash]{ull} \\
+& \ab{\sigma^2, \tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \ab{\sigma} \arrow[dash]{u} & \ab{\sigma^2, \sigma\tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \\
+& & G \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & &
+\end{tikzcd}.
+$$
+The lattice of subfields is
+$$
+\begin{tikzcd}
+& & L & & \\
+K\rb{\alpha} \arrow[dash]{urr}{2} & K\rb{\alpha'} \arrow[dash, swap]{ur}{2} & K\rb{\beta, \gamma} \arrow[dash]{u}{2} & K\rb{\delta} \arrow[dash]{ul}{2} & K\rb{\delta'} \arrow[dash, swap]{ull}{2} \\
+& K\rb{\beta} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & K\rb{\beta\gamma} \arrow[dash]{u}{2} & K\rb{\gamma} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & \\
+& & K \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & &
+\end{tikzcd}.
+$$
+\item $ K\rb{\beta\gamma} = K $, so $ K\rb{\beta} = K\rb{\gamma} $. The lattice of subfields is
+$$
+\begin{tikzcd}
+L = K\rb{\alpha} = K\rb{\alpha'} = K\rb{\delta} = K\rb{\delta'} \\
+K\rb{\beta} = K\rb{\gamma} = K\rb{\beta, \gamma} \arrow[dash]{u}{2} \\
+K = K\rb{\beta\gamma} \arrow[dash]{u}{2}
+\end{tikzcd},
+$$
+since $ \beta \notin K $ and if $ \alpha \in K\rb{\beta} $ then also $ \alpha' \in K\rb{\beta} $, so $ \gamma \in K\rb{\beta} $ so $ c $ is square in $ K\rb{\beta} $.
+\end{enumerate}
+\end{proof}
 
 \end{document}
