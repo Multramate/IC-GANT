@@ -1355,14 +1355,14 @@ The ring of integers $ \OO_K $ in a number field $ K $ is Noetherian.
 
 \begin{proof}
 Assume that
-$$ a_1 \subseteq \dots \subseteq a_n \subseteq \dots $$
+$$ \aa_1 \subseteq \dots \subseteq \aa_n \subseteq \dots $$
 is an ascending sequence of ideals in $ \OO_K $.
-$$ Nm\rb{a_1} \ge \dots \ge Nm\rb{a_n} \ge \dots, $$
+$$ Nm\rb{\aa_1} \ge \dots \ge Nm\rb{\aa_n} \ge \dots, $$
 since
-$$ \OO_K / a_1 \twoheadrightarrow \dots \twoheadrightarrow \OO_K / a_n \twoheadrightarrow \dots. $$
+$$ \OO_K / \aa_1 \twoheadrightarrow \dots \twoheadrightarrow \OO_K / \aa_n \twoheadrightarrow \dots. $$
 This must stabilise, so
-$$ Nm\rb{a_n} = Nm\rb{a_{n + 1}} = \dots. $$
-$ a_n \subseteq a_{n + 1} $ gives $ \OO_K / a_n \twoheadrightarrow \OO_K / a_{n + 1} $. Equality of norms gives that this must be a bijection, so $ a_n = a_{n + 1} $. (Exercise: $ a \subseteq b \subseteq \OO_K $ such that $ Nm\rb{a} = Nm\rb{b} $ gives $ a = b $)
+$$ Nm\rb{\aa_n} = Nm\rb{\aa_{n + 1}} = \dots. $$
+$ \aa_n \subseteq \aa_{n + 1} $ gives $ \OO_K / \aa_n \twoheadrightarrow \OO_K / \aa_{n + 1} $. Equality of norms gives that this must be a bijection, so $ \aa_n = \aa_{n + 1} $. (Exercise: $ \aa \subseteq \bb \subseteq \OO_K $ such that $ Nm\rb{\aa} = Nm\rb{\bb} $ gives $ \aa = \bb $)
 \end{proof}
 
 \begin{lemma}
@@ -1429,5 +1429,103 @@ $$ Nm\rb{\ab{a}} = a_1 \cdot \dots \cdot a_n = \det\rb{a} = Nm_{K / \Q}\rb{a}. $
 \lecture{19}{Friday}{22/02/19}
 
 Lecture 19 is a problem class.
+
+\pagebreak
+
+\subsection{Fractional ideals}
+
+\lecture{20}{Monday}{25/02/19}
+
+Goal is to show that unique factorisation of ideals into prime ideals always holds in a Dedekind domain.
+
+\begin{definition}
+Let $ R $ be an integral domain, with fraction field $ K $. A \textbf{fractional ideal} $ \nn $ of $ R $ is an $ R $-submodule of $ K $, that is
+\begin{itemize}
+\item an additive subgroup, so $ x \in \nn $ and $ y \in \nn $ gives $ x + y \in \nn $, and
+\item stable under multiplication by $ R $, so $ x \in \nn $ and $ r \in R $ gives $ rx \in \nn $,
+\end{itemize}
+such that there exists $ a \in R $ such that $ a\nn = \cb{ax \mid x \in \nn} \subseteq R $.
+\end{definition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Any ideal of $ R $ is also a fractional ideal with $ a = 1 $. Conversely, if $ \nn $ is a fractional ideal and $ \nn \subseteq R $, then $ \nn $ is an integral ideal.
+\item Let $ R = \Z \hookrightarrow \Q $. Then the fractional ideals of $ \Q $ are $ \tfrac{p}{q} \cdot \Z $ for $ p, q \in \Z $ and $ q \ne 0 $. $ \Q $ is not a fractional ideal, but it is a $ \Z $-module.
+\end{itemize}
+\end{example*}
+
+We can multiply fractional ideals of $ R $ by
+$$ \mm \cdot \nn = \cb{\sum_{i = 1}^k x_i \cdot y_i \ \Bigg| \ x_i \in \mm, \ y_i \in \nn, \ k \in \Z_{\ge 0}}. $$
+
+\begin{lemma}
+If $ \mm, \nn $ are fractional ideals of $ R $ then $ \mm \cdot \nn $ is also a fractional ideal of $ R $.
+\end{lemma}
+
+\begin{proof}
+$ \mm \cdot \nn $ is additive. $ \mm \cdot \nn $ is stable under multiplication by $ r \in R $, since
+$$ r\rb{\sum_{i = 1}^k x_i \cdot y_i} = \sum_{i = 1}^k rx_i \cdot y_i \in \mm \cdot \nn. $$
+There exists $ a, b \in R $ such that $ a\mm \subseteq R $ and $ b\nn \subseteq R $, so $ ab \cdot \mm \cdot \nn \subseteq R $.
+\end{proof}
+
+Multiplication of fractional ideals is commutative, so $ \mm \cdot \nn = \nn \cdot \mm $, is associative, and has unit $ R \cdot \mm = \mm \cdot R = \mm $. If $ R $ is a Dedekind domain, we will show that every fractional ideal has a multiplicative inverse, that is given a fractional ideal $ \mm $ of $ R $, there exists a fractional ideal $ \mm^{-1} $ of $ R $ such that $ \mm \cdot \mm^{-1} = R $.
+
+\begin{example*}
+$ \Z\sb{x} $ is not a Dedekind domain, since $ \ab{2, x} $ does not have an inverse with respect to multiplication.
+\end{example*}
+
+\begin{theorem}
+\label{thm:group}
+Let $ R $ be a Dedekind domain. The set of non-zero fractional ideals of $ R $ forms a commutative group under multiplication.
+\end{theorem}
+
+To prove Theorem \ref{thm:group}, need some preliminary results.
+
+\begin{lemma}
+\label{lem:primeideal}
+Let $ \pp \subsetneq R $ be a prime ideal in an integral domain. Assume $ \pp \supseteq \aa_1\aa_2 $ for ideals $ \aa_1, \aa_2 \subseteq R $. Then $ \pp \supseteq \aa_1 $ or $ \pp \supseteq \aa_2 $.
+\end{lemma}
+
+\begin{proof}
+If $ \pp \nsupseteq \aa_1 $ there exists $ x \in \aa_1 \setminus \pp $, so $ x\aa_2 \subseteq \pp $. Let $ y \in \aa_2 $. Then $ xy \in \pp $ and $ x \notin \pp $ gives $ y \in \pp $, since $ \pp $ is prime, so $ \aa_2 \subseteq \pp $.
+\end{proof}
+
+\begin{remark*}
+Same Lemma \ref{lem:primeideal} holds if $ \pp \supseteq \aa_1, \dots, \aa_n $ for $ n \in \Z_{\ge 1} $ then $ \pp \supseteq \aa_i $ for some $ i $.
+\end{remark*}
+
+\begin{lemma}
+\label{lem:primeproduct}
+If $ I \subseteq R $ is a non-zero ideal of a Noetherian domain, there exists $ \pp_1, \dots, \pp_n \subseteq R $ non-zero prime ideals not necessarily distinct, such that $ I \supseteq \pp_1 \dots \pp_n $ for some finite $ n \in \Z $.
+\end{lemma}
+
+\begin{proof}
+Assume Lemma \ref{lem:primeproduct} is false. Choose $ I $ for which condition in Lemma \ref{lem:primeproduct} fails and such that $ I $ is maximal with respect to inclusion, that is for all $ J \supseteq I $, $ J $ satisfies the condition. $ I $ is not prime, otherwise it would satisfy the condition. There exists $ a, b \in R $ such that $ a \notin I $ and $ b \notin I $ but $ ab \in I $. Look at $ I \subsetneq I + bR $ and $ I \subsetneq I + aR $, both satisfying the condition. Let $ I + bR \supseteq \pp_1 \dots \pp_r $ and $ I + aR \supseteq \qq_1 \dots \qq_s $.
+Thus
+$$ \pp_1 \dots \pp_r \cdot \qq_1 \dots \qq_s \subseteq \rb{I + bR} \cdot \rb{I + aR} \subseteq I. $$
+\end{proof}
+
+\begin{proposition}
+Let $ R $ be a Dedekind domain. Let $ \mm \subsetneq R $ be a non-zero prime ideal, if and only if maximal ideal of $ R $. Define
+$$ \mm^{-1} = \cb{a \in K \mid a\mm \subseteq R}. $$
+Then $ \mm^{-1} $ is a fractional ideal of $ R $ and $ \mm \cdot \mm^{-1} = R $.
+\end{proposition}
+
+\begin{proof}
+$ \mm^{-1} $ is a fractional ideal.
+\begin{itemize}
+\item $ \mm^{-1} $ is an additive subgroup of $ K $.
+$$
+\begin{cases}
+x \in \mm^{-1} \quad \implies \quad x \cdot \mm \subseteq R \\
+y \in \mm^{-1} \quad \implies \quad y \cdot \mm \subseteq R
+\end{cases}
+\quad \implies \quad \rb{x + y}\mm \subseteq x\mm + y\mm \subseteq R \quad \implies \quad x + y \in \mm^{-1}.
+$$
+\item $ \mm^{-1} $ is stable under multiplication by $ R $.
+$$ x \in \mm^{-1} \qquad \implies \qquad x \cdot \mm \subseteq R \qquad \implies \qquad rx \cdot \mm \subseteq R \qquad \implies \qquad rx \in \mm^{-1}. $$
+\item Let $ a \in \mm $ such that $ a \ne 0 $. Then $ a\mm^{-1} \subseteq R $ by definition of $ \mm^{-1} $.
+\end{itemize}
+\end{proof}
 
 \end{document}
