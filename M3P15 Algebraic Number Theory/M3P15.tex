@@ -71,7 +71,7 @@ $$ \Z\sb{i} = \Z \oplus \Z i = \cb{a + bi \mid a, b \in \Z} $$
 is the subring of \textbf{Gaussian integers} in $ \Q\rb{i} / \Q $, an extension $ \Q\sb{x} / \rb{x^2 + 1} $ of $ \Q $ of degree two, a quadratic field. We will understand prime factorisation in $ \Z\sb{i} $, and in more general finite extensions of $ \Q $.
 
 \begin{theorem}[Unique factorisation in $ \Z $]
-\label{thm:ufiz}
+\label{thm:uniquefactorisationinz}
 Any $ n \in \Z \setminus \cb{0, \pm 1} $ can be written uniquely as a product of primes, up to permuting the prime factors or changing their signs.
 \end{theorem}
 
@@ -94,7 +94,7 @@ If $ p \in \Z $ is prime, then
 $$ p \mid ab, \qquad a, b \in \Z \qquad \implies \qquad p \mid a \ \text{or} \ p \mid b. $$
 \end{proposition}
 
-\begin{proof}[Proof of Theorem \ref{thm:ufiz}]
+\begin{proof}[Proof of Theorem \ref{thm:uniquefactorisationinz}]
 \hfill
 \begin{itemize}
 \item All $ n \in \Z $ has a prime divisor by taking $ p \in \Z_{\ge 2} $, the smallest divisor of $ n $.
@@ -156,7 +156,7 @@ $$ \rb{a + b} - \rb{a' + b'} = \rb{a - a'} + \rb{b - b'} \in I, $$
 $$ ab - a'b' = a\rb{b - b'} + b'\rb{a - a'} \in I. $$
 
 \begin{theorem}[First isomorphism theorem for rings]
-\label{thm:fitfr}
+\label{thm:firstisomorphism}
 Let $ \phi : R \to S $ be a ring homomorphism. Then we have a canonical ring isomorphism
 $$ \function{\dfrac{R}{Ker\rb{\phi}}}{\phi\rb{R} \subset S}{r + Ker\rb{\phi}}{\phi\rb{r}}, $$
 for $ r \in R $.
@@ -167,7 +167,7 @@ Let $ R = \Z\sb{\sqrt{5}} = \cb{a + b\sqrt{5} \mid a, b \in \Z} $.
 \begin{itemize}
 \item Let $ I $ be the ideal $ 11\Z \oplus \rb{4 - \sqrt{5}}\Z $. A question is what is $ R / I $? Claim that
 $$ \dfrac{R}{I} \cong \dfrac{\Z}{11\Z} = \F_{11}, $$
-the finite field with $ 11 $ elements. Write down $ \phi : R \twoheadrightarrow \Z / 11\Z $ such that $ Ker\rb{\phi} = I $, then result follows from Theorem \ref{thm:fitfr}. Such a $ \phi $ would have to satisfy
+the finite field with $ 11 $ elements. Write down $ \phi : R \twoheadrightarrow \Z / 11\Z $ such that $ Ker\rb{\phi} = I $, then result follows from Theorem \ref{thm:firstisomorphism}. Such a $ \phi $ would have to satisfy
 $$ \phi\rb{4 - \sqrt{5}} = 0, \qquad \phi\rb{11} = 0. $$
 $ \phi\rb{\sqrt{5}} = \phi\rb{4} = 4 \mod 11 $.
 $$ \function[\phi]{\Z \oplus \Z\sb{\sqrt{5}}}{\dfrac{\Z}{11\Z}}{\sqrt{5}}{4}. $$
@@ -195,13 +195,13 @@ I \cdot J & = \cb{\sum_{i = 1}^n r_is_i \ \Bigg| \ r_i \in I, \ s_i \in J, \ i =
 \end{definition}
 
 \begin{theorem}[Chinese remainder theorem]
-\label{thm:crt}
+\label{thm:chineseremainder}
 Let $ I, J $ be two relatively prime ideals of $ R $. Then
 $$ \dfrac{R}{IJ} \cong \dfrac{R}{I} \times \dfrac{R}{J}. $$
 \end{theorem}
 
 \begin{remark*}
-If $ R = \Z $, all ideals are principal and Theorem \ref{thm:crt} specialises to usual Chinese remainder theorem.
+If $ R = \Z $, all ideals are principal and Theorem \ref{thm:chineseremainder} specialises to usual Chinese remainder theorem.
 \end{remark*}
 
 \begin{proof}
@@ -318,7 +318,7 @@ Exercise.
 \end{proof}
 
 \begin{theorem}
-\label{thm:ufdacc}
+\label{thm:ufd}
 Let $ R $ be an ID. The following conditions are equivalent.
 \begin{itemize}
 \item $ R $ is a UFD.
@@ -346,7 +346,7 @@ $$ v \cdot q_1 \cdot \dots \cdot q_{d\rb{b}} = u \cdot w \cdot p_1 \cdot \dots \
 Uniqueness of factorisation gives $ d\rb{b} = d\rb{a} + d\rb{c} $, so $ d\rb{b} \ge d\rb{a} $. Equality if and only if $ d\rb{c} = 0 $ if and only if $ c $ is a unit, if and only if $ b \mid a $.
 \end{proof}
 
-\begin{proof}[Proof of Theorem \ref{thm:ufdacc}]
+\begin{proof}[Proof of Theorem \ref{thm:ufd}]
 \hfill
 \begin{itemize}
 \item[$ \implies $] Assume $ R $ is a UFD. Irreducibles are prime. Let
@@ -382,7 +382,7 @@ An ID $ R $ is a \textbf{principal ideal domain (PID)} if every ideal of $ R $ i
 \end{example*}
 
 \begin{theorem}
-\label{thm:pidufd}
+\label{thm:pid}
 A PID $ R $ is a UFD.
 \end{theorem}
 
@@ -403,7 +403,7 @@ All inclusions are equalities, so $ \ab{a_m} = \ab{a_n} $ for all $ m \ge n $.
 \begin{remark*}
 \hfill
 \begin{itemize}
-\item $ \Z\sb{\sqrt{-5}} $ is not a PID. Follows from Theorem \ref{thm:pidufd} and failure of unique factorisation. $ \ab{2, 1 + \sqrt{-5}} $ is not a principal ideal. (Exercise: check this)
+\item $ \Z\sb{\sqrt{-5}} $ is not a PID. Follows from Theorem \ref{thm:pid} and failure of unique factorisation. $ \ab{2, 1 + \sqrt{-5}} $ is not a principal ideal. (Exercise: check this)
 \item A UFD that is not a PID. $ \Q\sb{x, y} $ is a UFD but $ \ab{x, y} $ is not principal. $ \Z\sb{x} $ is a UFD but $ \ab{2, x} $ is not principal.
 \end{itemize}
 \end{remark*}
@@ -711,7 +711,7 @@ $$ N' \oplus x\Z = \cb{n' + n \cdot x \mid n' \in N', \ n \in \Z} \cong M'. $$
 \subsection{Strong structure theorem}
 
 \begin{theorem}[Structure theorem, strong form]
-\label{thm:structuretheorem}
+\label{thm:structure}
 Let $ M $ be a free $ \Z $-module of rank $ n $. Let $ M' \subseteq M $ be a submodule. Then there exist
 \begin{itemize}
 \item a basis $ \rb{e_1, \dots, e_n} $ of $ M $, and
@@ -720,7 +720,7 @@ Let $ M $ be a free $ \Z $-module of rank $ n $. Let $ M' \subseteq M $ be a sub
 \end{theorem}
 
 \begin{corollary}
-\label{cor:fgag}
+\label{cor:structure}
 Let $ G $ be a finitely generated abelian group. Then there exist $ a_1, \dots, a_n \in \Z $ such that $ a_1 \mid \dots \mid a_n $ and
 $$ G \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_n\Z}. $$
 \end{corollary}
@@ -728,11 +728,11 @@ $$ G \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_n\Z}. $$
 \lecture{10}{Friday}{01/02/19}
 
 \begin{remark*}
-In Corollary \ref{cor:fgag}, we are allowing $ a_i = 0 $ for some $ i \in \cb{1, \dots, n} $.
+In Corollary \ref{cor:structure}, we are allowing $ a_i = 0 $ for some $ i \in \cb{1, \dots, n} $.
 \end{remark*}
 
 \begin{proof}
-Consider $ e_1, \dots, e_n $, the generators of $ G $, and let $ M $ be the free $ \Z $-module spanned by $ e_1, \dots, e_n $. $ \phi : M \twoheadrightarrow G $ is a surjective $ \Z $-module homomorphism. Have isomorphism of $ \Z $-modules $ M / M' \subseteq G $, induced by $ \phi $. Theorem \ref{thm:structuretheorem} gives
+Consider $ e_1, \dots, e_n $, the generators of $ G $, and let $ M $ be the free $ \Z $-module spanned by $ e_1, \dots, e_n $. $ \phi : M \twoheadrightarrow G $ is a surjective $ \Z $-module homomorphism. Have isomorphism of $ \Z $-modules $ M / M' \subseteq G $, induced by $ \phi $. Theorem \ref{thm:structure} gives
 $$ M = e_1\Z \oplus \dots \oplus e_n\Z, \qquad M' = a_1e_1\Z \oplus \dots \oplus a_qe_q\Z, $$
 where $ a_{q + 1} = \dots = a_n = 0 $. Thus
 $$ \dfrac{M}{M'} \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_q\Z} \times \dfrac{\Z}{a_{q + 1}\Z} \times \dots \times \dfrac{\Z}{a_n\Z} \cong \dfrac{\Z}{a_1\Z} \times \dots \times \dfrac{\Z}{a_q\Z} \times \Z \times \dots \times \Z. $$
@@ -767,7 +767,7 @@ Let $ M $ be a free $ \Z $-module of rank $ n $, and $ x \in M $. Then there exi
 Look at the set of all ideals $ \ab{q\rb{x}} \subseteq \Z $. Applying Lemma \ref{lem:2}, there exists $ \ab{p\rb{x}} \subseteq \Z $, where $ p : M \to \Z $, which is maximal with respect to inclusion. Want $ p\rb{x} \mid q\rb{x} $ for all $ q : M \to \Z $. Applying Lemma \ref{lem:1} to $ p, q $ gives $ r : M \to \Z $ such that $ r\rb{x} \mid q\rb{x} $ and $ r\rb{x} \mid p\rb{x} $, so $ \ab{r\rb{x}} \supseteq \ab{p\rb{x}} $. Because $ p $ is maximal, have equality $ r\rb{x} \sim p\rb{x} $, so $ p\rb{x} \mid q\rb{x} $.
 \end{proof}
 
-\begin{proof}[Proof of Theorem \ref{thm:structuretheorem}]
+\begin{proof}[Proof of Theorem \ref{thm:structure}]
 Argue by induction on $ n = rk_\Z\rb{M} $.
 \begin{itemize}
 \item Let $ M' \subseteq M $. If $ p : M \to \Z $, then $ p\rb{M'} \subseteq M $. Choose $ p $ such that $ p\rb{M'} $ is maximal with respect to inclusion among all $ q : M \to \Z $.
@@ -1401,7 +1401,7 @@ $$
 \end{itemize}
 \end{remark*}
 
-\subsection{Properties of ideal norm}
+\subsection{Properties of ideal norms}
 
 \begin{proposition}
 Let $ I \subseteq J \subseteq \OO_K $ be a sequence of ideals. Then $ Nm\rb{J} \mid Nm\rb{I} $.
@@ -1506,10 +1506,13 @@ $$ \pp_1 \dots \pp_r \cdot \qq_1 \dots \qq_s \subseteq \rb{I + bR} \cdot \rb{I +
 \end{proof}
 
 \begin{proposition}
+\label{prop:inverse}
 Let $ R $ be a Dedekind domain. Let $ \mm \subsetneq R $ be a non-zero prime ideal, if and only if maximal ideal of $ R $. Define
 $$ \mm^{-1} = \cb{a \in K \mid a\mm \subseteq R}. $$
 Then $ \mm^{-1} $ is a fractional ideal of $ R $ and $ \mm \cdot \mm^{-1} = R $.
 \end{proposition}
+
+\lecture{21}{Tuesday}{26/02/19}
 
 \begin{proof}
 $ \mm^{-1} $ is a fractional ideal.
@@ -1526,6 +1529,57 @@ $$
 $$ x \in \mm^{-1} \qquad \implies \qquad x \cdot \mm \subseteq R \qquad \implies \qquad rx \cdot \mm \subseteq R \qquad \implies \qquad rx \in \mm^{-1}. $$
 \item Let $ a \in \mm $ such that $ a \ne 0 $. Then $ a\mm^{-1} \subseteq R $ by definition of $ \mm^{-1} $.
 \end{itemize}
+$ \mm = \mm \cdot 1 \subseteq \mm \cdot \mm^{-1} \subseteq R $ is automatic by definition. Since $ \mm $ is maximal, either $ \mm = \mm \cdot \mm^{-1} $ or $ \mm \cdot \mm^{-1} = R $. Assume $ \mm = \mm \cdot \mm^{-1} $ and get a contradiction. Take $ x \in \mm^{-1} $.
+$$ \dots \subseteq x^n \cdot \mm \subseteq \dots \subseteq x \cdot \mm \subseteq \mm \subsetneq R, $$
+so $ x^n \in \mm^{-1} $ for all $ n \in \Z_{\ge 1} $. Let $ R\sb{x} $ be the subring of $ K $ generated by $ x $, so $ R\sb{x} \subseteq \mm^{-1} $. Let $ a \in R \setminus \cb{0} $ be such that $ a\mm^{-1} \subseteq R $. In particular $ aR\sb{x} \subseteq R $ is an integral ideal of $ R $. $ R $ is Noetherian, so $ aR\sb{x} $ is generated over $ R $ by finitely many elements $ y_1, \dots, y_k \in R $. $ x \cdot y_i \in aR\sb{x} $ gives
+$$ x \cdot \threebyone{y_1}{\vdots}{y_k} = A\threebyone{y_1}{\vdots}{y_k}, \qquad A = \threebythree{a_{11}}{\dots}{a_{1k}}{\vdots}{\ddots}{\vdots}{a_{k1}}{\dots}{a_{kk}} \in M_k\rb{R}, $$
+a $ k \times k $ matrix, so $ x $ is an eigenvalue of $ A $ with eigenvector $ \rb{y_1, \dots, y_k}^t $. Thus $ x $ is a root of $ \det\rb{tI_k - A} $, so $ x $ is integral over $ R $. All $ x \in \mm^{-1} $ satisfy $ x \in R $ because $ R $ is integrally closed, so $ \mm^{-1} = R $. Choose $ a \in \mm \setminus \cb{0} $.
+$$ \mm \supsetneq \ab{a} \supseteq \pp_1 \cdot \dots \cdot \pp_k, $$
+where $ \pp_i $ are prime, by Lemma \ref{lem:primeproduct}. Lemma \ref{lem:primeideal} from last time gives that $ \mm $ must contain $ \pp_i $ for some $ i = 1, \dots, k $. Assume $ \mm \supseteq \pp_1 \ne 0 $, so $ \mm = \pp_1 $. Choose $ k $ such that it is minimal among all possible $ \pp_1 \cdot \dots \cdot \pp_k $ contained in $ \ab{a} $, so $ \pp_2 \cdot \dots \cdot \pp_k \nsubseteq \ab{a} $, since $ \pp_2 \cdot \dots \cdot \pp_k $ has length $ k - 1 $. Choose $ 0 \ne b \in \pp_2 \cdot \dots \pp_k \setminus \ab{a} $. Then $ b / a \in K $ such that
+\begin{enumerate}
+\item $ b / a \in R $, and
+\item $ b / a \in \mm^{-1} $
+\end{enumerate}
+gives a contradiction.
+\begin{enumerate}
+\item $ b \in aR = \ab{a} $ is false, so $ b / a \notin R $.
+\item $ b / a \in \mm^{-1} $ if $ b / a \cdot \mm \subseteq R $, or equivalently
+$$ b \cdot \mm \in \pp_1 \cdot \dots \cdot \pp_k \subseteq \ab{a}. $$
+\end{enumerate}
+$ \mm^{-1} \ne R $ gives $ \mm \cdot \mm^{-1} \ne R $, so $ \mm \cdot \mm^{-1} = R $, which is done.
+\end{proof}
+
+\pagebreak
+
+\subsection{Unique factorisation of ideals}
+
+\begin{theorem}[Unique factorisation of ideals]
+\label{thm:uniquefactorisationofideals}
+\hfill
+\begin{enumerate}
+\item Any non-zero fractional ideal $ I $ of $ R $ can be written as
+$$ I = \pp_1^{k_1} \cdot \dots \cdot \pp_r^{k_r}, $$
+where $ \pp_1 $ are non-zero prime ideals and $ k_i \in \Z \setminus \cb{0} $.
+\item This factorisation is unique up to order of the $ \pp_i $.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark*}
+Given $ I $,
+$$ I^{-1} = \pp_1^{-k_1} \cdot \dots \cdot \pp_r^{-k_r}. $$
+Get $ I \cdot I^{-1} = R $, so any non-zero fractional ideal has a multiplicative inverse.
+\end{remark*}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item There exists $ a \in R \setminus \cb{0} $ such that $ aI \subseteq R $ is an integral ideal so we may assume $ I $ is an integral ideal. Assume Theorem \ref{thm:uniquefactorisationofideals} is false. Because $ R $ is Noetherian, there exists $ I $ such that $ I $ does not admit a factorisation and $ I $ is maximal with this property. Let $ \mm \supseteq I $ be a maximal ideal. Then $ J = \mm^{-1} \cdot I \subseteq R $, so $ J $ is an integral ideal. $ J $ admits a factorisation because
+$$ \mm^{-1} \cdot I = J \supsetneq I = 1 \cdot I, $$
+since if $ \mm^{-1} \cdot I = I $, argue as in proof of Proposition \ref{prop:inverse}. Thus $ I = \mm \cdot J $, a contradiction.
+\item Let
+$$ \pp_1^{k_1} \cdot \dots \cdot \pp_r^{k_r} = \qq_1^{k_1} \cdot \dots \cdot \qq_r^{k_r}. $$
+We may assume all $ k_i, l_j > 0 $. $ \pp_1 \supseteq \qq_1^{l_1} \cdot \dots \cdot \qq_s^{l_s} $, so $ \pp_1 \supseteq \qq_1 $. Both maximal, so $ \pp_1 = \qq_1 $.
+\end{enumerate}
 \end{proof}
 
 \end{document}
