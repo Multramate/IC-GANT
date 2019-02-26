@@ -1042,71 +1042,58 @@ The minimal polynomial over $ L $ divides the minimal polynomial over $ k $.
 \section{Biquadratic extensions}
 
 Let
-$$ K \subset K\rb{\sqrt{a \pm \sqrt{b}}} = L, \qquad \beta = \sqrt{b} \notin K, \qquad \alpha = \sqrt{a + \beta}, \qquad \alpha' = \sqrt{a - \beta}, \qquad c = a^2 - b. $$
+$$ K \subset K\rb{\sqrt{a \pm \sqrt{b}}} = L, \qquad c = a^2 - b, \qquad \beta = \sqrt{b} \notin K, \qquad \alpha = \sqrt{a + \beta} \in L, \qquad \alpha' = \sqrt{a - \beta} \in L. $$
 We know that $ \pm\alpha, \pm\alpha' $ are the roots of
 \begin{equation}
 \label{eq:8}
 f\rb{x} = x^4 - 2ax^2 + c.
 \end{equation}
 This time we are not assuming $ \rb{\ref{eq:8}} $ is irreducible. Let
-$$ \delta = \alpha + \alpha', \qquad \delta' = \alpha - \alpha', \qquad \gamma = \alpha\alpha'. $$
+$$ \delta = \alpha + \alpha', \qquad \delta' = \alpha - \alpha', \qquad \gamma = \alpha\alpha' = \sqrt{c}. $$
 Then
-$$ \gamma = \sqrt{c}, \qquad \delta^2 = 2\rb{a + \gamma}, \qquad \delta'^2 = 2\rb{a - \gamma}, \qquad \delta\delta' = 2\beta, \qquad \delta = \sqrt{2a + 2\gamma}, $$
+$$ \gamma^2 = c, \qquad \delta^2 = 2\rb{a + \gamma}, \qquad \delta'^2 = 2\rb{a - \gamma}, \qquad \delta\delta' = 2\beta, \qquad \alpha = \dfrac{\delta + \delta'}{2}, \qquad \alpha' = \dfrac{\delta - \delta'}{2}, $$
 and $ \pm\delta, \pm\delta' $ are the roots of
 $$ g\rb{y} = y^4 - 4ay^2 + 4b. $$
-Assume
+$ L $ is the splitting field of $ g $. Assume
 \begin{enumerate}
 \item $ ch\rb{K} \ne 2 $, and
 \item $ b $ is not a square in $ K $, that is $ \sb{K\rb{\beta} : K} = 2 $.
 \end{enumerate}
-Claim that the extension $ K \subset L $ is separable. It is the splitting field of $ f\rb{x} $. I need to check $ \gcd\rb{f, Df} = 1 $. $ Df = 4x^3 - 4ax = 4x\rb{x^2 - a} $. $ f, Df $ have no common roots, since $ x = 0 $ is not a root of $ f $, and $ x = \pm\sqrt{a} $ is not a root of $ f $, since $ b \ne 0 $.
+Claim that the extension $ K \subset L $ is separable. It is the splitting field of $ f\rb{x} $. I need to check $ \gcd\rb{f, Df} = 1 $.
+$$ Df = 4x^3 - 4ax = 4x\rb{x^2 - a}. $$
+$ f, Df $ have no common roots, since $ x = 0 $ is not a root of $ f $ and $ x = \pm\sqrt{a} $ is not a root of $ f $, since $ b \ne 0 $.
 
 \begin{theorem}
 \label{thm:biquadratic}
 Assume $ 1 $ and $ 2 $.
 \begin{enumerate}
 \item Suppose $ bc, c $ are not squares. Then
-$$ \sb{L : K} = 8, \qquad G = D_8, \qquad f\rb{x} \ \text{irreducible}. $$
-\item Suppose $ c $ is not a square and $ bc $ is a square. Then
-$$ \sb{L : K} = 4, \qquad G = C_4, \qquad f\rb{x} \ \text{irreducible}. $$
-\item Suppose $ c $ is a square in $ K $. Let $ \gamma \in K $ such that $ \gamma^2 = c $. Then
-\begin{enumerate}
+$$ \sb{L : K} = 8, \qquad G = D_8, $$
+and $ f\rb{x} $ is irreducible.
+\item Suppose $ bc $ is a square, so $ c $ is not a square. Then
+$$ \sb{L : K} = 4, \qquad G = C_4, $$
+and $ f\rb{x} $ is irreducible.
+\item Suppose $ c $ is a square, so $ bc $ is not a square. Then
+\begin{itemize}
 \item either $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ both not squares in $ K $, then
-$$ \sb{L : K} = 4, \qquad G = C_2 \times C_2, \qquad f\rb{x} \ \text{irreducible}, $$
+$$ \sb{L : K} = 4, \qquad G = C_2 \times C_2, $$
+and $ f\rb{x} $ is irreducible.
 \item or one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is a square in $ K $, but not the other, then
-$$ \sb{L : K} = \sb{K\rb{\beta} : K} = 2, \qquad G = C_2, \qquad f\rb{x} \ \text{reducible}. $$
-\end{enumerate}
+$$ \sb{L : K} = \sb{K\rb{\beta} : K} = 2, \qquad G = C_2, $$
+and $ f\rb{x} $ is reducible.
+\end{itemize}
 \end{enumerate}
 \end{theorem}
 
-\begin{example*}
-All over $ \Q $.
-\begin{itemize}
-\item Let
-$$ f\rb{x} = x^4 - 2, \qquad L = \Q\rb{\sqrt{\pm\sqrt{2}}}. $$
-Then $ \sb{L : \Q} = 8 $ and $ G = D_8 $.
-\item Let
-$$ f\rb{x} = x^4 - 4x^2 + 2, \qquad L = \Q\rb{\sqrt{2 + \sqrt{2}}}. $$
-Then $ \sb{L : \Q} = 4 $ and $ G = C_4 $. Note that $ 2 - \sqrt{2} \in L $. (Exercise: why?)
-\item Let
-$$ f\rb{x} = x^4 - x^2 + 1, \qquad L = \Q\rb{e^{\tfrac{2\pi i}{12}}} = \Q\rb{i, \sqrt{3}}. $$
-Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
-\item Let
-$$ f\rb{x} = x^4 - 10x^2 + 1, \qquad L = \Q\rb{\sqrt{5 + 2\sqrt{6}}} = \Q\rb{\sqrt{2} + \sqrt{3}} = \Q\rb{\sqrt{2}, \sqrt{3}}. $$
-Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
-\end{itemize}
-\end{example*}
+\lecture{20}{Friday}{22/02/19}
 
 \begin{lemma}
+\label{lem:biquadratic}
 Let $ B \in F $ and $ A \in F $ be not square in $ F $. If $ B $ is square in $ F\rb{\sqrt{A}} $ then either $ B $ is square in $ F $ or $ AB $ is square in $ F $.
 \end{lemma}
 
-\lecture{20}{Friday}{22/02/19}
-
 \begin{proof}
-Let
-$$ B = \rb{x + y\sqrt{A}}^2 = \rb{x^2 + Ay^2} + 2xy\sqrt{A}. $$
-Then
+Let $ B = \rb{x + y\sqrt{A}}^2 = \rb{x^2 + Ay^2} + 2xy\sqrt{A} $. Then
 \begin{itemize}
 \item either $ x = 0 $, so $ B = Ay^2 $ gives that $ AB = \rb{Ay}^2 $ is square in $ F $,
 \item or $ y = 0 $, so $ B = x^2 $ gives that $ B = x^2 $ is square in $ F $.
@@ -1129,9 +1116,9 @@ $$
 \item Key idea is that suppose $ \alpha \in K\rb{\beta} = \cb{x + y\beta \mid x, y \in K} $. There exist $ x, y \in K $ such that $ \alpha = x + y\beta $. $ \rb{x + y\beta}^2 = a + \beta $ and $ \rb{x - y\beta}^2 = a - \beta $ gives
 $$ K \ni \rb{x^2 - y^2b}^2 = \rb{\rb{x + y\beta}\rb{x - y\beta}}^2 = \rb{a + \beta}\rb{a - \beta} = a^2 - b = c, $$
 so $ c $ is a square in $ K $. Similarly, $ \alpha' \in K\rb{\beta} $ gives $ \alpha \in K\rb{\beta} $, so $ c $ is a square in $ K $. $ c $ is not a square therefore $ \alpha \notin K\rb{\beta} $ and $ \alpha' \notin K\rb{\beta} $, that is $ \sb{K\rb{\alpha} : K\rb{\beta}} = \sb{K\rb{\alpha'} : K\rb{\beta}} = 2 $.
-\item Suppose for a contradiction $ \alpha' \in K\rb{\alpha} $, that is $ a - \beta $ is square in $ K\rb{\alpha} = K\rb{\beta}\rb{\sqrt{a + \beta}} $. Apply lemma with
+\item Suppose for a contradiction $ \alpha' \in K\rb{\alpha} $, that is $ a - \beta $ is square in $ K\rb{\alpha} = K\rb{\beta}\rb{\sqrt{a + \beta}} $. Apply Lemma \ref{lem:biquadratic} with
 $$ F = K\rb{\beta}, \qquad A = a + \beta, \qquad B = a - \beta. $$
-Then either $ B $ is square in $ F $, a contradiction, or $ AB $ is square in $ F $, that is $ \rb{a + \beta}\rb{a - \beta} = a^2 - b = c $ is a square in $ K\rb{\beta} $. Apply lemma again with
+Then either $ B $ is square in $ F $, a contradiction, or $ AB $ is square in $ F $, that is $ \rb{a + \beta}\rb{a - \beta} = a^2 - b = c $ is a square in $ K\rb{\beta} $. Apply Lemma \ref{lem:biquadratic} again with
 $$ F = K, \qquad A = b, \qquad B = c. $$
 Then either $ c $ is square in $ K $ or $ bc $ is square in $ K $, which are contradictions. Thus $ K\rb{\alpha} \ne K\rb{\alpha'} $.
 \end{itemize}
@@ -1146,9 +1133,9 @@ $$
 & \alpha' & & \\
 -\alpha \arrow[dash]{ur} & \curvearrowleft \sigma & \alpha \arrow[dash]{ul} & \updownarrow \tau \\
 & -\alpha' \arrow[dash]{ul} \arrow[dash]{ur} & &
-\end{tikzcd},
+\end{tikzcd}.
 $$
-where $ \sigma $ is a rotation and $ \tau $ is a reflection. The lattice of subgroups is
+The lattice of subgroups is
 $$
 \begin{tikzcd}
 & & \cb{e} & & \\
@@ -1162,20 +1149,81 @@ $$
 \begin{tikzcd}
 & & L & & \\
 K\rb{\alpha} \arrow[dash]{urr}{2} & K\rb{\alpha'} \arrow[dash, swap]{ur}{2} & K\rb{\beta, \gamma} \arrow[dash]{u}{2} & K\rb{\delta} \arrow[dash]{ul}{2} & K\rb{\delta'} \arrow[dash, swap]{ull}{2} \\
-& K\rb{\beta} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & K\rb{\beta\gamma} \arrow[dash]{u}{2} & K\rb{\gamma} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & \\
+& K\rb{\beta} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & K\rb{\beta\gamma} \arrow[dash]{u}{2} & K\rb{\gamma} \arrow[dash]{ul}{2} \arrow[dash, swap]{u}{2} \arrow[dash, swap]{ur}{2} & \\
 & & K \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & &
 \end{tikzcd}.
 $$
-\item $ K\rb{\beta\gamma} = K $, so $ K\rb{\beta} = K\rb{\gamma} $. The lattice of subfields is
+
+\lecture{21}{Tuesday}{26/02/19}
+
+\item $ K\rb{\beta\gamma} = K $, so $ K\rb{\beta} = K\rb{\gamma} $. $ \beta \notin K $. Suppose $ a + \beta $ is square in $ K\rb{\beta} $. There exist $ x, y \in K $ such that $ a + \beta = \rb{x + y\beta}^2 = x^2 + y^2b + 2xy\beta $, so $ \rb{x - y\beta}^2 = a - \beta $, then
+$$ K \ni \rb{x^2 - by^2}^2 = \rb{\rb{x + y\beta}\rb{x - y\beta}}^2 = \rb{a + \beta}\rb{a - \beta} = a^2 - b = c, $$
+so $ c $ is square in $ K $, a contradiction.
 $$
 \begin{tikzcd}
 L = K\rb{\alpha} = K\rb{\alpha'} = K\rb{\delta} = K\rb{\delta'} \\
 K\rb{\beta} = K\rb{\gamma} = K\rb{\beta, \gamma} \arrow[dash]{u}{2} \\
 K = K\rb{\beta\gamma} \arrow[dash]{u}{2}
-\end{tikzcd},
+\end{tikzcd}.
 $$
-since $ \beta \notin K $ and if $ \alpha \in K\rb{\beta} $ then also $ \alpha' \in K\rb{\beta} $, so $ \gamma \in K\rb{\beta} $ so $ c $ is square in $ K\rb{\beta} $.
+Claim that $ G = C_4 $. What's different? $ \alpha\alpha' = \gamma $ and $ \beta\gamma \in K $. Let $ \sigma \in G $. If $ \sigma\rb{\beta} = \beta $ then $ \sigma\rb{\alpha} = \pm\alpha $.
+\begin{itemize}
+\item $ \sigma\rb{\alpha} = \alpha $ gives $ \sigma\rb{\alpha'} = \alpha' $, and
+\item $ \sigma\rb{\alpha} = -\alpha $ gives $ \sigma\rb{\alpha'} = -\alpha' $.
+\end{itemize}
+If $ \sigma\rb{\beta} = -\beta $ then $ \sigma\rb{\alpha} = \pm\alpha' $.
+\begin{itemize}
+\item $ \sigma\rb{\alpha} = \alpha' $ gives $ \sigma\rb{\alpha'} = -\alpha $, and
+\item $ \sigma\rb{\alpha} = -\alpha' $ gives $ \sigma\rb{\alpha'} = \alpha $.
+\end{itemize}
+$$
+\begin{tikzcd}
+& \alpha' & \\
+-\alpha \arrow[dash]{ur} & \curvearrowleft \sigma & \alpha \arrow[dash]{ul} \\
+& -\alpha' \arrow[dash]{ul} \arrow[dash]{ur} &
+\end{tikzcd}.
+$$
+Thus $ G = C_4 $.
+\item $ L = K\rb{\sqrt{2\rb{a \pm \gamma}}} $ is the splitting field of $ g\rb{y} = \rb{y^2 - 2a - 2\gamma}\rb{y^2 - 2a + 2\gamma} $.
+$$
+\begin{tikzcd}
+& L = K\rb{\delta, \delta'} & \\
+K\rb{\beta} \arrow[dash]{ur} & K\rb{\delta} \arrow[dash]{u} & K\rb{\delta'} \arrow[dash, swap]{ul} \\
+& K \arrow[dash]{ul}{2} \arrow[dash]{u}{\le 2} \arrow[dash, swap]{ur}{\le 2} &
+\end{tikzcd}.
+$$
+If $ \sb{L : K} = 4 $ then $ G = C_2 \times C_2 $. Note that $ \sb{L : K} $ cannot be $ 1 $. Can it be $ \sb{L : K} = 2 $? At least one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is not square in $ K $. Suppose $ 2\rb{a - \gamma} $ is not square in $ K $. Can it be that $ 2\rb{a + \gamma} $ is square in $ K\rb{\sqrt{2\rb{a - \gamma}}} = K\rb{\delta'} $? By Lemma \ref{lem:biquadratic}
+\begin{itemize}
+\item either $ 2\rb{a + \gamma} $ is square in $ K $, which is possible,
+\item or $ 2\rb{a + \gamma}2\rb{a - \gamma} = 4\rb{a^2 - c} = 4b $ is square in $ K $, which is impossible.
+\end{itemize}
+Conclusion is
+\begin{itemize}
+\item either $ \sb{L : K} = 4 $, $ f\rb{x} $ is irreducible, and $ G = C_2 \times C_2 $,
+\item or one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is square in $ K $ but not the other, $ \sb{L : K} = 2 $, $ f\rb{x} $ is not irreducible, and $ G = C_2 $.
+\end{itemize}
 \end{enumerate}
 \end{proof}
+
+\begin{example*}
+All over $ \Q $.
+\begin{itemize}
+\item Let
+$$ f\rb{x} = x^4 - 2, \qquad L = \Q\rb{\sqrt{\pm\sqrt{2}}}. $$
+Then $ \sb{L : \Q} = 8 $ and $ G = D_8 $.
+\item Let
+$$ f\rb{x} = x^4 - 4x^2 + 2, \qquad L = \Q\rb{\sqrt{2 + \sqrt{2}}}. $$
+Then $ \sb{L : \Q} = 4 $ and $ G = C_4 $.
+\item Let
+$$ f\rb{x} = x^4 - x^2 + 1, \qquad L = \Q\rb{e^{\tfrac{2\pi i}{12}}} = \Q\rb{i, \sqrt{3}}. $$
+Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
+\item Let
+$$ f\rb{x} = x^4 - 10x^2 + 1, \qquad L = \Q\rb{\sqrt{5 + 2\sqrt{6}}} = \Q\rb{\sqrt{2} + \sqrt{3}} = \Q\rb{\sqrt{2}, \sqrt{3}}. $$
+Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
+\item Let
+$$ f\rb{x} = x^4 - 6x^2 + 1 = \rb{x^2 - 2x - 1}\rb{x^2 + 2x - 1}, \qquad L = \Q\rb{\sqrt{3 + 2\sqrt{2}}} = \Q\rb{\sqrt{2}}. $$
+Then $ \sb{L : \Q} = 2 $ and $ G = C_2 $.
+\end{itemize}
+\end{example*}
 
 \end{document}
