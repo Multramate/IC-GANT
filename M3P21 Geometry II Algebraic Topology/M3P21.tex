@@ -1510,4 +1510,93 @@ $$
 
 Lecture 20 is a problem class.
 
+\lecture{21}{Wednesday}{27/02/19}
+
+\subsubsection{Singular homology}
+
+A \textbf{singular $ n $-simplex} in a topological space $ X $ is a continuous map $ \sigma : \Delta^n \to X $. Let $ C_n\rb{X} $ be the free abelian group on the set of all singular simplices in $ X $, that is elements in $ C_n\rb{X} $ are finite formal sums
+$$ \sum_i n_i \sigma_i, \qquad n_i \in \Z, $$
+where $ \sigma_i : \Delta^n \to X $ are singular $ n $-simplices. Elements in $ C_n\rb{X} $ are called \textbf{singular $ n $-chains}. Define a \textbf{boundary map}
+$$ \function[\partial_n]{C_n\rb{X}}{C_{n - 1}\rb{X}}{\sigma}{\sum_{i = 0}^n \rb{-1}^i\sigma \mid_{\sb{v_1, \dots, \widetilde{v_i}, \dots, v_n}}}, $$
+for a singular $ n $-simplex $ \sigma $. Extend it linearly to $ C_n\rb{X} $.
+
+\begin{lemma}
+$ \partial_n \circ \partial_{n + 1} = 0 $.
+\end{lemma}
+
+\begin{proof}
+Same proof as for Lemma \ref{lem:2.1}.
+\end{proof}
+
+We obtain a chain complex
+$$ \dots \xrightarrow{\partial_{n + 1}} C_n\rb{X} \xrightarrow{\partial_n} \dots \xrightarrow{\partial_1} C_0\rb{X} \xrightarrow{\partial_0} 0. $$
+
+\begin{remark*}
+Often we write $ \partial $ instead of $ \partial_n $.
+\end{remark*}
+
+We define the \textbf{$ n $-th singular homology group} by
+$$ H_n\rb{X} = \dfrac{Ker\rb{\partial_n}}{Im\rb{\partial_{n + 1}}}. $$
+An observation is that if $ X $ and $ Y $ are homeomorphic then $ H_n\rb{X} \cong H_n\rb{Y} $.
+
+\begin{proposition}
+Let $ X $ be a topological space and $ X = \bigcup_\alpha X_\alpha $ be the decomposition into its path-connected components. Then
+$$ H_n\rb{X} \cong \bigoplus_\alpha H_n\rb{X_\alpha}. $$
+\end{proposition}
+
+\begin{proof}
+A singular $ n $-simplex $ \sigma : \Delta^n \to X $ has a path-connected image. So
+$$ C_n\rb{X} = \bigoplus_\alpha C_n\rb{X_\alpha}. $$
+The boundary maps $ \partial_n $ preserve this decomposition, so $ \partial_n\rb{C_n\rb{X_\alpha}} \subseteq C_{n - 1}\rb{X_\alpha} $ gives that $ Ker\rb{\partial_n} $ and $ Im\rb{\partial_{n + 1}} $ split as well as direct sums, so
+$$ H_n\rb{X} = \dfrac{Ker\rb{\partial_n}}{Im\rb{\partial_{n + 1}}} \cong \bigoplus_\alpha H_n\rb{X_\alpha}. $$
+\end{proof}
+
+\begin{proposition}
+\label{prop:2.7}
+If $ X $ is a path-connected, and as always $ X \ne \emptyset $, topological space, then $ H_0\rb{X} \cong \Z $. Hence for $ X $ arbitrary $ H_0\rb{X} $ is a direct sum of $ \Z $'s, one for each path-connected component.
+\end{proposition}
+
+\begin{proof}
+$ \partial_0 = 0 $, so $ H_0\rb{X} = C_0\rb{X} / Im\rb{\partial_1} $. Define
+$$ \function[\epsilon]{C_0\rb{X}}{\Z}{\sum_i n_i\sigma_i}{\sum_i n_i}. $$
+$ \epsilon $ is surjective. Enough to show that $ Ker\rb{\epsilon} = Im\rb{\partial_1} $. This implies by the isomorphism theorem $ H_0\rb{X} \cong \Z $. Let $ \sigma : \Delta^1 \to X $ be a $ 1 $-simplex. Then
+$$ \partial_1\rb{\sigma} = \sigma \mid_{\sb{v_1}} - \sigma \mid_{\sb{v_0}}, $$
+so $ \epsilon\rb{\partial_1\rb{\sigma}} = 0 $ gives $ Im\rb{\partial_1} \subseteq Ker\rb{\epsilon} $. On the other hand, $ \epsilon\rb{\sum_i n_i\sigma_i} = 0 $ gives $ \sum_i n_i = 0 $. The $ \sigma_i $ correspond to points $ \sigma_i\rb{\sb{v}} $ in $ X $. Choose a basepoint $ x_0 \in X $ and let
+$$ \function[\sigma_0]{\Delta^0}{X}{\Delta^0}{x_0} $$
+be the singular $ 0 $-simplex. Let $ \tau_i $ be a path from $ x_0 $ to $ \sigma_i\rb{\sb{v}} $. Consider $ \tau_i $ as a singular $ 1 $-simplex $ \tau_i : \sb{v_0, v_1} \to X $. We have $ \partial_1 \circ \tau_i = \sigma_i - \sigma_0 $, so
+$$ \partial_1\rb{\sum_i n_i\tau_i} = \sum_i n_i\rb{\sigma_i - \sigma_0} = \sum_i n_i\sigma_i - \sum_i n_i\sigma_0 = \sum_i n_i\sigma_i. $$
+Thus $ Ker\rb{\epsilon} \subseteq Im\rb{\partial_1} $.
+\end{proof}
+
+\begin{proposition}
+If $ X $ is a point, then $ H_n\rb{X} = 0 $ for $ n > 0 $ and $ H_0\rb{\Z} = \Z $.
+\end{proposition}
+
+\begin{proof}
+For each $ n $ there exists a unique singular $ n $-simplex $ \partial_n : \Delta^n \to X $, so $ C_n\rb{X} \cong \Z $ for all $ n $.
+$$ \partial_n\rb{\sigma_n} = \sum_{i = 0}^n \rb{-1}^i\sigma_{n - 1} =
+\begin{cases}
+0 & n \ \text{odd} \\
+\sigma_{n - 1} & n \ \text{even}
+\end{cases},
+$$
+so $ \partial_n = 0 $ if $ n $ is odd and $ \partial_n $ is an isomorphism if $ n $ is even.
+$$
+\begin{tikzcd}[row sep=tiny]
+\dots \arrow{r}{\partial_2} & C_1\rb{X} \arrow{r}{\partial_1} \arrow[cong]{d} & C_0\rb{X} \arrow{r}{\partial_0} \arrow[cong]{d} & 0 \\
+\dots \arrow[swap]{r}{\sim} & \Z \arrow[swap]{r}{0} & \Z \arrow[swap]{r}{\sim} & 0
+\end{tikzcd},
+$$
+so $ H_n = Ker\rb{\partial_n} / Im\rb{\partial_{n + 1}} = 0 $ if $ n \ge 1 $ and $ H_0\rb{X} \cong \Z $.
+\end{proof}
+
+The \textbf{reduced homology groups} $ \widetilde{H_n}\rb{X} $ are the homology groups of the \textbf{augmented chain complex}
+$$ \dots \xrightarrow{\partial_2} C_1\rb{X} \xrightarrow{\partial_1} C_0\rb{X} \xrightarrow{\partial_0} \Z \xrightarrow{\epsilon} 0, $$
+where $ \epsilon $ is as in proof of Proposition \ref{prop:2.7}.
+$$ H_n\rb{X} \cong \widetilde{H_n}\rb{X}, $$
+for $ n \ge 1 $. Seen in the proof of Proposition \ref{prop:2.7} that $ \epsilon $ is surjective and $ \epsilon \circ \partial_1 = 0 $ gives $ Im\rb{\partial_1} \subseteq Ker\rb{\epsilon} $, so $ \epsilon $ induces a surjective homomorphism
+$$ \phi_\epsilon : H_0\rb{X} = \dfrac{C_0\rb{X}}{Im\rb{\partial_1}} \to \Z. $$
+Then $ Ker\rb{\phi_\epsilon} = Ker\rb{\epsilon} / Im\rb{\partial_1} = \widetilde{H_0}\rb{X} $ gives $ H_0\rb{X} / \widetilde{H_0}\rb{X} \cong \Z $, so
+$$ H_0\rb{X} \cong \widetilde{H_0}\rb{X} \oplus \Z. $$
+
 \end{document}
