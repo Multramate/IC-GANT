@@ -1009,7 +1009,7 @@ $ k \subset K $ is separable if and only if $ \sb{K : k}_s = \sb{K : k} $.
 $$ p\deg\rb{h} = \sb{k\rb{a} : k} = \sb{k\rb{a} : k\rb{b}}\sb{k\rb{b} : k} = \sb{k\rb{a} : k\rb{b}}\deg\rb{h}, $$
 so $ \sb{k\rb{a} : k\rb{b}} = p $. Thus $ x^p - b = \rb{x - a}^p $ is the minimal polynomial of $ a $ over $ k\rb{b} $, so $ \sb{k\rb{a} : k\rb{b}}_s = 1 $ contradicts step $ 1 $ and two tower laws.
 \item For $ k \subset k\rb{a} $, $ k \subset k\rb{a} $ is separable gives $ \sb{k\rb{a} : k}_s = \sb{k\rb{a} : k} $. This is obvious from step $ 2 $. $ \sb{k\rb{a} : k} $ is the degree of the minimal polynomial and $ \sb{k\rb{a} : k}_s $ is the number of roots of minimal polynomial.
-\item End of proof of $ 1 $, by a familiar method. Let us do the general case by induction on $ \sb{K : k} $. If $ k = K $ then there is nothing to prove. Otherwise pick $ a \in K \setminus k $. We know that both $ k \subset k\rb{a} $ and $ k\rb{a} \subset K $ are separable. $ \sb{K : k\rb{a}} < \sb{K : k} $ by tower law, hence by induction $ \sb{K : k\rb{a}}_s = \sb{K : k\rb{a}} $. We also know $ \sb{k\rb{a} : k}_s = \sb{k\rb{a} : k} $. Two tower laws give $ \sb{K : k}_s = \sb{K : k} $.
+\item End of proof, by a familiar method. Let us do the general case by induction on $ \sb{K : k} $. If $ k = K $ then there is nothing to prove. Otherwise pick $ a \in K \setminus k $. We know that both $ k \subset k\rb{a} $ and $ k\rb{a} \subset K $ are separable. $ \sb{K : k\rb{a}} < \sb{K : k} $ by tower law, hence by induction $ \sb{K : k\rb{a}}_s = \sb{K : k\rb{a}} $. We also know $ \sb{k\rb{a} : k}_s = \sb{k\rb{a} : k} $. Two tower laws give $ \sb{K : k}_s = \sb{K : k} $.
 \end{enumerate}
 \end{proof}
 
@@ -1225,5 +1225,38 @@ $$ f\rb{x} = x^4 - 6x^2 + 1 = \rb{x^2 - 2x - 1}\rb{x^2 + 2x - 1}, \qquad L = \Q\
 Then $ \sb{L : \Q} = 2 $ and $ G = C_2 $.
 \end{itemize}
 \end{example*}
+
+\pagebreak
+
+\section{Finite fields}
+
+\lecture{22}{Thursday}{28/02/19}
+
+If $ F $ is finite, then it has $ ch\rb{F} = p $ for some prime $ p $. Then $ F_p \subset F $. Because $ F $ is finite, it is a finite dimensional vector space over $ \F_p $. As a vector space $ F \cong \rb{\F_p}^m $ where $ m = \dim_{\F_p}\rb{F} = \sb{F : \F_p} $, so $ \abs{F} $ is a power of $ p $.
+
+\begin{theorem}
+Fix a prime $ p > 0 $. Then for all $ m \in \Z_{\ge 1} $, there exists a unique, up to non-unique isomorphism, finite field with $ q = p^m $ elements. Notation is $ \F_q $. Moreover, $ G = Gal_{\F_p}\rb{\F_q} = \Z / m\Z $.
+\end{theorem}
+
+\begin{proof}
+Suppose $ \abs{F} = q $. $ F^\times = F \setminus \cb{0} $ is a group with $ q - 1 $ elements. That is, if $ \lambda \in F \setminus \cb{0} $ then $ \lambda^{q - 1} = 1 $.
+$$ \F_p\sb{x} \ni x^{q - 1} - 1 = \prod_{\lambda \in F \setminus \cb{0}} \rb{x - \lambda} \in \F_q\sb{x}. $$
+Every such field is a splitting field of $ x^{q - 1} - 1 $. Any two splitting fields are isomorphic. This does the uniqueness part. As for the existence part, let $ F $ be a splitting field over $ \F_p $ of $ f\rb{x} = x^{q - 1} - 1 \in \F_p\sb{x} $. Let us prove that $ F $ has $ q $ elements. $ \F_p $ is a perfect field, so for all $ \lambda \in \F_p $ there exists $ \mu \in \F_p $ such that $ \mu^p = \lambda $. In particular $ f\rb{x} $ has $ q - 1 $ distinct roots in $ F $. Let us call them $ \lambda_1, \dots, \lambda_{q - 1} $. Claim that
+$$ F' = \cb{0, \lambda_1, \dots, \lambda_{q - 1}} $$
+is a field, then clearly $ F' = F $. We need to show that
+\begin{itemize}
+\item $ F $ is closed under addition,
+\item $ F $ is closed under multiplication, and
+\item things in $ F \setminus \cb{0} $ have inverses.
+\end{itemize}
+$ F $ is closed under multiplication and inverses since for all $ n $, $ \cb{\lambda \mid \lambda^n = 1} $ is a group. $ F $ is closed under addition since for all $ a, b \in F $, $ \rb{a + b}^q = a^q + b^q $, for example
+$$ \rb{a + b}^p = a^p + \twobyone{p}{1}a^{p - 1}b + \dots + \twobyone{p}{p - 1}ab^{p - 1} + b^p, \qquad \forall 1 \le k \le p - 1, \ p \ \Bigg| \ \twobyone{p}{k}. $$
+Claim that the function
+$$ \function[F]{\F_q}{\F_q}{a}{a^p} $$
+is a field automorphism, that is $ F \in G $, of order exactly $ m $. It is a field automorphism, since
+$$ F\rb{ab} = \rb{ab}^p = a^pb^p = F\rb{a}F\rb{b}, \qquad F\rb{\dfrac{a}{b}} = \rb{\dfrac{a}{b}}^p = \dfrac{a^p}{b^p} = \dfrac{F\rb{a}}{F\rb{b}}, $$
+$$ F\rb{a + b} = \rb{a + b}^p = a^p + b^p = F\rb{a} + F\rb{b}, \qquad F\rb{1} = 1, \qquad F\rb{0} = 0. $$
+Certainly $ F^m = F \circ \dots \circ F = id $, since for all $ \lambda \in \F_q $, $ \lambda^q = \lambda $. Otherwise if order is $ k < m $ then for all $ \lambda \in \F_q $, $ \lambda^{p^k} = \lambda $, so $ x^{p^k} - x $ has $ q > p^k $ roots, a contradiction.
+\end{proof}
 
 \end{document}
