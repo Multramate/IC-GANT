@@ -1569,7 +1569,13 @@ Thus $ Ker\rb{\epsilon} \subseteq Im\rb{\partial_1} $.
 \end{proof}
 
 \begin{proposition}
-If $ X $ is a point, then $ H_n\rb{X} = 0 $ for $ n > 0 $ and $ H_0\rb{\Z} = \Z $.
+If $ X $ is a point, then
+$$ H_n\rb{X} = 
+\begin{cases}
+\Z & n = 0 \\
+0 & n > 0
+\end{cases}.
+$$
 \end{proposition}
 
 \begin{proof}
@@ -1582,9 +1588,9 @@ $$ \partial_n\rb{\sigma_n} = \sum_{i = 0}^n \rb{-1}^i\sigma_{n - 1} =
 $$
 so $ \partial_n = 0 $ if $ n $ is odd and $ \partial_n $ is an isomorphism if $ n $ is even.
 $$
-\begin{tikzcd}[row sep=tiny]
+\begin{tikzcd}
 \dots \arrow{r}{\partial_2} & C_1\rb{X} \arrow{r}{\partial_1} \arrow[cong]{d} & C_0\rb{X} \arrow{r}{\partial_0} \arrow[cong]{d} & 0 \\
-\dots \arrow[swap]{r}{\sim} & \Z \arrow[swap]{r}{0} & \Z \arrow[swap]{r}{\sim} & 0
+\dots \arrow{r}{\sim} & \Z \arrow{r}{0} & \Z \arrow{r}{\sim} & 0
 \end{tikzcd},
 $$
 so $ H_n = Ker\rb{\partial_n} / Im\rb{\partial_{n + 1}} = 0 $ if $ n \ge 1 $ and $ H_0\rb{X} \cong \Z $.
@@ -1593,10 +1599,106 @@ so $ H_n = Ker\rb{\partial_n} / Im\rb{\partial_{n + 1}} = 0 $ if $ n \ge 1 $ and
 The \textbf{reduced homology groups} $ \widetilde{H_n}\rb{X} $ are the homology groups of the \textbf{augmented chain complex}
 $$ \dots \xrightarrow{\partial_2} C_1\rb{X} \xrightarrow{\partial_1} C_0\rb{X} \xrightarrow{\partial_0} \Z \xrightarrow{\epsilon} 0, $$
 where $ \epsilon $ is as in proof of Proposition \ref{prop:2.7}.
-$$ H_n\rb{X} \cong \widetilde{H_n}\rb{X}, $$
-for $ n \ge 1 $. Seen in the proof of Proposition \ref{prop:2.7} that $ \epsilon $ is surjective and $ \epsilon \circ \partial_1 = 0 $ gives $ Im\rb{\partial_1} \subseteq Ker\rb{\epsilon} $, so $ \epsilon $ induces a surjective homomorphism
+$$ H_n\rb{X} \cong \widetilde{H_n}\rb{X}, \qquad n \ge 1. $$
+Seen in the proof of Proposition \ref{prop:2.7} that $ \epsilon $ is surjective and $ \epsilon \circ \partial_1 = 0 $ gives $ Im\rb{\partial_1} \subseteq Ker\rb{\epsilon} $, so $ \epsilon $ induces a surjective homomorphism
 $$ \phi_\epsilon : H_0\rb{X} = \dfrac{C_0\rb{X}}{Im\rb{\partial_1}} \to \Z. $$
 Then $ Ker\rb{\phi_\epsilon} = Ker\rb{\epsilon} / Im\rb{\partial_1} = \widetilde{H_0}\rb{X} $ gives $ H_0\rb{X} / \widetilde{H_0}\rb{X} \cong \Z $, so
 $$ H_0\rb{X} \cong \widetilde{H_0}\rb{X} \oplus \Z. $$
+
+\lecture{22}{Friday}{01/03/19}
+
+\subsubsection{Homotopy invariance}
+
+Let $ \rb{A_\cdot, \partial} $ and $ \rb{B_\cdot, \partial} $ be two chain complexes. A \textbf{chain map} $ f : \rb{A_\cdot, \partial} \to \rb{B_\cdot, \partial} $ is a collection of homomorphisms $ f_n : A_n \to B_n $ such that $ \partial \circ f_n = f_{n + 1} \circ \partial $, that is the following diagram commutes.
+$$
+\begin{tikzcd}
+\dots \arrow{r}{\partial} & A_{n + 1} \arrow{r}{\partial} \arrow{d}{f_{n + 1}} & A_n \arrow{r}{\partial} \arrow{d}{f_n} & A_{n - 1} \arrow{r}{\partial} \arrow{d}{f_{n - 1}} & \dots \\
+\dots \arrow{r}{\partial} & B_{n + 1} \arrow{r}{\partial} & B_n \arrow{r}{\partial} & B_{n - 1} \arrow{r}{\partial} & \dots
+\end{tikzcd}.
+$$
+If $ X $ and $ Y $ are topological spaces and $ f : X \to Y $ is a continuous map define the homomorphisms
+$$ \function[f_\#]{C_n\rb{X}}{C_n\rb{Y}}{\sigma : \Delta^n \to X}{f \circ \sigma : \Delta^n \to Y}, $$
+and extend it linearly to $ C_n\rb{X} $.
+$$ \rb{f_\# \circ \partial}\rb{\sigma} = f_\#\rb{\sum_{i = 0}^n \rb{-1}^i\sigma \mid_{\sb{v_0, \dots, \widehat{v_i}, \dots, v_n}}} = \sum_{i = 0}^n \rb{f \circ \sigma} \mid_{\sb{v_0, \dots, \widehat{v_i}, \dots, v_n}} = \rb{\partial \circ f_\#}\rb{\sigma} $$
+gives $ f_\# \circ \partial = \partial \circ f_\# $, so $ f_\# $ defines a chain map
+$$
+\begin{tikzcd}
+\dots \arrow{r}{\partial} & C_{n + 1}\rb{X} \arrow{r}{\partial} \arrow{d}{f_\#} & C_n\rb{X} \arrow{r}{\partial} \arrow{d}{f_\#} & C_{n - 1}\rb{X} \arrow{r}{\partial} \arrow{d}{f_\#} & \dots \\
+\dots \arrow{r}{\partial} & C_{n + 1}\rb{Y} \arrow{r}{\partial} & C_n\rb{Y} \arrow{r}{\partial} & C_{n - 1}\rb{Y} \arrow{r}{\partial} & \dots
+\end{tikzcd}.
+$$
+$ f_\# $ maps cycles to cycles, since $ \alpha \in C_n\rb{X} $ such that $ \partial \circ \alpha = 0 $ gives
+$$ \rb{\partial \circ f_\#}\rb{\alpha} = \rb{f_\# \circ \partial}\rb{\alpha} = 0. $$
+$ f_\# $ maps boundaries to boundaries, since
+$$ f_\# \circ \rb{\partial \circ \beta} = \partial \circ \rb{f_\# \circ \beta}. $$
+$ f_\#\rb{Ker\rb{\partial_n}} \subseteq Ker\rb{\partial_n} $ and $ f_\#\rb{Im\rb{\partial_{n + 1}}} \subseteq Im\rb{\partial_{n + 1}} $ gives that $ f_\# $ induces a homomorphism
+$$ f_* : H_n\rb{X} \to H_n\rb{Y}. $$
+The following are observations.
+\begin{itemize}
+\item $ X \xrightarrow{g} Y \xrightarrow{f} Z $ gives $ \rb{f \circ g}_\# = f_\# \circ g_\# $, since
+$$ \Delta^n \xrightarrow{\sigma} X \xrightarrow{g} Y \xrightarrow{f} Z $$
+gives $ f \circ \rb{g \circ \sigma} = \rb{f \circ g} \circ \sigma $, so $ \rb{f \circ g}_* = f_* \circ g_* $.
+\item $ \rb{id_X}_* = id_{H_n\rb{X}} $.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:2.10}
+If two continuous maps $ f, g : X \to Y $ are homotopic, then $ f_* = g_* : H_n\rb{X} \to H_n\rb{Y} $.
+\end{theorem}
+
+\begin{corollary}
+If $ f : X \to Y $ is a homotopy equivalence, then $ f_* : H_n\rb{X} \to H_n\rb{Y} $ is an isomorphism.
+\end{corollary}
+
+\begin{proof}
+Let $ g : Y \to X $ be a continuous map such that $ f \circ g \cong id_Y $ and $ g \circ f = id_X $. Then $ f_* \circ g_* = \rb{f \circ g}_* = \rb{id_Y}_* = id $. Similarly $ g_* \circ f_* = id $, so $ f_* $ is an isomorphism.
+\end{proof}
+
+\begin{example*}
+$$ H_n\rb{\R^k} =
+\begin{cases}
+\Z & n = 0 \\
+0 & \text{otherwise}
+\end{cases},
+\qquad \widetilde{H}_n\rb{\R^k} = 0.
+$$
+\end{example*}
+
+\begin{proof}[Proof of Theorem \ref{thm:2.10}]
+Let $ F : X \times I \to Y $ be a homotopy from $ f $ to $ g $ and $ \sigma : \Delta_n \to X $ be a singular $ n $-simplex. Consider the map
+$$ \Delta^n \times I \xrightarrow{\sigma \times I} X \times I \xrightarrow{F} Y. $$
+$ \Delta^n \times I $ is not a simplex. But we can subdivide $ \Delta^n \times I $ into $ \rb{n + 1} $ simplices. In general, we can decompose $ \Delta^n \times I $ into $ n + 1 $ $ \rb{n + 1} $-simplices
+$$ \sb{v_0, \dots, v_i, w_i, \dots, w_n}, \qquad i = 0, \dots, n. $$
+Define \textbf{prism-operators}
+$$ \function[P]{C_n\rb{X}}{C_{n + 1}\rb{Y}}{\sigma}{\sum_{i = 0}^n \rb{-1}^iF \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, v_i, w_i, \dots, w_n}}}, $$
+for $ \sigma : \Delta^n \to X $ a singular $ n $-simplex.
+$$
+\begin{tikzcd}
+\dots \arrow{r}{\partial} & C_{n + 1}\rb{X} \arrow{r}{\partial} & C_n\rb{X} \arrow{r}{\partial} \arrow[swap]{dl}{P} \arrow{d}{f_\#}[swap]{g_\#} & C_{n - 1}\rb{X} \arrow{r}{\partial} \arrow{dl}{P} & \dots \\
+\dots \arrow{r}{\partial} & C_{n + 1}\rb{Y} \arrow{r}{\partial} & C_n\rb{Y} \arrow{r}{\partial} & C_{n - 1}\rb{Y} \arrow{r}{\partial} & \dots
+\end{tikzcd}.
+$$
+Claim that
+$$ \partial \circ P = g_\# - f_\# - P \circ \partial, $$
+if and only if $ g_\# - f_\# = \partial \circ P + P \circ \partial $. The claim implies the theorem, since if $ \alpha \in C_n\rb{X} $ is a cycle, then
+$$ g_\#\rb{\alpha} - f_\#\rb{\alpha} = \rb{\partial \circ P}\rb{\alpha} + \rb{P \circ \partial}\rb{\alpha} = \rb{\partial \circ P}\rb{\alpha}, $$
+so $ g_\#\rb{\alpha} - f_\#\rb{\alpha} $ is a boundary. Thus $ g_\#\rb{\alpha} $ and $ f_\#\rb{\alpha} $ are in the same homology class, so $ g_*\rb{\sb{\alpha}} = f_*\rb{\sb{\alpha}} $, where $ \sb{\alpha} $ is the homology class of $ \alpha $. Let $ \sigma : \Delta^n \to X $ be a singular $ n $-simplex.
+\begin{align*}
+\rb{\partial \circ P}\rb{\sigma}
+= \ & \partial\rb{\sum_{i = 0}^n \rb{-1}^iF \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, v_i, w_i, \dots, w_n}}} \\
+= \ & \sum_{j \le i} \rb{-1}^i\rb{-1}^jF \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, \widehat{v_j}, \dots, v_i, w_i, \dots, w_n}} \\
++ & \sum_{j \ge i} \rb{-1}^i\rb{-1}^{j + 1}F \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, v_i, w_i, \dots, \widehat{w_j}, \dots, w_n}}.
+\end{align*}
+If $ i = j $ the two sums cancel except for
+$$ F \circ \rb{\sigma \times id} \mid_{\sb{\widehat{v_0}, w_0, \dots, w_n}} = g \circ \sigma = g_\#\rb{\sigma}, $$
+and
+$$ -F \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, v_n, \widehat{w_n}}} = -f \circ \sigma = -f_\#\rb{\sigma}. $$
+The terms with $ i \ne j $ sum up to $ \rb{P \circ \partial}\rb{\sigma} $, since we have
+\begin{align*}
+\rb{P \circ \partial}\rb{\sigma}
+= \ & \sum_{j < i} \rb{-1}^i\rb{-1}^jF \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, \widehat{v_j}, \dots, v_i, w_i, \dots, w_n}} \\
++ & \sum_{j > i} \rb{-1}^i\rb{-1}^{j + 1}F \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, v_i, w_i, \dots, \widehat{w_j}, \dots, w_n}}.
+\end{align*}
+\end{proof}
 
 \end{document}
