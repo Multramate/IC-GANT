@@ -1039,7 +1039,7 @@ The minimal polynomial over $ L $ divides the minimal polynomial over $ k $.
 
 \pagebreak
 
-\section{Biquadratic extensions}
+\section{Biquadratic polynomials}
 
 Let
 $$ K \subset K\rb{\sqrt{a \pm \sqrt{b}}} = L, \qquad c = a^2 - b, \qquad \beta = \sqrt{b} \notin K, \qquad \alpha = \sqrt{a + \beta} \in L, \qquad \alpha' = \sqrt{a - \beta} \in L. $$
@@ -1258,5 +1258,81 @@ $$ F\rb{ab} = \rb{ab}^p = a^pb^p = F\rb{a}F\rb{b}, \qquad F\rb{\dfrac{a}{b}} = \
 $$ F\rb{a + b} = \rb{a + b}^p = a^p + b^p = F\rb{a} + F\rb{b}, \qquad F\rb{1} = 1, \qquad F\rb{0} = 0. $$
 Certainly $ F^m = F \circ \dots \circ F = id $, since for all $ \lambda \in \F_q $, $ \lambda^q = \lambda $. Otherwise if order is $ k < m $ then for all $ \lambda \in \F_q $, $ \lambda^{p^k} = \lambda $, so $ x^{p^k} - x $ has $ q > p^k $ roots, a contradiction.
 \end{proof}
+
+\pagebreak
+
+\section{Symmetric polynomials}
+
+\lecture{23}{Friday}{01/03/19}
+
+Consider
+$$ f\rb{x} = \rb{x - x_1} \dots \rb{x - x_n} = x^n - \sigma_1x^{n - 1} + \dots \pm \sigma_n \in K\rb{x_1, \dots, x_n}\sb{x}, $$
+where
+$$ \sigma_1 = \sigma_1\rb{x_1, \dots, x_n} = \sum_{i \le i \le n} x_i, \qquad \sigma_2 = \sigma_2\rb{x_1, \dots, x_n} = \sum_{i \le i \le j \le n} x_ix_j, \qquad \dots. $$
+Here $ \sigma_1 \in K\sb{x_1, \dots, x_n} $ are the \textbf{elementary symmetric polynomials}. Let
+$$ \delta = \prod_{\text{roots of} \ f} \rb{x_i - x_j}, \qquad \Delta = \delta^2 = \prod_{\text{roots of} \ f} \rb{x_i - x_j}^2. $$
+
+\begin{definition}
+$ \sigma \in K\sb{x_1, \dots, x_n} $ is \textbf{symmetric} if and only if for all $ g \in \mathfrak{S}_n $
+$$ \sigma\rb{x_{g\rb{1}}, \dots, x_{g\rb{n}}} = \sigma\rb{x_1, \dots, x_n}. $$
+\end{definition}
+
+\begin{example*}
+Consider a degree two polynomial $ \rb{x - x_1}\rb{x - x_2} = x^2 - \sigma_1x + \sigma_2 $.
+\begin{itemize}
+\item $ \delta = x_1 - x_2 $ is not symmetric, for $ g = \onebytwo{1}{2} $, $ \delta\rb{x_{g\rb{1}}, x_{g\rb{2}}} = \delta\rb{x_2, x_1} = x_2 - x_1 = -\delta\rb{x_1, x_2} $.
+\item But $ \Delta = \delta^2 = \rb{x_1 - x_2}^2 = \rb{x_1 + x_2}^2 - 4x_1x_2 = \sigma_1^2 - 4\sigma_2 $ is symmetric.
+\end{itemize}
+\end{example*}
+
+\begin{example*}
+Let $ f\rb{x} = x^3 - \sigma_1x^2 + \sigma_2x - \sigma_3 $. Plan is to write an invariant telling us when a cubic has repeated roots. $ \delta = \rb{x_1 - x_2}\rb{x_1 - x_3}\rb{x_2 - x_3} $ is not symmetric under $ \mathfrak{S}_3 $, but it is invariant under $ \mathfrak{A}_3 = \ab{\onebythree{1}{2}{3}} \cong C_2 $. Can I write $ \delta^2 = \Delta $ as a polynomial in
+$$ \sigma_1 = x_1 + x_2 + x_3, \qquad \sigma_2 = x_1x_2 + x_1x_3 + x_2x_3, \qquad \sigma_3 = x_1x_2x_3? $$
+Yes,
+$$ \Delta = \sigma_1^2\sigma_2^2 - 4\sigma_1^3\sigma_3 - 4\sigma_2^3 + 18\sigma_1\sigma_2\sigma_3 - 27\sigma_3^2. $$
+For $ x^3 + 3px + 2q $,
+$$ \Delta = -2^23^3\rb{p^3 + q^2}. $$
+The exact expression is totally relevant.
+\end{example*}
+
+Can we find a formula for discriminant of a degree $ n $ polynomial? It is a general fact that all symmetric polynomials are polynomials in the elementary symmetric polynomials, so
+$$ K\sb{x_1, \dots, x_n}^{\mathfrak{S}_n} = K\sb{\sigma_1, \dots, \sigma_n} \subset K\rb{\sigma_1, \dots, \sigma_n}. $$
+
+\begin{theorem}
+Consider a degree $ n $ separable polynomial $ f\rb{x} = x^n + a_1x^{n - 1} + \dots + a_n \in k\sb{x} $. Let $ k \subset L $ be the splitting field of $ f $. Then $ G \subset \mathfrak{A}_n $ if and only if $ \Delta $ is a square in $ k $.
+\end{theorem}
+
+By Galois theory $ \Delta \in k $, because $ \Delta $ is symmetric, that is $ \mathfrak{S}_n $-invariant, and hence $ G $-invariant.
+
+\begin{proof}
+$ G \subset \mathfrak{A}_n $ if and only if $ \delta $ is $ G $-invariant, if and only if $ \delta \in k $.
+\end{proof}
+
+\begin{remark*}
+\hfill
+\begin{itemize}
+\item We know $ K \subset L $ is a normal and separable splitting field of $ f \in K\sb{x} $ gives $ G \subset \mathfrak{S}_n $.
+\item If in addition $ f \in k\sb{x} $ is irreducible then $ G $ is transitive, that is for all $ \lambda, \mu $ roots of $ f $ there exists $ \sigma \in G $ such that $ \sigma\rb{\lambda} = \mu $.
+\end{itemize}
+\end{remark*}
+
+\begin{theorem}
+Consider an irreducible cubic polynomial $ x^3 - \sigma_1x^2 + \sigma_2x - \sigma_3 $ and $ k \subset L $ be the splitting field then $ G = \mathfrak{S}_3 $ iff $ \Delta $ is not square in $ k $, and $ G = \mathfrak{A}_3 = C_3 $ iff $ \Delta $ is square in $ k $.
+\end{theorem}
+
+\begin{example*}
+For $ K = \Q $,
+$$
+\begin{array}{c|c|c}
+f\rb{x} & \Delta & G \\
+\hline
+x^3 - x - 1 & -23 & \mathfrak{S}_3 \\
+x^3 - 3x - 1 & 81 & \mathfrak{A}_3 \\
+x^3 - 4x - 1 & 229 & \mathfrak{S}_3 \\
+x^3 - 5x - 1 & 473 & \mathfrak{S}_3 \\
+x^3 - 6x - 1 & 837 & \mathfrak{S}_3
+\end{array}.
+$$
+\end{example*}
 
 \end{document}
