@@ -475,6 +475,8 @@ $$ \cb{\text{commutative rings}} \supsetneq \cb{\text{IDs}} \supsetneq \cb{\text
 
 \pagebreak
 
+\section{Gaussian and Eisenstein integers}
+
 \subsection{Gaussian integers}
 
 The \textbf{Gaussian integers} are
@@ -540,9 +542,7 @@ x + i = uz^3 = \rb{uz}^3 \\
 x - i = \overline{u}\overline{z}^3 = \rb{\overline{u}\overline{z}}^3
 \end{cases},
 $$
-for $ u \in \cb{\pm 1, \pm i} $.
-$$ x - i = \rb{a + bi}^3 = a^3 - b^3i + 3a^2bi - 3ab^2, $$
-for some $ a, b \in \Z $. Looking at coefficients of $ i $, $ 1 = 3a^2b - b^3 $, so $ a = 0 $ and $ b = -1 $. Plugging this back in we get $ x = 0 $ and $ y = 1 $.
+for $ u \in \cb{\pm 1, \pm i} $. $ x - i = \rb{a + bi}^3 = a^3 - b^3i + 3a^2bi - 3ab^2 $ for some $ a, b \in \Z $. Looking at coefficients of $ i $, $ 1 = 3a^2b - b^3 $, so $ a = 0 $ and $ b = -1 $. Plugging this back in we get $ x = 0 $ and $ y = 1 $.
 \end{proof}
 
 \pagebreak
@@ -610,14 +610,16 @@ These three possible behaviours have to do with the structure of $ \Z\sb{\omega}
 
 \pagebreak
 
-\subsection{Summary of Euclidean domains}
+\subsection{Other Euclidean domains}
 
 \begin{itemize}
 \item $ \Z\sb{\omega} $ and $ \Z\sb{i} $ are norm Euclidean. Using geometric proof, $ \Z\sb{i}, \Z\sb{\omega} \subset \C $ are lattices.
-\item $ \Z\sb{\sqrt{-5}} $ is not a UFD, so not Euclidean, since $ 6 = 2 \cdot 3 = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}} $. What goes wrong if we try to adapt geometric proof from $ \Z\sb{i}, \Z\sb{\omega} $? Unit discs do not cover all of the area of $ \C $.
+\item $ \Z\sb{\sqrt{-5}} $ is not a UFD, so not Euclidean, since
+$$ 6 = 2 \cdot 3 = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}}. $$
+What goes wrong if we try to adapt geometric proof from $ \Z\sb{i}, \Z\sb{\omega} $? Unit discs do not cover all of the area of $ \C $.
 \item The ring of integers $ \OO_7, \OO_{11} \subset \Q\rb{\sqrt{-7}} $ both are norm Euclidean. Adopt proof from $ \Z\sb{i}, \Z\sb{\omega} $.
 \item It is hard to tell which fields are Euclidean and which are not. For example, $ \Z\sb{\tfrac{1 + \sqrt{-19}}{2}} $ is not Euclidean but is a PID and a UFD.
-\item Among real quadratic fields, $ \Z\rb{\sqrt{2}} $ is Euclidean. The same geometric proof will not work because $ \Z\sb{\sqrt{2}} \subset \R $. (Exercise: $ \Z\sb{\sqrt{2}} $ is dense in $ \R $) We do have a geometric way to think about this.
+\item Among real quadratic fields, $ \Z\sb{\sqrt{2}} $ is Euclidean. The same geometric proof will not work because $ \Z\sb{\sqrt{2}} \subset \R $. (Exercise: $ \Z\sb{\sqrt{2}} $ is dense in $ \R $) We do have a geometric way to think about this.
 $$ \dfrac{\Q\rb{\sqrt{2}}}{\Q} = \cb{a + b\sqrt{2} \mid a, b \in \Q} $$
 is a two-dimensional $ \Q $-vector space.
 $$ \function[\sigma]{\Q\rb{\sqrt{2}}}{\Q\rb{-\sqrt{2}}}{a + b\sqrt{2}}{a - b\sqrt{2}} $$
@@ -790,9 +792,11 @@ and $ p_2\rb{x} / a_1, \dots, p_n\rb{x} / a_1 \in \Z $.
 \end{itemize}
 \end{proof}
 
-\lecture{11}{Monday}{04/02/19}
+\pagebreak
 
-\subsection{Torsion elements}
+\subsection{Torsion}
+
+\lecture{11}{Monday}{04/02/19}
 
 \begin{definition}
 \hfill
@@ -823,9 +827,9 @@ with $ a_1, \dots, a_n \in \Z $ satisfying $ a_1 \mid \dots \mid a_n $. Want $ a
 
 \pagebreak
 
-\section{Ring of integers in number fields}
+\section{Integral closure}
 
-\subsection{Integral closure}
+\subsection{Integral elements}
 
 \begin{definition}
 An element $ x \in \C $ is called
@@ -945,7 +949,7 @@ Let $ \Z \subset R $, where $ R / \Q $ is a finite extension. Let $ \OO_K $ be t
 
 \pagebreak
 
-\subsection{Number fields}
+\subsection{Ring of integers in number fields}
 
 A \textbf{number field} $ K $ is a field containing $ \Q $ such that $ \dim_\Q\rb{K} $ is finite. Any finite field extension of $ \Q $ is a number field. The \textbf{degree} of the number field is by definition $ \dim_\Q\rb{K} $. A \textbf{quadratic field} is an extension of $ \Q $ of degree two. The \textbf{ring of integers} $ \OO_K \subset K $ is the integral closure of $ \Z $ in $ K $.
 
@@ -1006,9 +1010,11 @@ Lecture 13 is a problem class.
 
 \pagebreak
 
-\subsection{Trace and norm}
+\section{$ \OO_K $ is a lattice}
 
 \lecture{14}{Monday}{11/02/19}
+
+\subsection{Trace and norm}
 
 Let $ K / \Q $ be a quadratic field. The conjugate is
 $$ \function{K}{K}{\alpha = a + b\sqrt{d}}{\overline{\alpha} = a - b\sqrt{d}}. $$
@@ -1102,6 +1108,8 @@ therefore they are elements of $ T $. Upshot is that $ char_{K / F}\rb{x} \in \r
 If $ K / \Q $ is a finite extension, so $ F = \Q $, and $ \OO_K \subset K $ is the ring of integers, so $ R = \Z $. Then $ Tr : \OO_K \to \Z $ and $ Nm : \OO_K \to \Z $.
 \end{corollary}
 
+\pagebreak
+
 \subsection{Bilinear forms}
 
 \begin{definition}
@@ -1185,7 +1193,7 @@ $$ Tr_{K / \Q}\rb{a + b\sqrt{-3}, c + d\sqrt{-3}} = Tr_{K / \Q}\rb{ac - 3bd + \s
 \item $ \ab{\sqrt{-3}, c + d\sqrt{-3}} = -6d \in \Z $.
 \end{itemize}
 Thus
-$$ M^V = \cb{c + d\sqrt{-3} \ \Bigg| \ c \in \dfrac{1}{2}\Z, \ d \in \dfrac{1}{6}\Z} = \ab{\dfrac{1}{2}, \dfrac{\sqrt{-3}}{6}} \supseteq \Z\sb{\omega} \supseteq M. $$
+$$ M^V = \cb{c + d\sqrt{-3} \mid c \in \tfrac{1}{2}\Z, \ d \in \tfrac{1}{6}\Z} = \ab{\tfrac{1}{2}, \tfrac{\sqrt{-3}}{6}} \supseteq \Z\sb{\omega} \supseteq M. $$
 $ 1^V = 1 / 2 $ and $ \rb{\sqrt{-3}}^V = \sqrt{-3} / 6 $.
 \end{example*}
 
@@ -1210,6 +1218,8 @@ $$ w = c_1e_1^V + \dots + c_ne_n^V, $$
 where $ c_i \in \Z $. Can do this with $ c_i \in \Q $ for $ i = 1, \dots, n $. Need to show they are in $ \Z $. Have $ \ab{e_i, w} = c_i $ and $ w \in M^V $, so $ c_i \in \Z $.
 \end{itemize}
 \end{proof}
+
+\pagebreak
 
 \subsection{Main result}
 
@@ -1239,7 +1249,7 @@ for $ A\alpha_1, \dots, A^n\alpha_{n - 1} \in \Z $. Can assume $ e_i \in \OO_K $
 
 \pagebreak
 
-\section{Dedekind domains}
+\section{$ \OO_K $ is a Dedekind domain}
 
 \lecture{17}{Monday}{18/02/19}
 
@@ -1432,9 +1442,11 @@ Lecture 19 is a problem class.
 
 \pagebreak
 
-\subsection{Fractional ideals}
+\section{Unique factorisation in a Dedekind domain}
 
 \lecture{20}{Monday}{25/02/19}
+
+\subsection{Fractional ideals}
 
 Goal is to show that unique factorisation of ideals into prime ideals always holds in a Dedekind domain.
 
@@ -1581,5 +1593,91 @@ $$ \pp_1^{k_1} \cdot \dots \cdot \pp_r^{k_r} = \qq_1^{k_1} \cdot \dots \cdot \qq
 We may assume all $ k_i, l_j > 0 $. $ \pp_1 \supseteq \qq_1^{l_1} \cdot \dots \cdot \qq_s^{l_s} $, so $ \pp_1 \supseteq \qq_1 $. Both maximal, so $ \pp_1 = \qq_1 $.
 \end{enumerate}
 \end{proof}
+
+\lecture{22}{Friday}{01/03/19}
+
+\subsection{Ideal class group}
+
+\begin{definition}
+Let $ R $ be a Dedekind domain. The \textbf{ideal class group} of $ R $ is the quotient of the group of all non-zero fractional ideals by the subgroup of principal fractional ideals. This is denoted by $ Cl\rb{R} $.
+\end{definition}
+
+If $ K $ is a number field, then $ \OO_K $ is a Dedekind domain and $ Cl\rb{K} = \OO_K $.
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ Cl\rb{K} = 1 $ if $ \OO_K $ is a PID or UFD. For example if $ K = \Q\rb{i}, \Q\rb{\omega}, \Q\rb{\sqrt{-11}} $.
+\item $ Cl\rb{K} \ne 1 $ if $ K = \Q\rb{\sqrt{-5}}, \Q\rb{\sqrt{-6}} $. $ \ab{2, 1 + \sqrt{-5}} $ is not principal, and
+$$ \ab{2, 1 + \sqrt{-5}}^2 = \ab{4, 2 + 2\sqrt{-5}, -4 + 2\sqrt{-5}} = \ab{2}, $$
+so $ \Z / 2\Z $ is a subgroup of $ Cl\rb{K} $. Claim that $ \Z / 2\Z \cong Cl\rb{K} $. For example
+$$ \ab{3, 1 - \sqrt{-5}} = \ab{a} \cdot \ab{2, 1 + \sqrt{-5}}, $$
+where $ a = \rb{1 - \sqrt{-5}} / 2 \in \Q\rb{\sqrt{-5}}^\times $ because
+\begin{itemize}
+\item $ \rb{1 + \sqrt{-5}}a = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}} / 2 = 3 $, and
+\item $ 2a = 1 - \sqrt{-5} $.
+\end{itemize}
+\end{itemize}
+\end{example*}
+
+\begin{theorem}
+If $ K $ is a number field, then $ Cl\rb{K} $ is finite.
+\end{theorem}
+
+Proof relies on an explicit bound. Every \textbf{ideal class}, a fractional ideal of $ \OO_K $ up to multiplication by principal ideals, contains a representative of norm less than an explicit bound depending on $ K $.
+
+\pagebreak
+
+\section{Arithmetic in quadratic fields}
+
+\subsection{Discriminant}
+
+Let $ K $ be a number field. Recall $ \OO_K $ is a free $ \Z $-module of rank $ n = \deg\rb{K / \Q} $. Choose $ e_1, \dots, e_n $, a $ \Z $-basis of $ \Q $.
+$$ \function[Tr_{K / \Q}\rb{,}]{K \times K}{\Q}{\rb{v, w}}{Tr_{K / \Q}\rb{v \cdot w}} $$
+is symmetric, $ \Q $-bilinear, and non-degenerate. The \textbf{discriminant} of $ K $ is
+$$ Disc\rb{K} = \det\rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j = 1, \dots, n}}. $$
+
+\begin{remark*}
+$ Disc\rb{K} \ne 0 $ and $ Disc\rb{K} \in \Z $.
+\end{remark*}
+
+\begin{lemma}
+$ Disc\rb{K} $ is independent of choice of $ \Z $-basis $ e_1, \dots, e_n $.
+\end{lemma}
+
+\begin{proof}
+If $ f_1, \dots, f_n $ is another $ \Z $-basis, there exists $ A \in M_n\rb{\Z} $ such that
+$$ A\threebyone{e_1}{\vdots}{e_n} = \threebyone{f_1}{\vdots}{f_n}. $$
+$ \det\rb{A} = \pm 1 $ and $ A^t \cdot \rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j}} \cdot A = \rb{Tr_{K / \Q}\rb{f_i, f_j}_{i, j}} $, so
+$$ \det\rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j}} = \det\rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j}} \cdot \rb{\det\rb{A}}^2 = \det\rb{Tr_{K / \Q}\rb{f_i, f_j}_{i, j}}. $$
+\end{proof}
+
+\begin{example*}
+Let $ K / \Q $ be quadratic, so $ K = \Q\rb{\sqrt{d}} $. Then
+$$ Disc\rb{K} =
+\begin{cases}
+4d & d \equiv 2, 3 \mod 4, \ \OO_K = \ab{1, \sqrt{d}} \\
+d & d \equiv 1 \mod 4, \ \OO_K = \ab{1, \tfrac{1 + \sqrt{d}}{2}}
+\end{cases},
+$$
+since
+$$ \twobytwo{Tr_{K / \Q}\rb{1}}{Tr_{K / \Q}\rb{\sqrt{d}}}{Tr_{K / \Q}\rb{\sqrt{d}}}{Tr_{K / \Q}\rb{d}} = \twobytwo{2}{0}{0}{2d}, \qquad \twobytwo{Tr_{K / \Q}\rb{1}}{Tr_{K / \Q}\rb{\tfrac{1 + \sqrt{d}}{2}}}{Tr_{K / \Q}\rb{\tfrac{1 + \sqrt{d}}{2}}}{Tr_{K / \Q}\rb{\tfrac{1 + d + 2\sqrt{d}}{4}}} = \twobytwo{2}{1}{1}{\tfrac{d + 1}{2}}. $$
+\end{example*}
+
+\subsection{Decomposition of primes in quadratic fields}
+
+Let $ p \in \Z $ be a rational prime. How does $ \ab{p} $ decompose, or factor, into prime ideals of $ \OO_K $?
+\begin{itemize}
+\item If $ \OO_K / \ab{p} \cong \F_p\sb{x} / x^2 $ we say $ \ab{p} $ ramifies in $ \OO_K $. Then $ \ab{p} = \pp^2 $, where $ \pp $ is a prime ideal of $ \OO_K $.
+\item If $ \OO_K / \ab{p} \cong \F_{\pp_1} \times \F_{\pp_2} $ we say $ \ab{p} $ splits in $ \OO_K $. Then $ \ab{p} = \pp_1 \cdot \pp_2 $, where $ \pp_1 \ne \pp_2 $ are distinct prime ideals of $ \OO_K $.
+\item If $ \OO_K / \ab{p} \cong \F_{p^2} $ we say $ \ab{p} $ is inert in $ \OO_K $. Then $ \ab{p} $ is a prime ideal of $ \OO_K $.
+\end{itemize}
+To see that these are the only possibilities when $ K / \Q $ is quadratic, key observation is $ \#\rb{\OO_K / \ab{p}} = p^2 $, so $ \OO_K / \ab{p} $ is an $ \F_p $-vector space of dimension two.
+$$ \dfrac{\OO_K}{\ab{p}} =
+\begin{cases}
+\dfrac{\Z\sb{x}}{\ab{p, x^2 - d}} = \dfrac{\F_p\sb{x}}{\ab{x^2 - d}} & d \equiv 2, 3 \mod 4 \\
+\dfrac{\Z\sb{x}}{\ab{p, x^2 - x - \tfrac{d - 1}{4}}} = \dfrac{\F_p\sb{x}}{\ab{x^2 - x - \tfrac{d - 1}{4}}} & d \equiv 1 \mod 4
+\end{cases}.
+$$
 
 \end{document}
