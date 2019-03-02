@@ -325,6 +325,8 @@ An irreducible variety $ Y \subseteq \A^n $ has dimension $ n - 1 $ if and only 
 \end{itemize}
 \end{proof}
 
+\pagebreak
+
 \section{Projective varieties}
 
 \begin{definition}
@@ -1059,9 +1061,12 @@ $ S $ has a line.
 \end{lemma}
 
 \begin{proof}
-Let $ P \in S $ and consider $ T_P\rb{S} $. Then $ T_P\rb{S} $ intersects $ S $ in a plane cubic $ C = S \cap T_P\rb{S} $ which is singular at $ P $. Otherwise we are done. Then $ C $ has to be a nodal or a cuspidal curve. So assume that $ C $ is a cuspidal curve, and change coordinates if necessary, assume that $ P = \sb{0 : 0 : 1 : 0} $ and $ T_P\rb{S} = \cb{t = 0} $. So the equation of $ f $ has the shape
+\hfill
+\begin{itemize}
+\item Let $ P \in S $ and consider $ T_P\rb{S} $. Then $ T_P\rb{S} $ intersects $ S $ in a plane cubic $ C = S \cap T_P\rb{S} $ which is singular at $ P $. Otherwise we are done. Then $ C $ has to be a nodal or a cuspidal curve. So assume that $ C $ is a cuspidal curve, and change coordinates if necessary, assume that $ P = \sb{0 : 0 : 1 : 0} $ and $ T_P\rb{S} = \cb{t = 0} $. So the equation of $ f $ has the shape
 $$ f = x^2z - y^3 + gt, $$
-for some $ g $ of homogeneous degree two. We consider the point $ P_\alpha = \sb{1 : \alpha : \alpha^3 : 0} \in C \subset S $, consider the plane $ x = 0 $ and the line $ P_\alpha Q $ in $ \P^3 $ passing through $ P_\alpha $ and intersecting this plane $ x = 0 $ at $ Q = \rb{0, y, z, t} $. The line through $ P_\alpha $ and $ Q $ is $ \lambda P_\alpha + \mu Q $ and it lies inside $ S $ if
+for some $ g $ of homogeneous degree two.
+\item We consider the point $ P_\alpha = \sb{1 : \alpha : \alpha^3 : 0} \in C \subset S $, consider the plane $ x = 0 $ and the line $ P_\alpha Q $ in $ \P^3 $ passing through $ P_\alpha $ and intersecting this plane $ x = 0 $ at $ Q = \rb{0, y, z, t} $. The line through $ P_\alpha $ and $ Q $ is $ \lambda P_\alpha + \mu Q $ and it lies inside $ S $ if
 $$ f\rb{\lambda P_\alpha + \mu Q} = 0. $$
 After expanding this we have
 $$ P_\alpha Q \subset S \qquad \iff \qquad A\rb{y, z, t} = B\rb{y, z, t} = C\rb{y, z, t} = 0, $$
@@ -1069,7 +1074,7 @@ for $ A, B, C $ to be determined. There is a polynomial $ R\rb{\alpha} $ of degr
 
 \lecture{20}{Monday}{25/02/19}
 
-Let $ f\rb{x, y, z, t} $ be a polynomial, then the \textbf{polar form} of $ f $ is
+\item Let $ f\rb{x, y, z, t} $ be a polynomial, then the \textbf{polar form} of $ f $ is
 $$ f_1\rb{x, y, z, t, x', y', z', t'} = \dfrac{\partial f}{\partial x} \cdot x' + \dfrac{\partial f}{\partial y} \cdot y' + \dfrac{\partial f}{\partial z} \cdot z' + \dfrac{\partial f}{\partial t} \cdot t', $$
 where $ P = \rb{x, y, z, t} $ and $ Q = \rb{x', y', z', t'} $. Then
 $$ f\rb{\lambda P + \mu Q} = \lambda^3f\rb{P} + \lambda^2\mu f_1\rb{P, Q} + \lambda\mu^2f_1\rb{Q, P} + \mu^3f\rb{Q}. $$
@@ -1085,7 +1090,7 @@ B = -3\alpha y^2 + g_1\rb{1, \alpha, \alpha^3, 0, 0, y, z, t}t \\
 C = -y^3 + g\rb{0, y, z, t}t
 \end{cases}.
 $$
-Note that
+\item Note that
 $$ g\rb{1, \alpha, \alpha^3, 0} = a^6 + \dots. $$
 If $ l = 0 $,
 $$ z = 3\alpha^2y + g\rb{P}t = 3\alpha^2y + \sb{a^6}t. $$
@@ -1118,6 +1123,7 @@ $$ \alpha^{27}\det
 \end{pmatrix}
 = \alpha^{27} + \dots = 0. $$
 This concludes the proof that $ S $ has a line because we know that the matrix has at least one root and for each root we get a value of $ \alpha $ such that the line $ P_\alpha Q \subseteq S $.
+\end{itemize}
 \end{proof}
 
 \lecture{21}{Tuesday}{26/02/19}
@@ -1167,10 +1173,92 @@ Any three lines lie in a smooth quadric $ Q $.
 
 \begin{lemma}
 \hfill
-\begin{enumerate}
+\begin{itemize}
 \item Any line not the seventeen lines intersect exactly three of the lines $ l_1, \dots, l_5 $.
 \item Conversely, given $ ijk \subset \cb{1, 2, 3, 4, 5} $ there is a line passing through $ l_i, l_j, l_k $.
-\end{enumerate}
+\end{itemize}
 \end{lemma}
+
+\pagebreak
+
+\section{Divisors}
+
+\lecture{22}{Friday}{01/03/19}
+
+\begin{definition}
+A \textbf{Weil divisor} is a formal finite sum
+$$ D = \sum_i a_iY_i, \qquad a_i \in \Z, $$
+of algebraic subvarieties of codimension one.
+\end{definition}
+
+\begin{definition}
+More generally, an \textbf{algebraic cycle} is a formal sum of codimension $ p $ subvarieties
+$$ C = \sum_i a_iY_i \subseteq X, \qquad a_i \in \Z. $$
+\end{definition}
+
+By integrating algebraic cycles, we get a map from the space of $ p $-cycles into the cohomology of the variety. \textbf{Hodge conjecture} states that this defines a bijection.
+
+\begin{example*}
+In case $ \dim\rb{X} = 1 $, then a divisor is just a sum of points with multiplicity. If $ K = \C $ and
+$$ f = \dfrac{\rb{z - 1}\rb{z - 2}}{\rb{z - 3}\rb{z - 4}}, $$
+then $ \rb{f} = \overline{1} + \overline{2} - \overline{3} - \overline{4} $.
+\end{example*}
+
+\begin{definition}
+Let $ K = \C $ and $ \dim\rb{X} = 1 $. Let $ D, V \subseteq X $. Then \textbf{linear equivalence} is $ D \sim V $ if and only if $ D - V = \rb{f} $ for $ f \in K\rb{x} $.
+\end{definition}
+
+\begin{definition}
+The \textbf{class group} is divisors modulo $ \sim $.
+\end{definition}
+
+\begin{definition}
+Let $ X \subseteq Y $ be a subvariety, then
+$$ \OO_{X, Y} = \cb{\rb{U, f} \mid f \ \text{regular at} \ U, \ U \cap Y \ne \emptyset}. $$
+Let $ f $ be a rational function, then
+$$ \rb{f} = \sum_Y v_Y\rb{f}Y, $$
+where $ v_Y $ is the valuation associated to $ \OO_{X, Y} $.
+\end{definition}
+
+\pagebreak
+
+\section{Grassmannians}
+
+\begin{definition}
+Let $ V $ be a vector space of dimension $ n $, then
+$$ G\rb{k; n} = \cb{S \subseteq V \mid S \ \text{subspace of dimension} \ k}. $$
+\end{definition}
+
+\begin{remark*}
+A point in $ G\rb{k; n} $ can be expressed as a basis $ \sb{v_1, \dots, v_k} $ for a $ k $-dimensional space.
+\end{remark*}
+
+\begin{theorem}
+The map
+$$ \function[p]{G\rb{k; n}}{\P\rb{\bigwedge^k\rb{V}} \cong \P^{^nC_k - 1}}{\sb{v_1, \dots, v_k}}{\sb{v_1 \wedge \dots \wedge v_k}} $$
+is an embedding. That is, image of $ p $ is closed.
+\end{theorem}
+
+\begin{example*}
+Claim that a line $ L \subseteq \P^3 $ gives a point in $ G\rb{2; 4} \hookrightarrow \P^5 $. $ G\rb{2; 4} $ is a quadric in $ \P^5 $ given by $ Z\rb{xs - yt + zw} $.
+\end{example*}
+
+\begin{proof}
+Now we will see the coordinates of the map $ p $. Given a vector space $ V $ of dimension $ n $ and a vector subspace $ S \subseteq V $ of dimension $ k $, then let $ v_1, \dots, v_n $ be a basis for $ V $, and $ s_1, \dots, s_k $ be a basis for $ S $, then the basis for $ S $ can be seen as a $ k \times n $ matrix
+$$ M_S = \threebythree{s_{11}}{\dots}{s_{1n}}{\vdots}{\ddots}{\vdots}{s_{k1}}{\dots}{s_{kn}}. $$
+If we change the basis for $ S $ then the matrix above gets multiplied by an invertible $ k \times k $ matrix. Then this $ k \times k $ matrix acts on the $ k \times k $ minors of $ M_S $. Suppose the first minor $ K_1 $ is non-zero then choose the inverse of that minor as a base change so that $ M_S $ will have the form
+$$
+\begin{pmatrix}
+1 & & & b_{11} & \dots & b_{1n - k} \\
+& \ddots & & \vdots & \ddots & \vdots \\
+& & 1 & b_{k1} & \dots & b_{kn - k}
+\end{pmatrix}.
+$$
+This gives a correspondence between matrices $ M_S $ with first non-zero minor and $ \A^{k\rb{n - k}} $. Therefore, the image of $ p $ has dimension $ k\rb{n - k} $.
+\end{proof}
+
+Similarly, we can define flag varieties. Given a vector space $ V $ and \textbf{flag}
+$$ 0 \subseteq V_1 \subseteq \dots \subseteq V_n \subseteq V $$
+of vector subspaces of dimension $ V_i $, the \textbf{flag variety} denoted by $ F\rb{V} $ is the set of flags on $ V $.
 
 \end{document}
