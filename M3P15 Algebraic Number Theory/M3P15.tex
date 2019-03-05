@@ -1400,9 +1400,9 @@ Let $ \pp \ne 0 $ be a prime ideal of $ \OO_K $. Then $ Nm\rb{\pp} = p^r $ for s
 \begin{remark*}
 $$
 \begin{tikzcd}[row sep=tiny, column sep=tiny]
-& & \cb{\text{UFDs}} \arrow[subset]{dr} & \\
-\cb{\text{IDs}} \arrow[subset]{r} & \cb{\text{integrally closed domains}} \arrow[subset]{ur} \arrow[subset]{dr} & \ne & \cb{\text{PIDs}} \\
-& & \cb{\text{Dedekind domains}} \arrow[subset]{ur} &
+& & \cb{\text{UFDs}} \arrow[subset]{dr} & & & \\
+\dots \arrow[subset]{r} & \cb{\text{PIDs}} \arrow[subset]{ur} \arrow[subset]{dr} & \ne & \cb{\text{integrally closed domains}} \arrow[subset]{r} & \cb{\text{IDs}} \arrow[subset]{r} & \dots \\
+& & \cb{\text{Dedekind domains}} \arrow[subset]{ur} & & &
 \end{tikzcd}.
 $$
 \begin{itemize}
@@ -1648,7 +1648,9 @@ $ Disc\rb{K} $ is independent of choice of $ \Z $-basis $ e_1, \dots, e_n $.
 \begin{proof}
 If $ f_1, \dots, f_n $ is another $ \Z $-basis, there exists $ A \in M_n\rb{\Z} $ such that
 $$ A\threebyone{e_1}{\vdots}{e_n} = \threebyone{f_1}{\vdots}{f_n}. $$
-$ \det\rb{A} = \pm 1 $ and $ A^t \cdot \rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j}} \cdot A = \rb{Tr_{K / \Q}\rb{f_i, f_j}_{i, j}} $, so
+$ \det\rb{A} = \pm 1 $ and
+$$ A^t \cdot \rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j}} \cdot A = \rb{Tr_{K / \Q}\rb{f_i, f_j}_{i, j}}, $$
+so
 $$ \det\rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j}} = \det\rb{Tr_{K / \Q}\rb{e_i, e_j}_{i, j}} \cdot \rb{\det\rb{A}}^2 = \det\rb{Tr_{K / \Q}\rb{f_i, f_j}_{i, j}}. $$
 \end{proof}
 
@@ -1664,7 +1666,9 @@ since
 $$ \twobytwo{Tr_{K / \Q}\rb{1}}{Tr_{K / \Q}\rb{\sqrt{d}}}{Tr_{K / \Q}\rb{\sqrt{d}}}{Tr_{K / \Q}\rb{d}} = \twobytwo{2}{0}{0}{2d}, \qquad \twobytwo{Tr_{K / \Q}\rb{1}}{Tr_{K / \Q}\rb{\tfrac{1 + \sqrt{d}}{2}}}{Tr_{K / \Q}\rb{\tfrac{1 + \sqrt{d}}{2}}}{Tr_{K / \Q}\rb{\tfrac{1 + d + 2\sqrt{d}}{4}}} = \twobytwo{2}{1}{1}{\tfrac{d + 1}{2}}. $$
 \end{example*}
 
-\subsection{Decomposition of primes in quadratic fields}
+\pagebreak
+
+\subsection{Criterion for decomposition of primes}
 
 Let $ p \in \Z $ be a rational prime. How does $ \ab{p} $ decompose, or factor, into prime ideals of $ \OO_K $?
 \begin{itemize}
@@ -1672,12 +1676,90 @@ Let $ p \in \Z $ be a rational prime. How does $ \ab{p} $ decompose, or factor, 
 \item If $ \OO_K / \ab{p} \cong \F_{\pp_1} \times \F_{\pp_2} $ we say $ \ab{p} $ splits in $ \OO_K $. Then $ \ab{p} = \pp_1 \cdot \pp_2 $, where $ \pp_1 \ne \pp_2 $ are distinct prime ideals of $ \OO_K $.
 \item If $ \OO_K / \ab{p} \cong \F_{p^2} $ we say $ \ab{p} $ is inert in $ \OO_K $. Then $ \ab{p} $ is a prime ideal of $ \OO_K $.
 \end{itemize}
-To see that these are the only possibilities when $ K / \Q $ is quadratic, key observation is $ \#\rb{\OO_K / \ab{p}} = p^2 $, so $ \OO_K / \ab{p} $ is an $ \F_p $-vector space of dimension two.
-$$ \dfrac{\OO_K}{\ab{p}} =
+To see that these are the only possibilities when $ K / \Q $ is quadratic, key observation is $ \#\rb{\OO_K / \ab{p}} = p^2 $, so $ \OO_K / \ab{p} $ is an $ \F_p $-vector space of dimension two. The following is the criterion.
+
+\lecture{23}{Monday}{04/03/19}
+
+\begin{itemize}
+\item $ \ab{p} $ is ramified if and only if $ p \mid Disc\rb{K} $. More precisely,
+\begin{itemize}
+\item $ p \mid 4d $ if $ d \equiv 2, 3 \mod 4 $, and
+\item $ p \mid d $ if $ d \equiv 1 \mod 4 $.
+\end{itemize}
+\item If $ d \equiv 1 \mod 4 $, then $ 2 $ is
+\begin{itemize}
+\item inert if $ d \equiv 5 \mod 8 $, and
+\item split if $ d \equiv 1 \mod 8 $.
+\end{itemize}
+\item If $ p \ne 2 $ and $ p \nmid Disc\rb{K} $, then $ p $ is
+\begin{itemize}
+\item split if $ d $ is a quadratic residue mod $ p $, and
+\item inert if $ d $ is not a quadratic residue mod $ p $.
+\end{itemize}
+Choose standard basis $ 1, \delta $ of $ \OO_K $.
+$$ \delta =
 \begin{cases}
-\dfrac{\Z\sb{x}}{\ab{p, x^2 - d}} = \dfrac{\F_p\sb{x}}{\ab{x^2 - d}} & d \equiv 2, 3 \mod 4 \\
-\dfrac{\Z\sb{x}}{\ab{p, x^2 - x - \tfrac{d - 1}{4}}} = \dfrac{\F_p\sb{x}}{\ab{x^2 - x - \tfrac{d - 1}{4}}} & d \equiv 1 \mod 4
+\sqrt{d} & d \equiv 2, 3 \mod 4 \\
+\tfrac{1 + \sqrt{d}}{2} & d \equiv 1 \mod 4
 \end{cases}.
 $$
+Minimal polynomial equation of $ \delta $ is
+$$ f\rb{x} =
+\begin{cases}
+x^2 - d & d \equiv 2, 3 \mod 4 \\
+x^2 - x - \tfrac{d - 1}{4} & d \equiv 1 \mod 4
+\end{cases}.
+$$
+Compute
+$$ \dfrac{\OO_K}{\ab{p}} = \dfrac{\Z\sb{x}}{\ab{f\rb{x}, p}} = \dfrac{\F_p\sb{x}}{\ab{f\rb{x}}}. $$
+$ p $ is inert if and only if $ \F_p\sb{x} / \ab{f\rb{x}} \cong \F_{p^2} $, if and only if $ f\rb{x} = 0 $.
+\begin{itemize}
+\item If $ d \equiv 2, 3 \mod 4 $, then $ x^2 - d = 0 $ has no solutions if and only if $ d $ is not a quadratic residue mod $ p $.
+\item If $ d \equiv 1 \mod 4 $, then $ x^2 - x - \tfrac{d - 1}{4} = 0 $ has no solutions if and only if $ d $ is not a quadratic residue mod $ p $.
+\end{itemize}
+\end{itemize}
+
+\pagebreak
+
+\section{Finiteness of ideal class group}
+
+Goal is if $ K $ is an imaginary quadratic field, so $ d < 0 $, then $ Cl\rb{K} $ is finite. Use that every ideal class in $ Cl\rb{K} $ contains an integral ideal of norm less than explicit bound depending on $ K $. Uses geometry of numbers and Minkowski's theorem.
+
+\subsection{Standard form of ideals}
+
+Let $ K $ be a quadratic field and $ \OO_K = \Z \oplus \Z\delta $ be the ring of integers, where
+$$ \delta =
+\begin{cases}
+\sqrt{d} & d \equiv 2, 3 \mod 4 \\
+\tfrac{1 + \sqrt{d}}{2} & d \equiv 1 \mod 4
+\end{cases}.
+$$
+
+\begin{proposition}
+Let $ I \subseteq \OO_K $ be an integral ideal. There exists $ a, b, d \in \Z $ such that the following hold.
+\begin{itemize}
+\item $ I = d\rb{\Z a + \Z\rb{-b + \delta}} $.
+\item $ a \mid Nm_{K / \Q}\rb{-b + \delta} $.
+\end{itemize}
+\end{proposition}
+
+Conversely, every subset of $ \OO_K $ of this form is an integral ideal. The expression
+$$ I = d\rb{\Z a + \Z\rb{-b + \delta}} $$
+is called the \textbf{standard form} of $ I $.
+
+\begin{proof}
+Let $ K $ be imaginary quadratic. $ \OO_K $ is a lattice $ \Lambda_0 $ generated by $ 1, \delta $ in $ K $. $ I $ is a lattice $ \Lambda \subseteq \Lambda_0 $. There exists $ \gamma \in M_2\rb{\Z} $ such that $ \Lambda = \gamma \cdot \Lambda_0 $. Can assume
+$$ \gamma = \twobytwo{a'}{b'}{0}{d}, $$
+for $ a', b', d \in \Z $. $ I = \Z a' + \Z\rb{b' + d\delta} $ is an ideal and $ a' \in I $ gives $ a'\delta = a'b + \rb{b' + d\delta}a \in I $ for $ a, b \in \Z $, so
+$$ a'\rb{\delta - b} = \rb{b' + d\delta}a. $$
+The coefficients of $ \delta $ gives $ a' = da $, and the coefficients of $ 1 $ gives $ -a'b = ab' $, so $ b' = -db $. Left to check that $ a \mid Nm_{K / \Q}\rb{-b + \delta} $. For simplicity assume $ d = 1 $. $ I $ is an ideal and $ -b + \delta \in I $ gives $ \delta\rb{-b + \delta} = af + \rb{-b + \delta}e \in I $ for $ e, f \in \Z $, so
+$$ \rb{e - \delta}\rb{-b + \delta} = -af \in \Z. $$
+If $ e - \delta = -b + \overline{\delta} $ the product would be $ \rb{-b + \overline{\delta}}\rb{-b + \delta} = Nm_{K / \Q}\rb{-b + \delta} = -af \in \Z $, if and only if $ a \mid Nm_{K / \Q}\rb{-b + \delta} $. Conversely,
+$$ -af = \rb{e - \delta}\rb{-b + \delta} = \rb{e - \delta + b - \overline{\delta} + \rb{-b + \overline{\delta}}}\rb{-b + \delta} = \rb{e - \delta + b - \overline{\delta}}\rb{-b + \delta} + Nm_{K / \Q}\rb{-b + \delta}. $$
+Then $ -af \in \Z $, $ Nm_{K / \Q}\rb{-b + \delta} \in \Z $, $ e - \delta + b - \overline{\delta} \in \Z $, and $ -b + \delta \in \OO_K \setminus \Z $, so $ e - \delta + b - \overline{\delta} = 0 $.
+\end{proof}
+
+(Exercise: write $ I = \ab{2 + i} \subsetneq \Z\sb{i} $ in standard form) An observation is that if $ I = d\rb{\Z a + \Z\rb{-b + \delta}} $ is in standard form, $ Nm\rb{I} = d^2 \cdot a $, since
+$$ \det\twobytwo{a}{-b}{0}{1} = 0. $$
 
 \end{document}
