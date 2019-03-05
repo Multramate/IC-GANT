@@ -1148,7 +1148,7 @@ $ \Delta $ is four times the usual determinant if $ char\rb{K} \ne 2 $. Notice t
 \end{enumerate}
 Assume we are in case $ 1 $. Suppose $ z = 0 $ is a solution, then we have to prove that $ z^2 $ is not a solution. Then the equation of $ f $ is
 $$ f = txy + gz. $$
-So $ B = t + az $, where $ a \in K $, then $ \Delta \equiv -t^2F \mod z^2 $. If $ F \ne 0 $ then $ \Delta $ is nonzero, but $ F $ is nonzero because $ F $ is nonsingular, thus there are no multiple roots.
+So $ B = t + az $, where $ a \in K $, then $ \Delta \equiv -t^2F \mod z^2 $. If $ F \ne 0 $ then $ \Delta $ is non-zero, but $ F $ is non-zero because $ F $ is nonsingular, thus there are no multiple roots.
 \end{proof}
 
 \begin{corollary}
@@ -1181,7 +1181,7 @@ Any three lines lie in a smooth quadric $ Q $.
 
 \pagebreak
 
-\section{Divisors}
+\section{Weil Divisors}
 
 \lecture{22}{Friday}{01/03/19}
 
@@ -1198,11 +1198,11 @@ $$ C = \sum_i a_iY_i \subseteq X, \qquad a_i \in \Z. $$
 
 By integrating algebraic cycles, we get a map from the space of $ p $-cycles into the cohomology of the variety. \textbf{Hodge conjecture} states that this defines a bijection.
 
-\begin{example*}
+\begin{example}
 In case $ \dim\rb{X} = 1 $, then a divisor is just a sum of points with multiplicity. If $ K = \C $ and
 $$ f = \dfrac{\rb{z - 1}\rb{z - 2}}{\rb{z - 3}\rb{z - 4}}, $$
 then $ \rb{f} = \overline{1} + \overline{2} - \overline{3} - \overline{4} $.
-\end{example*}
+\end{example}
 
 \begin{definition}
 Let $ K = \C $ and $ \dim\rb{X} = 1 $. Let $ D, V \subseteq X $. Then \textbf{linear equivalence} is $ D \sim V $ if and only if $ D - V = \rb{f} $ for $ f \in K\rb{x} $.
@@ -1229,9 +1229,9 @@ Let $ V $ be a vector space of dimension $ n $, then
 $$ G\rb{k; n} = \cb{S \subseteq V \mid S \ \text{subspace of dimension} \ k}. $$
 \end{definition}
 
-\begin{remark*}
+\begin{remark}
 A point in $ G\rb{k; n} $ can be expressed as a basis $ \sb{v_1, \dots, v_k} $ for a $ k $-dimensional space.
-\end{remark*}
+\end{remark}
 
 \begin{theorem}
 The map
@@ -1239,9 +1239,9 @@ $$ \function[p]{G\rb{k; n}}{\P\rb{\bigwedge^k\rb{V}} \cong \P^{^nC_k - 1}}{\sb{v
 is an embedding. That is, image of $ p $ is closed.
 \end{theorem}
 
-\begin{example*}
+\begin{example}
 Claim that a line $ L \subseteq \P^3 $ gives a point in $ G\rb{2; 4} \hookrightarrow \P^5 $. $ G\rb{2; 4} $ is a quadric in $ \P^5 $ given by $ Z\rb{xs - yt + zw} $.
-\end{example*}
+\end{example}
 
 \begin{proof}
 Now we will see the coordinates of the map $ p $. Given a vector space $ V $ of dimension $ n $ and a vector subspace $ S \subseteq V $ of dimension $ k $, then let $ v_1, \dots, v_n $ be a basis for $ V $, and $ s_1, \dots, s_k $ be a basis for $ S $, then the basis for $ S $ can be seen as a $ k \times n $ matrix
@@ -1260,5 +1260,97 @@ This gives a correspondence between matrices $ M_S $ with first non-zero minor a
 Similarly, we can define flag varieties. Given a vector space $ V $ and \textbf{flag}
 $$ 0 \subseteq V_1 \subseteq \dots \subseteq V_n \subseteq V $$
 of vector subspaces of dimension $ V_i $, the \textbf{flag variety} denoted by $ F\rb{V} $ is the set of flags on $ V $.
+
+\pagebreak
+
+\section{Divisors on curves}
+
+\lecture{23}{Monday}{04/03/19}
+
+\begin{definition}
+Let $ X $ be a smooth projective curve.
+\begin{itemize}
+\item A \textbf{divisor} $ D $ is a formal sum $ K_1p_1 + \dots + K_np_n $ of points, where $ K_i \in \Z $,
+\item We say a divisor $ D $ is \textbf{effective} if $ K_i \ge 0 $.
+\item Given two divisors $ D, E $, $ D \ge E $ if and only if $ D - E \ge 0 $.
+\item The \textbf{degree} of $ D $, denoted $ \deg\rb{D} $, is the sum $ \sum_{i = 1}^n K_i $.
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+Degree gives a map $ \deg : Div \to \Z $. The set of all divisors on $ X $ has a natural group structure given by addition, we denote this group by $ Div\rb{X} $.
+\end{remark}
+
+\begin{notation}
+The subgroup of \textbf{degree zero divisors} is denoted by $ Div^0\rb{X} $.
+\end{notation}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item For a non-zero homogeneous polynomial $ f \in S\rb{X} $ the \textbf{divisor} of $ f $ is
+$$ \rb{f} = div\rb{f} = \sum_{a \in V_X\rb{f}} mult_a\rb{f} \cdot a \in Div\rb{f}. $$
+By B\'ezout's theorem, $ \deg\rb{div\rb{f}} = \deg\rb{X}\deg\rb{f} $.
+\item If $ Y \subseteq \P^2 $ not containing $ X $, then the \textbf{intersection} of $ X $ and $ Y $ is
+$$ X \cdot Y = \sum_{a \in X \cap Y} mult_a\rb{X, Y} \cdot a. $$
+\end{itemize}
+\end{definition}
+
+\begin{example}
+Let $ X = Z\rb{xz - y^2} $ and $ Y = Z\rb{z} $ then $ X \cap Y = \cb{\sb{1 : 0 : 0}} $, so $ X \cdot Y = 2 \cdot \sb{1 : 0 : 0} $.
+\end{example}
+
+\begin{lemma}
+$ mult_a\rb{fg} = mult_a\rb{f} + mult_a\rb{g} $ gives $ div\rb{fg} = div\rb{f} + div\rb{g} $.
+\end{lemma}
+
+\begin{proof}
+Recall that $ mult_a\rb{f} = \len\rb{\OO_a / \ab{f}} = \dim_K\rb{\OO_a / \ab{f}} $. Thus there is a short exact sequence
+$$ 0 \to \dfrac{\OO_a}{\ab{f}} \xrightarrow{g} \dfrac{\OO_a}{\ab{fg}} \to \dfrac{\OO_a}{\ab{g}} \to 0. $$
+\end{proof}
+
+\begin{definition}
+Let $ f \in K^*\rb{X} $, then if $ f = g / h $ we define $ mult_a\rb{f} = mult_a\rb{g} - mult_a\rb{h} $.
+\end{definition}
+
+If we take a different representation of $ f $, say $ f = g' / h' $, then $ g / h = g' / h' $ gives $ gh' = hg' $, so
+$$
+\begin{cases}
+mult_a\rb{gh'} = mult_a\rb{g} + mult_a\rb{h'} \\
+mult_a\rb{hg'} = mult_a\rb{h} + mult_a\rb{g'}
+\end{cases}
+\qquad \implies \qquad mult_a\rb{g} - mult_a\rb{h} = mult_a\rb{g'} - mult_a\rb{h'}. $$
+Analogously, we have
+$$ div\rb{f} = \sum_{a \in Z\rb{g} \cup Z\rb{h}} mult_a\rb{f}a = div\rb{g} \cdot div\rb{h}. $$
+
+\begin{example}
+Let $ f = xy / \rb{x - y}^2 $ on $ \P^1 $. Then $ div\rb{f} = \sb{1 : 0} + \sb{0 : 1} - 2\sb{1 : 1} $.
+\end{example}
+
+\begin{remark}
+Note that $ \deg\rb{div\rb{f}} $ is always zero because
+$$ \deg\rb{div\rb{f}} = \deg\rb{div\rb{g}} - \deg\rb{div\rb{h}} = \rb{\deg\rb{X}}\rb{\deg\rb{g}} - \rb{\deg\rb{X}}\rb{\deg\rb{h}} = 0. $$
+\end{remark}
+
+\begin{definition}
+A divisor on $ X $ is called principal if it is of the form $ div\rb{f} $ for some $ f \in K^*\rb{X} $. We denote the subgroup of all principal divisors by $ Prin\rb{X} $.
+\end{definition}
+
+\begin{definition}
+The quotient
+$$ Pic\rb{X} = \dfrac{Div\rb{X}}{Prin\rb{X}} $$
+is called the \textbf{Picard group} of $ X $. Restricting to degree zero divisors, we get
+$$ Pic^0\rb{X} = \dfrac{Div^0\rb{X}}{Prin\rb{X}}, $$
+where $ Div^0\rb{X} $ are the divisors of degree zero.
+\end{definition}
+
+By the degree map $ \deg : Div\rb{X} \to \Z $ we have
+$$ \dfrac{Pic\rb{X}}{Pic^0\rb{X}} \cong \dfrac{Div\rb{X}}{Div^0\rb{X}} \cong \Z. $$
+
+\begin{example}
+Every degree zero divisor is principal. Suppose $ D = K_1\sb{a_{1, 0} : a_{1, 1}} + \dots + K_n\sb{a_{n, 0} : a_{n, 1}} $ and $ \sum_{i = 1}^n K_i = 0 $, then set
+$$ f\sb{x_0 : x_1} = \prod_{i = 1}^n \rb{a_{i, 1}x_0 - a_{i, 0}x_1}^{K_i}. $$
+So $ Pic^0\rb{\P^1} = \cb{0} $ so $ Pic\rb{\P^1} = \Z $.
+\end{example}
 
 \end{document}
