@@ -1335,4 +1335,84 @@ x^3 - 6x - 1 & 837 & \mathfrak{S}_3
 $$
 \end{example*}
 
+\pagebreak
+
+\section{Irreducible polynomials}
+
+\lecture{24}{Tuesday}{05/03/19}
+
+\begin{proposition}
+Suppose $ f\rb{x} = a_0 + \dots + a_dx^d \in \Z\sb{x} $ has a root $ p / q \in \Q $ with $ \gcd\rb{p, q} = 1 $, then $ p \mid a_0 $ and $ q \mid a_d $.
+\end{proposition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ x^5 - 5 $ has no rational roots. Note that this does not show $ x^5 - 5 $ is irreducible over $ \Q $.
+\item $ x^3 - 2 $ is irreducible over $ \Q $.
+\end{itemize}
+\end{example*}
+
+\begin{proof}
+$ f\rb{p / q} = a_0 + \dots + a_d\rb{p / q}^d = 0 $. Multiplying by $ q^d $, $ a_0q^d + \dots + a_dp^d = 0 $. $ q $ divides $ a_0q^d + \dots + a_{d - 1}qp^{d - 1} $, so $ q \mid a_dp^d $. Note that if $ c \mid ab $ and $ \gcd\rb{c, a} = 1 $ then $ c \mid b $. Then $ \gcd\rb{q, p^d} = 1 $, so $ q \mid a_d $. Similarly $ p \mid a_0 $.
+\end{proof}
+
+\begin{remark*}
+If $ K $ is a field then $ K\sb{x} $ is a Euclidean domain, in particular unique factorisation holds, in particular $ K\sb{x} $ is an integral domain, that is for all $ a, b \in K\sb{x} $ if $ ab = 0 $, then either $ a = 0 $ or $ b = 0 $.
+\end{remark*}
+
+Suppose that you want to show $ n \in \Z $ is prime. Try to factor by all primes $ p < \sqrt{n} $.
+
+\begin{example*}
+$ 97 $ is prime because $ 2 \nmid 97 $, $ 3 \nmid 97 $, $ 5 \nmid 97 $, and $ 7 \nmid 97 $.
+\end{example*}
+
+A question is can such a method work with polynomials $ f\rb{x} \in \Q\sb{x} $? Yes but we will not go there because it is not very practical. This method is ok in $ \F_p\sb{x} $, where $ p $ is prime, and this leads to a useful strategy.
+
+\begin{example*}
+Is $ x^5 - 5 \in \Q\sb{x} $ irreducible?
+\begin{itemize}
+\item Is it irreducible in $ \F_2\sb{x} $? $ x^5 - 5 \equiv x^5 + 1 \mod 2 $ and $ x = 1 $ is a root, so not irreducible.
+\item Is it irreducible in $ \F_3\sb{x} $? $ x^5 - 5 \equiv x^5 + 1 \mod 3 $ and $ x = -1 $ is a root, so not irreducible.
+\item It is not irreducible in $ \F_5\sb{x} $ since $ x^5 - 5 \equiv x^5 \mod 5 $.
+\item Is it irreducible in $ \F_7\sb{x} $? (Exercise)
+\end{itemize}
+\end{example*}
+
+\begin{lemma}[Gauss' lemma]
+\label{lem:gausslemma}
+Suppose $ f\rb{x} = a_0 + \dots + a_dx^d \in \Z\sb{x} $, where $ \gcd\rb{a_0, \dots, a_d} = 1 $, factorises non-trivially in $ \Q\sb{x} $. Then it factors non-trivially in $ \Z\sb{x} $.
+\end{lemma}
+
+\begin{corollary}
+If $ f\rb{x} $ is prime in $ \F_p\sb{x} $, for some $ p $, then it is prime in $ \Q\sb{x} $.
+\end{corollary}
+
+\begin{proof}
+Otherwise $ f\rb{x} $ factors in $ \F_p\sb{x} $.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lem:gausslemma}]
+Suppose $ f\rb{x} = g\rb{x}h\rb{x} $ in $ \Q\sb{x} $ for $ g\rb{x}, h\rb{x} \in \Q\sb{x} $. There is a $ c \in \Z $ such that
+\begin{equation}
+\label{eq:9}
+cf\rb{x} = g'\rb{x}h'\rb{x},
+\end{equation}
+where $ g'\rb{x}, h'\rb{x} \in \Z\sb{x} $, $ g' = \lambda g $, and $ h' = \mu h $ for $ \lambda, \mu \in \Q $. There is a smallest such $ c $. I claim $ c = 1 $. Otherwise there exists $ p $ prime such that $ p \mid c $, so $ \rb{\ref{eq:9}} $ is
+$$ 0 = \overline{g'}\rb{x}\overline{h'}\rb{x} \in \F_p\sb{x}. $$
+Either $ p \mid g'\rb{x} $, that is $ p $ divides all coefficients of $ g' $, or $ p \mid h'\rb{x} $, a contradiction.
+\end{proof}
+
+\begin{corollary}[Eisenstein]
+$ f\rb{x} = a_0 + \dots + a_dx^d \in \Z\sb{x} $ is irreducible in $ \Q\sb{x} $ if there exists $ p $ prime such that $ p \nmid a_d $ but $ p \mid a_i $ for $ i < d $ and $ p^2 \nmid a_0 $.
+\end{corollary}
+
+\begin{proof}
+Work in $ \F_p\sb{x} $. Then $ f\rb{x} \equiv a_dx^d \mod p $. If $ f\rb{x} = h\rb{x}g\rb{x} $ in $ \Z\sb{x} $, then $ h\rb{x} \equiv b_kx^k \mod p $ and $ g\rb{x} \equiv c_{d - k}x^{d - k} \mod p $, and that means that $ h\rb{x} = b_0 + \dots + b_kx^k $ and $ p \mid b_i $ for all $ i < k $ and $ h\rb{x} = c_0 + \dots + c_{d - k}x^{d - k} $ and $ p \mid c_i $ for all $ i < d - k $. Thus $ p^2 \mid a_0 = b_0c_0 $, a contradiction.
+\end{proof}
+
+\begin{example*}
+$ x^5 - 5 $ is irreducible by Eisenstein and $ p = 5 $.
+\end{example*}
+
 \end{document}
