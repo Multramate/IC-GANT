@@ -35,7 +35,7 @@ The following are prerequisites.
 
 \subsection{Some underlying geometric notions}
 
-\subsubsection{Homotopy}
+\subsubsection{Homotopy and homotopy type}
 
 Let $ X, Y $ be topological spaces and $ I = \sb{0, 1} $.
 
@@ -760,7 +760,7 @@ $$ G_1 * G_2 \cong \dfrac{G_1 \underset{G_0}{*} G_2}{N}. $$
 where $ N $ is the normal closure of the set
 $$ \cb{f_1\rb{g}f_2\rb{g}^{-1} \mid g \in G_0} \subseteq G_1 * G_2. $$
 
-\subsubsection{The Seifert van-Kampen theorem}
+\subsubsection{The Seifert-vanKampen theorem}
 
 \begin{theorem}[Seifert-van Kampen]
 Let $ X $ be a topological space and $ U_1, U_2 \subseteq X $ be open and path-connected such that $ X = U_1 \cup U_2 $ and $ U_1 \cap U_2 $ is path-connected and let $ x_0 \in U_1 \cap U_2 $. Then
@@ -1540,6 +1540,7 @@ $$ H_n\rb{X} = \dfrac{Ker\rb{\partial_n}}{Im\rb{\partial_{n + 1}}}. $$
 An observation is that if $ X $ and $ Y $ are homeomorphic then $ H_n\rb{X} \cong H_n\rb{Y} $.
 
 \begin{proposition}
+\label{prop:2.6}
 Let $ X $ be a topological space and $ X = \bigcup_\alpha X_\alpha $ be the decomposition into its path-connected components. Then
 $$ H_n\rb{X} \cong \bigoplus_\alpha H_n\rb{X_\alpha}. $$
 \end{proposition}
@@ -1569,6 +1570,7 @@ Thus $ Ker\rb{\epsilon} \subseteq Im\rb{\partial_1} $.
 \end{proof}
 
 \begin{proposition}
+\label{prop:2.8}
 If $ X $ is a point, then
 $$ H_n\rb{X} = 
 \begin{cases}
@@ -1700,5 +1702,114 @@ The terms with $ i \ne j $ sum up to $ \rb{P \circ \partial}\rb{\sigma} $, since
 + & \sum_{j > i} \rb{-1}^i\rb{-1}^{j + 1}F \circ \rb{\sigma \times id} \mid_{\sb{v_0, \dots, v_i, w_i, \dots, \widehat{w_j}, \dots, w_n}}.
 \end{align*}
 \end{proof}
+
+\lecture{23}{Tuesday}{05/03/19}
+
+\begin{remark*}
+One can show that there are also induced homomorphisms $ f_* : \widetilde{H_n}\rb{X} \to \widetilde{H_n}\rb{Y} $ invariant under homotopy. (Exercise)
+\end{remark*}
+
+\subsubsection{Exact sequences and excision}
+
+Let $ A \subseteq X $ be a subspace. What is the relationship between $ H_n\rb{A}, H_n\rb{X}, H_n\rb{X / A} $?
+
+\begin{definition*}
+A sequence of group homomorphisms of abelian groups
+$$ \dots \xrightarrow{\alpha_{n + 1}} A_n \xrightarrow{\alpha_n} \dots $$
+is \textbf{exact at $ A_n $} if $ Ker\rb{\alpha_n} = Im\rb{\alpha_{n + 1}} $. The sequence is \textbf{exact} if it is exact at $ A_n $ for all $ n $.
+\end{definition*}
+
+An observation is if the sequence is exact, then
+\begin{itemize}
+\item $ \alpha_n\alpha_{n + 1} = 0 $, so exact sequences are chain complexes, and
+\item the homology groups of this chain complex are all trivial.
+\end{itemize}
+
+\begin{example*}
+\hfill
+\begin{enumerate}
+\item $ 0 \to A \xrightarrow{\alpha} B $ is exact if and only if $ Ker\rb{\alpha} = 0 $, if and only if $ \alpha $ is injective.
+\item $ A \xrightarrow{\alpha} B \to 0 $ is exact if and only if $ Im\rb{\alpha} = B $, if and only if $ \alpha $ is surjective.
+\item $ 0 \to A \xrightarrow{\alpha} B \to 0 $ is exact if and only if $ \alpha $ is an isomorphism.
+\item $ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 $ is exact if and only if $ \alpha $ is injective, $ \beta $ is surjective, and $ Ker\rb{\beta} = Im\rb{\alpha} $, hence $ \beta $ induces an isomorphism $ C \cong B / Im\rb{\alpha} = B / A $.
+\end{enumerate}
+\end{example*}
+
+An exact sequence as in $ 4 $ is called a \textbf{short exact sequence}.
+
+\begin{definition*}
+Let $ X $ be a topological space, $ A \subseteq X $ a non-empty closed subspace. Then $ \rb{X, A} $ is called a \textbf{good pair} if $ A $ has a neighbourhood in $ X $ that deformation retracts to $ A $.
+\end{definition*}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ \rb{D^n, S^{n - 1}} $ is a good pair, since $ S^{n - 1} $ is a deformation retract of $ D^n \setminus \cb{0} $.
+\item Let $ A = \cb{1 / n \mid n \in \N} \cup \cb{0} \subseteq \sb{0, 1} $ then $ \rb{\sb{0, 1}, A} $ is not a good pair.
+\end{itemize}
+\end{example*}
+
+\begin{theorem}
+Let $ \rb{X, A} $ be a good pair, then there is an exact sequence
+$$ \dots \xrightarrow{\partial} \widetilde{H_1}\rb{A} \xrightarrow{i_*} \widetilde{H_1}\rb{X} \xrightarrow{j_*} \widetilde{H_1}\rb{X / A} \xrightarrow{\partial} \widetilde{H_0}\rb{A} \xrightarrow{i_*} \widetilde{H_0}\rb{X} \xrightarrow{j_*} \widetilde{H_0}\rb{X / A} \to 0, $$
+where $ i : A \hookrightarrow X $ is the inclusion and $ j : X \to X / A $ is the quotient.
+\end{theorem}
+
+\begin{corollary}
+$ \widetilde{H_n}\rb{S^n} \cong \Z $ and $ \widetilde{H_i}\rb{S^n} = 0 $ if $ i \ne 0 $.
+\end{corollary}
+
+\begin{proof}
+$ \rb{D^n, S^{n - 1}} $ is a good pair. Let $ n > 0 $. Recall that $ D^n / S^{n - 1} \cong S^n $, so
+$$
+\begin{tikzcd}[column sep=small, row sep=tiny]
+\dots \arrow{r}{\partial} & \widetilde{H_i}\rb{S^{n - 1}} \arrow{r}{i_*} & \widetilde{H_i}\rb{D^n} \arrow{r}{j_*} \arrow[cong]{d} & \widetilde{H_i}\rb{S^n} \arrow{r}{\partial} & \widetilde{H_{i - 1}}\rb{S^{n - 1}} \arrow{r}{i_*} & \widetilde{H_{i - 1}}\rb{D^n} \arrow{r}{j_*} \arrow[cong]{d} & \widetilde{H_{i - 1}}\rb{S^n} \arrow{r}{\partial} & \dots \\
+& & 0 & & & 0 & &
+\end{tikzcd}.
+$$
+Then $ \widetilde{H_i}\rb{S^n} \cong \widetilde{H_{i - 1}}\rb{S^{n - 1}} $ for $ i > 0 $, so
+$$
+\begin{tikzcd}[column sep=small, row sep=tiny]
+\dots \arrow{r}{\partial} & \widetilde{H_1}\rb{S^{n - 1}} \arrow{r}{i_*} & \widetilde{H_1}\rb{D^n} \arrow{r}{j_*} \arrow[cong]{d} & \widetilde{H_1}\rb{S^n} \arrow{r}{\partial} & \widetilde{H_0}\rb{S^{n - 1}} \arrow{r}{i_*} & \widetilde{H_0}\rb{D^n} \arrow{r}{j_*} \arrow[cong]{d} & \widetilde{H_0}\rb{S^n} \arrow{r} & 0 \\
+& & 0 & & & 0 & &
+\end{tikzcd}.
+$$
+$ n > 0 $ and $ i > 0 $, so $ \widetilde{H_i}\rb{S^n} \cong \widetilde{H_{i - 1}}\rb{S^{n - 1}} $, and $ \widetilde{H_0}\rb{S^n} = 0 $. We know that $ \widetilde{H_0}\rb{S^0} \cong \Z $ and $ \widetilde{H_n}\rb{S^0} = 0 $, by Proposition \ref{prop:2.6} and Proposition \ref{prop:2.8}. Doing induction on $ n $, $ \widetilde{H_n}\rb{S^n} \cong \Z $ and $ \widetilde{H_i}\rb{S^n} = 0 $ if $ i \ne n $.
+\end{proof}
+
+\begin{corollary}
+\label{cor:2.15}
+There exists no retraction $ r : D^n \to \partial D^n $.
+\end{corollary}
+
+\begin{proof}
+Assume there exists such an $ r : D^n \to \partial D^n $. Let $ i : \partial D^n \to D^n $. Then $ ri = id_{\partial D^n} $ gives $ r_*i_* = \rb{ri}_* = id $, so
+$$
+\begin{tikzcd}[row sep=tiny]
+\widetilde{H_{n - 1}}\rb{\partial D^n} \arrow{r}{i_*} \arrow[cong]{d} & \widetilde{H_{n - 1}}\rb{D^n} \arrow{r}{r_*} \arrow[cong]{d} & \widetilde{H_{n - 1}}\rb{\partial D^n} \arrow[cong]{d} \\
+\Z & 0 & \Z
+\end{tikzcd}.
+$$
+Thus $ i_* = 0 $ and $ r_* = 0 $, a contradiction.
+\end{proof}
+
+\begin{theorem}[Brouwer fixed point theorem]
+Every continuous map $ f : D^n \to D^n $ has a fixed point.
+\end{theorem}
+
+\begin{proof}
+Assume there exists a fixed point then construct as in dimension two a retraction $ D^n \to \partial D^n $, a contradiction to Corollary \ref{cor:2.15}.
+\end{proof}
+
+Let $ X $ be a topological space and $ A \subseteq X $ be a subspace. Define $ C_n\rb{X, A} = C_n\rb{X} / C_n\rb{A} $. Let $ \partial : C_n\rb{X} \to C_{n - 1}\rb{X} $ be the boundary map then $ \partial\rb{\sigma : \Delta^n \to A} \in \partial\rb{C_n\rb{A}} \subseteq C_{n - 1}\rb{A} $. So $ \partial $ induces a homomorphism
+$$ \partial : C_n\rb{X, A} \to C_{n - 1}\rb{X, A}, $$
+such that $ \partial \circ \partial = 0 $. This gives a chain complex
+$$ \dots \to C_{n + 1}\rb{X, A} \xrightarrow{\partial} C_n\rb{X, A} \xrightarrow{\partial} C_{n - 1}\rb{X, A} \to \dots. $$
+\begin{itemize}
+\item The homology groups $ H_n\rb{X, A} $ of this complex are the \textbf{relative homology groups}.
+\item The \textbf{relative $ n $-chains} are $ C_n\rb{X, A} $.
+\item The \textbf{relative $ n $-cycles} are $ Ker\rb{\partial} \subseteq C_n\rb{X, A} $, of the form $ \sb{\alpha} $, for $ \alpha \in C_n\rb{X} $ such that $ \partial\rb{\alpha} \in C_{n - 1}\rb{A} $.
+\item The \textbf{relative $ n $-boundaries} are $ Im\rb{\partial} \subseteq C_n\rb{X, A} $, of the form $ \sb{\alpha} $, for $ \alpha \in C_n\rb{X} $ such that $ \alpha = \partial\beta + \gamma $ for $ \beta \in C_{n + 1}\rb{X} $ and $ \gamma \in C_n\rb{A} $.
+\end{itemize}
 
 \end{document}
