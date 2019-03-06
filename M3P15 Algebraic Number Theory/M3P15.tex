@@ -1759,7 +1759,77 @@ $$ -af = \rb{e - \delta}\rb{-b + \delta} = \rb{e - \delta + b - \overline{\delta
 Then $ -af \in \Z $, $ Nm_{K / \Q}\rb{-b + \delta} \in \Z $, $ e - \delta + b - \overline{\delta} \in \Z $, and $ -b + \delta \in \OO_K \setminus \Z $, so $ e - \delta + b - \overline{\delta} = 0 $.
 \end{proof}
 
-(Exercise: write $ I = \ab{2 + i} \subsetneq \Z\sb{i} $ in standard form) An observation is that if $ I = d\rb{\Z a + \Z\rb{-b + \delta}} $ is in standard form, $ Nm\rb{I} = d^2 \cdot a $, since
+An observation is that if $ I = d\rb{\Z a + \Z\rb{-b + \delta}} $ is in standard form, $ Nm\rb{I} = d^2 \cdot a $, since
 $$ \det\twobytwo{a}{-b}{0}{1} = 0. $$
+
+\lecture{24}{Tuesday}{05/03/19}
+
+\begin{example*}
+Let
+$$ I = \ab{2 + i} = \rb{2 + i}\Z + \rb{2 + i}i\Z = \rb{2 + i}\Z + \rb{2i - 1}\Z = \twobytwo{2}{-1}{1}{2} \cdot \Z\sb{i} \subsetneq \Z\sb{i}. $$
+Column-reducing,
+$$ \twobytwo{2}{-1}{1}{2} \sim \twobytwo{2}{-5}{1}{0} \sim \twobytwo{5}{2}{0}{1}. $$
+Standard form is $ I = 5\Z + \rb{2 + i}\Z $. (Exercise: check that $ 5 = Nm_{\Z\sb{i} / \Z}\rb{2 + i} $)
+\end{example*}
+
+Let $ K $ be an imaginary quadratic field and
+$$ J = q\rb{\Z a + \Z\rb{-b + \delta}} \subsetneq K, $$
+for $ a, b \in \Z $ and $ q \in \Q^\times $, be a fractional ideal of $ \OO_K $. $ Nm\rb{J} = q^2 \cdot a $, by extending norm from ideals to fractional ideals multiplicatively. Standard form of $ J $ has fundamental parallelogram with vertices
+$$ 0, \ qa, \ q\rb{-b + \delta}, \ qa + q\rb{-b + \delta}. $$
+Let $ A\rb{J} $ be the area of the fundamental parallelogram of $ J $.
+
+\begin{proposition}
+$$ A\rb{J} = \dfrac{Nm\rb{J} \cdot \sqrt{Disc\rb{K}}}{2}. $$
+\end{proposition}
+
+\begin{proof}
+$$ A\rb{J} = qa \cdot q\abs{Im\rb{\delta}} = q^2 \cdot a \cdot \abs{Im\rb{\delta}} = \dfrac{q^2 \cdot a \cdot \sqrt{Disc\rb{K}}}{2} = \dfrac{Nm\rb{J} \cdot \sqrt{Disc\rb{K}}}{2}. $$
+\end{proof}
+
+\subsection{Minkowski's theorem}
+
+If $ J $ is a fractional ideal of $ K $, goal is to show that there exists $ \alpha \in J $ such that $ Nm\rb{\alpha} < C_K \cdot Nm\rb{J} $, where $ C_K $ is an explicit bound in terms of $ K $, so $ Nm\rb{\alpha \cdot J^{-1}} < C_K $. Up to multiplication by a principal ideal, can get $ Nm\rb{J^{-1}} < C_K $. Idea is to use Minkowski's theorem. Have a lattice $ \Lambda \subset \R^2 $ and a nice region $ S \subset \R^2 $. Let $ A\rb{\Lambda} $ be the area of the fundamental parallelogram of $ \Lambda $.
+
+\begin{theorem}[Minkowski's theorem]
+If $ A\rb{S} > 4A\rb{\Lambda} $ then $ S $ contains a non-zero lattice point, that is $ S \cap \Lambda \ne \emptyset $.
+\end{theorem}
+
+$ S $ is \textbf{nice}
+\begin{itemize}
+\item if $ x \in S $ then $ -x \in S $, and
+\item $ S $ is convex, that is if $ x, y \in S $ then the segment $ \sb{x, y} \subset S $.
+\end{itemize}
+
+\begin{example*}
+Let $ S $ be the closed or open disc of radius $ r > 2 / \sqrt{\pi} $ and $ \Lambda = \Z\sb{i} \subset \C $. Then $ A\rb{S} = \pi r^2 > 4 = 4A\rb{\Lambda} $.
+\end{example*}
+
+\begin{proof}
+Consider all parallelograms of $ 2\Lambda $ that intersect $ S $. Translate elements of $ 2\Lambda $ until they all overlap.
+$$ A\rb{2\Lambda} = 4A\rb{\Lambda} < A\rb{S} = A\rb{S_1} + \dots + A\rb{S_n}. $$
+There exists $ S_i, S_j $ for $ i \ne j $ such that $ S_i \cap S_j \ne \emptyset $ translated. There exists $ x \in S \cap S_i $ and $ y \in S \cap S_j $ for $ i \ne j $ such that $ x - y \in 2\Lambda $. Claim that $ \rb{x - y} / 2 \in S \cap \Lambda $.
+\begin{itemize}
+\item $ x - y \in 2\Lambda $ gives $ \rb{x - y} / 2 \in \Lambda $.
+\item $ \rb{x - y} / 2 \in S $ because $ y \in S $ gives $ -y \in S $, and $ x \in S $ gives the midpoint $ \rb{x - y} / 2 \in S $.
+\end{itemize}
+\end{proof}
+
+\begin{theorem}
+Let $ K $ be an imaginary quadratic field. Then every ideal class in $ Cl\rb{K} $ contains a representative $ I $ such that $ I $ is an integral ideal of norm less than
+$$ \dfrac{2\sqrt{Disc\rb{K}}}{\pi}. $$
+\end{theorem}
+
+\begin{proof}
+Back to $ J = q\rb{\Z a + \Z\rb{-b + \delta}} $ a fractional ideal of $ \OO_K $. Let $ S $ be the disc centred at the origin of radius
+$$ r = \sqrt{\dfrac{2\sqrt{Disc\rb{K}} \cdot Nm\rb{J}}{\pi}} + \epsilon. $$
+Then
+$$ A\rb{S} > \pi r^2 = 2\sqrt{Disc\rb{K}} \cdot Nm\rb{J} = 4A\rb{J}. $$
+Minkowski gives that there exists $ \alpha \in J $ such that $ \alpha \ne 0 $ and
+$$ Nm_{K / \Q}\rb{\alpha} = \abs{\alpha}^2 < \dfrac{2\sqrt{Disc\rb{K}} \cdot Nm\rb{J}}{\pi} + \epsilon. $$
+Thus there exists $ \alpha \in J $ such that
+$$ Nm_{K / \Q}\rb{\alpha} < \dfrac{2\sqrt{Disc\rb{K}}}{\pi} \cdot Nm\rb{J}. $$
+\end{proof}
+
+(Exercise: prove $ Cl\rb{\Q\rb{\sqrt{-5}}} = \Z / 2\Z $)
 
 \end{document}
