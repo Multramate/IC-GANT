@@ -1305,7 +1305,7 @@ $ mult_a\rb{fg} = mult_a\rb{f} + mult_a\rb{g} $ gives $ div\rb{fg} = div\rb{f} +
 \end{lemma}
 
 \begin{proof}
-Recall that $ mult_a\rb{f} = \len\rb{\OO_a / \ab{f}} = \dim_K\rb{\OO_a / \ab{f}} $. Thus there is a short exact sequence
+Recall that $ mult_a\rb{f} = len\rb{\OO_a / \ab{f}} = \dim_K\rb{\OO_a / \ab{f}} $. Thus there is a short exact sequence
 $$ 0 \to \dfrac{\OO_a}{\ab{f}} \xrightarrow{g} \dfrac{\OO_a}{\ab{fg}} \to \dfrac{\OO_a}{\ab{g}} \to 0. $$
 \end{proof}
 
@@ -1324,7 +1324,8 @@ Analogously, we have
 $$ div\rb{f} = \sum_{a \in Z\rb{g} \cup Z\rb{h}} mult_a\rb{f}a = div\rb{g} \cdot div\rb{h}. $$
 
 \begin{example}
-Let $ f = xy / \rb{x - y}^2 $ on $ \P^1 $. Then $ div\rb{f} = \sb{1 : 0} + \sb{0 : 1} - 2\sb{1 : 1} $.
+Let $ f = xy / \rb{x - y}^2 $ on $ \P^1 $. Then
+$$ div\rb{f} = \sb{1 : 0} + \sb{0 : 1} - 2\sb{1 : 1}. $$
 \end{example}
 
 \begin{remark}
@@ -1344,13 +1345,96 @@ $$ Pic^0\rb{X} = \dfrac{Div^0\rb{X}}{Prin\rb{X}}, $$
 where $ Div^0\rb{X} $ are the divisors of degree zero.
 \end{definition}
 
-By the degree map $ \deg : Div\rb{X} \to \Z $ we have
-$$ \dfrac{Pic\rb{X}}{Pic^0\rb{X}} \cong \dfrac{Div\rb{X}}{Div^0\rb{X}} \cong \Z. $$
+By the degree map $ \deg : Div\rb{X} \to \Z $ we have $ Pic\rb{X} / Pic^0\rb{X} \cong Div\rb{X} / Div^0\rb{X} \cong \Z $.
 
 \begin{example}
 Every degree zero divisor is principal. Suppose $ D = K_1\sb{a_{1, 0} : a_{1, 1}} + \dots + K_n\sb{a_{n, 0} : a_{n, 1}} $ and $ \sum_{i = 1}^n K_i = 0 $, then set
 $$ f\sb{x_0 : x_1} = \prod_{i = 1}^n \rb{a_{i, 1}x_0 - a_{i, 0}x_1}^{K_i}. $$
 So $ Pic^0\rb{\P^1} = \cb{0} $ so $ Pic\rb{\P^1} = \Z $.
 \end{example}
+
+\lecture{24}{Tuesday}{05/03/19}
+
+\begin{lemma}[Nakayama lemma]
+If $ R $ is local with maximal ideal $ \mm $ and $ M $ is finitely generated then $ M = \mm M $ gives $ M = 0 $.
+\end{lemma}
+
+\begin{corollary}
+If $ R $ is local with maximal ideal $ \mm $ then $ \ab{t_1, \dots, t_n} = \mm $ if and only if $ \ab{\overline{t_1}, \dots, \overline{t_n}} = \mm / \mm^2 $.
+\end{corollary}
+
+\begin{proof}
+Let $ N = \ab{t_1, \dots, t_n} \subseteq \mm $. Suppose $ \ab{\overline{t_1}, \dots, \overline{t_m}} = \mm / \mm^2 $. Then
+$$ N + \mm^2 = \mm + \mm^2 \qquad \implies \qquad \dfrac{N + \mm^2}{N} = \dfrac{\mm + \mm^2}{N} \qquad \implies \qquad \mm\rb{\dfrac{\mm}{N}} = \dfrac{\mm}{N} \qquad \implies \qquad \dfrac{\mm}{N} = 0, $$
+so $ \ab{t_1, \dots, t_n} = \mm $.
+\end{proof}
+
+\begin{lemma}
+Let $ X \subseteq \P^2 $ be a smooth curve, and $ I_a \subseteq \OO_a $ be the maximal ideal of the local ring $ \OO_a $.
+\begin{enumerate}
+\item $ I_a $ is principal, so $ I_a = \ab{\phi_a} $ with $ mult_a\rb{\phi_a} = 1 $.
+\item Any non-zero $ \phi \in \OO_a $ can be written as $ c\phi_a^m $, where $ m = mult_a\rb{\phi} $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Since $ \OO_a $ is regular, $ \dim\rb{\mm / \mm^2} = 1 $, in particular $ \mm \ne \mm^2 $ and we can find $ \phi_a \in \mm \setminus \mm^2 $, so $ \ab{\phi_a} = \mm $. Thus any ideal has to be of the form $ \ab{\phi_a^k} $ since $ \ab{\phi_a} $ is maximal.
+\item Take $ \phi \in \OO_a $ non-zero then $ \ab{\phi} = \ab{\phi_a^m} $ gives $ \phi = c\phi_a^m $, so
+$$ mult\rb{\phi} = mult\rb{c\phi_a^m} = mult\rb{c} + mult\rb{\phi_a^m} = m \cdot mult\rb{\phi_a} = m. $$
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+Let $ X \subseteq \P^2 $ be a smooth curve, and $ a \in X $.
+\begin{enumerate}
+\item If $ f, g \in S $, of same degree with $ mult\rb{X, f} \ge m $ and $ mult\rb{X, g} \ge m $ then
+\begin{itemize}
+\item $ mult_a\rb{X, \lambda f + \mu g} \ge m $, and
+\item there exist $ \lambda, \mu $ such that $ mult_a\rb{X, \lambda f + \mu g} \ge m + 1 $.
+\end{itemize}
+\item Let $ Y \subseteq \P^2 $ be another curve and $ m = mult_a\rb{X, Y} $. If $ f \in S $ with $ mult_a\rb{X, f} \ge m $ then $ mult_a\rb{Y, f} \ge m $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Write $ f = u\phi_a^m $ and $ g = v\phi_a^m $, so for any $ \lambda, \mu $ we have $ \lambda f + \mu g = \rb{\lambda u + \mu v}\phi_a^m $ so $ mult_a\rb{\lambda f + \mu g} \ge m $, and we can find $ \lambda', \mu' $ such that $ \lambda'u + \mu'v = 0 $ at $ a $, so that $ mult_a\rb{\lambda f + \mu g} \ge m + 1 $.
+\item Let $ I\rb{X} = \ab{g} $, $ I\rb{Y} = \ab{h} $, and $ k = mult_a\rb{X, f} \ge m = mult_a\rb{X, h} $. $ f = u\phi_a^k $ and $ h = v\phi_a^m $, so $ \ab{f} \subset \ab{h} $. $ \ab{f, g} \subset \ab{g, h} $, and we also have $ \ab{f, h} \subset \ab{g, h} $, so $ mult_a\rb{f, h} \ge mult_a\rb{g, h} $ gives $ mult_a\rb{Y, f} \ge mult_a\rb{X, Y} = m $.
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+Let $ X \subset \P^2 $ be smooth and $ g, h \in S\rb{X} $.
+\begin{enumerate}
+\item If $ div\rb{g} = div\rb{h} $ then $ g, h $ are linearly dependent on $ S\rb{X} $.
+\item If $ h $ is linear and $ div\rb{g} \ge div\rb{h} $ then $ h \mid g $ in $ S\rb{X} $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item By B\'ezout's theorem, $ \deg\rb{X} \cdot \deg\rb{g} = \deg\rb{X} \cdot \deg\rb{h} $, so $ \deg\rb{g} = \deg\rb{h} $. We know by the previous lemma that $ mult_a\rb{\lambda g + \mu h} \ge m_a $, and we can find $ b \in X $ such that $ mult_b\rb{\lambda g + \mu h} \ge m_b + 1 $. Summing up, we have
+$$ \sum_{a \in X} mult_a\rb{\lambda g + \mu h} \ge d\deg\rb{X} + 1, $$
+but $ \lambda g + \mu h $ has degree $ d $, so this is a contradiction unless $ \lambda g + \mu h = 0 $, that is $ g, h $ are linearly dependent.
+\item Exercise.
+\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+Let $ X \subseteq \P^2 $ be a smooth cubic. Then for all distinct $ a, b \in X $ we have $ a - b \ne 0 $, so there is no rational function $ \phi $ such that $ div\rb{\phi} = a - b $.
+\end{proposition}
+
+\begin{proof}
+Assume that the result is false. Then there are $ f, g \in S\rb{X} $ of degree $ d $ such that
+\begin{itemize}
+\item there are points $ a_1, \dots, a_{3d - 1} $ and $ a \ne b $ on $ X $ such that $ div\rb{g} = a_1 + \dots + a_{3d - 1} + a $ and $ div\rb{f} = a_1 + \dots + a_{3d - 1} + b $, and
+\item among $ a_1, \dots, a_{3d - 1} $, there are at least $ 2d $ distinct points, since we can multiply $ f $ and $ g $ by a linear polynomial with distinct roots so the degree increases by one but the number of distinct points increases by three.
+\end{itemize}
+Pick a minimal $ d $. If $ d = 1 $ then $ div\rb{g} = a_1 + a_2 + a $ and $ div\rb{f} = a_1 + a_2 + b $, so $ a = b = \psi\rb{a_1, a_2} $, a contradiction. So $ d > 1 $.
+\end{proof}
 
 \end{document}
