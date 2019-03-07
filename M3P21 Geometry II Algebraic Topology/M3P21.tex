@@ -1751,7 +1751,7 @@ Let $ X $ be a topological space, $ A \subseteq X $ a non-empty closed subspace.
 
 \begin{theorem}
 Let $ \rb{X, A} $ be a good pair, then there is an exact sequence
-$$ \dots \xrightarrow{\partial} \widetilde{H_1}\rb{A} \xrightarrow{i_*} \widetilde{H_1}\rb{X} \xrightarrow{j_*} \widetilde{H_1}\rb{X / A} \xrightarrow{\partial} \widetilde{H_0}\rb{A} \xrightarrow{i_*} \widetilde{H_0}\rb{X} \xrightarrow{j_*} \widetilde{H_0}\rb{X / A} \to 0, $$
+$$ \dots \xrightarrow{\partial} \widetilde{H_1}\rb{A} \xrightarrow{i_*} \widetilde{H_1}\rb{X} \xrightarrow{j_*} \widetilde{H_1}\rb{\dfrac{X}{A}} \xrightarrow{\partial} \widetilde{H_0}\rb{A} \xrightarrow{i_*} \widetilde{H_0}\rb{X} \xrightarrow{j_*} \widetilde{H_0}\rb{\dfrac{X}{A}} \to 0, $$
 where $ i : A \hookrightarrow X $ is the inclusion and $ j : X \to X / A $ is the quotient.
 \end{theorem}
 
@@ -1801,7 +1801,9 @@ Every continuous map $ f : D^n \to D^n $ has a fixed point.
 Assume there exists a fixed point then construct as in dimension two a retraction $ D^n \to \partial D^n $, a contradiction to Corollary \ref{cor:2.15}.
 \end{proof}
 
-Let $ X $ be a topological space and $ A \subseteq X $ be a subspace. Define $ C_n\rb{X, A} = C_n\rb{X} / C_n\rb{A} $. Let $ \partial : C_n\rb{X} \to C_{n - 1}\rb{X} $ be the boundary map then $ \partial\rb{\sigma : \Delta^n \to A} \in \partial\rb{C_n\rb{A}} \subseteq C_{n - 1}\rb{A} $. So $ \partial $ induces a homomorphism
+Let $ X $ be a topological space and $ A \subseteq X $ be a subspace. Define
+$$ C_n\rb{X, A} = \dfrac{C_n\rb{X}}{C_n\rb{A}}. $$
+Let $ \partial : C_n\rb{X} \to C_{n - 1}\rb{X} $ be the boundary map then $ \partial\rb{\sigma : \Delta^n \to A} \in \partial\rb{C_n\rb{A}} \subseteq C_{n - 1}\rb{A} $. So $ \partial $ induces a homomorphism
 $$ \partial : C_n\rb{X, A} \to C_{n - 1}\rb{X, A}, $$
 such that $ \partial \circ \partial = 0 $. This gives a chain complex
 $$ \dots \to C_{n + 1}\rb{X, A} \xrightarrow{\partial} C_n\rb{X, A} \xrightarrow{\partial} C_{n - 1}\rb{X, A} \to \dots. $$
@@ -1811,5 +1813,90 @@ $$ \dots \to C_{n + 1}\rb{X, A} \xrightarrow{\partial} C_n\rb{X, A} \xrightarrow
 \item The \textbf{relative $ n $-cycles} are $ Ker\rb{\partial} \subseteq C_n\rb{X, A} $, of the form $ \sb{\alpha} $, for $ \alpha \in C_n\rb{X} $ such that $ \partial\rb{\alpha} \in C_{n - 1}\rb{A} $.
 \item The \textbf{relative $ n $-boundaries} are $ Im\rb{\partial} \subseteq C_n\rb{X, A} $, of the form $ \sb{\alpha} $, for $ \alpha \in C_n\rb{X} $ such that $ \alpha = \partial\beta + \gamma $ for $ \beta \in C_{n + 1}\rb{X} $ and $ \gamma \in C_n\rb{A} $.
 \end{itemize}
+
+\lecture{24}{Wednesday}{06/03/19}
+
+A \textbf{short exact sequence of chain complexes} is
+$$ 0 \to \rb{A_\cdot, \partial} \xrightarrow{i} \rb{B_\cdot, \partial} \xrightarrow{j} \rb{C_\cdot, \partial} \to 0, $$
+for $ i, j $ chain maps, where
+$$ 0 \to A_n \xrightarrow{i} B_n \xrightarrow{j} C_n \to 0 $$
+is a short exact sequence for all $ n $, so
+$$
+\begin{tikzcd}
+& 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & \\
+\dots \arrow{r}{\partial} & A_{n + 1} \arrow{r}{\partial} \arrow{d}{i} & A_n \arrow{r}{\partial} \arrow{d}{i} & A_{n - 1} \arrow{r}{\partial} \arrow{d}{i} & \dots \\
+\dots \arrow{r}{\partial} & B_{n + 1} \arrow{r}{\partial} \arrow{d}{j} & B_n \arrow{r}{\partial} \arrow{d}{j} & B_{n - 1} \arrow{r}{\partial} \arrow{d}{j} & \dots \\
+\dots \arrow{r}{\partial} & C_{n + 1} \arrow{r}{\partial} \arrow{d} & C_n \arrow{r}{\partial} \arrow{d} & B_{n - 1} \arrow{r}{\partial} \arrow{d} & \dots \\
+& 0 & 0 & 0 &
+\end{tikzcd}.
+$$
+A short exact sequence of chain complexes always yields a \textbf{long exact sequence} of homology groups
+$$ \dots \xrightarrow{\partial} H_n\rb{A} \xrightarrow{i_*} H_n\rb{B} \xrightarrow{j_*} H_n\rb{C} \xrightarrow{\partial} H_{n - 1}\rb{A} \xrightarrow{i_*} H_{n - 1}\rb{B} \xrightarrow{j_*} H_{n - 1}\rb{C} \xrightarrow{\partial} \dots. $$
+This is the \textbf{zig-zag lemma}. First we construct the \textbf{connecting map} $ \partial : H_n\rb{C} \to H_{n - 1}\rb{A} $. Let $ c \in C_n $ be a cycle.
+\begin{itemize}
+\item $ j $ is surjective, so $ c = j\rb{b} $ for some $ b \in B_n $.
+\item $ j\rb{\partial\rb{b}} = \partial\rb{j\rb{b}} = \partial c = 0 $, so $ \partial b \in Ker\rb{j} \subseteq B_{n - 1} $ gives that $ \partial\rb{b} = i\rb{a} $ for some $ a \in A_{n - 1} $, by exactness.
+\item $ \partial\rb{a} = 0 $, since $ i\rb{\partial\rb{a}} = \partial\rb{i\rb{a}} = \partial\rb{\partial\rb{b}} = 0 $ and $ i $ is injective, so $ \partial\rb{a} = 0 $.
+\end{itemize}
+$$
+\begin{tikzcd}
+& a \in A_{n - 1} \arrow{d}{i} \\
+b \in B_n \arrow{r}{\partial} \arrow{d}{j} & \in \partial\rb{b} \in B_{n - 1} \\
+c \in C_n &
+\end{tikzcd}.
+$$
+Define
+$$ \function[\partial]{H_n\rb{C}}{H_{n - 1}\rb{A}}{\sb{c}}{\sb{a}}. $$
+This is well-defined.
+\begin{itemize}
+\item $ a $ is uniquely determined by $ \partial\rb{b} $ because $ i $ is injective.
+\item If we choose $ b' $ instead of $ b $, then $ j\rb{b'} = j\rb{b} $, so $ j\rb{b' - b} = j\rb{b'} - j\rb{b} = 0 $ gives that $ b' - b \in Ker\rb{j} = Im\rb{i} $, hence $ b' - b = i\rb{a'} $ for some $ a' \in A_n $, so $ b' = b + i\rb{a'} $. If we replace $ b $ by $ b' = b + i\rb{a'} $ this corresponds to replacing $ a $ by $ a + \partial\rb{a'} $, because
+$$ i\rb{a + \partial\rb{a'}} = i\rb{a} + i\rb{\partial\rb{a'}} = \partial\rb{b} + \partial\rb{i\rb{a'}} = \partial\rb{b + i\rb{a'}}, $$
+and $ \sb{a} = \sb{a + \partial\rb{a'}} $.
+\item A different choice of $ c $ in its homology class has the form $ c + \partial\rb{c'} $ for some $ c' \in C_{n + 1} $. Let $ b' \in B_{n + 1} $ such that $ j\rb{b'} = c' $. Then
+$$ c + \partial\rb{c'} = c + \partial\rb{j\rb{b'}} = j\rb{b} + j\rb{\partial\rb{b'}} = j\rb{b + \partial\rb{b'}}, $$
+so $ b $ is replaced by $ b + \partial\rb{b'} $ but $ \partial\rb{b} = \partial\rb{b + \partial b'} $, so $ \partial\rb{b} $ is unchanged and hence $ a $ is unchanged.
+\end{itemize}
+The map $ \partial : H_n\rb{C} \to H_{n - 1}\rb{A} $ is a homomorphism, since if $ \partial\rb{\sb{c_1}} = \sb{a_1} $ and $ \partial\rb{\sb{c_2}} = \sb{a_2} $ via elements $ b_1 $ and $ b_2 $ in $ B_n $, then
+$$ j\rb{b_1 + b_2} = j\rb{b_1} + j\rb{b_2} = c_1 + c_2, \qquad i\rb{a_1 + a_2} = i\rb{a_1} + i\rb{a_2} = \partial\rb{b_1} + \partial\rb{b_2} = \partial\rb{b_1 + b_2}, $$
+so $ \partial\rb{\sb{c_1} + \sb{c_2}} = \sb{a_1} + \sb{a_2} $.
+
+\begin{theorem}
+The sequence
+$$ \dots \xrightarrow{\partial} H_n\rb{A} \xrightarrow{i_*} H_n\rb{B} \xrightarrow{j_*} H_n\rb{C} \xrightarrow{\partial} H_{n - 1}\rb{A} \xrightarrow{i_*} H_{n - 1}\rb{B} \xrightarrow{j_*} H_{n - 1}\rb{C} \xrightarrow{\partial} \dots $$
+is exact.
+\end{theorem}
+
+\begin{proof}
+Diagram chase, see Hatcher.
+\end{proof}
+
+Let $ i $ be the inclusion and $ j $ be the quotient.
+$$
+\begin{tikzcd}
+& 0 \arrow{d} & 0 \arrow{d} & \\
+\dots \arrow{r}{\partial} & C_n\rb{A} \arrow{r}{\partial} \arrow{d}{i} & C_{n - 1}\rb{A} \arrow{r}{\partial} \arrow{d}{i} & \dots \\
+\dots \arrow{r}{\partial} & C_n\rb{X} \arrow{r}{\partial} \arrow{d}{j} & C_{n - 1}\rb{X} \arrow{r}{\partial} \arrow{d}{j} & \dots \\
+\dots \arrow{r}{\partial} & C_n\rb{X, A} \arrow{r}{\partial} \arrow{d} & C_{n - 1}\rb{X, A} \arrow{r}{\partial} \arrow{d} & \dots \\
+& 0 & 0 &
+\end{tikzcd}.
+$$
+This diagram commutes, so this is a short exact sequence of chain complexes. By zig-zag gives a long exact sequence of homology groups
+$$ \dots \xrightarrow{\partial} H_1\rb{A} \xrightarrow{i_*} H_1\rb{X} \xrightarrow{j_*} H_1\rb{X, A} \xrightarrow{\partial} H_0\rb{A} \xrightarrow{i_*} H_0\rb{X} \xrightarrow{j_*} H_0\rb{X, A} \to 0. $$
+What is $ \partial : H_n\rb{X, A} \to H_{n - 1}\rb{A} $? If $ \sb{a} \in H_n\rb{X, A} $ is represented by a cycle $ \alpha \in C_n\rb{X} $, then $ \partial\rb{\sb{\alpha}} $ is the class of the cycle $ \partial\rb{\alpha} $, so $ \partial\rb{\sb{\alpha}} = \sb{\partial\rb{\alpha}} $. We also obtain a short exact sequence of the augmented chain complex
+$$
+\begin{tikzcd}
+& 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & \\
+\dots \arrow{r} & C_1\rb{A} \arrow{r} \arrow{d} & C_0\rb{A} \arrow{r} \arrow{d} & \Z \arrow{r} \arrow{d} & 0 \\
+\dots \arrow{r} & C_1\rb{X} \arrow{r} \arrow{d} & C_0\rb{X} \arrow{r} \arrow{d} & \Z \arrow{r} \arrow{d} & 0 \\
+\dots \arrow{r} & C_1\rb{X, A} \arrow{r} \arrow{d} & C_0\rb{X, A} \arrow{r} \arrow{d} & 0 \arrow{r} \arrow{d} & 0 \\
+& 0 & 0 & 0 &
+\end{tikzcd},
+$$
+so if $ A \ne \emptyset $, then $ \widetilde{H_n}\rb{X, A} = H_n\rb{X, A} $ for all $ n $. We also have a long exact sequence
+$$ \dots \to \widetilde{H_n}\rb{A} \to \widetilde{H_n}\rb{X} \to \widetilde{H_n}\rb{X, A} \to \widetilde{H_{n - 1}}\rb{A} \to \widetilde{H_{n - 1}}\rb{X} \to \widetilde{H_{n - 1}}\rb{X, A} \to \dots. $$
+An observation is if $ x_0 \in X $ then $ H_n\rb{X, x_0} \cong \widetilde{H_n}\rb{X} $ for all $ n $. Another observation is that a continuous map $ f : X \to Y $ such that $ f\rb{A} \subseteq B $ induces a chain map
+$$ f_\# : C_n\rb{X, A} \to C_n\rb{Y, B}, $$
+since $ f_\# : C_n\rb{X} \to C_n\rb{Y} $ maps $ C_n\rb{A} $ to $ C_n\rb{B} $ so it is well-defined on the quotient.
 
 \end{document}
