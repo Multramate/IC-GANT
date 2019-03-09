@@ -1229,7 +1229,7 @@ The group of deck-transformations is denoted by $ G\rb{\widetilde{X}} $.
 \hfill
 \begin{itemize}
 \item Let
-$$ \function[p]{\R}{S^1 \subset \C}{t}{e^{2\pi i t}}. $$
+$$ \function[p]{\R}{S^1 \subseteq \C}{t}{e^{2\pi i t}}. $$
 $ f : \R \to \R $ such that $ p\rb{f\rb{t}} = p\rb{t} $ if and only if $ e^{2\pi if\rb{t}} = e^{2\pi it} $, if and only if $ f\rb{t} = t + n $, so $ G\rb{\R} \cong \Z $.
 \item Let
 $$ \function[p]{S^1}{S^1}{z}{z^n}. $$
@@ -1469,7 +1469,7 @@ The following is the algebraic situation. A \textbf{chain complex} of abelian gr
 $$ \dots \xrightarrow{\partial_{n + 1}} C_n \xrightarrow{\partial_n} \dots \xrightarrow{\partial_1} C_0 \xrightarrow{\partial_0} 0, $$
 where the $ C_i $ are abelian groups and the $ \partial_n $ are group homomorphisms such that $ \partial_n \circ \partial_{n - 1} = 0 $ for all $ n $. $ \partial_n $ are \textbf{boundary homomorphisms}. Elements in $ C_n $ are \textbf{$ n $-chains}.
 $$ Z_n = Ker\rb{\partial_n} \subseteq C_n, \qquad B_n = Im\rb{\partial_{n + 1}} \subseteq C_n. $$
-Elements in $ Z_n $ are \textbf{cycles} and elements in $ B_n $ are \textbf{boundaries}. Since $ \partial_{n + 1} \circ \partial_n = 0 $, we have that $ B_n \subset Z_n $. The \textbf{$ n $-th homology group} of this chain complex is defined by
+Elements in $ Z_n $ are \textbf{cycles} and elements in $ B_n $ are \textbf{boundaries}. Since $ \partial_{n + 1} \circ \partial_n = 0 $, we have that $ B_n \subseteq Z_n $. The \textbf{$ n $-th homology group} of this chain complex is defined by
 $$ H_n\rb{C_\cdot, \partial} = \dfrac{Z_n}{B_n}. $$
 So, by Lemma \ref{lem:2.1}
 $$ \dots \xrightarrow{\partial_{n + 1}} \Delta_n\rb{X} \xrightarrow{\partial_n} \dots \xrightarrow{\partial_1} \Delta_0\rb{X} \xrightarrow{\partial_0} 0 $$
@@ -1738,7 +1738,9 @@ An observation is if the sequence is exact, then
 An exact sequence as in $ 4 $ is called a \textbf{short exact sequence}.
 
 \begin{definition*}
-Let $ X $ be a topological space, $ A \subseteq X $ a non-empty closed subspace. Then $ \rb{X, A} $ is called a \textbf{good pair} if $ A $ has a neighbourhood in $ X $ that deformation retracts to $ A $.
+Let $ X $ be a topological space and $ A \subseteq X $. Then $ A $ is a \textbf{strong deformation retract} of $ X $ if there exists a retraction $ r : X \to A $ such that $ r $ is homotopic to the identity, and $ F : I \times X \to X $ continuous such that
+$$ F\rb{0, x} = x, \qquad F\rb{1, x} = r\rb{x}, \qquad F\rb{t, a} = a, $$
+for all $ x \in X $, for all $ a \in A $, and for all $ t \in I $. Let $ X $ be a topological space and $ A \subseteq X $ a non-empty closed subspace. Then $ \rb{X, A} $ is called a \textbf{good pair} if $ A $ has a neighbourhood in $ X $ that strongly deformation retracts to $ A $.
 \end{definition*}
 
 \begin{example*}
@@ -1750,6 +1752,7 @@ Let $ X $ be a topological space, $ A \subseteq X $ a non-empty closed subspace.
 \end{example*}
 
 \begin{theorem}
+\label{thm:2.13}
 Let $ \rb{X, A} $ be a good pair, then there is an exact sequence
 $$ \dots \xrightarrow{\partial} \widetilde{H_1}\rb{A} \xrightarrow{i_*} \widetilde{H_1}\rb{X} \xrightarrow{j_*} \widetilde{H_1}\rb{\dfrac{X}{A}} \xrightarrow{\partial} \widetilde{H_0}\rb{A} \xrightarrow{i_*} \widetilde{H_0}\rb{X} \xrightarrow{j_*} \widetilde{H_0}\rb{\dfrac{X}{A}} \to 0, $$
 where $ i : A \hookrightarrow X $ is the inclusion and $ j : X \to X / A $ is the quotient.
@@ -1893,10 +1896,113 @@ $$
 & 0 & 0 & 0 &
 \end{tikzcd},
 $$
-so if $ A \ne \emptyset $, then $ \widetilde{H_n}\rb{X, A} = H_n\rb{X, A} $ for all $ n $. We also have a long exact sequence
+so if $ A \ne \emptyset $, then
+$$ \widetilde{H_n}\rb{X, A} = H_n\rb{X, A}, $$
+for all $ n $. We also have a long exact sequence
 $$ \dots \to \widetilde{H_n}\rb{A} \to \widetilde{H_n}\rb{X} \to \widetilde{H_n}\rb{X, A} \to \widetilde{H_{n - 1}}\rb{A} \to \widetilde{H_{n - 1}}\rb{X} \to \widetilde{H_{n - 1}}\rb{X, A} \to \dots. $$
-An observation is if $ x_0 \in X $ then $ H_n\rb{X, x_0} \cong \widetilde{H_n}\rb{X} $ for all $ n $. Another observation is that a continuous map $ f : X \to Y $ such that $ f\rb{A} \subseteq B $ induces a chain map
+An observation is if $ x_0 \in X $ then
+$$ H_n\rb{X, x_0} \cong \widetilde{H_n}\rb{X}, $$
+for all $ n $. Another observation is that a continuous map $ f : X \to Y $ such that $ f\rb{A} \subseteq B $ induces a chain map
 $$ f_\# : C_n\rb{X, A} \to C_n\rb{Y, B}, $$
-since $ f_\# : C_n\rb{X} \to C_n\rb{Y} $ maps $ C_n\rb{A} $ to $ C_n\rb{B} $ so it is well-defined on the quotient.
+since $ f_\# : C_n\rb{X} \to C_n\rb{Y} $ maps $ C_n\rb{A} $ to $ C_n\rb{B} $ so it is well-defined on the quotient, and hence homomorphisms
+$$ f_* : H_n\rb{X, A} \to H_n\rb{Y, B}. $$
+This is functorial, so $ \rb{f \circ g}_* = f_* \circ g_* $.
+
+\lecture{25}{Friday}{08/03/19}
+
+\begin{definition*}
+A \textbf{homotopy} between two maps
+$$ f, g : \rb{X, A} \to \rb{Y, B} $$
+is a continuous map $ F : I \times X \to Y $ such that
+$$ F\rb{0, x} = f\rb{x}, \qquad F\rb{1, x} = g\rb{x}, \qquad F\rb{s, a} \in B, $$
+for all $ x \in X $, for all $ s \in I $, and for all $ a \in A $.
+\end{definition*}
+
+\begin{proposition}
+If
+$$ f, g : \rb{X, A} \to \rb{Y, B} $$
+are homotopic, then
+$$ f_* = g_* : H_n\rb{X, A} \to H_n\rb{Y, B}. $$
+\end{proposition}
+
+\begin{proof}
+Analogous to proof of Theorem \ref{thm:2.10}. Prism operator $ P : C_n\rb{X} \to C_{n + 1}\rb{Y} $ maps $ C_n\rb{A} $ to $ C_n\rb{B} $ so it induces a map
+$$ P' : \dfrac{C_n\rb{X}}{C_n\rb{A}} \to \dfrac{C_{n + 1}\rb{Y}}{C_{n + 1}\rb{B}}, $$
+and $ \partial P' + P'\partial = g_\# - f_\# $, so $ f_* = g_* $.
+\end{proof}
+
+Let $ \rb{X, A, B} $ be a triple, for $ X $ a topological space and $ B \subset A \subset X $, so
+$$ \rb{A, B} \to \rb{X, B} \to \rb{X, A}. $$
+There is a short exact sequence of chain complexes
+$$
+\begin{tikzcd}[row sep=tiny]
+0 \arrow{r} & C_n\rb{A, B} \arrow{r} \arrow[cong]{d} & C_n\rb{X, B} \arrow{r} \arrow[cong]{d} & C_n\rb{X, A} \arrow{r} \arrow[cong]{d} & 0 \\
+& \dfrac{C_n\rb{A}}{C_n\rb{B}} & \dfrac{C_n\rb{X}}{C_n\rb{B}} & \dfrac{C_n\rb{X}}{C_n\rb{A}} &
+\end{tikzcd},
+$$
+so there is a long exact sequence
+$$ \dots \to H_n\rb{A, B} \to H_n\rb{X, B} \to H_n\rb{X, A} \to H_{n - 1}\rb{A, B} \to H_{n - 1}\rb{X, B} \to H_{n - 1}\rb{X, A} \to \dots. $$
+
+\begin{theorem}[Excision]
+Let $ X $ be a topological space and $ Z \subset A \subset X $ be subspaces such that the closure $ \overline{Z} $ of $ Z $ is contained in the interior $ \mathring{A} $ of $ A $. Then the inclusion $ \rb{X \setminus Z, A \setminus Z} \hookrightarrow \rb{X, A} $ induces isomorphisms
+$$ H_n\rb{X \setminus Z, A \setminus Z} \xrightarrow{\sim} H_n\rb{X, A}, $$
+for all $ n $. Equivalently, let $ A, B \subseteq X $ such that $ \mathring{A} \cup \mathring{B} = X $. Then the inclusion $ \rb{B, A \cap B} \to \rb{X, A} $ induces isomorphisms
+$$ H_n\rb{B, A \cap B} \xrightarrow{\sim} H_n\rb{X, A}, $$
+for all $ n $.
+\end{theorem}
+
+Why equivalent? Set $ B = X \setminus Z $ and $ Z = X \setminus B $. Then $ A \cap B = A \setminus Z $ and $ \overline{Z} = X \setminus \mathring{B} $. Then $ \overline{Z} \subseteq \mathring{A} $ if and only if $ X = \mathring{A} \cup \mathring{B} $.
+
+\begin{proof}
+Hatcher page $ 119 $ to $ 124 $.
+\end{proof}
+
+\begin{proposition}
+Let $ \rb{X, A} $ be a good pair. Then the quotient map
+$$ q : \rb{X, A} \to \rb{\dfrac{X}{A}, \dfrac{A}{A}} $$
+induces isomorphisms
+$$ q_* : H_n\rb{X, A} \xrightarrow{\sim} H_n\rb{\dfrac{X}{A}, \dfrac{A}{A}} \cong \widetilde{H_n}\rb{\dfrac{X}{A}}, $$
+for all $ n $.
+\end{proposition}
+
+\begin{proof}
+Let $ V \subseteq X $ be a neighbourhood of $ A $ that strongly deformation retracts to $ A $. Then $ \rb{V, A} $ is homotopy equivalent to $ \rb{A, A} $, so
+$$ H_n\rb{V, A} \cong H_n\rb{A, A} = 0. $$
+The triple $ \rb{X, V, A} $ where $ A \subset V \subset X $ induces a long exact sequence
+$$
+\begin{tikzcd}[row sep=tiny]
+\dots \arrow{r} & H_n\rb{V, A} \arrow{r} \arrow[cong]{d} & H_n\rb{X, A} \arrow{r} & H_n\rb{X, V} \arrow{r} & H_{n - 1}\rb{V, A} \arrow{r} \arrow[cong]{d} & \dots \\
+& 0 & & & 0 &
+\end{tikzcd},
+$$
+so
+$$ H_n\rb{X, A} \cong H_n\rb{X, V}. $$
+Same with the triple $ \rb{X / A, V / A, A / A} $, so again
+$$ H_n\rb{\dfrac{V}{A}, \dfrac{A}{A}} \cong H_n\rb{\dfrac{A}{A}, \dfrac{A}{A}}. $$
+This gives a long exact sequence
+$$ H_n\rb{\dfrac{X}{A}, \dfrac{A}{A}} \cong H_n\rb{\dfrac{X}{A}, \dfrac{V}{A}}. $$
+Consider the diagram
+$$
+\begin{tikzcd}
+H_n\rb{X, A} \arrow{r}{\sim} \arrow{d}{q_*} & H_n\rb{X, V} \arrow{d}{q_*} & H_n\rb{X \setminus A, V \setminus A} \arrow{l}{\alpha}[swap]{\sim} \arrow{d}{\gamma}[swap]{\sim} \\
+H_n\rb{\dfrac{X}{A}, \dfrac{A}{A}} \arrow{r}{\sim} & H_n\rb{\dfrac{X}{A}, \dfrac{V}{A}} & H_n\rb{\dfrac{X}{A} \setminus \dfrac{A}{A}, \dfrac{V}{A} \setminus \dfrac{A}{A}} \arrow{l}{\beta}[swap]{\sim}
+\end{tikzcd}.
+$$
+\begin{itemize}
+\item This diagram commutes.
+\item $ q : X \to X / A $ induces a homeomorphism $ X \setminus A \to X / A \setminus A / A $, so $ j $ is an isomorphism.
+\item $ \alpha $ and $ \beta $ are isomorphisms by the excision theorem.
+\end{itemize}
+Thus
+$$ q_* : H_n\rb{X, A} \to H_n\rb{\dfrac{X}{A}, \dfrac{A}{A}} $$
+is an isomorphism.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:2.13}]
+Long exact sequence of pair $ \rb{X, A} $ with reduced homology
+$$ \dots \to \widetilde{H_n}\rb{A} \to \widetilde{H_n}\rb{X} \to \widetilde{H_n}\rb{X, A} \to \widetilde{H_{n - 1}}\rb{A} \to \widetilde{H_{n - 1}}\rb{X} \to \widetilde{H_{n - 1}}\rb{X, A} \to \dots. $$
+Thus
+$$ \widetilde{H_n}\rb{X, A} = H_n\rb{X, A} \cong \widetilde{H_n}\rb{X / A}. $$
+\end{proof}
 
 \end{document}
