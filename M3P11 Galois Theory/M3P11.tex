@@ -114,7 +114,7 @@ $$ x^3 - 2 = \rb{x - \sqrt[3]{2}}\rb{x - \omega\sqrt[3]{2}}\rb{x - \omega^2\sqrt
 
 \pagebreak
 
-\begin{theorem}[Fundamental theorem of Galois theory]
+\begin{theorem}[Fundamental theorem of Galois theory, Galois correspondence]
 \label{thm:galoiscorrespondence}
 Assume characteristic zero. Let $ k \subset K $ be the splitting field of $ f\rb{x} \in k\sb{x} $. Let
 $$ G = \cb{\sigma : K \to K \mid \sigma \ \text{field automorphism}, \ \sigma\mid_{k} = id_k}. $$
@@ -296,13 +296,13 @@ $$ \sigma =
 \end{pmatrix}.
 $$
 A question is if there were $ \sigma \in G $ such that $ \rho\rb{\sigma} = \onebytwo{1}{2} $ then we have written the matrix of $ \sigma $ as a $ \Q $-linear map of $ L $ in a basis. But how to check that this $ \Q $-linear map is a field homomorphism? We know the Galois correspondence for extensions of degree two.
-$$ Gal_{\Q\rb{\sqrt[3]{2}}}\rb{L}, Gal_{\Q\rb{\omega^2\sqrt[3]{2}}}\rb{L}, Gal_{\Q\rb{\omega\sqrt[3]{2}}}\rb{L} \subset G $$
+$$ Gal\rb{L / \Q\rb{\sqrt[3]{2}}}, Gal\rb{L / \Q\rb{\omega^2\sqrt[3]{2}}}, Gal\rb{L / \Q\rb{\omega\sqrt[3]{2}}} \subset G $$
 contain an element of order two, and
 $$
 \begin{array}{rrl}
-\rho : & Gal_{\Q\rb{\sqrt[3]{2}}}\rb{L} & \mapsto \onebytwo{2}{3} \\
-& Gal_{\Q\rb{\omega^2\sqrt[3]{2}}}\rb{L} & \mapsto \onebytwo{1}{2} \\
-& Gal_{\Q\rb{\omega\sqrt[3]{2}}}\rb{L} & \mapsto \onebytwo{1}{3}.
+\rho : & Gal\rb{L / \Q\rb{\sqrt[3]{2}}} & \mapsto \onebytwo{2}{3} \\
+& Gal\rb{L / \Q\rb{\omega^2\sqrt[3]{2}}} & \mapsto \onebytwo{1}{2} \\
+& Gal\rb{L / \Q\rb{\omega\sqrt[3]{2}}} & \mapsto \onebytwo{1}{3}.
 \end{array}
 $$
 The lattice of subgroups is
@@ -317,7 +317,7 @@ $$
 $ \Q\rb{\omega} / \Q $ is the splitting field of $ x^2 + x + 1 $ and of $ x^2 + 3 $.
 \end{example*}
 
-We can learn the following. Let $ k \subset L $ be a splitting field. Consider $ k \subset K \subset L $. Then $ K \subset L $ is also a splitting field. The corresponding $ H \le G $ is the Galois group $ Gal_K\rb{L} $. On the other hand $ k \subset K $ is not always a splitting field. It is a splitting field if and only if the corresponding $ H \le G $ is a normal subgroup and in that case $ Gal_k\rb{K} = G / H $.
+We can learn the following. Let $ k \subset L $ be a splitting field. Consider $ k \subset K \subset L $. Then $ K \subset L $ is also a splitting field. The corresponding $ H \le G $ is the Galois group $ Gal\rb{L / K} $. On the other hand $ k \subset K $ is not always a splitting field. It is a splitting field if and only if the corresponding $ H \le G $ is a normal subgroup and in that case $ Gal\rb{K / k} = G / H $.
 
 \pagebreak
 
@@ -442,7 +442,7 @@ $$ Em_\Q\rb{K, L} = Em\rb{K, L} = \cb{\text{roots of} \ x^3 - 2 \ \text{in} \ L}
 \end{example*}
 
 \begin{remark*}
-Suppose $ k \subset K $. $ Em_k\rb{K, K} = G = Gal_k\rb{K} $. Indeed every $ k $-homomorphism $ \sigma : K \to K $ is automatically invertible. We know $ \sigma $ is injective. $ \sigma $ is also surjective because $ \sigma $ is a $ k $-linear endomorphism of a finite-dimensional $ k $-vector space.
+Suppose $ k \subset K $. $ Em_k\rb{K, K} = G = Gal\rb{K / k} $. Indeed every $ k $-homomorphism $ \sigma : K \to K $ is automatically invertible. We know $ \sigma $ is injective. $ \sigma $ is also surjective because $ \sigma $ is a $ k $-linear endomorphism of a finite-dimensional $ k $-vector space.
 \end{remark*}
 
 \section{Axiomatics}
@@ -557,7 +557,7 @@ $ K \subset L $ is a finite extension of degree $ \sb{L : K} \le \abs{G} $.
 \end{lemma}
 
 \begin{proof}[Proof of Proposition \ref{prop:3}]
-From Proposition \ref{prop:1}, $ Aut_K\rb{L} = Em_K\rb{L, L} $ because $ K \subset L $ is finite, and $ \#Em_K\rb{L, L} \le \sb{L : K} $. By the lemma,
+From Proposition \ref{prop:1}, $ Aut_K\rb{L} = Em_K\rb{L, L} $ because $ K \subset L $ is finite, and $ \#Em_K\rb{L, L} \le \sb{L : K} $. By Lemma \ref{lem:3},
 $$ \sb{L : K} \le \#Em_K\rb{L, L} \le \sb{L : K}, $$
 so $ \abs{G} = \#Em_K\rb{L, L} $. By what we said, $ G \subset Em_K\rb{L, L} $, so $ G = Em_K\rb{L, L} $.
 \end{proof}
@@ -584,7 +584,7 @@ for some $ 1 \le k \le n + 1 $ with
 \item such $ k $ is the smallest, and
 \item $ x_1 = 1 $.
 \end{itemize}
-Claim that all these $ x_i \in K $. This does it, by reading $ j $-th row where $ \sigma_j = id_G $. We need to show for all $ i $ $ x_i \in L^G $. Take $ \sigma \in G $.
+Claim that all these $ x_i \in K $. This does it, by reading $ j $-th row where $ \sigma_j = id_G $. We need to show for all $ i $, $ x_i \in L^G $. Take $ \sigma \in G $.
 $$ \sigma\rb{x_1}\threebyone{\sigma\rb{\sigma_1\rb{a_1}}}{\vdots}{\sigma\rb{\sigma_n\rb{a_1}}} + \dots + \sigma\rb{x_k}\threebyone{\sigma\rb{\sigma_1\rb{a_k}}}{\vdots}{\sigma\rb{\sigma_n\rb{a_k}}} = \overline{0} \in L^n. $$
 Note that
 $$ \function{G}{G}{\tau}{\sigma \circ \tau} $$
@@ -593,7 +593,7 @@ is a bijective function and $ \cb{\sigma \circ \sigma_1, \dots, \sigma \circ \si
 \label{eq:4}
 \sigma\rb{x_1}\overline{a_1} + \dots + \sigma\rb{x_k}\overline{a_k} = \overline{0}.
 \end{equation}
-Claim that for all $ i $ $ \sigma\rb{x_i} = x_i $. Otherwise $ \rb{\ref{eq:3}} - \rb{\ref{eq:4}} $,
+Claim that for all $ i $, $ \sigma\rb{x_i} = x_i $. Otherwise $ \rb{\ref{eq:3}} - \rb{\ref{eq:4}} $,
 $$ \rb{x_2 - \sigma\rb{x_2}}\overline{a_2} + \dots + \rb{x_k - \sigma\rb{x_k}}\overline{a_k} = \overline{0} $$
 is a shorter solution, contradicting $ k $ minimal.
 \end{proof}
@@ -695,7 +695,7 @@ Suppose $ k \subset K \subset L $. Then $ k \subset L $ is separable if and only
 \end{itemize}
 \end{proof}
 
-\begin{theorem}[Fundamental theorem of Galois theory]
+\begin{theorem}[Fundamental theorem of Galois theory, Galois correspondence]
 Let $ k \subset K $ be normal and separable. Let $ G = Em_k\rb{K, K} $. Then there is a one-to-one correspondence
 $$
 \begin{array}{rcl}
@@ -723,12 +723,13 @@ so $ x_1\rb{\lambda} \ne x_2\rb{\lambda} $. Two steps.
 \end{proof}
 
 \begin{lemma}
+\label{lem:surjective}
 Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $, the natural restriction $ \rho : Em_k\rb{K, \Omega} \to Em_k\rb{F, \Omega} $ is surjective.
 \end{lemma}
 
 \lecture{12}{Tuesday}{05/02/19}
 
-The statement says for all $ \sigma \in Em_k\rb{F, \Omega} $, there exists $ \widetilde{\sigma} \in Em_k\rb{K, \Omega} $ such that $ \widetilde{\sigma} \mid_F = \sigma $.
+Lemma \ref{lem:surjective} says for all $ \sigma \in Em_k\rb{F, \Omega} $, there exists $ \widetilde{\sigma} \in Em_k\rb{K, \Omega} $ such that $ \widetilde{\sigma} \mid_F = \sigma $.
 $$
 \begin{tikzcd}
 K \arrow[dotted]{dr}{\widetilde{\sigma}} & \\
@@ -754,10 +755,11 @@ Because $ k \subset K $ is normal $ \phi_2\rb{K} \subset \phi_1\rb{K} \subset \p
 \end{proof}
 
 \begin{corollary}
+\label{cor:surjective}
 Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $, $ Em_k\rb{F, K} \to Em_k\rb{F, \Omega} $ is also surjective.
 \end{corollary}
 
-The corollary states that for all $ \sigma \in Em_k\rb{F, \Omega} $, $ \sigma\rb{F} \subset K $.
+Corollary \ref{cor:surjective} states that for all $ \sigma \in Em_k\rb{F, \Omega} $, $ \sigma\rb{F} \subset K $.
 $$
 \begin{tikzcd}
 \Omega & \\
@@ -768,7 +770,7 @@ k \arrow[dash]{u} \arrow[dash]{ur} &
 $$
 
 \begin{proof}
-This clearly follows from the lemma. $ \sigma\rb{F} \subset \widetilde{\sigma}\rb{K} \subset K $ by definition of normal.
+This clearly follows from Lemma \ref{lem:surjective}. $ \sigma\rb{F} \subset \widetilde{\sigma}\rb{K} \subset K $ by definition of normal.
 \end{proof}
 
 \pagebreak
@@ -798,7 +800,7 @@ F = k\rb{\lambda} \arrow[dash]{u} \arrow{r}{\sigma} & \sigma\rb{F} \subset \Omeg
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
 $$
-By corollary, $ \sigma\rb{F} \subset K $, so $ \mu \in K $.
+By Corollary \ref{cor:surjective}, $ \sigma\rb{F} \subset K $, so $ \mu \in K $.
 \end{itemize}
 \end{proof}
 
@@ -948,7 +950,7 @@ $$ \sb{K : k}_s = \abs{Em_k\rb{K, \Omega}}. $$
 \begin{remark*}
 $ \sb{K : k}_s $ does not depend on $ K \subset \Omega $. Suppose $ k \subset \Omega_1 $ and $ k \subset \Omega_2 $ are normal. Then there exists a bigger field $ \widetilde{\Omega} $ such that $ \Omega_1 \subset \widetilde{\Omega} $ and $ \Omega_2 \subset \widetilde{\Omega} $. Then
 $$ Em_k\rb{K, \Omega_1} = Em_k\rb{K, \widetilde{\Omega}} = Em_k\rb{K, \Omega_2}, $$
-by one of the corollaries a while ago,
+by Corollary \ref{cor:surjective} a while ago,
 $$
 \begin{tikzcd}
 \Omega_1 \arrow[dotted]{dr}{\widetilde{\sigma}} & \\
@@ -1235,7 +1237,7 @@ Then $ \sb{L : \Q} = 2 $ and $ G = C_2 $.
 If $ F $ is finite, then it has $ ch\rb{F} = p $ for some prime $ p $. Then $ F_p \subset F $. Because $ F $ is finite, it is a finite dimensional vector space over $ \F_p $. As a vector space $ F \cong \rb{\F_p}^m $ where $ m = \dim_{\F_p}\rb{F} = \sb{F : \F_p} $, so $ \abs{F} $ is a power of $ p $.
 
 \begin{theorem}
-Fix a prime $ p > 0 $. Then for all $ m \in \Z_{\ge 1} $, there exists a unique, up to non-unique isomorphism, finite field with $ q = p^m $ elements. Notation is $ \F_q $. Moreover, $ G = Gal_{\F_p}\rb{\F_q} = \Z / m\Z $.
+Fix a prime $ p > 0 $. Then for all $ m \in \Z_{\ge 1} $, there exists a unique, up to non-unique isomorphism, finite field with $ q = p^m $ elements. Notation is $ \F_q $. Moreover, $ G = Gal\rb{\F_q / \F_p} = \Z / m\Z $.
 \end{theorem}
 
 \begin{proof}
@@ -1422,5 +1424,119 @@ Lecture 25 is a problem class.
 \lecture{26}{Friday}{08/03/19}
 
 Lecture 26 is a problem class.
+
+\pagebreak
+
+\section{Reduction modulo prime}
+
+\lecture{27}{Tuesday}{12/03/19}
+
+\begin{theorem}
+\label{thm:cycletype}
+Let $ f\rb{x} \in \Z\sb{x} $ be monic of degree $ n $, $ \Q \subset K $ be the splitting field of $ f $, and $ G = Gal\rb{K / \Q} \subset \mathfrak{S}_n $. For $ p $ prime, denote by $ \overline{f} $ as $ f $ viewed in $ \F_p\sb{x} $. If there exists $ p $ such that $ \overline{f} \in \F_p\sb{x} $ has $ n $ distinct roots in a splitting field and
+$$ \overline{f} = \prod_{i = 1}^k \overline{f_i}\rb{x} \in \F_p\sb{x}, $$
+with $ \overline{f_i} \in \F_p\sb{x} $ irreducible of degree $ n_i $, then there exists $ \sigma \in G \subset \mathfrak{S}_n $ of cycle decomposition type $ \rb{n_1} \dots \rb{n_k} $.
+\end{theorem}
+
+Plan is to understand the statement and prove it, following Jacobson Basic Algebra I page 301. I want to use Theorem \ref{thm:cycletype} to write down an explicit degree five polynomial $ f \in \Z\sb{x} $ such that $ G = \mathfrak{S}_5 $.
+
+\begin{proposition}
+Suppose that $ r $ is prime and let $ G \subset \mathfrak{S}_r $ be a subgroup. If $ G $ contains an $ r $-cycle and one transposition, then $ G = \mathfrak{S}_r $.
+\end{proposition}
+
+\begin{proof}
+Say $ \sigma = \rb{1 \ 2 \ 3 \ 4 \ 5} \in G $ and $ \onebytwo{1}{2} \in G $, by relabelling. Then $ \sigma^{-i}\onebytwo{1}{2}\sigma^i = \onebytwo{1 - i}{2 - i} $ gives $ \onebytwo{1}{2}, \onebytwo{2}{3}, \onebytwo{3}{4}, \onebytwo{4}{5} \in G $. A general fact is that for all $ n $, $ \onebytwo{1}{2}, \dots, \onebytwo{n - 1}{n} $ generate $ \mathfrak{S}_n $, since $ a < b $ gives $ \onebytwo{a}{b} = \onebytwo{a}{a + 1}\onebytwo{a + 1}{b}\onebytwo{a}{a + 1} $.
+\end{proof}
+
+Plan is the following.
+\begin{itemize}
+\item Find irreducible monic degree five $ \phi\rb{x} \in \F_2\sb{x} $.
+\item Find irreducible monic degree two $ \psi\rb{x} \in \F_3\sb{x} $.
+\item Find $ f \in \Z\sb{x} $ such that $ f \equiv \phi $ in $ \F_2\sb{x} $ and $ f \equiv x\rb{x - 1}\rb{x + 1}\psi $ in $ \F_3\sb{x} $.
+\end{itemize}
+Theorem \ref{thm:cycletype} gives $ G = \mathfrak{S}_5 $.
+\begin{itemize}
+\item The irreducible degree two polynomial in $ \F_2\sb{x} $ is $ x^2 + x + 1 $.
+\item The irreducible degree two polynomial in $ \F_3\sb{x} $ are $ x^2 + 1 $, and two more.
+\end{itemize}
+Claim that $ \phi\rb{x} = x^5 + x^3 + 1 \in \F_2\sb{x} $ is irreducible. Need to check that $ \phi $ has no root in $ \F_2 $ and $ \phi $ is not divisible by $ x^2 + x + 1 $. Then $ f \equiv x^5 + x^3 + 1 $ in $ \F_2\sb{x} $ and $ f \equiv x\rb{x - 1}\rb{x + 1}\rb{x^2 + 1} = x^5 - x $ in $ \F_3\sb{x} $. Thus
+$$ f\rb{x} = x^5 + 3x^3 + 2x + 3. $$
+
+\lecture{28}{Thursday}{14/03/19}
+
+\begin{definition}
+The \textbf{character} of a monoid to $ K $ is $ \chi : P \to K $ such that
+\begin{itemize}
+\item $ \chi\rb{0} = 1 $, and
+\item for all $ p_1, p_2 \in P $, $ \chi\rb{p_1 + p_2} = \chi\rb{p_1}\chi\rb{p_2} $.
+\end{itemize}
+\end{definition}
+
+\begin{remark*}
+If $ K $ is a field and $ A $ is a set then $ \cb{f : A \to K} $ is a $ K $-vector space.
+\end{remark*}
+
+\begin{theorem}[Linear independence of characters, Dedekind independence theorem]
+Let $ K $ be a field and $ P $ be a monoid, such as $ P = \N $. Any set of distinct non-zero characters
+$$ \chi_1 : P \to K, \qquad \dots, \qquad \chi_n : P \to K, \qquad \dots $$
+is linearly independent in the vector space $ \cb{f : P \to K} $.
+\end{theorem}
+
+\begin{proof}
+Assume for a contradiction that
+\begin{equation}
+\label{eq:10}
+\lambda_1x_1 + \dots + \lambda_nx_n = 0.
+\end{equation}
+We may assume $ \rb{\ref{eq:10}} $ to be the shortest. We may assume for all $ i $, $ \lambda_i \ne 0 $. $ n \ge 2 $, since all are not zero. There exists $ p $ such that $ \chi_1\rb{p} \ne \chi_2\rb{p} $, so
+\begin{equation}
+\label{eq:11}
+\lambda_1\chi_1\rb{p}\chi_1 + \dots + \lambda_n\chi_n\rb{p}\chi_n = 0.
+\end{equation}
+Because $ \rb{\ref{eq:10}} $ is the shortest then $ \rb{\ref{eq:10}} $ and $ \rb{\ref{eq:11}} $ are multiples of each other, so $ \chi_1\rb{p} = \chi_2\rb{p} $, a contradiction.
+\end{proof}
+
+\begin{theorem}
+\label{thm:ringhomomorphism}
+Let $ f\rb{x} \in \Z\sb{x} $ be degree $ n $ monic, $ \Q \subset K $ be the splitting field of $ f $, $ G = Gal\rb{K / \Q} \subset \mathfrak{S}_n $, and $ \lambda_1, \dots, \lambda_n \in K $ be the roots of $ f\rb{x} $. Let $ p $ be a prime. Denote by $ \overline{f} $ image of $ f $ mod $ p $. Assume $ \overline{f} $ is separable. Let $ \F_p \subset F $ be a splitting field for $ \overline{f} $, so $ \overline{f} $ has $ n $ distinct roots in $ F $. Let $ R \subset K $ be the subring generated by the roots of $ f $, so $ R = \Z\sb{\lambda_1, \dots, \lambda_n} $. Then
+\begin{enumerate}
+\item there exists a ring homomorphism $ \psi : R \to F $,
+\item if $ \psi' : R \to F $ is a ring homomorphism then $ \psi' $ induces a bijection
+$$ \phi' : \cb{\text{roots of} \ f\rb{x} \ \text{in} \ R} \to \cb{\text{roots of} \ \overline{f}\rb{x} \ \text{in} \ F}, $$
+\item $ \psi' : R \to F $ is a ring homomorphism if and only if there exists $ \sigma \in G $ such that $ \psi' = \psi \circ \sigma $.
+\end{enumerate}
+\end{theorem}
+
+\lecture{29}{Friday}{15/03/19}
+
+Lecture 29 is a test.
+
+\lecture{30}{Tuesday}{19/03/19}
+
+\begin{proof}
+\hfill
+\begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
+\item $ R $ is a finitely generated free $ \Z $-module, since $ R $ is generated as a $ \Z $-module by $ \lambda_1^{e_1}, \dots, \lambda_n^{e_n} $ where $ 0 \le e_i < n $.
+\item Let $ u_1, \dots, u_d $ be a basis of $ R $ as $ \Z $-module. This is a basis of $ K $ as a $ \Q $-vector space, so $ d = \sb{K : \Q} $. $ u_1, \dots, u_d $ are clearly linearly dependent over $ \Q $. Next let $ \Q \subset \Q R \subset K $. Then $ \Q R $ is a subring containing $ \Q $, so $ \Q R $ is a field. (Exercise: if $ K \subset L $ is finite and $ K \subset R \subset L $ then $ R $ is a ring gives that $ R $ is a field) $ \Q R $ contains all roots of $ f $, so $ \Q R = K $, that is $ u_1, \dots, u_d $ generate $ K $ over $ \Q $.
+\item Proof of $ 1 $. Let $ \mm \supset \ab{p} $ be a maximal ideal in $ R $ then $ \F_p \subset R / \mm $ is a finite field. $ \pi : R \to R / \mm $ gives
+$$ f\rb{x} = \prod_{i = 1}^n \rb{x - \lambda_i} \mapsto \overline{f}\rb{x} = \prod_{i = 1}^n \rb{x - \pi\rb{\lambda_i}}, $$
+that is $ \overline{f}\rb{x} $ splits in $ R / \mm\sb{x} $. $ R $ is generated by $ \lambda_i $ gives that $ R / \mm $ is generated by $ \pi\rb{\lambda_i} $, so $ R / \mm $ is a splitting field for $ \overline{f} \in \F_p\sb{x} $, so $ R / \mm \cong F $. Thus
+$$
+\begin{tikzcd}
+R \arrow{dr}{\psi} \arrow[swap]{d}{\pi} & \\
+\dfrac{R}{\mm} \arrow[swap]{r}{\sim} & F
+\end{tikzcd}.
+$$
+\item Proof of $ 2 $. Easy. $ \psi' : R \to F $ gives $ f\rb{x} \mapsto \overline{f}\rb{x} $, so $ \cb{\lambda_i} \mapsto \cb{\pi\rb{\lambda_i}} $.
+\item Proof of $ 3 $. Converse is obvious. Let $ \sigma \in G $ and $ G = \cb{\sigma_1, \dots, \sigma_N} $ for $ rk_\Z\rb{R} = N = \sb{K : \Q} $. Consider $ \psi_i = \psi \circ \sigma_i : P \to F $ where $ P = \rb{R \setminus \cb{0}, \times} $ is a semigroup. Suppose $ \psi_{N + 1} : P \to F $ is another character. If for all $ i $, $ \psi_{N + 1} \ne \psi_i $, we will derive a contradiction. Let $ r_1, \dots, r_N $ be a basis of $ R $ as a $ \Z $-module. Solve for $ x_i \in F $, for $ i = 1, \dots, N $, in
+$$ \cb{\sum_{i = 1}^{N + 1} x_i\psi_i\rb{r_j} = 0 \ \Bigg| \ 1 \le j \le N}, $$
+$ N $ equations in $ \rb{N + 1} $ variables in $ F $. Since $ r_j $ is a $ \Z $-basis this implies $ \sum_{i = 1}^{N + 1} x_i\psi_j = 0 $ and this contradicts Dedekind.
+\end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:cycletype}]
+Let $ R $ and $ \psi : R \to F $ be as above. Consider $ Fr \in Gal\rb{F / \F_p} $ then $ \psi' = Fr \circ \psi : R \to F $ is a ring homomorphism. By Theorem \ref{thm:ringhomomorphism}.$ 3 $ there exists $ \sigma \in G $ such that $ Fr \circ \psi = \psi \circ \sigma $. Thus
+$$ \sigma \circlearrowright \cb{\text{roots of} \ f \ \text{in} \ R} \xrightarrow{\psi} \cb{\text{roots of} \ \overline{f} \ \text{in} \ F} \circlearrowleft Fr. $$
+\end{proof}
 
 \end{document}
