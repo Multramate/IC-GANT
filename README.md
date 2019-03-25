@@ -2,7 +2,7 @@
 
 ## Information
 
-These are notes taken during my third year of the Mathematics and Computer Science (Pure Mathematics and Computational Logic) undergraduate course in Imperial College London. You can download them with the links below, or by navigating to the various PDFs in the repository. **Pausing updates to notes until after Easter due to examinations.**
+These are notes taken during my third year of the Mathematics and Computer Science (Pure Mathematics and Computational Logic) undergraduate course in Imperial College London. You can download them with the links below, or by navigating to the various PDFs in the repository.
 
 ## Legend
 
