@@ -1,6 +1,46 @@
 \def\module{M3P15 Algebraic Number Theory}
 \def\lecturer{Dr Ana Caraiani}
 \def\term{Spring 2019}
+\def\cover{
+$$
+\begin{tikzpicture}[scale=0.7]
+\draw [help lines] (-9, -9) grid (9, 9);
+\draw [->, dashed] (0, -10) to (0, 10);
+\draw [->, dashed] (-10, 0) to (10, 0);
+\draw [domain=-9:-1] plot (\x, {3*sqrt(10)/\x});
+\draw [domain=1:9] plot (\x, {3*sqrt(10)/\x});
+\draw [domain=-9:-1] plot (\x, {-3*sqrt(10)/\x});
+\draw [domain=1:9] plot (\x, {-3*sqrt(10)/\x});
+\draw (-6, 7) node[below]{$ \lambda\rb{\Q\rb{\sqrt{10}}} $};
+\draw (-6.5, 6) node[below]{$ = \sqrt{4 \cdot 10} / 2 $};
+\draw (-7, 5) node[below]{$ = \sqrt{10} $};
+\draw (0, {2*sqrt(3*sqrt(10))}) to ({-2*sqrt(3*sqrt(10))}, 0);
+\draw (0, {2*sqrt(3*sqrt(10))}) to ({2*sqrt(3*sqrt(10))}, 0);
+\draw (0, -{2*sqrt(3*sqrt(10))}) to ({-2*sqrt(3*sqrt(10))}, 0);
+\draw (0, -{2*sqrt(3*sqrt(10))}) to ({2*sqrt(3*sqrt(10))}, 0);
+\draw [domain=-9:-3.7, dotted, thick] plot (\x, {\x + 4*sqrt(10)});
+\draw [domain=-9:2.7, dotted, thick] plot (\x, {\x + 2*sqrt(10)});
+\draw [domain=-9:9, dotted, thick] plot (\x, \x);
+\draw [domain=-2.7:9, dotted, thick] plot (\x, {\x - 2*sqrt(10)});
+\draw [domain=3.7:9, dotted, thick] plot (\x, {\x - 4*sqrt(10)});
+\draw [domain=-9:-5.3, dotted, thick] plot (\x, {(2 + sqrt(10))/(2 - sqrt(10))*(\x + 6) - 6});
+\draw [domain=-5.7:-1.7, dotted, thick] plot (\x, {(2 + sqrt(10))/(2 - sqrt(10))*(\x + 3) - 3});
+\draw [domain=-2:2, dotted, thick] plot (\x, {(2 + sqrt(10))/(2 - sqrt(10))*\x});
+\draw [domain=1.7:5.7, dotted, thick] plot (\x, {(2 + sqrt(10))/(2 - sqrt(10))*(\x - 3) + 3});
+\draw [domain=5.3:9, dotted, thick] plot (\x, {(2 + sqrt(10))/(2 - sqrt(10))*(\x - 6) + 6});
+\draw [fill=black] (-3, -3) circle (0.1) node[above right]{$ \alpha \in \sb{\ab{3, 2 + \sqrt{10}}} $};
+\draw [->, thick] (0, 0) to (3, 3);
+\draw (2, 1) node[above]{$ 3 $};
+\draw [->, thick] (0, 0) to ({2 - sqrt(10)}, {2 + sqrt(10)});
+\draw (-2, 2) node[above]{$ 2 + \sqrt{10} $};
+\draw (1, 3) node[above]{$ \ab{3, 2 + \sqrt{10}} $};
+\draw (6, -5) node{$ Cl\rb{\Q\rb{\sqrt{10}}} $};
+\draw (6, -6) node{$ \cong \ab{\ab{3, 2 + \sqrt{10}}} $};
+\draw (5, -7) node{$ \cong \Z / 2\Z $};
+\end{tikzpicture}
+$$
+}
+\def\syllabus{Rings. Unique factorisation domains. Principal ideal domains. Euclidean domains. Gaussian integers. Eisenstein integers. Number fields. Structure theorem for finitely generated abelian groups. Integral closure. Norms. Traces. Discriminants. Ring of integers. Dedekind domains. Unique factorisation of Dedekind domains. Splitting of prime ideals in quadratic fields. Class groups. Finiteness of class groups. Groups of units.}
 
 \def\thm{subsection}
 
@@ -19,14 +59,12 @@ The goal of this course will be to introduce algebraic number theory, specifical
 \item P Samuel, Algebraic theory of numbers, 1970
 \item M Trifkovic, Algebraic theory of quadratic numbers, 2013
 \end{enumerate}
-
 Algebraic number theory developed from
 \begin{itemize}
 \item trying to generalise known properties of integers, such as unique factorisation, to finite extensions of $ \Q $,
 \item trying to solve Diophantine equations in a systematic way. For example, Fermat's equation
 $$ x^n + y^n = z^n, \qquad n \ge 2, \qquad x, y, z \in \Z. $$
 \end{itemize}
-
 Let $ n \in \Z_{\ge 0} $. A question is when can we write $ n $ as
 $$ n = a^2 + b^2, \qquad a, b \in \Z? $$
 Some observations.
@@ -479,8 +517,6 @@ $$ \cb{\text{commutative rings}} \supsetneq \cb{\text{IDs}} \supsetneq \cb{\text
 
 \pagebreak
 
-\section{Gaussian and Eisenstein integers}
-
 \subsection{Gaussian integers}
 
 The \textbf{Gaussian integers} are
@@ -621,7 +657,7 @@ These three possible behaviours have to do with the structure of $ \Z\sb{\omega}
 \item $ \Z\sb{\sqrt{-5}} $ is not a UFD, so not Euclidean, since
 $$ 6 = 2 \cdot 3 = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}}. $$
 What goes wrong if we try to adapt geometric proof from $ \Z\sb{i}, \Z\sb{\omega} $? Unit discs do not cover all of the area of $ \C $.
-\item The ring of integers $ \OO_7, \OO_{11} \subset \Q\rb{\sqrt{-7}} $ both are norm Euclidean. Adopt proof from $ \Z\sb{i}, \Z\sb{\omega} $.
+\item The ring of integers $ \OO_7 \subset \Q\rb{\sqrt{-7}} $ and $ \OO_{11} \subset \Q\rb{\sqrt{-11}} $ both are norm Euclidean. Adopt proof from $ \Z\sb{i}, \Z\sb{\omega} $.
 \item It is hard to tell which fields are Euclidean and which are not. For example, $ \Z\sb{\tfrac{1 + \sqrt{-19}}{2}} $ is not Euclidean but is a PID and a UFD.
 \item Among real quadratic fields, $ \Z\sb{\sqrt{2}} $ is Euclidean. The same geometric proof will not work because $ \Z\sb{\sqrt{2}} \subset \R $. (Exercise: $ \Z\sb{\sqrt{2}} $ is dense in $ \R $) We do have a geometric way to think about this.
 $$ \dfrac{\Q\rb{\sqrt{2}}}{\Q} = \cb{a + b\sqrt{2} \mid a, b \in \Q} $$
@@ -641,7 +677,7 @@ $ \theta_1, \theta_2 $ generate a lattice in $ \R^2 $. Can do a geometric proof 
 
 \pagebreak
 
-\section{Structure theorem for finitely generated abelian groups}
+\section{Ring of integers in number fields}
 
 \lecture{9}{Tuesday}{29/01/19}
 
@@ -695,7 +731,7 @@ a contradiction. Alternatively, prove that $ e_1 $ and $ e_2 $ are linearly depe
 
 \pagebreak
 
-\subsection{Weak structure theorem}
+\subsection{Structure theorem for finitely generated abelian groups}
 
 \begin{theorem}[Structure theorem, weak form]
 Let $ M $ be a free $ \Z $-module of finite rank $ n $, and $ M' \subseteq M $ be a $ \Z $-submodule. Then $ M' $ is free of rank $ m \le n $.
@@ -713,8 +749,6 @@ Consider $ N' = N \cap M' $, a submodule of $ N, M', M $. We have an isomorphism
 $$ N' \oplus x\Z = \cb{n' + n \cdot x \mid n' \in N', \ n \in \Z} \cong M'. $$
 (Exercise: prove) $ N $ is free of rank $ n - 1 $, so by induction hypothesis $ N' $ is free of rank $ m' \le n - 1 $. $ M' $ is free of rank $ m' + 1 \le n $. Have a basis $ \rb{e_1', \dots, e_m', x} $ for $ M' $, where $ \rb{e_1, \dots, e_m'} $ is a basis for $ N' $.
 \end{proof}
-
-\subsection{Strong structure theorem}
 
 \begin{theorem}[Structure theorem, strong form]
 \label{thm:structure}
@@ -753,23 +787,21 @@ Let $ M $ be a free $ \Z $-module of rank $ n $, and $ x \in M $. Let $ p_1 : M 
 Find $ a, b \in \Z $ such that $ \gcd\rb{p_1\rb{x}, p_2\rb{x}} = ap_1\rb{x} + bp_2\rb{x} $, by Euclid's algorithm. Define $ p = ap_1 + bp_2 $.
 \end{proof}
 
-\pagebreak
-
 \begin{lemma}
 \label{lem:2}
 Let $ R $ be a PID. Let $ S $ be a set of ideals of $ R $. There exists an ideal $ I \in S' $ such that $ I \subseteq J $ and $ J \in S' $ gives $ I = J $, that is such that $ I $ is maximal with respect to inclusion.
 \end{lemma}
 
 \begin{proof}
-We will use the ascending chain condition, ok because $ R $ is a PID, to argue by contradiction. If Lemma \ref{lem:2} were not true, would set
-$$ I_1 \subsetneq I_2 \subsetneq \dots, $$
-with $ I_i \in S $, a contradiction.
+We will use the ascending chain condition, ok because $ R $ is a PID, to argue by contradiction. If Lemma \ref{lem:2} were not true, would set $ I_1 \subsetneq I_2 \subsetneq \dots $ with $ I_i \in S $, a contradiction.
 \end{proof}
 
 \begin{lemma}
 \label{lem:3}
 Let $ M $ be a free $ \Z $-module of rank $ n $, and $ x \in M $. Then there exists a homomorphism $ p : M \to \Z $ such that $ p\rb{x} \mid q\rb{x} $ for every $ q : M \to \Z $.
 \end{lemma}
+
+\pagebreak
 
 \begin{proof}
 Look at the set of all ideals $ \ab{q\rb{x}} \subseteq \Z $. Applying Lemma \ref{lem:2}, there exists $ \ab{p\rb{x}} \subseteq \Z $, where $ p : M \to \Z $, which is maximal with respect to inclusion. Want $ p\rb{x} \mid q\rb{x} $ for all $ q : M \to \Z $. Applying Lemma \ref{lem:1} to $ p, q $ gives $ r : M \to \Z $ such that $ r\rb{x} \mid q\rb{x} $ and $ r\rb{x} \mid p\rb{x} $, so $ \ab{r\rb{x}} \supseteq \ab{p\rb{x}} $. Because $ p $ is maximal, have equality $ r\rb{x} \sim p\rb{x} $, so $ p\rb{x} \mid q\rb{x} $.
@@ -780,27 +812,20 @@ Argue by induction on $ n = rk_\Z\rb{M} $.
 \begin{itemize}
 \item Let $ M' \subseteq M $. If $ p : M \to \Z $, then $ p\rb{M'} \subseteq M $. Choose $ p $ such that $ p\rb{M'} $ is maximal with respect to inclusion among all $ q : M \to \Z $.
 \item What is $ p\rb{M} \subseteq \Z $? We have $ p\rb{M} = a\Z $ for $ a \in \Z \setminus \cb{0} $. If $ a \ne \pm 1 $, could define $ p'\rb{x} = p\rb{x} / a $ for all $ x \in M $. $ p'\rb{M'} \supsetneq p\rb{M'} $ contradicts the maximality of $ p $ with respect to $ M' $. Thus $ p\rb{M} = \Z $.
-\item Let $ N = Ker\rb{p} \subseteq M $, where $ p : M \twoheadrightarrow \Z $. $ N $ is free of rank $ n - 1 $.
-\item Let $ N' = M' \cap N $ be a submodule, where
+\item Let $ N = Ker\rb{p} \subseteq M $, where $ p : M \twoheadrightarrow \Z $. $ N $ is free of rank $ n - 1 $, and $ N' = M' \cap N $ be a submodule.
 $$
-\begin{tikzcd}
+\begin{tikzcd}[row sep=small]
 N' \arrow[hookrightarrow]{r} \arrow[hookrightarrow]{d} & N \arrow[hookrightarrow]{d} \\
 M' \arrow[hookrightarrow]{r} \arrow[twoheadrightarrow]{d} & M \arrow[twoheadrightarrow]{d} \\
 p\rb{M'} \arrow[hookrightarrow]{r} & \Z
 \end{tikzcd}.
 $$
-\item Apply induction hypothesis to $ \rb{N, N'} $.
-\item $ N $ has a basis $ \rb{e_2, \dots, e_n} $. Can complete $ \rb{e_2, \dots, e_n} $ to a basis for $ M $. Choose $ e_1' \in M $ such that $ p\rb{e_1'} = 1 $. Have a basis $ \rb{e_1', e_2, \dots, e_n} $ of $ M $.
+\item Apply induction hypothesis to $ \rb{N, N'} $. $ N $ has a basis $ \rb{e_2, \dots, e_n} $. Can complete $ \rb{e_2, \dots, e_n} $ to a basis for $ M $. Choose $ e_1' \in M $ such that $ p\rb{e_1'} = 1 $. Have a basis $ \rb{e_1', e_2, \dots, e_n} $ of $ M $.
 \item There exist $ a_2, \dots, a_q \in \Z \setminus \cb{0} $ such that $ N' $ has a basis $ \rb{a_2e_2, \dots, a_qe_q} $ and $ a_2 \mid \dots \mid a_q $. $ M' \twoheadrightarrow p\rb{M'} = a_1\Z $ for $ a_1 \in \Z \setminus \cb{0} $, assuming $ M' \ne 0 $. Choose $ x \in M' $ such that $ p\rb{x} = a_1 $. We may assume $ p\rb{x} \mid q\rb{x} $ for every $ q : M \to \Z $. Look at $ \rb{e_1', e_2, \dots, e_n} $, a basis of $ M $. Let $ p_i : M \to \Z $ be the projection onto the $ i $-th coordinate. $ a_1 \mid p_i\rb{x} $ for all $ i = 1, \dots, n $, by maximality property of $ p $ and $ p\rb{x} = a_1 $. Can find a basis $ \rb{e_1, \dots, e_n} $ of $ M $ such that $ x = a_1e_1 $, where
-$$ e_1 = e_1' + \dfrac{p_2\rb{x}}{a_1}e_2 + \dots + \dfrac{p_n\rb{x}}{a_1}e_n, $$
-and $ p_2\rb{x} / a_1, \dots, p_n\rb{x} / a_1 \in \Z $.
+$$ e_1 = e_1' + \dfrac{p_2\rb{x}}{a_1}e_2 + \dots + \dfrac{p_n\rb{x}}{a_1}e_n, \qquad p_2\rb{x} / a_1, \dots, p_n\rb{x} / a_1 \in \Z. $$
 \item Left to prove that $ a_1 \mid a_2 $. Let $ d = \rb{a_1, a_2} = b_1a_1 + b_2a_2 $. There exists $ d : M \to \Z $ such that $ d\rb{x} = b_1p_1\rb{x} + b_2p_2\rb{x} $, where $ p_1\rb{x} = p\rb{x} = a_1 $ and $ p_2\rb{x} = a_2 $. This will contradict maximality of $ p_1 = p $.
 \end{itemize}
 \end{proof}
-
-\pagebreak
-
-\subsection{Torsion}
 
 \lecture{11}{Monday}{04/02/19}
 
@@ -832,8 +857,6 @@ with $ a_1, \dots, a_n \in \Z $ satisfying $ a_1 \mid \dots \mid a_n $. Want $ a
 \end{proof}
 
 \pagebreak
-
-\section{Integral closure}
 
 \subsection{Integral elements}
 
@@ -957,18 +980,18 @@ Let $ \Z \subset R $, where $ R / \Q $ is a finite extension. Let $ \OO_K $ be t
 
 \pagebreak
 
-\subsection{Ring of integers in number fields}
+\subsection{Quadratic fields}
 
 A \textbf{number field} $ K $ is a field containing $ \Q $ such that $ \dim_\Q\rb{K} $ is finite. Any finite field extension of $ \Q $ is a number field. The \textbf{degree} of the number field is by definition $ \dim_\Q\rb{K} $. A \textbf{quadratic field} is an extension of $ \Q $ of degree two. The \textbf{ring of integers} $ \OO_K \subset K $ is the integral closure of $ \Z $ in $ K $.
 
 \begin{lemma}
-Every quadratic field $ K / \Q $ is of the form $ \Q\rb{\sqrt{d}} = \cb{a + b\sqrt{d} \mid a, b \in \Q} $ for some square-free $ d \in \Z $.
+Every quadratic field $ K / \Q $ is of the form
+$$ \Q\rb{\sqrt{d}} = \cb{a + b\sqrt{d} \mid a, b \in \Q}, $$
+for some square-free $ d \in \Z $.
 \end{lemma}
 
 \begin{proof}
-Let $ x \in K \setminus \Q $. Then $ \ab{1, x} $ is a $ \Q $-basis of $ K $. $ x^2 + \alpha x + \beta \in K $ for $ \alpha, \beta \in \Q $.
-$$ x = \dfrac{\alpha \pm\sqrt{\alpha^2 + 4\beta}}{2}. $$
-$ d = \alpha^2 + 4\beta \in \Q $, so $ K = \Q\rb{\sqrt{d}} $. Multiplying $ d $ by $ n^2 $, for all $ n \in \Z $, $ \Q\rb{\sqrt{d}} = \Q\rb{\sqrt{dn^2}} $, so can assume $ d \in \Z $. Similarly, can assume $ d $ is square-free. Thus $ \ab{1, \sqrt{d}} $ is a basis over $ \Q $.
+Let $ x \in K \setminus \Q $. Then $ \ab{1, x} $ is a $ \Q $-basis of $ K $. $ x^2 + \alpha x + \beta \in K $ for $ \alpha, \beta \in \Q $ gives $ x = \rb{\alpha \pm\sqrt{\alpha^2 + 4\beta}} / 2 $, and $ d = \alpha^2 + 4\beta \in \Q $, so $ K = \Q\rb{\sqrt{d}} $. Multiplying $ d $ by $ n^2 $, for all $ n \in \Z $, $ \Q\rb{\sqrt{d}} = \Q\rb{\sqrt{dn^2}} $, so can assume $ d \in \Z $. Similarly, can assume $ d $ is square-free. Thus $ \ab{1, \sqrt{d}} $ is a basis over $ \Q $.
 \end{proof}
 
 \begin{remark*}
@@ -995,9 +1018,7 @@ In this case $ \OO_K $ is the $ \Z $-linear span of $ 1 $ and $ \tfrac{1 + \sqrt
 \end{example*}
 
 \begin{proof}
-Let $ \OO_K $ be the integral closure of $ \Z $ in $ \Q\rb{\sqrt{d}} = K $. Let $ x = a + b\sqrt{d} $ for $ a, b \in \Q $. Assume $ x $ is an algebraic integer. Let
-$$ x = a + b\sqrt{d} \mapsto \overline{x} = a - b\sqrt{d}. $$
-$ x, \overline{x} $ satisfy the same polynomial equation with $ \Z $ coefficients, so $ \overline{x} = a - b\sqrt{d} $ is also an algebraic integer.
+Let $ \OO_K $ be the integral closure of $ \Z $ in $ \Q\rb{\sqrt{d}} = K $. Let $ x = a + b\sqrt{d} $ for $ a, b \in \Q $. Assume $ x $ is an algebraic integer. Let $ \overline{x} = a - b\sqrt{d} $. Then $ x, \overline{x} $ satisfy the same polynomial equation with $ \Z $ coefficients, so $ \overline{x} = a - b\sqrt{d} $ is also an algebraic integer.
 \begin{itemize}
 \item $ x\overline{x} = \rb{a + b\sqrt{d}}\rb{a - b\sqrt{d}} = a^2 - b^2d \in \Q $ is an algebraic integer, so $ a^2 - b^2d \in \Z $.
 \item $ x - \overline{x} = 2b\sqrt{d} $, so $ 4b^2d \in \Z $ gives $ 2b \in \Z $, because $ d $ is square-free.
@@ -1018,11 +1039,9 @@ Lecture 13 is a problem class.
 
 \pagebreak
 
-\section{$ \OO_K $ is a lattice}
+\subsection{Traces and norms}
 
 \lecture{14}{Monday}{11/02/19}
-
-\subsection{Trace and norm}
 
 Let $ K / \Q $ be a quadratic field. The conjugate is
 $$ \function{K}{K}{\alpha = a + b\sqrt{d}}{\overline{\alpha} = a - b\sqrt{d}}. $$
@@ -1103,7 +1122,7 @@ Let $ x \in S $. Is
 $$ char_{K / F}\rb{x} = \prod_{\sigma \in e\rb{K / F}} \rb{t - \sigma\rb{x}} \in R\sb{t}? $$
 Let $ L $ be the \textbf{composite} of extensions $ \sigma\rb{K} \subseteq \C $, the smallest field extension of $ F $ containing all $ \sigma\rb{K} $. Let $ T $ be the integral closure of $ R $ in $ L $.
 $$
-\begin{tikzcd}
+\begin{tikzcd}[row sep=small]
 T \arrow[subset]{r} & L \\
 S \arrow[hookrightarrow]{u} \arrow[subset]{r} & K \arrow[hookrightarrow]{u} \\
 R \arrow[hookrightarrow]{u} \arrow[subset]{r} & F \arrow[hookrightarrow]{u}
@@ -1231,7 +1250,7 @@ where $ c_i \in \Z $. Can do this with $ c_i \in \Q $ for $ i = 1, \dots, n $. N
 
 \pagebreak
 
-\subsection{Main result}
+\subsection{$ \OO_K $ is a lattice}
 
 \begin{theorem}
 Let $ K / \Q $ be a number field of degree $ n $, with ring of integers $ \OO_K $. Then $ \OO_K $ is a lattice in $ K $.
@@ -1259,7 +1278,7 @@ for $ A\alpha_1, \dots, A^n\alpha_{n - 1} \in \Z $. Can assume $ e_i \in \OO_K $
 
 \pagebreak
 
-\section{$ \OO_K $ is a Dedekind domain}
+\section{Dedekind domains}
 
 \lecture{17}{Monday}{18/02/19}
 
@@ -1367,7 +1386,7 @@ is the absolute value of the determinant.
 $ Nm\rb{\nn} \in \nn $ because $ Nm\rb{\nn} $ in $ \OO_K / \nn $ is equal to zero, because the order of a finite group is always equal to zero in that finite group.
 \end{remark*}
 
-\subsection{Ring of integers}
+\subsection{$ \OO_K $ is a Dedekind domain}
 
 Goal is to show that $ \OO_K $ is a Dedekind domain, that is it is an integrally closed Noetherian domain and non-zero prime ideals are maximal ideals. It is an integrally closed domain.
 
@@ -1456,11 +1475,9 @@ Lecture 19 is a problem class.
 
 \pagebreak
 
-\section{Unique factorisation in a Dedekind domain}
+\subsection{Fractional ideals}
 
 \lecture{20}{Monday}{25/02/19}
-
-\subsection{Fractional ideals}
 
 Goal is to show that unique factorisation of ideals into prime ideals always holds in a Dedekind domain.
 
@@ -1612,7 +1629,7 @@ We may assume all $ k_i, l_j > 0 $. $ \pp_1 \supseteq \qq_1^{l_1} \cdot \dots \c
 
 \lecture{22}{Friday}{01/03/19}
 
-\subsection{Ideal class group}
+\subsection{Ideal class groups}
 
 \begin{definition}
 Let $ R $ be a Dedekind domain. The \textbf{ideal class group} of $ R $ is the quotient of the group of all non-zero fractional ideals by the subgroup of principal fractional ideals. This is denoted by $ Cl\rb{R} $.
@@ -1644,9 +1661,9 @@ Proof relies on an explicit bound. Every \textbf{ideal class}, a fractional idea
 
 \pagebreak
 
-\section{Arithmetic in quadratic fields}
+\section{Finiteness of ideal class groups}
 
-\subsection{Discriminant}
+\subsection{Discriminants}
 
 Let $ K $ be a number field. Recall $ \OO_K $ is a free $ \Z $-module of rank $ n = \deg\rb{K / \Q} $. Choose $ e_1, \dots, e_n $, a $ \Z $-basis of $ \Q $.
 $$ \function[Tr_{K / \Q}\rb{,}]{K \times K}{\Q}{\rb{v, w}}{Tr_{K / \Q}\rb{v \cdot w}} $$
@@ -1684,7 +1701,7 @@ $$ \twobytwo{Tr_{K / \Q}\rb{1}}{Tr_{K / \Q}\rb{\sqrt{d}}}{Tr_{K / \Q}\rb{\sqrt{d
 
 \pagebreak
 
-\subsection{Criterion for decomposition of primes}
+\subsection{Decomposition of primes in quadratic fields}
 
 Let $ p \in \Z $ be a rational prime. How does $ \ab{p} $ decompose, or factor, into prime ideals of $ \OO_K $?
 \begin{itemize}
@@ -1737,13 +1754,9 @@ $ p $ is inert if and only if $ \F_p\sb{x} / \ab{f\rb{x}} \cong \F_{p^2} $, if a
 
 \pagebreak
 
-\section{Finiteness of ideal class group}
-
-Goal is that if $ K $ is an imaginary quadratic field, so $ d < 0 $, then $ Cl\rb{K} $ is finite. Use that every ideal class in $ Cl\rb{K} $ contains an integral ideal of norm less than explicit bound depending on $ K $. Uses geometry of numbers and Minkowski's theorem.
-
 \subsection{Standard form of ideals}
 
-Let $ K $ be a quadratic field and $ \OO_K = \Z \oplus \Z\delta $ be the ring of integers, where
+Goal is that if $ K $ is an imaginary quadratic field, so $ d < 0 $, then $ Cl\rb{K} $ is finite. Use that every ideal class in $ Cl\rb{K} $ contains an integral ideal of norm less than explicit bound depending on $ K $. Uses geometry of numbers and Minkowski's theorem. Let $ K $ be a quadratic field and $ \OO_K = \Z \oplus \Z\delta $ be the ring of integers, where
 $$ \delta =
 \begin{cases}
 \sqrt{d} & d \equiv 2, 3 \mod 4 \\
@@ -1907,7 +1920,7 @@ $$ \delta = \sqrt{d} = \dfrac{\sqrt{Disc\rb{K}}}{2}, \qquad \overline{\delta} = 
 If $ d \equiv 1 \mod 4 $, then
 $$ \delta = \dfrac{1 + \sqrt{d}}{2} = \dfrac{1 + \sqrt{Disc\rb{K}}}{2}, \qquad \overline{\delta} = \dfrac{1 - \sqrt{d}}{2} = \dfrac{1 - \sqrt{Disc\rb{K}}}{2}. $$
 Component of $ \rb{q\rb{-b + \overline{\delta}}, q\rb{-b + \delta}} $ along the line $ x = -y $ is
-$$ \rb{-q\dfrac{\sqrt{Disc\rb{K}}}{2}, q\dfrac{\sqrt{Disc\rb{K}}}{\sqrt{2}}}. $$
+$$ \rb{-q\dfrac{\sqrt{Disc\rb{K}}}{2}, q\dfrac{\sqrt{Disc\rb{K}}}{2}}. $$
 Component along $ x = y $ is
 $$
 \begin{cases}
@@ -1936,13 +1949,13 @@ Let $ I = \alpha \cdot J^{-1} $. Then $ I \subseteq \OO_K $ is an integral ideal
 
 \begin{proof}[Proof of Proposition \ref{prop:bound}]
 Let
-$$ \function{K}{\R^2}{\alpha}{\rb{\overline{\alpha, \alpha}}}. $$
+$$ \function{K}{\R^2}{\alpha}{\rb{\overline{\alpha}, \alpha}}. $$
 $ Nm\rb{\alpha} = \overline{\alpha} \cdot \alpha $ is the restriction of $ Nm\rb{x, y} = x \cdot y $. Let $ H $ be
 $$ \abs{x \cdot y} < \dfrac{\sqrt{Disc\rb{K}} \cdot Nm\rb{J}}{2}. $$
 If we chose $ S $ to be that, we could not apply Minkowski, since it is not convex. Let $ S $ be
 $$ \abs{x + y} < \sqrt{2\sqrt{Disc\rb{K}} \cdot Nm\rb{J}}, \qquad \abs{x - y} < \sqrt{2\sqrt{Disc\rb{K}} \cdot Nm\rb{J}}. $$
 Then $ S $ is contained in $ H $. Assume $ x, y > 0 $. $ \rb{x, y} \in S $ gives that $ x + y < \sqrt{2\sqrt{Disc\rb{K}} \cdot Nm\rb{J}} $, so $ 4\abs{x \cdot y} \le \rb{x + y}^2 < 2\sqrt{Disc\rb{K}} \cdot Nm\rb{J} $, because $ \rb{x - y}^2 \ge 0 $. Thus $ \abs{x \cdot y} < \sqrt{Disc\rb{K}} \cdot Nm\rb{J} / 2 $, and
-$$ 4\sqrt{Disc\rb{K}} \cdot Nm\rb{J} = A\rb{S} \ge 4A\rb{J} = 4\sqrt{Disc\rb{K}} \cdot Nm\rb{J}. $$
+$$ A\rb{S} = 4\sqrt{Disc\rb{K}} \cdot Nm\rb{J} = 4A\rb{J}. $$
 \end{proof}
 
 \pagebreak
@@ -2008,7 +2021,7 @@ Thus $ Cl\rb{\Q\rb{\sqrt{-10}}} \cong \Z / 2\Z $.
 What is $ Cl\rb{\Q\rb{\sqrt{-21}}} $?
 \begin{itemize}
 \item Minkowski bound is
-$$ \lambda\rb{K} = 2\sqrt{84} / \pi = \sqrt{336 / \pi^2} < 6. $$
+$$ \lambda\rb{K} = \dfrac{2\sqrt{84}}{\pi} = \sqrt{\dfrac{336}{\pi^2}} < 6. $$
 \item We want to factor $ 2, 3, 5 $ in $ K $.
 \begin{itemize}
 \item $ 2 \mid Disc\rb{K} $, so $ 2 $ ramifies, and
@@ -2118,15 +2131,11 @@ $ x^2 + n = y^3 $ with $ n > 0 $, if $ 3 \nmid \#Cl\rb{\Q\rb{\sqrt{-n}}} $, then
 
 \pagebreak
 
-\section{Units}
+\subsection{Fundamental units}
 
 \lecture{29}{Monday}{18/03/19}
 
-Goal is to discuss the group of units $ \OO_K^\times $ when $ K $ is a real quadratic field.
-
-\subsection{Fundamental unit}
-
-If $ K $ is imaginary quadratic, then
+Goal is to discuss the group of units $ \OO_K^\times $ when $ K $ is a real quadratic field. If $ K $ is imaginary quadratic, then
 $$ \OO_K^\times =
 \begin{cases}
 \Z / 4\Z & K = \Q\rb{i} \\
@@ -2177,6 +2186,8 @@ $$ a_0 + \dfrac{1}{a_1 + \tfrac{1}{\dots}} $$
 converges to $ \alpha $.
 \end{lemma}
 
+\pagebreak
+
 \begin{example*}
 $$ \dfrac{1 + \sqrt{5}}{2} = 1 + \dfrac{\sqrt{5} - 1}{2} = 1 + \dfrac{1}{\tfrac{2}{\sqrt{5} - 1}} = 1 + \dfrac{1}{\tfrac{2\rb{1 + \sqrt{5}}}{4}} = 1 + \dfrac{1}{\tfrac{1 + \sqrt{5}}{2}} = 1 + \dfrac{1}{1 + \tfrac{1}{\dots}} = \sb{1; 1, 1, \dots} = \sb{\overline{1}} $$
 is \textbf{purely periodic}.
@@ -2225,6 +2236,8 @@ $$ \abs{x - \dfrac{p_i}{q_i}} < \abs{\dfrac{p_{i - 1}}{q_{i - 1}} - \dfrac{p_i}{
 because $ q_i \ge i $.
 \end{enumerate}
 \end{proposition}
+
+\pagebreak
 
 \begin{corollary}
 $ \sb{a_0; a_1, \dots, a_i} \to x $ as $ i \to \infty $.
@@ -2348,6 +2361,8 @@ Let $ Cl\rb{K} \cong \Z / 4\Z $.
 \end{itemize}
 Then $ L_2 $ is the Hilbert class field of $ K $.
 \end{example*}
+
+\pagebreak
 
 Can generalise this picture to ideals $ \mm \subseteq \OO_K $. The \textbf{ray class group} of \textbf{conductor} $ \mm $ is $ I^\mm / P^\mm $, where $ I^\mm $ is all the non-zero fractional ideals prime to $ \mm $ and $ P^\mm $ is all the ideals generated by $ a \equiv 1 \mod \mm $.
 

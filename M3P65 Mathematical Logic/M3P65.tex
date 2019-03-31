@@ -1,6 +1,33 @@
 \def\module{M3P65 Mathematical Logic}
 \def\lecturer{Prof David Evans}
 \def\term{Autumn 2018}
+\def\cover{
+\begin{align*}
+\textbf{Extensionality} \equiv & \fab{x}\fab{y} \\
+& \qquad \iffb{\eqb{x}{y}}{\fab{z}\iffb{\inb{z}{x}}{\inb{z}{y}}} \\
+\textbf{Empty} \equiv & \teb{x}\fab{y} \\
+& \qquad \notb{\inb{y}{x}} \\
+\textbf{Pairing} \equiv & \fab{x}\fab{y}\teb{z}\fab{w} \\
+& \qquad \iffb{\inb{w}{z}}{\orb{\eqb{w}{x}}{\eqb{w}{y}}} \\
+\textbf{Union} \equiv & \fab{x}\teb{y}\fab{z} \\
+& \qquad \iffb{\inb{z}{y}}{\teb{w}\andb{\inb{w}{x}}{\inb{z}{w}}} \\
+\textbf{Power} \equiv & \fab{x}\teb{y}\fab{z} \\
+& \qquad \iffb{\inb{z}{y}}{\fab{w}\impb{\inb{w}{z}}{\inb{w}{x}}} \\
+\textbf{Specification} \equiv & \fab{x}\fab{y_1} \dots \fab{y_n}\teb{z}\fab{w} \\
+& \qquad \iffb{\inb{w}{z}}{\andb{\inb{w}{x}}{\phi\rb{x, y_1, \dots, y_n}}} \\
+\textbf{Infinity} \equiv & \teb{x} \\
+& \qquad (\teb{y}\andb{\inb{y}{x}}{\fab{z}\notb{\inb{z}{y}}} \land \fab{y}(\inb{y}{x} \\
+& \qquad \qquad \rightarrow \teb{z}\andb{\inb{z}{x}}{\andb{\fab{w}\impb{\inb{w}{y}}{\inb{w}{z}}}{\teb{w}\andb{\inb{w}{z}}{\notb{\inb{w}{y}}}}})) \\
+\textbf{Replacement} \equiv & \fab{x}\fab{y_1} \dots \fab{y_n} \\
+& \qquad (\fab{w}\impb{\inb{w}{x}}{\teb{v}\andb{\phi\rb{v, w, y_1, \dots, y_n}}{\fab{u}\impb{\phi\rb{u, w, y_1, \dots, y_n}}{\eqb{u}{v}}}} \\
+& \qquad \qquad \rightarrow \teb{z}\fab{v}\impb{\inb{v}{z}}{\teb{w}\andb{\inb{w}{x}}{\phi\rb{v, w, y_1, \dots, y_n}}}) \\
+\textbf{Regularity} \equiv & \fab{x} \\
+& \qquad \impb{\teb{y}\inb{y}{x}}{\teb{y}\andb{\inb{y}{x}}{\fab{z}\andb{\notb{\inb{z}{x}}}{\notb{\inb{z}{y}}}}} \\
+\textbf{Choice} \equiv & \fab{x} \\
+& \qquad \impb{\teb{y}\inb{y}{x}}{\teb{\phi : x \to \bigcup x}\fab{z}\impb{\inb{z}{x}}{\inb{\phi\rb{z}}{z}}}
+\end{align*}
+}
+\def\syllabus{Propositional formulas. The formal system $ L $. Soundness and completeness. First-order structures and languages. Bound and free variables. The formal system $ K_\LL $. G\"odel's completeness theorem. Equality. Cardinality. Zermelo-Fraenkel axioms for set theory. Well orderings. Ordinals. Transfinite induction. Transfinite recursion. Cardinals. Axiom of choice. Well ordering principle. Zorn's lemma.}
 
 \def\thm{subsection}
 
@@ -212,11 +239,11 @@ $$ F : \cb{T, F}^n \to \cb{T, F}. $$
 $ \abs{\cb{T, F}^n} = 2^n $, and for each $ \overline{x} \in \cb{T, F}^n $, $ F\rb{\overline{x}} \in \cb{T, F} $. Hence the result.
 \end{proof}
 
+\pagebreak
+
 \begin{definition}
 Say that a set of connectives is \textbf{adequate} if for every $ n \ge 1 $, every truth function of $ n $ variables is the truth function of some formula which involves only connectives from the set, and variables $ p_1, \dots, p_n $.
 \end{definition}
-
-\pagebreak
 
 \begin{theorem}
 \label{thm:1.1.9}
@@ -750,7 +777,7 @@ $$ \Delta_0 \vdash_L \psi, \qquad \Delta_0 \vdash_L \notb{\psi}. $$
 \begin{example*}
 Exercise. Let
 $$ P = \cb{\text{sequences of} \ \cb{T, F}} = \cb{\text{functions} \ f : \N \to \cb{T, F}}. $$
-Topologise with basic open sets. For $ a_1, \dots, a_n \in \cb{T, F} $, consider
+Topologise with basis open sets. For $ a_1, \dots, a_n \in \cb{T, F} $, consider
 $$ O\rb{a_1, \dots, a_n} = \cb{\text{all sequences starting} \ a_1, \dots, a_n, \dots}. $$
 Use compactness theorem to prove $ P $ is compact.
 \end{example*}
@@ -1258,12 +1285,14 @@ $$ v'\sb{\phi\rb{x_1}} = F. $$
 Thus $ v\sb{\fab{x_1}\phi\rb{x_1}} = F $.
 \end{proof}
 
-Proof of \ref{lem:2.3.7} is in A.1.
+\begin{proof}[Proof of \ref{lem:2.3.7}]
+Appendix A.1.
+\end{proof}
 
-\subsection{The formal system $ K_{\LL} $}
+\subsection{The formal system $ K_\LL $}
 
 \begin{definition}
-Suppose $ \LL $ is a first-order language. The formal system $ K_{\LL} $ has, as formulas, $ \LL $-formulas, and the following.
+Suppose $ \LL $ is a first-order language. The formal system $ K_\LL $ has, as formulas, $ \LL $-formulas, and the following.
 \begin{itemize}
 \item Axioms. For $ \LL $-formulas $ \phi, \chi, \psi $,
 \begin{enumerate}[label=(A\arabic*)]
@@ -1281,11 +1310,11 @@ Suppose $ \LL $ is a first-order language. The formal system $ K_{\LL} $ has, as
 \item[(Gen)] \textbf{Generalisation}. From $ \phi $, deduce $ \fab{x_i}\phi $.
 \end{itemize}
 \end{itemize}
-A proof in $ K_{\LL} $ is a finite sequence of $ \LL $-formulas, each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A theorem of $ K_{\LL} $ is the last formula in some proof. Write $ \vdash_{K_{\LL}} \phi $ for $ \phi $ is a theorem in $ K_{\LL} $.
+A proof in $ K_\LL $ is a finite sequence of $ \LL $-formulas, each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A theorem of $ K_\LL $ is the last formula in some proof. Write $ \vdash_{K_\LL} \phi $ for $ \phi $ is a theorem in $ K_\LL $.
 \end{definition}
 
 \begin{note*}
-Books do not always use $ K_{\LL} $, that is they write $ \vdash \phi $.
+Books do not always use $ K_\LL $, that is they write $ \vdash \phi $.
 \end{note*}
 
 \pagebreak
@@ -1297,7 +1326,7 @@ Suppose $ \Sigma $ is a set of $ \LL $-formulas and $ \psi $ an $ \LL $-formula.
 \item a formula in $ \Sigma $, or
 \item obtained from earlier formulas in the deduction using MP or Gen, with the restriction that, when Gen is applied, it does not involve a variable occurring freely in a formula in $ \Sigma $.
 \end{itemize}
-Write $ \Sigma \vdash_{K_{\LL}} \psi $ if there is a deduction from $ \Sigma $ to $ \psi $.
+Write $ \Sigma \vdash_{K_\LL} \psi $ if there is a deduction from $ \Sigma $ to $ \psi $.
 \end{definition}
 
 \lecture{13}{Thursday}{01/11/18}
@@ -1310,13 +1339,13 @@ Lecture 13 is a problem class.
 \hfill
 \begin{itemize}
 \item If $ \Sigma $ consists of closed formulas, do not need to worry about the restriction on Gen.
-\item $ \phi \vdash_{K_{\LL}} \fab{x_1}\phi $.
+\item $ \phi \vdash_{K_\LL} \fab{x_1}\phi $.
 \end{itemize}
 \end{remark}
 
 \begin{theorem}
 \label{thm:2.4.4}
-Suppose $ \phi $ is an $ \LL $-formula which is a substitution instance of a tautology in propositional logic. Then $ \vdash_{K_{\LL}} \phi $.
+Suppose $ \phi $ is an $ \LL $-formula which is a substitution instance of a tautology in propositional logic. Then $ \vdash_{K_\LL} \phi $.
 \end{theorem}
 
 \begin{example*}
@@ -1331,11 +1360,11 @@ There is a tautology $ \chi $ with propositional variables $ p_1, \dots, p_n $ a
 $$ \chi_1, \dots, \chi_r, $$
 where each $ \chi_i $ is a propositional formula, that is in $ L $, and $ \chi_r = \chi $. If we substitute $ \psi_1, \dots, \psi_n $ for $ p_1, \dots, p_n $ in all $ \chi_j $, we obtain a sequence of $ \LL $-formulas,
 $$ \phi_1, \dots, \phi_r, $$
-which is a proof of $ \phi = \phi_r $ in $ K_{\LL} $.
+which is a proof of $ \phi = \phi_r $ in $ K_\LL $.
 \end{proof}
 
-\begin{theorem}[Soundness of $ K_{\LL} $]
-If $ \vdash_{K_{\LL}} \phi $, then $ \vDash \phi $, that is it is logically valid.
+\begin{theorem}[Soundness of $ K_\LL $]
+If $ \vdash_{K_\LL} \phi $, then $ \vDash \phi $, that is it is logically valid.
 \end{theorem}
 
 \begin{proof}
@@ -1358,7 +1387,7 @@ so $ v'\sb{\impb{\phi}{\psi}} = F $. Thus $ v\sb{\fab{x_i}\impb{\phi}{\psi}} = F
 
 \begin{example}
 \label{eg:2.4.6}
-Suppose $ \Sigma \vdash_{K_{\LL}} \psi $, then for every valuation $ v $ with $ v\sb{\sigma} = T $ for all $ \sigma \in \Sigma $, we have $ v\sb{\psi} = T $.
+Suppose $ \Sigma \vdash_{K_\LL} \psi $, then for every valuation $ v $ with $ v\sb{\sigma} = T $ for all $ \sigma \in \Sigma $, we have $ v\sb{\psi} = T $.
 \end{example}
 
 \begin{proof}
@@ -1367,26 +1396,26 @@ Exercise.
 
 \begin{corollary}
 \label{cor:2.4.7}
-There is no $ \LL $-formula $ \phi $ with $ \vdash_{K_{\LL}} \phi $ and $ \vdash_{K_{\LL}} \notb{\phi} $.
+There is no $ \LL $-formula $ \phi $ with $ \vdash_{K_\LL} \phi $ and $ \vdash_{K_\LL} \notb{\phi} $.
 \end{corollary}
 
 \begin{theorem}[Deduction theorem]
-Suppose $ \LL $ is a first-order language, $ \Sigma $ is a set of $ \LL $-formulas, and $ \phi, \psi $ are $ \LL $-formulas. Then if $ \Sigma \cup \cb{\phi} \vdash_{K_{\LL}} \psi $, then $ \Sigma \vdash_{K_{\LL}} \impb{\phi}{\psi} $.
+Suppose $ \LL $ is a first-order language, $ \Sigma $ is a set of $ \LL $-formulas, and $ \phi, \psi $ are $ \LL $-formulas. Then if $ \Sigma \cup \cb{\phi} \vdash_{K_\LL} \psi $, then $ \Sigma \vdash_{K_\LL} \impb{\phi}{\psi} $.
 \end{theorem}
 
 \begin{proof}
 Follows proof of deduction theorem for $ L $ in \ref{thm:1.2.5}, by induction on the length of the deduction.
 \begin{itemize}
-\item Base case. One line deduction. Argue exactly as in \ref{thm:1.2.5}. Note that $ \vdash_{K_{\LL}} \impb{\phi}{\phi} $ by \ref{thm:2.4.4}.
+\item Base case. One line deduction. Argue exactly as in \ref{thm:1.2.5}. Note that $ \vdash_{K_\LL} \impb{\phi}{\phi} $ by \ref{thm:2.4.4}.
 \item Inductive step. Suppose $ \psi $ follows from earlier formulas in the deduction using MP or Gen. MP is exactly as in \ref{thm:1.2.5}. For Gen, suppose $ \psi $ is obtained using Gen, then $ \psi $ is $ \fab{x_i}\theta $ and
-$$ \Sigma \cup \cb{\phi} \vdash_{K_{\LL}} \theta, $$
+$$ \Sigma \cup \cb{\phi} \vdash_{K_\LL} \theta, $$
 and $ x_i $ is not free in any formula in $ \Sigma \cup \cb{\phi} $. By induction, we have
-$$ \Sigma \vdash_{K_{\LL}} \impb{\phi}{\theta}. $$
+$$ \Sigma \vdash_{K_\LL} \impb{\phi}{\theta}. $$
 By K2,
-$$ \Sigma \vdash_{K_{\LL}} \impb{\fab{x_i}\impb{\phi}{\theta}}{\impb{\phi}{\fab{x_i}\theta}}. $$
+$$ \Sigma \vdash_{K_\LL} \impb{\fab{x_i}\impb{\phi}{\theta}}{\impb{\phi}{\fab{x_i}\theta}}. $$
 By Gen,
-$$ \Sigma \vdash_{K_{\LL}} \fab{x_i}\impb{\phi}{\theta}, $$
-for $ x_i $ not free in any formula in $ \Sigma $. So by MP, we get $ \Sigma \vdash_{K_{\LL}} \impb{\phi}{\fab{x_i}\theta} $, which is $ \Sigma \vdash_{K_{\LL}} \impb{\phi}{\psi} $.
+$$ \Sigma \vdash_{K_\LL} \fab{x_i}\impb{\phi}{\theta}, $$
+for $ x_i $ not free in any formula in $ \Sigma $. So by MP, we get $ \Sigma \vdash_{K_\LL} \impb{\phi}{\fab{x_i}\theta} $, which is $ \Sigma \vdash_{K_\LL} \impb{\phi}{\psi} $.
 \end{itemize}
 \end{proof}
 
@@ -1396,14 +1425,14 @@ for $ x_i $ not free in any formula in $ \Sigma $. So by MP, we get $ \Sigma \vd
 
 \begin{definition}
 A set $ \Sigma $ of $ \LL $-formulas is consistent if there is no formula $ \phi $ with
-$$ \Sigma \vdash_{K_{\LL}} \phi, \qquad \Sigma \vdash_{K_{\LL}} \notb{\phi}. $$
+$$ \Sigma \vdash_{K_\LL} \phi, \qquad \Sigma \vdash_{K_\LL} \notb{\phi}. $$
 \end{definition}
 
-By soundness, or \ref{cor:2.4.7}, $ \emptyset $ is consistent, so $ K_{\LL} $ is consistent.
+By soundness, or \ref{cor:2.4.7}, $ \emptyset $ is consistent, so $ K_\LL $ is consistent.
 
 \begin{remark*}
 If $ \Sigma $ is inconsistent, then
-$$ \Sigma \vdash_{K_{\LL}} \chi, $$
+$$ \Sigma \vdash_{K_\LL} \chi, $$
 for any $ \LL $-formula $ \chi $.
 \end{remark*}
 
@@ -1414,15 +1443,15 @@ $$ \psi_0, \psi_1, \dots \in \cb{\psi_i : i \in \N}. $$
 \label{prop:2.5.2}
 Suppose $ \Sigma $ is a consistent set of closed $ \LL $-formulas and $ \phi $ is a closed $ \LL $-formula.
 \begin{enumerate}
-\item Compare \ref{prop:1.3.7}. If $ \Sigma \not\vdash_{K_{\LL}} \phi $, then $ \Sigma \cup \cb{\notb{\phi}} $ is consistent.
-\item Compare the Lindenbaum lemma in \ref{prop:1.3.8}. There is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LL $-formulas such that, for every closed $ \LL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_{\LL}} \psi $ or $ \Sigma^* \vdash_{K_{\LL}} \notb{\psi} $.
+\item Compare \ref{prop:1.3.7}. If $ \Sigma \not\vdash_{K_\LL} \phi $, then $ \Sigma \cup \cb{\notb{\phi}} $ is consistent.
+\item Compare the Lindenbaum lemma in \ref{prop:1.3.8}. There is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LL $-formulas such that, for every closed $ \LL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_\LL} \psi $ or $ \Sigma^* \vdash_{K_\LL} \notb{\psi} $.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item As in \ref{prop:1.3.7}, use deduction theorem and $ \vdash_{K_{\LL}} \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
+\item As in \ref{prop:1.3.7}, use deduction theorem and $ \vdash_{K_\LL} \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
 \item Use $ 1 $ and the enumeration $ \psi_0, \psi_1, \dots $ of the closed $ \LL $-formulas.
 \end{enumerate}
 \end{proof}
@@ -1436,50 +1465,51 @@ Suppose $ \LL $ is a countable first-order language and $ \Sigma $ is a consiste
 
 \begin{theorem}
 \label{thm:2.5.4}
-Let $ \Sigma $ be a set of closed $ \LL $-formulas and $ \phi $ a closed $ \LL $-formula. If every model of $ \Sigma $ is a model of $ \phi $, then $ \Sigma \vdash_{K_{\LL}} \phi $. That is, if $ \AA \vDash \Sigma $, or $ \AA \vDash \sigma $ for all $ \sigma \in \Sigma $, then $ \AA \vDash \phi $, then $ \Sigma \vdash_{K_{\LL}} \phi $.
+Let $ \Sigma $ be a set of closed $ \LL $-formulas and $ \phi $ a closed $ \LL $-formula. If every model of $ \Sigma $ is a model of $ \phi $, then $ \Sigma \vdash_{K_\LL} \phi $. That is, if $ \AA \vDash \Sigma $, or $ \AA \vDash \sigma $ for all $ \sigma \in \Sigma $, then $ \AA \vDash \phi $, then $ \Sigma \vdash_{K_\LL} \phi $.
 \end{theorem}
 
 \begin{notation*}
-$ \Sigma \vDash \phi $, if every model of $ \Sigma $ is a model of $ \phi $. Then
-$$ \Sigma \vDash \phi \qquad \implies \qquad \Sigma \vdash_{K_{\LL}} \phi. $$ Converse is soundness.
+$ \Sigma \vDash \phi $, if every model of $ \Sigma $ is a model of $ \phi $. Then $ \Sigma \vDash \phi $ implies $ \Sigma \vdash_{K_\LL} \phi $. Converse is soundness.
 \end{notation*}
 
 \begin{proof}
-May assume $ \Sigma $ is consistent. Otherwise, everything is a consequence of $ \Sigma $. By assumption, there is no model of $ \Sigma \cup \cb{\notb{\phi}} $. So by \ref{thm:2.5.3}, $ \Sigma \cup \cb{\notb{\phi}} $ is inconsistent. So by \ref{prop:2.5.2}.$ 1 $, $ \Sigma \vdash_{K_{\LL}} \phi $.
+May assume $ \Sigma $ is consistent. Otherwise, everything is a consequence of $ \Sigma $. By assumption, there is no model of $ \Sigma \cup \cb{\notb{\phi}} $. So by \ref{thm:2.5.3}, $ \Sigma \cup \cb{\notb{\phi}} $ is inconsistent. So by \ref{prop:2.5.2}.$ 1 $, $ \Sigma \vdash_{K_\LL} \phi $.
 \end{proof}
 
-\begin{theorem}[G\"odel's completeness theorem for $ K_{\LL} $]
-If $ \phi $ is an $ \LL $-formula with $ \vDash \phi $, then $ \phi $ is a theorem of $ K_{\LL} $, that is $ \vdash_{K_{\LL}} \phi $.
+\begin{theorem}[G\"odel's completeness theorem for $ K_\LL $]
+If $ \phi $ is an $ \LL $-formula with $ \vDash \phi $, then $ \phi $ is a theorem of $ K_\LL $, that is $ \vdash_{K_\LL} \phi $.
 \end{theorem}
 
 \begin{proof}
 If $ \phi $ is closed this follows from \ref{thm:2.5.4} with $ \Sigma = \emptyset $. Suppose $ \phi $ has free variables amongst $ x_1, \dots, x_n $, and consider the closed formula
 $$ \psi : \fab{x_1} \dots \fab{x_n}\phi. $$
-As $ \vDash \phi $, we obtain $ \vDash \psi $. So, by the closed case, $ \vdash_{K_{\LL}} \psi $, that is
+As $ \vDash \phi $, we obtain $ \vDash \psi $. So, by the closed case, $ \vdash_{K_\LL} \psi $, that is
 \begin{equation}
 \label{eq:13}
-\vdash_{K_{\LL}} \fab{x_1} \dots \fab{x_n}\phi.
+\vdash_{K_\LL} \fab{x_1} \dots \fab{x_n}\phi.
 \end{equation}
 If $ \theta $ is any formula, then
-$$ \vdash_{K_{\LL}} \impb{\fab{x_i}\theta}{\theta}, $$
-by the K1 axiom. So from $ \rb{\ref{eq:13}} $ and this fact, and MP, applied $ n $ times, we obtain $ \vdash_{K_{\LL}} \phi $.
+$$ \vdash_{K_\LL} \impb{\fab{x_i}\theta}{\theta}, $$
+by the K1 axiom. So from $ \rb{\ref{eq:13}} $ and this fact, and MP, applied $ n $ times, we obtain $ \vdash_{K_\LL} \phi $.
 \end{proof}
 
-\begin{corollary}[Compactness theorem for $ K_{\LL} $]
+\begin{corollary}[Compactness theorem for $ K_\LL $]
 \label{cor:2.5.6}
 Suppose $ \Sigma $ is a set of closed $ \LL $-formulas and every finite subset of $ \Sigma $ has a model. Then $ \Sigma $ has a model.
 \end{corollary}
 
 \begin{proof}
 Suppose $ \Sigma $ has no model. By \ref{thm:2.5.3}, $ \Sigma $ is inconsistent, so there is a formula $ \phi $ with
-$$ \Sigma \vdash_{K_{\LL}} \phi, \qquad \Sigma \vdash_{K_{\LL}} \notb{\phi}. $$ Deductions only involve finitely many formulas in $ \Sigma $. So there is a finite $ \Sigma_0 \subseteq \Sigma $ with
-$$ \Sigma_0 \vdash_{K_{\LL}} \phi, \qquad \Sigma_0 \vdash_{K_{\LL}} \notb{\phi}. $$
+$$ \Sigma \vdash_{K_\LL} \phi, \qquad \Sigma \vdash_{K_\LL} \notb{\phi}. $$ Deductions only involve finitely many formulas in $ \Sigma $. So there is a finite $ \Sigma_0 \subseteq \Sigma $ with
+$$ \Sigma_0 \vdash_{K_\LL} \phi, \qquad \Sigma_0 \vdash_{K_\LL} \notb{\phi}. $$
 But then $ \Sigma_0 $ is inconsistent, so has no model, a contradiction.
 \end{proof}
 
 \lecture{16}{Thursday}{08/11/18}
 
-Lecture 16 is sketch of proof of \ref{thm:2.5.3} in A.2.
+\begin{proof}[Proof of \ref{thm:2.5.3}]
+Appendix A.2.
+\end{proof}
 
 \begin{example*}
 Exercise. Think about this where $ \Sigma $ consists of the group axioms. What is $ \AA $? Is it a group?
@@ -1553,7 +1583,9 @@ $$ \AA \vDash \phi \qquad \iff \qquad \widehat{\AA} \vDash \phi. $$
 If $ t $ is any term, then $ \widehat{v}\rb{t} = \widehat{v\rb{t}} $, by definition of $ \overline{f} $ on the structure $ \widehat{\AA} $.
 \end{note*}
 
-Proof of \ref{lem:2.6.3} is in A.3.
+\begin{proof}[Proof of \ref{lem:2.6.3}]
+Appendix A.3.
+\end{proof}
 
 \begin{lemma}
 \label{lem:2.6.4}
@@ -1685,7 +1717,7 @@ Similarly,
 $$ \RR \vDash \phi \qquad \iff \qquad \Sigma \vdash_{K_{\LL^=}} \phi. $$
 So
 $$ \RR \vDash \phi \qquad \iff \qquad \Sigma \vdash_{K_{\LL^=}} \phi \qquad \iff \qquad \QQ \vDash \phi. $$
-\item $ \Sigma $ is a \textbf{recursively enumerable} set of formulas. That is, we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_{\LL} $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. Method is to run the algorithm which generates all consequences of $ \Sigma $. By $ 1 $, at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
+\item $ \Sigma $ is a \textbf{recursively enumerable} set of formulas. That is, we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_\LL $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. Method is to run the algorithm which generates all consequences of $ \Sigma $. By $ 1 $, at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
 \end{enumerate}
 \end{proof}
 
@@ -1701,7 +1733,7 @@ Lecture 19 is a problem class.
 \item Depends on
 \begin{itemize}
 \item the completeness theorem, and
-\item the axioms $ \Delta $ for $ \QQ $,
+\item the axioms $ \Delta $ for $ \QQ $.
 \end{itemize}
 \item Works for some other structures, but can have better algorithms.
 \item But, there is no such algorithm for
@@ -1828,14 +1860,14 @@ $$ \abs{X} < \abs{\PP\rb{X}}. $$
 If $ \abs{A} \le \abs{B} $ and $ \abs{B} \le \abs{C} $, then $ \abs{A} \le \abs{C} $.
 \end{example*}
 
-\pagebreak
-
 \begin{theorem}[Schr\"oder-Bernstein]
 \label{thm:3.1.6}
 Suppose $ A, B $ are sets, and
 $$ f : A \to B, \qquad g : B \to A $$
 are injective functions. Then $ A \approx B $. That is, if $ \abs{A} \le \abs{B} $ and $ \abs{B} \le \abs{A} $, then $ \abs{A} = \abs{B} $.
 \end{theorem}
+
+\pagebreak
 
 \begin{proof}
 Let $ h = g \circ f : A \to A $. Let $ A_0 = A \setminus g\sb{B} $, and for $ n > 0 $, let $ A_n = h\sb{A_{n - 1}} $. Let
@@ -1895,13 +1927,13 @@ $$
 \end{itemize}
 \end{proof}
 
-\pagebreak
-
 Questions.
 \begin{itemize}
 \item If $ A, B $ are sets, do we have $ \abs{A} \le \abs{B} $ or $ \abs{B} \le \abs{A} $? If we assume axiom of choice, yes.
 \item Is there $ X \subseteq \R $ with $ \abs{\N} < \abs{X} < \abs{\R} $? \textbf{Continuum hypothesis} says no.
 \end{itemize}
+
+\pagebreak
 
 \subsection{Axioms for set theory}
 
@@ -2554,7 +2586,7 @@ If $ G' $ is another such operation, then $ G\rb{\alpha} = G'\rb{\alpha} $ for a
 We cannot say that $ G $ is unique here, as we have no control over what it does on sets which are not ordinals, and it is usually not relevant. We might say that $ G $ is uniquely determined on ordinals. In practice, we usually do not write $ F $ down explicitly as a first-order formula.
 
 \begin{remark}
-An application is the Lindenbaum lemma, comparing \ref{prop:1.3.8} and \ref{prop:2.5.2}. Suppose $ \LL $ is a first-order language whose alphabet of symbols can be well ordered. Suppose $ \Sigma $ is a consistent set of closed $ \LL $-formulas. Then there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LL $-formulas such that, for every closed $ \LL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_{\LL}} \psi $ or $ \Sigma^* \vdash_{K_{\LL}} \notb{\psi} $.
+An application is the Lindenbaum lemma, comparing \ref{prop:1.3.8} and \ref{prop:2.5.2}. Suppose $ \LL $ is a first-order language whose alphabet of symbols can be well ordered. Suppose $ \Sigma $ is a consistent set of closed $ \LL $-formulas. Then there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LL $-formulas such that, for every closed $ \LL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_\LL} \psi $ or $ \Sigma^* \vdash_{K_\LL} \notb{\psi} $.
 \end{remark}
 
 \begin{proof}
@@ -2563,8 +2595,8 @@ $$ \cb{\phi_\alpha \mid \alpha < \lambda}, $$
 for some ordinal $ \lambda $. Define, for each ordinal $ \alpha $, a consistent set $ G\rb{\alpha} \supseteq \Sigma $ of closed $ \LL $-formulas
 $$ G\rb{\alpha} =
 \begin{cases}
-\Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \vdash_{K_{\LL}} \phi_\alpha \\
-\Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \cup \cb{\notb{\phi_\alpha}} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \not\vdash_{K_{\LL}} \phi_\alpha \\
+\Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \vdash_{K_\LL} \phi_\alpha \\
+\Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \cup \cb{\notb{\phi_\alpha}} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\rb{\beta} \not\vdash_{K_\LL} \phi_\alpha \\
 \Sigma \cup \bigcup_{\beta < \lambda} G\rb{\beta} & \alpha \ge \lambda
 \end{cases}.
 $$
@@ -2577,7 +2609,9 @@ Let $ \Sigma^* = G\rb{\lambda} $. Proof that it works is just as in the countabl
 Can use similar arguments at other points in the proof of the completeness theorem, by adding witnesses in \ref{thm:2.5.3}, to get that completeness theorem, compactness theorem, etc. holds.
 \end{remark}
 
-Proof of \ref{thm:3.6.1} and alternative definition is in A.4.
+\begin{proof}[Proof of \ref{thm:3.6.1}]
+Appendix A.4.
+\end{proof}
 
 \subsection{Axiom of regularity}
 

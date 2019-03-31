@@ -1,6 +1,21 @@
 \def\module{M3P11 Galois Theory}
 \def\lecturer{Prof Alessio Corti}
 \def\term{Spring 2019}
+\def\cover{\vspace{1in}
+$$
+\begin{tikzcd}[ampersand replacement=\&, column sep=tiny]
+\& \qquad \& \& \& L \arrow[dash, dashed]{dddd} \& \& \& \& \& \& \\
+K\rb{\alpha} \arrow[dash]{urrrr} \arrow[dash, dashed]{dddd} \& \& K\rb{\alpha'} \arrow[dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\beta, \gamma} \arrow[dash]{ul} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\delta} \arrow[dash]{ullll} \arrow[dash, dashed]{dddd} \& \& K\rb{\delta'} \arrow[dash]{ullllll} \arrow[dash, dashed]{dddd} \\
+\& \& \& K\rb{\beta} \arrow[crossing over, dash]{ulll} \arrow[dash]{ul} \arrow[crossing over, dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\beta\gamma} \arrow[crossing over, dash]{ul} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\gamma} \arrow[crossing over, dash]{ullll} \arrow[crossing over, dash]{ul} \arrow[crossing over, dash]{ur} \arrow[dash, dashed]{dddd} \& \\
+\& \& \& \& \& \& \& K \arrow[crossing over, dash]{ullll} \arrow[crossing over, dash]{ul} \arrow[crossing over, dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& \\
+\& \qquad \& \& \& \ab{e} \& \& \& \& \& \& \\
+\ab{\tau} \arrow[dash]{urrrr} \& \& \ab{\sigma^2\tau} \arrow[dash]{urr} \& \& \& \ab{\sigma^2} \arrow[dash]{ul} \& \& \& \ab{\sigma\tau} \arrow[dash]{ullll} \& \& \ab{\sigma^3\tau} \arrow[dash]{ullllll} \\
+\& \& \& \ab{\sigma^2, \tau} \arrow[dash]{ulll} \arrow[dash]{ul} \arrow[dash]{urr} \& \& \& \ab{\sigma} \arrow[dash]{ul} \& \& \& \ab{\sigma^2, \sigma\tau} \arrow[dash]{ullll} \arrow[dash]{ul} \arrow[dash]{ur} \& \\
+\& \& \& \& \& \& \& G \arrow[dash]{ullll} \arrow[dash]{ul} \arrow[dash]{urr} \& \& \&
+\end{tikzcd}
+$$
+}
+\def\syllabus{Field extensions. Irreducible polynomials. Normal extensions. Separable extensions. Fundamental theorem of Galois theory. Galois theory of quadratic polynomials. Galois theory of biquadratic polynomials. Galois theory of finite fields. Galois theory of cubic polynomials. Reduction modulo prime.}
 
 \def\thm{section}
 
@@ -56,6 +71,8 @@ $$ y = \sqrt[3]{-q + \sqrt{q^2 + p^3}} + \sqrt[3]{-q - \sqrt{q^2 + p^3}}. $$
 \end{itemize}
 Galois theory deals with these easily.
 \end{example*}
+
+\pagebreak
 
 \lecture{2}{Friday}{11/01/19}
 
@@ -162,7 +179,7 @@ so $ K\rb{x} = L $.
 
 \pagebreak
 
-\section{Main example}
+\section{Eisenstein numbers}
 
 Let $ f\rb{x} = x^3 - 2 \in \Q\sb{x} $ and $ L = \Q\rb{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + i\sqrt{3}}{2} $ is a solution of $ x^2 + x + 1 = 0 $. Then
 $$ \Q\rb{\omega} = \Q\rb{\sqrt{-3}}, \qquad \Q\rb{\sqrt[3]{2}} = \cb{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q}. $$
@@ -221,6 +238,9 @@ $$
 \item Either $ x^2 + 3 $ is irreducible over $ \Q\rb{\sqrt[3]{2}} $, so by Theorem \ref{thm:degree} $ \sb{L : \Q\rb{\sqrt[3]{2}}} = 2 $ and $ \sb{L : \Q} = 6 $.
 \item Or $ x^2 + 3 $ is not irreducible, so $ \Q\rb{\sqrt[3]{2}} = L $ and $ \sb{L : \Q} = 3 $, a contradiction.
 \end{itemize}
+
+\pagebreak
+
 Are there any other fields? Claim that there are no other fields. Suppose $ \Q \subsetneq K \subsetneq L $ is such a field. By the tower law $ \sb{K : \Q} = 2 $ or $ \sb{K : \Q} = 3 $.
 \begin{itemize}
 \item Suppose $ \sb{K : \Q} = 2 $.
@@ -273,6 +293,8 @@ so for all $ j $, $ \sum_i \lambda_{ij}x_i = 0 $, so for all $ j $ and all $ i $
 \end{itemize}
 \end{proof}
 
+\pagebreak
+
 \begin{example*}
 To show $ G = \mathfrak{S}_3 $. Let $ \sigma = \onebytwo{1}{2} $. A basis of $ L / \Q $ is
 $$ 1, \sqrt[3]{2}, \sqrt[3]{4}, \omega, \omega\sqrt[3]{2}, \omega\sqrt[3]{4}. $$
@@ -308,9 +330,9 @@ $$
 The lattice of subgroups is
 $$
 \begin{tikzcd}
-& & \cb{e} & \\
+& & \ab{e} & \\
 \ab{\onebytwo{2}{3}} \arrow[dash]{urr}{2} & \ab{\onebytwo{1}{2}} \arrow[dash]{ur}{2} & \ab{\onebytwo{1}{3}} \arrow[dash]{u}{2} & \\
-& & & \onebythree{1}{2}{3} \arrow[dash, swap]{uul}{3} \\
+& & & \ab{\onebythree{1}{2}{3}} \arrow[dash, swap]{uul}{3} \\
 & & G \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash, swap]{ur}{2} &
 \end{tikzcd}.
 $$
@@ -385,6 +407,8 @@ $$ Em_K\rb{K\rb{a}, F} = \cb{b \in F \mid f_a\rb{b} = 0}. $$
 \end{itemize}
 \end{corollary}
 
+\pagebreak
+
 \begin{proof}
 Since $ K\rb{a} = K\sb{a} $, $ \sb{K\rb{a} : K} = \dim_K\rb{K\rb{a}} = \dim_K\sb{K\rb{a}} $. Suppose
 $$ f\rb{x} = x^n + \mu_1x^{n - 1} + \dots + \mu_n \in K\sb{x} $$
@@ -445,6 +469,8 @@ $$ Em_\Q\rb{K, L} = Em\rb{K, L} = \cb{\text{roots of} \ x^3 - 2 \ \text{in} \ L}
 Suppose $ k \subset K $. $ Em_k\rb{K, K} = G = Gal\rb{K / k} $. Indeed every $ k $-homomorphism $ \sigma : K \to K $ is automatically invertible. We know $ \sigma $ is injective. $ \sigma $ is also surjective because $ \sigma $ is a $ k $-linear endomorphism of a finite-dimensional $ k $-vector space.
 \end{remark*}
 
+\pagebreak
+
 \section{Axiomatics}
 
 \begin{proposition}
@@ -501,6 +527,8 @@ $$
 $$
 \end{itemize}
 \end{remark*}
+
+\pagebreak
 
 Another more precise way to state this is there exists $ k \subset \Omega $ such that $ Em_k\rb{K, \Omega} $ and $ Em_k\rb{L, \Omega} $ are both non-empty.
 
@@ -565,6 +593,8 @@ so $ \abs{G} = \#Em_K\rb{L, L} $. By what we said, $ G \subset Em_K\rb{L, L} $, 
 \lecture{9}{Tuesday}{29/01/19}
 
 Lecture 9 is a problem class.
+
+\pagebreak
 
 \lecture{10}{Thursday}{31/01/19}
 
@@ -664,6 +694,8 @@ $ k \subset K $ is normal because it is a splitting field but $ \Q \subset \Q\rb
 \item Suppose $ k \subset L $ is normal and $ L \subset K $ is normal. This does not imply $ k \subset K $ is normal. This will be in an example sheet.
 \end{itemize}
 
+\pagebreak
+
 \begin{definition}
 $ k \subset K $ is \textbf{separable} if for all $ k \subset K_1 \subset K_2 \subset K $, if $ K_1 \ne K_2 $, there exist $ k \subset \Omega $ and embeddings $ x \in Em_k\rb{K_1, \Omega} $ and $ y_1, y_2 \in Em_k\rb{K_2, \Omega} $ such that
 $$
@@ -721,6 +753,8 @@ so $ x_1\rb{\lambda} \ne x_2\rb{\lambda} $. Two steps.
 \item Because $ k \subset K $ is normal there exists $ \sigma \in Em_k\rb{K, K} $ such that $ \widetilde{x_2} = \widetilde{x_1} \circ \sigma $ then clearly $ \sigma\rb{\lambda} \ne \lambda $.
 \end{itemize}
 \end{proof}
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:surjective}
@@ -885,6 +919,8 @@ $$ Df = \sum_{i = 1}^j \rb{\prod_{j \ne i} \rb{x - \lambda_j}}. $$
 Claim that for all $ i $, $ \rb{x - \lambda_i} \nmid Df $. I hope you see this. This shows $ \gcd\rb{f, Df} = 1 $.
 \end{itemize}
 \end{proof}
+
+\pagebreak
 
 \begin{theorem}
 $ f \in k\sb{x} $ irreducible is inseparable if and only if
@@ -1087,6 +1123,8 @@ and $ f\rb{x} $ is reducible.
 \end{enumerate}
 \end{theorem}
 
+\pagebreak
+
 \lecture{20}{Friday}{22/02/19}
 
 \begin{lemma}
@@ -1140,7 +1178,7 @@ $$
 The lattice of subgroups is
 $$
 \begin{tikzcd}
-& & \cb{e} & & \\
+& & \ab{e} & & \\
 \ab{\tau} \arrow[dash]{urr} & \ab{\sigma^2\tau} \arrow[dash]{ur} & \ab{\sigma^2} \arrow[dash]{u} & \ab{\sigma\tau} \arrow[dash]{ul} & \ab{\sigma^3\tau} \arrow[dash]{ull} \\
 & \ab{\sigma^2, \tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \ab{\sigma} \arrow[dash]{u} & \ab{\sigma^2, \sigma\tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \\
 & & G \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & &
@@ -1186,6 +1224,9 @@ $$
 \end{tikzcd}.
 $$
 Thus $ G = C_4 $.
+
+\pagebreak
+
 \item $ L = K\rb{\sqrt{2\rb{a \pm \gamma}}} $ is the splitting field of $ g\rb{y} = \rb{y^2 - 2a - 2\gamma}\rb{y^2 - 2a + 2\gamma} $.
 $$
 \begin{tikzcd}
@@ -1495,6 +1536,8 @@ We may assume $ \rb{\ref{eq:10}} $ to be the shortest. We may assume for all $ i
 \end{equation}
 Because $ \rb{\ref{eq:10}} $ is the shortest then $ \rb{\ref{eq:10}} $ and $ \rb{\ref{eq:11}} $ are multiples of each other, so $ \chi_1\rb{p} = \chi_2\rb{p} $, a contradiction.
 \end{proof}
+
+\pagebreak
 
 \begin{theorem}
 \label{thm:ringhomomorphism}

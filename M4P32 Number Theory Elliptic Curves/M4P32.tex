@@ -1,6 +1,35 @@
 \def\module{M4P32 Number Theory: Elliptic Curves}
 \def\lecturer{Prof Toby Gee}
 \def\term{Autumn 2018}
+\def\cover{
+$$
+\begin{tikzpicture}[scale=2]
+\draw [domain=-2:0] plot (\x, {sqrt(\x*(\x - 1)*(\x + 2))});
+\draw [domain=-2:0] plot (\x, {-sqrt(\x*(\x - 1)*(\x + 2))});
+\draw [domain=1:2] plot (\x, {sqrt(\x*(\x - 1)*(\x + 2))});
+\draw [domain=1:2] plot (\x, {-sqrt(\x*(\x - 1)*(\x + 2))});
+\draw [fill=black] (0, 0) circle (0.05) node[below left]{$ \OO $};
+\draw [fill=black] (-0.25, 0.7) circle (0.05) node[above]{$ P $};
+\draw [fill=black] (-2, 0) circle (0.05) node[below left]{$ Q $};
+\draw [dashed, domain=-3:3] plot (\x, {0.4*(\x + 2)});
+\draw [fill=black] (1.4, 1.35) circle (0.05) node[below right]{$ -\rb{P + Q} $};
+\draw [dashed, domain=-3:3] plot (\x, \x);
+\draw [fill=black] (-1.4, -1.4) circle (0.05) node[below right]{$ P + Q $};
+\draw [fill=black] (-0.4, -0.95) circle (0.05) node[below]{$ R $};
+\draw [dashed, domain=-3:3] plot (\x, {-0.6*(\x + 2)});
+\draw [fill=black] (1.75, -2.25) circle (0.05) node[above right]{$ -\rb{Q + R} $};
+\draw [dashed, domain=-2.5:2.5] plot (\x, {-1.3*\x});
+\draw [fill=black] (-1.1, 1.45) circle (0.05) node[above right]{$ Q + R $};
+\draw [dashed, domain=-3:3] plot (\x, {-0.8*\x + 0.55});
+\draw [dashed, domain=-3:3] plot (\x, {0.45*\x - 0.75});
+\draw [fill=black] (1.05, -0.3) circle (0.05) node[right]{$ S $};
+\draw [dashed, domain=-3:3] plot (\x, {-0.3*\x});
+\draw [fill=black] (-1.95, 0.55) circle (0.05) node[below left]{$ T $};
+\draw (0, -2.5) node {$ T = -S = P + \rb{Q + R} = \rb{P + Q} + R $};
+\end{tikzpicture}
+$$
+}
+\def\syllabus{The $ p $-adic numbers. Basic algebraic geometry. Plane conics. The Hasse principle. Cubics. Elliptic curves over $ \Q_p $. Elliptic curves over $ \Q $. The Mordell-Weil theorem.}
 
 \def\thm{section}
 
@@ -14,25 +43,7 @@
 
 \lecture{1}{Thursday}{04/10/18}
 
-The following is an outline.
-\begin{itemize}
-\item Introduction
-\item Conics
-\begin{itemize}
-\item The $ p $-adic numbers
-\item Basic algebraic geometry
-\item Plane curves
-\item The Hasse principle
-\end{itemize}
-\item Cubics
-\begin{itemize}
-\item Definitions
-\item Elliptic curves over $ \Q_p $
-\item Elliptic curves over $ \Q $
-\item The Mordell-Weil theorem
-\end{itemize}
-\end{itemize}
-The following are references.
+References.
 \begin{itemize}
 \item J W S Cassels, Lectures on elliptic curves, 1991
 \item J H Silverman, The arithmetic of elliptic curves, 1986
@@ -153,12 +164,16 @@ Think about $ D\rb{a, r} = \cb{x \mid \abs{x - a} < r} $ and $ D\rb{b, r} = \cb{
 
 (Exercise: directly prove Lemma \ref{lem:1.6} from the definition) Let $ k $ be a field, let $ \abs{\cdot} $ be any norm on $ k $. $ d\rb{x, y} = \abs{x - y} $ is a metric, so $ k $ is a metric space with metric $ d $. We have the usual definitions for sequences $ \rb{x_n} $. Say that $ x_n $ \textbf{converges} to $ x $ if for all $ \epsilon > 0 $, there exists $ N $ such that $ n \ge N $ gives $ \abs{x_n - x} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{Cauchy} if $ \epsilon > 0 $, there exists $ N $ such that $ m, n \ge N $ gives $ \abs{x_n - x_m} < \epsilon $. Say that $ \rb{x_n} $ is \textbf{convergent} if $ x_n $ converges to $ x $ for some $ x \in k $. Write $ x_n \to x $. If $ \rb{x_n} $ is convergent, then $ \rb{x_n} $ is Cauchy. Say that $ k $ is \textbf{complete} with respect to $ \abs{\cdot} $ if all Cauchy sequences converge.
 
+\pagebreak
+
 \begin{example*}
 Let $ k = \Q $ with the usual archimedean norm $ \abs{\cdot} $. $ 1, 1.4, 1.41, 1.414, \dots \to \sqrt{2} \notin \Q $.
 \end{example*}
 
 \begin{example*}
-Let $ k = \Q $ with $ \abs{\cdot}_2 $. $ 3, 33, 333, 3333, \dots $ is a Cauchy sequence. In fact, if $ m > n $, $ \abs{x_m - x_n}_2 = 2^{-n} $. So if $ m, n \ge N $, $ \abs{x_m - x_n} \le 2^{-N} $. $ x_n = \rb{10^n - 1} / 3 $ so $ x_n + 1 / 3 = 10^n / 3 = 2^n\rb{5^n / 3} $. $ \abs{x_n + 1 / 3}_2 = 2^{-n} $, so $ x_n + 1 / 3 \to 0 $.
+Let $ k = \Q $ with $ \abs{\cdot}_2 $. $ 3, 33, 333, 3333, \dots $ is a Cauchy sequence. In fact, if $ m > n $, $ \abs{x_m - x_n}_2 = 2^{-n} $. So if $ m, n \ge N $, $ \abs{x_m - x_n} \le 2^{-N} $. $ x_n = \rb{10^n - 1} / 3 $ so
+$$ x_n + \dfrac{1}{3} = \dfrac{10^n}{3} = 2^n\rb{\dfrac{5^n}{3}}. $$
+$ \abs{x_n + 1 / 3}_2 = 2^{-n} $, so $ x_n + 1 / 3 \to 0 $.
 \end{example*}
 
 \begin{example*}
@@ -189,13 +204,7 @@ Let $ k = \Q $ with the archimedean norm $ \abs{\cdot} $, then $ K = \R $.
 
 \lecture{4}{Thursday}{11/10/18}
 
-Let $ k $ be a field and $ \abs{\cdot} $ be a norm on $ k $. Let $ R $ be the ring of Cauchy sequences in $ k $, so elements of $ R $ are $ \rb{x_n} $ for $ x_n \in k $, where $ \rb{x_n} + \rb{y_n} = \rb{x_n + y_n} $ and $ \rb{x_n}\rb{y_n} = \rb{x_ny_n} $.
-
-Let $ I = \cb{\rb{x_n} \in R \mid x_n \to 0 \text{ as } n \to \infty} $. Claim that $ I $ is an ideal in $ R $. $ \rb{x_n}, \rb{y_n} \in I $ then $ \rb{x_n + y_n} \in I $ because $ x_n \to 0 $ and $ y_n \to 0 $ gives $ x_n + y_n \to 0 $. If $ \rb{x_n} \in R $, $ \rb{y_n} \in I $ then $ \rb{x_n} $ is bounded, so $ x_ny_n \to 0 $.
-
-Define the completion of $ k $ to be $ \widehat{k} = R / I $. Claim that $ \widehat{k} $ is a field, so $ I $ is a maximal ideal of $ R $. Need to show that if $ \rb{x_n} \in R $ with $ x_n \not\to 0 $, then there exists $ \rb{y_n} \in R $ such that $ \rb{x_ny_n} \in 1 + I $. $ x_n \not\to 0 $ gives $ \epsilon, N $ such that $ n \ge N $ gives $ \abs{x_n} \ge \epsilon > 0 $. Set $ y_n = 0 $ if $ n < N $ and $ y_n = 1 / x_n $ if $ n \ge N $. (Exercise: show that $ \rb{y_n} \in R $) Then $ \rb{x_ny_n} = 0 $ if $ n < N $ and $ \rb{x_ny_n} = 1 $ if $ n \ge N $, so $ x_ny_n \to 1 $ as $ n \to \infty $, as required.
-
-$ k $ is a subfield of $ \widehat{k} $ by $ x \mapsto \rb{x} $.
+Let $ k $ be a field and $ \abs{\cdot} $ be a norm on $ k $. Let $ R $ be the ring of Cauchy sequences in $ k $, so elements of $ R $ are $ \rb{x_n} $ for $ x_n \in k $, where $ \rb{x_n} + \rb{y_n} = \rb{x_n + y_n} $ and $ \rb{x_n}\rb{y_n} = \rb{x_ny_n} $. Let $ I = \cb{\rb{x_n} \in R \mid x_n \to 0 \text{ as } n \to \infty} $. Claim that $ I $ is an ideal in $ R $. $ \rb{x_n}, \rb{y_n} \in I $ then $ \rb{x_n + y_n} \in I $ because $ x_n \to 0 $ and $ y_n \to 0 $ gives $ x_n + y_n \to 0 $. If $ \rb{x_n} \in R $, $ \rb{y_n} \in I $ then $ \rb{x_n} $ is bounded, so $ x_ny_n \to 0 $. Define the \textbf{completion} of $ k $ to be $ \widehat{k} = R / I $. Claim that $ \widehat{k} $ is a field, so $ I $ is a maximal ideal of $ R $. Need to show that if $ \rb{x_n} \in R $ with $ x_n \not\to 0 $, then there exists $ \rb{y_n} \in R $ such that $ \rb{x_ny_n} \in 1 + I $. $ x_n \not\to 0 $ gives $ \epsilon, N $ such that $ n \ge N $ gives $ \abs{x_n} \ge \epsilon > 0 $. Set $ y_n = 0 $ if $ n < N $ and $ y_n = 1 / x_n $ if $ n \ge N $. (Exercise: show that $ \rb{y_n} \in R $) Then $ \rb{x_ny_n} = 0 $ if $ n < N $ and $ \rb{x_ny_n} = 1 $ if $ n \ge N $, so $ x_ny_n \to 1 $ as $ n \to \infty $, as required. $ k $ is a subfield of $ \widehat{k} $ by $ x \mapsto \rb{x} $.
 \begin{itemize}
 \item Exercise: check that $ \widehat{k} $ has a natural norm extending $ \abs{\cdot} $ on $ k $, and $ \widehat{k} $ is complete with respect to this norm, so $ \abs{\rb{x_n}} = \lim_{n \to \infty} \abs{x_n} $.
 \item Exercise: prove that if $ \abs{\cdot} $ on $ k $ is a nonarchimedean norm, then so is the induced norm on $ \widehat{k} $.
@@ -207,7 +216,8 @@ For $ \abs{\cdot}_p $ on $ \Q $ this means that $ \abs{\cdot} $ is taking values
 \end{note*}
 
 \begin{definition}
-The \textbf{$ p $-adic numbers} $ \Q_p $ is the completion of $ \Q $ with respect to the $ p $-adic norm. The \textbf{$ p $-adic integers} $ \Z_p $ is the closed unit disc in $ \Q_p $, so $ \Z_p = \cb{x \in \Q_p \mid \abs{x}_p = 1} $.
+The \textbf{$ p $-adic numbers} $ \Q_p $ is the completion of $ \Q $ with respect to the $ p $-adic norm. The \textbf{$ p $-adic integers} $ \Z_p $ is the closed unit disc in $ \Q_p $, so
+$$ \Z_p = \cb{x \in \Q_p \mid \abs{x}_p = 1}. $$
 \begin{itemize}
 \item Exercise: prove that $ \Z_p $ is a subring of $ \Q_p $, using that $ \abs{\cdot}_p $ is nonarchimedean.
 \item Exercise: also $ \Q \cap \Z_p = \cb{r / s \mid \rb{r, s} = 1, \ p \nmid s} $, in particular $ \Z \subset \Z_p $.
@@ -216,8 +226,12 @@ The \textbf{$ p $-adic numbers} $ \Q_p $ is the completion of $ \Q $ with respec
 A less obvious fact is that $ \Z $ is dense in $ \Z_p $.
 \end{definition}
 
+\pagebreak
+
 \begin{definition}
-Let $ k $ be a field with a norm $ \abs{\cdot} $, and $ \rb{x_n} $ be any sequence. Then $ \sum_{n = 1}^\infty = \lim_{N \to \infty} \sum_{n = 1}^N x_n $, if this limit exists.
+Let $ k $ be a field with a norm $ \abs{\cdot} $, and $ \rb{x_n} $ be any sequence. Then
+$$ \sum_{n = 1}^\infty = \lim_{N \to \infty} \sum_{n = 1}^N x_n, $$
+if this limit exists.
 \end{definition}
 
 \begin{lemma}
@@ -296,8 +310,10 @@ If $ a \in \Z_p $, write $ a = \sum_{n = 0}^\infty a_np^n $. Then $ \sum_{n = 0}
 For each $ n \ge 1 $ there is a ring homomorphism $ \Z_p \to \Z / p^n\Z $ that sends $ \sum_{i = 0}^\infty a_ip^i \mapsto \sum_{i = 0}^n a_ip^i $. The kernel of this map is $ p^n\Z_p $, so $ \Z_p / p^n\Z_p \cong \Z / p^n\Z $.
 
 \begin{note*}
-In fact, $ \Z_p \cong \lim_{\leftarrow n} \Z / p^n\Z $.
+In fact, $ \Z_p \cong \varprojlim_n \Z / p^n\Z $.
 \end{note*}
+
+\pagebreak
 
 $ p\Z_p $ is a maximal ideal of $ \Z_p $ because $ \Z_p / p\Z_p = \Z / p\Z $ is a field. If $ a \in \Z_p $, $ a \notin p\Z_p $, then $ a \in \Z_p^* $. Write $ a = a_0 + pa_1 + \dots $ for $ a_0 \in \cb{1, \dots, p - 1} $.
 
@@ -325,7 +341,11 @@ Aim is to solve the equation $ x^2 - 7 = 0 $ in $ \Z_3 $ starting with a solutio
 If $ R $ is a ring and $ f\rb{X} \in R\sb{X} $ is a polynomial, say $ f\rb{x} = \sum_{n = 0}^m a_nx^n $, then $ f'\rb{x} = \sum_{n = 0}^m na_nx^{n - 1} $.
 \end{definition}
 
-In addition, for any $ x, h $ we have $ f\rb{x + h} = f\rb{x} + hf'\rb{x} + \tfrac{1}{2}h^2f''\rb{x} + \dots $. Why is $ \tfrac{1}{2}f''\rb{x} $ defined? If $ f\rb{x} = \sum_{n = 0}^\infty a_nx^n $, $ \tfrac{1}{2}f''\rb{x} = \sum_{n = 2}^\infty \tfrac{1}{2}n\rb{n - 1}a_nx^{n - 2} $, where $ n\rb{n - 1} $ is even.
+In addition, for any $ x, h $ we have
+$$ f\rb{x + h} = f\rb{x} + hf'\rb{x} + \tfrac{1}{2}h^2f''\rb{x} + \dots. $$
+Why is $ \tfrac{1}{2}f''\rb{x} $ defined? If $ f\rb{x} = \sum_{n = 0}^\infty a_nx^n $,
+$$ \tfrac{1}{2}f''\rb{x} = \sum_{n = 2}^\infty \tfrac{1}{2}n\rb{n - 1}a_nx^{n - 2}, $$
+where $ n\rb{n - 1} $ is even.
 
 \begin{theorem}[Hensel's lemma]
 Let $ k $ be a field which is complete with respect to a nonarchimedean norm $ \abs{\cdot} $. Let $ R = \cb{x \in k \mid \abs{x} \le 1} $, such as $ k = \Q_p $, $ R = \Z_p $, $ \abs{\cdot} = \abs{\cdot}_p $. Let $ f\rb{x} \in R\sb{x} $, and $ t_0 \in R $ with $ \abs{f\rb{t_0}} > \abs{f'\rb{t_0}}^2 $. Then there is a unique $ t \in R $ with $ f\rb{t} = 0 $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $. Moreover, $ \abs{f'\rb{t_0}} = \abs{f'\rb{t_0}} $, and $ \abs{t_- t_0} = \abs{f\rb{t_0}} / \abs{f'\rb{t_0}} < 1 $.
@@ -335,13 +355,13 @@ Let $ k $ be a field which is complete with respect to a nonarchimedean norm $ \
 Let $ k = \Q_3 $ and $ f\rb{x} = x^2 - 7 $. Then $ f'\rb{x} = 2x $. $ t_0 = 1 $, so $ \abs{f\rb{t_0}}_3 = \abs{-6}_3 = 1/ 3 $. $ \abs{f'\rb{t_0}}_3 = \abs{2}_3 = 1 $. So there is a unique $ t \in \Z_3 $ with $ t^2 = 7 $ and $ \abs{t - 1}_3 < 1 $, so $ t \equiv 1 \mod 3 $.
 \end{example*}
 
-Harder part of the proof of Hensel's lemma is existence, which is done by constructing a sequence $ t_0, t_1, \dots $ as above. For uniqueness, suppose $ s \ne t $ and $ f\rb{s} = f\rb{t} = 0 $, and $ \abs{s - t_0} < \abs{f'\rb{t_0}} $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $, so $ \abs{s - t} \le \max\rb{\abs{s - t_0}, \abs{t - t_0}} < \abs{f'\rb{t_0}} $. Taylor expansion gives $ f\rb{s} = f\rb{t} + \rb{s - t}f'\rb{t} + \dots $. So there exists $ x \in R $ with $ \rb{s - t}f'\rb{t} = \rb{s - t}^2 = x $. So $ f'\rb{t} = \rb{s - t}x $. $ \abs{f'\rb{t}} = \abs{s - t}\abs{x} \le \abs{s - t} < \abs{f'\rb{t_0}} $. So $ \abs{f'\rb{t}} < \abs{f'\rb{t_0}} $. On the other hand it is easy to show that $ \abs{f'\rb{t}} = \abs{f'\rb{t_0}} $, a contradiction. See handout for the full proof of Hensel's lemma and some remarks about in what sense it is best possible.
+Harder part of the proof of Hensel's lemma is existence, which is done by constructing a sequence $ t_0, t_1, \dots $ as above. For uniqueness, suppose $ s \ne t $ and $ f\rb{s} = f\rb{t} = 0 $, and $ \abs{s - t_0} < \abs{f'\rb{t_0}} $ and $ \abs{t - t_0} < \abs{f'\rb{t_0}} $, so $ \abs{s - t} \le \max\rb{\abs{s - t_0}, \abs{t - t_0}} < \abs{f'\rb{t_0}} $. Taylor expansion gives $ f\rb{s} = f\rb{t} + \rb{s - t}f'\rb{t} + \dots $. So there exists $ x \in R $ with $ \rb{s - t}f'\rb{t} = \rb{s - t}^2 = x $. So $ f'\rb{t} = \rb{s - t}x $.
+$$ \abs{f'\rb{t}} = \abs{s - t}\abs{x} \le \abs{s - t} < \abs{f'\rb{t_0}}. $$
+So $ \abs{f'\rb{t}} < \abs{f'\rb{t_0}} $. On the other hand it is easy to show that $ \abs{f'\rb{t}} = \abs{f'\rb{t_0}} $, a contradiction. See handout for the full proof of Hensel's lemma and some remarks about in what sense it is best possible.
 
 \lecture{6}{Tuesday}{16/10/18}
 
 What are the squares in $ \Q_p^* $? We know that we can write any element of $ \Q_p^* $ uniquely as $ p^nu $ for $ u $ a unit, that is $ \abs{u}_p = 1 $. Suppose that $ p^nu = \rb{p^rv}^2 $ for $ r \in \Z $ and $ v $ a unit. Then $ p^n = p^{2r} $ and $ u = v^2 $, that is $ n = 2r $ and $ u = v^2 $, that is the squares in $ \Q_p^* $ are exactly the $ p^{2r}u $, where $ u \in \Z_p^* $ is a square. If $ p > 2 $, we claim that $ u $ is a square iff $ u $ is a square mod $ p $, that is $ u $ is a quadratic residue. If $ u = t^2 $, then $ u \equiv t^2 \mod p $. Conversely, suppose that $ u \equiv t_0^2 \mod p $. Now use Hensel's lemma with $ f\rb{X} = X^2 - u $ and $ t_0 $ as above. $ \abs{f\rb{t_0}}_p = \abs{t_0^2 - u}_p \le \abs{p}_p = 1 / p $. $ \abs{f'\rb{t_0}}_p = \abs{2t_0}_p = \abs{t_0}_p = 1 $. If $ p \mid t_0 $ then $ p \mid u $ because $ u \equiv t_0^2 \mod p $. Hensel's lemma gives a unique $ t \in \Z_p $ such that $ t^2 = u $ and $ \abs{t - t_0} < 1 $, that is $ t \equiv t_0 \mod p $. In this case, the equation $ X^2 = u $ has exactly two solutions, namely $ t $ and $ -t $. In any field, a polynomial of degree $ d $ has at most $ d $ roots. For $ p = 2 $, $ u \in \Z_2^* $ is a square iff there exists $ t_0 $ such that $ u \equiv t_0^2 \mod 8 $, that is $ u \equiv 1 \mod 8 $, since $ \rb{2m + 1}^2 = 4m\rb{m + 1} + 1 \equiv 1 \mod 8 $.
-
-(missing)
 
 \pagebreak
 
@@ -354,12 +374,13 @@ If $ C $ has degree two and $ g $ has degree one, we expect to get in general tw
 \end{example*}
 
 More generally, if $ f $ has degree $ a $ and $ g $ has degree $ b $, can hope to get $ ab $ points of intersection. This can fail to be true in several different ways.
-\begin{enumerate}
+\begin{itemize}
 \item $ y = x^2 $ and $ y = 0 $, that is $ f = y - x^2 $, $ g = y $, meet only at $ \rb{0, 0} $. Solution is to count this point with multiplicity two. In this course, we will explain exactly when the multiplicity is one.
-\item For $ x^2 - y^2 = 0 $ and $ x^3 - y^3 = 0 $, any point with $ x = y $ is on the intersection. Solution is to demand that $ f $ and $ g $ are coprime, that is they have no common factor, unlike $ x^2 - y^2 = \rb{x - y}\rb{x + y} $ and $ x^3 - y^3 = \rb{x - y}\rb{x^2 + xy + y^2} $.
+\item For $ x^2 - y^2 = 0 $ and $ x^3 - y^3 = 0 $, any point with $ x = y $ is on the intersection. Solution is to demand that $ f $ and $ g $ are coprime, that is they have no common factor, unlike
+$$ x^2 - y^2 = \rb{x - y}\rb{x + y}, \qquad x^3 - y^3 = \rb{x - y}\rb{x^2 + xy + y^2}. $$
 \item $ y = x^2 $ and $ y = 2 $ intersect at $ \rb{\pm \sqrt{2}, \sqrt{2}} $. But if for example we are working over $ \Q $, these points do not exist. Solution is to only work over fields which are algebraically closed, such as $ \C $.
 \item $ y = x + 1 $ and $ y = x $ meet at infinity in projective space.
-\end{enumerate}
+\end{itemize}
 
 \begin{definition}
 A field $ K $ is \textbf{algebraically closed} if every polynomial over $ K $ of degree at least one factors as a product of linear factors.
@@ -386,8 +407,11 @@ Let $ G = X_1^2X_2^2 + X_3^4 + X_2X_3^2 $, so $ n = 2 $. First dehomogenisation 
 If $ n = 2 $, usually write $ x, y $ and $ X, Y, Z $ for our variables.
 
 \begin{example*}
-If $ f = y^2 + x^3 + x + 1 $, $ F = Y^2Z + X^3 + XZ^2 + Z^3 $. Dehomogenisations of $ F $ are $ y^2z + 1 + z^2 + z^3, z + x^3 + xz^2 + z^3, y^2 + x^3 + x + 1 $.
+If $ f = y^2 + x^3 + x + 1 $, $ F = Y^2Z + X^3 + XZ^2 + Z^3 $. Dehomogenisations of $ F $ are
+$$ y^2z + 1 + z^2 + z^3, \qquad z + x^3 + xz^2 + z^3, \qquad y^2 + x^3 + x + 1. $$
 \end{example*}
+
+\pagebreak
 
 Let $ k $ be a field, and define an equivalence relation on $ k^{n + 1} $ by $ \rb{a_1, \dots, a_{n + 1}} \sim \rb{b_1, \dots, b_{n + 1}} $ iff there exists $ \lambda \in k^* $ such that $ b_i = \lambda a_i $ for $ 1 \le i \le n + 1 $.
 
@@ -403,7 +427,8 @@ Let us see why we can think of $ \P^n\rb{k} $ as being $ k^n $ together with som
 $ \P^1\rb{k} $ should be $ k $ together with a point infinity. Any point of $ \P^1\rb{k} $ is of the form $ \sb{a_1 : a_2} $ with $ a_1, a_2 $ not both zero. If $ a_2 \ne 0 $, then $ \sb{a_1 : a_2} = \sb{a_1 / a_2 : 1} $. On the other hand, if $ \sb{a : 1} = \sb{b : 1} $, then there exists $ \lambda \in k^* $ such that $ \rb{a, 1} = \lambda\rb{b, 1} = \rb{b\lambda, \lambda} $, so $ \lambda = 1 $ and $ a = b $. So there is a bijection between $ k $ and the points $ \sb{a_1 : a_2} $ with $ a_2 \ne 0 $, given by $ k \to \P^1\rb{k} $ by $ a \mapsto \sb{a : 1} $. The remaining points of $ \P^1\rb{k} $ are those with $ a_2 = 0 $. Then $ \sb{a_1 : 0} = \sb{1 : 0} $, so we have exactly one point in $ \P^1\rb{k} \setminus k $, the point at infinity.
 \end{example*}
 
-For each $ 1 \le i \le n + 1 $, let $ \phi_i : k^n \to \P^n\rb{k} $ be the map putting one in the $ i $-th coordinate, that is $ \rb{a_1, \dots, a_n} \mapsto \sb{a_1 : \dots : a_{i - 1} : 1 : a_i : \dots : a_n} $.
+For each $ 1 \le i \le n + 1 $, let $ \phi_i : k^n \to \P^n\rb{k} $ be the map putting one in the $ i $-th coordinate, that is
+$$ \rb{a_1, \dots, a_n} \mapsto \sb{a_1 : \dots : a_{i - 1} : 1 : a_i : \dots : a_n}. $$
 
 \begin{example*}
 $ \phi_{n + 1}\rb{\rb{a_1, \dots, a_n}} = \sb{a_1 : \dots : a_n : 1} $.
@@ -425,7 +450,7 @@ $ f $ is a line, say $ f = y - mx - c $, so $ F = Y - mX - cZ $. What are the po
 
 \lecture{8}{Friday}{19/10/18}
 
-Proof of the following theorem is in Fulton's Algebraic Curves.
+Proof of the following theorem is in Fulton's Algebraic curves.
 
 \begin{theorem}[Bézout's theorem]
 \label{thm:2.6}
@@ -435,6 +460,8 @@ Let $ F, G $ be homogeneous polynomials in $ k\sb{X, Y, Z} $ of degrees $ a, b $
 \begin{corollary}
 If $ F, G $ are as in Theorem \ref{thm:2.6}, and for some $ k $, $ F = 0 $ and $ G = 0 $ meet at greater than $ ab $ points with multiplicity, then $ F $ and $ G $ have a common factor.
 \end{corollary}
+
+\pagebreak
 
 \begin{definition}
 If $ f \in k\sb{x_1, \dots, x_n} $ is a polynomial, and let $ P = \rb{a_1, \dots, a_n} \in k^n $ with $ f\rb{P} = 0 $. Then $ P $ is a \textbf{smooth} point of the graph of $ f $, or a \textbf{nonsingular} point, if for some $ i $, $ \rb{\partial f / \partial x}\rb{P} \ne 0 $. A singular point is one for which all $ \rb{\partial f / \partial x_i}\rb{P} = 0 $ for $ 1 \le i \le n $.
@@ -464,11 +491,11 @@ Any polynomial of degree one has a nonsingular graph. If $ f = \sum_{i = 1}^n a_
 
 \begin{example*}
 Let $ k = \Q $.
-\begin{enumerate}
+\begin{itemize}
 \item $ y^2 = x^2\rb{x + 1} = x^3 + x^2 $. If $ f = y^2 - x^3 - x^2 $, then $ \partial f / \partial x = -3x^2 - 2x $ and $ \partial f / \partial y = 2y $. So if $ f $ is singular, $ y = 0 $, so $ x = 0 $ or $ x = -1 $, so $ x = 0 $. So $ \rb{0, 0} $ is the only singular point.
 \item If $ f = y^2 $, then $ \partial f / \partial x = 0 $ and $ \partial f / \partial y = 2y $. So any point $ \rb{x, 0} $ is singular.
 \item $ y^2 = \rb{x^2 - 2}^2 $ has singular points $ \rb{\pm \sqrt{2}, 0} $. Still say that this is singular, even though the singular points are not defined over $ \Q $.
-\end{enumerate}
+\end{itemize}
 \end{example*}
 
 \begin{example*}
@@ -482,12 +509,12 @@ If $ y = x^3 $, then $ F = YZ^2 - X^3 $. $ \partial F / \partial X = -3X^2 $, $ 
 \begin{theorem}
 \label{thm:2.10}
 If $ f, g \in k\sb{x, y} $ then a point $ P $ on $ f = 0 $ and $ g = 0 $ has multiplicity one iff
-\begin{enumerate}
+\begin{itemize}
 \item $ P $ is a nonsingular point for both $ f = 0 $ and $ g = 0 $, and
 \item the tangent lines to $ f = 0 $ and $ g = 0 $ at $ P $ are distinct.
-\end{enumerate}
+\end{itemize}
 Tangent line at $ P $ is
-$$ \rb{\partial f / \partial x}\rb{P}\rb{x - x\rb{P}} + \rb{\partial f / \partial y}\rb{P}\rb{x - y\rb{P}} = 0. $$
+$$ \dfrac{\partial f}{\partial x}\rb{P}\rb{x - x\rb{P}} + \dfrac{\partial f}{ \partial y}\rb{P}\rb{y - y\rb{P}} = 0. $$
 \end{theorem}
 
 \pagebreak
@@ -515,11 +542,11 @@ $ X^2 - Y^2 - 1 $ does not factor in $ \C\sb{X, Y} $.
 \lecture{9}{Tuesday}{23/10/18}
 
 A \textbf{plane conic} is just the graph of some $ f \in k\sb{x, y} $ where $ f $ has degree two. Same terminology also covers $ F = 0 $ for $ F \in k\sb{X, Y, Z} $ homogeneous of degree two. The next steps are
-\begin{enumerate}
+\begin{itemize}
 \item to understand when this is singular,
 \item to understand how to find all solutions to $ f = 0 $ or $ F = 0 $ if it is singular, and
 \item to understand how to find all solutions to $ f = 0 $ in the nonsingular case given one solution.
-\end{enumerate}
+\end{itemize}
 Then in the next section we will specialise to $ k = \Q $ and see how to find solutions, or prove there are not any.
 
 \begin{example*}
@@ -546,14 +573,16 @@ Let $ k $ be algebraically closed, and let $ f \in k\sb{X, Y, Z} $ be homogeneou
 If $ F $ factors, then any point of intersection of the two lines is a singular point. (Exercise) The lines do meet, by Bézout. Suppose conversely that $ P $ is a singular point of $ F = 0 $. Let $ Q $ be any other point of $ F = 0 $, and let $ L $ be the line joining $ P $ and $ Q $, so $ L $ is given by some equation $ G = 0 $, where $ G $ has degree one. If $ F = GH $ for some $ H $, then we are done. Otherwise, $ F $ and $ G $ are coprime because $ G $ has degree one, so has no proper factors. So by Bézout's theorem, $ F = 0 $ and $ G = 0 $ meet in exactly two points, counted with multiplicity. Since $ P $ is a singular point of $ F = 0 $, it follows from Theorem \ref{thm:2.10} that the multiplicity of $ P $ is at least $ 2 + 1 = 3 $, a contradiction. So $ G $ is a factor of $ F $, as required.
 \end{proof}
 
+\pagebreak
+
 \begin{algorithm}[Finding all rational points on a singular conic]
 \hfill
-\begin{enumerate}
+\begin{itemize}
 \item Find the singular point.
 \item Write down another point.
 \item Factor the conic as a product of linear factors.
 \item Solve the two linear equations.
-\end{enumerate}
+\end{itemize}
 \end{algorithm}
 
 \begin{example*}
@@ -637,6 +666,8 @@ Set $ U = \tfrac{1}{2}V = \cb{\tfrac{1}{2}x \mid x \in V} $. So measure of $ U $
 
 How do you use this to prove that $ p = x^2 + y^2 $?
 
+\pagebreak
+
 \lecture{12}{Tuesday}{30/10/18}
 
 \begin{theorem}
@@ -644,10 +675,18 @@ If $ n \in \Z $ and there exists $ t $ such that $ t^2 \equiv -1 \mod n $, then 
 \end{theorem}
 
 \begin{proof}
-$ \Lambda = \cb{\rb{x, y} \mid y \equiv tx \mod n} \subseteq \Z^2 $. $ \Lambda = Ker\rb{\Z^2 \to \Z / n\Z} $ by $ \rb{x, y} \mapsto y - tx $. This is surjective, so by the first isomorphism theorem, $ \Z^2 / \Lambda \cong \Z / n\Z $. So $ \sb{\Z^2 : \Lambda} = \#\rb{\Z / n\Z} = n $. Let $ V = \cb{\rb{x, y} \mid x^2 + y^2 < 2n} $. Measure of $ V $ is $ \pi\rb{\sqrt{2n}}^2 = 2\pi n = 2^2\sb{\Z^2 : \Lambda} = 4n $ because $ \pi > 2 $. So by Corollary \ref{cor:4.3}, there exists $ \rb{x, y} \in \Lambda \cap V $ such that $ \rb{x, y} \ne \rb{0, 0} $. $ \rb{x, y} \in V $ gives $ 0 < x^2 + y^2 < 2n $. $ \rb{x, y} \in \Lambda $ gives $ x^2 + y^2 \equiv x^2\rb{t^2 + 1} \equiv 0 \mod n $. So $ x^2 + y^2 = n $, as required.
+Let
+$$ \Lambda = \cb{\rb{x, y} \mid y \equiv tx \mod n} \subseteq \Z^2. $$
+$ \Lambda = Ker\rb{\Z^2 \to \Z / n\Z} $ by $ \rb{x, y} \mapsto y - tx $. This is surjective, so by the first isomorphism theorem, $ \Z^2 / \Lambda \cong \Z / n\Z $. So $ \sb{\Z^2 : \Lambda} = \#\rb{\Z / n\Z} = n $. Let
+$$ V = \cb{\rb{x, y} \mid x^2 + y^2 < 2n}. $$
+Measure of $ V $ is
+$$ \pi\rb{\sqrt{2n}}^2 = 2\pi n = 2^2\sb{\Z^2 : \Lambda} = 4n, $$
+because $ \pi > 2 $. So by Corollary \ref{cor:4.3}, there exists $ \rb{x, y} \in \Lambda \cap V $ such that $ \rb{x, y} \ne \rb{0, 0} $. $ \rb{x, y} \in V $ gives $ 0 < x^2 + y^2 < 2n $. $ \rb{x, y} \in \Lambda $ gives $ x^2 + y^2 \equiv x^2\rb{t^2 + 1} \equiv 0 \mod n $. So $ x^2 + y^2 = n $, as required.
 \end{proof}
 
-Want to consider plane conics over $ \Q $, that is homogeneous equations of degree two in $ X, Y, Z $ . Completing the square, that is existence of orthogonal basis, can write this in the form $ aX^2 + bY^2 + cZ^2 $. If this is nonsingular, $ abc \ne 0 $. Conversely if $ abc \ne 0 $, this is nonsingular. Rescaling $ X, Y, Z $, we can change $ a, b, c $ by squares of elements of $ \Q^* $. So without loss of generality, $ a, b, c $ are all in $ \Z $. We can then furthermore arrange by rescaling again that each of $ a, b, c $ is squarefree, that is not divisible by the square of any prime. If $ a, b, c $ share a common factor, we can divide by it, so we can assume that $ \rb{a, b, c} = 1 $. If $ p \mid a $, $ p \mid b $, so $ p \mid c $, we can replace $ \rb{a, b, c} $ by $ \rb{a / p, b / p, pc} $ since $ aX^2 + bY^2 + cZ^2 = p\rb{\rb{a / p}X^2 + \rb{b / p}Y^2 + pc\rb{Z / p}^2} $. Repeating this, we can assume that $ \rb{a, b} = 1 $, $ \rb{b, c} = 1 $, $ \rb{c, a} = 1 $. So without loss of generality $ aX^2 + bY^2 + cZ^2 $, $ a, b, c \in \Z $ nonzero squarefree, pairwise coprime. Let $ \Sigma = \cb{p \mid 2abc} $ for $ p $ prime.
+Want to consider plane conics over $ \Q $, that is homogeneous equations of degree two in $ X, Y, Z $ . Completing the square, that is existence of orthogonal basis, can write this in the form $ aX^2 + bY^2 + cZ^2 $. If this is nonsingular, $ abc \ne 0 $. Conversely if $ abc \ne 0 $, this is nonsingular. Rescaling $ X, Y, Z $, we can change $ a, b, c $ by squares of elements of $ \Q^* $. So without loss of generality, $ a, b, c $ are all in $ \Z $. We can then furthermore arrange by rescaling again that each of $ a, b, c $ is squarefree, that is not divisible by the square of any prime. If $ a, b, c $ share a common factor, we can divide by it, so we can assume that $ \rb{a, b, c} = 1 $. If $ p \mid a $, $ p \mid b $, so $ p \mid c $, we can replace $ \rb{a, b, c} $ by $ \rb{a / p, b / p, pc} $ since
+$$ aX^2 + bY^2 + cZ^2 = p\rb{\rb{\dfrac{a}{p}}X^2 + \rb{\dfrac{b}{p}}Y^2 + pc\rb{\dfrac{Z}{p}}^2}. $$
+Repeating this, we can assume that $ \rb{a, b} = 1 $, $ \rb{b, c} = 1 $, $ \rb{c, a} = 1 $. So without loss of generality $ aX^2 + bY^2 + cZ^2 $, $ a, b, c \in \Z $ nonzero squarefree, pairwise coprime. Let $ \Sigma = \cb{p \mid 2abc} $ for $ p $ prime.
 
 \begin{lemma}
 Write $ F = aX^2 + bY^2 + cZ^2 $ as above. Then the following are equivalent.
@@ -660,8 +699,14 @@ Write $ F = aX^2 + bY^2 + cZ^2 $ as above. Then the following are equivalent.
 \end{lemma}
 
 \begin{proof}
-$ 1 \implies 2 \implies 3 \implies 4 $. $ 2 \implies 1 $ by drawing lines through a point. So we need to do $ 4 \implies 2 $. Use Corollary \ref{cor:4.3} in $ \Z^3 $. Want to find $ V, \Lambda $ with measure of $ V $ greater than $ 2^3\sb{\Z^3 : \Lambda} $, so that $ V \cap \Lambda = \cb{0} $. Want to know that we will have $ ax^2 + by^2 + cz^2 = 0 $ if $ \rb{x, y, z} \in V \cap \Lambda $. Choose $ V = \cb{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}} $. This has measure $ \tfrac{\pi}{3}\rb{2}^3\rb{4}\abs{abc} $. So to prove the theorem, it is enough to find $ \Lambda $ with $ \sb{\Z^3 : \Lambda} = 4\abs{abc} $, and satisfying $ \rb{x, y, z} \in \Lambda $ gives $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4\abs{abc} $. So if $ \rb{x, y, z} \in V \cap \Lambda $ then $ 0 \le \abs{ax^2 + by^2 + cz^2} < \abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc} $, so $ ax^2 + by^2 + cz^2 = 0 $.
+$ 1 \implies 2 \implies 3 \implies 4 $. $ 2 \implies 1 $ by drawing lines through a point. So we need to do $ 4 \implies 2 $. Use Corollary \ref{cor:4.3} in $ \Z^3 $. Want to find $ V, \Lambda $ with measure of $ V $ greater than $ 2^3\sb{\Z^3 : \Lambda} $, so that $ V \cap \Lambda = \cb{0} $. Want to know that we will have $ ax^2 + by^2 + cz^2 = 0 $ if $ \rb{x, y, z} \in V \cap \Lambda $. Choose
+$$ V = \cb{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}}. $$
+This has measure $ \tfrac{\pi}{3}\rb{2}^3\rb{4}\abs{abc} $. So to prove the theorem, it is enough to find $ \Lambda $ with $ \sb{\Z^3 : \Lambda} = 4\abs{abc} $, and satisfying $ \rb{x, y, z} \in \Lambda $ gives $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4\abs{abc} $. So if $ \rb{x, y, z} \in V \cap \Lambda $ then
+$$ 0 \le \abs{ax^2 + by^2 + cz^2} < \abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}, $$
+so $ ax^2 + by^2 + cz^2 = 0 $.
 \end{proof}
+
+\pagebreak
 
 \lecture{13}{Thursday}{01/11/18}
 
@@ -670,7 +715,9 @@ If $ p \mid a $ then there is a solution to $ b + cz^2 \equiv 0 \mod p $.
 \end{lemma}
 
 \begin{proof}
-$ p \mid a $ gives $ p \in \Sigma $ so there exist $ x, y, z \in \Q_p $ not all zero such that $ ax^2 + by^2 + cz^2 = 0 $. By multiplying by an appropriate power of $ p $, we can assume that $ \max\rb{\abs{x}_p, \abs{y}_p, \abs{z}_p} = 1 $. $ p \mid a $ and $ \rb{a, b} = \rb{a, c} = 1 $ give $ p \nmid b $, $ p \nmid c $, that is $ \abs{a}_p < 1 $ and $ \abs{b}_p = \abs{c}_p = 1 $. If $ \abs{y}_p < 1 $ then $ \abs{by^2}_p < 1 $, $ \abs{ax^2}_p \le \abs{a}_p < 1 $, so $ \abs{cz^2}_p = \abs{ax^2 + by^2} < 1 $, so $ \abs{z}_p < 1 $. Then $ \abs{x}_p = 1 $, so $ \abs{ax^2}_p = \abs{a}_p $ but $ \abs{ax^2}_p = \abs{by^2 + cz^2}_p \le \max\rb{\abs{y^2}_p, \abs{z^2}_p} \le 1 / p^2 $. So $ p^2 \mid a $, a contradiction, as $ a $ is squarefree. So $ \abs{y}_p = 1 $. Now divide by $ y $, $ a\rb{x / y}^2 + b + c\rb{z / y}^2 = 0 $ and $ x / y, z / y \in \Z_p $. Reduce mod $ p $ gives $ b + c\rb{z / y}^2 \equiv 0 \mod p $, as claimed.
+$ p \mid a $ gives $ p \in \Sigma $ so there exist $ x, y, z \in \Q_p $ not all zero such that $ ax^2 + by^2 + cz^2 = 0 $. By multiplying by an appropriate power of $ p $, we can assume that $ \max\rb{\abs{x}_p, \abs{y}_p, \abs{z}_p} = 1 $. $ p \mid a $ and $ \rb{a, b} = \rb{a, c} = 1 $ give $ p \nmid b $, $ p \nmid c $, that is $ \abs{a}_p < 1 $ and $ \abs{b}_p = \abs{c}_p = 1 $. If $ \abs{y}_p < 1 $ then $ \abs{by^2}_p < 1 $, $ \abs{ax^2}_p \le \abs{a}_p < 1 $, so $ \abs{cz^2}_p = \abs{ax^2 + by^2} < 1 $, so $ \abs{z}_p < 1 $. Then $ \abs{x}_p = 1 $, so $ \abs{ax^2}_p = \abs{a}_p $ but
+$$ \abs{ax^2}_p = \abs{by^2 + cz^2}_p \le \max\rb{\abs{y^2}_p, \abs{z^2}_p} \le \dfrac{1}{p^2}. $$
+So $ p^2 \mid a $, a contradiction, as $ a $ is squarefree. So $ \abs{y}_p = 1 $. Now divide by $ y $, $ a\rb{x / y}^2 + b + c\rb{z / y}^2 = 0 $ and $ x / y, z / y \in \Z_p $. Reduce mod $ p $ gives $ b + c\rb{z / y}^2 \equiv 0 \mod p $, as claimed.
 \end{proof}
 
 If $ p \in \Sigma $ and $ p > 2 $, then by symmetry without loss of generality $ p \mid a $. Then the lemma applies, so there exists $ \alpha $ with $ b + c\alpha^2 \equiv 0 \mod p $. So we impose the condition that $ z \equiv \alpha y \mod p $. Then if $ x, y, z \in \Z $ satisfying $ z \equiv \alpha y \mod p $, then $ ax^2 + by^2 + c \equiv by^2 + cz^2 \equiv by^2 + c\alpha^2y^2 \equiv y^2\rb{b + c\alpha^2} \equiv 0 \mod p $. Now have to deal with $ p = 2 $. Suppose $ 2 \mid a $. Lemma gives a solution to $ b + cz^2 \equiv 0 \mod 2 $, and a solution to $ ax^2 + by^2 + cz^2 = 0 $ in $ \Q_2 $ with $ \abs{y}_2 = 1 $, so $ y^2 \equiv 1 \mod 8 $. $ \rb{2m + 1}^2 = 4m\rb{m + 1} + 1 \equiv 1 \mod 8 $. In fact, squares mod $ 8 $ are $ 0 $, $ 1 $, $ 4 $. Similarly, $ \abs{z}_2 = 1 $ gives $ z^2 \equiv 1 \mod 8 $. Since $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 \equiv 0 \mod 8 $, that is $ ax^2 + b + c \equiv 0 \mod 8 $. If $ \abs{x}_2 = 1 $ then $ x^2 \equiv 1 \mod 8 $, so $ a + b + c \equiv 0 \mod 8 $. Impose
@@ -718,7 +765,9 @@ $ \sb{1 : 2 : 1} $ had height $ 1 $. $ \sb{-17 : 22 : 7} $ had height $ 7 $.
 \end{example*}
 
 \begin{proof}
-Firstly check for singular points. $ F = X^3 + Y^3 - 9Z^3 $, $ \partial F / \partial X = 3X^2 $ gives $ X = Y = Z = 0 $, which is a contradiction. To prove there are infinitely many points over $ \Q $, we draw tangent lines. Claim that if $ \sb{r : s : t} $ is on $ F = 0 $, then the third point of intersection of the tangent line at $ \sb{r : s : t} $ with $ F = 0 $ is $ \sb{r\rb{r^3 + 2s^3} : -s\rb{2r^3 + s^3} : t\rb{r^3 - s^3}} $. (Exercise: check this in two ways, first way do this as we did for $ \rb{1, 2} $, second way use that I told you the answer) If $ \sb{r : s : t} $ is on $ X^3 + Y^3 = 9Z^3 $, and if $ r, s, t \in \Z $ and have no common factor, then since $ 9 $ is cubefree, in fact have $ \rb{r, s} = \rb{s, t} = \rb{r, t} = 1 $. Suppose that some prime $ p $ divides all three factors of $ \sb{r\rb{r^3 + 2s^3} : -s\rb{2r^3 + s^3} : t\rb{r^3 - s^3}} $. Suppose that some prime $ p $ divides all three factors. If $ p \mid r $ then $ p \mid -s\rb{2r^3 + s^3} $, so $ p \mid -s^4 $, so $ p \mid s $, but $ \rb{r, s} = 1 $. So $ p \nmid r $. Similarly if $ p \mid s $ then $ p \mid r^4 $ gives $ p \mid r $, a contradiction. So $ p \nmid s $. Since $ p \mid r\rb{r^3 + 2s^3} $ and $ p \nmid r $, we have $ p \mid \rb{r^3 + 2s^3} $. Similarly $ p \mid \rb{2r^3 + s^3} $. So $ p \mid \rb{2\rb{2r^3 + s^3} - r^3 + 2s^3} $, so $ p \mid 3r^3 $. Again $ p \nmid r $, so $ p \mid 3 $, so $ p = 3 $. (Exercise: in fact, the same analysis shows that the only power of three which could divide all three terms is three itself) So the height of our new point is at least $ \tfrac{1}{3}\abs{t}\abs{r^3 - s^3} $. So we will be unless $ \abs{r^3 - s^3} \le 3 $. But this inequality is only satisfied if $ r, s \in \cb{-1, 0, 1} $. But then $ r^3 + s^3 = 9t^3 $ has no solutions other than $ \sb{-1 : 1 : 0} $. So as long as we start with any other point, such as $ \sb{1 : 2 : 1} $, we get infinitely many points.
+Firstly check for singular points. $ F = X^3 + Y^3 - 9Z^3 $, $ \partial F / \partial X = 3X^2 $ gives $ X = Y = Z = 0 $, which is a contradiction. To prove there are infinitely many points over $ \Q $, we draw tangent lines. Claim that if $ \sb{r : s : t} $ is on $ F = 0 $, then the third point of intersection of the tangent line at $ \sb{r : s : t} $ with $ F = 0 $ is
+$$ \sb{r\rb{r^3 + 2s^3} : -s\rb{2r^3 + s^3} : t\rb{r^3 - s^3}}. $$
+(Exercise: check this in two ways, first way do this as we did for $ \rb{1, 2} $, second way use that I told you the answer) If $ \sb{r : s : t} $ is on $ X^3 + Y^3 = 9Z^3 $, and if $ r, s, t \in \Z $ and have no common factor, then since $ 9 $ is cubefree, in fact have $ \rb{r, s} = \rb{s, t} = \rb{r, t} = 1 $. Suppose that some prime $ p $ divides all three factors of $ \sb{r\rb{r^3 + 2s^3} : -s\rb{2r^3 + s^3} : t\rb{r^3 - s^3}} $. Suppose that some prime $ p $ divides all three factors. If $ p \mid r $ then $ p \mid -s\rb{2r^3 + s^3} $, so $ p \mid -s^4 $, so $ p \mid s $, but $ \rb{r, s} = 1 $. So $ p \nmid r $. Similarly if $ p \mid s $ then $ p \mid r^4 $ gives $ p \mid r $, a contradiction. So $ p \nmid s $. Since $ p \mid r\rb{r^3 + 2s^3} $ and $ p \nmid r $, we have $ p \mid \rb{r^3 + 2s^3} $. Similarly $ p \mid \rb{2r^3 + s^3} $. So $ p \mid \rb{2\rb{2r^3 + s^3} - r^3 + 2s^3} $, so $ p \mid 3r^3 $. Again $ p \nmid r $, so $ p \mid 3 $, so $ p = 3 $. (Exercise: in fact, the same analysis shows that the only power of three which could divide all three terms is three itself) So the height of our new point is at least $ \tfrac{1}{3}\abs{t}\abs{r^3 - s^3} $. So we will be unless $ \abs{r^3 - s^3} \le 3 $. But this inequality is only satisfied if $ r, s \in \cb{-1, 0, 1} $. But then $ r^3 + s^3 = 9t^3 $ has no solutions other than $ \sb{-1 : 1 : 0} $. So as long as we start with any other point, such as $ \sb{1 : 2 : 1} $, we get infinitely many points.
 \end{proof}
 
 \begin{algorithm}[Finding all points for a singular cubic]
@@ -734,6 +783,8 @@ $ y^2 = x^3 $ has a cusp. $ \rb{0, 0} $ is a singular point. Line through $ \rb{
 \begin{example*}
 $ y^2 = x^2\rb{x + 1} $ has a node. For a singular point, $ 2y = 0 $ and $ 3x^2 + 2x = 0 $. So $ \rb{0, 0} $ is the singular point. Again, a line through $ \rb{0, 0} $ is $ y = tx $. $ t^2x^2 = x^2\rb{x + 1} $. So $ x + 1 = t^2 $ is the third point of intersection. $ x = t^2 - 1 $ and $ y = t\rb{t^2 - 1} = t^3 - t $. So all the rational solutions are given by $ \rb{x, y} = \rb{t^2 - 1, t^3 - t} $, $ t \in \Q $.
 \end{example*}
+
+\pagebreak
 
 Let $ f $ be an irreducible plane cubic, that is it does not factor, over a field $ k $. Let $ G $ be the set of nonsingular points with coordinates in $ k $.
 
@@ -803,6 +854,8 @@ If $ E $ is an elliptic curve and $ O $ is chosen to be a point of inflexion, th
 Exercise.
 \end{proof}
 
+\pagebreak
+
 \begin{lemma}
 Consider the cubic $ y^2 = f\rb{x} $, where $ f\rb{x} $ is monic of degree three.
 \begin{enumerate}
@@ -840,10 +893,13 @@ Assume $ char\rb{k} \ne 2, 3 $, so that $ y^2 = x^3 + ax + b $ is $ E $ and $ y^
 \end{proof}
 
 Return to the case of irreducible singular cubics. Write as $ y^2 = f\rb{x} $, $ f\rb{x} $ a monic cubic, then this is singular iff $ f\rb{x} $ has a repeated root. There are two cases.
-\begin{enumerate}
+\begin{itemize}
 \item All three roots are equal, so $ y^2 = x^3 $. The only singular point is $ \rb{0, 0} $. Consider the group law with $ 0 = \sb{0 : 1 : 0} $. Because $ \sb{0 : 1 : 0} $ is a point of inflexion, Lemma \ref{lem:5.10} tells us that three points add to $ O $ iff they are collinear. Consider a line of the form $ ax + by = 1 $. This is the general form of a line not going through $ \rb{0, 0} $. $ x^3 = y^2 = y^2\rb{1} = y^2\rb{ax + by} $. Since $ \rb{x, y} \ne 0 $ we actually have $ y \ne 0 $, so we can divide by $ y $ and get $ \rb{x / y}^3 = a\rb{x / y} + b $. This is a cubic in $ x / y $, with no quadratic term. Conversely, any cubic in $ x / y $ with no quadratic term is of this form for some $ a, b $. So we see that $ \rb{x_1, y_1} + \rb{x_2, y_3} + \rb{x_3, y_3} = O $ iff $ x_1 / y_1 + x_2 / y_2 + x_3 / y_3 = 0 $. So in this case by mapping $ \rb{x, y} \mapsto x / y $ we get that the group law is given by the usual additive group.
+
+\pagebreak
+
 \item Two roots are equal and the third is distinct, so $ y^2 = x^2\rb{x + 1} $. Again $ \rb{0, 0} $ is singular. $ x^3 = y^2 - x^2 = \rb{y + x}\rb{y - x} $. Let $ U = y + x $ and $ V = y - x $, so $ \rb{U - V}^3 = 8UV $. Again $ \rb{0, 0} $ is the only singular point. Consider lines $ aU + bV = 1 $. $ \rb{U - V}^3 = 8UV\rb{1} = 8UV\rb{aU + bV} $. Write $ t = U / V $, get $ \rb{t - 1}^3 = 8t\rb{at + b} $, so $ t^3 - \rb{8a + 3}t^2 + \rb{8b + 3}t - 1 = 0 $. So we have a general monic cubic with constant term $ -1 $, that is with roots having product equal to one. So sending $ \rb{x, y} \mapsto U / V = \rb{y + x} / \rb{y - x} $ gives an isomorphism between the group law on $ y^2 = x^2\rb{x + 1} $ and the group $ k^* $ under multiplication.
-\end{enumerate}
+\end{itemize}
 
 \lecture{19}{Thursday}{15/11/18}
 
@@ -929,7 +985,8 @@ Let $ y^2 = x^3 + 17 $. $ y = 0 $ has no solutions, so $ y^2 \mid \rb{27}\rb{17}
 Let $ y^2 = x^3 + ax + b $ for $ a, b \in \Q_p $ and $ \Delta = 4a^3 + 27b^2 \ne 0 $. Recall that there is a ring homomorphism $ \Z_p \to \F_p = \Z / p\Z $. In fact $ \Z_p / p\Z_p \cong \Z / p\Z $ by $ a_0 + a_1p + \dots \mapsto a_0 $. There is no ring homomorphism $ \Q_p \to \F_p $. There is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $. $ \sb{a_0 : \dots : a_n} = \sb{b_0 : \dots : b_n} $ for $ b_i \in \Z_p $, at least one $ b_i \in \Z_p^* $. Take $ b_i = p^sa_i $ for appropriate $ s $. Then $ \abs{a_0 : \dots : a_n} \mapsto \sb{\overline{b_0} : \dots : \overline{b_n}} $, where $ \overline{b_i} $ is the image of $ b_i $ in $ \F_p $. This is a well-defined map $ \P^n\rb{\Q_p} \to \P^n\rb{\F_p} $.
 
 \begin{example*}
-$ \rb{x, y} = \rb{1 / p, 1 / p} $ is $ \sb{x : y : 1} = \sb{1 / p : 1 / p : 1} = \sb{1 : 1 : p} \mapsto \sb{1 : 1 : 0} $.
+$ \rb{x, y} = \rb{1 / p, 1 / p} $ is
+$$ \sb{x : y : 1} = \sb{1 / p : 1 / p : 1} = \sb{1 : 1 : p} \mapsto \sb{1 : 1 : 0}. $$
 \end{example*}
 
 By replacing $ x $ with $ p^{2n}x $, $ y $ by $ p^{3n}y $, can assume $ a, b \in \Z_p $. Reduction mod $ p $ of $ y^2 = x^3 + ax + b $ is $ y^2 = x^3 + \overline{a}x + \overline{b} $ for $ \overline{a}, \overline{b} \in \F_p $. This would be singular if either $ p = 2 $, or $ p \mid \Delta = 4a^3 + 27b^2 $. Even if it is singular, we still have a group law on the nonsingular points.
@@ -950,7 +1007,8 @@ Let $ y^2 = x^3 - 18 $. Modulo $ 3 $, we get $ y^2 = x^3 $, and $ \rb{0, 0} $ is
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Let $ y^2 = x^3 + \alpha x^2 + \beta x + \gamma $ for $ \alpha, \beta, \gamma \in \Z_p $. If $ \abs{x}_p > 1 $, then $ \abs{x^3}_p > \abs{\alpha x^2}_p, \abs{\beta x}_p, \abs{\gamma}_p $. So by the ultrametric inequality, $ \abs{y}_p^2 = \abs{y^2}_p = \abs{x^3 + \alpha x^2 + \beta x + \gamma}_p = \abs{x^3}_p = \abs{x}_p^3 $.
+\item Let $ y^2 = x^3 + \alpha x^2 + \beta x + \gamma $ for $ \alpha, \beta, \gamma \in \Z_p $. If $ \abs{x}_p > 1 $, then $ \abs{x^3}_p > \abs{\alpha x^2}_p, \abs{\beta x}_p, \abs{\gamma}_p $. So by the ultrametric inequality,
+$$ \abs{y}_p^2 = \abs{y^2}_p = \abs{x^3 + \alpha x^2 + \beta x + \gamma}_p = \abs{x^3}_p = \abs{x}_p^3. $$
 \item Need $ p \mid x_0 $ iff $ p \mid y_0 $, but $ x_0^3 \equiv y_0^2 \mod p $, so this is clear.
 \end{enumerate}
 \end{proof}
@@ -968,6 +1026,8 @@ The group law is determined by three points add up to $ O $ iff they are colline
 
 In fact, the homomorphism $ E\rb{\Q_p}^{\rb{0}} $ to the nonsingular points over $ \F_p $ is surjective, in example sheet 4 by Hensel's lemma.
 
+\pagebreak
+
 \lecture{22}{Thursday}{22/11/18}
 
 For $ n \ge 1 $, let $ E\rb{\Q_p}^{\rb{n}} $ be the points of $ E\rb{\Q_p} $ with level at least $ n $.
@@ -981,7 +1041,8 @@ $ n = 0 $, $ n = 1 $ already done. If $ n = 2 $, then let $ E' $ be the elliptic
 \end{proof}
 
 \begin{corollary}
-For $ n \ge 1 $, there is a natural injection from $ E\rb{\Q_p}^{\rb{n}} / E\rb{\Q_p}^{\rb{n + 1}} \to \Z / p\Z $.
+For $ n \ge 1 $, there is a natural injection from
+$$ \dfrac{E\rb{\Q_p}^{\rb{n}}}{E\rb{\Q_p}^{\rb{n + 1}}} \to \dfrac{\Z}{p\Z}. $$
 \end{corollary}
 
 \begin{proof}
@@ -992,16 +1053,22 @@ Define $ u : E\rb{\Q_p}^{\rb{1}} \to p\Z_p $ by $ O \mapsto O $ and $ \rb{x, y} 
 
 \begin{lemma}
 \label{lem:7.5}
-If $ P, Q \in E\rb{\Q_p}^{\rb{1}} $, then $ \abs{u\rb{P + Q} - u\rb{P} - u\rb{Q}} \le \max\rb{\abs{u\rb{P}}^5, \abs{u\rb{Q}}^5} $.
+If $ P, Q \in E\rb{\Q_p}^{\rb{1}} $, then
+$$ \abs{u\rb{P + Q} - u\rb{P} - u\rb{Q}} \le \max\rb{\abs{u\rb{P}}^5, \abs{u\rb{Q}}^5}. $$
 \end{lemma}
 
 \begin{proof}
-If any of $ P, Q, P + Q $ equal $ O $, then left hand side is zero and we are done. Assume by symmetry that $ P $ has level exactly $ n $, and $ Q $ has level at least $ n $. Then $ \abs{u\rb{P}} = \abs{u\rb{Q}} $ and $ \abs{u\rb{P}} = p^{-n} $, so right hand side is $ p^{-5n} $. Since $ P, Q \in E\rb{\Q_p}^{\rb{n}} $, and $ E\rb{\Q_p}^{\rb{n}} $ is a group, we have $ P + Q \in E\rb{\Q_p}^{\rb{n}} $. Let $ P_n, Q_n $ be the points on $ E_n $ corresponding to $ P, Q $. Let $ R $ be the third point of intersection of $ E_n $ and the line through $ P_n, Q_n $. $ P_n $ has level zero, and $ Q_n $ has level at least zero, so both are nonsingular mod $ p $, so $ R $ is nonsingular mod $ p $. Since $ P_n $ has level exactly zero, the reduction of $ P_n $ is a nonsingular point of $ E_n\rb{\F_p} $, which is not $ O $. This implies that the line through $ P_n, Q_n $ has an equation of the form $ lx + my = 1 $, with $ l, m \in \Z_p $. A priori we have a line $ lx + my = 1 $ with $ l, m \in \Q_p $, but if either $ l, m \notin \Z_p $, when you reduce mod $ p $, the line would go through $ \rb{0, 0} $. Since $ P_n, Q_n, R $ are all nonsingular mod $ p $, this would be a contradiction. The equation of $ E_n $ is $ y^2 = x^3 + p^{4n}ax + p^{6n}b $. To compute the intersection, we can solve $ y^2\rb{lx + my} = x^3 + p^{4n}ax\rb{lx + my}^2 + p^{6n}b\rb{lx + my}^3 $. Write $ t = x / y $. Dividing by $ y^3 $, we get $ lt + m = t^3 + p^{4n}at\rb{lt + m}^2 + p^{6n}b\rb{lt + m}^3 $. Write as $ c_0t^3 + c_1t^2 + c_2t + c_3 = 0 $, with $ c_0 = 1 + p^{4n}al^2 + p^{6n}bl^3 $ and $ c_1 = p^{4n}\rb{2alm + 3p^{2n}bl^2m} $. Therefore the sum of the roots of this polynomial has norm at most $ p^{-4n} $. By definition, the roots of this polynomial are $ p^{-n}u\rb{P} $, $ p^{-n}u\rb{Q} $, $ -p^{-n}u\rb{P + Q} $. So we are done.
+If any of $ P, Q, P + Q $ equal $ O $, then left hand side is zero and we are done. Assume by symmetry that $ P $ has level exactly $ n $, and $ Q $ has level at least $ n $. Then $ \abs{u\rb{P}} = \abs{u\rb{Q}} $ and $ \abs{u\rb{P}} = p^{-n} $, so right hand side is $ p^{-5n} $. Since $ P, Q \in E\rb{\Q_p}^{\rb{n}} $, and $ E\rb{\Q_p}^{\rb{n}} $ is a group, we have $ P + Q \in E\rb{\Q_p}^{\rb{n}} $. Let $ P_n, Q_n $ be the points on $ E_n $ corresponding to $ P, Q $. Let $ R $ be the third point of intersection of $ E_n $ and the line through $ P_n, Q_n $. $ P_n $ has level zero, and $ Q_n $ has level at least zero, so both are nonsingular mod $ p $, so $ R $ is nonsingular mod $ p $. Since $ P_n $ has level exactly zero, the reduction of $ P_n $ is a nonsingular point of $ E_n\rb{\F_p} $, which is not $ O $. This implies that the line through $ P_n, Q_n $ has an equation of the form $ lx + my = 1 $, with $ l, m \in \Z_p $. A priori we have a line $ lx + my = 1 $ with $ l, m \in \Q_p $, but if either $ l, m \notin \Z_p $, when you reduce mod $ p $, the line would go through $ \rb{0, 0} $. Since $ P_n, Q_n, R $ are all nonsingular mod $ p $, this would be a contradiction. The equation of $ E_n $ is $ y^2 = x^3 + p^{4n}ax + p^{6n}b $. To compute the intersection, we can solve
+$$ y^2\rb{lx + my} = x^3 + p^{4n}ax\rb{lx + my}^2 + p^{6n}b\rb{lx + my}^3. $$
+Write $ t = x / y $. Dividing by $ y^3 $, we get
+$$ lt + m = t^3 + p^{4n}at\rb{lt + m}^2 + p^{6n}b\rb{lt + m}^3. $$
+Write as $ c_0t^3 + c_1t^2 + c_2t + c_3 = 0 $, with $ c_0 = 1 + p^{4n}al^2 + p^{6n}bl^3 $ and $ c_1 = p^{4n}\rb{2alm + 3p^{2n}bl^2m} $. Therefore the sum of the roots of this polynomial has norm at most $ p^{-4n} $. By definition, the roots of this polynomial are $ p^{-n}u\rb{P} $, $ p^{-n}u\rb{Q} $, $ -p^{-n}u\rb{P + Q} $. So we are done.
 \end{proof}
 
 \lecture{23}{Friday}{23/11/18}
 
-If $ \abs{x + y} < \abs{x} $, then $ \abs{x} = \abs{y} $. Write $ x = \rb{x + y} + \rb{-y} $. So $ \abs{x + y} < \abs{x} = \abs{\rb{x + y} + \rb{-y}} = \max\rb{\abs{x + y}, \abs{y}} = \abs{y} $.
+If $ \abs{x + y} < \abs{x} $, then $ \abs{x} = \abs{y} $. Write $ x = \rb{x + y} + \rb{-y} $. So
+$$ \abs{x + y} < \abs{x} = \abs{\rb{x + y} + \rb{-y}} = \max\rb{\abs{x + y}, \abs{y}} = \abs{y}. $$
 
 \begin{corollary}
 \hfill
@@ -1012,6 +1079,8 @@ If $ \abs{x + y} < \abs{x} $, then $ \abs{x} = \abs{y} $. Write $ x = \rb{x + y}
 \item $ \abs{u\rb{nP}} = \abs{n}\abs{u\rb{P}} $ for all $ n \ge 1 $.
 \end{enumerate}
 \end{corollary}
+
+\pagebreak
 
 \begin{proof}
 \hfill
@@ -1094,7 +1163,10 @@ Goal is if $ E\rb{\Q} $ is an elliptic curve then $ E\rb{\Q} / 2E\rb{\Q} $ is fi
 Let $ y^2 = x^3 - x = \rb{x - 1}x\rb{x + 1} $. Suppose that we have a point $ \rb{x, y} $ with $ x, y \in \Q $, $ y \ne 0 $. Write $ x - 1 = au^2 $, $ x = bv^2 $, $ x + 1 = cw^2 $, where $ u, v, w \in \Q^* $ and $ a, b, c \in Z $ are squarefree, such as $ -3 / 25 = \rb{-3}\rb{1 / 5}^2 $. $ y^2 = \rb{x - 1}x\rb{x + 1} = \rb{abc}\rb{uvw}^2 $ gives $ abc = \rb{y / uvw}^2 $ is a square. Claim that $ a, b, c \in \cb{\pm 1, \pm 2} $. Let $ p $ be an odd prime. We need to show that $ \abs{x}_p, \abs{x + 1}_p, \abs{x - 1}_p $ are all squares. If $ \abs{x}_p > 1 $, then by the ultrametric inequality, $ \abs{x}_p = \abs{x + 1}_p = \abs{x - 1}_p $, and since $ \abs{y}_p^2 = \abs{x}_p\abs{x + 1}_p\abs{x - 1}_p $, so each of $ \abs{x}_p, \abs{x + 1}_p, \abs{x - 1}_p $ is a square. If $ \abs{x}_p \le 1 $, then since $ a, b, c $ are squarefree and their product is a square, we either have $ \abs{x}_p = \abs{x + 1}_p = \abs{x - 1}_p = 1 $, or at least two of $ x, x + 1, x - 1 $ are divisible by $ p $. Then $ p $ would have to divide the difference of these two quantities, which is one or two. But $ p $ is odd, a contradiction. Since $ abc $ is a square, $ a $ and $ b $ determine $ c $, such as $ a = -1 $, $ b = -2 $, then $ c = 2 $. Since $ x + 1 > x > x - 1 $, and $ \rb{x + 1}x\rb{x - 1} = y^2 > 0 $, we either have $ x + 1 > x > x - 1 > 0 $, or $ x + 1 > 0 > x > x - 1 $. So either $ a, b < 0 $ and $ c > 0 $ or $ a, b, c > 0 $. So the only possibilities for $ a, b, c $ are
 $$ \rb{1, 1, 1}, \rb{-1, -1, 1}, \rb{1, 2, 2}, \rb{-1, -2, 2}, \rb{2, 1, 2}, \rb{-2, -1, 2}, \rb{2, 2, 1}, \rb{-2, -2, 1}. $$
 Consider the point $ \rb{x, y} = \rb{0, 0} $. Then $ x - 1 = -1 = -1\rb{1}^2 $, $ x = 0 $, $ x + 1 = 1 = 1\rb{1}^2 $, so $ a = -1 $, $ b = -1 $, $ c = 1 $. $ \rb{-1, 0} $ gives $ \rb{-2, -1, 2} $ and $ \rb{1, 0} $ gives $ \rb{2, 1, 2} $. Claim that there are no points $ \rb{x, y} $ of $ E\rb{\Q} $ giving $ \rb{a, b, c} = \rb{1, 2, 2} $, so $ x - 1 = u^2 $, $ x = 2v^2 $, $ x + 1 = 2w^2 $. Eliminating $ x $, we must solve $ 2v^2 - 1 = u^2 $, $ 2v^2 + 1 = 2w^2 $. Write $ u = U / Z $, $ v = V / Z $, $ w = W / Z $, for $ U, V, W, Z \in \Z $. $ 2V^2 - Z^2 = U^2 $, $ 2V^2 + Z^2 = 2W^2 $ so $ 2 \mid Z $ and $ 2 \mid U $. Then $ 2V^2 = U^2 + Z^2 \equiv 0 \mod 4 $ gives $ 2 \mid V $. Then $ 2 \mid W $. So $ 2 \mid U, V, W, Z $. Dividing by two and repeating, $ U = V = W = Z = 0 $, a contradiction. We will soon prove that the map
-$$ \function[\delta]{E\rb{\Q}}{\Q^* / \rb{\Q^*}^2 \times \Q^* / \rb{\Q^*}^2 \times \Q^* / \rb{\Q^*}^2}{\rb{x, y}}{\rb{a, b, c}} $$
+\begin{align*}
+\delta : E\rb{\Q} & \to \dfrac{\Q^*}{\rb{\Q^*}^2} \times \dfrac{\Q^*}{\rb{\Q^*}^2} \times \dfrac{\Q^*}{\rb{\Q^*}^2} \\
+\rb{x, y} & \mapsto \rb{a, b, c}
+\end{align*}
 is a group homomorphism. In particular, the image of $ \delta $ is a subgroup of the right hand side. We have seen that it contains $ \rb{1, 1, 1}, \rb{-1, -1, 1}, \rb{2, 1, 2}, \rb{-2, -1, 2} $. It does not contain $ \rb{1, 2, 2} $. So it also cannot contain $ \rb{-1, -2, 2}, \rb{2, 2, 1}, \rb{-2, -2, 1} $. So the image of $ \delta $ has order four. We will also show that $ Ker\rb{\delta} = 2E\rb{\Q} $. So by the first isomorphism theorem, we have $ E\rb{\Q} / 2E\rb{\Q} \cong \rb{\Z / 2\Z}^2 $. In particular, $ E\rb{\Q} / 2E\rb{\Q} $ is finite, for this choice of $ E $.
 \end{example*}
 
@@ -1118,6 +1190,8 @@ Then
 \end{enumerate}
 \end{theorem}
 
+\pagebreak
+
 \begin{lemma}
 \label{lem:8.3}
 Take $ E, K $ as above. If $ x - e_1, x - e_2, x - e_3 $ are all squares for some $ P = \rb{x, y} \in E\rb{K} $, then there exists $ Q \in E\rb{K} $ such that $ 2Q = P $.
@@ -1132,10 +1206,8 @@ $$ x_0 - e_2 = \rb{t_2 + t_1}\rb{t_2 + t_3}, \qquad x_0 - e_3 = \rb{t_3 + t_1}\r
 $ \rb{x_0 - e_1}\rb{x_0 - e_2}\rb{x_0 - e_3} = \rb{t_1 + t_2}^2\rb{t_2 + t_3}^2\rb{t_3 + t_1}^2 = y_0^2 $. So $ Q \in E\rb{K} $. Let $ y = mx + c $ be the tangent at $ Q $. $ y^2 = f\rb{x} = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3} $ gives
 \begin{align*}
 m
-& = \dfrac{f'\rb{x_0}}{2y_0} \\
-& = \dfrac{\rb{x_0 - e_2}\rb{x_0 - e_3} + \rb{x_0 - e_1}\rb{x_0 - e_3} + \rb{x_0 - e_1}\rb{x_0 - e_2}}{2y_0} \\
-& = \dfrac{\rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1}\rb{\rb{t_2 + t_3} + \rb{t_3 + t_1} + \rb{t_1 + t_2}}}{2\rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1}} \\
-& = t_1 + t_2 + t_3.
+& = \dfrac{f'\rb{x_0}}{2y_0} = \dfrac{\rb{x_0 - e_2}\rb{x_0 - e_3} + \rb{x_0 - e_1}\rb{x_0 - e_3} + \rb{x_0 - e_1}\rb{x_0 - e_2}}{2y_0} \\
+& = \dfrac{\rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1}\rb{\rb{t_2 + t_3} + \rb{t_3 + t_1} + \rb{t_1 + t_2}}}{2\rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1}} = t_1 + t_2 + t_3.
 \end{align*}
 Want $ P = 2Q $, that is $ -P + 2Q = O $, that is $ \rb{x, -y} $ needs to lie on the tangent line at $ Q $, that is $ -y = mx + c $. We know that $ y_0 = mx_0 + c $. So we need $ y + y_0 = \rb{x_0 - x} $. But
 $$ m\rb{x_0 - x} = \rb{t_1 + t_2 + t_3}\rb{t_1t_2 + t_2t_3 + t_3t_1} = \rb{t_1 + t_2}\rb{t_2 + t_3}\rb{t_3 + t_1} + t_1t_2t_3 = y_0 + y, $$
@@ -1154,16 +1226,17 @@ $$ \delta\rb{P_1}\delta\rb{P_2}\delta\rb{P_3} = \delta\rb{P_2}^2 = 1. $$
 \end{enumerate}
 So we may assume that no $ P_i $ is $ O $. So all the $ P_i $ lie on some line $ Y = mX + c $. Write $ P_i = \rb{x_i, y_i} $. Assume firstly that each $ y_i \ne 0 $. We need to prove that for each $ i $, $ \rb{x_1 - e_i}\rb{x_2 - e_i}\rb{x_3 - e_i} $ is a square. $ Y^2 = \rb{X - e_1}\rb{X - e_2}\rb{X - e_3} $ and $ Y = mX + c $, so
 $$ \rb{X - e_1}\rb{X - e_2}\rb{X - e_3} - \rb{mX + c}^2 = \rb{X - x_1}\rb{X - x_2}\rb{X - x_3}. $$
-So for each $ i $,
-$$ -\rb{me_i + c}^2 = \rb{e_i - x_1}\rb{e_i - x_2}\rb{e_i - x_3}, $$
-that is $ \rb{x_1 - e_i}\rb{x_2 - e_i}\rb{x_3 - e_i} = \rb{me_i + c}^2 $ is a square, as required. Suppose now that exactly one of $ P_1, P_2, P_3 $ has $ y_i = 0 $. Say $ P_1 = \rb{e_1, 0} $. The calculation we just did shows that the second and third coordinates of $ \delta\rb{P_1}, \delta\rb{P_2}, \delta\rb{P_3} $ are still squares. By the definition of $ \delta $, for any element of $ \rb{K^* / \rb{K^*}^2}^3 $ in $ Im\rb{\delta} $, the product of the three coordinates is always a square, so the first coordinate of $ \delta\rb{P_1}\delta\rb{P_2}\delta\rb{P_2} $ is also a square, as required. Now assume that at least two of the $ P_i $ have $ y_i = 0 $, that is satisfy $ 2P_i = O $. Since $ P_1 + P_2 + P_3 = O $, we have $ 2P_1 + 2P_2 + 2P_3 = O $. So in fact $ 2P_i = O $ for all $ i $. If for example also $ P_1 = P_2 $, then $ O = P_1 + P_2 + P_3 = 2P_1 + P_3 = P_3 $, but we are assuming that each $ P_i \ne O $. So without loss of generality $ P_1 = \rb{e_1, 0} $, $ P_2 = \rb{e_2, 0} $, $ P_3 = \rb{e_3, 0} $. Now follows from the definition. So $ \delta $ is a homomorphism.
+For each $ i $, $ -\rb{me_i + c}^2 = \rb{e_i - x_1}\rb{e_i - x_2}\rb{e_i - x_3} $, that is $ \rb{x_1 - e_i}\rb{x_2 - e_i}\rb{x_3 - e_i} = \rb{me_i + c}^2 $ is a square, as required. Suppose now that exactly one of $ P_1, P_2, P_3 $ has $ y_i = 0 $. Say $ P_1 = \rb{e_1, 0} $. The calculation we just did shows that the second and third coordinates of $ \delta\rb{P_1}, \delta\rb{P_2}, \delta\rb{P_3} $ are still squares. By the definition of $ \delta $, for any element of $ \rb{K^* / \rb{K^*}^2}^3 $ in $ Im\rb{\delta} $, the product of the three coordinates is always a square, so the first coordinate of $ \delta\rb{P_1}\delta\rb{P_2}\delta\rb{P_2} $ is also a square, as required. Now assume that at least two of the $ P_i $ have $ y_i = 0 $, that is satisfy $ 2P_i = O $. Since $ P_1 + P_2 + P_3 = O $, we have $ 2P_1 + 2P_2 + 2P_3 = O $. So in fact $ 2P_i = O $ for all $ i $. If for example also $ P_1 = P_2 $, then $ O = P_1 + P_2 + P_3 = 2P_1 + P_3 = P_3 $, but we are assuming that each $ P_i \ne O $. So without loss of generality $ P_1 = \rb{e_1, 0} $, $ P_2 = \rb{e_2, 0} $, $ P_3 = \rb{e_3, 0} $. Now follows from the definition. So $ \delta $ is a homomorphism.
 \item If $ P \in 2E\rb{K} $ gives $ \delta\rb{P} = 1 $ trivially as $ \delta\rb{2Q} = \delta\rb{Q}^2 = 1 $. Conversely, $ \delta\rb{P} = 1 $ gives $ P \in 2E\rb{K} $ by Lemma \ref{lem:8.3}.
 \end{enumerate}
 \end{proof}
 
-\lecture{27}{Tuesday}{04/12/18}
+\pagebreak
 
 $$ \delta : \dfrac{E\rb{K}}{2E\rb{K}} \cong Im\rb{\delta} = \cb{\rb{a, b, c} \in \rb{\dfrac{K^*}{\rb{K^*}^2}}^3 \ \Bigg| \ abc = 1} \subseteq \rb{\dfrac{K^*}{\rb{K^*}^2}}^3. $$
+
+\lecture{27}{Tuesday}{04/12/18}
+
 Next is prove that if $ K = \Q $, $ Im\rb{\delta} $ is finite.
 
 \begin{proposition}
@@ -1195,9 +1268,7 @@ Let $ E $ be an elliptic curve over $ \Q $ all of whose $ 2 $-torsion points are
 \end{theorem}
 
 \begin{proof}
-Write $ E $ as $ y^2 = f\rb{x} $. The condition on the $ 2 $-torsion points says that the roots of $ f\rb{x} $ are rational. After rescaling $ x, y $, we can assume that
-$$ y^2 = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3}, \qquad e_i \in \Z. $$
-Then by Theorem \ref{thm:8.2} and Proposition \ref{prop:8.5}, we have an injection
+Write $ E $ as $ y^2 = f\rb{x} $. The condition on the $ 2 $-torsion points says that the roots of $ f\rb{x} $ are rational. After rescaling $ x, y $, we can assume that $ y^2 = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3} $ for $ e_i \in \Z $. Then by Theorem \ref{thm:8.2} and Proposition \ref{prop:8.5}, we have an injection
 $$ \delta : \dfrac{E\rb{\Q}}{2E\rb{\Q}} \hookrightarrow \Q\rb{S, 2} \times \Q\rb{S, 2} \times \Q\rb{S, 2}, $$
 which is finite.
 \end{proof}
@@ -1211,6 +1282,8 @@ Since we assumed that $ E $ is $ y^2 = \rb{x - e_1}\rb{x - e_2}\rb{x - e_3} $, f
 \begin{example*}
 Let $ Y^2 = X^3 - X $. We saw that $ Im\rb{\delta} $ had at least four elements, but strictly less than eight elements. So $ Im\rb{\delta} $ has exactly four elements, so $ r = 0 $, that is $ E\rb{\Q} $ is finite.
 \end{example*}
+
+\pagebreak
 
 Consider the group homomorphism $ T \mapsto T $ by $ x \mapsto 2x $. The image is $ 2T $. The kernel is $ T\sb{2} $. So by the first isomorphism theorem,
 $$ \dfrac{T}{T\sb{2}} \cong 2T \qquad \implies \qquad \dfrac{\#T}{\#T\sb{2}} = \#\rb{\dfrac{T}{T\sb{2}}} = \#2T \qquad \implies \qquad \#\rb{\dfrac{T}{2T}} = \dfrac{\#T}{\#2T} = \#T\sb{2}. $$
@@ -1253,11 +1326,10 @@ that is $ P \in B $, that is $ A = B $ is finitely generated.
 Now $ A = E\rb{\Q} $. Start with axiom $ 3 $. For all $ K \in \R $ there exist finitely many $ P \in E\rb{\Q} $ such that $ h\rb{P} \le K $. Equivalently, $ H\rb{x_P} = H\rb{P} \le e^K $ for $ P = \rb{x_P, y_P} $. Any $ x_P $ corresponds to at most two points $ P $, so it suffices to prove there exist finitely many $ l / m $ such that $ \max\rb{\abs{l}, \abs{m}} \le e^K $. This is obvious.
 
 \begin{lemma}
-\hfill
-\begin{enumerate}
-\item For any $ Q \in E\rb{\Q} $ there exists $ C = C\rb{\Q} $ depending only on $ E, Q $ such that for all $ P \in E\rb{\Q} $, $ h\rb{P + Q} \le 2h\rb{P} + C $.
-\end{enumerate}
+For any $ Q \in E\rb{\Q} $ there exists $ C = C\rb{\Q} $ depending only on $ E, Q $ such that for all $ P \in E\rb{\Q} $, $ h\rb{P + Q} \le 2h\rb{P} + C $.
 \end{lemma}
+
+\pagebreak
 
 \begin{proof}
 It suffices to prove this for all but finitely many $ P $, so in particular without loss of generality $ P = \pm Q $, $ P \ne O $. The problem is trivial if $ Q = O $, just take $ C = O $, so assume $ Q \ne O $. Write $ P = \rb{x_P, y_P} $, $ Q = \rb{x_Q, y_Q} $. We can write $ \rb{x_P, y_P} = \rb{a / d^2, b / d^3} $, for some $ a, b, d \in \Z $, $ \rb{a, d} = \rb{b, d} = 1 $. This is because for all primes $ p $, either $ \abs{x}_p, \abs{y}_p \le 1 $ or $ \abs{x}_p = p^{2n} $, $ \abs{y}_p = p^{3n} $ for some $ p $. Similarly $ \rb{x_Q, y_Q} = \rb{e / g^2, f / g^3} $, $ \rb{e, g} = \rb{f, g} = 1 $. In particular, $ H\rb{P} = \max\rb{\abs{a}, \abs{d}^2} $. The $ x $-coordinate of $ P + Q $ is, by the addition formula, $ N / D $ where $ N = \rb{Bd^4 + Aad^2}g^4 + \rb{Aed^4 + ea^2}g^2 - 2bfdg + e^2ad^2 $ and $ D = a^2g^4 - 2ead^2g^2 + e^2d^4 $. So $ H\rb{P + Q} \le \max\rb{\abs{N}, \abs{D}} $. $ Q $ is fixed, so $ e, f, g $ are fixed, as are $ \abs{A}, \abs{B} $. $ H\rb{P}^2 = \max\rb{a^2, d^4} $. So just need to show that every term in $ N, D $ is bounded by a constant times $ \max\rb{a^2, d^4} $. Only difficulty is $ 2bfdg $ term in $ N $. But $ b^2 = a^3 + Aad^4 + Bd^6 $, so $ \rb{bd}^2 = a^3d^2 + Aad^6 + Bd^8 $, which is at most a constant times $ \max\rb{a, d^2}^4 $.

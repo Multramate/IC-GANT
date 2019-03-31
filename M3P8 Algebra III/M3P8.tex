@@ -1,6 +1,36 @@
 \def\module{M3P8 Algebra III}
 \def\lecturer{Dr David Helm}
 \def\term{Autumn 2018}
+\def\cover{
+$$
+\begin{tikzpicture}
+\draw [fill=lightgray, opacity=0.1, very thick] (0, 2) circle (7.5);
+\draw (0, 9) node{Modules};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, -1.25) ellipse (5 and 4.25);
+\draw (0, -5) node{Noetherian modules};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, 2) circle (6.5);
+\draw (0, 8) node{Rings};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, -0.75) ellipse (4.5 and 3.75);
+\draw (0, -4) node{Noetherian rings};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, 2) circle (5.5);
+\draw (0, 6.5) node{Integral domains};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, -0.25) ellipse (4.25 and 3.25);
+\draw (0, -3) node{Noetherian domains};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, 1.75) ellipse (4.75 and 4.25);
+\draw (0, 5) node{Integrally closed domains};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, 1.75) ellipse (4 and 2.75);
+\draw (0, 3.5) node{Unique factorisation domains};
+\draw [fill=lightgray, opacity=0.1, very thick] (0, 0.25) ellipse (4 and 2.75);
+\draw (0, -2) node{Dedekind domains};
+\draw (0, 2.5) node{Principal ideal domains};
+\draw [fill=gray, opacity=0.1, very thick] (0, 0.5) ellipse (2.5 and 1.5);
+\draw (0, 1.5) node{Euclidean domains};
+\draw [fill=gray, opacity=0.1, very thick] (0, 0) circle (1);
+\draw (0, 0) node{Fields};
+\end{tikzpicture}
+$$
+}
+\def\syllabus{Rings. Homomorphisms, ideals, and quotients. Factorisation. The Chinese remainder theorem. Fields and field extensions. Finite fields. $ R $-modules. Noetherian rings and modules. Polynomial rings in several variables. Integral extensions and algebraic integers. Dedekind domains. Integers in number fields. Introduction to algebraic geometry.}
 
 \def\thm{subsection}
 
@@ -77,6 +107,8 @@ $$ \rb{s +_R t} \cdot_R r = s \cdot_R r +_R t \cdot_R r. $$
 
 There is some redundancy here, of course. I have written things this way so that one obtains the definition of a noncommutative ring simply by removing the condition that multiplication is commutative. In this course, however, all rings will be commutative. When it is clear from the context what ring we are working with, we will write $ 0_R $ and $ 1_R $ as $ 0 $ and $ 1 $, $ a +_R b $ as $ a + b $, and $ a \cdot_R b $ as $ ab $.
 
+\pagebreak
+
 \begin{proposition}
 Let $ R $ be a ring. Then for all $ r \in R $, $ r \cdot_R 0_R = 0_R $.
 \end{proposition}
@@ -127,6 +159,8 @@ This defines a ring structure on $ \Z / n\Z $, once one checks that it is well-d
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
 \lecture{2}{Monday}{08/10/18}
 
 \subsection{Polynomial rings}
@@ -149,6 +183,8 @@ $$ \sum_{i, j = 0}^\infty r_{ij}X^iY^j, \qquad r_{ij} \in R, $$
 with only finitely many nonzero coefficients $ r_{ij} $ and define addition and multiplication in the usual way. It is not hard to see that all three approaches yield the same ring. If we identify the elements
 $$ \sum_{i = 0}^\infty \rb{\sum_{j = 0}^\infty r_{ij}X^j}Y^i \in \rb{R\sb{X}}\sb{Y}, \qquad \sum_{i = 0}^\infty \rb{\sum_{j = 0}^\infty r_{ij}Y^j}X^i \in \rb{R\sb{Y}}\sb{X}, \qquad \sum_{i, j = 0}^\infty r_{ij}X^iY^j \in R\sb{X, Y}, $$
 we see that addition and multiplication in any of these three rings gives the same answer. We will therefore primarily use notation like $ R\sb{X, Y} $ for polynomial rings in multiple variables, but we will occasionally need to know that this is the same as $ \rb{R\sb{X}}\sb{Y} $ or $ \rb{R\sb{Y}}\sb{X} $. The identifications we have made here are an example of isomorphisms of rings, a notion we will make precise later.
+
+\pagebreak
 
 \subsection{Subrings and extensions}
 
@@ -183,9 +219,7 @@ We can uniquely express any element $ a_0 + \dots + a_ni^n $ of $ \Z\sb{i} $ as 
 \end{proposition}
 
 \begin{proof}
-Given $ \sum_{n = 0}^\infty a_ni^n $ with only finitely many $ a_n $ nonzero, set
-$$ a = a_0 - a_2 + \dots \in \Z, \qquad b = a_1 - a_3 + \dots \in \Z. $$
-Then
+Given $ \sum_{n = 0}^\infty a_ni^n $ with only finitely many $ a_n $ nonzero, set $ a = a_0 - a_2 + \dots \in \Z $ and $ b = a_1 - a_3 + \dots \in \Z $. Then
 $$ \sum_{n = 0}^\infty a_ni^n = a + bi. $$
 This expression is clearly unique, as if $ a + bi = c + di $ in $ \C $ for $ a, b, c, d \in \Z $, then $ a = c $ and $ b = d $.
 \end{proof}
@@ -205,9 +239,11 @@ Since $ \pi $ is transcendental, this polynomial must be zero. Thus each $ a_n =
 
 An alternative way of defining the ring $ S\sb{\alpha} $ is to note that it is the smallest subring of $ R $ containing $ S $ and $ \alpha $. In one direction, any such subring contains every expression of the form $ r_0 + \dots + r_n\alpha^n $, with $ r_i \in S $, so any subring of $ R $ containing $ S $ and $ \alpha $ contains $ S\sb{\alpha} $. One can thus construct $ S\sb{\alpha} $ as the intersection of every subring of $ R $ containing $ S $ and $ \alpha $. Since the intersection of any collection of subrings of $ R $ is a subring of $ R $ it is clear that this intersection is equal to $ S\sb{\alpha} $ as defined above.
 
-\lecture{3}{Wednesday}{10/10/18}
+\pagebreak
 
 \subsection{Integral domains and rings of fractions}
+
+\lecture{3}{Wednesday}{10/10/18}
 
 \begin{definition}
 A \textbf{zero divisor} in a ring $ R $ is a nonzero element $ r $ of $ R $ such that there exists a nonzero $ s \in R $ with $ rs = 0 $. A ring $ R $ in which there are no zero divisors is called an \textbf{integral domain}.
@@ -300,6 +336,8 @@ we find that $ f\rb{-n} $ is the additive inverse of $ -\rb{1_R + \dots + 1_R} $
 
 Thus, for any ring $ R $, we can regard an integer as an element of $ R $ via this homomorphism.
 
+\pagebreak
+
 \subsection{Evaluation homomorphisms}
 
 Let $ R $ be a ring, and consider the ring $ R\sb{X} $ of polynomials in $ X $ with coefficients in $ R $. If $ s $ is an element of $ R $, then we can define a homomorphism $ R\sb{X} \to R $ by \textbf{evaluation at $ s $}. More precisely, given an element of $ R\sb{X} $ of the form
@@ -342,6 +380,8 @@ A homomorphism $ f : R \to S $ is injective if and only if its kernel is the zer
 \end{note*}
 
 The kernel of the homomorphism $ \Z \to R $ is either the zero ideal, or the ideal of multiples of $ n $ in $ \Z $ for some $ n > 0 $. We say that $ R $ has \textbf{characteristic zero} or \textbf{characteristic $ n $}, respectively. If not zero, the characteristic of $ R $ is the smallest $ n $ such that the sum of $ n $ copies of $ 1_R $ is equal to zero.
+
+\pagebreak
 
 \subsection{Ideals: examples and basic operations}
 
@@ -393,6 +433,8 @@ respectively. One has to check that these are well-defined, but this is not diff
 \begin{example*}
 If $ R = \Z $ and $ I $ is the ideal generated by $ n $, then $ R / I $ is the ring $ \Z / n\Z $ that we have already seen.
 \end{example*}
+
+\pagebreak
 
 There is a natural quotient homomorphism, \textbf{reduction mod $ I $},
 $$ \function{R}{\dfrac{R}{I}}{r}{r + I}. $$
@@ -505,6 +547,8 @@ $$ \rb{2}\rb{3} = \rb{1 + \sqrt{-5}}\rb{1 - \sqrt{-5}}. $$
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
 We will show later that a very mild finiteness condition on a domain $ R $, the condition that $ R $ is Noetherian, actually guarantees that $ 1 $ holds. Another way to interpret condition $ 2 $ is as follows.
 
 \begin{definition}
@@ -556,6 +600,8 @@ Let $ I $ be the union of all these ideals generated by $ r_0, r_1, \dots $. The
 
 Thus $ r $ has an irreducible divisor $ s_0 $.
 
+\pagebreak
+
 \begin{lemma}
 Let $ R $ be a PID. Every nonzero nonunit $ r \in R $ is a finite product of irreducibles.
 \end{lemma}
@@ -595,6 +641,8 @@ Any Euclidean domain is a PID.
 \begin{proof}
 Let $ R $ be a Euclidean domain, $ N $ be a Euclidean norm on $ R $, and $ I \subseteq R $ be a nonzero ideal of $ R $. Let $ n $ be the smallest integer such that there exists a nonzero element $ a \in I $ with $ N\rb{a} = n $ minimal, that is if $ b \in I $ and $ b \ne 0 $, then $ N\rb{b} < N\rb{a} $. Claim that $ I = \ab{a} $. Then for any $ b \in I $, we can write $ b = qa + r $ with $ N\rb{r} < N\rb{a} $ unless $ r = 0 $. But since $ N\rb{a} $ is the smallest possible norm in $ I $, we must have $ r = 0 $, so $ b = qa $. Thus $ I $ is generated by $ a $ and we are done.
 \end{proof}
+
+\pagebreak
 
 \subsection{Examples}
 
@@ -681,6 +729,8 @@ of maps for each $ i \in I $, we get a unique map
 $$ f : S \to \prod_i R_i, $$
 such that $ \pi_j \circ f = f_j $.
 
+\pagebreak
+
 \subsection{The Chinese remainder theorem}
 
 Let $ R $ be a ring, and let $ I_1, \dots, I_r $ be a finite collection of ideals of $ R $. We have the natural maps
@@ -724,6 +774,8 @@ and $ e_j $ will be congruent to $ 1 \mod I_j $ and zero mod $ I_i $ for all $ j
 $$ R \to \dfrac{R}{I_1} \times \dots \times \dfrac{R}{I_r} $$
 is surjective. The result follows.
 \end{proof}
+
+\pagebreak
 
 \subsection{Examples}
 
@@ -840,6 +892,8 @@ $ K\rb{X} $ is the \textbf{field of rational functions} on $ X $,
 $$ K\rb{X} = \dfrac{\cb{\dfrac{P\rb{X}}{Q\rb{X}} \ \Bigg| \ P, Q \in K\sb{X}, \ Q \ne 0}}{\sim}. $$
 \end{definition}
 
+\pagebreak
+
 Assume first that $ \alpha $ is transcendental over $ K $, that is $ I = \cb{0} $. Recall
 $$ I = \cb{P\rb{X} \in K\sb{X} \mid P\rb{\alpha} = 0}. $$
 So in this case there is no nonzero polynomial $ P \in K\sb{X} $ with $ P\rb{\alpha} = 0 $. In this case the map taking $ P\rb{X} $ to $ P\rb{\alpha} $ is an injection of $ K\sb{X} $ into $ K\rb{\alpha} \subseteq L $. In particular every nonzero element of $ K\sb{X} $ gets sent to a nonzero, hence invertible, element of $ L $. Thus the map from $ K\sb{X} $ to $ L $ extends to an injective map from the field of fractions of $ K\sb{X} $,
@@ -878,6 +932,8 @@ Suppose not. Let $ L / K $ be finite, and suppose $ \alpha \in L $ is transcende
 $$ \function{K\sb{X}}{K\rb{\alpha} \subseteq L}{X}{\alpha}. $$
 Since $ K\sb{X} $ is a polynomial ring in $ K\rb{\alpha} $, it is an infinite dimensional $ K $-vector space, so $ L $ cannot be finite over $ K $. More explicitly, there is also the following argument. Let $ d $ be the dimension of $ L $ over $ K $. Then for any $ \alpha $, the set $ 1, \dots, \alpha^d $ must be linearly dependent over $ K $. This gives a nonzero polynomial $ P $ such that $ P\rb{\alpha} = 0 $.
 \end{proof}
+
+\pagebreak
 
 \begin{corollary}
 Let $ L / K $ be a field extension, and suppose $ \alpha, \beta $ are elements of $ L $ algebraic over $ K $. Then $ \alpha + \beta $ and $ \alpha\beta $ are algebraic over $ K $. Moreover, if $ \alpha $ is nonzero then $ \alpha^{-1} $ is algebraic over $ K $.
@@ -976,6 +1032,8 @@ in $ K\sb{X} / \ab{P\rb{X}} $. Thus
 $$ \beta^{p^r} = c_0^{p^r} + \dots + c_{d - 1}^{p^r}\rb{X^{p^r}}^{d - 1} = c_0 + \dots + c_{d - 1}\rb{X^{p^r}}^{d - 1} = c_0 + \dots + c_{d - 1}X^{d - 1} = \beta. $$
 \end{proof}
 
+\pagebreak
+
 \begin{corollary}
 There exists a field $ K $ of characteristic $ p $ such that
 \begin{enumerate}
@@ -1039,9 +1097,11 @@ There exists a finite field of $ p^r $ elements.
 The field $ K $ we constructed has $ p^r $ elements.
 \end{proof}
 
-\lecture{10}{Friday}{26/10/18}
+\pagebreak
 
 \subsection{The multiplicative group}
+
+\lecture{10}{Friday}{26/10/18}
 
 Rather than show immediately that there is a unique finite field of $ p^r $ elements, we make a detour to study the multiplicative group of a finite field. This is not strictly necessary to prove uniqueness, but will simplify the proof, and is of interest in its own right. Let $ K $ denote a field of $ p^r $ elements. The goal of this section is to show that $ K^* $ is cyclic.
 
@@ -1049,12 +1109,7 @@ Rather than show immediately that there is a unique finite field of $ p^r $ elem
 As a multiplicative group, $ K^* $ is an abelian group of order $ p^r - 1 $, so by Lagrange's theorem, we have $ \alpha^{p^r - 1} = 1 $ for all $ \alpha \in K^* $.
 \end{note*}
 
-Recall for an abelian group $ A $, operation written additively, that the order of an element $ a $ of $ A $ is the smallest $ d \in \Z_{> 0} $ such that $ da = 0 $.
-\begin{itemize}
-\item The order of an element $ a $ of $ A $ divides the order of $ A $.
-\item If $ d'a = 0 $ for some $ d' \in \Z $ then the order of $ a $ divides $ d' $.
-\end{itemize}
-The order of an element $ a $ of $ K^* $ is the smallest $ d \in \Z_{> 0} $ such that $ a^d = 1 $. Since $ a^{p^r - 1} = 1 $, the order of $ a $ is a divisor of $ p^r - 1 $. On the other hand, if $ d $ is a divisor of $ p^r - 1 $, then any element of order dividing $ d $ is a root of the polynomial $ X^d - 1 $. Since $ K $ is a field, this polynomial has at most $ d $ roots, so we find that there are at most $ d $ elements of $ K^* $ of order dividing $ d $. Order of any element divides $ p^r - 1 $. Know $ X^{p^r - 1} - 1 $ has $ p^r - 1 $ distinct roots in $ K $. For $ d \mid p^r - 1 $, $ X^d - 1 \mid X^{p^r - 1} - 1 $, so $ X^d - 1 $ has exactly $ d $ roots in $ K $. That is, for all $ d \mid p^r - 1 $, $ K^* $ has exactly $ d $ elements of order dividing $ d $. In fact, we have the following.
+Recall for an abelian group $ A $, operation written additively, that the order of an element $ a $ of $ A $ is the smallest $ d \in \Z_{> 0} $ such that $ da = 0 $. The order of an element $ a $ of $ A $ divides the order of $ A $. If $ d'a = 0 $ for some $ d' \in \Z $ then the order of $ a $ divides $ d' $. The order of an element $ a $ of $ K^* $ is the smallest $ d \in \Z_{> 0} $ such that $ a^d = 1 $. Since $ a^{p^r - 1} = 1 $, the order of $ a $ is a divisor of $ p^r - 1 $. On the other hand, if $ d $ is a divisor of $ p^r - 1 $, then any element of order dividing $ d $ is a root of the polynomial $ X^d - 1 $. Since $ K $ is a field, this polynomial has at most $ d $ roots, so we find that there are at most $ d $ elements of $ K^* $ of order dividing $ d $. Order of any element divides $ p^r - 1 $. Know $ X^{p^r - 1} - 1 $ has $ p^r - 1 $ distinct roots in $ K $. For $ d \mid p^r - 1 $, $ X^d - 1 \mid X^{p^r - 1} - 1 $, so $ X^d - 1 $ has exactly $ d $ roots in $ K $. That is, for all $ d \mid p^r - 1 $, $ K^* $ has exactly $ d $ elements of order dividing $ d $. In fact, we have the following.
 
 \begin{proposition}
 \label{prop:6.4.1}
@@ -1076,9 +1131,7 @@ For any $ d $ dividing $ n $, the cyclic group $ \Z / n\Z $ contains a unique su
 \end{lemma}
 
 \begin{proof}
-The cyclic subgroup $ C $ of $ \Z / n\Z $ generated by $ n / d $ is clearly a subgroup of order $ d $. This has $ d $ elements
-$$ \sb{0}, \dots, \rb{d - 1}\sb{\dfrac{n}{d}}. $$
-Conversely, if $ x $ is an element of a subgroup of $ \Z / n\Z $ of order $ d $, then the order of $ x $ divides $ d $, so $ dx $ is divisible by $ n $, and hence, by unique factorisation, $ x $ is divisible by $ n / d $. Thus $ x $ is in $ C $ and the claim follows.
+The cyclic subgroup $ C $ of $ \Z / n\Z $ generated by $ n / d $ is clearly a subgroup of order $ d $. This has $ d $ elements $ \sb{0}, \dots, \rb{d - 1}\sb{\dfrac{n}{d}} $. Conversely, if $ x $ is an element of a subgroup of $ \Z / n\Z $ of order $ d $, then the order of $ x $ divides $ d $, so $ dx $ is divisible by $ n $, and hence, by unique factorisation, $ x $ is divisible by $ n / d $. Thus $ x $ is in $ C $ and the claim follows.
 \end{proof}
 
 As a consequence, we deduce the following.
@@ -1098,15 +1151,12 @@ Since every element of $ \Z / n\Z $ has order $ d $ for some $ d $ dividing $ n 
 \end{proof}
 
 \begin{proof}[Proof of Proposition \ref{prop:6.4.1}]
-Let $ A $ be as in Proposition \ref{prop:6.4.1}. We must show that $ A $ contains an element of order $ n $. In fact, we will show, by induction on $ d $, that $ A $ contains exactly $ \Phi\rb{d} $ elements of order $ d $ for all $ d \mid n $. In particular, $ A $ has $ \Phi\rb{n} > 0 $ elements of order $ n $, so it is cyclic. If $ d = 1 $, the only element of order one is the identity of $ A $. Since $ \Phi\rb{1} = 1 $ the base case holds. Assume the claim is true for all $ d' < d $. $ A $ has
-\begin{itemize}
-\item $ d $ elements of order dividing $ d $, and
-\item $ \Phi\rb{d} $ elements of order $ d' $ for $ d' \mid d $ and $ d' < d $,
-\end{itemize}
-so the number of elements of exact order $ d $ is
+Let $ A $ be as in Proposition \ref{prop:6.4.1}. We must show that $ A $ contains an element of order $ n $. In fact, we will show, by induction on $ d $, that $ A $ contains exactly $ \Phi\rb{d} $ elements of order $ d $ for all $ d \mid n $. In particular, $ A $ has $ \Phi\rb{n} > 0 $ elements of order $ n $, so it is cyclic. If $ d = 1 $, the only element of order one is the identity of $ A $. Since $ \Phi\rb{1} = 1 $ the base case holds. Assume the claim is true for all $ d' < d $. $ A $ has $ d $ elements of order dividing $ d $, and $ \Phi\rb{d} $ elements of order $ d' $ for $ d' \mid d $ and $ d' < d $, so the number of elements of exact order $ d $ is
 $$ d - \sum_{d' \mid d, \ d' < d} \Phi\rb{d'}. $$
 By Corollary \ref{cor:6.4.5}, this is precisely $ \Phi\rb{d} $.
 \end{proof}
+
+\pagebreak
 
 \subsection{Uniqueness}
 
@@ -1210,6 +1260,9 @@ $$ \rb{r + I} \cdot m = rm. $$
 If $ r + I = r' + I $, then $ r - r' \in I $, so
 $$ rm - r'm = \rb{r - r'}m = 0, $$
 by assumption.
+
+\pagebreak
+
 \item Let $ R = \Z $, and let $ M $ be an abelian group. Then $ M $ has the unique natural structure of $ \Z $-module, as follows. Property $ 3 $ from the module axioms shows that
 $$ n \cdot m =
 \begin{cases}
@@ -1266,6 +1319,8 @@ r\rb{m_1, m_2} & = \rb{rm_1, rm_2},
 for $ m_1, m_1' \in M_1 $, $ m_2, m_2' \in M_2 $, and $ r \in R $.
 \end{definition}
 
+\pagebreak
+
 \begin{example*}
 Let $ M $ be an $ R $-module and $ I $ an ideal of $ R $. Then we can form the $ R $-submodule $ IM $ of $ M $ consisting of all elements of $ M $ of the form
 $$ i_1m_1 + \dots + i_rm_r, $$
@@ -1318,6 +1373,8 @@ such that $ \overline{f}\rb{m + N} = f\rb{m} $ for all $ m \in M $. In particula
 The proof is identical to that for quotient rings, and will be omitted.
 \end{proof}
 
+\pagebreak
+
 \subsection{Free modules}
 
 \begin{definition}
@@ -1367,6 +1424,8 @@ $$ \rb{m, m'} = r_1\rb{s_1, 0} + \dots + r_m\rb{s_m, 0} + r_1'\rb{0, s_1'} + \do
 Thus $ S_1 \cup S_2 $ is a basis for $ F_1 \oplus F_2 $, which immediately proves the claim.
 \end{proof}
 
+\pagebreak
+
 Free modules have the following universal property.
 
 \begin{proposition}[Universal property of free modules]
@@ -1407,9 +1466,11 @@ Thus $ M $ is isomorphic to $ F_S $. Since $ M $ was arbitrary, any $ R $-module
 It is also true, but harder to prove, that if $ M, N $ are free of different ranks, then $ M \ncong N $.
 \end{note*}
 
-\lecture{14}{Monday}{05/11/18}
+\pagebreak
 
 \subsection{Generators and relations}
+
+\lecture{14}{Monday}{05/11/18}
 
 Now let $ M $ be any $ R $-module, and let $ S = \cb{m_1, \dots, m_t} $ be a finite subset of $ M $ generating $ M $. Then we have a natural map
 $$ \function{F_S}{M}{e_i}{m_i \in S}, $$
@@ -1487,6 +1548,8 @@ Every ideal of $ R $ is principal, hence finitely generated.
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
 \subsection{Finitely generated modules over Noetherian rings}
 
 Plan is
@@ -1523,6 +1586,8 @@ Then
 $$ n = f\rb{\widetilde{n}} = r_1f\rb{n_1} + \dots + r_sf\rb{n_s}. $$
 \end{enumerate}
 \end{proof}
+
+\pagebreak
 
 \begin{proposition}
 Let $ M $ be an $ R $-module, let $ N $ be a Noetherian $ R $-submodule of $ M $, and suppose that $ M / N $ is Noetherian. Then $ M $ is Noetherian.
@@ -1617,6 +1682,8 @@ $$ P\rb{X} + X^{n - m}Q\rb{X} = \rb{a + b}X^{n + m} + \dots, $$
 and the latter polynomial is in $ I $ so $ a + b \in J $. Thus $ J $ is closed under addition, and is therefore an ideal.
 \end{proof}
 
+\pagebreak
+
 Now since $ R $ is Noetherian, $ J $ is finitely generated, say by $ a_1, \dots, a_s \in R $. By definition of $ J $, there are thus polynomials $ P_1, \dots, P_s $ in $ I $, of degrees $ d_1, \dots, d_n $, such that
 $$ P_i = a_iX^{d_i} + \dots $$
 has leading coefficient $ a_i $ for all $ i $. Let $ N $ be the largest of the $ d_i $.
@@ -1657,6 +1724,8 @@ $$ T\rb{X} = r_1T_1\rb{X} + \dots + r_kT_k\rb{X}, $$
 so
 $$ Q\rb{X} = R_1\rb{X}P_1\rb{X} + \dots + R_s\rb{X}P_s\rb{X} + r_1T_1\rb{X} + \dots + r_kT_k\rb{X}. $$
 \end{proof}
+
+\pagebreak
 
 As a corollary, we deduce the following.
 
@@ -1738,6 +1807,8 @@ Gauss' lemma shows that there exist $ \alpha \in K^* $ such that
 $$ \alpha Q\rb{X} \in R\sb{X}, \qquad \alpha Q\rb{X} \mid P\rb{X} \in R\sb{X}. $$
 \end{proof}
 
+\pagebreak
+
 We are now in a position to prove the following.
 
 \begin{theorem}
@@ -1788,6 +1859,8 @@ Let $ K $ be any field, and $ P\rb{X} \in K\sb{X} $ of degree two or three. Then
 Any nontrivial factor of $ P\rb{X} $ would have to have degree one or two. Either way, if $ P\rb{X} $ is reducible it must have a linear factor.
 \end{proof}
 
+\pagebreak
+
 Slightly less trivially, if $ K $ is finite there is a necessary and sufficient
 criterion for irreducibility. Let $ K = \F_q $ be a finite field with $ q = p^s $ elements.
 
@@ -1822,6 +1895,8 @@ $$ P\rb{X} = c_0 + \dots + c_{d - 1}X^{d - 1} + X^d, $$
 then define a polynomial $ Q_r\rb{X} $ by
 $$ Q_r\rb{X} = r^dP\rb{\dfrac{X}{r}} = c_0r^d + \dots + c_{d - 1}rX^{d - 1} + X^d. $$
 It is easy to see that $ Q_r\rb{X} $ is irreducible in $ K\sb{X} $ if and only if $ P\rb{X} $ is. Moreover, we can choose $ r $ so that $ Q_r\rb{X} $ has coefficients in $ R $. We are thus reduced to the problem of deciding whether a monic polynomial with coefficients in $ R $ is irreducible in $ K\sb{X} $. Moreover, we have shown that such a polynomial $ Q_r\rb{X} $ is irreducible in $ K\sb{X} $ if and only if it is irreducible in $ R\sb{X} $. Therefore a question is given $ Q\rb{X} $ monic in $ R\sb{X} $, how can we prove or test irreducibility? We therefore get the following nice criterion for irreducibility.
+
+\pagebreak
 
 \begin{proposition}
 Let $ Q\rb{X} $ be a monic polynomial in $ R\sb{X} $, and let $ \pp $ be a prime ideal of $ R $. Suppose that the mod $ \pp $ reduction $ \overline{Q}\rb{X} $ is irreducible in $ R / \pp\sb{X} $. Then $ Q\rb{X} $ is irreducible in $ R\sb{X} $.
@@ -1869,6 +1944,8 @@ be a monic polynomial in $ R\sb{X} $, and let $ \pp $ be a prime ideal of $ R $.
 \end{itemize}
 Then $ Q\rb{X} $ is irreducible in $ R\sb{X} $.
 \end{proposition}
+
+\pagebreak
 
 \begin{proof}
 Suppose $ Q\rb{X} $ is reducible. Then we can write
@@ -1973,6 +2050,8 @@ Suppose $ R $ is a Noetherian ring, and $ S $ is a ring containing $ R $ that is
 Let $ \alpha \in S $. The ring $ R\sb{\alpha} $ is an $ R $-submodule of $ S $, so it is finitely generated as an $ R $-module, so $ \alpha $ is integral over $ R $. Every ideal of $ S $ is an $ R $-submodule of $ S $, thus finitely generated as an $ R $-module since $ R $ is Noetherian, and hence also finitely generated as an $ S $-module, so $ S $ is a Noetherian ring.
 \end{proof}
 
+\pagebreak
+
 \begin{lemma}
 \label{lem:10.1.6}
 Let $ R \subseteq S \subseteq T $ be rings, such that $ S $ is finitely generated as an $ R $-module and $ T $ is finitely generated as an $ S $-module. Then $ T $ is finitely generated as an $ R $-module.
@@ -2025,6 +2104,8 @@ Let $ t $ be an element of $ R $ integral over $ R' $. Then $ R'\sb{t} $ is a fi
 \begin{example*}
 $ \Z\sb{\sqrt{-3}} $ is integral over $ \Z $. As a $ \Z $-module, $ \Z\sb{\sqrt{-3}} $ is generated by $ 1, \sqrt{-3} $. It is not integrally closed. $ \tfrac{1 + \sqrt{-3}}{2} $ is in the field of fractions of $ \Z\sb{\sqrt{-3}} $ and is a root of $ X^2 - X + 1 $.
 \end{example*}
+
+\pagebreak
 
 \begin{theorem}
 Let $ R $ be a UFD. Then $ R $ is integrally closed.
@@ -2130,6 +2211,8 @@ Let $ \pp $ be a prime ideal of any ring $ R $, let $ I, J \subseteq R $ be idea
 Suppose that $ \pp $ does not contains $ I $, and fix an $ r \in I $ such that $ r $ is not in $ \pp $. Then for all $ s \in J $, the product $ rs $ lies in $ IJ $ and hence in $ \pp $. Since $ r $ does not lie in $ \pp $, and $ \pp $ is prime, we must have $ s \in \pp $.
 \end{proof}
 
+\pagebreak
+
 Note the resemblance of this to the property, $ p \mid ab $ implies $ p \mid a $ or $ p \mid b $ for $ p $ irreducible, which holds in UFDs and implies unique factorisation. We might hope that the above result thus implies unique factorisation into primes for arbitrary rings, but this is too much to ask for. The problem is that ideal multiplication is usually badly behaved compared to multiplication of elements in integral domains. Recall that for $ I, J \subseteq R $ ideals, $ IJ $ is the ideal generated by all elements of the form $ rs $ for $ r \in I $, $ s \in J $. In particular if $ r_1, \dots, r_n $ generate $ I $ and $ s_1, \dots, s_m $ generate $ J $ then
 $$ r_1s_1, \dots, r_1s_m, \dots, r_ns_1, \dots, r_ns_m $$
 generate $ IJ $.
@@ -2171,6 +2254,8 @@ $$ \pp_1^{n_1} \dots \pp_s^{n_s}, $$
 where $ n_i \in \Z $ and the $ \pp_i $ are nonzero prime ideals.
 \end{itemize}
 \end{theorem}
+
+\pagebreak
 
 \lecture{23}{Monday}{26/11/18}
 
@@ -2221,6 +2306,8 @@ gives $ x $ satisfies a monic polynomial with coefficients in $ R $. Thus $ x $ 
 
 When $ R $ is not integrally closed this is false.
 
+\pagebreak
+
 \begin{example*}
 If $ R = \Z\sb{\sqrt{-3}} $, $ I \subset R $, and $ x = \tfrac{1 + \sqrt{-3}}{2} $, then
 $$ xI = \ab{1 + \sqrt{-3}, -1 + \sqrt{-3}} = \ab{2, 1 + \sqrt{-3}} = I. $$
@@ -2267,6 +2354,8 @@ $$ II^{-1} = \tfrac{1}{r}J^{-1} \cdot rJ = JJ^{-1} = R. $$
 
 Lecture 24 is a problem class.
 
+\pagebreak
+
 \lecture{25}{Friday}{30/11/18}
 
 It remains to show that every fractional ideal of $ R $ factors uniquely as a product of prime powers. The hard part is showing such factorisations exist, and we make heavy use of the fact that the fractional ideals are a group. Uniqueness is then almost an afterthought.
@@ -2300,6 +2389,8 @@ and we must show that $ m_i = n_i $ for all $ i $. Suppose this is not the case.
 $$ \pp_1^{n_1} \dots \pp_s^{n_s} = \qq_1^{m_1} \dots \qq_t^{m_t}, $$
 where the primes $ \cb{\pp_i}, \cb{\qq_j} $ are all distinct and all powers $ a_i, b_j $ are positive. Claim that both products must be empty under these assumptions. Recall that if $ R $ is Noetherian, $ \pp $ prime, $ I, J $ ideals, then $ \pp $ contains $ IJ $ gives $ \pp $ contains $ I $ or $ \pp $ contains $ J $. If one product, say the $ \pp_i $'s, is nonempty, then since $ \pp_1 $ divides the left hand side it also divides the right hand side, and thus contains one of the $ \qq_i $'s for some $ i $. Since $ \pp_i $ and $ \qq_j $ are maximal in a Dedekind domain, $ \pp_1 = \qq_i $, which contradicts disjointness and is impossible.
 \end{proof}
+
+\pagebreak
 
 \subsection{Ideal class groups}
 
@@ -2369,6 +2460,8 @@ $$ N_{L / K}\rb{\alpha\alpha'} = \det\rb{M_{\alpha\alpha'}} = \det\rb{M_\alpha}\
 
 We will prove that if $ R $ is a PID or a Dedekind domain, such as $ \Z $, $ K $ its field of fractions, $ L / K $ finite such that $ Tr_{L / K} $ is not the zero map, then the integral closure of $ R $ in $ L $ is Dedekind.
 
+\pagebreak
+
 \lecture{26}{Monday}{03/12/18}
 
 \begin{proposition}
@@ -2421,7 +2514,7 @@ $$
 \beta_i & \beta_i\alpha & \beta_i\alpha \\
 \vdots & \vdots & \vdots \\
 \beta_i\alpha^{n - 2} & \beta_i\alpha^{n - 1} & \beta_i\alpha^{n - 1} \\
-\beta_i\alpha^{n - 1} & \beta_i\alpha^n & \beta_i\rb{-a_{n - 1}alpha^{n - 1} - \dots - a_0} \\
+\beta_i\alpha^{n - 1} & \beta_i\alpha^n & \beta_i\rb{-a_{n - 1}\alpha^{n - 1} - \dots - a_0} \\
 \end{array}.
 $$
 $ M_\alpha $ is block diagonal, consisting of $ d $ blocks along the diagonal, each of which is the $ n $ by $ n $ matrix above,
@@ -2430,6 +2523,8 @@ $$ Tr\rb{M_\alpha} = \rb{Tr\rb{C_\alpha}} \cdot d = -da_{n - 1}, \qquad \det\rb{
 so the claim follows.
 \end{itemize}
 \end{proof}
+
+\pagebreak
 
 \begin{remark}
 If $ L / K $ is finite, $ Tr_{L / K}\rb{1} = \sb{L : K} $, considered as an element of $ K $. The map $ Tr_{L / K} : L \to K $ is sometimes the zero map. However, this does not happen if $ K $ has characteristic $ char\rb{K} = 0 $ or if the degree $ d = \sb{L : K} $ is relatively prime to the characteristic of $ K $, since the above Proposition \ref{prop:12.2.2} shows that $ Tr_{L / K}\rb{1} = d \ne 0 $.
@@ -2487,6 +2582,8 @@ S \arrow[twoheadrightarrow]{r} & L
 \end{tikzcd}.
 $$
 
+\pagebreak
+
 \lecture{27}{Wednesday}{05/12/18}
 
 To do this, choose a $ K $-basis $ \beta_1, \dots, \beta_d $ for $ L $ over $ K $. We have seen that for each $ i $ there exists $ r_i \in R^* $ such that $ r_i\beta_i \in S $, so, replacing $ \beta_i $ by $ r_i\beta_i $, we may assume that the $ \beta_i $ all lie in $ S $. Let $ M \subseteq S $ be the $ R $-module in $ S $ spanned by the $ \beta_i $, and let $ M^* $ denote
@@ -2529,6 +2626,8 @@ $$ Tr_{L / K}\rb{xy} = b_1Tr_{L / K}\rb{\beta_1x} + \dots + \beta_dTr_{L / K}\rb
 So $ Tr_{L / K}\rb{xy} = 0 $ for all $ y \in L $. But $ x \ne 0 $. Setting $ y = x^{-1}z $, we find $ Tr_{L / K}\rb{z} = 0 $ for all $ z \in L $. But we assumed $ Tr_{L / K} \ne 0 $.
 \end{proof}
 
+\pagebreak
+
 \begin{corollary}
 $ M^* $ is a free $ R $-module of rank $ d $.
 \end{corollary}
@@ -2549,9 +2648,7 @@ $ S $ is a finitely generated $ R $-module.
 $ S $ is an $ R $-submodule of the finitely generated $ R $-module $ M^* $, and, since $ R $ is Noetherian, $ S $ is therefore finitely generated as an $ R $-module.
 \end{proof}
 
-Thus $ S $ is Noetherian. Now it remains to prove that every nonzero prime ideal $ \pp $ of $ S $ is maximal. Let $ \pp $ be a nonzero prime ideal of $ S $, and let $ s $ be an element of $ \pp $. Consider the intersection $ \qq = \pp \cap R $. Then $ \qq $ is a prime ideal of $ R $. Claim that $ \qq = \pp \cap R $ is a nonzero prime ideal of $ R $. Let $ Q\rb{X} $ be the minimal polynomial of $ s $ over $ K $, then $ s $ is integral gives $ Q\rb{X} $ has coefficients in $ R $. If
-$$ Q\rb{X} = X^r + a_{r - 1}X^{r - 1} + \dots + a_0, $$
-where $ a_0 \ne 0 $ and $ Q\rb{X} $ is irreducible, we then have
+Thus $ S $ is Noetherian. Now it remains to prove that every nonzero prime ideal $ \pp $ of $ S $ is maximal. Let $ \pp $ be a nonzero prime ideal of $ S $, and let $ s $ be an element of $ \pp $. Consider the intersection $ \qq = \pp \cap R $. Then $ \qq $ is a prime ideal of $ R $. Claim that $ \qq = \pp \cap R $ is a nonzero prime ideal of $ R $. Let $ Q\rb{X} $ be the minimal polynomial of $ s $ over $ K $, then $ s $ is integral gives $ Q\rb{X} $ has coefficients in $ R $. If $ Q\rb{X} = X^r + a_{r - 1}X^{r - 1} + \dots + a_0 $, where $ a_0 \ne 0 $ and $ Q\rb{X} $ is irreducible, we then have
 $$ 0 = Q\rb{s} = a_0 + \dots + a_{r - 1}s^{r - 1} + s^r, $$
 and thus lie in $ R $. Rewriting, we get
 $$ -a_0 = s\rb{a_1 + \dots + a_{r - 1}s^{r - 2} + s^{r - 1}}. $$
@@ -2640,6 +2737,8 @@ In other words, $ Z\rb{S} $ is the set of \textbf{common zeros} of all the polyn
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
 Note that we have the following.
 
 \begin{lemma}
@@ -2690,6 +2789,8 @@ This need not be equal for $ X $ arbitrary. If $ X $ is not an affine algebraic 
 $$ X = \cb{\rb{n, 0} \mid \rb{n \in \Z}} \subseteq \A_\C^2, \qquad I\rb{X} = \cb{P \in \C\sb{X, Y} \mid \forall n \in \Z, \ P\rb{n, 0} = 0}. $$
 $ P\rb{X, 0} \in \C\sb{X} $ is a polynomial that vanishes at every $ n \in \Z $, so $ P\rb{X, 0} = 0 $. So $ Y \mid P\rb{X, Y} $, so $ I\rb{X} = \ab{Y} $. Thus $ Z\rb{I\rb{X}} $ is the $ Y $-axis.
 \end{example*}
+
+\pagebreak
 
 One might thus hope that similarly $ I\rb{Z\rb{J}} = J $ for any ideal $ J $ of $ K\sb{X_1, \dots, X_n} $. This cannot be literally true, for the following reason. Recall that
 $$ rad\rb{I} = \cb{r \in K\sb{X_1, \dots, X_n} \mid \exists m, \ r^m \in I}. $$
@@ -2752,6 +2853,8 @@ $$ J = I\rb{Z\rb{J}} \subseteq I\rb{\cb{p}} = \mm_p, $$
 so $ J = \mm_p $.
 \end{proof}
 
+\pagebreak
+
 \begin{proposition}
 Let $ J_1, J_2 \subseteq K\sb{X_1, \dots, X_n} $ be ideals. Then
 $$ Z\rb{J_1 + J_2} = Z\rb{J_1} \cap Z\rb{J_2}, \qquad Z\rb{J_1 \cap J_2} = Z\rb{J_1} \cup Z\rb{J_2}. $$
@@ -2805,6 +2908,8 @@ in which case $ g \in I\rb{X} $. So $ I\rb{X} $ is prime. Conversely, suppose $ 
 $$ I\rb{X} = I\rb{Y} \cap I\rb{Z}, $$
 so $ I\rb{X} $ contains the product $ I\rb{Y}I\rb{Z} $. Since $ I\rb{X} $ is prime, either $ I\rb{X} $ contains $ I\rb{Y} $, in which case $ X = Y $, or $ I\rb{X} $ contains $ I\rb{Z} $, in which case $ X = Z $.
 \end{proof}
+
+\pagebreak
 
 \begin{definition}
 An affine algebraic set $ X $ has \textbf{Krull dimension} $ d $ if $ d $ is the length of the largest increasing tower of irreducible affine algebraic subsets
@@ -2864,6 +2969,8 @@ Every radical ideal in $ K\sb{X_1, \dots, X_n} $ is uniquely expressible as a fi
 
 This is a special case of a very general ring-theoretic phenomenon known as \textbf{primary decomposition}, which was discovered via the sort of geometric considerations we see above.
 
+\pagebreak
+
 \subsection{Proof of the Nullstellensatz}
 
 The ideas above rely heavily on the correspondence between radical ideals and affine algebraic sets, and thus ultimately on the Nullstellensatz. We now give a proof of the Nullstellensatz. The first step is to show that to prove the Nullstellensatz it suffices to prove the following, seemingly much weaker, special case, the so-called weak Nullstellensatz.
@@ -2896,6 +3003,8 @@ is a polynomial in the $ X_i $ we find that $ P^m \in I $ for $ m $ sufficiently
 \end{proof}
 
 It remains to prove the weak Nullstellensatz. This requires some new ideas. The following approach is due to Emmy Noether.
+
+\pagebreak
 
 \begin{definition}
 Let $ R $ be a $ K $-algebra, that is a ring together with a map $ K \to R $. We say that elements $ y_1, \dots, y_s $ of $ R $ are \textbf{algebraically independent} over $ K $ if there is no nonzero polynomial $ P\rb{X_1, \dots, X_s} \in K\sb{X_1, \dots, X_s} $ such that $ P\rb{y_1, \dots, y_s} = 0 $. Equivalently, $ y_1, \dots, y_s $ are algebraically independent if and only if the map

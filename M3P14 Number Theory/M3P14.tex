@@ -1,6 +1,21 @@
 \def\module{M3P14 Number Theory}
 \def\lecturer{Prof Toby Gee}
 \def\term{Autumn 2018}
+\def\cover{
+\begin{align*}
+\pi
+& = 3 + \cfrac{1}{7 + \cfrac{1}{15 + \cfrac{1}{1 + \cfrac{1}{292 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{\ddots}}}}}}}} \\
+% & = 3 + \cfrac{1}{7 + \cfrac{1}{15 + \cfrac{1}{1 + \cfrac{1}{292 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{2 + \cfrac{1}{1 + \cfrac{1}{3 + \cfrac{1}{1 + \cfrac{1}{\ddots}}}}}}}}}}}} \\
+& = 0 + \cfrac{4}{1 + \cfrac{1^2}{2 + \cfrac{3^2}{2 + \cfrac{5^2}{\ddots}}}}
+= 0 + \cfrac{4}{1 + \cfrac{1^2}{3 + \cfrac{2^2}{5 + \cfrac{3^2}{\ddots}}}}
+= 3 + \cfrac{1^2}{6 + \cfrac{3^2}{6 + \cfrac{5^2}{6 + \cfrac{7^2}{\ddots}}}} \\
+& = 2 + \cfrac{2}{\tfrac{1}{1} + \cfrac{1}{\tfrac{1}{2} + \cfrac{1}{\tfrac{1}{3} + \cfrac{1}{\ddots}}}}
+= 2 + \cfrac{2}{1 + \cfrac{1 \cdot 2}{1 + \cfrac{2 \cdot 3}{1 + \cfrac{3 \cdot 4}{\ddots}}}}
+= 2 + \cfrac{4}{3 + \cfrac{1 \cdot 3}{4 + \cfrac{3 \cdot 5}{4 + \cfrac{5 \cdot 7}{\ddots}}}} \\
+& = 3 + \cfrac{1^3}{6 + \cfrac{1^3 + 2^3}{6 + \cfrac{1^3 + 2^3 + 3^3 + 4^3}{6 + \cfrac{1^3 + 2^3 + 3^3 + 4^3 + 5^3 + 6^3}{6 + \cfrac{1^3 + 2^3 + 3^3 + 4^3 + 5^3 + 6^3 + 7^3 + 8^3}{\ddots}}}}}
+\end{align*}
+}
+\def\syllabus{Prime numbers and factorisation. Euclid's algorithm and consequences. Congruences. The structure of $ \unit{n} $. Primality testing and factorisation. RSA algorithm. Quadratic reciprocity. Sums of squares. Pell's equation. Continued fractions. Diophantine approximation. Primes in arithmetic progressions. Arithmetic functions. The distribution of prime numbers.}
 
 \input{../style/header}
 
@@ -87,6 +102,9 @@ Take $ q = \fb{a / b} $. By definition $ 0 \le a / b - q < 1 $, that is $ 0 \le 
 This algorithm terminates because $ \abs{a} + \abs{b} $ decreases when we apply Step $ 2 $.
 
 \begin{example*}
+\hfill
+
+\begin{minipage}{0.5\textwidth}
 \begin{align*}
 \rb{120, 87}
 & = \rb{87, 33} & 120 = 87 + 33 \\
@@ -96,6 +114,8 @@ This algorithm terminates because $ \abs{a} + \abs{b} $ decreases when we apply 
 & = \rb{9, 3} & 12 = 9 + 3 \\
 & = \rb{3, 0} & 9 = 3\rb{3} + 10.
 \end{align*}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
 \begin{align*}
 3
 & = 12 - 9 \\
@@ -108,6 +128,7 @@ This algorithm terminates because $ \abs{a} + \abs{b} $ decreases when we apply 
 & = 8\rb{120 - 87} - 3\rb{87} \\
 & = 8\rb{120} - 11\rb{87}.
 \end{align*}
+\end{minipage}
 \end{example*}
 
 \begin{theorem}
@@ -118,6 +139,8 @@ If $ a, b \in \Z $, not both zero, then there exist $ r, s \in \Z $ such that $ 
 \begin{proof}
 Exercise: idea is to write $ \rb{a_n, b_n} $ for the sequence of pairs in Euclid's algorithm, and use downwards induction on $ n $.
 \end{proof}
+
+\pagebreak
 
 \subsection{Unique factorisation}
 
@@ -185,6 +208,8 @@ with $ p_i, q_i $ prime. Then without loss of generality suppose $ r, s \ge 1 $.
 $$ p_2 \dots p_r = q_1 \dots q_i \dots q_s. $$
 Since this product is smaller than $ n $, by the inductive hypothesis we must have $ r - 1 = s - 1 $ and the $ p_i $, except $ p_1 $, are a rearrangement of the $ q_i $, except $ q_i $.
 \end{proof}
+
+\pagebreak
 
 \subsection{Linear diophantine equations}
 
@@ -265,9 +290,11 @@ So $ \Z / p\Z $ is a ring with the property that every non-zero element has a mu
 
 Thus every non-zero congruence class mod $ p $ is a unit, 
 
-\lecture{3}{Wednesday}{10/10/18}
+\pagebreak
 
 \subsection{Linear congruence equations}
+
+\lecture{3}{Wednesday}{10/10/18}
 
 Consider the question of solving
 $$ ax \equiv b \mod c, \qquad a, b, c, x \in \Z. $$
@@ -375,6 +402,8 @@ $$ 2^2 = 4, \qquad 2^3 = 3, \qquad 2^4 = 1 $$
 in $ \unit{5} $. So $ \unit{5} $ is cyclic of order four.
 \end{example*}
 
+\pagebreak
+
 Next is $ \unit{p} $ is cyclic of order $ p - 1 $ for any prime $ p $.
 
 \lecture{4}{Friday}{12/10/18}
@@ -439,6 +468,8 @@ Induction on $ d = \deg\rb{P} $. $ d = 1 $ is obvious. If $ P $ has no roots, th
 $$ P\rb{X} = \rb{X - \alpha}Q\rb{X}, $$
 $ Q\rb{X} $ has degree $ d - 1 $, so we are done by induction.
 \end{proof}
+
+\pagebreak
 
 \begin{corollary}
 \label{cor:23}
@@ -535,6 +566,8 @@ $$ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8, $$
 so every element has order two.
 \end{itemize}
 \end{example*}
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:27}
@@ -635,6 +668,8 @@ Let $ n  = 6077 $. $ 77^2 < 6077 < 78^2 $, so
 Thus $ 6077 = 81^2 - 22^2 = \rb{103}\rb{59} $.
 \end{example*}
 
+\pagebreak
+
 There exist algorithms for factoring $ n $ which run in better than exponential time in $ \log n $, such as the quadratic sieve and the general number field sieve. The following is the \textbf{quadratic sieve}.
 
 \begin{example*}
@@ -673,9 +708,11 @@ This step, solving linear equations in $ \Z / 2\Z $, can be done efficiently. Th
 $ m^2 = 1649 \equiv 2 \mod 3 $ has no solutions.
 \end{example*}
 
-\lecture{8}{Tuesday}{23/10/18}
+\pagebreak
 
 \subsection{Testing primality}
+
+\lecture{8}{Tuesday}{23/10/18}
 
 Euler's theorem states that if $ \rb{a, n} = 1 $ then
 $$ a^{\Phi\rb{n}} \equiv 1 \mod n. $$
@@ -711,6 +748,8 @@ $$ a^{\tfrac{n - 1}{2}} \equiv -1 \mod r, \qquad a^{\tfrac{n - 1}{2}} \equiv 1 \
 So $ a^{\rb{n - 1} / 2} \not\equiv \pm 1 \mod n $.
 \end{itemize}
 \end{proof}
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:31}
@@ -857,6 +896,8 @@ is a group homomorphism, that is
 $$ \jacobi{ab}{p} = \jacobi{a}{p}\jacobi{a}{p}. $$
 Even holds if we do not assume that $ \rb{a, p} = \rb{b, p} = 1 $.
 
+\pagebreak
+
 \lecture{11}{Tuesday}{30/10/18}
 
 \begin{theorem}[Euler's criterion]
@@ -911,6 +952,8 @@ $$
 that is
 $$ \jacobi{2}{p} = \rb{-1}^{\tfrac{p^2 - 1}{8}}. $$
 \end{proposition}
+
+\pagebreak
 
 \begin{example*}
 \hfill
@@ -989,6 +1032,8 @@ For example,
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
 \begin{example*}
 \hfill
 \begin{itemize}
@@ -1057,6 +1102,8 @@ $$ \jacobi{q}{p}\jacobi{p}{q} = \rb{-1}^{\rb{\tfrac{p - 1}{2}}\rb{\tfrac{q - 1}{
 that is
 $$ \jacobi{q}{p} = \rb{-1}^{\rb{\tfrac{p - 1}{2}}\rb{\tfrac{q - 1}{2}}}\jacobi{p}{q}. $$
 \end{proof}
+
+\pagebreak
 
 \subsection{Jacobi symbols}
 
@@ -1171,6 +1218,8 @@ then since $ p \mid q $, we have either $ p \mid a + bi $ or $ p \mid a - bi $, 
 The primes in $ \Z\sb{i} $ are either of the form $ a + bi $ with $ a^2 + b^2 $ a prime in $ \Z $, or are primes of $ \Z $ which are not sums of two squares.
 \end{corollary}
 
+\pagebreak
+
 \begin{theorem}
 If $ p = 2 $ or $ p \equiv 1 \mod 4 $, then $ p $ is a sum of two squares.
 \end{theorem}
@@ -1229,6 +1278,8 @@ because $ N\rb{w} \in \R $. So
 \end{align*}
 In particular, if $ m, n $ are sums of four squares, then $ mn $ is a sum of four squares. So to prove Lagrange's theorem, it suffices to show that all primes are sums of four squares.
 
+\pagebreak
+
 \subsection{Proof of Lagrange's theorem}
 
 We already saw that $ 2 $, and any prime congruent to $ 1 \mod 4 $, is a sum of two squares. It remains to show that any prime congruent to $ 3 \mod 4 $ is a sum of four squares.
@@ -1273,6 +1324,9 @@ Proposition \ref{prop:55} gives $ p $ is a sum of four squares, starting with $ 
 \begin{itemize}
 \item Suppose firstly that $ r $ is even. Then either $ x, y, z, w $ are all even, all odd, or two are even and two are odd. So without loss of generality $ x \equiv y \mod 2 $ and $ z \equiv w \mod 2 $. Then take
 $$ x' = \dfrac{x + y}{2}, \qquad y' = \dfrac{x - y}{2}, \qquad z' = \dfrac{z + w}{2}, \qquad w' = \dfrac{z - w}{2}, \qquad r' = \dfrac{r}{2}. $$
+
+\pagebreak
+
 \item Suppose now that $ r $ is odd, and choose $ a, b, c, d \in \rb{-r / 2, r / 2} $ such that
 $$ x \equiv a \mod r, \qquad y \equiv b \mod r, \qquad z \equiv c \mod r, \qquad w \equiv d \mod r. $$
 Then
@@ -1383,6 +1437,8 @@ Say that $ \alpha \in \C $ is an \textbf{algebraic integer of degree two} if it 
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
 \begin{proposition}
 If $ \alpha $ is an algebraic integer of degree two, then
 $$ \Z\sb{\alpha} = \cb{x + y\alpha \mid x, y \in \Z}. $$
@@ -1442,6 +1498,8 @@ Write
 $$ \Z\sb{\alpha}^{\times, 1} = \cb{z \in \Z\sb{\alpha} \mid N\rb{z} = 1}. $$
 Then $ \Z\sb{\alpha}^{\times, 1} $ is a multiplicative subgroup of $ \Z\sb{\alpha}^\times $.
 
+\pagebreak
+
 \subsection{Back to Pell's equation}
 
 \begin{example*}
@@ -1463,9 +1521,7 @@ x < 0, \qquad y < 0 \qquad & \iff \qquad x + y\sqrt{d} < -1.
 \end{lemma}
 
 \begin{proof}
-If $ x, y > 0 $ then $ x + y\sqrt{d} > y\sqrt{d} \ge \sqrt{d} > 1 $. Then
-$$ x - y\sqrt{d} = \dfrac{1}{x + y\sqrt{d}} \in \rb{0, 1}. $$
-So replacing $ y $ by $ -y $, we get $ x > 0 $ and $ y < 0 $, so $ 0 < x + y\sqrt{d} < 1 $. Replacing $ \rb{x, y} $ with $ \rb{-x, -y} $ gives the forward in the third and fourth lines. Since the four possibilities for the right hand side are exhaustive for $ x, y \ne 0 $, we are done.
+If $ x, y > 0 $ then $ x + y\sqrt{d} > y\sqrt{d} \ge \sqrt{d} > 1 $. Then $ x - y\sqrt{d} = 1 / \rb{x + y\sqrt{d}} \in \rb{0, 1} $. So replacing $ y $ by $ -y $, we get $ x > 0 $ and $ y < 0 $, so $ 0 < x + y\sqrt{d} < 1 $. Replacing $ \rb{x, y} $ with $ \rb{-x, -y} $ gives the forward in the third and fourth lines. Since the four possibilities for the right hand side are exhaustive for $ x, y \ne 0 $, we are done.
 \end{proof}
 
 \begin{lemma}
@@ -1500,6 +1556,8 @@ Let $ z \in \Z\sb{\sqrt{d}}^{\times, 1} $, so $ z \ne \pm 1 $. After replacing $
 \begin{example*}
 Let $ d = 2 $ and $ x^2 - 2y^2 = 1 $. $ y = 2 $ and $ x = 3 $ is a solution. So $ \epsilon = 3 + 2\sqrt{2} $. $ \epsilon^2 = \rb{3 + 2\sqrt{2}}^2 = 17 + 12\sqrt{2} $, and $ 17^2 - 2\rb{12}^2  = 1 $.
 \end{example*}
+
+\pagebreak
 
 \subsection{Constructing the fundamental $ 1 $-unit}
 
@@ -1545,6 +1603,8 @@ Also
 $$ \abs{\alpha - \dfrac{p'}{q'}} < \dfrac{1}{Qq'} \le \dfrac{1}{Q} < \abs{\alpha - \dfrac{p}{q}}, $$
 as required.
 \end{proof}
+
+\pagebreak
 
 We can now show the following.
 
@@ -1631,6 +1691,8 @@ $$
 If $ a_0, \dots, a_n \in \R $, then
 $$ \sb{a_0; a_1, \dots, a_n} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_n}}}. $$
 
+\pagebreak
+
 \begin{lemma}
 \label{lem:68}
 If $ a_0, \dots, a_n \in \R $, define $ p_i, q_i $ for $ 0 \le i \le n $ by
@@ -1686,6 +1748,8 @@ p_nq_{n - 1} - q_np_{n - 1}
 \end{align*}
 \end{proof}
 
+\pagebreak
+
 \begin{note*}
 If $ a_i \in \Z $, then $ p_i, q_i \in \Z $, and Lemma \ref{lem:69} gives $ \rb{p_n, q_n} = 1 $. In general, Lemma \ref{lem:69} gives
 $$ \abs{\dfrac{p_n}{q_n} - \dfrac{p_{n - 1}}{q_{n - 1}}} = \dfrac{1}{q_nq_{n - 1}}. $$
@@ -1734,6 +1798,8 @@ $$ \dfrac{1}{q_nq_{n + 1}} < \dfrac{1}{q_n^2}, $$
 so the sequence $ \rb{p_n / q_n} $ satisfies the requirements of Dirichlet's theorem.
 \end{note*}
 
+\pagebreak
+
 \subsection{Best approximations}
 
 Fix $ \alpha \in \R \setminus \Q $. Define $ a_i, r_i $ by
@@ -1779,6 +1845,8 @@ $$ \abs{\dfrac{h}{k} - \alpha} \ge \abs{\dfrac{p_n}{q_n} - \alpha}, $$
 with equality if and only if $ h / k = p_n / q_n $.
 \end{theorem}
 
+\pagebreak
+
 \begin{proof}
 By Lemma \ref{lem:69} there exist $ u, v \in \Z $ such that
 $$ h = up_n + vp_{n + 1}, \qquad k = uq_n + vq_{n + 1}, $$
@@ -1823,9 +1891,11 @@ $$ \abs{\dfrac{p_n}{q_n} - \dfrac{h}{k}} < \dfrac{1}{kq_n}. $$
 So $ p_n / q_n - h / k = 0 $, as required.
 \end{proof}
 
-\lecture{21}{Wednesday}{21/11/18}
+\pagebreak
 
 \subsection{Returning to Pell's equation}
+
+\lecture{21}{Wednesday}{21/11/18}
 
 Pell's equation is $ X^2 - dY^2 = 1 $. If $ \rb{x, y} $ is a solution, then $ \abs{\sqrt{d} - x / y} $ is small.
 
@@ -1858,6 +1928,8 @@ So the convergents for $ 1 / \sqrt{d} $ are the $ q_n / p_n $. So $ y / x = q_n 
 \end{itemize}
 \end{proof}
 
+\pagebreak
+
 \begin{example*}
 \hfill
 \begin{itemize}
@@ -1867,7 +1939,6 @@ So the convergents for $ 1 / \sqrt{d} $ are the $ q_n / p_n $. So $ y / x = q_n 
 \item $ \sqrt{7} = \sb{2; \overline{1, 1, 1, 4}} $.
 \item $ \sqrt{13} = \sb{3; \overline{1, 1, 1, 1, 6}} $.
 \item $ \sqrt{43} = \sb{6; \overline{1, 1, 3, 1, 5, 1, 3, 1, 1, 12}} $.
-\item $ \sqrt{n^2 + 1} = \sb{n; \overline{2n}} $.
 \end{itemize}
 \end{example*}
 
@@ -1924,9 +1995,11 @@ In fact, it follows from our facts that this is the fundamental $ 1 $-unit, that
 \end{itemize}
 \end{example*}
 
-\lecture{22}{Friday}{23/11/18}
+\pagebreak
 
 \subsection{Periodic continued fractions}
+
+\lecture{22}{Friday}{23/11/18}
 
 \begin{definition}
 $ \alpha \in \R \setminus \Q $ is a \textbf{quadratic irrational} if it is a root of some
@@ -2005,6 +2078,8 @@ so $ K > q^{e - d} $, so $ K^{1 / \rb{e - d}} > q $. So there are only finitely 
 Recall that $ \alpha \in \C $ is \textbf{algebraic} if it is algebraic of some degree $ d $, and otherwise it is \textbf{transcendental}. The set of polynomials with integer coefficients is countable, so the set of algebraic numbers is countable. Since $ \R $ is uncountable, transcendental numbers exist. Liouville's theorem gives a criterion, if for every $ e > 0 $, there are infinitely many $ p / q $ with
 $$ \abs{\alpha - \dfrac{p}{q}} < \dfrac{1}{q^e}, $$
 then $ \alpha $ cannot be algebraic.
+
+\pagebreak
 
 \begin{example*}
 Let
@@ -2121,6 +2196,8 @@ General idea is to find a polynomial $ P\rb{x} $ such that every prime factor of
 For any prime $ q $, there are infinitely many primes congruent to $ 1 \mod q $.
 \end{theorem}
 
+\pagebreak
+
 \begin{definition}
 The $ q $-th \textbf{cyclotomic polynomial} is
 $$ \Phi_q\rb{X} = \dfrac{X^q - 1}{X - 1} = X^{q - 1} + \dots + 1. $$
@@ -2178,6 +2255,8 @@ $$ X^n - 1 = \prod_{d \mid n, \ d > 0} \Phi_d\rb{X}. $$
 Each side is a monic polynomial, so we just need to check that the roots are the same, with multiplicities. Left hand side are the $ n $-th roots of unity, with multiplicity one each. Right hand side is $ \Phi_d $, the primitive $ d $-th roots of unity, with multiplicity one. Each $ n $-th root of unity is a primitive $ d $-th root of unity for some unique $ d \mid n $. The result follows.
 \end{proof}
 
+\pagebreak
+
 From this it is easy to deduce the following.
 
 \begin{lemma}
@@ -2228,6 +2307,8 @@ It suffices to show that $ X^n - 1 $ has no repeated roots mod $ p $. The deriva
 If $ n = p $,
 $$ X^p - 1 \equiv \rb{X - 1}^p \mod p, \qquad \Phi_p\rb{X} \equiv \rb{X - 1}^{p - 1} \mod p. $$
 \end{note*}
+
+\pagebreak
 
 \begin{theorem}
 \label{thm:100}
@@ -2387,6 +2468,9 @@ Taking logarithms,
 $$ \pi\rb{2n} \ge \rb{\dfrac{1}{2}\log C_1}\dfrac{2n}{\log 2n}. $$
 This gives the lower bound if $ X = 2n \in \Z $ is even, but since $ \pi\rb{X + 1} - \pi\rb{X} \le 1 $, it is easy to get the lower bound for all $ X $. We will prove $ \rb{\ref{eq:5}} $ by considering the prime factors of
 $$ \twobyone{2n}{n} = \prod_{p \le 2n} p^{v_p\rb{n}}. $$
+
+\pagebreak
+
 Claim that
 \begin{enumerate}
 \item if $ p > \sqrt{2n} $ then $ v_p\rb{n} \le 1 $,
@@ -2422,6 +2506,9 @@ $$ 4^n = 2^{2n} = \rb{1 + 1}^{2n} = \sum_{i = 0}^{2n} \twobyone{2n}{i} \le \rb{2
 so
 $$ \prod_{p \le 2n} p^{v_p\rb{n}} = \twobyone{2n}{n} \ge \dfrac{4^n}{2n + 1}. $$
 \end{enumerate}
+
+\pagebreak
+
 \item Claim that there exists $ C_2 > 1 $ such that for all $ X $ sufficiently large, we have
 \begin{equation}
 \label{eq:6}
@@ -2454,9 +2541,11 @@ for $ X $ sufficiently large, for any $ C_2 > 2 $.
 
 Lecture 28 is a problem class.
 
-\lecture{29}{Tuesday}{11/12/18}
+\pagebreak
 
 \subsection{The Brun-Titchmarsh theorem and the Selberg sieve}
+
+\lecture{29}{Tuesday}{11/12/18}
 
 What can we say about the number of primes $ p $ with $ X < p \le X + Y $? That is, $ \pi\rb{X + Y} - \pi\rb{X} $. Think of $ Y $ being fixed for a moment. Best possible lower bound is zero.
 
