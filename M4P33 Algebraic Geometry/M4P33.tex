@@ -45,7 +45,6 @@ $$
 $$
 }
 \def\syllabus{Affine varieties. Projective varieties. Morphisms. Rational maps. Nonsingular varieties. Intersections in projective space. The $ 27 $ lines on a cubic surface. Grassmannians. Divisors on curves. Elliptic curves.}
-
 \def\thm{section}
 
 \input{../style/header}
@@ -63,6 +62,7 @@ I will not follow a particular book, but everything I am going to say will be co
 \item I Shafarevich, Basic algebraic geometry, 1974
 \item R Hartshorne, Algebraic geometry, 1977
 \item J Harris, Algebraic geometry: a first course, 1922
+\item M Reid, Undergraduate algebraic geometry, 1988
 \end{itemize}
 
 \pagebreak
@@ -74,97 +74,97 @@ I will not follow a particular book, but everything I am going to say will be co
 \begin{itemize}
 \item $ R $ is a commutative ring with unity.
 \item $ K $ is a field.
-\item $ K\sb{x_1, \dots, x_n} $ is the ring of polynomials in $ n $ variables.
+\item $ K\sbr{x_1, \dots, x_n} $ is the ring of polynomials in $ n $ variables.
 \item $ \A^n $ is $ K^n $ as a set.
 \end{itemize}
 \end{notation}
 
 \begin{definition}
-Let $ S \subseteq K\sb{x_1, \dots, x_n} $ then
-$$ Z\rb{S} = \cb{x \in \A^n \mid \forall f \in S, \ f\rb{x} = 0} $$
+Let $ S \subseteq K\sbr{x_1, \dots, x_n} $ then
+$$ Z\br{S} = \cbr{x \in \A^n \mid \forall f \in S, \ f\br{x} = 0} $$
 is called the \textbf{zero locus} of $ S $. Subsets of $ \A^n $ that are of this form are called \textbf{affine varieties}.
 \end{definition}
 
 \begin{remark}
-Some authors call \textbf{algebraic set} the object $ Z\rb{S} $. We will not follow this notation.
+Some authors call \textbf{algebraic set} the object $ Z\br{S} $. We will not follow this notation.
 \end{remark}
 
 \begin{example}
 \hfill
 \begin{itemize}
-\item Single points $ p = \rb{p_1, \dots, p_n} $. $ p = Z\rb{S} $ where $ S = \cb{x_1 - p_1, \dots, x_n - p_n} $.
-\item $ \A^n = Z\rb{0} $.
-\item $ \emptyset = Z\rb{1} $.
+\item Single points $ p = \br{p_1, \dots, p_n} $. $ p = Z\br{S} $ where $ S = \cbr{x_1 - p_1, \dots, x_n - p_n} $.
+\item $ \A^n = Z\br{0} $.
+\item $ \emptyset = Z\br{1} $.
 \item Subspaces of $ \A^n = K^n $.
-\item If $ X = Z\rb{f_1, \dots, f_n} \subseteq \A^n $ and $ Y = Z\rb{g_1, \dots, g_m} \subseteq \A^n $ are affine varieties then
-$$ X \times Y = Z\rb{f_1, \dots, f_n, g_1, \dots, g_m} \subseteq \A^{n + m} $$
+\item If $ X = Z\br{f_1, \dots, f_n} \subseteq \A^n $ and $ Y = Z\br{g_1, \dots, g_m} \subseteq \A^n $ are affine varieties then
+$$ X \times Y = Z\br{f_1, \dots, f_n, g_1, \dots, g_m} \subseteq \A^{n + m} $$
 is a variety.
 \end{itemize}
 \end{example}
 
 \begin{remark}
-If $ S \subseteq K\sb{x_1, \dots, x_n} $ and $ I = \ab{S} $ then $ Z\rb{S} = Z\rb{I} $.
+If $ S \subseteq K\sbr{x_1, \dots, x_n} $ and $ I = \abr{S} $ then $ Z\br{S} = Z\br{I} $.
 \end{remark}
 
 \begin{theorem}[Hilbert's basis theorem]
-If $ R $ is Noetherian then $ R\sb{x} $ is Noetherian.
+If $ R $ is Noetherian then $ R\sbr{x} $ is Noetherian.
 \end{theorem}
 
 \begin{corollary}
-Every ideal in $ K\sb{x_1, \dots, x_n} $ is finitely generated.
+Every ideal in $ K\sbr{x_1, \dots, x_n} $ is finitely generated.
 \end{corollary}
 
 \begin{definition}
 Let $ X \subseteq \A^n $ then
-$$ I\rb{X} = \cb{f \in K\sb{x_1, \dots, x_n} \mid \forall x \in X, \ f\rb{x} = 0}. $$
+$$ I\br{X} = \cbr{f \in K\sbr{x_1, \dots, x_n} \mid \forall x \in X, \ f\br{x} = 0}. $$
 \end{definition}
 
 \begin{example}
-$ I\rb{p} = I\rb{\rb{p_1, \dots, p_n}} = \ab{x_1 - p_1, \dots, x_n - p_n} $.
+$ I\br{p} = I\br{\br{p_1, \dots, p_n}} = \abr{x_1 - p_1, \dots, x_n - p_n} $.
 \end{example}
 
 Goal is
 $$
 \begin{array}{rcl}
-\cb{\text{affine varieties in} \ \A^n} & \leftrightarrow & \cb{\text{ideals of} \ K\sb{x_1, \dots, x_n}} \\
-X & \mapsto & I\rb{X} \\
-Z\rb{J} & \mapsfrom & J
+\cbr{\text{affine varieties in} \ \A^n} & \leftrightarrow & \cbr{\text{ideals of} \ K\sbr{x_1, \dots, x_n}} \\
+X & \mapsto & I\br{X} \\
+Z\br{J} & \mapsfrom & J
 \end{array}.
 $$
-$ Z\rb{I\rb{X}} = X $ but $ I\rb{Z\rb{J}} \supseteq J $.
+$ Z\br{I\br{X}} = X $ but $ I\br{Z\br{J}} \supseteq J $.
 
 \begin{example}
-$ J = \ab{x^2 + 1} \subseteq \R\sb{x} = I\rb{\emptyset} = I\rb{Z\rb{x^2 + 1}} $.
+$ J = \abr{x^2 + 1} \subseteq \R\sbr{x} = I\br{\emptyset} = I\br{Z\br{x^2 + 1}} $.
 \end{example}
 
 \begin{proposition}
 \hfill
 \begin{itemize}
-\item If $ X \subseteq Y $ then $ I\rb{Y} \subseteq I\rb{X} $. If $ I \subseteq J $ then $ Z\rb{J} \subseteq Z\rb{I} $.
-\item $ X \subseteq Z\rb{I\rb{X}} $ and $ S \subseteq I\rb{Z\rb{S}} $.
-\item If $ X $ is affine then $ Z\rb{J\rb{X}} = X $. If $ X = Z\rb{S} $ then take $ Z $ of $ S \subseteq I\rb{Z\rb{S}} $.
+\item If $ X \subseteq Y $ then $ I\br{Y} \subseteq I\br{X} $. If $ I \subseteq J $ then $ Z\br{J} \subseteq Z\br{I} $.
+\item $ X \subseteq Z\br{I\br{X}} $ and $ S \subseteq I\br{Z\br{S}} $.
+\item If $ X $ is affine then $ Z\br{J\br{X}} = X $. If $ X = Z\br{S} $ then take $ Z $ of $ S \subseteq I\br{Z\br{S}} $.
 \end{itemize}
 \end{proposition}
 
 \pagebreak
 
 \begin{example}
-Let $ J \subseteq \C\sb{x} $. $ J = \ab{f} $, where $ f = \rb{x - x_1}^{k_1} \dots \rb{x - x_n}^{k_n} $.
+Let $ J \subseteq \C\sbr{x} $. $ J = \abr{f} $, where $ f = \br{x - x_1}^{k_1} \dots \br{x - x_n}^{k_n} $.
 \end{example}
 
 \begin{definition}
-Let $ I \subseteq K\sb{x_1, \dots, x_n} $ be an ideal.
-$$ I \subseteq \sqrt{I} = \cb{f \in K\sb{x_1, \dots, x_n} \mid \exists n \in \N, \ f^n \in I}. $$
+Let $ I \subseteq K\sbr{x_1, \dots, x_n} $ be an ideal.
+$$ I \subseteq \sqrt{I} = \cbr{f \in K\sbr{x_1, \dots, x_n} \mid \exists n \in \N, \ f^n \in I}. $$
 If $ \sqrt{I} = I $, we say $ I $ is a \textbf{radical ideal}. (Exercise: $ \sqrt{I} $ is an ideal, $ I \subseteq \sqrt{I} $, and $ \sqrt{I} = \bigcap_{p \ \text{prime}} p $)
 \end{definition}
 
 \begin{theorem}[Hilbert's Nullstellensatz]
-$ I\rb{Z\rb{J}} = \sqrt{J} $. If $ \sqrt{J} = J $ then
+$ I\br{Z\br{J}} = \sqrt{J} $. If $ \sqrt{J} = J $ then
 $$
 \begin{array}{rcl}
-\cb{\text{affine varieties}} & \leftrightarrow & \cb{\text{radical ideals}} \\
-X & \mapsto & I\rb{X} \\
-Z\rb{J} & \mapsfrom & J
+\cbr{\text{affine varieties}} & \leftrightarrow & \cbr{\text{radical ideals}} \\
+X & \mapsto & I\br{X} \\
+Z\br{J} & \mapsfrom & J
 \end{array}.
 $$
 \end{theorem}
@@ -174,23 +174,23 @@ $$
 \begin{proposition}
 \hfill
 \begin{enumerate}
-\item $ Z\rb{S} \cup Z\rb{T} = Z\rb{ST} $.
-\item $ \bigcap_i Z\rb{S_i} = Z\rb{\bigcup_i S_i} $.
-\item $ Z\rb{0} = \A^n $ and $ Z\rb{1} = \emptyset $.
+\item $ Z\br{S} \cup Z\br{T} = Z\br{ST} $.
+\item $ \bigcap_i Z\br{S_i} = Z\br{\bigcup_i S_i} $.
+\item $ Z\br{0} = \A^n $ and $ Z\br{1} = \emptyset $.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[1.] If $ p \in Z\rb{S} \cup Z\rb{T} $, then $ f\rb{p} = 0 $ for $ f \in S $ or $ f \in T $, so $ f\rb{x} = 0 $ for $ f \in ST $, where
-$$ ST = \cb{\sum_{i \in I, \ I \ \text{finite}} s_it_i} \subseteq S \cap T, $$
-with equality if $ S + T = R $. If $ p \in Z\rb{ST} $, there exists $ f $ such that $ f\rb{p} = 0 $ for $ f \in S $ or $ f\rb{p} = 0 $ for $ f \in T $, so $ p \in Z\rb{S} \cup Z\rb{T} $.
+\item[1.] If $ p \in Z\br{S} \cup Z\br{T} $, then $ f\br{p} = 0 $ for $ f \in S $ or $ f \in T $, so $ f\br{x} = 0 $ for $ f \in ST $, where
+$$ ST = \cbr{\sum_{i \in I, \ I \ \text{finite}} s_it_i} \subseteq S \cap T, $$
+with equality if $ S + T = R $. If $ p \in Z\br{ST} $, there exists $ f $ such that $ f\br{p} = 0 $ for $ f \in S $ or $ f\br{p} = 0 $ for $ f \in T $, so $ p \in Z\br{S} \cup Z\br{T} $.
 \end{itemize}
 \end{proof}
 
 \begin{definition}
-The \textbf{Zariski topology} on $ \A^n $ is the topology generated by closed sets of the form $ Z\rb{S} $. By the above proposition this is a topology.
+The \textbf{Zariski topology} on $ \A^n $ is the topology generated by closed sets of the form $ Z\br{S} $. By the above proposition this is a topology.
 \end{definition}
 
 \begin{example}
@@ -206,11 +206,11 @@ $ \A^1 $.
 \end{example}
 
 \begin{example}
-Any non-empty open set of irreducible $ X $ is dense and irreducible. Suppose $ A $ is open then $ X = A^c \cup \overline{A} $. Since $ X $ is irreducible then $ A^c = X $, a contradiction, or $ \overline{A} = X $. Suppose $ A $ is reducible. Let $ A = \rb{A \cap B} \cup \rb{A \cap C} $, where $ B $ and $ C $ are closed. Then $ X = A^c \cup \rb{B \cup C} $. $ A^c = X $ or $ B \cup C = X $, which are contradictions.
+Any non-empty open set of irreducible $ X $ is dense and irreducible. Suppose $ A $ is open then $ X = A^c \cup \overline{A} $. Since $ X $ is irreducible then $ A^c = X $, a contradiction, or $ \overline{A} = X $. Suppose $ A $ is reducible. Let $ A = \br{A \cap B} \cup \br{A \cap C} $, where $ B $ and $ C $ are closed. Then $ X = A^c \cup \br{B \cup C} $. $ A^c = X $ or $ B \cup C = X $, which are contradictions.
 \end{example}
 
 \begin{example}
-If $ A $ is irreducible then $ \overline{A} $ is also irreducible. Suppose $ \overline{A} $ is not irreducible. $ \overline{A} = \rb{\overline{A} \cap B} \cup \rb{\overline{A} \cap C} $. Take $ \bigcap A $, $ A = \rb{A \cap B} \cup \rb{A \cap C} $, a contradiction.
+If $ A $ is irreducible then $ \overline{A} $ is also irreducible. Suppose $ \overline{A} $ is not irreducible. $ \overline{A} = \br{\overline{A} \cap B} \cup \br{\overline{A} \cap C} $. Take $ \bigcap A $, $ A = \br{A \cap B} \cup \br{A \cap C} $, a contradiction.
 \end{example}
 
 \begin{definition}
@@ -226,31 +226,31 @@ A \textbf{quasi-affine variety} is an open set of an affine variety.
 \begin{proposition}
 \hfill
 \begin{enumerate}
-\item $ I\rb{X \cup Y} = I\rb{X} \cap I\rb{Y} $.
-\item $ Z\rb{I\rb{X}} = \overline{X} $ for any $ X \subseteq \A^n $.
+\item $ I\br{X \cup Y} = I\br{X} \cap I\br{Y} $.
+\item $ Z\br{I\br{X}} = \overline{X} $ for any $ X \subseteq \A^n $.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item If $ f \in I\rb{X \cup Y} $ then $ f\rb{p} = 0 $ for all $ p \in X \cup Y $, so $ f \in I\rb{X} $ and $ f \in I\rb{Y} $.
-\item We know that $ X \subseteq Z\rb{I\rb{X}} $ hence $ \overline{X} \subseteq Z\rb{I\rb{X}} $. Now, let $ Y $ be a closed set containing $ X $, that is $ X \subseteq Y $. Then
-$$ I\rb{Y} \subset I\rb{X} \qquad \implies \qquad Z\rb{I\rb{X}} \subset Z\rb{I\rb{X}} = Y, $$
-so any closed set containing $ Y $ contains $ Z\rb{I\rb{X}} $.
+\item If $ f \in I\br{X \cup Y} $ then $ f\br{p} = 0 $ for all $ p \in X \cup Y $, so $ f \in I\br{X} $ and $ f \in I\br{Y} $.
+\item We know that $ X \subseteq Z\br{I\br{X}} $ hence $ \overline{X} \subseteq Z\br{I\br{X}} $. Now, let $ Y $ be a closed set containing $ X $, that is $ X \subseteq Y $. Then
+$$ I\br{Y} \subset I\br{X} \qquad \implies \qquad Z\br{I\br{X}} \subset Z\br{I\br{X}} = Y, $$
+so any closed set containing $ Y $ contains $ Z\br{I\br{X}} $.
 \end{enumerate}
 \end{proof}
 
 \begin{proposition}
-$ X $ is irreducible if and only if $ I\rb{X} $ is prime.
+$ X $ is irreducible if and only if $ I\br{X} $ is prime.
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Let $ f, g \in I\rb{X} $.
-$$ X \subseteq Z\rb{fg} = Z\rb{f} \cup Z\rb{g} \qquad \implies \qquad X = \rb{X \cap Z\rb{f}} \cup \rb{X \cap Z\rb{g}}. $$
-$ Z\rb{f} \subseteq X $, so $ f \in I\rb{X} $, or $ Z\rb{g} \subseteq X $, so $ g \in I\rb{X} $.
+\item[$ \implies $] Let $ f, g \in I\br{X} $.
+$$ X \subseteq Z\br{fg} = Z\br{f} \cup Z\br{g} \qquad \implies \qquad X = \br{X \cap Z\br{f}} \cup \br{X \cap Z\br{g}}. $$
+$ Z\br{f} \subseteq X $, so $ f \in I\br{X} $, or $ Z\br{g} \subseteq X $, so $ g \in I\br{X} $.
 \item[$ \impliedby $] Exercise.
 \end{itemize}
 \end{proof}
@@ -261,24 +261,24 @@ $ \A^n $.
 
 \begin{definition}
 If $ X \subseteq \A^n $, the \textbf{coordinate ring} of $ X $ is
-$$ A\rb{X} = \dfrac{A}{I\rb{X}} = \dfrac{K\sb{x_1, \dots, x_n}}{I\rb{X}}. $$
+$$ A\br{X} = \dfrac{A}{I\br{X}} = \dfrac{K\sbr{x_1, \dots, x_n}}{I\br{X}}. $$
 \end{definition}
 
 \lecture{3}{Tuesday}{15/01/19}
 
 \begin{example}
-Let $ f \in K\sb{x_1, \dots, x_n} $ be irreducible. If $ n = 3 $, $ Z\rb{f} $ is a surface. If $ n = 2 $, $ Z\rb{f} $ is a curve.
+Let $ f \in K\sbr{x_1, \dots, x_n} $ be irreducible. If $ n = 3 $, $ Z\br{f} $ is a surface. If $ n = 2 $, $ Z\br{f} $ is a curve.
 \end{example}
 
 \begin{example}
-Let $ y - x^2 \in K\sb{x, y} $. Then
-$$ \function{A\rb{X} = \dfrac{K\sb{x, y}}{\ab{y - x^2}} \cong K\sb{x, x^2}}{K\sb{x}}{\sum_{i, j} a_{ij}x^ix^{2j} = \sum_{i, j} a_{ij}x^{2j + i}}{\sum_n b_nx^n}. $$
+Let $ y - x^2 \in K\sbr{x, y} $. Then
+$$ \function{A\br{X} = \dfrac{K\sbr{x, y}}{\abr{y - x^2}} \cong K\sbr{x, x^2}}{K\sbr{x}}{\sum_{i, j} a_{ij}x^ix^{2j} = \sum_{i, j} a_{ij}x^{2j + i}}{\sum_n b_nx^n}. $$
 \end{example}
 
 \begin{example}
-Let $ xy - 1 \in K\sb{x, y} $. Then
-$$ A\rb{X} = \dfrac{K\sb{x, y}}{\ab{xy - 1}} \cong K\sb{x, \dfrac{1}{x}}. $$
-$ A\rb{X} $ cannot be $ K\sb{x} $.
+Let $ xy - 1 \in K\sbr{x, y} $. Then
+$$ A\br{X} = \dfrac{K\sbr{x, y}}{\abr{xy - 1}} \cong K\sbr{x, \dfrac{1}{x}}. $$
+$ A\br{X} $ cannot be $ K\sbr{x} $.
 \end{example}
 
 \begin{definition}
@@ -288,9 +288,9 @@ is a decreasing chain of closed sets then there is a $ k $ such that $ C_k = C_{
 \end{definition}
 
 \begin{example}
-$ \A^n $. Recall that if $ A \subset B $ then $ I\rb{B} \subset I\rb{A} $. So using the definition above,
-$$ I\rb{C_1} \subseteq I\rb{C_2} \subseteq \dots. $$
-Since $ K\sb{x_1, \dots, x_n} $ is Noetherian then $ I\rb{C_i} $ stabilises. So $ I\rb{C_k} = I\rb{C_{k + 1}} = \dots $, but taking $ Z $, we recover $ C_k $ so $ C_k $ stabilises as well.
+$ \A^n $. Recall that if $ A \subset B $ then $ I\br{B} \subset I\br{A} $. So using the definition above,
+$$ I\br{C_1} \subseteq I\br{C_2} \subseteq \dots. $$
+Since $ K\sbr{x_1, \dots, x_n} $ is Noetherian then $ I\br{C_i} $ stabilises. So $ I\br{C_k} = I\br{C_{k + 1}} = \dots $, but taking $ Z $, we recover $ C_k $ so $ C_k $ stabilises as well.
 \end{example}
 
 \pagebreak
@@ -302,7 +302,7 @@ If $ X $ is Noetherian then any non-empty closed subset can be expressed as a fi
 \begin{proof}
 Let $ C $ be the collection of closed sets that do not satisfy that property. Let $ Y $ be a minimum closed inside $ C $, in particular $ Y $ is reducible, so $ Y = Y' \cup Y'' $, for $ Y', Y'' $ closed. Hence $ Y', Y'' \not\subset C $, so they can be expressed as a finite union of irreducibles, a contradiction. If $ Y_i \not\subset Y_j $, then suppose
 $$ Y_1 \cup \dots \cup Y_n = X_1 \cup \dots \cup X_n. $$
-Then $ Y_1 \subset X_1 \cup X_n $, in particular $ Y_1 = \bigcup_j \rb{Y_1 \cap X_j} $, so there is a $ j $ such that $ Y_1 \cap X_j = Y_1 $, so $ Y_1 \subset X_j $. We can assume $ j = 1 $ and repeat the same argument to find that $ Y_1 = X_1 $, so consider $ \overline{Y \setminus Y_1} = Y_2 \cup \dots \cup Y_n $. But
+Then $ Y_1 \subset X_1 \cup X_n $, in particular $ Y_1 = \bigcup_j \br{Y_1 \cap X_j} $, so there is a $ j $ such that $ Y_1 \cap X_j = Y_1 $, so $ Y_1 \subset X_j $. We can assume $ j = 1 $ and repeat the same argument to find that $ Y_1 = X_1 $, so consider $ \overline{Y \setminus Y_1} = Y_2 \cup \dots \cup Y_n $. But
 $$ Y_2 \cup \dots \cup Y_n = X_2 \cup \dots \cup X_n, $$
 and the result follows by induction.
 \end{proof}
@@ -325,23 +325,23 @@ Dimension of $ \A^1 $ is one.
 Let $ A $ be a ring and $ \pp $ be a prime ideal, then the \textbf{height} of $ \pp $ is the supremum of $ n $ where
 $$ \pp_1 \subset \dots \subset \pp_n \subset \pp, $$
 where $ \pp_i $ are prime. The \textbf{Krull dimension} of $ A $ is
-$$ \sup_{\pp \ \text{prime}} height\rb{\pp}. $$
+$$ \sup_{\pp \ \text{prime}} height\br{\pp}. $$
 \end{definition}
 
 \begin{proposition}
-If $ Y $ is affine then $ \dim\rb{Y} = \dim\rb{A\rb{Y}} $.
+If $ Y $ is affine then $ \dim\br{Y} = \dim\br{A\br{Y}} $.
 \end{proposition}
 
 \begin{proof}
-Let $ C $ be a closed and irreducible set $ C \subset Y $, then $ I\rb{C} \supset I\rb{Y} $, then $ I\rb{C} $ is prime.
+Let $ C $ be a closed and irreducible set $ C \subset Y $, then $ I\br{C} \supset I\br{Y} $, then $ I\br{C} $ is prime.
 \end{proof}
 
 \begin{proposition}
 Let $ K $ be a field and $ B $ be an integral domain which is a finitely generated algebra, then
 \begin{itemize}
-\item $ \dim\rb{B} $ is the transcendence degree of $ K\rb{B} $ over $ K $, and
+\item $ \dim\br{B} $ is the transcendence degree of $ K\br{B} $ over $ K $, and
 \item if $ \pp \subseteq B $ is prime, then
-$$ height\rb{\pp} + \dim\rb{\dfrac{B}{\pp}} = \dim\rb{B}. $$
+$$ height\br{\pp} + \dim\br{\dfrac{B}{\pp}} = \dim\br{B}. $$
 \end{itemize}
 \end{proposition}
 
@@ -364,14 +364,14 @@ A Noetherian integral domain $ A $ is a UFD if and only if every prime ideal $ I
 \end{proposition}
 
 \begin{theorem}
-An irreducible variety $ Y \subseteq \A^n $ has dimension $ n - 1 $ if and only if $ Y = Z\rb{f} $ where $ f $ is an irreducible polynomial in $ K\sb{x_1, \dots, x_n} $.
+An irreducible variety $ Y \subseteq \A^n $ has dimension $ n - 1 $ if and only if $ Y = Z\br{f} $ where $ f $ is an irreducible polynomial in $ K\sbr{x_1, \dots, x_n} $.
 \end{theorem}
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] If $ Y $ has dimension $ n - 1 $ then $ I\rb{Y} $ has height one, by the above proposition $ I\rb{Y} = \ab{f} $, so $ Y = Z\rb{f} $.
-\item[$ \impliedby $] Let $ I = I\rb{Y} $ then $ I $ is prime, by the Krull Hauptidealsatz we have that $ I $ has height one, so $ \dim\rb{Y} = n - 1 $.
+\item[$ \implies $] If $ Y $ has dimension $ n - 1 $ then $ I\br{Y} $ has height one, by the above proposition $ I\br{Y} = \abr{f} $, so $ Y = Z\br{f} $.
+\item[$ \impliedby $] Let $ I = I\br{Y} $ then $ I $ is prime, by the Krull Hauptidealsatz we have that $ I $ has height one, so $ \dim\br{Y} = n - 1 $.
 \end{itemize}
 \end{proof}
 
@@ -381,8 +381,8 @@ An irreducible variety $ Y \subseteq \A^n $ has dimension $ n - 1 $ if and only 
 
 \begin{definition}
 The \textbf{projective space} $ \P^n $ is defined as
-$$ \P^n = \dfrac{\A^{n + 1} \setminus \cb{0}}{\cb{x \sim \lambda x \mid \lambda \in K^*}}. $$
-A point in $ \P^n $ is written as $ \sb{a_0 : \dots : a_n} = \overline{\rb{a_0, \dots, a_n}} $.
+$$ \P^n = \dfrac{\A^{n + 1} \setminus \cbr{0}}{\cbr{x \sim \lambda x \mid \lambda \in K^*}}. $$
+A point in $ \P^n $ is written as $ \sbr{a_0 : \dots : a_n} = \overline{\br{a_0, \dots, a_n}} $.
 \end{definition}
 
 \begin{definition}
@@ -392,21 +392,21 @@ where $ R_d $ are abelian groups and $ R_k \cdot R_t \subseteq R_{k + t} $.
 \end{definition}
 
 \begin{example}
-$ K\sb{x_0, \dots, x_n} $ is a graded ring, where $ R_d $ are monomials of degree $ d $.
+$ K\sbr{x_0, \dots, x_n} $ is a graded ring, where $ R_d $ are monomials of degree $ d $.
 \end{example}
 
 \begin{notation}
-Let $ A $ be $ K\sb{x_0, \dots, x_n} $ without the grading and $ S $ be $ K\sb{x_0, \dots, x_n} $ as a graded ring.
+Let $ A $ be $ K\sbr{x_0, \dots, x_n} $ without the grading and $ S $ be $ K\sbr{x_0, \dots, x_n} $ as a graded ring.
 \end{notation}
 
 \begin{definition}
 An ideal $ I \subseteq S $ is \textbf{homogeneous} if
-$$ I = \bigoplus_{d \ge 0} \rb{I \cap S_d}. $$
+$$ I = \bigoplus_{d \ge 0} \br{I \cap S_d}. $$
 If $ f = f_0 + \dots + f_d $, then $ f_i \in I $.
 \end{definition}
 
 \begin{remark}
-$ I $ is homogeneous if and only if $ I = \ab{f_0, \dots, f_n} $, where $ f_i $ are homogeneous.
+$ I $ is homogeneous if and only if $ I = \abr{f_0, \dots, f_n} $, where $ f_i $ are homogeneous.
 \end{remark}
 
 \begin{lemma}
@@ -423,37 +423,37 @@ If $ I, J $ are homogeneous then
 \hfill
 \begin{itemize}
 \item[4.] Let $ f = f_0 + \dots + f_d \in \sqrt{I} $ then
-$$ f^n = \rb{f_0 + \dots + f_d}^n = f_d^n + \dots \in I \qquad \implies \qquad f_d^n \in I \qquad \implies \qquad f_d \in \sqrt{I}, $$
+$$ f^n = \br{f_0 + \dots + f_d}^n = f_d^n + \dots \in I \qquad \implies \qquad f_d^n \in I \qquad \implies \qquad f_d \in \sqrt{I}, $$
 so $ f - f_d \in \sqrt{I} $, by induction $ f_i \in \sqrt{I} $.
 \end{itemize}
 \end{proof}
 
 \begin{definition}
 If $ f $ is homogeneous of degree $ k $ then
-$$ f\rb{\lambda \cdot x} = \lambda^k \cdot f\rb{x}, $$
-in particular $ f\rb{x} = 0 $ if and only if $ f\rb{\lambda \cdot x} = 0 $, so it makes sense to define
-$$ Z\rb{f} = \cb{x \in \P^n \mid f\rb{x} = 0}. $$
+$$ f\br{\lambda \cdot x} = \lambda^k \cdot f\br{x}, $$
+in particular $ f\br{x} = 0 $ if and only if $ f\br{\lambda \cdot x} = 0 $, so it makes sense to define
+$$ Z\br{f} = \cbr{x \in \P^n \mid f\br{x} = 0}. $$
 More generally, if $ I \subseteq S $ is a homogeneous ideal then
-$$ Z\rb{I} = \cb{x \in \P^n \mid f \in I \ \text{homogeneous}, \ f\rb{x} = 0}. $$
+$$ Z\br{I} = \cbr{x \in \P^n \mid f \in I \ \text{homogeneous}, \ f\br{x} = 0}. $$
 \end{definition}
 
 \pagebreak
 
 \begin{definition}
-A subset $ X \subseteq \P^n $ is called a \textbf{projective variety} if $ X = Z\rb{T} $ for some homogeneous ideal $ T $.
+A subset $ X \subseteq \P^n $ is called a \textbf{projective variety} if $ X = Z\br{T} $ for some homogeneous ideal $ T $.
 \end{definition}
 
 \begin{proposition}
 \hfill
 \begin{itemize}
-\item $ Z\rb{S} \cup Z\rb{T} = Z\rb{ST} $.
-\item $ \bigcap_\alpha Z\rb{S_\alpha} = Z\rb{\bigcup_\alpha S_\alpha} $.
-\item $ Z\rb{0} = \P^n $ and $ Z\rb{1} = \emptyset $.
+\item $ Z\br{S} \cup Z\br{T} = Z\br{ST} $.
+\item $ \bigcap_\alpha Z\br{S_\alpha} = Z\br{\bigcup_\alpha S_\alpha} $.
+\item $ Z\br{0} = \P^n $ and $ Z\br{1} = \emptyset $.
 \end{itemize}
 \end{proposition}
 
 \begin{definition}
-We define the \textbf{Zariski topology} on $ \P^n $ by taking closed sets to be $ Z\rb{T} $ for some $ T $.
+We define the \textbf{Zariski topology} on $ \P^n $ by taking closed sets to be $ Z\br{T} $ for some $ T $.
 \end{definition}
 
 \begin{definition}
@@ -463,46 +463,46 @@ We define the \textbf{Zariski topology} on $ \P^n $ by taking closed sets to be 
 \item An open subset of a projective variety is called a \textbf{quasi-projective variety}.
 \item The \textbf{dimension} of a projective variety is its dimension as a topological space.
 \item If $ T \subseteq S $ then
-$$ I\rb{T} = \ab{f \in S \mid f \ \text{homogeneous}, \ \forall p \in T, \ f\rb{p} = 0}. $$
+$$ I\br{T} = \abr{f \in S \mid f \ \text{homogeneous}, \ \forall p \in T, \ f\br{p} = 0}. $$
 \end{itemize}
 \end{definition}
 
 \begin{definition}
 If $ X $ is a projective variety the \textbf{homogeneous coordinate ring} is
-$$ S\rb{X} = \dfrac{S}{I\rb{X}}. $$
+$$ S\br{X} = \dfrac{S}{I\br{X}}. $$
 \end{definition}
 
 \begin{definition}
-If $ f \in S $ is linear and homogeneous, we call $ Z\rb{f} $ a \textbf{hyperplane}.
+If $ f \in S $ is linear and homogeneous, we call $ Z\br{f} $ a \textbf{hyperplane}.
 \end{definition}
 
 \lecture{5}{Monday}{21/01/19}
 
 \begin{proposition}
-$$ \function[\phi_i]{U_i = \P^n \setminus Z\rb{x_i}}{\A^n}{\sb{x_0 : \dots : x_n}}{\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}} $$
+$$ \function[\phi_i]{U_i = \P^n \setminus Z\br{x_i}}{\A^n}{\sbr{x_0 : \dots : x_n}}{\br{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}} $$
 is a homeomorphism in the Zariski topology.
 \end{proposition}
 
 \begin{proof}
-Let $ \phi = \phi_0 $ and $ U = U_0 $, let $ C \subseteq \A^n $ be a closed set then we claim that $ \phi^{-1}\rb{C} $ is closed. Indeed, let $ C = Z\rb{S} $, then $ \phi^{-1}\rb{C} = Z\rb{S'} \cup U $ where
-$$ S' = \cb{x_0^d \cdot f\rb{\dfrac{x_1}{x_0}, \dots, \dfrac{x_n}{x_0}} \ \Bigg| \ f \in S}. $$
-Similarly, let $ A \subseteq U $ is closed, we claim that $ \phi\rb{A} $ is closed. Let $ \overline{A} $ be its closure in $ \P^n $, then $ \overline{A} = Z\rb{B} $, so $ \phi\rb{A} = Z\rb{B'} $ where
-$$ B' = \cb{f\rb{1, x_1, \dots, x_n} \mid f \in B}. $$
+Let $ \phi = \phi_0 $ and $ U = U_0 $, let $ C \subseteq \A^n $ be a closed set then we claim that $ \phi^{-1}\br{C} $ is closed. Indeed, let $ C = Z\br{S} $, then $ \phi^{-1}\br{C} = Z\br{S'} \cup U $ where
+$$ S' = \cbr{x_0^d \cdot f\br{\dfrac{x_1}{x_0}, \dots, \dfrac{x_n}{x_0}} \ \Bigg| \ f \in S}. $$
+Similarly, let $ A \subseteq U $ is closed, we claim that $ \phi\br{A} $ is closed. Let $ \overline{A} $ be its closure in $ \P^n $, then $ \overline{A} = Z\br{B} $, so $ \phi\br{A} = Z\br{B'} $ where
+$$ B' = \cbr{f\br{1, x_1, \dots, x_n} \mid f \in B}. $$
 So we conclude that $ \phi $ is a homeomorphism.
 \end{proof}
 
 \begin{note*}
-$ \ab{1} = S $ and $ \ab{x_0, \dots, x_n} \subsetneq S $ map to $ \emptyset $ under $ Z $. So in order to have a one-to-one correspondence we need the following.
+$ \abr{1} = S $ and $ \abr{x_0, \dots, x_n} \subsetneq S $ map to $ \emptyset $ under $ Z $. So in order to have a one-to-one correspondence we need the following.
 \begin{itemize}
-\item $ Z\rb{I} = \emptyset $ if and only if $ \sqrt{I} \supseteq \ab{x_0, \dots, x_n} $. If we consider $ Z\rb{I} $ in $ \A^{n + 1} $, note that $ x \in Z\rb{I} $ if and only if $ \lambda x \in Z\rb{I} $. So $ Z\rb{I} = \emptyset $ if and only if $ Z\rb{I} \subseteq \cb{0} $. So $ \sqrt{I} \supseteq \ab{x_0, \dots, x_n} $.
-\item $ I\rb{Z\rb{J}} = \sqrt{J} $ if $ Z\rb{J} \ne \emptyset $, since $ I\rb{Z\rb{J}} = I\rb{Z_a\rb{J}} = \sqrt{J} $.
+\item $ Z\br{I} = \emptyset $ if and only if $ \sqrt{I} \supseteq \abr{x_0, \dots, x_n} $. If we consider $ Z\br{I} $ in $ \A^{n + 1} $, note that $ x \in Z\br{I} $ if and only if $ \lambda x \in Z\br{I} $. So $ Z\br{I} = \emptyset $ if and only if $ Z\br{I} \subseteq \cbr{0} $. So $ \sqrt{I} \supseteq \abr{x_0, \dots, x_n} $.
+\item $ I\br{Z\br{J}} = \sqrt{J} $ if $ Z\br{J} \ne \emptyset $, since $ I\br{Z\br{J}} = I\br{Z_a\br{J}} = \sqrt{J} $.
 \end{itemize}
 \end{note*}
 
 \pagebreak
 
 \begin{corollary}
-$$ \correspondence{\text{projective varieties}}{\text{homogeneous radical ideals not} \ \ab{x_0, \dots, x_n}}, $$
+$$ \correspondence{\text{projective varieties}}{\text{homogeneous radical ideals not} \ \abr{x_0, \dots, x_n}}, $$
 $$ \correspondence{\text{irreducible projective varieties}}{\text{homogeneous radical prime ideals}}. $$
 \end{corollary}
 
@@ -520,19 +520,19 @@ $ \P^n $ is irreducible.
 
 \begin{theorem}
 Let $ Y \subseteq \P^n $ be an irreducible projective variety. Then
-$$ \dim\rb{S\rb{Y}} = \dim\rb{Y} + 1. $$
+$$ \dim\br{S\br{Y}} = \dim\br{Y} + 1. $$
 \end{theorem}
 
 \begin{proof}
 Let
-$$ \function[\phi_i]{U = \P^n \setminus Z\rb{x_i}}{\A^n}{\sb{x_0 : \dots : x_n}}{\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}}, $$
-and $ Y_i = \phi_i\rb{Y \cap U_i} $. Let
-$$ \function{K\sb{x_1, \dots, x_n}}{\rb{S\rb{Y}_{x_i}}_0}{f\rb{x_1, \dots, x_n}}{\dfrac{x_i^{\partial f}f\rb{\dfrac{x_1}{x_i}, \dots, \dfrac{x_n}{x_i}}}{x_i^{\partial f}}}, $$
+$$ \function[\phi_i]{U = \P^n \setminus Z\br{x_i}}{\A^n}{\sbr{x_0 : \dots : x_n}}{\br{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}}, $$
+and $ Y_i = \phi_i\br{Y \cap U_i} $. Let
+$$ \function{K\sbr{x_1, \dots, x_n}}{\br{S\br{Y}_{x_i}}_0}{f\br{x_1, \dots, x_n}}{\dfrac{x_i^{\partial f}f\br{\dfrac{x_1}{x_i}, \dots, \dfrac{x_n}{x_i}}}{x_i^{\partial f}}}, $$
 then
-$$ A\rb{Y_i} = \dfrac{K\sb{x_1, \dots, x_n}}{I\rb{Y_i}} \cong \rb{S\rb{Y}_{x_i}}_0, $$
-moreover $ S\rb{Y}_{x_i} \cong A\rb{Y_i}\sb{x_i, x_i^{-1}} $. So
-$$ \dim\rb{S\rb{Y}} = \dim\rb{S\rb{Y}_{x_i}} = \dim\rb{A\rb{Y_i}\sb{x_i, x_i^{-1}}} = tra\rb{K\rb{Y_i}\rb{x_i}} = \dim\rb{Y_i} + 1. $$
-Therefore if $ Y_i \ne \emptyset $, $ \dim\rb{Y_i} = \dim\rb{S\rb{Y}} - 1 $ for all $ i $, but since $ U_i $ cover $ Y $ we have $ \dim\rb{Y} = \max\cb{\dim\rb{Y_i}} $. (Exercise: if $ \cb{U_n}_n $ is a finite cover of a topological space $ Y $ then $ \dim\rb{Y} = \max\cb{\dim\rb{Y_i}} $) Since $ \dim\rb{Y_i} $ are the same if $ Y_i \ne \emptyset $, we conclude that $ \dim\rb{Y} = \dim\rb{Y_d} $ for some $ d $.
+$$ A\br{Y_i} = \dfrac{K\sbr{x_1, \dots, x_n}}{I\br{Y_i}} \cong \br{S\br{Y}_{x_i}}_0, $$
+moreover $ S\br{Y}_{x_i} \cong A\br{Y_i}\sbr{x_i, x_i^{-1}} $. So
+$$ \dim\br{S\br{Y}} = \dim\br{S\br{Y}_{x_i}} = \dim\br{A\br{Y_i}\sbr{x_i, x_i^{-1}}} = tra\br{K\br{Y_i}\br{x_i}} = \dim\br{Y_i} + 1. $$
+Therefore if $ Y_i \ne \emptyset $, $ \dim\br{Y_i} = \dim\br{S\br{Y}} - 1 $ for all $ i $, but since $ U_i $ cover $ Y $ we have $ \dim\br{Y} = \max\cbr{\dim\br{Y_i}} $. (Exercise: if $ \cbr{U_n}_n $ is a finite cover of a topological space $ Y $ then $ \dim\br{Y} = \max\cbr{\dim\br{Y_i}} $) Since $ \dim\br{Y_i} $ are the same if $ Y_i \ne \emptyset $, we conclude that $ \dim\br{Y} = \dim\br{Y_d} $ for some $ d $.
 \end{proof}
 
 \lecture{6}{Tuesday}{22/01/19}
@@ -542,7 +542,7 @@ Every Noetherian topological space is compact.
 \end{proposition}
 
 \begin{proof}
-Let $ X $ be a Noetherian topological space and let $ \cb{U_n} $ be a cover of $ X $. So consider $ C $, the collection of the union of finitely many open sets of $ \cb{U_n} $. Since $ X $ is Noetherian $ C $ has a maximum element, say $ U_1 \cup \dots \cup U_n $. If $ U_1 \cup \dots \cup U_n \subsetneq X $ then there is $ x \in X $ not in the union, and we can find another $ U_{\alpha_0} \ni x $. But then
+Let $ X $ be a Noetherian topological space and let $ \cbr{U_n} $ be a cover of $ X $. So consider $ C $, the collection of the union of finitely many open sets of $ \cbr{U_n} $. Since $ X $ is Noetherian $ C $ has a maximum element, say $ U_1 \cup \dots \cup U_n $. If $ U_1 \cup \dots \cup U_n \subsetneq X $ then there is $ x \in X $ not in the union, and we can find another $ U_{\alpha_0} \ni x $. But then
 $$ U_1 \cup \dots \cup U_n \cup U_{\alpha_0} \supsetneq U_1 \cup \dots \cup U_n, $$
 a contradiction. So $ X = U_1 \cup \dots \cup U_n $.
 \end{proof}
@@ -564,12 +564,12 @@ $ \P^n $ is complete. $ \A^n $ is not complete.
 \section{Morphisms}
 
 \begin{definition}
-Suppose $ Y $ is a quasi-affine variety and $ p \in Y $. We say that a function $ f : Y \to \A^1 $ is \textbf{regular} at $ p $ if there are $ g, h \in K\sb{x_1, \dots, x_n} $ and $ U \ni p $ such that $ f = g / h $ in $ U $ with $ h \ne 0 $. A function is \textbf{regular} if it is regular for every $ p \in Y $.
+Suppose $ Y $ is a quasi-affine variety and $ p \in Y $. We say that a function $ f : Y \to \A^1 $ is \textbf{regular} at $ p $ if there are $ g, h \in K\sbr{x_1, \dots, x_n} $ and $ U \ni p $ such that $ f = g / h $ in $ U $ with $ h \ne 0 $. A function is \textbf{regular} if it is regular for every $ p \in Y $.
 \end{definition}
 
 \begin{example}
-Local is not global. Let $ X = Z\rb{x_1x_4 - x_2x_3} \subseteq \A^4 $ and $ U = X \setminus Z\rb{x_2, x_4} $. Then
-$$ \function[\phi]{U}{\A^1}{\rb{x_1, x_2, x_3, x_4}}{
+Local is not global. Let $ X = Z\br{x_1x_4 - x_2x_3} \subseteq \A^4 $ and $ U = X \setminus Z\br{x_2, x_4} $. Then
+$$ \function[\phi]{U}{\A^1}{\br{x_1, x_2, x_3, x_4}}{
 \begin{cases}
 \dfrac{x_1}{x_2} & x_2 \ne 0 \\
 \dfrac{x_3}{x_4} & x_4 \ne 0
@@ -587,8 +587,8 @@ A regular function is continuous.
 \end{lemma}
 
 \begin{proof}
-It is enough to show that $ f^{-1}\rb{p} $ is closed. Since $ f $ is regular $ f = g / h $ on some neighbourhood $ U $, then
-$$ f^{-1}\rb{p} \cap U = Z\rb{g - ph} \cap U. $$
+It is enough to show that $ f^{-1}\br{p} $ is closed. Since $ f $ is regular $ f = g / h $ on some neighbourhood $ U $, then
+$$ f^{-1}\br{p} \cap U = Z\br{g - ph} \cap U. $$
 \end{proof}
 
 \begin{remark}
@@ -612,9 +612,9 @@ A \textbf{morphism} is $ f : X \to Y $ if $ f $ is continuous and for every $ U 
 \end{remark}
 
 \begin{definition}
-Let $ X $ be a variety. Denote the set of all regular functions of $ X $ by $ \OO\rb{X} $. If $ p \in X $ the \textbf{local ring} at $ p \in X $ is
-$$ \OO_p = \lim_{\xrightarrow[U \ni p]{}}\rb{\OO\rb{U}}. $$
-An element of $ \OO_p $ is a pair $ \rb{U, f} $, where $ p \in U $ and $ f $ is regular at $ p $, moreover $ \rb{U, f} \sim \rb{V, g} $ if $ f = g $ on $ U \cap V $.
+Let $ X $ be a variety. Denote the set of all regular functions of $ X $ by $ \OO\br{X} $. If $ p \in X $ the \textbf{local ring} at $ p \in X $ is
+$$ \OO_p = \lim_{\xrightarrow[U \ni p]{}}\br{\OO\br{U}}. $$
+An element of $ \OO_p $ is a pair $ \br{U, f} $, where $ p \in U $ and $ f $ is regular at $ p $, moreover $ \br{U, f} \sim \br{V, g} $ if $ f = g $ on $ U \cap V $.
 \end{definition}
 
 \pagebreak
@@ -622,49 +622,49 @@ An element of $ \OO_p $ is a pair $ \rb{U, f} $, where $ p \in U $ and $ f $ is 
 \lecture{7}{Friday}{25/01/19}
 
 \begin{definition}
-Let $ Y $ be an irreducible variety, the \textbf{function field} $ K\rb{Y} $ of $ Y $ is the field whose elements are pairs $ \rb{U, f} $ where $ U $ is open and $ f $ is regular on $ U $, and
-$$ \rb{U, f} + \rb{V, g} = \rb{U \cap V, f + g}. $$
+Let $ Y $ be an irreducible variety, the \textbf{function field} $ K\br{Y} $ of $ Y $ is the field whose elements are pairs $ \br{U, f} $ where $ U $ is open and $ f $ is regular on $ U $, and
+$$ \br{U, f} + \br{V, g} = \br{U \cap V, f + g}. $$
 \end{definition}
 
 \begin{remark}
 \hfill
 \begin{itemize}
-\item $ K\rb{Y} $ is indeed a field for if $ \rb{U, f} \ne 0 $ then $ U^{-1} = U \setminus Z\rb{f} $, so $ \rb{U^{-1}, 1 / f} $ is the inverse to $ \rb{U, f} $.
-\item $ K\rb{Y} $ is the quotient field of $ A\rb{Y} $ or $ S\rb{Y} $.
-\item $ \OO\rb{Y} \hookrightarrow \OO_p \hookrightarrow K\rb{Y} $ for all $ p \in Y $.
+\item $ K\br{Y} $ is indeed a field for if $ \br{U, f} \ne 0 $ then $ U^{-1} = U \setminus Z\br{f} $, so $ \br{U^{-1}, 1 / f} $ is the inverse to $ \br{U, f} $.
+\item $ K\br{Y} $ is the quotient field of $ A\br{Y} $ or $ S\br{Y} $.
+\item $ \OO\br{Y} \hookrightarrow \OO_p \hookrightarrow K\br{Y} $ for all $ p \in Y $.
 \end{itemize}
 \end{remark}
 
 \begin{theorem}
-If $ Y \subseteq \A^n $ is an irreducible affine variety with coordinate ring $ A\rb{Y} $ then
+If $ Y \subseteq \A^n $ is an irreducible affine variety with coordinate ring $ A\br{Y} $ then
 \begin{enumerate}
-\item $ \OO\rb{Y} = A\rb{Y} $,
-\item for all $ p \in Y $, if $ \mm_p = \cb{f \in A\rb{Y} \mid f\rb{p} = 0} $ then we have a one-to-one correspondence
-$$ \correspondence{\text{points of} \ Y}{\text{maximal ideals of} \ A\rb{Y}}, $$
-\item for all $ p \in Y $, $ \OO_p \cong A\rb{Y}_{\mm_p} $ and $ \dim\rb{\OO_p} = \dim\rb{Y} $, and
-\item $ K\rb{Y} $ is the quotient field of $ A\rb{Y} $.
+\item $ \OO\br{Y} = A\br{Y} $,
+\item for all $ p \in Y $, if $ \mm_p = \cbr{f \in A\br{Y} \mid f\br{p} = 0} $ then we have a one-to-one correspondence
+$$ \correspondence{\text{points of} \ Y}{\text{maximal ideals of} \ A\br{Y}}, $$
+\item for all $ p \in Y $, $ \OO_p \cong A\br{Y}_{\mm_p} $ and $ \dim\br{\OO_p} = \dim\br{Y} $, and
+\item $ K\br{Y} $ is the quotient field of $ A\br{Y} $.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Notice that there is a natural map $ A \to \OO\rb{Y} $ with kernel $ I\rb{Y} $, so there is an injection $ A\rb{Y} \hookrightarrow \OO\rb{Y} $, that is
-$$ A\rb{Y} \subseteq \OO\rb{Y} \subseteq \bigcap_{p \in Y} \OO_p = \bigcap_{\mm_p} A\rb{Y}_{\mm_p} = A\rb{Y}, $$
-so $ A\rb{Y} = \OO\rb{Y} $.
-\item We know that points of $ Y $ correspond to maximal ideals $ \mm_p \supseteq I\rb{Y} $. Taking the quotient, we get maximal ideals inside $ A\rb{Y} $.
-\item There is a natural map $ A\rb{Y}_{\mm_p} \to \OO_p $, which is injective by $ \alpha : A\rb{Y} \hookrightarrow \OO\rb{Y} $, and it is surjective by definition of $ \OO_p $. Moreover,
-$$ \dim\rb{\OO_p} = \dim\rb{A_p}_{\mm_p} = height\rb{\mm_p} = \dim\rb{Y}. $$
-\item The quotient field of $ A\rb{Y} $ is the quotient field of $ \OO_p $ for all $ p $, by $ 3 $, which is $ K\rb{Y} $ by definition.
+\item Notice that there is a natural map $ A \to \OO\br{Y} $ with kernel $ I\br{Y} $, so there is an injection $ A\br{Y} \hookrightarrow \OO\br{Y} $, that is
+$$ A\br{Y} \subseteq \OO\br{Y} \subseteq \bigcap_{p \in Y} \OO_p = \bigcap_{\mm_p} A\br{Y}_{\mm_p} = A\br{Y}, $$
+so $ A\br{Y} = \OO\br{Y} $.
+\item We know that points of $ Y $ correspond to maximal ideals $ \mm_p \supseteq I\br{Y} $. Taking the quotient, we get maximal ideals inside $ A\br{Y} $.
+\item There is a natural map $ A\br{Y}_{\mm_p} \to \OO_p $, which is injective by $ \alpha : A\br{Y} \hookrightarrow \OO\br{Y} $, and it is surjective by definition of $ \OO_p $. Moreover,
+$$ \dim\br{\OO_p} = \dim\br{A_p}_{\mm_p} = height\br{\mm_p} = \dim\br{Y}. $$
+\item The quotient field of $ A\br{Y} $ is the quotient field of $ \OO_p $ for all $ p $, by $ 3 $, which is $ K\br{Y} $ by definition.
 \end{enumerate}
 \end{proof}
 
 \begin{theorem}
 Let $ Y \subseteq \P^n $ be irreducible and projective. Then
 \begin{enumerate}
-\item $ \OO\rb{Y} = K $,
-\item for all $ p \in Y $, $ \mm_p $ as before, $ \OO_p \cong \rb{S\rb{Y}_{\mm_p}}_0 $, and
-\item $ K\rb{Y} \cong \rb{S\rb{Y}_{\rb{0}}}_0 $.
+\item $ \OO\br{Y} = K $,
+\item for all $ p \in Y $, $ \mm_p $ as before, $ \OO_p \cong \br{S\br{Y}_{\mm_p}}_0 $, and
+\item $ K\br{Y} \cong \br{S\br{Y}_{\br{0}}}_0 $.
 \end{enumerate}
 \end{theorem}
 
@@ -672,14 +672,14 @@ Let $ Y \subseteq \P^n $ be irreducible and projective. Then
 
 \begin{proof}
 Recall that
-$$ \function[\phi_i]{U_i = \P^n \setminus Z\rb{x_i}}{\A^n}{\sb{x_0 : \dots : x_n}}{\rb{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}} $$
-gives $ \phi_i^* : A\rb{Y_i} \cong \rb{S\rb{Y}_{x_i}}_0 $ and $ Y_i = \phi_i\rb{Y \cap U_i} $.
+$$ \function[\phi_i]{U_i = \P^n \setminus Z\br{x_i}}{\A^n}{\sbr{x_0 : \dots : x_n}}{\br{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}}} $$
+gives $ \phi_i^* : A\br{Y_i} \cong \br{S\br{Y}_{x_i}}_0 $ and $ Y_i = \phi_i\br{Y \cap U_i} $.
 \begin{enumerate}
-\item $ K \subseteq \OO\rb{Y} $. Take $ f \in \OO\rb{Y} $, so $ f $ is regular at each $ Y_i $, but $ \OO\rb{Y_i} \cong A\rb{Y_i} $, also by $ \phi_i^* $, $ A\rb{Y_i} \cong \rb{S\rb{Y}_{x_i}}_0 $. Thus $ f = g_i / x_i^{n_i} $, where $ n_i = \deg\rb{g_i} $, in particular $ x_i^{n_i}f \in S\rb{Y}_{n_i} $. Now, set $ N \ge \sum_i n_i $, then $ S\rb{Y}_N \cdot f \subseteq S\rb{Y}_N $, so we can iterate this process to obtain $ S\rb{Y}_N \cdot f^q \subseteq S\rb{Y}_N $. In particular $ x_0^Nf \subset S $, hence $ S\rb{Y}\sb{f} $ is contained in $ x_0^{-N}S\rb{Y} $. Therefore $ f $ is integral since $ S\rb{Y}\sb{f} $ is finitely generated. There are $ a_i \in S $ such that
+\item $ K \subseteq \OO\br{Y} $. Take $ f \in \OO\br{Y} $, so $ f $ is regular at each $ Y_i $, but $ \OO\br{Y_i} \cong A\br{Y_i} $, also by $ \phi_i^* $, $ A\br{Y_i} \cong \br{S\br{Y}_{x_i}}_0 $. Thus $ f = g_i / x_i^{n_i} $, where $ n_i = \deg\br{g_i} $, in particular $ x_i^{n_i}f \in S\br{Y}_{n_i} $. Now, set $ N \ge \sum_i n_i $, then $ S\br{Y}_N \cdot f \subseteq S\br{Y}_N $, so we can iterate this process to obtain $ S\br{Y}_N \cdot f^q \subseteq S\br{Y}_N $. In particular $ x_0^Nf \subset S $, hence $ S\br{Y}\sbr{f} $ is contained in $ x_0^{-N}S\br{Y} $. Therefore $ f $ is integral since $ S\br{Y}\sbr{f} $ is finitely generated. There are $ a_i \in S $ such that
 $$ f^k + a_1f^{k - 1} + \dots + a_k = 0. $$
 Since $ f $ is homogeneous of degree zero we can take the constant terms of $ a_i $ and still have an equation, hence $ a_i \in K $.
-\item Let $ p \in Y $, then $ p \in Y_i $, by the previous theorem we know that $ \OO_p \cong A\rb{Y_i}_{\mm_p} $. By $ \phi_i^* $, $ \OO_p \cong \rb{\rb{S\rb{Y}_{x_i}}_{\mm_p}}_0 $, but since $ x_i \notin \mm_p $, hence $ \OO_p \cong \rb{S\rb{Y}_{\mm_p}}_0 $.
-\item Recall that the quotient field of $ Y $ is $ K\rb{Y} = K\rb{Y_i} $, but $ K\rb{Y_i} $ is the quotient field of the coordinate ring $ A\rb{Y_i} $, by $ \phi_i^* $, this is $ \rb{S\rb{Y}_{\rb{0}}}_0 $.
+\item Let $ p \in Y $, then $ p \in Y_i $, by the previous theorem we know that $ \OO_p \cong A\br{Y_i}_{\mm_p} $. By $ \phi_i^* $, $ \OO_p \cong \br{\br{S\br{Y}_{x_i}}_{\mm_p}}_0 $, but since $ x_i \notin \mm_p $, hence $ \OO_p \cong \br{S\br{Y}_{\mm_p}}_0 $.
+\item Recall that the quotient field of $ Y $ is $ K\br{Y} = K\br{Y_i} $, but $ K\br{Y_i} $ is the quotient field of the coordinate ring $ A\br{Y_i} $, by $ \phi_i^* $, this is $ \br{S\br{Y}_{\br{0}}}_0 $.
 \end{enumerate}
 \end{proof}
 
@@ -687,17 +687,17 @@ Since $ f $ is homogeneous of degree zero we can take the constant terms of $ a_
 
 \begin{proposition}
 Let $ X $ be an irreducible variety and $ Y $ be an irreducible affine variety, then we have a bijection
-$$ \alpha : Hom\rb{X, Y} \xrightarrow{\sim} Hom\rb{A\rb{Y}, \OO\rb{X}}, $$
+$$ \alpha : Hom\br{X, Y} \xrightarrow{\sim} Hom\br{A\br{Y}, \OO\br{X}}, $$
 the set of morphisms from $ X $ to $ Y $ to the set of $ K $-algebra homomorphisms.
 \end{proposition}
 
 \begin{proof}
-Given a morphism $ \phi : X \to Y $, by definition of morphism, $ \phi $ takes regular functions at $ Y $ to regular functions at $ X $. So if $ f \in A\rb{Y} $ then $ \phi \circ f \in \OO\rb{X} $. Conversely, let $ h : A\rb{Y} \to \OO\rb{X} $ be a homomorphism of $ K $-algebras. Recall that
-$$ A\rb{Y} = \dfrac{A}{I\rb{Y}} = \dfrac{k\sb{x_1, \dots, x_n}}{I\rb{Y}}. $$
-Take $ \overline{x_i} \in A\rb{Y} $ and let $ y_i = h\rb{\overline{x_i}} \in \OO\rb{X} $ and define
-$$ \function[\psi]{X}{\A^n}{p}{\rb{y_1\rb{p}, \dots, y_n\rb{p}}}. $$
-We claim that $ Im\rb{\psi} \subseteq Y $, but since $ Y = Z\rb{I\rb{Y}} $, it is enough to show that if $ f \in I\rb{Y} $ then $ f\rb{\psi\rb{p}} = 0 $.
-$$ f\rb{\psi\rb{p}} = f\rb{y_1\rb{p}, \dots, y_n\rb{p}} = f\rb{h\rb{\overline{x_1}\rb{p}}, \dots, h\rb{\overline{x_n}\rb{p}}} = h\rb{f\rb{x_1, \dots, x_n}}\rb{p} = 0. $$
+Given a morphism $ \phi : X \to Y $, by definition of morphism, $ \phi $ takes regular functions at $ Y $ to regular functions at $ X $. So if $ f \in A\br{Y} $ then $ \phi \circ f \in \OO\br{X} $. Conversely, let $ h : A\br{Y} \to \OO\br{X} $ be a homomorphism of $ K $-algebras. Recall that
+$$ A\br{Y} = \dfrac{A}{I\br{Y}} = \dfrac{k\sbr{x_1, \dots, x_n}}{I\br{Y}}. $$
+Take $ \overline{x_i} \in A\br{Y} $ and let $ y_i = h\br{\overline{x_i}} \in \OO\br{X} $ and define
+$$ \function[\psi]{X}{\A^n}{p}{\br{y_1\br{p}, \dots, y_n\br{p}}}. $$
+We claim that $ Im\br{\psi} \subseteq Y $, but since $ Y = Z\br{I\br{Y}} $, it is enough to show that if $ f \in I\br{Y} $ then $ f\br{\psi\br{p}} = 0 $.
+$$ f\br{\psi\br{p}} = f\br{y_1\br{p}, \dots, y_n\br{p}} = f\br{h\br{\overline{x_1}\br{p}}, \dots, h\br{\overline{x_n}\br{p}}} = h\br{f\br{x_1, \dots, x_n}}\br{p} = 0. $$
 \end{proof}
 
 \begin{lemma}
@@ -709,11 +709,11 @@ Suppose $ \psi_i $ are regular functions, then if $ p $ is a polynomial $ p \cir
 \end{proof}
 
 \begin{corollary}
-If $ X, Y $ are affine then $ X \cong Y $ if and only if $ A\rb{X} \cong A\rb{Y} $.
+If $ X, Y $ are affine then $ X \cong Y $ if and only if $ A\br{X} \cong A\br{Y} $.
 \end{corollary}
 
 \begin{corollary}
-The correspondence $ X \mapsto A\rb{X} $ induces an arrow reversing correspondence between the category of affine varieties and the category of $ K $-integral domains.
+The correspondence $ X \mapsto A\br{X} $ induces an arrow reversing correspondence between the category of affine varieties and the category of $ K $-integral domains.
 \end{corollary}
 
 \lecture{9}{Tuesday}{29/01/19}
@@ -731,7 +731,7 @@ Lecture 10 is a problem class.
 \lecture{11}{Monday}{04/02/19}
 
 \begin{definition}
-Let $ X, Y $ be varieties. A \textbf{rational map} $ f : X \dashrightarrow Y $ is a pair $ \rb{U, f_U} $ where $ U \subseteq X $ is open and $ f_U $ is a morphism on $ U $ and we identify $ \rb{U, f_U} \sim \rb{V, g_V} $ if $ f_U = g_V $ on $ U \cap V $.
+Let $ X, Y $ be varieties. A \textbf{rational map} $ f : X \dashrightarrow Y $ is a pair $ \br{U, f_U} $ where $ U \subseteq X $ is open and $ f_U $ is a morphism on $ U $ and we identify $ \br{U, f_U} \sim \br{V, g_V} $ if $ f_U = g_V $ on $ U \cap V $.
 \end{definition}
 
 \begin{lemma}
@@ -739,31 +739,31 @@ If $ X, Y $ are varieties and $ \phi, \psi : X \to Y $ such that $ \phi = \psi $
 \end{lemma}
 
 \begin{proof}
-We can assume that $ Y \subseteq \P^n $ for some $ n $, and hence we reduce to the case where $ Y = \P^n $. So the product is $ \phi \times \psi : X \to \P^n \times \P^n $. Let $ \Delta \subseteq \P^n \times \P^n = Z\rb{x_iy_j - x_jy_i} $. Since $ \phi = \psi $ on $ U $, $ \rb{\phi \times \psi}\rb{U} \subseteq A $, so $ \rb{\phi \times \psi}\rb{\overline{U}} = \rb{\phi \times \psi}\rb{X} \subseteq \Delta $.
+We can assume that $ Y \subseteq \P^n $ for some $ n $, and hence we reduce to the case where $ Y = \P^n $. So the product is $ \phi \times \psi : X \to \P^n \times \P^n $. Let $ \Delta \subseteq \P^n \times \P^n = Z\br{x_iy_j - x_jy_i} $. Since $ \phi = \psi $ on $ U $, $ \br{\phi \times \psi}\br{U} \subseteq A $, so $ \br{\phi \times \psi}\br{\overline{U}} = \br{\phi \times \psi}\br{X} \subseteq \Delta $.
 \end{proof}
 
 \begin{definition}
 \hfill
 \begin{itemize}
-\item A \textbf{dominant rational map} is a rational map $ f : X \dashrightarrow Y $, such that $ f_U\rb{U} $ is dense for some, and hence all, $ \rb{U, f_U} $.
+\item A \textbf{dominant rational map} is a rational map $ f : X \dashrightarrow Y $, such that $ f_U\br{U} $ is dense for some, and hence all, $ \br{U, f_U} $.
 \item A \textbf{birational map} is a dominant rational map $ f : X \dashrightarrow Y $ such that $ f $ admits an inverse $ g : Y \dashrightarrow X $.
 \end{itemize}
 \end{definition}
 
 \begin{theorem}
 For any two varieties $ X, Y $ we have a correspondence
-$$ \correspondence{\text{dominant rational maps} \ f : X \to Y}{K \text{-algebra homomorphisms} \ K\rb{Y} \to K\rb{X}}. $$
+$$ \correspondence{\text{dominant rational maps} \ f : X \to Y}{K \text{-algebra homomorphisms} \ K\br{Y} \to K\br{X}}. $$
 \end{theorem}
 
 \begin{proof}
-Given a rational map $ f : X \dashrightarrow Y $ and let $ g \in K\rb{Y} $. Let $ f_U $ be a representative of $ f $ then we have that if $ \rb{V, g} = g $, $ g \circ f_U \in K\rb{X} $. Since we can cover $ Y $ using affine varieties, we can assume $ Y $ is affine then $ K\rb{Y} = K\rb{A\rb{Y}} $. If we start with a homomorphism $ \theta : K\rb{Y} \to K\rb{X} $, let $ y_1, \dots, y_n \in A\rb{Y} $ be the generators of $ A\rb{Y} $, then $ \theta\rb{y_i} \in K\rb{X} $. We can find $ U $ such that $ \theta\rb{y_i} $ are regular at $ U $. Then this induces a map $ A\rb{Y} \to \OO\rb{U} $. But then we have a morphism $ U \to Y $, and moreover this is the inverse of the map we defined previously.
+Given a rational map $ f : X \dashrightarrow Y $ and let $ g \in K\br{Y} $. Let $ f_U $ be a representative of $ f $ then we have that if $ \br{V, g} = g $, $ g \circ f_U \in K\br{X} $. Since we can cover $ Y $ using affine varieties, we can assume $ Y $ is affine then $ K\br{Y} = K\br{A\br{Y}} $. If we start with a homomorphism $ \theta : K\br{Y} \to K\br{X} $, let $ y_1, \dots, y_n \in A\br{Y} $ be the generators of $ A\br{Y} $, then $ \theta\br{y_i} \in K\br{X} $. We can find $ U $ such that $ \theta\br{y_i} $ are regular at $ U $. Then this induces a map $ A\br{Y} \to \OO\br{U} $. But then we have a morphism $ U \to Y $, and moreover this is the inverse of the map we defined previously.
 \end{proof}
 
 \begin{definition}
 \hfill
 \begin{itemize}
-\item A field extension $ L / K $ is \textbf{separably generated} if there is a transcendence basis $ \cb{x_i} $ for $ L / K $ such that $ L $ is a separable algebraic extension of $ K\rb{\cb{x_i}} $.
-\item Primitive element theorem. If $ L / K $ is finite and separable then $ L / K\rb{\alpha} $ for some $ \alpha \in L $. If $ L $ is infinite and $ \beta_1, \dots, \beta_n $ are generators for $ L / K $ then $ \alpha = c_1\beta_1 + \dots + c_n\beta_n $ for $ c_i \in K $.
+\item A field extension $ L / K $ is \textbf{separably generated} if there is a transcendence basis $ \cbr{x_i} $ for $ L / K $ such that $ L $ is a separable algebraic extension of $ K\br{\cbr{x_i}} $.
+\item Primitive element theorem. If $ L / K $ is finite and separable then $ L / K\br{\alpha} $ for some $ \alpha \in L $. If $ L $ is infinite and $ \beta_1, \dots, \beta_n $ are generators for $ L / K $ then $ \alpha = c_1\beta_1 + \dots + c_n\beta_n $ for $ c_i \in K $.
 \item If $ K $ is perfect, any finitely generated extension $ L / K $ is separably generated.
 \end{itemize}
 \end{definition}
@@ -773,7 +773,7 @@ Any variety $ X $ of dimension $ n $ is birational to a hypersurface $ Y \subset
 \end{theorem}
 
 \begin{proof}
-Since $ K\rb{X} = K $ is finitely generated, by the theorem above it is separably generated. So we can find a transcendence basis $ x_1, \dots, x_n \in K $ such that $ K / k\rb{x_1, \dots, x_n} $ is finite and separable. By the primitive element theorem, $ K = k\rb{x_1, \dots, x_n, y} $ for some $ y $ which is  algebraic over $ k\rb{x_1, \dots, x_n} $, so $ y $ is the solution of a polynomial equation $ f $ in $ k\rb{x_1, \dots, x_n} $. In particular if we clear denominators we get a polynomial $ f\rb{x_1, \dots, x_n, y} $ in $ \A^{n + 1} $, by taking $ Z\rb{f} $ we get a hypersurface and taking its projective closure we get a hypersurface in $ \P^n $.
+Since $ K\br{X} = K $ is finitely generated, by the theorem above it is separably generated. So we can find a transcendence basis $ x_1, \dots, x_n \in K $ such that $ K / k\br{x_1, \dots, x_n} $ is finite and separable. By the primitive element theorem, $ K = k\br{x_1, \dots, x_n, y} $ for some $ y $ which is algebraic over $ k\br{x_1, \dots, x_n} $, so $ y $ is the solution of a polynomial equation $ f $ in $ k\br{x_1, \dots, x_n} $. In particular if we clear denominators we get a polynomial $ f\br{x_1, \dots, x_n, y} $ in $ \A^{n + 1} $, by taking $ Z\br{f} $ we get a hypersurface and taking its projective closure we get a hypersurface in $ \P^n $.
 \end{proof}
 
 \lecture{12}{Tuesday}{05/02/19}
@@ -783,7 +783,7 @@ The following are equivalent.
 \begin{itemize}
 \item $ F : X \dashrightarrow Y $ is birational.
 \item There exist $ U, V $ such that $ F : U \to V $ is an isomorphism.
-\item $ K\rb{Y} \cong K\rb{X} $.
+\item $ K\br{Y} \cong K\br{X} $.
 \end{itemize}
 \end{corollary}
 
@@ -791,10 +791,10 @@ The following are equivalent.
 
 \begin{definition}
 The \textbf{blow-up} of $ \A^n $ at the origin $ 0 $, denoted by $ \widetilde{\A^n} $, is
-$$ Z\rb{x_iy_j - x_jy_i} \subseteq \A^n \times \P^{n - 1}. $$
+$$ Z\br{x_iy_j - x_jy_i} \subseteq \A^n \times \P^{n - 1}. $$
 $$
 \begin{tikzcd}
-\widetilde{\A^n} \arrow[hookrightarrow]{r} \arrow[swap]{dr}{\pi} & \A^n \times \P^{n - 1} \arrow{d}{\pi_1 : \rb{x, y} \mapsto x} \\
+\widetilde{\A^n} \arrow[hookrightarrow]{r} \arrow[swap]{dr}{\pi} & \A^n \times \P^{n - 1} \arrow{d}{\br{x, y} \mapsto x} \\
 & \A^n
 \end{tikzcd}.
 $$
@@ -803,9 +803,9 @@ $$
 \begin{proposition}
 \hfill
 \begin{enumerate}
-\item Let $ P \in \A^n $, if $ P \ne 0 $ then $ \pi^{-1}\rb{P} $ is a single point, and $ \widetilde{\A^n} \setminus \pi^{-1}\rb{0} \cong \A^n \setminus \cb{0} $.
-\item $ \pi^{-1}\rb{0} \cong \P^{n - 1} $.
-\item Points of $ \pi^{-1}\rb{0} $ are in one-to-one correspondence with the set of lines through the origin.
+\item Let $ P \in \A^n $, if $ P \ne 0 $ then $ \pi^{-1}\br{P} $ is a single point, and $ \widetilde{\A^n} \setminus \pi^{-1}\br{0} \cong \A^n \setminus \cbr{0} $.
+\item $ \pi^{-1}\br{0} \cong \P^{n - 1} $.
+\item Points of $ \pi^{-1}\br{0} $ are in one-to-one correspondence with the set of lines through the origin.
 \item $ \widetilde{\A^n} $ is irreducible.
 \end{enumerate}
 \end{proposition}
@@ -815,32 +815,32 @@ $$
 \begin{enumerate}
 \item If $ P \ne 0 $ then $ y_j = x_jy_i/x_i $ and this is true for every $ j $, so this gives a unique point in $ \P^{n - 1} $.
 \item Obvious.
-\item A line through the origin is given by $ x_i = ta_i $ for $ t \ne 0 $. Taking $ \pi^{-1} $ of this line we get $ x_i = ta_i $ and $ y_i = ta_i = a_i $. In other words if $ x \ne 0 $, $ \pi^{-1}\rb{X} = \rb{X, \sb{X}} $.
-\item $ \widetilde{\A^n} \setminus \pi^{-1}\rb{0} \cong \A^n \setminus \cb{0} $ is dense and irreducible, by $ 3 $.
+\item A line through the origin is given by $ x_i = ta_i $ for $ t \ne 0 $. Taking $ \pi^{-1} $ of this line we get $ x_i = ta_i $ and $ y_i = ta_i = a_i $. In other words if $ x \ne 0 $, $ \pi^{-1}\br{X} = \br{X, \sbr{X}} $.
+\item $ \widetilde{\A^n} \setminus \pi^{-1}\br{0} \cong \A^n \setminus \cbr{0} $ is dense and irreducible, by $ 3 $.
 \end{enumerate}
 \end{proof}
 
 \begin{definition}
 If $ Y \ni 0 $ is a closed subvariety of $ \A^n $ we define the \textbf{blow-up} of $ Y $ at $ 0 $ by
-$$ \widetilde{Y} = \overline{\pi^{-1}\rb{Y \setminus \cb{0}}}. $$
+$$ \widetilde{Y} = \overline{\pi^{-1}\br{Y \setminus \cbr{0}}}. $$
 More generally, we can blow-up any point by taking an affine change of coordinates. We also get a birational map $ \pi : \widetilde{Y} \to Y $.
 \end{definition}
 
 \begin{example}
-Let $ Y = Z\rb{y^2 - x^2\rb{x + 1}} $. The equations of the blow-up are
+Let $ Y = Z\br{y^2 - x^2\br{x + 1}} $. The equations of the blow-up are
 $$
 \begin{cases}
-y^2 = x^2\rb{x + 1} \\
+y^2 = x^2\br{x + 1} \\
 xu = yt
 \end{cases},
 $$
-where $ \sb{t : u} \in \P^1 $. Suppose $ t \ne 0 $.
+where $ \sbr{t : u} \in \P^1 $. Suppose $ t \ne 0 $.
 $$
 \begin{cases}
-y^2 = x^2\rb{x + 1} \\
+y^2 = x^2\br{x + 1} \\
 y = xu
 \end{cases}
-\qquad \implies \qquad \rb{xu}^2 = x^2\rb{x + 1} \qquad \implies \qquad x^2\rb{u^2 - x - 1} = 0.
+\qquad \implies \qquad \br{xu}^2 = x^2\br{x + 1} \qquad \implies \qquad x^2\br{u^2 - x - 1} = 0.
 $$
 \end{example}
 
@@ -851,7 +851,7 @@ $$
 y^2 = x^3 \\
 y = xu
 \end{cases}
-\qquad \implies \qquad \rb{xu}^2 = x^3 \qquad \implies \qquad x^2\rb{u^2 - x} = 0.
+\qquad \implies \qquad \br{xu}^2 = x^3 \qquad \implies \qquad x^2\br{u^2 - x} = 0.
 $$
 \end{example}
 
@@ -862,28 +862,28 @@ $$
 \lecture{13}{Friday}{08/02/19}
 
 \begin{definition}
-Let $ Y \subseteq \A^n $ be an affine variety of dimension $ r $, and suppose $ I\rb{Y} = \ab{f_1, \dots, f_k} $. $ Y $ is \textbf{nonsingular} at $ P \in Y $ if $ rank\rb{\tfrac{\partial f_i\rb{P}}{\partial x_j}} = n - r $. $ Y $ is \textbf{nonsingular} if it is nonsingular at every $ P \in Y $.
+Let $ Y \subseteq \A^n $ be an affine variety of dimension $ r $, and suppose $ I\br{Y} = \abr{f_1, \dots, f_k} $. $ Y $ is \textbf{nonsingular} at $ P \in Y $ if $ rank\br{\tpd{f_i\br{P}}{x_j}} = n - r $. $ Y $ is \textbf{nonsingular} if it is nonsingular at every $ P \in Y $.
 \end{definition}
 
 \begin{example}
 Let $ x^2 = x^4 + y^4 \subseteq \A^2 $, so $ f = x^2 - x^4 - y^4 $.
-$$ \dfrac{\partial f}{\partial x} = 2x - 4x^3 = 0 \qquad \implies \qquad x\rb{1 - 2x^2} = 0 \qquad \implies \qquad x = 0 \ \text{or} \ 2x^2 = 1, $$
-$$ \dfrac{\partial f}{\partial y} = -9y^3 = 0 \qquad \implies \qquad y = 0 \qquad \implies \qquad x^2 = x^4 \qquad \implies \qquad x = 0 \ \text{or} \ x^2 = 1, $$
-so $ Sing\rb{Y} = \cb{\rb{0, 0}} $.
+$$ \dpd{f}{x} = 2x - 4x^3 = 0 \qquad \implies \qquad x\br{1 - 2x^2} = 0 \qquad \implies \qquad x = 0 \ \text{or} \ 2x^2 = 1, $$
+$$ \dpd{f}{y} = -9y^3 = 0 \qquad \implies \qquad y = 0 \qquad \implies \qquad x^2 = x^4 \qquad \implies \qquad x = 0 \ \text{or} \ x^2 = 1, $$
+so $ Sing\br{Y} = \cbr{\br{0, 0}} $.
 \end{example}
 
 \begin{example}
-Let $ Y = Z\rb{f} = Z\rb{y^2 - x^3} $.
-$$ \dfrac{\partial f}{\partial x} = -3x^2 = 0, \qquad \dfrac{\partial f}{\partial y} = 2y = 0, $$
-so $ Sing\rb{Y} = \cb{\rb{0, 0}} $.
+Let $ Y = Z\br{f} = Z\br{y^2 - x^3} $.
+$$ \dpd{f}{x} = -3x^2 = 0, \qquad \dpd{f}{y} = 2y = 0, $$
+so $ Sing\br{Y} = \cbr{\br{0, 0}} $.
 \end{example}
 
 \begin{definition}
-Let $ A $ be a Noetherian local ring with maximal ideal $ \mm $, and residue field $ A / \mm = K $. $ A $ is a \textbf{regular local ring} if $ \dim_K\rb{\mm / \mm^2} = \dim\rb{A} $.
+Let $ A $ be a Noetherian local ring with maximal ideal $ \mm $, and residue field $ A / \mm = K $. $ A $ is a \textbf{regular local ring} if $ \dim_K\br{\mm / \mm^2} = \dim\br{A} $.
 \end{definition}
 
 \begin{note*}
-$ \rb{\mm / \mm^2}^* $ is called the \textbf{Zariski-tangent space}.
+$ \br{\mm / \mm^2}^* $ is called the \textbf{Zariski-tangent space}.
 \end{note*}
 
 Claim that $ \mm / \mm^2 $ is a $ K $-vector space for $ K = A / \mm $.
@@ -893,11 +893,11 @@ Let $ Y \subseteq \A^n $ be an affine variety. Then $ Y $ is nonsingular at $ P 
 \end{theorem}
 
 \begin{proof}
-Let $ P = \rb{a_1, \dots, a_n} \in Y $ with corresponding maximal ideal $ I_P = \ab{x_1 - a_1, \dots, x_n - a_n} $. We define a map
-$$ \function[\theta_P]{A = K\sb{x_1, \dots, x_n}}{K^n}{f}{\rb{\dfrac{\partial f\rb{P}}{\partial x_1}, \dots, \dfrac{\partial f\rb{P}}{\partial x_n}}}. $$
-Note that $ \theta\rb{\rb{x_i - a_i}\rb{x_j - a_j}} = 0 $, hence $ \theta_P\rb{I_P^2} = 0 $, in particular we have an isomorphism $ I_P / I_P^2 \cong K^n $. By the isomorphism, if $ \alpha = I\rb{Y} = \ab{f_1, \dots, f_t} $ then the rank of $ \tfrac{\partial f_i\rb{P}}{\partial x_j} $ corresponds to the dimension of $ \alpha $ under the isomorphism, which is $ \overline{\alpha} $ in $ I_P / I_P^2 $, $ \rb{\alpha + I_P} / I_P^2 $. Now $ \OO_P = \rb{A / \alpha}_{I_P} $. If $ \mm = \rb{I_P + \alpha} / \alpha $ then $ \mm^2 = \rb{I_P^2 + \alpha} / \alpha $, so $ \mm / \mm^2 = I_P / \rb{I_P^2 + \alpha} $. So
-$$ r = \dim\rb{\dfrac{\mm}{\mm^2}} = \dim\rb{\dfrac{I_P}{I_P^2 + \alpha}} = \dim\rb{\dfrac{I_P}{I_P^2}} - \dim\rb{\dfrac{I_P^2 + \alpha}{I_P^2}} = n - rank\rb{\dfrac{\partial f_i}{\partial x_j}}. $$
-So $ \OO_P $ is regular if and only if $ rank\rb{\tfrac{\partial f_i}{\partial x_j}} = n - r $.
+Let $ P = \br{a_1, \dots, a_n} \in Y $ with corresponding maximal ideal $ I_P = \abr{x_1 - a_1, \dots, x_n - a_n} $. We define a map
+$$ \function[\theta_P]{A = K\sbr{x_1, \dots, x_n}}{K^n}{f}{\br{\dpd{f\br{P}}{x_1}, \dots, \dpd{f\br{P}}{x_n}}}. $$
+Note that $ \theta\br{\br{x_i - a_i}\br{x_j - a_j}} = 0 $, hence $ \theta_P\br{I_P^2} = 0 $, in particular we have an isomorphism $ I_P / I_P^2 \cong K^n $. By the isomorphism, if $ \alpha = I\br{Y} = \abr{f_1, \dots, f_t} $ then the rank of $ \tpd{f_i\br{P}}{x_j} $ corresponds to the dimension of $ \alpha $ under the isomorphism, which is $ \overline{\alpha} $ in $ I_P / I_P^2 $, $ \br{\alpha + I_P} / I_P^2 $. Now $ \OO_P = \br{A / \alpha}_{I_P} $. If $ \mm = \br{I_P + \alpha} / \alpha $ then $ \mm^2 = \br{I_P^2 + \alpha} / \alpha $, so $ \mm / \mm^2 = I_P / \br{I_P^2 + \alpha} $. So
+$$ r = \dim\br{\dfrac{\mm}{\mm^2}} = \dim\br{\dfrac{I_P}{I_P^2 + \alpha}} = \dim\br{\dfrac{I_P}{I_P^2}} - \dim\br{\dfrac{I_P^2 + \alpha}{I_P^2}} = n - rank\br{\dpd{f_i}{x_j}}. $$
+So $ \OO_P $ is regular if and only if $ rank\br{\tpd{f_i}{x_j}} = n - r $.
 \end{proof}
 
 \begin{definition}
@@ -905,11 +905,11 @@ Let $ X $ be a variety. $ X $ is \textbf{nonsingular} at $ P $ if $ \OO_P $ is a
 \end{definition}
 
 \begin{theorem}
-Let $ Y $ be a variety. Then $ Sing\rb{Y} $ is a proper and closed set. The set of nonsingular points of $ Y $ is open and dense.
+Let $ Y $ be a variety. Then $ Sing\br{Y} $ is a proper and closed set. The set of nonsingular points of $ Y $ is open and dense.
 \end{theorem}
 
 \begin{proof}
-Prove that $ Sing\rb{Y} $ is closed, first. We know that the rank of the Jacobian is at most $ n - r $, therefore the singular points occurs when the rank is less than $ n - r $, which is to say that $ Sing\rb{Y} $ is given by the vanishing of the $ \rb{n - r} \times \rb{n - r} $ minors of $ \tfrac{\partial f_i}{\partial x_j} $ and $ I\rb{Y} $, hence is closed. To prove that it is proper $ Sing\rb{Y} \subsetneq Y $.
+Prove that $ Sing\br{Y} $ is closed, first. We know that the rank of the Jacobian is at most $ n - r $, therefore the singular points occurs when the rank is less than $ n - r $, which is to say that $ Sing\br{Y} $ is given by the vanishing of the $ \br{n - r} \times \br{n - r} $ minors of $ \tpd{f_i}{x_j} $ and $ I\br{Y} $, hence is closed. To prove that it is proper $ Sing\br{Y} \subsetneq Y $.
 \end{proof}
 
 \lecture{14}{Monday}{11/02/19}
@@ -927,36 +927,36 @@ Lecture 15 is a problem class.
 \lecture{16}{Friday}{15/02/19}
 
 \begin{theorem}
-Let $ Y, Z \subseteq \A^n $ be varieties, with $ \dim\rb{Y} = r $ and $ \dim\rb{Z} = s $ then every irreducible component has dimension at least $ r + s - n $.
+Let $ Y, Z \subseteq \A^n $ be varieties, with $ \dim\br{Y} = r $ and $ \dim\br{Z} = s $ then every irreducible component has dimension at least $ r + s - n $.
 \end{theorem}
 
 \begin{proof}
-Suppose $ Z $ is a hypersurface. Then if $ Y \subseteq Z $ the theorem holds, and if $ Y \nsubseteq Z $ the theorem is true by homework $ 1 $. Let $ Z $ be general. Consider the diagonal in $ \A^{2n} $ given by the image of the isomorphism $ P \mapsto P \times P $, then $ Y \cap Z $ corresponds to $ \rb{Y \times Z} \cap \Delta $. Recall that
-$$ \Delta = Z\rb{x_1 - y_1} \cap \dots \cap Z\rb{x_n - y_n}, $$
+Suppose $ Z $ is a hypersurface. Then if $ Y \subseteq Z $ the theorem holds, and if $ Y \nsubseteq Z $ the theorem is true by homework $ 1 $. Let $ Z $ be general. Consider the diagonal in $ \A^{2n} $ given by the image of the isomorphism $ P \mapsto P \times P $, then $ Y \cap Z $ corresponds to $ \br{Y \times Z} \cap \Delta $. Recall that
+$$ \Delta = Z\br{x_1 - y_1} \cap \dots \cap Z\br{x_n - y_n}, $$
 by the first case $ n $ times we have that each irreducible component has dimension
-$$ \rb{r + s} - n - 2n = r + s - n. $$
+$$ \br{r + s} - n - 2n = r + s - n. $$
 \end{proof}
 
 \begin{theorem}
-Let $ Y, Z \subseteq \P^n $ be varieties, where $ \dim\rb{Y} = r $ and $ \dim\rb{Z} = s $, then each irreducible component of $ Y \cap Z $ has dimension at least $ r + s - n $. Moreover, if $ r + s - n \ge 0 $ then $ Y \cap Z \ne \emptyset $.
+Let $ Y, Z \subseteq \P^n $ be varieties, where $ \dim\br{Y} = r $ and $ \dim\br{Z} = s $, then each irreducible component of $ Y \cap Z $ has dimension at least $ r + s - n $. Moreover, if $ r + s - n \ge 0 $ then $ Y \cap Z \ne \emptyset $.
 \end{theorem}
 
 \begin{proof}
-Take the affine cone of $ Y $ and $ Z $, $ C\rb{Y} $ and $ C\rb{Z} $, since $ 0 \in C\rb{Y} \cap C\rb{Z} $ we apply the previous theorem to get
-$$ \rb{r + 1} + \rb{s + 1} - \rb{n + 1} = r + s - n + 1, $$
+Take the affine cone of $ Y $ and $ Z $, $ C\br{Y} $ and $ C\br{Z} $, since $ 0 \in C\br{Y} \cap C\br{Z} $ we apply the previous theorem to get
+$$ \br{r + 1} + \br{s + 1} - \br{n + 1} = r + s - n + 1, $$
 so therefore $ Y \cap Z \ne \emptyset $.
 \end{proof}
 
 \begin{definition}
-A \textbf{numerical polynomial} is a polynomial $ f \in \Q\sb{x} $ such that $ f\rb{n} \in \Z $ for $ n \gg 0 $, for $ n $ sufficiently large.
+A \textbf{numerical polynomial} is a polynomial $ f \in \Q\sbr{x} $ such that $ f\br{n} \in \Z $ for $ n \gg 0 $, for $ n $ sufficiently large.
 \end{definition}
 
 \begin{theorem}
 \hfill
 \begin{enumerate}
-\item If $ f \in \Q\sb{x} $ is a numerical polynomial then there are $ c_0, \dots, c_r \in \Z $ such that
-$$ f\rb{x} = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}. $$
-\item If for $ n \gg 0 $, $ \Delta f = f\rb{n + 1} - f\rb{n} = q $ and $ q $ is a numerical polynomial, then there exists $ p $ such that for $ n \gg 0 $, $ p\rb{n} = f\rb{n} $.
+\item If $ f \in \Q\sbr{x} $ is a numerical polynomial then there are $ c_0, \dots, c_r \in \Z $ such that
+$$ f\br{x} = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}. $$
+\item If for $ n \gg 0 $, $ \Delta f = f\br{n + 1} - f\br{n} = q $ and $ q $ is a numerical polynomial, then there exists $ p $ such that for $ n \gg 0 $, $ p\br{n} = f\br{n} $.
 \end{enumerate}
 \end{theorem}
 
@@ -964,15 +964,15 @@ $$ f\rb{x} = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}. $$
 \hfill
 \begin{enumerate}
 \item By linear algebra we can find $ c_0, \dots, c_r \in \Q $ such that
-$$ f\rb{x} = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}, $$
+$$ f\br{x} = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}, $$
 then
 $$ \Delta f = c_0\twobyone{x}{r - 1} + \dots + c_{r - 1}\twobyone{x}{0}. $$
-By induction on the degree of $ f $ we have that $ c_0, \dots, c_{r - 1} \in \Z $, but since $ f\rb{n} \in \Z $ for $ n \gg 0 $ then $ c_r \in \Z $.
+By induction on the degree of $ f $ we have that $ c_0, \dots, c_{r - 1} \in \Z $, but since $ f\br{n} \in \Z $ for $ n \gg 0 $ then $ c_r \in \Z $.
 \item If
 $$ q = c_0\twobyone{x}{r} + \dots + c_r\twobyone{x}{0}, $$
 set
 $$ p = c_0\twobyone{x}{r + 1} + \dots + c_r\twobyone{x}{1}. $$
-$ \Delta p = q $ gives $ \Delta \rb{f - p}\rb{n} = 0 $.
+$ \Delta p = q $ gives $ \Delta \br{f - p}\br{n} = 0 $.
 \end{enumerate}
 \end{proof}
 
@@ -984,61 +984,61 @@ $ \Delta p = q $ gives $ \Delta \rb{f - p}\rb{n} = 0 $.
 \item Let $ S $ be a graded ring. A \textbf{graded $ S $-module} is a module $ M $ with a decomposition
 $$ M = \bigoplus_{d \in \Z} M_d, $$
 such that $ S_k \cdot M_d \subseteq M_{d + k} $.
-\item Let $ l \in \Z $. The \textbf{twisted module} $ M\rb{l} $ is the graded $ S $-module given by $ M\rb{l}_k = M_{l + k} $.
-\item $ Ann\rb{M} = \cb{x \in S \mid xM = 0} $.
+\item Let $ l \in \Z $. The \textbf{twisted module} $ M\br{l} $ is the graded $ S $-module given by $ M\br{l}_k = M_{l + k} $.
+\item $ Ann\br{M} = \cbr{x \in S \mid xM = 0} $.
 \end{itemize}
 \end{definition}
 
 \begin{theorem}
 Let $ M $ be a finitely generated graded $ S $-module. Then there is a filtration
 $$ 0 = M^0 \subseteq \dots \subseteq M^r = M, $$
-such that $ M^i / M^{i - 1} \cong \rb{S / \pp_i}\rb{l} $ for some $ \pp_i $ prime ideals and $ l_i \in \Z $, such that
+such that $ M^i / M^{i - 1} \cong \br{S / \pp_i}\br{l} $ for some $ \pp_i $ prime ideals and $ l_i \in \Z $, such that
 \begin{itemize}
-\item prime $ \pp \supseteq Ann\rb{M} $ if and only if $ \pp \subseteq \pp_i $, that is $ \pp_i $ are minimal primes of $ M $, and
-\item for each minimal prime $ \pp $ of $ M $ the number of times $ \pp $ appears in the set $ \cb{\pp_1, \dots, \pp_r} $ is $ len_{S_\pp}\rb{M_\pp} $.
+\item prime $ \pp \supseteq Ann\br{M} $ if and only if $ \pp \subseteq \pp_i $, that is $ \pp_i $ are minimal primes of $ M $, and
+\item for each minimal prime $ \pp $ of $ M $ the number of times $ \pp $ appears in the set $ \cbr{\pp_1, \dots, \pp_r} $ is $ len_{S_\pp}\br{M_\pp} $.
 \end{itemize}
 \end{theorem}
 
 \lecture{17}{Monday}{18/02/19}
 
 \begin{definition}
-Let $ \pp $ be a minimal prime of a graded $ S $-module $ M $. Then the \textbf{multiplicity} of $ M $ at $ \pp $ is $ len_{S_\pp}\rb{M_\pp} $.
+Let $ \pp $ be a minimal prime of a graded $ S $-module $ M $. Then the \textbf{multiplicity} of $ M $ at $ \pp $ is $ len_{S_\pp}\br{M_\pp} $.
 \end{definition}
 
 \begin{definition}
-Let $ M $ be a graded $ S = K\sb{x_1, \dots, x_n} $-module. The \textbf{Hilbert function} of $ M $ is $ \phi_M\rb{l} = \dim_K\rb{M_l} $.
+Let $ M $ be a graded $ S = K\sbr{x_1, \dots, x_n} $-module. The \textbf{Hilbert function} of $ M $ is $ \phi_M\br{l} = \dim_K\br{M_l} $.
 \end{definition}
 
 \begin{theorem}
-Let $ M $ be a graded $ S = K\sb{x_1, \dots, x_n} $-module. Then for $ n \gg 0 $, there is a unique polynomial $ P_M \in \Q\sb{x} $ such that $ \phi_M\rb{n} = P_M\rb{n} $. $ P_M $ is called the \textbf{Hilbert polynomial}. It is a polynomial of degree $ \dim\rb{Z\rb{Ann\rb{M}}} $.
+Let $ M $ be a graded $ S = K\sbr{x_1, \dots, x_n} $-module. Then for $ n \gg 0 $, there is a unique polynomial $ P_M \in \Q\sbr{x} $ such that $ \phi_M\br{n} = P_M\br{n} $. $ P_M $ is called the \textbf{Hilbert polynomial}. It is a polynomial of degree $ \dim\br{Z\br{Ann\br{M}}} $.
 \end{theorem}
 
 \begin{proof}
 By the previous theorem, $ M $ has a filtration
 $$ 0 = M^0 \subseteq \dots \subseteq M^r = M, $$
-such that $ M^i / M^{i - 1} $ is of the form $ \rb{S / \pp_i}\rb{l_i} $. Without loss of generality we can assume $ M = S / \pp $, since $ l_i $ amounts to a translation $ z \mapsto z + l_i $. If $ \pp = \ab{x_0, \dots, x_n} $ then $ S / \pp \cong K $, in particular $ \phi_M\rb{l_i} = 0 $ if $ l_i > 0 $, but then take $ P_M = 0 $. We can assume $ \dim\rb{0} = -1 $ and $ \dim\rb{\emptyset} = -1 $. Suppose $ \pp \ne \ab{x_0, \dots, x_n} $. Then there is $ x_i \notin \pp $ and consider the short exact sequence
+such that $ M^i / M^{i - 1} $ is of the form $ \br{S / \pp_i}\br{l_i} $. Without loss of generality we can assume $ M = S / \pp $, since $ l_i $ amounts to a translation $ z \mapsto z + l_i $. If $ \pp = \abr{x_0, \dots, x_n} $ then $ S / \pp \cong K $, in particular $ \phi_M\br{l_i} = 0 $ if $ l_i > 0 $, but then take $ P_M = 0 $. We can assume $ \dim\br{0} = -1 $ and $ \dim\br{\emptyset} = -1 $. Suppose $ \pp \ne \abr{x_0, \dots, x_n} $. Then there is $ x_i \notin \pp $ and consider the short exact sequence
 $$ 0 \to M \xrightarrow{x_i} M \to \dfrac{M}{x_iM} = M'' \to 0. $$
 Taking Hilbert function we get that
-$$ \phi_{M''}\rb{l} = \phi_M\rb{l} - \phi_M\rb{l - 1} = \Delta\phi_M\rb{l - 1}. $$
-Note that $ Ann\rb{M''} = Ann\rb{M} \cup \cb{x_i} $, so $ Z\rb{Ann\rb{M''}} = Z\rb{\pp} \cap Z\rb{x_i} $. Note that
-$$ \dim\rb{Ann\rb{M''}} = \dim\rb{Z\rb{\pp}} - 1, $$
-so we apply induction over $ \dim\rb{Ann\rb{M}} $. Thus $ \phi_{M''} $ agrees with a polynomial $ P_{M''}\rb{n} $ for $ n \gg 0 $ but then $ \Delta\phi_M = P_{M''} $ for $ n \gg 0 $, so $ \phi_M $ agrees with a polynomial of degree
-$$ \dim\rb{Ann\rb{M''}} + 1 = \dim\rb{Z\rb{\pp}}. $$
+$$ \phi_{M''}\br{l} = \phi_M\br{l} - \phi_M\br{l - 1} = \Delta\phi_M\br{l - 1}. $$
+Note that $ Ann\br{M''} = Ann\br{M} \cup \cbr{x_i} $, so $ Z\br{Ann\br{M''}} = Z\br{\pp} \cap Z\br{x_i} $. Note that
+$$ \dim\br{Ann\br{M''}} = \dim\br{Z\br{\pp}} - 1, $$
+so we apply induction over $ \dim\br{Ann\br{M}} $. Thus $ \phi_{M''} $ agrees with a polynomial $ P_{M''}\br{n} $ for $ n \gg 0 $ but then $ \Delta\phi_M = P_{M''} $ for $ n \gg 0 $, so $ \phi_M $ agrees with a polynomial of degree
+$$ \dim\br{Ann\br{M''}} + 1 = \dim\br{Z\br{\pp}}. $$
 \end{proof}
 
 \pagebreak
 
 \begin{definition}
-If $ Y \subseteq \P^n $ of dimension $ r $, the \textbf{Hilbert polynomial} of $ Y $ is the Hilbert polynomial of $ S\rb{Y} $. The degree of $ Y $ is $ r! $ times the leading coefficient of $ P_Y $.
+If $ Y \subseteq \P^n $ of dimension $ r $, the \textbf{Hilbert polynomial} of $ Y $ is the Hilbert polynomial of $ S\br{Y} $. The degree of $ Y $ is $ r! $ times the leading coefficient of $ P_Y $.
 \end{definition}
 
 \begin{theorem}
 \hfill
 \begin{enumerate}
-\item If $ Y \ne \emptyset $, then $ \deg\rb{Y} \in \Z_{> 0} $.
-\item $ \deg\rb{\P^n} = 1 $.
-\item If $ Y = Y_1 \cup Y_2 $ with $ \dim\rb{Y_i} = r $ and $ \dim\rb{Y_1 \cap Y_2} < r $ then $ \deg\rb{Y} = \deg\rb{Y_1} + \deg\rb{Y_2} $.
-\item If $ H $ is a hypersurface generated by $ f $ then $ \deg\rb{H} = \deg\rb{f} $.
+\item If $ Y \ne \emptyset $, then $ \deg\br{Y} \in \Z_{> 0} $.
+\item $ \deg\br{\P^n} = 1 $.
+\item If $ Y = Y_1 \cup Y_2 $ with $ \dim\br{Y_i} = r $ and $ \dim\br{Y_1 \cap Y_2} < r $ then $ \deg\br{Y} = \deg\br{Y_1} + \deg\br{Y_2} $.
+\item If $ H $ is a hypersurface generated by $ f $ then $ \deg\br{H} = \deg\br{f} $.
 \end{enumerate}
 \end{theorem}
 
@@ -1047,16 +1047,16 @@ If $ Y \subseteq \P^n $ of dimension $ r $, the \textbf{Hilbert polynomial} of $
 \begin{enumerate}
 \item Obvious.
 \item
-$$ \phi_{\P^n}\rb{z} = \twobyone{z + n}{n} = \dfrac{1}{n!}\rb{z} \dots \rb{n + 1} = \dfrac{1}{n!}z^n + \dots. $$
-\item Let $ I = I\rb{Y} $, $ I_1 = I\rb{Y_1} $, and $ I_2 = I\rb{Y_2} $. Consider the short exact sequence
+$$ \phi_{\P^n}\br{z} = \twobyone{z + n}{n} = \dfrac{1}{n!}\br{z} \dots \br{n + 1} = \dfrac{1}{n!}z^n + \dots. $$
+\item Let $ I = I\br{Y} $, $ I_1 = I\br{Y_1} $, and $ I_2 = I\br{Y_2} $. Consider the short exact sequence
 $$ 0 \to \dfrac{S}{I} \to \dfrac{S}{I_1} \oplus \dfrac{S}{I_2} \to \dfrac{S}{I_1 + I_2} \to 0. $$
 Taking Hilbert function,
 $$ \phi_{\tfrac{S}{I_1 + I_2}} = \phi_{\tfrac{S}{I_1} \oplus \tfrac{S}{I_2}} - \phi_{\tfrac{S}{I}}. $$
-Since $ Z\rb{I_1 + I_2} = Y_1 \cap Y_2 $ and $ \dim\rb{Y_1 \cap Y_2} < r $ we have that $ \phi_{S / I_1 \oplus S / I_2} $ and $ \phi_{S / I} $ have the same leading coefficients, hence $ \deg\rb{Y} = \deg\rb{Y_1} + \deg\rb{Y_2} $.
-\item Suppose $ \deg\rb{f} = d $ then consider the short exact sequence
-$$ 0 \to S\rb{-d} \xrightarrow{f}{S} \to \dfrac{S}{\ab{f}} \to 0. $$
+Since $ Z\br{I_1 + I_2} = Y_1 \cap Y_2 $ and $ \dim\br{Y_1 \cap Y_2} < r $ we have that $ \phi_{S / I_1 \oplus S / I_2} $ and $ \phi_{S / I} $ have the same leading coefficients, hence $ \deg\br{Y} = \deg\br{Y_1} + \deg\br{Y_2} $.
+\item Suppose $ \deg\br{f} = d $ then consider the short exact sequence
+$$ 0 \to S\br{-d} \xrightarrow{f}{S} \to \dfrac{S}{\abr{f}} \to 0. $$
 Taking Hilbert functions,
-$$ \phi_{\tfrac{S}{\ab{f}}}\rb{z} = \phi_S\rb{z} - \phi_S\rb{z - d} = \twobyone{z + n}{n} - \twobyone{z - d + n}{n} = \dfrac{d}{\rb{n - 1}!}z^{n - 1} + \dots. $$
+$$ \phi_{\tfrac{S}{\abr{f}}}\br{z} = \phi_S\br{z} - \phi_S\br{z - d} = \twobyone{z + n}{n} - \twobyone{z - d + n}{n} = \dfrac{d}{\br{n - 1}!}z^{n - 1} + \dots. $$
 \end{enumerate}
 \end{proof}
 
@@ -1064,31 +1064,31 @@ $$ \phi_{\tfrac{S}{\ab{f}}}\rb{z} = \phi_S\rb{z} - \phi_S\rb{z - d} = \twobyone{
 
 \lecture{18}{Tuesday}{19/02/19}
 
-Let $ Y \subseteq \P^n $ be a projective variety and $ H $ a hypersurface then $ Y \cap H = Z_1 \cup \dots \cup Z_k $, where each $ Z_j $ has dimension $ r - 1 = \dim\rb{Y} - 1 $. Suppose $ I\rb{Z_j} = \pp_j $, then each $ \pp_j $ is a minimal prime of $ S / \rb{I_Y + I_H} $, then the \textbf{intersection multiplicity} $ i\rb{Y, H; Z_j} $ is the multiplicity of $ S / \rb{I_Y + I_H} $ at $ \pp_j $.
+Let $ Y \subseteq \P^n $ be a projective variety and $ H $ a hypersurface then $ Y \cap H = Z_1 \cup \dots \cup Z_k $, where each $ Z_j $ has dimension $ r - 1 = \dim\br{Y} - 1 $. Suppose $ I\br{Z_j} = \pp_j $, then each $ \pp_j $ is a minimal prime of $ S / \br{I_Y + I_H} $, then the \textbf{intersection multiplicity} $ i\br{Y, H; Z_j} $ is the multiplicity of $ S / \br{I_Y + I_H} $ at $ \pp_j $.
 
 \begin{theorem}
 Let $ Y \subseteq \P^n $ be a variety and $ H $ a hypersurface such that $ Y \nsubseteq H $. If $ Y \cap H = Z_1 \cup \dots \cup Z_k $ then
-$$ \sum_{j = 1}^k i\rb{Y, H; Z_j}\deg\rb{Z_j} = \deg\rb{Y}\deg\rb{H}. $$
+$$ \sum_{j = 1}^k i\br{Y, H; Z_j}\deg\br{Z_j} = \deg\br{Y}\deg\br{H}. $$
 \end{theorem}
 
 \begin{corollary}[B\'ezout's theorem]
-If $ Y, H \subseteq \P^2 $ are curves and $ Y \cap H = \cb{P_1, \dots, P_k} $ then
-$$ \sum_{j = 1}^k i\rb{Y, H; P_j} = \deg\rb{Y}\deg\rb{H}. $$
+If $ Y, H \subseteq \P^2 $ are curves and $ Y \cap H = \cbr{P_1, \dots, P_k} $ then
+$$ \sum_{j = 1}^k i\br{Y, H; P_j} = \deg\br{Y}\deg\br{H}. $$
 \end{corollary}
 
 \begin{proof}
-Supppose $ H $ is generated by $ f $, where $ \deg\rb{f} = d $, and let $ I = I\rb{Y} $.
-$$ 0 \to \rb{\dfrac{S}{I}}\rb{-d} \xrightarrow{f} \dfrac{S}{I} \to \dfrac{S}{I + I_H} \to 0. $$
+Supppose $ H $ is generated by $ f $, where $ \deg\br{f} = d $, and let $ I = I\br{Y} $.
+$$ 0 \to \br{\dfrac{S}{I}}\br{-d} \xrightarrow{f} \dfrac{S}{I} \to \dfrac{S}{I + I_H} \to 0. $$
 Taking Hilbert polynomials we get
-$$ \phi_{\tfrac{S}{I_1 + I_2}}\rb{z} = \phi_{\tfrac{S}{I_Y}}\rb{z} + \phi_{\tfrac{S}{I_Y}}\rb{z - d}. $$
-Let $ \deg\rb{Y} = e $, then the right hand side is
-$$ \dfrac{e}{r!}z^r + \dots - \rb{\dfrac{e}{r!}\rb{z - d}^r + \dots} = \dfrac{de}{\rb{r - 1}!}z^{r - 1} + \dots. $$
+$$ \phi_{\tfrac{S}{I_1 + I_2}}\br{z} = \phi_{\tfrac{S}{I_Y}}\br{z} + \phi_{\tfrac{S}{I_Y}}\br{z - d}. $$
+Let $ \deg\br{Y} = e $, then the right hand side is
+$$ \dfrac{e}{r!}z^r + \dots - \br{\dfrac{e}{r!}\br{z - d}^r + \dots} = \dfrac{de}{\br{r - 1}!}z^{r - 1} + \dots. $$
 Now on the left hand side, by the structure theorem, there is a filtration
 $$ 0 = M^0 \subseteq \dots \subseteq M^s = M, $$
-where $ M = S / \rb{I_Y + I_H} $. Then
+where $ M = S / \br{I_Y + I_H} $. Then
 $$ P_M = \sum_{i = 1}^s P_i = \sum_{i = 1}^s P_{\tfrac{M^i}{M^{i - 1}}}, $$
-where each $ M^i / M^{i - 1} = \rb{S / \pp_i}\rb{l_i} $. Since we want to compare the leading coefficient from this with the one from the right hand side, we only care about the $ P_i $'s with degree $ r - 1 $. So the $ \pp_j = I\rb{Z_j} $ and the leading term is
-$$ \dfrac{\sum_{j = 1}^k i\rb{Y, H; Z_j}\deg\rb{Z_j}}{\rb{r - 1}!} + \dots. $$
+where each $ M^i / M^{i - 1} = \br{S / \pp_i}\br{l_i} $. Since we want to compare the leading coefficient from this with the one from the right hand side, we only care about the $ P_i $'s with degree $ r - 1 $. So the $ \pp_j = I\br{Z_j} $ and the leading term is
+$$ \dfrac{\sum_{j = 1}^k i\br{Y, H; Z_j}\deg\br{Z_j}}{\br{r - 1}!} + \dots. $$
 \end{proof}
 
 \pagebreak
@@ -1098,7 +1098,7 @@ $$ \dfrac{\sum_{j = 1}^k i\rb{Y, H; Z_j}\deg\rb{Z_j}}{\rb{r - 1}!} + \dots. $$
 \lecture{19}{Friday}{22/02/19}
 
 \begin{theorem}
-Let $ S \subseteq \P^3 $ be a nonsingular cubic surface given by a polynomial $ f\rb{x, y, z, t} $. Then $ S $ has exactly $ 27 $ lines.
+Let $ S \subseteq \P^3 $ be a nonsingular cubic surface given by a polynomial $ f\br{x, y, z, t} $. Then $ S $ has exactly $ 27 $ lines.
 \end{theorem}
 
 We start with a lemma.
@@ -1119,11 +1119,11 @@ We start with a lemma.
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item $ l \subseteq S $ gives $ T_p\rb{l} = l \subseteq T_p\rb{S} $, by $ 2 $, $ T_p\rb{S} $ intersect $ S $ in at most three lines.
-\item We have to prove that there are no multiple lines in the intersection $ S \cap \pi $. Changing coordinates if necessary, we can suppose $ \pi = \cb{f = 0} $ and $ l = \cb{z = 0} $ is the line in the intersection.
-$$ f = z^2 \cdot a\rb{x, y, z, t} + t \cdot b\rb{x, y, z, t}. $$
+\item $ l \subseteq S $ gives $ T_p\br{l} = l \subseteq T_p\br{S} $, by $ 2 $, $ T_p\br{S} $ intersect $ S $ in at most three lines.
+\item We have to prove that there are no multiple lines in the intersection $ S \cap \pi $. Changing coordinates if necessary, we can suppose $ \pi = \cbr{f = 0} $ and $ l = \cbr{z = 0} $ is the line in the intersection.
+$$ f = z^2 \cdot a\br{x, y, z, t} + t \cdot b\br{x, y, z, t}. $$
 Claim that $ S $ is singular at $ z = t = b = 0 $.
-$$ Jac\rb{f} = \onebytwo{z^2a_x + tb_x & z^2a_y + tb_y}{2za + z^2a_z + tb_z & z^2a_t + b + tb_t}. $$
+$$ Jac\br{f} = \onebytwo{z^2a_x + tb_x & z^2a_y + tb_y}{2za + z^2a_z + tb_z & z^2a_t + b + tb_t}. $$
 Since $ S $ is smooth there are no multiple lines.
 \end{enumerate}
 \end{proof}
@@ -1135,41 +1135,41 @@ $ S $ has a line.
 \begin{proof}
 \hfill
 \begin{itemize}
-\item Let $ P \in S $ and consider $ T_P\rb{S} $. Then $ T_P\rb{S} $ intersects $ S $ in a plane cubic $ C = S \cap T_P\rb{S} $ which is singular at $ P $. Otherwise we are done. Then $ C $ has to be a nodal or a cuspidal curve. So assume that $ C $ is a cuspidal curve, and change coordinates if necessary, assume that $ P = \sb{0 : 0 : 1 : 0} $ and $ T_P\rb{S} = \cb{t = 0} $. So the equation of $ f $ has the shape
+\item Let $ P \in S $ and consider $ T_P\br{S} $. Then $ T_P\br{S} $ intersects $ S $ in a plane cubic $ C = S \cap T_P\br{S} $ which is singular at $ P $. Otherwise we are done. Then $ C $ has to be a nodal or a cuspidal curve. So assume that $ C $ is a cuspidal curve, and change coordinates if necessary, assume that $ P = \sbr{0 : 0 : 1 : 0} $ and $ T_P\br{S} = \cbr{t = 0} $. So the equation of $ f $ has the shape
 $$ f = x^2z - y^3 + gt, $$
 for some $ g $ of homogeneous degree two.
-\item We consider the point $ P_\alpha = \sb{1 : \alpha : \alpha^3 : 0} \in C \subset S $, consider the plane $ x = 0 $ and the line $ P_\alpha Q $ in $ \P^3 $ passing through $ P_\alpha $ and intersecting this plane $ x = 0 $ at $ Q = \rb{0, y, z, t} $. The line through $ P_\alpha $ and $ Q $ is $ \lambda P_\alpha + \mu Q $ and it lies inside $ S $ if
-$$ f\rb{\lambda P_\alpha + \mu Q} = 0. $$
+\item We consider the point $ P_\alpha = \sbr{1 : \alpha : \alpha^3 : 0} \in C \subset S $, consider the plane $ x = 0 $ and the line $ P_\alpha Q $ in $ \P^3 $ passing through $ P_\alpha $ and intersecting this plane $ x = 0 $ at $ Q = \br{0, y, z, t} $. The line through $ P_\alpha $ and $ Q $ is $ \lambda P_\alpha + \mu Q $ and it lies inside $ S $ if
+$$ f\br{\lambda P_\alpha + \mu Q} = 0. $$
 After expanding this we have
-$$ P_\alpha Q \subset S \qquad \iff \qquad A\rb{y, z, t} = B\rb{y, z, t} = C\rb{y, z, t} = 0, $$
-for $ A, B, C $ to be determined. There is a polynomial $ R\rb{\alpha} $ of degree $ 27 $ such that $ R\rb{\alpha} = 0 $ if and only if $ A = B = C $ have a common zero.
+$$ P_\alpha Q \subset S \qquad \iff \qquad A\br{y, z, t} = B\br{y, z, t} = C\br{y, z, t} = 0, $$
+for $ A, B, C $ to be determined. There is a polynomial $ R\br{\alpha} $ of degree $ 27 $ such that $ R\br{\alpha} = 0 $ if and only if $ A = B = C $ have a common zero.
 
 \pagebreak
 
 \lecture{20}{Monday}{25/02/19}
 
-\item Let $ f\rb{x, y, z, t} $ be a polynomial, then the \textbf{polar form} of $ f $ is
-$$ f_1\rb{x, y, z, t, x', y', z', t'} = \dfrac{\partial f}{\partial x} \cdot x' + \dfrac{\partial f}{\partial y} \cdot y' + \dfrac{\partial f}{\partial z} \cdot z' + \dfrac{\partial f}{\partial t} \cdot t', $$
-where $ P = \rb{x, y, z, t} $ and $ Q = \rb{x', y', z', t'} $. Then
-$$ f\rb{\lambda P + \mu Q} = \lambda^3f\rb{P} + \lambda^2\mu f_1\rb{P, Q} + \lambda\mu^2f_1\rb{Q, P} + \mu^3f\rb{Q}. $$
+\item Let $ f\br{x, y, z, t} $ be a polynomial, then the \textbf{polar form} of $ f $ is
+$$ f_1\br{x, y, z, t, x', y', z', t'} = \dpd{f}{x} \cdot x' + \dpd{f}{y} \cdot y' + \dpd{f}{z} \cdot z' + \dpd{f}{t} \cdot t', $$
+where $ P = \br{x, y, z, t} $ and $ Q = \br{x', y', z', t'} $. Then
+$$ f\br{\lambda P + \mu Q} = \lambda^3f\br{P} + \lambda^2\mu f_1\br{P, Q} + \lambda\mu^2f_1\br{Q, P} + \mu^3f\br{Q}. $$
 The polar form of $ f = x^2z - y^3 + gt $ is
-$$ f_1 = 2xzx' - 3y^2y' + x^2z' + g\rb{x, y, z, t}t' + tg_1, $$
-where $ g_1 $ is the polar form of $ g $. Recall $ P_\alpha = \rb{1, \alpha, \alpha^2, 0} $ and $ Q = \rb{0, y, z, t} $, so
-$$ \cb{f\rb{\lambda P + \mu Q} = 0} = PQ \subseteq S \qquad \iff \qquad f\rb{P} = f_1\rb{P, Q} = f_1\rb{Q, P} = f\rb{Q} = 0. $$
+$$ f_1 = 2xzx' - 3y^2y' + x^2z' + g\br{x, y, z, t}t' + tg_1, $$
+where $ g_1 $ is the polar form of $ g $. Recall $ P_\alpha = \br{1, \alpha, \alpha^2, 0} $ and $ Q = \br{0, y, z, t} $, so
+$$ \cbr{f\br{\lambda P + \mu Q} = 0} = PQ \subseteq S \qquad \iff \qquad f\br{P} = f_1\br{P, Q} = f_1\br{Q, P} = f\br{Q} = 0. $$
 Thus
 $$
 \begin{cases}
-A = z - 3\alpha^2y + g\rb{1, \alpha, \alpha^3, 0}t \\
-B = -3\alpha y^2 + g_1\rb{1, \alpha, \alpha^3, 0, 0, y, z, t}t \\
-C = -y^3 + g\rb{0, y, z, t}t
+A = z - 3\alpha^2y + g\br{1, \alpha, \alpha^3, 0}t \\
+B = -3\alpha y^2 + g_1\br{1, \alpha, \alpha^3, 0, 0, y, z, t}t \\
+C = -y^3 + g\br{0, y, z, t}t
 \end{cases}.
 $$
 \item Note that
-$$ g\rb{1, \alpha, \alpha^3, 0} = a^6 + \dots. $$
+$$ g\br{1, \alpha, \alpha^3, 0} = a^6 + \dots. $$
 If $ l = 0 $,
-$$ z = 3\alpha^2y + g\rb{P}t = 3\alpha^2y + \sb{a^6}t. $$
+$$ z = 3\alpha^2y + g\br{P}t = 3\alpha^2y + \sbr{a^6}t. $$
 Applying this to $ B = 0 $ we have
-$$ B = -3\alpha y^2 + g_1\rb{1, \alpha, \alpha^3, 0, 0, y, 3\alpha^2y - \sb{a^6}t, t}t = b_0y^2 + b_1yt + b_2t^2, $$
+$$ B = -3\alpha y^2 + g_1\br{1, \alpha, \alpha^3, 0, 0, y, 3\alpha^2y - \sbr{a^6}t, t}t = b_0y^2 + b_1yt + b_2t^2, $$
 where
 $$ b_0 = -3\alpha, \qquad b_1 = 6\alpha^5 + \dots, \qquad b_2 = -2\alpha^9 + \dots. $$
 Substituting $ z $ in $ C $ we get
@@ -1205,22 +1205,22 @@ This concludes the proof that $ S $ has a line because we know that the matrix h
 \lecture{21}{Tuesday}{26/02/19}
 
 \begin{proposition}
-Let $ l $ be a line in $ S $, then there are five pairs of lines $ \rb{l_i, l_i'} $ intersecting $ l $ such that
+Let $ l $ be a line in $ S $, then there are five pairs of lines $ \br{l_i, l_i'} $ intersecting $ l $ such that
 \begin{itemize}
 \item $ l \cup l_i \cup l_i' $ is coplanar, and
-\item $ \rb{l_i \cup l_i'} \cap \rb{l_j \cup l_j'} = \emptyset $.
+\item $ \br{l_i \cup l_i'} \cap \br{l_j \cup l_j'} = \emptyset $.
 \end{itemize}
 \end{proposition}
 
 \begin{proof}
 Given any plane $ \Pi \subseteq \P^3 $, if $ \Pi $ contains a line $ l $ of $ S $ then $ \Pi \cap S $ is $ l $ and a conic. $ l $ is given by $ z = t = 0 $.
-$$ f = Ax^2 + Bxy + Cy^2 + Dx + Ey + F, \qquad A, B, C, D, E, F \in K\sb{z, t}. $$
-We want to prove that there are exactly five planes $ \Pi_i $ such that $ f \mid_{\Pi_i} $ is a singular conic. The conic given by $ f $ is singular if and only if
+$$ f = Ax^2 + Bxy + Cy^2 + Dx + Ey + F, \qquad A, B, C, D, E, F \in K\sbr{z, t}. $$
+We want to prove that there are exactly five planes $ \Pi_i $ such that $ \eval{f}_{\Pi_i} $ is a singular conic. The conic given by $ f $ is singular if and only if
 $$ \Delta = \det\threebythree{A}{B}{D}{B}{C}{E}{D}{E}{F} = 4ACF + BDE - AE^2 - B^2F - CD^2 = 0. $$
-$ \Delta $ is four times the usual determinant if $ char\rb{K} \ne 2 $. Notice that $ \Delta $ is a form of degree five in two variables $ z $ and $ t $. We know that $ l, l_i, l_i' $ could be of two types.
+$ \Delta $ is four times the usual determinant if $ char\br{K} \ne 2 $. Notice that $ \Delta $ is a form of degree five in two variables $ z $ and $ t $. We know that $ l, l_i, l_i' $ could be of two types.
 \begin{enumerate}
-\item $ l : \rb{t = 0} $, $ l_1 : \rb{x = 0} $, $ l_1' = \rb{y = 0} $.
-\item $ l : \rb{t = 0} $, $ l_1 : \rb{x = 0} $, $ l_1' = \rb{x = t} $.
+\item $ l : \br{t = 0} $, $ l_1 : \br{x = 0} $, $ l_1' = \br{y = 0} $.
+\item $ l : \br{t = 0} $, $ l_1 : \br{x = 0} $, $ l_1' = \br{x = t} $.
 \end{enumerate}
 Assume we are in case $ 1 $. Suppose $ z = 0 $ is a solution, then we have to prove that $ z^2 $ is not a solution. Then the equation of $ f $ is
 $$ f = txy + gz. $$
@@ -1250,8 +1250,8 @@ Any three lines lie in a smooth quadric $ Q $.
 \begin{lemma}
 \hfill
 \begin{itemize}
-\item Any line not the seventeen lines intersect exactly three of the lines $ l_1, \dots, l_5 $.
-\item Conversely, given $ ijk \subset \cb{1, 2, 3, 4, 5} $ there is a line passing through $ l_i, l_j, l_k $.
+\item Any line not the $ 17 $ lines intersect exactly three of the lines $ l_1, \dots, l_5 $.
+\item Conversely, given $ ijk \subset \cbr{1, 2, 3, 4, 5} $ there is a line passing through $ l_i, l_j, l_k $.
 \end{itemize}
 \end{lemma}
 
@@ -1263,21 +1263,21 @@ Any three lines lie in a smooth quadric $ Q $.
 
 \begin{definition}
 Let $ V $ be a vector space of dimension $ n $, then
-$$ G\rb{k; n} = \cb{S \subseteq V \mid S \ \text{subspace of dimension} \ k}. $$
+$$ G\br{k; n} = \cbr{S \subseteq V \mid S \ \text{subspace of dimension} \ k}. $$
 \end{definition}
 
 \begin{remark}
-A point in $ G\rb{k; n} $ can be expressed as a basis $ \sb{v_1, \dots, v_k} $ for a $ k $-dimensional space.
+A point in $ G\br{k; n} $ can be expressed as a basis $ \sbr{v_1, \dots, v_k} $ for a $ k $-dimensional space.
 \end{remark}
 
 \begin{theorem}
 The map
-$$ \function[p]{G\rb{k; n}}{\P\rb{\bigwedge^k\rb{V}} \cong \P^{^nC_k - 1}}{\sb{v_1, \dots, v_k}}{\sb{v_1 \wedge \dots \wedge v_k}} $$
+$$ \function[p]{G\br{k; n}}{\P\br{\bigwedge^k\br{V}} \cong \P^{^nC_k - 1}}{\sbr{v_1, \dots, v_k}}{\sbr{v_1 \wedge \dots \wedge v_k}} $$
 is an embedding. That is, image of $ p $ is closed.
 \end{theorem}
 
 \begin{example}
-Claim that a line $ L \subseteq \P^3 $ gives a point in $ G\rb{2; 4} \hookrightarrow \P^5 $. $ G\rb{2; 4} $ is a quadric in $ \P^5 $ given by $ Z\rb{xs - yt + zw} $.
+Claim that a line $ L \subseteq \P^3 $ gives a point in $ G\br{2; 4} \hookrightarrow \P^5 $. $ G\br{2; 4} $ is a quadric in $ \P^5 $ given by $ Z\br{xs - yt + zw} $.
 \end{example}
 
 \begin{proof}
@@ -1291,12 +1291,12 @@ $$
 & & 1 & b_{k1} & \dots & b_{kn - k}
 \end{pmatrix}.
 $$
-This gives a correspondence between matrices $ M_S $ with first non-zero minor and $ \A^{k\rb{n - k}} $. Therefore, the image of $ p $ has dimension $ k\rb{n - k} $.
+This gives a correspondence between matrices $ M_S $ with first non-zero minor and $ \A^{k\br{n - k}} $. Therefore, the image of $ p $ has dimension $ k\br{n - k} $.
 \end{proof}
 
 Similarly, we can define flag varieties. Given a vector space $ V $ and \textbf{flag}
 $$ 0 \subseteq V_1 \subseteq \dots \subseteq V_n \subseteq V $$
-of vector subspaces of dimension $ V_i $, the \textbf{flag variety} denoted by $ F\rb{V} $ is the set of flags on $ V $.
+of vector subspaces of dimension $ V_i $, the \textbf{flag variety} denoted by $ F\br{V} $ is the set of flags on $ V $.
 
 \pagebreak
 
@@ -1316,13 +1316,13 @@ $$ C = \sum_i a_iY_i \subseteq X, \qquad a_i \in \Z. $$
 By integrating algebraic cycles, we get a map from the space of $ p $-cycles into the cohomology of the variety. \textbf{Hodge conjecture} states that this defines a bijection.
 
 \begin{example}
-In case $ \dim\rb{X} = 1 $, then a divisor is just a sum of points with multiplicity. If $ K = \C $ and
-$$ f = \dfrac{\rb{z - 1}\rb{z - 2}}{\rb{z - 3}\rb{z - 4}}, $$
-then $ \rb{f} = \overline{1} + \overline{2} - \overline{3} - \overline{4} $.
+In case $ \dim\br{X} = 1 $, then a divisor is just a sum of points with multiplicity. If $ K = \C $ and
+$$ f = \dfrac{\br{z - 1}\br{z - 2}}{\br{z - 3}\br{z - 4}}, $$
+then $ \br{f} = \overline{1} + \overline{2} - \overline{3} - \overline{4} $.
 \end{example}
 
 \begin{definition}
-Let $ K = \C $ and $ \dim\rb{X} = 1 $. Let $ D, V \subseteq X $. Then \textbf{linear equivalence} is $ D \sim V $ if and only if $ D - V = \rb{f} $ for $ f \in K\rb{x} $.
+Let $ K = \C $ and $ \dim\br{X} = 1 $. Let $ D, V \subseteq X $. Then \textbf{linear equivalence} is $ D \sim V $ if and only if $ D - V = \br{f} $ for $ f \in K\br{x} $.
 \end{definition}
 
 \begin{definition}
@@ -1331,9 +1331,9 @@ The \textbf{class group} is divisors modulo $ \sim $.
 
 \begin{definition}
 Let $ X \subseteq Y $ be a subvariety, then
-$$ \OO_{X, Y} = \cb{\rb{U, f} \mid f \ \text{regular at} \ U, \ U \cap Y \ne \emptyset}. $$
+$$ \OO_{X, Y} = \cbr{\br{U, f} \mid f \ \text{regular at} \ U, \ U \cap Y \ne \emptyset}. $$
 Let $ f $ be a rational function, then
-$$ \rb{f} = \sum_Y v_Y\rb{f}Y, $$
+$$ \br{f} = \sum_Y v_Y\br{f}Y, $$
 where $ v_Y $ is the valuation associated to $ \OO_{X, Y} $.
 \end{definition}
 
@@ -1345,16 +1345,16 @@ Let $ X $ be a smooth projective curve.
 \item A \textbf{divisor} $ D $ is a formal sum $ K_1p_1 + \dots + K_np_n $ of points, where $ K_i \in \Z $,
 \item We say a divisor $ D $ is \textbf{effective} if $ K_i \ge 0 $.
 \item Given two divisors $ D, E $, $ D \ge E $ if and only if $ D - E \ge 0 $.
-\item The \textbf{degree} of $ D $, denoted $ \deg\rb{D} $, is the sum $ \sum_{i = 1}^n K_i $.
+\item The \textbf{degree} of $ D $, denoted $ \deg\br{D} $, is the sum $ \sum_{i = 1}^n K_i $.
 \end{itemize}
 \end{definition}
 
 \begin{remark}
-Degree gives a map $ \deg : Div \to \Z $. The set of all divisors on $ X $ has a natural group structure given by addition, we denote this group by $ Div\rb{X} $.
+Degree gives a map $ \deg : Div \to \Z $. The set of all divisors on $ X $ has a natural group structure given by addition, we denote this group by $ Div\br{X} $.
 \end{remark}
 
 \begin{notation}
-The subgroup of \textbf{degree zero divisors} is denoted by $ Div^0\rb{X} $.
+The subgroup of \textbf{degree zero divisors} is denoted by $ Div^0\br{X} $.
 \end{notation}
 
 \pagebreak
@@ -1362,75 +1362,75 @@ The subgroup of \textbf{degree zero divisors} is denoted by $ Div^0\rb{X} $.
 \begin{definition}
 \hfill
 \begin{itemize}
-\item For a non-zero homogeneous polynomial $ f \in S\rb{X} $ the \textbf{divisor} of $ f $ is
-$$ \rb{f} = div\rb{f} = \sum_{a \in V_X\rb{f}} mult_a\rb{f} \cdot a \in Div\rb{f}. $$
-By B\'ezout's theorem, $ \deg\rb{div\rb{f}} = \deg\rb{X}\deg\rb{f} $.
+\item For a non-zero homogeneous polynomial $ f \in S\br{X} $ the \textbf{divisor} of $ f $ is
+$$ \br{f} = div\br{f} = \sum_{a \in V_X\br{f}} mult_a\br{f} \cdot a \in Div\br{f}. $$
+By B\'ezout's theorem, $ \deg\br{div\br{f}} = \deg\br{X}\deg\br{f} $.
 \item If $ Y \subseteq \P^2 $ not containing $ X $, then the \textbf{intersection} of $ X $ and $ Y $ is
-$$ X \cdot Y = \sum_{a \in X \cap Y} mult_a\rb{X, Y} \cdot a. $$
+$$ X \cdot Y = \sum_{a \in X \cap Y} mult_a\br{X, Y} \cdot a. $$
 \end{itemize}
 \end{definition}
 
 \begin{example}
-Let $ X = Z\rb{xz - y^2} $ and $ Y = Z\rb{z} $ then $ X \cap Y = \cb{\sb{1 : 0 : 0}} $, so
-$$ X \cdot Y = 2 \cdot \sb{1 : 0 : 0}. $$
+Let $ X = Z\br{xz - y^2} $ and $ Y = Z\br{z} $ then $ X \cap Y = \cbr{\sbr{1 : 0 : 0}} $, so
+$$ X \cdot Y = 2 \cdot \sbr{1 : 0 : 0}. $$
 \end{example}
 
 \begin{lemma}
-$ mult_a\rb{fg} = mult_a\rb{f} + mult_a\rb{g} $ gives $ div\rb{fg} = div\rb{f} + div\rb{g} $.
+$ mult_a\br{fg} = mult_a\br{f} + mult_a\br{g} $ gives $ div\br{fg} = div\br{f} + div\br{g} $.
 \end{lemma}
 
 \begin{proof}
-Recall that $ mult_a\rb{f} = len\rb{\OO_a / \ab{f}} = \dim_K\rb{\OO_a / \ab{f}} $. Thus there is a short exact sequence
-$$ 0 \to \dfrac{\OO_a}{\ab{f}} \xrightarrow{g} \dfrac{\OO_a}{\ab{fg}} \to \dfrac{\OO_a}{\ab{g}} \to 0. $$
+Recall that $ mult_a\br{f} = len\br{\OO_a / \abr{f}} = \dim_K\br{\OO_a / \abr{f}} $. Thus there is a short exact sequence
+$$ 0 \to \dfrac{\OO_a}{\abr{f}} \xrightarrow{g} \dfrac{\OO_a}{\abr{fg}} \to \dfrac{\OO_a}{\abr{g}} \to 0. $$
 \end{proof}
 
 \begin{definition}
-Let $ f \in K^*\rb{X} $, then if $ f = g / h $ we define $ mult_a\rb{f} = mult_a\rb{g} - mult_a\rb{h} $.
+Let $ f \in K^*\br{X} $, then if $ f = g / h $ we define $ mult_a\br{f} = mult_a\br{g} - mult_a\br{h} $.
 \end{definition}
 
 If we take a different representation of $ f $, say $ f = g' / h' $, then $ g / h = g' / h' $ gives $ gh' = hg' $, so
 $$
 \begin{cases}
-mult_a\rb{gh'} = mult_a\rb{g} + mult_a\rb{h'} \\
-mult_a\rb{hg'} = mult_a\rb{h} + mult_a\rb{g'}
+mult_a\br{gh'} = mult_a\br{g} + mult_a\br{h'} \\
+mult_a\br{hg'} = mult_a\br{h} + mult_a\br{g'}
 \end{cases}
-\qquad \implies \qquad mult_a\rb{g} - mult_a\rb{h} = mult_a\rb{g'} - mult_a\rb{h'}. $$
+\qquad \implies \qquad mult_a\br{g} - mult_a\br{h} = mult_a\br{g'} - mult_a\br{h'}. $$
 Analogously, we have
-$$ div\rb{f} = \sum_{a \in Z\rb{g} \cup Z\rb{h}} mult_a\rb{f}a = div\rb{g} \cdot div\rb{h}. $$
+$$ div\br{f} = \sum_{a \in Z\br{g} \cup Z\br{h}} mult_a\br{f}a = div\br{g} \cdot div\br{h}. $$
 
 \begin{example}
-Let $ f = xy / \rb{x - y}^2 $ on $ \P^1 $. Then
-$$ div\rb{f} = \sb{1 : 0} + \sb{0 : 1} - 2\sb{1 : 1}. $$
+Let $ f = xy / \br{x - y}^2 $ on $ \P^1 $. Then
+$$ div\br{f} = \sbr{1 : 0} + \sbr{0 : 1} - 2\sbr{1 : 1}. $$
 \end{example}
 
 \begin{remark}
-Note that $ \deg\rb{div\rb{f}} $ is always zero because
-$$ \deg\rb{div\rb{f}} = \deg\rb{div\rb{g}} - \deg\rb{div\rb{h}} = \rb{\deg\rb{X}}\rb{\deg\rb{g}} - \rb{\deg\rb{X}}\rb{\deg\rb{h}} = 0. $$
+Note that $ \deg\br{div\br{f}} $ is always zero because
+$$ \deg\br{div\br{f}} = \deg\br{div\br{g}} - \deg\br{div\br{h}} = \br{\deg\br{X}}\br{\deg\br{g}} - \br{\deg\br{X}}\br{\deg\br{h}} = 0. $$
 \end{remark}
 
 \begin{definition}
-A divisor on $ X $ is called principal if it is of the form $ div\rb{f} $ for some $ f \in K^*\rb{X} $. We denote the subgroup of all principal divisors by $ Prin\rb{X} $.
+A divisor on $ X $ is called principal if it is of the form $ div\br{f} $ for some $ f \in K^*\br{X} $. We denote the subgroup of all principal divisors by $ Prin\br{X} $.
 \end{definition}
 
 \begin{definition}
 The quotient
-$$ Pic\rb{X} = \dfrac{Div\rb{X}}{Prin\rb{X}} $$
+$$ Pic\br{X} = \dfrac{Div\br{X}}{Prin\br{X}} $$
 is called the \textbf{Picard group} of $ X $. Restricting to degree zero divisors, we get
-$$ Pic^0\rb{X} = \dfrac{Div^0\rb{X}}{Prin\rb{X}}, $$
-where $ Div^0\rb{X} $ are the divisors of degree zero.
+$$ Pic^0\br{X} = \dfrac{Div^0\br{X}}{Prin\br{X}}, $$
+where $ Div^0\br{X} $ are the divisors of degree zero.
 \end{definition}
 
-By the degree map $ \deg : Div\rb{X} \to \Z $ we have
-$$ \dfrac{Pic\rb{X}}{Pic^0\rb{X}} \cong \dfrac{Div\rb{X}}{Div^0\rb{X}} \cong \Z. $$
+By the degree map $ \deg : Div\br{X} \to \Z $ we have
+$$ \dfrac{Pic\br{X}}{Pic^0\br{X}} \cong \dfrac{Div\br{X}}{Div^0\br{X}} \cong \Z. $$
 
 \pagebreak
 
 \begin{example}
 Every degree zero divisor is principal. Suppose
-$$ D = K_1\sb{a_{1, 0} : a_{1, 1}} + \dots + K_n\sb{a_{n, 0} : a_{n, 1}}, \qquad \sum_{i = 1}^n K_i = 0, $$
+$$ D = K_1\sbr{a_{1, 0} : a_{1, 1}} + \dots + K_n\sbr{a_{n, 0} : a_{n, 1}}, \qquad \sum_{i = 1}^n K_i = 0, $$
 then set
-$$ f\sb{x_0 : x_1} = \prod_{i = 1}^n \rb{a_{i, 1}x_0 - a_{i, 0}x_1}^{K_i}. $$
-So $ Pic^0\rb{\P^1} = \cb{0} $ so $ Pic\rb{\P^1} = \Z $.
+$$ f\sbr{x_0 : x_1} = \prod_{i = 1}^n \br{a_{i, 1}x_0 - a_{i, 0}x_1}^{K_i}. $$
+So $ Pic^0\br{\P^1} = \cbr{0} $ so $ Pic\br{\P^1} = \Z $.
 \end{example}
 
 \lecture{24}{Tuesday}{05/03/19}
@@ -1440,96 +1440,96 @@ If $ R $ is local with maximal ideal $ \mm $ and $ M $ is finitely generated the
 \end{lemma}
 
 \begin{corollary}
-If $ R $ is local with maximal ideal $ \mm $ then $ \ab{t_1, \dots, t_n} = \mm $ if and only if $ \ab{\overline{t_1}, \dots, \overline{t_n}} = \mm / \mm^2 $.
+If $ R $ is local with maximal ideal $ \mm $ then $ \abr{t_1, \dots, t_n} = \mm $ if and only if $ \abr{\overline{t_1}, \dots, \overline{t_n}} = \mm / \mm^2 $.
 \end{corollary}
 
 \begin{proof}
-Let $ N = \ab{t_1, \dots, t_n} \subseteq \mm $. Suppose $ \ab{\overline{t_1}, \dots, \overline{t_m}} = \mm / \mm^2 $. Then
-$$ N + \mm^2 = \mm + \mm^2 \qquad \implies \qquad \dfrac{N + \mm^2}{N} = \dfrac{\mm + \mm^2}{N} \qquad \implies \qquad \mm\rb{\dfrac{\mm}{N}} = \dfrac{\mm}{N} \qquad \implies \qquad \dfrac{\mm}{N} = 0, $$
-so $ \ab{t_1, \dots, t_n} = \mm $.
+Let $ N = \abr{t_1, \dots, t_n} \subseteq \mm $. Suppose $ \abr{\overline{t_1}, \dots, \overline{t_m}} = \mm / \mm^2 $. Then
+$$ N + \mm^2 = \mm + \mm^2 \qquad \implies \qquad \dfrac{N + \mm^2}{N} = \dfrac{\mm + \mm^2}{N} \qquad \implies \qquad \mm\br{\dfrac{\mm}{N}} = \dfrac{\mm}{N} \qquad \implies \qquad \dfrac{\mm}{N} = 0, $$
+so $ \abr{t_1, \dots, t_n} = \mm $.
 \end{proof}
 
 \begin{lemma}
 Let $ X \subseteq \P^2 $ be a smooth curve, and $ I_a \subseteq \OO_a $ be the maximal ideal of the local ring $ \OO_a $.
 \begin{enumerate}
-\item $ I_a $ is principal, so $ I_a = \ab{\phi_a} $ with $ mult_a\rb{\phi_a} = 1 $.
-\item Any non-zero $ \phi \in \OO_a $ can be written as $ c\phi_a^m $, where $ m = mult_a\rb{\phi} $.
+\item $ I_a $ is principal, so $ I_a = \abr{\phi_a} $ with $ mult_a\br{\phi_a} = 1 $.
+\item Any non-zero $ \phi \in \OO_a $ can be written as $ c\phi_a^m $, where $ m = mult_a\br{\phi} $.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Since $ \OO_a $ is regular, $ \dim\rb{\mm / \mm^2} = 1 $, in particular $ \mm \ne \mm^2 $ and we can find $ \phi_a \in \mm \setminus \mm^2 $, so $ \ab{\phi_a} = \mm $. Thus any ideal has to be of the form $ \ab{\phi_a^k} $ since $ \ab{\phi_a} $ is maximal.
-\item Take $ \phi \in \OO_a $ non-zero then $ \ab{\phi} = \ab{\phi_a^m} $ gives $ \phi = c\phi_a^m $, so
-$$ mult\rb{\phi} = mult\rb{c\phi_a^m} = mult\rb{c} + mult\rb{\phi_a^m} = m \cdot mult\rb{\phi_a} = m. $$
+\item Since $ \OO_a $ is regular, $ \dim\br{\mm / \mm^2} = 1 $, in particular $ \mm \ne \mm^2 $ and we can find $ \phi_a \in \mm \setminus \mm^2 $, so $ \abr{\phi_a} = \mm $. Thus any ideal has to be of the form $ \abr{\phi_a^k} $ since $ \abr{\phi_a} $ is maximal.
+\item Take $ \phi \in \OO_a $ non-zero then $ \abr{\phi} = \abr{\phi_a^m} $ gives $ \phi = c\phi_a^m $, so
+$$ mult\br{\phi} = mult\br{c\phi_a^m} = mult\br{c} + mult\br{\phi_a^m} = m \cdot mult\br{\phi_a} = m. $$
 \end{enumerate}
 \end{proof}
 
 \begin{lemma}
 Let $ X \subseteq \P^2 $ be a smooth curve, and $ a \in X $.
 \begin{enumerate}
-\item If $ f, g \in S $, of same degree with $ mult\rb{X, f} \ge m $ and $ mult\rb{X, g} \ge m $ then
+\item If $ f, g \in S $, of same degree with $ mult\br{X, f} \ge m $ and $ mult\br{X, g} \ge m $ then
 \begin{itemize}
-\item $ mult_a\rb{X, \lambda f + \mu g} \ge m $, and
-\item there exist $ \lambda, \mu $ such that $ mult_a\rb{X, \lambda f + \mu g} \ge m + 1 $.
+\item $ mult_a\br{X, \lambda f + \mu g} \ge m $, and
+\item there exist $ \lambda, \mu $ such that $ mult_a\br{X, \lambda f + \mu g} \ge m + 1 $.
 \end{itemize}
-\item Let $ Y \subseteq \P^2 $ be another curve and $ m = mult_a\rb{X, Y} $. If $ f \in S $ with $ mult_a\rb{X, f} \ge m $ then $ mult_a\rb{Y, f} \ge m $.
+\item Let $ Y \subseteq \P^2 $ be another curve and $ m = mult_a\br{X, Y} $. If $ f \in S $ with $ mult_a\br{X, f} \ge m $ then $ mult_a\br{Y, f} \ge m $.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Write $ f = u\phi_a^m $ and $ g = v\phi_a^m $, so for any $ \lambda, \mu $ we have $ \lambda f + \mu g = \rb{\lambda u + \mu v}\phi_a^m $ so $ mult_a\rb{\lambda f + \mu g} \ge m $, and we can find $ \lambda', \mu' $ such that $ \lambda'u + \mu'v = 0 $ at $ a $, so that $ mult_a\rb{\lambda f + \mu g} \ge m + 1 $.
-\item Let $ I\rb{X} = \ab{g} $, $ I\rb{Y} = \ab{h} $, and $ k = mult_a\rb{X, f} \ge m = mult_a\rb{X, h} $. $ f = u\phi_a^k $ and $ h = v\phi_a^m $, so $ \ab{f} \subset \ab{h} $. $ \ab{f, g} \subset \ab{g, h} $, and we also have $ \ab{f, h} \subset \ab{g, h} $, so $ mult_a\rb{f, h} \ge mult_a\rb{g, h} $ gives $ mult_a\rb{Y, f} \ge mult_a\rb{X, Y} = m $.
+\item Write $ f = u\phi_a^m $ and $ g = v\phi_a^m $, so for any $ \lambda, \mu $ we have $ \lambda f + \mu g = \br{\lambda u + \mu v}\phi_a^m $ so $ mult_a\br{\lambda f + \mu g} \ge m $, and we can find $ \lambda', \mu' $ such that $ \lambda'u + \mu'v = 0 $ at $ a $, so that $ mult_a\br{\lambda f + \mu g} \ge m + 1 $.
+\item Let $ I\br{X} = \abr{g} $, $ I\br{Y} = \abr{h} $, and $ k = mult_a\br{X, f} \ge m = mult_a\br{X, h} $. $ f = u\phi_a^k $ and $ h = v\phi_a^m $, so $ \abr{f} \subset \abr{h} $. $ \abr{f, g} \subset \abr{g, h} $, and we also have $ \abr{f, h} \subset \abr{g, h} $, so $ mult_a\br{f, h} \ge mult_a\br{g, h} $ gives $ mult_a\br{Y, f} \ge mult_a\br{X, Y} = m $.
 \end{enumerate}
 \end{proof}
 
 \pagebreak
 
 \begin{lemma}
-Let $ X \subset \P^2 $ be smooth and $ g, h \in S\rb{X} $.
+Let $ X \subset \P^2 $ be smooth and $ g, h \in S\br{X} $.
 \begin{enumerate}
-\item If $ div\rb{g} = div\rb{h} $ then $ g, h $ are linearly dependent on $ S\rb{X} $.
-\item If $ h $ is linear and $ div\rb{g} \ge div\rb{h} $ then $ h \mid g $ in $ S\rb{X} $.
+\item If $ div\br{g} = div\br{h} $ then $ g, h $ are linearly dependent on $ S\br{X} $.
+\item If $ h $ is linear and $ div\br{g} \ge div\br{h} $ then $ h \mid g $ in $ S\br{X} $.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item By B\'ezout's theorem, $ \deg\rb{X} \cdot \deg\rb{g} = \deg\rb{X} \cdot \deg\rb{h} $, so $ \deg\rb{g} = \deg\rb{h} $. We know by the previous lemma that $ mult_a\rb{\lambda g + \mu h} \ge m_a $, and we can find $ b \in X $ such that $ mult_b\rb{\lambda g + \mu h} \ge m_b + 1 $. Summing up, we have
-$$ \sum_{a \in X} mult_a\rb{\lambda g + \mu h} \ge d\deg\rb{X} + 1, $$
+\item By B\'ezout's theorem, $ \deg\br{X} \cdot \deg\br{g} = \deg\br{X} \cdot \deg\br{h} $, so $ \deg\br{g} = \deg\br{h} $. We know by the previous lemma that $ mult_a\br{\lambda g + \mu h} \ge m_a $, and we can find $ b \in X $ such that $ mult_b\br{\lambda g + \mu h} \ge m_b + 1 $. Summing up, we have
+$$ \sum_{a \in X} mult_a\br{\lambda g + \mu h} \ge d\deg\br{X} + 1, $$
 but $ \lambda g + \mu h $ has degree $ d $, so this is a contradiction unless $ \lambda g + \mu h = 0 $, that is $ g, h $ are linearly dependent.
 \item Exercise.
 \end{enumerate}
 \end{proof}
 
 \begin{proposition}
-Let $ X \subseteq \P^2 $ be a smooth cubic. Then for all distinct $ a, b \in X $ we have $ a - b \ne 0 $, so there is no rational function $ \phi $ such that $ div\rb{\phi} = a - b $.
+Let $ X \subseteq \P^2 $ be a smooth cubic. Then for all distinct $ a, b \in X $ we have $ a - b \ne 0 $, so there is no rational function $ \phi $ such that $ div\br{\phi} = a - b $.
 \end{proposition}
 
 \begin{proof}
-Assume that the result is false. Then there are $ f, g \in S\rb{X} $ of degree $ d $ such that
+Assume that the result is false. Then there are $ f, g \in S\br{X} $ of degree $ d $ such that
 \begin{itemize}
 \item there are points $ a_1, \dots, a_{3d - 1} $ and $ a \ne b $ on $ X $ such that
-$$ div\rb{g} = a_1 + \dots + a_{3d - 1} + a, \qquad div\rb{f} = a_1 + \dots + a_{3d - 1} + b, $$
+$$ div\br{g} = a_1 + \dots + a_{3d - 1} + a, \qquad div\br{f} = a_1 + \dots + a_{3d - 1} + b, $$
 \item among $ a_1, \dots, a_{3d - 1} $, there are at least $ 2d $ distinct points, since we can multiply $ f $ and $ g $ by a linear polynomial with distinct roots so the degree increases by one but the number of distinct points increases by three.
 \end{itemize}
 Pick a minimal $ d $. If $ d = 1 $ then
-$$ div\rb{g} = a_1 + a_2 + a, \qquad div\rb{f} = a_1 + a_2 + b, $$
-so $ a = b = \Psi\rb{a_1, a_2} $, a contradiction. So $ d > 1 $. Consider $ \rb{\lambda f + \mu g} $, so
-$$ div\rb{\lambda f + \mu g} \ge a_1 + \dots + a_{3d - 1}. $$
+$$ div\br{g} = a_1 + a_2 + a, \qquad div\br{f} = a_1 + a_2 + b, $$
+so $ a = b = \Psi\br{a_1, a_2} $, a contradiction. So $ d > 1 $. Consider $ \br{\lambda f + \mu g} $, so
+$$ div\br{\lambda f + \mu g} \ge a_1 + \dots + a_{3d - 1}. $$
 We can choose $ \lambda, \mu $ such that
-$$ div\rb{\lambda f + \mu g} \ge a_1 + \dots + a_{3d - 1} + c, $$
+$$ div\br{\lambda f + \mu g} \ge a_1 + \dots + a_{3d - 1} + c, $$
 for any given $ c $. By B\'ezout's theorem,
-$$ div\rb{\lambda f + \mu g} = a_1 + \dots + a_{3d - 1} + c. $$
-So we can choose $ a $ and $ b $, so that $ a = \Psi\rb{a_1, a_2} $ and $ b = \Psi\rb{a_1, a_3} $.
-$$ div\rb{f} = \rb{a_1 + a_2 + \Psi\rb{a_1, a_2}} + a_3 + \dots + a_{3d - 1}, \qquad div\rb{g} = \rb{a_1 + a_3 + \Psi\rb{a_1, a_3}} + a_2 + \dots + a_{3d - 1}. $$
+$$ div\br{\lambda f + \mu g} = a_1 + \dots + a_{3d - 1} + c. $$
+So we can choose $ a $ and $ b $, so that $ a = \Psi\br{a_1, a_2} $ and $ b = \Psi\br{a_1, a_3} $.
+$$ div\br{f} = \br{a_1 + a_2 + \Psi\br{a_1, a_2}} + a_3 + \dots + a_{3d - 1}, \qquad div\br{g} = \br{a_1 + a_3 + \Psi\br{a_1, a_3}} + a_2 + \dots + a_{3d - 1}. $$
 Set $ l, l' $ linear polynomials such that
-$$ div\rb{l} = a_1 + a_2 + \Psi\rb{a_1, a_2}, \qquad div\rb{l} = a_1 + a_3 + \Psi\rb{a_1, a_3}. $$
-The quotient by $ div\rb{l} $ and $ div\rb{l'} $ gives a polynomial whose divisor is
+$$ div\br{l} = a_1 + a_2 + \Psi\br{a_1, a_2}, \qquad div\br{l} = a_1 + a_3 + \Psi\br{a_1, a_3}. $$
+The quotient by $ div\br{l} $ and $ div\br{l'} $ gives a polynomial whose divisor is
 $$ a_4 + \dots + a_{3d - 1} + a_3, \qquad a_4 + \dots + a_{3d - 1} + a_2, $$
 but since we chose $ d $ minimum this gives a contradiction.
 \end{proof}
@@ -1550,7 +1550,7 @@ An \textbf{elliptic curve} is a one-dimensional abelian variety.
 
 \begin{proposition}
 Let $ X $ be an elliptic curve in $ \P^2 $, and fix $ a_0 \in X $, then there is a bijection
-$$ \function[\Phi]{X}{Pic^0\rb{X} = \dfrac{Div^0\rb{X}}{Prin\rb{X}}}{a}{a - a_0}. $$
+$$ \function[\Phi]{X}{Pic^0\br{X} = \dfrac{Div^0\br{X}}{Prin\br{X}}}{a}{a - a_0}. $$
 \end{proposition}
 
 \begin{proof}
@@ -1559,21 +1559,21 @@ $$ \function[\Phi]{X}{Pic^0\rb{X} = \dfrac{Div^0\rb{X}}{Prin\rb{X}}}{a}{a - a_0}
 \item $ \Phi $ is injective by the last proposition.
 \item $ \Phi $ is surjective. Suppose
 $$ D = a_1 + \dots + a_m - b_1 - \dots - b_m. $$
-Consider the function $ l $ with $ div\rb{l} = a_1 + a_2 + \Psi\rb{a_1, a_2} $, so
-$$ D = D + div\rb{l} = div\rb{l} - \Psi\rb{a_1, a_2} + a_3 + \dots. $$
-So we can assume $ D = a_1 - b_1 = \Phi\rb{\cdot} $.
-$$ a_0 + a_1 + \Psi\rb{a_0, a_1} - b_1 - \Psi\rb{a_0, a_1} - \Psi\rb{b_1, \Psi\rb{a_0, a_1}} = 0, $$
+Consider the function $ l $ with $ div\br{l} = a_1 + a_2 + \Psi\br{a_1, a_2} $, so
+$$ D = D + div\br{l} = div\br{l} - \Psi\br{a_1, a_2} + a_3 + \dots. $$
+So we can assume $ D = a_1 - b_1 = \Phi\br{\cdot} $.
+$$ a_0 + a_1 + \Psi\br{a_0, a_1} - b_1 - \Psi\br{a_0, a_1} - \Psi\br{b_1, \Psi\br{a_0, a_1}} = 0, $$
 so
-$$ D = a_1 - b_1 = \Psi\rb{b_1, \Psi\rb{a_0, a_1}} - a_0 = \Phi\rb{\Psi\rb{b_1, \Psi\rb{a_0, a_1}}}. $$
+$$ D = a_1 - b_1 = \Psi\br{b_1, \Psi\br{a_0, a_1}} - a_0 = \Phi\br{\Psi\br{b_1, \Psi\br{a_0, a_1}}}. $$
 Thus $ \Phi $ is surjective.
 \end{itemize}
 \end{proof}
 
-We know that $ X \cong Pic^0\rb{X} $, which is a group. But what is the expression for $ g_1 + g_2 $ for $ g_1, g_2 \in X $? $ \Phi\rb{g_1 + g_2} = \Phi\rb{g_1} + \Phi\rb{g_2} $, so
+We know that $ X \cong Pic^0\br{X} $, which is a group. But what is the expression for $ g_1 + g_2 $ for $ g_1, g_2 \in X $? $ \Phi\br{g_1 + g_2} = \Phi\br{g_1} + \Phi\br{g_2} $, so
 \begin{align*}
 g_1 + g_2
-& = \Phi^{-1}\rb{\Phi\rb{g_1} + \Phi\rb{g_2}} = \Phi^{-1}\rb{g_1 - g_0 + g_2 - g_0} = \Phi^{-1}\rb{\Psi\rb{g_0, \Psi\rb{g_1, g_2}} - g_0} \\
-& = \Phi^{-1}\rb{\Phi\rb{\Psi\rb{g_0, \Psi\rb{g_1, g_2}}}} = \rb{\Phi^{-1} \circ \Phi}\rb{\Psi\rb{g_0, \Psi\rb{g_1, g_2}}} = \Psi\rb{g_0, \Psi\rb{g_1, g_2}}.
+& = \Phi^{-1}\br{\Phi\br{g_1} + \Phi\br{g_2}} = \Phi^{-1}\br{g_1 - g_0 + g_2 - g_0} = \Phi^{-1}\br{\Psi\br{g_0, \Psi\br{g_1, g_2}} - g_0} \\
+& = \Phi^{-1}\br{\Phi\br{\Psi\br{g_0, \Psi\br{g_1, g_2}}}} = \br{\Phi^{-1} \circ \Phi}\br{\Psi\br{g_0, \Psi\br{g_1, g_2}}} = \Psi\br{g_0, \Psi\br{g_1, g_2}}.
 \end{align*}
 
 Let $ X $ be an elliptic curve and $ a_0 \in X $, can consider the group law based on $ a_0 $. Then for $ n \in \Z $, we can define $ n \times a = a + \dots + a $.

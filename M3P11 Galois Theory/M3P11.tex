@@ -5,18 +5,17 @@
 $$
 \begin{tikzcd}[ampersand replacement=\&, column sep=tiny]
 \& \qquad \& \& \& L \arrow[dash, dashed]{dddd} \& \& \& \& \& \& \\
-K\rb{\alpha} \arrow[dash]{urrrr} \arrow[dash, dashed]{dddd} \& \& K\rb{\alpha'} \arrow[dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\beta, \gamma} \arrow[dash]{ul} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\delta} \arrow[dash]{ullll} \arrow[dash, dashed]{dddd} \& \& K\rb{\delta'} \arrow[dash]{ullllll} \arrow[dash, dashed]{dddd} \\
-\& \& \& K\rb{\beta} \arrow[crossing over, dash]{ulll} \arrow[dash]{ul} \arrow[crossing over, dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\beta\gamma} \arrow[crossing over, dash]{ul} \arrow[dash, dashed]{dddd} \& \& \& K\rb{\gamma} \arrow[crossing over, dash]{ullll} \arrow[crossing over, dash]{ul} \arrow[crossing over, dash]{ur} \arrow[dash, dashed]{dddd} \& \\
+K\br{\alpha} \arrow[dash]{urrrr} \arrow[dash, dashed]{dddd} \& \& K\br{\alpha'} \arrow[dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& K\br{\beta, \gamma} \arrow[dash]{ul} \arrow[dash, dashed]{dddd} \& \& \& K\br{\delta} \arrow[dash]{ullll} \arrow[dash, dashed]{dddd} \& \& K\br{\delta'} \arrow[dash]{ullllll} \arrow[dash, dashed]{dddd} \\
+\& \& \& K\br{\beta} \arrow[crossing over, dash]{ulll} \arrow[dash]{ul} \arrow[crossing over, dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& K\br{\beta\gamma} \arrow[crossing over, dash]{ul} \arrow[dash, dashed]{dddd} \& \& \& K\br{\gamma} \arrow[crossing over, dash]{ullll} \arrow[crossing over, dash]{ul} \arrow[crossing over, dash]{ur} \arrow[dash, dashed]{dddd} \& \\
 \& \& \& \& \& \& \& K \arrow[crossing over, dash]{ullll} \arrow[crossing over, dash]{ul} \arrow[crossing over, dash]{urr} \arrow[dash, dashed]{dddd} \& \& \& \\
-\& \qquad \& \& \& \ab{e} \& \& \& \& \& \& \\
-\ab{\tau} \arrow[dash]{urrrr} \& \& \ab{\sigma^2\tau} \arrow[dash]{urr} \& \& \& \ab{\sigma^2} \arrow[dash]{ul} \& \& \& \ab{\sigma\tau} \arrow[dash]{ullll} \& \& \ab{\sigma^3\tau} \arrow[dash]{ullllll} \\
-\& \& \& \ab{\sigma^2, \tau} \arrow[dash]{ulll} \arrow[dash]{ul} \arrow[dash]{urr} \& \& \& \ab{\sigma} \arrow[dash]{ul} \& \& \& \ab{\sigma^2, \sigma\tau} \arrow[dash]{ullll} \arrow[dash]{ul} \arrow[dash]{ur} \& \\
+\& \qquad \& \& \& \abr{e} \& \& \& \& \& \& \\
+\abr{\tau} \arrow[dash]{urrrr} \& \& \abr{\sigma^2\tau} \arrow[dash]{urr} \& \& \& \abr{\sigma^2} \arrow[dash]{ul} \& \& \& \abr{\sigma\tau} \arrow[dash]{ullll} \& \& \abr{\sigma^3\tau} \arrow[dash]{ullllll} \\
+\& \& \& \abr{\sigma^2, \tau} \arrow[dash]{ulll} \arrow[dash]{ul} \arrow[dash]{urr} \& \& \& \abr{\sigma} \arrow[dash]{ul} \& \& \& \abr{\sigma^2, \sigma\tau} \arrow[dash]{ullll} \arrow[dash]{ul} \arrow[dash]{ur} \& \\
 \& \& \& \& \& \& \& G \arrow[dash]{ullll} \arrow[dash]{ul} \arrow[dash]{urr} \& \& \&
 \end{tikzcd}
 $$
 }
 \def\syllabus{Field extensions. Irreducible polynomials. Normal extensions. Separable extensions. Fundamental theorem of Galois theory. Galois theory of quadratic polynomials. Galois theory of biquadratic polynomials. Galois theory of finite fields. Galois theory of cubic polynomials. Reduction modulo prime.}
-
 \def\thm{section}
 
 \input{../style/header}
@@ -39,7 +38,7 @@ References.
 
 \begin{notation*}
 If $ K $ is a field, or a ring, I denote
-$$ K\sb{x} = \cb{a_0 + \dots + a_nx^n \mid a_i \in K}, $$
+$$ K\sbr{X} = \cbr{a_0 + \dots + a_nX^n \mid a_i \in K}, $$
 the ring of polynomials with coefficients in $ K $.
 \end{notation*}
 
@@ -48,24 +47,24 @@ the ring of polynomials with coefficients in $ K $.
 \begin{itemize}
 \item $ \Q, \R, \C $.
 \item Quadratic fields
-$$ \Q\rb{\sqrt{2}} = \cb{a + b\sqrt{2} \mid a, b \in \Q} = \dfrac{\Q\sb{x}}{\ab{x^2 - 2}}. $$
+$$ \Q\br{\sqrt{2}} = \cbr{a + b\sqrt{2} \mid a, b \in \Q} = \dfrac{\Q\sbr{X}}{\abr{X^2 - 2}}. $$
 It is also a field, since
-$$ \dfrac{1}{\rb{a + b\sqrt{2}}} = \dfrac{a - b\sqrt{2}}{a^2 - 2b^2}. $$
-\item If $ p $ is prime, $ \Z / p\Z = \F_p $ is a finite field. If $ f\rb{x} \in K\sb{x} $ is irreducible, $ K\sb{x} / \ab{f\rb{x}} $ is a field. For example, $ x^2 - 2 $. Both $ \Z $ and $ K\sb{x} $ have a division algorithm. For example, let $ \sb{a} \in \Z / p\Z $ and $ \sb{a} \ne 0 $, that is $ p \mid a $. Since $ p $ is prime, $ \gcd\rb{p, a} = 1 $, so there exist $ x, y \in \Z $ such that $ ax + py = 1 $. Thus $ \sb{a} \cdot \sb{x} = 1 $ in $ \Z / p\Z $.
-\item For $ K $ a field, either for all $ m \in \Z $, $ m \ne 0 $ in $ K $, so $ K $ has characteristic $ ch\rb{K} = 0 $, or there exists $ p $ prime such that $ m = 0 $ if and only if $ p \mid m $, so $ K $ has characteristic $ ch\rb{K} = p $.
+$$ \dfrac{1}{\br{a + b\sqrt{2}}} = \dfrac{a - b\sqrt{2}}{a^2 - 2b^2}. $$
+\item If $ p $ is prime, $ \Z / p\Z = \F_p $ is a finite field. If $ f\br{X} \in K\sbr{X} $ is irreducible, $ K\sbr{X} / \abr{f\br{X}} $ is a field. For example, $ X^2 - 2 $. Both $ \Z $ and $ K\sbr{X} $ have a division algorithm. For example, let $ \sbr{a} \in \Z / p\Z $ and $ \sbr{a} \ne 0 $, that is $ p \mid a $. Since $ p $ is prime, $ \gcd\br{p, a} = 1 $, so there exist $ x, y \in \Z $ such that $ ax + py = 1 $. Thus $ \sbr{a} \cdot \sbr{x} = 1 $ in $ \Z / p\Z $.
+\item For $ K $ a field, either for all $ m \in \Z $, $ m \ne 0 $ in $ K $, so $ K $ has characteristic $ ch\br{K} = 0 $, or there exists $ p $ prime such that $ m = 0 $ if and only if $ p \mid m $, so $ K $ has characteristic $ ch\br{K} = p $.
 \item For $ K $ a field,
-$$ K\rb{x} = Frac\rb{K\sb{x}} = \cb{\phi\rb{x} = \dfrac{f\rb{x}}{g\rb{x}} \ \Bigg| \ f, g \in K\sb{x}, \ g \ne 0}. $$
-is also a field, the field of rational functions with coefficients in $ K $. For example, $ \F_p\rb{x, Y} = \F_p\rb{x}\rb{Y} $.
+$$ K\br{X} = Frac\br{K\sbr{X}} = \cbr{\phi\br{X} = \dfrac{f\br{X}}{g\br{X}} \ \Bigg| \ f, g \in K\sbr{X}, \ g \ne 0}. $$
+is also a field, the field of rational functions with coefficients in $ K $. For example, $ \F_p\br{X, Y} = \F_p\br{X}\br{Y} $.
 \end{itemize}
 \end{example*}
 
 \begin{example*}
 Consider algebraic equations in a field $ K $.
 \begin{itemize}
-\item Let $ ax^2 + bx^2 + c = 0 $ for $ a, b, c \in K $ be a quadratic. There is a formula
-$$ x = \dfrac{-b + \sqrt{b^2 - 4ac}}{2a}. $$
-\item For a cubic $ y^3 + 3py + 2q = 0 $,
-$$ y = \sqrt[3]{-q + \sqrt{q^2 + p^3}} + \sqrt[3]{-q - \sqrt{q^2 + p^3}}. $$
+\item Let $ aX^2 + bX^2 + c = 0 $ for $ a, b, c \in K $ be a quadratic. There is a formula
+$$ X = \dfrac{-b + \sqrt{b^2 - 4ac}}{2a}. $$
+\item For a cubic $ Y^3 + 3pY + 2q = 0 $,
+$$ Y = \sqrt[3]{-q + \sqrt{q^2 + p^3}} + \sqrt[3]{-q - \sqrt{q^2 + p^3}}. $$
 \item There is a formula for quartic equations.
 \item It is a theorem that there can be no such formula for equations of degree at least five.
 \end{itemize}
@@ -79,39 +78,39 @@ Galois theory deals with these easily.
 \begin{definition}
 A \textbf{field homomorphism} is a function $ \phi : K_1 \to K_2 $ that preserves the field operations, for all $ a, b \in K_1 $,
 \begin{align*}
-\phi\rb{a + b} & = \phi\rb{a} + \phi\rb{b}, \\
-\phi\rb{ab} & = \phi\rb{a}\phi\rb{b},
+\phi\br{a + b} & = \phi\br{a} + \phi\br{b}, \\
+\phi\br{ab} & = \phi\br{a}\phi\br{b},
 \end{align*}
-and $ \phi\rb{0_{K_1}} = 0_{K_2} $ and $ \phi\rb{1_{K_1}} = 1_{K_2} $.
+and $ \phi\br{0_{K_1}} = 0_{K_2} $ and $ \phi\br{1_{K_1}} = 1_{K_2} $.
 \end{definition}
 
 \begin{remark*}
-All field homomorphisms are injective. If $ a \in K_1 \setminus \cb{0} $, then there exists $ b \in K_1 $ such that $ ab = 1 $, then $ \phi\rb{a}\phi\rb{b} = 1 $, so $ \phi\rb{a} \ne 0 $. This easily implies $ \phi $ is injective. If $ a_1 \ne a_2 $, then $ a_1 - a_n \ne 0 $, so $ 0 \ne \phi\rb{a_1 - a_2} = \phi\rb{a_1} - \phi\rb{a_2} $. Then $ \phi\rb{a_1} \ne \phi\rb{a_2} $.
+All field homomorphisms are injective. If $ a \in K_1 \setminus \cbr{0} $, then there exists $ b \in K_1 $ such that $ ab = 1 $, then $ \phi\br{a}\phi\br{b} = 1 $, so $ \phi\br{a} \ne 0 $. This easily implies $ \phi $ is injective. If $ a_1 \ne a_2 $, then $ a_1 - a_n \ne 0 $, so $ 0 \ne \phi\br{a_1 - a_2} = \phi\br{a_1} - \phi\br{a_2} $. Then $ \phi\br{a_1} \ne \phi\br{a_2} $.
 \end{remark*}
 
-We concern ourselves with field extensions $ k \subset K $, and every homomorphism is an extension. Consider a field extension $ k \subset K $ and $ \alpha \in K $. Then $ k\rb{\alpha} \subset K $ denotes the smallest subfield of $ K $ that contains $ k, \alpha $. Not to be confused with $ k\rb{x} $.
+We concern ourselves with field extensions $ k \subset K $, and every homomorphism is an extension. Consider a field extension $ k \subset K $ and $ \alpha \in K $. Then $ k\br{\alpha} \subset K $ denotes the smallest subfield of $ K $ that contains $ k $ and $ \alpha $. Not to be confused with $ k\br{X} $.
 
 \begin{example*}
 There are two very different cases exemplified in $ \Q \subset \C $.
 \begin{itemize}
-\item $ \alpha = \sqrt{2} $, $ \Q\rb{\sqrt{2}} $.
-\item $ \alpha = \pi $, $ \Q\rb{\pi} $.
+\item $ \alpha = \sqrt{2} $, so $ \Q\br{\sqrt{2}} $.
+\item $ \alpha = \pi $, so $ \Q\br{\pi} $.
 \end{itemize}
 \end{example*}
 
 \begin{definition}
 \hfill
 \begin{itemize}
-\item $ \alpha $ is \textbf{algebraic} over $ k $ if $ f\rb{\alpha} = 0 $ for some $ 0 \ne f \in k\sb{x} $. Otherwise we say that $ \alpha $ is \textbf{transcendental} over $ k $.
+\item $ \alpha $ is \textbf{algebraic} over $ k $ if $ f\br{\alpha} = 0 $ for some $ 0 \ne f \in k\sbr{X} $. Otherwise we say that $ \alpha $ is \textbf{transcendental} over $ k $.
 \item The extension $ k \subset K $ is \textbf{algebraic} if for all $ \alpha \in K $, $ \alpha $ is algebraic over $ k $.
 \end{itemize}
 \end{definition}
 
 \begin{definition}
-Consider a field $ k $ and $ f \in k\sb{x} $. We say that $ k \subset K $ is a \textbf{splitting field} for $ f $ if
+Consider a field $ k $ and $ f \in k\sbr{X} $. We say that $ k \subset K $ is a \textbf{splitting field} for $ f $ if
 \begin{itemize}
-\item $ f\rb{x} = a\prod_{i = 1}^n \rb{x - \lambda_i} \in K\sb{x} $ for $ a \in k \setminus \cb{0} $, and
-\item $ K = k\rb{\lambda_1, \dots, \lambda_n} $.
+\item $ f\br{X} = a\prod_{i = 1}^n \br{X - \lambda_i} \in K\sbr{X} $ for $ a \in k \setminus \cbr{0} $, and
+\item $ K = k\br{\lambda_1, \dots, \lambda_n} $.
 \end{itemize}
 
 \end{definition}
@@ -119,13 +118,13 @@ Consider a field $ k $ and $ f \in k\sb{x} $. We say that $ k \subset K $ is a \
 \begin{example*}
 \hfill
 \begin{itemize}
-\item If $ f\rb{x} = x^2 - 2 \in \Q\sb{x} $, then $ K = \Q\rb{\sqrt{2}} $ is a splitting field for $ f $. Indeed
-$$ x^2 - 2 =\rb{x + \sqrt{2}}\rb{x - \sqrt{2}} \in \Q\rb{\sqrt{2}}\sb{x}. $$
-\item If $ f\rb{x} = x^2 + 2 $, then $ K = \Q\rb{\sqrt{-2}} $.
-\item If $ f\rb{x} = x^3 - 2 $, then
-$$ \Q\rb{\sqrt[3]{2}} = \cb{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q} $$
-is not a splitting field. $ K = \Q\rb{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + \sqrt{3}}{2} $, is a splitting field.
-$$ x^3 - 2 = \rb{x - \sqrt[3]{2}}\rb{x - \omega\sqrt[3]{2}}\rb{x - \omega^2\sqrt[3]{2}}. $$
+\item If $ f\br{X} = X^2 - 2 \in \Q\sbr{X} $, then $ K = \Q\br{\sqrt{2}} $ is a splitting field for $ f $. Indeed
+$$ X^2 - 2 =\br{X + \sqrt{2}}\br{X - \sqrt{2}} \in \Q\br{\sqrt{2}}\sbr{X}. $$
+\item If $ f\br{X} = X^2 + 2 $, then $ K = \Q\br{\sqrt{-2}} $.
+\item If $ f\br{X} = X^3 - 2 $, then
+$$ \Q\br{\sqrt[3]{2}} = \cbr{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q} $$
+is not a splitting field. $ K = \Q\br{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + \sqrt{3}}{2} $, is a splitting field.
+$$ X^3 - 2 = \br{X - \sqrt[3]{2}}\br{X - \omega\sqrt[3]{2}}\br{X - \omega^2\sqrt[3]{2}}. $$
 \end{itemize}
 \end{example*}
 
@@ -133,149 +132,149 @@ $$ x^3 - 2 = \rb{x - \sqrt[3]{2}}\rb{x - \omega\sqrt[3]{2}}\rb{x - \omega^2\sqrt
 
 \begin{theorem}[Fundamental theorem of Galois theory, Galois correspondence]
 \label{thm:galoiscorrespondence}
-Assume characteristic zero. Let $ k \subset K $ be the splitting field of $ f\rb{x} \in k\sb{x} $. Let
-$$ G = \cb{\sigma : K \to K \mid \sigma \ \text{field automorphism}, \ \sigma\mid_{k} = id_k}. $$
+Assume characteristic zero. Let $ k \subset K $ be the splitting field of $ f\br{X} \in k\sbr{X} $. Let
+$$ G = \cbr{\sigma : K \to K \mid \sigma \ \text{field automorphism}, \ \eval{\sigma}_{k} = id_k}. $$
 We call this group the \textbf{Galois group}. There is a one-to-one correspondence
 $$
 \begin{array}{rcl}
-\cb{k \subset K_1 \subset K \mid K_1 \ \text{subfield}} & \leftrightarrow & \cb{H \le G \mid H \ \text{subgroup}} \\
-K_1 & \mapsto & \cb{\sigma \in G \mid \forall \lambda \in K_1, \ \sigma\rb{\lambda} = \lambda} \\
-\cb{\lambda \in K \mid \forall \sigma \in H, \ \sigma\rb{\lambda} = \lambda} & \mapsfrom & H \le G
+\cbr{k \subset K_1 \subset K \mid K_1 \ \text{subfield}} & \leftrightarrow & \cbr{H \le G \mid H \ \text{subgroup}} \\
+K_1 & \mapsto & \cbr{\sigma \in G \mid \forall \lambda \in K_1, \ \sigma\br{\lambda} = \lambda} \\
+\cbr{\lambda \in K \mid \forall \sigma \in H, \ \sigma\br{\lambda} = \lambda} & \mapsfrom & H \le G
 \end{array}.
 $$
 \end{theorem}
 
-Why is this cool? Fields are hard, groups are easy. We will see that there is a good formula for the roots of $ f\rb{x} $ if and only if $ G $ is a soluble group.
+Why is this cool? Fields are hard, groups are easy. We will see that there is a good formula for the roots of $ f\br{X} $ if and only if $ G $ is a soluble group.
 
 \lecture{3}{Tuesday}{15/01/19}
 
 \begin{example*}
-Let $ \deg\rb{f} = 2 $ and $ f\rb{x} = x^2 + 2Ax + B \in K\sb{x} $. If $ K $ already contains the roots then $ L = K $ and $ G = \cb{id} $. Suppose $ K $ does not contain the roots. We still have quadratic formula
+Let $ \deg\br{f} = 2 $ and $ f\br{X} = X^2 + 2AX + B \in K\sbr{X} $. If $ K $ already contains the roots then $ L = K $ and $ G = \cbr{id} $. Suppose $ K $ does not contain the roots. We still have quadratic formula
 $$ \lambda_{1, 2} = -A \pm \sqrt{A^2 - B}. $$
 If $ \Delta = A^2 - B $ then $ \sqrt{\Delta} $ does not exist in $ K $. We must have
-$$ L = K\rb{\sqrt{\Delta}} = \cb{a + b\sqrt{\Delta} \mid a, b \in K}. $$
+$$ L = K\br{\sqrt{\Delta}} = \cbr{a + b\sqrt{\Delta} \mid a, b \in K}. $$
 Then $ K \subset L $ and
-$$ G = \cb{\sigma : L \to L \mid \sigma \mid_K = id_K} = C_2 $$
+$$ G = \cbr{\sigma : L \to L \mid \eval{\sigma}_K = id_K} = C_2 $$
 is generated by
 $$ \sigma : a + b\sqrt{\Delta} \mapsto a - b\sqrt{\Delta}. $$
 The following is further specialisation.
 \begin{itemize}
 \item Let $ K = \R $ and $ \Delta = -1 $. Then
-$$ L = \C = \cb{a + b\sqrt{-1} \mid a, b \in \R}, $$
+$$ L = \C = \cbr{a + b\sqrt{-1} \mid a, b \in \R}, $$
 and $ G = C_2 $ is generated by
 $$ \sigma : a + b\sqrt{-1} \mapsto a - b\sqrt{-1}, $$
 complex conjugation.
 \item Let $ K = \Q $ and $ \Delta = 2 $. Then
-$$ L = \cb{a + b\sqrt{2} \mid a, b \in \Q}, $$
+$$ L = \cbr{a + b\sqrt{2} \mid a, b \in \Q}, $$
 and $ G = C_2 $ is generated by
 $$ \sigma : a + b\sqrt{2} \mapsto a - b\sqrt{2}. $$
 \end{itemize}
 The fundamental theorem implies there does not exist
-$$ K \subsetneq K_1 \subsetneq K\rb{\sqrt{\Delta}} = L. $$
+$$ K \subsetneq K_1 \subsetneq K\br{\sqrt{\Delta}} = L. $$
 Is this obvious? Consider $ x \in L \setminus K $, so $ x = a + b\sqrt{\Delta} $, and $ b \ne 0 $, and then
 $$ \sqrt{\Delta} = \dfrac{x - a}{b}, $$
-so $ K\rb{x} = L $.
+so $ K\br{x} = L $.
 \end{example*}
 
 \pagebreak
 
 \section{Eisenstein numbers}
 
-Let $ f\rb{x} = x^3 - 2 \in \Q\sb{x} $ and $ L = \Q\rb{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + i\sqrt{3}}{2} $ is a solution of $ x^2 + x + 1 = 0 $. Then
-$$ \Q\rb{\omega} = \Q\rb{\sqrt{-3}}, \qquad \Q\rb{\sqrt[3]{2}} = \cb{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q}. $$
+Let $ f\br{X} = X^3 - 2 \in \Q\sbr{X} $ and $ L = \Q\br{\sqrt[3]{2}, \omega} $, where $ \omega = \tfrac{-1 + i\sqrt{3}}{2} $ is a solution of $ X^2 + X + 1 = 0 $. Then
+$$ \Q\br{\omega} = \Q\br{\sqrt{-3}}, \qquad \Q\br{\sqrt[3]{2}} = \cbr{a + b\sqrt[3]{2} + c\sqrt[3]{4} \mid a, b, c \in \Q}. $$
 
 \begin{remark*}
 For any splitting field of $ f $, there is always a natural inclusion group homomorphism
-$$ \rho : G \hookrightarrow S\rb{\lambda_1, \dots, \lambda_n}, $$
-where $ S\rb{\lambda_1, \dots, \lambda_n} $ is the group of permutations of the roots of $ f = x^n + a_1x^{n - 1} + \dots + a_n $.
+$$ \rho : G \hookrightarrow S\br{\lambda_1, \dots, \lambda_n}, $$
+where $ S\br{\lambda_1, \dots, \lambda_n} $ is the group of permutations of the roots of $ f = X^n + a_1X^{n - 1} + \dots + a_n $.
 \begin{itemize}
-\item If $ \sigma \in G $, $ f\rb{\lambda} = 0 $, so $ \lambda^n + a_1\lambda^{n - 1} + \dots + a_n = 0 $.
-$$ 0 = \sigma\rb{0} = \sigma\rb{\lambda^n + a_1\lambda^{n - 1} + \dots + a_n} = \sigma\rb{\lambda}^n + a_1\sigma\rb{\lambda}^{n - 1} + \dots + a_n. $$
-\item $ \rho $ is injective. If for all $ i $, $ \sigma\rb{\lambda_i} = \lambda_i $, then $ \sigma = id $ on $ K\rb{\lambda_1, \dots, \lambda_n} = L $.
+\item If $ \sigma \in G $, $ f\br{\lambda} = 0 $, so $ \lambda^n + a_1\lambda^{n - 1} + \dots + a_n = 0 $.
+$$ 0 = \sigma\br{0} = \sigma\br{\lambda^n + a_1\lambda^{n - 1} + \dots + a_n} = \sigma\br{\lambda}^n + a_1\sigma\br{\lambda}^{n - 1} + \dots + a_n. $$
+\item $ \rho $ is injective. If for all $ i $, $ \sigma\br{\lambda_i} = \lambda_i $, then $ \sigma = id $ on $ K\br{\lambda_1, \dots, \lambda_n} = L $.
 \end{itemize}
 \end{remark*}
 
-The fundamental theorem and remark gives $ G = \mathfrak{S}_3 $.
+The fundamental theorem and remark implies that $ G = \mathfrak{S}_3 $.
 
 \lecture{4}{Thursday}{17/01/19}
 
 \begin{definition}
 $ K \subset L $ is \textbf{finite} if $ L $ is finite-dimensional as a vector space over $ K $. The \textbf{degree} of $ L $ over $ K $ is
-$$ \sb{L : K} = \dim_{K}\rb{L}. $$
+$$ \sbr{L : K} = \dim_{K}\br{L}. $$
 \end{definition}
 
 \begin{theorem}[Tower law]
 \label{thm:towerlaw}
 Let $ K \subset L \subset F $. Then
-$$ \sb{F : K} = \sb{F : L}\sb{L : K}. $$
+$$ \sbr{F : K} = \sbr{F : L}\sbr{L : K}. $$
 \end{theorem}
 
 \begin{theorem}
 \label{thm:degree}
-Suppose $ f\rb{x} \in K\sb{x} $ is irreducible of degree $ d = \deg\rb{f} $ and $ L = K\rb{\lambda} $ where $ f\rb{\lambda} = 0 $, then $ \sb{K\rb{\lambda} : K} = d $.
+Suppose $ f\br{X} \in K\sbr{X} $ is irreducible of degree $ d = \deg\br{f} $ and $ L = K\br{\lambda} $ where $ f\br{\lambda} = 0 $, then $ \sbr{K\br{\lambda} : K} = d $.
 \end{theorem}
 
-$ K = \Q\rb{\sqrt[3]{2}} $ is a field, and $ \sb{K : \Q} = 3 $. Let $ L = \Q\rb{\sqrt[3]{2}, \omega} $ be the splitting field of $ x^3 - 2 $ over $ \Q $. The lattice of subfields is
+$ K = \Q\br{\sqrt[3]{2}} $ is a field, and $ \sbr{K : \Q} = 3 $. Let $ L = \Q\br{\sqrt[3]{2}, \omega} $ be the splitting field of $ X^3 - 2 $ over $ \Q $. The lattice of subfields is
 $$
 \begin{tikzcd}
 & & L & \\
-\Q\rb{\sqrt[3]{2}} \arrow[dash]{urr}{2} & \Q\rb{\omega\sqrt[3]{2}} \arrow[dash]{ur}{2} & \Q\rb{\omega^2\sqrt[3]{2}} \arrow[dash]{u}{2} & \\
-& & & \Q\rb{\omega} \arrow[dash, swap]{uul}{3} \\
+\Q\br{\sqrt[3]{2}} \arrow[dash]{urr}{2} & \Q\br{\omega\sqrt[3]{2}} \arrow[dash]{ur}{2} & \Q\br{\omega^2\sqrt[3]{2}} \arrow[dash]{u}{2} & \\
+& & & \Q\br{\omega} \arrow[dash, swap]{uul}{3} \\
 & & \Q \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash, swap]{ur}{2} &
 \end{tikzcd}.
 $$
 Then (Exercise)
-$$ \Q\rb{\sqrt[3]{2} + \omega} = L, \qquad \Q\rb{\omega^2\sqrt[3]{2}} \cap \Q\rb{\omega\sqrt[3]{2}} = \Q, \qquad \Q\rb{\sqrt[3]{2}, \omega\sqrt[3]{2}} = L. $$
-What is $ \sb{L : \Q\rb{\sqrt[3]{2}}} $? Note that $ L = \Q\rb{\sqrt[3]{2}}\rb{\sqrt{-3}} $. Could $ \sqrt{-3} \in \Q\rb{\sqrt[3]{2}} $? Consider $ x^2 + 3 \in \Q\rb{\sqrt[3]{2}}\sb{x} $. By the tower law,
+$$ \Q\br{\sqrt[3]{2} + \omega} = L, \qquad \Q\br{\omega^2\sqrt[3]{2}} \cap \Q\br{\omega\sqrt[3]{2}} = \Q, \qquad \Q\br{\sqrt[3]{2}, \omega\sqrt[3]{2}} = L. $$
+What is $ \sbr{L : \Q\br{\sqrt[3]{2}}} $? Note that $ L = \Q\br{\sqrt[3]{2}}\br{\sqrt{-3}} $. Could $ \sqrt{-3} \in \Q\br{\sqrt[3]{2}} $? Consider $ X^2 + 3 \in \Q\br{\sqrt[3]{2}}\sbr{X} $. By the tower law,
 $$
 \begin{cases}
-\sb{L : \Q} = \sb{L : \Q\rb{\omega}}\sb{\Q\rb{\omega} : \Q} = 2\sb{L : \Q\rb{\omega}} & \qquad \implies \qquad 2 \mid \sb{L : \Q} \\
-\sb{L : \Q} = \sb{L : \Q\rb{\sqrt[3]{2}}}\sb{\Q\rb{\sqrt[3]{2}} : \Q} = 3\sb{L : \Q\rb{\sqrt[3]{2}}} & \qquad \implies \qquad 3 \mid \sb{L : \Q}
+\sbr{L : \Q} = \sbr{L : \Q\br{\omega}}\sbr{\Q\br{\omega} : \Q} = 2\sbr{L : \Q\br{\omega}} & \quad \implies \quad 2 \mid \sbr{L : \Q} \\
+\sbr{L : \Q} = \sbr{L : \Q\br{\sqrt[3]{2}}}\sbr{\Q\br{\sqrt[3]{2}} : \Q} = 3\sbr{L : \Q\br{\sqrt[3]{2}}} & \quad \implies \quad 3 \mid \sbr{L : \Q}
 \end{cases}
-\qquad \implies \qquad 6 \mid \sb{L : \Q}.
+\quad \implies \quad 6 \mid \sbr{L : \Q}.
 $$
 \begin{itemize}
-\item Either $ x^2 + 3 $ is irreducible over $ \Q\rb{\sqrt[3]{2}} $, so by Theorem \ref{thm:degree} $ \sb{L : \Q\rb{\sqrt[3]{2}}} = 2 $ and $ \sb{L : \Q} = 6 $.
-\item Or $ x^2 + 3 $ is not irreducible, so $ \Q\rb{\sqrt[3]{2}} = L $ and $ \sb{L : \Q} = 3 $, a contradiction.
+\item Either $ X^2 + 3 $ is irreducible over $ \Q\br{\sqrt[3]{2}} $, so by Theorem \ref{thm:degree} $ \sbr{L : \Q\br{\sqrt[3]{2}}} = 2 $ and $ \sbr{L : \Q} = 6 $.
+\item Or $ X^2 + 3 $ is not irreducible, so $ \Q\br{\sqrt[3]{2}} = L $ and $ \sbr{L : \Q} = 3 $, a contradiction.
 \end{itemize}
 
 \pagebreak
 
-Are there any other fields? Claim that there are no other fields. Suppose $ \Q \subsetneq K \subsetneq L $ is such a field. By the tower law $ \sb{K : \Q} = 2 $ or $ \sb{K : \Q} = 3 $.
+Are there any other fields? Claim that there are no other fields. Suppose $ \Q \subsetneq K \subsetneq L $ is such a field. By the tower law $ \sbr{K : \Q} = 2 $ or $ \sbr{K : \Q} = 3 $.
 \begin{itemize}
-\item Suppose $ \sb{K : \Q} = 2 $.
+\item Suppose $ \sbr{K : \Q} = 2 $.
 $$
 \begin{tikzcd}
 & L & \\
-& K\rb{\omega} \arrow[dash]{u} & \\
-K \arrow[dash]{uur}{3} \arrow[dash]{ur} & & \Q\rb{\omega} \arrow[dash]{ul} \\
+& K\br{\omega} \arrow[dash]{u} & \\
+K \arrow[dash]{uur}{3} \arrow[dash]{ur} & & \Q\br{\omega} \arrow[dash]{ul} \\
 & \Q \arrow[dash]{ul}{2} \arrow[dash, swap]{ur}{2} &
 \end{tikzcd}.
 $$
 \begin{itemize}
-\item Either $ \omega \in K $, that is $ \Q\rb{\omega} \subset K $, so by the tower law $ \Q\rb{\omega} = K $.
-\item Or $ \omega \notin K $ gives $ \sb{K\rb{\omega} : K} = 2 $, so $ \sb{K\rb{\omega} : \Q} = 4 $ contradicts the tower law for $ \Q \subset K\rb{\omega} \subset L $.
+\item Either $ \omega \in K $, that is $ \Q\br{\omega} \subset K $, so by the tower law $ \Q\br{\omega} = K $.
+\item Or $ \omega \notin K $, so $ \sbr{K\br{\omega} : K} = 2 $, so $ \sbr{K\br{\omega} : \Q} = 4 $ contradicts the tower law for $ \Q \subset K\br{\omega} \subset L $.
 \end{itemize}
-\item Suppose $ \sb{K : \Q} = 3 $.
+\item Suppose $ \sbr{K : \Q} = 3 $.
 $$
 \begin{tikzcd}
 L & \\
-& K\rb{\sqrt[3]{2}} \arrow[dash]{ul} \\
+& K\br{\sqrt[3]{2}} \arrow[dash]{ul} \\
 K \arrow[dash]{uu}{2} \arrow[dash]{ur} & \\
 \Q \arrow[dash]{u}{3} &
 \end{tikzcd}.
 $$
-Claim that $ x^3 - 2 \in K\sb{x} $ splits. Suppose that it were irreducible, then $ \sb{K\rb{\sqrt[3]{2}} : K} = 3 $, which contradicts the tower law for $ K \subset K\rb{\sqrt[3]{2}} \subset L $. So it has a root in $ K $. Either $ \sqrt[3]{2} \in K $, $ \omega\sqrt[3]{2} \in K $, or $ \omega^2\sqrt[3]{2} \in K $. Thus $ \Q\rb{\sqrt[3]{2}} = K $, $ \Q\rb{\omega\sqrt[3]{2}} = K $, or $ \Q\rb{\omega^2\sqrt[3]{2}} = K $.
+Claim that $ X^3 - 2 \in K\sbr{X} $ splits. Suppose that it were irreducible, then $ \sbr{K\br{\sqrt[3]{2}} : K} = 3 $, which contradicts the tower law for $ K \subset K\br{\sqrt[3]{2}} \subset L $. So it has a root in $ K $. Either $ \sqrt[3]{2} \in K $, $ \omega\sqrt[3]{2} \in K $, or $ \omega^2\sqrt[3]{2} \in K $. Thus $ \Q\br{\sqrt[3]{2}} = K $, $ \Q\br{\omega\sqrt[3]{2}} = K $, or $ \Q\br{\omega^2\sqrt[3]{2}} = K $.
 \end{itemize}
 I want to prove that
-$$ G = Aut_\Q\rb{L} = \cb{\sigma : L \to L \mid \sigma \mid_\Q = id_\Q} = \mathfrak{S}_3. $$
+$$ G = Aut_\Q\br{L} = \cbr{\sigma : L \to L \mid \eval{\sigma}_\Q = id_\Q} = \mathfrak{S}_3. $$
 
 \lecture{5}{Friday}{18/01/19}
 
 \begin{proof}[Proof of Theorem \ref{thm:towerlaw}]
-Suppose $ y_1, \dots, y_m \in F $ is a basis of $ F $ as a vector space over $ L $. Suppose $ x_1, \dots, x_n \in L $ is a basis of $ L $ as a vector space over $ K $. Claim that $ \cb{x_iy_j} $ is a basis of $ F $ over $ K $.
+Suppose $ y_1, \dots, y_m \in F $ is a basis of $ F $ as a vector space over $ L $. Suppose $ x_1, \dots, x_n \in L $ is a basis of $ L $ as a vector space over $ K $. Claim that $ \cbr{x_iy_j} $ is a basis of $ F $ over $ K $.
 \begin{itemize}
-\item $ \cb{x_iy_j} $ generates $ F $. Let $ z \in F $. There exist $ \mu_1, \dots, \mu_n \in L $ such that
+\item $ \cbr{x_iy_j} $ generates $ F $. Let $ z \in F $. There exist $ \mu_1, \dots, \mu_n \in L $ such that
 \begin{equation}
 \label{eq:1}
 z = \mu_1y_1 + \dots + \mu_ny_n.
@@ -285,10 +284,10 @@ $ \mu_j \in L $ so for all $ j $ there exists $ \lambda_{ij} \in K $ such that
 \label{eq:2}
 \mu_j = x_1\lambda_{1j} + \dots + x_m\lambda_{mj}.
 \end{equation}
-Plug in $ \rb{\ref{eq:2}} $ into $ \rb{\ref{eq:1}} $,
+Plugging in $ \br{\ref{eq:2}} $ into $ \br{\ref{eq:1}} $,
 $$ z = \sum_{i, j} \lambda_{ij}x_iy_j. $$
-\item $ \cb{x_iy_j} $ are linearly independent over $ K $. Suppose there exists $ \lambda_{ij} \in K $ such that
-$$ 0 = \sum_{i, j} \lambda_{ij}x_iy_j = \sum_j \rb{\sum_i \lambda_{ij}x_i}y_j, $$
+\item $ \cbr{x_iy_j} $ are linearly independent over $ K $. Suppose there exists $ \lambda_{ij} \in K $ such that
+$$ 0 = \sum_{i, j} \lambda_{ij}x_iy_j = \sum_j \br{\sum_i \lambda_{ij}x_i}y_j, $$
 so for all $ j $, $ \sum_i \lambda_{ij}x_i = 0 $, so for all $ j $ and all $ i $, $ \lambda_{ij} = 0 $.
 \end{itemize}
 \end{proof}
@@ -297,14 +296,14 @@ so for all $ j $, $ \sum_i \lambda_{ij}x_i = 0 $, so for all $ j $ and all $ i $
 
 \begin{example*}
 To show $ G = \mathfrak{S}_3 $. Let $ \sigma = \onebytwo{1}{2} $. A basis of $ L / \Q $ is
-$$ 1, \sqrt[3]{2}, \sqrt[3]{4}, \omega, \omega\sqrt[3]{2}, \omega\sqrt[3]{4}. $$
+$$ 1, \qquad \sqrt[3]{2}, \qquad \sqrt[3]{4}, \qquad \omega, \qquad \omega\sqrt[3]{2}, \qquad \omega\sqrt[3]{4}. $$
 \begin{itemize}
-\item $ \sigma\rb{1} = 1 $.
-\item $ \sigma\rb{\sqrt[3]{2}} = \omega\sqrt[3]{2} $.
-\item $ \sigma\rb{\omega\sqrt[3]{2}} = \sqrt[3]{2} $.
-\item $ \sigma\rb{\sqrt[3]{4}} = \sigma\rb{\sqrt[3]{2} \cdot \sqrt[3]{2}} = \omega\sqrt[3]{2} \cdot \omega\sqrt[3]{2} = \omega^2\sqrt[3]{4} = \rb{-\omega - 1}\sqrt[3]{4} = -\omega\sqrt[3]{4} - \sqrt[3]{4} $.
-\item $ \sigma\rb{\omega} = \sigma\rb{\omega\sqrt[3]{2} / \sqrt[3]{2}} = \sigma\rb{\omega\sqrt[3]{2}} / \sigma\rb{\sqrt[3]{2}} = \sqrt[3]{2} / \omega\sqrt[3]{2} = 1 / \omega = -1 - \omega $.
-\item $ \sigma\rb{\omega\sqrt[3]{4}} = \sigma\rb{\omega\sqrt[3]{2} \cdot \sqrt[3]{2}} = \sigma\rb{\omega\sqrt[3]{2}} \cdot \sigma\rb{\sqrt[3]{2}} = \sqrt[3]{2} \cdot \omega\sqrt[3]{2} = \omega\sqrt[3]{4} $.
+\item $ \sigma\br{1} = 1 $.
+\item $ \sigma\br{\sqrt[3]{2}} = \omega\sqrt[3]{2} $.
+\item $ \sigma\br{\omega\sqrt[3]{2}} = \sqrt[3]{2} $.
+\item $ \sigma\br{\sqrt[3]{4}} = \sigma\br{\sqrt[3]{2} \cdot \sqrt[3]{2}} = \omega\sqrt[3]{2} \cdot \omega\sqrt[3]{2} = \omega^2\sqrt[3]{4} = \br{-\omega - 1}\sqrt[3]{4} = -\omega\sqrt[3]{4} - \sqrt[3]{4} $.
+\item $ \sigma\br{\omega} = \sigma\br{\omega\sqrt[3]{2} / \sqrt[3]{2}} = \sigma\br{\omega\sqrt[3]{2}} / \sigma\br{\sqrt[3]{2}} = \sqrt[3]{2} / \omega\sqrt[3]{2} = 1 / \omega = -1 - \omega $.
+\item $ \sigma\br{\omega\sqrt[3]{4}} = \sigma\br{\omega\sqrt[3]{2} \cdot \sqrt[3]{2}} = \sigma\br{\omega\sqrt[3]{2}} \cdot \sigma\br{\sqrt[3]{2}} = \sqrt[3]{2} \cdot \omega\sqrt[3]{2} = \omega\sqrt[3]{4} $.
 \end{itemize}
 Thus
 $$ \sigma =
@@ -317,29 +316,29 @@ $$ \sigma =
 0 & 0 & -1 & 0 & 0 & 1
 \end{pmatrix}.
 $$
-A question is if there were $ \sigma \in G $ such that $ \rho\rb{\sigma} = \onebytwo{1}{2} $ then we have written the matrix of $ \sigma $ as a $ \Q $-linear map of $ L $ in a basis. But how to check that this $ \Q $-linear map is a field homomorphism? We know the Galois correspondence for extensions of degree two.
-$$ Gal\rb{L / \Q\rb{\sqrt[3]{2}}}, Gal\rb{L / \Q\rb{\omega^2\sqrt[3]{2}}}, Gal\rb{L / \Q\rb{\omega\sqrt[3]{2}}} \subset G $$
+A question is if there were $ \sigma \in G $ such that $ \rho\br{\sigma} = \onebytwo{1}{2} $ then we have written the matrix of $ \sigma $ as a $ \Q $-linear map of $ L $ in a basis. But how to check that this $ \Q $-linear map is a field homomorphism? We know the Galois correspondence for extensions of degree two.
+$$ Gal\br{L / \Q\br{\sqrt[3]{2}}}, Gal\br{L / \Q\br{\omega^2\sqrt[3]{2}}}, Gal\br{L / \Q\br{\omega\sqrt[3]{2}}} \subset G $$
 contain an element of order two, and
 $$
 \begin{array}{rrl}
-\rho : & Gal\rb{L / \Q\rb{\sqrt[3]{2}}} & \mapsto \onebytwo{2}{3} \\
-& Gal\rb{L / \Q\rb{\omega^2\sqrt[3]{2}}} & \mapsto \onebytwo{1}{2} \\
-& Gal\rb{L / \Q\rb{\omega\sqrt[3]{2}}} & \mapsto \onebytwo{1}{3}.
+\rho : & Gal\br{L / \Q\br{\sqrt[3]{2}}} & \mapsto \onebytwo{2}{3} \\
+& Gal\br{L / \Q\br{\omega^2\sqrt[3]{2}}} & \mapsto \onebytwo{1}{2} \\
+& Gal\br{L / \Q\br{\omega\sqrt[3]{2}}} & \mapsto \onebytwo{1}{3}.
 \end{array}
 $$
 The lattice of subgroups is
 $$
 \begin{tikzcd}
-& & \ab{e} & \\
-\ab{\onebytwo{2}{3}} \arrow[dash]{urr}{2} & \ab{\onebytwo{1}{2}} \arrow[dash]{ur}{2} & \ab{\onebytwo{1}{3}} \arrow[dash]{u}{2} & \\
-& & & \ab{\onebythree{1}{2}{3}} \arrow[dash, swap]{uul}{3} \\
+& & \abr{e} & \\
+\abr{\onebytwo{2}{3}} \arrow[dash]{urr}{2} & \abr{\onebytwo{1}{2}} \arrow[dash]{ur}{2} & \abr{\onebytwo{1}{3}} \arrow[dash]{u}{2} & \\
+& & & \abr{\onebythree{1}{2}{3}} \arrow[dash, swap]{uul}{3} \\
 & & G \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash, swap]{ur}{2} &
 \end{tikzcd}.
 $$
-$ \Q\rb{\omega} / \Q $ is the splitting field of $ x^2 + x + 1 $ and of $ x^2 + 3 $.
+$ \Q\br{\omega} / \Q $ is the splitting field of $ X^2 + X + 1 $ and of $ X^2 + 3 $.
 \end{example*}
 
-We can learn the following. Let $ k \subset L $ be a splitting field. Consider $ k \subset K \subset L $. Then $ K \subset L $ is also a splitting field. The corresponding $ H \le G $ is the Galois group $ Gal\rb{L / K} $. On the other hand $ k \subset K $ is not always a splitting field. It is a splitting field if and only if the corresponding $ H \le G $ is a normal subgroup and in that case $ Gal\rb{K / k} = G / H $.
+We can learn the following. Let $ k \subset L $ be a splitting field. Consider $ k \subset K \subset L $. Then $ K \subset L $ is also a splitting field. The corresponding $ H \le G $ is the Galois group $ Gal\br{L / K} $. On the other hand $ k \subset K $ is not always a splitting field. It is a splitting field if and only if the corresponding $ H \le G $ is a normal subgroup and in that case $ Gal\br{K / k} = G / H $.
 
 \pagebreak
 
@@ -348,28 +347,28 @@ We can learn the following. Let $ k \subset L $ be a splitting field. Consider $
 \lecture{6}{Tuesday}{22/01/19}
 
 Let $ K \subset L $ and $ a \in L $. The \textbf{evaluation homomorphism}
-$$ \function[e_a]{K\sb{x}}{K\sb{a} \subset L}{f\rb{x}}{f\rb{a}} $$
-is a surjective ring homomorphism, where $ K\sb{a} $ is the smallest subring of $ L $ containing $ K $ and $ a $.
+$$ \function[e_a]{K\sbr{X}}{K\sbr{a} \subset L}{f\br{X}}{f\br{a}} $$
+is a surjective ring homomorphism, where $ K\sbr{a} $ is the smallest subring of $ L $ containing $ K $ and $ a $.
 
 \begin{definition}
-$ f\rb{x} = a_0x^n + \dots + a_n \in K\sb{x} $ is \textbf{monic} if $ a_0 = 1 $.
+$ f\br{X} = a_0X^n + \dots + a_n \in K\sbr{X} $ is \textbf{monic} if $ a_0 = 1 $.
 \end{definition}
 
 \begin{lemma}
 \hfill
 \begin{itemize}
-\item If $ a $ is transcendental, $ e_a $ is injective and it extends to $ \widetilde{e_a} : K\rb{x} \to K\rb{a} $, by
+\item If $ a $ is transcendental, $ e_a $ is injective and it extends to $ \widetilde{e_a} : K\br{X} \to K\br{a} $, by
 $$
 \begin{tikzcd}
-K\rb{x} \arrow{dr}{\widetilde{e_a}} & \\
-K\sb{x} \arrow[subset]{u} \arrow[swap]{r}{e_a} & L
+K\br{X} \arrow{dr}{\widetilde{e_a}} & \\
+K\sbr{X} \arrow[subset]{u} \arrow[swap]{r}{e_a} & L
 \end{tikzcd}.
 $$
-\item If $ a $ is algebraic, then $ Ker\rb{e_a} = \ab{f_a} $, where $ f_a \in K\sb{x} $ is irreducible, or prime, and unique if monic, then called the minimal polynomial of $ a \in L / K $. In this case
+\item If $ a $ is algebraic, then $ Ker\br{e_a} = \abr{f_a} $, where $ f_a \in K\sbr{X} $ is irreducible, or prime, and unique if monic, then called the minimal polynomial of $ a \in L / K $. In this case
 $$
 \begin{tikzcd}
-K\sb{x} \arrow{r}{e_a} & K\sb{a} \cong K\rb{a} \subset L \\
-\dfrac{K\sb{x}}{\ab{f_a}} \arrow[subset]{u} \arrow{ur}{\sim}[swap]{\sb{e_a}}
+K\sbr{X} \arrow{r}{e_a} & K\sbr{a} \cong K\br{a} \subset L \\
+\dfrac{K\sbr{X}}{\abr{f_a}} \arrow[subset]{u} \arrow{ur}{\sim}[swap]{\sbr{e_a}}
 \end{tikzcd}.
 $$
 \end{itemize}
@@ -380,19 +379,19 @@ There is nothing to prove.
 \end{proof}
 
 \begin{remark*}
-Let $ g\rb{x} \in K\sb{x} $ and $ g\rb{a} \ne 0 $. Claim that $ 1 / g\rb{a} \in K\sb{a} $. Indeed $ \gcd\rb{f, g} = 1 $ in $ K\sb{x} $ and $ f \nmid g $. There exists $ \phi, \psi \in K\sb{x} $ such that $ f\phi + g\psi = 1 $ and $ g\rb{a}\psi\rb{a} = 1 $. All of this is saying
+Let $ g\br{X} \in K\sbr{X} $ and $ g\br{a} \ne 0 $. Claim that $ 1 / g\br{a} \in K\sbr{a} $. Indeed $ \gcd\br{f, g} = 1 $ in $ K\sbr{X} $ and $ f \nmid g $. There exists $ \phi, \psi \in K\sbr{X} $ such that $ f\phi + g\psi = 1 $ and $ g\br{a}\psi\br{a} = 1 $. All of this is saying
 \begin{itemize}
-\item $ K\sb{a} \cong K\rb{a} $, and
-\item $ K\sb{x} / \ab{f_a} \cong K\rb{a} $.
+\item $ K\sbr{a} \cong K\br{a} $, and
+\item $ K\sbr{X} / \abr{f_a} \cong K\br{a} $.
 \end{itemize}
 \end{remark*}
 
 Let
-$$ Em_K\rb{K\rb{a}, F} = \cb{\sigma : K\rb{a} \to F \mid \sigma \ \text{field homomorphism}, \ \sigma_K = id_K}, $$
+$$ Em_K\br{K\br{a}, F} = \cbr{\sigma : K\br{a} \to F \mid \sigma \ \text{field homomorphism}, \ \sigma_K = id_K}, $$
 where
 $$
 \begin{tikzcd}
-& K\rb{a} \arrow[dotted]{dd}{\sigma} \\
+& K\br{a} \arrow[dashed]{dd}{\sigma} \\
 K \arrow[subset]{ur} \arrow[subset]{dr} & \\
 & F
 \end{tikzcd}.
@@ -401,72 +400,72 @@ $$
 \begin{corollary}
 For $ K \subset L $ and $ a \in L $ algebraic over $ K $,
 \begin{itemize}
-\item $ \sb{K\rb{a} : K} = \deg\rb{f_a} $, and
+\item $ \sbr{K\br{a} : K} = \deg\br{f_a} $, and
 \item If $ K \subset F $ is an extension,
-$$ Em_K\rb{K\rb{a}, F} = \cb{b \in F \mid f_a\rb{b} = 0}. $$
+$$ Em_K\br{K\br{a}, F} = \cbr{b \in F \mid f_a\br{b} = 0}. $$
 \end{itemize}
 \end{corollary}
 
 \pagebreak
 
 \begin{proof}
-Since $ K\rb{a} = K\sb{a} $, $ \sb{K\rb{a} : K} = \dim_K\rb{K\rb{a}} = \dim_K\sb{K\rb{a}} $. Suppose
-$$ f\rb{x} = x^n + \mu_1x^{n - 1} + \dots + \mu_n \in K\sb{x} $$
-is the minimal polynomial of $ a $ over $ K $. Claim that $ 1, \dots, a^{n - 1} $ is a basis of $ K\sb{a} $ over $ K $.
+Since $ K\br{a} = K\sbr{a} $, $ \sbr{K\br{a} : K} = \dim_K\br{K\br{a}} = \dim_K\sbr{K\br{a}} $. Suppose
+$$ f\br{X} = X^n + \mu_1X^{n - 1} + \dots + \mu_n \in K\sbr{X} $$
+is the minimal polynomial of $ a $ over $ K $. Claim that $ 1, \dots, a^{n - 1} $ is a basis of $ K\sbr{a} $ over $ K $.
 \begin{itemize}
-\item The set generates $ K\sb{a} $. Let $ c \in K\sb{a} $. There exists $ g \in K\sb{x} $ such that $ g\rb{a} = c $. Long division gives
-$$ g\rb{x} = f\rb{x}q\rb{x} + r\rb{x}, \qquad m = \deg\rb{r\rb{x}} < n. $$
-Then $ r\rb{x} = \lambda_0 + \dots + \lambda_mx^m $ and $ g\rb{a} = r\rb{a} = \lambda_0 + \dots + \lambda_ma^m $.
+\item The set generates $ K\sbr{a} $. Let $ c \in K\sbr{a} $. There exists $ g \in K\sbr{X} $ such that $ g\br{a} = c $. Long division implies that
+$$ g\br{X} = f\br{X}q\br{X} + r\br{X}, \qquad m = \deg\br{r\br{X}} < n. $$
+Then $ r\br{X} = \lambda_0 + \dots + \lambda_mX^m $ and $ g\br{a} = r\br{a} = \lambda_0 + \dots + \lambda_ma^m $.
 \item The set is linearly independent, otherwise there exists
-$$ g\rb{x} = \lambda_0 + \dots + \lambda_{n - 1}x^{n- 1} \in K\sb{x}, \qquad g\rb{a} = 0, $$
+$$ g\br{X} = \lambda_0 + \dots + \lambda_{n - 1}X^{n- 1} \in K\sbr{X}, \qquad g\br{a} = 0, $$
 and $ f $ was not the minimal polynomial.
 \end{itemize}
-$ \sigma\rb{a} $ is a root of $ f $, since applying $ \sigma $ to $ f\rb{a} = 0 $ gives
-$$ 0 = \sigma\rb{a^n + \mu_1a^{n - 1} + \dots + \mu_n} = \sigma\rb{a}^n + \mu_1^{n - 1}\sigma\rb{a}^{n - 1} + \dots + \mu_n = f\rb{\sigma\rb{a}}. $$
+$ \sigma\br{a} $ is a root of $ f $, since applying $ \sigma $ to $ f\br{a} = 0 $ gives
+$$ 0 = \sigma\br{a^n + \mu_1a^{n - 1} + \dots + \mu_n} = \sigma\br{a}^n + \mu_1^{n - 1}\sigma\br{a}^{n - 1} + \dots + \mu_n = f\br{\sigma\br{a}}. $$
 Vice versa, if $ b \in F $ is a root of $ f $,
-$$ K\rb{b} \xleftarrow[\sim]{\sb{e_b}} \dfrac{K\sb{x}}{\ab{f}} \xrightarrow[\sim]{\sb{e_a}} K\rb{a}, $$
-then $ \sigma = \sb{e_b}\sb{e_a}^{-1} $. Thus there is a one-to-one correspondence
+$$ K\br{b} \xleftarrow[\sim]{\sbr{e_b}} \dfrac{K\sbr{X}}{\abr{f}} \xrightarrow[\sim]{\sbr{e_a}} K\br{a}, $$
+then $ \sigma = \sbr{e_b}\sbr{e_a}^{-1} $. Thus there is a one-to-one correspondence
 $$
 \begin{array}{rcl}
-Em_K\rb{K\rb{a}, F} & \leftrightarrow & \cb{b \in F \mid f\rb{b} = 0} \\
-\sigma & \mapsto & \sigma\rb{a} \\
-\sb{e_b}\sb{e_a}^{-1} & \mapsfrom & b
+Em_K\br{K\br{a}, F} & \leftrightarrow & \cbr{b \in F \mid f\br{b} = 0} \\
+\sigma & \mapsto & \sigma\br{a} \\
+\sbr{e_b}\sbr{e_a}^{-1} & \mapsfrom & b
 \end{array}.
 $$
 \end{proof}
 
 \begin{corollary}
-Let $ K $ be a field and $ f \in K\sb{x} $. Then there exists $ K \subset L $ such that $ f $ has a root in $ L $.
+Let $ K $ be a field and $ f \in K\sbr{X} $. Then there exists $ K \subset L $ such that $ f $ has a root in $ L $.
 \end{corollary}
 
 \begin{proof}
-Take $ g $ a prime factor of $ f $. Take $ L = K\sb{x} / \ab{g} $. In here $ a = \sb{x} $ is a root of $ g $ hence a root of $ f $.
+Take $ g $ a prime factor of $ f $. Take $ L = K\sbr{X} / \abr{g} $. In here $ a = \sbr{X} $ is a root of $ g $ hence a root of $ f $.
 \end{proof}
 
 \lecture{7}{Thursday}{24/01/19}
 
-From now on in this course, we study field extensions $ K \subset L $, always assumed to be finite, so $ \sb{L : K} = \dim_K\rb{L} < \infty $.
+From now on in this course, we study field extensions $ K \subset L $, always assumed to be finite, so $ \sbr{L : K} = \dim_K\br{L} < \infty $.
 
 \begin{remark*}
 $ K \subset L $ is finite if and only if
 \begin{itemize}
 \item it is algebraic, that is for all $ a \in L $, $ a $ is algebraic over $ K $, and
-\item it is finitely generated, that is there exist $ a_1, \dots, a_m \in L $ such that $ L = K\rb{a_1, \dots, a_m} $.
+\item it is finitely generated, that is there exist $ a_1, \dots, a_m \in L $ such that $ L = K\br{a_1, \dots, a_m} $.
 \end{itemize}
 \end{remark*}
 
 An important point of view is that we study all possible field homomorphisms
-$$ Em\rb{K, L} = \cb{\sigma : K \to L \mid \sigma \ \text{field homomorphism}}. $$
+$$ Em\br{K, L} = \cbr{\sigma : K \to L \mid \sigma \ \text{field homomorphism}}. $$
 Often there is a field $ k \subset K, L $ in the background which we want to stay fixed, so let
-$$ Em_k\rb{K, L} = \cb{\sigma : K \to L \mid \sigma \ \text{field homomorphism}, \ \sigma \mid_k = id_k}. $$
+$$ Em_k\br{K, L} = \cbr{\sigma : K \to L \mid \sigma \ \text{field homomorphism}, \ \eval{\sigma}_k = id_k}. $$
 
 \begin{example*}
-Let $ K = \Q\rb{\sqrt[3]{2}} $. The minimal polynomial of $ \sqrt[3]{2} $ is $ x^3 - 2 $. Let $ L = \Q\rb{\sqrt[3]{2}, \sqrt{-3}} $ be the splitting field of $ x^3 - 2 $. Then
-$$ Em_\Q\rb{K, L} = Em\rb{K, L} = \cb{\text{roots of} \ x^3 - 2 \ \text{in} \ L} = \cb{\sqrt[3]{2}, \omega\sqrt[3]{2}, \omega^2\sqrt[3]{2}}. $$
+Let $ K = \Q\br{\sqrt[3]{2}} $. The minimal polynomial of $ \sqrt[3]{2} $ is $ X^3 - 2 $. Let $ L = \Q\br{\sqrt[3]{2}, \sqrt{-3}} $ be the splitting field of $ X^3 - 2 $. Then
+$$ Em_\Q\br{K, L} = Em\br{K, L} = \cbr{\text{roots of} \ X^3 - 2 \ \text{in} \ L} = \cbr{\sqrt[3]{2}, \omega\sqrt[3]{2}, \omega^2\sqrt[3]{2}}. $$
 \end{example*}
 
 \begin{remark*}
-Suppose $ k \subset K $. $ Em_k\rb{K, K} = G = Gal\rb{K / k} $. Indeed every $ k $-homomorphism $ \sigma : K \to K $ is automatically invertible. We know $ \sigma $ is injective. $ \sigma $ is also surjective because $ \sigma $ is a $ k $-linear endomorphism of a finite-dimensional $ k $-vector space.
+Suppose $ k \subset K $. Then $ Em_k\br{K, K} = G = Gal\br{K / k} $. Indeed every $ k $-homomorphism $ \sigma : K \to K $ is automatically invertible. We know $ \sigma $ is injective. $ \sigma $ is also surjective because $ \sigma $ is a $ k $-linear endomorphism of a finite-dimensional $ k $-vector space.
 \end{remark*}
 
 \pagebreak
@@ -475,28 +474,29 @@ Suppose $ k \subset K $. $ Em_k\rb{K, K} = G = Gal\rb{K / k} $. Indeed every $ k
 
 \begin{proposition}
 \label{prop:1}
-Fix $ k \subset K $ and $ k \subset L $. Then $ \#Em_k\rb{K, L} \le \sb{K : k} $.
+Fix $ k \subset K $ and $ k \subset L $. Then
+$$ \#Em_k\br{K, L} \le \sbr{K : k}. $$
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{itemize}[leftmargin=1in]
-\item[Special case.] If $ K = k\rb{a} $, let $ f\rb{x} \in k\sb{x} $ be the minimal polynomial of $ a $. Then $ Em_k\rb{k\rb{a}, L} $ is the roots of $ f\rb{x} $ in $ L $, so
-$$ \#Em_k\rb{K, L} = \#\cb{\text{roots}} \le \deg\rb{f} = \sb{k\rb{a} : k}, $$
+\item[Special case.] If $ K = k\br{a} $, let $ f\br{X} \in k\sbr{X} $ be the minimal polynomial of $ a $. Then $ Em_k\br{k\br{a}, L} $ is the roots of $ f\br{X} $ in $ L $, so
+$$ \#Em_k\br{K, L} = \#\cbr{\text{roots}} \le \deg\br{f} = \sbr{k\br{a} : k}, $$
 as proved last time.
 \item[General case.] If $ k = K $, nothing to do. Otherwise choose $ a \in K \setminus k $.
 $$
 \begin{tikzcd}
 & & L \\
-k \arrow[subset]{urr} \arrow[subset]{r} & k\rb{a} \arrow[dotted, swap]{ur}{y} \arrow[subset]{r} & K \arrow[dotted]{u}
+k \arrow[subset]{urr} \arrow[subset]{r} & k\br{a} \arrow[dashed, swap]{ur}{y} \arrow[subset]{r} & K \arrow[dashed]{u}
 \end{tikzcd}.
 $$
 Consider the restriction map
-$$ \rho : Em_k\rb{K, L} \to Em_k\rb{k\rb{a}, L}. $$
-Fix $ y \in Em_k\rb{k\rb{a}, L} $. Then
-$$ \rho^{-1}\rb{y} = \cb{x : K \to L \mid x \mid_{k\rb{a}} = id_{k\rb{a}}}. $$
-Since $ \sb{k\rb{a} : k} > 1 $, by the tower law $ \sb{K : k\rb{a}} < \sb{K : k} $. By induction we may assume $ \#\rho^{-1}\rb{y} \le \sb{K : k\rb{a}} $. So
-$$ \#Em_k\rb{K, L} \le \sum_{y \in Em_k\rb{k\rb{a}, L}} \#\rho^{-1}\rb{y} \le \sb{k\rb{a} : k}\sb{K : k\rb{a}} = \sb{K : k}, $$
+$$ \rho : Em_k\br{K, L} \to Em_k\br{k\br{a}, L}. $$
+Fix $ y \in Em_k\br{k\br{a}, L} $. Then
+$$ \rho^{-1}\br{y} = \cbr{x : K \to L \mid \eval{x}_{k\br{a}} = id_{k\br{a}}}. $$
+Since $ \sbr{k\br{a} : k} > 1 $, by the tower law $ \sbr{K : k\br{a}} < \sbr{K : k} $. By induction we may assume $ \#\rho^{-1}\br{y} \le \sbr{K : k\br{a}} $. So
+$$ \#Em_k\br{K, L} \le \sum_{y \in Em_k\br{k\br{a}, L}} \#\rho^{-1}\br{y} \le \sbr{k\br{a} : k}\sbr{K : k\br{a}} = \sbr{K : k}, $$
 by the tower law.
 \end{itemize}
 \end{proof}
@@ -513,94 +513,93 @@ $$
 that contains both.
 \end{proposition}
 
+\pagebreak
+
 \begin{remark*}
 \hfill
 \begin{itemize}
-\item More formally, suppose given $ \sigma_1 \in Em\rb{k, K} $ and $ \sigma_2 \in Em\rb{k, L} $, then there exists $ \Omega $, $ \phi_1 \in Em\rb{K, \Omega} $, and $ \phi_2 \in Em\rb{L, \Omega} $ such that $ \phi_1 \circ \sigma_1 = \phi_2 \circ \sigma_2 $.
-\item I never said that $ \Omega $ is unique. For example, let $ K = \Q\rb{\sqrt[3]{2}} $ and $ L = \Q\rb{\sqrt[3]{2}} $. One choice is $ \Omega = k $. Another choice is $ \Omega = \Q\rb{\sqrt[3]{2}, \sqrt{-3}} $, where
+\item More formally, suppose given $ \sigma_1 \in Em\br{k, K} $ and $ \sigma_2 \in Em\br{k, L} $, then there exist $ \Omega $, $ \phi_1 \in Em\br{K, \Omega} $, and $\phi_2 \in Em\br{L, \Omega} $ such that $ \phi_1 \circ \sigma_1 = \phi_2 \circ \sigma_2 $.
+\item I never said that $ \Omega $ is unique. For example, let $ K = \Q\br{\sqrt[3]{2}} $ and $ L = \Q\br{\sqrt[3]{2}} $. One choice is $ \Omega = k $. Another choice is $ \Omega = \Q\br{\sqrt[3]{2}, \sqrt{-3}} $, where
 $$
 \begin{tikzcd}
-& \Q\rb{\sqrt[3]{2}} \arrow[hookrightarrow]{dr}{\phi_1 : \sqrt[3]{2} \mapsto \sqrt[3]{2}} & \\
-\Q \arrow[hookrightarrow]{ur}{\sigma} \arrow[hookrightarrow, swap]{dr}{\sigma} & & \Q\rb{\sqrt[3]{2}, \sqrt{-3}} \\
-& \Q\rb{\sqrt[3]{2}} \arrow[hookrightarrow, swap]{ur}{\phi_2 : \sqrt[3]{2} \mapsto \omega\sqrt[3]{2}} &
+& \Q\br{\sqrt[3]{2}} \arrow[hookrightarrow]{dr}{\sqrt[3]{2} \mapsto \sqrt[3]{2}} & \\
+\Q \arrow[hookrightarrow]{ur}{\sigma} \arrow[hookrightarrow, swap]{dr}{\sigma} & & \Q\br{\sqrt[3]{2}, \sqrt{-3}} \\
+& \Q\br{\sqrt[3]{2}} \arrow[hookrightarrow, swap]{ur}{\sqrt[3]{2} \mapsto \omega\sqrt[3]{2}} &
 \end{tikzcd}.
 $$
+\item Another more precise way to state this is there exists $ k \subset \Omega $ such that $ Em_k\br{K, \Omega} $ and $ Em_k\br{L, \Omega} $ are both non-empty.
 \end{itemize}
 \end{remark*}
-
-\pagebreak
-
-Another more precise way to state this is there exists $ k \subset \Omega $ such that $ Em_k\rb{K, \Omega} $ and $ Em_k\rb{L, \Omega} $ are both non-empty.
 
 \lecture{8}{Friday}{25/01/19}
 
 \begin{proof}
 \hfill
 \begin{itemize}[leftmargin=1in]
-\item[Special case.] If $ K = k\rb{a} $, let $ f\rb{x} \in k\sb{x} $ be the minimal polynomial of $ a $ over $ k $. Let $ L \subset E $ be such that $ f\rb{x} \in L\sb{x} $ has a root $ \alpha \in E $. Then there exists $ \sigma \in Em_k\rb{k\rb{a}, E} $ such that $ \sigma\rb{a} = \alpha $.
+\item[Special case.] If $ K = k\br{a} $, let $ f\br{X} \in k\sbr{X} $ be the minimal polynomial of $ a $ over $ k $. Let $ L \subset E $ be such that $ f\br{X} \in L\sbr{X} $ has a root $ \alpha \in E $. Then there exists $ \sigma \in Em_k\br{k\br{a}, E} $ such that $ \sigma\br{a} = \alpha $.
 $$
 \begin{tikzcd}
-& k\rb{a} \arrow[dotted]{dr}{\sigma} & \\
+& k\br{a} \arrow[dashed]{dr}{\sigma} & \\
 k \arrow[subset]{ur} \arrow[subset]{dr} & & E \\
 & L \arrow[subset]{ur} &
 \end{tikzcd}.
 $$
-\item[General case.] By induction on $ \sb{K : k} $. If $ \sb{K : k} = 1 $, take $ \Omega = L $. If $ \sb{K : k} > 1 $, take $ a \in K \setminus k $.
+\item[General case.] By induction on $ \sbr{K : k} $. If $ \sbr{K : k} = 1 $, take $ \Omega = L $. If $ \sbr{K : k} > 1 $, take $ a \in K \setminus k $.
 $$
 \begin{tikzcd}
 & & K \arrow[subset]{dr} & \\
-& k\rb{a} \arrow[subset]{ur} \arrow[subset]{dr} & & \Omega \\
+& k\br{a} \arrow[subset]{ur} \arrow[subset]{dr} & & \Omega \\
 k \arrow[subset]{ur} \arrow[subset]{dr} & & E \arrow[subset]{ur} & \\
 & L \arrow[subset]{ur} & &
 \end{tikzcd}.
 $$
-By special case there exists $ E $ as in the diagram. By tower law $ \sb{K : k\rb{a}} < \sb{K : k} $ hence by induction find $ \Omega $ as in the diagram. $ \Omega $ solves the original problem.
+By special case there exists $ E $ as in the diagram. By tower law $ \sbr{K : k\br{a}} < \sbr{K : k} $ hence by induction find $ \Omega $ as in the diagram. $ \Omega $ solves the original problem.
 \end{itemize}
 \end{proof}
+
+\pagebreak
 
 \begin{proposition}
 \label{prop:3}
 Let $ L $ be any field and $ G $ be a finite group acting on $ L $ as automorphisms. Let
-$$ K = G^* = Fix\rb{G} = L^G = \cb{\lambda \in L \mid \forall \sigma \in G, \ \sigma\rb{\lambda} = \lambda}. $$
-Consider $ Aut_K\rb{L} = K^\dagger $. Then the obvious inclusion $ G \subset K^\dagger = \rb{G^*}^\dagger $ is an equality, so $ G $ is all of $ K^\dagger $.
+$$ K = G^* = Fix\br{G} = L^G = \cbr{\lambda \in L \mid \forall \sigma \in G, \ \sigma\br{\lambda} = \lambda}. $$
+Consider $ Aut_K\br{L} = K^\dagger $. Then the obvious inclusion $ G \subset K^\dagger = \br{G^*}^\dagger $ is an equality, so $ G $ is all of $ K^\dagger $.
 \end{proposition}
 
 \begin{remark*}
 Contextualising, this thing is half of the Galois correspondence.
 $$
 \begin{array}{rcl}
-\cb{F \mid k \subset F \subset \Omega} & \leftrightarrow & \cb{G \mid G \le Aut_k\rb{\Omega}} \\
-F & \mapsto & Aut_F\rb{\Omega} = F^\dagger \\
-Fix\rb{G} = G^* & \mapsfrom & G
+\cbr{F \mid k \subset F \subset \Omega} & \leftrightarrow & \cbr{G \mid G \le Aut_k\br{\Omega}} \\
+F & \mapsto & Aut_F\br{\Omega} = F^\dagger \\
+Fix\br{G} = G^* & \mapsfrom & G
 \end{array}.
 $$
-Then to prove the Galois correspondence, we need for all $ G $, $ G = \rb{G^*}^\dagger $. We also need for all $ F $, $ F = \rb{F^\dagger}^* $.
+Then to prove the Galois correspondence, we need for all $ G $, $ G = \br{G^*}^\dagger $. We also need for all $ F $, $ F = \br{F^\dagger}^* $.
 \end{remark*}
 
 Proposition \ref{prop:3} follows from the following lemma.
 
 \begin{lemma}
 \label{lem:3}
-$ K \subset L $ is a finite extension of degree $ \sb{L : K} \le \abs{G} $.
+$ K \subset L $ is a finite extension of degree $ \sbr{L : K} \le \abs{G} $.
 \end{lemma}
 
 \begin{proof}[Proof of Proposition \ref{prop:3}]
-From Proposition \ref{prop:1}, $ Aut_K\rb{L} = Em_K\rb{L, L} $ because $ K \subset L $ is finite, and $ \#Em_K\rb{L, L} \le \sb{L : K} $. By Lemma \ref{lem:3},
-$$ \sb{L : K} \le \#Em_K\rb{L, L} \le \sb{L : K}, $$
-so $ \abs{G} = \#Em_K\rb{L, L} $. By what we said, $ G \subset Em_K\rb{L, L} $, so $ G = Em_K\rb{L, L} $.
+From Proposition \ref{prop:1}, $ Aut_K\br{L} = Em_K\br{L, L} $ because $ K \subset L $ is finite, and $ \#Em_K\br{L, L} \le \sbr{L : K} $. By Lemma \ref{lem:3},
+$$ \sbr{L : K} \le \#Em_K\br{L, L} \le \sbr{L : K}, $$
+so $ \abs{G} = \#Em_K\br{L, L} $. By what we said, $ G \subset Em_K\br{L, L} $, so $ G = Em_K\br{L, L} $.
 \end{proof}
 
 \lecture{9}{Tuesday}{29/01/19}
 
 Lecture 9 is a problem class.
 
-\pagebreak
-
 \lecture{10}{Thursday}{31/01/19}
 
 \begin{proof}[Proof of Lemma \ref{lem:3}]
-Write $ G = \cb{\sigma_1, \dots, \sigma_n} $ for $ n = \abs{G} $. Want that all $ \rb{n + 1} $-tuples $ a_1, \dots, a_{n + 1} \in L $ are linearly dependent over $ K $. Let $ a_1, \dots, a_{n + 1} \in L $. Consider the $ n + 1 $ vectors in $ L^n $. Let
-$$ \overline{a_1} = \threebyone{\sigma_1\rb{a_1}}{\vdots}{\sigma_n\rb{a_1}}, \ \dots, \ \overline{a_{n + 1}} = \threebyone{\sigma_1\rb{a_{n + 1}}}{\vdots}{\sigma_n\rb{a_{n + 1}}} \in L^n. $$
+Write $ G = \cbr{\sigma_1, \dots, \sigma_n} $ for $ n = \abs{G} $. Want that all $ \br{n + 1} $-tuples $ a_1, \dots, a_{n + 1} \in L $ are linearly dependent over $ K $. Let $ a_1, \dots, a_{n + 1} \in L $. Consider the $ n + 1 $ vectors in $ L^n $. Let
+$$ \overline{a_1} = \threebyone{\sigma_1\br{a_1}}{\vdots}{\sigma_n\br{a_1}}, \ \dots, \ \overline{a_{n + 1}} = \threebyone{\sigma_1\br{a_{n + 1}}}{\vdots}{\sigma_n\br{a_{n + 1}}} \in L^n. $$
 These are linearly dependent over $ L $. There exist $ x_1, \dots, x_{n + 1} \in L $ not all zero such that
 $$ x_1\overline{a_1} + \dots + x_{n + 1}\overline{a_{n + 1}} = \overline{0}. $$
 By reordering the $ \overline{a_i} $, may assume
@@ -610,21 +609,21 @@ x_1\overline{a_1} + \dots + x_k\overline{a_k} = \overline{0},
 \end{equation}
 for some $ 1 \le k \le n + 1 $ with
 \begin{itemize}
-\item for all $ i \in \cb{1, \dots, k} $, $ x_i \ne 0 $,
+\item for all $ i \in \cbr{1, \dots, k} $, $ x_i \ne 0 $,
 \item such $ k $ is the smallest, and
 \item $ x_1 = 1 $.
 \end{itemize}
 Claim that all these $ x_i \in K $. This does it, by reading $ j $-th row where $ \sigma_j = id_G $. We need to show for all $ i $, $ x_i \in L^G $. Take $ \sigma \in G $.
-$$ \sigma\rb{x_1}\threebyone{\sigma\rb{\sigma_1\rb{a_1}}}{\vdots}{\sigma\rb{\sigma_n\rb{a_1}}} + \dots + \sigma\rb{x_k}\threebyone{\sigma\rb{\sigma_1\rb{a_k}}}{\vdots}{\sigma\rb{\sigma_n\rb{a_k}}} = \overline{0} \in L^n. $$
+$$ \sigma\br{x_1}\threebyone{\sigma\br{\sigma_1\br{a_1}}}{\vdots}{\sigma\br{\sigma_n\br{a_1}}} + \dots + \sigma\br{x_k}\threebyone{\sigma\br{\sigma_1\br{a_k}}}{\vdots}{\sigma\br{\sigma_n\br{a_k}}} = \overline{0} \in L^n. $$
 Note that
 $$ \function{G}{G}{\tau}{\sigma \circ \tau} $$
-is a bijective function and $ \cb{\sigma \circ \sigma_1, \dots, \sigma \circ \sigma_n} = G $. Multiplying by $ \sigma $ reshuffles the rows. So in fact,
+is a bijective function and $ \cbr{\sigma \circ \sigma_1, \dots, \sigma \circ \sigma_n} = G $. Multiplying by $ \sigma $ reshuffles the rows. So in fact,
 \begin{equation}
 \label{eq:4}
-\sigma\rb{x_1}\overline{a_1} + \dots + \sigma\rb{x_k}\overline{a_k} = \overline{0}.
+\sigma\br{x_1}\overline{a_1} + \dots + \sigma\br{x_k}\overline{a_k} = \overline{0}.
 \end{equation}
-Claim that for all $ i $, $ \sigma\rb{x_i} = x_i $. Otherwise $ \rb{\ref{eq:3}} - \rb{\ref{eq:4}} $,
-$$ \rb{x_2 - \sigma\rb{x_2}}\overline{a_2} + \dots + \rb{x_k - \sigma\rb{x_k}}\overline{a_k} = \overline{0} $$
+Claim that for all $ i $, $ \sigma\br{x_i} = x_i $. Otherwise $ \br{\ref{eq:3}} - \br{\ref{eq:4}} $,
+$$ \br{x_2 - \sigma\br{x_2}}\overline{a_2} + \dots + \br{x_k - \sigma\br{x_k}}\overline{a_k} = \overline{0} $$
 is a shorter solution, contradicting $ k $ minimal.
 \end{proof}
 
@@ -636,46 +635,46 @@ is a shorter solution, contradicting $ k $ minimal.
 $ k \subset K $ is \textbf{normal} if
 \begin{equation}
 \label{eq:5}
-\forall k \subset \Omega, \ \forall \sigma_1, \sigma_2 \in Em_k\rb{K, \Omega}, \ \exists \sigma \in Em_k\rb{K, K}, \ \sigma_2 = \sigma_1 \circ \sigma.
+\forall k \subset \Omega, \ \forall \sigma_1, \sigma_2 \in Em_k\br{K, \Omega}, \ \exists \sigma \in Em_k\br{K, K}, \ \sigma_2 = \sigma_1 \circ \sigma.
 \end{equation}
 $$
 \begin{tikzcd}
 & \Omega & \\
-\sigma_1\rb{K} \arrow[subset]{ur} \arrow[bend left=15, dotted]{rr}{\sigma} & K \arrow{l}{\sigma_1} \arrow[swap]{r}{\sigma_2} & \sigma_2\rb{K} \arrow[subset]{ul} \\
+\sigma_1\br{K} \arrow[subset]{ur} \arrow[bend left=15, dashed]{rr}{\sigma} & K \arrow{l}{\sigma_1} \arrow[swap]{r}{\sigma_2} & \sigma_2\br{K} \arrow[subset]{ul} \\
 & k \arrow[subset]{ul} \arrow[subset, u] \arrow[subset]{ur} &
 \end{tikzcd}.
 $$
 Equivalently, $ k \subset K $ is normal if
 \begin{equation}
 \label{eq:6}
-\forall k \subset \Omega, \ \forall \sigma_1, \sigma_2 \in Em_k\rb{K, \Omega}, \ \sigma_2\rb{K} \subset \sigma_1\rb{K}.
+\forall k \subset \Omega, \ \forall \sigma_1, \sigma_2 \in Em_k\br{K, \Omega}, \ \sigma_2\br{K} \subset \sigma_1\br{K}.
 \end{equation}
 \end{definition}
 
 \begin{example*}
-$ \Q \subset \Q\rb{\sqrt[3]{2}} $ is not normal. Take $ \Omega = \Q\rb{\sqrt[3]{2}, \sqrt{-3}} $.
+$ \Q \subset \Q\br{\sqrt[3]{2}} $ is not normal. Take $ \Omega = \Q\br{\sqrt[3]{2}, \sqrt{-3}} $.
 \end{example*}
 
 \begin{itemize}[leftmargin=1in]
-\item[$ \rb{\ref{eq:5}} \implies \rb{\ref{eq:6}} $] Indeed for all $ \lambda \in K $, $ \sigma_2\rb{\lambda} = \sigma_1\rb{\sigma\rb{\lambda}} \in \sigma_1\rb{K} $, so $ \sigma_2\rb{K} \subset \sigma_1\rb{K} $.
-\item[$ \rb{\ref{eq:6}} \implies \rb{\ref{eq:5}} $] Work inside $ \Omega $, so $ k \subset \sigma_2\rb{K} \subset \sigma_1\rb{K} \subset \Omega $. Tower law gives
-$$ \sb{K : k} = \sb{\sigma_1\rb{K} : k} = \sb{\sigma_1\rb{K} : \sigma_2\rb{K}}\sb{\sigma_2\rb{K} : k} = \sb{\sigma_1\rb{K} : \sigma_2\rb{K}}\sb{K : k}. $$
-So $ \sb{\sigma_1\rb{K} : \sigma_2\rb{K}} = 1 $, so $ \sigma_1\rb{K} = \sigma_2\rb{K} $. Take $ \sigma = \sigma_1^{-1} \circ \sigma_2 $. $ \sigma $ is clearly bijective and it is more or less obvious that $ \sigma \in Em_k\rb{K, K} $.
+\item[$ \br{\ref{eq:5}} \implies \br{\ref{eq:6}} $] Indeed for all $ \lambda \in K $, $ \sigma_2\br{\lambda} = \sigma_1\br{\sigma\br{\lambda}} \in \sigma_1\br{K} $, so $ \sigma_2\br{K} \subset \sigma_1\br{K} $.
+\item[$ \br{\ref{eq:6}} \implies \br{\ref{eq:5}} $] Work inside $ \Omega $, so $ k \subset \sigma_2\br{K} \subset \sigma_1\br{K} \subset \Omega $. Tower law implies that
+$$ \sbr{K : k} = \sbr{\sigma_1\br{K} : k} = \sbr{\sigma_1\br{K} : \sigma_2\br{K}}\sbr{\sigma_2\br{K} : k} = \sbr{\sigma_1\br{K} : \sigma_2\br{K}}\sbr{K : k}. $$
+So $ \sbr{\sigma_1\br{K} : \sigma_2\br{K}} = 1 $, so $ \sigma_1\br{K} = \sigma_2\br{K} $. Take $ \sigma = \sigma_1^{-1} \circ \sigma_2 $. $ \sigma $ is clearly bijective and it is more or less obvious that $ \sigma \in Em_k\br{K, K} $.
 \end{itemize}
 
 \lecture{11}{Friday}{01/02/19}
 
-Equivalently, $ k \subset K $ is normal if for all $ K \subset \Omega $, for all $ \sigma \in Em_k\rb{K, \Omega} $, $ \sigma\rb{K} \subset K $.
+Equivalently, $ k \subset K $ is normal if for all $ K \subset \Omega $, for all $ \sigma \in Em_k\br{K, \Omega} $, $ \sigma\br{K} \subset K $.
 $$
 \begin{tikzcd}
 & \Omega & \\
-K \arrow[subset]{ur} \arrow[dotted]{rr}{\sigma} & & \sigma\rb{K} \arrow[subset]{ul} \\
+K \arrow[subset]{ur} \arrow[dashed]{rr}{\sigma} & & \sigma\br{K} \arrow[subset]{ul} \\
 & k \arrow[subset]{ul} \arrow[subset]{ur} &
 \end{tikzcd}
 $$
 
 \begin{remark*}
-We will see that $ k \subset K $ is normal if and only if there exists $ f\rb{x} \in K\sb{x} $ such that $ K $ is a splitting field of $ f $.
+We will see that $ k \subset K $ is normal if and only if there exists $ f\br{X} \in K\sbr{X} $ such that $ K $ is a splitting field of $ f $.
 \end{remark*}
 
 \begin{lemma}
@@ -683,30 +682,30 @@ Suppose $ k \subset K $ is normal. Consider $ k \subset L \subset K $. Then also
 \end{lemma}
 
 \begin{proof}
-If $ \sigma \in Em_L\rb{K, \Omega} $, then $ \sigma \in Em_k\rb{K, \Omega} $.
+If $ \sigma \in Em_L\br{K, \Omega} $, then $ \sigma \in Em_k\br{K, \Omega} $.
 \end{proof}
 
 Warning.
 \begin{itemize}
-\item It is not true in general that $ k \subset K $ is normal gives that $ k \subset L $ is normal. For example, let
-$$ k = \Q \subset \Q\rb{\sqrt[3]{2}} \subset \Q\rb{\sqrt[3]{2}, \sqrt{-3}} = K. $$
-$ k \subset K $ is normal because it is a splitting field but $ \Q \subset \Q\rb{\sqrt[3]{2}} $ is not normal.
+\item It is not true in general that $ k \subset K $ is normal implies that $ k \subset L $ is normal. For example, let
+$$ k = \Q \subset \Q\br{\sqrt[3]{2}} \subset \Q\br{\sqrt[3]{2}, \sqrt{-3}} = K. $$
+$ k \subset K $ is normal because it is a splitting field but $ \Q \subset \Q\br{\sqrt[3]{2}} $ is not normal.
 \item Suppose $ k \subset L $ is normal and $ L \subset K $ is normal. This does not imply $ k \subset K $ is normal. This will be in an example sheet.
 \end{itemize}
 
 \pagebreak
 
 \begin{definition}
-$ k \subset K $ is \textbf{separable} if for all $ k \subset K_1 \subset K_2 \subset K $, if $ K_1 \ne K_2 $, there exist $ k \subset \Omega $ and embeddings $ x \in Em_k\rb{K_1, \Omega} $ and $ y_1, y_2 \in Em_k\rb{K_2, \Omega} $ such that
+$ k \subset K $ is \textbf{separable} if for all $ k \subset K_1 \subset K_2 \subset K $, if $ K_1 \ne K_2 $, there exist $ k \subset \Omega $ and embeddings $ x \in Em_k\br{K_1, \Omega} $ and $ y_1, y_2 \in Em_k\br{K_2, \Omega} $ such that
 $$
 \begin{tikzcd}
 K & & \Omega & \\
-K_2 \arrow[dotted]{r}{y_1} \arrow[bend right=15, dotted, near start, swap]{rrr}{y_2} \arrow[subset]{u} & y_1\rb{K_2} \arrow[subset]{ur} & & y_2\rb{K_2} \arrow[subset]{ul} \\
-K_1 \arrow[subset]{u} \arrow{rr}{x} & & x\rb{K_1} \arrow[subset]{ul} \arrow[subset]{ur} & \\
+K_2 \arrow[dashed]{r}{y_1} \arrow[bend right=15, dashed, near start, swap]{rrr}{y_2} \arrow[subset]{u} & y_1\br{K_2} \arrow[subset]{ur} & & y_2\br{K_2} \arrow[subset]{ul} \\
+K_1 \arrow[subset]{u} \arrow{rr}{x} & & x\br{K_1} \arrow[subset]{ul} \arrow[subset]{ur} & \\
 k \arrow[subset]{u} \arrow[subset]{urr} & & &
 \end{tikzcd}.
 $$
-That is, $ y_1 \mid_{K_1} = y_2 \mid_{K_1} = x $ but $ y_1 \ne y_2 $.
+That is, $ \eval{y_1}_{K_1} = \eval{y_2}_{K_1} = x $ but $ y_1 \ne y_2 $.
 \end{definition}
 
 Slogan is that embeddings separate fields. We will see that
@@ -728,29 +727,29 @@ Suppose $ k \subset K \subset L $. Then $ k \subset L $ is separable if and only
 \end{proof}
 
 \begin{theorem}[Fundamental theorem of Galois theory, Galois correspondence]
-Let $ k \subset K $ be normal and separable. Let $ G = Em_k\rb{K, K} $. Then there is a one-to-one correspondence
+Let $ k \subset K $ be normal and separable. Let $ G = Em_k\br{K, K} $. Then there is a one-to-one correspondence
 $$
 \begin{array}{rcl}
-\cb{k \subset L \subset K} & \leftrightarrow & \cb{H \le G} \\
-L & \mapsto & L^\dagger = \cb{\sigma \in G \mid \forall \lambda \in L, \ \sigma\rb{\lambda} = \lambda}\\
-H^* = \cb{\lambda \in K \mid \forall \sigma \in H, \ \sigma\rb{\lambda} = \lambda} & \mapsfrom & H
+\cbr{k \subset L \subset K} & \leftrightarrow & \cbr{H \le G} \\
+L & \mapsto & L^\dagger = \cbr{\sigma \in G \mid \forall \lambda \in L, \ \sigma\br{\lambda} = \lambda}\\
+H^* = \cbr{\lambda \in K \mid \forall \sigma \in H, \ \sigma\br{\lambda} = \lambda} & \mapsfrom & H
 \end{array}.
 $$
 \end{theorem}
 
 \begin{proof}
-We show that for all $ H \le G $, $ \rb{H^*}^\dagger = H $ and for all $ k \subset L \subset K $, $ \rb{L^\dagger}^* = L $. We already did the former. We just prove the latter now. Note that $ L \subset K $ is normal and separable so all I need to show is $ \rb{k^\dagger}^* = k $, that is $ k = G^* $ is the fixed field of $ G $. That is, if $ \lambda \notin k $, there exists $ \sigma : K \to K $ in $ G $ such that $ \sigma\rb{\lambda} \ne \lambda $. By separability, there exists $ \Omega $ and $ x_1 \ne x_2 \in Em_k\rb{k\rb{\lambda}, \Omega} $ such that
+We show that for all $ H \le G $, $ \br{H^*}^\dagger = H $ and for all $ k \subset L \subset K $, $ \br{L^\dagger}^* = L $. We already did the former. We just prove the latter now. Note that $ L \subset K $ is normal and separable so all I need to show is $ \br{k^\dagger}^* = k $, that is $ k = G^* $ is the fixed field of $ G $. That is, if $ \lambda \notin k $, there exists $ \sigma : K \to K $ in $ G $ such that $ \sigma\br{\lambda} \ne \lambda $. By separability, there exists $ \Omega $ and $ x_1 \ne x_2 \in Em_k\br{k\br{\lambda}, \Omega} $ such that
 $$
 \begin{tikzcd}
-K \arrow[dotted]{dr}{\widetilde{x_1}, \widetilde{x_2}} & \\
-k\rb{\lambda} \arrow[dash]{u} \arrow[swap]{r}{x_1, x_2} & \Omega \\
+K \arrow[dashed]{dr}{\widetilde{x_1}, \widetilde{x_2}} & \\
+k\br{\lambda} \arrow[dash]{u} \arrow[swap]{r}{x_1, x_2} & \Omega \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd},
 $$
-so $ x_1\rb{\lambda} \ne x_2\rb{\lambda} $. Two steps.
+so $ x_1\br{\lambda} \ne x_2\br{\lambda} $. Two steps.
 \begin{itemize}
-\item There exist $ \widetilde{x_1}, \widetilde{x_2} : K \to \Omega $ extending $ x_1, x_2 : k\rb{\lambda} \to \Omega $, by the following lemma.
-\item Because $ k \subset K $ is normal there exists $ \sigma \in Em_k\rb{K, K} $ such that $ \widetilde{x_2} = \widetilde{x_1} \circ \sigma $ then clearly $ \sigma\rb{\lambda} \ne \lambda $.
+\item There exist $ \widetilde{x_1}, \widetilde{x_2} : K \to \Omega $ extending $ x_1, x_2 : k\br{\lambda} \to \Omega $, by the following lemma.
+\item Because $ k \subset K $ is normal there exists $ \sigma \in Em_k\br{K, K} $ such that $ \widetilde{x_2} = \widetilde{x_1} \circ \sigma $ then clearly $ \sigma\br{\lambda} \ne \lambda $.
 \end{itemize}
 \end{proof}
 
@@ -758,15 +757,17 @@ so $ x_1\rb{\lambda} \ne x_2\rb{\lambda} $. Two steps.
 
 \begin{lemma}
 \label{lem:surjective}
-Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $, the natural restriction $ \rho : Em_k\rb{K, \Omega} \to Em_k\rb{F, \Omega} $ is surjective.
+Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $, the natural restriction
+$$ \rho : Em_k\br{K, \Omega} \to Em_k\br{F, \Omega} $$
+is surjective.
 \end{lemma}
 
 \lecture{12}{Tuesday}{05/02/19}
 
-Lemma \ref{lem:surjective} says for all $ \sigma \in Em_k\rb{F, \Omega} $, there exists $ \widetilde{\sigma} \in Em_k\rb{K, \Omega} $ such that $ \widetilde{\sigma} \mid_F = \sigma $.
+Lemma \ref{lem:surjective} says for all $ \sigma \in Em_k\br{F, \Omega} $, there exists $ \widetilde{\sigma} \in Em_k\br{K, \Omega} $ such that $ \eval{\widetilde{\sigma}}_F = \sigma $.
 $$
 \begin{tikzcd}
-K \arrow[dotted]{dr}{\widetilde{\sigma}} & \\
+K \arrow[dashed]{dr}{\widetilde{\sigma}} & \\
 F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \Omega \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
@@ -776,7 +777,7 @@ $$
 We know that there exists $ \widetilde{\Omega} $ as follows.
 $$
 \begin{tikzcd}
-K \arrow{r}{\phi_2} \arrow[dotted, swap]{dr}{\widetilde{\sigma}} & \widetilde{\Omega} \\
+K \arrow{r}{\phi_2} \arrow[dashed, swap]{dr}{\widetilde{\sigma}} & \widetilde{\Omega} \\
 F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \Omega \arrow[swap]{u}{\psi} \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
@@ -785,26 +786,28 @@ There are two $ K \subset \widetilde{\Omega} $,
 $$
 \phi_1 : K \subset \Omega \xhookrightarrow{\psi} \widetilde{\Omega}, \qquad \phi_2 : K \hookrightarrow \widetilde{\Omega}.
 $$
-Because $ k \subset K $ is normal $ \phi_2\rb{K} \subset \phi_1\rb{K} \subset \psi\rb{\Omega} $. That proves that $ \widetilde{\sigma} $ exists.
+Because $ k \subset K $ is normal $ \phi_2\br{K} \subset \phi_1\br{K} \subset \psi\br{\Omega} $. That proves that $ \widetilde{\sigma} $ exists.
 \end{proof}
 
 \begin{corollary}
 \label{cor:surjective}
-Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $, $ Em_k\rb{F, K} \to Em_k\rb{F, \Omega} $ is also surjective.
+Suppose $ k \subset K $ is normal. Then for all towers $ k \subset F \subset K \subset \Omega $,
+$$ Em_k\br{F, K} \to Em_k\br{F, \Omega} $$
+is also surjective.
 \end{corollary}
 
-Corollary \ref{cor:surjective} states that for all $ \sigma \in Em_k\rb{F, \Omega} $, $ \sigma\rb{F} \subset K $.
+Corollary \ref{cor:surjective} states that for all $ \sigma \in Em_k\br{F, \Omega} $, $ \sigma\br{F} \subset K $.
 $$
 \begin{tikzcd}
 \Omega & \\
-K \arrow[dash]{u} \arrow[dotted]{r}{\widetilde{\sigma}} & \widetilde{\sigma}\rb{K} \arrow[dash]{ul} \\
-F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \sigma\rb{F} \arrow[dash]{ul} \arrow[dash]{u} \\
+K \arrow[dash]{u} \arrow[dashed]{r}{\widetilde{\sigma}} & \widetilde{\sigma}\br{K} \arrow[dash]{ul} \\
+F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \sigma\br{F} \arrow[dash]{ul} \arrow[dash]{u} \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
 $$
 
 \begin{proof}
-This clearly follows from Lemma \ref{lem:surjective}. $ \sigma\rb{F} \subset \widetilde{\sigma}\rb{K} \subset K $ by definition of normal.
+This clearly follows from Lemma \ref{lem:surjective}. $ \sigma\br{F} \subset \widetilde{\sigma}\br{K} \subset K $ by definition of normal.
 \end{proof}
 
 \pagebreak
@@ -814,8 +817,8 @@ This clearly follows from Lemma \ref{lem:surjective}. $ \sigma\rb{F} \subset \wi
 \begin{theorem}
 For finite $ k \subset K $, the following are equivalent.
 \begin{enumerate}
-\item For all $ f \in k\sb{x} $ irreducible either $ f $ has no root in $ K $ or $ f $ splits completely in $ K $.
-\item There exists $ f \in k\sb{x} $ not necessarily irreducible such that $ K $ is a splitting field of $ f $.
+\item For all $ f \in k\sbr{X} $ irreducible either $ f $ has no root in $ K $ or $ f $ splits completely in $ K $.
+\item There exists $ f \in k\sbr{X} $ not necessarily irreducible such that $ K $ is a splitting field of $ f $.
 \item $ k \subset K $ is normal.
 \end{enumerate}
 \end{theorem}
@@ -823,22 +826,22 @@ For finite $ k \subset K $, the following are equivalent.
 \begin{proof}
 \hfill
 \begin{itemize}[leftmargin=0.5in]
-\item[$ 1 \implies 2 $] There are $ \lambda_1, \dots, \lambda_m \in K $ such that $ K = k\rb{\lambda_1, \dots, \lambda_m} $. For all $ i $ let $ f_i \in k\sb{x} $ be the minimal polynomial of $ \lambda_i $. $ f_i $ is irreducible and by $ 1 $ it splits completely. $ K $ is the splitting field of
-$$ f\rb{x} = \prod_{i = 1}^m f_i\rb{x}. $$
-\item[$ 2 \implies 3 $] Suppose $ K \subset \Omega $. Let $ \sigma : K \to \Omega $ be another embedding. For all $ \lambda_i $, $ \sigma\rb{\lambda_i} $ is a root of $ f $, so $ \sigma\rb{\lambda_i} \subset K $ hence $ \sigma\rb{K} \subset K $.
-\item[$ 3 \implies 1 $] Let $ f\rb{x} \in k\sb{x} $ be irreducible. Suppose there exists $ \lambda \in K $ such that $ f\rb{\lambda} = 0 $. Let $ \Omega $ be a splitting field of $ f\rb{x} \in K\sb{x} $. Let $ \mu \in \Omega $ be a root of $ f $. There exists a unique $ \sigma \in Em_k\rb{k\rb{\lambda}, \Omega} $ such that $ \sigma\rb{\lambda} = \mu $.
+\item[$ 1 \implies 2 $] There are $ \lambda_1, \dots, \lambda_m \in K $ such that $ K = k\br{\lambda_1, \dots, \lambda_m} $. For all $ i $ let $ f_i \in k\sbr{X} $ be the minimal polynomial of $ \lambda_i $. $ f_i $ is irreducible and by $ 1 $ it splits completely. $ K $ is the splitting field of
+$$ f\br{X} = \prod_{i = 1}^m f_i\br{X}. $$
+\item[$ 2 \implies 3 $] Suppose $ K \subset \Omega $. Let $ \sigma : K \to \Omega $ be another embedding. For all $ \lambda_i $, $ \sigma\br{\lambda_i} $ is a root of $ f $, so $ \sigma\br{\lambda_i} \subset K $ hence $ \sigma\br{K} \subset K $.
+\item[$ 3 \implies 1 $] Let $ f\br{X} \in k\sbr{X} $ be irreducible. Suppose there exists $ \lambda \in K $ such that $ f\br{\lambda} = 0 $. Let $ \Omega $ be a splitting field of $ f\br{X} \in K\sbr{X} $. Let $ \mu \in \Omega $ be a root of $ f $. There exists a unique $ \sigma \in Em_k\br{k\br{\lambda}, \Omega} $ such that $ \sigma\br{\lambda} = \mu $.
 $$
 \begin{tikzcd}
 K & \\
-F = k\rb{\lambda} \arrow[dash]{u} \arrow{r}{\sigma} & \sigma\rb{F} \subset \Omega \ni \mu \\
+F = k\br{\lambda} \arrow[dash]{u} \arrow{r}{\sigma} & \sigma\br{F} \subset \Omega \ni \mu \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
 $$
-By Corollary \ref{cor:surjective}, $ \sigma\rb{F} \subset K $, so $ \mu \in K $.
+By Corollary \ref{cor:surjective}, $ \sigma\br{F} \subset K $, so $ \mu \in K $.
 \end{itemize}
 \end{proof}
 
-(Exercise: prove that any two splitting fields of $ f \in k\sb{x} $ are $ k $-isomorphic, not necessarily in a unique way)
+(Exercise: prove that any two splitting fields of $ f \in k\sbr{X} $ are $ k $-isomorphic, not necessarily in a unique way)
 
 \lecture{13}{Thursday}{07/02/19}
 
@@ -847,8 +850,8 @@ Let $ k \subset L $ be a field extension. Then there exists a tower $ k \subset 
 \end{proposition}
 
 \begin{proof}
-We use normal if and only if splitting field. Pick $ \lambda_1, \dots, \lambda_n \in L $ such that $ L = k\rb{\lambda_1, \dots, \lambda_n} $. Let $ f_i \in k\sb{x} $ be the minimal polynomial of $ \lambda_i $ over $ k $. Let $ K $ be the splitting field of
-$$ f = \prod_{i = 1}^n f_i \in L\sb{x}. $$
+We use normal if and only if splitting field. Pick $ \lambda_1, \dots, \lambda_n \in L $ such that $ L = k\br{\lambda_1, \dots, \lambda_n} $. Let $ f_i \in k\sbr{X} $ be the minimal polynomial of $ \lambda_i $ over $ k $. Let $ K $ be the splitting field of
+$$ f = \prod_{i = 1}^n f_i \in L\sbr{X}. $$
 Claim that $ K $ is the splitting field of $ f $ over $ k $. Key point is argue that $ K $ is generated by the roots of $ f $ over $ k $.
 \end{proof}
 
@@ -857,7 +860,7 @@ Claim that $ K $ is the splitting field of $ f $ over $ k $. Key point is argue 
 \section{Separable polynomials}
 
 \begin{definition}
-A polynomial $ f \in k\sb{x} $ is \textbf{separable} if it has $ n = \deg\rb{f} $ distinct roots in any field $ k \subset K $ such that $ f \in K\sb{x} $ splits completely.
+A polynomial $ f \in k\sbr{X} $ is \textbf{separable} if it has $ n = \deg\br{f} $ distinct roots in any field $ k \subset K $ such that $ f \in K\sbr{X} $ splits completely.
 \end{definition}
 
 \begin{remark*}
@@ -867,97 +870,97 @@ It is not completely obvious that this definition is independent of $ K $. To se
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Let $ k = \F_p = \Z / p\Z $. Then $ x^p - a = \rb{x - a}^p $ is not separable, since in characteristic $ p $, $ \rb{a + b}^p = a^p + b^p $.
-\item Let $ k = \F_p\rb{t} $. Then $ x^p - t $ is an irreducible polynomial. Why? Let
-$$ K = \dfrac{\F_p\rb{t}\sb{u}}{\ab{u^p - t}} = \F_p\rb{u}. $$
-In $ K\sb{x} $, $ x^p - t = \rb{x - u}^p $.
+\item Let $ k = \F_p = \Z / p\Z $. Then $ X^p - a = \br{X - a}^p $ is not separable, since in characteristic $ p $, $ \br{a + b}^p = a^p + b^p $.
+\item Let $ k = \F_p\br{t} $. Then $ X^p - t $ is an irreducible polynomial. Why? Let
+$$ K = \dfrac{\F_p\br{t}\sbr{u}}{\abr{u^p - t}} = \F_p\br{u}. $$
+In $ K\sbr{X} $, $ X^p - t = \br{X - u}^p $.
 \end{itemize}
 \end{example*}
 
 For all $ k $, define the \textbf{derivation} as
-$$ \function[D]{k\sb{x}}{k\sb{x}}{x^n}{nx^{n - 1}}, $$
-and extend linearly to all of $ k\sb{x} $. The following are some properties.
+$$ \function[D]{k\sbr{X}}{k\sbr{X}}{X^n}{nX^{n - 1}}, $$
+and extend linearly to all of $ k\sbr{X} $. The following are some properties.
 \begin{itemize}
-\item $ D $ is $ k $-linear, that is for all $ \lambda, \mu \in k $, for all $ f, g \in k\sb{x} $,
-$$ D\rb{\lambda f + \mu g} = \lambda Df + \mu Dg. $$
-\item Leibnitz rule, that is for all $ f, g \in k\sb{x} $,
-$$ D\rb{fg} = fDg + gDf. $$
+\item $ D $ is $ k $-linear, that is for all $ \lambda, \mu \in k $, for all $ f, g \in k\sbr{X} $,
+$$ D\br{\lambda f + \mu g} = \lambda Df + \mu Dg. $$
+\item Leibnitz rule, that is for all $ f, g \in k\sbr{X} $,
+$$ D\br{fg} = fDg + gDf. $$
 \end{itemize}
-Most important thing to know in characteristic $ p $, if $ p \mid n $ then $ Dx^n = nx^{n - 1} = 0 $. If $ Df = 0 $ that does not mean $ f $ is constant. This just means that there exists $ h \in k\sb{x} $ such that $ f\rb{x} = h\rb{x^p} $.
+Most important thing to know in characteristic $ p $, if $ p \mid n $ then $ DX^n = nX^{n - 1} = 0 $. If $ Df = 0 $ that does not mean $ f $ is constant. This just means that there exists $ h \in k\sbr{X} $ such that $ f\br{X} = h\br{X^p} $.
 
 \begin{proposition}
 \label{prop:separable}
-$ f\rb{x} \in k\sb{x} $ is separable if and only if $ \gcd\rb{f, Df} = 1 $.
+$ f\br{X} \in k\sbr{X} $ is separable if and only if $ \gcd\br{f, Df} = 1 $.
 \end{proposition}
 
-In $ \R\sb{x} $, $ f $ is inseparable if and only if there exists a multiple root, a critical point, which is a root of $ Df $.
+In $ \R\sbr{x} $, $ f $ is inseparable if and only if there exists a multiple root, a critical point, which is a root of $ Df $.
 
 \lecture{14}{Friday}{08/02/19}
 
 \begin{lemma}
-Let $ f, g \in k\sb{x} $ and $ c = \gcd\rb{f, g} $ in $ k\sb{x} $. Let $ k \subset L $ be an extension. Then $ c = \gcd\rb{f, g} $ in $ L\sb{x} $.
+Let $ f, g \in k\sbr{X} $ and $ c = \gcd\br{f, g} $ in $ k\sbr{X} $. Let $ k \subset L $ be an extension. Then $ c = \gcd\br{f, g} $ in $ L\sbr{X} $.
 \end{lemma}
 
 \begin{proof}
-Indeed, if $ c \mid f $, $ c \mid g $ in $ k\sb{x} $ then also in $ L\sb{x} $. We also know that there exists $ \phi, \psi \in k\sb{x} $ such that
+Indeed, if $ c \mid f $ and $ c \mid g $ in $ k\sbr{X} $ then also in $ L\sbr{X} $. We also know that there exists $ \phi, \psi \in k\sbr{X} $ such that
 \begin{equation}
 \label{eq:7}
 f\phi + g\psi = c
 \end{equation}
-in $ k\sb{x} $, and hence also in $ L\sb{x} $. Suppose that $ u \mid f $, $ u \mid g $ in $ L\sb{x} $, so $ u \mid c $ in $ L\sb{x} $ by $ \rb{\ref{eq:7}} $.
-\end{proof}
-
-\begin{proof}[Proof of Proposition \ref{prop:separable}]
-Let $ k \subset L $ be any field where $ f $ splits completely. We can do the proof in $ L\sb{x} $. That is, we may assume that $ f $ splits completely, so
-$$ f\rb{x} = \prod_i \rb{x - \lambda i}. $$
-\begin{itemize}
-\item[$ \impliedby $] Assume for a contradiction that $ f $ is not separable then $ f\rb{x} = \rb{x - \lambda}^2g\rb{x} $.
-$$ Df\rb{x} = 2\rb{x - \lambda}g\rb{x} + \rb{x - \lambda}^2Dg\rb{x} = \rb{x - \lambda}\rb{2y\rb{x} + \rb{x - \lambda}Dg\rb{x}}. $$
-That is, $ \rb{x - \lambda} \mid f $ and $ \rb{x - \lambda} \mid Df $, so $ \gcd\rb{f, Df} \ne 1 $.
-\item[$ \implies $] For all $ i \ne j $, $ \lambda_i \ne \lambda_j $.
-$$ Df = \sum_{i = 1}^j \rb{\prod_{j \ne i} \rb{x - \lambda_j}}. $$
-Claim that for all $ i $, $ \rb{x - \lambda_i} \nmid Df $. I hope you see this. This shows $ \gcd\rb{f, Df} = 1 $.
-\end{itemize}
+in $ k\sbr{X} $, and hence also in $ L\sbr{X} $. Suppose that $ u \mid f $ and $ u \mid g $ in $ L\sbr{X} $, so $ u \mid c $ in $ L\sbr{X} $ by $ \br{\ref{eq:7}} $.
 \end{proof}
 
 \pagebreak
 
-\begin{theorem}
-$ f \in k\sb{x} $ irreducible is inseparable if and only if
+\begin{proof}[Proof of Proposition \ref{prop:separable}]
+Let $ k \subset L $ be any field where $ f $ splits completely. We can do the proof in $ L\sbr{X} $. That is, we may assume that $ f $ splits completely, so
+$$ f\br{X} = \prod_i \br{X - \lambda_i}. $$
 \begin{itemize}
-\item $ ch\rb{k} = p > 0 $, and
-\item there exists $ h \in k\sb{x} $ such that $ f\rb{x} = h\rb{x^p} $.
+\item[$ \impliedby $] Assume for a contradiction that $ f $ is not separable then $ f\br{X} = \br{X - \lambda}^2g\br{X} $. Then
+$$ Df\br{X} = 2\br{X - \lambda}g\br{X} + \br{X - \lambda}^2Dg\br{X} = \br{X - \lambda}\br{2g\br{X} + \br{X - \lambda}Dg\br{X}}. $$
+That is, $ \br{X - \lambda} \mid f $ and $ \br{X - \lambda} \mid Df $, so $ \gcd\br{f, Df} \ne 1 $.
+\item[$ \implies $] For all $ i \ne j $, $ \lambda_i \ne \lambda_j $.
+$$ Df = \sum_{i = 1}^j \br{\prod_{j \ne i} \br{X - \lambda_j}}. $$
+Claim that for all $ i $, $ \br{X - \lambda_i} \nmid Df $. I hope you see this. This shows $ \gcd\br{f, Df} = 1 $.
+\end{itemize}
+\end{proof}
+
+\begin{theorem}
+$ f \in k\sbr{X} $ irreducible is inseparable if and only if
+\begin{itemize}
+\item $ ch\br{k} = p > 0 $, and
+\item there exists $ h \in k\sbr{X} $ such that $ f\br{X} = h\br{X^p} $.
 \end{itemize}
 \end{theorem}
 
 \begin{proof}
-Indeed $ f $ is inseparable if and only if $ \gcd\rb{f, Df} \ne 1 $, if and only if $ Df = 0 $, since $ f $ is irreducible so $ \gcd\rb{f, Df} \ne 1 $ if and only if $ f \mid Df $, and $ \deg\rb{Df} < \deg\rb{f} $.
+Indeed $ f $ is inseparable if and only if $ \gcd\br{f, Df} \ne 1 $, if and only if $ Df = 0 $, since $ f $ is irreducible so $ \gcd\br{f, Df} \ne 1 $ if and only if $ f \mid Df $, and $ \deg\br{Df} < \deg\br{f} $.
 \end{proof}
 
 \begin{definition}
-A field $ k $ in $ ch\rb{k} = p > 0 $ is \textbf{perfect} if for all $ a \in k $ there exists $ b \in k $ such that $ b^p = a $.
+A field $ k $ in $ ch\br{k} = p > 0 $ is \textbf{perfect} if for all $ a \in k $ there exists $ b \in k $ such that $ b^p = a $.
 \end{definition}
 
 \begin{proposition}
-If $ k $ is perfect then $ f \in k\sb{x} $ is irreducible gives that $ f\rb{x} $ is separable.
+If $ k $ is perfect then $ f \in k\sbr{X} $ is irreducible implies that $ f\br{X} $ is separable.
 \end{proposition}
 
 \begin{proof}
-If $ f $ were inseparable then $ f\rb{x} = h\rb{x^p} $. For all $ i $, find $ b_i^p = a_i $,
-$$ h\rb{x} = x^n + a_1x^{n - 1} + \dots + a_n = x^n + b_1^px^{n - 1} + \dots + b_n^p. $$
+If $ f $ were inseparable then $ f\br{X} = h\br{X^p} $. For all $ i $, finding $ b_i^p = a_i $,
+$$ h\br{X} = X^n + a_1X^{n - 1} + \dots + a_n = X^n + b_1^pX^{n - 1} + \dots + b_n^p. $$
 Thus
-$$ f\rb{x} = h\rb{x^p} = \rb{x^n + b_1x^{n - 1} + \dots + b_n}^p, $$
+$$ f\br{X} = h\br{X^p} = \br{X^n + b_1X^{n - 1} + \dots + b_n}^p, $$
 so $ f $ is not irreducible.
 \end{proof}
 
 \begin{example*}
-All finite fields are perfect. Suppose $ F $ is a finite field. Then $ ch\rb{F} = p > 0 $ so $ \F_p \subset F $ therefore $ \sb{\F : \F_p} = n < 0 $. $ \dim_{\F_p}\rb{F} = n < \infty $, so $ F \cong \rb{\F_p}^n $ as a vector space over $ \F_p $ gives that $ F $ has $ p^n $ elements. The group $ F^\times = F \setminus \cb{0} $ has $ p^n - 1 $ elements. So for all $ a \in F^\times $, $ a^{p^n - 1} = 1 $. For all $ a \in F $, $ a^{p^n} = a $, so
-$$ \rb{a^{p^{n - 1}}}^p = a, $$
+All finite fields are perfect. Suppose $ F $ is a finite field. Then $ ch\br{F} = p > 0 $ so $ \F_p \subset F $ therefore $ \sbr{\F : \F_p} = n < 0 $. $ \dim_{\F_p}\br{F} = n < \infty $, so $ F \cong \br{\F_p}^n $ as a vector space over $ \F_p $, so $ F $ has $ p^n $ elements. The group $ F^\times = F \setminus \cbr{0} $ has $ p^n - 1 $ elements. So for all $ a \in F^\times $, $ a^{p^n - 1} = 1 $. For all $ a \in F $, $ a^{p^n} = a $, so
+$$ \br{a^{p^{n - 1}}}^p = a, $$
 and this shows $ F $ is perfect.
 \end{example*}
 
 \begin{definition}
-Consider $ k \subset K $. An element $ a \in L $ is \textbf{separable} over $ k $ if the minimal polynomial $ f\rb{x} \in k\sb{x} $ of $ a $ is a separable polynomial.
+Consider $ k \subset K $. An element $ a \in L $ is \textbf{separable} over $ k $ if the minimal polynomial $ f\br{X} \in k\sbr{X} $ of $ a $ is a separable polynomial.
 \end{definition}
 
 \lecture{15}{Tuesday}{12/02/19}
@@ -970,7 +973,7 @@ Lecture 16 is a problem class.
 
 \lecture{17}{Friday}{15/02/19}
 
-Lecture 17 is a test.
+Lecture 17 is a class test.
 
 \pagebreak
 
@@ -980,16 +983,16 @@ Lecture 17 is a test.
 
 \begin{definition}
 Let $ k \subset K $. Choose $ K \subset \Omega $ such that $ k \subset \Omega $ is normal. Define the \textbf{separable degree} as
-$$ \sb{K : k}_s = \abs{Em_k\rb{K, \Omega}}. $$
+$$ \sbr{K : k}_s = \abs{Em_k\br{K, \Omega}}. $$
 \end{definition}
 
 \begin{remark*}
-$ \sb{K : k}_s $ does not depend on $ K \subset \Omega $. Suppose $ k \subset \Omega_1 $ and $ k \subset \Omega_2 $ are normal. Then there exists a bigger field $ \widetilde{\Omega} $ such that $ \Omega_1 \subset \widetilde{\Omega} $ and $ \Omega_2 \subset \widetilde{\Omega} $. Then
-$$ Em_k\rb{K, \Omega_1} = Em_k\rb{K, \widetilde{\Omega}} = Em_k\rb{K, \Omega_2}, $$
+$ \sbr{K : k}_s $ does not depend on $ K \subset \Omega $. Suppose $ k \subset \Omega_1 $ and $ k \subset \Omega_2 $ are normal. Then there exists a bigger field $ \widetilde{\Omega} $ such that $ \Omega_1 \subset \widetilde{\Omega} $ and $ \Omega_2 \subset \widetilde{\Omega} $. Then
+$$ Em_k\br{K, \Omega_1} = Em_k\br{K, \widetilde{\Omega}} = Em_k\br{K, \Omega_2}, $$
 by Corollary \ref{cor:surjective} a while ago,
 $$
 \begin{tikzcd}
-\Omega_1 \arrow[dotted]{dr}{\widetilde{\sigma}} & \\
+\Omega_1 \arrow[dashed]{dr}{\widetilde{\sigma}} & \\
 K \arrow[subset]{u} \arrow[swap]{r}{\sigma} & \widetilde{\Omega} \\
 k \arrow[subset]{u} &
 \end{tikzcd}.
@@ -997,57 +1000,57 @@ $$
 \end{remark*}
 
 \begin{remark*}
-We can restate the definition of separable extension. Recall that $ k \subset K $ is separable if for all towers $ k \subset K_1 \subset K_2 \subset K $, there exist $ \Omega $, $ y : K_1 \to \Omega $, and $ x_1, x_2 : K_2 \to \Omega $ such that $ x_1 \ne x_2 $ and $ x_1 \mid_{K_1} = x_2 \mid_{K_2} = y $, so
+We can restate the definition of separable extension. Recall that $ k \subset K $ is separable if for all towers $ k \subset K_1 \subset K_2 \subset K $, there exist $ \Omega, y : K_1 \to \Omega, x_1, x_2 : K_2 \to \Omega $ such that $ x_1 \ne x_2 $ and $ \eval{x_1}_{K_1} = \eval{x_2}_{K_2} = y $, so
 $$
 \begin{tikzcd}
-K_2 \arrow[dotted]{dr}{x_1, x_2} & \\
+K_2 \arrow[dashed]{dr}{x_1, x_2} & \\
 K_1 \arrow[subset]{u} \arrow[swap]{r}{y} & \Omega \\
 k \arrow[subset]{u} &
 \end{tikzcd},
 $$
-that is $ \sb{K_2 : K_1}_s \ne 1 $. Thus $ k \subset K $ is separable if for all towers $ k \subset K_1 \subset K_2 \subset K $,
-$$ \sb{K_2 : K_1}_s = 1 \qquad \implies \qquad K_1 = K_2. $$
+that is $ \sbr{K_2 : K_1}_s \ne 1 $. Thus $ k \subset K $ is separable if for all towers $ k \subset K_1 \subset K_2 \subset K $,
+$$ \sbr{K_2 : K_1}_s = 1 \qquad \implies \qquad K_1 = K_2. $$
 \end{remark*}
 
 \begin{theorem}[Tower law]
 For all $ k \subset K \subset L $,
-$$ \sb{L : k}_s = \sb{L : K}_s\sb{K : k}_s. $$
+$$ \sbr{L : k}_s = \sbr{L : K}_s\sbr{K : k}_s. $$
 \end{theorem}
 
 \begin{proof}
 Choose $ L \subset \Omega $ and $ k \subset \Omega $ normal, so
 $$
 \begin{tikzcd}
-L \arrow[dotted]{dr}{y} \\
-K \arrow[subset]{u} \arrow[swap]{r}{x = y \mid_K} & \Omega \\
+L \arrow[dashed]{dr}{y} \\
+K \arrow[subset]{u} \arrow[swap]{r}{x = \eval{y}_K} & \Omega \\
 k \arrow[subset]{u}
 \end{tikzcd}.
 $$
 Study
-$$ \rho : Em_k\rb{L, \Omega} \to Em_k\rb{K, \Omega}. $$
-$ \rho $ is surjective. For all $ x \in Em_k\rb{K, \Omega} $, there exists $ y \in Em_k\rb{L, \Omega} $ such that $ y \mid_K = x $. $ \rho^{-1}\rb{x} = Em_K\rb{L, \Omega} $. Then
-$$ \sb{L : k}_s = \abs{Em_k\rb{L, \Omega}} = \sum_{x \in Em_k\rb{K, \Omega}} \abs{\rho^{-1}\rb{x}} = \sum_{x \in Em_k\rb{K, \Omega}} \sb{L : K}_s = \sb{L : K}_s\sb{K : k}_s. $$
+$$ \rho : Em_k\br{L, \Omega} \to Em_k\br{K, \Omega}. $$
+$ \rho $ is surjective. For all $ x \in Em_k\br{K, \Omega} $, there exists $ y \in Em_k\br{L, \Omega} $ such that $ \eval{y}_K = x $, so $ \rho^{-1}\br{x} = Em_K\br{L, \Omega} $. Then
+$$ \sbr{L : k}_s = \abs{Em_k\br{L, \Omega}} = \sum_{x \in Em_k\br{K, \Omega}} \abs{\rho^{-1}\br{x}} = \sum_{x \in Em_k\br{K, \Omega}} \sbr{L : K}_s = \sbr{L : K}_s\sbr{K : k}_s. $$
 \end{proof}
 
 \pagebreak
 
 \section{Separable extensions}
 
-Recall that for $ k \subset K $, we said $ a \in K $ is separable over $ k $ if the minimal polynomial $ f\rb{x} \in k\sb{x} $ of $ a $ is a separable polynomial.
+Recall that for $ k \subset K $, we said $ a \in K $ is separable over $ k $ if the minimal polynomial $ f\br{X} \in k\sbr{X} $ of $ a $ is a separable polynomial.
 
 \begin{theorem}
-$ k \subset K $ is separable if and only if $ \sb{K : k}_s = \sb{K : k} $.
+$ k \subset K $ is separable if and only if $ \sbr{K : k}_s = \sbr{K : k} $.
 \end{theorem}
 
 \begin{proof}
 \hfill
 \begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
-\item $ \sb{K : k}_s = \sb{K : k} $ gives $ k \subset K $ is separable. Recall $ \sb{K : k}_s \le \sb{K : k} $. Statement follows from two tower laws for $ k \subset K_1 \subset K_2 \subset K $, so $ \sb{K_2 : K_1}_s = \sb{K_2 : K_1} $. So if $ \sb{K_2 : K_1}_s = 1 $ then $ \sb{K_2 : K_1} = 1 $ then $ K_1 = K_2 $.
-\item Suppose that $ k \subset k\rb{a} $ is separable then $ a $ is separable. Let $ f\rb{x} \in k\sb{x} $ be the minimal polynomial. Suppose for a contradiction that it is not a separable polynomial. $ f $ is irreducible and $ f \mid Df $ gives that $ Df \equiv 0 $ so $ ch\rb{k} = p $ and there exists $ h\rb{x} \in k\sb{x} $ irreducible such that $ f = h\rb{x^p} $. Let $ b = a^p $ and consider $ k \subset k\rb{b} \subset k\rb{a} $. $ a $ is a root of $ x^p - b \in k\rb{b}\sb{x} $.
-$$ p\deg\rb{h} = \sb{k\rb{a} : k} = \sb{k\rb{a} : k\rb{b}}\sb{k\rb{b} : k} = \sb{k\rb{a} : k\rb{b}}\deg\rb{h}, $$
-so $ \sb{k\rb{a} : k\rb{b}} = p $. Thus $ x^p - b = \rb{x - a}^p $ is the minimal polynomial of $ a $ over $ k\rb{b} $, so $ \sb{k\rb{a} : k\rb{b}}_s = 1 $ contradicts step $ 1 $ and two tower laws.
-\item For $ k \subset k\rb{a} $, $ k \subset k\rb{a} $ is separable gives $ \sb{k\rb{a} : k}_s = \sb{k\rb{a} : k} $. This is obvious from step $ 2 $. $ \sb{k\rb{a} : k} $ is the degree of the minimal polynomial and $ \sb{k\rb{a} : k}_s $ is the number of roots of minimal polynomial.
-\item End of proof, by a familiar method. Let us do the general case by induction on $ \sb{K : k} $. If $ k = K $ then there is nothing to prove. Otherwise pick $ a \in K \setminus k $. We know that both $ k \subset k\rb{a} $ and $ k\rb{a} \subset K $ are separable. $ \sb{K : k\rb{a}} < \sb{K : k} $ by tower law, hence by induction $ \sb{K : k\rb{a}}_s = \sb{K : k\rb{a}} $. We also know $ \sb{k\rb{a} : k}_s = \sb{k\rb{a} : k} $. Two tower laws give $ \sb{K : k}_s = \sb{K : k} $.
+\item $ \sbr{K : k}_s = \sbr{K : k} $, so $ k \subset K $ is separable. Recall $ \sbr{K : k}_s \le \sbr{K : k} $. Statement follows from two tower laws for $ k \subset K_1 \subset K_2 \subset K $, so $ \sbr{K_2 : K_1}_s = \sbr{K_2 : K_1} $. So if $ \sbr{K_2 : K_1}_s = 1 $ then $ \sbr{K_2 : K_1} = 1 $ then $ K_1 = K_2 $.
+\item Suppose that $ k \subset k\br{a} $ is separable then $ a $ is separable. Let $ f\br{X} \in k\sbr{X} $ be the minimal polynomial. Suppose for a contradiction that it is not a separable polynomial. $ f $ is irreducible and $ f \mid Df $, so $ Df \equiv 0 $, so $ ch\br{k} = p $ and there exists $ h\br{X} \in k\sbr{X} $ irreducible such that $ f = h\br{X^p} $. Let $ b = a^p $ and consider $ k \subset k\br{b} \subset k\br{a} $. $ a $ is a root of $ X^p - b \in k\br{b}\sbr{X} $. Then
+$$ p\deg\br{h} = \sbr{k\br{a} : k} = \sbr{k\br{a} : k\br{b}}\sbr{k\br{b} : k} = \sbr{k\br{a} : k\br{b}}\deg\br{h}, $$
+so $ \sbr{k\br{a} : k\br{b}} = p $. Thus $ X^p - b = \br{X - a}^p $ is the minimal polynomial of $ a $ over $ k\br{b} $, so $ \sbr{k\br{a} : k\br{b}}_s = 1 $ contradicts step $ 1 $ and two tower laws.
+\item For $ k \subset k\br{a} $, $ k \subset k\br{a} $ is separable, so $ \sbr{k\br{a} : k}_s = \sbr{k\br{a} : k} $. This is obvious from step $ 2 $. Then $ \sbr{k\br{a} : k} $ is the degree of the minimal polynomial and $ \sbr{k\br{a} : k}_s $ is the number of roots of minimal polynomial.
+\item End of proof, by a familiar method. Let us do the general case by induction on $ \sbr{K : k} $. If $ k = K $ then there is nothing to prove. Otherwise pick $ a \in K \setminus k $. We know that both $ k \subset k\br{a} $ and $ k\br{a} \subset K $ are separable. Then $ \sbr{K : k\br{a}} < \sbr{K : k} $ by tower law, hence by induction $ \sbr{K : k\br{a}}_s = \sbr{K : k\br{a}} $. We also know $ \sbr{k\br{a} : k}_s = \sbr{k\br{a} : k} $. Two tower laws imply that $ \sbr{K : k}_s = \sbr{K : k} $.
 \end{enumerate}
 \end{proof}
 
@@ -1062,13 +1065,13 @@ $ k \subset K $ is separable if and only if for all $ a \in K $, $ a $ is separa
 \end{corollary}
 
 \begin{proof}
-Suppose $ k \subset K $ is separable. Pick $ a \in K $ then $ k \subset k\rb{a} $ is also separable. By step $ 2 $ last time, $ a $ is separable. Conversely, suppose for all $ a \in K $, $ a $ is separable over $ k $. Pick $ a \in K \setminus k $. I claim $ k \subset k\rb{a} $ is separable. Then
-$$ \sb{k\rb{a} : k}_s = \abs{\cb{\text{roots of minimal polynomial} \ f}} = \deg\rb{f} = \sb{k\rb{a} : k}, $$
-so $ k \subset k\rb{a} $ is separable. We want to show that $ k\rb{a} \subset K $ is separable, by the following lemma.
+Suppose $ k \subset K $ is separable. Pick $ a \in K $ then $ k \subset k\br{a} $ is also separable. By step $ 2 $ last time, $ a $ is separable. Conversely, suppose for all $ a \in K $, $ a $ is separable over $ k $. Pick $ a \in K \setminus k $. I claim $ k \subset k\br{a} $ is separable. Then
+$$ \sbr{k\br{a} : k}_s = \abs{\cbr{\text{roots of minimal polynomial} \ f}} = \deg\br{f} = \sbr{k\br{a} : k}, $$
+so $ k \subset k\br{a} $ is separable. We want to show that $ k\br{a} \subset K $ is separable, by the following lemma.
 \end{proof}
 
 \begin{lemma}
-Let $ k \subset L \subset K $. For $ \lambda \in K $, $ \lambda $ is separable over $ k $ gives that $ \lambda $ is separable over $ L $.
+Let $ k \subset L \subset K $. For $ \lambda \in K $, $ \lambda $ is separable over $ k $ implies that $ \lambda $ is separable over $ L $.
 \end{lemma}
 
 \begin{proof}
@@ -1080,45 +1083,45 @@ The minimal polynomial over $ L $ divides the minimal polynomial over $ k $.
 \section{Biquadratic polynomials}
 
 Let
-$$ K \subset K\rb{\sqrt{a \pm \sqrt{b}}} = L, \qquad c = a^2 - b, \qquad \beta = \sqrt{b} \notin K, \qquad \alpha = \sqrt{a + \beta} \in L, \qquad \alpha' = \sqrt{a - \beta} \in L. $$
+$$ K \subset K\br{\sqrt{a \pm \sqrt{b}}} = L, \qquad c = a^2 - b, \qquad \beta = \sqrt{b} \notin K, \qquad \alpha = \sqrt{a + \beta} \in L, \qquad \alpha' = \sqrt{a - \beta} \in L. $$
 We know that $ \pm\alpha, \pm\alpha' $ are the roots of
 \begin{equation}
 \label{eq:8}
-f\rb{x} = x^4 - 2ax^2 + c.
+f\br{X} = X^4 - 2aX^2 + c.
 \end{equation}
-This time we are not assuming $ \rb{\ref{eq:8}} $ is irreducible. Let
+This time we are not assuming $ \br{\ref{eq:8}} $ is irreducible. Let
 $$ \delta = \alpha + \alpha', \qquad \delta' = \alpha - \alpha', \qquad \gamma = \alpha\alpha' = \sqrt{c}. $$
 Then
-$$ \gamma^2 = c, \qquad \delta^2 = 2\rb{a + \gamma}, \qquad \delta'^2 = 2\rb{a - \gamma}, \qquad \delta\delta' = 2\beta, \qquad \alpha = \dfrac{\delta + \delta'}{2}, \qquad \alpha' = \dfrac{\delta - \delta'}{2}, $$
+$$ \gamma^2 = c, \qquad \delta^2 = 2\br{a + \gamma}, \qquad \delta'^2 = 2\br{a - \gamma}, \qquad \delta\delta' = 2\beta, \qquad \alpha = \dfrac{\delta + \delta'}{2}, \qquad \alpha' = \dfrac{\delta - \delta'}{2}, $$
 and $ \pm\delta, \pm\delta' $ are the roots of
-$$ g\rb{y} = y^4 - 4ay^2 + 4b. $$
+$$ g\br{Y} = Y^4 - 4aY^2 + 4b. $$
 $ L $ is the splitting field of $ g $. Assume
 \begin{enumerate}
-\item $ ch\rb{K} \ne 2 $, and
-\item $ b $ is not a square in $ K $, that is $ \sb{K\rb{\beta} : K} = 2 $.
+\item $ ch\br{K} \ne 2 $, and
+\item $ b $ is not a square in $ K $, that is $ \sbr{K\br{\beta} : K} = 2 $.
 \end{enumerate}
-Claim that the extension $ K \subset L $ is separable. It is the splitting field of $ f\rb{x} $. I need to check $ \gcd\rb{f, Df} = 1 $.
-$$ Df = 4x^3 - 4ax = 4x\rb{x^2 - a}. $$
-$ f, Df $ have no common roots, since $ x = 0 $ is not a root of $ f $ and $ x = \pm\sqrt{a} $ is not a root of $ f $, since $ b \ne 0 $.
+Claim that the extension $ K \subset L $ is separable. It is the splitting field of $ f\br{X} $. I need to check $ \gcd\br{f, Df} = 1 $.
+$$ Df = 4X^3 - 4aX = 4X\br{X^2 - a}. $$
+$ f, Df $ have no common roots, since $ X = 0 $ is not a root of $ f $ and $ X = \pm\sqrt{a} $ is not a root of $ f $, since $ b \ne 0 $.
 
 \begin{theorem}
 \label{thm:biquadratic}
 Assume $ 1 $ and $ 2 $.
 \begin{enumerate}
 \item Suppose $ bc, c $ are not squares. Then
-$$ \sb{L : K} = 8, \qquad G = D_8, $$
-and $ f\rb{x} $ is irreducible.
+$$ \sbr{L : K} = 8, \qquad G = D_8, $$
+and $ f\br{X} $ is irreducible.
 \item Suppose $ bc $ is a square, so $ c $ is not a square. Then
-$$ \sb{L : K} = 4, \qquad G = C_4, $$
-and $ f\rb{x} $ is irreducible.
+$$ \sbr{L : K} = 4, \qquad G = C_4, $$
+and $ f\br{X} $ is irreducible.
 \item Suppose $ c $ is a square, so $ bc $ is not a square. Then
 \begin{itemize}
-\item either $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ both not squares in $ K $, then
-$$ \sb{L : K} = 4, \qquad G = C_2 \times C_2, $$
-and $ f\rb{x} $ is irreducible.
-\item or one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is a square in $ K $, but not the other, then
-$$ \sb{L : K} = \sb{K\rb{\beta} : K} = 2, \qquad G = C_2, $$
-and $ f\rb{x} $ is reducible.
+\item either $ 2\br{a + \gamma}, 2\br{a - \gamma} $ both not squares in $ K $, then
+$$ \sbr{L : K} = 4, \qquad G = C_2 \times C_2, $$
+and $ f\br{X} $ is irreducible.
+\item or one of $ 2\br{a + \gamma}, 2\br{a - \gamma} $ is a square in $ K $, but not the other, then
+$$ \sbr{L : K} = \sbr{K\br{\beta} : K} = 2, \qquad G = C_2, $$
+and $ f\br{X} $ is reducible.
 \end{itemize}
 \end{enumerate}
 \end{theorem}
@@ -1129,43 +1132,43 @@ and $ f\rb{x} $ is reducible.
 
 \begin{lemma}
 \label{lem:biquadratic}
-Let $ B \in F $ and $ A \in F $ be not square in $ F $. If $ B $ is square in $ F\rb{\sqrt{A}} $ then either $ B $ is square in $ F $ or $ AB $ is square in $ F $.
+Let $ B \in F $ and $ A \in F $ be not square in $ F $. If $ B $ is square in $ F\br{\sqrt{A}} $ then either $ B $ is square in $ F $ or $ AB $ is square in $ F $.
 \end{lemma}
 
 \begin{proof}
-Let $ B = \rb{x + y\sqrt{A}}^2 = \rb{x^2 + Ay^2} + 2xy\sqrt{A} $. Then
+Let $ B = \br{x + y\sqrt{A}}^2 = \br{x^2 + Ay^2} + 2xy\sqrt{A} $. Then
 \begin{itemize}
-\item either $ x = 0 $, so $ B = Ay^2 $ gives that $ AB = \rb{Ay}^2 $ is square in $ F $,
-\item or $ y = 0 $, so $ B = x^2 $ gives that $ B = x^2 $ is square in $ F $.
+\item either $ x = 0 $, so $ B = Ay^2 $, so $ AB = \br{Ay}^2 $ is square in $ F $,
+\item or $ y = 0 $, so $ B = x^2 $, so $ B = x^2 $ is square in $ F $.
 \end{itemize}
 \end{proof}
 
 \begin{proof}[Proof of Theorem \ref{thm:biquadratic}]
 \hfill
 \begin{enumerate}
-\item Strategy is $ \sb{K\rb{\alpha} : K\rb{\beta}} = \sb{K\rb{\alpha'} : K\rb{\beta}} = 2 $ and $ K\rb{\alpha} \ne K\rb{\alpha'} $.
+\item Strategy is $ \sbr{K\br{\alpha} : K\br{\beta}} = \sbr{K\br{\alpha'} : K\br{\beta}} = 2 $ and $ K\br{\alpha} \ne K\br{\alpha'} $.
 $$
 \begin{tikzcd}
 & L & \\
-K\rb{\alpha} \arrow[dash]{ur}{2} & & K\rb{\alpha'} \arrow[dash, swap]{ul}{2} \\
-& K\rb{\beta} \arrow[dash]{ul}{2} \arrow[dash, swap]{ur}{2} & \\
+K\br{\alpha} \arrow[dash]{ur}{2} & & K\br{\alpha'} \arrow[dash, swap]{ul}{2} \\
+& K\br{\beta} \arrow[dash]{ul}{2} \arrow[dash, swap]{ur}{2} & \\
 & K \arrow[dash]{u}{2} &
 \end{tikzcd}.
 $$
 \begin{itemize}
-\item Key idea is that suppose $ \alpha \in K\rb{\beta} = \cb{x + y\beta \mid x, y \in K} $. There exist $ x, y \in K $ such that $ \alpha = x + y\beta $. $ \rb{x + y\beta}^2 = a + \beta $ and $ \rb{x - y\beta}^2 = a - \beta $ gives
-$$ K \ni \rb{x^2 - y^2b}^2 = \rb{\rb{x + y\beta}\rb{x - y\beta}}^2 = \rb{a + \beta}\rb{a - \beta} = a^2 - b = c, $$
-so $ c $ is a square in $ K $. Similarly, $ \alpha' \in K\rb{\beta} $ gives $ \alpha \in K\rb{\beta} $, so $ c $ is a square in $ K $. $ c $ is not a square therefore $ \alpha \notin K\rb{\beta} $ and $ \alpha' \notin K\rb{\beta} $, that is $ \sb{K\rb{\alpha} : K\rb{\beta}} = \sb{K\rb{\alpha'} : K\rb{\beta}} = 2 $.
-\item Suppose for a contradiction $ \alpha' \in K\rb{\alpha} $, that is $ a - \beta $ is square in $ K\rb{\alpha} = K\rb{\beta}\rb{\sqrt{a + \beta}} $. Apply Lemma \ref{lem:biquadratic} with
-$$ F = K\rb{\beta}, \qquad A = a + \beta, \qquad B = a - \beta. $$
-Then either $ B $ is square in $ F $, a contradiction, or $ AB $ is square in $ F $, that is $ \rb{a + \beta}\rb{a - \beta} = a^2 - b = c $ is a square in $ K\rb{\beta} $. Apply Lemma \ref{lem:biquadratic} again with
+\item Key idea is that suppose $ \alpha \in K\br{\beta} = \cbr{x + y\beta \mid x, y \in K} $. There exist $ x, y \in K $ such that $ \alpha = x + y\beta $. Then $ \br{x + y\beta}^2 = a + \beta $ and $ \br{x - y\beta}^2 = a - \beta $, so
+$$ K \ni \br{x^2 - y^2b}^2 = \br{\br{x + y\beta}\br{x - y\beta}}^2 = \br{a + \beta}\br{a - \beta} = a^2 - b = c, $$
+so $ c $ is a square in $ K $. Similarly, $ \alpha' \in K\br{\beta} $, so $ \alpha \in K\br{\beta} $, so $ c $ is a square in $ K $. $ c $ is not a square therefore $ \alpha \notin K\br{\beta} $ and $ \alpha' \notin K\br{\beta} $, that is $ \sbr{K\br{\alpha} : K\br{\beta}} = \sbr{K\br{\alpha'} : K\br{\beta}} = 2 $.
+\item Suppose for a contradiction $ \alpha' \in K\br{\alpha} $, that is $ a - \beta $ is square in $ K\br{\alpha} = K\br{\beta}\br{\sqrt{a + \beta}} $. Apply Lemma \ref{lem:biquadratic} with
+$$ F = K\br{\beta}, \qquad A = a + \beta, \qquad B = a - \beta. $$
+Then either $ B $ is square in $ F $, a contradiction, or $ AB $ is square in $ F $, that is $ \br{a + \beta}\br{a - \beta} = a^2 - b = c $ is a square in $ K\br{\beta} $. Apply Lemma \ref{lem:biquadratic} again with
 $$ F = K, \qquad A = b, \qquad B = c. $$
-Then either $ c $ is square in $ K $ or $ bc $ is square in $ K $, which are contradictions. Thus $ K\rb{\alpha} \ne K\rb{\alpha'} $.
+Then either $ c $ is square in $ K $ or $ bc $ is square in $ K $, which are contradictions. Thus $ K\br{\alpha} \ne K\br{\alpha'} $.
 \end{itemize}
 $ \abs{G} = 8 $. Let $ \sigma \in G $. Then
 \begin{itemize}
-\item either $ \sigma\rb{\beta} = \beta $, so there are four possibilities $ \sigma\rb{\alpha} = \pm\alpha $ and $ \sigma\rb{\alpha'} = \pm\alpha' $,
-\item or $ \sigma\rb{\beta} = -\beta $, so there are four possibilities $ \sigma\rb{\alpha} = \pm\alpha' $ and $ \sigma\rb{\alpha'} = \pm\alpha $, since $ \sigma\rb{y^2 - a - \beta} = y^2 - a + \beta $.
+\item either $ \sigma\br{\beta} = \beta $, so there are four possibilities $ \sigma\br{\alpha} = \pm\alpha $ and $ \sigma\br{\alpha'} = \pm\alpha' $,
+\item or $ \sigma\br{\beta} = -\beta $, so there are four possibilities $ \sigma\br{\alpha} = \pm\alpha' $ and $ \sigma\br{\alpha'} = \pm\alpha $, since $ \sigma\br{y^2 - a - \beta} = y^2 - a + \beta $.
 \end{itemize}
 Because $ \abs{G} = 8 $ all these permutations are elements of $ G $. Thus $ G = D_8 $ is the group of symmetries of the square
 $$
@@ -1178,9 +1181,9 @@ $$
 The lattice of subgroups is
 $$
 \begin{tikzcd}
-& & \ab{e} & & \\
-\ab{\tau} \arrow[dash]{urr} & \ab{\sigma^2\tau} \arrow[dash]{ur} & \ab{\sigma^2} \arrow[dash]{u} & \ab{\sigma\tau} \arrow[dash]{ul} & \ab{\sigma^3\tau} \arrow[dash]{ull} \\
-& \ab{\sigma^2, \tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \ab{\sigma} \arrow[dash]{u} & \ab{\sigma^2, \sigma\tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \\
+& & \abr{e} & & \\
+\abr{\tau} \arrow[dash]{urr} & \abr{\sigma^2\tau} \arrow[dash]{ur} & \abr{\sigma^2} \arrow[dash]{u} & \abr{\sigma\tau} \arrow[dash]{ul} & \abr{\sigma^3\tau} \arrow[dash]{ull} \\
+& \abr{\sigma^2, \tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \abr{\sigma} \arrow[dash]{u} & \abr{\sigma^2, \sigma\tau} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & \\
 & & G \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} & &
 \end{tikzcd}.
 $$
@@ -1188,33 +1191,33 @@ The lattice of subfields is
 $$
 \begin{tikzcd}
 & & L & & \\
-K\rb{\alpha} \arrow[dash]{urr}{2} & K\rb{\alpha'} \arrow[dash, swap]{ur}{2} & K\rb{\beta, \gamma} \arrow[dash]{u}{2} & K\rb{\delta} \arrow[dash]{ul}{2} & K\rb{\delta'} \arrow[dash, swap]{ull}{2} \\
-& K\rb{\beta} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & K\rb{\beta\gamma} \arrow[dash]{u}{2} & K\rb{\gamma} \arrow[dash]{ul}{2} \arrow[dash, swap]{u}{2} \arrow[dash, swap]{ur}{2} & \\
+K\br{\alpha} \arrow[dash]{urr}{2} & K\br{\alpha'} \arrow[dash, swap]{ur}{2} & K\br{\beta, \gamma} \arrow[dash]{u}{2} & K\br{\delta} \arrow[dash]{ul}{2} & K\br{\delta'} \arrow[dash, swap]{ull}{2} \\
+& K\br{\beta} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & K\br{\beta\gamma} \arrow[dash]{u}{2} & K\br{\gamma} \arrow[dash]{ul}{2} \arrow[dash, swap]{u}{2} \arrow[dash, swap]{ur}{2} & \\
 & & K \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & &
 \end{tikzcd}.
 $$
 
 \lecture{21}{Tuesday}{26/02/19}
 
-\item $ K\rb{\beta\gamma} = K $, so $ K\rb{\beta} = K\rb{\gamma} $. $ \beta \notin K $. Suppose $ a + \beta $ is square in $ K\rb{\beta} $. There exist $ x, y \in K $ such that $ a + \beta = \rb{x + y\beta}^2 = x^2 + y^2b + 2xy\beta $, so $ \rb{x - y\beta}^2 = a - \beta $, then
-$$ K \ni \rb{x^2 - by^2}^2 = \rb{\rb{x + y\beta}\rb{x - y\beta}}^2 = \rb{a + \beta}\rb{a - \beta} = a^2 - b = c, $$
+\item $ K\br{\beta\gamma} = K $, so $ K\br{\beta} = K\br{\gamma} $. $ \beta \notin K $. Suppose $ a + \beta $ is square in $ K\br{\beta} $. There exist $ x, y \in K $ such that $ a + \beta = \br{x + y\beta}^2 = x^2 + y^2b + 2xy\beta $, so $ \br{x - y\beta}^2 = a - \beta $, then
+$$ K \ni \br{x^2 - by^2}^2 = \br{\br{x + y\beta}\br{x - y\beta}}^2 = \br{a + \beta}\br{a - \beta} = a^2 - b = c, $$
 so $ c $ is square in $ K $, a contradiction.
 $$
 \begin{tikzcd}
-L = K\rb{\alpha} = K\rb{\alpha'} = K\rb{\delta} = K\rb{\delta'} \\
-K\rb{\beta} = K\rb{\gamma} = K\rb{\beta, \gamma} \arrow[dash]{u}{2} \\
-K = K\rb{\beta\gamma} \arrow[dash]{u}{2}
+L = K\br{\alpha} = K\br{\alpha'} = K\br{\delta} = K\br{\delta'} \\
+K\br{\beta} = K\br{\gamma} = K\br{\beta, \gamma} \arrow[dash]{u}{2} \\
+K = K\br{\beta\gamma} \arrow[dash]{u}{2}
 \end{tikzcd}.
 $$
-Claim that $ G = C_4 $. What's different? $ \alpha\alpha' = \gamma $ and $ \beta\gamma \in K $. Let $ \sigma \in G $. If $ \sigma\rb{\beta} = \beta $ then $ \sigma\rb{\alpha} = \pm\alpha $.
+Claim that $ G = C_4 $. What's different? $ \alpha\alpha' = \gamma $ and $ \beta\gamma \in K $. Let $ \sigma \in G $. If $ \sigma\br{\beta} = \beta $ then $ \sigma\br{\alpha} = \pm\alpha $.
 \begin{itemize}
-\item $ \sigma\rb{\alpha} = \alpha $ gives $ \sigma\rb{\alpha'} = \alpha' $, and
-\item $ \sigma\rb{\alpha} = -\alpha $ gives $ \sigma\rb{\alpha'} = -\alpha' $.
+\item $ \sigma\br{\alpha} = \alpha $ gives $ \sigma\br{\alpha'} = \alpha' $, and
+\item $ \sigma\br{\alpha} = -\alpha $ gives $ \sigma\br{\alpha'} = -\alpha' $.
 \end{itemize}
-If $ \sigma\rb{\beta} = -\beta $ then $ \sigma\rb{\alpha} = \pm\alpha' $.
+If $ \sigma\br{\beta} = -\beta $ then $ \sigma\br{\alpha} = \pm\alpha' $.
 \begin{itemize}
-\item $ \sigma\rb{\alpha} = \alpha' $ gives $ \sigma\rb{\alpha'} = -\alpha $, and
-\item $ \sigma\rb{\alpha} = -\alpha' $ gives $ \sigma\rb{\alpha'} = \alpha $.
+\item $ \sigma\br{\alpha} = \alpha' $ gives $ \sigma\br{\alpha'} = -\alpha $, and
+\item $ \sigma\br{\alpha} = -\alpha' $ gives $ \sigma\br{\alpha'} = \alpha $.
 \end{itemize}
 $$
 \begin{tikzcd}
@@ -1227,23 +1230,23 @@ Thus $ G = C_4 $.
 
 \pagebreak
 
-\item $ L = K\rb{\sqrt{2\rb{a \pm \gamma}}} $ is the splitting field of $ g\rb{y} = \rb{y^2 - 2a - 2\gamma}\rb{y^2 - 2a + 2\gamma} $.
+\item $ L = K\br{\sqrt{2\br{a \pm \gamma}}} $ is the splitting field of $ g\br{Y} = \br{Y^2 - 2a - 2\gamma}\br{Y^2 - 2a + 2\gamma} $.
 $$
 \begin{tikzcd}
-& L = K\rb{\delta, \delta'} & \\
-K\rb{\beta} \arrow[dash]{ur} & K\rb{\delta} \arrow[dash]{u} & K\rb{\delta'} \arrow[dash, swap]{ul} \\
+& L = K\br{\delta, \delta'} & \\
+K\br{\beta} \arrow[dash]{ur} & K\br{\delta} \arrow[dash]{u} & K\br{\delta'} \arrow[dash, swap]{ul} \\
 & K \arrow[dash]{ul}{2} \arrow[dash]{u}{\le 2} \arrow[dash, swap]{ur}{\le 2} &
 \end{tikzcd}.
 $$
-If $ \sb{L : K} = 4 $ then $ G = C_2 \times C_2 $. Note that $ \sb{L : K} $ cannot be $ 1 $. Can it be $ \sb{L : K} = 2 $? At least one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is not square in $ K $. Suppose $ 2\rb{a - \gamma} $ is not square in $ K $. Can it be that $ 2\rb{a + \gamma} $ is square in $ K\rb{\sqrt{2\rb{a - \gamma}}} = K\rb{\delta'} $? By Lemma \ref{lem:biquadratic}
+If $ \sbr{L : K} = 4 $ then $ G = C_2 \times C_2 $. Note that $ \sbr{L : K} $ cannot be $ 1 $. Can it be $ \sbr{L : K} = 2 $? At least one of $ 2\br{a + \gamma} $ and $ 2\br{a - \gamma} $ is not square in $ K $. Suppose $ 2\br{a - \gamma} $ is not square in $ K $. Can it be that $ 2\br{a + \gamma} $ is square in $ K\br{\sqrt{2\br{a - \gamma}}} = K\br{\delta'} $? By Lemma \ref{lem:biquadratic}
 \begin{itemize}
-\item either $ 2\rb{a + \gamma} $ is square in $ K $, which is possible,
-\item or $ 2\rb{a + \gamma}2\rb{a - \gamma} = 4\rb{a^2 - c} = 4b $ is square in $ K $, which is impossible.
+\item either $ 2\br{a + \gamma} $ is square in $ K $, which is possible,
+\item or $ 2\br{a + \gamma}2\br{a - \gamma} = 4\br{a^2 - c} = 4b $ is square in $ K $, which is impossible.
 \end{itemize}
 Conclusion is
 \begin{itemize}
-\item either $ \sb{L : K} = 4 $, $ f\rb{x} $ is irreducible, and $ G = C_2 \times C_2 $,
-\item or one of $ 2\rb{a + \gamma}, 2\rb{a - \gamma} $ is square in $ K $ but not the other, $ \sb{L : K} = 2 $, $ f\rb{x} $ is not irreducible, and $ G = C_2 $.
+\item either $ \sbr{L : K} = 4 $, $ f\br{X} $ is irreducible, and $ G = C_2 \times C_2 $,
+\item or one of $ 2\br{a + \gamma} $ or $ 2\br{a - \gamma} $ is square in $ K $ but not the other, $ \sbr{L : K} = 2 $, $ f\br{X} $ is not irreducible, and $ G = C_2 $.
 \end{itemize}
 \end{enumerate}
 \end{proof}
@@ -1252,20 +1255,20 @@ Conclusion is
 All over $ \Q $.
 \begin{itemize}
 \item Let
-$$ f\rb{x} = x^4 - 2, \qquad L = \Q\rb{\sqrt{\pm\sqrt{2}}}. $$
-Then $ \sb{L : \Q} = 8 $ and $ G = D_8 $.
+$$ f\br{X} = X^4 - 2, \qquad L = \Q\br{\sqrt{\pm\sqrt{2}}}. $$
+Then $ \sbr{L : \Q} = 8 $ and $ G = D_8 $.
 \item Let
-$$ f\rb{x} = x^4 - 4x^2 + 2, \qquad L = \Q\rb{\sqrt{2 + \sqrt{2}}}. $$
-Then $ \sb{L : \Q} = 4 $ and $ G = C_4 $.
+$$ f\br{X} = X^4 - 4X^2 + 2, \qquad L = \Q\br{\sqrt{2 + \sqrt{2}}}. $$
+Then $ \sbr{L : \Q} = 4 $ and $ G = C_4 $.
 \item Let
-$$ f\rb{x} = x^4 - x^2 + 1, \qquad L = \Q\rb{e^{\tfrac{2\pi i}{12}}} = \Q\rb{i, \sqrt{3}}. $$
-Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
+$$ f\br{X} = X^4 - X^2 + 1, \qquad L = \Q\br{e^{\tfrac{2\pi i}{12}}} = \Q\br{i, \sqrt{3}}. $$
+Then $ \sbr{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
 \item Let
-$$ f\rb{x} = x^4 - 10x^2 + 1, \qquad L = \Q\rb{\sqrt{5 + 2\sqrt{6}}} = \Q\rb{\sqrt{2} + \sqrt{3}} = \Q\rb{\sqrt{2}, \sqrt{3}}. $$
-Then $ \sb{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
+$$ f\br{X} = X^4 - 10X^2 + 1, \qquad L = \Q\br{\sqrt{5 + 2\sqrt{6}}} = \Q\br{\sqrt{2} + \sqrt{3}} = \Q\br{\sqrt{2}, \sqrt{3}}. $$
+Then $ \sbr{L : \Q} = 4 $ and $ G = C_2 \times C_2 $.
 \item Let
-$$ f\rb{x} = x^4 - 6x^2 + 1 = \rb{x^2 - 2x - 1}\rb{x^2 + 2x - 1}, \qquad L = \Q\rb{\sqrt{3 + 2\sqrt{2}}} = \Q\rb{\sqrt{2}}. $$
-Then $ \sb{L : \Q} = 2 $ and $ G = C_2 $.
+$$ f\br{X} = X^4 - 6X^2 + 1 = \br{X^2 - 2X - 1}\br{X^2 + 2X - 1}, \qquad L = \Q\br{\sqrt{3 + 2\sqrt{2}}} = \Q\br{\sqrt{2}}. $$
+Then $ \sbr{L : \Q} = 2 $ and $ G = C_2 $.
 \end{itemize}
 \end{example*}
 
@@ -1275,31 +1278,34 @@ Then $ \sb{L : \Q} = 2 $ and $ G = C_2 $.
 
 \lecture{22}{Thursday}{28/02/19}
 
-If $ F $ is finite, then it has $ ch\rb{F} = p $ for some prime $ p $. Then $ F_p \subset F $. Because $ F $ is finite, it is a finite dimensional vector space over $ \F_p $. As a vector space $ F \cong \rb{\F_p}^m $ where $ m = \dim_{\F_p}\rb{F} = \sb{F : \F_p} $, so $ \abs{F} $ is a power of $ p $.
+If $ F $ is finite, then it has $ ch\br{F} = p $ for some prime $ p $. Then $ F_p \subset F $. Because $ F $ is finite, it is a finite dimensional vector space over $ \F_p $. As a vector space $ F \cong \br{\F_p}^m $ where $ m = \dim_{\F_p}\br{F} = \sbr{F : \F_p} $, so $ \abs{F} $ is a power of $ p $.
 
 \begin{theorem}
-Fix a prime $ p > 0 $. Then for all $ m \in \Z_{\ge 1} $, there exists a unique, up to non-unique isomorphism, finite field with $ q = p^m $ elements. Notation is $ \F_q $. Moreover, $ G = Gal\rb{\F_q / \F_p} = \Z / m\Z $.
+Fix a prime $ p > 0 $. Then for all $ m \in \Z_{\ge 1} $, there exists a unique, up to non-unique isomorphism, finite field with $ q = p^m $ elements. Notation is $ \F_q $. Moreover,
+$$ G = Gal\br{\F_q / \F_p} = \dfrac{\Z}{m\Z}. $$
 \end{theorem}
 
 \begin{proof}
-Suppose $ \abs{F} = q $. $ F^\times = F \setminus \cb{0} $ is a group with $ q - 1 $ elements. That is, if $ \lambda \in F \setminus \cb{0} $ then $ \lambda^{q - 1} = 1 $.
-$$ \F_p\sb{x} \ni x^{q - 1} - 1 = \prod_{\lambda \in F \setminus \cb{0}} \rb{x - \lambda} \in \F_q\sb{x}. $$
-Every such field is a splitting field of $ x^{q - 1} - 1 $. Any two splitting fields are isomorphic. This does the uniqueness part. As for the existence part, let $ F $ be a splitting field over $ \F_p $ of $ f\rb{x} = x^{q - 1} - 1 \in \F_p\sb{x} $. Let us prove that $ F $ has $ q $ elements. $ \F_p $ is a perfect field, so for all $ \lambda \in \F_p $ there exists $ \mu \in \F_p $ such that $ \mu^p = \lambda $. In particular $ f\rb{x} $ has $ q - 1 $ distinct roots in $ F $. Let us call them $ \lambda_1, \dots, \lambda_{q - 1} $. Claim that
-$$ F' = \cb{0, \lambda_1, \dots, \lambda_{q - 1}} $$
+Suppose $ \abs{F} = q $. Then $ F^\times = F \setminus \cbr{0} $ is a group with $ q - 1 $ elements. That is, if $ \lambda \in F \setminus \cbr{0} $ then $ \lambda^{q - 1} = 1 $.
+$$ \F_p\sbr{X} \ni X^{q - 1} - 1 = \prod_{\lambda \in F \setminus \cbr{0}} \br{X - \lambda} \in \F_q\sbr{X}. $$
+Every such field is a splitting field of $ X^{q - 1} - 1 $. Any two splitting fields are isomorphic. This does the uniqueness part. As for the existence part, let $ F $ be a splitting field over $ \F_p $ of $ f\br{X} = X^{q - 1} - 1 \in \F_p\sbr{X} $. Let us prove that $ F $ has $ q $ elements. $ \F_p $ is a perfect field, so for all $ \lambda \in \F_p $ there exists $ \mu \in \F_p $ such that $ \mu^p = \lambda $. In particular $ f\br{X} $ has $ q - 1 $ distinct roots in $ F $. Let us call them $ \lambda_1, \dots, \lambda_{q - 1} $. Claim that
+$$ F' = \cbr{0, \lambda_1, \dots, \lambda_{q - 1}} $$
 is a field, then clearly $ F' = F $. We need to show that
 \begin{itemize}
 \item $ F $ is closed under addition,
 \item $ F $ is closed under multiplication, and
-\item things in $ F \setminus \cb{0} $ have inverses.
+\item things in $ F \setminus \cbr{0} $ have inverses.
 \end{itemize}
-$ F $ is closed under multiplication and inverses since for all $ n $, $ \cb{\lambda \mid \lambda^n = 1} $ is a group. $ F $ is closed under addition since for all $ a, b \in F $, $ \rb{a + b}^q = a^q + b^q $, for example
-$$ \rb{a + b}^p = a^p + \twobyone{p}{1}a^{p - 1}b + \dots + \twobyone{p}{p - 1}ab^{p - 1} + b^p, \qquad \forall 1 \le k \le p - 1, \ p \ \Bigg| \ \twobyone{p}{k}. $$
+$ F $ is closed under multiplication and inverses since for all $ n $, $ \cbr{\lambda \mid \lambda^n = 1} $ is a group. $ F $ is closed under addition since for all $ a, b \in F $, $ \br{a + b}^q = a^q + b^q $, for example
+$$ \br{a + b}^p = a^p + \twobyone{p}{1}a^{p - 1}b + \dots + \twobyone{p}{p - 1}ab^{p - 1} + b^p, \qquad \forall 1 \le k \le p - 1, \ p \ \Bigg| \ \twobyone{p}{k}. $$
 Claim that the function
 $$ \function[F]{\F_q}{\F_q}{a}{a^p} $$
 is a field automorphism, that is $ F \in G $, of order exactly $ m $. It is a field automorphism, since
-$$ F\rb{ab} = \rb{ab}^p = a^pb^p = F\rb{a}F\rb{b}, \qquad F\rb{\dfrac{a}{b}} = \rb{\dfrac{a}{b}}^p = \dfrac{a^p}{b^p} = \dfrac{F\rb{a}}{F\rb{b}}, $$
-$$ F\rb{a + b} = \rb{a + b}^p = a^p + b^p = F\rb{a} + F\rb{b}, \qquad F\rb{1} = 1, \qquad F\rb{0} = 0. $$
-Certainly $ F^m = F \circ \dots \circ F = id $, since for all $ \lambda \in \F_q $, $ \lambda^q = \lambda $. Otherwise if order is $ k < m $ then for all $ \lambda \in \F_q $, $ \lambda^{p^k} = \lambda $, so $ x^{p^k} - x $ has $ q > p^k $ roots, a contradiction.
+$$ F\br{ab} = \br{ab}^p = a^pb^p = F\br{a}F\br{b}, \qquad F\br{\dfrac{a}{b}} = \br{\dfrac{a}{b}}^p = \dfrac{a^p}{b^p} = \dfrac{F\br{a}}{F\br{b}}, $$
+$$ F\br{a + b} = \br{a + b}^p = a^p + b^p = F\br{a} + F\br{b}, \qquad F\br{1} = 1, \qquad F\br{0} = 0. $$
+Certainly
+$$ F^m = F \circ \dots \circ F = id, $$
+since for all $ \lambda \in \F_q $, $ \lambda^q = \lambda $. Otherwise if order is $ k < m $ then for all $ \lambda \in \F_q $, $ \lambda^{p^k} = \lambda $, so $ X^{p^k} - X $ has $ q > p^k $ roots, a contradiction.
 \end{proof}
 
 \pagebreak
@@ -1309,40 +1315,52 @@ Certainly $ F^m = F \circ \dots \circ F = id $, since for all $ \lambda \in \F_q
 \lecture{23}{Friday}{01/03/19}
 
 Consider
-$$ f\rb{x} = \rb{x - x_1} \dots \rb{x - x_n} = x^n - \sigma_1x^{n - 1} + \dots \pm \sigma_n \in K\rb{x_1, \dots, x_n}\sb{x}, $$
+$$ f\br{X} = \br{X - x_1} \dots \br{X - x_n} = X^n - \sigma_1X^{n - 1} + \dots \pm \sigma_n \in K\br{x_1, \dots, x_n}\sbr{X}, $$
 where
-$$ \sigma_1 = \sigma_1\rb{x_1, \dots, x_n} = \sum_{i \le i \le n} x_i, \qquad \sigma_2 = \sigma_2\rb{x_1, \dots, x_n} = \sum_{i \le i \le j \le n} x_ix_j, \qquad \dots. $$
-Here $ \sigma_1 \in K\sb{x_1, \dots, x_n} $ are the \textbf{elementary symmetric polynomials}. Let
-$$ \delta = \prod_{\text{roots of} \ f} \rb{x_i - x_j}, \qquad \Delta = \delta^2 = \prod_{\text{roots of} \ f} \rb{x_i - x_j}^2. $$
+$$ \sigma_1 = \sigma_1\br{x_1, \dots, x_n} = \sum_{i \le i \le n} x_i, \qquad \sigma_2 = \sigma_2\br{x_1, \dots, x_n} = \sum_{i \le i \le j \le n} x_ix_j, \qquad \dots. $$
+Here $ \sigma_1 \in K\sbr{x_1, \dots, x_n} $ are the \textbf{elementary symmetric polynomials}. Let
+$$ \delta = \prod_{\text{roots of} \ f} \br{x_i - x_j}, \qquad \Delta = \delta^2 = \prod_{\text{roots of} \ f} \br{x_i - x_j}^2. $$
 
 \begin{definition}
-$ \sigma \in K\sb{x_1, \dots, x_n} $ is \textbf{symmetric} if and only if for all $ g \in \mathfrak{S}_n $
-$$ \sigma\rb{x_{g\rb{1}}, \dots, x_{g\rb{n}}} = \sigma\rb{x_1, \dots, x_n}. $$
+$ \sigma \in K\sbr{x_1, \dots, x_n} $ is \textbf{symmetric} if and only if for all $ g \in \mathfrak{S}_n $
+$$ \sigma\br{x_{g\br{1}}, \dots, x_{g\br{n}}} = \sigma\br{x_1, \dots, x_n}. $$
 \end{definition}
 
 \begin{example*}
-Consider a degree two polynomial $ \rb{x - x_1}\rb{x - x_2} = x^2 - \sigma_1x + \sigma_2 $.
+Consider a degree two polynomial
+$$ \br{X - x_1}\br{X - x_2} = X^2 - \sigma_1X + \sigma_2. $$
 \begin{itemize}
-\item $ \delta = x_1 - x_2 $ is not symmetric, for $ g = \onebytwo{1}{2} $, $ \delta\rb{x_{g\rb{1}}, x_{g\rb{2}}} = \delta\rb{x_2, x_1} = x_2 - x_1 = -\delta\rb{x_1, x_2} $.
-\item But $ \Delta = \delta^2 = \rb{x_1 - x_2}^2 = \rb{x_1 + x_2}^2 - 4x_1x_2 = \sigma_1^2 - 4\sigma_2 $ is symmetric.
+\item $ \delta = x_1 - x_2 $ is not symmetric, for $ g = \onebytwo{1}{2} $,
+$$ \delta\br{x_{g\br{1}}, x_{g\br{2}}} = \delta\br{x_2, x_1} = x_2 - x_1 = -\delta\br{x_1, x_2}. $$
+\item But
+$$ \Delta = \delta^2 = \br{x_1 - x_2}^2 = \br{x_1 + x_2}^2 - 4x_1x_2 = \sigma_1^2 - 4\sigma_2 $$
+is symmetric.
 \end{itemize}
 \end{example*}
 
 \begin{example*}
-Let $ f\rb{x} = x^3 - \sigma_1x^2 + \sigma_2x - \sigma_3 $. Plan is to write an invariant telling us when a cubic has repeated roots. $ \delta = \rb{x_1 - x_2}\rb{x_1 - x_3}\rb{x_2 - x_3} $ is not symmetric under $ \mathfrak{S}_3 $, but it is invariant under $ \mathfrak{A}_3 = \ab{\onebythree{1}{2}{3}} \cong C_2 $. Can I write $ \delta^2 = \Delta $ as a polynomial in
+Let
+$$ f\br{X} = X^3 - \sigma_1X^2 + \sigma_2X - \sigma_3. $$
+The plan is to write an invariant telling us when a cubic has repeated roots.
+$$ \delta = \br{x_1 - x_2}\br{x_1 - x_3}\br{x_2 - x_3} $$
+is not symmetric under $ \mathfrak{S}_3 $, but it is invariant under $ \mathfrak{A}_3 = \abr{\onebythree{1}{2}{3}} \cong C_2 $. Can I write $ \delta^2 = \Delta $ as a polynomial in
 $$ \sigma_1 = x_1 + x_2 + x_3, \qquad \sigma_2 = x_1x_2 + x_1x_3 + x_2x_3, \qquad \sigma_3 = x_1x_2x_3? $$
 Yes,
 $$ \Delta = \sigma_1^2\sigma_2^2 - 4\sigma_1^3\sigma_3 - 4\sigma_2^3 + 18\sigma_1\sigma_2\sigma_3 - 27\sigma_3^2. $$
-For $ x^3 + 3px + 2q $,
-$$ \Delta = -2^23^3\rb{p^3 + q^2}. $$
+For $ X^3 + 3pX + 2q $,
+$$ \Delta = -2^23^3\br{p^3 + q^2}. $$
 The exact expression is totally relevant.
 \end{example*}
 
 Can we find a formula for discriminant of a degree $ n $ polynomial? It is a general fact that all symmetric polynomials are polynomials in the elementary symmetric polynomials, so
-$$ K\sb{x_1, \dots, x_n}^{\mathfrak{S}_n} = K\sb{\sigma_1, \dots, \sigma_n} \subset K\rb{\sigma_1, \dots, \sigma_n}. $$
+$$ K\sbr{x_1, \dots, x_n}^{\mathfrak{S}_n} = K\sbr{\sigma_1, \dots, \sigma_n} \subset K\br{\sigma_1, \dots, \sigma_n}. $$
+
+\pagebreak
 
 \begin{theorem}
-Consider a degree $ n $ separable polynomial $ f\rb{x} = x^n + a_1x^{n - 1} + \dots + a_n \in k\sb{x} $. Let $ k \subset L $ be the splitting field of $ f $. Then $ G \subset \mathfrak{A}_n $ if and only if $ \Delta $ is a square in $ k $.
+Consider a degree $ n $ separable polynomial
+$$ f\br{X} = X^n + a_1X^{n - 1} + \dots + a_n \in k\sbr{X}. $$
+Let $ k \subset L $ be the splitting field of $ f $. Then $ G \subset \mathfrak{A}_n $ if and only if $ \Delta $ is a square in $ k $.
 \end{theorem}
 
 By Galois theory $ \Delta \in k $, because $ \Delta $ is symmetric, that is $ \mathfrak{S}_n $-invariant, and hence $ G $-invariant.
@@ -1354,26 +1372,29 @@ $ G \subset \mathfrak{A}_n $ if and only if $ \delta $ is $ G $-invariant, if an
 \begin{remark*}
 \hfill
 \begin{itemize}
-\item We know $ K \subset L $ is a normal and separable splitting field of $ f \in K\sb{x} $ gives $ G \subset \mathfrak{S}_n $.
-\item If in addition $ f \in k\sb{x} $ is irreducible then $ G $ is transitive, that is for all $ \lambda, \mu $ roots of $ f $ there exists $ \sigma \in G $ such that $ \sigma\rb{\lambda} = \mu $.
+\item We know $ K \subset L $ is a normal and separable splitting field of $ f \in K\sbr{X} $ implies that $ G \subset \mathfrak{S}_n $.
+\item If in addition $ f \in k\sbr{X} $ is irreducible then $ G $ is transitive, that is for all $ \lambda $ and $ \mu $ roots of $ f $ there exists $ \sigma \in G $ such that $ \sigma\br{\lambda} = \mu $.
 \end{itemize}
 \end{remark*}
 
 \begin{theorem}
-Consider an irreducible cubic polynomial $ x^3 - \sigma_1x^2 + \sigma_2x - \sigma_3 $ and $ k \subset L $ be the splitting field then $ G = \mathfrak{S}_3 $ iff $ \Delta $ is not square in $ k $, and $ G = \mathfrak{A}_3 = C_3 $ iff $ \Delta $ is square in $ k $.
+Consider an irreducible cubic polynomial
+$$ X^3 - \sigma_1X^2 + \sigma_2X - \sigma_3, $$
+and $ k \subset L $ be the splitting field then $ G = \mathfrak{S}_3 $ iff $ \Delta $ is not square in $ k $, and $ G = \mathfrak{A}_3 = C_3 $ iff $ \Delta $ is square in $ k $.
 \end{theorem}
 
 \begin{example*}
 For $ K = \Q $,
 $$
 \begin{array}{c|c|c}
-f\rb{x} & \Delta & G \\
+f\br{X} & \Delta & G \\
 \hline
-x^3 - x - 1 & -23 & \mathfrak{S}_3 \\
-x^3 - 3x - 1 & 81 & \mathfrak{A}_3 \\
-x^3 - 4x - 1 & 229 & \mathfrak{S}_3 \\
-x^3 - 5x - 1 & 473 & \mathfrak{S}_3 \\
-x^3 - 6x - 1 & 837 & \mathfrak{S}_3
+X^3 - X - 1 & -23 & \mathfrak{S}_3 \\
+X^3 - 2X - 1 & 5 & \mathfrak{S}_3 \\
+X^3 - 3X - 1 & 81 & \mathfrak{A}_3 \\
+X^3 - 4X - 1 & 229 & \mathfrak{S}_3 \\
+X^3 - 5X - 1 & 473 & \mathfrak{S}_3 \\
+X^3 - 6X - 1 & 837 & \mathfrak{S}_3
 \end{array}.
 $$
 \end{example*}
@@ -1385,77 +1406,96 @@ $$
 \lecture{24}{Tuesday}{05/03/19}
 
 \begin{proposition}
-Suppose $ f\rb{x} = a_0 + \dots + a_dx^d \in \Z\sb{x} $ has a root $ p / q \in \Q $ with $ \gcd\rb{p, q} = 1 $, then $ p \mid a_0 $ and $ q \mid a_d $.
+Suppose
+$$ f\br{X} = a_0 + \dots + a_dX^d \in \Z\sbr{X} $$
+has a root $ p / q \in \Q $ with $ \gcd\br{p, q} = 1 $, then $ p \mid a_0 $ and $ q \mid a_d $.
 \end{proposition}
 
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ x^5 - 5 $ has no rational roots. Note that this does not show $ x^5 - 5 $ is irreducible over $ \Q $.
-\item $ x^3 - 2 $ is irreducible over $ \Q $.
+\item $ X^5 - 5 $ has no rational roots. Note that this does not show $ X^5 - 5 $ is irreducible over $ \Q $.
+\item $ X^3 - 2 $ is irreducible over $ \Q $.
 \end{itemize}
 \end{example*}
 
 \begin{proof}
-$ f\rb{p / q} = a_0 + \dots + a_d\rb{p / q}^d = 0 $. Multiplying by $ q^d $, $ a_0q^d + \dots + a_dp^d = 0 $. $ q $ divides $ a_0q^d + \dots + a_{d - 1}qp^{d - 1} $, so $ q \mid a_dp^d $. Note that if $ c \mid ab $ and $ \gcd\rb{c, a} = 1 $ then $ c \mid b $. Then $ \gcd\rb{q, p^d} = 1 $, so $ q \mid a_d $. Similarly $ p \mid a_0 $.
+Let
+$$ f\br{\dfrac{p}{q}} = a_0 + \dots + a_d\br{\dfrac{p}{q}}^d = 0. $$
+Multiplying by $ q^d $,
+$$ a_0q^d + \dots + a_dp^d = 0. $$
+Then
+$$ q \mid a_0q^d + \dots + a_{d - 1}qp^{d - 1}, $$
+so $ q \mid a_dp^d $. Note that if $ c \mid ab $ and $ \gcd\br{c, a} = 1 $ then $ c \mid b $. Then $ \gcd\br{q, p^d} = 1 $, so $ q \mid a_d $. Similarly $ p \mid a_0 $.
 \end{proof}
 
 \begin{remark*}
-If $ K $ is a field then $ K\sb{x} $ is a Euclidean domain, in particular unique factorisation holds, in particular $ K\sb{x} $ is an integral domain, that is for all $ a, b \in K\sb{x} $ if $ ab = 0 $, then either $ a = 0 $ or $ b = 0 $.
+If $ K $ is a field then $ K\sbr{X} $ is a Euclidean domain, in particular unique factorisation holds, in particular $ K\sbr{X} $ is an integral domain, that is for all $ a, b \in K\sbr{X} $ if $ ab = 0 $, then either $ a = 0 $ or $ b = 0 $.
 \end{remark*}
 
 Suppose that you want to show $ n \in \Z $ is prime. Try to factor by all primes $ p < \sqrt{n} $.
 
 \begin{example*}
-$ 97 $ is prime because $ 2 \nmid 97 $, $ 3 \nmid 97 $, $ 5 \nmid 97 $, and $ 7 \nmid 97 $.
+$ 97 $ is prime because $ 2 \nmid 97, 3 \nmid 97, 5 \nmid 97, 7 \nmid 97 $.
 \end{example*}
 
-A question is can such a method work with polynomials $ f\rb{x} \in \Q\sb{x} $? Yes but we will not go there because it is not very practical. This method is ok in $ \F_p\sb{x} $, where $ p $ is prime, and this leads to a useful strategy.
+A question is can such a method work with polynomials $ f\br{X} \in \Q\sbr{X} $? Yes but we will not go there because it is not very practical. This method is ok in $ \F_p\sbr{X} $, where $ p $ is prime, and this leads to a useful strategy.
 
 \begin{example*}
-Is $ x^5 - 5 \in \Q\sb{x} $ irreducible?
+Is $ X^5 - 5 \in \Q\sbr{X} $ irreducible?
 \begin{itemize}
-\item Is it irreducible in $ \F_2\sb{x} $? $ x^5 - 5 \equiv x^5 + 1 \mod 2 $ and $ x = 1 $ is a root, so not irreducible.
-\item Is it irreducible in $ \F_3\sb{x} $? $ x^5 - 5 \equiv x^5 + 1 \mod 3 $ and $ x = -1 $ is a root, so not irreducible.
-\item It is not irreducible in $ \F_5\sb{x} $ since $ x^5 - 5 \equiv x^5 \mod 5 $.
-\item Is it irreducible in $ \F_7\sb{x} $? (Exercise)
+\item Is it irreducible in $ \F_2\sbr{X} $? $ X^5 - 5 \equiv X^5 + 1 \mod 2 $ and $ X = 1 $ is a root, so not irreducible.
+\item Is it irreducible in $ \F_3\sbr{X} $? $ X^5 - 5 \equiv X^5 + 1 \mod 3 $ and $ X = -1 $ is a root, so not irreducible.
+\item It is not irreducible in $ \F_5\sbr{X} $ since $ X^5 - 5 \equiv X^5 \mod 5 $.
+\item Is it irreducible in $ \F_7\sbr{X} $? (Exercise)
 \end{itemize}
 \end{example*}
 
+\pagebreak
+
 \begin{lemma}[Gauss' lemma]
 \label{lem:gausslemma}
-Suppose $ f\rb{x} = a_0 + \dots + a_dx^d \in \Z\sb{x} $, where $ \gcd\rb{a_0, \dots, a_d} = 1 $, factorises non-trivially in $ \Q\sb{x} $. Then it factors non-trivially in $ \Z\sb{x} $.
+Suppose
+$$ f\br{X} = a_0 + \dots + a_dX^d \in \Z\sbr{X}, \qquad \gcd\br{a_0, \dots, a_d} = 1 $$
+factorises non-trivially in $ \Q\sbr{X} $. Then it factors non-trivially in $ \Z\sbr{X} $.
 \end{lemma}
 
 \begin{corollary}
-If $ f\rb{x} $ is prime in $ \F_p\sb{x} $, for some $ p $, then it is prime in $ \Q\sb{x} $.
+If $ f\br{X} $ is prime in $ \F_p\sbr{X} $, for some $ p $, then it is prime in $ \Q\sbr{X} $.
 \end{corollary}
 
 \begin{proof}
-Otherwise $ f\rb{x} $ factors in $ \F_p\sb{x} $.
+Otherwise $ f\br{X} $ factors in $ \F_p\sbr{X} $.
 \end{proof}
 
 \begin{proof}[Proof of Lemma \ref{lem:gausslemma}]
-Suppose $ f\rb{x} = g\rb{x}h\rb{x} $ in $ \Q\sb{x} $ for $ g\rb{x}, h\rb{x} \in \Q\sb{x} $. There is a $ c \in \Z $ such that
+Suppose $ f\br{X} = g\br{X}h\br{X} $ in $ \Q\sbr{X} $ for $ g\br{X}, h\br{X} \in \Q\sbr{X} $. There is a $ c \in \Z $ such that
 \begin{equation}
 \label{eq:9}
-cf\rb{x} = g'\rb{x}h'\rb{x},
+cf\br{X} = g'\br{X}h'\br{X}, \qquad g'\br{X}, h'\br{X} \in \Z\sbr{X}, \qquad g' = \lambda g, \qquad h' = \mu h, \qquad \lambda, \mu \in \Q.
 \end{equation}
-where $ g'\rb{x}, h'\rb{x} \in \Z\sb{x} $, $ g' = \lambda g $, and $ h' = \mu h $ for $ \lambda, \mu \in \Q $. There is a smallest such $ c $. I claim $ c = 1 $. Otherwise there exists $ p $ prime such that $ p \mid c $, so $ \rb{\ref{eq:9}} $ is
-$$ 0 = \overline{g'}\rb{x}\overline{h'}\rb{x} \in \F_p\sb{x}. $$
-Either $ p \mid g'\rb{x} $, that is $ p $ divides all coefficients of $ g' $, or $ p \mid h'\rb{x} $, a contradiction.
+There is a smallest such $ c $. I claim $ c = 1 $. Otherwise there exists $ p $ prime such that $ p \mid c $, so $ \br{\ref{eq:9}} $ is
+$$ 0 = \overline{g'}\br{X}\overline{h'}\br{X} \in \F_p\sbr{X}. $$
+Either $ p \mid g'\br{X} $, that is $ p $ divides all coefficients of $ g' $, or $ p \mid h'\br{X} $, a contradiction.
 \end{proof}
 
 \begin{corollary}[Eisenstein]
-$ f\rb{x} = a_0 + \dots + a_dx^d \in \Z\sb{x} $ is irreducible in $ \Q\sb{x} $ if there exists $ p $ prime such that $ p \nmid a_d $ but $ p \mid a_i $ for $ i < d $ and $ p^2 \nmid a_0 $.
+$$ f\br{X} = a_0 + \dots + a_dX^d \in \Z\sbr{X} $$
+is irreducible in $ \Q\sbr{X} $ if there exists $ p $ prime such that $ p \nmid a_d $ but $ p \mid a_i $ for $ i < d $ and $ p^2 \nmid a_0 $.
 \end{corollary}
 
 \begin{proof}
-Work in $ \F_p\sb{x} $. Then $ f\rb{x} \equiv a_dx^d \mod p $. If $ f\rb{x} = h\rb{x}g\rb{x} $ in $ \Z\sb{x} $, then $ h\rb{x} \equiv b_kx^k \mod p $ and $ g\rb{x} \equiv c_{d - k}x^{d - k} \mod p $, and that means that $ h\rb{x} = b_0 + \dots + b_kx^k $ and $ p \mid b_i $ for all $ i < k $ and $ h\rb{x} = c_0 + \dots + c_{d - k}x^{d - k} $ and $ p \mid c_i $ for all $ i < d - k $. Thus $ p^2 \mid a_0 = b_0c_0 $, a contradiction.
+Work in $ \F_p\sbr{X} $. Then $ f\br{X} \equiv a_dX^d \mod p $. If $ f\br{X} = h\br{X}g\br{X} $ in $ \Z\sbr{X} $, then
+$$ h\br{X} \equiv b_kX^k \mod p, \qquad g\br{X} \equiv c_{d - k}X^{d - k} \mod p, $$
+and that means that
+$$ h\br{X} = b_0 + \dots + b_kX^k, \qquad p \mid b_i, \qquad i < k, $$
+and
+$$ g\br{X} = c_0 + \dots + c_{d - k}X^{d - k}, \qquad p \mid c_i, \qquad i < d - k. $$
+Thus $ p^2 \mid a_0 = b_0c_0 $, a contradiction.
 \end{proof}
 
 \begin{example*}
-$ x^5 - 5 $ is irreducible by Eisenstein and $ p = 5 $.
+$ X^5 - 5 $ is irreducible by Eisenstein and $ p = 5 $.
 \end{example*}
 
 \lecture{25}{Thursday}{07/03/19}
@@ -1474,85 +1514,97 @@ Lecture 26 is a problem class.
 
 \begin{theorem}
 \label{thm:cycletype}
-Let $ f\rb{x} \in \Z\sb{x} $ be monic of degree $ n $, $ \Q \subset K $ be the splitting field of $ f $, and $ G = Gal\rb{K / \Q} \subset \mathfrak{S}_n $. For $ p $ prime, denote by $ \overline{f} $ as $ f $ viewed in $ \F_p\sb{x} $. If there exists $ p $ such that $ \overline{f} \in \F_p\sb{x} $ has $ n $ distinct roots in a splitting field and
-$$ \overline{f} = \prod_{i = 1}^k \overline{f_i}\rb{x} \in \F_p\sb{x}, $$
-with $ \overline{f_i} \in \F_p\sb{x} $ irreducible of degree $ n_i $, then there exists $ \sigma \in G \subset \mathfrak{S}_n $ of cycle decomposition type $ \rb{n_1} \dots \rb{n_k} $.
+Let $ f\br{X} \in \Z\sbr{X} $ be monic of degree $ n $, $ \Q \subset K $ be the splitting field of $ f $, and $ G = Gal\br{K / \Q} \subset \mathfrak{S}_n $. For $ p $ prime, denote by $ \overline{f} $ as $ f $ viewed in $ \F_p\sbr{X} $. If there exists $ p $ such that $ \overline{f} \in \F_p\sbr{X} $ has $ n $ distinct roots in a splitting field and
+$$ \overline{f} = \prod_{i = 1}^k \overline{f_i}\br{X} \in \F_p\sbr{X}, $$
+with $ \overline{f_i} \in \F_p\sbr{X} $ irreducible of degree $ n_i $, then there exists $ \sigma \in G \subset \mathfrak{S}_n $ of cycle decomposition type
+$$ \br{n_1} \dots \br{n_k}. $$
 \end{theorem}
 
-Plan is to understand the statement and prove it, following Jacobson Basic Algebra I page 301. I want to use Theorem \ref{thm:cycletype} to write down an explicit degree five polynomial $ f \in \Z\sb{x} $ such that $ G = \mathfrak{S}_5 $.
+The plan is to understand the statement and prove it, following Jacobson Basic Algebra I page 301. I want to use Theorem \ref{thm:cycletype} to write down an explicit degree five polynomial $ f \in \Z\sbr{X} $ such that $ G = \mathfrak{S}_5 $.
 
 \begin{proposition}
 Suppose that $ r $ is prime and let $ G \subset \mathfrak{S}_r $ be a subgroup. If $ G $ contains an $ r $-cycle and one transposition, then $ G = \mathfrak{S}_r $.
 \end{proposition}
 
 \begin{proof}
-Say $ \sigma = \rb{1 \ 2 \ 3 \ 4 \ 5} \in G $ and $ \onebytwo{1}{2} \in G $, by relabelling. Then $ \sigma^{-i}\onebytwo{1}{2}\sigma^i = \onebytwo{1 - i}{2 - i} $ gives $ \onebytwo{1}{2}, \onebytwo{2}{3}, \onebytwo{3}{4}, \onebytwo{4}{5} \in G $. A general fact is that for all $ n $, $ \onebytwo{1}{2}, \dots, \onebytwo{n - 1}{n} $ generate $ \mathfrak{S}_n $, since $ a < b $ gives $ \onebytwo{a}{b} = \onebytwo{a}{a + 1}\onebytwo{a + 1}{b}\onebytwo{a}{a + 1} $.
+Say $ \sigma = \br{1 \ 2 \ 3 \ 4 \ 5} \in G $ and $ \onebytwo{1}{2} \in G $, by relabelling. Then
+$$ \sigma^{-i}\onebytwo{1}{2}\sigma^i = \onebytwo{1 - i}{2 - i} $$
+implies that
+$$ \onebytwo{1}{2}, \onebytwo{2}{3}, \onebytwo{3}{4}, \onebytwo{4}{5} \in G. $$
+A general fact is that for all $ n $,
+$$ \onebytwo{1}{2}, \qquad \dots, \qquad \onebytwo{n - 1}{n} $$
+generate $ \mathfrak{S}_n $, since $ a < b $ implies that
+$$ \onebytwo{a}{b} = \onebytwo{a}{a + 1}\onebytwo{a + 1}{b}\onebytwo{a}{a + 1}. $$
 \end{proof}
 
-Plan is the following.
+The following is the plan.
 \begin{itemize}
-\item Find irreducible monic degree five $ \phi\rb{x} \in \F_2\sb{x} $.
-\item Find irreducible monic degree two $ \psi\rb{x} \in \F_3\sb{x} $.
-\item Find $ f \in \Z\sb{x} $ such that $ f \equiv \phi $ in $ \F_2\sb{x} $ and $ f \equiv x\rb{x - 1}\rb{x + 1}\psi $ in $ \F_3\sb{x} $.
+\item Find irreducible monic degree five $ \phi\br{X} \in \F_2\sbr{X} $.
+\item Find irreducible monic degree two $ \psi\br{X} \in \F_3\sbr{X} $.
+\item Find $ f \in \Z\sbr{X} $ such that $ f \equiv \phi $ in $ \F_2\sbr{X} $ and $ f \equiv X\br{X - 1}\br{X + 1}\psi $ in $ \F_3\sbr{X} $.
 \end{itemize}
-Theorem \ref{thm:cycletype} gives $ G = \mathfrak{S}_5 $.
+Theorem \ref{thm:cycletype} implies that $ G = \mathfrak{S}_5 $.
 \begin{itemize}
-\item The irreducible degree two polynomial in $ \F_2\sb{x} $ is $ x^2 + x + 1 $.
-\item The irreducible degree two polynomial in $ \F_3\sb{x} $ are $ x^2 + 1 $, and two more.
+\item The irreducible degree two polynomial in $ \F_2\sbr{X} $ is $ X^2 + X + 1 $.
+\item The irreducible degree two polynomial in $ \F_3\sbr{X} $ are $ X^2 + 1 $, and two more.
 \end{itemize}
-Claim that $ \phi\rb{x} = x^5 + x^3 + 1 \in \F_2\sb{x} $ is irreducible. Need to check that $ \phi $ has no root in $ \F_2 $ and $ \phi $ is not divisible by $ x^2 + x + 1 $. Then $ f \equiv x^5 + x^3 + 1 $ in $ \F_2\sb{x} $ and $ f \equiv x\rb{x - 1}\rb{x + 1}\rb{x^2 + 1} = x^5 - x $ in $ \F_3\sb{x} $. Thus
-$$ f\rb{x} = x^5 + 3x^3 + 2x + 3. $$
+Claim that
+$$ f \equiv \phi\br{X} = X^5 + X^3 + 1 \in \F_2\sbr{X} $$
+is irreducible. Need to check that $ \phi $ has no root in $ \F_2 $ and $ \phi $ is not divisible by $ X^2 + X + 1 $. Then
+$$ f \equiv X\br{X - 1}\br{X + 1}\br{X^2 + 1} = X^5 - X \in \F_3\sbr{X}. $$
+Thus
+$$ f\br{X} = X^5 + 3X^3 + 2X + 3. $$
+
+\pagebreak
 
 \lecture{28}{Thursday}{14/03/19}
 
 \begin{definition}
 The \textbf{character} of a monoid to $ K $ is $ \chi : P \to K $ such that
 \begin{itemize}
-\item $ \chi\rb{0} = 1 $, and
-\item for all $ p_1, p_2 \in P $, $ \chi\rb{p_1 + p_2} = \chi\rb{p_1}\chi\rb{p_2} $.
+\item $ \chi\br{0} = 1 $, and
+\item for all $ p_1, p_2 \in P $, $ \chi\br{p_1 + p_2} = \chi\br{p_1}\chi\br{p_2} $.
 \end{itemize}
 \end{definition}
 
 \begin{remark*}
-If $ K $ is a field and $ A $ is a set then $ \cb{f : A \to K} $ is a $ K $-vector space.
+If $ K $ is a field and $ A $ is a set then $ \cbr{f : A \to K} $ is a $ K $-vector space.
 \end{remark*}
 
 \begin{theorem}[Linear independence of characters, Dedekind independence theorem]
 Let $ K $ be a field and $ P $ be a monoid, such as $ P = \N $. Any set of distinct non-zero characters
 $$ \chi_1 : P \to K, \qquad \dots, \qquad \chi_n : P \to K, \qquad \dots $$
-is linearly independent in the vector space $ \cb{f : P \to K} $.
+is linearly independent in the vector space $ \cbr{f : P \to K} $.
 \end{theorem}
 
 \begin{proof}
 Assume for a contradiction that
 \begin{equation}
 \label{eq:10}
-\lambda_1x_1 + \dots + \lambda_nx_n = 0.
+\lambda_1\chi_1 + \dots + \lambda_n\chi_n = 0.
 \end{equation}
-We may assume $ \rb{\ref{eq:10}} $ to be the shortest. We may assume for all $ i $, $ \lambda_i \ne 0 $. $ n \ge 2 $, since all are not zero. There exists $ p $ such that $ \chi_1\rb{p} \ne \chi_2\rb{p} $, so
+We may assume $ \br{\ref{eq:10}} $ to be the shortest. We may assume for all $ i $, $ \lambda_i \ne 0 $. $ n \ge 2 $, since all are not zero. There exists $ p $ such that $ \chi_1\br{p} \ne \chi_2\br{p} $, so
 \begin{equation}
 \label{eq:11}
-\lambda_1\chi_1\rb{p}\chi_1 + \dots + \lambda_n\chi_n\rb{p}\chi_n = 0.
+\lambda_1\chi_1\br{p}\chi_1 + \dots + \lambda_n\chi_n\br{p}\chi_n = 0.
 \end{equation}
-Because $ \rb{\ref{eq:10}} $ is the shortest then $ \rb{\ref{eq:10}} $ and $ \rb{\ref{eq:11}} $ are multiples of each other, so $ \chi_1\rb{p} = \chi_2\rb{p} $, a contradiction.
+Because $ \br{\ref{eq:10}} $ is the shortest then $ \br{\ref{eq:10}} $ and $ \br{\ref{eq:11}} $ are multiples of each other, so $ \chi_1\br{p} = \chi_2\br{p} $, a contradiction.
 \end{proof}
-
-\pagebreak
 
 \begin{theorem}
 \label{thm:ringhomomorphism}
-Let $ f\rb{x} \in \Z\sb{x} $ be degree $ n $ monic, $ \Q \subset K $ be the splitting field of $ f $, $ G = Gal\rb{K / \Q} \subset \mathfrak{S}_n $, and $ \lambda_1, \dots, \lambda_n \in K $ be the roots of $ f\rb{x} $. Let $ p $ be a prime. Denote by $ \overline{f} $ image of $ f $ mod $ p $. Assume $ \overline{f} $ is separable. Let $ \F_p \subset F $ be a splitting field for $ \overline{f} $, so $ \overline{f} $ has $ n $ distinct roots in $ F $. Let $ R \subset K $ be the subring generated by the roots of $ f $, so $ R = \Z\sb{\lambda_1, \dots, \lambda_n} $. Then
+Let $ f\br{X} \in \Z\sbr{X} $ be degree $ n $ monic, $ \Q \subset K $ be the splitting field of $ f $, $ G = Gal\br{K / \Q} \subset \mathfrak{S}_n $, and $ \lambda_1, \dots, \lambda_n \in K $ be the roots of $ f\br{X} $. Let $ p $ be a prime. Denote by $ \overline{f} $ image of $ f $ mod $ p $. Assume $ \overline{f} $ is separable. Let $ \F_p \subset F $ be a splitting field for $ \overline{f} $, so $ \overline{f} $ has $ n $ distinct roots in $ F $. Let $ R \subset K $ be the subring generated by the roots of $ f $, so $ R = \Z\sbr{\lambda_1, \dots, \lambda_n} $. Then
 \begin{enumerate}
 \item there exists a ring homomorphism $ \psi : R \to F $,
 \item if $ \psi' : R \to F $ is a ring homomorphism then $ \psi' $ induces a bijection
-$$ \phi' : \cb{\text{roots of} \ f\rb{x} \ \text{in} \ R} \to \cb{\text{roots of} \ \overline{f}\rb{x} \ \text{in} \ F}, $$
+$$ \phi' : \cbr{\text{roots of} \ f\br{X} \ \text{in} \ R} \to \cbr{\text{roots of} \ \overline{f}\br{X} \ \text{in} \ F}, $$
 \item $ \psi' : R \to F $ is a ring homomorphism if and only if there exists $ \sigma \in G $ such that $ \psi' = \psi \circ \sigma $.
 \end{enumerate}
 \end{theorem}
 
 \lecture{29}{Friday}{15/03/19}
 
-Lecture 29 is a test.
+Lecture 29 is a class test.
 
 \lecture{30}{Tuesday}{19/03/19}
 
@@ -1560,26 +1612,37 @@ Lecture 29 is a test.
 \hfill
 \begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
 \item $ R $ is a finitely generated free $ \Z $-module, since $ R $ is generated as a $ \Z $-module by $ \lambda_1^{e_1}, \dots, \lambda_n^{e_n} $ where $ 0 \le e_i < n $.
-\item Let $ u_1, \dots, u_d $ be a basis of $ R $ as $ \Z $-module. This is a basis of $ K $ as a $ \Q $-vector space, so $ d = \sb{K : \Q} $. $ u_1, \dots, u_d $ are clearly linearly dependent over $ \Q $. Next let $ \Q \subset \Q R \subset K $. Then $ \Q R $ is a subring containing $ \Q $, so $ \Q R $ is a field. (Exercise: if $ K \subset L $ is finite and $ K \subset R \subset L $ then $ R $ is a ring gives that $ R $ is a field) $ \Q R $ contains all roots of $ f $, so $ \Q R = K $, that is $ u_1, \dots, u_d $ generate $ K $ over $ \Q $.
-\item Proof of $ 1 $. Let $ \mm \supset \ab{p} $ be a maximal ideal in $ R $ then $ \F_p \subset R / \mm $ is a finite field. $ \pi : R \to R / \mm $ gives
-$$ f\rb{x} = \prod_{i = 1}^n \rb{x - \lambda_i} \mapsto \overline{f}\rb{x} = \prod_{i = 1}^n \rb{x - \pi\rb{\lambda_i}}, $$
-that is $ \overline{f}\rb{x} $ splits in $ R / \mm\sb{x} $. $ R $ is generated by $ \lambda_i $ gives that $ R / \mm $ is generated by $ \pi\rb{\lambda_i} $, so $ R / \mm $ is a splitting field for $ \overline{f} \in \F_p\sb{x} $, so $ R / \mm \cong F $. Thus
+\item Let $ u_1, \dots, u_d $ be a basis of $ R $ as $ \Z $-module. This is a basis of $ K $ as a $ \Q $-vector space, so $ d = \sbr{K : \Q} $. $ u_1, \dots, u_d $ are clearly linearly dependent over $ \Q $. Next let $ \Q \subset \Q R \subset K $. Then $ \Q R $ is a subring containing $ \Q $, so $ \Q R $ is a field. (Exercise: if $ K \subset L $ is finite and $ K \subset R \subset L $ then $ R $ is a ring implies that $ R $ is a field) $ \Q R $ contains all roots of $ f $, so $ \Q R = K $, that is $ u_1, \dots, u_d $ generate $ K $ over $ \Q $.
+
+\pagebreak
+
+\item Proof of $ 1 $. Let $ \mm \supset \abr{p} $ be a maximal ideal in $ R $ then $ \F_p \subset R / \mm $ is a finite field. $ \pi : R \to R / \mm $ gives
+$$ f\br{X} = \prod_{i = 1}^n \br{X - \lambda_i} \mapsto \overline{f}\br{X} = \prod_{i = 1}^n \br{X - \pi\br{\lambda_i}}, $$
+that is $ \overline{f}\br{X} $ splits in $ R / \mm\sbr{X} $. $ R $ is generated by $ \lambda_i $ implies that $ R / \mm $ is generated by $ \pi\br{\lambda_i} $, so $ R / \mm $ is a splitting field for $ \overline{f} \in \F_p\sbr{X} $, so $ R / \mm \cong F $. Thus
 $$
 \begin{tikzcd}
 R \arrow{dr}{\psi} \arrow[swap]{d}{\pi} & \\
 \dfrac{R}{\mm} \arrow[swap]{r}{\sim} & F
 \end{tikzcd}.
 $$
-\item Proof of $ 2 $. Easy. $ \psi' : R \to F $ gives $ f\rb{x} \mapsto \overline{f}\rb{x} $, so $ \cb{\lambda_i} \mapsto \cb{\pi\rb{\lambda_i}} $.
-\item Proof of $ 3 $. Converse is obvious. Let $ \sigma \in G $ and $ G = \cb{\sigma_1, \dots, \sigma_N} $ for $ rk_\Z\rb{R} = N = \sb{K : \Q} $. Consider $ \psi_i = \psi \circ \sigma_i : P \to F $ where $ P = \rb{R \setminus \cb{0}, \times} $ is a semigroup. Suppose $ \psi_{N + 1} : P \to F $ is another character. If for all $ i $, $ \psi_{N + 1} \ne \psi_i $, we will derive a contradiction. Let $ r_1, \dots, r_N $ be a basis of $ R $ as a $ \Z $-module. Solve for $ x_i \in F $, for $ i = 1, \dots, N $, in
-$$ \cb{\sum_{i = 1}^{N + 1} x_i\psi_i\rb{r_j} = 0 \ \Bigg| \ 1 \le j \le N}, $$
-$ N $ equations in $ \rb{N + 1} $ variables in $ F $. Since $ r_j $ is a $ \Z $-basis this implies $ \sum_{i = 1}^{N + 1} x_i\psi_j = 0 $ and this contradicts Dedekind.
+\item Proof of $ 2 $. Easy. $ \psi' : R \to F $ gives
+$$ f\br{X} = \prod_{i = 1}^n \br{X - \lambda_i} \mapsto \overline{f}\br{X} = \prod_{i = 1}^n \br{X - \pi\br{\lambda_i}}, $$
+so $ \cbr{\lambda_i} \mapsto \cbr{\pi\br{\lambda_i}} $.
+\item Proof of $ 3 $. Converse is obvious. Let $ \sigma \in G $ and $ G = \cbr{\sigma_1, \dots, \sigma_N} $ for $ rk_\Z\br{R} = N = \sbr{K : \Q} $. Consider $ \psi_i = \psi \circ \sigma_i : P \to F $ where $ P = \br{R \setminus \cbr{0}, \times} $ is a semigroup. Suppose $ \psi_{N + 1} : P \to F $ is another character. If for all $ i $, $ \psi_{N + 1} \ne \psi_i $, we will derive a contradiction. Let $ r_1, \dots, r_N $ be a basis of $ R $ as a $ \Z $-module. Solve for $ x_i \in F $, for $ i = 1, \dots, N $, in
+$$ \cbr{\sum_{i = 1}^{N + 1} x_i\psi_i\br{r_j} = 0 \ \Bigg| \ 1 \le j \le N}, $$
+which has $ N $ equations in $ \br{N + 1} $ variables in $ F $. Since $ r_j $ is a $ \Z $-basis this implies
+$$ \sum_{i = 1}^{N + 1} x_i\psi_j = 0, $$
+and this contradicts Dedekind.
 \end{enumerate}
 \end{proof}
 
 \begin{proof}[Proof of Theorem \ref{thm:cycletype}]
-Let $ R $ and $ \psi : R \to F $ be as above. Consider $ Fr \in Gal\rb{F / \F_p} $ then $ \psi' = Fr \circ \psi : R \to F $ is a ring homomorphism. By Theorem \ref{thm:ringhomomorphism}.$ 3 $ there exists $ \sigma \in G $ such that $ Fr \circ \psi = \psi \circ \sigma $. Thus
-$$ \sigma \circlearrowright \cb{\text{roots of} \ f \ \text{in} \ R} \xrightarrow{\psi} \cb{\text{roots of} \ \overline{f} \ \text{in} \ F} \circlearrowleft Fr. $$
+Let $ R $ and $ \psi : R \to F $ be as above. Consider $ Fr \in Gal\br{F / \F_p} $ then $ \psi' = Fr \circ \psi : R \to F $ is a ring homomorphism. By Theorem \ref{thm:ringhomomorphism}.$ 3 $ there exists $ \sigma \in G $ such that $ Fr \circ \psi = \psi \circ \sigma $. Thus
+$$
+\begin{tikzcd}
+\cbr{\text{roots of} \ f \ \text{in} \ R} \arrow[loop, swap]{}{\sigma} \arrow{r}{\psi} & \cbr{\text{roots of} \ \overline{f} \ \text{in} \ F} \arrow[loop, swap]{}{Fr}
+\end{tikzcd}.
+$$
 \end{proof}
 
 \end{document}
