@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage[UKenglish]{babel}
+\usepackage{commath}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage[margin=1in]{geometry}
@@ -20,6 +21,7 @@
 
 \setlength{\parindent}{0cm}
 \addto\captionsUKenglish{\renewcommand{\abstractname}{Syllabus}}
+\delimitershortfall5pt
 
 % Environments
 
@@ -53,96 +55,13 @@
 \newtheorem*{note*}{Note}
 \newtheorem*{remark*}{Remark}
 
-% Macros
-
-\newcommand{\lecture}[3]{
-  \marginpar{
-    Lecture #1 \\
-    #2
-    #3
-  }
-}
-
-\newcommand{\function}[5][]{
-  \ifx &#1&
-    \begin{array}{rcl}
-      #2 & \to     & #3 \\
-      #4 & \mapsto & #5
-    \end{array}
-  \else
-    \begin{array}{crcl}
-      #1 : & #2 & \to     & #3 \\
-           & #4 & \mapsto & #5
-    \end{array}
-  \fi
-}
-
-\newcommand{\correspondence}[2]{
-  \cb{
-    \begin{array}{c}
-      #1
-    \end{array}
-  }
-  \qquad
-  \leftrightsquigarrow
-  \qquad
-  \cb{
-    \begin{array}{c}
-      #2
-    \end{array}
-  }
-}
-
-\newcommand{\onebytwo}[2]{
-  \begin{pmatrix}
-    #1 & #2
-  \end{pmatrix}
-}
-
-\newcommand{\onebythree}[3]{
-  \begin{pmatrix}
-    #1 & #2 & #3
-  \end{pmatrix}
-}
-
-\newcommand{\twobyone}[2]{
-  \begin{pmatrix}
-    #1 \\
-    #2
-  \end{pmatrix}
-}
-
-\newcommand{\twobytwo}[4]{
-  \begin{pmatrix}
-    #1 & #2 \\
-    #3 & #4
-  \end{pmatrix}
-}
-
-\newcommand{\threebyone}[3]{
-  \begin{pmatrix}
-    #1 \\
-    #2 \\
-    #3
-  \end{pmatrix}
-}
-
-\newcommand{\threebythree}[9]{
-  \begin{pmatrix}
-    #1 & #2 & #3 \\
-    #4 & #5 & #6 \\
-    #7 & #8 & #9
-  \end{pmatrix}
-}
-
 % Commands
 
-\newcommand{\ab}[1]{\left\langle #1 \right\rangle} % Angle brackets
-\newcommand{\cb}[1]{\left\{ #1 \right\}}           % Curly brackets
-\newcommand{\fb}[1]{\left\lfloor #1 \right\rfloor} % Floor brackets
-\newcommand{\rb}[1]{\left( #1 \right)}             % Round brackets
-\renewcommand{\sb}[1]{\left[ #1 \right]}           % Square brackets
-\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}  % Absolute brackets
+\renewcommand{\eval}[1]{\left. #1 \right|}         % Evaluation
+\newcommand{\br}{\del}                             % Brackets
+
+\newcommand{\abr}[1]{\left\langle #1 \right\rangle} % Angle brackets
+\newcommand{\fbr}[1]{\left\lfloor #1 \right\rfloor} % Floor brackets
 
 \newcommand{\F}{\mathbb{F}}   % Finite fields
 \newcommand{\N}{\mathbb{N}}   % Natural numbers
@@ -188,24 +107,111 @@
 \newcommand{\YY}{\mathcal{Y}}   % Calligraphic Y
 \newcommand{\ZZ}{\mathcal{Z}}   % Calligraphic Z
 
-\newcommand{\notb}[1]{\rb{\neg #1}}               % Negation
-\newcommand{\orb}[2]{\rb{#1 \lor #2}}             % Disjunction
-\newcommand{\andb}[2]{\rb{#1 \land #2}}           % Conjunction
-\newcommand{\impb}[2]{\rb{#1 \rightarrow #2}}     % Implication
-\newcommand{\iffb}[2]{\rb{#1 \leftrightarrow #2}} % Biconditional
-\newcommand{\fab}[1]{\rb{\forall #1}}             % Universal quantifier
-\newcommand{\teb}[1]{\rb{\exists #1}}             % Existential quantifier
-\newcommand{\eqb}[2]{\rb{#1 = #2}}                % Equal to
-\newcommand{\ltb}[2]{\rb{#1 < #2}}                % Less than
-\newcommand{\leb}[2]{\rb{#1 \le #2}}              % Less than or equal to
-\newcommand{\neb}[2]{\rb{#1 \ne #2}}              % Not equal to
-\newcommand{\inb}[2]{\rb{#1 \in #2}}              % An element of
-\newcommand{\nib}[2]{\rb{#1 \notin #2}}           % Not an element of
-\newcommand{\subb}[2]{\rb{#1 \subseteq #2}}       % Subset of
+\newcommand{\notb}[1]{\br{\neg #1}}               % Negation
+\newcommand{\orb}[2]{\br{#1 \lor #2}}             % Disjunction
+\newcommand{\andb}[2]{\br{#1 \land #2}}           % Conjunction
+\newcommand{\impb}[2]{\br{#1 \rightarrow #2}}     % Implication
+\newcommand{\iffb}[2]{\br{#1 \leftrightarrow #2}} % Biconditional
+\newcommand{\fab}[1]{\br{\forall #1}}             % Universal quantifier
+\newcommand{\teb}[1]{\br{\exists #1}}             % Existential quantifier
+\newcommand{\eqb}[2]{\br{#1 = #2}}                % Equal to
+\newcommand{\ltb}[2]{\br{#1 < #2}}                % Less than
+\newcommand{\leb}[2]{\br{#1 \le #2}}              % Less than or equal to
+\newcommand{\neb}[2]{\br{#1 \ne #2}}              % Not equal to
+\newcommand{\inb}[2]{\br{#1 \in #2}}              % An element of
+\newcommand{\nib}[2]{\br{#1 \notin #2}}           % Not an element of
+\newcommand{\subb}[2]{\br{#1 \subseteq #2}}       % Subset of
 
-\newcommand{\jacobi}[2]{\rb{\tfrac{#1}{#2}}}        % Jacobi symbol
-\newcommand{\Unit}[1]{\rb{\dfrac{\Z}{#1\Z}}^\times} % Unit group vertical
-\newcommand{\unit}[1]{\rb{\Z / #1\Z}^\times}        % Unit group horizontal
+\newcommand{\jacobi}[2]{\br{\tfrac{#1}{#2}}}        % Jacobi symbol
+\newcommand{\Unit}[1]{\br{\dfrac{\Z}{#1\Z}}^\times} % Unit group vertical
+\newcommand{\unit}[1]{\br{\Z / #1\Z}^\times}        % Unit group horizontal
+
+% Macros
+
+\newcommand{\lecture}[3]{
+  \marginpar{
+    Lecture #1 \\
+    #2
+    #3
+  }
+}
+
+\newcommand{\function}[5][]{
+  \ifx &#1&
+    \begin{array}{rcl}
+      #2 & \longrightarrow & #3 \\
+      #4 & \longmapsto     & #5
+    \end{array}
+  \else
+    \fullfunction{#1}{#2}{#3}{#4}{#5}
+  \fi
+}
+
+\newcommand{\correspondence}[2]{
+  \cbr{
+    \begin{array}{c}
+      #1
+    \end{array}
+  }
+  \qquad
+  \leftrightsquigarrow
+  \qquad
+  \cbr{
+    \begin{array}{c}
+      #2
+    \end{array}
+  }
+}
+
+\newcommand{\intd}[4]{
+  \int_{#1}^{#2} \, #3 \, \dif #4
+}
+
+\newcommand{\iintd}[4]{
+  \iint_{#1} \, #2 \, \dif #3 \, \dif #4
+}
+
+\newcommand{\onebytwo}[2]{
+  \begin{pmatrix}
+    #1 & #2
+  \end{pmatrix}
+}
+
+\newcommand{\onebythree}[3]{
+  \begin{pmatrix}
+    #1 & #2 & #3
+  \end{pmatrix}
+}
+
+\newcommand{\twobyone}[2]{
+  \begin{pmatrix}
+    #1 \\
+    #2
+  \end{pmatrix}
+}
+
+\newcommand{\twobytwo}[4]{
+  \begin{pmatrix}
+    #1 & #2 \\
+    #3 & #4
+  \end{pmatrix}
+}
+
+\newcommand{\threebyone}[3]{
+  \begin{pmatrix}
+    #1 \\
+    #2 \\
+    #3
+  \end{pmatrix}
+}
+
+\newcommand{\threebythree}[9]{
+  \begin{pmatrix}
+    #1 & #2 & #3 \\
+    #4 & #5 & #6 \\
+    #7 & #8 & #9
+  \end{pmatrix}
+}
 
 % Tikz
 
