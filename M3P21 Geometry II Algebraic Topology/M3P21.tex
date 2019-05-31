@@ -66,7 +66,7 @@ The following are prerequisites.
 
 \subsubsection{Homotopy and homotopy type}
 
-Let $ X, Y $ be topological spaces and $ I = \sbr{0, 1} $.
+Let $ X $ and $ Y $ be topological spaces and $ I = \sbr{0, 1} $.
 
 \begin{definition*}
 A \textbf{homotopy} is a continuous map $ F : X \times I \to Y $. For every $ t \in I $ we obtain a continuous map
@@ -80,11 +80,7 @@ We write $ f_0 \cong f_1 $. (Exercise: this is an equivalence relation)
 \end{definition*}
 
 \begin{definition*}
-Let $ A \subseteq X $ be a subspace. A \textbf{retraction} of $ X $ onto $ A $ is a continuous map $ r : X \to A $ such that
-\begin{itemize}
-\item $ r\br{X} = A $, and
-\item $ \eval{r}_A = id_A $.
-\end{itemize}
+Let $ A \subseteq X $ be a subspace. A \textbf{retraction} of $ X $ onto $ A $ is a continuous map $ r : X \to A $ such that $ r\br{X} = A $ and $ \eval{r}_A = id_A $.
 \end{definition*}
 
 \begin{example*}
@@ -98,7 +94,7 @@ such that $ f_0 = id_X $ and $ f_1 : X \to A $ is the deformation retraction.
 \end{definition*}
 
 \begin{example*}
-The closed $ n $-dimensional \textbf{$ n $-disc} $ D^n = \cbr{x \in \R^n \mid \abs{x} \le 1} $ deformation retracts to $ \br{0, \dots, 0} \in \R^n $. Let $ f_t\br{x} = t \cdot x $. $ t = 1 $ implies that $ f_1 = id_{D^n} $ and $ t = 0 $ implies that $ f_0 : D^n \to \br{0, \dots, 0} $.
+The closed $ n $-dimensional \textbf{$ n $-disc} $ D^n = \cbr{x \in \R^n \mid \abs{x} \le 1} $ deformation retracts to $ \br{0, \dots, 0} \in \R^n $. Let $ f_t\br{x} = t \cdot x $. Then $ t = 1 $ implies that $ f_1 = id_{D^n} $ and $ t = 0 $ implies that $ f_0 : D^n \to \br{0, \dots, 0} $.
 \end{example*}
 
 \begin{example*}
@@ -110,7 +106,7 @@ $$ \function{I}{X}{t}{F\br{x, t}} $$
 that connects $ x $ to $ p $. This implies that not all retractions are deformation retractions.
 
 \begin{example*}
-A retraction that is not a deformation retraction. Take a space that is not path-connected and retract it to a point. Let $ X = \cbr{0, 1} $ with discrete topology. $ x \mapsto 0 $ is a retraction, but not a deformation retraction because $ X $ is not path-connected.
+A retraction that is not a deformation retraction. Take a space that is not path-connected and retract it to a point. Let $ X = \cbr{0, 1} $ with discrete topology. Then $ x \mapsto 0 $ is a retraction, but not a deformation retraction because $ X $ is not path-connected.
 \end{example*}
 
 \begin{definition*}
@@ -126,7 +122,14 @@ Let $ i : A \hookrightarrow X $ be the inclusion map. Then $ fi = id_A $ and $ i
 \end{proof}
 
 \begin{example*}
-The disc with two holes is equivalent to $ \text{O} \cdot \text{O} $.
+The disc with two holes is equivalent to
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1);
+\draw (-0.5, 0) circle (0.5);
+\draw (0.5, 0) circle (0.5);
+\end{tikzpicture}.
+$$
 \end{example*}
 
 \begin{example*}
@@ -543,7 +546,7 @@ $ F_r\br{0, s} = \omega_n\br{s} $ and $ F_r\br{1, s} = f_r\br{s} $, so $ \sbr{\o
 See Hatcher Theorem 1.9 and Theorem 1.10 for more applications.
 
 \begin{proposition}
-Let $ X, Y $ be topological spaces, $ x_0 \in X $, and $ y_0 \in Y $. Then
+Let $ X $ and $ Y $ be path-connected topological spaces, $ x_0 \in X $, and $ y_0 \in Y $. Then
 $$ \pi_1\br{X \times Y, \br{x_0, y_0}} \cong \pi_1\br{X, x_0} \times \pi_1\br{Y, y_0}. $$
 \end{proposition}
 
@@ -556,7 +559,7 @@ Two loops
 $$ \function[f_1]{I}{X \times Y}{s}{\br{g_1\br{s}, h_1\br{s}}}, \qquad \function[f_2]{I}{X \times Y}{s}{\br{g_2\br{s}, h_2\br{s}}} $$
 are homotopic if and only if $ g_1 \cong g_2 $ and $ h_1 \cong h_2 $, so there is a bijection
 $$ \pi_1\br{X \times Y, \br{x_0, y_0}} \cong \pi_1\br{X, x_0} \times \pi_1\br{Y, y_0}. $$
-$ f_1 \cdot f_2 = \br{g_1 \cdot g_2, h_1 \cdot h_2} $ and the constant loop is mapped to the constant loop, so this is also a group isomorphism.
+Then $ f_1 \cdot f_2 = \br{g_1 \cdot g_2, h_1 \cdot h_2} $ and the constant loop is mapped to the constant loop, so this is also a group isomorphism.
 \end{proof}
 
 \begin{example*}
@@ -568,7 +571,7 @@ $$ \pi_1\br{S^1 \times S^1} \cong \pi_1\br{S^1} \times \pi_1\br{S^1} \cong \Z^2.
 
 \subsubsection{Induced homomorphisms}
 
-Let $ X, Y $ be topological spaces, $ x_0 \in X $, and $ \phi : X \to Y $. An observation is that $ \phi $ induces a homomorphism
+Let $ X $ and $ Y $ be topological spaces, $ x_0 \in X $, and $ \phi : X \to Y $. An observation is that $ \phi $ induces a homomorphism
 $$ \function[\phi_*]{\pi_1\br{X, x_0}}{\pi_1\br{Y, \phi\br{x_0}}}{\sbr{f}}{\sbr{\phi f}}. $$
 $ \phi_* $ is well-defined, since if $ f_t $ is a homotopy between the loops $ f_0 $ and $ f_1 $ based at $ x_0 $, then $ \phi f_t $ is a homotopy of loops between $ \phi f_0 $ and $ \phi f_1 $. Moreover, $ \phi\br{f \cdot g} = \br{\phi f} \cdot \br{\phi g} $ and $ \phi $ maps the constant path at $ x_0 $ to the constant path at $ \phi\br{x_0} $, so $ \phi $ is a homomorphism.
 
@@ -715,7 +718,7 @@ Let $ h : D^2 \to D^2 $ be a continuous map. Then $ h $ has a fixed point, that 
 \end{theorem}
 
 \begin{proof}
-Assume $ h\br{x} \ne x $ for all $ x \in D^2 $. Define $ r : D^2 \to S^1 $ by defining $ r\br{x} $ to be the intersection of the ray starting at $ h\br{x} $ towards $ x $ with $ S^1 $. $ r $ is continuous, and if $ x \in S^1 $, then $ r\br{x} = x $, so $ r $ is a retraction, a contradiction.
+Assume $ h\br{x} \ne x $ for all $ x \in D^2 $. Define $ r : D^2 \to S^1 $ by defining $ r\br{x} $ to be the intersection of the ray starting at $ h\br{x} $ towards $ x $ with $ S^1 $. Then $ r $ is continuous, and if $ x \in S^1 $, then $ r\br{x} = x $, so $ r $ is a retraction, a contradiction.
 \end{proof}
 
 Lemma \ref{lem:1.15} implies that if $ U_1, U_2 \subseteq X $ are open and path-connected such that $ U_1 \cup U_2 = X $ and $ U_1 \cap U_2 $ is path-connected and $ x_0 \in U_1 \cap U_2 $, then every $ \sbr{f} \in \pi_1\br{X, x_0} $ can be factorised as
@@ -731,7 +734,7 @@ $ \pi_1\br{S^n} = 0 $ if $ n \ge 2 $.
 \begin{proof}
 Let
 $$ U_1 = S^n \setminus \cbr{\br{1, 0, \dots, 0}}, \qquad U_2 = S^n \setminus \cbr{\br{-1, 0, \dots, 0}}. $$
-Then $ U_1 \cong \R^n $ and $ U_2 \cong \R^n $, by stereographic projection. $ U_1 \cup U_2 = S^n $ and $ U_1 \cap U_2 $ is path-connected. Let $ x_0 \in U_1 \cap U_2 $. $ \pi_1\br{U_1, x_0} = 0 $ and $ \pi_1\br{U_2, x_0} = 0 $, so Lemma \ref{lem:1.15} implies that $ \pi_1\br{S^n, x_0} $.
+Then $ U_1 \cong \R^n $ and $ U_2 \cong \R^n $, by stereographic projection. $ U_1 \cup U_2 = S^n $ and $ U_1 \cap U_2 $ is path-connected. Let $ x_0 \in U_1 \cap U_2 $. Then $ \pi_1\br{U_1, x_0} = 0 $ and $ \pi_1\br{U_2, x_0} = 0 $, so Lemma \ref{lem:1.15} implies that $ \pi_1\br{S^n, x_0} $.
 \end{proof}
 
 \pagebreak
@@ -747,7 +750,7 @@ If $ S $ is a set, then $ F_S $ is the \textbf{free group} on $ S $. We can writ
 Let $ G_0, G_1, G_2 $ be groups, and $ f_1 : G_0 \to G_1 $ and $ f_2 : G_0 \to G_2 $ be homomorphisms.
 
 \begin{definition*}
-A group $ H $ together with homomorphisms $ h_1 : G_1 \to H $ and $ h_2 : G_2 \to H $ such that $ h_1f_1 = h_2f_2 $ is an \textbf{amalgamated product} of $ G_1 $ and $ G_2 $ over $ G_0 $ if it satisfies the following universal property. For every group $ G $ and all homomorphisms $ h_1' : G_1 \to G $ and $ h_2' : G_2 \to G $ such that $ h_1'f_1 = h_2'f_2 $, there exists a unique homomorphism $ \alpha : H \to G $ such that $ h_1' = \alpha h_1 $ and $ h_2' = \alpha h_2 $.
+A group $ H $ together with homomorphisms $ h_1 : G_1 \to H $ and $ h_2 : G_2 \to H $ such that $ h_1f_1 = h_2f_2 $ is an \textbf{amalgamated product} of $ G_1 $ and $ G_2 $ over $ G_0 $ if it satisfies the following universal property. For every group $ G $ and all homomorphisms $ h_1' : G_1 \to G $ and $ h_2' : G_2 \to G $ such that $ h_1'f_1 = h_2'f_2 $, there exists a unique homomorphism $ \alpha : H \to G $ such that $ h_1' = \alpha h_1 $ and $ h_2' = \alpha h_2 $, so
 $$
 \begin{tikzcd}
 G_0 \arrow{r}{f_1} \arrow[swap]{d}{f_2} & G_1 \arrow{d}{h_1} \arrow[bend left=30]{ddr}{h_1'} & \\
@@ -769,7 +772,7 @@ Worksheet $ 2 $.
 \lecture{9}{Wednesday}{30/01/19}
 
 $ G_0 = \cbr{id} $ is the \textbf{free product}. We write $ G_1 * G_2 $ instead of $ G_1 \underset{\cbr{id}}{*} G_2 $. Let $ G_1 = \abr{S_1 \mid R_1} $ and $ G_2 = \abr{S_2 \mid R_2} $. Then $ G_1 * G_2 = \abr{S_1 \sqcup S_2 \mid R_1 \cup R_2} $, with injections $ G_i \hookrightarrow G_1 * G_2 $ for $ i = 1, 2 $. More generally,
-$$ G_1 * G_2 \cong \dfrac{G_1 \underset{G_0}{*} G_2}{N}. $$
+$$ G_1 \underset{G_0}{*} G_2 \cong \dfrac{G_1 * G_2}{N}. $$
 where $ N $ is the normal closure of the set
 $$ \cbr{f_1\br{g}f_2\br{g}^{-1} \mid g \in G_0} \subseteq G_1 * G_2. $$
 
@@ -781,7 +784,7 @@ Let $ X $ be a topological space and $ U_1, U_2 \subseteq X $ be open and path-c
 $$ \pi_1\br{X, x_0} \cong \pi_1\br{U_1, x_0} \underset{\pi_1\br{U_1 \cap U_2, x_0}}{*} \pi_2\br{U_2, x_0} \cong \dfrac{\pi_1\br{U_1, x_0} * \pi_1\br{U_2, x_0}}{N}, $$
 where $ N $ is the normal closure of the set
 $$ \cbr{j_{1*}\br{\omega}j_{2*}\br{\omega}^{-1} \mid \omega \in \pi_1\br{U_1 \cap U_2, x_0}}, $$
-and $ j_i : U_1 \cap U_2 \hookrightarrow U_i $.
+and $ j_i : U_1 \cap U_2 \hookrightarrow U_i $, so
 $$
 \begin{tikzcd}
 U_1 \cap U_2 \arrow[hookrightarrow]{r}{i_1} \arrow[hookrightarrow, swap]{d}{i_2} & U_1 \arrow[hookrightarrow]{d}{j_1} \\
@@ -808,7 +811,7 @@ Let $ X $ be a path-connected topological space such that
 \begin{itemize}
 \item $ X = \bigcup_\alpha A_\alpha $,
 \item $ A_\alpha, A_\alpha \cap A_\beta, A_\alpha \cap A_\beta \cap A_\gamma $ are open and path-connected for all $ \alpha, \beta, \gamma $, and
-\item $ x_0 \in \cap_\alpha A_\alpha $.
+\item $ x_0 \in \bigcap_\alpha A_\alpha $.
 \end{itemize}
 Then
 $$ \pi_1\br{X, x_0} \cong \dfrac{\underset{\alpha}{*} \pi_1\br{A_\alpha, x_0}}{N}, $$
@@ -819,10 +822,38 @@ and $ i_{\alpha\beta} : A_\alpha \cap A_\beta \hookrightarrow A_\alpha $ is the 
 
 \begin{example*}
 Let $ S^1 \vee S^1 $ be the wedge product. Fix $ x \in S^1 $ and $ y \in S^1 $. Then
-$$ S^1 \vee S^1 = \dfrac{S^1 \sqcup S^1}{x \sim y} = \overset{b}{\text{O}}\cdot\overset{a}{\text{O}}. $$
+$$
+\begin{tikzpicture}
+\draw (-3, 0) node{$ S^1 \vee S^1 = \dfrac{S^1 \sqcup S^1}{x \sim y} = $};
+\fill (0, 0) circle (0.1);
+\draw (-0.5, 0) circle (0.5) node[above]{$ b $};
+\draw (0.5, 0) circle (0.5) node[above]{$ a $};
+\end{tikzpicture}.
+$$
 Let
-$$ A = \text{O}\cdot(, \qquad B = \ )\cdot\text{O}, \qquad A \cap B = \ )\cdot(. $$
-$ \pi_1\br{A} \cong \abr{b} \cong \Z $, $ \pi_1\br{B} \cong \abr{a} \cong \Z $, and $ \pi_1\br{A \cap B} = \cbr{id} $. $ A, B, A \cap B $ are open and path-connected. Van Kampen implies that
+$$
+\begin{tikzpicture}
+\draw (-1.5, 0) node{$ A = $};
+\fill (0, 0) circle (0.1);
+\draw (-0.5, 0) circle (0.5);
+\draw (0.5, 0.5) arc (90:270:0.5);
+\end{tikzpicture},
+\qquad
+\begin{tikzpicture}
+\draw (-1, 0) node{$ B = $};
+\fill (0, 0) circle (0.1);
+\draw (-0.5, 0.5) arc (90:-90:0.5);
+\draw (0.5, 0) circle (0.5);
+\end{tikzpicture},
+\qquad
+\begin{tikzpicture}
+\draw (-1, 0) node{$ A \cap B = $};
+\fill (0, 0) circle (0.1);
+\draw (-0.5, 0.5) arc (90:-90:0.5);
+\draw (0.5, 0.5) arc (90:270:0.5);
+\end{tikzpicture}.
+$$
+Then $ \pi_1\br{A} \cong \abr{b} \cong \Z $, $ \pi_1\br{B} \cong \abr{a} \cong \Z $, and $ \pi_1\br{A \cap B} = \cbr{id} $, and $ A, B, A \cap B $ are open and path-connected. Van Kampen implies that
 $$ \pi_1\br{S^1 \vee S^1} \cong \pi_1\br{A} * \pi_1\br{B} \cong \Z * \Z \cong F_{\cbr{a, b}}. $$
 More generally, let $ X = S_{a_1}^1 \vee \dots \vee S_{a_n}^1 $. Induction implies that
 $$ \pi_1\br{X} = \Z * \dots * \Z \cong F_{\cbr{a_1, \dots, a_n}}. $$
@@ -838,7 +869,7 @@ $$ A = T \setminus \cbr{\text{small closed disc} \ D}, \qquad B = \cbr{\text{ope
 \item $ B $ is homeomorphic to $ D^2 $, so $ \pi_1\br{B} = \cbr{id} $.
 \item $ A \cap B $ is homotopy equivalent to $ S^1 $, so $ \pi_1\br{A \cap B} \cong \Z $.
 \end{itemize}
-$ A, B, A \cap B $ are open and path-connected. Van Kampen implies that
+Then $ A, B, A \cap B $ are open and path-connected. Van Kampen implies that
 $$ \pi_1\br{T} \cong \dfrac{\pi_1\br{A}}{\abr{\abr{i_*\br{\pi_1\br{A \cap B}}}}}, $$
 where $ i : A \cap B \hookrightarrow A $. Then
 $$ \function[i_*]{\pi_1\br{A \cap B} = \abr{\omega}}{\pi_1\br{A}}{\omega}{aba^{-1}b^{-1}}, $$
@@ -870,9 +901,19 @@ $$ A = Z \setminus \bigcup_\alpha \cbr{y_\alpha}, \qquad B = Z \setminus X. $$
 \item $ A $ deformation retracts to $ X $.
 \item $ B $ is homotopy equivalent to a point.
 \item $ A \cap B $ is homotopy equivalent to
-$$ \cbr{\text{paths} \ \gamma_\alpha \ \text{from} \ x_0 \ \text{to loops} \ \phi_\alpha'} = \overset{\phi_\alpha'}{\text{O}}\overset{\gamma_\alpha}{-}\overset{x_0}{\cdot}\overset{\gamma_\alpha}{-}\overset{\phi_\alpha'}{\text{O}}. $$
+$$
+\begin{tikzpicture}
+\draw (-5, 0) node{$ \cbr{\text{paths} \ \gamma_\alpha \ \text{from} \ x_0 \ \text{to loops} \ \phi_\alpha'} = $};
+\fill (0, 0) circle (0.1) node[above]{$ x_0 $};
+\draw (0, 0) to node[above]{$ \gamma_\alpha $} (-1, 0);
+\draw (0, 0) to node[above]{$ \gamma_\alpha $} (1, 0);
+\draw (-1.5, 0) circle (0.5) node[above]{$ \phi_\alpha' $};
+\draw (1.5, 0) circle (0.5) node[above]{$ \phi_\alpha' $};
+\end{tikzpicture}.
+$$
+% \overset{\phi_\alpha'}{\text{O}}\overset{\gamma_\alpha}{-}\overset{x_0}{\cdot}\overset{\gamma_\alpha}{-}\overset{\phi_\alpha'}{\text{O}}.
 \end{itemize}
-$ A, B, A \cap B $ are open and path-connected. Van Kampen implies that
+Then $ A, B, A \cap B $ are open and path-connected. Van Kampen implies that
 $$ \pi_1\br{Y} \cong \pi_1\br{Z} = \dfrac{\pi_1\br{A}}{\abr{\abr{j_*\br{\pi_1\br{A \cap B}}}}}, $$
 where $ j : A \cap B \hookrightarrow A $ is the inclusion. So $ \abr{\abr{j_*\br{\pi_1\br{A \cap B}}}} $ is exactly $ N $. Thus $ \pi_1\br{A} = \pi_1\br{X} $.
 \end{proof}
@@ -884,9 +925,7 @@ For every group $ G $ there exists a two-dimensional CW-complex $ X_G $ such tha
 \end{corollary}
 
 \begin{proof}
-Let $ G = \abr{\cbr{g_\alpha} \mid \cbr{r_\beta}} $ be a presentation of $ G $, that is
-$$ G = \dfrac{F_{\cbr{g_\alpha}}}{\abr{\abr{\cbr{r_\beta}}}}. $$
-Seen last time that $ \pi_1\br{\bigvee_{g_\alpha} S_{g_\alpha}^1} = F_{\cbr{g_\alpha}} $. Each word $ r_\beta $ defines a loop in $ \bigvee_{g_\alpha} S_{g_\alpha}^1 $. Attach $ 2 $-cells to $ \bigvee_{g_\alpha} S_{g_\alpha}^1 $ along the loops defined by the relations $ \cbr{r_\beta} $. Call this new CW-complex $ Y $. Proposition \ref{prop:1.26} implies that
+Let $ G = \abr{\cbr{g_\alpha} \mid \cbr{r_\beta}} $ be a presentation of $ G $, that is $ G = F_{\cbr{g_\alpha}} / \abr{\abr{\cbr{r_\beta}}} $. Seen last time that $ \pi_1\br{\bigvee_{g_\alpha} S_{g_\alpha}^1} = F_{\cbr{g_\alpha}} $. Each word $ r_\beta $ defines a loop in $ \bigvee_{g_\alpha} S_{g_\alpha}^1 $. Attach $ 2 $-cells to $ \bigvee_{g_\alpha} S_{g_\alpha}^1 $ along the loops defined by the relations $ \cbr{r_\beta} $. Call this new CW-complex $ Y $. Proposition \ref{prop:1.26} implies that
 $$ \pi_1\br{Y, x_0} \cong \dfrac{\pi_1\br{X, x_0}}{\abr{\abr{\cbr{r_\beta}}}} \cong \dfrac{F_{\cbr{g_\alpha}}}{\abr{\abr{\cbr{r_\beta}}}} \cong G. $$
 \end{proof}
 
@@ -909,7 +948,20 @@ $$ p^{-1}\br{U} = \bigcup_\alpha \widetilde{U_\alpha}, $$
 where $ U_\alpha $ are pairwise disjoint and $ \eval{p}_{\widetilde{U_\alpha}} : \widetilde{U_\alpha} \to U $ is a homeomorphism for all $ \alpha $.
 
 \begin{example*}
-$$ \function{\R}{S^1}{s}{\br{\cos\br{2\pi s}, \sin\br{2\pi s}}}, \qquad \function{S^1}{S^1}{z}{z^n}, \qquad \text{O} \cdot \text{O} \cdot \text{O} \to S^1 \vee S^1 = \text{O} \cdot \text{O}. $$
+$$
+\begin{tikzpicture}
+\draw (-5, 0) node{$ \function{\R}{S^1}{s}{\br{\cos\br{2\pi s}, \sin\br{2\pi s}}}, \quad \function{S^1}{S^1}{z}{z^n}, $};
+\draw (0, 0) circle (0.5);
+\fill (0.5, 0) circle (0.1);
+\draw (1, 0) circle (0.5);
+\fill (1.5, 0) circle (0.1);
+\draw (2, 0) circle (0.5);
+\draw (3.5, 0) node{$ \to S^1 \vee S^1 = $};
+\draw (5, 0) circle (0.5);
+\fill (5.5, 0) circle (0.1);
+\draw (6, 0) circle (0.5);
+\end{tikzpicture}.
+$$
 \end{example*}
 
 Let $ f : Y \to X $ be a continuous map. A \textbf{lift} of $ f $ is a continuous map $ \widetilde{f} : Y \to \widetilde{X} $ such that $ p\widetilde{f} = f $, where $ p : \widetilde{X} \to X $ is a covering space. Let $ Y $ be connected.
@@ -957,13 +1009,13 @@ $$ p^{-1}\br{U} = \bigsqcup_{\alpha \in \Lambda} \widetilde{U_\alpha}. $$
 Then the cardinality $ \abs{p^{-1}\br{x}} $ of $ p^{-1}\br{x} $ is exactly the cardinality of $ \abs{\Lambda} $. The set of sheets is in bijection with $ p^{-1}\br{x} $. So the cardinality of $ p^{-1}\br{x} $ is locally constant. If $ X $ is connected, the cardinality of $ p^{-1}\br{x} $ is constant.
 
 \begin{notation*}
-Let $ X, Y $ be topological spaces, $ x \in X $, and $ y \in Y $. A continuous map
+Let $ X $ and $ Y $ be topological spaces, $ x \in X $, and $ y \in Y $. A continuous map
 $$ f : \br{X, x} \to \br{Y, y} $$
 is a continuous map $ f : X \to Y $ such that $ f\br{x} = y $.
 \end{notation*}
 
 \begin{proposition}
-Let $ X, \widetilde{X} $ be path-connected and
+Let $ X $ and $ \widetilde{X} $ be path-connected and
 $$ p : \br{\widetilde{X}, \widetilde{x_0}} \to \br{X, x_0} $$
 be a covering space. Then the number of sheets of $ p $ equals the index of $ p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} $ in $ \pi_1\br{X, x_0} $.
 \end{proposition}
@@ -993,7 +1045,8 @@ $$ f : \br{Y, y_0} \to \br{X, x_0} $$
 a continuous map, where $ Y $ is path-connected and locally path-connected. Then there is a lift
 $$ \widetilde{f} : \br{Y, y_0} \to \br{\widetilde{X}, \widetilde{x_0}} $$
 if and only if
-$$ f_*\br{\pi_1\br{Y, y_0}} \subseteq p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}}. $$
+$$ f_*\br{\pi_1\br{Y, y_0}} \subseteq p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}}, $$
+so
 $$
 \begin{tikzcd}
 & \br{\widetilde{X}, \widetilde{x_0}} \arrow{d}{p} \\
@@ -1012,18 +1065,18 @@ $$
 $$ f_*\br{\pi_1\br{Y, y_0}} \subseteq p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}}. $$
 For each $ y \in Y $ choose a path $ \gamma $ from $ y_0 $ to $ y $, so $ f\gamma $ is a path in $ X $ from $ x_0 $ to $ f\br{y} $. By path lifting, we can lift $ f\gamma $ to a path $ \widetilde{f\gamma} $ in $ \widetilde{X} $ starting at $ \widetilde{x_0} $. Define the map
 $$ \function[\widetilde{f}]{\br{Y, y_0}}{\br{\widetilde{X}, \widetilde{x_0}}}{y}{\widetilde{f\gamma}\br{1}}. $$
-$$
-\begin{tikzcd}
-& \widetilde{x_0} \underset{\widetilde{f\gamma'}}{\overset{\widetilde{f\gamma}}{=}} \widetilde{f}\br{y} \arrow{d}{p} \\
-y_0 \underset{\gamma'}{\overset{\gamma}{=}} y \arrow{ur}{\widetilde{f}} \arrow[swap]{r}{f} & x_0 \underset{f\gamma'}{\overset{f\gamma}{=}} f\br{y}
-\end{tikzcd}.
-$$
+% $$
+% \begin{tikzcd}
+% & \widetilde{x_0} \underset{\widetilde{f\gamma'}}{\overset{\widetilde{f\gamma}}{=}} \widetilde{f}\br{y} \arrow{d}{p} \\
+% y_0 \underset{\gamma'}{\overset{\gamma}{=}} y \arrow{ur}{\widetilde{f}} \arrow[swap]{r}{f} & x_0 \underset{f\gamma'}{\overset{f\gamma}{=}} f\br{y}
+% \end{tikzcd}.
+% $$
 \begin{itemize}
 \item This map is well-defined, that is does not depend on the choice of $ \gamma $. Let $ \gamma' $ be another path from $ y_0 $ to $ y $. Then $ h_0 = \br{f\gamma'} \cdot \br{f\gamma}^{-1} $ is a loop at $ x_0 $ and
 $$ \sbr{h_0} \in f_*\br{\pi_1\br{Y, y_0}} \subseteq p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}}. $$
 Proposition \ref{prop:1.31} implies that can lift $ h_0 $ to a loop $ \widetilde{h_0} $ at $ \widetilde{x_0} $. The first half of $ \widetilde{h_0} $ is $ \widetilde{f\gamma'} $ and the second half is $ \widetilde{f\gamma}^{-1} $, so $ \widetilde{f\gamma}\br{1} = \widetilde{f\gamma'}\br{1} $. Thus $ \widetilde{f} $ is well-defined.
 \item We have $ p\widetilde{f} = f $, so $ \widetilde{f} $ lifts $ f $.
-\item It remains to show that $ \widetilde{f} $ is continuous. Let $ y \in Y $ and let $ U $ be an evenly covered neighbourhood of $ f\br{y} $. Let $ \widetilde{U} $ be the sheet above $ U $ such that $ \widetilde{f}\br{y} \in \widetilde{U} $, so $ \eval{p}_{\widetilde{U}} : \widetilde{U} \to U $ is a homeomorphism. Let $ V \subseteq Y $ be a path-connected neighbourhood of $ y $ such that $ f\br{V} \subseteq U $. Fix a path $ \gamma $ from $ y_0 $ to $ y $. Let $ y' \in V $ be arbitrary and $ \eta $ be a path from $ y $ to $ y' $, so $ \gamma \cdot \eta $ is a path from $ y_0 $ to $ y' $. Then $ \br{f\gamma} \cdot \br{f\eta} $ is a path in $ U $ from $ x_0 $ to $ f\br{y'} $. $ \widetilde{f\eta} = \br{\eval{p}_{\widetilde{U}}}^{-1}f\eta $, so $ \eval{\widetilde{f}}_V = \br{\eval{p}_{\widetilde{U}}}^{-1}f $. Thus $ \eval{\widetilde{f}}_V : V \to \widetilde{U} $ is continuous, so $ \widetilde{f} $ is continuous.
+\item It remains to show that $ \widetilde{f} $ is continuous. Let $ y \in Y $ and let $ U $ be an evenly covered neighbourhood of $ f\br{y} $. Let $ \widetilde{U} $ be the sheet above $ U $ such that $ \widetilde{f}\br{y} \in \widetilde{U} $, so $ \eval{p}_{\widetilde{U}} : \widetilde{U} \to U $ is a homeomorphism. Let $ V \subseteq Y $ be a path-connected neighbourhood of $ y $ such that $ f\br{V} \subseteq U $. Fix a path $ \gamma $ from $ y_0 $ to $ y $. Let $ y' \in V $ be arbitrary and $ \eta $ be a path from $ y $ to $ y' $, so $ \gamma \cdot \eta $ is a path from $ y_0 $ to $ y' $. Then $ \br{f\gamma} \cdot \br{f\eta} $ is a path in $ U $ from $ x_0 $ to $ f\br{y'} $, and $ \widetilde{f\eta} = \br{\eval{p}_{\widetilde{U}}}^{-1}f\eta $, so $ \eval{\widetilde{f}}_V = \br{\eval{p}_{\widetilde{U}}}^{-1}f $. Thus $ \eval{\widetilde{f}}_V : V \to \widetilde{U} $ is continuous, so $ \widetilde{f} $ is continuous.
 \end{itemize}
 \end{itemize}
 \end{proof}
@@ -1043,7 +1096,7 @@ is trivial, where $ i : U \hookrightarrow X $ is the inclusion.
 \end{definition*}
 
 \begin{example*}
-Let $ X = \bigcup_n C_n \subseteq \R^2 $ be the Hawaiian earrings, where $ C_n \subseteq \R^2 $ is the circle of radius $ 1 / n $ and centre $ \br{1 / n, 0} $. Then $ X $ is not semilocally simply-connected.
+Let $ X = \bigcup_n C_n \subseteq \R^2 $ be the \textbf{Hawaiian earrings}, where $ C_n \subseteq \R^2 $ is the circle of radius $ 1 / n $ and centre $ \br{1 / n, 0} $. Then $ X $ is not semilocally simply-connected.
 \end{example*}
 
 \begin{proposition}
@@ -1051,7 +1104,7 @@ If $ p : \widetilde{X} \to X $ is a universal cover, then $ X $ is semilocally s
 \end{proposition}
 
 \begin{proof}
-Let $ U \subseteq X $ be an evenly covered neighbourhood of $ x_0 \in X $, $ \widetilde{U} \subseteq \widetilde{X} $ be a sheet over $ U $, and $ \gamma \subseteq U $ be a loop at $ x_0 $, so $ \gamma $ lifts to a loop $ \widetilde{\gamma} \subseteq \widetilde{U} $ at $ \widetilde{x_0} $. $ \widetilde{\gamma} $ is homotopic to the constant loop at $ \widetilde{x_0} $. Composing this homotopy with $ p $ implies that $ \gamma $ is homotopic to the constant loop at $ x_0 $ in $ X $, so
+Let $ U \subseteq X $ be an evenly covered neighbourhood of $ x_0 \in X $, $ \widetilde{U} \subseteq \widetilde{X} $ be a sheet over $ U $, and $ \gamma \subseteq U $ be a loop at $ x_0 $, so $ \gamma $ lifts to a loop $ \widetilde{\gamma} \subseteq \widetilde{U} $ at $ \widetilde{x_0} $. Then $ \widetilde{\gamma} $ is homotopic to the constant loop at $ \widetilde{x_0} $. Composing this homotopy with $ p $ implies that $ \gamma $ is homotopic to the constant loop at $ x_0 $ in $ X $, so
 $$ \pi_1\br{U, x_0} \to \pi_1\br{X, x_0} $$
 is trivial.
 \end{proof}
@@ -1086,7 +1139,7 @@ Recall that a \textbf{basis} for a topology on a set $ Y $ is a collection $ \BB
 \end{itemize}
 A basis defines a topology on $ Y $, by $ A \subseteq Y $ is open if and only if $ A $ is the union of elements of $ \BB $. A map $ f : Z \to Y $ is continuous if and only if $ f^{-1}\br{U} $ is open for all $ U \in \BB $.
 \begin{enumerate}
-\item Let $ \UU $ be the collection of all path-connected open sets $ U \subseteq X $ such that $ \pi_1\br{U} \to \pi_1\br{X} $ is trivial. Then $ X = \bigcup_{U \in \UU} U $ because $ X $ is semilocally simply-connected. Let $ U_1, U_2 \in \UU $ and $ y \in U_1 \cap U_2 $, and let $ y \in V \subseteq U_1 \cap U_2 $ be path-connected and open.
+\item Let $ \UU $ be the collection of all path-connected open sets $ U \subseteq X $ such that $ \pi_1\br{U} \to \pi_1\br{X} $ is trivial. Then $ X = \bigcup_{U \in \UU} U $ because $ X $ is semilocally simply-connected. Let $ U_1, U_2 \in \UU $ and $ y \in U_1 \cap U_2 $, and let $ y \in V \subseteq U_1 \cap U_2 $ be path-connected and open. Then
 $$
 \begin{tikzcd}
 V \arrow[hookrightarrow]{r} & U_1 \arrow[hookrightarrow]{r} & X \\
@@ -1098,7 +1151,7 @@ $$ U_{\sbr{\gamma}} = \cbr{\sbr{\gamma \cdot \eta} \mid \eta \ \text{a path in} 
 $ U_{\sbr{\gamma}} $ only depends on the class $ \sbr{\gamma} $, so $ \eval{p}_{U_{\sbr{\gamma}}} : U_{\sbr{\gamma}} \to U $ is bijective. Surjective because $ U $ is path-connected and injective because all paths $ \eta $ in $ U $ with the same endpoint are homotopic. Claim that $ \cbr{U_{\sbr{\gamma}}} $ forms a basis on $ \widetilde{X} $.
 \begin{itemize}
 \item $ \bigcup_{U \in \UU, \ \gamma} U_{\sbr{\gamma}} = \widetilde{X} $, because $ \bigcup_{U \in \UU} U = X $.
-\item Observe that if $ \sbr{\gamma'} \in U_{\sbr{\gamma}} $ then $ U_{\sbr{\gamma}} = U_{\sbr{\gamma'}} $. If $ \gamma' = \gamma \cdot \eta $ for $ \eta $ a path in $ U $, then elements in $ U_{\sbr{\gamma'}} $ have the form $ \sbr{\gamma \cdot \eta \cdot \mu} $, so $ U_{\sbr{\gamma'}} \subseteq U_{\sbr{\gamma}} $. Elements in $ U_{\sbr{\gamma}} $ have the form
+\item Observe that if $ \sbr{\gamma'} \in U_{\sbr{\gamma}} $ then $ U_{\sbr{\gamma}} = U_{\sbr{\gamma'}} $. If $ \gamma' = \gamma \cdot \eta $ for $ \eta $ a path in $ U $, then elements in $ U_{\sbr{\gamma'}} $ have the form $ \sbr{\gamma \cdot \eta \cdot \mu} $, so $ U_{\sbr{\gamma'}} \subseteq U_{\sbr{\gamma}} $. The elements in $ U_{\sbr{\gamma}} $ have the form
 $$ \sbr{\gamma \cdot \mu} = \sbr{\gamma \cdot \eta \cdot \eta^{-1} \cdot \mu} = \sbr{\gamma' \cdot \eta^{-1} \cdot \mu}, $$
 so $ U_{\sbr{\gamma}} \subseteq U_{\sbr{\gamma'}} $. Consider $ U_{\sbr{\gamma}} $ and $ V_{\sbr{\gamma'}} $ and let $ \sbr{\gamma''} \in U_{\sbr{\gamma}} \cap V_{\sbr{\gamma'}} $, so $ U_{\sbr{\gamma}} = U_{\sbr{\gamma''}} $ and $ V_{\sbr{\gamma'}} = V_{\sbr{\gamma''}} $. Let $ W \in \UU $ such that $ W \subseteq U \cap V $ and such that $ \gamma''\br{1} \in W $, so $ W_{\sbr{\gamma''}} \subseteq U_{\sbr{\gamma''}} \cap V_{\sbr{\gamma''}} $ and $ \sbr{\gamma''} \in W_{\sbr{\gamma''}} $. This proves the claim.
 \end{itemize}
@@ -1138,13 +1191,14 @@ Let $ \widetilde{X} $ be as constructed above. Define $ X_H = \widetilde{X} / \s
 \item $ \sbr{\gamma} \sim \sbr{\gamma'} $ implies that $ \sbr{\gamma'} \sim \sbr{\gamma} $ because $ H $ contains all its inverses.
 \item $ \sbr{\gamma} \sim \sbr{\gamma'} $ and $ \sbr{\gamma'} \sim \sbr{\gamma''} $ implies that $ \sbr{\gamma} \sim \sbr{\gamma''} $ because $ H $ is closed under product.
 \end{itemize}
+Then
 $$
 \begin{tikzcd}
 \widetilde{X} \arrow{r} \arrow{d} & \dfrac{\widetilde{X}}{\sim} = X_H \arrow{dl}{p} \\
 X &
 \end{tikzcd}.
 $$
-Let $ U_{\sbr{\gamma}}, U_{\sbr{\gamma'}} $ be basis neighbourhoods. If $ \sbr{\gamma} \sim \sbr{\gamma'} $ then $ \sbr{\gamma \cdot \eta} \sim \sbr{\gamma' \cdot \eta} $, so $ p $ is a covering space, and $ p^{-1}\br{U} = \bigcup_\gamma U_{\sbr{\gamma}} $. Let $ \widetilde{x_0} \in X_H $ be the equivalence class of the constant path $ c_{x_0} $ at $ x_0 $. Let $ \gamma $ be a loop in $ X $ at $ x_0 $ such that $ \sbr{\gamma} \in p_*\br{\pi_1\br{X_H, \widetilde{x_0}}} $. Again $ t \mapsto \sbr{\gamma_t} $ is a lift of $ \gamma $ at $ \widetilde{x_0} $.
+Let $ U_{\sbr{\gamma}} $ and $ U_{\sbr{\gamma'}} $ be basis neighbourhoods. If $ \sbr{\gamma} \sim \sbr{\gamma'} $ then $ \sbr{\gamma \cdot \eta} \sim \sbr{\gamma' \cdot \eta} $, so $ p $ is a covering space, and $ p^{-1}\br{U} = \bigcup_\gamma U_{\sbr{\gamma}} $. Let $ \widetilde{x_0} \in X_H $ be the equivalence class of the constant path $ c_{x_0} $ at $ x_0 $. Let $ \gamma $ be a loop in $ X $ at $ x_0 $ such that $ \sbr{\gamma} \in p_*\br{\pi_1\br{X_H, \widetilde{x_0}}} $. Again $ t \mapsto \sbr{\gamma_t} $ is a lift of $ \gamma $ at $ \widetilde{x_0} $. Then
 $$ t \mapsto \sbr{\gamma_t} \ \text{is a loop in} \ X_H \quad \iff \quad \sbr{\gamma_1} = \sbr{\gamma} = \sbr{c_{x_0}} \ \text{in} \ X_H \quad \iff \quad \sbr{\gamma} \sim \sbr{c_{x_0}} \quad \iff \quad \gamma \in H. $$
 \end{proof}
 
@@ -1188,7 +1242,7 @@ $$
 & \br{X, x_0} &
 \end{tikzcd}.
 $$
-$ \widetilde{p_1}\widetilde{p_2} $ fixes the point $ \widetilde{x_2} \in \widetilde{X_2} $. By the unique lifting property in Proposition \ref{prop:1.34}, $ \widetilde{p_1}\widetilde{p_2} = id_{\widetilde{x_2}} $. Similarly, $ \widetilde{p_2}\widetilde{p_1} = id_{\widetilde{x_1}} $, so $ \widetilde{p_1} $ is an isomorphism.
+Then $ \widetilde{p_1}\widetilde{p_2} $ fixes the point $ \widetilde{x_2} \in \widetilde{X_2} $. By the unique lifting property in Proposition \ref{prop:1.34}, $ \widetilde{p_1}\widetilde{p_2} = id_{\widetilde{x_2}} $. Similarly, $ \widetilde{p_2}\widetilde{p_1} = id_{\widetilde{x_1}} $, so $ \widetilde{p_1} $ is an isomorphism.
 \end{itemize}
 \end{proof}
 
@@ -1222,7 +1276,7 @@ Proposition \ref{prop:1.36} and Proposition \ref{prop:1.37} show that this is we
 $$ H_i = p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_i}}} \subseteq \pi_1\br{X, x_0}, \qquad i = 1, 2. $$
 Let $ \widetilde{\gamma} $ be a path from $ \widetilde{x_1} $ to $ \widetilde{x_2} $. Let $ \gamma = p\widetilde{\gamma} $ be a loop at $ x_0 $. Let $ \sbr{f} \in \pi_1\br{X, x_0} $. Then $ \sbr{f} \in H_1 $ if and only if the lift $ \widetilde{f} $ is a loop at $ \widetilde{x_1} $. $ \widetilde{\gamma}^{-1} \cdot \widetilde{f} \cdot \widetilde{\gamma} $ is a loop at $ \widetilde{x_2} $, so
 $$ p_*\br{\widetilde{\gamma}^{-1} \cdot \widetilde{f} \cdot \widetilde{\gamma}} = \gamma^{-1} \cdot f \cdot \gamma, $$
-so $ \sbr{\gamma}^{-1}\sbr{f}\sbr{\gamma} \in H_2 $. Thus $ \sbr{\gamma}^{-1}H_1\sbr{\gamma} \subseteq H_2 $. Similarly, $ \sbr{\gamma}H_2\sbr{\gamma}^{-1} \subseteq H_1 $. Conversely, let $ H_1 \subseteq \pi_1\br{X, x_0} $ as above and $ \sbr{\delta} \in \pi_1\br{X, x_0} $ be an arbitrary element. Let $ \widetilde{\delta} $ be a lift of $ \delta $ such that $ \widetilde{\delta}\br{0} = \widetilde{x_0} $ and define $ x_3 = \widetilde{\delta}\br{1} $. Then the same construction yields
+so $ \sbr{\gamma}^{-1}\sbr{f}\sbr{\gamma} \in H_2 $. Thus $ \sbr{\gamma}^{-1}H_1\sbr{\gamma} \subseteq H_2 $. Similarly, $ \sbr{\gamma}H_2\sbr{\gamma}^{-1} \subseteq H_1 $. Conversely, let $ H_1 \subseteq \pi_1\br{X, x_0} $ as above and $ \sbr{\delta} \in \pi_1\br{X, x_0} $ be an arbitrary element. Let $ \widetilde{\delta} $ be a lift of $ \delta $ such that $ \widetilde{\delta}\br{0} = \widetilde{x_0} $ and define $ \widetilde{x_3} = \widetilde{\delta}\br{1} $. Then the same construction yields
 $$ p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_3}}} = \sbr{\delta}^{-1}H_1\sbr{\delta}. $$
 \end{enumerate}
 \end{proof}
@@ -1293,7 +1347,7 @@ $$
 \pi_1\br{X, x_0} \arrow[swap]{r}{\beta_h} & \pi_1\br{X, x_0'}
 \end{tikzcd}.
 $$
-$ H \subseteq \pi_1\br{X, x_0} $ is normal if and only if
+Thus $ H \subseteq \pi_1\br{X, x_0} $ is normal if and only if
 $$ p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0'}}} \subseteq \pi_1\br{X, x_0'} $$ is normal, as before if and only if $ G\br{\widetilde{X}} $ acts transitively on $ p^{-1}\br{x_0'} $.
 \end{proof}
 
@@ -1302,7 +1356,7 @@ $$ p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0'}}} \subseteq \pi_1\br{X, x_0'}
 \begin{proposition}
 Let
 $$ p : \br{\widetilde{X}, \widetilde{x_0}} \to \br{X, x_0} $$
-be a covering space, and $ X, \widetilde{X} $ be path-connected and locally path-connected. Let $ H = p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} $ and $ N\br{H} \subseteq \pi_1\br{X, x_0} $ be the normaliser of $ H $. Then $ G\br{\widetilde{X}} $ is isomorphic to $ N\br{H} / H $. In particular,
+be a covering space, $ X $ be path-connected and locally path-connected, and $ \widetilde{X} $ be path-connected. Let $ H = p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} $ and $ N\br{H} \subseteq \pi_1\br{X, x_0} $ be the normaliser of $ H $. Then $ G\br{\widetilde{X}} $ is isomorphic to $ N\br{H} / H $. In particular,
 \begin{itemize}
 \item if $ \widetilde{X} $ is normal, then $ G\br{\widetilde{X}} \cong \pi_1\br{X, x_0} / H $, and
 \item if $ \widetilde{X} $ is the universal cover, then $ G\br{\widetilde{X}} \cong \pi_1\br{X, x_0} $.
@@ -1317,22 +1371,59 @@ Exercise: read the proof of this in Hatcher.
 Let $ X = S^1 \vee S^1 $, so $ \pi_1\br{X} = F_{\cbr{a, b}} $. Then the following are covering spaces.
 \begin{itemize}
 \item A normal covering space
-$$ \widetilde{X} = \overset{a}{\text{O}} \overset{\widetilde{x_0}}{\cdot} \overset{b}{\text{O}} \cdot \overset{a}{\text{O}} \to \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} = X, \qquad p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} = \abr{a, b^2, bab^{-1}} \overset{2}{\subseteq} F_{\cbr{a, b}}. $$
+$$
+\begin{tikzpicture}
+\draw (-1, 0) node{$ \widetilde{X} = $};
+\draw (0, 0) circle (0.5) node[above]{$ a $};
+\fill (0.5, 0) circle (0.1) node[below]{$ \widetilde{x_0} $};
+\draw (1, 0) circle (0.5) node[above]{$ b $};
+\fill (1.5, 0) circle (0.1);
+\draw (2, 0) circle (0.5) node[above]{$ a $};
+\draw (7, 0) node{$ p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} = \abr{a, b^2, bab^{-1}} \overset{2}{\subseteq} F_{\cbr{a, b}} $};
+\end{tikzpicture}.
+$$
 In general, a two-oriented graph is a covering space of $ X $.
 \item Not a normal covering space
-$$ \widetilde{X} = \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} \overset{\widetilde{x_0}}{\cdot} \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} \to \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} = X, \qquad p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} = \abr{b^2, bab^{-1}, a^2, aba^{-1}}. $$
+$$
+\begin{tikzpicture}
+\draw (-1, 0) node{$ \widetilde{X} = $};
+\draw (0, 0) circle (0.5) node[above]{$ a $};
+\fill (0.5, 0) circle (0.1);
+\draw (1, 0) circle (0.5) node[above]{$ b $};
+\fill (1.5, 0) circle (0.1) node[below]{$ \widetilde{x_0} $};
+\draw (2, 0) circle (0.5) node[above]{$ a $};
+\fill (2.5, 0) circle (0.1);
+\draw (3, 0) circle (0.5) node[above]{$ b $};
+\draw (8, 0) node{$ p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} = \abr{b^2, bab^{-1}, a^2, aba^{-1}} $};
+\end{tikzpicture}.
+$$
 \item A normal covering space
-$$ \widetilde{X} = \dots \underset{b}{\_\_} \overset{a}{\text{O}} \underset{b}{\_\_} \underset{\widetilde{x_0}}{\overset{a}{\text{O}}} \underset{b}{\_\_} \overset{a}{\text{O}} \underset{b}{\_\_} \dots \to \overset{a}{\text{O}} \cdot \overset{b}{\text{O}} = X, \qquad p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} = \abr{b^nab^{-n} \mid n \in \Z}. $$
-Universal cover is a tree.
+$$
+\begin{tikzpicture}
+\draw (-0.5, 0) node{$ \widetilde{X} = $};
+\draw [dashed] (0, -0.5) to (1, -0.5);
+\fill (1, -0.5) circle (0.1);
+\draw (1, 0) circle (0.5) node[above]{$ a $};
+\draw (1, -0.5) to node[above]{$ b $} (2.5, -0.5);
+\fill (2.5, -0.5) circle (0.1) node[below]{$ \widetilde{x_0} $};
+\draw (2.5, 0) circle (0.5) node[above]{$ a $};
+\draw (2.5, -0.5) to node[above]{$ b $} (4, -0.5);
+\fill (4, -0.5) circle (0.1);
+\draw (4, 0) circle (0.5) node[above]{$ a $};
+\draw [dashed] (4, -0.5) to (5, -0.5);
+\draw (9, 0) node{$ p_*\br{\pi_1\br{\widetilde{X}, \widetilde{x_0}}} = \abr{b^nab^{-n} \mid n \in \Z} $};
+\end{tikzpicture}.
+$$
+The universal cover is a tree.
 \end{itemize}
 \end{example*}
 
 \pagebreak
 
 \begin{example*}
-Let $ T = S^1 \times S^1 $, so $ \pi_1\br{T} = \Z^2 $. This is abelian, so all covering spaces are normal. Universal cover is
+Let $ T = S^1 \times S^1 $, so $ \pi_1\br{T} = \Z^2 $. This is abelian, so all covering spaces are normal. The universal cover is
 $$ \function{\R^2}{S^1 \times S^1}{\br{s, t}}{\br{e^{2\pi is}, e^{2\pi it}}}, $$
-since $ \R^2 $ is simply connected. (Exercise: check that it is a covering space) More generally, if $ p : \widetilde{X} \to X $ and $ q : \widetilde{X} \to X $ are covering spaces then
+since $ \R^2 $ is simply connected. (Exercise: check that it is a covering space) More generally, if $ p : \widetilde{X} \to X $ and $ q : \widetilde{Y} \to Y $ are covering spaces then
 $$ \function{\widetilde{X} \times \widetilde{Y}}{X \times Y}{\br{x, y}}{\br{p\br{x}, q\br{y}}} $$
 is again a covering space. For example,
 $$ \function{S^1 \times S^1}{S^1 \times S^1}{\br{z_1, z_2}}{\br{z_1^n, z_2^m}}. $$
@@ -1397,7 +1488,7 @@ Homology is more suitable. The following is the plan.
 
 \pagebreak
 
-\subsection{$ \Delta $-complexes}
+\subsection{\texorpdfstring{$ \Delta $}{Delta}-complexes}
 
 \begin{definition*}
 Let $ m, n \ge 0 $.
@@ -1444,7 +1535,7 @@ One can show that an $ X $ with a $ \Delta $-complex structure is a CW-complex.
 \begin{itemize}
 \item Torus or Klein bottle is two $ \Delta^2 $, three $ \Delta^1 $, and one $ \Delta^0 $.
 \item $ S^2 $ is a tetrahedron.
-\item Dunce hat, by identifying all the three faces of the standard $ 2 $-simplex with each other, is one $ \Delta^2 $, one $ \Delta^1 $, and one $ \Delta^0 $.
+\item \textbf{Dunce hat}, by identifying all the three faces of the standard $ 2 $-simplex with each other, is one $ \Delta^2 $, one $ \Delta^1 $, and one $ \Delta^0 $.
 \end{itemize}
 \end{example*}
 
@@ -1501,9 +1592,9 @@ If $ n = 1 $, clear.
 
 A \textbf{chain complex} of abelian groups is a diagram $ \br{C_\cdot, \partial} $ of the form
 $$ \dots \xrightarrow{\partial_{n + 1}} C_n \xrightarrow{\partial_n} \dots \xrightarrow{\partial_1} C_0 \xrightarrow{\partial_0} 0, $$
-where the $ C_i $ are abelian groups and the $ \partial_n $ are group homomorphisms such that $ \partial_n \circ \partial_{n - 1} = 0 $ for all $ n $. $ \partial_n $ are \textbf{boundary homomorphisms}. Elements in $ C_n $ are \textbf{$ n $-chains}.
+where the $ C_i $ are abelian groups and the $ \partial_n $ are group homomorphisms such that $ \partial_n \circ \partial_{n - 1} = 0 $ for all $ n $. $ \partial_n $ are \textbf{boundary homomorphisms}. The elements in $ C_n $ are \textbf{$ n $-chains}. Let
 $$ Z_n = Ker\br{\partial_n} \subseteq C_n, \qquad B_n = Im\br{\partial_{n + 1}} \subseteq C_n. $$
-Elements in $ Z_n $ are \textbf{cycles} and elements in $ B_n $ are \textbf{boundaries}. Since $ \partial_{n + 1} \circ \partial_n = 0 $, we have that $ B_n \subseteq Z_n $. The \textbf{$ n $-th homology group} of this chain complex is defined by
+The elements in $ Z_n $ are \textbf{cycles} and the elements in $ B_n $ are \textbf{boundaries}. Since $ \partial_{n + 1} \circ \partial_n = 0 $, we have that $ B_n \subseteq Z_n $. The \textbf{$ n $-th homology group} of this chain complex is defined by
 $$ H_n\br{C_\cdot, \partial} = \dfrac{Z_n}{B_n}. $$
 So, by Lemma \ref{lem:2.1}
 $$ \dots \xrightarrow{\partial_{n + 1}} \Delta_n\br{X} \xrightarrow{\partial_n} \dots \xrightarrow{\partial_1} \Delta_0\br{X} \xrightarrow{\partial_0} 0 $$
@@ -1511,7 +1602,7 @@ is a chain complex. The \textbf{$ n $-th simplicial homology group} is
 $$ H_n^\Delta\br{X} = \dfrac{Ker\br{\partial_n}}{Im\br{\partial_{n + 1}}}. $$
 
 \begin{example*}
-Let $ X = S^1 $.
+Let $ X = S^1 $. Then
 $$
 \begin{tikzcd}[row sep=tiny]
 \dots \arrow{r}{\partial_3} & \Delta_2\br{X} \arrow{r}{\partial_2} \arrow[cong]{d} & \Delta_1\br{X} \arrow{r}{\partial_1} \arrow[cong]{d} & \Delta_0\br{X} \arrow{r}{\partial_0} \arrow[cong]{d} & 0 \\
@@ -1526,7 +1617,7 @@ $$
 \end{example*}
 
 \begin{example*}
-Let $ T $ be a torus.
+Let $ T $ be a torus. Then
 $$
 \begin{tikzcd}[row sep=tiny]
 \dots \arrow{r}{\partial_4} & \Delta_3\br{T} \arrow{r}{\partial_3} \arrow[cong]{d} & \Delta_2\br{T} \arrow{r}{\partial_2} \arrow[cong]{d} & \Delta_1\br{T} \arrow{r}{\partial_1} \arrow[cong]{d} & \Delta_0\br{T} \arrow{r}{\partial_0} \arrow[cong]{d} & 0 \\
@@ -1554,9 +1645,9 @@ Lecture 20 is a problem class.
 
 \lecture{21}{Wednesday}{27/02/19}
 
-A \textbf{singular $ n $-simplex} in a topological space $ X $ is a continuous map $ \sigma : \Delta^n \to X $. Let $ C_n\br{X} $ be the free abelian group on the set of all singular simplices in $ X $, that is elements in $ C_n\br{X} $ are finite formal sums
+A \textbf{singular $ n $-simplex} in a topological space $ X $ is a continuous map $ \sigma : \Delta^n \to X $. Let $ C_n\br{X} $ be the free abelian group on the set of all singular simplices in $ X $, that is the elements in $ C_n\br{X} $ are finite formal sums
 $$ \sum_i n_i \sigma_i, \qquad n_i \in \Z, $$
-where $ \sigma_i : \Delta^n \to X $ are singular $ n $-simplices. Elements in $ C_n\br{X} $ are called \textbf{singular $ n $-chains}. Define a \textbf{boundary map}
+where $ \sigma_i : \Delta^n \to X $ are singular $ n $-simplices. The elements in $ C_n\br{X} $ are called \textbf{singular $ n $-chains}. Define a \textbf{boundary map}
 $$ \function[\partial_n]{C_n\br{X}}{C_{n - 1}\br{X}}{\sigma}{\sum_{i = 0}^n \br{-1}^i\eval{\sigma}_{\sbr{v_1, \dots, \widetilde{v_i}, \dots, v_n}}}, $$
 for a singular $ n $-simplex $ \sigma $. Extend it linearly to $ C_n\br{X} $.
 
@@ -1565,7 +1656,7 @@ $ \partial_n \circ \partial_{n + 1} = 0 $.
 \end{lemma}
 
 \begin{proof}
-Same proof as for Lemma \ref{lem:2.1}.
+The same proof as for Lemma \ref{lem:2.1}.
 \end{proof}
 
 We obtain a chain complex
@@ -1623,14 +1714,14 @@ $$
 \end{proposition}
 
 \begin{proof}
-For each $ n $ there exists a unique singular $ n $-simplex $ \partial_n : \Delta^n \to X $, so $ C_n\br{X} \cong \Z $ for all $ n $.
+For each $ n $ there exists a unique singular $ n $-simplex $ \partial_n : \Delta^n \to X $, so $ C_n\br{X} \cong \Z $ for all $ n $. Then
 $$ \partial_n\br{\sigma_n} = \sum_{i = 0}^n \br{-1}^i\sigma_{n - 1} =
 \begin{cases}
 0 & n \ \text{odd} \\
 \sigma_{n - 1} & n \ \text{even}
 \end{cases},
 $$
-so $ \partial_n = 0 $ if $ n $ is odd and $ \partial_n $ is an isomorphism if $ n $ is even.
+so $ \partial_n = 0 $ if $ n $ is odd and $ \partial_n $ is an isomorphism if $ n $ is even, and
 $$
 \begin{tikzcd}[row sep=tiny]
 \dots \arrow{r}{\partial_2} & C_1\br{X} \arrow{r}{\partial_1} \arrow[cong]{d} & C_0\br{X} \arrow{r}{\partial_0} \arrow[cong]{d} & 0 \\
@@ -1644,7 +1735,7 @@ so $ H_n = Ker\br{\partial_n} / Im\br{\partial_{n + 1}} = 0 $ if $ n \ge 1 $ and
 
 The \textbf{reduced homology groups} $ \widetilde{H_n}\br{X} $ are the homology groups of the \textbf{augmented chain complex}
 $$ \dots \xrightarrow{\partial_2} C_1\br{X} \xrightarrow{\partial_1} C_0\br{X} \xrightarrow{\partial_0} \Z \xrightarrow{\epsilon} 0, $$
-where $ \epsilon $ is as in proof of Proposition \ref{prop:2.7}.
+where $ \epsilon $ is as in proof of Proposition \ref{prop:2.7}. Then
 $$ H_n\br{X} \cong \widetilde{H_n}\br{X}, \qquad n \ge 1. $$
 Seen in the proof of Proposition \ref{prop:2.7} that $ \epsilon $ is surjective and $ \epsilon \circ \partial_1 = 0 $, so $ Im\br{\partial_1} \subseteq Ker\br{\epsilon} $, so $ \epsilon $ induces a surjective homomorphism
 $$ \phi_\epsilon : H_0\br{X} = \dfrac{C_0\br{X}}{Im\br{\partial_1}} \to \Z. $$
@@ -1666,7 +1757,7 @@ $$
 $$
 If $ X $ and $ Y $ are topological spaces and $ f : X \to Y $ is a continuous map define the homomorphisms
 $$ \function[f_\#]{C_n\br{X}}{C_n\br{Y}}{\sigma : \Delta^n \to X}{f \circ \sigma : \Delta^n \to Y}, $$
-and extend it linearly to $ C_n\br{X} $.
+and extend it linearly to $ C_n\br{X} $. Then
 $$ \br{f_\# \circ \partial}\br{\sigma} = f_\#\br{\sum_{i = 0}^n \br{-1}^i\eval{\sigma}_{\sbr{v_0, \dots, \widehat{v_i}, \dots, v_n}}} = \sum_{i = 0}^n \eval{\br{f \circ \sigma}}_{\sbr{v_0, \dots, \widehat{v_i}, \dots, v_n}} = \br{\partial \circ f_\#}\br{\sigma}, $$
 so $ f_\# \circ \partial = \partial \circ f_\# $, so $ f_\# $ defines a chain map
 $$
@@ -1721,7 +1812,7 @@ $ \Delta^n \times I $ is not a simplex. But we can subdivide $ \Delta^n \times I
 $$ \sbr{v_0, \dots, v_i, w_i, \dots, w_n}, \qquad i = 0, \dots, n. $$
 Define \textbf{prism-operators}
 $$ \function[P]{C_n\br{X}}{C_{n + 1}\br{Y}}{\sigma}{\sum_{i = 0}^n \br{-1}^iF \circ \eval{\br{\sigma \times id}}_{\sbr{v_0, \dots, v_i, w_i, \dots, w_n}}}, $$
-for $ \sigma : \Delta^n \to X $ a singular $ n $-simplex.
+for $ \sigma : \Delta^n \to X $ a singular $ n $-simplex, so
 $$
 \begin{tikzcd}
 \dots \arrow{r}{\partial} & C_{n + 1}\br{X} \arrow{r}{\partial} & C_n\br{X} \arrow{r}{\partial} \arrow[swap]{dl}{P} \arrow{d}{f_\#}[swap]{g_\#} & C_{n - 1}\br{X} \arrow{r}{\partial} \arrow{dl}{P} & \dots \\
@@ -1732,7 +1823,7 @@ Claim that
 $$ \partial \circ P = g_\# - f_\# - P \circ \partial, $$
 if and only if $ g_\# - f_\# = \partial \circ P + P \circ \partial $. The claim implies the theorem, since if $ \alpha \in C_n\br{X} $ is a cycle, then
 $$ g_\#\br{\alpha} - f_\#\br{\alpha} = \br{\partial \circ P}\br{\alpha} + \br{P \circ \partial}\br{\alpha} = \br{\partial \circ P}\br{\alpha}, $$
-so $ g_\#\br{\alpha} - f_\#\br{\alpha} $ is a boundary. Thus $ g_\#\br{\alpha} $ and $ f_\#\br{\alpha} $ are in the same homology class, so $ g_*\br{\sbr{\alpha}} = f_*\br{\sbr{\alpha}} $, where $ \sbr{\alpha} $ is the homology class of $ \alpha $. Let $ \sigma : \Delta^n \to X $ be a singular $ n $-simplex.
+so $ g_\#\br{\alpha} - f_\#\br{\alpha} $ is a boundary. Thus $ g_\#\br{\alpha} $ and $ f_\#\br{\alpha} $ are in the same homology class, so $ g_*\br{\sbr{\alpha}} = f_*\br{\sbr{\alpha}} $, where $ \sbr{\alpha} $ is the homology class of $ \alpha $. Let $ \sigma : \Delta^n \to X $ be a singular $ n $-simplex. Then
 \begin{align*}
 \br{\partial \circ P}\br{\sigma}
 = \ & \partial\br{\sum_{i = 0}^n \br{-1}^iF \circ \eval{\br{\sigma \times id}}_{\sbr{v_0, \dots, v_i, w_i, \dots, w_n}}} \\
@@ -1766,7 +1857,7 @@ Let $ A \subseteq X $ be a subspace. What is the relationship between $ H_n\br{A
 \begin{definition*}
 A sequence of group homomorphisms of abelian groups
 $$ \dots \xrightarrow{\alpha_{n + 1}} A_n \xrightarrow{\alpha_n} \dots $$
-is \textbf{exact at $ A_n $} if $ Ker\br{\alpha_n} = Im\br{\alpha_{n + 1}} $. The sequence is \textbf{exact} if it is exact at $ A_n $ for all $ n $.
+is \textbf{exact} at $ A_n $ if $ Ker\br{\alpha_n} = Im\br{\alpha_{n + 1}} $. The sequence is \textbf{exact} if it is exact at $ A_n $ for all $ n $.
 \end{definition*}
 
 An observation is if the sequence is exact, then
@@ -1888,7 +1979,7 @@ $$ \dots \to C_{n + 1}\br{X, A} \xrightarrow{\partial} C_n\br{X, A} \xrightarrow
 
 A \textbf{short exact sequence of chain complexes} is
 $$ 0 \to \br{A_\cdot, \partial} \xrightarrow{i} \br{B_\cdot, \partial} \xrightarrow{j} \br{C_\cdot, \partial} \to 0, $$
-for $ i, j $ chain maps, where
+for $ i $ and $ j $ chain maps, where
 $$ 0 \to A_n \xrightarrow{i} B_n \xrightarrow{j} C_n \to 0 $$
 is a short exact sequence for all $ n $, so
 $$
@@ -1896,7 +1987,7 @@ $$
 & 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & \\
 \dots \arrow{r}{\partial} & A_{n + 1} \arrow{r}{\partial} \arrow{d}{i} & A_n \arrow{r}{\partial} \arrow{d}{i} & A_{n - 1} \arrow{r}{\partial} \arrow{d}{i} & \dots \\
 \dots \arrow{r}{\partial} & B_{n + 1} \arrow{r}{\partial} \arrow{d}{j} & B_n \arrow{r}{\partial} \arrow{d}{j} & B_{n - 1} \arrow{r}{\partial} \arrow{d}{j} & \dots \\
-\dots \arrow{r}{\partial} & C_{n + 1} \arrow{r}{\partial} \arrow{d} & C_n \arrow{r}{\partial} \arrow{d} & B_{n - 1} \arrow{r}{\partial} \arrow{d} & \dots \\
+\dots \arrow{r}{\partial} & C_{n + 1} \arrow{r}{\partial} \arrow{d} & C_n \arrow{r}{\partial} \arrow{d} & C_{n - 1} \arrow{r}{\partial} \arrow{d} & \dots \\
 & 0 & 0 & 0 &
 \end{tikzcd}.
 $$
@@ -2053,7 +2144,7 @@ $$
 $$
 so
 $$ H_n\br{X, A} \cong H_n\br{X, V}. $$
-Same with the triple $ \br{X / A, V / A, A / A} $, so again
+The same with the triple $ \br{X / A, V / A, A / A} $, so again
 $$ H_n\br{\dfrac{V}{A}, \dfrac{A}{A}} \cong H_n\br{\dfrac{A}{A}, \dfrac{A}{A}} = 0. $$
 This gives a long exact sequence
 $$ H_n\br{\dfrac{X}{A}, \dfrac{A}{A}} \cong H_n\br{\dfrac{X}{A}, \dfrac{V}{A}}. $$
@@ -2284,7 +2375,7 @@ $$ H_1\br{X} \cong \dfrac{H_1\br{A} \oplus H_1\br{B}}{\Phi\br{H_1\br{A \cap B}}}
 This is the abelianised version of the theorem of Seifert-van Kampen.
 
 \begin{example*}
-Let $ X = S^n \subseteq \R^{n + 1} $ and let $ x \in S^n $. Define $ A = S^n \setminus \cbr{x} $ and $ B = S^n \setminus \cbr{-x} $. $ A $ and $ B $ are contractible, so $ \widetilde{H_n}\br{A} = \widetilde{H_n}\br{B} = 0 $ for all $ n $. $ A \cap B $ deformation retracts to $ S^{n - 1} $. Mayer-Vietoris implies that
+Let $ X = S^n \subseteq \R^{n + 1} $ and let $ x \in S^n $. Define $ A = S^n \setminus \cbr{x} $ and $ B = S^n \setminus \cbr{-x} $. $ A $ and $ B $ are contractible, so $ \widetilde{H_n}\br{A} = \widetilde{H_n}\br{B} = 0 $ for all $ n $, and $ A \cap B $ deformation retracts to $ S^{n - 1} $. Mayer-Vietoris implies that
 $$
 \begin{tikzcd}[row sep=tiny]
 \dots \arrow{r} & \widetilde{H_i}\br{A} \oplus \widetilde{H_i}\br{B} \arrow{r} \arrow[cong]{d} & \widetilde{H_i}\br{X} \arrow{r} & \widetilde{H_{i - 1}}\br{A \cap B} \arrow{r} \arrow[cong]{d} & \widetilde{H_{i - 1}}\br{A} \oplus \widetilde{H_{i - 1}}\br{B} \arrow{r} \arrow[cong]{d} & \dots \\
@@ -2639,7 +2730,7 @@ $$
 \ \arrow{r} & H_{n + 1}\br{X^k, X^{k - 1}} \arrow{r} & H_n\br{X^{k - 1}} \arrow{r} & H_n^\Delta\br{X^k} \arrow{r} & H_n\br{X^k, X^{k - 1}} \arrow{r} & H_{n - 1}\br{X^{k - 1}} \arrow{r} & \
 \end{tikzcd},
 $$
-which commutes by naturality. $ \beta $ and $ \epsilon $ are isomorphisms by induction. Consider the continuous map
+which commutes by naturality, where $ \beta $ and $ \epsilon $ are isomorphisms by induction. Consider the continuous map
 $$ \Phi : \bigsqcup_\alpha \br{\Delta_\alpha^k, \partial\Delta_\alpha^k} \to \br{X^k, X^{k - 1}}. $$
 This induces an isomorphism
 $$ H_n\br{X^k, X^{k - 1}} \cong H_n\br{\bigsqcup_\alpha \Delta_\alpha^k, \bigsqcup_\alpha \partial\Delta^k} = \bigoplus_\alpha H_n\br{\Delta_\alpha^k, \partial\Delta_\alpha^k}, $$

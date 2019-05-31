@@ -27,7 +27,7 @@
 & \qquad \impb{\teb{y}\inb{y}{x}}{\teb{\phi : x \to \bigcup x}\fab{z}\impb{\inb{z}{x}}{\inb{\phi\br{z}}{z}}}
 \end{align*}
 }
-\def\syllabus{Propositional formulas. The formal system $ L $. Soundness and completeness. First-order structures and languages. Bound and free variables. The formal system $ K_\LL $. G\"odel's completeness theorem. Equality. Cardinality. Zermelo-Fraenkel axioms for set theory. Well orderings. Ordinals. Transfinite induction. Transfinite recursion. Cardinals. Axiom of choice. Well ordering principle. Zorn's lemma.}
+\def\syllabus{Propositional formulas and logical validity. The formal system $ L $. Soundness and completeness. First-order languages and structures. Satisfaction and truth of formulas. The formal system $ K_\LL $. G\"odel's completeness theorem. The compactness theorem. The L\"owenheim-Skolem theorem. The axioms of Zermelo-Fraenkel set theory. Ordinals. Cardinality. The axiom of choice.}
 \def\thm{subsection}
 
 \input{../style/header}
@@ -46,7 +46,7 @@ The first level of the subject is propositional logic. We look at the way simple
 
 The next level of the subject is predicate logic. This is what is needed to analyse real mathematics and the extra ingredient is the use of quantifiers. We introduce the notion of a first-order structure, which is general enough to include many of the algebraic objects you come across in mathematics. We then have to be precise about the expressions, formulas, which make statements about these structures, and give a precise definition of what it means for a particular formula to be true in a structure. This is quite intricate, and the clever part is in getting the definitions right, but it corresponds to ordinary mathematical usage. Once this is done, we set up a formal deduction system for predicate logic. This parallels what we did for propositional logic, but is much harder. Nevertheless, the end result is the same. The formulas which are produced by our formal deduction system, the theorems, are precisely the formulas which are true in all first-order structures. This is G\"odel's completeness theorem.
 
-Set theory provides the basic foundations and the language in which most of modern mathematics can be expressed, as well as the means for discussing the various notions of sizes of infinity. For example, although the set of natural numbers, the set of integers and the set of real numbers are all infinite, there is a very natural sense in which the first two have the same size, whereas the third is strictly bigger. This is expressed properly in the notion of cardinality. To avoid paradoxes and inconsistencies, we have to be careful about what collections of objects we allow to be called sets. This is done by the Zermelo-Fraenkel axioms, which essentially tell us how we are allowed to create new sets out of old ones. Of course, having laid down these quite rigid rules, we have to show that they are sufficiently flexible to allow us to talk about everyday objects of mathematics. There are also situations in mathematics where an extra axiom is needed, the axiom of choice. For example without this axiom, or rather, method of construction of a new set from given ones, we cannot show that every vector space has a basis. But it also has some slightly counterintuitive consequences, and we shall also look at some of these.
+Set theory provides the basic foundations and the language in which most of modern mathematics can be expressed, as well as the means for discussing the various notions of sizes of infinity. For example, although the set of natural numbers, the set of integers and the set of real numbers are all infinite, there is a very natural sense in which the first two have the same size, whereas the third is strictly bigger. This is expressed properly in the notion of cardinality. To avoid paradoxes and inconsistencies, we have to be careful about what collections of objects we allow to be called sets. This is done by the Zermelo-Fraenkel axioms, which essentially tell us how we are allowed to create new sets out of old ones. Of course, having laid down these quite rigid rules, we have to show that they are sufficiently flexible to allow us to talk about everyday objects of mathematics. There are also situations in mathematics where an extra axiom is needed, the the axiom of choice. For example without this axiom, or rather, method of construction of a new set from given ones, we cannot show that every vector space has a basis. But it also has some slightly counterintuitive consequences, and we shall also look at some of these.
 
 The lecture notes should be fairly self-contained, but the following books might also be of use. You might find that the notation which they use differs form that used in the lectures. You will be able to find various lecture notes on the internet. Some will be good, others not so good.
 \begin{enumerate}
@@ -62,12 +62,17 @@ $ 1 $ is very concise, but covers a surprising amount. $ 2 $ is friendlier, but 
 
 \section{Propositional logic}
 
-Let $ p $ be 'Mr Jones is happy' and $ q $ be 'Mrs Jones is unhappy'. Then 'if Mr Jones is happy, then Mrs Jones is unhappy, and if Mrs Jones is unhappy, then Mr Jones is unhappy, so Mr Jones is unhappy' is
+Let
+$$ p : \text{Mr Jones is happy}, \qquad q : \text{Mrs Jones is unhappy}. $$
+Then
+$$ \text{if Mr Jones is happy, then Mrs Jones is unhappy}, $$
+$$ \text{and if Mrs Jones is unhappy, then Mr Jones is unhappy, so Mr Jones is unhappy} $$
+is
 $$ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\notb{p}}. $$
 
 \subsection{Propositional formulas}
 
-A \textbf{proposition} is a statement that is either \textbf{True} $ \br{T} $ or \textbf{False} $ \br{F} $. The following are \textbf{truth table rules}.
+A \textbf{proposition} is a statement that is either \textbf{True $ \br{T} $} or \textbf{False $ \br{F} $}. The following are \textbf{truth table rules}.
 
 \begin{definition}
 \label{def:1.1.1}
@@ -101,6 +106,8 @@ F & F & F & F & T & T
 $$
 \end{definition}
 
+\pagebreak
+
 \begin{definition}
 \label{def:1.1.2}
 A \textbf{propositional formula} is obtained in the following way.
@@ -111,8 +118,6 @@ $$ \notb{\phi}, \qquad \andb{\phi}{\psi}, \qquad \orb{\phi}{\psi}, \qquad \impb{
 \item Any formula arises in this way.
 \end{itemize}
 \end{definition}
-
-\pagebreak
 
 \begin{example*}
 \hfill
@@ -134,7 +139,7 @@ $$ \cbr{T, F}^n = \cbr{\br{x_1, \dots, x_n} \mid x_i \in \cbr{T, F}}. $$
 (Exercise: how many truth functions of $ n $ variables are there?)
 \item Suppose $ \phi $ is a formula whose variables are amongst $ p_1, \dots, p_n $. We obtain a truth function
 $$ F_\phi : \cbr{T, F}^n \to \cbr{T, F}, $$
-whose value at $ \br{x_1, \dots, x_n} $ is the truth value of $ \phi $ when $ p_i $ has value $ x_i $, for $ i = 1, \dots, n $, computed using the rules in \ref{def:1.1.1}. $ F_\phi $ is the truth function of $ \phi $.
+whose value at $ \br{x_1, \dots, x_n} $ is the truth value of $ \phi $ when $ p_i $ has value $ x_i $, for $ i = 1, \dots, n $, computed using the rules in \ref{def:1.1.1}. Then $ F_\phi $ is the \textbf{truth function of $ \phi $}.
 \end{itemize}
 \end{definition}
 
@@ -168,14 +173,18 @@ $$
 \lecture{2}{Friday}{05/10/18}
 
 \begin{example*}
-What is the truth function of $ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\notb{p}} $? Always $ T $.
+What is the truth function of
+$$ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\notb{p}}? $$
+Always $ T $.
 \end{example*}
+
+\pagebreak
 
 \begin{definition}
 \hfill
 \begin{itemize}
 \item A propositional formula $ \phi $ is a \textbf{tautology} if its truth function $ F_\phi $ always has value $ T $.
-\item Say that formulas $ \phi, \psi $ are \textbf{logically equivalent (LE)} if they have the same truth function, that is $ F_\phi = F_\psi $.
+\item Say that formulas $ \phi $ and $ \psi $ are \textbf{logically equivalent (LE)} if they have the same truth function, that is $ F_\phi = F_\psi $.
 \end{itemize}
 \end{definition}
 
@@ -183,12 +192,10 @@ What is the truth function of $ \impb{\andb{\impb{p}{q}}{\impb{q}{\notb{p}}}}{\n
 \label{rem:1.1.5}
 \hfill
 \begin{enumerate}
-\item $ \phi, \psi $ are logically equivalent if and only if $ \iffb{\phi}{\psi} $ is a tautology.
+\item $ \phi $ and $ \psi $ are logically equivalent if and only if $ \iffb{\phi}{\psi} $ is a tautology.
 \item Suppose $ \phi $ is a formula with variables $ p_1, \dots, p_n $, and $ \phi_1, \dots, \phi_n $ are formulas with variables $ q_1, \dots, q_r $. For each $ i \le n $, substitute $ \phi_i $ in place of $ p_i $ in $ \phi $. Then the result is a formula $ \theta $, and if $ \phi $ is a tautology, then so is $ \theta $.
 \end{enumerate}
 \end{remark}
-
-\pagebreak
 
 \begin{example}
 Check that
@@ -298,7 +305,7 @@ Let
 $$ \chi : \impb{\impb{p_1}{p_2}}{\notb{p_2}}. $$
 Then
 $$ F_\chi\br{\overline{v}} = T \qquad \iff \qquad \overline{v} \in \cbr{\br{T, F}, \br{F, F}}. $$
-Thus disjunctive normal form is
+Thus the disjunctive normal form is
 $$ \orb{\andb{p_1}{\notb{p_2}}}{\andb{\notb{p_1}}{\notb{p_2}}}. $$
 \end{example*}
 
@@ -321,7 +328,7 @@ $$ \andb{p_1}{p_2} \ \text{is logically equivalent to} \ \notb{\orb{\notb{p_1}}{
 \item By \ref{thm:1.1.9}, enough to show that we can express $ \lor $ using $ \neg, \land $.
 $$ \orb{p_1}{p_2} \ \text{is logically equivalent to} \ \notb{\andb{\notb{p_1}}{\notb{p_2}}}. $$
 \item By \ref{thm:1.1.9}, enough to show that we can express $ \lor $ using $ \neg, \rightarrow $.
-$$ \orb{p_1}{p_2} \ \text{is logically equivalent to} \ \impb{\notb{p}}{q}. $$
+$$ \orb{p_1}{p_2} \ \text{is logically equivalent to} \ \impb{\notb{p_1}}{p_2}. $$
 \end{enumerate}
 \end{proof}
 
@@ -338,8 +345,8 @@ The following are not adequate.
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item If $ \phi $ is built using $ \lor, \land $, then $ F_\phi\br{T, \dots, T} = T $. Proof by induction on number of connectives.
-\item Exercise. Puzzle.
+\item If $ \phi $ is built using $ \lor, \land $, then $ F_\phi\br{T, \dots, T} = T $, by proof by induction on the number of connectives.
+\item Exercise: puzzle.
 \end{enumerate}
 \end{proof}
 
@@ -355,22 +362,22 @@ F & T & F \\
 F & F & T
 \end{array}
 $$
-$ \br{p \downarrow q} $ is logically equivalent to $ \andb{\notb{p}}{\notb{q}} $. $ \cbr{\downarrow} $ is adequate.
+$ \br{p \downarrow q} $ is logically equivalent to $ \andb{\notb{p}}{\notb{q}} $. Then $ \cbr{\downarrow} $ is adequate, since
 \begin{itemize}
 \item $ \br{p \downarrow p} $ is logically equivalent to $ \notb{p} $, and
-\item $ \br{\br{p \downarrow p} \downarrow \br{q \downarrow q}} $ is logically equivalent to $ \andb{p}{q} $.
+\item $ \br{\br{p \downarrow p} \downarrow \br{q \downarrow q}} $ is logically equivalent to $ \andb{p}{q} $,
 \end{itemize}
-So, as $ \cbr{\neg, \land} $ is adequate, so is $ \cbr{\downarrow} $.
+so, as $ \cbr{\neg, \land} $ is adequate, so is $ \cbr{\downarrow} $.
 \end{example}
 
 \pagebreak
 
 \subsection{A formal system for propositional logic}
 
-The idea is to try to generate all tautologies from basic assumptions, axioms, using appropriate deduction rules.
+The idea is to try to generate all tautologies from basic assumptions, or axioms, using appropriate deduction rules.
 
 \begin{definition}
-Very general definition.
+The following is a very general definition.
 \begin{itemize}
 \item A \textbf{formal deduction system} $ \Sigma $ has the following ingredients.
 \begin{itemize}
@@ -379,8 +386,8 @@ Very general definition.
 \item A subset $ \AA \subseteq \FF $ called the \textbf{axioms} of $ \Sigma $.
 \item A collection of \textbf{deduction rules}.
 \end{itemize}
-\item A \textbf{proof} in $ \Sigma $ is a finite sequence of formulas in $ \FF $, $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom, that is is in $ \AA $, or is obtained from $ \phi_1, \dots, \phi_{i - 1} $ using one of the deduction rules.
-\item The last, or any, formula in a proof is a \textbf{theorem} of $ \Sigma $. Write $ \vdash_\Sigma \phi $ for $ \phi $ is a theorem of $ \Sigma $.
+\item A \textbf{proof} in $ \Sigma $ is a finite sequence of formulas in $ \FF $, $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom, that is it is in $ \AA $, or is obtained from $ \phi_1, \dots, \phi_{i - 1} $ using one of the deduction rules.
+\item The last, or any, formula in a proof is a \textbf{theorem} of $ \Sigma $. Write $ \vdash_\Sigma \phi $ if $ \phi $ is a theorem of $ \Sigma $.
 \end{itemize}
 \end{definition}
 
@@ -408,7 +415,7 @@ $$
 \item Formulas. $ L $-formulas defined in \ref{def:1.1.2} for $ \neg, \rightarrow $.
 \begin{itemize}
 \item Any variable $ p_i $ is a formula.
-\item If $ \phi, \psi $ are formulas, then so are
+\item If $ \phi $ and $ \psi $ are formulas, then so are
 $$ \notb{\phi}, \qquad \impb{\phi}{\psi}. $$
 \item Any formula arises in this way.
 \end{itemize}
@@ -420,7 +427,7 @@ $$ \notb{\phi}, \qquad \impb{\phi}{\psi}. $$
 \end{enumerate}
 \item Deduction rule.
 \begin{itemize}
-\item[(MP)] \textbf{Modus Ponens}. From $ \phi, \impb{\phi}{\psi} $, deduce $ \psi $.
+\item[(MP)] \textbf{Modus Ponens}. From $ \phi $ and $ \impb{\phi}{\psi} $, deduce $ \psi $.
 \end{itemize}
 \end{itemize}
 \end{definition}
@@ -444,14 +451,14 @@ Theorem $ 0 $. Suppose $ \phi $ is an $ L $-formula. Then $ \vdash_L \impb{\phi}
 \begin{definition}
 Suppose $ \Gamma $ is a set of $ L $-formulas.
 \begin{itemize}
-\item A \textbf{deduction from $ \Gamma $} is a finite sequence of $ L $-formulas $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom, a formula in $ \Gamma $, or is obtained from previous formulas $ \phi_1, \dots, \phi_{i - 1} $ using the deduction rule MP.
+\item A \textbf{deduction} from $ \Gamma $ is a finite sequence of $ L $-formulas $ \phi_1, \dots, \phi_n $ such that each $ \phi_i $ is either an axiom, a formula in $ \Gamma $, or is obtained from previous formulas $ \phi_1, \dots, \phi_{i - 1} $ using the deduction rule MP.
 \item Write $ \Gamma \vdash_L \phi $ if there is a deduction from $ \Gamma $ ending in $ \phi $. Say $ \phi $ is a \textbf{consequence} of $ \Gamma $. So $ \emptyset \vdash_L \phi $ is the same as $ \vdash_L \phi $.
 \end{itemize}
 \end{definition}
 
 \begin{theorem}[Deduction theorem]
 \label{thm:1.2.5}
-Suppose $ \Gamma $ is a set of $ L $-formulas and $ \phi, \psi $ are $ L $-formulas. Suppose $ \Gamma \cup \cbr{\phi} \vdash_L \psi $. Then $ \Gamma \vdash_L \impb{\phi}{\psi} $.
+Suppose $ \Gamma $ is a set of $ L $-formulas and $ \phi $ and $ \psi $ are $ L $-formulas. Suppose $ \Gamma \cup \cbr{\phi} \vdash_L \psi $. Then $ \Gamma \vdash_L \impb{\phi}{\psi} $.
 \end{theorem}
 
 \begin{corollary}[Hypothetical syllogism]
@@ -472,7 +479,7 @@ Thus $ \cbr{\phi} \vdash_L \chi $. By deduction theorem, $ \emptyset \vdash_L \i
 
 \begin{proposition}
 \label{prop:1.2.7}
-Suppose $ \phi, \psi $ are $ L $-formulas. Then
+Suppose $ \phi $ and $ \psi $ are $ L $-formulas. Then
 \begin{enumerate}
 \item $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\phi}} $,
 \item $ \cbr{\notb{\psi}, \psi} \vdash_L \phi $, and
@@ -506,10 +513,10 @@ Suppose $ \Gamma \cup \cbr{\phi} \vdash_L \psi $ using a deduction of length $ n
 \item Base case. $ n = 1 $. In this case, $ \psi $ is either an axiom, or in $ \Gamma $, or is $ \phi $. In the first two cases, $ \Gamma \vdash_L \psi $, a one line deduction. Using the A1 axiom $ \impb{\psi}{\impb{\phi}{\psi}} $ and MP, we obtain $ \Gamma \vdash_L \impb{\phi}{\psi} $. If $ \phi $ is $ \psi $, we have $ \Gamma \vdash_L \impb{\phi}{\phi} $, by \ref{eg:1.2.3}. This finishes the base case.
 \item Inductive step. In our deduction of $ \psi $ from $ \Gamma \cup \cbr{\phi} $, either
 \begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
-\item $ \psi $ is an axiom, or in $ \Gamma $, or is $ \phi $,
-\item or $ \psi $ is obtained from earlier steps using MP.
+\item $ \psi $ is an axiom, or in $ \Gamma $, or is $ \phi $, or
+\item $ \psi $ is obtained from earlier steps using MP.
 \end{enumerate}
-In case $ 1 $, we argue as in the base case to get $ \Gamma \vdash_L \impb{\phi}{\psi} $. In case $ 2 $, there are formulas $ \chi, \impb{\chi}{\psi} $ earlier in the deduction. We use the inductive hypothesis to get
+In case $ 1 $, we argue as in the base case to get $ \Gamma \vdash_L \impb{\phi}{\psi} $. In case $ 2 $, there are formulas $ \chi $ and $ \impb{\chi}{\psi} $ earlier in the deduction. We use the inductive hypothesis to get
 \begin{equation}
 \label{eq:1}
 \Gamma \vdash_L \impb{\phi}{\chi}, \qquad \Gamma \vdash_L \impb{\phi}{\impb{\chi}{\psi}}.
@@ -520,7 +527,7 @@ We have the A2 axiom $ \impb{\impb{\phi}{\impb{\psi}{\chi}}}{\impb{\impb{\phi}{\
 
 \lecture{5}{Friday}{12/10/18}
 
-\subsection{Soundness and completeness of $ L $}
+\subsection{Soundness and completeness of \texorpdfstring{$ L $}{L}}
 
 \begin{theorem}[Soundness of $ L $]
 \label{thm:1.3.1}
@@ -540,7 +547,7 @@ Using the truth table rules, this assigns a truth value $ v\br{\phi} \in \cbr{T,
 By induction on the length of a proof of $ \phi $, it is enough to show
 \begin{enumerate}
 \item every axiom is a tautology, and
-\item MP preserves tautologies, that is if $ \psi, \impb{\psi}{\chi} $ are tautologies, so is $ \chi $.
+\item MP preserves tautologies, that is if $ \psi $ and $ \impb{\psi}{\chi} $ are tautologies, so is $ \chi $.
 \end{enumerate}
 \begin{enumerate}
 \item Use truth tables, or argue as follows. For A2, suppose for a contradiction there is a valuation $ v $ with
@@ -571,11 +578,11 @@ So by $ \br{\ref{eq:5}} $, $ v\br{\phi} = T $ and $ v\br{\chi} = F $. By $ \br{\
 \end{proof}
 
 \begin{theorem}[Generalisation of soundness]
-Suppose $ \Gamma $ is a set of formulas and $ \phi $ a formula with $ \Gamma \vdash_L \phi $. Suppose $ v $ is a valuation with $ v\br{\psi} = T $ for all $ \psi \in \Gamma $. Then $ v\br{\phi} = T $.
+Suppose $ \Gamma $ is a set of formulas and $ \phi $ is a formula with $ \Gamma \vdash_L \phi $. Suppose $ v $ is a valuation with $ v\br{\psi} = T $ for all $ \psi \in \Gamma $. Then $ v\br{\phi} = T $.
 \end{theorem}
 
 \begin{proof}
-Exercise. Same proof.
+Exercise: the same proof.
 \end{proof}
 
 \pagebreak
@@ -586,7 +593,7 @@ Suppose $ \phi $ is a tautology, that is $ v\br{\phi} = T $ for every valuation 
 \end{theorem}
 
 \begin{remark}
-Steps in proof.
+The following are the steps in the proof.
 \begin{itemize}
 \item If $ v\br{\phi} = T $ for all valuations $ v $, want to show $ \vdash_L \phi $.
 \item Try to prove a generalisation. Suppose that, for every $ v $ with $ v\br{\Gamma} = T $, that is $ v\br{\psi} = T $ for all $ \psi \in \Gamma $, we have $ v\br{\phi} = T $. Then $ \Gamma \vdash_L \phi $.
@@ -636,15 +643,13 @@ So by this, $ \br{\ref{eq:9}} $, and MP, $ \Gamma \vdash_L \phi $. This contradi
 
 \begin{proposition}[Lindenbaum lemma]
 \label{prop:1.3.8}
-Suppose $ \Gamma $ is a consistent set of $ L $-formulas. Then there is a consistent set of formulas $ \Gamma^* \supseteq \Gamma $ such that, for every $ \phi $, either $ \Gamma^* \vdash_L \phi $ or $ \Gamma^* \vdash_L \notb{\phi} $.
+Suppose $ \Gamma $ is a consistent set of $ L $-formulas. Then there is a consistent set of formulas $ \Gamma^* \supseteq \Gamma $ such that, for every $ \phi $, either $ \Gamma^* \vdash_L \phi $ or $ \Gamma^* \vdash_L \notb{\phi} $. Sometimes say $ \Gamma^* $ is \textbf{complete}.
 \end{proposition}
-
-Sometimes say $ \Gamma^* $ is \textbf{complete}.
 
 \begin{proof}
 The set of $ L $-formulas is countable, so we can list the $ L $-formulas as $ \phi_0, \phi_1, \dots $. This is countable, since the alphabet
 $$ \neg \quad \rightarrow \qquad ) \quad ( \qquad p_1 \quad p_2 \quad \dots $$
-is countable, and the formulas are finite sequences from this alphabet, so only countable many. Define inductively sets of formulas
+is countable, and the formulas are finite sequences from this alphabet, so there are only countable many. Define inductively the sets of formulas
 $$ \Gamma_0 \subseteq \Gamma_1 \subseteq \dots, \qquad \Gamma_0 = \Gamma, \qquad \Gamma_{n + 1} =
 \begin{cases}
 \Gamma_n & \Gamma_n \vdash_L \phi_n \\
@@ -704,7 +709,7 @@ $$ v\br{\phi} = T \qquad \iff \qquad \Gamma^* \vdash_L \phi. $$
 \begin{align*}
 v\br{\phi} = T \qquad
 & \implies \qquad v\br{\psi} = F & \text{as} \ v \ \text{is a valuation} \\
-& \implies \qquad \Gamma^* \not\vdash_L \psi & \text{by inductive hypothesis} \\
+& \implies \qquad \Gamma^* \not\vdash_L \psi & \text{by the inductive hypothesis} \\
 & \implies \qquad \Gamma^* \vdash_L \notb{\psi} & \text{by Lindenbaum property} \\
 & \implies \qquad \Gamma^* \vdash_L \phi.
 \end{align*}
@@ -712,7 +717,7 @@ v\br{\phi} = T \qquad
 \begin{align*}
 \Gamma^* \vdash_L \phi \qquad
 & \implies \qquad \Gamma^* \not\vdash_L \psi & \text{by consistency} \\
-& \implies \qquad v\br{\psi} = F & \text{by inductive hypothesis} \\
+& \implies \qquad v\br{\psi} = F & \text{by the inductive hypothesis} \\
 & \implies \qquad v\br{\notb{\psi}} = T & \text{as} \ v \ \text{is a valuation} \\
 & \implies \qquad v\br{\phi} = T.
 \end{align*}
@@ -722,7 +727,7 @@ v\br{\phi} = T \qquad
 \begin{itemize}
 \item[$ \impliedby $] Suppose $ v\br{\phi} = F $. Show that $ \Gamma^* \not\vdash_L \phi $. Then
 $$ v\br{\psi} = T, \qquad v\br{\chi} = F. $$
-By inductive hypothesis,
+By the inductive hypothesis,
 $$ \Gamma^* \vdash_L \psi, \qquad \Gamma^* \not\vdash_L \chi. $$
 If $ \Gamma^* \vdash_L \phi $, then using $ \Gamma^* \vdash_L \psi $ and MP, we get $ \Gamma^* \vdash_L \chi $, a contradiction. So $ \Gamma^* \not\vdash_L \phi $.
 \item[$ \implies $] Suppose $ \Gamma^* \not\vdash_L \phi $, that is $ \Gamma^* \not\vdash_L \impb{\psi}{\chi} $. Then
@@ -735,7 +740,7 @@ as $ \vdash_L \impb{\chi}{\impb{\psi}{\chi}} $. Also
 \label{eq:11}
 \Gamma^* \not\vdash_L \notb{\psi},
 \end{equation}
-as $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\chi}} $ by \ref{prop:1.2.7}.$ 1 $. By $ \br{\ref{eq:10}} $, $ \br{\ref{eq:11}} $, and inductive hypothesis,
+as $ \vdash_L \impb{\notb{\psi}}{\impb{\psi}{\chi}} $ by \ref{prop:1.2.7}.$ 1 $. By $ \br{\ref{eq:10}} $, $ \br{\ref{eq:11}} $, and the inductive hypothesis,
 $$ v\br{\chi} = F, \qquad v\br{\notb{\psi}} = F, $$
 so $ v\br{\psi} = T $. Thus $ v\br{\phi} = F $, which does the inductive step.
 \end{itemize}
@@ -753,7 +758,7 @@ Suppose $ \Delta $ is a set of $ L $-formulas and $ \phi $ is an $ L $-formula. 
 \end{corollary}
 
 \begin{proof}
-Exercise. Deduce these from the preliminaries to completeness theorem. Warning that, in $ 2 $, do not assume that $ \Delta $ is consistent.
+Exercise: deduce these from the preliminaries to the completeness theorem. A warning is that, in $ 2 $, do not assume that $ \Delta $ is consistent.
 \end{proof}
 
 \begin{theorem}[Compactness theorem for $ L $]
@@ -778,7 +783,7 @@ Exercise. Let
 $$ P = \cbr{\text{sequences of} \ \cbr{T, F}} = \cbr{\text{functions} \ f : \N \to \cbr{T, F}}. $$
 Topologise with basis open sets. For $ a_1, \dots, a_n \in \cbr{T, F} $, consider
 $$ O\br{a_1, \dots, a_n} = \cbr{\text{all sequences starting} \ a_1, \dots, a_n, \dots}. $$
-Use compactness theorem to prove $ P $ is compact.
+Use the compactness theorem to prove $ P $ is compact.
 \end{example*}
 
 \lecture{7}{Thursday}{18/10/18}
@@ -820,9 +825,9 @@ $$ \overline{f} : A^n \to A. $$
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Ordering $ \le $ on $ \R $ is a binary relation on $ \R $.
+\item The ordering $ \le $ on $ \R $ is a binary relation on $ \R $.
 \item $ + $ on $ \C $ is a binary function on $ \C $.
-\item Even integers as a subset of $ \Z $ is a unary relation on $ \Z $.
+\item The even integers as a subset of $ \Z $ is a unary relation on $ \Z $.
 \end{itemize}
 \end{example*}
 
@@ -913,7 +918,7 @@ Here $ I, J, K $ are indexing sets, which could have $ J, K = \emptyset $.
 \end{itemize}
 The information
 $$ \br{n_i \mid i \in I}, \qquad \br{m_j \mid j \in J}, \qquad K $$
-is called the signature of $ \LL $.
+is called the \textbf{signature} of $ \LL $.
 \end{definition}
 
 \pagebreak
@@ -951,7 +956,7 @@ where $ R $ is an $ n $-ary relation symbol of $ \LL $ and $ t_1, \dots, t_n $ a
 \item The formulas of $ \LL $ are defined as follows.
 \begin{itemize}
 \item Any atomic formula is a formula.
-\item If $ \phi, \psi $ are $ \LL $-formulas, then
+\item If $ \phi $ and $ \psi $ are $ \LL $-formulas, then
 $$ \notb{\phi}, \qquad \impb{\phi}{\psi}, \qquad \fab{x}\phi $$
 are $ \LL $-formulas, where $ x $ is any variable.
 \item Every $ \LL $-formula arises in this way.
@@ -960,7 +965,7 @@ are $ \LL $-formulas, where $ x $ is any variable.
 \end{definition}
 
 \begin{example*}
-Suppose $ \LL $ has a binary function symbol $ f $, a unary relation symbol $ P $, a binary relation symbol $ R $, and constant symbols $ c_1, c_2 $.
+Suppose $ \LL $ has a binary function symbol $ f $, a unary relation symbol $ P $, a binary relation symbol $ R $, and constant symbols $ c_1 $ and $ c_2 $.
 \begin{itemize}
 \item Some terms.
 $$ x_1 \qquad c_1 \qquad f\br{x_1, c_1} \qquad f\br{f\br{x_1, c_1}, x_2} $$
@@ -972,7 +977,7 @@ $$ \fab{x_1}\impb{R\br{f\br{x_1, c_1}, x_2}}{P\br{x_1}} $$
 \end{example*}
 
 \begin{definition}
-Suppose $ \phi, \psi $ are $ \LL $-formulas.
+Suppose $ \phi $ and $ \psi $ are $ \LL $-formulas.
 \begin{itemize}
 \item $ \teb{x}\phi $ means $ \notb{\fab{x}\notb{\phi}} $.
 \item $ \orb{\phi}{\psi} $ means $ \impb{\notb{\phi}}{\psi} $, etc, as in propositional logic.
@@ -982,7 +987,7 @@ Suppose $ \phi, \psi $ are $ \LL $-formulas.
 \pagebreak
 
 \begin{definition}
-Suppose $ \LL $ is a first-order language with relation symbols $ R_i $, of arity $ n_i $, for $ i \in I $, function symbols $ f_j $, of arity $ m_j $, for $ j \in J $, and constant symbols $ c_k $ for $ k \in K $. An \textbf{$ \LL $-structure} is a structure
+Suppose $ \LL $ is a first-order language with relation symbols $ R_i $ of arity $ n_i $ for $ i \in I $, function symbols $ f_j $ of arity $ m_j $ for $ j \in J $, and constant symbols $ c_k $ for $ k \in K $. An \textbf{$ \LL $-structure} is a structure
 $$ \AA = \abr{A; \br{\overline{R_i} \mid i \in I}, \br{\overline{f_j} \mid j \in J}, \br{\overline{c_k} \mid k \in K}} $$
 of the same signature as $ \LL $.
 \end{definition}
@@ -1012,7 +1017,7 @@ By induction on the length of terms. Show that, if we let
 \item $ v\br{c_k} = \overline{c_k} $ for all $ k \in K $, and
 \item $ v\br{f\br{t_1, \dots, t_m}} = \overline{f}\br{v\br{t_1}, \dots, v\br{t_m}} $,
 \end{itemize}
-then $ v $ is a well-defined valuation.
+then $ v $ is a well-defined valuation. (Exercise)
 \end{proof}
 
 \begin{example*}
@@ -1034,11 +1039,11 @@ v\br{m\br{m\br{x_0, x_1}, i\br{x_0}}}
 \end{align*}
 \end{example*}
 
-\begin{definition}
-Suppose $ \AA $ is an $ \LL $-structure and $ x_l $ is any variable. Suppose $ v, w $ are valuations in $ \AA $. We say $ v, w $ are \textbf{$ x_l $-equivalent} if $ v\br{x_m} = w\br{x_m} $ whenever $ m \ne l $.
-\end{definition}
-
 \pagebreak
+
+\begin{definition}
+Suppose $ \AA $ is an $ \LL $-structure and $ x_l $ is any variable. Suppose $ v $ and $ w $ are valuations in $ \AA $. We say $ v $ and $ w $ are \textbf{$ x_l $-equivalent} if $ v\br{x_m} = w\br{x_m} $ whenever $ m \ne l $.
+\end{definition}
 
 \begin{definition}
 \label{def:2.2.9}
@@ -1046,7 +1051,7 @@ Suppose $ \AA $ is an $ \LL $-structure and $ v $ is a valuation in $ \AA $. Def
 \begin{itemize}
 \item Atomic formulas. Suppose $ R $ is an $ n $-ary relation symbol and $ t_1, \dots, t_n $ are terms of $ \LL $. Then
 $$ v \ \text{satisfies the atomic formula} \ R\br{t_1, \dots, t_n} \qquad \iff \qquad \overline{R}\br{v\br{t_1}, \dots, v\br{t_n}} \ \text{holds in} \ \AA. $$
-\item Suppose $ \phi, \psi $ are $ \LL $-formulas, and we already know about valuations satisfying $ \phi, \psi $.
+\item Suppose $ \phi $ and $ \psi $ are $ \LL $-formulas, and we already know about valuations satisfying $ \phi $ and $ \psi $.
 \begin{align*}
 v \ \text{satisfies} \ \notb{\phi} \ \text{in} \ \AA \qquad \iff \qquad & v \ \text{does not satisfy} \ \phi \ \text{in} \ \AA, \\
 v \ \text{satisfies} \ \impb{\phi}{\psi} \ \text{in} \ \AA \qquad \iff \qquad & \text{it is not the case that} \ v \ \text{satisfies} \ \phi \ \text{in} \ \AA \\
@@ -1060,14 +1065,14 @@ v \ \text{satisfies} \ \fab{x_l}\phi \ \text{in} \ \AA \qquad \iff \qquad & \tex
 \lecture{10}{Thursday}{25/10/18}
 
 \begin{remark*}
-\ref{def:2.2.9} does not work if we allow empty structure.
+\ref{def:2.2.9} does not work if we allow the empty structure.
 \end{remark*}
 
 \begin{notation*}
 If $ v $ satisfies $ \phi $, write $ v\sbr{\phi} = T $. If $ v $ does not satisfy $ \phi $, write $ v\sbr{\phi} = F $. If every valuation in $ \AA $ satisfies $ \phi $, say that $ \phi $ is \textbf{true} in $ \AA $ or $ \AA $ is a \textbf{model} of $ \phi $, and write $ \AA \vDash \phi $. If $ \AA \vDash \phi $ for every $ \LL $-structure $ \AA $, we say that $ \phi $ is \textbf{logically valid}, and write $ \vDash \phi $.
 \end{notation*}
 
-These are the analogues of tautologies in the propositional logic. Difference is that in propositional logic there is an algorithm to decide whether a given formula is a tautology. There is no such algorithm to decide whether a given $ \LL $-formula is logically valid or not. This is a consequence of G\"odel's incompleteness theorem.
+These are the analogues of tautologies in the propositional logic. The difference is that in propositional logic there is an algorithm to decide whether a given formula is a tautology. There is no such algorithm to decide whether a given $ \LL $-formula is logically valid or not. This is a consequence of G\"odel's incompleteness theorem.
 
 \begin{example}
 \hfill
@@ -1116,7 +1121,7 @@ Exercise.
 \begin{example*}
 Consider the propositional formula
 $$ \chi : \impb{p_1}{\impb{p_2}{p_1}}. $$
-Suppose $ \LL $ is a first-order language and $ \phi_1, \phi_2 $ are $ \LL $-formulas. Substitute $ \phi_1 $ in place of $ p_1 $, and $ \phi_2 $ in place of $ p_2 $, in $ \chi $. We obtain an $ \LL $-formula
+Suppose $ \LL $ is a first-order language and $ \phi_1 $ and $ \phi_2 $ are $ \LL $-formulas. Substitute $ \phi_1 $ in place of $ p_1 $, and $ \phi_2 $ in place of $ p_2 $, in $ \chi $. We obtain an $ \LL $-formula
 $$ \theta : \impb{\phi_1}{\impb{\phi_2}{\phi_1}}. $$
 Check that, as $ \chi $ is a tautology, $ \theta $ is logically valid.
 \end{example*}
@@ -1144,9 +1149,9 @@ Then prove, by induction on the number of connectives in $ \chi $, that
 $$ w\br{\chi} = v\sbr{\theta}. $$
 In particular, if $ \chi $ is a tautology, then $ v\sbr{\theta} = T $. (Exercise) For example, in the inductive step, consider
 $$ \chi : \impb{\alpha}{\beta}. $$
-So $ \theta $ is $ \impb{\theta_1}{\theta_2} $, where $ \theta_1 $ is obtained from $ \alpha $ and $ \theta_2 $ is obtained from $ \beta $. By inductive hypothesis,
+So $ \theta $ is $ \impb{\theta_1}{\theta_2} $, where $ \theta_1 $ is obtained from $ \alpha $ and $ \theta_2 $ is obtained from $ \beta $. By the induction hypothesis,
 $$ w\br{\alpha} = v\sbr{\theta_1}, \qquad w\br{\beta} = v\sbr{\theta_2}. $$
-So $ w\impb{\alpha}{\beta} = v\sbr{\impb{\theta_1}{\theta_2}} $, etc.
+So $ w\br{\impb{\alpha}{\beta}} = v\sbr{\impb{\theta_1}{\theta_2}} $, etc.
 \end{proof}
 
 \begin{note*}
@@ -1162,7 +1167,7 @@ $$ \impb{\teb{x_2}\fab{x_1}\phi}{\fab{x_1}\teb{x_2}\phi}. $$
 \subsection{Bound and free variables in formulas}
 
 \begin{definition}
-Suppose $ \phi, \psi $ are $ \LL $-formulas and $ \fab{x_i}\phi $ occurs as a subformula of $ \psi $, that is $ \psi $ is
+Suppose $ \phi $ and $ \psi $ are $ \LL $-formulas and $ \fab{x_i}\phi $ occurs as a subformula of $ \psi $, that is $ \psi $ is
 $$ \dots \quad \fab{x_i}\phi \quad \dots. $$
 \begin{itemize}
 \item We say that $ \phi $ is the \textbf{scope} of that quantifier $ \fab{x_i} $ here in $ \psi $. An occurrence of a variable $ x_j $ in $ \psi $ is \textbf{bound} if it is in the scope of a quantifier $ \fab{x_j} $ in $ \psi $, or it is the $ x_j $ here in $ \fab{x_j} $.
@@ -1173,8 +1178,9 @@ $$ \dots \quad \fab{x_i}\phi \quad \dots. $$
 
 \begin{example*}
 $$ \psi_1 : \impb{R_1\br{\overbrace{x_1, x_2}^{\text{free}}}}{\fab{x_3}\underbrace{R_2\br{\overbrace{x_1}^{\text{free}}, \overbrace{x_3}^{\text{bound}}}}_{\text{scope of} \ \fab{x_3}}} $$
-$$ \psi_2 : \impb{\fab{x_1}\underbrace{R_1\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}_{\text{scope of} \ \fab{x_1}}}{R_2\br{\overbrace{x_1, x_2}^{\text{free}}}} \qquad \psi_{2'} : \fab{x_1}\underbrace{\impb{R_1\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}{R_2\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}}_{\text{scope of} \ \fab{x_1}} $$
-$$ \psi_3 : \impb{\teb{x_1}\underbrace{R_1\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}_{\text{scope of} \ \teb{x_1}}}{\fab{x_2}\underbrace{R_2\br{\overbrace{x_2}^{\text{bound}}, \overbrace{x_3}^{\text{free}}}}_{\text{scope of} \ \fab{x_2}}} $$
+$$ \psi_2 : \impb{\fab{x_1}\underbrace{R_1\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}_{\text{scope of} \ \fab{x_1}}}{R_2\br{\overbrace{x_1, x_2}^{\text{free}}}} $$
+$$ \psi_3 : \fab{x_1}\underbrace{\impb{R_1\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}{R_2\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}}_{\text{scope of} \ \fab{x_1}} $$
+$$ \psi_4 : \impb{\teb{x_1}\underbrace{R_1\br{\overbrace{x_1}^{\text{bound}}, \overbrace{x_2}^{\text{free}}}}_{\text{scope of} \ \teb{x_1}}}{\fab{x_2}\underbrace{R_2\br{\overbrace{x_2}^{\text{bound}}, \overbrace{x_3}^{\text{free}}}}_{\text{scope of} \ \fab{x_2}}} $$
 \end{example*}
 
 \begin{definition}
@@ -1196,13 +1202,15 @@ $$ \psi\br{t_1, t_2} : \impb{\fab{x_1}R_1\br{x_1, f_2\br{x_1, x_2}}}{\fab{x_3}R_
 
 \begin{theorem}
 \label{thm:2.3.3}
-Suppose $ \phi $ is a closed $ \LL $-formula and $ \AA $ is an $ \LL $-structure. Then either $ \AA \vDash \phi $ or $ \AA \vDash \notb{\phi} $. More generally, if $ \phi $ has free variables amongst $ x_1, \dots, x_n $, and $ v, w $ are valuations in $ \AA $ with $ v\br{x_i} = w\br{x_i} $, for $ i = 1, \dots, n $, then
+Suppose $ \phi $ is a closed $ \LL $-formula and $ \AA $ is an $ \LL $-structure. Then either $ \AA \vDash \phi $ or $ \AA \vDash \notb{\phi} $. More generally, if $ \phi $ has free variables amongst $ x_1, \dots, x_n $, and $ v $ and $ w $ are valuations in $ \AA $ with
+$$ v\br{x_i} = w\br{x_i}, \qquad i = 1, \dots, n, $$
+then
 $$ v\sbr{\phi} = T \qquad \iff \qquad w\sbr{\phi} = T. $$
 Allow $ n = 0 $ here, for no free variables.
 \end{theorem}
 
 \begin{proof}
-Note that the first statement follows from the generalisation. If $ \phi $ has no free variables, then, for any valuations $ v, w $ in $ \AA $, they agree on the free variables of $ \phi $, so
+Note that the first statement follows from the generalisation, since if $ \phi $ has no free variables, then, for any valuations $ v $ and $ w $ in $ \AA $, they agree on the free variables of $ \phi $, so
 $$ v\sbr{\phi} = w\sbr{\phi}. $$
 Prove the generalisation by induction on the number of connectives and quantifiers in $ \phi $.
 \begin{itemize}
@@ -1214,7 +1222,7 @@ So
 $$ v\sbr{R\br{t_1, \dots, t_m}} = T \qquad \iff \qquad \overline{R}\br{v\br{t_1}, \dots, v\br{t_m}} \qquad \iff \qquad w\sbr{R\br{t_1, \dots, t_m}} = T. $$
 \item Inductive step. $ \phi $ is $ \notb{\psi} $, $ \impb{\psi}{\chi} $, or $ \fab{x_i}\psi $. (Exercise: first two cases) Suppose $ \phi $ is $ \fab{x_i}\psi $. Suppose $ v\sbr{\phi} = F $. By \ref{def:2.2.9}, there is a valuation $ v' $, $ x_i $-equivalent to $ v $, with $ v'\sbr{\psi} = F $. The free variables of $ \psi $ are amongst $ x_1, \dots, x_n, x_i $. Let $ w' $ be the valuation $ x_i $-equivalent to $ w $ with
 $$ w'\br{x_i} = v'\br{x_i}. $$
-Then $ v', w' $ agree on the free variables of $ \psi $. By inductive hypothesis,
+Then $ v' $ and $ w' $ agree on the free variables of $ \psi $. By the induction hypothesis,
 $$ v'\sbr{\psi} = w'\sbr{\psi}, $$
 so $ w'\sbr{\psi} = F $. As $ w' $ is $ x_i $-equivalent to $ w $, we obtain $ w\sbr{\fab{x_i}\psi} = F $.
 \end{itemize}
@@ -1225,31 +1233,32 @@ so $ w'\sbr{\psi} = F $. As $ w' $ is $ x_i $-equivalent to $ w $, we obtain $ w
 \begin{remark}
 If $ \AA $ is an $ \LL $-structure and $ \psi\br{x_1, \dots, x_n} $ an $ \LL $-formula, whose free variables are amongst $ x_1, \dots, x_n $, and $ a_1, \dots, a_n \in A $, for domain $ A $, then we write
 $$ \AA \vDash \psi\br{a_1, \dots, a_n}, $$
-to mean $ v\sbr{\psi} = T $ for every valuation $ v $ in $ \AA $ with $ v\br{x_i} = a_i $, for $ i = 1, \dots, n $.
+to mean $ v\sbr{\psi} = T $ for every valuation $ v $ in $ \AA $ with
+$$ v\br{x_i} = a_i, \qquad i = 1, \dots, n. $$
 \end{remark}
 
 \begin{remark*}
 By the proof of \ref{thm:2.3.3}, this holds if $ v\sbr{\psi} = T $ for some such valuation.
 \end{remark*}
 
+\pagebreak
+
 \begin{example*}
-A warning example, where $ \AA \vDash \fab{x_1}\phi\br{x_1} $, but we have term $ t $, and a valuation $ v $ in $ \AA $, with $ v\sbr{\phi\br{t}} = F $. Let
+A warning example, where $ \AA \vDash \fab{x_1}\phi\br{x_1} $, but we have a term $ t $, and a valuation $ v $ in $ \AA $, with $ v\sbr{\phi\br{t}} = F $. Let
 $$ \phi\br{x_1} : \impb{\fab{x_2}\underbrace{R\br{\overbrace{x_1}^{\text{free}}, x_2}}_{\text{scope of} \ \fab{x_2}}}{S\br{\overbrace{x_1}^{\text{free}}}}. $$
 Let $ t_1 $ be $ x_2 $. Then $ \phi\br{t_1} $ is
 $$ \impb{\fab{x_2}R\br{x_2, x_2}}{S\br{x_2}}. $$
 Suppose $ \AA = \abr{\N; \le, = 0} $.
 \begin{itemize}
-\item Domain is $ \N = \cbr{0, 1, \dots} $,
-\item $ R\br{x_1, x_2} $ is interpreted as $ x_1 \le x_2 $, and
+\item Domain is $ \N = \cbr{0, 1, \dots} $.
+\item $ R\br{x_1, x_2} $ is interpreted as $ x_1 \le x_2 $.
 \item $ S\br{x_1} $ is interpreted as $ x_1 = 0 $.
 \end{itemize}
 So $ \AA \vDash \fab{x_1}\phi\br{x_1} $. But if we choose a valuation $ v\br{x_2} = 1 $, then $ v\sbr{\phi\br{t_1}} = F $ in $ \AA $.
 \end{example*}
 
-\pagebreak
-
 \begin{definition}
-Let $ \phi $ be an $ \LL $-formula, $ x_i $ a variable, and $ t $ an $ \LL $-term. We say \textbf{$ t $ is free for $ x_i $ in $ \phi $} if there is no variable $ x_j $ in $ t $, such that $ x_i $ has a free occurrence within the scope of a quantifier $ \fab{x_j} $ in $ \phi $.
+Let $ \phi $ be an $ \LL $-formula, $ x_i $ a variable, and $ t $ an $ \LL $-term. We say $ t $ is \textbf{free for $ x_i $} in $ \phi $ if there is no variable $ x_j $ in $ t $, such that $ x_i $ has a free occurrence within the scope of a quantifier $ \fab{x_j} $ in $ \phi $.
 \end{definition}
 
 \begin{example*}
@@ -1258,7 +1267,7 @@ Exercise. Let $ t = f\br{x_3, x_2, x_5} $. Let
 \phi_1 & : \impb{\impb{\fab{x_2}R\br{x_2, x_4}}{K\br{x_1}}}{\fab{x_1}R\br{x_1, x_1}}, \\
 \phi_2 & : \impb{\fab{x_2}\impb{R\br{x_2, x_4}}{\fab{x_1}K\br{x_1}}}{\fab{x_2}R\br{x_1, x_1}}.
 \end{align*}
-For which $ t $ is $ t $ free for $ x_1 $?
+For which is $ t $ free for $ x_1 $? $ \phi_1 $.
 \end{example*}
 
 \begin{theorem}
@@ -1275,7 +1284,9 @@ $$ v'\sbr{\phi\br{x_1}} = T \qquad \iff \qquad v\sbr{\phi\br{t}} = T. $$
 \end{lemma}
 
 \begin{proof}[Proof of \ref{thm:2.3.6}]
-Suppose $ v $ is a valuation with $ v\sbr{\phi\br{t}} = F $. Show that $ v\sbr{\fab{x_1}\phi\br{x_1}} = F $, then
+Suppose $ v $ is a valuation with $ v\sbr{\phi\br{t}} = F $. Show that
+$$ v\sbr{\fab{x_1}\phi\br{x_1}} = F, $$
+then
 $$ v\sbr{\impb{\fab{x_1}\phi\br{x_1}}{\phi\br{t}}} = T. $$
 Take $ v' $, $ x_1 $-equivalent to $ v $, and
 $$ v'\br{x_1} = v\br{t}. $$
@@ -1288,7 +1299,9 @@ Thus $ v\sbr{\fab{x_1}\phi\br{x_1}} = F $.
 Appendix A.1.
 \end{proof}
 
-\subsection{The formal system $ K_\LL $}
+\pagebreak
+
+\subsection{The formal system \texorpdfstring{$ K_\LL $}{KL}}
 
 \begin{definition}
 Suppose $ \LL $ is a first-order language. The formal system $ K_\LL $ has, as formulas, $ \LL $-formulas, and the following.
@@ -1305,21 +1318,19 @@ Suppose $ \LL $ is a first-order language. The formal system $ K_\LL $ has, as f
 \end{enumerate}
 \item Deduction rules.
 \begin{itemize}
-\item[(MP)] Modus Ponens. From $ \phi, \impb{\phi}{\psi} $, deduce $ \psi $.
+\item[(MP)] Modus Ponens. From $ \phi $ and $ \impb{\phi}{\psi} $, deduce $ \psi $.
 \item[(Gen)] \textbf{Generalisation}. From $ \phi $, deduce $ \fab{x_i}\phi $.
 \end{itemize}
 \end{itemize}
-A proof in $ K_\LL $ is a finite sequence of $ \LL $-formulas, each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A theorem of $ K_\LL $ is the last formula in some proof. Write $ \vdash_{K_\LL} \phi $ for $ \phi $ is a theorem in $ K_\LL $.
+A \textbf{proof} in $ K_\LL $ is a finite sequence of $ \LL $-formulas, each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A \textbf{theorem} of $ K_\LL $ is the last formula in some proof. Write $ \vdash_{K_\LL} \phi $ if $ \phi $ is a theorem in $ K_\LL $.
 \end{definition}
 
 \begin{note*}
 Books do not always use $ K_\LL $, that is they write $ \vdash \phi $.
 \end{note*}
 
-\pagebreak
-
 \begin{definition}
-Suppose $ \Sigma $ is a set of $ \LL $-formulas and $ \psi $ an $ \LL $-formula. A deduction of $ \psi $ from $ \Sigma $ is a finite sequence of formulas, ending with $ \psi $, each of which is one of
+Suppose $ \Sigma $ is a set of $ \LL $-formulas and $ \psi $ is an $ \LL $-formula. A \textbf{deduction} of $ \psi $ from $ \Sigma $ is a finite sequence of formulas, ending with $ \psi $, each of which is one of
 \begin{itemize}
 \item an axiom,
 \item a formula in $ \Sigma $, or
@@ -1349,9 +1360,9 @@ Suppose $ \phi $ is an $ \LL $-formula which is a substitution instance of a tau
 
 \begin{example*}
 For an $ \LL $-formula $ \phi $,
-$$ \impb{\notb{\notb{\phi}}}{\phi}, $$
+$$ \vdash_{K_\LL} \impb{\notb{\notb{\phi}}}{\phi}, $$
 as this is a substitution instance of
-$$ \impb{\notb{\notb{p_1}}}{p_1}. $$
+$$ \vdash_{K_\LL} \impb{\notb{\notb{p_1}}}{p_1}. $$
 \end{example*}
 
 \begin{proof}
@@ -1361,6 +1372,8 @@ where each $ \chi_i $ is a propositional formula, that is in $ L $, and $ \chi_r
 $$ \phi_1, \dots, \phi_r, $$
 which is a proof of $ \phi = \phi_r $ in $ K_\LL $.
 \end{proof}
+
+\pagebreak
 
 \begin{theorem}[Soundness of $ K_\LL $]
 If $ \vdash_{K_\LL} \phi $, then $ \vDash \phi $, that is it is logically valid.
@@ -1382,8 +1395,6 @@ so $ v'\sbr{\impb{\phi}{\psi}} = F $. Thus $ v\sbr{\fab{x_i}\impb{\phi}{\psi}} =
 \end{enumerate}
 \end{proof}
 
-\pagebreak
-
 \begin{example}
 \label{eg:2.4.6}
 Suppose $ \Sigma \vdash_{K_\LL} \psi $, then for every valuation $ v $ with $ v\sbr{\sigma} = T $ for all $ \sigma \in \Sigma $, we have $ v\sbr{\psi} = T $.
@@ -1399,7 +1410,7 @@ There is no $ \LL $-formula $ \phi $ with $ \vdash_{K_\LL} \phi $ and $ \vdash_{
 \end{corollary}
 
 \begin{theorem}[Deduction theorem]
-Suppose $ \LL $ is a first-order language, $ \Sigma $ is a set of $ \LL $-formulas, and $ \phi, \psi $ are $ \LL $-formulas. Then if $ \Sigma \cup \cbr{\phi} \vdash_{K_\LL} \psi $, then $ \Sigma \vdash_{K_\LL} \impb{\phi}{\psi} $.
+Suppose $ \LL $ is a first-order language, $ \Sigma $ is a set of $ \LL $-formulas, and $ \phi $ and $ \psi $ are $ \LL $-formulas. Then if $ \Sigma \cup \cbr{\phi} \vdash_{K_\LL} \psi $, then $ \Sigma \vdash_{K_\LL} \impb{\phi}{\psi} $.
 \end{theorem}
 
 \begin{proof}
@@ -1423,7 +1434,7 @@ for $ x_i $ not free in any formula in $ \Sigma $. So by MP, we get $ \Sigma \vd
 \subsection{G\"odel's completeness theorem}
 
 \begin{definition}
-A set $ \Sigma $ of $ \LL $-formulas is consistent if there is no formula $ \phi $ with
+A set $ \Sigma $ of $ \LL $-formulas is \textbf{consistent} if there is no formula $ \phi $ with
 $$ \Sigma \vdash_{K_\LL} \phi, \qquad \Sigma \vdash_{K_\LL} \notb{\phi}. $$
 \end{definition}
 
@@ -1435,6 +1446,8 @@ $$ \Sigma \vdash_{K_\LL} \chi, $$
 for any $ \LL $-formula $ \chi $.
 \end{remark*}
 
+\pagebreak
+
 Recall that a closed $ \LL $-formula is one without free variables, sometimes called a sentence of $ \LL $. Show that, if $ \Sigma $ is a set of closed $ \LL $-formulas which is consistent, then there is an $ \LL $-structure $ \AA $ with $ \AA \vDash \sigma $ for all $ \sigma \in \Sigma $. For a simplification, suppose that $ \LL $ is countable, that is the variables are $ x_0, x_1, \dots $, and there are countably many relation, function, and constant symbols. So we can enumerate the $ \LL $-formulas, or any subset thereof, as a list indexed by $ \N $. Enumerate the closed $ \LL $-formulas as
 $$ \psi_0, \psi_1, \dots \in \cbr{\psi_i : i \in \N}. $$
 
@@ -1442,8 +1455,8 @@ $$ \psi_0, \psi_1, \dots \in \cbr{\psi_i : i \in \N}. $$
 \label{prop:2.5.2}
 Suppose $ \Sigma $ is a consistent set of closed $ \LL $-formulas and $ \phi $ is a closed $ \LL $-formula.
 \begin{enumerate}
-\item Compare \ref{prop:1.3.7}. If $ \Sigma \not\vdash_{K_\LL} \phi $, then $ \Sigma \cup \cbr{\notb{\phi}} $ is consistent.
-\item Compare the Lindenbaum lemma in \ref{prop:1.3.8}. There is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LL $-formulas such that, for every closed $ \LL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_\LL} \psi $ or $ \Sigma^* \vdash_{K_\LL} \notb{\psi} $.
+\item Comparing \ref{prop:1.3.7}, if $ \Sigma \not\vdash_{K_\LL} \phi $, then $ \Sigma \cup \cbr{\notb{\phi}} $ is consistent.
+\item Comparing the Lindenbaum lemma in \ref{prop:1.3.8}, there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LL $-formulas such that, for every closed $ \LL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_\LL} \psi $ or $ \Sigma^* \vdash_{K_\LL} \notb{\psi} $.
 \end{enumerate}
 \end{proposition}
 
@@ -1454,8 +1467,6 @@ Suppose $ \Sigma $ is a consistent set of closed $ \LL $-formulas and $ \phi $ i
 \item Use $ 1 $ and the enumeration $ \psi_0, \psi_1, \dots $ of the closed $ \LL $-formulas.
 \end{enumerate}
 \end{proof}
-
-\pagebreak
 
 \begin{theorem}
 \label{thm:2.5.3}
@@ -1468,7 +1479,7 @@ Let $ \Sigma $ be a set of closed $ \LL $-formulas and $ \phi $ a closed $ \LL $
 \end{theorem}
 
 \begin{notation*}
-$ \Sigma \vDash \phi $, if every model of $ \Sigma $ is a model of $ \phi $. Then $ \Sigma \vDash \phi $ implies $ \Sigma \vdash_{K_\LL} \phi $. Converse is soundness.
+$ \Sigma \vDash \phi $, if every model of $ \Sigma $ is a model of $ \phi $. Then $ \Sigma \vDash \phi $ implies $ \Sigma \vdash_{K_\LL} \phi $. The converse is soundness.
 \end{notation*}
 
 \begin{proof}
@@ -1484,12 +1495,12 @@ If $ \phi $ is closed this follows from \ref{thm:2.5.4} with $ \Sigma = \emptyse
 $$ \psi : \fab{x_1} \dots \fab{x_n}\phi. $$
 As $ \vDash \phi $, we obtain $ \vDash \psi $. So, by the closed case, $ \vdash_{K_\LL} \psi $, that is
 \begin{equation}
-\label{eq:13}
+\label{eq:12}
 \vdash_{K_\LL} \fab{x_1} \dots \fab{x_n}\phi.
 \end{equation}
 If $ \theta $ is any formula, then
 $$ \vdash_{K_\LL} \impb{\fab{x_i}\theta}{\theta}, $$
-by the K1 axiom. So from $ \br{\ref{eq:13}} $ and this fact, and MP, applied $ n $ times, we obtain $ \vdash_{K_\LL} \phi $.
+by the K1 axiom. So from $ \br{\ref{eq:12}} $ and this fact, and MP, applied $ n $ times, we obtain $ \vdash_{K_\LL} \phi $.
 \end{proof}
 
 \begin{corollary}[Compactness theorem for $ K_\LL $]
@@ -1511,12 +1522,14 @@ Appendix A.2.
 \end{proof}
 
 \begin{example*}
-Exercise. Think about this where $ \Sigma $ consists of the group axioms. What is $ \AA $? Is it a group?
+Exercise: think about this where $ \Sigma $ consists of the group axioms. What is $ \AA $? Is it a group?
 \end{example*}
 
-\lecture{17}{Friday}{09/11/18}
+\pagebreak
 
 \subsection{Equality}
+
+\lecture{17}{Friday}{09/11/18}
 
 \begin{example*}
 In the language of groups, have a binary relation symbol $ E\br{x_1, x_2} $ for equality $ x_1 = x_2 $.
@@ -1538,8 +1551,6 @@ $$ \fab{x_1 \dots x_m}\fab{y_1 \dots y_m}\impb{\br{E\br{x_1, y_1} \land \dots \l
 \end{itemize}
 \end{itemize}
 \end{definition}
-
-\pagebreak
 
 \begin{remark}
 \hfill
@@ -1586,6 +1597,8 @@ If $ t $ is any term, then $ \widehat{v}\br{t} = \widehat{v\br{t}} $, by definit
 Appendix A.3.
 \end{proof}
 
+\pagebreak
+
 \begin{lemma}
 \label{lem:2.6.4}
 Suppose $ \Delta $ is a set of closed $ \LL^E $-formulas. Then $ \Delta $ has a \textbf{normal model}, that is a normal $ \LL^E $-structure $ \BB $ with $ \BB \vDash \sigma $ for all $ \sigma \in \Delta $, if and only if $ \Delta \cup \Sigma_E $ has a model.
@@ -1611,13 +1624,11 @@ Every normal $ \LL^E $-structure is a model of $ \Sigma_E $, so every finite sub
 From now on, write $ \LL^= $ instead of $ \LL^E $, and $ x_1 = x_2 $ instead of $ E\br{x_1, x_2} $, etc.
 \end{notation*}
 
-\pagebreak
-
 \lecture{18}{Monday}{12/11/18}
 
 \begin{theorem}[Countable downward L\"owenheim-Skolem theorem]
 \label{thm:2.6.6}
-Suppose $ \LL^= $ is a countable first-order language with equality, and $ \BB $ is a normal $ \LL^= $ structure. Then there is a countable normal $ \LL^= $-structure $ \AA $ such that, for every closed $ \LL^= $-formula $ \phi $,
+Suppose $ \LL^= $ is a countable first-order language with equality, and $ \BB $ is a normal $ \LL^= $-structure. Then there is a countable normal $ \LL^= $-structure $ \AA $ such that, for every closed $ \LL^= $-formula $ \phi $,
 $$ \BB \vDash \phi \qquad \iff \qquad \AA \vDash \phi. $$
 \end{theorem}
 
@@ -1628,8 +1639,7 @@ Let $ \BB = \abr{\R; +, \cdot, 0, 1, \le, \exp\br{}} $. What is $ \AA $?
 \begin{proof}
 Let
 $$ \Sigma = \cbr{\text{closed} \ \phi \mid \BB \vDash \phi}, $$
-called the \textbf{theory} of $ \BB $. Then $ \Sigma \supseteq \Sigma_E $, the axioms of equality, and $ \Sigma $ is consistent. By \ref{thm:2.5.3}, $ \Sigma $ has a countable model $ \CC $. Then $ \widehat{\CC} $ is a countable normal model of $ \Sigma $ by \ref{lem:2.6.3}. So if $ \phi $ is closed and $ \BB \vDash \phi $, then $ \widehat{\CC} \vDash \phi $. Conversely, if $ \phi $ is closed and $ \BB \not\vDash \phi $, then $ \BB \vDash \notb{\phi} $, by \ref{thm:2.3.3}, so $ \widehat{\CC} \vDash \notb{\phi} $, so $ \widehat{\CC} \not\vDash \phi $. Take
-$$ \AA = \widehat{\CC}. $$
+called the \textbf{theory} of $ \BB $. Then $ \Sigma \supseteq \Sigma_E $, the axioms of equality, and $ \Sigma $ is consistent. By \ref{thm:2.5.3}, $ \Sigma $ has a countable model $ \CC $. Then $ \widehat{\CC} $ is a countable normal model of $ \Sigma $ by \ref{lem:2.6.3}. So if $ \phi $ is closed and $ \BB \vDash \phi $, then $ \widehat{\CC} \vDash \phi $. Conversely, if $ \phi $ is closed and $ \BB \not\vDash \phi $, then $ \BB \vDash \notb{\phi} $, by \ref{thm:2.3.3}, so $ \widehat{\CC} \vDash \notb{\phi} $, so $ \widehat{\CC} \not\vDash \phi $. Take $ \AA = \widehat{\CC} $.
 \end{proof}
 
 \subsection{Examples and applications}
@@ -1644,21 +1654,24 @@ Let $ \LL^= $ be a first-order language with equality and a binary relation symb
 \phi_1 & : \fab{x_1}\fab{x_2}\iffb{\andb{\leb{x_1}{x_2}}{\leb{x_2}{x_1}}}{\eqb{x_1}{x_2}}, \\
 \phi_2 & : \fab{x_1}\fab{x_2}\fab{x_3}\impb{\andb{\leb{x_1}{x_2}}{\leb{x_2}{x_3}}}{\leb{x_1}{x_3}}, \\
 \phi_3 & : \fab{x_1}\fab{x_2}\orb{\leb{x_1}{x_2}}{\leb{x_2}{x_1}}.
-\intertext{\item It is \textbf{dense} if also}
-\phi_4 & : \fab{x_1}\fab{x_2}\teb{x_3}\impb{\ltb{x_1}{x_2}}{\andb{\ltb{x_1}{x_3}}{\ltb{x_3}{x_2}}},
-\intertext{where $ \ltb{x_1}{x_2} $ is an abbreviation for $ \andb{\leb{x_1}{x_2}}{\neb{x_1}{x_2}} $.}
-\intertext{\item It is \textbf{without endpoints} if}
+\end{align*}
+\item It is \textbf{dense} if also
+$$ \phi_4 : \fab{x_1}\fab{x_2}\teb{x_3}\impb{\ltb{x_1}{x_2}}{\andb{\ltb{x_1}{x_3}}{\ltb{x_3}{x_2}}}, $$
+where $ \ltb{x_1}{x_2} $ is an abbreviation for $ \andb{\leb{x_1}{x_2}}{\neb{x_1}{x_2}} $.
+\item It is \textbf{without endpoints} if
+\begin{align*}
 \phi_5 & : \fab{x_1}\teb{x_2}\ltb{x_1}{x_2}, \\
 \phi_6 & : \fab{x_1}\teb{x_2}\ltb{x_2}{x_1}.
 \end{align*}
-\item Let
-$$ \Delta = \cbr{\phi_1, \dots, \phi_6}. $$
+\end{itemize}
+Let $ \Delta = \cbr{\phi_1, \dots, \phi_6} $.
 \begin{itemize}
 \item $ \QQ = \abr{\Q; \le} $ is a normal model of $ \Delta $.
 \item $ \RR = \abr{\R; \le} $ is also a model of $ \Delta $.
 \end{itemize}
-\end{itemize}
 \end{definition}
+
+\pagebreak
 
 Will prove the following.
 
@@ -1672,33 +1685,31 @@ $$ \QQ \vDash \phi \qquad \iff \qquad \RR \vDash \phi. $$
 \end{enumerate}
 \end{theorem}
 
-\pagebreak
-
 \begin{definition}
 \label{def:2.7.3}
 Week 5 problem class.
 \begin{enumerate}
 \item Linear orders $ \AA = \abr{A; \le_A} $ and $ \BB = \abr{B; \le_B} $ are \textbf{isomorphic} if there is a bijection $ \alpha : A \to B $ such that for all $ a, a' \in A $,
 $$ a \le_A a' \qquad \iff \qquad \alpha\br{a} \le_B \alpha\br{a'}. $$
-\item If $ \AA, \BB $ are isomorphic and $ \phi $ is closed, then
+\item If $ \AA $ and $ \BB $ are isomorphic and $ \phi $ is closed, then
 $$ \AA \vDash \phi \qquad \iff \qquad \BB \vDash \phi. $$
 \end{enumerate}
 \end{definition}
 
 \begin{theorem}[Cantor]
 \label{thm:2.7.4}
-If $ \AA, \BB $ are countable dense linear orders without endpoints, then $ \AA, \BB $ are isomorphic.
+If $ \AA $ and $ \BB $ are countable dense linear orders without endpoints, then $ \AA $ and $ \BB $ are isomorphic.
 \end{theorem}
 
 \begin{lemma}[Los-Vaught test]
 \label{lem:2.7.5}
-Let $ \Sigma = \Sigma_E \cup \Delta $. Then for every closed $ \LL^= $-formula $ \phi $, we have either $ \Sigma \vdash_{K_{\LL^=}} \phi $ or $ \Sigma \vdash_{K_{\LL^=}} \notb{\phi} $. Say $ \Sigma $ is complete.
+Let $ \Sigma = \Sigma_E \cup \Delta $. Then for every closed $ \LL^= $-formula $ \phi $, we have either $ \Sigma \vdash_{K_{\LL^=}} \phi $ or $ \Sigma \vdash_{K_{\LL^=}} \notb{\phi} $. Say $ \Sigma $ is \textbf{complete}.
 \end{lemma}
 
 \begin{proof}
 Suppose not. Then as $ \Sigma $ has a model, it is consistent, so we can use \ref{prop:2.5.2} to get that
 $$ \Sigma_1 = \Sigma \cup \cbr{\notb{\phi}}, \qquad \Sigma_2 = \Sigma \cup \cbr{\notb{\notb{\phi}}} $$
-are consistent. So $ \Sigma \cup \cbr{\phi} $ is consistent. By \ref{thm:2.5.3}, \ref{thm:2.6.6}, it follows that $ \Sigma_1, \Sigma_2 $ have countable normal models $ \AA_1, \AA_2 $. So $ \AA_1, \AA_2 $ are countable dense linear orders without endpoints, and
+are consistent. So $ \Sigma \cup \cbr{\phi} $ is consistent. By \ref{thm:2.5.3} and \ref{thm:2.6.6}, it follows that $ \Sigma_1 $ and $ \Sigma_2 $ have countable normal models $ \AA_1 $ and $ \AA_2 $. So $ \AA_1 $ and $ \AA_2 $ are countable dense linear orders without endpoints, and
 $$ \AA_1 \vDash \notb{\phi}, \qquad \AA_2 \vDash \phi. $$
 This contradicts \ref{thm:2.7.4} and \ref{def:2.7.3}.$ 2 $.
 \end{proof}
@@ -1716,7 +1727,7 @@ Similarly,
 $$ \RR \vDash \phi \qquad \iff \qquad \Sigma \vdash_{K_{\LL^=}} \phi. $$
 So
 $$ \RR \vDash \phi \qquad \iff \qquad \Sigma \vdash_{K_{\LL^=}} \phi \qquad \iff \qquad \QQ \vDash \phi. $$
-\item $ \Sigma $ is a \textbf{recursively enumerable} set of formulas. That is, we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_\LL $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. Method is to run the algorithm which generates all consequences of $ \Sigma $. By $ 1 $, at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
+\item $ \Sigma $ is a \textbf{recursively enumerable} set of formulas. That is, we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_\LL $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. The method is to run the algorithm which generates all consequences of $ \Sigma $. By $ 1 $, at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
 \end{enumerate}
 \end{proof}
 
@@ -1729,15 +1740,9 @@ Lecture 19 is a problem class.
 \begin{note*}
 \hfill
 \begin{itemize}
-\item Depends on
-\begin{itemize}
-\item the completeness theorem, and
-\item the axioms $ \Delta $ for $ \QQ $.
-\end{itemize}
+\item Depends on the completeness theorem, and the axioms $ \Delta $ for $ \QQ $.
 \item Works for some other structures, but can have better algorithms.
-\item But, there is no such algorithm for
-$$ \abr{\N; +, \cdot, 0}. $$
-This is G\"odel's incompleteness theorem.
+\item But, there is no such algorithm for $ \abr{\N; +, \cdot, 0} $. This is \textbf{G\"odel's incompleteness theorem}.
 \end{itemize}
 \end{note*}
 
@@ -1750,7 +1755,7 @@ This is G\"odel's incompleteness theorem.
 \subsection{Basic set theory}
 
 \begin{itemize}
-\item Extensionality. Sets $ A, B $ are \textbf{equal} if and only if
+\item Extensionality. Sets $ A $ and $ B $ are \textbf{equal} if and only if
 $$ \fab{x}\iffb{\inb{x}{A}}{\inb{x}{B}}. $$
 \item \textbf{Natural numbers} $ \N = \cbr{0, 1, \dots} $. Think of
 $$ 0 = \emptyset, \qquad \dots, \qquad n + 1 = \cbr{0, \dots, n}, \qquad \dots. $$
@@ -1763,7 +1768,7 @@ $$ \cbr{\cbr{x}, \cbr{x, y}}. $$
 \begin{itemize}
 \item For example, for any $ x, y, z, w $,
 $$ \br{x, y} = \br{z, w} \qquad \iff \qquad \andb{\eqb{x}{z}}{\eqb{y}{w}}. $$
-\item If $ A, B $ are sets, then
+\item If $ A $ and $ B $ are sets, then
 $$ A \times B = \cbr{\br{a, b} \mid a \in A, \ b \in B}, $$
 $$ A^0 = \cbr{\emptyset}, \qquad A^1 = A, \qquad A^2 = A \times A, \qquad \dots, \qquad A^{n + 1} = A^n \times A, \qquad \dots, $$
 $$ \bigcup_{n \in \N} A^n = \cbr{\text{finite sequences of elements of} \ A}. $$
@@ -1783,7 +1788,7 @@ where $ \PP $ is the powerset, that is the set of all subsets.
 \subsection{Cardinality}
 
 \begin{definition}
-Sets $ A, B $ are \textbf{equinumerous}, or of the \textbf{same cardinality}, if there is a bijection
+Sets $ A $ and $ B $ are \textbf{equinumerous}, or of the \textbf{same cardinality}, if there is a bijection
 $$ f : A \to B. $$
 Write $ A \approx B $ or $ \abs{A} = \abs{B} $.
 \end{definition}
@@ -1800,17 +1805,17 @@ Write $ A \approx B $ or $ \abs{A} = \abs{B} $.
 \pagebreak
 
 \begin{remark}
-Basic facts.
+The following are basic facts.
 \begin{itemize}
 \item Every subset of a countable set is countable.
 \item A set $ A $ is countable if and only if there is an injective function
 $$ f : A \to \N. $$
-\item If $ A, B $ are countable, then
+\item If $ A $ and $ B $ are countable, then
 $$ A \times B $$
 is countable.
 \item If $ A_0, A_1, \dots $ are countable, then
 $$ \bigcup_{i \in \N} A_i $$
-is countable. Proof uses axiom of choice.
+is countable. The proof uses the axiom of choice.
 \end{itemize}
 \end{remark}
 
@@ -1844,7 +1849,7 @@ There is $ z \in X $ with $ f\br{z} = Y $.
 \lecture{21}{Monday}{19/11/18}
 
 \begin{definition}
-For sets $ A, B $, write $ \abs{A} \le \abs{B} $, or $ A \le B $, if there is an injective function
+For sets $ A $ and $ B $, write $ \abs{A} \le \abs{B} $, or $ A \le B $, if there is an injective function
 $$ f : A \to B. $$
 \end{definition}
 
@@ -1861,7 +1866,7 @@ If $ \abs{A} \le \abs{B} $ and $ \abs{B} \le \abs{C} $, then $ \abs{A} \le \abs{
 
 \begin{theorem}[Schr\"oder-Bernstein]
 \label{thm:3.1.6}
-Suppose $ A, B $ are sets, and
+Suppose $ A $ and $ B $ are sets, and
 $$ f : A \to B, \qquad g : B \to A $$
 are injective functions. Then $ A \approx B $. That is, if $ \abs{A} \le \abs{B} $ and $ \abs{B} \le \abs{A} $, then $ \abs{A} = \abs{B} $.
 \end{theorem}
@@ -1926,17 +1931,17 @@ $$
 \end{itemize}
 \end{proof}
 
-Questions.
+The following are questions.
 \begin{itemize}
-\item If $ A, B $ are sets, do we have $ \abs{A} \le \abs{B} $ or $ \abs{B} \le \abs{A} $? If we assume axiom of choice, yes.
-\item Is there $ X \subseteq \R $ with $ \abs{\N} < \abs{X} < \abs{\R} $? \textbf{Continuum hypothesis} says no.
+\item If $ A $ and $ B $ are sets, do we have $ \abs{A} \le \abs{B} $ or $ \abs{B} \le \abs{A} $? If we assume the axiom of choice, yes.
+\item Is there $ X \subseteq \R $ with $ \abs{\N} < \abs{X} < \abs{\R} $? The \textbf{continuum hypothesis} says no.
 \end{itemize}
 
 \pagebreak
 
 \subsection{Axioms for set theory}
 
-\textbf{Zermelo-Fraenkel axioms (ZF)} say how we are allowed to build sets. All can be expressed in a first-order language, with equality, using a single binary relation symbol $ \in $. Have to avoid \textbf{Russell paradox}. Let
+\textbf{Zermelo-Fraenkel axioms (ZF)} say how we are allowed to build sets. All can be expressed in a first-order language, with equality, using a single binary relation symbol $ \in $. Have to avoid the \textbf{Russell paradox}. Let
 $$ S = \cbr{x \mid x \ \text{is a set and} \ x \notin x}. $$
 If this is a set, is $ S \in S $?
 $$ \teb{S}\fab{x}\iffb{\inb{x}{S}}{\nib{x}{x}} $$
@@ -2035,10 +2040,10 @@ Informally, this is the intersection of all inductive sets. This does not depend
 \begin{enumerate}
 \item $ \N $ is an inductive set, and if $ B $ is an inductive set, then $ \N \subseteq B $.
 \item Proof by induction works. Suppose $ P\br{x} $ is a property of sets, that is a formula, such that
-\begin{itemize}
+\begin{enumerate}
 \item $ P\br{\emptyset} $ holds, and
 \item for every $ k \in \N $, if $ P\br{k} $ holds, then $ P\br{k^\dagger} $ holds.
-\end{itemize}
+\end{enumerate}
 Then $ P\br{n} $ holds for all $ n \in \N $.
 \end{enumerate}
 \end{theorem}
@@ -2046,10 +2051,10 @@ Then $ P\br{n} $ holds for all $ n \in \N $.
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Exercise. Use definition.
+\item Exercise: use definition.
 \item Consider $ B \subseteq \N $ given by
 $$ B = \cbr{x \in \N \mid P\br{x} \ \text{holds}}. $$
-(a), (b) say that $ B $ is an inductive set. So by $ 1 $, $ \N \subseteq B $. Thus $ \N = B $.
+(a) and (b) say that $ B $ is an inductive set. So by $ 1 $, $ \N \subseteq B $. Thus $ \N = B $.
 \end{enumerate}
 \end{proof}
 
@@ -2085,7 +2090,7 @@ Suppose $ \AA_1 = \abr{A_1; \le_1} $ and $ \AA_2 = \abr{A_2; \le_2} $ are linear
 \begin{definition}
 \hfill
 \begin{itemize}
-\item Say $ \AA_1, \AA_2 $ are \textbf{similar}, or isomorphic, if there is a bijection
+\item Say $ \AA_1 $ and $ \AA_2 $ are \textbf{similar}, or \textbf{isomorphic}, if there is a bijection
 $$ \alpha : A_1 \to A_2, $$
 with for all $ a, b \in A_1 $,
 $$ a <_1 b \qquad \iff \qquad \alpha\br{a} <_2 \alpha\br{b}. $$
@@ -2099,16 +2104,16 @@ say $ \alpha $ is \textbf{order-preserving}.
 \begin{definition}
 \hfill
 \begin{itemize}
-\item The \textbf{reverse-lexicographic product}
+\item The \textbf{reverse-lexicographic product} is
 $$ \AA_1 \times \AA_2 = \abr{A_1 \times A_2; \le}, $$
 where
 $$ \br{a_1, a_2} \le \br{a_1', a_2'} \qquad \iff \qquad a_2 <_2 a_2' \ \text{or} \ \br{\br{a_2 = a_2'} \ \text{and} \ \br{a_1 \le_1 a_1'}}. $$
 In $ \AA_2 $, replace each element by a copy of $ \AA_1 $.
-\item \textbf{Sum}. Regard $ A_1, A_2 $ as disjoint, by replacing them by similar orderings on disjoint sets, such as
+\item Regard $ A_1 $ and $ A_2 $ as disjoint, by replacing them by similar orderings on disjoint sets, such as
 $$ \cbr{\br{a, 0} : a \in A_1}, \qquad \cbr{\br{b, 1} \mid b \in A_2}, $$
-and define
+and define the \textbf{sum}
 $$ \AA_1 + \AA_2 = \abr{A_1 \cup A_2; \le}, $$
-where $ \le $ is the union of $ \le_1, \le_2 $, and
+where $ \le $ is the union of $ \le_1 $ and $ \le_2 $, and
 $$ a_1 \le a_2, \qquad a_1 \in A_1, \qquad a_2 \in A_2. $$
 \end{itemize}
 \end{definition}
@@ -2148,8 +2153,8 @@ Thus $ \N \times \cbr{0, 1} \simeq \N + \N $.
 \begin{lemma}
 \hfill
 \begin{itemize}
-\item $ \AA_1 + \AA_2, \AA_1 \times \AA_2 $ are linearly ordered sets.
-\item If $ \AA_1, \AA_2 $ are well orderings, then so are $ \AA_1 + \AA_2 $ and $ \AA_1 \times A_2 $.
+\item $ \AA_1 + \AA_2 $ and $ \AA_1 \times \AA_2 $ are linearly ordered sets.
+\item If $ \AA_1 $ and $ \AA_2 $ are well orderings, then so are $ \AA_1 + \AA_2 $ and $ \AA_1 \times A_2 $.
 \end{itemize}
 \end{lemma}
 
@@ -2188,7 +2193,7 @@ If $ \AA = \abr{A; \le} $ is a well ordered set, then every proper initial segme
 \end{lemma}
 
 \begin{remark*}
-Not true for linear orders in general.
+This is not true for linear orders in general.
 \end{remark*}
 
 \begin{example*}
@@ -2204,7 +2209,7 @@ Let $ b $ be the minimal element of $ A \setminus X $.
 \label{thm:3.3.7}
 Suppose $ \AA_1 = \abr{A_1; \le_1} $ and $ \AA_2 = \abr{A_2; \le_2} $ are well ordered sets. Then exactly one of the following holds.
 \begin{enumerate}
-\item $ \AA_1, \AA_2 $ are similar,
+\item $ \AA_1 $ and $ \AA_2 $ are similar,
 \item $ \AA_1 $ is similar to a proper initial segment of $ \AA_2 $, or
 \item $ \AA_2 $ is similar to a proper initial segment of $ \AA_1 $.
 \end{enumerate}
@@ -2237,7 +2242,7 @@ This shows
 $$ C = \cbr{c \in A_1 \mid \text{there is a similarity between} \ A_1\sbr{\le c} \ \text{and an initial segment of} \ A_2}. $$
 If $ c \in C $, there is a unique
 $$ \alpha_c : A_1\sbr{\le c} \to A_2, $$
-with image an initial segment, by uniqueness part. Note that
+with image an initial segment, by the uniqueness part. Note that
 \begin{itemize}
 \item $ C $ is an initial segment of $ A_1 $,
 \item if $ c_1 < c_2 \in C $, then $ \alpha_{c_1} $ is the restriction of $ \alpha_{c_2} $ to $ A_1\sbr{\le c_1} $, and
@@ -2263,7 +2268,7 @@ $$ A_2 \to A_1. $$
 So either $ \abs{A_1} \le \abs{A_2} $ or $ \abs{A_2} \le \abs{A_1} $.
 \end{remark*}
 
-Axiom of choice implies that any set $ A $ can be well ordered. Putting this together with \ref{thm:3.3.7} implies that, for any sets $ A_1 $ and $ A_2 $, $ \abs{A_1} \le \abs{A_2} $ or $ \abs{A_2} \le \abs{A_1} $.
+The axiom of choice implies that any set $ A $ can be well ordered. Putting this together with \ref{thm:3.3.7} implies that, for any sets $ A_1 $ and $ A_2 $, $ \abs{A_1} \le \abs{A_2} $ or $ \abs{A_2} \le \abs{A_1} $.
 
 \pagebreak
 
@@ -2318,7 +2323,7 @@ As $ \emptyset $ is an ordinal, this follows by induction in \ref{thm:3.2.3} usi
 \begin{enumerate}
 \item If $ \alpha $ is an ordinal, then $ \alpha \notin \alpha $.
 \item If $ \alpha $ is an ordinal and $ \beta \in \alpha $, then $ \beta $ is an ordinal.
-\item If $ \alpha, \beta $ are ordinals and $ \alpha \subsetneq \beta $, then $ \alpha \in \beta $.
+\item If $ \alpha $ and $ \beta $ are ordinals and $ \alpha \subsetneq \beta $, then $ \alpha \in \beta $.
 \item If $ \alpha $ is an ordinal, then $ \alpha = \cbr{\beta \mid \beta \ \text{is an ordinal and} \ \beta \in \alpha} $.
 \end{enumerate}
 \end{proposition}
@@ -2328,7 +2333,7 @@ As $ \emptyset $ is an ordinal, this follows by induction in \ref{thm:3.2.3} usi
 \begin{enumerate}
 \item Otherwise, $ \alpha $ has an element $ x = \alpha $ with $ x \in x $. But in terms of the ordering on $ \alpha $, this says $ x < x $, which is impossible.
 \item First show $ \beta $ is a transitive set. So let $ x \in \beta $ and $ y \in x $. We want $ y \in \beta $. But we have $ y \in x \in \beta \in \alpha $. Using twice that $ \alpha $ is a transitive set, we get that $ x, y \in \alpha $. So, as the restriction of $ \in $ to $ \alpha $ is an ordering, we get $ y \in \beta $. As $ \alpha $ is a transitive set, $ \in_\beta $ is simply the restriction of $ \in_\alpha $ to $ \beta $, so this is a well ordering.
-\item Note that, as $ \alpha \subsetneq \beta $, $ \beta \setminus \alpha $ is non-empty, so has a least element $ \gamma $, under $ \in_\beta $. We aim to show that $ \alpha = \gamma $. Think about $ \alpha $ and $ \beta $ as natural numbers to see why this is plausible. If $ x \in \gamma $, then $ x \in \beta $, so $ x \in \alpha $, as $ \gamma $ is the least element of $ \beta \setminus \alpha $. Thus $ \gamma \subseteq \alpha $. Conversely suppose there is some $ y \in \alpha \setminus \gamma $. Then, as $ \in $ is an ordering on $ \beta $ and $ y \notin \gamma $, either $ y = \gamma $ or $ \gamma \in y $. But in either case, we get $ \gamma \in \alpha $, as $ \alpha $ is a transitive set. A contradiction. So $ \alpha \subseteq \gamma $.
+\item Note that, as $ \alpha \subsetneq \beta $, $ \beta \setminus \alpha $ is non-empty, so has a least element $ \gamma $, under $ \in_\beta $. We aim to show that $ \alpha = \gamma $. Think about $ \alpha $ and $ \beta $ as natural numbers to see why this is plausible. If $ x \in \gamma $, then $ x \in \beta $, so $ x \in \alpha $, as $ \gamma $ is the least element of $ \beta \setminus \alpha $. Thus $ \gamma \subseteq \alpha $. Conversely suppose there is some $ y \in \alpha \setminus \gamma $. Then, as $ \in $ is an ordering on $ \beta $ and $ y \notin \gamma $, either $ y = \gamma $ or $ \gamma \in y $. But in either case, we get $ \gamma \in \alpha $, as $ \alpha $ is a transitive set, a contradiction. So $ \alpha \subseteq \gamma $.
 \item Trivial, by $ 2 $.
 \end{enumerate}
 \end{proof}
@@ -2336,7 +2341,7 @@ As $ \emptyset $ is an ordinal, this follows by induction in \ref{thm:3.2.3} usi
 \pagebreak
 
 \begin{definition}
-If $ \alpha, \beta $ are ordinals, we write $ \alpha < \beta $ to indicate that $ \alpha \in \beta $, and $ \alpha \le \beta $ has the obvious meaning.
+If $ \alpha $ and $ \beta $ are ordinals, we write $ \alpha < \beta $ to indicate that $ \alpha \in \beta $, and $ \alpha \le \beta $ has the obvious meaning.
 \end{definition}
 
 \begin{note*}
@@ -2365,9 +2370,7 @@ $$ \delta = \bigcap X. $$
 \begin{enumerate}
 \item If $ \alpha \in \beta \in \gamma $, then $ \alpha \in \gamma $, as $ \gamma $ is a transitive set.
 \item Otherwise, we have $ \alpha \in \beta $ and $ \beta \in \gamma $, whence $ \alpha \in \alpha $, contradicting \ref{prop:3.4.4}.
-\item Certainly we already know that no more than one of these holds. Consider $ \alpha \cap \beta $. This is also an ordinal, by $ 4 $. (Exercise) Show that, if $ \alpha \ne \beta $, then $ \alpha \subsetneq \beta $ or $ \beta \subsetneq \alpha $. If, for example $ \alpha \cap \beta = \alpha $, then $ \alpha \subseteq \beta $ and so $ \alpha \le \beta $. So for a contradiction, suppose $ \alpha \cap \beta $ is a proper subset of both $ \alpha $ and $ \beta $. Thus, by \ref{prop:3.4.4}.$ 3 $,
-$$ \alpha \cap \beta \in \alpha, \qquad \alpha \cap \beta \in \beta. $$
-So $ \alpha \cap \beta \in \alpha \cap \beta $, a contradiction, all using $ \alpha \cap \beta $ is an ordinal.
+\item Certainly we already know that no more than one of these holds. Consider $ \alpha \cap \beta $. This is also an ordinal, by $ 4 $. (Exercise) Show that, if $ \alpha \ne \beta $, then $ \alpha \subsetneq \beta $ or $ \beta \subsetneq \alpha $. If, for example $ \alpha \cap \beta = \alpha $, then $ \alpha \subseteq \beta $ and so $ \alpha \le \beta $. So for a contradiction, suppose $ \alpha \cap \beta $ is a proper subset of both $ \alpha $ and $ \beta $. Thus, by \ref{prop:3.4.4}.$ 3 $, $ \alpha \cap \beta \in \alpha $ and $ \alpha \cap \beta \in \beta $. So $ \alpha \cap \beta \in \alpha \cap \beta $, a contradiction, all using $ \alpha \cap \beta $ is an ordinal.
 \item Let $ \alpha \in X $ be any element and consider $ \alpha \cap X $. So this is the set of elements of $ X $ which are less than $ \alpha $. If this is empty, then $ \alpha $ is the least element of $ X $. Otherwise, it is a non-empty subset of $ \alpha $, so has a least element $ \beta $. It is then obvious that $ \beta $ is the least element of $ X $. If $ \delta $ is the least element of $ X $, then $ \delta \subseteq \eta $ for all $ \eta \in X $. It follows that $ \delta = \bigcap X $.
 \end{enumerate}
 \end{proof}
@@ -2389,11 +2392,11 @@ So $ \alpha \cap \beta \in \alpha \cap \beta $, a contradiction, all using $ \al
 \end{enumerate}
 \end{proof}
 
-\pagebreak
-
 So now we can form ordinals
 $$ \omega^\dagger = \cbr{0, 1, \dots, \omega}, \qquad \br{\omega^\dagger}^\dagger = \cbr{0, 1, \dots, \omega, \omega^+}, \qquad \dots. $$
 Just as the natural numbers provided us with canonical examples of finite sets, we will now show that ordinals do the same thing for all well ordered sets.
+
+\pagebreak
 
 \begin{theorem}
 \label{thm:3.4.8}
@@ -2403,7 +2406,7 @@ If $ \abr{A; \le} $ is a well ordered set, then there is a unique ordinal $ \alp
 \begin{proof}
 \hfill
 \begin{itemize}
-\item Uniqueness. Suppose $ \abr{A; \le} $ is similar to ordinals $ \alpha, \beta $. Then $ \alpha $ and $ \beta $ are similar. Without loss of generality, may assume $ \alpha \le \beta $, so if $ \alpha \ne \beta $, we have that $ \alpha < \beta $. $ \alpha $ is therefore a proper initial segment of $ \beta $, and so $ \beta $ is similar to a proper initial segment of itself, which contradicts \ref{thm:3.3.7}. This establishes the uniqueness part of the statement.
+\item Uniqueness. Suppose $ \abr{A; \le} $ is similar to ordinals $ \alpha $ and $ \beta $. Then $ \alpha $ and $ \beta $ are similar. Without loss of generality, may assume $ \alpha \le \beta $, so if $ \alpha \ne \beta $, we have that $ \alpha < \beta $. $ \alpha $ is therefore a proper initial segment of $ \beta $, and so $ \beta $ is similar to a proper initial segment of itself, which contradicts \ref{thm:3.3.7}. This establishes the uniqueness part of the statement.
 \item Existence. Now we show that there is some ordinal similar to $ A $. Let
 $$ X = \cbr{x \in A \mid \text{the initial segment} \ A\sbr{x} \ \text{is similar to an ordinal}}. $$
 For example, if $ A \ne \emptyset $ and $ x $ is the least element of $ A $, then $ A\sbr{x} $ is empty, and the empty set is an ordinal, so $ x \in X $. Note that, by uniqueness, if $ x \in X $, then $ A\sbr{x} $ is similar to a unique ordinal $ \alpha_x $. Let
@@ -2426,8 +2429,6 @@ by definition of $ X $, a contradiction. So $ X = A $ and $ A \simeq \alpha $.
 
 There is a problem with this proof. Why is $ S $ a set? No combination of the axioms we have given so far actually justifies the existence of such a set. There is no alternative but to assume another axiom about how we are allowed to create new sets from old ones.
 
-\pagebreak
-
 \begin{definition}
 \label{def:3.4.9}
 Suppose
@@ -2442,6 +2443,8 @@ holds.
 \item $ F\br{x, y, s_1, \dots, s_r} $ gives us a \textbf{function on sets} $ b \mapsto a $.
 \end{itemize}
 \end{definition}
+
+\pagebreak
 
 \begin{example*}
 \hfill
@@ -2475,19 +2478,17 @@ $$ S = \cbr{x \mid F\br{x, A\sbr{y}} \ \text{holds for some} \ y \in X}. $$
 \label{thm:3.5.1}
 Suppose $ P\br{x} $ is a property of sets. Assume that, for all ordinals $ \alpha $,
 \begin{equation}
-\label{eq:16}
+\label{eq:13}
 \text{if} \ P\br{\beta} \ \text{holds for all ordinals} \ \beta < \alpha, \ \text{then} \ P\br{\alpha} \ \text{holds}.
 \end{equation}
 Then $ P\br{\gamma} $ holds for all ordinals $ \gamma $.
 \end{theorem}
 
 \begin{proof}
-Note that, if $ \alpha = 0 = \emptyset $, then $ P\br{\beta} $ holds for all $ \beta < \alpha $, vacuously. So by $ \br{\ref{eq:16}} $, $ P\br{0} $ holds. Suppose for a contradiction that there is some ordinal $ \gamma $, such that $ P\br{\gamma} $ does not hold. There is a least such $ \gamma $, by applying \ref{thm:3.4.6}.$ 4 $ to
+Note that, if $ \alpha = 0 = \emptyset $, then $ P\br{\beta} $ holds for all $ \beta < \alpha $, vacuously. So by $ \br{\ref{eq:13}} $, $ P\br{0} $ holds. Suppose for a contradiction that there is some ordinal $ \gamma $, such that $ P\br{\gamma} $ does not hold. There is a least such $ \gamma $, by applying \ref{thm:3.4.6}.$ 4 $ to
 $$ \cbr{\beta \mid \beta \le \gamma, \ P\br{\beta} \ \text{does not hold}}. $$
-Call it $ \alpha $. Thus, for an ordinal $ \beta < \alpha $, $ P\br{\beta} $ holds. By $ \br{\ref{eq:16}} $, $ P\br{\alpha} $ holds, a contradiction.
+Call it $ \alpha $. Thus, for an ordinal $ \beta < \alpha $, $ P\br{\beta} $ holds. By $ \br{\ref{eq:13}} $, $ P\br{\alpha} $ holds, a contradiction.
 \end{proof}
-
-\pagebreak
 
 \begin{theorem}
 \label{thm:3.5.2}
@@ -2499,7 +2500,7 @@ Suppose $ \alpha $ is an infinite ordinal, that is $ \omega \le \alpha $. Then $
 \hfill
 \begin{enumerate}
 \item If $ \abr{A; \le} $ is an infinite well ordered set, then $ \abs{A} = \abs{A \times A} $.
-\item Assuming axiom of choice, if $ A $ is any infinite set, then $ \abs{A} = \abs{A \times A} $.
+\item Assuming the axiom of choice, if $ A $ is any infinite set, then $ \abs{A} = \abs{A \times A} $.
 \end{enumerate}
 \end{corollary}
 
@@ -2507,7 +2508,7 @@ Suppose $ \alpha $ is an infinite ordinal, that is $ \omega \le \alpha $. Then $
 \hfill
 \begin{enumerate}
 \item By \ref{thm:3.4.8}, there is an ordinal $ \alpha $ with $ \alpha \approx A $. So $ \abs{A} = \abs{A \times A} $ follows from \ref{thm:3.5.2}.
-\item By axiom of choice, $ A $ can be well ordered, so $ 2 $ follows from $ 1 $.
+\item By the axiom of choice, $ A $ can be well ordered, so $ 2 $ follows from $ 1 $.
 \end{enumerate}
 \end{proof}
 
@@ -2516,40 +2517,7 @@ $ 2 $ is called the \textbf{fundamental theorem of cardinal arithmetic}.
 \lecture{26}{Friday}{30/11/18}
 
 \begin{proof}[Proof of \ref{thm:3.5.2}]
-\hfill
-\begin{itemize}
-\item Assume that, if $ \omega \ne \beta < \alpha $, then $ \beta \approx \beta \times \beta $, the transfinite inductive hypothesis. Deduce $ \alpha \approx \alpha \times \alpha $.
-\item May assume that, if $ \beta < \alpha $, then $ \abs{\beta} < \abs{\alpha} $. Implies $ \abs{\beta^\dagger} < \abs{\alpha} $.
-\item Enough to show $ \abs{\alpha \times \alpha} \le \abs{\alpha} $, by \ref{thm:3.1.6}.
-\end{itemize}
-\begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
-\item Suppose we have a well ordering $ \le $ of $ A = \alpha \times \alpha $ such that, for all $ x \in A $,
-$$ \abs{A\sbr{x} = \cbr{y \in A \mid y \le x}} < \abs{\alpha}. $$
-Then prove that $ \abs{\alpha \times \alpha} = \abs{\alpha} $. By \ref{thm:3.4.6}, there is an ordinal $ \gamma $ which is similar to $ \abr{A; \le} $. Let
-$$ f : \gamma \to A $$
-be the similarity. Show that $ \gamma \subseteq \alpha $. Thus $ \abs{\gamma} \le \abs{\alpha} $, so $ \abs{A} \le \abs{\alpha} $. Let $ \eta \in \gamma $, so $ \eta < \gamma $. As $ f $ is a similarity, it gives a bijection
-$$ \eta = \cbr{\delta \in \gamma \mid \delta < \eta} \to A\sbr{f\br{\eta}}. $$
-So
-$$ \abs{\eta} = \abs{A\sbr{f\br{\eta}}} < \abs{\alpha}. $$
-Thus $ \eta < \alpha $. Otherwise $ \alpha \le \eta $, so $ \alpha \subseteq \eta $, and then $ \abs{\alpha} \le \abs{\eta} $, a contradiction. Thus $ \eta \in \alpha $.
-\item Find an ordering $ \le $ on $ \alpha \times \alpha = A $ as in step $ 1 $. For $ \lambda < \alpha $, let
-$$ A_\lambda = \cbr{\br{\theta, \zeta} \in \alpha \times \alpha \mid \max\br{\theta, \zeta} = \lambda}. $$
-Define $ \le $ on $ A $ by
-$$ \br{\theta', \zeta'} < \br{\theta, \zeta} \qquad \iff \qquad
-\begin{cases}
-\max\br{\theta', \zeta'} < \max\br{\theta, \zeta} \\
-\max\br{\theta', \zeta'} = \lambda = \max\br{\theta, \zeta} \ \text{and}
-\begin{cases}
-\zeta = \zeta' = \lambda \ \text{and} \ \theta' < \theta \\
-\zeta' < \zeta = \lambda \\
-\theta = \theta' = \lambda \ \text{and} \ \zeta' < \zeta
-\end{cases}
-\end{cases}.
-$$
-Check that $ \le $ is a well ordering on $ A $. Show that property in step $ 1 $ holds. Let $ x = \br{\theta, \zeta} \in A $. Let $ \lambda = \max\br{\theta, \zeta} $. May assume $ \lambda \ge \omega $. Let $ \mu = \lambda^\dagger $. So $ \mu < \alpha $, and by inductive hypothesis, $ \abs{\mu \times \mu} = \abs{\mu} < \abs{\alpha} $.
-$$ \cbr{y \in A \mid y < x} \subseteq \cbr{\br{\theta', \zeta'} \in A \mid \max\br{\theta', \zeta'} \le \lambda} \subseteq \mu \times \mu. $$
-Thus $ \abs{A\sbr{x}} \le \abs{\mu \times \mu} < \abs{\alpha} $.
-\end{enumerate}
+Appendix A.4.
 \end{proof}
 
 \pagebreak
@@ -2573,7 +2541,7 @@ so another way of saying this is that $ G\br{\alpha} $ is determined by
 $$ G \upharpoonright \alpha : \alpha \to \cbr{G\br{\beta} \mid \beta < \alpha}, $$
 which is a set, by the axiom of replacement.
 The way we construct $ G\br{\alpha} $ from the previous values is controlled by applying some operation
-$$ F : G\br{0}, \cdots, G\br{\beta}, \dots \to G\br{\alpha}, $$
+$$ F : G\br{0}, \dots, G\br{\beta}, \dots \to G\br{\alpha}, $$
 
 \begin{theorem}[Transfinite recursion]
 \label{thm:3.6.1}
@@ -2599,17 +2567,17 @@ $$ G\br{\alpha} =
 \Sigma \cup \bigcup_{\beta < \lambda} G\br{\beta} & \alpha \ge \lambda
 \end{cases}.
 $$
-Let $ \Sigma^* = G\br{\lambda} $. Proof that it works is just as in the countable case.
+Let $ \Sigma^* = G\br{\lambda} $. The proof that it works is just as in the countable case.
 \end{proof}
 
 \lecture{27}{Monday}{03/12/18}
 
 \begin{remark}
-Can use similar arguments at other points in the proof of the completeness theorem, by adding witnesses in \ref{thm:2.5.3}, to get that completeness theorem, compactness theorem, etc. holds.
+Can use similar arguments at other points in the proof of the completeness theorem, by adding witnesses in \ref{thm:2.5.3}, to get that the completeness theorem, the compactness theorem, etc holds.
 \end{remark}
 
 \begin{proof}[Proof of \ref{thm:3.6.1}]
-Appendix A.4.
+Appendix A.5.
 \end{proof}
 
 \subsection{Axiom of regularity}
@@ -2622,7 +2590,7 @@ In particular, there is no set $ b $ with $ b \in b $. Consider $ x = \cbr{b} $.
 
 \pagebreak
 
-\section{Axiom of choice and consequences}
+\section{The axiom of choice and consequences}
 
 \subsection{Statement and well ordering principle}
 
@@ -2632,18 +2600,18 @@ $$ f : A \to \bigcup A, $$
 with $ f\br{a} \in a $ for every $ a \in A $.
 \end{definition}
 
-Axioms ZF1-9 and axiom of choice (AC) is \textbf{ZFC}.
+Axioms ZF1-9 and the axiom of choice (AC) is \textbf{ZFC}.
 
 \begin{example}
 Suppose $ X $ is any non-empty set. Let
 $$ A = \PP\br{X} \setminus \cbr{\emptyset}, $$
-the non-empty subsets of $ X $. By axiom of choice, there is a function
+the non-empty subsets of $ X $. By the axiom of choice, there is a function
 $$ f : A \to X, $$
 such that $ f\br{Y} \in Y $ for every $ \emptyset \ne Y \subseteq X $. Such an $ f $ is called a \textbf{choice function}, on the subsets of $ X $.
 \end{example}
 
 \begin{note*}
-If $ \abr{X; \le} $ is a well ordered set, we do not need axiom of choice to get a choice function on $ X $. Define, for $ \emptyset \ne Y \subseteq X $, $ f\br{Y} = \min\br{Y} $.
+If $ \abr{X; \le} $ is a well ordered set, we do not need the axiom of choice to get a choice function on $ X $. Define, for $ \emptyset \ne Y \subseteq X $, $ f\br{Y} = \min\br{Y} $. Then
 $$ f = \cbr{\br{Y, a} \in \br{\PP\br{X} \setminus \cbr{\emptyset}} \times X \mid a = \min\br{Y}} $$
 exists, just by axiom of specification.
 \end{note*}
@@ -2655,7 +2623,7 @@ $$ f : \PP\br{X} \setminus \cbr{\emptyset} \to X $$
 is a choice function. Then there is a well ordering $ \le $ of $ X $, that is a well ordered set $ \abr{X; \le} $.
 \end{theorem}
 
-Proof needs Hartogs' lemma.
+The proof needs Hartogs' lemma.
 
 \begin{lemma}[Hartogs' lemma]
 \label{lem:4.1.4}
@@ -2690,7 +2658,7 @@ $$ X = \cbr{\abr{Y, \le_Y} \mid Y \subseteq A, \ \le_Y \ \text{is a well order o
 This is a set, by specification. Let
 $$ S = \cbr{\beta \mid \beta \ \text{is an ordinal similar to some} \ \abr{Y, \le_Y} \in X}, $$
 using \ref{thm:3.4.8} and axiom of replacement to get that $ S $ is a set. So
-$$ S = \cbr{\beta \mid \beta \ \text{is an ordinal and there is an injective function} \ \beta \to \alpha}. $$
+$$ S = \cbr{\beta \mid \beta \ \text{is an ordinal and there is an injective function} \ \beta \to A}. $$
 Let $ \sigma = \bigcup S $. This is an ordinal, and $ \beta \le \sigma $ for all $ \beta \in S $, by \ref{prop:3.4.4} and \ref{cor:3.4.7}. Let $ \alpha = \sigma^\dagger $. So $ \alpha $ is an ordinal, and for all $ \beta \in S $,
 $$ \beta \le \sigma < \alpha. $$
 So $ \alpha \notin S $. Thus there is no injective function $ \alpha \to A $.
@@ -2703,7 +2671,7 @@ Lecture 28 is a problem class.
 \lecture{29}{Friday}{07/12/18}
 
 \begin{corollary}
-Assuming ZF, axiom of choice is equivalent to the following \textbf{well ordering principle (WO)}.
+Assuming ZF, the axiom of choice is equivalent to the following \textbf{well ordering principle (WO)}.
 $$ \text{If} \ A \ \text{is any set, there is} \ \le_A \subseteq A \times A \ \text{such that} \ \abr{A; \le_A} \ \text{is a well ordered set}. $$
 That is,
 $$ \text{ZF} \vdash \iffb{\text{axiom of choice}}{\text{well ordering principle}}. $$
@@ -2713,9 +2681,9 @@ $$ \text{ZF} \vdash \iffb{\text{axiom of choice}}{\text{well ordering principle}
 \hfill
 \begin{itemize}
 \item[$ \implies $] \ref{thm:4.1.3}.
-\item[$ \impliedby $] If $ A $ is a set of non-empty sets, let $ B = \bigcup A $. By well ordering principle, there is a well ordering $ \le_B $ of $ B $. Then define
+\item[$ \impliedby $] If $ A $ is a set of non-empty sets, let $ B = \bigcup A $. By the well ordering principle, there is a well ordering $ \le_B $ of $ B $. Then define
 $$ f : A \to \bigcup A, $$
-by $ f\br{a} $ as the least element of $ a $, with respect to $ b $.
+by $ f\br{a} $ as the least element of $ a $, with respect to $ \le_B $.
 \end{itemize}
 \end{proof}
 
@@ -2724,7 +2692,7 @@ by $ f\br{a} $ as the least element of $ a $, with respect to $ b $.
 Assume ZFC.
 \begin{enumerate}
 \item If $ A $ is any set, there is an ordinal $ \alpha $ with $ \alpha \approx A $.
-\item If $ A, B $ are sets, then one of $ \abs{A} \le \abs{B} $ or $ \abs{B} \le \abs{A} $ holds.
+\item If $ A $ and $ B $ are sets, then one of $ \abs{A} \le \abs{B} $ or $ \abs{B} \le \abs{A} $ holds.
 \item Fundamental theorem of cardinal arithmetic. If $ A $ is any infinite set, then $ \abs{A \times A} = \abs{A} $.
 \end{enumerate}
 \end{corollary}
@@ -2733,14 +2701,14 @@ Assume ZFC.
 \hfill
 \begin{enumerate}
 \item \ref{cor:3.5.3}.
-\item By remark after proof of \ref{thm:3.3.7}.
+\item By the remark after the proof of \ref{thm:3.3.7}.
 \item \ref{cor:3.5.3}.
 \end{enumerate}
 \end{proof}
 
 \begin{lemma}
 \label{lem:4.1.7}
-Assuming ZFC, for sets $ A, B $, with $ A \ne \emptyset $, we have
+Assuming ZFC, for sets $ A $ and $ B $, with $ A \ne \emptyset $, we have
 $$ \abs{A} \le \abs{B} \qquad \iff \qquad \text{there is a surjective function} \ h : B \to A. $$
 \end{lemma}
 
@@ -2789,7 +2757,7 @@ The unique cardinal equinumerous with $ A $ is called the \textbf{cardinality} o
 
 \begin{remark*}
 $$ \text{There is an injective function} \ A \to B \qquad \iff \qquad card\br{A} \le card\br{B}. $$
-(Exercise) So ok use $ \abs{A} $.
+(Exercise) So ok to use $ \abs{A} $.
 \end{remark*}
 
 If $ \alpha $ is an ordinal, then
@@ -2800,7 +2768,7 @@ If $ A $ is a countably infinite set, then $ \abs{A} = \omega $.
 \end{example*}
 
 \begin{definition}
-Suppose $ A, B $ are disjoint sets with $ \abs{A} = \kappa $ and $ \abs{B} = \lambda $. Let
+Suppose $ A $ and $ B $ are disjoint sets with $ \abs{A} = \kappa $ and $ \abs{B} = \lambda $. Let
 \begin{itemize}
 \item $ \kappa + \lambda = \abs{A \cup B} $, and
 \item $ \kappa \cdot \lambda = \abs{A \times B} $.
@@ -2808,12 +2776,12 @@ Suppose $ A, B $ are disjoint sets with $ \abs{A} = \kappa $ and $ \abs{B} = \la
 \end{definition}
 
 \begin{remark*}
-Does not depend on choice of $ A, B $.
+This does not depend on the choice of $ A $ and $ B $.
 \end{remark*}
 
 \begin{theorem}
 \label{thm:4.2.5}
-Suppose $ \kappa, \lambda $ are cardinals, $ \kappa \le \lambda $, and $ \lambda $ infinite. Then
+Suppose $ \kappa $ and $ \lambda $ are cardinals, $ \kappa \le \lambda $, and $ \lambda $ is infinite. Then
 \begin{enumerate}
 \item $ \kappa \cdot \lambda = \lambda $, if $ \kappa \ne 0 $, and
 \item $ \kappa + \lambda = \lambda $.
@@ -2824,7 +2792,7 @@ Suppose $ \kappa, \lambda $ are cardinals, $ \kappa \le \lambda $, and $ \lambda
 \hfill
 \begin{enumerate}
 \item As $ \kappa \subseteq \lambda $, we have $ \kappa \times \lambda \subseteq \lambda \times \lambda $. So
-$$ \kappa \cdot \lambda \le \abs{\lambda \times \lambda} = \abs{\lambda} = \lambda, $$
+$$ \kappa \cdot \lambda = \abs{\kappa \times \lambda} \le \abs{\lambda \times \lambda} = \abs{\lambda} = \lambda, $$
 by the fundamental theorem of cardinal arithmetic, and $ \lambda $ is a cardinal. On the other hand, as $ \kappa \ne 0 $,
 $$ \lambda = \abs{\lambda} = \abs{\cbr{0} \times \lambda} \le \abs{\kappa \times \lambda} = \kappa \cdot \lambda. $$
 \item By $ 1 $,
@@ -2844,8 +2812,8 @@ $$ \abs{\bigcup A} \le \lambda \cdot \kappa. $$
 \begin{proof}
 Can assume $ \emptyset \notin A $. For each $ a \in A $, the set
 $$ S_a = \cbr{\text{surjective functions} \ \kappa \to a} $$
-is non-empty, by \ref{lem:4.1.7}. Assuming axiom of choice, there is a function
-$$ \function[F]{A}{\bigcup_{a \in A} S_a}{a}{\kappa \to \alpha}, $$
+is non-empty, by \ref{lem:4.1.7}. Assuming the axiom of choice, there is a function
+$$ \function[F]{A}{\bigcup_{a \in A} S_a}{a}{\kappa \to a}, $$
 which is a surjective function. Denote this by $ F_a $. Let $ h : \lambda \to A $ be a bijection. Now define
 $$ \function[G]{\lambda \times \kappa}{\bigcup A}{\br{\alpha, \beta}}{F_{h\br{\alpha}}\br{\beta}}. $$
 This is surjective. So by \ref{lem:4.1.7}, $ \abs{\lambda \times \kappa} \ge \abs{\bigcup A} $, that is $ \abs{\bigcup A} \le \lambda \cdot \kappa $.
@@ -2866,7 +2834,7 @@ Then $ \abs{S} = \abs{A} = \lambda $.
 \begin{enumerate}
 \item For $ n \in \N $, $ \abs{A}^n = \abs{A} $, by repeated use of the fundamental theorem of cardinal arithmetic. By \ref{thm:4.2.6},
 $$ \abs{S} \le \omega \cdot \abs{A} = \abs{\omega} \cdot \abs{A} = \lambda, $$
-by \ref{thm:4.2.5}.$ 1 $. $ A \subseteq S $, so $ \abs{S} \ge \lambda $.
+by \ref{thm:4.2.5}.$ 1 $. Then $ A \subseteq S $, so $ \abs{S} \ge \lambda $.
 \item Obviously $ \abs{B} \le \abs{\R} $, and $ B $ is infinite. If $ x \in \R $, there are
 $$ n \in \N, \qquad q_0, \dots, q_n \in \Q, \qquad b_0, \dots, b_n \in B, \qquad x = \sum_{i = 0}^n q_ib_i. $$
 Let
@@ -2914,10 +2882,10 @@ $$ \teb{z \in A}\fab{x \in A}\impb{\leb{z}{x}}{\eqb{x}{z}}. $$
 
 \begin{theorem}
 \label{thm:4.3.2}
-$$ \text{ZF} \vdash \iffb{\text{axiom of choice}}{\text{Zorn's lemma}}. $$
+$$ \text{ZF} \vdash \iffb{\text{the axiom of choice}}{\text{Zorn's lemma}}. $$
 \begin{itemize}
 \item Assuming ZFC, then Zorn's lemma holds.
-\item Assuming ZF and Zorn's lemma, then axiom of choice holds.
+\item Assuming ZF and Zorn's lemma, then the axiom of choice holds.
 \end{itemize}
 \end{theorem}
 
@@ -2948,12 +2916,12 @@ By Hartogs' lemma, or by cardinality, this is impossible.
 
 \pagebreak
 
-\subsection{Postscript}
+\section{Postscript}
 
 Assume ZFC. For a first-order language $ \LL $, the cardinality of $ \LL $ is the cardinality of the set of $ \LL $-formulas, which is the cardinality of the alphabet. Assuming ZFC, the following hold for $ \LL $ of arbitrary cardinality.
 \begin{itemize}
 \item G\"odel's completeness theorem, and results leading to it. Compare 3.6.
-\item Compactness theorem, and compactness theorem for normal models in $ \LL^= $.
+\item The compactness theorem, and the compactness theorem for normal models in $ \LL^= $.
 \end{itemize}
 
 \pagebreak
@@ -2976,13 +2944,11 @@ v'\sbr{\phi\br{x_1}} = T \qquad
 \end{align*}
 \item Inductive step. There are three cases.
 \begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
-\item $ \phi $ is $ \notb{\psi} $.
-\item $ \phi $ is $ \impb{\psi}{\chi} $.
-\item $ \phi $ is $ \fab{x_i}\psi $.
-\end{enumerate}
-(Exercise: the first two cases) We do the third. We can assume that $ i \ne 1 $. Otherwise, $ x_1 $ is not free in $ \phi $, and $ \phi\br{t} $ is just $ \phi $. \ref{lem:2.3.7} then follows from \ref{thm:2.3.3}. Note also that, as $ t $ is free for $ x_1 $ in $ \fab{x_i}\psi $, it follows that $ t $ is free for $ x_1 $ in $ \psi $, and $ x_i $ is not a variable in $ t $. Suppose first that $ v'\sbr{\phi\br{x_1}} = F $. We show that $ v\sbr{\phi\br{t}} = F $. By \ref{def:2.2.9}, there is a valuation $ w' $ which is $ x_i $-equivalent to $ v' $ with $ w'\sbr{\psi\br{x_1}} = F $. Note that, as $ i \ne 1 $,
+\item $ \phi $ is $ \notb{\psi} $. (Exercise)
+\item $ \phi $ is $ \impb{\psi}{\chi} $. (Exercise)
+\item $ \phi $ is $ \fab{x_i}\psi $. We can assume that $ i \ne 1 $. Otherwise, $ x_1 $ is not free in $ \phi $, and $ \phi\br{t} $ is just $ \phi $. \ref{lem:2.3.7} then follows from \ref{thm:2.3.3}. Note also that, as $ t $ is free for $ x_1 $ in $ \fab{x_i}\psi $, it follows that $ t $ is free for $ x_1 $ in $ \psi $, and $ x_i $ is not a variable in $ t $. Suppose first that $ v'\sbr{\phi\br{x_1}} = F $. We show that $ v\sbr{\phi\br{t}} = F $. By \ref{def:2.2.9}, there is a valuation $ w' $ which is $ x_i $-equivalent to $ v' $ with $ w'\sbr{\psi\br{x_1}} = F $. Note that, as $ i \ne 1 $,
 \begin{equation}
-\label{eq:12}
+\label{eq:14}
 w'\br{x_1} = v'\br{x_1} = v\br{t}.
 \end{equation}
 Define a valuation $ w $ by
@@ -2993,11 +2959,11 @@ w'\br{x_i} & j = i \\
 v\br{x_1} & j = 1
 \end{cases}.
 $$
-So $ w $ is $ x_1 $-equivalent to $ w' $ and $ x_i $-equivalent to $ v $, noting that $ v, v' $ are $ x_i $-equivalent, and $ w, v' $ are $ x_i $-equivalent. As $ x_i $ does not occur in $ t $, we have, by \ref{thm:2.3.3} and $ \br{\ref{eq:12}} $,
+So $ w $ is $ x_1 $-equivalent to $ w' $ and $ x_i $-equivalent to $ v $, noting that $ v $ and $ v' $ are $ x_i $-equivalent, and $ w $ and $ v' $ are $ x_i $-equivalent. As $ x_i $ does not occur in $ t $, we have, by \ref{thm:2.3.3} and $ \br{\ref{eq:14}} $,
 $$ w\br{t} = v\br{t} = w'\br{x_1}. $$
 We can now apply the inductive hypothesis to $ w, w', \psi $. We obtain that
 $$ w\sbr{\psi\br{t}} = w'\sbr{\psi\br{x_1}} = F. $$
-As $ w, v $ are $ x_i $-equivalent, it follows that
+As $ w $ and $ v $ are $ x_i $-equivalent, it follows that
 $$ v\sbr{\fab{x_i}\psi\br{t}} = F. $$
 So $ v\sbr{\phi\br{t}} = F $, as required. We now prove the converse direction, since we cannot argue by symmetry here. So suppose $ v\sbr{\phi\br{t}} = F $. There is a valuation $ w $ which is $ x_i $-equivalent to $ v $ with $ w\sbr{\psi\br{t}} = F $. Let $ w' $ be the valuation $ x_1 $-equivalent to $ w $ with
 $$ w'\br{x_1} = w\br{t} = v\br{t} = v'\br{x_1}. $$
@@ -3006,6 +2972,7 @@ $$ w'\sbr{\psi\br{x_1}} = w\br{\psi\br{t}} = F. $$
 As $ w' $ is $ x_i $-equivalent to $ v' $, we have
 $$ v'\sbr{\fab{x_i}\psi\br{x_1}} = F. $$
 So $ v'\sbr{\phi\br{x_1}} = F $. This completes the inductive step.
+\end{enumerate}
 \end{itemize}
 \end{proof}
 
@@ -3014,10 +2981,10 @@ So $ v'\sbr{\phi\br{x_1}} = F $. This completes the inductive step.
 \subsection{Theorem \ref{thm:2.5.3}}
 
 \begin{proof}[Proof of \ref{thm:2.5.3}]
-Series of steps. Notation is cumulative.
+A series of steps. The notation is cumulative.
 \begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
 \item Let $ b_0, b_1, \dots $ be new constant symbols. Form $ \LL^+ $ by adding these to the symbols of $ \LL $. Regard $ \Sigma $ as a set of $ \LL^+ $-formulas. Check that $ \Sigma $ is still consistent, in the formal system $ K_{\LL^+} $. Note that $ \LL^+ $ is still a countable language.
-\item Adding witnesses. Claim that there is a consistent set of closed $ \LL^+ $-formulas $ \Sigma_\infty \supseteq \Sigma $ such that, for every $ \LL^+ $-formula $ \theta\br{x_i} $ with one free variable, there is some $ b_j $ with
+\item Adding \textbf{witnesses}. Claim that there is a consistent set of closed $ \LL^+ $-formulas $ \Sigma_\infty \supseteq \Sigma $ such that, for every $ \LL^+ $-formula $ \theta\br{x_i} $ with one free variable, there is some $ b_j $ with
 $$ \Sigma_\infty \vdash_{K_{\LL^+}} \impb{\notb{\fab{x_i}\theta\br{x_i}}}{\notb{\theta\br{b_j}}}. $$
 Think of $ \theta\br{x_i} $ as $ \notb{\chi\br{x_i}} $. Then this formula is essentially
 $$ \impb{\teb{x_i}\chi\br{x_i}}{\chi\br{b_j}}, $$
@@ -3045,31 +3012,31 @@ Call this structure $ \AA $. Note that, if $ v $ is a valuation in $ \AA $ and $
 \pagebreak
 \item Main lemma. Claim that, for every closed $ \LL^+ $-formula $ \phi $,
 \begin{equation}
-\label{eq:14}
+\label{eq:15}
 \Sigma^* \vdash_{K_{\LL^+}} \phi \qquad \iff \qquad \AA \vDash \phi.
 \end{equation}
-Proof by induction on number of connectives and quantifiers in $ \phi $.
+Prove by induction on the number of connectives and quantifiers in $ \phi $.
 \begin{itemize}
-\item Base case. $ \phi $ is atomic, that is $ \phi $ is $ R\br{t_1, \dots, t_n} $, for some closed terms $ t_i $, and relation symbol $ R $. $ \br{\ref{eq:14}} $ holds by (b) in definition of $ \AA $.
-\item Inductive step. Assume $ \br{\ref{eq:14}} $ holds for closed formulas involving fewer connectives and quantifiers.
+\item Base case. $ \phi $ is atomic, that is $ \phi $ is $ R\br{t_1, \dots, t_n} $, for some closed terms $ t_i $, and relation symbol $ R $. Then $ \br{\ref{eq:15}} $ holds by (b) in definition of $ \AA $.
+\item Inductive step. Assume $ \br{\ref{eq:15}} $ holds for closed formulas involving fewer connectives and quantifiers.
 \begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
 \item $ \phi $ is $ \notb{\psi} $.
 \item $ \phi $ is $ \impb{\psi}{\chi} $.
 \item $ \phi $ is $ \fab{x_i}\psi $.
 \end{enumerate}
-In cases $ 1 $ and $ 2 $, $ \psi, \chi $ are closed. So $ \br{\ref{eq:14}} $ holds for these.
+In cases $ 1 $ and $ 2 $, $ \psi $ and $ \chi $ are closed. So $ \br{\ref{eq:15}} $ holds for these.
 \begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
 \item $ \phi $ is $ \notb{\psi} $.
 \begin{align*}
 \AA \vDash \phi \qquad
 & \iff \qquad \AA \not\vDash \psi & \text{by \ref{thm:2.3.3}} \\
-& \iff \qquad \Sigma^* \not\vdash_{K_{\LL^+}} \psi & \text{by inductive hypothesis} \ \br{\ref{eq:14}} \\
+& \iff \qquad \Sigma^* \not\vdash_{K_{\LL^+}} \psi & \text{by the induction hypothesis} \ \br{\ref{eq:15}} \\
 & \iff \qquad \Sigma^* \vdash_{K_{\LL^+}} \notb{\psi} & \text{by step} \ 3.
 \end{align*}
 \item Exercise.
 \item $ \phi $ is $ \fab{x_i}\psi $.
 \begin{enumerate}[leftmargin=0.5in, label=Case 3\alph*.]
-\item $ x_i $ is not free in $ \psi $. So $ \psi $ is closed and we can use inductive hypothesis.
+\item $ x_i $ is not free in $ \psi $. So $ \psi $ is closed and we can use the inductive hypothesis.
 \item $ x_i $ is free in $ \psi $. So $ \psi\br{x_i} $ has a single free variable.
 \begin{itemize}
 \item[$ \impliedby $] Suppose for a contradiction that $ \AA \vDash \phi $ and $ \Sigma^* \not\vdash_{K_{\LL^+}} \phi $. Then by step $ 3 $,
@@ -3080,12 +3047,12 @@ for some constant symbol $ b_j $. That is,
 $$ \Sigma^* \vdash_{K_{\LL^+}} \impb{\notb{\phi}}{\notb{\psi\br{b_j}}}. $$
 So
 $$ \Sigma^* \vdash_{K_{\LL^+}} \notb{\psi\br{b_j}}. $$
-$ \notb{\psi\br{b_j}} $ is closed and, by case $ 1 $, $ \br{\ref{eq:14}} $ applies. We obtain
+$ \notb{\psi\br{b_j}} $ is closed and, by case $ 1 $, $ \br{\ref{eq:15}} $ applies. We obtain
 \begin{equation}
-\label{eq:15}
+\label{eq:16}
 \AA \vDash \notb{\psi\br{b_j}}.
 \end{equation}
-This contradicts $ \AA \vDash \fab{x_i}\psi $. Take a valuation $ v $ in $ \AA $ with $ v\br{x_i} = \overline{b_j} $, then $ v $ does not satisfy $ \psi $, by $ \br{\ref{eq:15}} $.
+This contradicts $ \AA \vDash \fab{x_i}\psi $. Take a valuation $ v $ in $ \AA $ with $ v\br{x_i} = \overline{b_j} $, then $ v $ does not satisfy $ \psi $, by $ \br{\ref{eq:16}} $.
 \end{itemize}
 \end{enumerate}
 \end{enumerate}
@@ -3111,8 +3078,8 @@ v\sbr{\phi} = T \qquad
 as required.
 \item Inductive step.
 \begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
-\item $ \phi $ is $ \notb{\psi} $. Exercise.
-\item $ \phi $ is $ \impb{\theta}{\chi} $. Exercise.
+\item $ \phi $ is $ \notb{\psi} $. (Exercise)
+\item $ \phi $ is $ \impb{\theta}{\chi} $. (Exercise)
 \item $ \phi $ is $ \fab{x_i}\psi $.
 \begin{itemize}
 \item[$ \implies $] If $ v\sbr{\fab{x_i}\psi} = F $, there is a $ v' $, $ x_i $-equivalent to $ v $, with $ v'\sbr{\psi} = F $. Then $ \widehat{v'} $ is $ x_i $-equivalent to $ \widehat{v} $, and by the inductive hypothesis,
@@ -3120,10 +3087,51 @@ $$ \widehat{v'}\sbr{\psi} = F. $$
 So $ \widehat{v}\sbr{\fab{x_i}\psi} = F $.
 \item[$ \impliedby $] Suppose $ \widehat{v}\sbr{\fab{x_i}\psi} = F $. So there is a valuation $ w $ in $ \widehat{\AA} $ which is $ x_i $-equivalent to $ \widehat{v} $ and $ w\sbr{\psi} = F $. There is a valuation $ v' $ in $ \AA $, $ x_i $-equivalent to $ v $, with $ \widehat{v'} = w $. We just change $ v\br{x_i} $, so
 $$ \widehat{v'\br{x_i}} = w\br{x_i}. $$
-Then $ v'\sbr{\psi} = F $, by inductive hypothesis. So $ v\sbr{\fab{x_i}\psi} = F $.
+Then $ v'\sbr{\psi} = F $, by the induction hypothesis. So $ v\sbr{\fab{x_i}\psi} = F $.
 \end{itemize}
 \end{enumerate}
 \end{itemize}
+\end{proof}
+
+\pagebreak
+
+\subsection{Theorem \ref{thm:3.5.2}}
+
+\begin{proof}[Proof of \ref{thm:3.5.2}]
+\hfill
+\begin{itemize}
+\item Assume that, if $ \omega \ne \beta < \alpha $, then $ \beta \approx \beta \times \beta $, the transfinite inductive hypothesis. Deduce $ \alpha \approx \alpha \times \alpha $.
+\item May assume that, if $ \beta < \alpha $, then $ \abs{\beta} < \abs{\alpha} $. This implies $ \abs{\beta^\dagger} < \abs{\alpha} $.
+\item Enough to show $ \abs{\alpha \times \alpha} \le \abs{\alpha} $, by \ref{thm:3.1.6}.
+\end{itemize}
+\begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
+\item Suppose we have a well ordering $ \le $ of $ A = \alpha \times \alpha $ such that, for all $ x \in A $,
+$$ \abs{A\sbr{x}} = \abs{\cbr{y \in A \mid y < x}} < \abs{\alpha}. $$
+Then prove that $ \abs{\alpha \times \alpha} = \abs{\alpha} $. By \ref{thm:3.4.6}, there is an ordinal $ \gamma $ which is similar to $ \abr{A; \le} $. Let
+$$ f : \gamma \to A $$
+be the similarity. Show that $ \gamma \subseteq \alpha $. Thus $ \abs{\gamma} \le \abs{\alpha} $, so $ \abs{A} \le \abs{\alpha} $. Let $ \eta \in \gamma $, so $ \eta < \gamma $. As $ f $ is a similarity, it gives a bijection
+$$ \eta = \cbr{\delta \in \gamma \mid \delta < \eta} \to A\sbr{f\br{\eta}}. $$
+So
+$$ \abs{\eta} = \abs{A\sbr{f\br{\eta}}} < \abs{\alpha}. $$
+Thus $ \eta < \alpha $. Otherwise $ \alpha \le \eta $, so $ \alpha \subseteq \eta $, and then $ \abs{\alpha} \le \abs{\eta} $, a contradiction. Thus $ \eta \in \alpha $.
+\item Find an ordering $ \le $ on $ \alpha \times \alpha = A $ as in step $ 1 $. For $ \lambda < \alpha $, let
+$$ A_\lambda = \cbr{\br{\theta, \zeta} \in \alpha \times \alpha \mid \max\br{\theta, \zeta} = \lambda}. $$
+Define $ \le $ on $ A $ by
+$$ \br{\theta', \zeta'} < \br{\theta, \zeta} \qquad \iff \qquad
+\begin{cases}
+\max\br{\theta', \zeta'} < \max\br{\theta, \zeta} \\
+\max\br{\theta', \zeta'} = \lambda = \max\br{\theta, \zeta} \ \text{and}
+\begin{cases}
+\zeta = \zeta' = \lambda \ \text{and} \ \theta' < \theta \\
+\zeta' < \zeta = \lambda \\
+\theta = \theta' = \lambda \ \text{and} \ \zeta' < \zeta
+\end{cases}
+\end{cases}.
+$$
+Check that $ \le $ is a well ordering on $ A $. Show that the property in step $ 1 $ holds. Let $ x = \br{\theta, \zeta} \in A $. Let $ \lambda = \max\br{\theta, \zeta} $. May assume $ \lambda \ge \omega $. Let $ \mu = \lambda^\dagger $. So $ \abs{\mu} < \abs{\alpha} $, and by the induction hypothesis, $ \abs{\mu \times \mu} = \abs{\mu} < \abs{\alpha} $. Then
+$$ \cbr{y \in A \mid y < x} \subseteq \cbr{\br{\theta', \zeta'} \in A \mid \max\br{\theta', \zeta'} \le \lambda} \subseteq \mu \times \mu. $$
+Thus $ \abs{A\sbr{x}} \le \abs{\mu \times \mu} < \abs{\alpha} $.
+\end{enumerate}
 \end{proof}
 
 \pagebreak
@@ -3160,7 +3168,7 @@ $ 0 $ and $ \omega $ are limit ordinals.
 \end{example*}
 
 \begin{theorem}[Definition by transfinite recursion]
-Let $ F_1, F_2 $ be operations on sets and $ a_0 $ a set. Then there is an operation $ G $ such that, for all ordinals $ \alpha $,
+Let $ F_1 $ and $ F_2 $ be operations on sets and $ a_0 $ a set. Then there is an operation $ G $ such that, for all ordinals $ \alpha $,
 \begin{itemize}
 \item $ G\br{\emptyset} = a_0 $,
 \item $ G\br{\alpha^\dagger} = F_1\br{G \upharpoonright \alpha^\dagger} $, and

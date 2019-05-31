@@ -26,10 +26,10 @@
 
 \lecture{1}{Friday}{05/10/18}
 
-Roughly speaking number theory is the study of the integers. More specifically, problems in number theory often have a lot to do with primes and divisibility, congruences, and include problems about the rational numbers. For example, solving equations in integers or in the rationals, such as $ x^2 - 2y^2 = 1 $, etc. We will be looking at problems that can be tackled by elementary means, but this does not mean easy. Also the statements of problems can be elementary without the solution being elementary, such as Fermat's last theorem, or even known, such as the twin prime conjecture. Sometimes we will state interesting things, like the prime number theorem, without proving them. Typically these will be things that we could prove if the course was much longer. We will start the course with a look at prime numbers and factorisation, a review of Euclid's algorithm and consequences, congruences, the structure of $ \unit{n} $, RSA algorithm, and quadratic reciprocity. We will return to primes at the end, too. Typical questions here include the following.
+Roughly speaking number theory is the study of the integers. More specifically, problems in number theory often have a lot to do with primes and divisibility, congruences, and include problems about the rational numbers. For example, solving equations in integers or in the rationals, such as $ x^2 - 2y^2 = 1 $, etc. We will be looking at problems that can be tackled by elementary means, but this does not mean easy. Also the statements of problems can be elementary without the solution being elementary, such as Fermat's last theorem, or even known, such as the twin prime conjecture. Sometimes we will state interesting things, like the prime number theorem, without proving them. Typically these will be things that we could prove if the course was much longer. We will start the course with a look at prime numbers and factorisation, a review of Euclid's algorithm and consequences, congruences, the structure of $ \unit{n} $, RSA algorithm, and quadratic reciprocity. We will return to primes at the end, too. The following are typical questions here.
 \begin{itemize}
 \item How do you tell if a number is prime?
-\item How many primes are there congruent to $ a \mod b $ for given $ a, b $?
+\item How many primes are there congruent to $ a \mod b $ for given $ a $ and $ b $?
 \item How many primes are there less than $ n $?
 \end{itemize}
 A warning is that we will be using plenty of things from the compulsory first and second year algebra courses, about groups, rings, ideals, fields, Lagrange's theorem, the first isomorphism theorem, and so on. You may want to revise this material if you are not comfortable with it. The course is not based on any particular book, although some material, such as continued fractions, was drawn from the following.
@@ -51,7 +51,7 @@ If $ a, b \in \Z $, we say that $ a $ \textbf{divides} $ b $, and $ a \mid b $, 
 If $ a \mid b $ and $ a \mid c $ then $ a \mid rb + sc $ for any $ r, s \in \Z $.
 
 \begin{definition}
-The \textbf{greatest common divisor (gcd)} or \textbf{highest common factor (hcf)} of $ a, b $ is the largest positive integer dividing $ a $ and $ b $. Write it as $ \br{a, b} $.
+The \textbf{greatest common divisor (gcd)} or \textbf{highest common factor (hcf)} of $ a $ and $ b $ is the largest positive integer dividing $ a $ and $ b $. Write it as $ \br{a, b} $.
 \end{definition}
 
 \begin{example*}
@@ -98,7 +98,7 @@ Take $ q = \fbr{a / b} $. By definition $ 0 \le a / b - q < 1 $, that is $ 0 \le
 \item If $ b = 0 $, output $ a $.
 \item Otherwise, replace $ \br{a, b} $ with $ \br{b, r} $ as in Theorem \ref{thm:5}. Then go to step 1.
 \end{enumerate}
-This algorithm terminates because $ \abs{a} + \abs{b} $ decreases when we apply Step $ 2 $.
+This algorithm terminates because $ \abs{a} + \abs{b} $ decreases when we apply step $ 2 $.
 
 \begin{example*}
 \hfill
@@ -149,10 +149,10 @@ Let $ n, a, b \in \Z $ with $ n \mid ab $ and $ \br{n, a} = 1 $. Then $ n \mid b
 \end{proposition}
 
 \begin{proof}
-Since $ \br{n, a} = 1 $, we can write $ rn + sa = 1 $, so $ b = rnb + sab = n\br{rb} + \br{ab}s $, which is divisible by $ n $, that is $ n \mid b $.
+Since $ \br{n, a} = 1 $, we can write $ rn + sa = 1 $, so $ b = n\br{rb} + \br{ab}s $, which is divisible by $ n $.
 \end{proof}
 
-If $ \br{n, a} = 1 $, we say that $ n, a $ are \textbf{coprime}.
+If $ \br{n, a} = 1 $, we say that $ n $ and $ a $ are \textbf{coprime}.
 
 \lecture{2}{Tuesday}{09/10/18}
 
@@ -171,7 +171,7 @@ If $ \br{a, b} = 1 $, and $ a \mid n $ and $ b \mid n $, then $ ab \mid n $.
 \end{proposition}
 
 \begin{proof}
-By \ref{thm:6}, we can write $ 1 = ra + sb $ with $ r, s \in \Z $. So $ n = r\br{sa} + s\br{nb} $, which is divisible by $ ab $, so $ ab \mid n $.
+By \ref{thm:6}, we can write $ 1 = ra + sb $ with $ r, s \in \Z $. So $ n = r\br{na} + s\br{nb} $, which is divisible by $ ab $.
 \end{proof}
 
 We say that $ m_1, \dots, m_n \in \Z $ are \textbf{pairwise coprime} if $ \br{m_i, m_j} = 1 $ for all $ i \ne j $.
@@ -182,18 +182,16 @@ If $ m_1, \dots, m_n $ are pairwise coprime and $ m_i \mid N $ for all $ i $ the
 \end{corollary}
 
 \begin{proof}
-Induction on $ n $. $ n = 2 $ is Proposition \ref{prop:9}. (Exercise)
+Exercise: induction on $ n $, where $ n = 2 $ is Proposition \ref{prop:9}.
 \end{proof}
 
 \begin{proposition}
 \label{prop:11}
-Every $ n \in \Z^\times $ can be written as $ \pm p_1 \dots p_r $ where $ p_i $ are prime, and $ r $ could be zero.
+Every $ n \in \Z^* $ can be written as $ \pm p_1 \dots p_r $ where $ p_i $ are prime, and $ r $ could be zero.
 \end{proposition}
 
 \begin{proof}
-Use induction on $ \abs{n} $. The case $ \abs{n} $ is trivial, so suppose $ \abs{n} > 1 $. Then either $ \abs{n} $ is prime, or
-$$ \abs{n} = ab, \qquad 1 < a, b < \abs{n}, $$
-and by induction each of $ a, b $ is a product of primes.
+Use induction on $ \abs{n} $. The case $ \abs{n} $ is trivial, so suppose $ \abs{n} > 1 $. Then either $ \abs{n} $ is prime, or $ \abs{n} = ab $ for $ 1 < a, b < \abs{n} $, and by induction each of $ a $ and $ b $ is a product of primes.
 \end{proof}
 
 \begin{theorem}
@@ -203,16 +201,15 @@ Every $ n \in \Z_{> 0} $ can be written as $ \pm p_1 \dots p_r $ where $ p_i $ a
 \begin{proof}
 Existence is Proposition \ref{prop:11}. For uniqueness, suppose that
 $$ n = p_1 \dots p_r = q_1 \dots q_s, $$
-with $ p_i, q_i $ prime. Then without loss of generality suppose $ r, s \ge 1 $. Then $ p_1 \mid p_1 \dots p_r $, so $ p_1 \mid q_1 \dots q_s $. By Corollary \ref{cor:8}, either $ p_1 \mid q_1 $ or $ p_1 \mid q_2 \dots q_s $. Proceeding inductively, eventually $ p_1 \mid q_i $ for some $ i $. Since $ q_i $ is prime this means $ p_1 = q_i $. We then have
-$$ p_2 \dots p_r = q_1 \dots q_i \dots q_s. $$
-Since this product is smaller than $ n $, by the inductive hypothesis we must have $ r - 1 = s - 1 $ and the $ p_i $, except $ p_1 $, are a rearrangement of the $ q_i $, except $ q_i $.
+with $ p_i $ and $ q_i $ prime. Then without loss of generality suppose $ r, s \ge 1 $. Then $ p_1 \mid p_1 \dots p_r $, so $ p_1 \mid q_1 \dots q_s $. By Corollary \ref{cor:8}, either $ p_1 \mid q_1 $ or $ p_1 \mid q_2 \dots q_s $. Proceeding inductively, eventually $ p_1 \mid q_i $ for some $ i $. Since $ q_i $ is prime this means $ p_1 = q_i $. We then have
+$$ p_2 \dots p_r = q_1 \dots q_{i - 1}q_{i + 1} \dots q_s. $$
+Since this product is smaller than $ n $, by the inductive hypothesis we must have $ r - 1 = s - 1 $ and the $ p_i $, except $ p_1 $, are a rearrangement of the $ q_j $, except $ q_i $.
 \end{proof}
-
-\pagebreak
 
 \subsection{Linear diophantine equations}
 
-Let $ a, b, c \in \Z^\times $. Want to solve $ ax + by = c $ with $ x, y \in \Z $.
+Let $ a, b, c \in \Z^* $. Want to solve
+$$ ax + by = c, \qquad x, y \in \Z. $$
 
 \begin{example*}
 $ 2x + 6y = 3 $ has no solutions.
@@ -220,21 +217,10 @@ $ 2x + 6y = 3 $ has no solutions.
 
 In general, there are no solutions if $ \br{a, b} \nmid c $. Suppose that $ \br{a, b} \mid c $. Then
 $$ ax + by = c \qquad \iff \qquad \dfrac{a}{\br{a, b}}x + \dfrac{b}{\br{a, b}}y = \dfrac{c}{\br{a, b}}. $$
-By Theorem \ref{thm:6}, since
-$$ \br{\dfrac{a}{\br{a, b}}, \dfrac{b}{\br{a, b}}} = 1, $$
-we can find $ r, s \in \Z $ with
-$$ \dfrac{a}{\br{a, b}}r + \dfrac{b}{\br{a, b}}s = 1, $$
-so
+By Theorem \ref{thm:6}, since $ \br{a / \br{a, b}, b / \br{a, b}} = 1 $, we can find $ r, s \in \Z $ with $ ar / \br{a, b} + bs / \br{a, b} = 1 $, so
 $$ \dfrac{a}{\br{a, b}}\br{\dfrac{rc}{\br{a, b}}} + \dfrac{b}{\br{a, b}}\br{\dfrac{sc}{\br{a, b}}} = \dfrac{c}{\br{a, b}}. $$
-So
-$$ x = \dfrac{rc}{\br{a, b}}, \qquad y = \dfrac{sc}{\br{a, b}} $$
-is a solution.
-$ X, Y $ is another solution if and only if
-$$ \dfrac{a}{\br{a, b}}X + \dfrac{b}{\br{a, b}}Y = \dfrac{a}{\br{a, b}}x + \dfrac{b}{\br{a, b}}y, $$
-if and only if
-$$ \dfrac{a}{\br{a, b}}\br{X - x} = \dfrac{b}{\br{a, b}}\br{y - Y}. $$
-For this to hold, we need
-$$ \dfrac{a}{\br{a, b}} \ \Bigg| \ y - Y, \qquad \dfrac{b}{\br{a, b}} \ \Bigg| \ X - x. $$
+So $ x = rc / \br{a, b} $ and $ y = sc / \br{a, b} $ is a solution. Then $ X $ and $ Y $ is another solution if and only if
+$$ \dfrac{a}{\br{a, b}}X + \dfrac{b}{\br{a, b}}Y = \dfrac{a}{\br{a, b}}x + \dfrac{b}{\br{a, b}}y \qquad \iff \qquad \dfrac{a}{\br{a, b}} \ \Bigg| \ y - Y, \qquad \dfrac{b}{\br{a, b}} \ \Bigg| \ X - x. $$
 See that the solutions are exactly
 $$ X = x + \dfrac{nb}{\br{a, b}}, \qquad Y = y - \dfrac{na}{\br{a, b}}. $$
 
@@ -245,7 +231,7 @@ $$ X = x + \dfrac{nb}{\br{a, b}}, \qquad Y = y - \dfrac{na}{\br{a, b}}. $$
 \subsection{Congruences}
 
 \begin{definition}
-Let $ n \in \Z^\times $, usually $ n > 0 $. Let $ a, b \in \Z $. We say that $ a $ is \textbf{congruent to $ b \mod n $} if and only if $ n \mid a - b $. Write $ a \equiv b \mod n $.
+Let $ n \in \Z^* $, usually $ n > 0 $. Let $ a, b \in \Z $. We say that $ a $ is \textbf{congruent to $ b \mod n $} if and only if $ n \mid a - b $. Write $ a \equiv b \mod n $.
 \end{definition}
 
 $ \equiv $ is an equivalence relation, and we write $ \Z / n\Z $ for the equivalence classes, which is a ring.
@@ -287,7 +273,7 @@ $$ \Unit{p} = \cbr{1, \dots, p - 1}. $$
 So $ \Z / p\Z $ is a ring with the property that every non-zero element has a multiplicative inverse, so it is a field. Another equivalent way to see this is to check that $ p\Z $ is a maximal ideal of $ \Z $.
 \end{example*}
 
-Thus every non-zero congruence class mod $ p $ is a unit.
+Thus every non-zero congruence class modulo $ p $ is a unit.
 
 \pagebreak
 
@@ -299,7 +285,7 @@ Consider the question of solving
 $$ ax \equiv b \mod c, \qquad a, b, c, x \in \Z. $$
 This is equivalent to solving
 $$ ax + cy = b, \qquad y \in \Z. $$
-We saw yesterday that this has solutions if and only if $ \br{a, c} \mid b $. Furthermore, there is a unique solution mod $ c / \br{a, c} $, because all the solutions are obtained by adding multiples of $ c / \br{a, c} $ to our given $ x $, and subtracting the corresponding multiple of $ a / \br{a, c} $ from $ y $. This implies that there are $ \br{a, c} $ solutions to the original congruence mod $ c $. If $ x_0 $ is one solution, the others are
+We saw yesterday that this has solutions if and only if $ \br{a, c} \mid b $. Furthermore, there is a unique solution modulo $ c / \br{a, c} $, because all the solutions are obtained by adding multiples of $ c / \br{a, c} $ to our given $ x $, and subtracting the corresponding multiple of $ a / \br{a, c} $ from $ y $. This implies that there are $ \br{a, c} $ solutions to the original congruence modulo $ c $. If $ x_0 $ is one solution, the others are
 $$ x_0 + \dfrac{cj}{\br{a, c}}, \qquad 0 \le j < \br{a, c}. $$
 In particular, if $ \br{a, c} = 1 $ then there is a unique solution to $ ax \equiv b \mod c $. Indeed $ a \in \unit{c} $, so it has an inverse $ a^{-1} $, and $ x \equiv a^{-1}b \mod c $ is the unique solution.
 
@@ -313,7 +299,7 @@ In particular, if $ \br{a, c} = 1 $ then there is a unique solution to $ ax \equ
 
 \subsection{The Chinese remainder theorem}
 
-\begin{theorem}[The Chinese remainder theorem]
+\begin{theorem}[Chinese remainder theorem]
 \label{thm:14}
 Let $ m_1, \dots, m_n \in \Z_{> 0} $ be pairwise coprime. Then the natural map
 $$ \dfrac{\Z}{m_1 \dots m_n\Z} \xrightarrow{\sim} \dfrac{\Z}{m_1\Z} \times \dots \times \dfrac{\Z}{m_n\Z} $$
@@ -329,7 +315,7 @@ This is false without the assumption that $ m_i $ pairwise coprime, such as $ m_
 \begin{proof}
 The map
 $$ \dfrac{\Z}{m_1 \dots m_n\Z} \to \dfrac{\Z}{m_1\Z} \times \dots \times \dfrac{\Z}{m_n\Z} $$
-is a ring homomorphism between two rings of order, or cardinality, $ m_1 \dots m_n $. So to show that it is an isomorphism, it is enough to show that it is an injection, so we only need to check that the kernel is zero. So we need to know that if $ m_i \mid N $ for all $ i $, then $ m_1 \dots m_n \mid N $. This is Corollary \ref{cor:10}. For the second part, just use that if $ R, S $ are rings, then
+is a ring homomorphism between two rings of order, or cardinality, $ m_1 \dots m_n $. So to show that it is an isomorphism, it is enough to show that it is an injection, so we only need to check that the kernel is zero. So we need to know that if $ m_i \mid N $ for all $ i $, then $ m_1 \dots m_n \mid N $. This is Corollary \ref{cor:10}. For the second part, just use that if $ R $ and $ S $ are rings, then
 $$ \br{R \times S}^\times \cong R^\times \times S^\times. $$
 \end{proof}
 
@@ -342,9 +328,9 @@ $$ x \equiv a_iq_iM_i \equiv a_i \mod m_i. $$
 
 \pagebreak
 
-\section{The structure of $ \unit{n} $}
+\section{The structure of \texorpdfstring{$ \unit{n} $}{Z/nZ}}
 
-\subsection{The Euler $ \Phi $ function}
+\subsection{The Euler \texorpdfstring{$ \Phi $}{Phi} function}
 
 Let $ \Phi\br{n} $ be the order of $ \unit{n} $, that is
 $$ \Phi\br{n} = \#\cbr{1 \le i < n \mid \br{i, n} = 1}. $$
@@ -361,10 +347,12 @@ $$ f\br{mn} = f\br{m}f\br{n}, $$
 for all $ m $ and $ n $. Say $ f $ is \textbf{multiplicative} if this holds whenever $ \br{m, n} = 1 $.
 \end{definition}
 
-$ \Phi $ is multiplicative by Theorem \ref{thm:14} because if $ \br{m, n} = 1 $ then
-$$ \dfrac{\Z}{m_1 \dots m_n\Z} \xrightarrow{\sim} \dfrac{\Z}{m_1\Z} \times \dots \times \dfrac{\Z}{m_n\Z}. $$
+$ \Phi $ is multiplicative by Theorem \ref{thm:14}, because if $ \br{m, n} = 1 $ then
+$$ \Unit{mn} \xrightarrow{\sim} \Unit{m} \times \Unit{n}. $$
 $ \Phi $ is not strongly multiplicative, since
 $$ \Phi\br{4} = 2 \ne 1 = \Phi\br{2}\Phi\br{2}. $$
+Write $ n = \prod_i p_i^{a_i} $, where $ p_i $ are distinct primes. Then
+$$ \Phi\br{n} = \prod_i \Phi\br{p_i^{a_i}}. $$
 If $ p $ is prime then
 $$ \Phi\br{p^a} = \#\cbr{1 \le i < p^a \mid \br{i, p^a} = 1} = \#\cbr{1 \le i < p^a \mid p \nmid i} = p^a - p^{a - 1} = p^a\br{1 - \dfrac{1}{p}}. $$
 If $ n = \prod_i p_i^{a_i} $, then
@@ -391,57 +379,49 @@ $$ a^{p - 1} \equiv 1 \mod p. $$
 Theorem \ref{thm:16} with $ n = p $, so $ \Phi\br{n} = p - 1 $.
 \end{proof}
 
-Next is to understand the structure of $ \unit{n} $. By Theorem \ref{thm:14}, it is enough to study the case that $ n $ is a prime power. We will begin by considering the case that $ n $ is prime.
+Next, want to understand the structure of $ \unit{n} $. By Theorem \ref{thm:14}, it is enough to study the case that $ n $ is a prime power. We will begin by considering the case that $ n $ is prime.
 
 \begin{example*}
-Let $ n = 5 $.
+Let $ n = 5 $. Then
 $$ \Unit{5} = \cbr{1, 2, 3, 4}. $$
-This has order four. So it is either cyclic of order four or a product of two cyclic groups of order two.
-$$ 2^2 = 4, \qquad 2^3 = 3, \qquad 2^4 = 1 $$
-in $ \unit{5} $. So $ \unit{5} $ is cyclic of order four.
+This has order four. So it is either cyclic of order four or a product of two cyclic groups of order two. $ 2^2 = 4 $, $ 2^3 = 3 $, and $ 2^4 = 1 $ in $ \unit{5} $. So $ \unit{5} $ is cyclic of order four.
 \end{example*}
 
 \pagebreak
 
-Next is $ \unit{p} $ is cyclic of order $ p - 1 $ for any prime $ p $.
+Next, $ \unit{p} $ is cyclic of order $ p - 1 $ for any prime $ p $.
 
 \lecture{4}{Friday}{12/10/18}
 
 \begin{definition}
-If $ G $ is a group and $ g \in G $ is an element, the \textbf{order} of $ g $ is the least $ a \ge 1 $ such that $ g^a = 1 $. In particular, if $ \br{g, n} = 1 $, then we write $ ord_n\br{g} $ for the order of $ g $ in $ \unit{n} $, \textbf{the order of $ g \mod n $}.
+If $ G $ is a group and $ g \in G $ is an element, the \textbf{order} of $ g $ is the least $ a \ge 1 $ such that $ g^a = 1 $. In particular, if $ \br{g, n} = 1 $, then we write $ ord_n\br{g} $ for the order of $ g $ in $ \unit{n} $, the \textbf{order of $ g $ modulo $ n $}.
 \end{definition}
 
 \begin{proposition}
 \label{prop:19}
-If $ G $ is a group and $ g $ is an element of order $ a $, then
-$$ g^n = 1 \qquad \iff \qquad a \mid n. $$
+If $ G $ is a group and $ g $ is an element of order $ a $, then $ g^n = 1 $ if and only if $ a \mid n $.
 \end{proposition}
 
 \begin{proof}
-If $ n = ab $ then
-$$ g^n = \br{g^a}^b = 1^b = 1. $$
-Conversely, write $ n = ab + r $ with $ 0 \le r < a $. Then $ g^r = 1 $ and since $ r < a $ we have $ r = 0 $.
+If $ n = ab $ then $ g^n = \br{g^a}^b = 1^b = 1 $. Conversely, write $ n = ab + r $ with $ 0 \le r < a $. Then $ g^r = 1 $ and since $ r < a $ we have $ r = 0 $.
 \end{proof}
 
 In particular, if $ \br{g, n} = 1 $, then $ g^{\Phi\br{n}} = 1 $, by Euler's theorem, so Proposition \ref{prop:19} implies that $ ord_n\br{g} \mid \Phi\br{n} $. We want to prove that if $ p $ is prime, then $ \unit{p} $ is cyclic. Equivalently, we need to show that there exists $ g $ such that
 $$ ord_p\br{g} = \Phi\br{p} = p - 1. $$
-We will do this by counting the number of elements of each order. Key point is that $ \Z / p\Z $ is a field. For any $ d \ge 1 $, the elements of $ \unit{p} $ of order dividing $ d $ are exactly the roots of the $ X^d - 1 $ in $ \Z / p\Z $, by Proposition \ref{prop:19}.
+We will do this by counting the number of elements of each order. The key point is that $ \Z / p\Z $ is a field. For any $ d \ge 1 $, the elements of $ \unit{p} $ of order dividing $ d $ are exactly the roots of the $ X^d - 1 $ in $ \Z / p\Z $, by Proposition \ref{prop:19}.
 
 \begin{example*}
-The equation $ X^2 = 1 $ has exactly two solutions mod $ p $ for any prime $ p $, namely $ \pm 1 $, but it can have more mod $ n $ if $ n $ is composite. For example, if $ n = 15 $, then $ 4, 11 $ are also solutions.
-$$ X^2 - 1 \equiv 0 \mod n \qquad \iff \qquad n \mid \br{X + 1}\br{X - 1}, $$
-for example, $ 15 \mid \br{4 + 1}\br{4 - 1} $.
+The equation $ X^2 = 1 $ has exactly two solutions modulo $ p $ for any prime $ p $, namely $ \pm 1 $, but it can have more modulo $ n $ if $ n $ is composite. For example, if $ n = 15 $, then $ 4 $ and $ 11 $ are also solutions, since $ X^2 - 1 \equiv 0 \mod n $ if and only if $ n \mid \br{X + 1}\br{X - 1} $, for example $ 15 \mid \br{4 + 1}\br{4 - 1} $.
 \end{example*}
 
 \begin{definition}
-$ g \in \Z $ with $ \br{g, p} = 1 $ is a \textbf{primitive root} if $ ord_p\br{g} = p - 1 $, that is
-$$ \Unit{p} = \abr{g}. $$
+$ g \in \Z $ with $ \br{g, p} = 1 $ is a \textbf{primitive root} if $ ord_p\br{g} = p - 1 $, that is $ \unit{p} = \abr{g} $.
 \end{definition}
 
 \begin{lemma}
 \label{lem:21}
-Let $ R $ be a commutative ring, and let $ P\br{X} \in R\sbr{X} $. If $ \alpha \in R $ has $ P\br{\alpha} = 0 $, then there exists
-$$ Q\br{X} \in R\sbr{X}, \qquad P\br{X} = \br{X - \alpha}Q\br{X}. $$
+Let $ R $ be a commutative ring, and let $ P\br{X} \in R\sbr{X} $. If $ \alpha \in R $ has $ P\br{\alpha} = 0 $, then there exists $ Q\br{X} \in R\sbr{X} $ such that
+$$ P\br{X} = \br{X - \alpha}Q\br{X}. $$
 \end{lemma}
 
 \begin{example*}
@@ -450,10 +430,12 @@ $$ X^2 - 1 = \br{X + 1}\br{X - 1} = \br{X + 4}\br{X - 4}. $$
 \end{example*}
 
 \begin{proof}
-Induction on $ \deg\br{P} $. $ \deg\br{P} = 0 $ is obvious. Let $ \deg\br{P} = d $, assume the result holds for degree at most $ d - 1 $. Let
+Induction on $ \deg\br{P} $. $ \deg\br{P} = 0 $ is obvious. Let $ \deg\br{P} = d $, and assume the result holds for degree at most $ d - 1 $. Let
 $$ P\br{X} = cX^d + \dots, \qquad S\br{X} = P\br{X} - cX^{d - 1}\br{X - \alpha}. $$
-Then $ S\br{X} $ has degree at most $ d - 1 $. Also $ S\br{\alpha} = 0 $. By induction, we can write $ S\br{X} = \br{X - \alpha}R\br{X} $. Set
-$$ Q\br{X} = cX^{d - 1} + R\sbr{X}. $$
+Then $ S\br{X} $ has degree at most $ d - 1 $. Also $ S\br{\alpha} = 0 $. By induction, we can write
+$$ S\br{X} = \br{X - \alpha}R\br{X}. $$
+Set
+$$ Q\br{X} = cX^{d - 1} + R\br{X}. $$
 Then
 $$ \br{X - \alpha}Q\br{X} = cX^{d - 1}\br{X - \alpha} + S\br{X} = P\br{X}. $$
 \end{proof}
@@ -464,12 +446,8 @@ Let $ F $ be a field. Let $ P\br{X} $ be a polynomial in $ F\sbr{X} $. Then $ P\
 \end{theorem}
 
 \begin{proof}
-Induction on $ d = \deg\br{P} $. $ d = 1 $ is obvious. If $ P $ has no roots, then we are done. Otherwise, let $ \alpha $ be a root. By Lemma \ref{lem:21},
-$$ P\br{X} = \br{X - \alpha}Q\br{X}, $$
-$ Q\br{X} $ has degree $ d - 1 $, so we are done by induction.
+Induction on $ d = \deg\br{P} $. $ d = 1 $ is obvious. If $ P $ has no roots, then we are done. Otherwise, let $ \alpha $ be a root. By Lemma \ref{lem:21}, $ P\br{X} = \br{X - \alpha}Q\br{X} $, and $ Q\br{X} $ has degree $ d - 1 $, so we are done by induction.
 \end{proof}
-
-\pagebreak
 
 \begin{corollary}
 \label{cor:23}
@@ -479,8 +457,10 @@ Let $ d $ be any divisor of $ p - 1 $. Then there are exactly $ d $ elements of 
 \begin{proof}
 We have to show that $ X^d - 1 $ has exactly $ d $ roots in $ \Z / p\Z $. $ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots, by Fermat's little theorem. Since $ d \mid p - 1 $, we can write
 $$ X^{p - 1} - 1 = \br{X^d - 1}\br{\br{X^d}^{\tfrac{p - 1}{d} - 1} + \dots + 1} = \br{X^d - 1}Q\br{X}, \qquad \deg\br{Q} = p - 1 - d. $$
-$ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots, $ X^d - 1 $ has at most $ d $ roots, and $ Q\br{X} $ has at most $ p - 1 - d $ roots, by Theorem \ref{thm:22}. So $ X^d - 1 $ has exactly $ d $ roots.
+Then $ X^{p - 1} - 1 $ has exactly $ p - 1 $ roots, $ X^d - 1 $ has at most $ d $ roots, and $ Q\br{X} $ has at most $ p - 1 - d $ roots, by Theorem \ref{thm:22}. So $ X^d - 1 $ has exactly $ d $ roots.
 \end{proof}
+
+\pagebreak
 
 \begin{example*}
 Let $ p = 7 $. There are
@@ -512,7 +492,7 @@ Let $ p $ be prime, and let $ d \mid p - 1 $. Then there are exactly $ \Phi\br{d
 \begin{proof}
 Induction on $ d $. $ d = 1 $ is obvious. Assume the result holds for all $ d' \mid d $ and $ d' \ne d $. Then by Lemma \ref{lem:24},
 $$ \Phi\br{d} = d - \sum_{d' \mid d, \ d' \ne d} \Phi\br{d'}. $$
-Now use inductive hypothesis and Corollary \ref{cor:23}.
+Now use the inductive hypothesis and Corollary \ref{cor:23}.
 \end{proof}
 
 \lecture{5}{Tuesday}{16/10/18}
@@ -525,34 +505,55 @@ Let $ p $ be an odd prime and $ n \ge 1 $. Then $ \unit{p^n} $ is cyclic.
 Consider three cases.
 \begin{itemize}[leftmargin=0.5in]
 \item[$ n = 1 $] Theorem \ref{thm:25}.
-\item[$ n = 2 $] Let $ g $ be a primitive root mod $ p $. Claim that either
-$$ g^{p - 1} \not\equiv 1 \mod p^2, $$
-and $ g $ is a generator for $ \unit{p^2} $, or
-$$ g^{p - 1} \equiv 1 \mod p^2, $$
-and $ g + p $ is a generator for $ \unit{p^2} $. Either way, $ \unit{p^2} $ is cyclic. Suppose firstly that $ g^{p - 1} \not\equiv 1 \mod p^2 $.
-$$ \#\Unit{p^2} = \Phi\br{p^2} = p\br{p - 1}. $$
-So $ ord_{p^2}\br{g} \mid p\br{p - 1} $. On the other hand, $ g^{ord_{p^2}\br{g}} \equiv 1 \mod p^2 $, so $ g^{ord_{p^2}\br{g}} \equiv 1 \mod p $, so
+\item[$ n = 2 $] Let $ g $ be a primitive root modulo $ p $. Claim that either $ g^{p - 1} \not\equiv 1 \mod p^2 $ and $ g $ is a generator for $ \unit{p^2} $, or $ g^{p - 1} \equiv 1 \mod p^2 $ and $ g + p $ is a generator for $ \unit{p^2} $. Either way, $ \unit{p^2} $ is cyclic.
+\begin{itemize}
+\item Suppose firstly that $ g^{p - 1} \not\equiv 1 \mod p^2 $. Then $ \#\unit{p^2} = \Phi\br{p^2} = p\br{p - 1} $. So
+$$ ord_{p^2}\br{g} \mid p\br{p - 1}. $$
+On the other hand, $ g^{ord_{p^2}\br{g}} \equiv 1 \mod p^2 $, so $ g^{ord_{p^2}\br{g}} \equiv 1 \mod p $, so
 $$ p - 1 \mid ord_{p^2}\br{g}, $$
-because $ ord_p\br{g} = p - 1 $ by assumption. But $ ord_{p^2}\br{g} \ne p - 1 $, as $ g^{p - 1} \not\equiv 1 \mod p^2 $. So
+because $ ord_p\br{g} = p - 1 $ by assumption. But
+$$ ord_{p^2}\br{g} \ne p - 1, $$
+as $ g^{p - 1} \not\equiv 1 \mod p^2 $. So
 $$ ord_{p^2}\br{g} = p\br{p - 1}, $$
-as required. Suppose now that $ g^{p - 1} \equiv 1 \mod p $. It suffices to show that
+as required.
+\item Suppose now that $ g^{p - 1} \equiv 1 \mod p^2 $. It suffices to show that
 $$ \br{g + p}^{p - 1} \not\equiv 1 \mod p^2, $$
 as we can then apply the analysis above with $ g + p $ in place of $ g $. By the binomial theorem,
 $$ \br{g + p}^{p - 1} \equiv g^{p - 1} + \br{p - 1}g^{p - 2}p \equiv 1 + \br{p - 1}g^{p - 2}p \mod p^2. $$
-Since $ p \nmid \br{p - 1}g^{p - 2} $, $ \br{g + p}^{p - 1} \not\equiv 1 \mod p^2 $, as required.
-\item[$ n \ge 2 $] It suffices to show that if $ ord_{p^2}\br{g} = p\br{p - 1} $, then $ ord_{p^n}\br{g} = p^{n - 1}\br{p - 1} $. We do this by induction on $ n $. So assume that $ ord_{p^n}\br{g} = p^{n - 1}\br{p - 1} $. Then
-$$ p^{n - 1}\br{p - 1} = ord_{p^n}\br{g} \mid ord_{p^{n + 1}}\br{g} \mid \Phi\br{p^{n + 1}} = p^n\br{p - 1}. $$
+Since $ p \nmid \br{p - 1}g^{p - 2} $,
+$$ \br{g + p}^{p - 1} \not\equiv 1 \mod p^2, $$
+as required.
+\end{itemize}
+
+\pagebreak
+
+\item[$ n \ge 2 $] It suffices to show that if $ ord_{p^2}\br{g} = p\br{p - 1} $, then $ ord_{p^n}\br{g} = p^{n - 1}\br{p - 1} $. We do this by induction on $ n $. So assume that
+$$ ord_{p^n}\br{g} = p^{n - 1}\br{p - 1}. $$
+Then
+$$ ord_{p^n}\br{g} \mid ord_{p^{n + 1}}\br{g}, $$
+and
+$$ ord_{p^{n + 1}}\br{g} \mid \Phi\br{p^{n + 1}} = p^n\br{p - 1}. $$
 So either $ ord_{p^{n + 1}}\br{g} = p^n\br{p - 1} $, or $ ord_{p^{n + 1}}\br{g} = p^{n - 1}\br{p - 1} $. So we need to show that
 $$ g^{p^{n - 1}\br{p - 1}} \not\equiv 1 \mod p^{n + 1}. $$
-To do this, consider $ g^{p^{n - 2}\br{p - 1}} \mod p^{n - 1} $ and $ g^{p^{n - 2}\br{p - 1}} \mod p^n $. Since $ \Phi\br{p^{n - 1}} = p^{n - 2}\br{p - 1} $,
+To do this, consider $ g^{p^{n - 2}\br{p - 1}} $ modulo $ p^{n - 1} $ and modulo $ p^n $. Since $ \Phi\br{p^{n - 1}} = p^{n - 2}\br{p - 1} $,
 $$ g^{p^{n - 2}\br{p - 1}} \equiv 1 \mod p^{n - 1}, $$
 by Euler's theorem. Write
 $$ g^{p^{n - 2}\br{p - 1}} = 1 + p^{n - 1}t. $$
-Since $ ord_{p^n}\br{g} = p^{n - 1}\br{p - 1} $ by assumption, $ g^{p^{n - 2}\br{p - 1}} \not\equiv 1 \mod p^n $, that is $ p \nmid t $. Then
-$$ g^{p^{n - 1}\br{p - 1}} = \br{g^{p^{n - 2}\br{p - 1}}}^p = \br{1 + p^{n - 1}t}^p \equiv 1 + p^nt + \twobyone{p}{2}p^{2\br{n - 1}}t^2 + \dots + p^{p\br{n - 1}}t^p \mod p^{n + 1}, $$
-Since $ r\br{n - 1} \ge n + 1 $ if and only if $ \br{r - 1}n \ge r + 1 $ and $ p > 2 $,
-$$ p \ \Bigg| \ \twobyone{p}{2} \qquad \implies \qquad p^{n + 1} \ \Bigg| \ p^{2n - 1} = p^{2\br{n - 1} + 1} \ \Bigg| \ \twobyone{p}{2}p^{2\br{n - 1}}. $$
-So $ g^{p^{n - 1}\br{p - 1}} \equiv 1 + p^nt \not\equiv 1 \mod p^{n + 1} $, because $ p \nmid t $.
+Since $ ord_{p^n}\br{g} = p^{n - 1}\br{p - 1} $ by assumption,
+$$ g^{p^{n - 2}\br{p - 1}} \not\equiv 1 \mod p^n, $$
+that is $ p \nmid t $. Then
+\begin{align*}
+g^{p^{n - 1}\br{p - 1}}
+& = \br{g^{p^{n - 2}\br{p - 1}}}^p \\
+& = \br{1 + p^{n - 1}t}^p \\
+& = 1 + p^nt + \twobyone{p}{2}p^{2\br{n - 1}}t^2 + \dots + p^{p\br{n - 1}}t^p \\
+& \equiv 1 + p^nt \mod p^{n + 1},
+\end{align*}
+since $ r\br{n - 1} \ge n + 1 $ if and only if $ \br{r - 1}n \ge r + 1 $ and $ p > 2 $, so
+$$ p^{n + 1} \ \Bigg| \ p^{2n - 1} = p^{2\br{n - 1} + 1} \ \Bigg| \ \twobyone{p}{2}p^{2\br{n - 1}}. $$
+So
+$$ g^{p^{n - 1}\br{p - 1}} \not\equiv 1 \mod p^{n + 1}, $$
+because $ p \nmid t $.
 \end{itemize}
 \end{proof}
 
@@ -561,9 +562,7 @@ So $ g^{p^{n - 1}\br{p - 1}} \equiv 1 + p^nt \not\equiv 1 \mod p^{n + 1} $, beca
 \begin{itemize}
 \item $ \unit{2} = \cbr{1} $.
 \item $ \unit{4} = \cbr{1, 3} $ is cyclic of order two, with $ 3 $ as a generator.
-\item $ \unit{8} = \cbr{1, 3, 5, 7} $ is not cyclic.
-$$ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8, $$
-so every element has order two.
+\item $ \unit{8} = \cbr{1, 3, 5, 7} $ is not cyclic, since $ 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod 8 $, so every element has order two.
 \end{itemize}
 \end{example*}
 
@@ -592,7 +591,7 @@ Let $ \abr{g} $ denote the group
 $$ \cbr{1, \dots, g^{ord\br{g} - 1}} $$
 generated by $ g $. Consider the natural map
 $$ \abr{-1} \times \abr{5} \to \Unit{2^n}. $$
-This is injective, because if $ \pm 1\br{5}^s \equiv 1 \mod 2^n $ then in particular $ \pm 1\br{5}^s \equiv 1 \mod 4 $ so $ \pm 1 \equiv 1 \mod 4 $, so we must have $ 5^s \equiv 1 \mod 2^n $, that is $ 5^s = 1 $ in $ \abr{5} $. $ \abr{-1} $ has order $ 2 $ and $ \abr{5} $ has order $ ord_{2^n}\br{5} = 2^{n - 2} $ by Lemma \ref{lem:27}. So $ \abr{-1} \times \abr{5} $ has order
+This is injective, because if $ \pm 1\br{5}^s \equiv 1 \mod 2^n $ then in particular $ \pm 1\br{5}^s \equiv 1 \mod 4 $ so $ \pm 1 \equiv 1 \mod 4 $, so we must have $ 5^s \equiv 1 \mod 2^n $, that is $ 5^s = 1 $ in $ \abr{5} $. Then $ \abr{-1} $ has order $ 2 $ and $ \abr{5} $ has order $ ord_{2^n}\br{5} = 2^{n - 2} $ by Lemma \ref{lem:27}. So $ \abr{-1} \times \abr{5} $ has order
 $$ 2\br{2^{n - 2}} = 2^{n - 1} = \Phi\br{2^n} = \#\Unit{2^n}. $$
 So the map
 $$ \abr{-1} \times \abr{5} \to \Unit{2^n} $$
@@ -613,11 +612,11 @@ $ \unit{n} $ is cyclic if and only if either
 Primitive roots are generators of $ \unit{n} $. Find them in practice by guessing small values of $ g $, and seeing if $ g $ is a generator. There are $ \Phi\br{p - 1} $ primitive roots, which means that you have a high probability of success. Could work out $ 1, \dots, g^{p - 2} $ and check these are distinct. This would be inefficient. Better is to check for some prime $ q \mid p - 1 $ whether $ g^{\br{p - 1} / q} = 1 $ or not. This works, because if $ g^{\br{p - 1} / q} = 1 $ then $ g $ is not a primitive root, while if $ g^{\br{p - 1} / q} \ne 1 $ then $ ord_p\br{g} \mid p - 1 $ and $ ord_p\br{g} \nmid \br{p - 1} / q $. If this holds for all $ q \mid p - 1 $, then $ ord_p\br{g} = p - 1 $, because otherwise it would be a proper divisor, and so would divide $ \br{p - 1} / q $ for some prime $ q \mid p - 1 $.
 
 \begin{example*}
-Let $ p = 31 $, so $ p - 1 = 30 = \br{2}\br{3}\br{5} $. $ g $ is a primitive root if and only if
+Let $ p = 31 $, so $ p - 1 = 30 = \br{2}\br{3}\br{5} $. Then $ g $ is a primitive root if and only if
 $$ g^{15} \ne 1, \qquad g^{10} \ne 1, \qquad g^{6} \ne 1. $$
 \begin{itemize}
 \item Is $ 2 $ a primitive root? $ 2^2 = 4, 2^4 = 16, 2^6 = 2 $, but $ 2^{10} = 2^{15} = 1 $ because $ 2^5 = 32 = 1 $.
-\item How about $ 3 $? $ 3^2 = 9, 3^4 = 19, 3^6 = 16, 3^8 = 20, 3^{10} = 25, 3^{15} = 30 $. So $ 3 $ is a primitive root mod $ 31 $.
+\item How about $ 3 $? $ 3^2 = 9, 3^4 = 19, 3^6 = 16, 3^8 = 20, 3^{10} = 25, 3^{15} = 30 $. So $ 3 $ is a primitive root modulo $ 31 $.
 \end{itemize}
 \end{example*}
 
@@ -625,11 +624,11 @@ $$ g^{15} \ne 1, \qquad g^{10} \ne 1, \qquad g^{6} \ne 1. $$
 
 \section{Primality testing and factorisation}
 
-The idea is that testing whether $ n \in \Z $ is prime is easy. Factoring $ n $ is expected to be hard. Easy here means that there is an algorithm to check whether $ n $ is prime or not which runs in time polynomial in $ \log n $. It is known that a deterministic algorithm exists to do this, the Agrawal-Kayal-Saxena (AKS) algorithm, in 2005. We will see an algorithm that runs faster than this in practice. On the other hand, for factoring there are algorithms which are better than exponential in $ \log n $, but there is nothing close to polynomial time, and the general expectation is that no such algorithm should exist.
+The idea is that testing whether $ n \in \Z $ is prime is easy. Factoring $ n $ is expected to be hard. Easy here means that there is an algorithm to check whether $ n $ is prime or not which runs in time polynomial in $ \log\br{n} $. It is known that a deterministic algorithm exists to do this, the \textbf{Agrawal-Kayal-Saxena (AKS) algorithm}, in 2005. We will see an algorithm that runs faster than this in practice. On the other hand, for factoring there are algorithms which are better than exponential in $ \log\br{n} $, but there is nothing close to polynomial time, and the general expectation is that no such algorithm should exist.
 
 \subsection{Factorisation}
 
-How do we factor three digit numbers, or small four digit numbers, say at most $ 400 $ if we wanted to factor with paper or calculator? If $ n \le 400 $ and $ n $ is composite, then has a prime factor at most $ \sqrt{400} = 20 $, since if $ d \mid n $ then $ d\br{n / d} = n $, so either $ d \le \sqrt{n} $ or $ n / d \le \sqrt{n} $. So you only have to be able to check for divisibility by
+How do we factor three digit numbers, or small four digit numbers, say at most $ 400 $ if we wanted to factor with a paper or a calculator? If $ n \le 400 $ and $ n $ is composite, then it has a prime factor at most $ \sqrt{400} = 20 $, since if $ d \mid n $ then $ d\br{n / d} = n $, so either $ d \le \sqrt{n} $ or $ n / d \le \sqrt{n} $. So you only have to be able to check for divisibility by
 $$ 2, \quad 3, \quad 5, \quad 7, \quad 11, \quad 13, \quad 17, \quad 19. $$
 \begin{itemize}[leftmargin=0.75in]
 \item[$ 2, 5 $] Checking for divisibility is easy, by just looking at the last digit.
@@ -653,12 +652,12 @@ $$ 13^2, \quad 13\br{17}, \quad 13\br{19}, \quad 13\br{23}, \quad 13\br{29}, \qu
 
 \lecture{7}{Friday}{19/10/18}
 
-Factor four digit numbers by an algorithm due to Fermat. The idea is to first check for small prime factors by hand, say $ p = 2, \dots 19 $. If $ n $ is composite and does not have any small factors, then the prime factors of $ n $ should be close to $ \sqrt{n} $. If $ n = ab $ for $ a, b $ odd and $ a \le b $, then
+Factor four digit numbers by an algorithm due to Fermat. The idea is to first check for small prime factors by hand, say $ p = 2, \dots, 19 $. If $ n $ is composite and does not have any small factors, then the prime factors of $ n $ should be close to $ \sqrt{n} $. If $ n = ab $ for $ a $ and $ b $ odd and $ a \le b $, then
 $$ n = ab = \br{\dfrac{a + b}{2}}^2 - \br{\dfrac{b - a}{2}}^2, \qquad \br{\dfrac{a + b}{2}}^2 - n = \br{\dfrac{b - a}{2}}^2. $$
-If you know $ \br{a + b} / 2 $ and $ \br{b - a} / 2 $, you can recover $ a, b $. So take $ m $ such that $ m^2 \le n < \br{m + 1}^2 $. If $ n = m^2 $, done. Otherwise check if $ \br{m + i}^2 - n $ is a square for increasing $ i $.
+If you know $ \br{a + b} / 2 $ and $ \br{b - a} / 2 $, you can recover $ a $ and $ b $. So take $ m $ such that $ m^2 \le n < \br{m + 1}^2 $. If $ n = m^2 $, done. Otherwise check if $ \br{m + i}^2 - n $ is a square for increasing $ i $.
 
 \begin{example*}
-Let $ n = 6077 $. $ 77^2 < 6077 < 78^2 $, so
+Let $ n = 6077 $. Then $ 77^2 < 6077 < 78^2 $, so
 \begin{align*}
 78^2 - 6077 & = 7, \\
 79^2 - 6077 & = 164, \\
@@ -670,36 +669,30 @@ Thus $ 6077 = 81^2 - 22^2 = \br{103}\br{59} $.
 
 \pagebreak
 
-There exist algorithms for factoring $ n $ which run in better than exponential time in $ \log n $, such as the quadratic sieve and the general number field sieve. The following is the \textbf{quadratic sieve}.
+There exist algorithms for factoring $ n $ which run in better than exponential time in $ \log\br{n} $, such as the quadratic sieve and the general number field sieve.
 
 \begin{example*}
-Let $ n = 1649 $. $ 40^2 < 1649 < 41^2 $, so
+Let $ n = 1649 $. Then $ 40^2 < 1649 < 41^2 $, so
 \begin{align*}
 41^2 - 1649 & = 32 = 2^5, \\
 42^2 - 1649 & = 115, \\
 43^2 - 1649 & = 200 = \br{2}^3\br{5}^2.
 \end{align*}
-$ 41^2 \equiv 2^5 \mod 1649 $ and $ 43^2 \equiv \br{2}^3\br{5}^2 \mod 1649 $, so
+Since $ 41^2 \equiv 2^5 \mod 1649 $ and $ 43^2 \equiv \br{2}^3\br{5}^2 \mod 1649 $,
 $$ 80^2 \equiv \br{41}^2\br{43}^2 = 1763^2 \equiv 114^2 \mod 1649. $$
 Then
 $$ 0 \equiv 114^2 - 80^2 = \br{194}\br{34} = \br{2}^2\br{17}\br{97} \mod 1649. $$
 In fact, $ 1649 = \br{17}\br{97} $. Better for this last step would be to have computed
 $$ \br{194, 1649} = 97, \qquad \br{34, 1649} = 17. $$
-Can do this quickly using Euclid's algorithm.
-\end{example*}
-
-To make this into an efficient algorithm, need to have a way given $ x_1, \dots, x_r $ to find a subset whose product is a square. If we know the prime factorisation for the $ x_i $, we can write
+Can do this quickly using Euclid's algorithm. To make this into an efficient algorithm, need to have a way given $ x_1, \dots, x_r $ to find a subset whose product is a square. If we know the prime factorisation for the $ x_i $, we can write
 $$ x_i = p_1^{a_{i1}} \dots p_k^{a_{ik}}. $$
-Want to choose $ \epsilon_i \in \cbr{0, 1} $ such that
-$$ \prod_{i = 1}^r x_i^{\epsilon_i} $$
-is a square. Equivalently, for each $ j $, want the exponent of $ p_j $ to be even, that is
+Want to choose $ \epsilon_i \in \cbr{0, 1} $ such that $ \prod_{i = 1}^r x_i^{\epsilon_i} $ is a square. Equivalently, for each $ j $, want the exponent of $ p_j $ to be even, that is
 $$ \sum_{i = 1}^r \epsilon_ia_{ij} \equiv 0 \mod 2. $$
-
-\begin{example*}
+Let
 $$ x_1 = 2^5, \qquad x_2 = \br{5}\br{23}, \qquad x_3 = \br{2}^3\br{5}^2, \qquad p_1 = 2, \qquad p_2 = 5, \qquad p_3 = 23. $$
-Ignore all numbers with a large prime factor, so here ignore $ 23 $.
+Ignore all numbers with a large prime factor, so here ignore $ 23 $. Then
 $$ \onebytwo{\epsilon_1}{\epsilon_2}\twobytwo{5}{0}{3}{2} \equiv \onebytwo{0}{0} \mod 2 \qquad \iff \qquad \onebytwo{\epsilon_1}{\epsilon_2}\twobytwo{1}{0}{1}{0} = \onebytwo{0}{0} $$
-in $ \Z / 2\Z $, a field, $ \F_2 $, that is $ \epsilon_1 + \epsilon_2 = 0 $, so $ \epsilon_1 = \epsilon_2 = 1 $.
+in $ \Z / 2\Z $, a field $ \F_2 $, that is $ \epsilon_1 + \epsilon_2 = 0 $, so $ \epsilon_1 = \epsilon_2 = 1 $.
 \end{example*}
 
 This step, solving linear equations in $ \Z / 2\Z $, can be done efficiently. The remaining difficulty is to find a supply of $ m \in \Z $ such that $ m^2 - n $ has only small prime factors. The idea is that if we fix a list of small primes to start with, we get congruence conditions on $ m $. It turns out that there is a straightforward algorithm for solving $ m^2 \equiv n \mod p $. This gives two possible values for $ m \mod p $. If you do this for lots of primes $ p $, you get a supply of congruence conditions for $ m $, so you can eliminate ever considering $ m $ such that $ m^2 - n $ has large prime factors.
@@ -708,34 +701,30 @@ This step, solving linear equations in $ \Z / 2\Z $, can be done efficiently. Th
 $ m^2 = 1649 \equiv 2 \mod 3 $ has no solutions.
 \end{example*}
 
-\pagebreak
+\lecture{8}{Tuesday}{23/10/18}
 
 \subsection{Testing primality}
 
-\lecture{8}{Tuesday}{23/10/18}
-
-Euler's theorem states that if $ \br{a, n} = 1 $ then
-$$ a^{\Phi\br{n}} \equiv 1 \mod n. $$
-In particular if $ p $ is prime then
-$$ a^{p - 1} \equiv 1 \mod p, \qquad 1 \le a \le p - 1. $$
-In particular, if $ 2^{n - 1} \equiv 1 \mod n $, then $ n $ cannot be prime. Problem is that there exists $ n $ composite such that $ a^{n - 1} \equiv 1 \mod n $ for all $ \br{a, n} = 1 $, the \textbf{Carmichael numbers}. It is known that infinitely many of these exist. \textbf{Miller-Rabin test} is a test for whether odd $ n \in \Z $ is prime or not. Today let $ n \equiv 3 \mod 4 $. Example sheet is $ n \equiv 1 \mod 4 $.
+Euler's theorem states that if $ \br{a, n} = 1 $ then $ a^{\Phi\br{n}} \equiv 1 \mod n $. In particular if $ p $ is prime then $ a^{p - 1} \equiv 1 \mod p $, for $ 1 \le a \le p - 1 $. In particular, if $ 2^{n - 1} \not\equiv 1 \mod n $, then $ n $ cannot be prime. The problem is that there exists $ n $ composite such that $ a^{n - 1} \equiv 1 \mod n $ for all $ \br{a, n} = 1 $, the \textbf{Carmichael numbers}. It is known that infinitely many of these exist. The \textbf{Miller-Rabin test} is a test for whether odd $ n \in \Z $ is prime or not. Today let $ n \equiv 3 \mod 4 $. Example sheet is $ n \equiv 1 \mod 4 $.
 
 \begin{lemma}
 \label{lem:30}
-Let $ n > 1 $ be congruent to $ 3 \mod 4 $. Then $ n $ is prime if and only if for all $ \br{a, n} = 1 $,
-$$ a^{\tfrac{n - 1}{2}} \equiv \pm 1 \mod n. $$
+Let $ n > 1 $ be congruent to $ 3 \mod 4 $. Then $ n $ is prime if and only if
+$$ a^{\tfrac{n - 1}{2}} \equiv \pm 1 \mod n, \qquad \br{a, n} = 1. $$
 \end{lemma}
+
+\pagebreak
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item If $ n $ is prime, then $ a^{n - 1} \equiv 1 \mod n $ by Fermat's little theorem, so
-$$ \br{a^{\tfrac{n - 1}{2}}}^2 \equiv 1 \mod n, $$
-so $ a^{\br{n - 1} / 2} \equiv \pm 1 \mod n $.
-\item Suppose firstly that $ n = p^k $ with $ p $ prime, and $ k \ge 2 $. Try $ a = 1 + p $. Then
-$$ \br{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \br{\dfrac{n - 1}{2}}p \mod p^2, $$
-by the binomial theorem. If $ \br{1 + p}^{\br{n - 1} / 2} \equiv \pm 1 \mod p^k = n $, then $ \br{1 + p}^{\br{n - 1} / 2} \equiv \pm 1 \mod p, p^2 $, so
-$$ \pm 1 \equiv \br{1 + p}^{\tfrac{n - 1}{2}} \equiv 1 + \br{\dfrac{n - 1}{2}}p \equiv 1 \mod p, $$
+\item If $ n $ is prime, then $ a^{n - 1} \equiv 1 \mod n $ by Fermat's little theorem, so $ \br{a^{\br{n - 1} / 2}}^2 \equiv 1 \mod n $, so $ a^{\br{n - 1} / 2} \equiv \pm 1 \mod n $.
+\item Suppose firstly that $ n = p^k $ with $ p $ prime, and $ k \ge 2 $. Try
+$$ a = 1 + p. $$
+Then
+$$ a^{\tfrac{n - 1}{2}} \equiv 1 + \br{\dfrac{n - 1}{2}}p \mod p^2, $$
+by the binomial theorem. If $ a^{\br{n - 1} / 2} \equiv \pm 1 \mod n $, then
+$$ \pm 1 \equiv a^{\tfrac{n - 1}{2}} \equiv 1 + \br{\dfrac{n - 1}{2}}p \equiv 1 \mod p, $$
 so
 $$ 1 \equiv 1 + \br{\dfrac{n - 1}{2}}p \mod p^2, $$
 then $ p \mid \br{n - 1} / 2 $, so $ p \mid n - 1 $. But $ p \mid n $, a contradiction.
@@ -749,13 +738,9 @@ So $ a^{\br{n - 1} / 2} \not\equiv \pm 1 \mod n $.
 \end{itemize}
 \end{proof}
 
-\pagebreak
-
 \begin{lemma}
 \label{lem:31}
-Suppose that $ n \equiv 3 \mod 4 $ is composite. Then the set of $ a \in \unit{n} $ which satisfy
-$$ a^{\tfrac{n - 1}{2}} \equiv \pm 1 \mod n $$
-is a proper subgroup of $ \unit{n} $.
+Suppose that $ n \equiv 3 \mod 4 $ is composite. Then the set of $ a \in \unit{n} $ which satisfy $ a^{\br{n - 1} / 2} \equiv \pm 1 \mod n $ is a proper subgroup of $ \unit{n} $.
 \end{lemma}
 
 \begin{proof}
@@ -765,18 +750,15 @@ So this set is a subgroup of $ \unit{n} $. It is a proper subgroup by Lemma \ref
 \end{proof}
 
 \begin{corollary}
-At most half the elements of $ \unit{n} $ satisfy
-$$ a^{\tfrac{n - 1}{2}} \equiv \pm 1 \mod n. $$
+At most half the elements of $ \unit{n} $ satisfy $ a^{\br{n - 1} / 2} \equiv \pm 1 \mod n $.
 \end{corollary}
 
 \begin{proof}
 The set of such elements is a proper subgroup of $ \unit{n} $ by Lemma \ref{lem:31}, so it has index at least two.
 \end{proof}
 
-In fact, with a bit more work, you can improve this to show that at least $ 3 / 4 $ of the numbers $ 1 \le a \le n - 1 $ satisfy $ a^{\br{n - 1} / 2} \not\equiv \pm 1 \mod n $. So if you randomly choose numbers $ 1 \le a \le n - 1 $ $ x $ times, and $ n $ is composite, the probability that you find some $ a $ with $ a^{\br{n - 1} / 2} \not\equiv \pm 1 \mod n $ is at least
-$$ 1 - \br{\dfrac{1}{4}}^x. $$
-This gives a probabilistic algorithm to check if $ n $ is prime in polynomial time. If you assume generalised Riemann hypothesis (GRH) you can find some
-$$ 1 \le a \le \left\lceil 2 \br{\log n}^2 \right\rceil, \qquad a^{\tfrac{n - 1}{2}} \not\equiv \pm 1 \mod n. $$
+In fact, with a bit more work, you can improve this to show that at least $ 3 / 4 $ of the numbers $ 1 \le a \le n - 1 $ satisfy $ a^{\br{n - 1} / 2} \not\equiv \pm 1 \mod n $. So if you randomly choose numbers $ 1 \le a \le n - 1 $ $ x $ times, and $ n $ is composite, the probability that you find some $ a $ with $ a^{\br{n - 1} / 2} \not\equiv \pm 1 \mod n $ is at least $ 1 - \br{1 / 4}^x $. This gives a probabilistic algorithm to check if $ n $ is prime in polynomial time. If you assume the generalised Riemann hypothesis (GRH) you can find some
+$$ 1 \le a \le \left\lceil 2 \br{\log\br{n}}^2 \right\rceil, \qquad a^{\tfrac{n - 1}{2}} \not\equiv \pm 1 \mod n. $$
 In practice it is even better.
 
 \begin{example*}
@@ -789,15 +771,15 @@ If $ n < 341550071728321 $, then one of $ a = 2, 3, 5, 7, 11, 13, 17 $ will work
 
 Public-key cryptography is private communication and identity verification.
 
-\subsection{Messages as sequences of classes mod $ n $}
+\subsection{Messages as sequences of classes modulo \texorpdfstring{$ n $}{n}}
 
-How do we turn messages into numbers in $ \Z / n\Z $? The idea is to choose $ n $ very large. Say $ n > 2^{8k} $. Write down your message. Break it up into strings of at most $ k $ characters. Encode each character as an $ 8 $ bit binary number. String these integers together to get an $ 8k $ bit binary number. Regard that as an integer mod $ n $.
+How do we turn messages into numbers in $ \Z / n\Z $? The idea is to choose $ n $ very large. Say $ n > 2^{8k} $. Write down your message. Break it up into strings of at most $ k $ characters. Encode each character as an $ 8 $ bit binary number. String these integers together to get an $ 8k $ bit binary number. Regard that as an integer modulo $ n $.
 
 \subsection{The Rivest-Shamir-Adleman (RSA) algorithm}
 
-Now apply some function $ f : \Z / n\Z \to \Z / n\Z $, and then tell whoever you are trying to communicate with the result of this computation. Then they should apply some other function $ g : \Z / m\Z \to \Z / n\Z $, to get back the number you started with. So want $ f $ to be injective. Want to be able to make $ f $ public without making $ g $ public. The idea is to choose two large prime numbers $ p, q $ and set $ n = pq $. Choose $ \br{e, \Phi\br{n}} = 1 $. Find $ d $ such that
+Now apply some function $ f : \Z / n\Z \to \Z / n\Z $, and then tell whoever you are trying to communicate with the result of this computation. Then they should apply some other function $ g : \Z / m\Z \to \Z / n\Z $, to get back the number you started with. So want $ f $ to be injective. Want to be able to make $ f $ public without making $ g $ public. The idea is to choose two large prime numbers $ p $ and $ q $ and set $ n = pq $. Choose $ \br{e, \Phi\br{n}} = 1 $. Find $ d $ such that
 $$ de = 1 \mod \Phi\br{n} = \br{p - 1}\br{q - 1} = n - \br{p + q} + 1. $$
-Publish $ n $ and $ e $, you keep $ p, q, \Phi\br{n}, d $ secret. $ f\br{x} = x^e \mod n $ and $ g\br{x} = x^d \mod n $.
+Publish $ n $ and $ e $, and you keep $ p, q, \Phi\br{n}, d $ secret. Let $ f\br{x} = x^e \mod n $ and $ g\br{x} = x^d \mod n $. Then
 $$ \br{x^e}^d \equiv x^{de} \equiv x \mod n, $$
 because $ de \equiv 1 \mod \Phi\br{n} $ and $ x^{\Phi\br{n}} \equiv 1 \mod n $. So if someone wants to send you a message $ c \in \Z / n\Z $, they compute $ c^e \in \Z / n\Z $, and send it to you. To decode it, you compute
 $$ \br{c^e}^d \equiv c^{de} \equiv c \mod n. $$
@@ -824,7 +806,7 @@ write $ x = g^y $, and the congruence becomes equivalent to
 $$ yr \equiv \log_g\br{a} \mod \Phi\br{n}. $$
 \end{example*}
 
-Unfortunately, or fortunately for cryptography, computing $ \log_g $ is believed to be a hard problem. In particular, no known polynomial time algorithm.
+Unfortunately, or fortunately for cryptography, computing $ \log_g $ is believed to be a hard problem. In particular, there is no known polynomial time algorithm.
 
 \begin{example*}
 Imagine that you have a system where you need to store passwords for different users, but you do not want to store the actual passwords. One way to do this is to choose a large prime $ p $ and a primitive root $ g $, and if someone inputs $ x $ as their password, you store $ g^x \mod p $. If they later input $ y $, you compute $ g^y $, and check it matches what you stored. If it does then $ y \equiv x \mod p - 1 $.
@@ -846,14 +828,14 @@ If $ \br{a, p} = 1 $, then $ a $ is a \textbf{quadratic residue (QR)} if and onl
 \hfill
 \begin{itemize}
 \item If $ p = 2 $, $ 1 $ is a QR.
-\item If $ p = 3 $, $ 1 $ is a QR, $ -1 $ is a QNR, since $ 1^2 \equiv \br{-1}^2 \equiv 1 \mod 3 $.
-\item If $ p = 5 $, $ 1, 4 $ are QRs, $ 2, 3 $ are QNRs, since $ 1^2 \equiv \br{-1}^2 \equiv 1 \mod 5 $ and $ 2^2 \equiv 3^2 \equiv 4 \mod 5 $.
+\item If $ p = 3 $, $ 1 $ is a QR, and $ -1 $ is a QNR, since $ 1^2 \equiv \br{-1}^2 \equiv 1 \mod 3 $.
+\item If $ p = 5 $, $ 1 $ and $ 4 $ are QRs, and $ 2 $ and $ 3 $ are QNRs, since $ 1^2 \equiv 4^2 \equiv 1 \mod 5 $ and $ 2^2 \equiv 3^2 \equiv 4 \mod 5 $.
 \end{itemize}
 \end{example*}
 
 \begin{lemma}
 \label{lem:34}
-If $ p > 2 $ then there are exactly $ \br{p - 1} / 2 $ QRs, and $ \br{p - 1} / 2 $ QNRs mod $ p $.
+If $ p > 2 $ then there are exactly $ \br{p - 1} / 2 $ QRs, and $ \br{p - 1} / 2 $ QNRs modulo $ p $.
 \end{lemma}
 
 \begin{proof}
@@ -866,9 +848,9 @@ is a group homomorphism with kernel $ \cbr{\pm 1} $. So the image has order $ \b
 \label{prop:35}
 Suppose that $ \br{a, p} = \br{b, p} = 1 $. Then
 \begin{itemize}
-\item if $ a, b $ are both QRs, then $ ab $ is a QR,
-\item if one of $ a, b $ is a QR and one is a QNR, then $ ab $ is a QNR, and
-\item if $ a, b $ are both QNRs, then $ ab $ is a QR.
+\item if $ a $ and $ b $ are both QRs, then $ ab $ is a QR,
+\item if one of $ a $ and $ b $ is a QR and one is a QNR, then $ ab $ is a QNR, and
+\item if $ a $ and $ b $ are both QNRs, then $ ab $ is a QR.
 \end{itemize}
 \end{proposition}
 
@@ -879,13 +861,15 @@ that is $ H $ is the QRs. Then $ \unit{p} / H $ is a group of order two by Lemma
 $$ \Unit{p} = H \cup 1 + H. $$
 \end{proof}
 
+\pagebreak
+
 \begin{definition}
 Let $ a \in \Z $ and $ p $ a prime. Then the \textbf{Legendre symbol} is
 $$ \jacobi{a}{p} =
 \begin{cases}
-1 & a \ \text{is a QR mod} \ p \\
+1 & a \ \text{is a QR modulo} \ p \\
 0 & p \mid a \\
--1 & a \ \text{is a QNR mod} \ p
+-1 & a \ \text{is a QNR modulo} \ p
 \end{cases}.
 $$
 \end{definition}
@@ -896,8 +880,6 @@ is a group homomorphism, that is
 $$ \jacobi{ab}{p} = \jacobi{a}{p}\jacobi{a}{p}. $$
 Even holds if we do not assume that $ \br{a, p} = \br{b, p} = 1 $.
 
-\pagebreak
-
 \lecture{11}{Tuesday}{30/10/18}
 
 \begin{theorem}[Euler's criterion]
@@ -906,12 +888,12 @@ $$ \jacobi{a}{p} \equiv a^{\tfrac{p - 1}{2}} \mod p. $$
 \end{theorem}
 
 \begin{proof}
-Let $ g $ be a primitive root mod $ p $, and write $ a \equiv g^r \mod p $ for $ 0 \le r < p - 1 $. Now
+Let $ g $ be a primitive root modulo $ p $, and write $ a \equiv g^r \mod p $ for $ 0 \le r < p - 1 $. Now
 $$ \br{g^{\tfrac{p - 1}{2}}}^2 = g^{p - 1} \equiv 1 \mod p. $$
 So $ g^{\br{p - 1} / 2} \equiv \pm 1 \mod p $. Since $ g $ is a primitive root,
-$$ g^{\br{p - 1} / 2} \not\equiv 1 \mod p, $$
+$$ g^{\tfrac{p - 1}{2}} \not\equiv 1 \mod p, $$
 so $ g^{\br{p - 1} / 2} \equiv -1 \mod p $. So
-$$ a^{\tfrac{p - 1}{2}} \equiv \br{g^r}^{\tfrac{p - 1}{2}} \equiv \br{g^{\tfrac{p - 1}{2}}}^r = \br{-1}^r \mod p. $$
+$$ a^{\tfrac{p - 1}{2}} \equiv \br{g^r}^{\tfrac{p - 1}{2}} \equiv \br{g^{\tfrac{p - 1}{2}}}^r \equiv \br{-1}^r \mod p. $$
 But
 \begin{align*}
 \jacobi{a}{p} = 1 \qquad
@@ -925,7 +907,7 @@ But
 \subsection{Computing Legendre symbols}
 
 \begin{proposition}
-$ -1 $ is a square mod $ p $ if and only if $ p = 2 $ or $ p \equiv 1 \mod 4 $.
+$ -1 $ is a square modulo $ p $ if and only if $ p = 2 $ or $ p \equiv 1 \mod 4 $.
 \end{proposition}
 
 \begin{proof}
@@ -942,6 +924,8 @@ $$ \br{-1}^{\tfrac{p - 1}{2}} =
 $$
 \end{proof}
 
+\pagebreak
+
 \begin{proposition}[Gauss' lemma]
 $$ \jacobi{2}{p} =
 \begin{cases}
@@ -953,23 +937,24 @@ that is
 $$ \jacobi{2}{p} = \br{-1}^{\tfrac{p^2 - 1}{8}}. $$
 \end{proposition}
 
-\pagebreak
-
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ \jacobi{2}{7} = 1 $, since $ 2 \equiv 3^3 \mod 7 $.
-\item $ \jacobi{2}{11} = -1 $, since squares mod $ 11 $ are $ 1, 4, 9, 5, 3 $.
-\item $ \jacobi{-1}{11} = -1 $, so $ \jacobi{-2}{11} = \jacobi{2}{11}\jacobi{-1}{11} = \br{-1}^2 = 1 $ and $ -2 \equiv 3^2 \mod 11 $.
+\item $ \jacobi{2}{7} = 1 $, since $ 2 \equiv 3^2 \mod 7 $.
+\item $ \jacobi{2}{11} = -1 $, since squares modulo $ 11 $ are $ 1, 4, 9, 5, 3 $.
+\item $ \jacobi{-1}{11} = -1 $, so $ \jacobi{-2}{11} = \jacobi{2}{11}\jacobi{-1}{11} = \br{-1}^2 = 1 $, since $ -2 \equiv 3^2 \mod 11 $.
 \end{itemize}
 \end{example*}
 
 \begin{proof}
-$ \jacobi{2}{p} \equiv 2^{\br{p - 1} / 2} \mod p $ by Euler's criterion. Let $ q = \br{p - 1} / 2 $, and let
+$$ \jacobi{2}{p} \equiv 2^{\tfrac{p - 1}{2}} \mod p, $$
+by Euler's criterion. Let $ q = \br{p - 1} / 2 $, and let
 $$ Q = \br{2}\br{4} \dots \br{p - 3}\br{p - 1} = \br{2\br{1}} \dots \br{2\br{q}} = 2^qq! = 2^{\tfrac{p - 1}{2}}q!. $$
 Subtracting $ p $ from every term which is bigger than $ q $,
 $$ Q \equiv \br{2}\br{4} \dots \br{-3}\br{-1} \equiv \br{-1}^rq! \mod p, $$
-where $ r $ is the number of odd integers in $ 1, \dots, q $. Since $ p \nmid q! $, we have $ 2^{\br{p - 1} / 2} \equiv \br{-1}^r \mod p $. Now the following holds.
+where $ r $ is the number of odd integers in $ 1, \dots, q $. Since $ p \nmid q! $, we have
+$$ 2^{\tfrac{p - 1}{2}} \equiv \br{-1}^r \mod p. $$
+Now the following holds.
 $$ \br{-1}^r =
 \begin{cases}
 1 & p \equiv \pm 1 \mod 8 \\
@@ -985,38 +970,38 @@ If $ p \equiv 1 \mod 8 $, say $ p = 1 + 8n $, so $ q = 4n $. Odd integers in $ 1
 
 \begin{theorem}[Law of quadratic reciprocity]
 \label{thm:40}
-If $ p, q $ are odd primes, then
+If $ p $ and $ q $ are odd primes, then
 $$ \jacobi{p}{q} = \jacobi{q}{p}\br{-1}^{\br{\tfrac{p - 1}{2}}\br{\tfrac{q - 1}{2}}}, $$
 that is $ \jacobi{p}{q} = \jacobi{q}{p} $ unless $ p \equiv q \equiv 3 \mod 4 $, when $ \jacobi{p}{q} = -\jacobi{q}{p} $.
 \end{theorem}
 
+\pagebreak
+
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ \jacobi{5}{p} = \jacobi{p}{5} $ for $ p \ne 5 $. QRs mod $ 5 $ are $ 1, 4 $. So
+\item $ \jacobi{5}{p} = \jacobi{p}{5} $ for $ p \ne 5 $. QRs modulo $ 5 $ are $ 1 $ and $ 4 $. So
 $$ \jacobi{5}{p} =
 \begin{cases}
 1 & p \equiv \pm 1 \mod 5 \\
 -1 & p \equiv \pm 2 \mod 5
 \end{cases}.
 $$
-\item What is $ \jacobi{3}{p} $ for $ p \ne 3 $?
-\begin{itemize}
-\item If $ p \equiv 1 \mod 4 $, then
+
+\item What is $ \jacobi{3}{p} $ for $ p \ne 3 $? If $ p \equiv 1 \mod 4 $, then
 $$ \jacobi{3}{p} = \jacobi{p}{3} =
 \begin{cases}
 1 & p \equiv 1 \mod 3 \\
 -1 & p \equiv -1 \mod 3
 \end{cases}.
 $$
-\item If $ p \equiv -1 \mod 4 $, then
+If $ p \equiv -1 \mod 4 $, then
 $$ \jacobi{3}{p} = -\jacobi{p}{3} =
 \begin{cases}
 1 & p \equiv -1 \mod 3 \\
 -1 & p \equiv 1 \mod 3
 \end{cases}.
 $$
-\end{itemize}
 So
 $$ \jacobi{3}{p} =
 \begin{cases}
@@ -1024,42 +1009,27 @@ $$ \jacobi{3}{p} =
 -1 & p \equiv \pm 5 \mod 12
 \end{cases}.
 $$
-For example,
-\begin{itemize}
-\item if $ p = 7 $, QRs are $ 1, 2, 4 $, so $ \jacobi{3}{p} = -1 $, and
-\item if $ p = 11 $, $ 5^2 \equiv 3 \mod 11 $, so $ \jacobi{3}{p} = 1 $.
-\end{itemize}
-\end{itemize}
-\end{example*}
-
-\pagebreak
-
-\begin{example*}
-\hfill
-\begin{itemize}
-\item $ \jacobi{6}{19} = \jacobi{2}{19}\jacobi{3}{19} = \br{-1}\br{-1} = 1 $.
-\item $ \jacobi{2}{19} = -1 $, because $ 19 \equiv 3 \mod 8 $.
-\item $ \jacobi{3}{19} \equiv -1 \mod 12 $, by the above.
+For example, $ \jacobi{3}{7} = -1 $, since QRs are $ 1, 2, 4 $, and $ \jacobi{3}{11} = 1 $, since $ 5^2 \equiv 3 \mod 11 $.
+\item $ \jacobi{6}{19} = \jacobi{2}{19}\jacobi{3}{19} = \br{-1}\br{-1} = 1 $, since $ \jacobi{2}{19} = -1 $, because $ 19 \equiv 3 \mod 8 $, and $ \jacobi{3}{19} \equiv -1 \mod 12 $, by the above.
 \end{itemize}
 \end{example*}
 
 In general to compute $ \jacobi{a}{p} $, we could do the following. Use that if $ a \equiv b \mod p $ then $ \jacobi{a}{p} = \jacobi{b}{p} $. So without loss of generality $ \abs{a} < p $. Then write $ a = \pm \prod_i q_i^{s_i} $ for $ q_i $ prime. Then
 $$ \jacobi{a}{p} = \jacobi{\pm 1}{p} \prod_i \jacobi{q_i}{p}^{s_i}. $$
-If $ s_i $ is even, then $ \jacobi{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \jacobi{q_i}{p}^{s_i} = \jacobi{q_i}{p} $. We have formulas for $ \jacobi{-1}{p} $ and $ \jacobi{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \jacobi{q}{p} $ and $ \jacobi{p}{q} $. Then repeat mod $ q $.
+If $ s_i $ is even, then $ \jacobi{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \jacobi{q_i}{p}^{s_i} = \jacobi{q_i}{p} $. We have formulas for $ \jacobi{-1}{p} $ and $ \jacobi{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \jacobi{q}{p} $ and $ \jacobi{p}{q} $. Then repeat modulo $ q $.
 
 \lecture{12}{Wednesday}{31/10/18}
 
 \subsection{Proof of quadratic reciprocity}
 
-Proof of this is due to Rousseau, in 1991. Resembles the proof we gave that $ \jacobi{2}{p} = \br{-1}^{\br{p^2 - 1} / 8} $.
+The proof of this is due to Rousseau, in 1991. This resembles the proof we gave that $ \jacobi{2}{p} = \br{-1}^{\br{p^2 - 1} / 8} $.
 
 \begin{theorem}[Wilson's theorem]
 If $ p $ is prime, then $ \br{p - 1}! \equiv -1 \mod p $.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:40}]
-We will write down several choices of coset representatives for $ \cbr{\pm 1} $, and compare them, that is we will write down choices of $ x $ or $ -x $ for each $ x \in \unit{pq} $. Write elements of $ \unit{pq} $ as pairs
-$$ \br{\alpha, \beta} \in \Unit{p} \times \Unit{q}. $$
+We will write down several choices of coset representatives for $ \cbr{\pm 1} $, and compare them, that is we will write down choices of $ x $ or $ -x $ for each $ x \in \unit{pq} $. Write elements of $ \unit{pq} $ as pairs $ \br{\alpha, \beta} \in \unit{p} \times \unit{q} $.
 \begin{itemize}
 \item For our first set of coset representatives, take
 $$ \cbr{\br{x, y} \mid 1 \le x \le \tfrac{p - 1}{2}, \ 1 \le y \le q - 1}. $$
@@ -1117,7 +1087,7 @@ Write $ b = \prod_i p_i^{r_i} $ for $ p_i $ distinct primes. Then the \textbf{Ja
 $$ \jacobi{a}{b} = \prod_i \jacobi{a}{p_i}^{r_i}. $$
 \end{definition}
 
-Warning that $ \jacobi{a}{b} = 1 $ does not imply that $ a $ is a square mod $ b $. On the other hand, $ \jacobi{a}{b} = -1 $ implies that $ a $ is not a square mod $ b $.
+A warning is that $ \jacobi{a}{b} = 1 $ does not imply that $ a $ is a square modulo $ b $. On the other hand, $ \jacobi{a}{b} = -1 $ implies that $ a $ is not a square modulo $ b $.
 
 \lecture{13}{Friday}{02/11/18}
 
@@ -1135,15 +1105,15 @@ $$ \jacobi{a}{b}\jacobi{b}{a} = \br{-1}^{\br{\tfrac{a - 1}{2}}\br{\tfrac{b - 1}{
 \end{lemma}
 
 \begin{proof}
-All of these statements are true for Legendre symbols, that is for $ b $ prime, and $ a $ prime in $ 6 $. $ 1 $ to $ 3 $ follow immediately. $ 4 $ to $ 6 $ also follows from $ 1 $ and the corresponding statements for Legendre symbols. For $ 5 $, it is enough to show that if it holds for $ b_1, b_2 $, then it holds for $ b_1b_2 $. Since
+All of these statements are true for Legendre symbols, that is for $ b $ prime, and $ a $ prime in $ 6 $. $ 1 $ to $ 3 $ follow immediately. $ 4 $ to $ 6 $ also follows from $ 1 $ and the corresponding statements for Legendre symbols. For $ 5 $, it is enough to show that if it holds for $ b_1 $ and $ b_2 $, then it holds for $ b_1b_2 $. Since
 $$ \jacobi{2}{b_1b_2} = \jacobi{2}{b_1}\jacobi{2}{b_2}, $$
 we need to show that
 $$ \br{-1}^{\tfrac{b_1^2 - 1}{8}}\br{-1}^{\tfrac{b_2^2 - 1}{8}} = \br{-1}^{\tfrac{\br{b_1b_2}^2 - 1}{8}}, $$
 that is need
 $$ \br{b_1^2 - 1} + \br{b_2^2 - 1} \equiv \br{b_1b_2}^2 - 1 \mod 16, $$
 that is
-$$ \br{b_1^2 - 1}\br{b_2^2 - 1} \equiv 0 \mod 4. $$
-True because $ b_1^2 \equiv b_2^2 \equiv 1 \mod 4 $.
+$$ \br{b_1^2 - 1}\br{b_2^2 - 1} \equiv 0 \mod 16. $$
+This is true because $ b_1^2 \equiv b_2^2 \equiv 1 \mod 4 $.
 \end{proof}
 
 \begin{example*}
@@ -1152,7 +1122,7 @@ True because $ b_1^2 \equiv b_2^2 \equiv 1 \mod 4 $.
 & = -\jacobi{9283}{7411} = -\jacobi{1872}{7411} = -\jacobi{16}{7411}\jacobi{117}{7411} = -\jacobi{117}{7411} = -\jacobi{7411}{117} = -\jacobi{40}{117} \\
 & = -\jacobi{8}{117}\jacobi{5}{117} = -\jacobi{2}{117}\jacobi{5}{117} = \jacobi{5}{117} = \jacobi{117}{5} = \jacobi{2}{5} = -1.
 \end{align*}
-So $ 7411 $ is not a square mod $ 9283 $.
+So $ 7411 $ is not a square modulo $ 9283 $.
 \end{example*}
 
 \pagebreak
@@ -1177,18 +1147,24 @@ $ 21 \equiv 1 \mod 4 $, but $ 21 $ is not a sum of two squares. On the other han
 \end{example*}
 
 \begin{definition}
-The \textbf{Gaussian integers} $ \Z\sbr{i} $ are the subring of $ \C $ consisting of $ a + bi $ for $ a, b \in \Z $. The \textbf{norm} is defined by
-$$ \function[N]{\Z\sbr{i}}{\Z_{> 0}}{a + bi}{a^2 + b^2}, $$
-that is $ N\br{z} = z\bar{z} $.
+The \textbf{Gaussian integers} $ \Z\sbr{i} $ are the subring of $ \C $ consisting of
+$$ a + bi, \qquad a, b \in \Z. $$
 \end{definition}
 
-$ N\br{zw} = \br{zw}\br{\bar{zw}} = \br{z\bar{z}}\br{w\bar{w}} = N\br{z}N\br{w} $. If $ z = a + bi $ and $ w = c + di $, then $ zw = \br{ac - bd} + \br{ad + bc}i $, so
-$$ \br{a^2 + b^2}\br{c^2 + d^2} = \br{ac - bd}^2 + \br{ad + bc}^2. $$
+The \textbf{norm} is defined by
+$$ \function[N]{\Z\sbr{i}}{\Z_{> 0}}{a + bi}{a^2 + b^2}, $$
+that is $ N\br{z} = z\bar{z} $. Then
+$$ N\br{zw} = \br{zw}\br{\bar{zw}} = \br{z\bar{z}}\br{w\bar{w}} = N\br{z}N\br{w}. $$
 
 \begin{lemma}
 \label{lem:46}
-If $ m, n $ are each a sum of two squares, then so is $ mn $.
+If $ m $ and $ n $ are each a sum of two squares, then so is $ mn $.
 \end{lemma}
+
+\begin{proof}
+If $ z = a + bi $ and $ w = c + di $, then $ zw = \br{ac - bd} + \br{ad + bc}i $, so
+$$ \br{a^2 + b^2}\br{c^2 + d^2} = \br{ac - bd}^2 + \br{ad + bc}^2. $$
+\end{proof}
 
 \begin{theorem}[Fermat's two square theorem]
 \label{thm:47}
@@ -1201,7 +1177,7 @@ Lemma \ref{lem:46} and Theorem \ref{thm:47} together allow you to give a complet
 A ring $ R $ is a \textbf{Euclidean domain} if it is an integral domain, that is $ ab = 0 $ implies that $ a = 0 $ or $ b = 0 $, and there exists a function $ N : R \to \Z_{\ge 0} $ such that for all $ a, b \in R $ with $ b \ne 0 $, there exist $ q, r \in R $ such that $ a = qb + r $, and $ r = 0 $ or $ N\br{r} < N\br{b} $.
 \end{definition}
 
-If $ R $ is a Euclidean domain, then you can carry out Euclid's algorithm. In particular, irreducible elements are the same as prime elements, and every element can be factored as a product of primes, uniquely up to reordering and multiplication by units. $ \Z\sbr{i} $ together with $ N $ is a Euclidean domain. By definition, $ n \in \Z $ is a sum of two squares if and only if there exists $ z \in \Z\sbr{i} $ with $ N\br{z} = n $. Since $ N\br{zw} = N\br{z}N\br{w} $, all we have to do is to figure out what the primes in $ \Z\sbr{i} $ are, and what their norms are. (Exercise: show that the units in $ \Z\sbr{i} $ are $ \pm 1 $ and $ \pm i $) Two elements of $ \Z\sbr{i} $ are \textbf{associates} if their ratio is a unit, that is $ z, w $ are associates if $ z = uw $, for $ u \in \cbr{\pm 1, \pm i} $.
+If $ R $ is a Euclidean domain, then you can carry out Euclid's algorithm. In particular, irreducible elements are the same as prime elements, and every element can be factored as a product of primes, uniquely up to reordering and multiplication by units. $ \Z\sbr{i} $ together with $ N $ is a Euclidean domain. By definition, $ n \in \Z $ is a sum of two squares if and only if there exists $ z \in \Z\sbr{i} $ with $ N\br{z} = n $. Since $ N\br{zw} = N\br{z}N\br{w} $, all we have to do is to figure out what the primes in $ \Z\sbr{i} $ are, and what their norms are. (Exercise: show that the units in $ \Z\sbr{i} $ are $ \pm 1 $ and $ \pm i $) Two elements of $ \Z\sbr{i} $ are \textbf{associates} if their ratio is a unit, that is $ z $ and $ w $ are associates if $ z = uw $, for $ u \in \cbr{\pm 1, \pm i} $.
 
 \lecture{14}{Tuesday}{06/11/18}
 
@@ -1212,17 +1188,16 @@ Let $ p $ be a prime in $ \Z\sbr{i} $. Then there is a prime $ q $ of $ \Z $ suc
 \begin{proof}
 Write $ n = N\br{p} $, and let $ n = q_1^{s_1} \dots q_r^{s_r} $ be the prime factorisation of $ n $ in $ \Z $. By definition $ n = p\bar{p} $, so $ p \mid n $ in $ \Z\sbr{i} $, and so since $ p $ is prime, $ p \mid q_i $ for some $ i $. Write $ q = q_i $. Then $ p \mid q $ implies that $ q = pv $ for some $ v $, so
 $$ N\br{p}N\br{v} = N\br{pv} = N\br{q} = q^2. $$
-If $ N\br{p} = 1 $, then $ p $ is a unit, a contradiction. So $ N\br{p} \mid q^2 $, so $ N\br{p} = q $ or $ N\br{p} = q^2 $, as claimed. If $ N\br{p} = q^2 $, then $ N\br{v} = 1 $, so $ v $ is a unit, and since $ q = pv $, $ p $ is an associate of $ q $, by definition. If $ N\br{p} = q $, then writing $ p = a + bi $, we have $ q = a^2 + b^2 $. Conversely, if
-$$ q = a^2 + b^2 = \br{a + bi}\br{a - bi}, $$
+If $ N\br{p} = 1 $, then $ p $ is a unit, a contradiction. So $ N\br{p} \mid q^2 $, so $ N\br{p} = q $ or $ N\br{p} = q^2 $, as claimed. If $ N\br{p} = q^2 $, then $ N\br{v} = 1 $, so $ v $ is a unit, and since $ q = pv $, $ p $ is an associate of $ q $, by definition. If $ N\br{p} = q $, then writing $ p = a + bi $, we have $ q = a^2 + b^2 $. Conversely, if $ q = a^2 + b^2 = \br{a + bi}\br{a - bi} $,
 then since $ p \mid q $, we have either $ p \mid a + bi $ or $ p \mid a - bi $, so $ N\br{p} \mid N\br{a + bi} = q $ or $ N\br{p} \mid N\br{a - bi} = q $, and either way $ N\br{p} = q $.
 \end{proof}
+
+\pagebreak
 
 \begin{corollary}
 \label{cor:50}
 The primes in $ \Z\sbr{i} $ are either of the form $ a + bi $ with $ a^2 + b^2 $ a prime in $ \Z $, or are primes of $ \Z $ which are not sums of two squares.
 \end{corollary}
-
-\pagebreak
 
 \begin{theorem}
 If $ p = 2 $ or $ p \equiv 1 \mod 4 $, then $ p $ is a sum of two squares.
@@ -1231,19 +1206,15 @@ If $ p = 2 $ or $ p \equiv 1 \mod 4 $, then $ p $ is a sum of two squares.
 \begin{proof}
 By Corollary \ref{cor:50}, we just have to show that $ p $ is not a prime in $ \Z\sbr{i} $. There exists $ n $ such that $ n^2 \equiv -1 \mod p $. If $ p = 2 $ obvious, and if $ p \equiv 1 \mod 4 $,
 $$ \jacobi{-1}{p} = \br{-1}^{\tfrac{p - 1}{2}} = 1, $$
-by Euler's criterion. That is,
-$$ p \mid n^2 + 1 = \br{n + i}\br{n - i}. $$
-If $ p $ were prime, then $ p \mid n + i $ or $ p \mid n - i $, that is there exist $ c, d \in \Z $ such that
-$$ n \pm i = p\br{c + di}, $$
-so $ 1 = pd $, a contradiction.
+by Euler's criterion. That is, $ p \mid n^2 + 1 = \br{n + i}\br{n - i} $. If $ p $ were prime, then $ p \mid n + i $ or $ p \mid n - i $, that is there exist $ c, d \in \Z $ such that $ n \pm i = p\br{c \pm di} $, so $ 1 = pd $, a contradiction.
 \end{proof}
 
 \begin{remark*}
-If $ p \equiv 3 \mod 4 $ then $ p $ is not a sum of two squares, even mod $ 4 $.
+If $ p \equiv 3 \mod 4 $ then $ p $ is not a sum of two squares, even modulo four.
 \end{remark*}
 
 \begin{remark*}
-In practice, to go from $ n^2 + 1 \equiv 0 \mod p $ to finding $ a, b $ with $ a^2 + b^2 = p $, you just compute $ \br{n + i, p} = a + bi $. You can do this computation with Euclid's algorithm in $ \Z\sbr{i} $.
+In practice, to go from $ n^2 + 1 \equiv 0 \mod p $ to finding $ a $ and $ b $ with $ a^2 + b^2 = p $, you just compute $ \br{n + i, p} = a + bi $. You can do this computation with Euclid's algorithm in $ \Z\sbr{i} $.
 \end{remark*}
 
 \begin{theorem}
@@ -1260,7 +1231,9 @@ Suppose $ n $ is of this form. Then $ 2 $, each $ p_i $, and each $ q_i^2 $ are 
 Lagrange's theorem states that every positive integer is a sum of four squares.
 
 \begin{definition}
-$ \H $, the \textbf{ring of quaternions}, is the ring of sums $ a + bi + cj + dk $ for $ a, b, c, d \in \R $, such that
+$ \H $, the \textbf{ring of quaternions}, is the ring of sums
+$$ a + bi + cj + dk, \qquad a, b, c, d \in \R, $$
+such that
 \begin{itemize}
 \item addition is
 $$ \br{a + bi + cj + dk} + \br{A + Bi + Cj + Dk} = \br{a + A} + \br{b + B}i + \br{c + C}j + \br{d + D}k, $$
@@ -1275,12 +1248,12 @@ $$ N\br{zw} = zw\br{zw}^* = zww^*z^* = zN\br{w}z^* = zz^*N\br{w} = N\br{z}N\br{w
 because $ N\br{w} \in \R $. So
 \begin{align*}
 \br{a^2 + b^2 + c^2 + d^2}\br{x^2 + y^2 + z^2 + w^2}
-& = N\br{a + bi + cj + dk}N\br{x + yi + zj + wk} \\
-& = N\br{\br{a + bi + cj + dk}\br{x + yi + zj + wk}} \\
-& = \br{ax - by - cz - dw}^2 + \br{ay + bx + cw - dz}^2 \\
-& + \br{az - bw + cx + dy}^2 + \br{aw + bz - cy + dx}^2.
+= \ & N\br{a + bi + cj + dk}N\br{x + yi + zj + wk} \\
+= \ & N\br{\br{a + bi + cj + dk}\br{x + yi + zj + wk}} \\
+= \ & \br{ax - by - cz - dw}^2 + \br{ay + bx + cw - dz}^2 \\
++ & \br{az - bw + cx + dy}^2 + \br{aw + bz - cy + dx}^2.
 \end{align*}
-In particular, if $ m, n $ are sums of four squares, then $ mn $ is a sum of four squares. So to prove Lagrange's theorem, it suffices to show that all primes are sums of four squares.
+In particular, if $ m $ and $ n $ are sums of four squares, then $ mn $ is a sum of four squares. So to prove Lagrange's theorem, it suffices to show that all primes are sums of four squares.
 
 \pagebreak
 
@@ -1292,7 +1265,7 @@ We already saw that $ 2 $, and any prime congruent to $ 1 \mod 4 $, is a sum of 
 
 \begin{lemma}
 \label{lem:54}
-If $ p \equiv 3 \mod 4 $ is prime, then there exist $ x, y $ such that
+If $ p \equiv 3 \mod 4 $ is prime, then there exist $ x $ and $ y $ such that
 $$ x^2 + y^2 + 1 \equiv 0 \mod p. $$
 \end{lemma}
 
@@ -1310,7 +1283,7 @@ By Lemma \ref{lem:54}, there exist $ x, y \in \Z $ such that
 $$ x^2 + y^2 + 1 = pr, $$
 for some $ r $. Since the congruence
 $$ x^2 + y^2 + 1 \equiv 0 \mod p $$
-only depends on $ x, y \mod p $, we can find $ x, y $ with $ -p / 2 < x, y < p / 2 $. Then
+only depends on $ x $ and $ y $ modulo $ p $, we can find $ x $ and $ y $ with $ -p / 2 < x, y < p / 2 $. Then
 $$ \dfrac{x^2 + y^2 + 1}{p} = r < p. $$
 
 \begin{proposition}
@@ -1341,12 +1314,12 @@ Then
 $$ rr' < 4\br{\dfrac{r}{2}}^2 = r^2, $$
 so $ 0 \le r' < r $. If $ r' = 0 $ then $ a = b = c = d = 0 $, so $ r' $ divides each of $ x, y, z, w $. Since
 $$ x^2 + y^2 + z^2 + w^2 = pr, $$
-we get $ r^2 \mid pr $ so $ r \mid p $, and since $ r < p $, we get $ r = 1 $, and we are done. Otherwise $ 1 \le r' < r $.
+we get $ r^2 \mid pr $ so $ r \mid p $, and since $ r < p $, we get $ r = 1 $, and we are done. Otherwise $ 1 \le r' < r $. Then
 \begin{align*}
 \br{rr'}\br{rp}
-& = \br{a^2 + b^2 + c^2 + d^2}\br{x^2 + y^2 + z^2 + w^2} \\
-& = \br{ax + by + cz + dw}^2 + \br{-ay + bx + cw - dz}^2 \\
-& + \br{-az - bw + cx + dy}^2 + \br{-aw + bz - cy + dx}^2.
+= \ & \br{a^2 + b^2 + c^2 + d^2}\br{x^2 + y^2 + z^2 + w^2} \\
+= \ & \br{ax + by + cz + dw}^2 + \br{-ay + bx + cw - dz}^2 \\
++ & \br{-az - bw + cx + dy}^2 + \br{-aw + bz - cy + dx}^2.
 \end{align*}
 Then
 \begin{align*}
@@ -1374,10 +1347,11 @@ so you have to be careful with unique factorisation, etc.
 
 \subsection{Sums of three squares}
 
-$ 7 $ is the smallest positive integer which is not a sum of three squares. In fact no integer congruent to $ 7 \mod 8 $ can be a sum of three squares, because the squares mod $ 8 $ are $ 0, 1, 4 $.
+$ 7 $ is the smallest positive integer which is not a sum of three squares. In fact no integer congruent to $ 7 \mod 8 $ can be a sum of three squares, because the squares modulo $ 8 $ are $ 0, 1, 4 $.
 
 \begin{theorem}
-A positive integer is not a sum of three squares if and only if it is of the form $ 4^a\br{8k + 7} $.
+A positive integer is not a sum of three squares if and only if it is of the form
+$$ 4^a\br{8k + 7}. $$
 \end{theorem}
 
 Proving that numbers are not of this form is beyond this course. Serre's a course in arithmetic is a good place to look.
@@ -1388,10 +1362,11 @@ Proving that numbers are not of this form is beyond this course. Serre's a cours
 
 \subsection{Pell's equation}
 
-Let $ d \in \Z_{> 1} $ be squarefree. \textbf{Pell's equation} is $ x^2 - dy^2 = 1 $.
+Let $ d \in \Z_{> 1} $ be squarefree. \textbf{Pell's equation} is
+$$ x^2 - dy^2 = 1. $$
 
 \begin{example*}
-Let $ d = 2 $. $ \br{x, y} = \br{3, 2} $ is a solution. In fact, there are infinitely many solutions, and this is true for any $ d $.
+Let $ d = 2 $. Then $ \br{x, y} = \br{3, 2} $ is a solution. In fact, there are infinitely many solutions, and this is true for any $ d $.
 \end{example*}
 
 We will find it useful to write
@@ -1400,7 +1375,7 @@ This suggests that we should look at a ring like
 $$ \Z\sbr{\sqrt{d}} = \cbr{a + b\sqrt{d} \mid a, b \in \Z}. $$
 
 \begin{definition}
-If $ \alpha \in \C $, then $ \Z\sbr{\alpha} $ is the smallest subring of $ \C $ containing $ \alpha $.
+If $ \alpha \in \C $, then $ \Z\sbr{\alpha} $ is the \textbf{smallest subring of $ \C $ containing $ \alpha $}.
 \end{definition}
 
 \begin{example*}
@@ -1427,17 +1402,18 @@ Lecture 16 is a problem class.
 
 \lecture{17}{Tuesday}{13/11/18}
 
-\subsection{Quadratic subrings of $ \C $}
+\subsection{Quadratic subrings of \texorpdfstring{$ \C $}{C}}
 
 \begin{definition}
-Say that $ \alpha \in \C $ is an \textbf{algebraic integer of degree two} if it is a root of a polynomial $ x^2 + ax + b $, for $ a, b \in \Z $, and $ \alpha \notin \Z $.
+Say that $ \alpha \in \C $ is an \textbf{algebraic integer of degree two} if it is a root of a polynomial
+$$ X^2 + aX + b, \qquad a, b \in \Z, \qquad \alpha \notin \Z. $$
 \end{definition}
 
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ \alpha = i $ root of $ X^2 + 1 $.
-\item $ \alpha = \sqrt{d} $ root of $ X^2 - d $ for $ d > 1 $ squarefree.
+\item $ \alpha = i $ is a root of $ X^2 + 1 $.
+\item $ \alpha = \sqrt{d} $ is a root of $ X^2 - d $ for $ d > 1 $ squarefree.
 \end{itemize}
 \end{example*}
 
@@ -1470,7 +1446,7 @@ If $ \alpha $ is an algebraic integer of degree two, say that $ \Z\sbr{\alpha} $
 \end{itemize}
 \end{example*}
 
-If $ z = x + y\alpha \in \Z\sbr{\alpha} $, write $ z^* = x + y\alpha^* $. If $ \Z\sbr{\alpha} $ is imaginary quadratic, then $ \alpha^* = \bar{\alpha} $, and $ z^* = \bar{z} $. This is not true if $ \Z\sbr{\alpha} $ is real quadratic. Define $ N\br{z} = zz^* $. Since $ \alpha, \alpha^* $ are the roots of $ X^2 + aX + b $, we have
+If $ z = x + y\alpha \in \Z\sbr{\alpha} $, write $ z^* = x + y\alpha^* $. If $ \Z\sbr{\alpha} $ is imaginary quadratic, then $ \alpha^* = \bar{\alpha} $, and $ z^* = \bar{z} $. This is not true if $ \Z\sbr{\alpha} $ is real quadratic. Define $ N\br{z} = zz^* $. Since $ \alpha $ and $ \alpha^* $ are the roots of $ X^2 + aX + b $, we have
 $$ \alpha + \alpha^* = -a, \qquad \alpha\alpha^* = b. $$
 If $ z = x + y\alpha $, then
 $$ N\br{z} = \br{x + y\alpha}\br{x + y\alpha^*} = x^2 + xy\br{\alpha + \alpha^*} + y^2\alpha\alpha^* = x^2 - axy + by^2 \in \Z. $$
@@ -1491,7 +1467,7 @@ So solutions to Pell's equation are the same thing as elements of $ \Z\sbr{\alph
 \subsection{Factorisation in quadratic rings}
 
 \begin{definition}
-The units of $ \Z\sbr{\alpha} $ are by definition the elements with multiplicative inverses, and they form a group $ \Z\sbr{\alpha}^\times $ under multiplication. We say that $ z, w \in \Z\sbr{\alpha} $ are associates if $ z = uw $ for $ u \in \Z\sbr{\alpha}^\times $.
+The \textbf{units} of $ \Z\sbr{\alpha} $ are by definition the elements with multiplicative inverses, and they form a group $ \Z\sbr{\alpha}^\times $ under multiplication. We say that $ z, w \in \Z\sbr{\alpha} $ are \textbf{associates} if $ z = uw $ for $ u \in \Z\sbr{\alpha}^\times $.
 \end{definition}
 
 If $ u \in \Z\sbr{\alpha}^\times $, then write $ 1 = uv $. Then
@@ -1530,15 +1506,12 @@ If $ x, y > 0 $ then $ x + y\sqrt{d} > y\sqrt{d} \ge \sqrt{d} > 1 $. Then $ x - 
 
 \begin{lemma}
 \label{lem:63}
-Let $ z = x + y\sqrt{d} $ and $ z' = x' + y'\sqrt{d} $ be two elements of $ \Z\sbr{\sqrt{d}}^{\times, 1} $ with $ z, z' > 1 $, that is $ x, y, x', y' > 0 $. Then
-$$ z > z' \qquad \iff \qquad y > y'. $$
+Let $ z = x + y\sqrt{d} $ and $ z' = x' + y'\sqrt{d} $ be two elements of $ \Z\sbr{\sqrt{d}}^{\times, 1} $ with $ z, z' > 1 $, that is $ x, y, x', y' > 0 $. Then $ z > z' $ if and only if $ y > y' $.
 \end{lemma}
 
 \begin{proof}
-$$ z - \dfrac{1}{z} = x + y\sqrt{d} - \br{x - y\sqrt{d}} = 2y\sqrt{d}. $$
-Just need to check that
-$$ z > z' \qquad \iff \qquad z - \dfrac{1}{z} > z' - \dfrac{1}{z'}. $$
-But $ z - 1 / z $ is increasing, since its derivative is $ 1 + 1 / z^2 > 0 $.
+$$ z - \dfrac{1}{z} = x + y\sqrt{d} - \br{x - y\sqrt{d}} = 2y\sqrt{d}, $$
+so just need to check that $ z > z' $ if and only if $ z - 1 / z > z' - 1 / z' $. But $ z - 1 / z $ is increasing, since its derivative is $ 1 + 1 / z^2 > 0 $.
 \end{proof}
 
 \lecture{18}{Wednesday}{14/11/18}
@@ -1548,32 +1521,30 @@ $$ \epsilon = x + y\sqrt{d} \in \Z\sbr{\sqrt{d}}^{\times, 1}, \qquad x, y > 0, $
 with $ y $ as small as possible. Call $ \epsilon $ the \textbf{fundamental $ 1 $-unit} of $ \Z\sbr{\sqrt{d}} $.
 
 \begin{proposition}
-Suppose that $ \Z\sbr{\sqrt{d}}^{\times, 1} \ne \cbr{\pm 1} $, and let $ \epsilon $ be the fundamental $ 1 $-unit. Then every element of $ \Z\sbr{\sqrt{d}}^{\times, 1} $ is of the form $ \pm \epsilon^n $ for some $ n \in \Z $.
+Suppose that $ \Z\sbr{\sqrt{d}}^{\times, 1} \ne \cbr{\pm 1} $, and let $ \epsilon $ be the fundamental $ 1 $-unit. Then every element of $ \Z\sbr{\sqrt{d}}^{\times, 1} $ is of the form $ \pm \epsilon^n $ for some $ n \in \Z $. Conversely, $ N\br{\pm \epsilon^n} = N\br{\pm 1}N\br{\epsilon}^n = 1 $.
 \end{proposition}
 
-Conversely, $ N\br{\pm \epsilon^n} = N\br{\pm 1}N\br{\epsilon}^n = 1 $.
-
 \begin{proof}
-Let $ z \in \Z\sbr{\sqrt{d}}^{\times, 1} $, so $ z \ne \pm 1 $. After replacing $ z $ by $ \pm z^{\pm 1} $, we may assume that $ z > 1 $. Choose $ n \ge 0 $ such that $ \epsilon^n \le z < \epsilon^{n + 1} $. Then $ 1 \le z\epsilon^{-n} < \epsilon $, so $ N\br{z\epsilon^{-n}} = N\br{z}N\br{\epsilon}^{-n} = 1 $. So $ z\epsilon^{-n} \in \Z\sbr{\sqrt{d}}^{\times, 1} $. So by the choice of $ \epsilon $, and Lemma \ref{lem:63}, we have $ z\epsilon^{-n} = 1 $, that is $ z = \epsilon^n $.
+Let $ z \in \Z\sbr{\sqrt{d}}^{\times, 1} $, so $ z \ne \pm 1 $. After replacing $ z $ by $ \pm z^{\pm 1} $, we may assume that $ z > 1 $. Choose $ n \ge 0 $ such that $ \epsilon^n \le z < \epsilon^{n + 1} $. Then $ 1 \le z\epsilon^{-n} < \epsilon $, and $ N\br{z\epsilon^{-n}} = N\br{z}N\br{\epsilon}^{-n} = 1 $. So $ z\epsilon^{-n} \in \Z\sbr{\sqrt{d}}^{\times, 1} $. So by the choice of $ \epsilon $, and Lemma \ref{lem:63}, we have $ z\epsilon^{-n} = 1 $, that is $ z = \epsilon^n $.
 \end{proof}
 
 \begin{example*}
-Let $ d = 2 $ and $ x^2 - 2y^2 = 1 $. $ y = 2 $ and $ x = 3 $ is a solution. So $ \epsilon = 3 + 2\sqrt{2} $. Then $ \epsilon^2 = \br{3 + 2\sqrt{2}}^2 = 17 + 12\sqrt{2} $, and $ 17^2 - 2\br{12}^2 = 1 $.
+Let $ d = 2 $ and $ x^2 - 2y^2 = 1 $. Then $ y = 2 $ and $ x = 3 $ is a solution. So $ \epsilon = 3 + 2\sqrt{2} $. Then $ \epsilon^2 = \br{3 + 2\sqrt{2}}^2 = 17 + 12\sqrt{2} $, and $ 17^2 - 2\br{12}^2 = 1 $.
 \end{example*}
 
 \pagebreak
 
-\subsection{Constructing the fundamental $ 1 $-unit}
+\subsection{Constructing the fundamental \texorpdfstring{$ 1 $}{1}-unit}
 
 The idea is that if $ x^2 - dy^2 = 1 $, for $ x, y > 0 $, then $ x / y \approx \sqrt{d} $.
 $$ \abs{x - y\sqrt{d}} = \dfrac{1}{\abs{x + y\sqrt{d}}}, $$
-which is small. So one way to to try to find $ 1 $-units is to find rational numbers which are good approximations to $ \sqrt{d} $. Want to make $ \abs{x / y - \sqrt{d}} $ as small as possible for $ y $ of a given size. More generally, if $ \alpha \in \R \setminus \Q $, we might want to find $ x, y > 0 $ such that
+which is small. So one way to try to find $ 1 $-units is to find rational numbers which are good approximations to $ \sqrt{d} $. Want to make $ \abs{x / y - \sqrt{d}} $ as small as possible for $ y $ of a given size. More generally, if $ \alpha \in \R \setminus \Q $, we might want to find $ x, y > 0 $ such that
 $$ \abs{\dfrac{x}{y} - \alpha} < \dfrac{C}{y^n}, $$
 where $ C $ and $ n $ are fixed.
 \begin{itemize}[leftmargin=1in]
 \item[$ n = 0 $] Trivial.
 \item[$ n = 1 $, $ C = 1 $] Trivial, by just choosing any $ y $ and $ x / y $ as close to $ \alpha $ as you can.
-\item[$ n = 2 $, $ C = 1 $] Not obvious. In fact there always exist infinitely many $ x, y $ with $ \abs{x / y - \alpha} < 1 / y^2 $, as we now show.
+\item[$ n = 2 $, $ C = 1 $] Not obvious. In fact there always exist infinitely many $ x $ and $ y $ with $ \abs{x / y - \alpha} < 1 / y^2 $, as we now show.
 \end{itemize}
 
 \begin{theorem}[Dirichlet's theorem]
@@ -1584,7 +1555,7 @@ $$ 1 \le q < Q, \qquad \abs{p - q\alpha} < \dfrac{1}{Q}. $$
 
 \begin{proof}
 For $ 1 \le k \le Q - 1 $, let $ a_k = \fbr{k\alpha} $. Then $ 0 < k\alpha - a_k < 1 $. Consider the $ Q $ intervals
-$$ \sbr{0, \dfrac{1}{Q}}, \dots, \sbr{\dfrac{Q - 1}{Q}, 1}. $$
+$$ \sbr{0, \dfrac{1}{Q}}, \qquad \dots, \qquad \sbr{\dfrac{Q - 1}{Q}, 1}. $$
 The set
 $$ \cbr{0, \alpha - a_1, \dots, \br{Q - 1}\alpha - a_{Q - 1}, 1}, $$
 contains $ Q + 1 $ elements, so some pair of them must be in the same interval. The difference of these two elements is of the form $ p - q\alpha $, for $ 1 \le q < Q $.
@@ -1597,11 +1568,11 @@ $$ \abs{\alpha - \dfrac{p}{q}} < \dfrac{1}{q^2}. $$
 \end{corollary}
 
 \begin{proof}
-Certainly there exists $ p $ for $ q = 1 $. It is then enough to prove that if $ \abs{\alpha - p / q} < 1 / q^2 $, there exist $ p', q' $ such that
+Certainly there exists $ p $ for $ q = 1 $. It is then enough to prove that if $ \abs{\alpha - p / q} < 1 / q^2 $, there exist $ p' $ and $ q' $ such that
 $$ \abs{\alpha - \dfrac{p'}{q'}} < \dfrac{1}{\br{q'}^2}, \qquad \abs{\alpha - \dfrac{p'}{q'}} < \abs{\alpha - \dfrac{p}{q}}. $$
 Choose $ Q $ such that
 $$ \dfrac{1}{Q} < \abs{\alpha - \dfrac{p}{q}}. $$
-By Theorem \ref{thm:65}, there exist $ p', q' $ with
+By Theorem \ref{thm:65}, there exist $ p' $ and $ q' $ with
 $$ 1 \le q' < Q, \qquad \abs{\alpha - \dfrac{p'}{q'}} < \dfrac{1}{Qq'} < \dfrac{1}{\br{q'}^2}. $$
 Also
 $$ \abs{\alpha - \dfrac{p'}{q'}} < \dfrac{1}{Qq'} \le \dfrac{1}{Q} < \abs{\alpha - \dfrac{p}{q}}, $$
@@ -1613,7 +1584,7 @@ as required.
 We can now show the following.
 
 \begin{theorem}
-If $ d > 1 $ is squarefree, then there exist $ x, y $ such that $ y \ne 0 $ and $ x^2 - dy^2 = 1 $.
+If $ d > 1 $ is squarefree, then there exist $ x $ and $ y $ such that $ y \ne 0 $ and $ x^2 - dy^2 = 1 $.
 \end{theorem}
 
 \begin{proof}
@@ -1635,19 +1606,18 @@ $$ p_iq_j \equiv p_jq_i \mod M, \qquad p_ip_j - dq_iq_j \equiv p_i^2 - dq_i^2 = 
 So
 $$ N\br{\dfrac{p_i - q_i\sqrt{d}}{p_j - q_j\sqrt{d}}} = \dfrac{M}{M} = 1, $$
 so
-$$ \dfrac{p_i - q_i\sqrt{d}}{p_j - q_j\sqrt{d}} \in \Z\sbr{\sqrt{d}}, $$
+$$ \dfrac{p_i - q_i\sqrt{d}}{p_j - q_j\sqrt{d}} \in \Z\sbr{\sqrt{d}}^{\times, 1}, $$
 as required.
 \end{proof}
 
 \lecture{19}{Friday}{16/11/18}
 
-\subsection{The equation $ x^2 - dy^2 = - 1 $}
+\subsection{The equation \texorpdfstring{$ x^2 - dy^2 = - 1 $}{x2 - dy2 = -1}}
 
-$ x^2 - dy^2 = -1 $ has solution if and only if there exists $ u \in \Z\sbr{\sqrt{d}}^\times $ such that $ N\br{u} = -1 $. Given such a $ u $, all solutions to the equation are given by $ \pm u\epsilon^n $, for $ n \in \Z $, since
-$$ N\br{v} = -1 \qquad \iff \qquad N\br{v} = N\br{u} \qquad \iff \qquad N\br{v / u} = 1. $$
+$ x^2 - dy^2 = -1 $ has a solution if and only if there exists $ u \in \Z\sbr{\sqrt{d}}^\times $ such that $ N\br{u} = -1 $. Given such a $ u $, all solutions to the equation are given by $ \pm u\epsilon^n $, for $ n \in \Z $, since $ N\br{v} = -1 $ if and only if $ N\br{v} = N\br{u} $ if and only if $ N\br{v / u} = 1 $.
 
 \begin{example*}
-If $ d = 3 $, no solutions, as $ X^2 \equiv -1 \mod 3 $ has no solutions.
+If $ d = 3 $, there are no solutions, as $ X^2 \equiv -1 \mod 3 $ has no solutions.
 \end{example*}
 
 \pagebreak
@@ -1657,9 +1627,9 @@ If $ d = 3 $, no solutions, as $ X^2 \equiv -1 \mod 3 $ has no solutions.
 \subsection{Rational continued fractions}
 
 Let $ p / q \in \Q $. Write
-$$ \dfrac{p}{q} = a_0 + r_0, \qquad a_0 = \fbr{\dfrac{p}{q}}, \qquad 0 \le r_0 < 1. $$
+$$ \dfrac{p}{q} = a_0 + r_0, \qquad a_0 = \fbr{\dfrac{p}{q}} \in \Z, \qquad 0 \le r_0 < 1. $$
 If $ r_i \ne 0 $, write
-$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fbr{\dfrac{1}{r_i}} \ge 1, \qquad 0 \le r_{i + 1} < 1. $$
+$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fbr{\dfrac{1}{r_i}} \in \Z_{\ge 1}, \qquad 0 \le r_{i + 1} < 1. $$
 Eventually get some $ r_n = 0 $. Write
 $$ \dfrac{p}{q} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_n}}}. $$
 
@@ -1670,36 +1640,36 @@ $$ \dfrac{40}{19} = 2 + \dfrac{2}{19}, \qquad \dfrac{19}{2} = 9 + \dfrac{1}{2} \
 \subsection{Infinite continued fractions}
 
 Let $ \alpha \in \R \setminus \Q $. As above, set $ a_0 = \fbr{\alpha} $, write
-$$ \alpha = a_0 + r_0, \qquad a_0 = \fbr{\alpha}, \qquad 0 \le r_0 < 1. $$
+$$ \alpha = a_0 + r_0, \qquad a_0 = \fbr{\alpha} \in \Z, \qquad 0 \le r_0 < 1. $$
 Define sequences $ a_i, r_i $ by
-$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fbr{\dfrac{1}{r_i}} \in \Z, \qquad 0 \le r_{i + 1} < 1. $$
+$$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fbr{\dfrac{1}{r_i}} \in \Z_{\ge 1}, \qquad 0 \le r_{i + 1} < 1. $$
 By definition, $ a_i \ge 1 $ if $ i > 0 $. Write
-$$ \alpha = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots}}. $$
+$$ \alpha = a_0 + \dfrac{1}{a_1 + \dfrac{1}{a_2 + \dfrac{1}{\dots}}}. $$
 
 \begin{example*}
-Let $ \alpha = \sqrt{3} $.
+Let $ \alpha = \sqrt{3} $. Then
 \begin{align*}
-& a_0 = 1, \qquad r_0 = \sqrt{3} - 1, \qquad \dfrac{1}{r_0} = \dfrac{1}{\sqrt{3} - 1} = \dfrac{\sqrt{3} + 1}{2} = 1 + \dfrac{\sqrt{3} - 1}{2}. \\
-& a_1 = 1, \qquad r_1 = \dfrac{\sqrt{3} - 1}{2}, \qquad \dfrac{1}{r_1} = \dfrac{2}{\sqrt{3} - 1} = \sqrt{3} + 1 = 2 + \br{\sqrt{3} - 1}. \\
+& a_0 = 1, \qquad r_0 = \sqrt{3} - 1, \qquad \dfrac{1}{r_0} = \dfrac{1}{\sqrt{3} - 1} = \dfrac{\sqrt{3} + 1}{2} = 1 + \dfrac{\sqrt{3} - 1}{2}, \\
+& a_1 = 1, \qquad r_1 = \dfrac{\sqrt{3} - 1}{2}, \qquad \dfrac{1}{r_1} = \dfrac{2}{\sqrt{3} - 1} = \sqrt{3} + 1 = 2 + \br{\sqrt{3} - 1}, \\
 & a_2 = 2, \qquad r_2 = \sqrt{3} - 1 = r_0, \qquad \dfrac{1}{r_2} = \dfrac{1}{\sqrt{3} - 1} = \dfrac{1}{r_0},
 \end{align*}
 so
 $$ a_i =
 \begin{cases}
 1 & i > 0 \ \text{odd} \\
-0 & i > 0 \ \text{even}
+2 & i > 0 \ \text{even}
 \end{cases}.
 $$
 \end{example*}
 
+\pagebreak
+
 If $ a_0, \dots, a_n \in \R $, then
 $$ \sbr{a_0; a_1, \dots, a_n} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_n}}}. $$
 
-\pagebreak
-
 \begin{lemma}
 \label{lem:68}
-If $ a_0, \dots, a_n \in \R $, define $ p_i, q_i $ for $ 0 \le i \le n $ by
+If $ a_0, \dots, a_n \in \R $, define $ p_i $ and $ q_i $ for $ 0 \le i \le n $ by
 $$ p_0 = a_0, \qquad q_0 = 1, \qquad p_1 = a_0a_1 + 1, \qquad q_1 = a_1, \qquad p_i = a_ip_{i - 1} + p_{i - 2}, \qquad q_i = a_iq_{i - 1} + q_{i - 2}. $$
 Assuming that no $ q_i = 0 $, we have
 $$ \sbr{a_0; a_1, \dots, a_n} = \dfrac{p_n}{q_n}. $$
@@ -1710,17 +1680,17 @@ Induction on $ n $.
 \begin{itemize}[leftmargin=0.5in]
 \item[$ n = 0 $] $ a_0 = a_0 / 1 $ is trivial.
 \item[$ n = 1 $] $ a_0 + 1 / a_1 = \br{a_0a_1 + 1} / a_1 $ is trivial.
-\item[$ n > 1 $] Define sequences $ p_i', q_i' $ for $ 0 \le i \le n - 1 $ by applying the definition to the sequence
+\item[$ n > 1 $] Define sequences $ p_i' $ and $ q_i' $ for $ 0 \le i \le n - 1 $ by applying the definition to the sequence
 $$ a_0, \dots, a_{n - 2}, a_{n - 1} + \dfrac{1}{a_n}. $$
 By definition, $ p_i' = p_i $ and $ q_i' = q_i $ if $ i \le n - 2 $. By induction,
 $$ \sbr{a_0; a_1, \dots, a_{n - 2}, a_{n - 1} + \dfrac{1}{a_n}} = \dfrac{p_{n - 1}'}{q_{n - 1}'}. $$
 By definition,
 $$ \sbr{a_0; a_1, \dots, a_n} = \sbr{a_0; a_1, \dots, a_{n - 2}, a_{n - 1} + \dfrac{1}{a_n}}. $$
-So we only need to show that $ p_{n - 1}' / q_{n - 1}' = p_n / q_n $.
+So we only need to show that $ p_{n - 1}' / q_{n - 1}' = p_n / q_n $, and
 \begin{align*}
 \dfrac{p_{n - 1}'}{q_{n - 1}'}
-& = \dfrac{\br{a_{n - 1} + \tfrac{1}{a_n}}p_{n - 2}' + p_{n - 3}'}{\br{a_{n - 1} + \tfrac{1}{a_n}}q_{n - 2}' + q_{n - 3}'}
-= \dfrac{\br{a_{n - 1} + \tfrac{1}{a_n}}p_{n - 2} + p_{n - 3}}{\br{a_{n - 1} + \tfrac{1}{a_n}}q_{n - 2} + q_{n - 3}} \\
+& = \dfrac{\br{a_{n - 1} + 1 / a_n}p_{n - 2}' + p_{n - 3}'}{\br{a_{n - 1} + 1 / a_n}q_{n - 2}' + q_{n - 3}'}
+= \dfrac{\br{a_{n - 1} + 1 / a_n}p_{n - 2} + p_{n - 3}}{\br{a_{n - 1} + 1 / a_n}q_{n - 2} + q_{n - 3}} \\
 & = \dfrac{\br{a_na_{n - 1} + 1}p_{n - 2} + a_np_{n - 3}}{\br{a_na_{n - 1} + 1}q_{n - 2} + a_nq_{n - 3}}
 = \dfrac{a_n\br{a_{n - 1}p_{n - 2} + p_{n - 3}} + p_{n - 2}}{a_n\br{a_{n - 1}q_{n - 2} + q_{n - 3}} + q_{n - 2}}
 = \dfrac{a_np_{n - 1} + p_{n - 2}}{a_nq_{n - 1} + q_{n - 2}}
@@ -1734,7 +1704,9 @@ $$ q_i = a_iq_{i - 1} + q_{i - 2} \ge q_{i - 1} + q_{i - 2}. $$
 So the $ q_i $ form an increasing sequence, in fact with
 $$ q_i \ge q_{i - 1} + q_{i - 2} \ge 2q_{i - 2}, $$
 so it even increases exponentially. If $ a_0, a_1, \dots \in \R $ is an infinite sequence with $ a_i \ge 1 $ for all $ i $, say that $ p_i / q_i $ is the \textbf{$ i $-th convergent} to
-$$ a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots}}. $$
+$$ a_0 + \dfrac{1}{a_1 + \dfrac{1}{a_2 + \dfrac{1}{\dots}}}. $$
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:69}
@@ -1743,7 +1715,7 @@ $$ p_nq_{n - 1} - q_np_{n - 1} = \br{-1}^{n - 1}. $$
 \end{lemma}
 
 \begin{proof}
-Obvious for $ n = 1 $. For inductive step,
+Obvious for $ n = 1 $. For the inductive step,
 \begin{align*}
 p_nq_{n - 1} - q_np_{n - 1}
 & = \br{a_np_{n - 1} + p_{n - 2}}q_{n - 1} - \br{a_nq_{n - 1} + q_{n - 2}}p_{n - 1} \\
@@ -1751,8 +1723,6 @@ p_nq_{n - 1} - q_np_{n - 1}
 & = -\br{p_{n - 1}q_{n - 2} - q_{n - 1}p_{n - 2}}.
 \end{align*}
 \end{proof}
-
-\pagebreak
 
 \begin{note*}
 If $ a_i \in \Z $, then $ p_i, q_i \in \Z $, and Lemma \ref{lem:69} implies that $ \br{p_n, q_n} = 1 $. In general, Lemma \ref{lem:69} implies that
@@ -1779,7 +1749,7 @@ since $ \alpha = a_0 + 1 / \dots $. That is,
 $$ \alpha - a_0 < \dfrac{1}{\sbr{a_1; a_2, \dots, a_n}}, $$
 that is
 $$ \alpha < a_0 + \dfrac{1}{\sbr{a_1; a_2, \dots, a_n}} = \sbr{a_0; a_1, \dots, a_n} = \dfrac{p_n}{q_n}. $$
-\item[$ n $ even] Same argument with $ > $.
+\item[$ n $ even] The same argument with $ > $.
 \end{itemize}
 \end{proof}
 
@@ -1798,15 +1768,14 @@ by Lemma \ref{lem:69}.
 \end{proof}
 
 \begin{note*}
-$$ \dfrac{1}{q_nq_{n + 1}} < \dfrac{1}{q_n^2}, $$
-so the sequence $ \br{p_n / q_n} $ satisfies the requirements of Dirichlet's theorem.
+$ 1 / q_nq_{n + 1} < 1 / q_n^2 $, so the sequence $ \br{p_n / q_n} $ satisfies the requirements of Dirichlet's theorem.
 \end{note*}
 
 \pagebreak
 
 \subsection{Best approximations}
 
-Fix $ \alpha \in \R \setminus \Q $. Define $ a_i, r_i $ by
+Fix $ \alpha \in \R \setminus \Q $. Define $ a_i $ and $ r_i $ by
 $$ \alpha = a_0 + r_0, \qquad a_0 = \fbr{\alpha} \in \Z, \qquad 0 < r_0 < 1, $$
 If $ i \ge 1 $,
 $$ \dfrac{1}{r_i} = a_{i + 1} + r_{i + 1}, \qquad a_{i + 1} = \fbr{\dfrac{1}{r_i}} \in \Z_{\ge 1}, \qquad 0 < r_{i + 1} < 1. $$
@@ -1818,10 +1787,11 @@ $$ \alpha = \dfrac{p_n + p_{n - 1}r_n}{q_n + q_{n - 1}r_n}. $$
 \end{lemma}
 
 \begin{proof}
-$$ \alpha = \sbr{a_0; a_1, \dots, a_n, \dfrac{1}{r_n}}. $$
-Set
+$$ \alpha = \sbr{a_0; a_1, \dots, a_n, \dfrac{1}{r_n}}, $$
+so set
 $$ p_{n + 1} = \dfrac{p_n}{r_n} + p_{n - 1}, \qquad q_{n + 1} = \dfrac{q_n}{r_n} + q_{n - 1}. $$
-Then by Lemma \ref{lem:68}, $ \alpha = p_{n + 1} / q_{n + 1} $.
+Then by Lemma \ref{lem:68},
+$$ \alpha = \dfrac{p_{n + 1}}{q_{n + 1}} = \dfrac{p_n / r_n + p_{n - 1}}{q_n / r_n + q_{n - 1}} = \dfrac{p_n + p_{n - 1}r_n}{q_n + q_{n - 1}r_n}. $$
 \end{proof}
 
 \begin{corollary}
@@ -1856,11 +1826,11 @@ By Lemma \ref{lem:69} there exist $ u, v \in \Z $ such that
 $$ h = up_n + vp_{n + 1}, \qquad k = uq_n + vq_{n + 1}, $$
 since
 $$ \twobyone{h}{k} = \twobytwo{p_n}{p_{n + 1}}{q_n}{q_{n + 1}}\twobyone{u}{v} \qquad \iff \qquad \twobyone{u}{v} = \twobytwo{p_n}{p_{n + 1}}{q_n}{q_{n + 1}}^{-1}\twobyone{h}{k} = \dfrac{1}{\br{-1}^n}\twobytwo{q_{n + 1}}{-p_{n + 1}}{-q_n}{p_n}\twobyone{h}{k}. $$
-By assumption, $ 0 < \abs{k} < q_{n + 1} $. So $ u \ne 0 $, else $ k = vq_{n + 1} $, so $ \abs{v} < 1 $ is a contradiction. If $ v \ne 0 $, then $ u, v $ have opposite signs, else
+By assumption, $ 0 < \abs{k} < q_{n + 1} $. So $ u \ne 0 $, else $ k = vq_{n + 1} $, so $ \abs{v} < 1 $ is a contradiction. If $ v \ne 0 $, then $ u $ and $ v $ have opposite signs, else
 $$ \abs{k} = \abs{uq_n} + \abs{vq_{n + 1}} \ge q_n + q_{n + 1} > q_{n + 1}. $$
 If $ v = 0 $, then $ h = up_n $ and $ k = uq_n $, and everything is easy. If $ v \ne 0 $, then write
 $$ k\alpha - h = u\br{\alpha q_n - p_n} + v\br{\alpha q_{n + 1} - p_{n + 1}}. $$
-$ u, v $ have opposite signs. By Lemma \ref{lem:70},
+Then $ u $ and $ v $ have opposite signs. By Lemma \ref{lem:70},
 $$ \alpha q_n - p_n, \qquad \alpha q_{n + 1} - p_{n + 1} $$
 also have opposite signs. So
 $$ u\br{\alpha q_n - p_n}, \qquad v\br{\alpha q_{n + 1} - p_{n + 1}} $$
@@ -1886,7 +1856,7 @@ Without loss of generality $ k \ge 1 $, and $ q_n \le k < q_{n + 1} $ for some $
 & \le \abs{\dfrac{p_n}{q_n} - \alpha} + \abs{\alpha - \dfrac{h}{k}}
 = \dfrac{1}{q_n}\abs{\alpha q_n - p_n} + \dfrac{1}{k}\abs{\alpha k - h} \\
 & \le \br{\dfrac{1}{q_n} + \dfrac{1}{k}}\abs{\alpha k - h}
-= k\br{\dfrac{1}{q_n} + \dfrac{1}{k}}\abs{\alpha - \dfrac{k}{h}} \\
+= k\br{\dfrac{1}{q_n} + \dfrac{1}{k}}\abs{\alpha - \dfrac{h}{k}} \\
 & < \dfrac{1}{2k}\abs{\dfrac{1}{q_n} + \dfrac{1}{k}}
 \le \dfrac{1}{kq_n},
 \end{align*}
@@ -1901,7 +1871,7 @@ So $ p_n / q_n - h / k = 0 $, as required.
 
 \lecture{21}{Wednesday}{21/11/18}
 
-Pell's equation is $ X^2 - dY^2 = 1 $. If $ \br{x, y} $ is a solution, then $ \abs{\sqrt{d} - x / y} $ is small.
+Pell's equation is $ x^2 - dy^2 = 1 $. If $ \br{x, y} $ is a solution, then $ \abs{\sqrt{d} - x / y} $ is small.
 
 \begin{proposition}
 Let $ d > 1 $ be squarefree, and let $ p_n / q_n $ be the sequence of convergents for the continued fraction for $ \sqrt{d} $. If $ x, y > 0 $ with $ x^2 - dy^2 = \pm 1 $, then $ x = p_n $ and $ y = q_n $ for some $ n $.
@@ -1912,22 +1882,22 @@ Let $ d > 1 $ be squarefree, and let $ p_n / q_n $ be the sequence of convergent
 \begin{itemize}
 \item Firstly suppose $ x^2 - dy^2 = 1 $. It is enough to show that $ x / y = p_n / q_n $ for some $ n $. Since $ \br{p_n, q_n} = 1 $, this implies that $ x = rp_n $ and $ y = rq_n $ for some $ r $, and then
 $$ 1 = x^2 - dy^2 = r^2\br{p_n^2 - dq_n^2}, $$
-so $ r = 1 $. By Corollary \ref{cor:75}, it suffices to prove that $ \abs{\sqrt{d} - x / y} < 1 / 2y^2 $.
-$$ x - y\sqrt{d} = \dfrac{1}{x + y\sqrt{d}} > 0. $$
-So $ x > y\sqrt{d} $, and $ x / y > \sqrt{d} $. So
-$$ \abs{\dfrac{x}{y} - \sqrt{d}} = \dfrac{x}{y} - \sqrt{d} = \dfrac{1}{y}\br{x - y\sqrt{d}} = \dfrac{1}{y}\br{\dfrac{1}{x + y\sqrt{d}}} < \dfrac{1}{y}\br{\dfrac{1}{y\sqrt{d} + y\sqrt{d}}} = \dfrac{1}{\br{2\sqrt{d}}y^2} < \dfrac{1}{2y^2}. $$
+so $ r = 1 $. By Corollary \ref{cor:75}, it suffices to prove that $ \abs{\sqrt{d} - x / y} < 1 / 2y^2 $. Since
+$$ x - y\sqrt{d} = \dfrac{1}{x + y\sqrt{d}} > 0, $$
+so $ x > y\sqrt{d} $, and $ x / y > \sqrt{d} $. So
+$$ \abs{\dfrac{x}{y} - \sqrt{d}} = \dfrac{x}{y} - \sqrt{d} = \dfrac{1}{y}\br{x - y\sqrt{d}} = \dfrac{1}{y}\br{\dfrac{1}{x + y\sqrt{d}}} < \dfrac{1}{y}\br{\dfrac{1}{y\sqrt{d} + y\sqrt{d}}} = \dfrac{1}{2\sqrt{d}y^2} < \dfrac{1}{2y^2}. $$
 \item Now assume $ x^2 - dy^2 = -1 $. Again enough to show that $ x / y = p_n / q_n $. Trick is to rewrite as
 $$ y^2 - \dfrac{x^2}{d} = \dfrac{1}{d}. $$
 Then
 $$ y - \dfrac{x}{\sqrt{d}} = \dfrac{\tfrac{1}{d}}{y + \tfrac{x}{\sqrt{d}}} > 0. $$
-So $ y > x / \sqrt{d} $.
-$$ \abs{\dfrac{y}{x} - \dfrac{1}{\sqrt{d}}} = \dfrac{y}{x} - \dfrac{1}{\sqrt{d}} = \dfrac{1}{x}\br{y - \dfrac{x}{\sqrt{d}}} = \dfrac{1}{x}\br{\dfrac{\tfrac{1}{d}}{y + \tfrac{x}{\sqrt{d}}}} < \dfrac{1}{x}\br{\dfrac{\tfrac{1}{d}}{\tfrac{x}{\sqrt{d}} + \tfrac{x}{\sqrt{d}}}} = \dfrac{\tfrac{1}{\sqrt{d}}}{2x^2} < \dfrac{1}{2x^2}. $$
-So Corollary \ref{cor:75} implies that $ y / x $ is a convergent for the continued fraction of $ 1 / \sqrt{d} $. $ \fbr{1 / \sqrt{d}} = 0 $, so the continued fraction for $ 1 / \sqrt{d} $ is of the form $ \sbr{0; a_0, a_1, \dots} $. Next step is $ 1 / \br{1 / \sqrt{d}} = \sqrt{d} $. So if
+So $ y > x / \sqrt{d} $, so
+$$ \abs{\dfrac{y}{x} - \dfrac{1}{\sqrt{d}}} = \dfrac{y}{x} - \dfrac{1}{\sqrt{d}} = \dfrac{1}{x}\br{y - \dfrac{x}{\sqrt{d}}} = \dfrac{1}{x}\br{\dfrac{1 / d}{y + x / \sqrt{d}}} < \dfrac{1}{x}\br{\dfrac{1 / d}{x / \sqrt{d} + x / \sqrt{d}}} = \dfrac{1 / \sqrt{d}}{2x^2} < \dfrac{1}{2x^2}. $$
+So Corollary \ref{cor:75} implies that $ y / x $ is a convergent for the continued fraction of $ 1 / \sqrt{d} $. Then $ \fbr{1 / \sqrt{d}} = 0 $, so the continued fraction for $ 1 / \sqrt{d} $ is of the form $ \sbr{0; a_0, a_1, \dots} $. The next step is $ 1 / \br{1 / \sqrt{d}} = \sqrt{d} $. So if
 $$ \sqrt{d} = \sbr{a_0; a_1, a_2, \dots}, $$
 then
 $$ 1 / \sqrt{d} = \sbr{0; a_0, a_1, \dots}, $$
 since
-$$ \sqrt{d} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots}}, \qquad \dfrac{1}{\sqrt{d}} = 0 + \dfrac{1}{a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots}}}. $$
+$$ \sqrt{d} = a_0 + \dfrac{1}{a_1 + \dfrac{1}{a_2 + \dfrac{1}{\dots}}}, \qquad \dfrac{1}{\sqrt{d}} = 0 + \dfrac{1}{a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots}}}. $$
 So the convergents for $ 1 / \sqrt{d} $ are the $ q_n / p_n $. So $ y / x = q_n / p_n $ for some $ n $, and $ x / y = p_n / q_n $.
 \end{itemize}
 \end{proof}
@@ -1972,7 +1942,7 @@ $$ \br{x, y} = \br{p_n, q_n}, \qquad n \equiv m - 1 \mod 2m. $$
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Let $ x^2 - 43y^2 = \pm 1 $. $ m = 10 $ is even, so no solutions to $ x^2 - 43y^2 = -1 $. Smallest solution for $ x^2 - 43y^2 = 1 $ is $ p_9, q_9 $.
+\item Let $ x^2 - 43y^2 = \pm 1 $, so $ m = 10 $ is even, so there are no solutions to $ x^2 - 43y^2 = -1 $. The smallest solution for $ x^2 - 43y^2 = 1 $ is $ p_9 $ and $ q_9 $. Then
 $$
 \begin{array}{c|cccccccccc}
 i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
@@ -1980,10 +1950,10 @@ i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
 a & 6 & 1 & 1 & 3 & 1 & 5 & 1 & 3 & 1 & 1 \\
 p & 6 & 7 & 13 & 46 & 59 & 341 & 400 & 1541 & 1941 & 3482 \\
 q & 1 & 1 & 2 & 7 & 9 & 52 & 61 & 235 & 296 & 531
-\end{array}.
+\end{array},
 $$
-$ p_9 = 3482 $, so $ 3482^2 - 43\br{531}^2 = 1 $ is the smallest solution.
-\item For $ 13 $, $ m = 5 $ so $ p_4, q_4 $ is the smallest solution for $ x^2 - 13y^2 = -1 $ and $ p_9, q_9 $ is the smallest solution for $ x^2 - 13y^2 = 1 $.
+so $ p_9 = 3482 $, so $ 3482^2 - 43\br{531}^2 = 1 $ is the smallest solution.
+\item For $ 13 $, $ m = 5 $ so $ p_4 $ and $ q_4 $ is the smallest solution for $ x^2 - 13y^2 = -1 $ and $ p_9 $ and $ q_9 $ is the smallest solution for $ x^2 - 13y^2 = 1 $. Then
 $$
 \begin{array}{c|ccccc}
 i & 0 & 1 & 2 & 3 & 4 \\
@@ -1991,9 +1961,9 @@ i & 0 & 1 & 2 & 3 & 4 \\
 a & 3 & 1 & 1 & 1 & 1 \\
 p & 3 & 4 & 7 & 11 & 18 \\
 q & 1 & 1 & 2 & 3 & 5
-\end{array}.
+\end{array},
 $$
-$ 18^2 - 13\br{5}^2 = -1 $ is the smallest solution. $ N\br{18 + 5\sqrt{13}} = -1 $, so
+so $ 18^2 - 13\br{5}^2 = -1 $ is the smallest solution, and $ N\br{18 + 5\sqrt{13}} = -1 $, so
 $$ N\br{\br{18 + 5\sqrt{13}}^2} = N\br{649 + 180\sqrt{13}} = 1. $$
 In fact, it follows from our facts that this is the fundamental $ 1 $-unit, that is $ p_9 + q_9\sqrt{13} $.
 \end{itemize}
@@ -2007,7 +1977,7 @@ In fact, it follows from our facts that this is the fundamental $ 1 $-unit, that
 
 \begin{definition}
 $ \alpha \in \R \setminus \Q $ is a \textbf{quadratic irrational} if it is a root of some
-$$ ax^2 + bx + c = 0, $$
+$$ aX^2 + bX + c = 0, $$
 for $ a, b, c \in \Q $ not all zero.
 \end{definition}
 
@@ -2029,7 +1999,7 @@ $$ z\alpha^2 + \br{w - x}\alpha - y = 0. $$
 Since $ \alpha \in \R \setminus \Q $, we conclude that $ \alpha $ is a quadratic irrational.
 \item Suppose now that $ \alpha $ is only eventually periodic. Then
 $$ \alpha = a_0 + \dfrac{1}{a_1 + \dfrac{1}{\dots + \dfrac{1}{a_N + \dfrac{1}{\beta}}}}, $$
-where $ \beta $ has a periodic continued fraction. So $ \beta $ is a quadratic irrational. To complete the proof, we need to show that if $ \gamma $ is a quadratic irrational, then $ 1 / \gamma, \gamma + n $ are quadratic irrationals for any $ n \in \Z $. If $ \gamma $ is a root of
+where $ \beta $ has a periodic continued fraction. So $ \beta $ is a quadratic irrational. To complete the proof, we need to show that if $ \gamma $ is a quadratic irrational, then $ 1 / \gamma $ and $ \gamma + n $ are quadratic irrationals for any $ n \in \Z $. If $ \gamma $ is a root of
 $$ aX^2 + bX + c = 0, $$
 then $ 1 / \gamma $ is a root of
 $$ cX^2 + bX + a = 0, $$
@@ -2047,15 +2017,11 @@ In fact, the converse is also true. All quadratic irrationals have eventually pe
 \subsection{Liouville's theorem}
 
 \begin{definition}
-Let $ d \in \Z_{\ge 1} $. Then $ \alpha \in \C $ is \textbf{algebraic of degree $ d $} if there exists a polynomial of degree $ d $ with integer coefficients and $ \alpha $ as a root. There does not exist such a polynomial of smaller degree.
+Let $ d \in \Z_{\ge 1} $. Then $ \alpha \in \C $ is \textbf{algebraic of degree $ d $} if there exists a polynomial of degree $ d $ with integer coefficients and $ \alpha $ as a root, and there does not exist such a polynomial of smaller degree.
 \end{definition}
 
 \begin{example*}
-\hfill
-\begin{itemize}
-\item $ d = 1 $ is $ \Q $.
-\item $ d = 2 $ is quadratic irrationals.
-\end{itemize}
+$ d = 1 $ is $ \Q $ and $ d = 2 $ is the quadratic irrationals.
 \end{example*}
 
 \begin{theorem}[Liouville's theorem]
@@ -2064,42 +2030,36 @@ $$ \abs{\dfrac{p}{q} - \alpha} < \dfrac{1}{q^e}. $$
 \end{theorem}
 
 \begin{proof}
-Let $ P\br{x} $ be a polynomial of degree $ d $ with coefficients in $ \Z $, with $ P\br{\alpha} = 0 $. Choose $ \epsilon > 0 $ such that the only root of $ P\br{x} $ in $ \sbr{\alpha - \epsilon, \alpha + \epsilon} $ is $ \alpha $. Write $ P\br{x} = \br{x - \alpha}Q\br{x} $. $ Q\br{x} $ is a polynomial of degree $ d - 1 $ with real coefficients, so in particular it is continuous, so there exists $ K $ such that $ \abs{Q\br{x}} \le K $ for all $ x \in \sbr{\alpha - \epsilon, \alpha + \epsilon} $. Assume that
-$$ \abs{\alpha - \dfrac{p}{q}} < \dfrac{1}{q^e}. $$
+Let $ P\br{X} $ be a polynomial of degree $ d $ with coefficients in $ \Z $, with $ P\br{\alpha} = 0 $. Choose $ \epsilon > 0 $ such that the only root of $ P\br{X} $ in $ \sbr{\alpha - \epsilon, \alpha + \epsilon} $ is $ \alpha $. Write
+$$ P\br{X} = \br{X - \alpha}Q\br{X}. $$
+Then $ Q\br{X} $ is a polynomial of degree $ d - 1 $ with real coefficients, so in particular it is continuous, so there exists $ K $ such that
+$$ \abs{Q\br{x}} \le K, \qquad x \in \sbr{\alpha - \epsilon, \alpha + \epsilon}. $$
+Assume that
+$$ \abs{\dfrac{p}{q} - \alpha} < \dfrac{1}{q^e}. $$
 We may assume that $ q $ is large enough that $ 1 / q^e < \epsilon $. Since $ P $ has integer coefficients and is of degree $ d $, we have
 $$ \abs{P\br{\dfrac{p}{q}}} \ge \dfrac{1}{q^d}. $$
-Note that $ P\br{p / q} \ne 0 $, or we could replace $ P $ by $ P' $ with $ P\br{x} = \br{qx - p}P'\br{x} $. Since
-$$ \abs{\dfrac{p}{q} - \alpha} < \dfrac{1}{q^e} < \epsilon, $$
-$ p / q \in \sbr{\alpha - \epsilon, \alpha + \epsilon} $, so
-$$ \abs{P\br{\dfrac{p}{q}}} = \abs{\dfrac{p}{q} - \alpha} \abs{Q\br{\dfrac{p}{q}}} \le K \abs{\dfrac{p}{q} - \alpha} < \dfrac{K}{q^e}. $$
-So
-$$ \dfrac{K}{q^e} > \abs{P\br{\dfrac{p}{q}}} \ge \dfrac{1}{q^d}, $$
-so $ K > q^{e - d} $, so $ K^{1 / \br{e - d}} > q $. So there are only finitely many possible $ q $, so only finitely many $ p / q $.
+Note that $ P\br{p / q} \ne 0 $, or we could replace $ P $ by $ P' $ with $ P\br{X} = \br{qX - p}P'\br{X} $. Since $ \abs{p / q - \alpha} < \epsilon $, $ p / q \in \sbr{\alpha - \epsilon, \alpha + \epsilon} $, so
+$$ \dfrac{1}{q^d} \le \abs{P\br{\dfrac{p}{q}}} = \abs{\dfrac{p}{q} - \alpha} \abs{Q\br{\dfrac{p}{q}}} \le K \abs{\dfrac{p}{q} - \alpha} < \dfrac{K}{q^e}. $$
+So $ K > q^{e - d} $, so $ K^{1 / \br{e - d}} > q $. So there are only finitely many possible $ q $, so only finitely many $ p / q $.
 \end{proof}
 
 \subsection{Constructing transcendentals}
 
-Recall that $ \alpha \in \C $ is \textbf{algebraic} if it is algebraic of some degree $ d $, and otherwise it is \textbf{transcendental}. The set of polynomials with integer coefficients is countable, so the set of algebraic numbers is countable. Since $ \R $ is uncountable, transcendental numbers exist. Liouville's theorem gives a criterion, if for every $ e > 0 $, there are infinitely many $ p / q $ with
-$$ \abs{\alpha - \dfrac{p}{q}} < \dfrac{1}{q^e}, $$
-then $ \alpha $ cannot be algebraic.
-
-\pagebreak
+Recall that $ \alpha \in \C $ is \textbf{algebraic} if it is algebraic of some degree $ d $, and otherwise it is \textbf{transcendental}. The set of polynomials with integer coefficients is countable, so the set of algebraic numbers is countable. Since $ \R $ is uncountable, transcendental numbers exist. Liouville's theorem gives a criterion. If for every $ e > 0 $, there are infinitely many $ p / q $ with $ \abs{\alpha - p / q} < 1 / q^e $, then $ \alpha $ cannot be algebraic.
 
 \begin{example*}
 Let
 $$ \alpha = \sum_{n \ge 1} \dfrac{1}{10^{n!}}, \qquad \alpha_k = \sum_{n = 1}^k \dfrac{1}{10^{n!}}. $$
-$ \alpha_k $ is rational, with denominator $ q = 10^{k!} $.
-$$ \abs{\alpha - \alpha_k} = \sum_{n = k + 1}^\infty \dfrac{1}{10^{n!}} = \dfrac{1}{10^{\br{k + 1}!}}\br{1 + \dfrac{1}{10^{\br{k + 2}! - \br{k + 1}!}} + \dots} < \dfrac{1}{10^{\br{k + 1}!}}\br{1 + \dfrac{1}{10} + \dots} < \dfrac{2}{q^{k + 1}}. $$
-If $ d \in \Z_{> 0} $, and $ k > d $, then
-$$ \dfrac{2}{q^{k + 1}} < \dfrac{1}{q^d}. $$
-So there exist infinitely many $ p / q = \alpha_k $ such that
-$$ \abs{\alpha - \dfrac{p}{q}} < \dfrac{1}{q^d}. $$
-Taking $ d $ arbitrarily large, $ \alpha $ is transcendental.
+Then $ \alpha_k $ is rational, with denominator $ q = 10^{k!} $, and
+$$ \abs{\alpha - \alpha_k} = \sum_{n = k + 1}^\infty \dfrac{1}{10^{n!}} = \dfrac{1}{10^{\br{k + 1}!}}\br{1 + \dfrac{1}{10^{\br{k + 2}! - \br{k + 1}!}} + \dots} = \dfrac{1}{q^{k + 1}}\br{1 + \dfrac{1}{10^{k + 1}} + \dots} < \dfrac{2}{q^{k + 1}}. $$
+If $ d \in \Z_{> 0} $, and $ k > d $, then $ 2 / q^{k + 1} < 1 / q^d $. So there exist infinitely many $ p / q = \alpha_k $ such that $ \abs{\alpha - p / q} < 1 / q^d $. Take $ d $ arbitrarily large, so $ \alpha $ is transcendental.
 \end{example*}
 
-\lecture{23}{Tuesday}{27/11/18}
+\pagebreak
 
 \subsection{Roth's theorem}
+
+\lecture{23}{Tuesday}{27/11/18}
 
 \begin{theorem}[Roth's theorem]
 Suppose that $ \alpha $ is algebraic. Then for any $ \epsilon > 0 $, there exist only finitely many $ x / y \in \Q $ with
@@ -2118,7 +2078,7 @@ We saw that if $ d > 1 $ is squarefree, then $ x^2 - dy^2 = 1 $ has infinitely m
 \begin{itemize}
 \item $ d = e^3 $ is a cube. Then
 $$ x^3 - dy^3 = x^3 - \br{ey}^3 = 1, $$
-so either $ \br{x, y} = \br{1, 0} $ or $ \br{x, y} = \br{0, \pm1} $ and $ d = 1 $.
+so either $ \br{x, y} = \br{1, 0} $ or $ \br{x, y} = \br{0, 1} $ and $ d = 1 $.
 \item $ d $ is not a cube. Then $ \sqrt[3]{d} \in \R \setminus \Q $ is algebraic, as it is a root of $ X^3 - d = 0 $. Suppose $ x > 1 $, so $ x > \sqrt[3]{d}y $. Then
 $$ x - \sqrt[3]{d}y = \dfrac{x^3 - dy^3}{x^2 + x\sqrt[3]{d}y + \sqrt[3]{d^2}y^2} = \dfrac{1}{x^2 + x\sqrt[3]{d}y + \sqrt[3]{d^2}y^2} < \dfrac{1}{3\br{\sqrt[3]{d}y}^2} = \dfrac{1}{3\sqrt[3]{d^2}y^2}. $$
 So
@@ -2135,7 +2095,7 @@ for all $ y $ sufficiently large. So Roth's theorem tells us that there are only
 
 \subsection{Primes in arithmetic progressions}
 
-A question is how are the prime numbers distributed mod $ n $? Are there infinitely many primes congruent to $ a \mod n $ for each $ a, n $? The answer is no in general.
+A question is how are the prime numbers distributed modulo $ n $? Are there infinitely many primes congruent to $ a \mod n $ for each $ a $ and $ n $? The answer is no in general.
 
 \begin{example*}
 There are finitely many primes congruent to $ 2 \mod 4 $, or $ 0 \mod 2 $.
@@ -2177,11 +2137,11 @@ Then $ Q > 1 $, and $ Q \equiv 3 \mod 4 $, so $ Q $ has a prime factor $ q $ whi
 
 \begin{lemma}
 \label{lem:87}
-Let $ x $ be even, and $ p $ a prime factor of $ x^2 + 1 $, then $ p \equiv 1 \mod 4 $.
+Let $ x $ be even, and $ p $ be a prime factor of $ x^2 + 1 $, then $ p \equiv 1 \mod 4 $.
 \end{lemma}
 
 \begin{proof}
-Certainly $ p $ is odd. $ x^2 + 1 \equiv 0 \mod p $, so $ x^2 \equiv -1 \mod p $, so $ \jacobi{-1}{p} = 1 $, so $ p \equiv 1 \mod 4 $.
+Certainly $ p $ is odd. Then $ x^2 + 1 \equiv 0 \mod p $, so $ x^2 \equiv -1 \mod p $, so $ \jacobi{-1}{p} = 1 $, so $ p \equiv 1 \mod 4 $.
 \end{proof}
 
 \begin{theorem}
@@ -2194,18 +2154,18 @@ $$ Q = 1 + 4\prod_{p \in S} p^2 = 1 + \br{2\prod_{p \in S} p}^2. $$
 Then $ Q > 1 $, and if $ q $ is a prime factor of $ Q $ then $ q \notin S $, and $ q \equiv 1 \mod 4 $ by Lemma \ref{lem:87}.
 \end{proof}
 
-General idea is to find a polynomial $ P\br{x} $ such that every prime factor of $ P\br{nx} $ is congruent to $ a \mod n $, or at least one. Turns out that this can be done only when $ a^2 \equiv 1 \mod n $. We will find such polynomials for $ a = 1 $.
+The general idea is to find a polynomial $ P\br{x} $ such that every prime factor of $ P\br{nx} $ is congruent to $ a \mod n $, or at least one. Turns out that this can be done only when $ a^2 \equiv 1 \mod n $. We will find such polynomials for $ a = 1 $.
 
 \begin{theorem}
 For any prime $ q $, there are infinitely many primes congruent to $ 1 \mod q $.
 \end{theorem}
 
-\pagebreak
-
 \begin{definition}
 The $ q $-th \textbf{cyclotomic polynomial} is
 $$ \Phi_q\br{X} = \dfrac{X^q - 1}{X - 1} = X^{q - 1} + \dots + 1. $$
 \end{definition}
+
+\pagebreak
 
 \begin{theorem}
 \label{thm:91}
@@ -2213,10 +2173,7 @@ Let $ p \ne q $ be prime, and let $ a \in \Z $. Then $ p \mid \Phi_q\br{a} $ if 
 \end{theorem}
 
 \begin{proof}
-$ a $ has order $ q \mod p $ if and only if $ a^q \equiv 1 \mod p $ and $ a \not\equiv 1 \mod p $. If $ p \mid \Phi_q\br{a} $ then $ p \mid a^q - 1 $. If also $ a \equiv 1 \mod p $, then
-$$ \Phi_q\br{a} \equiv \Phi_q\br{1} \equiv q \not\equiv 0 \mod p, $$
-a contradiction. Conversely if $ a^q \equiv 1 \mod p $, $ a \not\equiv 1 \mod p $, then
-$$ \dfrac{a^q - 1}{a - 1} \equiv 0 \mod p. $$
+$ a $ has order $ q \mod p $ if and only if $ a^q \equiv 1 \mod p $ and $ a \not\equiv 1 \mod p $. If $ p \mid \Phi_q\br{a} $ then $ p \mid a^q - 1 $. If also $ a \equiv 1 \mod p $, then $ \Phi_q\br{a} \equiv \Phi_q\br{1} \equiv q \not\equiv 0 \mod p $, a contradiction. Conversely if $ a^q \equiv 1 \mod p $ and $ a \not\equiv 1 \mod p $, then $ \br{a^q - 1} / \br{a - 1} \equiv 0 \mod p $.
 \end{proof}
 
 \lecture{24}{Wednesday}{28/11/18}
@@ -2256,10 +2213,8 @@ $$ X^n - 1 = \prod_{d \mid n, \ d > 0} \Phi_d\br{X}. $$
 \end{lemma}
 
 \begin{proof}
-Each side is a monic polynomial, so we just need to check that the roots are the same, with multiplicities. Left hand side are the $ n $-th roots of unity, with multiplicity one each. Right hand side is $ \Phi_d $, the primitive $ d $-th roots of unity, with multiplicity one. Each $ n $-th root of unity is a primitive $ d $-th root of unity for some unique $ d \mid n $. The result follows.
+Each side is a monic polynomial, so we just need to check that the roots are the same, with multiplicities. The left hand side are the $ n $-th roots of unity, with multiplicity one each. The right hand side is $ \Phi_d $, the primitive $ d $-th roots of unity, with multiplicity one. Each $ n $-th root of unity is a primitive $ d $-th root of unity for some unique $ d \mid n $. The result follows.
 \end{proof}
-
-\pagebreak
 
 From this it is easy to deduce the following.
 
@@ -2273,11 +2228,13 @@ $$ P\br{X} = \prod_{d \mid n, \ 0 < d < n} \Phi_d\br{X}, $$
 then $ P\br{X} \in \Z\sbr{X} $, $ P\br{X} $ is monic, and $ X^n - 1 = \Phi_n\br{X}P\br{X} $. Write
 $$ \Phi_n\br{X} = \sum_i a_iX^i, \qquad P\br{X} = \sum_i b_iX^i, $$
 and assume that not all $ a_i \in \Z $. Let $ q $ be maximal with $ a_q \notin \Z $. Let $ e = \deg\br{P} $, so
-$$ P\br{X} = X^e + b_{e - 1}X^{e - 1} + \dots + a_0. $$
+$$ P\br{X} = X^e + b_{e - 1}X^{e - 1} + \dots + b_0. $$
 Then the coefficient of $ X^{q + e} $ in $ \Phi_n\br{X}P\br{X} $ is
-$$ a_q + a_{q + 1}b_{e - 1} + \dots + a_{q + e}b_0, \qquad a_{q - 1}b_{e - 1} + \dots + a_{q + e}b_0 \in \Z. $$
+$$ a_q + a_{q + 1}b_{e - 1} + \dots + a_{q + e}b_0, \qquad a_{q + 1}b_{e - 1} + \dots + a_{q + e}b_0 \in \Z. $$
 Since $ \Phi_n\br{X}P\br{X} = X^n - 1 \in \Z\sbr{X} $, this is a contradiction.
 \end{proof}
+
+\pagebreak
 
 \begin{definition}
 Let $ F $ be any field, and let $ P\br{X} \in F\sbr{X} $. Then $ P'\br{X} $, the \textbf{derivative} of $ P\br{X} $, is defined as follows. If $ P\br{X} = \sum_{n = 0}^d a_nX^n $, then
@@ -2300,11 +2257,11 @@ $$ P'\br{X} = \br{X - \alpha}^2R'\br{X} + 2\br{X - \alpha}R\br{X} = \br{X - \alp
 
 \begin{corollary}
 \label{cor:99}
-If $ p \nmid n $, then $ \Phi_n\br{X} $ has no repeated roots mod $ p $.
+If $ p \nmid n $, then $ \Phi_n\br{X} $ has no repeated roots modulo $ p $.
 \end{corollary}
 
 \begin{proof}
-It suffices to show that $ X^n - 1 $ has no repeated roots mod $ p $. The derivative of $ X^n - 1 $ is $ nX^{n - 1} $, so its only root is zero, which is not a root of $ X^n - 1 $. So we are done by Lemma \ref{lem:98}.
+It suffices to show that $ X^n - 1 $ has no repeated roots modulo $ p $. The derivative of $ X^n - 1 $ is $ nX^{n - 1} $, so its only root is zero, which is not a root of $ X^n - 1 $. So we are done by Lemma \ref{lem:98}.
 \end{proof}
 
 \begin{note*}
@@ -2312,15 +2269,13 @@ If $ n = p $,
 $$ X^p - 1 \equiv \br{X - 1}^p \mod p, \qquad \Phi_p\br{X} \equiv \br{X - 1}^{p - 1} \mod p. $$
 \end{note*}
 
-\pagebreak
-
 \begin{theorem}
 \label{thm:100}
 Suppose $ p \nmid n $ and $ a \in \Z $. Then $ p \mid \Phi_n\br{a} $ if and only if $ a $ has order exactly $ n \mod p $.
 \end{theorem}
 
 \begin{proof}
-Firstly suppose that $ a $ has order exactly $ n $. Then $ a $ is a root of $ X^n - 1 \mod p $, but not a root of $ X^d - 1 $ for any $ d \mid n $, for $ d < n $. Since $ \Phi_d\br{X} \mid X^d - 1 $, $ a $ cannot be a root of $ \Phi_d\br{X} $ for any $ d \mid n $, for $ d < n $.
+Firstly suppose that $ a $ has order exactly $ n $. Then $ a $ is a root of $ X^n - 1 \mod p $, but not a root of $ X^d - 1 $ for any $ d \mid n $, for $ d < n $. Since $ \Phi_d\br{X} \mid X^d - 1 $, $ a $ cannot be a root of $ \Phi_d\br{X} $ for any $ d \mid n $, for $ d < n $. Let
 \begin{equation}
 \label{eq:4}
 X^n - 1 = \Phi_n\br{X}\prod_{d \mid n, \ 0 < d < n} \Phi_d\br{X},
@@ -2339,7 +2294,7 @@ If $ p \nmid n $, and $ a \in \Z $, then if $ p \mid \Phi_n\br{a} $, then $ p \e
 $ a $ has order $ n \mod p $ by Theorem \ref{thm:100}, so $ n \mid p - 1 $, by Fermat's little theorem.
 \end{proof}
 
-\subsection{Primes congruent to $ 1 \mod n $}
+\subsection{Primes congruent to \texorpdfstring{$ 1 \mod n $}{1 mod n}}
 
 We are now in a position to prove the following.
 
@@ -2365,7 +2320,7 @@ Lecture 25 is a problem class.
 
 \lecture{26}{Tuesday}{04/12/18}
 
-An arithmetic function is a function $ f : \Z_{\ge 1} \to \C $, such as $ \Phi $.
+An \textbf{arithmetic function} is a function $ f : \Z_{\ge 1} \to \C $, such as $ \Phi $.
 
 \subsection{Dirichlet convolution}
 
@@ -2373,19 +2328,20 @@ The set of arithmetic functions is a ring in the following way. Addition is $ \b
 $$ \br{f * g}\br{n} = \sum_{d \mid n, \ d \ge 1} f\br{d}g\br{\dfrac{n}{d}} = \sum_{a, b \ge 1, \ ab = n} f\br{a}g\br{b}. $$
 We have $ f * g = g * f $ and $ f * \br{g * h} = \br{f * g} * h $, and both are given by
 $$ \br{f * g * h}\br{n} = \sum_{a, b, c \ge 1, \ abc = n} f\br{a}g\br{b}h\br{c}. $$
-$ f * \br{g + h} = f * g + f * h $. There exists a multiplicative unit $ \epsilon $, that is $ f * \epsilon = \epsilon * f = f $. This is easy to figure out. We need
+Then $ f * \br{g + h} = f * g + f * h $. There exists a multiplicative unit $ \epsilon $, that is $ f * \epsilon = \epsilon * f = f $. This is easy to figure out. We need
 $$ f\br{n} = \br{f * \epsilon}\br{n} = \sum_{ab = n} f\br{a}\epsilon\br{b}. $$
 
 \begin{example*}
-$$ f\br{4} = f\br{4}\epsilon\br{1} + f\br{2}\epsilon\br{2} + f\br{1}\epsilon\br{4}. $$
-Forces $ \epsilon\br{1} = 1 $ and $ \epsilon\br{2} = \epsilon\br{4} = 0 $. So
+$ f\br{4} = f\br{4}\epsilon\br{1} + f\br{2}\epsilon\br{2} + f\br{1}\epsilon\br{4} $. This forces $ \epsilon\br{1} = 1 $ and $ \epsilon\br{2} = \epsilon\br{4} = 0 $.
+\end{example*}
+
+So
 $$ \epsilon\br{n} =
 \begin{cases}
 1 & n = 1 \\
 0 & n > 1
 \end{cases}.
 $$
-\end{example*}
 
 \subsection{M\"obius inversion}
 
@@ -2407,12 +2363,11 @@ If $ 1 $ is the function $ 1\br{n} = 1 $ for all $ n $, then $ 1 * \mu = \epsilo
 $ \epsilon\br{1} = \br{1 * \mu}\br{1} = 1 \times 1 $. If $ n > 1 $, we just have to check that
 $$ \sum_{d \mid n} \mu\br{d} = \sum_{ab = n} 1\br{a}\mu\br{b} = 0. $$
 Let $ p_1, \dots, p_k $ be the distinct primes dividing $ n $. Then
-$$ \sum_{d \mid n} \mu\br{d} = \sum_{\br{\epsilon_1, \dots, \epsilon_k}, \ \epsilon_i \in \cbr{0, 1}} \br{-1}^{\epsilon_1 + \dots + \epsilon_k} = \br{\sum_{\epsilon_1 = 0}^1 \br{-1}^{\epsilon_1}} \dots \br{\sum_{\epsilon_k = 0}^1 \br{-1}^{\epsilon_k}} = 0, \qquad d = \prod_{i = 1}^k p_i^{\epsilon_i}. $$
+$$ \sum_{d \mid n} \mu\br{d} = \sum_{\br{\epsilon_1, \dots, \epsilon_k}, \ \epsilon_i \in \cbr{0, 1}} \br{-1}^{\epsilon_1 + \dots + \epsilon_k} = \br{\sum_{\epsilon_1 = 0}^1 \br{-1}^{\epsilon_1}} \dots \br{\sum_{\epsilon_k = 0}^1 \br{-1}^{\epsilon_k}} = 0, \qquad n = \prod_{i = 1}^k p_i^{\epsilon_i}. $$
 \end{proof}
 
 \begin{proposition}[M\"obius inversion]
-If $ f $ and $ g $ are arithmetic functions then
-$$ g = f * 1 \qquad \iff \qquad f = g * \mu. $$
+If $ f $ and $ g $ are arithmetic functions then $ g = f * 1 $ if and only if $ f = g * \mu $.
 \end{proposition}
 
 \begin{proof}
@@ -2433,28 +2388,28 @@ Let $ \pi\br{X} $ be the number of primes $ p $ such that $ p \le X $.
 \subsection{Reminder of asymptotic notation}
 
 \begin{itemize}
-\item $ A \ll B $ means there exists a constant $ C > 0 $ such that $ \abs{A} \le CB $. For example if $ x \ge 1 $, $ x \ll x^2 \ll e^x / x^{100} $.
-\item $ B \gg A $ means $ A \ll B $.
-\item $ A = O\br{B} $ means $ A \ll B $.
-\item $ A \ll_k B $ means $ A \ll B $ with the constant $ C $ depending on $ k $. For example, $ kx \ll_k x $.
-\item $ A = o\br{B} $ means for all $ \epsilon > 0 $ we have $ \abs{A} \le \epsilon B $ as some other specified parameter becomes large enough. For example, $ 1 / \log x = o\br{1} $ as $ x \to \infty $.
+\item $ A \l B $ means there exists a constant $ C > 0 $ such that $ \abs{A} \le CB $. For example if $ x \ge 1 $, $ x \l x^2 \l e^x / x^{100} $.
+\item $ B \g A $ means $ A \l B $.
+\item $ A = O\br{B} $ means $ A \l B $.
+\item $ A \l_k B $ means $ A \l B $ with the constant $ C $ depending on $ k $. For example, $ kx \l_k x $.
+\item $ A = o\br{B} $ means for all $ \epsilon > 0 $ we have $ \abs{A} \le \epsilon B $ as some other specified parameter becomes large enough. For example, $ 1 / \log\br{x} = o\br{1} $ as $ x \to \infty $.
 \item $ A \sim B $ means $ A = \br{1 + o\br{1}}B $.
 \end{itemize}
 
 \subsection{The prime number theorem}
 
-\begin{theorem}[The prime number theorem]
-$$ \pi\br{X} \sim \dfrac{X}{\log X}, $$
+\begin{theorem}[Prime number theorem]
+$$ \pi\br{X} \sim \dfrac{X}{\log\br{X}}, $$
 as $ X \to \infty $.
 \end{theorem}
 
 \begin{theorem}
 There exist constants $ 0 < c_1 < 1 < c_2 $ such that for all sufficiently large $ X $,
-$$ c_1\dfrac{X}{\log X} \le \pi\br{X} \le c_2\dfrac{X}{\log X}. $$
+$$ c_1\dfrac{X}{\log\br{X}} \le \pi\br{X} \le c_2\dfrac{X}{\log\br{X}}. $$
 \end{theorem}
 
 This implies that
-$$ \pi\br{X} = O\br{\dfrac{X}{\log X}}. $$
+$$ \pi\br{X} = O\br{\dfrac{X}{\log\br{X}}}. $$
 
 \lecture{27}{Wednesday}{05/12/18}
 
@@ -2469,7 +2424,7 @@ $$ \pi\br{X} = O\br{\dfrac{X}{\log X}}. $$
 Given $ \br{\ref{eq:5}} $, we have
 $$ \br{2n}^{\pi\br{2n}} \ge \prod_{p \le 2n} p \ge C_1^n. $$
 Taking logarithms,
-$$ \pi\br{2n} \ge \br{\dfrac{1}{2}\log C_1}\dfrac{2n}{\log 2n}. $$
+$$ \pi\br{2n} \ge \br{\dfrac{1}{2}\log\br{C_1}}\dfrac{2n}{\log\br{2n}}. $$
 This gives the lower bound if $ X = 2n \in \Z $ is even, but since $ \pi\br{X + 1} - \pi\br{X} \le 1 $, it is easy to get the lower bound for all $ X $. We will prove $ \br{\ref{eq:5}} $ by considering the prime factors of
 $$ \twobyone{2n}{n} = \prod_{p \le 2n} p^{v_p\br{n}}. $$
 
@@ -2501,9 +2456,9 @@ since
 $$ \twobyone{2n}{n} = \dfrac{\br{2n}!}{n!n!}. $$
 For any $ x \in \R $, $ \fbr{2x} - 2\fbr{x} \ge 0 $, and in fact $ \fbr{2x} - 2\fbr{x} = 0 $ or $ \fbr{2x} - 2\fbr{x} = 1 $. If $ p > \sqrt{2n} $, then $ p^2 > 2n $, so all terms in the sum vanish if $ i \ge 2 $, so the sum is at most one.
 \item Note that the terms in the sum are zero as soon as $ p^i > 2n $, that is
-$$ i > \dfrac{\log 2n}{\log p}. $$
+$$ i > \dfrac{\log\br{2n}}{\log\br{p}}. $$
 So
-$$ v_p\br{n} \le \dfrac{\log 2n}{\log p}, $$
+$$ v_p\br{n} \le \dfrac{\log\br{2n}}{\log\br{p}}, $$
 that is $ p^{v_p\br{n}} \le 2n $.
 \item
 $$ 4^n = 2^{2n} = \br{1 + 1}^{2n} = \sum_{i = 0}^{2n} \twobyone{2n}{i} \le \br{2n + 1}\twobyone{2n}{n}, $$
@@ -2523,15 +2478,15 @@ $$ C_2^X \ge \prod_{\tfrac{X}{2} \le p \le X} p \ge \br{\dfrac{X}{2}}^{\pi\br{X}
 Taking logarithms,
 \begin{equation}
 \label{eq:7}
-\pi\br{X} \le \pi\br{\dfrac{X}{2}} + \dfrac{X\log C_2}{\log \tfrac{X}{2}}.
+\pi\br{X} \le \pi\br{\dfrac{X}{2}} + \dfrac{X\log\br{C_2}}{\log\br{\tfrac{X}{2}}}.
 \end{equation}
 Suppose that $ X $ is large enough that $ \br{\ref{eq:6}} $ holds for $ X, \dots, X / 2^{m - 1} $. Substituting $ X, \dots, X / 2^{m - 1} $ into $ \br{\ref{eq:7}} $, and summing,
-$$ \pi\br{X} \le \pi\br{\dfrac{X}{2^m}} + 2\log C_2\sum_{i = 1}^m \dfrac{\tfrac{X}{2^i}}{\log \tfrac{X}{2^i}}. $$
+$$ \pi\br{X} \le \pi\br{\dfrac{X}{2^m}} + 2\log\br{C_2}\sum_{i = 1}^m \dfrac{\tfrac{X}{2^i}}{\log\br{\tfrac{X}{2^i}}}. $$
 Now fix $ X $ and choose $ m $ to be largest possible with $ 2^m \le \sqrt{X} $. Then $ X / 2^m \ge \sqrt{X} $, so $ \br{\ref{eq:6}} $ is indeed valid for $ X, \dots, X / 2^{m - 1} $ provided that $ X $ is sufficiently large. Since $ m $ is maximal such that $ 2^m \le \sqrt{X} $, we have $ 2^m \ge \sqrt{X} / 2 $. So
 $$ \pi\br{\dfrac{X}{2^m}} \le \dfrac{X}{2^m} \le 2\sqrt{X}. $$
 So substituting into the above,
-$$ \pi\br{X} \le 2\sqrt{X} + 2\log C_2\sum_{i = 1}^m \dfrac{\tfrac{X}{2^i}}{\log \tfrac{X}{2^i}} \le 2\sqrt{X} + \dfrac{2\log C_2}{\tfrac{1}{2}\log X}\sum_{i = 1}^m \dfrac{X}{2^i} \le 2\sqrt{X} + \br{4\log C_2}\br{\dfrac{X}{\log X}}. $$
-This gives our upper bound, because $ \sqrt{X} \ll X / \log X $. Now remains to prove $ \br{\ref{eq:6}} $. We saw above that if $ n \in \Z $ then
+$$ \pi\br{X} \le 2\sqrt{X} + 2\log\br{C_2}\sum_{i = 1}^m \dfrac{\tfrac{X}{2^i}}{\log\br{\tfrac{X}{2^i}}} \le 2\sqrt{X} + \dfrac{2\log\br{C_2}}{\tfrac{1}{2}\log\br{X}}\sum_{i = 1}^m \dfrac{X}{2^i} \le 2\sqrt{X} + \br{4\log\br{C_2}}\br{\dfrac{X}{\log\br{X}}}. $$
+This gives our upper bound, because $ \sqrt{X} \l X / \log\br{X} $. Now remains to prove $ \br{\ref{eq:6}} $. We saw above that if $ n \in \Z $ then
 $$ \prod_{n < p \le 2n} p \le \twobyone{2n}{n} \le 4^n = \sum_{i = 0}^{2n} \twobyone{2n}{i}. $$
 Take $ n = \fbr{X / 2} $. Then $ 2n \le X $, and we get
 $$ \prod_{\tfrac{X}{2} < p \le 2\fbr{\tfrac{X}{2}}} p \le 2^{2n} \le 2^X. $$
@@ -2551,7 +2506,7 @@ Lecture 28 is a problem class.
 
 \lecture{29}{Tuesday}{11/12/18}
 
-What can we say about the number of primes $ p $ with $ X < p \le X + Y $? That is, $ \pi\br{X + Y} - \pi\br{X} $. Think of $ Y $ being fixed for a moment. Best possible lower bound is zero.
+What can we say about the number of primes $ p $ with $ X < p \le X + Y $? That is, $ \pi\br{X + Y} - \pi\br{X} $. Think of $ Y $ being fixed for a moment. The best possible lower bound is zero.
 
 \begin{example*}
 $$ n! + 2, \qquad \dots, \qquad n! + n $$
@@ -2564,20 +2519,20 @@ that is $ \pi\br{X + Y} - \pi\br{X} \le \pi\br{Y} $. This is no longer believed.
 
 \begin{theorem}
 \label{thm:107}
-$$ \pi\br{X + Y} - \pi\br{X} \le \dfrac{\br{2 + o\br{1}}Y}{\log Y}, $$
+$$ \pi\br{X + Y} - \pi\br{X} \le \dfrac{\br{2 + o\br{1}}Y}{\log\br{Y}}, $$
 where $ o\br{1} $ is as $ Y \to \infty $ and $ X $ is fixed.
 \end{theorem}
 
 In
 $$ X + 1, \qquad \dots, \qquad X + Y, $$
-about half of these are divisible by two, about a third of these are divisible by three, about a sixth of these are divisible by six. If $ p_1, \dots, p_k $ are primes, the error term is $ 2^k $, so can only consider the first $ \log Y $ primes, which gives Theorem \ref{thm:107} for $ Y / \log \log Y $. Selberg's idea is to weight the inclusion-exclusion count.
+about half of these are divisible by two, about a third of these are divisible by three, and about a sixth of these are divisible by six. If $ p_1, \dots, p_k $ are primes, the error term is $ 2^k $, so can only consider the first $ \log\br{Y} $ primes, which implies Theorem \ref{thm:107} for $ Y / \log\br{\log\br{Y}} $. Selberg's idea is to weight the inclusion-exclusion count.
 
 \begin{proof}
 Let $ \lambda_1, \lambda_2, \dots \in \R $ be any sequence with $ \lambda_1 = 1 $. Let $ R < Y $ be fixed for now. Later we will choose $ R = Y^{1 / 2 - \epsilon} $. Set
 $$ \nu\br{n} = \br{\sum_{d \mid n, \ d \le R} \lambda_d}^2 \ge 0. $$
-Suppose that $ p $ is prime, and $ p > R $. Then by definition, $ \nu\br{p} = \lambda_1^2 = 1 $.
+Suppose that $ p $ is prime, and $ p > R $. Then by definition, $ \nu\br{p} = \lambda_1^2 = 1 $, so
 $$ \pi\br{X + Y} - \pi\br{X} = \sum_{X < p \le X + Y} 1 \le \pi\br{R} + \sum_{X < n \le X + Y} \nu\br{n} \le R + \sum_{X < n \le X + Y} \nu\br{n}. $$
-Now have to choose $ \lambda_i $ to minimise $ \sum_{X \le n \le X + Y} \nu\br{n} $.
+Now have to choose $ \lambda_i $ to minimise $ \sum_{X \le n \le X + Y} \nu\br{n} $, so
 \begin{align*}
 \sum_{X < n \le X + Y} \nu\br{n}
 & = \sum_{X < n \le X + Y} \br{\sum_{d \mid n, \ d \le R} \lambda_d}^2 \\
@@ -2585,21 +2540,27 @@ Now have to choose $ \lambda_i $ to minimise $ \sum_{X \le n \le X + Y} \nu\br{n
 & = \br{\sum_{d_1, d_2 \le R} \lambda_{d_1}\lambda_{d_2}}\br{\sum_{X < n \le X + Y, \ d_1 \mid n, \ d_2 \mid n} 1} \\
 & = \br{\sum_{d_1, d_2 \le R} \lambda_{d_1}\lambda_{d_2}}\br{\dfrac{Y\br{d_1, d_2}}{d_1d_2} + O\br{1}},
 \end{align*}
-since $ \mathrm{lcm}\br{d_1, d_2} = d_1d_2 / \br{d_1, d_2} $. Putting this together,
+since
+$$ \mathrm{lcm}\br{d_1, d_2} = \dfrac{d_1d_2}{\br{d_1, d_2}}. $$
+
+\pagebreak
+
+Putting this together,
 $$ \pi\br{X + Y} - \pi\br{X} \le Y\sum_{d_1, d_2 \le R} \dfrac{\lambda_{d_1}\lambda_{d_2}\br{d_1, d_2}}{d_1d_2} + R + O\br{1}\sum_{d_1, d_2 \le R} \abs{\lambda_{d_1}\lambda_{d_2}}, $$
 where the leading term is
 $$ Y\sum_{d_1, d_2 \le R} \dfrac{\lambda_{d_1}\lambda_{d_2}\br{d_1, d_2}}{d_1d_2}, $$
 and the error term is
 $$ R + O\br{1}\sum_{d_1, d_2 \le R} \abs{\lambda_{d_1}\lambda_{d_2}}. $$
-Now choose $ \lambda_i $ such that $ \lambda_1 = 1 $, in such a way as to minimise the leading term. Then choose $ R = Y^c $ for $ c < 1 / 2 $. Check that for any $ \epsilon > 0 $, we have $ \lambda_d \ll_\epsilon d^\epsilon $. Then
+Now choose $ \lambda_i $ such that $ \lambda_1 = 1 $, in such a way as to minimise the leading term. Then choose $ R = Y^c $ for $ c < 1 / 2 $. Check that for any $ \epsilon > 0 $, we have $ \lambda_d \l_\epsilon d^\epsilon $. Then
 $$ \sum_{d_1d_2} \abs{\lambda_{d_1}\lambda_{d_2}} \le R^{2 + 2\epsilon} = Y^{2c\br{1 + \epsilon}}. $$
-Choose $ \epsilon < 1 / 2c - 1 $, then $ Y^{2c\br{1 + \epsilon}} \ll Y / \log Y $. Write $ \overrightarrow{\lambda} = \br{\lambda_1, \lambda_2, \dots} $.
+Choose $ \epsilon < 1 / 2c - 1 $, then $ Y^{2c\br{1 + \epsilon}} \l Y / \log\br{Y} $. Write $ \overrightarrow{\lambda} = \br{\lambda_1, \lambda_2, \dots} $, so
 $$ Q\br{\overrightarrow{\lambda}} = \sum_{d_1, d_2 \le R} \dfrac{\lambda_{d_1}\lambda_{d_2}\br{d_1, d_2}}{d_1d_2}. $$
-Want to minimise this subject to $ \lambda_1 = 1 $. Want to diagonalise $ Q\br{\overrightarrow{\lambda}} $. Use, a slight variant of, M\"obius inversion. For any $ m $, $ m = \sum_{d \mid m} \Phi\br{d} $. Take $ m = \br{d_1, d_2} $. Then $ \br{d_1, d_2} = \sum_{\delta \mid \br{d_1, d_2}} \Phi\br{\delta} $.
+Want to minimise this subject to $ \lambda_1 = 1 $. Want to diagonalise $ Q\br{\overrightarrow{\lambda}} $. Use, a slight variant of, M\"obius inversion. For any $ m $, $ m = \sum_{d \mid m} \Phi\br{d} $. Take $ m = \br{d_1, d_2} $. Then
+$$ \br{d_1, d_2} = \sum_{\delta \mid \br{d_1, d_2}} \Phi\br{\delta}, $$
+so
 $$ Q\br{\overrightarrow{\lambda}} = \sum_{d_1, d_2 \le R} \dfrac{\lambda_{d_1}\lambda_{d_2}\br{d_1, d_2}}{d_1d_2} = \sum_{\delta \le R} \Phi\br{\delta}\br{\sum_{\delta \mid d, \ d \le R} \dfrac{\lambda_d}{d}}^2, $$
-by using that
-$$ \delta \mid d_1, \qquad \delta \mid d_2 \qquad \iff \qquad \delta \ \Bigg| \ \dfrac{d_1d_2}{\br{d_1, d_2}}. $$
-Set $ u_\delta = \sum_{\delta \mid d, \ d \le R} \lambda_d / d $.
+by using that $ \delta \mid d_1 $ and $ \delta \mid d_2 $ if and only if $ \delta \mid d_1d_2 / \br{d_1, d_2} $. Set
+$$ u_\delta = \sum_{\delta \mid d, \ d \le R} \dfrac{\lambda_d}{d}. $$
 Then
 $$ Q\br{\overrightarrow{\lambda}} = \sum_{\delta \le R} \Phi\br{\delta}u_\delta^2. $$
 
@@ -2610,7 +2571,7 @@ Claim that
 \label{eq:8}
 \dfrac{\lambda_d}{d} = \sum_{d \mid \delta, \ \delta \le R} \mu\br{\dfrac{\delta}{d}}u_\delta.
 \end{equation}
-Right hand side is
+The right hand side is
 $$ \sum_{d \mid \delta, \ d \le R} \mu\br{\dfrac{\delta}{d}}\br{\sum_{\delta \mid d', \ d' \le R} \dfrac{\lambda_{d'}}{d'}} = \sum_{d' \le R} \dfrac{\lambda_{d'}}{d'}\br{\sum_{d \mid \delta \mid d'} \mu\br{\dfrac{\delta}{d}}}. $$
 So we need to show that
 $$ \sum_{d \mid \delta \mid d'} \mu\br{\dfrac{\delta}{d}} =
@@ -2621,29 +2582,32 @@ $$ \sum_{d \mid \delta \mid d'} \mu\br{\dfrac{\delta}{d}} =
 $$
 The sum is equal to
 $$ \sum_{m \mid d' / d} \mu\br{m} = \br{1 * \mu}\br{\dfrac{d'}{d}} = \epsilon\br{\dfrac{d'}{d}}. $$
+
+\pagebreak
+
 The condition that $ \lambda_1 = 1 $ translates via $ \br{\ref{eq:8}} $ to the condition that $ 1 = \sum_{\delta \le R} \mu\br{\delta}u_\delta $. The Cauchy-Schwarz inequality is $ \abs{ab} \le \abs{a}\abs{b} $, that is
 $$ \sum_i a_ib_i \le \br{\sum_i a_i^2}^{\tfrac{1}{2}}\br{\sum_i b_i^2}^{\tfrac{1}{2}}, $$
 with equality if and only if there exists $ \lambda $ such that $ b_i = \lambda a_i $ for all $ i $. So
 $$ 1 = \sum_{\delta \le R} \mu\br{\delta}u_\delta \le \br{\sum_{\delta \le R}\Phi\br{\delta}u_\delta^2}^{\tfrac{1}{2}}\br{\sum_{\delta \le R}\dfrac{\mu\br{\delta}^2}{\Phi\br{\delta}}}^{\tfrac{1}{2}}. $$
 So
 $$ Q\br{\overrightarrow{\lambda}} = \sum_{\delta \le R} \Phi\br{\delta}u_\delta^2 \ge \dfrac{1}{D}, \qquad D = \sum_{\delta \le R} \dfrac{\mu\br{\delta}^2}{\Phi\br{\delta}}. $$
-Equality holds when $ u_\delta = \mu\br{\delta} / D\Phi\br{\delta} $. We are going to show that $ D \ge \log R + O\br{1} $. Since $ R = Y^c $, this gives us a leading term of
-$$ \dfrac{Y}{\log R} = \dfrac{Y}{\log Y^c} = \dfrac{1}{c}\br{\dfrac{Y}{\log Y}}. $$
-$ c < 1 / 2 $ implies that $ 1 / c > 2 $.
+Equality holds when $ u_\delta = \mu\br{\delta} / D\Phi\br{\delta} $. We are going to show that $ D \ge \log\br{R} + O\br{1} $. Since $ R = Y^c $, this gives us a leading term of
+$$ \dfrac{Y}{\log\br{R}} = \dfrac{Y}{\log\br{Y^c}} = \dfrac{1}{c}\br{\dfrac{Y}{\log\br{Y}}}. $$
+$ c < 1 / 2 $ implies that $ 1 / c > 2 $, so
 $$ D = \sum_{\delta \le R} \dfrac{\mu\br{\delta}^2}{\Phi\br{\delta}} = \sum_{\delta \le R, \ \delta \ \text{squarefree}} \dfrac{1}{\Phi\br{\delta}}. $$
 If $ \delta $ is squarefree, write $ \delta = p_1 \dots p_k $. Then
 $$ \Phi\br{\delta} = \br{p_1 - 1} \dots \br{p_k - 1} = p_1 \dots p_k\br{1 - \dfrac{1}{p_1}} \dots \br{1 - \dfrac{1}{p_k}}. $$
 So
 $$ D = \sum_{\delta \le R, \ \delta \ \text{squarefree}} \dfrac{1}{\delta}\prod_{p \mid \delta} \br{1 - \dfrac{1}{p}}^{-1}. $$
 Now, $ \br{1 - 1 / p}^{-1} = 1 + 1 / p + \dots $. So
-$$ D = \sum_{\delta \le R, \ \delta \ \text{squarefree}} \dfrac{1}{\delta}\prod_{p \mid \delta} \br{1 + \dfrac{1}{p} + \dots} \ge \sum_{n \le R} \dfrac{1}{n} = \log R + O\br{1}, $$
+$$ D = \sum_{\delta \le R, \ \delta \ \text{squarefree}} \dfrac{1}{\delta}\prod_{p \mid \delta} \br{1 + \dfrac{1}{p} + \dots} \ge \sum_{n \le R} \dfrac{1}{n} = \log\br{R} + O\br{1}, $$
 by taking $ n \le R $, and writing $ n = p_1^{a_1} \dots p_m^{a_m} $ and $ \delta = p_1 \dots p_m \le R $ squarefree, so
 $$ \dfrac{1}{n} = \dfrac{1}{\delta}\br{\dfrac{1}{p_1^{a_1 - 1}} \dots \dfrac{1}{p_m^{a_m - 1}}}. $$
-The only thing remaining is to show that $ \lambda_d \ll_\epsilon d^\epsilon $. Recall that $ u_\delta = \mu\br{\delta} / D\Phi\br{\delta} $. So
+The only thing remaining is to show that $ \lambda_d \l_\epsilon d^\epsilon $. Recall that $ u_\delta = \mu\br{\delta} / D\Phi\br{\delta} $. So
 $$ \lambda_d = d\sum_{d \mid \delta, \ \delta \le R} \mu\br{\dfrac{\delta}{d}}u_\delta = \dfrac{d}{D}\sum_{d \mid \delta, \ \delta \le R} \dfrac{\mu\br{\tfrac{\delta}{d}}\mu\br{\delta}}{\Phi\br{\delta}} = \dfrac{d}{D}\sum_{d \mid \delta, \ \delta \le R, \ \delta \ \text{squarefree}} \dfrac{\mu\br{\tfrac{\delta}{d}}\mu\br{\delta}}{\Phi\br{\delta}}. $$
 Write $ \delta' = \delta / d $. Since $ \delta = \delta'd $, and $ \delta $ is squarefree, we have $ \br{\delta', d} = 1 $, so $ \Phi\br{\delta} = \Phi\br{\delta'}\Phi\br{d} $. So
 $$ \abs{\lambda_d} \le \dfrac{d}{\Phi\br{d}D}\sum_{\delta' \le R, \ \delta' \ \text{squarefree}} \dfrac{1}{\Phi\br{\delta'}} = \dfrac{d}{\Phi\br{d}}. $$
-Need to show that $ \Phi\br{d} \gg_\epsilon d^{1 - \epsilon} $ if $ d $ is squarefree,
+Need to show that $ \Phi\br{d} \g_\epsilon d^{1 - \epsilon} $ if $ d $ is squarefree, where
 $$ \Phi\br{d} = \prod_{p \mid d} \br{p - 1}. $$
 If $ p $ is sufficiently large, then $ p - 1 \ge p^{1 - \epsilon} $. If $ p $ is not sufficiently large, then $ \br{p - 1} / p > 0 $ can be regarded as a constant.
 \end{proof}

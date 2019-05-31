@@ -29,7 +29,7 @@ $$
 \end{tikzpicture}
 $$
 }
-\def\syllabus{The $ p $-adic numbers. Basic algebraic geometry. Plane conics. The Hasse principle. Cubics. Elliptic curves over $ \Q_p $. Elliptic curves over $ \Q $. The Mordell-Weil theorem.}
+\def\syllabus{The $ p $-adic numbers. Basic algebraic geometry. Plane conics. The Hasse principle. Plane cubics. Torsion in $ E\br{\Q} $. Elliptic curves over $ \Q_p $. Rank of $ E\br{\Q} $. The Mordell-Weil theorem.}
 \def\thm{section}
 
 \input{../style/header}
@@ -42,7 +42,7 @@ $$
 
 \lecture{1}{Thursday}{04/10/18}
 
-References.
+The following are references.
 \begin{itemize}
 \item J W S Cassels, Lectures on elliptic curves, 1991
 \item J H Silverman, The arithmetic of elliptic curves, 1986
@@ -86,7 +86,7 @@ If $ m \in \Q $, $ \br{x_0, y_0} \in \Q^2 $ and conversely, which is easy. For e
 
 \pagebreak
 
-\section{The $ p $-adic numbers}
+\section{The \texorpdfstring{$ p $}{p}-adic numbers}
 
 \begin{definition}
 A \textbf{norm} on a field $ k $ is a function $ \abs{\cdot} : k \to \R $ such that:
@@ -273,7 +273,7 @@ $ \abs{a_np^n}_p \le \abs{p^n}_p = p^{-n} \to 0 $ as $ n \to \infty $, so $ \sum
 \label{prop:1.14}
 \hfill
 \begin{enumerate}
-\item If $ a_n \in \cbr{0, \dots p - 1} $, then $ \sum_{n = 0}^\infty a_np^n \in \Z_p $. Furthermore if $ a_n, b_n \in \cbr{0, \dots, p - 1} $ and $ \sum_{n = 0}^\infty a_np^n = \sum_{n = 0}^\infty b_np^n $ then $ a_n = b_n $ for all $ n $.
+\item If $ a_n \in \cbr{0, \dots, p - 1} $, then $ \sum_{n = 0}^\infty a_np^n \in \Z_p $. Furthermore if $ a_n, b_n \in \cbr{0, \dots, p - 1} $ and $ \sum_{n = 0}^\infty a_np^n = \sum_{n = 0}^\infty b_np^n $ then $ a_n = b_n $ for all $ n $.
 \item If $ x \in \Z_p $ then there is a unique sequence $ \br{a_n} $ as in 1 with $ x = \sum_{n = 0}^\infty a_np^n $.
 \end{enumerate}
 \end{proposition}
@@ -334,7 +334,7 @@ Every element of $ \Q_p^* = \Q_p \setminus \cbr{0} $ is uniquely of the form $ p
 Set $ \abs{a}_p = p^{-n} $, then $ \abs{p^{-n}a}_p = 1 $, so $ u = p^{-n}a $, so $ a = up^n $.
 \end{proof}
 
-Aim is to solve the equation $ x^2 - 7 = 0 $ in $ \Z_3 $ starting with a solution to $ x^2 \equiv 7 \mod 3 $. We did this by solving $ x^2 \equiv 7 \mod 3^n $ for $ n = 1, 2, \dots $. Write $ f\br{x} = x^2 - 7 $. Then $ \abs{f\br{1}}_3 = 1 / 3 $, $ \abs{f\br{4}}_3 = 1 / 9 $, $ \abs{f\br{13}}_3 = 1 / 27 $, etc. So starting with $ x_0 = 1 $, we construct a sequence $ \br{x_n} $ with $ \abs{x_{n + 1} - x_n} \le 1 / 3^{n + 1} $ and $ \abs{f\br{x_{n + 1}}}_3 \le 1 / 3^n $. So in particular $ \br{x_n} $ is Cauchy, and so converges to some $ x \in \Q_3 $ with $ f\br{x} = 0 $. Newton-Raphson method over $ \R $ works over $ \Q_p $, and this is called \textbf{Hensel's lemma}.
+The aim is to solve the equation $ x^2 - 7 = 0 $ in $ \Z_3 $ starting with a solution to $ x^2 \equiv 7 \mod 3 $. We did this by solving $ x^2 \equiv 7 \mod 3^n $ for $ n = 1, 2, \dots $. Write $ f\br{x} = x^2 - 7 $. Then $ \abs{f\br{1}}_3 = 1 / 3 $, $ \abs{f\br{4}}_3 = 1 / 9 $, $ \abs{f\br{13}}_3 = 1 / 27 $, etc. So starting with $ x_0 = 1 $, we construct a sequence $ \br{x_n} $ with $ \abs{x_{n + 1} - x_n} \le 1 / 3^{n + 1} $ and $ \abs{f\br{x_{n + 1}}}_3 \le 1 / 3^n $. So in particular $ \br{x_n} $ is Cauchy, and so converges to some $ x \in \Q_3 $ with $ f\br{x} = 0 $. Newton-Raphson method over $ \R $ works over $ \Q_p $, and this is called \textbf{Hensel's lemma}.
 
 \begin{definition}
 If $ R $ is a ring and $ f\br{X} \in R\sbr{X} $ is a polynomial, say $ f\br{x} = \sum_{n = 0}^m a_nx^n $, then $ f'\br{x} = \sum_{n = 0}^m na_nx^{n - 1} $.
@@ -360,7 +360,7 @@ So $ \abs{f'\br{t}} < \abs{f'\br{t_0}} $. On the other hand it is easy to show t
 
 \lecture{6}{Tuesday}{16/10/18}
 
-What are the squares in $ \Q_p^* $? We know that we can write any element of $ \Q_p^* $ uniquely as $ p^nu $ for $ u $ a unit, that is $ \abs{u}_p = 1 $. Suppose that $ p^nu = \br{p^rv}^2 $ for $ r \in \Z $ and $ v $ a unit. Then $ p^n = p^{2r} $ and $ u = v^2 $, that is $ n = 2r $ and $ u = v^2 $, that is the squares in $ \Q_p^* $ are exactly the $ p^{2r}u $, where $ u \in \Z_p^* $ is a square. If $ p > 2 $, we claim that $ u $ is a square iff $ u $ is a square mod $ p $, that is $ u $ is a quadratic residue. If $ u = t^2 $, then $ u \equiv t^2 \mod p $. Conversely, suppose that $ u \equiv t_0^2 \mod p $. Now use Hensel's lemma with $ f\br{X} = X^2 - u $ and $ t_0 $ as above. $ \abs{f\br{t_0}}_p = \abs{t_0^2 - u}_p \le \abs{p}_p = 1 / p $. $ \abs{f'\br{t_0}}_p = \abs{2t_0}_p = \abs{t_0}_p = 1 $. If $ p \mid t_0 $ then $ p \mid u $ because $ u \equiv t_0^2 \mod p $. Hensel's lemma gives a unique $ t \in \Z_p $ such that $ t^2 = u $ and $ \abs{t - t_0} < 1 $, that is $ t \equiv t_0 \mod p $. In this case, the equation $ X^2 = u $ has exactly two solutions, namely $ t $ and $ -t $. In any field, a polynomial of degree $ d $ has at most $ d $ roots. For $ p = 2 $, $ u \in \Z_2^* $ is a square iff there exists $ t_0 $ such that $ u \equiv t_0^2 \mod 8 $, that is $ u \equiv 1 \mod 8 $, since $ \br{2m + 1}^2 = 4m\br{m + 1} + 1 \equiv 1 \mod 8 $.
+What are the squares in $ \Q_p^* $? We know that we can write any element of $ \Q_p^* $ uniquely as $ p^nu $ for $ u $ a unit, that is $ \abs{u}_p = 1 $. Suppose that $ p^nu = \br{p^rv}^2 $ for $ r \in \Z $ and $ v $ a unit. Then $ p^n = p^{2r} $ and $ u = v^2 $, that is $ n = 2r $ and $ u = v^2 $, that is the squares in $ \Q_p^* $ are exactly the $ p^{2r}u $, where $ u \in \Z_p^* $ is a square. If $ p > 2 $, we claim that $ u $ is a square iff $ u $ is a square modulo $ p $, that is $ u $ is a quadratic residue. If $ u = t^2 $, then $ u \equiv t^2 \mod p $. Conversely, suppose that $ u \equiv t_0^2 \mod p $. Now use Hensel's lemma with $ f\br{X} = X^2 - u $ and $ t_0 $ as above. $ \abs{f\br{t_0}}_p = \abs{t_0^2 - u}_p \le \abs{p}_p = 1 / p $. $ \abs{f'\br{t_0}}_p = \abs{2t_0}_p = \abs{t_0}_p = 1 $. If $ p \mid t_0 $ then $ p \mid u $ because $ u \equiv t_0^2 \mod p $. Hensel's lemma gives a unique $ t \in \Z_p $ such that $ t^2 = u $ and $ \abs{t - t_0} < 1 $, that is $ t \equiv t_0 \mod p $. In this case, the equation $ X^2 = u $ has exactly two solutions, namely $ t $ and $ -t $. In any field, a polynomial of degree $ d $ has at most $ d $ roots. For $ p = 2 $, $ u \in \Z_2^* $ is a square iff there exists $ t_0 $ such that $ u \equiv t_0^2 \mod 8 $, that is $ u \equiv 1 \mod 8 $, since $ \br{2m + 1}^2 = 4m\br{m + 1} + 1 \equiv 1 \mod 8 $.
 
 \pagebreak
 
@@ -540,7 +540,7 @@ $ X^2 - Y^2 - 1 $ does not factor in $ \C\sbr{X, Y} $.
 
 \lecture{9}{Tuesday}{23/10/18}
 
-A \textbf{plane conic} is just the graph of some $ f \in k\sbr{x, y} $ where $ f $ has degree two. Same terminology also covers $ F = 0 $ for $ F \in k\sbr{X, Y, Z} $ homogeneous of degree two. The next steps are
+A \textbf{plane conic} is just the graph of some $ f \in k\sbr{x, y} $ where $ f $ has degree two. The same terminology also covers $ F = 0 $ for $ F \in k\sbr{X, Y, Z} $ homogeneous of degree two. The next steps are
 \begin{itemize}
 \item to understand when this is singular,
 \item to understand how to find all solutions to $ f = 0 $ or $ F = 0 $ if it is singular, and
@@ -616,7 +616,7 @@ We have seen that for any field $ k $, and any plane conic, there are algorithms
 \item if it is singular, write it as a product of two linear factors, and so find all the points over $ k $, and
 \item if it is nonsingular, or smooth, find all points over $ k $ given one such point, by drawing lines through this point.
 \end{enumerate}
-What is missing is given a nonsingular curve, determine if it has any points over $ k $, and find such a point if there is one. For $ k = \Q $, we will do this by using the cases $ k = \Q_p $ for all primes $ p $. Over $ \Q_p $, it is not so hard to check if there are points. Use Hensel's lemma to reduce mod $ p $, use quadratic reciprocity. Very easy over $ \R $. Hasse's principle says a nonsingular plane conic over $ \Q $ has points over $ \Q $ iff it does over $ \Q_p $ and $ \R $ for all $ p $. Forward direction is trivial, converse direction is harder. Crucially, this holds for conics, that is polynomials of degree two, but not true for degree three or higher.
+What is missing is given a nonsingular curve, determine if it has any points over $ k $, and find such a point if there is one. For $ k = \Q $, we will do this by using the cases $ k = \Q_p $ for all primes $ p $. Over $ \Q_p $, it is not so hard to check if there are points. Use Hensel's lemma to reduce modulo $ p $, use quadratic reciprocity. Very easy over $ \R $. Hasse's principle says a nonsingular plane conic over $ \Q $ has points over $ \Q $ iff it does over $ \Q_p $ and $ \R $ for all $ p $. Forward direction is trivial, converse direction is harder. Crucially, this holds for conics, that is polynomials of degree two, but not true for degree three or higher.
 
 \begin{example*}
 $ 3X^3 + 4Y^3 + 5Z^3 $.
@@ -626,7 +626,7 @@ $ 3X^3 + 4Y^3 + 5Z^3 $.
 $ X^2 + Y^2 = 6 $ has no solution in $ \Q_3 $ gives none in $ \Q $. $ X^2 + Y^2 = -1 $ has no solution in $ \R $ gives none in $ \Q $.
 \end{example*}
 
-Basic idea is if we have solutions to some equation in every $ \Q_p $, we have solutions mod $ N $ for all $ N \in \Z $. Use Chinese remainder theorem to reduce to $ N = p^k $, Hensel's lemma says that equations have solutions in $ \Z_p $ iff mod $ p^k $ for all $ k $. We would like a technique for upgrading solutions to congruences to solutions to equations in $ \Q $ or in $ \Z $. Aim is to prove that if $ p \equiv 1 \mod 4 $ then $ p = x^2 + y^2 $ for some $ x, y \in \Z $. Input is $ n $ such that $ n^2 \equiv -1 \mod p $.
+Basic idea is if we have solutions to some equation in every $ \Q_p $, we have solutions modulo $ N $ for all $ N \in \Z $. Use Chinese remainder theorem to reduce to $ N = p^k $, Hensel's lemma says that equations have solutions in $ \Z_p $ iff modulo $ p^k $ for all $ k $. We would like a technique for upgrading solutions to congruences to solutions to equations in $ \Q $ or in $ \Z $. The aim is to prove that if $ p \equiv 1 \mod 4 $ then $ p = x^2 + y^2 $ for some $ x, y \in \Z $. Input is $ n $ such that $ n^2 \equiv -1 \mod p $.
 
 \begin{lemma}
 \label{lem:4.1}
@@ -716,16 +716,16 @@ If $ p \mid a $ then there is a solution to $ b + cz^2 \equiv 0 \mod p $.
 \begin{proof}
 $ p \mid a $ gives $ p \in \Sigma $ so there exist $ x, y, z \in \Q_p $ not all zero such that $ ax^2 + by^2 + cz^2 = 0 $. By multiplying by an appropriate power of $ p $, we can assume that $ \max\br{\abs{x}_p, \abs{y}_p, \abs{z}_p} = 1 $. $ p \mid a $ and $ \br{a, b} = \br{a, c} = 1 $ give $ p \nmid b $, $ p \nmid c $, that is $ \abs{a}_p < 1 $ and $ \abs{b}_p = \abs{c}_p = 1 $. If $ \abs{y}_p < 1 $ then $ \abs{by^2}_p < 1 $, $ \abs{ax^2}_p \le \abs{a}_p < 1 $, so $ \abs{cz^2}_p = \abs{ax^2 + by^2} < 1 $, so $ \abs{z}_p < 1 $. Then $ \abs{x}_p = 1 $, so $ \abs{ax^2}_p = \abs{a}_p $ but
 $$ \abs{ax^2}_p = \abs{by^2 + cz^2}_p \le \max\br{\abs{y^2}_p, \abs{z^2}_p} \le \dfrac{1}{p^2}. $$
-So $ p^2 \mid a $, a contradiction, as $ a $ is squarefree. So $ \abs{y}_p = 1 $. Now divide by $ y $, $ a\br{x / y}^2 + b + c\br{z / y}^2 = 0 $ and $ x / y, z / y \in \Z_p $. Reduce mod $ p $ gives $ b + c\br{z / y}^2 \equiv 0 \mod p $, as claimed.
+So $ p^2 \mid a $, a contradiction, as $ a $ is squarefree. So $ \abs{y}_p = 1 $. Now divide by $ y $, $ a\br{x / y}^2 + b + c\br{z / y}^2 = 0 $ and $ x / y, z / y \in \Z_p $. Reduce modulo $ p $ gives $ b + c\br{z / y}^2 \equiv 0 \mod p $, as claimed.
 \end{proof}
 
-If $ p \in \Sigma $ and $ p > 2 $, then by symmetry without loss of generality $ p \mid a $. Then the lemma applies, so there exists $ \alpha $ with $ b + c\alpha^2 \equiv 0 \mod p $. So we impose the condition that $ z \equiv \alpha y \mod p $. Then if $ x, y, z \in \Z $ satisfying $ z \equiv \alpha y \mod p $, then $ ax^2 + by^2 + c \equiv by^2 + cz^2 \equiv by^2 + c\alpha^2y^2 \equiv y^2\br{b + c\alpha^2} \equiv 0 \mod p $. Now have to deal with $ p = 2 $. Suppose $ 2 \mid a $. Lemma gives a solution to $ b + cz^2 \equiv 0 \mod 2 $, and a solution to $ ax^2 + by^2 + cz^2 = 0 $ in $ \Q_2 $ with $ \abs{y}_2 = 1 $, so $ y^2 \equiv 1 \mod 8 $. $ \br{2m + 1}^2 = 4m\br{m + 1} + 1 \equiv 1 \mod 8 $. In fact, squares mod $ 8 $ are $ 0 $, $ 1 $, $ 4 $. Similarly, $ \abs{z}_2 = 1 $ gives $ z^2 \equiv 1 \mod 8 $. Since $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 \equiv 0 \mod 8 $, that is $ ax^2 + b + c \equiv 0 \mod 8 $. If $ \abs{x}_2 = 1 $ then $ x^2 \equiv 1 \mod 8 $, so $ a + b + c \equiv 0 \mod 8 $. Impose
+If $ p \in \Sigma $ and $ p > 2 $, then by symmetry without loss of generality $ p \mid a $. Then the lemma applies, so there exists $ \alpha $ with $ b + c\alpha^2 \equiv 0 \mod p $. So we impose the condition that $ z \equiv \alpha y \mod p $. Then if $ x, y, z \in \Z $ satisfying $ z \equiv \alpha y \mod p $, then $ ax^2 + by^2 + c \equiv by^2 + cz^2 \equiv by^2 + c\alpha^2y^2 \equiv y^2\br{b + c\alpha^2} \equiv 0 \mod p $. Now have to deal with $ p = 2 $. Suppose $ 2 \mid a $. Lemma gives a solution to $ b + cz^2 \equiv 0 \mod 2 $, and a solution to $ ax^2 + by^2 + cz^2 = 0 $ in $ \Q_2 $ with $ \abs{y}_2 = 1 $, so $ y^2 \equiv 1 \mod 8 $. $ \br{2m + 1}^2 = 4m\br{m + 1} + 1 \equiv 1 \mod 8 $. In fact, squares modulo $ 8 $ are $ 0 $, $ 1 $, $ 4 $. Similarly, $ \abs{z}_2 = 1 $ gives $ z^2 \equiv 1 \mod 8 $. Since $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 = 0 $, $ ax^2 + by^2 + cz^2 \equiv 0 \mod 8 $, that is $ ax^2 + b + c \equiv 0 \mod 8 $. If $ \abs{x}_2 = 1 $ then $ x^2 \equiv 1 \mod 8 $, so $ a + b + c \equiv 0 \mod 8 $. Impose
 $$ y \equiv z \mod 4, \qquad x \equiv y \mod 2. $$
 If $ \br{x, y, z} \in \Z^3 $ satisfies this condition, then either $ x, y, z $ all odd, and $ ax^2 + by^2 + cz^2 \equiv a + b + c \equiv 0 \mod 8 $, or $ x, y, z $ all even, and $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \mod 8 $. $ y \equiv z \mod 4 $ gives either $ 4 \mid y $, $ 4 \mid z $, which is fine, or $ y \equiv z \equiv 2 \mod 4 $, and $ by^2 + cz^2 \equiv 4\br{b + c} \equiv -4a \equiv 0 \mod 8 $. If $ \abs{x}_2 < 1 $, then $ ax^2 \equiv 0 \mod 8 $, so $ b + c \equiv 0 \mod 8 $. Impose
 $$ y \equiv z \mod 4, \qquad x \equiv 0 \mod 2. $$
 Then if these conditions hold, $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv \br{b + c}y^2 \equiv 0 \mod 8 $. The cases $ 2 \mid b $, $ 2 \mid c $ are dealt with by symmetry. Now suppose that $ 2 \nmid abc $. Again $ 2 \in \Sigma $ gives by assumption $ x, y, z \in \Q_2 $ not all zero with $ ax^2 + by^2 + cz^2 = 0 $. Again, without loss of generality $ \max\br{\abs{x}_2, \abs{y}_2, \abs{z}_2} = 1 $ or without loss of generality $ \abs{z}_2 = 1 $, so $ \abs{cz^2}_2 = 1 $, so at least one of $ \abs{x}_2, \abs{y}_2 $ is $ 1 $. Without loss of generality $ \abs{y}_2 = 1 $. If $ \abs{x}_2 = 1 $ then $ ax^2 + by^2 + cz^2 \equiv 1 + 1 + 1 \mod 2 $, a contradiction. So $ \abs{x}_2 < 1 $. So $ ax^2 + by^2 + cz^2 \equiv b + c \mod 4 $, that is $ b + c \equiv 0 \mod 4 $. Impose
 $$ x \equiv 0 \mod 2, \qquad y \equiv z \mod 2. $$
-If these hold, $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv \br{b + c}y^2 \equiv 0 \mod 4 $. What have we done? If $ p > 2 $ and $ p \in \Sigma $, we found a congruence mod $ p $ which guaranteed that $ ax^2 + by^2 + cz^2 \equiv 0 \mod p $. If $ 2 \mid abc $, found conditions guaranteeing that $ ax^2 + by^2 + cz^2 \equiv 0 \mod 8 $. If $ 2 \nmid abc $, $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4 $. Define $ \Lambda $ as the subgroup of $ \Z^3 $ satisfying all of these congruence conditions. Since $ abc $ is squarefree, if $ \br{x, y, z} \in \Lambda $ then $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4abc $. It remains to check that $ \sbr{\Z^3 : \Lambda} = \abs{4abc} $. To see this, write $ \Lambda $ as the kernel of a map from $ \Z^3 $ to a product of a group of order four or eight and $ \prod_{p > 2, \ p \mid abc} \Z / p\Z $ and use the Chinese remainder theorem.
+If these hold, $ ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv \br{b + c}y^2 \equiv 0 \mod 4 $. What have we done? If $ p > 2 $ and $ p \in \Sigma $, we found a congruence modulo $ p $ which guaranteed that $ ax^2 + by^2 + cz^2 \equiv 0 \mod p $. If $ 2 \mid abc $, found conditions guaranteeing that $ ax^2 + by^2 + cz^2 \equiv 0 \mod 8 $. If $ 2 \nmid abc $, $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4 $. Define $ \Lambda $ as the subgroup of $ \Z^3 $ satisfying all of these congruence conditions. Since $ abc $ is squarefree, if $ \br{x, y, z} \in \Lambda $ then $ ax^2 + by^2 + cz^2 \equiv 0 \mod 4abc $. It remains to check that $ \sbr{\Z^3 : \Lambda} = \abs{4abc} $. To see this, write $ \Lambda $ as the kernel of a map from $ \Z^3 $ to a product of a group of order four or eight and $ \prod_{p > 2, \ p \mid abc} \Z / p\Z $ and use the Chinese remainder theorem.
 
 \lecture{14}{Friday}{02/11/18}
 
@@ -903,7 +903,7 @@ Return to the case of irreducible singular cubics. Write as $ y^2 = f\br{x} $, $
 \lecture{19}{Thursday}{15/11/18}
 
 \begin{example*}
-Good way to practice explicit computations is to work over small fields. Let $ k = \F_5 = \Z / 5\Z $ be the field of five elements and $ y^2 = x^3 + 1 $. $ \Delta = 4 \ne 0 $ in $ k $. So this is an elliptic curve. Squares mod five are $ 0, 1, 4 $.
+Good way to practice explicit computations is to work over small fields. Let $ k = \F_5 = \Z / 5\Z $ be the field of five elements and $ y^2 = x^3 + 1 $. $ \Delta = 4 \ne 0 $ in $ k $. So this is an elliptic curve. Squares modulo five are $ 0, 1, 4 $.
 $$
 \begin{array}{c|ccccc}
 x & 0 & 1 & 2 & 3 & 4 \\
@@ -917,7 +917,7 @@ Also $ O = \sbr{0 : 1 : 0} $. So six points in total. Since $ \Z / 6\Z \cong \Z 
 For $ E $ an elliptic curve, $ E\br{k} $ are the points of $ E $ with coordinates in $ k $, including $ O = \sbr{0 : 1 : 0} $. If $ k \subset K $, $ E\br{K} $ are the points with coordinates in $ K $.
 
 \begin{example*}
-If $ k $ is a finite field, then $ E\br{k} $ is either cyclic or a product of two cyclic groups, by the Hasse bound or Hasse-Weil bound on number of points.
+If $ k $ is a finite field, then $ E\br{k} $ is either cyclic or a product of two cyclic groups, by the Hasse bound or Hasse-Weil bound on the number of points.
 \end{example*}
 
 \begin{example*}
@@ -937,11 +937,11 @@ $ k = \Q_p $ is the next few lectures. $ E\br{\Q_p} $ is locally isomorphic to $
 
 \lecture{20}{Friday}{16/11/18}
 
-So $ E\br{\Q} = T \times F \cong T \times \Z^r $, where $ T $ is a finite torsion subgroup and $ r \ge 0 $ is the rank of $ E $ over $ \Q $. It is a hard theorem of Mazur in 1970s that there are only finitely many possibilities for $ T $. It is unknown whether or not $ r $ can be arbitrarily large. Same results hold if $ \Q $ is replaced by a number field. Main goal of the remaining lectures is to prove that $ E\br{\Q} $ is finitely generated, and to see how to compute its torsion subgroup, and its rank. $ \Q / \Z $ is an infinite group, all of whose elements have finite order, not finitely generated.
+So $ E\br{\Q} = T \times F \cong T \times \Z^r $, where $ T $ is a finite torsion subgroup and $ r \ge 0 $ is the rank of $ E $ over $ \Q $. It is a hard theorem of Mazur in 1970s that there are only finitely many possibilities for $ T $. It is unknown whether or not $ r $ can be arbitrarily large. The same results hold if $ \Q $ is replaced by a number field. Main goal of the remaining lectures is to prove that $ E\br{\Q} $ is finitely generated, and to see how to compute its torsion subgroup, and its rank. $ \Q / \Z $ is an infinite group, all of whose elements have finite order, not finitely generated.
 
 \pagebreak
 
-\section{Torsion in $ E\br{\Q} $}
+\section{Torsion in \texorpdfstring{$ E\br{\Q} $}{E(Q)}}
 
 $ y^2 = x^3 + ax + b $. By choosing $ u $ appropriately in $ x \mapsto u^2x $ and $ y \mapsto u^3y $, we can assume that our equation is of the form $ y^2 = x^3 + Ax + B $ for $ A, B \in \Z $.
 
@@ -950,7 +950,7 @@ The subgroup of $ E\br{\Q} $ consisting of torsion points is finite. Furthermore
 \end{theorem}
 
 \begin{note*}
-Converse is not true, that is there can be points $ \br{x, y} $ of $ E\br{\Q} $ with $ y^2 \mid \Delta $, but $ \br{x, y} $ is not torsion.
+The converse is not true, that is there can be points $ \br{x, y} $ of $ E\br{\Q} $ with $ y^2 \mid \Delta $, but $ \br{x, y} $ is not torsion.
 \end{note*}
 
 \begin{example*}
@@ -977,7 +977,7 @@ Let $ y^2 = x^3 + 17 $. $ y = 0 $ has no solutions, so $ y^2 \mid \br{27}\br{17}
 
 \pagebreak
 
-\section{Elliptic curves over $ \Q_p $}
+\section{Elliptic curves over \texorpdfstring{$ \Q_p $}{Qp}}
 
 \lecture{21}{Tuesday}{20/11/18}
 
@@ -988,7 +988,7 @@ $ \br{x, y} = \br{1 / p, 1 / p} $ is
 $$ \sbr{x : y : 1} = \sbr{1 / p : 1 / p : 1} = \sbr{1 : 1 : p} \mapsto \sbr{1 : 1 : 0}. $$
 \end{example*}
 
-By replacing $ x $ with $ p^{2n}x $, $ y $ by $ p^{3n}y $, can assume $ a, b \in \Z_p $. Reduction mod $ p $ of $ y^2 = x^3 + ax + b $ is $ y^2 = x^3 + \overline{a}x + \overline{b} $ for $ \overline{a}, \overline{b} \in \F_p $. This would be singular if either $ p = 2 $, or $ p \mid \Delta = 4a^3 + 27b^2 $. Even if it is singular, we still have a group law on the nonsingular points.
+By replacing $ x $ with $ p^{2n}x $, $ y $ by $ p^{3n}y $, can assume $ a, b \in \Z_p $. Reduction modulo $ p $ of $ y^2 = x^3 + ax + b $ is $ y^2 = x^3 + \overline{a}x + \overline{b} $ for $ \overline{a}, \overline{b} \in \F_p $. This would be singular if either $ p = 2 $, or $ p \mid \Delta = 4a^3 + 27b^2 $. Even if it is singular, we still have a group law on the nonsingular points.
 
 \begin{example*}
 Let $ y^2 = x^3 - 18 $. Modulo $ 3 $, we get $ y^2 = x^3 $, and $ \br{0, 0} $ is singular. $ \br{3, 3} $ is a point over $ \Q_3 $, which reduces to the singular point $ \br{0, 0} $. Claim there is a point over $ \Q_3 $ with $ x = 1 / 9 $. Need to solve $ y^2 = \br{1 / 9}^3 - 18 = \br{1 - 2\br{3}^8} / 3^6 $, that is $ \br{3^3y}^2 = 1 - 2\br{3}^8 $, which has two solutions in $ \Q_3 $ by Hensel's lemma. This point $ \br{1 / 3^2, 1 / 3^3 + \epsilon} $ reduces to $ \sbr{0 : 1 : 0} \mod 3 $, that is to the point $ O $ at infinity.
@@ -1012,15 +1012,15 @@ $$ \abs{y}_p^2 = \abs{y^2}_p = \abs{x^3 + \alpha x^2 + \beta x + \gamma}_p = \ab
 \end{enumerate}
 \end{proof}
 
-Write $ E $ for $ y^2 = g\br{x} $ for $ g\br{x} \in \Z_p\sbr{x} $ monic cubic. Let $ E\br{\Q_p}^{\br{0}} $ be $ P \in E\br{\Q_p} $ such that $ P $ maps to a nonsingular point mod $ p $, and let $ E\br{\Q_p}^{\br{1}} \subseteq E\br{\Q_p}^{\br{0}} $ be $ P \in E\br{\Q_p} $ such that $ P $ maps to $ O \mod p $. What are the points $ \br{x, y} \in E\br{\Q_p}^{\br{1}} $? They are the points with $ \abs{x}_p, \abs{y}_p > 1 $ by Lemma \ref{lem:7.1}.
+Write $ E $ for $ y^2 = g\br{x} $ for $ g\br{x} \in \Z_p\sbr{x} $ monic cubic. Let $ E\br{\Q_p}^{\br{0}} $ be $ P \in E\br{\Q_p} $ such that $ P $ maps to a nonsingular point modulo $ p $, and let $ E\br{\Q_p}^{\br{1}} \subseteq E\br{\Q_p}^{\br{0}} $ be $ P \in E\br{\Q_p} $ such that $ P $ maps to $ O \mod p $. What are the points $ \br{x, y} \in E\br{\Q_p}^{\br{1}} $? They are the points with $ \abs{x}_p, \abs{y}_p > 1 $ by Lemma \ref{lem:7.1}.
 
 \begin{lemma}
 \label{lem:7.2}
-$ E\br{\Q_p}^{\br{0}} $ is a subgroup of $ E\br{\Q_p} $. Reduction mod $ p $ is a group homomorphism from $ E\br{\Q_p}^{\br{0}} $ to the group of nonsingular points mod $ p $. The kernel of this homomorphism is $ E\br{\Q_p}^{\br{1}} $.
+$ E\br{\Q_p}^{\br{0}} $ is a subgroup of $ E\br{\Q_p} $. Reduction modulo $ p $ is a group homomorphism from $ E\br{\Q_p}^{\br{0}} $ to the group of nonsingular points modulo $ p $. The kernel of this homomorphism is $ E\br{\Q_p}^{\br{1}} $.
 \end{lemma}
 
 \begin{proof}
-The group law is determined by three points add up to $ O $ iff they are collinear. Also, by Bézout, if two points on a line are nonsingular, so is the third. To see that $ E\br{\Q_p}^{\br{0}} $ is a subgroup of $ E\br{\Q_p} $, suppose that $ P + Q + R = O $ and $ P, Q \in E\br{\Q_p}^{\br{0}} $. Then $ P, Q, R $ are collinear. Then their images mod $ p $ are also collinear, and the images of $ P, Q $ are nonsingular. So the image of $ R \mod p $ is also nonsingular, so $ R \in E\br{\Q_p}^{\br{0}} $. This also shows that reduction mod $ p $ is a group homomorphism. The kernel is $ E\br{\Q_p}^{\br{1}} $ by definition.
+The group law is determined by three points add up to $ O $ iff they are collinear. Also, by Bézout, if two points on a line are nonsingular, so is the third. To see that $ E\br{\Q_p}^{\br{0}} $ is a subgroup of $ E\br{\Q_p} $, suppose that $ P + Q + R = O $ and $ P, Q \in E\br{\Q_p}^{\br{0}} $. Then $ P, Q, R $ are collinear. Then their images modulo $ p $ are also collinear, and the images of $ P, Q $ are nonsingular. So the image of $ R \mod p $ is also nonsingular, so $ R \in E\br{\Q_p}^{\br{0}} $. This also shows that reduction modulo $ p $ is a group homomorphism. The kernel is $ E\br{\Q_p}^{\br{1}} $ by definition.
 \end{proof}
 
 In fact, the homomorphism $ E\br{\Q_p}^{\br{0}} $ to the nonsingular points over $ \F_p $ is surjective, in example sheet 4 by Hensel's lemma.
@@ -1057,7 +1057,7 @@ $$ \abs{u\br{P + Q} - u\br{P} - u\br{Q}} \le \max\br{\abs{u\br{P}}^5, \abs{u\br{
 \end{lemma}
 
 \begin{proof}
-If any of $ P, Q, P + Q $ equal $ O $, then left hand side is zero and we are done. Assume by symmetry that $ P $ has level exactly $ n $, and $ Q $ has level at least $ n $. Then $ \abs{u\br{P}} = \abs{u\br{Q}} $ and $ \abs{u\br{P}} = p^{-n} $, so right hand side is $ p^{-5n} $. Since $ P, Q \in E\br{\Q_p}^{\br{n}} $, and $ E\br{\Q_p}^{\br{n}} $ is a group, we have $ P + Q \in E\br{\Q_p}^{\br{n}} $. Let $ P_n, Q_n $ be the points on $ E_n $ corresponding to $ P, Q $. Let $ R $ be the third point of intersection of $ E_n $ and the line through $ P_n, Q_n $. $ P_n $ has level zero, and $ Q_n $ has level at least zero, so both are nonsingular mod $ p $, so $ R $ is nonsingular mod $ p $. Since $ P_n $ has level exactly zero, the reduction of $ P_n $ is a nonsingular point of $ E_n\br{\F_p} $, which is not $ O $. This implies that the line through $ P_n, Q_n $ has an equation of the form $ lx + my = 1 $, with $ l, m \in \Z_p $. A priori we have a line $ lx + my = 1 $ with $ l, m \in \Q_p $, but if either $ l, m \notin \Z_p $, when you reduce mod $ p $, the line would go through $ \br{0, 0} $. Since $ P_n, Q_n, R $ are all nonsingular mod $ p $, this would be a contradiction. The equation of $ E_n $ is $ y^2 = x^3 + p^{4n}ax + p^{6n}b $. To compute the intersection, we can solve
+If any of $ P, Q, P + Q $ equal $ O $, then left hand side is zero and we are done. Assume by symmetry that $ P $ has level exactly $ n $, and $ Q $ has level at least $ n $. Then $ \abs{u\br{P}} = \abs{u\br{Q}} $ and $ \abs{u\br{P}} = p^{-n} $, so right hand side is $ p^{-5n} $. Since $ P, Q \in E\br{\Q_p}^{\br{n}} $, and $ E\br{\Q_p}^{\br{n}} $ is a group, we have $ P + Q \in E\br{\Q_p}^{\br{n}} $. Let $ P_n, Q_n $ be the points on $ E_n $ corresponding to $ P, Q $. Let $ R $ be the third point of intersection of $ E_n $ and the line through $ P_n, Q_n $. $ P_n $ has level zero, and $ Q_n $ has level at least zero, so both are nonsingular modulo $ p $, so $ R $ is nonsingular modulo $ p $. Since $ P_n $ has level exactly zero, the reduction of $ P_n $ is a nonsingular point of $ E_n\br{\F_p} $, which is not $ O $. This implies that the line through $ P_n, Q_n $ has an equation of the form $ lx + my = 1 $, with $ l, m \in \Z_p $. A priori we have a line $ lx + my = 1 $ with $ l, m \in \Q_p $, but if either $ l, m \notin \Z_p $, when you reduce modulo $ p $, the line would go through $ \br{0, 0} $. Since $ P_n, Q_n, R $ are all nonsingular modulo $ p $, this would be a contradiction. The equation of $ E_n $ is $ y^2 = x^3 + p^{4n}ax + p^{6n}b $. To compute the intersection, we can solve
 $$ y^2\br{lx + my} = x^3 + p^{4n}ax\br{lx + my}^2 + p^{6n}b\br{lx + my}^3. $$
 Write $ t = x / y $. Dividing by $ y^3 $, we get
 $$ lt + m = t^3 + p^{4n}at\br{lt + m}^2 + p^{6n}b\br{lt + m}^3. $$
@@ -1152,11 +1152,11 @@ Lecture 24 is a problem class.
 
 \pagebreak
 
-\section{$ E\br{\Q} / 2E\br{\Q} $}
+\section{Rank of \texorpdfstring{$ E\br{\Q} $}{E(Q)}}
 
 \lecture{25}{Thursday}{29/11/18}
 
-Goal is if $ E\br{\Q} $ is an elliptic curve then $ E\br{\Q} / 2E\br{\Q} $ is finite. Assume from now on that we can write $ E $ as $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_1, e_2, e_3 \in \Q $. This is equivalent to all of the $ 2 $-torsion points being defined over $ \Q $, by Silverman's arithmetic of elliptic curves.
+The goal is if $ E\br{\Q} $ is an elliptic curve then $ E\br{\Q} / 2E\br{\Q} $ is finite. Assume from now on that we can write $ E $ as $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_1, e_2, e_3 \in \Q $. This is equivalent to all of the $ 2 $-torsion points being defined over $ \Q $, by Silverman's arithmetic of elliptic curves.
 
 \begin{example*}
 Let $ y^2 = x^3 - x = \br{x - 1}x\br{x + 1} $. Suppose that we have a point $ \br{x, y} $ with $ x, y \in \Q $, $ y \ne 0 $. Write $ x - 1 = au^2 $, $ x = bv^2 $, $ x + 1 = cw^2 $, where $ u, v, w \in \Q^* $ and $ a, b, c \in \Z $ are squarefree, such as $ -3 / 25 = \br{-3}\br{1 / 5}^2 $. $ y^2 = \br{x - 1}x\br{x + 1} = \br{abc}\br{uvw}^2 $ gives $ abc = \br{y / uvw}^2 $ is a square. Claim that $ a, b, c \in \cbr{\pm 1, \pm 2} $. Let $ p $ be an odd prime. We need to show that $ \abs{x}_p, \abs{x + 1}_p, \abs{x - 1}_p $ are all squares. If $ \abs{x}_p > 1 $, then by the ultrametric inequality, $ \abs{x}_p = \abs{x + 1}_p = \abs{x - 1}_p $, and since $ \abs{y}_p^2 = \abs{x}_p\abs{x + 1}_p\abs{x - 1}_p $, so each of $ \abs{x}_p, \abs{x + 1}_p, \abs{x - 1}_p $ is a square. If $ \abs{x}_p \le 1 $, then since $ a, b, c $ are squarefree and their product is a square, we either have $ \abs{x}_p = \abs{x + 1}_p = \abs{x - 1}_p = 1 $, or at least two of $ x, x + 1, x - 1 $ are divisible by $ p $. Then $ p $ would have to divide the difference of these two quantities, which is one or two. But $ p $ is odd, a contradiction. Since $ abc $ is a square, $ a $ and $ b $ determine $ c $, such as $ a = -1 $, $ b = -2 $, then $ c = 2 $. Since $ x + 1 > x > x - 1 $, and $ \br{x + 1}x\br{x - 1} = y^2 > 0 $, we either have $ x + 1 > x > x - 1 > 0 $, or $ x + 1 > 0 > x > x - 1 $. So either $ a, b < 0 $ and $ c > 0 $ or $ a, b, c > 0 $. So the only possibilities for $ a, b, c $ are
@@ -1234,9 +1234,9 @@ For each $ i $, $ -\br{me_i + c}^2 = \br{e_i - x_1}\br{e_i - x_2}\br{e_i - x_3} 
 
 $$ \delta : \dfrac{E\br{K}}{2E\br{K}} \cong Im\br{\delta} = \cbr{\br{a, b, c} \in \br{\dfrac{K^*}{\br{K^*}^2}}^3 \ \Bigg| \ abc = 1} \subseteq \br{\dfrac{K^*}{\br{K^*}^2}}^3. $$
 
-\lecture{27}{Tuesday}{04/12/18}
-
 Next is prove that if $ K = \Q $, $ Im\br{\delta} $ is finite.
+
+\lecture{27}{Tuesday}{04/12/18}
 
 \begin{proposition}
 \label{prop:8.5}
@@ -1267,31 +1267,23 @@ Let $ E $ be an elliptic curve over $ \Q $ all of whose $ 2 $-torsion points are
 \end{theorem}
 
 \begin{proof}
-Write $ E $ as $ y^2 = f\br{x} $. The condition on the $ 2 $-torsion points says that the roots of $ f\br{x} $ are rational. After rescaling $ x, y $, we can assume that $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_i \in \Z $. Then by Theorem \ref{thm:8.2} and Proposition \ref{prop:8.5}, we have an injection
-$$ \delta : \dfrac{E\br{\Q}}{2E\br{\Q}} \hookrightarrow \Q\br{S, 2} \times \Q\br{S, 2} \times \Q\br{S, 2}, $$
-which is finite.
+Write $ E $ as $ y^2 = f\br{x} $. The condition on the $ 2 $-torsion points says that the roots of $ f\br{x} $ are rational. After rescaling $ x, y $, we can assume that $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_i \in \Z $. Then by Theorem \ref{thm:8.2} and Proposition \ref{prop:8.5}, we have an injection $ \delta : E\br{\Q} / 2E\br{\Q} \hookrightarrow \Q\br{S, 2}^3 $, which is finite.
 \end{proof}
 
 A question is how big can $ Im\br{\delta} $ be in terms of $ S $? Let $ s = \#S $. Then $ \#\Q\br{S, 2} = 2^{s + 1} $. If $ S = 2 $, then $ \Q\br{S, 2} = \cbr{\pm 1, \pm 2} $. So $ \#E\br{\Q} / 2E\br{\Q} \le \br{\#\Q\br{S, 2}}^2 = 8^{s + 1} $. Since $ Im\br{\delta} \subset \cbr{\br{a, b, c} \mid abc = 1} $, actually $ \br{\#\Q\br{S, 2}}^2 = 4^{s + 1} $. In fact either two of $ x - e_i $ are less than zero and one is greater than zero or all three are greater than zero, so $ \#E\br{\Q} / 2E\br{\Q} \le 2^{2s + 1} $. Assume that $ E\br{\Q} $ is a finitely generated abelian group, so $ E\br{\Q} \cong \Z^r \times T $, where the torsion subgroup $ T $ is finite. Then
 $$ \dfrac{E\br{\Q}}{2E\br{\Q}} \cong \dfrac{\Z^r}{2\Z^r} \times \dfrac{T}{2T} \cong \br{\dfrac{\Z}{2\Z}}^r \times \br{\dfrac{T}{2T}}. $$
-So $ \#\br{E\br{\Q} / 2E\br{\Q}} = 2^r \times \#\br{T / 2T} $. A fact is if $ T $ is any finite abelian group, then $ \#\br{T / 2T} = \#T\sbr{2} = \cbr{x \in T \mid 2x = 0} $. In our situation, $ T $ is the torsion subgroup of $ E\br{\Q} $. So
-$$ T\sbr{2} = E\br{\Q}\sbr{2} = \cbr{P \in E\br{\Q} \mid 2P = O}. $$
-Since we assumed that $ E $ is $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $, for $ e_i \in \Z $, $ E\sbr{2} = \cbr{O, \br{e_1, 0}, \br{e_2, 0}, \br{e_3, 0}} $. So $ \#\br{T / 2T} = 4 $, and $ \#Im\br{\delta} = \#E\br{\Q} / 2E\br{\Q} = 2^{r + 2} $.
+So $ \#\br{E\br{\Q} / 2E\br{\Q}} = 2^r \times \#\br{T / 2T} $. A fact is if $ T $ is any finite abelian group, then $ \#\br{T / 2T} = \#T\sbr{2} = \cbr{x \in T \mid 2x = 0} $. In our situation, $ T $ is the torsion subgroup of $ E\br{\Q} $. So $ T\sbr{2} = E\br{\Q}\sbr{2} $. Since we assumed that $ E $ is $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $, for $ e_i \in \Z $, $ E\sbr{2} = \cbr{O, \br{e_1, 0}, \br{e_2, 0}, \br{e_3, 0}} $. So $ \#\br{T / 2T} = 4 $, and $ \#Im\br{\delta} = \#E\br{\Q} / 2E\br{\Q} = 2^{r + 2} $.
 
 \begin{example*}
 Let $ Y^2 = X^3 - X $. We saw that $ Im\br{\delta} $ had at least four elements, but strictly less than eight elements. So $ Im\br{\delta} $ has exactly four elements, so $ r = 0 $, that is $ E\br{\Q} $ is finite.
 \end{example*}
 
-\pagebreak
-
 Consider the group homomorphism $ T \mapsto T $ by $ x \mapsto 2x $. The image is $ 2T $. The kernel is $ T\sbr{2} $. So by the first isomorphism theorem,
 $$ \dfrac{T}{T\sbr{2}} \cong 2T \qquad \implies \qquad \dfrac{\#T}{\#T\sbr{2}} = \#\br{\dfrac{T}{T\sbr{2}}} = \#2T \qquad \implies \qquad \#\br{\dfrac{T}{2T}} = \dfrac{\#T}{\#2T} = \#T\sbr{2}. $$
-That is, the following sequence is exact.
-$$
-\begin{tikzcd}
-0 \arrow{r} & T\sbr{2} \arrow{r} & T \arrow{r}{\times 2} & T \arrow{r} & \dfrac{T}{2T} \arrow{r} & 0
-\end{tikzcd}.
-$$
+
+\pagebreak
+
+\section{Proving the Mordell-Weil theorem}
 
 \lecture{28}{Thursday}{06/12/18}
 
@@ -1328,15 +1320,19 @@ Now $ A = E\br{\Q} $. Start with axiom $ 3 $. For all $ K \in \R $ there exist f
 For any $ Q \in E\br{\Q} $ there exists $ C = C\br{\Q} $ depending only on $ E, Q $ such that for all $ P \in E\br{\Q} $, $ h\br{P + Q} \le 2h\br{P} + C $.
 \end{lemma}
 
-\pagebreak
-
 \begin{proof}
-It suffices to prove this for all but finitely many $ P $, so in particular without loss of generality $ P = \pm Q $, $ P \ne O $. The problem is trivial if $ Q = O $, just take $ C = O $, so assume $ Q \ne O $. Write $ P = \br{x_P, y_P} $, $ Q = \br{x_Q, y_Q} $. We can write $ \br{x_P, y_P} = \br{a / d^2, b / d^3} $, for some $ a, b, d \in \Z $, $ \br{a, d} = \br{b, d} = 1 $. This is because for all primes $ p $, either $ \abs{x}_p, \abs{y}_p \le 1 $ or $ \abs{x}_p = p^{2n} $, $ \abs{y}_p = p^{3n} $ for some $ p $. Similarly $ \br{x_Q, y_Q} = \br{e / g^2, f / g^3} $, $ \br{e, g} = \br{f, g} = 1 $. In particular, $ H\br{P} = \max\br{\abs{a}, \abs{d}^2} $. The $ x $-coordinate of $ P + Q $ is, by the addition formula, $ N / D $ where $ N = \br{Bd^4 + Aad^2}g^4 + \br{Aed^4 + ea^2}g^2 - 2bfdg + e^2ad^2 $ and $ D = a^2g^4 - 2ead^2g^2 + e^2d^4 $. So $ H\br{P + Q} \le \max\br{\abs{N}, \abs{D}} $. $ Q $ is fixed, so $ e, f, g $ are fixed, as are $ \abs{A}, \abs{B} $. $ H\br{P}^2 = \max\br{a^2, d^4} $. So just need to show that every term in $ N, D $ is bounded by a constant times $ \max\br{a^2, d^4} $. Only difficulty is $ 2bfdg $ term in $ N $. But $ b^2 = a^3 + Aad^4 + Bd^6 $, so $ \br{bd}^2 = a^3d^2 + Aad^6 + Bd^8 $, which is at most a constant times $ \max\br{a, d^2}^4 $.
+It suffices to prove this for all but finitely many $ P $, so in particular without loss of generality $ P = \pm Q $, $ P \ne O $. The problem is trivial if $ Q = O $, just take $ C = O $, so assume $ Q \ne O $. Write $ P = \br{x_P, y_P} $, $ Q = \br{x_Q, y_Q} $. We can write $ \br{x_P, y_P} = \br{a / d^2, b / d^3} $, for some $ a, b, d \in \Z $, $ \br{a, d} = \br{b, d} = 1 $. This is because for all primes $ p $, either $ \abs{x}_p, \abs{y}_p \le 1 $ or $ \abs{x}_p = p^{2n} $, $ \abs{y}_p = p^{3n} $ for some $ p $. Similarly $ \br{x_Q, y_Q} = \br{e / g^2, f / g^3} $, $ \br{e, g} = \br{f, g} = 1 $. In particular, $ H\br{P} = \max\br{\abs{a}, \abs{d}^2} $. The $ x $-coordinate of $ P + Q $ is, by the addition formula, $ N / D $ where
+$$ N = \br{Bd^4 + Aad^2}g^4 + \br{Aed^4 + ea^2}g^2 - 2bfdg + e^2ad^2, \qquad D = a^2g^4 - 2ead^2g^2 + e^2d^4. $$
+So $ H\br{P + Q} \le \max\br{\abs{N}, \abs{D}} $. $ Q $ is fixed, so $ e, f, g $ are fixed, as are $ \abs{A}, \abs{B} $. $ H\br{P}^2 = \max\br{a^2, d^4} $. So just need to show that every term in $ N, D $ is bounded by a constant times $ \max\br{a^2, d^4} $. Only difficulty is $ 2bfdg $ term in $ N $. But $ b^2 = a^3 + Aad^4 + Bd^6 $, so $ \br{bd}^2 = a^3d^2 + Aad^6 + Bd^8 $, which is at most a constant times $ \max\br{a, d^2}^4 $.
 \end{proof}
+
+\pagebreak
 
 \lecture{29}{Friday}{07/12/18}
 
-Let $ y^2 = \br{x - 5}\br{x - 6}\br{x + 11} $ be $ E $. $ S $ is the primes dividing $ \br{5 - 6}\br{6 - \br{-11}}\br{5 - \br{-11}} $, that is $ S = \cbr{2, 17} $. What is the torsion subgroup of $ E\br{\Q} $? Reduce mod three, $ y^2 = x\br{x + 1}\br{x - 1} = x^3 - x $. Points mod three are $ O $, $ \br{0, 0} $, $ \br{1, 0} $, $ \br{-1, 0} $. So the group of torsion points of $ E\br{\Q} $ injects into $ \br{\Z / 2\Z}^2 \cong E\br{\F_3} $. We have $ O $, $ \br{5, 0} $, $ \br{6, 0} $, $ \br{-11, 0} $ as torsion points over $ \Q $. So the torsion subgroup is exactly these four points, so it is isomorphic to $ \br{\Z / 2\Z}^2 $. To compute the rank, we use the homomorphism $ \delta : E\br{\Q} / 2E\br{\Q} \hookrightarrow \br{\Q^* / \br{\Q^*}^2}^3 $. We know that $ Im\br{\delta} = \cbr{\br{\delta_1, \delta_2, \delta_3} \mid \delta_1\delta_2\delta_3 = 1} $. The image is contained in the subgroup whose entries are $ \cbr{\pm 1, \pm 2, \pm 17, \pm 34} $. $ \delta : \br{x, y} \mapsto \br{x - 5, x - 6, x + 11} $. Since $ \delta_3 = \br{\delta_1\delta_2}^{-1} = \delta_1\delta_2 $, we will ignore the third coordinate, and write
+Let $ y^2 = \br{x - 5}\br{x - 6}\br{x + 11} $ be $ E $. $ S $ is the primes dividing $ \br{5 - 6}\br{6 - \br{-11}}\br{5 - \br{-11}} $, that is $ S = \cbr{2, 17} $. What is the torsion subgroup of $ E\br{\Q} $? Reduce modulo three, $ y^2 = x\br{x + 1}\br{x - 1} = x^3 - x $. Points modulo three are $ O $, $ \br{0, 0} $, $ \br{1, 0} $, $ \br{-1, 0} $. So the group of torsion points of $ E\br{\Q} $ injects into $ \br{\Z / 2\Z}^2 \cong E\br{\F_3} $. We have $ O $, $ \br{5, 0} $, $ \br{6, 0} $, $ \br{-11, 0} $ as torsion points over $ \Q $. So the torsion subgroup is exactly these four points, so it is isomorphic to $ \br{\Z / 2\Z}^2 $. To compute the rank, we use the homomorphism
+$$ \delta : \dfrac{E\br{\Q}}{2E\br{\Q}} \hookrightarrow \br{\dfrac{\Q^*}{\br{\Q^*}^2}}^3. $$
+We know that $ Im\br{\delta} = \cbr{\br{\delta_1, \delta_2, \delta_3} \mid \delta_1\delta_2\delta_3 = 1} $. The image is contained in the subgroup whose entries are $ \cbr{\pm 1, \pm 2, \pm 17, \pm 34} $. $ \delta : \br{x, y} \mapsto \br{x - 5, x - 6, x + 11} $. Since $ \delta_3 = \br{\delta_1\delta_2}^{-1} = \delta_1\delta_2 $, we will ignore the third coordinate, and write
 \begin{align*}
 \delta : \br{x, y} & \mapsto \br{x - 5, x - 6} \\
 O & \mapsto \br{1, 1} \\

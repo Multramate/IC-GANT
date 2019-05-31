@@ -65,23 +65,23 @@ Algebra is linear algebra, which are matrices and vector spaces, groups, rings, 
 
 \subsection{Codes}
 
-If the language is the alphabets $ a, b, \dots $, the words are certain strings of alphabets. A code is a language for machines. The language is $ 0, 1 \in \Z_2 $ and the words are certain strings in $ 0, 1 $.
+If the language is the alphabets $ a, b, \dots $, the words are certain strings of alphabets. A code is a language for machines. The language is $ 0, 1 \in \Z_2 $ and the words are certain strings in $ 0 $ and $ 1 $.
 
 \begin{example*}
-ASCII code of keyboard symbols is $ A \mapsto 1000001 $ to $ 9 \mapsto 0111001 $. $ \sim80 $ symbols, so need length seven as $ 2^7 > 80 $.
+The ASCII code of keyboard symbols is $ A \mapsto 1000001 $ to $ 9 \mapsto 0111001 $. $ \sim80 $ symbols, so need length seven as $ 2^7 > 80 $.
 \end{example*}
 
-Communication process is as follows.
+The following is the communication process.
 $$ \text{message} \xrightarrow{\text{encode}} \text{codewords} \xrightarrow{\text{transmit}} \text{received message} \xrightarrow{\text{decode}} \text{decoded message}. $$
-Errors in communication occur. What do we do? Language has lots of redundancies. Errors are easily corrected because no other words are close to received ones. Same idea for codes.
+Errors in communication occur. What do we do? Language has lots of redundancies. Errors are easily corrected because no other words are close to received ones. The same idea for codes.
 
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Two messages yes and no or $ 1 $ and $ 0 $. Codewords are $ 1 \mapsto 111 $ and $ 0 \mapsto 000 $. To decode, if received string is not a codeword, such as $ 101 $, then we take majority, so $ 111 $. This code corrects one error.
-\item Eight messages $ abc $ for $ a, b, c \in \Z_2 $. For each $ abc $, define codeword $ abcxyz $, where $ x = a + b, y = a + c, z = b + c $. So code is
+\item Two messages yes and no or $ 1 $ and $ 0 $. The codewords are $ 1 \mapsto 111 $ and $ 0 \mapsto 000 $. To decode, if the received string is not a codeword, such as $ 101 $, then we take majority $ 111 $. This code corrects one error.
+\item Eight messages $ abc $ for $ a, b, c \in \Z_2 $. For each $ abc $, define codeword $ abcxyz $, where $ x = a + b, y = a + c, z = b + c $. So the code is
 $$ C = \cbr{000000, 100110, 010101, 110011, 001011, 101101, 011110, 111000} \subseteq \Z_2^6. $$
-Suppose received string is $ 010110 $. Then $ abx = 011, acy = 001, bcz = 100 $. The error has to be with $ c $. Correct codeword is $ 011110 $. Claim that this code corrects one error, since
+Suppose the received string is $ 010110 $. Then $ abx = 011, acy = 001, bcz = 100 $. The error has to be with $ c $. The correct codeword is $ 011110 $. Claim that this code corrects one error, since
 $$
 \begin{array}{c|cccccc}
 & a & b & c & x & y & z \\
@@ -120,7 +120,7 @@ $$
 $$
 \end{example*}
 
-We will study certain types of graphs. If $ \cbr{i, j} \in E $, say $ i $ is adjacent to $ j $, or $ i $ is joined to $ j $, or $ i, j $ are neighbours. A graph is regular if every vertex has the same number $ k $ of neighbours. The valency, or degree, is $ k $.
+We will study certain types of graphs. If $ \cbr{i, j} \in E $, say $ i $ is adjacent to $ j $, or $ i $ is joined to $ j $, or $ i $ and $ j $ are neighbours. A graph is regular if every vertex has the same number $ k $ of neighbours. The valency, or degree, is $ k $.
 
 \begin{example*}
 $$
@@ -171,7 +171,7 @@ $$
 
 A graph is strongly regular if
 \begin{itemize}
-\item regular of valency $ k $,
+\item it is regular of valency $ k $,
 \item any two adjacent vertices have the same number $ \lambda $ of common neighbours, and
 \item any two non-adjacent vertices have the same number $ \mu $ of common neighbours.
 \end{itemize}
@@ -308,7 +308,7 @@ is a design.
 Let $ X $ be a set such that $ \abs{X} = v $ and $ \BB $ be a collection of subsets of $ X $. Say $ \BB $ is a design with parameters $ v, k, r $ if each set in $ \BB $ has $ k $ elements, and each element of $ X $ lies in exactly $ r $ elements of $ \BB $. The elements of $ \BB $ are called blocks.
 
 \begin{example*}
-Above
+The above
 $$ X = \cbr{1, 2, 3, 4, 5, 6, 7}, \qquad \BB = \cbr{\cbr{1, 2, 3}, \cbr{1, 4, 5}, \cbr{3, 5, 6}, \cbr{1, 6, 7}, \cbr{2, 5, 7}, \cbr{3, 4, 7}, \cbr{2, 4, 6}} $$
 is a design with parameters $ 7, 3, 3 $.
 \end{example*}
@@ -316,7 +316,7 @@ is a design with parameters $ 7, 3, 3 $.
 Designs are too common to be interesting. More interesting is each pair of varieties lies in the same number $ \lambda $ of blocks. A design $ \BB $ is a $ 2 $-design if every pair of points lies in the same number $ \lambda $ of blocks.
 
 \begin{example*}
-Above design is a $ 2 $-design with $ \lambda = 1 $.
+The above design is a $ 2 $-design with $ \lambda = 1 $.
 \end{example*}
 
 More generally, $ \BB $ is a $ t $-design if every set of $ t $ elements is in the same number $ \lambda $ of blocks. $ 2 $-designs are common. $ t \ge 3 $, less so. The first non-trivial $ 6 $-design, so not all $ k $-sets are blocks, was only found in 1982.
@@ -344,7 +344,7 @@ $$
 \end{tikzpicture}
 $$
 is the projective plane of order two. Projective planes exist for all powers of $ p $, for $ p $ prime.
-\item Let $ p $ be prime. $ \Z_p = \cbr{0, \dots, p - 1} $ is a field, since $ \br{\Z_p, +} $ is a group, $ \br{\Z_p^\times, \times} $ is a group, and $ a\br{b + c} = ab + ac $. Define
+\item Let $ p $ be prime. Then $ \Z_p = \cbr{0, \dots, p - 1} $ is a field, since $ \br{\Z_p, +} $ is a group, $ \br{\Z_p^\times, \times} $ is a group, and $ a\br{b + c} = ab + ac $. Define
 $$ \Z_p^2 = \cbr{\br{x_1, x_2} \mid x_i \in \Z_p}, $$
 a plane with $ p^2 $ points. Define a line in $ \Z_p^2 $ to be the solutions of an equation $ ax + by + c = 0 $, for $ a, b, c \in \Z_p $. Any two points are on a unique line. Let $ X = \Z_p^2 $ and $ \BB $ be lines. This is a $ 2 $-design with parameters
 $$ v = p^2, \qquad k = p, \qquad r = p + 1, \qquad \lambda = 1. $$
@@ -368,7 +368,7 @@ We will study
 
 \subsection{Error-correcting codes}
 
-$ \Z_2 = \cbr{0, 1} $ is a field.
+$ \Z_2 = \cbr{0, 1} $ is a field, and
 $$ \Z_2^n = \cbr{\br{x_1, \dots, x_n} \mid x_i \in \Z_2} $$
 is a vector space over $ \Z_2 $ with
 \begin{align*}
@@ -381,7 +381,7 @@ In $ \Z_2^4 $, $ 0010 + 1010 = 1000 $.
 \end{example*}
 
 \begin{definition*}
-A \textbf{code} $ C $ of \textbf{length} $ n $ is a subset of $ \Z_2^n $. Elements of $ C $ are called \textbf{codewords}. The \textbf{distance} between $ x, y \in \Z_2^n $ is $ d\br{x, y} $, the number of places where $ x $ and $ y $ differ.
+A \textbf{code} $ C $ of \textbf{length} $ n $ is a subset of $ \Z_2^n $. The elements of $ C $ are called \textbf{codewords}. The \textbf{distance} between $ x, y \in \Z_2^n $ is $ d\br{x, y} $, the number of places where $ x $ and $ y $ differ.
 \end{definition*}
 
 \begin{example*}
@@ -534,7 +534,7 @@ so $ col\br{i} = col\br{j} $, a contradiction.
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Triple check code is
+\item The triple check code is
 $$ C_3 = \cbr{x \in \Z_2^6 \ \Bigg| \ \threebythree{1 & 1}{0 & 1}{0 & 0}{1 & 0}{1 & 0}{1 & 0}{0 & 1}{1 & 0}{0 & 1}x^T = 0}. $$
 Thus $ C_3 $ corrects one error.
 \item Suppose we want a linear code with a $ 3 \times n $ check matrix $ A $ correcting one error. What is $ \max\br{\dim\br{C}} $? By \ref{prop:1.6}, take $ A $ to have all distinct columns in $ \Z_2^3 $,
@@ -563,7 +563,7 @@ Let $ k \ge 2 $. A \textbf{Hamming code} $ Ham\br{k} $ is a linear code whose ch
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ Ham\br{3} $ is example before.
+\item $ Ham\br{3} $ is the example before.
 \item $ Ham\br{4} $ has check matrix
 $$
 \begin{pmatrix}
@@ -609,9 +609,9 @@ $$ Ac'^T = Ac^T + Ae_i^T = 0 + col\br{i}. $$
 So we correct $ i $-th bit of $ c' $, where $ Ac'^T = col\br{i} $.
 
 \begin{example*}
-Triple check code has check matrix
+The triple check code has check matrix
 $$ A = \threebythree{1 & 1}{0 & 1}{0 & 0}{1 & 0}{1 & 0}{1 & 0}{0 & 1}{1 & 0}{0 & 1}. $$
-Receive $ c' = 100010 $. Then $ Ac'^T = 100^T $, so fourth coordinate is wrong. Thus correct codeword is $ c = 100110 $.
+Receive $ c' = 100010 $. Then $ Ac'^T = 100^T $, so the fourth coordinate is wrong. Thus the correct codeword is $ c = 100110 $.
 \end{example*}
 
 \pagebreak
@@ -723,7 +723,7 @@ $$ \abs{C} \le \dfrac{2^9}{\twobyone{9}{0} + \twobyone{9}{1} + \twobyone{9}{2}} 
 $ \abs{C} = 2^{\dim\br{C}} $, since $ C $ is linear. So $ \dim\br{C} \le 3 $.
 \end{example*}
 
-Previous example is that there exists $ C $ of dimension two. Does there exist $ C $ of dimension three? Need $ 6 \times 9 $ check matrix, of rank six. Then
+The previous example is that there exists $ C $ of dimension two. Does there exist $ C $ of dimension three? Need $ 6 \times 9 $ check matrix, of rank six. Then
 $$ A =
 \begin{pmatrix}
 & & & 1 & & 0 \\
@@ -792,7 +792,7 @@ $$ \twobyone{23}{0} + \twobyone{23}{1} + \twobyone{23}{2} + \twobyone{23}{3} = 2
 \subsubsection{Gilbert-Varshamov bound}
 
 \begin{example*}
-Let $ C $ be a linear code of length $ 15 $ correcting two errors. What is the largest possible $ \dim\br{C} $? By Hamming bound,
+Let $ C $ be a linear code of length $ 15 $ correcting two errors. What is the largest possible $ \dim\br{C} $? By the Hamming bound,
 $$ \abs{C} \le \dfrac{2^{15}}{\twobyone{15}{0} + \twobyone{15}{1} + \twobyone{15}{2}} = \dfrac{2^{15}}{121} < 2^9. $$
 So $ \dim\br{C} \le 8 $. This is a negative result. There are no such codes of dimension at least nine. What about positive results?
 \end{example*}
@@ -813,7 +813,7 @@ $$ \twobyone{14}{0} + \twobyone{14}{1} + \twobyone{14}{2} + \twobyone{14}{3} = 1
 So by \ref{thm:1.12}, there exists such a $ C $ with $ \dim\br{C} = 6 $. Does there exist $ C $ of dimension seven or eight? \ref{thm:1.12} says nothing.
 \end{example*}
 
-Warning is do not use G-V bound to prove non-existence.
+A warning is do not use the G-V bound to prove non-existence.
 
 \begin{proof}
 Need to find check matrix $ A $ satisfying
@@ -823,7 +823,7 @@ Need to find check matrix $ A $ satisfying
 \end{enumerate}
 We construct $ A $ inductively, adding one column at a time, satisfying $ 2 $ at each step. Start with $ n - k $ columns $ e_1, \dots, e_{n - k} \in \Z_2^{n - k} $. Write $ c_i = e_i $. Now suppose we have $ i $ columns $ c_1, \dots, c_i $, where $ n - k \le i \le n - 1 $. Let
 $$ A_1 = \onebythree{c_1}{\dots}{c_i} $$
-be $ n - k \times i $, with any $ d - 1 $ columns linearly independent. The number of vectors in $ \Z_2^{n - k} $ in the span of at most $ d - 2 $ of $ c_1, \dots, c_i $ is at most
+be $ \br{n - k} \times i $, with any $ d - 1 $ columns linearly independent. The number of vectors in $ \Z_2^{n - k} $ in the span of at most $ d - 2 $ of $ c_1, \dots, c_i $ is at most
 $$ N_i = \twobyone{i}{0} + \dots + \twobyone{i}{d - 2}. $$
 Since $ i \le n - 1 $, $ N_i < 2^{n - k} $ by hypothesis $ \br{\ref{eq:1}} $. Hence there exists a vector $ c_{i + 1} \in \Z_2^{n - k} $ that is not in the span of at most $ d - 2 $ of $ c_1, \dots, c_i $. Let
 $$ A_{i + 1} = \onebythree{c_1}{\dots}{c_{i + 1}}. $$
@@ -838,7 +838,7 @@ Then any $ d - 1 $ columns of $ A_{i + 1} $ are linearly independent. This proce
 
 This is the famous $ 3 $-perfect code of length $ 23 $ and dimension $ 12 $. First we will construct the extended Golay code $ G_{24} \subseteq \Z_2^{24} $.
 
-\subsubsection{Construction of $ G_{24} $}
+\subsubsection{Construction of \texorpdfstring{$ G_{24} $}{G24}}
 
 Start with $ H = Ham\br{3} $, so check matrix is
 $$ A = \threebyone{1 & 1 & 1 & 0 & 1 & 0 & 0}{1 & 1 & 0 & 1 & 0 & 1 & 0}{1 & 0 & 1 & 1 & 0 & 0 & 1}. $$
@@ -1022,7 +1022,7 @@ The extended Golay code $ G_{24} $ has length $ 24 $, dimension $ 12 $, and mini
 
 \pagebreak
 
-\subsubsection{Construction of $ G_{23} $}
+\subsubsection{Construction of \texorpdfstring{$ G_{23} $}{G23}}
 
 \begin{definition*}
 The \textbf{Golay code} $ G_{23} \subseteq \Z_2^{23} $ is the codewords of $ G_{24} $ with the last bit removed.
@@ -1068,7 +1068,7 @@ If $ M_i $ is the number of codewords of weight $ i $, then $ M_i = M_{23 - i} $
 
 How do we calculate $ N_i $ and $ M_i $? The best way is via the following.
 
-\subsubsection{The $ 5 $-design associated with $ G_{24} $}
+\subsubsection{The \texorpdfstring{$ 5 $}{5}-design associated with \texorpdfstring{$ G_{24} $}{G24}}
 
 Recall that a $ t $-design with parameters $ \br{v, k, r_t} $, or a $ t $-$ \br{v, k, r_t} $ design, is a pair $ \br{X, \BB} $ where $ X $ is a set of $ v $ points and $ \BB $ is a collection of subsets of $ X $ of size $ k $ called blocks such that every set of $ t $ points lies in exactly $ r_t $ blocks. To avoid degeneracy cases, assume $ X, \BB \ne \emptyset $ and $ v \ge k \ge t $, so $ r_t > 0 $. Use the codewords of weight eight in $ G_{24} $ to define a $ t $-design, for $ t = 5 $. Let
 $$ X = \cbr{1, \dots, 24}. $$
@@ -1166,7 +1166,7 @@ a $ 12 \times 24 $ matrix, since for all $ c \in G_{24} $, by \ref{prop:1.26}, $
 
 \subsubsection{Error correction}
 
-Suppose a codeword $ c $ is sent and $ t $ errors are made, where $ 1 \le t \le 3 $. So received vector is
+Suppose a codeword $ c $ is sent and $ t $ errors are made, where $ 1 \le t \le 3 $. So the received vector is
 $$ x = c + e_{i_1} + \dots + e_{i_t} \in \Z_2^{24}. $$
 To see if $ x_1 $ is correct, there are $ 253 $ codewords in $ G_{24} $ of weight eight with one in the first coordinate. Call them $ c_1, \dots, c_{253} $. Let the corresponding octads be $ B_1, \dots, B_{253} $. That is, those containing one. Consider the dot products $ x \cdot c_i $, for $ 1 \le i \le 253 $. If $ x $ were in $ G_{24} $, then $ x \cdot c_i = 0 $ for all $ i $. But $ x \notin G_{24} $. We count how many of these are one.
 
@@ -1236,7 +1236,7 @@ Recall that a \textbf{commutative ring} $ R $ has $ +, \times $ such that
 \end{itemize}
 
 \begin{example*}
-\textbf{Polynomial ring} $ \Z_2\sbr{x} $ is the ring of polynomials
+The \textbf{polynomial ring} $ \Z_2\sbr{x} $ is the ring of polynomials
 $$ f\br{x} = a_0 + \dots + a_nx^n, \qquad a_i \in \Z_2. $$
 \end{example*}
 
@@ -1298,7 +1298,7 @@ A linear code $ C \subseteq \Z_2^n $ is \textbf{cyclic} if $ \br{x_1, \dots, x_n
 \item $ C = \cbr{000, 110, 101, 011} $ is cyclic.
 \item $ Ham\br{3} $ is cyclic with check matrix
 $$ \threebyone{1 & 0 & 1 & 1 & 1 & 0 & 0}{1 & 1 & 1 & 0 & 0 & 1 & 0}{0 & 1 & 1 & 1 & 0 & 0 & 1}, $$
-since shifted matrix
+since the shifted matrix
 $$ \threebyone{0 & 1 & 0 & 1 & 1 & 1 & 0}{0 & 1 & 1 & 1 & 0 & 0 & 1}{1 & 0 & 1 & 1 & 1 & 0 & 0} $$
 gives the same code.
 \item $ G_{23} $ is equivalent to a cyclic code. Have to permute the corodinates.
@@ -1399,7 +1399,7 @@ implies that $ \lambda_i = 0 $.
 
 \pagebreak
 
-\item Span. Span of the given set is
+\item Span. The span of the given set is
 $$ \cbr{g\br{\overline{x}}p\br{\overline{x}} \ \Bigg| \ g\br{\overline{x}} \in \dfrac{\Z_2\sbr{x}}{\abr{x^n - 1}} \ \text{of degree less than} \ k}. $$
 Need to show this is equal to
 $$ \cbr{f\br{\overline{x}}p\br{\overline{x}} \ \Bigg| \ f\br{\overline{x}} \in \dfrac{\Z_2\sbr{x}}{\abr{x^n - 1}}}. $$
@@ -1452,7 +1452,7 @@ $$ \br{\text{rows of} \ H} \cdot \br{\text{rows of} \ G} = \text{coefficient of}
 \begin{example*}
 Let $ n = 7 $ and
 $$ p\br{x} = x^3 + x + 1, \qquad q\br{x} = \br{x + 1}\br{x^3 + x^2 + 1}. $$
-Check matrix is
+The check matrix is
 $$ H =
 \begin{pmatrix}
 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
@@ -1484,13 +1484,13 @@ where $ p_k\br{x} $ is irreducible of degree $ k $.
 
 \begin{example*}
 $$ \F_4 = \dfrac{\Z_2\sbr{x}}{\abr{x^2 + x + 1}}. $$
-Write $ \alpha = x + \abr{x^2 + x + 1} $. Elements of $ \F_4 $ are
+Write $ \alpha = x + \abr{x^2 + x + 1} $. The elements of $ \F_4 $ are
 $$ \cbr{0, 1, \alpha, \alpha + 1}. $$
 \end{example*}
 
 \begin{example*}
 $$ \F_8 = \dfrac{\Z_2\sbr{x}}{\abr{x^3 + x + 1}}. $$
-Write $ \alpha = x + \abr{x^3 + x + 1} $. Elements of $ \F_8 $ are
+Write $ \alpha = x + \abr{x^3 + x + 1} $. The elements of $ \F_8 $ are
 $$ \cbr{0, 1, \alpha, \alpha + 1, \alpha^2, \alpha^2 + 1, \alpha^2 + \alpha, \alpha^2 + \alpha + 1}. $$
 \end{example*}
 
@@ -1537,7 +1537,7 @@ In general, if $ \gamma \in \F_{2^k}^* $, then $ \gamma $ and $ \gamma $ have th
 
 \pagebreak
 
-\subsubsection{Definition of BCH code}
+\subsubsection{Definition of BCH codes}
 
 Let $ k, d \in \Z_{\ge 2} $. Let $ \beta $ be a primitive element of $ \F_{2^k} $. For each $ i \ge 1 $, let $ m_i\br{x} $ be the minimal polynomial of $ \beta^i $. Let $ p\br{x} $ be the least common multiple of $ m_1\br{x}, \dots, m_{d - 1}\br{x} $. The cyclic code of length $ 2^k - 1 $ with generator polynomial $ p\br{x} $ is called the \textbf{BCH code} of length $ 2^k - 1 $ and \textbf{designed distance} $ d $.
 
@@ -1571,7 +1571,7 @@ So the BCH code has length $ 15 $, dimension seven, and minimum distance at leas
 \end{example*}
 
 \begin{note*}
-For code $ C $ of length $ 15 $ correcting two errors, Hamming bound implies that $ \dim\br{C} \le 8 $, and G-V bound implies that there exists a code of dimension six.
+For code $ C $ of length $ 15 $ correcting two errors, the Hamming bound implies that $ \dim\br{C} \le 8 $, and the G-V bound implies that there exists a code of dimension six.
 \end{note*}
 
 \begin{proof}[Proof of \ref{thm:1.32}]
@@ -2443,7 +2443,7 @@ $$ A^2 = kI + \lambda A + \mu\br{J - A - I} = \br{\lambda - \mu}A + \br{k - \mu}
 \end{enumerate}
 \end{proof}
 
-Key to the study of strongly regular graphs are the eigenvalues of the adjacency matrix $ A $. For any graph with adjacency matrix $ A $, since $ A $ is a real symmetric matrix, it has real eigenvalues and is diagonalisable, that is there exists an invertible matrix $ P $ such that
+The key to the study of strongly regular graphs are the eigenvalues of the adjacency matrix $ A $. For any graph with adjacency matrix $ A $, since $ A $ is a real symmetric matrix, it has real eigenvalues and is diagonalisable, that is there exists an invertible matrix $ P $ such that
 $$ P^{-1}AP = \threebythree{\lambda_1}{}{0}{}{\ddots}{}{0}{}{\lambda_v}. $$
 We call the $ \lambda_i $ the \textbf{eigenvalues} of $ \Gamma $. The \textbf{multiplicity} of $ \lambda_i $ is the number of times, with repeats, that it appears, which is equal to the algebraic multiplicity and the geometric multiplicity.
 
@@ -2744,7 +2744,7 @@ since $ \mu \le k $, so $ \lambda = \mu = k $. But $ \lambda \le k - 1 $, a cont
 
 \pagebreak
 
-\subsubsection{Strongly regular graphs with small $ v $}
+\subsubsection{Strongly regular graphs with small \texorpdfstring{$ v $}{v}}
 
 A question is what are the possible parameters of $ srg\br{15, k, \lambda, \mu} $?
 
@@ -2793,7 +2793,7 @@ A linear code $ C \subseteq \Z_2^n $ is a \textbf{two weight code} if there exis
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Extended Hamming code $ H' $ is a two weight code with non-zero weights four and eight.
+\item The extended Hamming code $ H' $ is a two weight code with non-zero weights four and eight.
 \item $ C = \cbr{x \in \Z_2^5 \mid wt\br{x} \ \text{even}} $ is a two weight code with non-zero weights two and four.
 \end{itemize}
 \end{example*}
@@ -2832,7 +2832,7 @@ $$ G =
 1 & 0 & 1 & 1 & 0 & 0 & 1
 \end{pmatrix}.
 $$
-Non-zero weight is four.
+The non-zero weight is four.
 \begin{itemize}
 \item Let $ i = 1 $. Removing $ \br{0, 0, 1}^T $,
 $$ \overline{G} =
@@ -2842,7 +2842,7 @@ $$ \overline{G} =
 1 & 0 & 1 & 1 & 0 & 0
 \end{pmatrix}.
 $$
-Non-zero weights are four and three.
+The non-zero weights are four and three.
 \item Let $ i = 2 $. Removing $ \br{0, 0, 1}^T, \br{0, 1, 0}^T, \br{0, 1, 1}^T $,
 $$ \overline{G} =
 \begin{pmatrix}
@@ -2851,7 +2851,7 @@ $$ \overline{G} =
 1 & 0 & 1 & 0
 \end{pmatrix}.
 $$
-Non-zero weights are four and two.
+The non-zero weights are four and two.
 \end{itemize}
 \end{example*}
 
@@ -3015,7 +3015,7 @@ Claim that $ \sigma = 1 $, since $ \sigma\br{1} \in \cbr{1, 2} $ and $ \sigma\br
 
 \section{Designs}
 
-\subsection{$ t $-designs}
+\subsection{\texorpdfstring{$ t $}{t}-designs}
 
 \begin{definition*}
 A \textbf{$ t $-$ \br{v, k, r_t} $ design}, or \textbf{$ t $-design} with parameters $ \br{v, k, r_t} $, is a pair $ \br{X, \BB} $ where
@@ -3085,7 +3085,7 @@ So there is no contradiction. But no such design exists, see soon.
 
 \pagebreak
 
-\subsection{Some theory of $ 2 $-designs}
+\subsection{Some theory of \texorpdfstring{$ 2 $}{2}-designs}
 
 When $ \br{X, \BB} $ is a $ 2 $-$ \br{v, k, r_2} $ design, write $ \lambda $ for $ r_2 $.
 
@@ -3194,9 +3194,9 @@ so $ rank\br{AA^T} = v $. But $ A $ is $ v \times b $, so $ rank\br{A} \le b $. 
 $$ v = rank\br{AA^T} \le rank\br{A} \le b. $$
 \end{proof}
 
-\subsubsection{Symmetric $ 2 $-designs}
+\subsubsection{Symmetric \texorpdfstring{$ 2 $}{2}-designs}
 
-Extremal case of Fisher is $ b = v $, so $ k = r $.
+The extremal case of Fisher is $ b = v $, so $ k = r $.
 
 \begin{definition*}
 A $ 2 $-$ \br{v, k, \lambda} $ design is \textbf{symmetric} if $ b = v $.
@@ -3373,7 +3373,7 @@ $$ Aut\br{\DD} = \br{\phi \in Sym\br{X} \mid \phi\br{\BB} = \BB}. $$
 
 \pagebreak
 
-\subsection{Constructions of $ 2 $-designs}
+\subsection{Constructions of \texorpdfstring{$ 2 $}{2}-designs}
 
 \subsubsection{Difference sets}
 

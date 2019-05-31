@@ -10,6 +10,7 @@
 \usepackage{fancyhdr}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{mathtools}
@@ -19,17 +20,14 @@
 
 % Formatting
 
-\setlength{\parindent}{0cm}
 \addto\captionsUKenglish{\renewcommand{\abstractname}{Syllabus}}
 \delimitershortfall5pt
+\ifx\thm\undefined\newtheorem{n}{}\else\newtheorem{n}{}[\thm]\fi
+\let\g\gg
+\let\l\ll
+\setlength{\parindent}{0cm}
 
 % Environments
-
-\ifx \thm\undefined
-  \newtheorem{n}{}
-\else
-  \newtheorem{n}{}[\thm]
-\fi
 
 \theoremstyle{plain}
 \newtheorem{algorithm}[n]{Algorithm}
@@ -57,11 +55,30 @@
 
 % Commands
 
-\renewcommand{\eval}[1]{\left. #1 \right|}         % Evaluation
-\newcommand{\br}{\del}                             % Brackets
+\newcommand{\lecture}[3]{ % Lecture
+  \marginpar{
+    Lecture #1 \\
+    #2 \\
+    #3
+  }
+}
 
+\renewcommand{\eval}[1]{\left. #1 \right|}          % Evaluation
+\newcommand{\br}{\del}                              % Brackets
 \newcommand{\abr}[1]{\left\langle #1 \right\rangle} % Angle brackets
 \newcommand{\fbr}[1]{\left\lfloor #1 \right\rfloor} % Floor brackets
+\newcommand{\lbr}[1]{\left\lfloor #1 \right\rfloor} % Ceiling brackets
+
+\newcommand{\function}[5][]{ % Function
+  \ifx &#1&
+    \begin{array}{rcl}
+      #2 & \longrightarrow & #3 \\
+      #4 & \longmapsto     & #5
+    \end{array}
+  \else
+    \fullfunction{#1}{#2}{#3}{#4}{#5}
+  \fi
+}
 
 \newcommand{\F}{\mathbb{F}}   % Finite fields
 \newcommand{\N}{\mathbb{N}}   % Natural numbers
@@ -70,15 +87,92 @@
 \newcommand{\R}{\mathbb{R}}   % Real numbers
 \newcommand{\C}{\mathbb{C}}   % Complex numbers
 \renewcommand{\H}{\mathbb{H}} % Quaternion numbers
-\newcommand{\A}{\mathbb{A}}   % Affine space
-\renewcommand{\P}{\mathbb{P}} % Projective space
+\newcommand{\A}{\mathbb{A}}   % Affine spaces
+\renewcommand{\P}{\mathbb{P}} % Projective spaces
 
-\renewcommand{\aa}{\mathfrak{a}} % Ideal 1
-\newcommand{\bb}{\mathfrak{b}}   % Ideal 2
-\newcommand{\mm}{\mathfrak{m}}   % Maximal ideal 1
-\newcommand{\nn}{\mathfrak{n}}   % Maximal ideal 2
-\newcommand{\pp}{\mathfrak{p}}   % Prime ideal 1
-\newcommand{\qq}{\mathfrak{q}}   % Prime ideal 2
+\newcommand{\correspondence}[2]{ % Correspondence
+  \cbr{
+    \begin{array}{c}
+      #1
+    \end{array}
+  }
+  \qquad
+  \leftrightsquigarrow
+  \qquad
+  \cbr{
+    \begin{array}{c}
+      #2
+    \end{array}
+  }
+}
+
+\newcommand{\intd}[4]{\int_{#1}^{#2} \, #3 \, \dif #4}                     % Single integral
+\newcommand{\iintd}[4]{\iint_{#1} \, #2 \, \dif #3 \, \dif #4}             % Double integral
+\newcommand{\iiintd}[5]{\iint_{#1} \, #2 \, \dif #3 \, \dif #4 \, \dif #5} % Triple integral
+
+\newcommand{\onebytwo}[2]{     % One by two matrix
+  \begin{pmatrix}
+    #1 & #2
+  \end{pmatrix}
+}
+\newcommand{\onebythree}[3]{   % One by three matrix
+  \begin{pmatrix}
+    #1 & #2 & #3
+  \end{pmatrix}
+}
+\newcommand{\twobyone}[2]{     % Two by one matrix
+  \begin{pmatrix}
+    #1 \\
+    #2
+  \end{pmatrix}
+}
+\newcommand{\twobytwo}[4]{     % Two by two matrix
+  \begin{pmatrix}
+    #1 & #2 \\
+    #3 & #4
+  \end{pmatrix}
+}
+\newcommand{\threebyone}[3]{   % Three by one matrix
+  \begin{pmatrix}
+    #1 \\
+    #2 \\
+    #3
+  \end{pmatrix}
+}
+\newcommand{\threebythree}[9]{ % Three by three matrix
+  \begin{pmatrix}
+    #1 & #2 & #3 \\
+    #4 & #5 & #6 \\
+    #7 & #8 & #9
+  \end{pmatrix}
+}
+
+\renewcommand{\aa}{\mathfrak{a}} % Fraktur a
+\newcommand{\bb}{\mathfrak{b}}   % Fraktur b
+\newcommand{\cc}{\mathfrak{c}}   % Fraktur c
+\newcommand{\dd}{\mathfrak{d}}   % Fraktur d
+\newcommand{\ee}{\mathfrak{e}}   % Fraktur e
+\newcommand{\ff}{\mathfrak{f}}   % Fraktur f
+\renewcommand{\gg}{\mathfrak{g}} % Fraktur g
+\newcommand{\hh}{\mathfrak{h}}   % Fraktur h
+\newcommand{\ii}{\mathfrak{i}}   % Fraktur i
+\newcommand{\jj}{\mathfrak{j}}   % Fraktur j
+\newcommand{\kk}{\mathfrak{k}}   % Fraktur k
+\renewcommand{\ll}{\mathfrak{l}} % Fraktur l
+\newcommand{\mm}{\mathfrak{m}}   % Fraktur m
+\newcommand{\nn}{\mathfrak{n}}   % Fraktur n
+\newcommand{\oo}{\mathfrak{o}}   % Fraktur o
+\newcommand{\pp}{\mathfrak{p}}   % Fraktur p
+\newcommand{\qq}{\mathfrak{q}}   % Fraktur q
+\newcommand{\rr}{\mathfrak{r}}   % Fraktur r
+\renewcommand{\ss}{\mathfrak{s}} % Fraktur s
+\renewcommand{\tt}{\mathfrak{t}} % Fraktur t
+\newcommand{\uu}{\mathfrak{u}}   % Fraktur u
+\newcommand{\vv}{\mathfrak{v}}   % Fraktur v
+\newcommand{\ww}{\mathfrak{w}}   % Fraktur w
+\newcommand{\xx}{\mathfrak{x}}   % Fraktur x
+\newcommand{\yy}{\mathfrak{y}}   % Fraktur y
+\newcommand{\zz}{\mathfrak{z}}   % Fraktur z
 
 \renewcommand{\AA}{\mathcal{A}} % Calligraphic A
 \newcommand{\BB}{\mathcal{B}}   % Calligraphic B
@@ -125,93 +219,6 @@
 \newcommand{\jacobi}[2]{\br{\tfrac{#1}{#2}}}        % Jacobi symbol
 \newcommand{\Unit}[1]{\br{\dfrac{\Z}{#1\Z}}^\times} % Unit group vertical
 \newcommand{\unit}[1]{\br{\Z / #1\Z}^\times}        % Unit group horizontal
-
-% Macros
-
-\newcommand{\lecture}[3]{
-  \marginpar{
-    Lecture #1 \\
-    #2
-    #3
-  }
-}
-
-\newcommand{\function}[5][]{
-  \ifx &#1&
-    \begin{array}{rcl}
-      #2 & \longrightarrow & #3 \\
-      #4 & \longmapsto     & #5
-    \end{array}
-  \else
-    \fullfunction{#1}{#2}{#3}{#4}{#5}
-  \fi
-}
-
-\newcommand{\correspondence}[2]{
-  \cbr{
-    \begin{array}{c}
-      #1
-    \end{array}
-  }
-  \qquad
-  \leftrightsquigarrow
-  \qquad
-  \cbr{
-    \begin{array}{c}
-      #2
-    \end{array}
-  }
-}
-
-\newcommand{\intd}[4]{
-  \int_{#1}^{#2} \, #3 \, \dif #4
-}
-
-\newcommand{\iintd}[4]{
-  \iint_{#1} \, #2 \, \dif #3 \, \dif #4
-}
-
-\newcommand{\onebytwo}[2]{
-  \begin{pmatrix}
-    #1 & #2
-  \end{pmatrix}
-}
-
-\newcommand{\onebythree}[3]{
-  \begin{pmatrix}
-    #1 & #2 & #3
-  \end{pmatrix}
-}
-
-\newcommand{\twobyone}[2]{
-  \begin{pmatrix}
-    #1 \\
-    #2
-  \end{pmatrix}
-}
-
-\newcommand{\twobytwo}[4]{
-  \begin{pmatrix}
-    #1 & #2 \\
-    #3 & #4
-  \end{pmatrix}
-}
-
-\newcommand{\threebyone}[3]{
-  \begin{pmatrix}
-    #1 \\
-    #2 \\
-    #3
-  \end{pmatrix}
-}
-
-\newcommand{\threebythree}[9]{
-  \begin{pmatrix}
-    #1 & #2 & #3 \\
-    #4 & #5 & #6 \\
-    #7 & #8 & #9
-  \end{pmatrix}
-}
 
 % Tikz
 
