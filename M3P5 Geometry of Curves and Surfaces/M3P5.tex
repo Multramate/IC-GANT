@@ -221,54 +221,60 @@ A tentative outline of the material that we will cover is as follows. This may c
 
 \section{Curves in three-dimensional space}
 
-Ultimate goal is surfaces. First is curves. What does it mean for a curve to be curved? In fact, what is a curve?
+The ultimate goal is surfaces. First is curves. What does it mean for a curve to be curved? In fact, what is a curve?
 
 \subsection{What is a curve?}
 
 \begin{definition}
-The \textbf{$ n $-dimensional Euclidean space} $ \R^n $ consists of
-$$ \br{x_1, \dots, x_n} = \threebyone{x_1}{\vdots}{x_n}, \qquad x_i \in \R. $$
-$ \R^n $ is a vector space and an inner product space. If $ x = \br{x_1, \dots, x_n} $ and $ y = \br{y_1, \dots, y_n} $ then
+The \textbf{$ n $-dimensional Euclidean space} $ \RR^n $ consists of
+$$ \br{x_1, \dots, x_n} = \threebyone{x_1}{\vdots}{x_n}, \qquad x_i \in \RR. $$
+$ \RR^n $ is a vector space and an inner product space. If $ x = \br{x_1, \dots, x_n} $ and $ y = \br{y_1, \dots, y_n} $ then
 $$ x \cdot y = \sum_{i = 1}^n x_iy_i $$
-is the \textbf{inner product} of $ x $ and $ y $. The \textbf{length} of $ x \in \R^n $ is
+is the \textbf{inner product} of $ x $ and $ y $. The \textbf{length} of $ x \in \RR^n $ is
 $$ \abs{x} = \sqrt{x \cdot x} = \sqrt{\sum_{i = 1}^n x_i^2}. $$
 \end{definition}
 
-Focus on $ \R^2 $ and $ \R^3 $.
+Focus on $ \RR^2 $ and $ \RR^3 $.
 
 \begin{definition}
-A \textbf{parametrised curve} in $ \R^n $ is a smooth map $ \phi : \sbr{a, b} \to \R^n $. It is \textbf{regular} if $ \phi'\br{t} \ne 0 $ for all $ t \in \sbr{a, b} $.
+A \textbf{parametrised curve} in $ \RR^n $ is a smooth map
+$$ \phi : \sbr{a, b} \to \RR^n. $$
+It is \textbf{regular} if
+$$ \phi'\br{t} \ne 0, \qquad t \in \sbr{a, b}. $$
 \end{definition}
 
 The curve is $ \phi\br{\sbr{a, b}} $. The parametrised curve says where a particle moving along this curve is positioned at time $ t $. This is $ \phi\br{t} $.
 
 \begin{example*}
-$$ \function[\phi]{\sbr{0, 2\pi}}{\R^2}{t}{\br{\cos\br{t}, \sin\br{t}}}, \qquad \function[\phi]{\sbr{0, 1}}{\R^3}{t}{\br{\cos\br{4\pi t}, \sin\br{4\pi t}, t^4}} $$
+$$ \function[\phi]{\sbr{0, 2\pi}}{\RR^2}{t}{\br{\cos t, \sin t}}, \qquad \function[\phi]{\sbr{0, 1}}{\RR^3}{t}{\br{\cos 4\pi t, \sin 4\pi t, t^4}} $$
 are curves.
 \end{example*}
 
 \begin{example*}
-$$ \function[\phi]{\sbr{-1, 1}}{\R^2}{t}{\br{t, \abs{t}}} $$
+$$ \function[\phi]{\sbr{-1, 1}}{\RR^2}{t}{\br{t, \abs{t}}} $$
 is not a curve.
 \end{example*}
 
 For us, all parametrised curves will be regular.
 
 \begin{example*}
-$$ \function[\phi]{\sbr{-1, 1}}{\R^2}{t}{\br{t^2, t^3}} $$
+$$ \function[\phi]{\sbr{-1, 1}}{\RR^2}{t}{\br{t^2, t^3}} $$
 is not a curve, since $ \phi'\br{t} = \br{2t, 3t^2} $ and $ \phi'\br{0} = \br{0, 0} $.
 \end{example*}
 
 We are not interested in the parametrisation, just the curve.
 
 \begin{example*}
-$$ \function[\phi]{\sbr{0, 1}}{\R^2}{t}{\br{\cos\br{2\pi t}, \sin\br{2\pi t}}}. $$
+$$ \function[\phi]{\sbr{0, 1}}{\RR^2}{t}{\br{\cos 2\pi t, \sin 2\pi t}} $$
+is the curve above.
 \end{example*}
 
 \pagebreak
 
 \begin{definition}
-Given a regular parametrised curve $ \phi : \sbr{a, b} \to \R^n $ in $ \R^n $ and a smooth map $ f : \sbr{c, d} \xrightarrow{\sim} \sbr{a, b} $, with $ f'\br{t} \ne 0 $ for all $ t $, the curve $ \varphi : \sbr{c, d} \to \R^n $, where $ \varphi = \phi \circ f $, is called a \textbf{reparametrisation} of $ \phi $.
+Given a regular parametrised curve $ \phi : \sbr{a, b} \to \RR^n $ in $ \RR^n $ and a smooth map $ f : \sbr{c, d} \xrightarrow{\sim} \sbr{a, b} $, with $ f'\br{t} \ne 0 $ for all $ t $, the curve
+$$ \varphi = \phi \circ f : \sbr{c, d} \to \RR^n $$
+is called a \textbf{reparametrisation} of $ \phi $.
 \end{definition}
 
 \begin{proposition}
@@ -289,7 +295,7 @@ Reparametrisations $ f : \sbr{c, d} \xrightarrow{\sim} \sbr{a, b} $ with $ f'\br
 
 \lecture{2}{Monday}{08/10/18}
 
-Say that $ \phi \sim \varphi $ if and only if $ \phi $ is a reparametrisation of $ \varphi $. Then $ \sim $ is an equivalence relation. A \textbf{curve} is an equivalence class of parametrised curves. The \textbf{trace} of a curve $ \phi : \sbr{a, b} \to \R^n $ is $ \phi\br{\sbr{a, b}} $, that is the image in $ \R^n $. If $ \phi \sim \varphi $ then the trace of $ \phi $ is equal to the trace of $ \varphi $, so this is well-defined.
+Say that $ \phi \sim \varphi $ if and only if $ \phi $ is a reparametrisation of $ \varphi $. Then $ \sim $ is an equivalence relation. A \textbf{curve} is an equivalence class of parametrised curves. The \textbf{trace} of a curve $ \phi : \sbr{a, b} \to \RR^n $ is $ \phi\br{\sbr{a, b}} $, that is the image in $ \RR^n $. If $ \phi \sim \varphi $ then the trace of $ \phi $ is equal to the trace of $ \varphi $, so this is well-defined.
 
 \begin{example*}
 The tangent line to a curve at a point.
@@ -297,58 +303,56 @@ The tangent line to a curve at a point.
 
 \begin{definition}
 The \textbf{tangent line} $ L $ to $ \phi $ at $ \phi\br{t_0} $ is
-$$ L = \cbr{\phi\br{t_0} + s\phi'\br{t_0} \mid s \in \R}. $$
+$$ L = \cbr{\phi\br{t_0} + s\phi'\br{t_0} \st s \in \RR}. $$
 \end{definition}
 
 Check that this is a reparametrisation-invariant. Suppose $ f : \sbr{c, d} \xrightarrow{\sim} \sbr{a, b} $ is a reparametrisation and $ \varphi = \phi \circ f $. Let $ s_0 \in \sbr{c, d} $ satisfy $ f\br{s_0} = t_0 $. Then
 $$ \varphi\br{s_0} = \phi\br{f\br{s_0}} = \phi\br{t_0}, \qquad \varphi'\br{s_0} = \phi'\br{f\br{s_0}} \cdot f'\br{s_0} = \phi'\br{t_0} \cdot f'\br{s_0}, $$
 so
-$$ L = \cbr{\varphi\br{s_0} + s'\varphi'\br{s_0} \mid s' \in \R}. $$
+$$ L = \cbr{\varphi\br{s_0} + s'\varphi'\br{s_0} \st s' \in \RR}. $$
 
 \begin{definition}
-The \textbf{length} of a parametrised curve $ \phi : \sbr{a, b} \to \R^n $ is
-$$ L\br{\phi} = \intd{a}{b}{\abs{\phi'\br{t}}}{t}. $$
+The \textbf{length} of a parametrised curve $ \phi : \sbr{a, b} \to \RR^n $ is
+$$ \L\br{\phi} = \intd{a}{b}{\abs{\phi'\br{t}}}{t}. $$
 \end{definition}
 
 Chopping up $ \sbr{a, b} $ into $ N $ intervals of size $ \Delta t = \br{b - a} / N $,
-$$ L\br{\phi} \approx \sum_{i = 0}^N \abs{\phi'\br{a + i\Delta t}}\Delta t. $$
+$$ \L\br{\phi} \approx \sum_{i = 0}^N \abs{\phi'\br{a + i\Delta t}}\Delta t. $$
 
 \begin{example*}
 Let
-$$ \function[\phi]{\sbr{0, 2\pi}}{\R^2}{t}{\br{\cos\br{t}, \sin\br{t}}}. $$
-Then $ \phi'\br{t} = \br{-\sin\br{t}, \cos\br{t}} $, so
-$$ \abs{\phi'\br{t}} = \sqrt{\sin^2\br{t} + \cos^2\br{t}} = 1. $$
-Thus
-$$ L\br{\phi} = \intd{0}{2\pi}{1}{t} = 2\pi, $$
+$$ \function[\phi]{\sbr{0, 2\pi}}{\RR^2}{t}{\br{\cos t, \sin t}}. $$
+Then $ \phi'\br{t} = \br{-\sin t, \cos t} $, so $ \abs{\phi'\br{t}} = \sqrt{\sin^2 t + \cos^2 t} = 1 $. Thus
+$$ \L\br{\phi} = \intd{0}{2\pi}{1}{t} = 2\pi, $$
 so the length is $ 2\pi $.
 \end{example*}
 
 \pagebreak
 
 \begin{proposition}
-$ L\br{\phi} $ is invariant under reparametrisation.
+$ \L\br{\phi} $ is invariant under reparametrisation.
 \end{proposition}
 
 \begin{proof}
-For simplicity, suppose $ n = 3 $, so $ \R^3 $. Then
-$$ \function[\phi]{\sbr{a, b}}{\R^3}{t}{\br{x\br{t}, y\br{t}, z\br{t}}}. $$
+For simplicity, suppose $ n = 3 $, so $ \RR^3 $. Then
+$$ \function[\phi]{\sbr{a, b}}{\RR^3}{t}{\br{x\br{t}, y\br{t}, z\br{t}}}. $$
 Thus
-$$ L\br{\phi} = \intd{a}{b}{\sqrt{\br{\dod{x}{t}}^2 + \br{\dod{y}{t}}^2 + \br{\dod{z}{t}}^2}}{t}. $$
+$$ \L\br{\phi} = \intd{a}{b}{\sqrt{\br{\tod{x}{t}}^2 + \br{\tod{y}{t}}^2 + \br{\tod{z}{t}}^2}}{t}. $$
 Given a reparametrisation $ f : \sbr{c, b} \xrightarrow{\sim} \sbr{a, b} $, so $ f $ is smooth and $ f'\br{t} \ne 0 $ for all $ t $, set $ \varphi = \phi \circ f $ and write
 $$ \varphi\br{s} = \br{X\br{t}, Y\br{t}, Z\br{t}}. $$
 Then
-$$ L\br{\varphi} = \intd{c}{d}{\sqrt{\br{\dod{X}{s}}^2 + \br{\dod{Y}{s}}^2 + \br{\dod{Z}{s}}^2}}{s}. $$
+$$ \L\br{\varphi} = \intd{c}{d}{\sqrt{\br{\tod{X}{s}}^2 + \br{\tod{Y}{s}}^2 + \br{\tod{Z}{s}}^2}}{s}. $$
 Thus use the change of variable formula and
 $$ \dod{X}{s}\br{s} = \dod{x}{t}\br{f\br{s}}\dod{f}{s}\br{s}, $$
 by the chain rule.
 \end{proof}
 
 If $ \abs{\phi'\br{t}} = 1 $ for all $ t $ then
-$$ L\br{\phi} = \intd{a}{b}{\abs{\phi'\br{t}}}{t} = b - a, $$
-and in fact $ L\br{\eval{\phi}_{\sbr{a, t}}} = t - a $, so the curve is parametrised by arc-length. This is an \textbf{arc-length parametrisation} or a \textbf{unit speed parametrisation}.
+$$ \L\br{\phi} = \intd{a}{b}{\abs{\phi'\br{t}}}{t} = b - a, $$
+and in fact $ \L\br{\eval{\phi}_{\sbr{a, t}}} = t - a $, so the curve is parametrised by arc-length. This is an \textbf{arc-length parametrisation} or a \textbf{unit speed parametrisation}.
 
 \begin{proposition}
-Let $ \phi : \sbr{a, b} \to \R^n $ be a regular curve. Then there exists an arc-length parametrisation of $ \phi $.
+Let $ \phi : \sbr{a, b} \to \RR^n $ be a regular curve. Then there exists an arc-length parametrisation of $ \phi $.
 \end{proposition}
 
 \begin{proof}
@@ -363,18 +367,19 @@ by the fundamental theorem of calculus, so we have $ \abs{\varphi'\br{t}} = 1 $ 
 
 \lecture{3}{Tuesday}{09/10/18}
 
-Is an arc-length parametrisation unique? No. Suppose that $ \phi : \sbr{a, b} \to \R^n $ is an arc-length parametrisation of a curve, and that $ f : \sbr{c, d} \xrightarrow{\sim} \sbr{a, b} $ is a reparametrisation such that $ \varphi = \phi \circ f $ is also an arc-length parametrisation. Then $ \abs{\phi'\br{t}} = 1 $ for all $ t \in \sbr{a, b} $ and $ \abs{\varphi'\br{t}} = 1 $ for all $ t \in \sbr{c, d} $, so
+Is an arc-length parametrisation unique? No. Suppose that $ \phi : \sbr{a, b} \to \RR^n $ is an arc-length parametrisation of a curve, and that $ f : \sbr{c, d} \xrightarrow{\sim} \sbr{a, b} $ is a reparametrisation such that $ \varphi = \phi \circ f $ is also an arc-length parametrisation. Then $ \abs{\phi'\br{t}} = 1 $ for all $ t \in \sbr{a, b} $ and $ \abs{\varphi'\br{t}} = 1 $ for all $ t \in \sbr{c, d} $, so
 $$ \abs{\phi'\br{f\br{t}}}\abs{f'\br{t}} = 1, \qquad t \in \sbr{c, d}, $$
-so $ \abs{f'\br{t}} = 1 $. Thus $ f'\br{t} = \pm 1 $, so
-$$ f\br{t} = \pm t + C, $$
-for some constant $ C $.
+so $ \abs{f'\br{t}} = 1 $. Thus $ f'\br{t} = \pm 1 $, so $ f\br{t} = \pm t + C $ for some constant $ C $.
 
 \pagebreak
 
 \subsection{Curvature}
 
 \begin{definition}
-Let $ \phi : \sbr{a, b} \to \R^n $ be a curve parametrised by arc-length. The \textbf{curvature} of $ \phi $ at $ \phi\br{t} $ is $ \kappa\br{t} = \abs{\phi''\br{t}} $. The \textbf{curvature vector} is $ \vec{\kappa}\br{t} = \phi''\br{t} $.
+Let $ \phi : \sbr{a, b} \to \RR^n $ be a curve parametrised by arc-length. The \textbf{curvature} of $ \phi $ at $ \phi\br{t} $ is
+$$ \kappa\br{t} = \abs{\phi''\br{t}}. $$
+The \textbf{curvature vector} is
+$$ \vec{\kappa}\br{t} = \phi''\br{t}. $$
 \end{definition}
 
 Claim that this depends only on the curve not on the parametrisation $ \phi $. If $ \varphi = \phi \circ f $ is another arc-length parametrisation then $ f\br{t} = \pm t + C $. Putting $ s = f\br{t} $ we have
@@ -386,33 +391,33 @@ $ \kappa\br{t} = 0 $ if and only if the curve is a straight line.
 \end{proposition}
 
 \begin{proof}
-Let $ \phi : \sbr{a, b} \to \R^n $ be an arc-length parametrisation of the curve. Then $ \kappa\br{t} = 0 $, so $ \phi''\br{t} = 0 $. Thus
-$$ \phi\br{t} = \vec{a} + \vec{b}t, \qquad \vec{a}, \vec{b} \in \R^n. $$
+Let $ \phi : \sbr{a, b} \to \RR^n $ be an arc-length parametrisation of the curve. Then $ \kappa\br{t} = 0 $, so $ \phi''\br{t} = 0 $. Thus
+$$ \phi\br{t} = \vec{a} + \vec{b}t, \qquad \vec{a}, \vec{b} \in \RR^n. $$
 \end{proof}
 
 \begin{proposition}
-For curves in $ \R^n $, the vector curvature $ \vec{\kappa}\br{t} $ is perpendicular to the tangent line at $ \phi\br{t} $ for all $ t $, where $ \phi $ is an arc-length parametrisation.
+For curves in $ \RR^n $, the vector curvature $ \vec{\kappa}\br{t} $ is perpendicular to the tangent line at $ \phi\br{t} $ for all $ t $, where $ \phi $ is an arc-length parametrisation.
 \end{proposition}
 
 \begin{proof}
 The tangent line to the curve at $ \phi\br{t} $ is
-$$ L = \cbr{\phi\br{t} + s\phi'\br{t} \mid s \in \R}, $$
+$$ L = \cbr{\phi\br{t} + s\phi'\br{t} \st s \in \RR}, $$
 where $ \phi'\br{t} $ is the direction vector of the tangent line. Need to show $ \phi'\br{t} \cdot \phi''\br{t} = 0 $ for all $ t $. Know $ \abs{\phi'\br{t}} = 1 $ for all $ t $, that is $ \phi'\br{t} \cdot \phi'\br{t} = 1 $ for all $ t $. Differentiating,
 $$ \phi''\br{t} \cdot \phi'\br{t} + \phi'\br{t} \cdot \phi''\br{t} = 0, $$
 so $ 2\phi'\br{t} \cdot \phi''\br{t} = 0 $. Thus $ \phi'\br{t} \cdot \phi''\br{t} = 0 $.
 \end{proof}
 
 \begin{example*}
-The curvature of a circle in $ \R^2 $ centred at the origin of radius $ R $. Need an arc-length parametrisation. Try
-$$ \function[\phi]{\sbr{0, 2\pi}}{\R}{t}{\br{R\cos\br{t}, R\sin\br{t}}}. $$
+The curvature of a circle in $ \RR^2 $ centred at the origin of radius $ R $. Need an arc-length parametrisation. Try
+$$ \function[\phi]{\sbr{0, 2\pi}}{\RR}{t}{\br{R\cos t, R\sin t}}. $$
 Then
-$$ \abs{\phi'\br{t}} = \abs{\br{-R\sin\br{t}, R\cos\br{t}}} = R. $$
+$$ \abs{\phi'\br{t}} = \abs{\br{-R\sin t, R\cos t}} = R. $$
 Oops. Try
-$$ \function[\phi]{\sbr{0, 2\pi R}}{\R}{t}{\br{R\cos\br{\dfrac{t}{R}}, R\sin\br{\dfrac{t}{R}}}}. $$
+$$ \function[\phi]{\sbr{0, 2\pi R}}{\RR}{t}{\br{R\cos \tfrac{t}{R}, R\sin \tfrac{t}{R}}}. $$
 Checking,
-$$ \abs{\phi'\br{t}} = \abs{\br{-\sin\br{\dfrac{t}{R}}, \cos\br{\dfrac{t}{R}}}} = 1. $$
+$$ \abs{\phi'\br{t}} = \abs{\br{-\sin \tfrac{t}{R}, \cos \tfrac{t}{R}}} = 1. $$
 The vector curvature is
-$$ \vec{\kappa}\br{t} = \br{-\dfrac{1}{R}\cos\br{\dfrac{t}{R}}, -\dfrac{1}{R}\sin\br{\dfrac{t}{R}}}, $$
+$$ \vec{\kappa}\br{t} = \br{-\tfrac{1}{R}\cos \tfrac{t}{R}, -\tfrac{1}{R}\sin \tfrac{t}{R}}, $$
 so the curvature is
 $$ \kappa\br{t} = \abs{\vec{\kappa}\br{t}} = \dfrac{1}{R}. $$
 \end{example*}
@@ -423,65 +428,57 @@ The curvature $ \kappa\br{t} $ does not determine the curve.
 
 \subsection{Space curves}
 
-Let $ \phi : \sbr{a, b} \to \R^3 $ be an arc-length parametrisation of a curve. Set
-$$ T\br{t} = \phi'\br{t}, $$
-the \textbf{unit tangent vector} to the curve at $ \phi\br{t} $ and assume $ T'\br{t} \ne 0 $ for all $ t $. Set
-$$ N\br{t} = \dfrac{T'\br{t}}{\abs{T'\br{t}}}, $$
+Let $ \phi : \sbr{a, b} \to \RR^3 $ be an arc-length parametrisation of a curve. Set
+$$ \T\br{t} = \phi'\br{t}, $$
+the \textbf{unit tangent vector} to the curve at $ \phi\br{t} $ and assume $ \T'\br{t} \ne 0 $ for all $ t $. Set
+$$ \N\br{t} = \dfrac{\T'\br{t}}{\abs{\T'\br{t}}}, $$
 the \textbf{principal normal vector} to the curve at $ \phi\br{t} $. Set
-$$ B\br{t} = T\br{t} \times N\br{t}, $$
-the \textbf{binormal vector} to the curve at $ \phi\br{t} $. Check that $ \abs{B\br{t}} = 1 $. Thus $ \br{T, N, B} $ is a positively oriented orthonormal basis for $ \R^3 $, for each $ t \in \sbr{a, b} $. This is the \textbf{Frenet frame} or \textbf{Serret-Frenet frame}.
+$$ \B\br{t} = \T\br{t} \times \N\br{t}, $$
+the \textbf{binormal vector} to the curve at $ \phi\br{t} $. Check that $ \abs{\B\br{t}} = 1 $. Thus $ \br{\T, \N, \B} $ is a positively oriented orthonormal basis for $ \RR^3 $, for each $ t \in \sbr{a, b} $. This is the \textbf{Frenet frame} or \textbf{Serret-Frenet frame}.
 
 \lecture{4}{Friday}{12/10/18}
 
-$$ T'\br{t} = \abs{\phi''\br{t}}N\br{t} = \kappa\br{t}N\br{t}. $$
-$ B'\br{t} = T'\br{t} \times N\br{t} + T\br{t} \times N'\br{t} = T\br{t} \times N'\br{t} $, so $ B'\br{t} $ is perpendicular to $ T\br{t} $. $ B\br{t} \cdot B\br{t} = 1 $ for all $ t $, so $ B\br{t} $ is perpendicular to $ B'\br{t} $. Thus
-$$ B'\br{t} = -\tau\br{t}N\br{t}, $$
-for some function $ \tau\br{t} $. $ \tau\br{t} $ is called the \textbf{torsion} of $ \phi $ at the point $ \phi\br{t} $. Then $ N\br{t} = B\br{t} \times T\br{t} $ so
-$$ N'\br{t} = B'\br{t} \times T\br{t} + B\br{t} \times T'\br{t} = -\tau\br{t}N\br{t} \times T\br{t} + B\br{t} \times \kappa\br{t}N\br{t} = \tau\br{t}B\br{t} - \kappa\br{t}T\br{t}. $$
+$$ \T'\br{t} = \abs{\phi''\br{t}}\N\br{t} = \kappa\br{t}\N\br{t}. $$
+$ \B'\br{t} = \T'\br{t} \times \N\br{t} + \T\br{t} \times \N'\br{t} = \T\br{t} \times \N'\br{t} $, so $ \B'\br{t} $ is perpendicular to $ \T\br{t} $. Then $ \B\br{t} \cdot \B\br{t} = 1 $ for all $ t $, so $ \B\br{t} $ is perpendicular to $ \B'\br{t} $. Thus
+$$ \B'\br{t} = -\tau\br{t}\N\br{t}, $$
+for some function $ \tau\br{t} $. Then $ \tau\br{t} $ is called the \textbf{torsion} of $ \phi $ at the point $ \phi\br{t} $. Then $ \N\br{t} = \B\br{t} \times \T\br{t} $ so
+$$ \N'\br{t} = \B'\br{t} \times \T\br{t} + \B\br{t} \times \T'\br{t} = -\tau\br{t}\N\br{t} \times \T\br{t} + \B\br{t} \times \kappa\br{t}\N\br{t} = \tau\br{t}\B\br{t} - \kappa\br{t}\T\br{t}. $$
 Thus
-\begin{itemize}
-\item $ T'\br{t} = \kappa\br{t} \cdot N\br{t} $,
-\item $ B'\br{t} = -\tau\br{t} \cdot N\br{t} $, and
-\item $ N'\br{t} = \tau\br{t} \cdot B\br{t} - \kappa\br{t} \cdot T\br{t} $.
-\end{itemize}
+$$ \T'\br{t} = \kappa\br{t} \cdot \N\br{t}, \qquad \B'\br{t} = -\tau\br{t} \cdot \N\br{t}, \qquad \N'\br{t} = \tau\br{t} \cdot \B\br{t} - \kappa\br{t} \cdot \T\br{t}. $$
 So the time evolution of the frame depends only on the curvature, the torsion, and the frame itself.
 
 \begin{proposition}
-Let $ \phi : \sbr{a, b} \to \R^3 $ be a curve parametrised by arc-length. Suppose $ \phi''\br{t} \ne 0 $ for all $ t \in \sbr{a, b} $. Need this for the Frenet frame to exist. Then $ \tau\br{t} = 0 $ for all $ t $ if and only if $ \phi $ is planar.
+Let $ \phi : \sbr{a, b} \to \RR^3 $ be a curve parametrised by arc-length. Suppose $ \phi''\br{t} \ne 0 $ for all $ t \in \sbr{a, b} $. Need this for the Frenet frame to exist. Then $ \tau\br{t} = 0 $ for all $ t $ if and only if $ \phi $ is planar.
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Suppose $ \tau\br{t} = 0 $. Then $ B'\br{t} = 0 $, so $ B\br{t} = v $ is constant. Claim that $ \phi\br{t} \cdot v $ is constant for all $ t $.
-$$ \br{\phi\br{t} \cdot v}' = \phi'\br{t} \cdot v + \phi\br{t} \cdot 0 = \phi'\br{t} \cdot v = T\br{t} \cdot v = 0, $$
-since $ T $ is perpendicular to $ B $. Thus $ \phi $ is moving in a plane perpendicular to $ v $.
-\item[$ \impliedby $] Suppose $ \phi $ is planar. Then $ \phi\br{t} \cdot v = a $ for some constant $ v \in \R^3 $ and constant $ a \in \R $. $ \phi'\br{t} \cdot v = 0 $, so $ T\br{t} $ is perpendicular to $ v $. $ \phi''\br{t} \cdot v = 0 $, so $ \kappa\br{t} \cdot N\br{t} $ is perpendicular to $ v $. $ \kappa\br{t} \ne 0 $, so $ N\br{t} $ is perpendicular to $ v $. Thus $ B\br{t} = \pm v / \abs{v} $ is constant, so $ \tau\br{t} = 0 $.
+\item[$ \implies $] Suppose $ \tau\br{t} = 0 $. Then $ \B'\br{t} = 0 $, so $ \B\br{t} = v $ is constant. Claim that $ \phi\br{t} \cdot v $ is constant for all $ t $.
+$$ \br{\phi\br{t} \cdot v}' = \phi'\br{t} \cdot v + \phi\br{t} \cdot 0 = \phi'\br{t} \cdot v = \T\br{t} \cdot v = 0, $$
+since $ \T $ is perpendicular to $ \B $. Thus $ \phi $ is moving in a plane perpendicular to $ v $.
+\item[$ \impliedby $] Suppose $ \phi $ is planar. Then $ \phi\br{t} \cdot v = a $ for some constant $ v \in \RR^3 $ and constant $ a \in \RR $. Then $ \phi'\br{t} \cdot v = 0 $, so $ \T\br{t} $ is perpendicular to $ v $. Then $ \phi''\br{t} \cdot v = 0 $, so $ \kappa\br{t} \cdot \N\br{t} $ is perpendicular to $ v $. Then $ \kappa\br{t} \ne 0 $, so $ \N\br{t} $ is perpendicular to $ v $. Thus $ \B\br{t} = \pm v / \abs{v} $ is constant, so $ \tau\br{t} = 0 $.
 \end{itemize}
 \end{proof}
 
-\begin{example*}
-\hfill
-\begin{itemize}
-\item The unit circle in the $ \br{x, y} $ plane is
-$$ \phi\br{t} = \br{\cos\br{t}, \sin\br{t}, 0}, \qquad t \in \sbr{0, 2\pi}. $$
-Compute $ T\br{t}, N\br{t}, B\br{t}, \tau\br{t}, \kappa\br{t} $. Verify the Frenet formulae.
+\begin{exercise*}
+The unit circle in the $ \br{x, y} $ plane is
+$$ \phi\br{t} = \br{\cos t, \sin t, 0}, \qquad t \in \sbr{0, 2\pi}. $$
+Compute $ \T\br{t}, \N\br{t}, \B\br{t}, \tau\br{t}, \kappa\br{t} $. Verify the Frenet formulae.
+\end{exercise*}
 
 \pagebreak
 
-\item The helix is
-$$ \phi\br{t} = \br{\cos\br{\dfrac{t}{\sqrt{2}}}, \sin\br{\dfrac{t}{\sqrt{2}}}, \dfrac{t}{\sqrt{2}}}, \qquad t \in \R. $$
-Check it is an arc-length parametrisation.
-$$ \phi'\br{t} = \br{-\dfrac{1}{\sqrt{2}}\sin\br{\dfrac{t}{\sqrt{2}}}, \dfrac{1}{\sqrt{2}}\cos\br{\dfrac{t}{\sqrt{2}}}, \dfrac{1}{\sqrt{2}}}. $$
-So $ \abs{\phi'\br{t}} = 1 $.
+\begin{example*}
+The helix is
+$$ \phi\br{t} = \br{\cos \tfrac{t}{\sqrt{2}}, \sin \tfrac{t}{\sqrt{2}}, \tfrac{t}{\sqrt{2}}}, \qquad t \in \RR. $$
+It is an arc-length parametrisation, since $ \phi'\br{t} = \br{-\tfrac{1}{\sqrt{2}}\sin \tfrac{t}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}\cos \tfrac{t}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}} $, so $ \abs{\phi'\br{t}} = 1 $. Then
 \begin{align*}
-T\br{t} & = \phi'\br{t} = \br{-\dfrac{1}{\sqrt{2}}\sin\br{\dfrac{t}{\sqrt{2}}}, \dfrac{1}{\sqrt{2}}\cos\br{\dfrac{t}{\sqrt{2}}}, \dfrac{1}{\sqrt{2}}}, \\
-N\br{t} & = \dfrac{\phi''\br{t}}{\abs{\phi''\br{t}}} = 2\br{-\dfrac{1}{2}\cos\br{\dfrac{t}{\sqrt{2}}}, -\dfrac{1}{2}\sin\br{\dfrac{t}{\sqrt{2}}}, 0} = \br{-\cos\br{\dfrac{t}{\sqrt{2}}}, -\sin\br{\dfrac{t}{\sqrt{2}}}, 0}, \\
-B\br{t} & = T\br{t} \times N\br{t} = \br{\dfrac{1}{\sqrt{2}}\sin\br{\dfrac{t}{\sqrt{2}}}, -\dfrac{1}{\sqrt{2}}\cos\br{\dfrac{t}{\sqrt{2}}}, \dfrac{1}{\sqrt{2}}}.
+\T\br{t} & = \phi'\br{t} = \br{-\tfrac{1}{\sqrt{2}}\sin \tfrac{t}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}\cos \tfrac{t}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}}, \\
+\N\br{t} & = \dfrac{\phi''\br{t}}{\abs{\phi''\br{t}}} = 2\br{-\tfrac{1}{2}\cos \tfrac{t}{\sqrt{2}}, -\tfrac{1}{2}\sin \tfrac{t}{\sqrt{2}}, 0} = \br{-\cos \tfrac{t}{\sqrt{2}}, -\sin \tfrac{t}{\sqrt{2}}, 0}, \\
+\B\br{t} & = \T\br{t} \times \N\br{t} = \br{\tfrac{1}{\sqrt{2}}\sin \tfrac{t}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}\cos \tfrac{t}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}}.
 \end{align*}
-Then $ \kappa\br{t} = \abs{\phi''\br{t}} = 1 / 2 $ and $ \tau\br{t} = 1 / 2 $, since
-$$ B'\br{t} = \br{\dfrac{1}{2}\cos\br{\dfrac{t}{\sqrt{2}}}, \dfrac{1}{2}\sin\br{\dfrac{t}{\sqrt{2}}}, 0} = -\tau\br{t} \cdot N\br{t}. $$
-\end{itemize}
+Then $ \kappa\br{t} = \abs{\phi''\br{t}} = \tfrac{1}{2} $ and $ \tau\br{t} = \tfrac{1}{2} $, since $ \B'\br{t} = \br{\tfrac{1}{2}\cos \tfrac{t}{\sqrt{2}}, \tfrac{1}{2}\sin \tfrac{t}{\sqrt{2}}, 0} = -\tau\br{t} \cdot \N\br{t} $.
 \end{example*}
 
 In general $ \kappa $ and $ \tau $ are not constants.
@@ -489,8 +486,8 @@ In general $ \kappa $ and $ \tau $ are not constants.
 \lecture{5}{Monday}{15/10/18}
 
 \begin{theorem}[Fundamental theorem of the local theory of curves]
-Given two differentiable functions $ \kappa : \sbr{a, b} \to \R $ and $ \tau : \sbr{a, b} \to \R $ such that $ \kappa\br{t} > 0 $ for all $ t $, there exists a regular curve $ \phi : \sbr{a, b} \to \R^3 $ parametrised by arc-length with curvature $ \kappa\br{t} $ and torsion $ \tau\br{t} $. Any other such curve $ \varphi : \sbr{a, b} \to \R^3 $ differs from $ \phi $ by a \textbf{rigid motion}, that is
-$$ \varphi = g \cdot \phi + \vec{c}, \qquad g \in SO\br{3}, \qquad \vec{c} \in \R^3. $$
+Given two differentiable functions $ \kappa : \sbr{a, b} \to \RR $ and $ \tau : \sbr{a, b} \to \RR $ such that $ \kappa\br{t} > 0 $ for all $ t $, there exists a regular curve $ \phi : \sbr{a, b} \to \RR^3 $ parametrised by arc-length with curvature $ \kappa\br{t} $ and torsion $ \tau\br{t} $. Any other such curve $ \varphi : \sbr{a, b} \to \RR^3 $ differs from $ \phi $ by a \textbf{rigid motion}, that is
+$$ \varphi = g \cdot \phi + \vec{c}, \qquad g \in \SO\br{3}, \qquad \vec{c} \in \RR^3. $$
 \end{theorem}
 
 \begin{proof}
@@ -500,60 +497,63 @@ $$ \varphi = g \cdot \phi + \vec{c}, \qquad g \in SO\br{3}, \qquad \vec{c} \in \
 \begin{itemize}
 \item $ \abs{\widetilde{\phi}'} = \abs{g \cdot \phi'} = \abs{\phi'} = 1 $,
 \item $ \kappa_{\widetilde{\phi}} = \abs{\widetilde{\phi}''} = \abs{g \cdot \phi''} = \abs{\phi''} = \kappa_\phi $, and
-\item $ T_{\widetilde{\phi}} = \widetilde{\phi}' = g \cdot \phi' = g \cdot T_\phi $ and $ N_{\widetilde{\phi}} = T_{\widetilde{\phi}}' / \abs{T_{\widetilde{\phi}}'} = g \cdot T_\phi' / \abs{T_\phi'} = g \cdot N_\phi $, so
-$$ B_{\widetilde{\phi}} = T_{\widetilde{\phi}} \times N_{\widetilde{\phi}} = g \cdot T_\phi \times g \cdot N_\phi = g \cdot \br{T_\phi \times N_\phi} = g \cdot B_\phi, $$
+\item $ \T_{\widetilde{\phi}} = \widetilde{\phi}' = g \cdot \phi' = g \cdot \T_\phi $ and $ \N_{\widetilde{\phi}} = \T_{\widetilde{\phi}}' / \abs{\T_{\widetilde{\phi}}'} = g \cdot \T_\phi' / \abs{\T_\phi'} = g \cdot \N_\phi $, so
+$$ \B_{\widetilde{\phi}} = \T_{\widetilde{\phi}} \times \N_{\widetilde{\phi}} = g \cdot \T_\phi \times g \cdot \N_\phi = g \cdot \br{\T_\phi \times \N_\phi} = g \cdot \B_\phi, $$
 so
-$$ -\tau_{\widetilde{\phi}} \cdot N_{\widetilde{\phi}} = B_{\widetilde{\phi}}' = \br{g \cdot B_\phi}' = g \cdot B_\phi' = g \cdot \br{-\tau_\phi \cdot N_\phi} = -\tau_\phi \cdot N_{\widetilde{\phi}}. $$
+$$ -\tau_{\widetilde{\phi}} \cdot \N_{\widetilde{\phi}} = \B_{\widetilde{\phi}}' = \br{g \cdot \B_\phi}' = g \cdot \B_\phi' = g \cdot \br{-\tau_\phi \cdot \N_\phi} = -\tau_\phi \cdot \N_{\widetilde{\phi}}. $$
 Thus $ \tau_{\widetilde{\phi}} = \tau_\phi $.
 \end{itemize}
-We can apply a rigid motion to $ \varphi $ which sends $ \varphi\br{a} $ to $ \phi\br{a} $ and Frenet frame $ \br{T_\varphi\br{a}, N_\varphi\br{a}, B_\varphi\br{a}} $ to $ \br{T_\phi\br{a}, N_\phi\br{a}, B_\phi\br{a}} $. We can assume that these are equal without loss of generality. We compute
+We can apply a rigid motion to $ \varphi $ which sends $ \varphi\br{a} $ to $ \phi\br{a} $ and Frenet frame $ \br{\T_\varphi\br{a}, \N_\varphi\br{a}, \B_\varphi\br{a}} $ to $ \br{\T_\phi\br{a}, \N_\phi\br{a}, \B_\phi\br{a}} $. We can assume that these are equal without loss of generality. We compute
 \begin{align*}
-& \dfrac{1}{2}\dod{}{t}\br{\abr{T_\phi - T_\varphi, T_\phi - T_\varphi} + \abr{N_\phi - N_\varphi, N_\phi - N_\varphi} + \abr{B_\phi - B_\varphi, B_\phi - B_\varphi}} \\
-= \ & \abr{T_\phi - T_\varphi, T_\phi' - T_\varphi'} + \abr{N_\phi - N_\varphi, N_\phi' - N_\varphi'} + \abr{B_\phi - B_\varphi, B_\phi' - B_\varphi'} \\
-= \ & \kappa\abr{T_\phi - T_\varphi, N_\phi - N_\varphi} + \br{\tau\abr{N_\phi - N_\varphi, B_\phi - B_\varphi} - \kappa\abr{N_\phi - N_\varphi, T_\phi - T_\varphi}} - \tau\abr{B_\phi - B_\varphi, N_\phi - N_\varphi} \\
+& \dfrac{1}{2}\dod{}{t}\br{\abr{\T_\phi - \T_\varphi, \T_\phi - \T_\varphi} + \abr{\N_\phi - \N_\varphi, \N_\phi - \N_\varphi} + \abr{\B_\phi - \B_\varphi, \B_\phi - \B_\varphi}} \\
+= \ & \abr{\T_\phi - \T_\varphi, \T_\phi' - \T_\varphi'} + \abr{\N_\phi - \N_\varphi, \N_\phi' - \N_\varphi'} + \abr{\B_\phi - \B_\varphi, \B_\phi' - \B_\varphi'} \\
+= \ & \kappa\abr{\T_\phi - \T_\varphi, \N_\phi - \N_\varphi} + \br{\tau\abr{\N_\phi - \N_\varphi, \B_\phi - \B_\varphi} - \kappa\abr{\N_\phi - \N_\varphi, \T_\phi - \T_\varphi}} - \tau\abr{\B_\phi - \B_\varphi, \N_\phi - \N_\varphi} \\
 = \ & 0,
 \end{align*}
-by the Frenet equations and $ \phi $ and $ \varphi $ are solutions to the problem in the statement.
+by the Frenet equations, and $ \phi $ and $ \varphi $ are solutions to the problem in the statement. Then
+$$ \abr{\T_\phi - \T_\varphi, \T_\phi - \T_\varphi} + \abr{\N_\phi - \N_\varphi, \N_\phi - \N_\varphi} + \abr{\B_\phi - \B_\varphi, \B_\phi - \B_\varphi} $$
+is constant in time and is zero at $ t = a $, so it is zero for all $ t \in \sbr{a, b} $, so
+$$ \T_\phi = \T_\varphi, \qquad \N_\phi = \N_\varphi, \qquad \B_\phi = \B_\varphi. $$
+In particular
+$$ \phi\br{t} = \phi\br{a} + \intd{a}{t}{\T_\phi\br{s}}{s} = \varphi\br{a} + \intd{a}{t}{\T_\varphi\br{s}}{s} = \varphi\br{t}. $$
+The conclusion is $ \phi = \varphi $.
 
 \pagebreak
 
-Then $ \abr{T_\phi - T_\varphi, T_\phi - T_\varphi} + \abr{N_\phi - N_\varphi, N_\phi - N_\varphi} + \abr{B_\phi - B_\varphi, B_\phi - B_\varphi} $ is constant in time and is zero at $ t = a $, so it is zero for all $ t \in \sbr{a, b} $, so
-$$ T_\phi = T_\varphi, \qquad N_\phi = N_\varphi, \qquad B_\phi = B_\varphi, \qquad t \in \sbr{a, b}. $$
-In particular
-$$ \phi\br{t} = \phi\br{a} + \intd{a}{t}{T_\phi\br{s}}{s} = \varphi\br{a} + \intd{a}{t}{T_\varphi\br{s}}{s} = \varphi\br{t}. $$
-The conclusion is $ \phi = \varphi $.
-\item Proof of existence. Given $ \kappa\br{t} > 0 $ and $ \tau\br{t} $, we can pick any positive orthonormal frame $ \br{T_a, N_a, B_a} $ and use the existence theorem for solutions of linear differential equations to find $ T, N, B : \sbr{a, b} \to \R^3 $ such that
+\item Proof of existence. Given $ \kappa\br{t} > 0 $ and $ \tau\br{t} $, we can pick any positive orthonormal frame $ \br{\T_a, \N_a, \B_a} $ and use the existence theorem for solutions of linear differential equations to find $ \T, \N, \B : \sbr{a, b} \to \RR^3 $ such that
 $$
 \begin{cases}
-\br{T\br{a}, N\br{a}, B\br{a}} = \br{T_a, N_a, B_a} \\
-\threebyone{T'}{N'}{B'} = \threebythree{0}{\kappa}{0}{-\kappa}{0}{\tau}{0}{-\tau}{0}\threebyone{T}{N}{B}
+\threebyone{\T\br{a}}{\N\br{a}}{\B\br{a}} = \threebyone{\T_a}{\N_a}{\B_a} \\
+\threebyone{\T'}{\N'}{\B'} = \threebythree{0}{\kappa}{0}{-\kappa}{0}{\tau}{0}{-\tau}{0}\threebyone{\T}{\N}{\B}
 \end{cases}.
 $$
-We check that $ \br{T, N, B} $ is an orthonormal frame at all $ t \in \sbr{a, b} $. This is true at $ t = a $. We consider
-$$ M = \onebythree{T}{N}{B}, \qquad M' = \onebythree{T'}{N'}{B'} = \onebythree{T}{N}{B}\threebythree{0}{-\kappa}{0}{\kappa}{0}{-\tau}{0}{\tau}{0} = M\threebythree{0}{-\kappa}{0}{\kappa}{0}{-\tau}{0}{\tau}{0}. $$
-As $ M $ is orthonormal if and only if $ M^T \cdot M = Id $, we want to prove that $ M^T \cdot M = Id $. $ M^T \cdot M = Id $ at $ t = a $, and
-$$ \dod{}{t}\br{M^T \cdot M} = M'^T \cdot M + M^T \cdot M' = \threebythree{0}{\kappa}{0}{-\kappa}{0}{\tau}{0}{-\tau}{0} \cdot M^T \cdot M + M^T \cdot M \cdot \threebythree{0}{-\kappa}{0}{\kappa}{0}{-\tau}{0}{\tau}{0}. $$
+We check that $ \br{\T, \N, \B} $ is an orthonormal frame at all $ t \in \sbr{a, b} $. This is true at $ t = a $. We consider
+$$ M = \onebythree{\T}{\N}{\B}, \qquad M' = \onebythree{\T'}{\N'}{\B'} = \onebythree{\T}{\N}{\B}\threebythree{0}{-\kappa}{0}{\kappa}{0}{-\tau}{0}{\tau}{0} = M\threebythree{0}{-\kappa}{0}{\kappa}{0}{-\tau}{0}{\tau}{0}. $$
+As $ M $ is orthonormal if and only if $ M^\intercal \cdot M = \id $, we want to prove that $ M^\intercal \cdot M = \id $, so $ M^\intercal \cdot M = \id $ at $ t = a $, and
+$$ \dod{}{t}\br{M^\intercal \cdot M} = M'^\intercal \cdot M + M^\intercal \cdot M' = \threebythree{0}{\kappa}{0}{-\kappa}{0}{\tau}{0}{-\tau}{0} \cdot M^\intercal \cdot M + M^\intercal \cdot M \cdot \threebythree{0}{-\kappa}{0}{\kappa}{0}{-\tau}{0}{\tau}{0}. $$
 The linear system
 $$
 \begin{cases}
 \dod{}{t}\br{A} = \threebythree{0}{\kappa}{0}{-\kappa}{0}{\tau}{0}{-\tau}{0}A + A\threebythree{0}{-\kappa}{0}{\kappa}{0}{-\tau}{0}{\tau}{0} \\
-A\br{a} = Id
+A\br{a} = \id
 \end{cases}
 $$
-has solution $ A\br{t} = Id $. Hence by uniqueness, $ A\br{t} = Id = M^T \cdot M $.
+has solution $ A\br{t} = \id $. Hence by uniqueness, $ A\br{t} = \id = M^\intercal \cdot M $.
 \end{itemize}
 \end{proof}
 
-(Exercise: why is $ \br{T\br{t}, N\br{t}, B\br{t}} $ orthonormal for all $ t $ equivalent to
-$$ \threebythree{0}{\kappa}{0}{-\kappa}{0}{\tau}{0}{-\tau}{0} $$
-is skew-symmetric?)
+\begin{exercise*}
+Why is $ \br{\T\br{t}, \N\br{t}, \B\br{t}} $ orthonormal for all $ t $ equivalent to the skew-symmetry of
+$$ \threebythree{0}{\kappa}{0}{-\kappa}{0}{\tau}{0}{-\tau}{0}? $$
+\end{exercise*}
 
 \lecture{6}{Tuesday}{16/10/18}
 
 \begin{example*}
-Show that any curve $ \phi : \sbr{a, b} \to \R^3 $ with zero torsion and constant curvature $ c > 0 $ is an arc of a circle of radius $ 1 / c $. First check that an arc of a circle has this property.
-$$ \phi\br{t} = \br{R\cos\br{\dfrac{t}{R}}, R\sin\br{\dfrac{t}{R}}, 0}, \qquad \phi'\br{t} = \br{-\sin\br{\dfrac{t}{R}}, \cos\br{\dfrac{t}{R}}, 0}, $$
-$$ \phi''\br{t} = \br{-\dfrac{1}{R}\cos\br{\dfrac{t}{R}}, -\dfrac{1}{R}\sin\br{\dfrac{t}{R}}, 0}, $$
+Any curve $ \phi : \sbr{a, b} \to \RR^3 $ with zero torsion and constant curvature $ c > 0 $ is an arc of a circle of radius $ 1 / c $. An arc of a circle has this property, since
+$$ \phi\br{t} = \br{R\cos \tfrac{t}{R}, R\sin \tfrac{t}{R}, 0}, $$
+$$ \phi'\br{t} = \br{-\sin \tfrac{t}{R}, \cos \tfrac{t}{R}, 0}, $$
+$$ \phi''\br{t} = \br{-\tfrac{1}{R}\cos \tfrac{t}{R}, -\tfrac{1}{R}\sin \tfrac{t}{R}, 0}, $$
 so $ \kappa\br{t} = 1 / R = c $ and $ \tau\br{t} = 0 $, since the circle is a planar curve. Then apply the fundamental theorem of the local theory of curves.
 \end{example*}
 
@@ -561,83 +561,66 @@ so $ \kappa\br{t} = 1 / R = c $ and $ \tau\br{t} = 0 $, since the circle is a pl
 
 \subsection{Plane curves}
 
-Let $ \phi : \sbr{a, b} \to \R^3 $.
-\begin{itemize}
-\item $ \phi'\br{t} = 0 $ is a point.
-\item $ \kappa\br{t} = 0 $ is a line.
-\item $ \tau\br{t} = 0 $ is a plane. This is the topic of today.
-\end{itemize}
-Let
-$$ \function[\phi]{\sbr{a, b}}{\R^2}{t}{\br{x\br{t}, y\br{t}}} $$
-be parametrised by arc-length, so $ \phi'\br{t} = \br{x'\br{t}, y'\br{t}} = 1 $ and $ N\br{t} = \br{-y'\br{t}, x'\br{t}} $. Then $ \phi''\br{t} = \kappa\br{t}N\br{t} $, so
+Let $ \phi : \sbr{a, b} \to \RR^3 $. Then $ \phi'\br{t} = 0 $ is a point, $ \kappa\br{t} = 0 $ is a line, and $ \tau\br{t} = 0 $ is a plane. Let
+$$ \function[\phi]{\sbr{a, b}}{\RR^2}{t}{\br{x\br{t}, y\br{t}}} $$
+be parametrised by arc-length, so $ \phi'\br{t} = \br{x'\br{t}, y'\br{t}} = 1 $ and $ \N\br{t} = \br{-y'\br{t}, x'\br{t}} $. Then $ \phi''\br{t} = \kappa\br{t}\N\br{t} $, so
 \begin{align*}
 \kappa\br{t}
-& = \kappa\br{t}\abr{N\br{t}, N\br{t}}
-= \abr{\kappa\br{t}N\br{t}, N\br{t}}
-= \abr{\phi''\br{t}, N\br{t}} \\
+& = \kappa\br{t}\abr{\N\br{t}, \N\br{t}}
+= \abr{\kappa\br{t}\N\br{t}, \N\br{t}}
+= \abr{\phi''\br{t}, \N\br{t}} \\
 & = \abr{\br{x''\br{t}, y''\br{t}}, \br{-y'\br{t}, x'\br{t}}}
 = x'\br{t}y''\br{t} - y'\br{t}x''\br{t}.
 \end{align*}
 
 \begin{proposition}
 For arbitrary $ \phi $,
-$$ \kappa\br{t} = \dfrac{\phi''\br{t} \cdot N\br{t}}{\abs{\phi'\br{t}}^2}. $$
+$$ \kappa\br{t} = \dfrac{\phi''\br{t} \cdot \N\br{t}}{\abs{\phi'\br{t}}^2}. $$
 \end{proposition}
 
 \begin{proof}
-Let
-$$ \varphi\br{s} = \phi\br{f\br{s}} = \br{x\br{f\br{s}}, y\br{f\br{s}}} $$
-be a reparametrisation by arc-length. Then
+Let $ \varphi\br{s} = \phi\br{f\br{s}} = \br{x\br{f\br{s}}, y\br{f\br{s}}} $ be a reparametrisation by arc-length. Then
 \begin{align*}
 \kappa_\varphi\br{s}
-& = \br{x\br{f\br{s}}}'\br{y\br{f\br{s}}}'' - y\br{f\br{s}}'x\br{f\br{s}}'' \\
-& = \br{x'\br{f\br{s}}y''\br{f\br{s}} - y'\br{f\br{s}}x''\br{f\br{s}}} \cdot \br{f'\br{s}}^3 \\
-& = \phi''\br{f\br{s}} \cdot \br{-\br{y\br{f\br{s}}}', \br{x\br{f\br{s}}}'} \cdot \br{f'\br{s}}^2 \\
-& = \br{\phi''\br{f\br{s}} \cdot N_\varphi\br{f\br{s}}} \cdot \br{f'\br{s}}^2.
+& = \br{x\br{f\br{s}}}'\br{y\br{f\br{s}}}'' - y\br{f\br{s}}'x\br{f\br{s}}''
+= \br{x'\br{f\br{s}}y''\br{f\br{s}} - y'\br{f\br{s}}x''\br{f\br{s}}} \cdot \br{f'\br{s}}^3 \\
+& = \phi''\br{f\br{s}} \cdot \br{-\br{y\br{f\br{s}}}', \br{x\br{f\br{s}}}'} \cdot \br{f'\br{s}}^2
+= \br{\phi''\br{f\br{s}} \cdot \N_\varphi\br{f\br{s}}} \cdot \br{f'\br{s}}^2.
 \end{align*}
-We have
-$$ f = l^{-1}, \qquad l\br{t} = \intd{a}{t}{\abs{\phi'\br{s}}}{s}, $$
-so in particular $ f'\br{s} = 1 / \abs{\phi'\br{f\br{s}}} $, and hence, replacing $ f\br{s} = t $,
-$$ \kappa_\phi\br{t} = \dfrac{\phi''\br{t} \cdot N_\phi\br{t}}{\abs{\phi'\br{t}}^2}. $$
+We have $ f = l^{-1} $ and $ l\br{t} = \intd{a}{t}{\abs{\phi'\br{s}}}{s} $, so in particular $ f'\br{s} = 1 / \abs{\phi'\br{f\br{s}}} $. Hence replace $ f\br{s} = t $.
 \end{proof}
 
 \begin{example*}
 Let
-$$ \function[\phi]{\sbr{a, b}}{\R^2}{t}{\br{t, f\br{t}}} $$
+$$ \function[\phi]{\sbr{a, b}}{\RR^2}{t}{\br{t, f\br{t}}} $$
 be a graph of a smooth function $ f $. Then
-$$ \phi'\br{t} = \br{1, f'\br{t}}, \qquad \phi''\br{t} = \br{0, f''\br{t}}, \qquad \abs{\phi'\br{t}} = 1 + \abs{f'\br{t}}^2, \qquad N\br{t} = \dfrac{\br{-f'\br{t}, 1}}{\sqrt{1 + \abs{f'\br{t}}^2}}, $$
+$$ \phi'\br{t} = \br{1, f'\br{t}}, \qquad \phi''\br{t} = \br{0, f''\br{t}}, \qquad \abs{\phi'\br{t}} = 1 + \abs{f'\br{t}}^2, \qquad \N\br{t} = \dfrac{\br{-f'\br{t}, 1}}{\sqrt{1 + \abs{f'\br{t}}^2}}, $$
 so
-$$ \kappa\br{t} = \dfrac{f''\br{t}}{\br{1 + \br{f'\br{t}}^2}^{3 / 2}}. $$
+$$ \kappa\br{t} = \dfrac{f''\br{t}}{\sqrt{1 + \br{f'\br{t}}^2}^3}. $$
 \end{example*}
 
-\pagebreak
-
-Suppose that $ \phi : \sbr{a, b} \to \R^2 \cong \C $ is a smooth closed curve, so $ \phi\br{a} = \phi\br{b} $ and $ \phi^{\br{k}}\br{a} = \phi^{\br{k}}\br{b} $ for all $ k $. The \textbf{winding number} of $ \phi $ is an invariant measuring the number of clockwise rotations of the curve. Let $ z = x + iy $. We know from complex analysis
+Suppose that $ \phi : \sbr{a, b} \to \RR^2 \cong \CC $ is a smooth closed curve, so $ \phi\br{a} = \phi\br{b} $ and $ \phi^{\br{k}}\br{a} = \phi^{\br{k}}\br{b} $ for all $ k $. The \textbf{winding number} of $ \phi $ is an invariant measuring the number of clockwise rotations of the curve. Let $ z = x + iy $. We know from complex analysis
 \begin{align*}
-w\br{\phi}
-& = \dfrac{1}{2\pi i} \oint_\gamma \, \dfrac{1}{z} \, \dif z \\
-& = \dfrac{1}{2\pi i} \intd{a}{b}{\dfrac{1}{x\br{t} + iy\br{t}}}{\br{x\br{t} + iy\br{t}}} \\
-& = \dfrac{1}{2\pi i} \intd{a}{b}{\dfrac{x'\br{t} + iy'\br{t}}{x\br{t} + iy\br{t}} \cdot \dfrac{x\br{t} - iy\br{t}}{x\br{t} - iy\br{t}}}{t} \\
-& = \dfrac{1}{2\pi i} \intd{a}{b}{\dfrac{\br{xx' + yy'} + i\br{y'x - x'y}}{x^2 + y^2}}{t} \\
-& = \dfrac{1}{4\pi i} \sbr{\ln\br{x^2 + y^2}}_a^b + \dfrac{1}{2\pi} \intd{a}{b}{\dfrac{y'x - x'y}{x^2 + y^2}}{t} \\
-& = \dfrac{1}{2\pi} \intd{a}{b}{\dfrac{y'x - x'y}{x^2 + y^2}}{t},
+\w\br{\phi}
+& = \dfrac{1}{2\pi i} \oint_\gamma \, \dfrac{1}{z} \, \d z
+= \dfrac{1}{2\pi i} \intd{a}{b}{\dfrac{1}{x\br{t} + iy\br{t}}}{\br{x\br{t} + iy\br{t}}} \\
+& = \dfrac{1}{2\pi i} \intd{a}{b}{\dfrac{x'\br{t} + iy'\br{t}}{x\br{t} + iy\br{t}} \cdot \dfrac{x\br{t} - iy\br{t}}{x\br{t} - iy\br{t}}}{t}
+= \dfrac{1}{2\pi i} \intd{a}{b}{\dfrac{\br{xx' + yy'} + i\br{y'x - x'y}}{x^2 + y^2}}{t} \\
+& = \dfrac{1}{4\pi i} \sbr{\ln\br{x^2 + y^2}}_a^b + \dfrac{1}{2\pi} \intd{a}{b}{\dfrac{y'x - x'y}{x^2 + y^2}}{t}
+= \dfrac{1}{2\pi} \intd{a}{b}{\dfrac{y'x - x'y}{x^2 + y^2}}{t},
 \end{align*}
-since $ \phi $ is a closed curve. Then
-$$ w\br{\phi'} = \dfrac{1}{2\pi} \intd{a}{b}{\dfrac{y''x' - x''y'}{\abs{\phi'\br{t}}^2}}{t}. $$
-If $ \phi $ is parametrised by arc-length, so $ \abs{\phi'} = 1 $,
-$$ w\br{\phi'} = \dfrac{1}{2\pi} \intd{a}{b}{\kappa\br{t}}{t}. $$
+since $ \phi $ is a closed curve. If $ \phi $ is parametrised by arc-length, so $ \abs{\phi'} = 1 $, then
+$$ \w\br{\phi'} = \dfrac{1}{2\pi} \intd{a}{b}{\kappa\br{t}}{t}. $$
 
 \begin{proposition}
-The winding number $ w\br{T\br{t}} $ of the unit tangent vector $ T\br{t} = \phi'\br{t} / \abs{\phi'\br{t}} $ is equal to the \textbf{total curvature} $ \intd{a}{b}{\kappa\br{t}}{t} $, divided by $ 2\pi $.
+The winding number $ \w\br{\T\br{t}} $ of the unit tangent vector $ \T\br{t} = \phi'\br{t} / \abs{\phi'\br{t}} $ is equal to the \textbf{total curvature} $ \intd{a}{b}{\kappa\br{t}}{t} $, divided by $ 2\pi $.
 \end{proposition}
 
 \begin{definition}
-The winding number $ w\br{T\br{t}} $ is called the \textbf{index} or \textbf{turning number} of $ \phi $, and it is denoted $ Ind\br{\phi} $. Thus
-$$ Ind\br{\phi} = \dfrac{1}{2\pi}\intd{a}{b}{\kappa\br{t}}{t}. $$
+The winding number $ \w\br{\T\br{t}} $ is called the \textbf{index} or \textbf{turning number} of $ \phi $, and it is denoted $ \Ind \phi $. If $ \phi'\br{t} = e^{i\theta t} $, then $ \kappa\br{t} = \dot{\theta}\br{t} $. Thus
+$$ \Ind \phi = \dfrac{1}{2\pi}\intd{a}{b}{\dot{\theta}\br{t}}{t}. $$
 \end{definition}
 
-If $ \phi'\br{t} = e^{i\theta t} $, then $ \kappa\br{t} = \dot{\theta}\br{t} $, so
-$$ Ind\br{\phi} = \dfrac{1}{2\pi}\intd{a}{b}{\dot{\theta}\br{t}}{t}. $$
 
 \pagebreak
 
@@ -648,56 +631,37 @@ $$ Ind\br{\phi} = \dfrac{1}{2\pi}\intd{a}{b}{\dot{\theta}\br{t}}{t}. $$
 \subsection{Regular surfaces}
 
 \begin{definition}
-A \textbf{regular surface} $ S \subset \R^3 $ is a subset of $ \R^3 $ such that for all $ p \in S $ there exists
+A \textbf{regular surface} $ S \subset \RR^3 $ is a subset of $ \RR^3 $ such that for all $ p \in S $ there exists
 \begin{itemize}
-\item an open neighbourhood $ V \subset \R^3 $ of $ p $,
-\item an open set $ U \subset \R^2 $, and
-\item a smooth map $ \phi : U \to \R^3 $ such that
-\begin{enumerate}
+\item an open neighbourhood $ V \subset \RR^3 $ of $ p $,
+\item an open set $ U \subset \RR^2 $, and
+\item a smooth map $ \phi : U \to \RR^3 $ such that
+\begin{itemize}
 \item $ \phi\br{U} = V \cap S $,
 \item $ \phi $ is a homeomorphism onto its image, and
-\item for all $ q \in U $, $ d\phi_q : \R^2 \to \R^3 $ is injective.
-\end{enumerate}
+\item for all $ q \in U $, $ \d\phi_q : \RR^2 \to \RR^3 $ is injective.
+\end{itemize}
 \end{itemize}
 $ \br{U, \phi} $ is called a \textbf{chart} near $ p $ or at $ p $.
 \end{definition}
 
-Write
-$$ \phi\br{u, v} = \br{x\br{u, v}, y\br{u, v}, z\br{u, v}}, $$
-then $ d\phi_q : \R^2 \to \R^3 $ has a matrix
+Write $ \phi\br{u, v} = \br{x\br{u, v}, y\br{u, v}, z\br{u, v}} $, then $ \d\phi_q : \RR^2 \to \RR^3 $ has a matrix
 $$ \eval{\threebyone{\tpd{x}{u} & \tpd{x}{v}}{\tpd{y}{u} & \tpd{y}{v}}{\tpd{z}{u} & \tpd{z}{v}}}_q, $$
-and is injective if and only if the matrix has rank two, if and only if the columns are linearly independent. $ \br{1, 0} $ at $ q \in U \subset \R^2 $ maps to
-$$ d\phi_q\br{1, 0} = \eval{\br{\dpd{x}{u}, \dpd{y}{u}, \dpd{z}{u}}}_q $$
-at $ \phi\br{q} \in S \subset \R^3 $. Each column matrix of the matrix $ d\phi_q $ is a tangent vector to $ S $ at $ \phi\br{q} $, so the regularity condition $ 3 $ for surfaces ensures that a regular surface has a tangent plane at every point, since the columns of $ d\phi_q $ span a two-dimensional space, that is a plane in $ \R^3 $.
+and is injective if and only if the matrix has rank two, if and only if the columns are linearly independent. Then $ \br{1, 0} $ at $ q \in U \subset \RR^2 $ maps to $ \d\phi_q\br{1, 0} $ at $ \phi\br{q} \in S \subset \RR^3 $. Each column matrix of the matrix $ \d\phi_q $ is a tangent vector to $ S $ at $ \phi\br{q} $, so the regularity condition for surfaces ensures that a regular surface has a tangent plane at every point, since the columns of $ \d\phi_q $ span a two-dimensional space, that is a plane in $ \RR^3 $.
 
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Let $ \R^2 \subset \R^3 $. Take the chart $ \br{U, \phi} $ with $ U = \R^2 $ and $ \phi\br{u, v} = \br{u, v, 0} $.
-\item Let $ f : \R^2 \to \R $ be a smooth function. The \textbf{graph} of $ f $ is
-$$ \Gamma_f = \cbr{\br{x, y, f\br{x, y}} \mid x, y \in \R^2}. $$
-Take a chart $ \br{U, \phi} $ where $ U = \R^2 $ and
-$$ \phi\br{u, v} = \br{u, v, f\br{u, v}}. $$
-Check
-\begin{enumerate}
-\item this is smooth,
-\item this is a homeomorphism onto its image, by projecting to $ \br{x, y} $ or $ \br{u, v} $ plane, and
-\item regularity, since
-$$ d\phi_{\br{u, v}} = \threebyone{1 & 0}{0 & 1}{\tpd{f}{u} & \tpd{f}{v}} $$
+\item Let $ \RR^2 \subset \RR^3 $. Take the chart $ \br{U, \phi} $ with $ U = \RR^2 $ and $ \phi\br{u, v} = \br{u, v, 0} $.
+\item Let $ f : \RR^2 \to \RR $ be a smooth function. The \textbf{graph} of $ f $ is
+$$ \Gamma_f = \cbr{\br{x, y, f\br{x, y}} \st x, y \in \RR^2}. $$
+Take a chart $ \br{U, \phi} $ where $ U = \RR^2 $ and $ \phi\br{u, v} = \br{u, v, f\br{u, v}} $. This is smooth, a homeomorphism onto its image, by projecting to $ \br{x, y} $ or $ \br{u, v} $ plane, and regular, since
+$$ \d\phi_{\br{u, v}} = \threebyone{1 & 0}{0 & 1}{\tpd{f}{u} & \tpd{f}{v}} $$
 has rank two.
-\end{enumerate}
-\end{itemize}
-\end{example*}
-
-\pagebreak
-
-\begin{example*}
-Non-examples.
-\begin{itemize}
-\item $ S = \cbr{z^2 = x^2 + y^2 \mid z \ge 0} $ has no smooth chart near $ \br{0, 0, 0} $. Suppose there exists a smooth chart $ \br{U, \phi} $ near $ \br{0, 0, 0} $. Consider the curve $ z = \abs{y} $ and $ x = 0 $. It has a discontinuous velocity at $ t = 0 $. Any smooth curve through $ q \in U $, when $ \phi\br{q} = 0 $, maps to a smooth curve in $ \R^2 $, by assumption, since we assumed $ \phi $ is smooth, a contradiction. Thus curves like this are not smooth.
+\item $ S = \cbr{z^2 = x^2 + y^2 \st z \ge 0} $ has no smooth chart near $ \br{0, 0, 0} $. Suppose there exists a smooth chart $ \br{U, \phi} $ near $ \br{0, 0, 0} $. Consider the curve $ z = \abs{y} $ and $ x = 0 $. It has a discontinuous velocity at $ t = 0 $. Any smooth curve through $ q \in U $, when $ \phi\br{q} = 0 $, maps to a smooth curve in $ \RR^2 $, by assumption, since we assumed $ \phi $ is smooth, a contradiction. Thus curves like this are not smooth.
 \item Define
-$$ \function[\phi]{\br{0, 2\pi} \times \br{-1, 1}}{\R^3}{\br{u, v}}{\br{\sin\br{u}, \sin\br{2u}, v}}. $$
-$ \phi $ is not a homeomorphism onto its image.
+$$ \function[\phi]{\br{0, 2\pi} \times \br{-1, 1}}{\RR^3}{\br{u, v}}{\br{\sin u, \sin 2u, v}}. $$
+Then $ \phi $ is not a homeomorphism onto its image.
 \end{itemize}
 \end{example*}
 
@@ -706,14 +670,16 @@ $ \phi $ is not a homeomorphism onto its image.
 The following is a very common situation.
 
 \begin{definition}
-Let $ F : \R^3 \to \R $ be a smooth function. We say that $ S \subset \R^3 $ is a \textbf{regular level set} of $ F $ if $ S = F^{-1}\br{c} $ for some $ c \in \R $ and $ \nabla F\br{p} \ne 0 $ for all $ p \in S $.
+Let $ F : \RR^3 \to \RR $ be a smooth function. We say that $ S \subset \RR^3 $ is a \textbf{regular level set} of $ F $ if $ S = F^{-1}\br{c} $ for some $ c \in \RR $ and $ \nabla F\br{p} \ne 0 $ for all $ p \in S $.
 \end{definition}
 
 \begin{example*}
 Let
-$$ S = \cbr{x^2 + y^2 + z^2 = 1} \subset \R^3. $$
+$$ S = \cbr{x^2 + y^2 + z^2 = 1} \subset \RR^3. $$
 Here $ F = x^2 + y^2 + z^2 $ for $ c = 1 $ and $ \nabla F = \br{2x, 2y, 2z} $. Note $ \nabla F\br{p} \ne 0 $ for all $ p \in S $.
 \end{example*}
+
+\pagebreak
 
 \begin{proposition}
 \label{prop:regularlevelsets}
@@ -723,37 +689,26 @@ Regular level sets are regular surfaces.
 For this we need the inverse function theorem.
 
 \begin{theorem}[Inverse function theorem]
-Let $ f : \R^n \to \R^n $ be smooth on an open neighbourhood $ V $ of $ p \in \R^n $, and suppose that $ df_p : \R^n \to \R^n $ is invertible. Then there exists an open neighbourhood $ U \subset V $ of $ p $ such that $ \eval{f}_U : U \to f\br{U} $ is a \textbf{diffeomorphism}, which is a smooth bijection with a smooth inverse.
+Let $ f : \RR^n \to \RR^n $ be smooth on an open neighbourhood $ V $ of $ p \in \RR^n $, and suppose that $ \d f_p : \RR^n \to \RR^n $ is invertible. Then there exists an open neighbourhood $ U \subset V $ of $ p $ such that $ \eval{f}_U : U \to f\br{U} $ is a \textbf{diffeomorphism}, which is a smooth bijection with a smooth inverse.
 \end{theorem}
 
 \begin{proof}[Proof of Proposition \ref{prop:regularlevelsets}]
-The goal is to construct a chart on $ S $ near each $ p \in S $. Recall $ S = F^{-1}\br{c} $. Now $ \nabla F\br{p} \ne 0 $, so at least one of
-$$ \dpd{F}{x}\br{p}, \qquad \dpd{F}{y}\br{p}, \qquad \dpd{F}{z}\br{p} $$
-is non-zero. Without loss of generality assume $ \tod{F}{z}\br{p} \ne 0 $. Consider
-$$ \function[g]{\R^3}{\R^3}{\br{x, y, z}}{\br{x, y, F\br{x, y, z}}}. $$
+The goal is to construct a chart on $ S $ near each $ p \in S $. Recall $ S = F^{-1}\br{c} $. Now $ \nabla F\br{p} \ne 0 $, so at least one of $ \tpd{F}{x}\br{p}, \tpd{F}{y}\br{p}, \tpd{F}{z}\br{p} $ is non-zero. Without loss of generality assume $ \tpd{F}{z}\br{p} \ne 0 $. Consider
+$$ \function[g]{\RR^3}{\RR^3}{\br{x, y, z}}{\br{x, y, F\br{x, y, z}}}. $$
 Then $ g $ is smooth, and
-$$ dg_p = \threebythree{1}{0}{0}{0}{1}{0}{\tpd{F}{x}\br{p}}{\tpd{F}{y}\br{p}}{\tpd{F}{z}\br{p}} $$
+$$ \d g_p = \threebythree{1}{0}{0}{0}{1}{0}{\tpd{F}{x}\br{p}}{\tpd{F}{y}\br{p}}{\tpd{F}{z}\br{p}} $$
 is invertible. On a neighbourhood $ U $ of $ p $, $ g $ is a diffeomorphism. Let
-$$ W = \cbr{\br{u, v} \in \R^2 \mid \br{u, v, c} \in g\br{U}}. $$
+$$ W = \cbr{\br{u, v} \in \RR^2 \st \br{u, v, c} \in g\br{U}}. $$
 Identify this with $ \cbr{z = c} \cap g\br{U} $. Let $ V = U \cap F^{-1}\br{c} $ and let
 $$ \function[\phi]{W}{V}{\br{u, v}}{g^{-1}\br{u, v, c}}. $$
-Then $ \phi $ is a chart on $ S $ near $ p $.
-\begin{enumerate}
-\item $ \phi $ is smooth.
-\item $ \phi $ is a homeomorphism onto its image.
-\item $ d\phi_q $ is injective for all $ q \in W $, guaranteed by the inverse function theorem.
-\end{enumerate}
+Then $ \phi $ is a chart on $ S $ near $ p $, since $ \phi $ is smooth, a homeomorphism onto its image, and $ \d\phi_q $ is injective for all $ q \in W $, guaranteed by the inverse function theorem.
 \end{proof}
-
-\pagebreak
 
 \begin{example*}
 The torus is a regular surface. Consider the surface obtained by rotating the circle of radius one in the $ xz $ plane, centred at $ \br{2, 0} $, about $ z $-axis. Writing this in cylindrical polars,
-$$ S = \br{r - 2}^2 + z^2 = 1. $$
-Therefore $ S = F^{-1}\br{1} $ where
-$$ F\br{x, y, z} = \br{\sqrt{x^2 + y^2} - 2}^2 + z^2. $$
-Now, is this a regular surface?
-$$ \nabla F = \br{2\br{\sqrt{x^2 + y^2} - 2}\dfrac{x}{\sqrt{x^2 + y^2}}, 2\br{\sqrt{x^2 + y^2} - 2}\dfrac{y}{\sqrt{x^2 + y^2}}, 2z}. $$
+$$ S = \cbr{\br{r - 2}^2 + z^2 = 1} = F^{-1}\br{1}, \qquad F\br{x, y, z} = \br{\sqrt{x^2 + y^2} - 2}^2 + z^2. $$
+Now,
+$$ \nabla F = \br{\tfrac{2x\br{\sqrt{x^2 + y^2} - 2}}{\sqrt{x^2 + y^2}}, \tfrac{2y\br{\sqrt{x^2 + y^2} - 2}}{\sqrt{x^2 + y^2}}, 2z}. $$
 If $ \nabla F = 0 $ then $ 2z = 0 $ and either $ x = y = 0 $, so $ r = 0 $, or $ \sqrt{x^2 + y^2} = 2 $, so $ r = 2 $. So $ \nabla F\br{p} \ne 0 $ for all $ p \in S $. Thus $ S $ is a regular surface.
 \end{example*}
 
@@ -762,22 +717,18 @@ If $ S $ is a regular surface then, for every $ p \in S $, there exists a neighb
 \end{proposition}
 
 \begin{proof}
-Take a chart $ \phi : U \subset \R^2 \to S \subset \R^3 $ on $ S $ at $ p $. Write
-$$ \phi\br{u, v} = \br{x\br{u, v}, y\br{u, v}, z\br{u, v}}. $$
-Let $ q = \phi^{-1}\br{p} $. Now
-$$ d\phi_q = \threebyone{\tpd{x}{u}\br{q} & \tpd{x}{v}\br{q}}{\tpd{y}{u}\br{q} & \tpd{y}{v}\br{q}}{\tpd{z}{u}\br{q} & \tpd{z}{v}\br{q}} $$
-has rank two. So one of the $ 2 \times 2 $ minors of $ d\phi_q $ is non-zero. Without loss of generality assume
+Take a chart on $ S $ at $ p $. Write
+$$ \function[\phi]{U \subset \RR^2}{S \subset \RR^3}{\br{u, v}}{\br{x\br{u, v}, y\br{u, v}, z\br{u, v}}}. $$
+Let $ q = \phi^{-1}\br{p} $. Now $ \d\phi_q $ has rank two. So one of the $ 2 \times 2 $ minors of $ \d\phi_q $ is non-zero. Without loss of generality assume
 $$ \abs{\twobytwo{\tpd{x}{u}\br{q}}{\tpd{x}{v}\br{q}}{\tpd{y}{u}\br{q}}{\tpd{y}{v}\br{q}}} \ne 0. $$
 Consider
-$$ \function[g]{U}{\R^2}{\br{u, v}}{\br{x\br{u, v}, y\br{u, v}}}. $$
-This is a diffeomorphism near $ q $, by the inverse function theorem.
 $$
 \begin{array}{rcccl}
-\R^2 & \xleftarrow{g} & U & \xrightarrow{\phi} & \R^3 \\
+\RR^2 & \xleftarrow{g} & U & \xrightarrow{\phi} & \RR^3 \\
 \br{x\br{u, v}, y\br{u, v}} & \mapsfrom & \br{u, v} & \mapsto & \br{x, y, F\br{x, y}}
 \end{array},
 $$
-so
+Then $ g $ is a diffeomorphism near $ q $, by the inverse function theorem, so
 $$ \br{\phi \circ g^{-1}}\br{x, y} = \br{x, y, F\br{x, y}}, \qquad F\br{x, y} = z\br{u\br{x, y}, v\br{x, y}}. $$
 Thus, near $ p $, $ S $ is the graph $ z = F\br{x, y} $.
 \end{proof}
@@ -789,10 +740,7 @@ Thus, near $ p $, $ S $ is the graph $ z = F\br{x, y} $.
 \lecture{9}{Tuesday}{23/10/18}
 
 \begin{proposition}
-Let $ S $ be a regular surface, let $ p \in S $, and let $ \alpha : \br{-\epsilon, \epsilon} \to \R^3 $ be a regular curve in $ S $ with $ \alpha\br{0} = p $. Let $ \phi : U \to \R^3 $ be a chart on $ S $ near $ p $. There exist smooth functions
-$$ \br{u, v} : \br{-\epsilon', \epsilon'} \to U, $$
-such that
-$$ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}}, \qquad t \in \br{-\epsilon', \epsilon'}. $$
+Let $ S $ be a regular surface, let $ p \in S $, and let $ \alpha : \br{-\epsilon, \epsilon} \to \RR^3 $ be a regular curve in $ S $ with $ \alpha\br{0} = p $. Let $ \phi : U \to \RR^3 $ be a chart on $ S $ near $ p $. There exist smooth functions $ u, v : \br{-\epsilon', \epsilon'} \to U $ such that $ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}} $ for $ t \in \br{-\epsilon', \epsilon'} $, so
 $$
 \begin{tikzcd}
 & \br{-\epsilon, \epsilon} \arrow[swap]{dl}{\br{u\br{t}, v\br{t}}} \arrow{dr}{\alpha} & \\
@@ -805,93 +753,65 @@ $$
 Without loss of generality $ S $ has the form $ z = f\br{x, y} $. Then
 $$ \phi\br{u, v} = \br{x\br{u, v}, y\br{u, v}, f\br{x\br{u, v}, y\br{u, v}}}. $$
 Let $ q = \phi^{-1}\br{p} $, and set $ q = \br{u_0, v_0} $. Define
-$$ \function[F]{U \times \br{-c, c}}{\R^3}{\br{u, v, t}}{\br{x\br{u, v}, y\br{u, v}, f\br{x\br{u, v}, y\br{u, v}} + t}}. $$
+$$ \function[F]{U \times \br{-\epsilon, \epsilon}}{\RR^3}{\br{u, v, t}}{\br{x\br{u, v}, y\br{u, v}, f\br{x\br{u, v}, y\br{u, v}} + t}}. $$
 Then $ F\br{u_0, v_0, 0} = p $, and
-$$ dF_{\br{u_0, v_0, 0}} = \threebythree{\tpd{x}{u}}{\tpd{x}{v}}{0}{\tpd{y}{u}}{\tpd{y}{v}}{0}{\tpd{f}{x}\tpd{x}{u} + \tpd{f}{y}\tpd{y}{u}}{\tpd{f}{x}\tpd{x}{v} + \tpd{f}{y}\tpd{y}{v}}{1}. $$
-The first two columns of $ d\phi_{\br{u_0, v_0}} $ has rank two, so
-$$ \br{\dpd{x}{u}, \dpd{y}{u}}, \qquad \br{\dpd{x}{v}, \dpd{y}{v}} $$
-are linearly independent, so $ dF_{\br{u_0, v_0, 0}} $ is invertible. Applying the inverse function theorem, $ F $ is a diffeomorphism in a neighbourhood of $ \br{u_0, v_0, 0} $. Let $ G = F^{-1} $ near $ p $. Then
+$$ \d F_{\br{u_0, v_0, 0}} = \threebythree{\tpd{x}{u}}{\tpd{x}{v}}{0}{\tpd{y}{u}}{\tpd{y}{v}}{0}{\tpd{f}{x}\tpd{x}{u} + \tpd{f}{y}\tpd{y}{u}}{\tpd{f}{x}\tpd{x}{v} + \tpd{f}{y}\tpd{y}{v}}{1}. $$
+The first two columns of $ \d\phi_{\br{u_0, v_0}} $ has rank two, so $ \br{\tpd{x}{u}, \tpd{y}{u}} $ and $ \br{\tpd{x}{v}, \tpd{y}{v}} $ are linearly independent, so $ \d F_{\br{u_0, v_0, 0}} $ is invertible. Applying the inverse function theorem, $ F $ is a diffeomorphism in a neighbourhood of $ \br{u_0, v_0, 0} $. Let $ G = F^{-1} $ near $ p $. Then
 $$ G\br{x\br{u, v}, y\br{u, v}, f\br{x\br{u, v}, y\br{u, v}}} = \br{u, v, 0}. $$
-Now $ \alpha\br{t} = \br{x\br{t}, y\br{t}, f\br{x\br{t}, y\br{t}}} $ for some smooth functions $ x $ and $ y $.
-$$
-\begin{tikzcd}
-& \br{-\epsilon, \epsilon} \arrow[swap]{dl}{\br{u\br{t}, v\br{t}}} \arrow{dr}{\alpha} & \\
-q = \br{u_0, v_0} \in U \arrow{rr}{\phi} & & S \ni p \arrow[bend left=30]{ll}{G}
-\end{tikzcd}.
-$$
-Setting $ \br{u\br{t}, v\br{t}} = \br{G \circ \alpha}\br{t} $ we find
-\begin{itemize}
-\item $ u $ and $ v $ are smooth, because $ G $ and $ \alpha $ are, and
-\item $ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}} $.
-\end{itemize}
+Now $ \alpha\br{t} = \br{x\br{t}, y\br{t}, f\br{x\br{t}, y\br{t}}} $ for some smooth functions $ x $ and $ y $. Setting $ \br{u\br{t}, v\br{t}} = \br{G \circ \alpha}\br{t} $ we find $ u $ and $ v $ are smooth, because $ G $ and $ \alpha $ are, and $ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}} $.
 \end{proof}
 
-\pagebreak
-
 \begin{definition}
-Let $ S $ be a regular surface and $ p \in S $. A \textbf{tangent vector} to $ S $ at $ p $ is a vector in $ \R^3 $ of the form $ \alpha'\br{0} $, where $ \alpha : \br{-\epsilon, \epsilon} \to S $ is a regular curve with $ \alpha\br{0} = p $. The \textbf{tangent plane} $ T_pS $ to $ S $ at $ p $ is the set of all tangent vectors.
+Let $ S $ be a regular surface, and let $ p \in S $. A \textbf{tangent vector} to $ S $ at $ p $ is a vector in $ \RR^3 $ of the form $ \alpha'\br{0} $, where $ \alpha : \br{-\epsilon, \epsilon} \to S $ is a regular curve with $ \alpha\br{0} = p $. The \textbf{tangent plane} $ \T_p S $ to $ S $ at $ p $ is the set of all tangent vectors.
 \end{definition}
 
 This is independent of charts. How to compute this?
 
 \begin{proposition}
-If $ \phi : U \to \R^3 $ is a chart for $ S $ at $ p $, with $ \phi\br{q} = p $, then $ T_pS $ is spanned by the columns of $ d\phi_q $.
+If $ \phi : U \to \RR^3 $ is a chart for $ S $ at $ p $, with $ \phi\br{q} = p $, then $ \T_p S $ is spanned by the columns of $ \d\phi_q $.
 \end{proposition}
 
 \begin{proof}
-\hfill
-\begin{itemize}
-\item Span of columns of $ d\phi_q $ is in $ T_pS $. Write
-$$ d\phi_q = \onebytwo{w_1 = \dpd{\phi}{u}}{w_2 = \dpd{\phi}{v}}. $$
-For all $ a, b \in \R $, need to show $ aw_1 + bw_2 \in T_pS $. Consider $ \alpha\br{t} = \phi\br{q + t\br{a, b}} $. Chain rule implies that $ \alpha'\br{0} = d\phi_q \cdot \br{a, b} = aw_1 + bw_2 $. So $ aw_1 + bw_2 \in T_pS $.
-\item Conversely, need to show any element of $ T_pS $ is of the form $ aw_1 + bw_2 $ for some $ a, b \in \R $. This is of the form $ \alpha'\br{0} $ where $ \alpha : \br{-\epsilon, \epsilon} \to S $ is a regular curve with $ \alpha\br{0} = p $. Given the discussion earlier, we know that there exist smooth functions
-$$ \br{u, v} : \br{-\epsilon', \epsilon'} \to U, $$
-such that
-$$ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}}, \qquad t \in \br{-\epsilon', \epsilon}. $$
-Then
-$$ \alpha'\br{0} = d\phi_{\br{u\br{0}, v\br{0}}} \cdot \br{\dod{u}{t}\br{0}, \dod{v}{t}\br{0}} = d\phi_q \cdot \twobyone{a}{b}, \qquad a = \dod{u}{t}\br{0}, \qquad b = \dod{v}{t}\br{0}. $$
+Write $ \d\phi_q = \br{w_1, w_2} $. For all $ a, b \in \RR $, need to show $ aw_1 + bw_2 \in \T_p S $. Consider $ \alpha\br{t} = \phi\br{q + t\br{a, b}} $. Chain rule implies that $ \alpha'\br{0} = \d\phi_q \cdot \br{a, b} = aw_1 + bw_2 $. So $ aw_1 + bw_2 \in \T_p S $. Conversely, need to show any element of $ \T_p S $ is of the form $ aw_1 + bw_2 $ for some $ a, b \in \RR $. This is of the form $ \alpha'\br{0} $ where $ \alpha : \br{-\epsilon, \epsilon} \to S $ is a regular curve with $ \alpha\br{0} = p $. Given the discussion earlier, we know that there exist smooth functions $ u, v : \br{-\epsilon', \epsilon'} \to U $ such that $ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}} $ for $ t \in \br{-\epsilon', \epsilon} $. Then
+$$ \alpha'\br{0} = \d\phi_{\br{u\br{0}, v\br{0}}} \cdot \twobyone{\tod{u}{t}\br{0}}{\tod{v}{t}\br{0}} = \d\phi_q \cdot \twobyone{a}{b}, \qquad a = \dod{u}{t}\br{0}, \qquad b = \dod{v}{t}\br{0}. $$
 Thus $ \alpha'\br{0} = aw_1 + bw_2 $ as claimed.
-\end{itemize}
 \end{proof}
 
-\begin{example*}
+\begin{exercise*}
 Consider
-$$ S = \cbr{\br{x, y, z} \mid x^2 + y^2 + z^2 = 1}, \qquad p = \br{0, 0, 1}. $$
+$$ S = \cbr{\br{x, y, z} \st x^2 + y^2 + z^2 = 1}, \qquad p = \br{0, 0, 1}. $$
 Use the chart
-$$ \function[\phi]{U}{\R^3}{\br{u, v}}{\br{u, v, \sqrt{1 - u^2 - v^2}}}, $$
-where $ U $ is the open unit disc in $ \R^2 $ to compute $ T_pS $ as the $ xy $ plane.
-\end{example*}
+$$ \function[\phi]{U}{\RR^3}{\br{u, v}}{\br{u, v, \sqrt{1 - u^2 - v^2}}}, $$
+where $ U $ is the open unit disc in $ \RR^2 $ to compute $ \T_p S $ as the $ xy $ plane.
+\end{exercise*}
+
+\pagebreak
 
 \lecture{10}{Friday}{26/10/18}
 
 \begin{proposition}
-Let $ S = F^{-1}\br{c} $ for $ F : \R^3 \to \R $ then for any $ p \in S $
-$$ T_pS = \br{\nabla F\br{p}}^\perp. $$
+Let $ S = F^{-1}\br{c} $ for $ F : \RR^3 \to \RR $ then for any $ p \in S $,
+$$ \T_p S = \br{\nabla F\br{p}}^\perp. $$
 \end{proposition}
 
 \begin{proof}
-Let $ \alpha : \br{-\epsilon, \epsilon} \to S $ such that $ \alpha\br{0} = p $, so $ \alpha'\br{0} \in T_pS $ and $ F\br{\alpha\br{t}} = c $. Let $ \alpha = \br{x\br{t}, y\br{t}, z\br{t}} $.
+Let $ \alpha : \br{-\epsilon, \epsilon} \to S $ such that $ \alpha\br{0} = p $, so $ \alpha'\br{0} \in \T_p S $ and $ F\br{\alpha\br{t}} = c $. Let $ \alpha = \br{x\br{t}, y\br{t}, z\br{t}} $. Then
 $$ 0 = \eval{\dod{}{t}F\br{\alpha\br{t}}}_{t = 0} = \eval{\br{\dpd{F}{x}\dod{x}{t} + \dpd{F}{y}\dod{y}{t} + \dpd{F}{z}\dod{z}{t}}}_{t = 0} = \nabla F\br{\alpha\br{0}} \cdot \alpha'\br{0}, $$
-so $ \alpha'\br{0} \in \br{\nabla F\br{p}}^\perp $, so $ T_pS \subseteq \br{\nabla F\br{p}}^\perp $, which is two-dimensional. This implies that $ T_pS = \br{\nabla F\br{p}}^\perp $.
+so $ \alpha'\br{0} \in \br{\nabla F\br{p}}^\perp $, so $ \T_p S \subseteq \br{\nabla F\br{p}}^\perp $, which is two-dimensional. This implies that $ \T_p S = \br{\nabla F\br{p}}^\perp $.
 \end{proof}
 
 \begin{example*}
 Let $ S $ be the paraboloid
-$$ \cbr{z = x^2 + y^2}. $$
-Compute $ T_pS $ for $ p = \br{1, 3, 10} $. $ S $ is a regular level set $ F^{-1}\br{0} $ for $ F = x^2 + y^2 - z $ and $ \nabla F = \br{2x, 2y, -1} \ne 0 $. Then $ \nabla F\br{p} = \br{2, 6, -1} $, so
-$$ T_pS = \br{\nabla F\br{p}}^\perp = \cbr{2x + 6y - z = 0}. $$
+$$ \cbr{z = x^2 + y^2} = F^{-1}\br{0}, \qquad F = x^2 + y^2 - z, $$
+and let $ p = \br{1, 3, 10} $. Then $ \nabla F = \br{2x, 2y, -1} \ne 0 $, and $ \nabla F\br{p} = \br{2, 6, -1} $, so
+$$ \T_p S = \br{\nabla F\br{p}}^\perp = \cbr{2x + 6y - z = 0}. $$
 \end{example*}
 
-\pagebreak
-
 \begin{definition}
-Let $ S_1 $ and $ S_2 $ be regular surfaces.
-\begin{itemize}
-\item A map $ F : S_1 \to \R^3 $ is \textbf{smooth} if for every chart $ \phi : U \to S_1 $ the composition $ U \xrightarrow{\phi} S_1 \xrightarrow{F} \R^3 $ is smooth.
-\item A map $ F : S_1 \to S_2 $ is \textbf{smooth} if it is smooth when viewed as a map $ F : S_1 \to \R^3 $.
-\end{itemize}
-The \textbf{differential} of a smooth map $ F : S_1 \to S_2 $ at $ p \in S_1 $, denoted $ dF_p : T_pS_1 \to T_{F\br{p}}S_2 $, is defined as follows. Let $ v = \alpha'\br{0} $ for $ \alpha : \br{-\epsilon, \epsilon} \to S_1 $ such that $ \alpha\br{0} = p $ and $ \beta\br{t} = F\br{\alpha\br{t}} : \br{-\epsilon, \epsilon} \to S_2 $. This is a regular curve in $ S_2 $, so $ \beta'\br{0} \in T_{F\br{p}}S_2 $, since $ \beta\br{0} = F\br{p} $. We define
-$$ dF_p\br{v} = \beta'\br{0}. $$
+Let $ S_1 $ and $ S_2 $ be regular surfaces. A map $ F : S_1 \to \RR^3 $ is \textbf{smooth} if for every chart $ \phi : U \to S_1 $ the composition $ U \xrightarrow{\phi} S_1 \xrightarrow{F} \RR^3 $ is smooth. A map $ F : S_1 \to S_2 $ is \textbf{smooth} if it is smooth when viewed as a map $ F : S_1 \to \RR^3 $. The \textbf{differential} of a smooth map $ F : S_1 \to S_2 $ at $ p \in S_1 $, denoted
+$$ \d F_p : \T_p S_1 \to \T_{F\br{p}} S_2, $$
+is defined as follows. Let $ v = \alpha'\br{0} $ for $ \alpha : \br{-\epsilon, \epsilon} \to S_1 $ such that $ \alpha\br{0} = p $ and $ \beta\br{t} = F\br{\alpha\br{t}} : \br{-\epsilon, \epsilon} \to S_2 $. This is a regular curve in $ S_2 $, so $ \beta'\br{0} \in \T_{F\br{p}} S_2 $, since $ \beta\br{0} = F\br{p} $. We define
+$$ \d F_p\br{v} = \beta'\br{0}. $$
 \end{definition}
 
 \begin{proposition}
@@ -906,169 +826,170 @@ Recall $ \tod{\phi}{u} $ and $ \tod{\phi}{v} $ are linearly independent. This im
 \label{eq:1}
 \dod{u_1}{t}\br{0} = \dod{u_2}{t}\br{0}, \qquad \dod{v_1}{t}\br{0} = \dod{v_2}{t}\br{0}.
 \end{equation}
-Want $ dF_p\br{\alpha_1'\br{0}} = dF_p\br{\alpha_2'\br{0}} $.
-$$ dF_p\br{\alpha_i\br{0}} = \eval{\dod{}{t}F\br{\phi\br{u_i, v_i}}}_{t = 0} = \eval{\br{\dpd{\br{F \circ \phi}}{u}\dod{u_i}{t} + \dpd{\br{F \circ \phi}}{v}\dod{v_i}{t}}}_{t = 0}, \qquad i = 1, 2, $$
-so $ dF_p\br{\alpha_1'\br{0}} = dF_p\br{\alpha_2'\br{0}} $ by $ \br{\ref{eq:1}} $. It follows that $ dF_p\br{v} $ is the same if we define it via $ \alpha_1 $ or $ \alpha_2 $.
+Want $ \d F_p\br{\alpha_1'\br{0}} = \d F_p\br{\alpha_2'\br{0}} $.
+$$ \d F_p\br{\alpha_i\br{0}} = \eval{\dod{}{t}F\br{\phi\br{u_i, v_i}}}_{t = 0} = \eval{\br{\dpd{\br{F \circ \phi}}{u}\dod{u_i}{t} + \dpd{\br{F \circ \phi}}{v}\dod{v_i}{t}}}_{t = 0}, \qquad i = 1, 2, $$
+so $ \d F_p\br{\alpha_1'\br{0}} = \d F_p\br{\alpha_2'\br{0}} $ by $ \br{\ref{eq:1}} $. It follows that $ \d F_p\br{v} $ is the same if we define it via $ \alpha_1 $ or $ \alpha_2 $.
 \end{proof}
 
 \begin{proposition}
-$ dF_p : T_pS_1 \to T_{F\br{p}}S_2 $ is linear.
+$ \d F_p : \T_p S_1 \to \T_{F\br{p}} S_2 $ is linear.
 \end{proposition}
 
 \begin{proof}
-Let $ v, w \in T_pS_1 $ and $ c, d \in \R $. Want $ dF_p\br{cv + dw} = cdF_p\br{v} + ddF_p\br{w} $. Let $ \alpha_1, \alpha_2 : \br{-\epsilon, \epsilon} \to S_1 $ such that $ v = \alpha_1'\br{0} $ and $ w = \alpha_2'\br{0} $. Let $ \phi : U \to S_1 $ be a chart. Without loss of generality we assume $ \br{0, 0} \in U $ and $ \phi\br{0, 0} = p $. Let $ \alpha_i\br{t} = \phi\br{u_i\br{t}, v_i\br{t}} $. Find $ \alpha_3\br{t} $ such that $ \alpha_3'\br{0} = cv + dw $. Let
+Let $ v, w \in \T_p S_1 $ and $ c, d \in \RR $. Want $ \d F_p\br{cv + dw} = c\d F_p\br{v} + d\d F_p\br{w} $. Let $ \alpha_1, \alpha_2 : \br{-\epsilon, \epsilon} \to S_1 $ such that $ v = \alpha_1'\br{0} $ and $ w = \alpha_2'\br{0} $. Let $ \phi : U \to S_1 $ be a chart. Without loss of generality we assume $ \br{0, 0} \in U $ and $ \phi\br{0, 0} = p $. Let $ \alpha_i\br{t} = \phi\br{u_i\br{t}, v_i\br{t}} $. Let
 $$ \alpha_3\br{t} = \phi\br{cu_1\br{t} + du_2\br{t}, cv_1\br{t} + dv_2\br{t}}, $$
 so $ \alpha_3\br{0} = \phi\br{0, 0} = p $ and
 \begin{align*}
 \alpha_3'\br{0}
 & = \dpd{\phi}{u}\br{cu_1'\br{0} + du_2'\br{0}} + \dpd{\phi}{v}\br{cv_1'\br{0} + dv_2'\br{0}} \\
-& = c\br{u_1'\br{0}\dpd{\phi}{u} + v_1'\br{0}\dpd{\phi}{v}} + d\br{u_2'\br{0}\dpd{\phi}{u} + v_2'\br{0}\dpd{\phi}{v}} \\
-& = c\alpha_1'\br{0} + d\alpha_2'\br{0} = cv + dw.
+& = c\br{u_1'\br{0}\dpd{\phi}{u} + v_1'\br{0}\dpd{\phi}{v}} + d\br{u_2'\br{0}\dpd{\phi}{u} + v_2'\br{0}\dpd{\phi}{v}}
+= c\alpha_1'\br{0} + d\alpha_2'\br{0}
+= cv + dw.
 \end{align*}
-Then
-\begin{align*}
-dF_p\br{cv + dw}
-& = dF_p\br{\alpha_3'\br{0}}
-= \br{\br{F \circ \phi}\br{cu_1\br{t} + du_2\br{t}, cv_1\br{t} + dv_2\br{t}}}'\br{0} \\
-& = \dpd{\br{F \circ \phi}}{u}\br{cu_1'\br{0} + du_2'\br{0}} + \dpd{\br{F \circ \phi}}{u}\br{cv_1'\br{0} + dv_2'\br{0}} \\
-& = c\br{\dpd{\br{F \circ \phi}}{u}u_1'\br{0} + \dpd{\br{F \circ \phi}}{v}v_1'\br{0}} + d\br{\dpd{\br{F \circ \phi}}{u}u_2'\br{0} + \dpd{\br{F \circ \phi}}{v}v_2'\br{0}} \\
-& = c\br{F \circ \alpha_1}'\br{0} + d\br{F \circ \alpha_2}'\br{0} = cdF_p\br{v} + ddF_p\br{w},
-\end{align*}
-since
-$$ dF_p\br{\alpha_i'\br{0}} = \br{F \circ \alpha_i}'\br{0} = \br{\dpd{\br{F \circ \phi}}{u}}\dod{u_i}{t} + \br{\dpd{\br{F \circ \phi}}{v}}\dod{v_i}{t}. $$
-\end{proof}
 
 \pagebreak
 
+Then
+\begin{align*}
+\d F_p\br{cv + dw}
+& = \d F_p\br{\alpha_3'\br{0}}
+= \br{\br{F \circ \phi}\br{cu_1\br{t} + du_2\br{t}, cv_1\br{t} + dv_2\br{t}}}'\br{0} \\
+& = \dpd{\br{F \circ \phi}}{u}\br{cu_1'\br{0} + du_2'\br{0}} + \dpd{\br{F \circ \phi}}{u}\br{cv_1'\br{0} + dv_2'\br{0}} \\
+& = c\br{\dpd{\br{F \circ \phi}}{u}u_1'\br{0} + \dpd{\br{F \circ \phi}}{v}v_1'\br{0}} + d\br{\dpd{\br{F \circ \phi}}{u}u_2'\br{0} + \dpd{\br{F \circ \phi}}{v}v_2'\br{0}} \\
+& = c\br{F \circ \alpha_1}'\br{0} + d\br{F \circ \alpha_2}'\br{0}
+= c\d F_p\br{v} + d\d F_p\br{w},
+\end{align*}
+since
+$$ \d F_p\br{\alpha_i'\br{0}} = \br{F \circ \alpha_i}'\br{0} = \br{\dpd{\br{F \circ \phi}}{u}}\dod{u_i}{t} + \br{\dpd{\br{F \circ \phi}}{v}}\dod{v_i}{t}. $$
+\end{proof}
+
 \begin{remark*}
-We will use the following identity. Given a chart $ \phi : U \to S_1 $ and $ F : S_1 \to S_2 $
-$$ dF_p\br{\dpd{\phi}{u}\br{u_0, v_0}} = \dpd{\br{F \circ \phi}}{u}\br{u_0, v_0}, \qquad dF_p\br{\dpd{\phi}{v}\br{u_0, v_0}} = \dpd{\br{F \circ \phi}}{v}\br{u_0, v_0}. $$
+We will use the following identity. Given a chart $ \phi : U \to S_1 $ and $ F : S_1 \to S_2 $,
+$$ \d F_p\br{\dpd{\phi}{u}\br{u_0, v_0}} = \dpd{\br{F \circ \phi}}{u}\br{u_0, v_0}, \qquad \d F_p\br{\dpd{\phi}{v}\br{u_0, v_0}} = \dpd{\br{F \circ \phi}}{v}\br{u_0, v_0}. $$
 \end{remark*}
 
-Similarly, we define the \textbf{differential} of a smooth function $ f : S \to \R $ if $ v \in T_pS $ satisfies $ v = \alpha'\br{0} $ for $ \alpha = \br{-\epsilon, \epsilon} \to S $ as
-$$ df_p\br{v} = f\br{\alpha\br{t}}'\br{0}. $$
-(Exercise: show that $ df_p $ is well-defined, so independent of choice of $ \alpha $, and that it is linear)
+Similarly, we define the \textbf{differential} of a smooth function $ f : S \to \RR $ if $ v \in \T_p S $ satisfies $ v = \alpha'\br{0} $ for $ \alpha : \br{-\epsilon, \epsilon} \to S $ as
+$$ \d f_p\br{v} = f\br{\alpha\br{t}}'\br{0}. $$
+
+\begin{exercise*}
+Show that $ \d f_p $ is well-defined, so independent of choice of $ \alpha $, and that it is linear.
+\end{exercise*}
 
 \lecture{11}{Monday}{29/10/18}
 
 \begin{example*}
 Let
-$$ S = \cbr{x^2 + y^2 + z^2 = 1}, \qquad p = \br{0, 1, 0}, \qquad \function[f]{S}{\R}{\br{x, y, z}}{z}. $$
-Compute $ T_pS $ and $ df_p : T_pS \to \R $. $ S = F^{-1}\br{1} $ for
-$$ \function[F]{\R^3}{\R}{\br{x, y, z}}{x^2 + y^2 + z^2}. $$
-$ \nabla F\br{p} = \br{0, 2, 0} $, so
-$$ T_pS = \br{\nabla F\br{p}}^\perp = \abr{\br{1, 0, 0}, \br{0, 0, 1}}. $$
-But to compute $ df_p $ use the chart near $ p $
+$$ S = \cbr{x^2 + y^2 + z^2 = 1} = F^{-1}\br{1}, \qquad \function[F]{\RR^3}{\RR}{\br{x, y, z}}{x^2 + y^2 + z^2}, $$
+and let
+$$ p = \br{0, 1, 0}, \qquad \function[f]{S}{\RR}{\br{x, y, z}}{z}. $$
+Then $ \nabla F\br{p} = \br{0, 2, 0} $, so
+$$ \T_p S = \br{\nabla F\br{p}}^\perp = \abr{\br{1, 0, 0}, \br{0, 0, 1}}. $$
+But to compute $ \d f_p $ use the chart near $ p $,
 $$ \function[\phi_p]{U}{S}{\br{u, v}}{\br{u, \sqrt{1 - u^2 - v^2}, v}}, \qquad U = \cbr{u^2 + v^2 < 1}. $$
 Then $ \br{f \circ \phi}\br{u, v} = v $, so
-$$ df_p\br{\dpd{\phi}{u}\br{0, 0}} = 0, \qquad df_p\br{\dpd{\phi}{v}\br{0, 0}} = 1. $$
-This determines $ df_p : T_pS \to \R $, a linear map.
+$$ \d f_p\br{\dpd{\phi}{u}\br{0, 0}} = 0, \qquad \d f_p\br{\dpd{\phi}{v}\br{0, 0}} = 1. $$
+This determines $ \d f_p : \T_p S \to \RR $, a linear map.
 \end{example*}
 
 \begin{proposition}
-Let $ f : S_1 \to S_2 $ be a smooth map. If $ df_p : T_pS_1 \to T_{f\br{p}}S_2 $ is an isomorphism, then there exists an open neighbourhood $ V \subseteq S_1 $ of $ p $ such that $ f : V \to f\br{V} $ is a diffeomorphism.
+Let $ f : S_1 \to S_2 $ be a smooth map. If $ \d f_p : \T_p S_1 \to \T_{f\br{p}} S_2 $ is an isomorphism, then there exists an open neighbourhood $ V \subseteq S_1 $ of $ p $ such that $ f : V \to f\br{V} $ is a diffeomorphism.
 \end{proposition}
 
 \begin{proof}
-Take charts $ \phi_1 : U_1 \to S_1 $ at $ p $ and $ \phi_2 : U_2 \to S_2 $ at $ f\br{p} $.
+Take charts $ \phi_1 : U_1 \to S_1 $ at $ p $ and $ \phi_2 : U_2 \to S_2 $ at $ f\br{p} $, so
 $$
 \begin{tikzcd}
 \phi_1\br{q_1} = p \in \phi_1\br{U_1} \subseteq S_1 \arrow{r}{f} & \phi_2\br{q_2} = f\br{p} \in \phi_2\br{U_2} \subseteq S_2 \\
-q_1 \in U_1 \subseteq \R^2 \arrow{u}{\phi_1} \arrow[swap]{r}{g} & q_2 \in U_2 \subseteq \R^2 \arrow[swap]{u}{\phi_2}
+q_1 \in U_1 \subseteq \RR^2 \arrow{u}{\phi_1} \arrow[swap]{r}{g} & q_2 \in U_2 \subseteq \RR^2 \arrow[swap]{u}{\phi_2}
 \end{tikzcd}.
 $$
 Check that the map
 $$ g : U_1 \to S_1 \to S_2 \to U_2 $$
-satisfies
-\begin{itemize}
-\item $ g\br{q_1} = q_2 $, and
-\item $ dg_{q_1} $ is invertible.
-\end{itemize}
-Use the inverse function theorem for $ g $. Then $ f = \phi_2 \circ g \circ \phi_1^{-1} $ will be a diffeomorphism on some neighbourhood of $ \phi_1\br{q_1} = p $.
+satisfies $ g\br{q_1} = q_2 $, and $ \d g_{q_1} $ is invertible. Use the inverse function theorem for $ g $. Then $ f = \phi_2 \circ g \circ \phi_1^{-1} $ will be a diffeomorphism on some neighbourhood of $ \phi_1\br{q_1} = p $.
 \end{proof}
 
 \pagebreak
 
 \subsection{Normal vectors}
 
-A regular surface $ S \subseteq \R^3 $ has two normal vectors at $ p $ in $ S $. If $ S = F^{-1}\br{c} $ for some smooth function $ F : \R^3 \to \R $, $ T_pS = \br{\nabla F\br{p}}^\perp $. We can define the \textbf{unit normal vector}
-$$ N\br{p} = \dfrac{\nabla F\br{p}}{\abs{\nabla F\br{p}}}. $$
-In general we can only do this locally, in a chart. Given a chart $ \phi : U \to S $ such that $ \phi\br{q} = p $, we know that $ T_pS $ is spanned by $ \tod{\phi}{u}\br{q} $ and $ \tod{\phi}{v}\br{q} $. Define
-$$ N\br{p} = \dfrac{\tpd{\phi}{u}\br{q} \times \tpd{\phi}{v}\br{q}}{\abs{\tpd{\phi}{u}\br{q} \times \tpd{\phi}{v}\br{q}}}. $$
-This can always be done locally, but not globally. On the M\"obius strip, you cannot pick $ N\br{p} $ continuously.
+A regular surface $ S \subseteq \RR^3 $ has two normal vectors at $ p $ in $ S $. If $ S = F^{-1}\br{c} $ for some smooth function $ F : \RR^3 \to \RR $, then $ \T_p S = \br{\nabla F\br{p}}^\perp $. We can define the \textbf{unit normal vector}
+$$ \N\br{p} = \dfrac{\nabla F\br{p}}{\abs{\nabla F\br{p}}}. $$
+In general we can only do this locally, in a chart. Given a chart $ \phi : U \to S $ such that $ \phi\br{q} = p $, we know that $ \T_p S $ is spanned by $ \tod{\phi}{u}\br{q} $ and $ \tod{\phi}{v}\br{q} $. Define
+$$ \N\br{p} = \dfrac{\tpd{\phi}{u}\br{q} \times \tpd{\phi}{v}\br{q}}{\abs{\tpd{\phi}{u}\br{q} \times \tpd{\phi}{v}\br{q}}}. $$
+This can always be done locally, but not globally. On the M\"obius strip, you cannot pick $ \N\br{p} $ continuously.
 
 \begin{definition}
-$ S $ is \textbf{orientable} if it admits a continuous choice of unit normal vector $ N\br{p} \in S $. If $ S $ is orientable, we get a map $ N : S \to S^2 $. $ N $ is called the \textbf{Gauss map}. If this exists, it is smooth.
+$ S $ is \textbf{orientable} if it admits a continuous choice of unit normal vector $ \N\br{p} \in S $. If $ S $ is orientable, we get a map $ \N : S \to \S^2 $. Then $ \N $ is called the \textbf{Gauss map}. If this exists, it is smooth.
 \end{definition}
 
 \begin{example*}
-Let $ S = S^2 $ be the unit sphere. As $ S = F^{-1}\br{1} $ for $ F\br{x, y, z} = x^2 + y^2 + z^2 $,
-$$ N\br{x, y, z} = \dfrac{\nabla F\br{x, y, z}}{\abs{\nabla F\br{x, y, z}}} = \dfrac{\br{2x, 2y, 2z}}{\sqrt{4x^2 + 4y^2 + 4z^2}} = \br{x, y, z}. $$
+Let $ S = \S^2 $ be the unit sphere. As $ S = F^{-1}\br{1} $ for $ F\br{x, y, z} = x^2 + y^2 + z^2 $,
+$$ \N\br{x, y, z} = \dfrac{\nabla F\br{x, y, z}}{\abs{\nabla F\br{x, y, z}}} = \dfrac{\br{2x, 2y, 2z}}{\sqrt{4x^2 + 4y^2 + 4z^2}} = \br{x, y, z}. $$
 Or, near the north pole $ \br{0, 0, 1} $ we have a chart $ \phi\br{u, v} = \br{u, v, \sqrt{1 - u^2 - v^2}} $, so
-$$ \dpd{\phi}{u} = \br{1, 0, \dfrac{-u}{\sqrt{1 - u^2 - v^2}}}, \qquad \dpd{\phi}{u} = \br{0, 1, \dfrac{-v}{\sqrt{1 - u^2 - v^2}}}, $$
+$$ \dpd{\phi}{u} = \br{1, 0, \tfrac{-u}{\sqrt{1 - u^2 - v^2}}}, \qquad \dpd{\phi}{u} = \br{0, 1, \tfrac{-v}{\sqrt{1 - u^2 - v^2}}}, $$
 so
-$$ \dpd{\phi}{u} \times \dpd{\phi}{v} = \br{\dfrac{u}{\sqrt{1 - u^2 - v^2}}, \dfrac{v}{\sqrt{1 - u^2 - v^2}}, 1}. $$
+$$ \dpd{\phi}{u} \times \dpd{\phi}{v} = \br{\tfrac{u}{\sqrt{1 - u^2 - v^2}}, \tfrac{v}{\sqrt{1 - u^2 - v^2}}, 1}. $$
 Thus
-$$ N\br{\phi\br{u, v}} = \dfrac{\tpd{\phi}{u} \times \tpd{\phi}{v}}{\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}} = \br{u, v, \sqrt{1 - u^2 - v^2}} = \phi\br{u, v}. $$
+$$ \N\br{\phi\br{u, v}} = \dfrac{\tpd{\phi}{u} \times \tpd{\phi}{v}}{\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}} = \br{u, v, \sqrt{1 - u^2 - v^2}} = \phi\br{u, v}. $$
 \end{example*}
 
 \begin{example*}
 Let
-$$ S = \cbr{ax + by + cz = d} $$
-be a plane, so $ F\br{x, y, z} = ax + by + cz $ and $ S = F^{-1}\br{d} $. Then
-$$ N\br{x, y, z} = \dfrac{\nabla F\br{x, y, z}}{\abs{\nabla F\br{x, y, z}}} = \dfrac{\br{a, b, c}}{\sqrt{a^2 + b^2 + c^2}} $$
+$$ S = \cbr{ax + by + cz = d} = F^{-1}\br{d}, \qquad F\br{x, y, z} = ax + by + cz $$
+be a plane. Then
+$$ \N\br{x, y, z} = \dfrac{\nabla F\br{x, y, z}}{\abs{\nabla F\br{x, y, z}}} = \dfrac{\br{a, b, c}}{\sqrt{a^2 + b^2 + c^2}} $$
 is a constant map.
 \end{example*}
 
-Let $ N : S \to S^2 $. What is $ dN_p : T_pS \to T_{N\br{p}}S^2 $? $ T_{N\br{p}}S^2 $ is all vectors orthogonal to $ N\br{p} $, which is $ T_pS $. We use this identification to write $ dN_p : T_pS \to T_pS $.
+What is $ \d\N_p : \T_p S \to \T_{\N\br{p}} \S^2 $? $ \T_{\N\br{p}} \S^2 $ is all vectors orthogonal to $ \N\br{p} $, which is $ \T_p S $. We use this identification to write $ \d\N_p : \T_p S \to \T_p S $.
 
 \begin{example*}
 Let
-$$ S = \cbr{\br{x, y, z} \mid x^2 + y^2 + z^2 = r^2} $$
-be a sphere of radius $ r $ and $ p = \br{x, y, z} $, so $ S = F^{-1}\br{r^2} $ for $ F = x^2 + y^2 + z^2 $. Then
-$$ N\br{p} = \dfrac{\nabla F\br{p}}{\abs{\nabla F\br{p}}} = \br{\dfrac{x}{r}, \dfrac{y}{r}, \dfrac{z}{r}} = \dfrac{p}{r}. $$
+$$ S = \cbr{\br{x, y, z} \st x^2 + y^2 + z^2 = r^2} = F^{-1}\br{r^2}, \qquad F = x^2 + y^2 + z^2 $$
+be a sphere of radius $ r $, and let $ p = \br{x, y, z} $. Then
+$$ \N\br{p} = \dfrac{\nabla F\br{p}}{\abs{\nabla F\br{p}}} = \br{\dfrac{x}{r}, \dfrac{y}{r}, \dfrac{z}{r}} = \dfrac{p}{r}. $$
 Let $ \alpha : \br{-\epsilon, \epsilon} \to S $ be a curve with $ \alpha\br{0} = p $, so
-$$ dN_p\br{\alpha'\br{0}} = \eval{\dod{\br{\br{N \circ \alpha}\br{t}}}{t}}_{t = 0} = \dfrac{1}{r}\alpha'\br{0}. $$
-Thus $ dN_p : T_pS \to T_pS $ is $ dN_p = Id / r $.
+$$ \d\N_p\br{\alpha'\br{0}} = \eval{\dod{\br{\br{\N \circ \alpha}\br{t}}}{t}}_{t = 0} = \dfrac{1}{r}\alpha'\br{0}. $$
+Thus $ \d\N_p : \T_p S \to \T_p S $ is $ \d\N_p = \id / r $.
 \end{example*}
 
 \pagebreak
 
 \section{Curvature}
 
-We will try to define the curvature using the Gauss map.
-
 \lecture{12}{Tuesday}{30/10/18}
+
+We will try to define the curvature using the Gauss map.
 
 \subsection{The second fundamental form}
 
 \begin{example*}
 Let
 $$ S = \cbr{ax + by + cz = d} $$
-be a plane and $ p \in S $. Then
-$$ N\br{p} = \dfrac{\br{a, b, c}}{\sqrt{a^2 + b^2 + c^2}} $$
-is constant with respect to $ p $, so $ dN_p : T_pS \to T_{N\br{p}}S^2 $ is the zero map.
+be a plane, and let $ p \in S $. Then
+$$ \N\br{p} = \dfrac{\br{a, b, c}}{\sqrt{a^2 + b^2 + c^2}} $$
+is constant with respect to $ p $, so $ \d\N_p : \T_p S \to \T_{\N\br{p}} \S^2 $ is the zero map.
 \end{example*}
 
-\begin{example*}
+\begin{exercise*}
 Let
 $$ S = \cbr{x^2 + 2y^2 + z^2 = r^2}. $$
-Compute $ dN_p $ at $ \br{1, 0, 0} $ and at $ \br{0, 1, 0} $.
-\end{example*}
+Compute $ \d\N_p $ at $ \br{1, 0, 0} $ and at $ \br{0, 1, 0} $.
+\end{exercise*}
 
 \begin{definition}
 Let $ S $ be a regular orientable surface, let $ p \in S $. The \textbf{second fundamental form} at $ p $ is
-$$ \function[A]{T_pS \times T_pS}{\R}{\br{X, Y}}{-X \cdot dN_p\br{Y}}, $$
-which is how much $ N_p\br{Y} $ is changing in the direction of $ X $.
+$$ \function[\A]{\T_p S \times \T_p S}{\RR}{\br{X, Y}}{-X \cdot \d\N_p\br{Y}}, $$
+which is how much $ \N_p\br{Y} $ is changing in the direction of $ X $.
 \end{definition}
 
 \begin{example*}
 If $ S $ is a sphere of radius $ r $ then
-$$ A\br{X, Y} = -\dfrac{1}{r}X \cdot Y. $$
+$$ \A\br{X, Y} = -\dfrac{1}{r}X \cdot Y. $$
 \end{example*}
 
 \begin{proposition}
-$ A $ is a symmetric bilinear form.
+$ \A $ is a symmetric bilinear form.
 \end{proposition}
 
 \begin{proof}
@@ -1076,23 +997,23 @@ $ A $ is a symmetric bilinear form.
 \begin{itemize}
 \item Bilinearity.
 \begin{align*}
-A\br{X, cY_1 + dY_2}
-& = -X \cdot dN_p\br{cY_1 + dY_2}
-= -X \cdot \br{cdN_p\br{Y_1} + ddN_p\br{Y_2}} \\
-& = c\br{-X \cdot dN_p\br{Y_1}} + d\br{-X \cdot dN_p\br{Y_2}}
-= cA\br{X, Y_1} + dA\br{X, Y_2}.
+\A\br{X, cY_1 + dY_2}
+& = -X \cdot \d\N_p\br{cY_1 + dY_2}
+= -X \cdot \br{c\d\N_p\br{Y_1} + d\d\N_p\br{Y_2}} \\
+& = c\br{-X \cdot \d\N_p\br{Y_1}} + d\br{-X \cdot \d\N_p\br{Y_2}}
+= c\A\br{X, Y_1} + d\A\br{X, Y_2}.
 \end{align*}
-Similarly $ A\br{cX_1 + dX_2, Y} = cA\br{X_1, Y} + dA\br{X_2, Y} $.
-\item Symmetry. Take a chart $ \phi : U \to S $ near $ p $. Then $ \tod{\phi}{u}\br{q} $ and $ \tod{\phi}{v}\br{q} $, where $ \phi\br{q} = p $, form a basis for the tangent space $ T_pS $. Sufficient to prove that
-$$ A\br{\dpd{\phi}{u}\br{q}, \dpd{\phi}{v}\br{q}} = A\br{\dpd{\phi}{v}\br{q}, \dpd{\phi}{u}\br{q}}. $$
+Similarly $ \A\br{cX_1 + dX_2, Y} = c\A\br{X_1, Y} + d\A\br{X_2, Y} $.
+\item Symmetry. Take a chart $ \phi : U \to S $ near $ p $. Then $ \tod{\phi}{u}\br{q} $ and $ \tod{\phi}{v}\br{q} $, where $ \phi\br{q} = p $, form a basis for the tangent space $ \T_p S $. It is sufficient to prove that
+$$ \A\br{\dpd{\phi}{u}\br{q}, \dpd{\phi}{v}\br{q}} = \A\br{\dpd{\phi}{v}\br{q}, \dpd{\phi}{u}\br{q}}. $$
 Observe that
-$$ N\br{\phi\br{p}} \cdot \dpd{\phi}{u} = 0, \qquad N\br{\phi\br{p}} \cdot \dpd{\phi}{v} = 0, $$
-since $ \tod{\phi}{u} $ and $ \tod{\phi}{v} $ are in $ T_pS $ and $ N\br{\phi\br{p}} $ is normal to $ T_pS $. Applying $ \tpd{}{v} $ and $ \tpd{}{u} $,
-$$ \dpd{}{v}\br{N \circ \phi} \cdot \dpd{\phi}{u} + \br{N \circ \phi} \cdot \dmd{\phi}{2}{v}{}{u}{} = 0, \qquad \dpd{}{u}\br{N \circ \phi} \cdot \dpd{\phi}{v} + \br{N \circ \phi} \cdot \dmd{\phi}{2}{u}{}{v}{} = 0. $$
+$$ \N\br{\phi\br{p}} \cdot \dpd{\phi}{u} = 0, \qquad \N\br{\phi\br{p}} \cdot \dpd{\phi}{v} = 0, $$
+since $ \tod{\phi}{u} $ and $ \tod{\phi}{v} $ are in $ \T_p S $ and $ \N\br{\phi\br{p}} $ is normal to $ \T_p S $. Applying $ \tpd{}{v} $ and $ \tpd{}{u} $,
+$$ \dpd{}{v}\br{\N \circ \phi} \cdot \dpd{\phi}{u} + \br{\N \circ \phi} \cdot \dmd{\phi}{2}{v}{}{u}{} = 0, \qquad \dpd{}{u}\br{\N \circ \phi} \cdot \dpd{\phi}{v} + \br{\N \circ \phi} \cdot \dmd{\phi}{2}{u}{}{v}{} = 0. $$
 Then
-$$ A\br{\dpd{\phi}{u}, \dpd{\phi}{v}} = \br{N \circ \phi} \cdot \dmd{\phi}{2}{v}{}{u}{}, \qquad A\br{\dpd{\phi}{v}, \dpd{\phi}{u}} = \br{N \circ \phi} \cdot \dmd{\phi}{2}{u}{}{v}{}. $$
+$$ \A\br{\dpd{\phi}{u}, \dpd{\phi}{v}} = \br{\N \circ \phi} \cdot \dmd{\phi}{2}{v}{}{u}{}, \qquad \A\br{\dpd{\phi}{v}, \dpd{\phi}{u}} = \br{\N \circ \phi} \cdot \dmd{\phi}{2}{u}{}{v}{}. $$
 Thus both these are equal, so
-$$ A\br{\dpd{\phi}{u}, \dpd{\phi}{v}} = A\br{\dpd{\phi}{v}, \dpd{\phi}{u}}. $$
+$$ \A\br{\dpd{\phi}{u}, \dpd{\phi}{v}} = \A\br{\dpd{\phi}{v}, \dpd{\phi}{u}}. $$
 \end{itemize}
 \end{proof}
 
@@ -1106,60 +1027,62 @@ Lecture 13 is a problem class.
 
 \lecture{14}{Monday}{05/11/18}
 
-There exists an orthonormal basis $ x_1 $ and $ x_2 $ for $ T_pS $ such that
-$$ dN_p\br{x_i} = -\lambda_ix_i, \qquad i \in \cbr{1, 2}. $$
+There exists an orthonormal basis $ x_1 $ and $ x_2 $ for $ \T_p S $ such that
+$$ \d\N_p\br{x_i} = -\lambda_ix_i, \qquad i = 1, 2. $$
 Then
 \begin{itemize}
-\item $ A\br{x_1, x_1} = -x_1 \cdot dN_p\br{x_1} = x_1 \cdot \br{\lambda_1x_1} = \lambda_1 $,
-\item $ A\br{x_1, x_2} = -x_1 \cdot dN_p\br{x_2} = x_1 \cdot \br{\lambda_2x_2} = 0 $, and
-\item $ A\br{x_2, x_2} = -x_2 \cdot dN_p\br{x_2} = x_2 \cdot \br{\lambda_2x_2} = \lambda_2 $.
+\item $ \A\br{x_1, x_1} = -x_1 \cdot \d\N_p\br{x_1} = x_1 \cdot \br{\lambda_1x_1} = \lambda_1 $,
+\item $ \A\br{x_1, x_2} = -x_1 \cdot \d\N_p\br{x_2} = x_1 \cdot \br{\lambda_2x_2} = 0 $, and
+\item $ \A\br{x_2, x_2} = -x_2 \cdot \d\N_p\br{x_2} = x_2 \cdot \br{\lambda_2x_2} = \lambda_2 $.
 \end{itemize}
-We call $ x_1, x_2 $ the \textbf{principal directions} in $ T_pS $ and $ \lambda_1, \lambda_2 $ the \textbf{principal curvatures}.
+We call $ x_1 $ and $ x_2 $ the \textbf{principal directions} in $ \T_p S $ and $ \lambda_1 $ and $ \lambda_2 $ the \textbf{principal curvatures}.
 
 \begin{lemma}
 Let $ S $ be a regular surface and $ \lambda_1\br{p} \le \lambda_2\br{p} $ be the principal curvatures at $ p \in S $. Then
-$$ \lambda_1 = \min\cbr{A\br{x, x} \mid x \in T_pS, \ \abs{x} = 1}, \qquad \lambda_2 = \max\cbr{A\br{x, x} \mid x \in T_pS, \ \abs{x} = 1}. $$
+$$ \lambda_1 = \min\cbr{\A\br{x, x} \st x \in \T_p S, \ \abs{x} = 1}, \qquad \lambda_2 = \max\cbr{\A\br{x, x} \st x \in \T_p S, \ \abs{x} = 1}. $$
 \end{lemma}
 
 \begin{proof}
-Consider $ x \in T_pS $ with $ \abs{x} = 1 $. Write $ x = c_1x_1 + c_2x_2 $ where $ c \in \R $, then $ c_1^2 + c_2^2 = 1 $. Then
+Consider $ x \in \T_p S $ with $ \abs{x} = 1 $. Write $ x = c_1x_1 + c_2x_2 $ where $ c \in \RR $, then $ c_1^2 + c_2^2 = 1 $. Then
 \begin{align*}
-A\br{x, x}
-& = A\br{c_1x_1 + c_2x_2, c_1x_1 + c_2x_2} \\
-& = c_1^2A\br{x_1, x_1} + c_1c_2A\br{x_1, x_2} + c_2c_1A\br{x_2, x_1} + c_2^2A\br{x_2, x_2} \\
-& = \lambda_1c_1^2 + \lambda_2c_2^2 \le \lambda_2c_1^2 + \lambda_2c_2^2 = \lambda_2,
+\A\br{x, x}
+& = \A\br{c_1x_1 + c_2x_2, c_1x_1 + c_2x_2} \\
+& = c_1^2\A\br{x_1, x_1} + c_1c_2\A\br{x_1, x_2} + c_2c_1\A\br{x_2, x_1} + c_2^2\A\br{x_2, x_2} \\
+& = \lambda_1c_1^2 + \lambda_2c_2^2
+\le \lambda_2c_1^2 + \lambda_2c_2^2
+= \lambda_2,
 \end{align*}
 with equality if and only if $ c_1 = 0 $ and $ c_2 = 1 $. Similarly
-$$ A\br{x, x} = \lambda_1c_1^2 + \lambda_2c_2^2 \ge \lambda_1c_1^2 + \lambda_1c_2^2 = \lambda_1, $$
+$$ \A\br{x, x} = \lambda_1c_1^2 + \lambda_2c_2^2 \ge \lambda_1c_1^2 + \lambda_1c_2^2 = \lambda_1, $$
 with equality if and only if $ c_1 = 1 $ and $ c_2 = 0 $.
 \end{proof}
 
 \begin{example*}
-Let $ S $ be a sphere of radius $ r $. Then $ N\br{p} = p / r $ and $ dN\br{p} = Id / r $, so principal curvatures are $ \lambda_1 = \lambda_2 = 1 / r $, which are independent of $ p $.
+Let $ S $ be a sphere of radius $ r $. Then $ \N\br{p} = p / r $ and $ \d\N_p = \id / r $, so principal curvatures are $ \lambda_1 = \lambda_2 = 1 / r $, which are independent of $ p $.
 \end{example*}
 
 \begin{example*}
-Suppose $ S $ is a connected regular surface and that $ \lambda_1\br{p} = \lambda_2\br{p} = 0 $ for all $ p \in S $. Then $ dN_p = 0 $, so $ N\br{p} $ is constant for all $ p \in S $. Suppose $ N\br{p} = \vec{v} $ for all $ p \in S $. Then $ S $ is in the plane perpendicular to $ \vec{v} $ through $ p $. (Exercise)
+Suppose $ S $ is a connected regular surface and that $ \lambda_1\br{p} = \lambda_2\br{p} = 0 $ for all $ p \in S $. Then $ \d\N_p = 0 $, so $ \N\br{p} $ is constant for all $ p \in S $. Suppose $ \N\br{p} = \vec{v} $ for all $ p \in S $. Then $ S $ is in the plane perpendicular to $ \vec{v} $ through $ p $. \footnote{Exercise}
 \end{example*}
 
 \begin{definition}
-Suppose $ C \subset S $ is a curve through $ p \in S $. Suppose $ N $ is the unit normal vector to $ S $ at $ p $ and $ n $ is the unit normal vector to $ C $ at $ p $. The \textbf{normal curvature} of $ C $ at $ p $ is
-$$ k_n\br{p} = \kappa\cos\br{\theta}, $$
-where $ \theta $ is the angle between $ N $ and $ n $ and $ \kappa $ is the curvature of $ C $ at $ p $, so $ k_n\br{p} $ is the length of the projection of $ \vec{\kappa} $, the vector curvature of $ C $ at $ p $, along $ N $.
+Suppose $ C \subset S $ is a curve through $ p \in S $. Suppose $ \N $ is the unit normal vector to $ S $ at $ p $ and $ n $ is the unit normal vector to $ C $ at $ p $. The \textbf{normal curvature} of $ C $ at $ p $ is
+$$ \k_n\br{p} = \kappa\cos \theta, $$
+where $ \theta $ is the angle between $ \N $ and $ n $ and $ \kappa $ is the curvature of $ C $ at $ p $, so $ \k_n\br{p} $ is the length of the projection of $ \vec{\kappa} $, the vector curvature of $ C $ at $ p $, along $ \N $.
 \end{definition}
 
 \begin{proposition}
-Let $ S $ be a regular surface and $ C \subset S $ be a curve with unit tangent vector $ v \in T_pS $. Then
-$$ A\br{v, v} = k_n\br{p}. $$
+Let $ S $ be a regular surface and $ C \subset S $ be a curve with unit tangent vector $ v \in \T_p S $. Then
+$$ \A\br{v, v} = \k_n\br{p}. $$
 \end{proposition}
 
 \begin{proof}
-Let $ \alpha : \br{-\epsilon, \epsilon} \to S $ be an arc-length parametrisation of $ C $ near $ p $. Then $ \alpha\br{0} = p $ and $ \alpha'\br{0} = v $. We have $ \abr{\alpha'\br{t}, N\br{\alpha\br{t}}} = 0 $ for all $ t $. Differentiating,
-$$ \abr{\alpha''\br{t}, N\br{\alpha\br{t}}} + \abr{\alpha'\br{t}, dN_{\alpha\br{t}}\br{\alpha'\br{t}}}, $$
+Let $ \alpha : \br{-\epsilon, \epsilon} \to S $ be an arc-length parametrisation of $ C $ near $ p $. Then $ \alpha\br{0} = p $ and $ \alpha'\br{0} = v $. We have $ \abr{\alpha'\br{t}, \N\br{\alpha\br{t}}} = 0 $ for all $ t $. Differentiating,
+$$ \abr{\alpha''\br{t}, \N\br{\alpha\br{t}}} + \abr{\alpha'\br{t}, \d\N_{\alpha\br{t}}\br{\alpha'\br{t}}}, $$
 for all $ t $. Setting $ t = 0 $,
-$$ \abr{\kappa n_p, N\br{p}} + \abr{v, dN_p\br{v}} = 0. $$
+$$ \abr{\kappa n_p, \N\br{p}} + \abr{v, \d\N_p\br{v}} = 0. $$
 Thus
-$$ A\br{v, v} = -\abr{v, dN_p\br{v}} = \abr{\kappa n_p, N\br{p}} = k_n\br{p}. $$
+$$ \A\br{v, v} = -\abr{v, \d\N_p\br{v}} = \abr{\kappa n_p, \N\br{p}} = \k_n\br{p}. $$
 \end{proof}
 
 \pagebreak
@@ -1175,23 +1098,22 @@ If $ S $ is a connected regular surface such that every point in $ S $ is umbili
 \lecture{15}{Tuesday}{06/11/18}
 
 \begin{proof}
-By assumption, there exists a smooth function $ \lambda : S \to \R $ such that $ \lambda_1\br{p} = \lambda_2\br{p} = \lambda\br{p} $ for all $ p \in S $.
+By assumption, there exists a smooth function $ \lambda : S \to \RR $ such that $ \lambda_1\br{p} = \lambda_2\br{p} = \lambda\br{p} $ for all $ p \in S $.
 \begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
 \item Prove $ \lambda\br{p} $ is constant. Take a chart $ \phi : U \to S $ near $ p $. Then
-$$ \dpd{}{u}\br{N \circ \phi} = dN_{\phi\br{u, v}} \cdot \dpd{\phi}{u} = -\br{\lambda \circ \phi}\dpd{\phi}{u}, \qquad \dpd{}{v}\br{N \circ \phi} = dN_{\phi\br{u, v}} \cdot \dpd{\phi}{v} = -\br{\lambda \circ \phi}\dpd{\phi}{v}, $$
-since $ dN_{\phi\br{u, v}} $ is some multiple of $ Id $.
-Now
-$$ \dmd{}{2}{u}{}{v}{}\br{N \circ \phi} = \dmd{}{2}{v}{}{u}{}\br{N \circ \phi}, $$
+$$ \dpd{}{u}\br{\N \circ \phi} = \d\N_{\phi\br{u, v}} \cdot \dpd{\phi}{u} = -\br{\lambda \circ \phi}\dpd{\phi}{u}, \qquad \dpd{}{v}\br{\N \circ \phi} = \d\N_{\phi\br{u, v}} \cdot \dpd{\phi}{v} = -\br{\lambda \circ \phi}\dpd{\phi}{v}, $$
+since $ \d\N_{\phi\br{u, v}} $ is some multiple of $ \id $. Now
+$$ \dmd{}{2}{u}{}{v}{}\br{\N \circ \phi} = \dmd{}{2}{v}{}{u}{}\br{\N \circ \phi}, $$
 so
 $$ -\dpd{}{u}\br{\lambda \circ \phi}\dpd{\phi}{v} = -\dpd{}{v}\br{\lambda \circ \phi}\dpd{\phi}{u}. $$
 The vectors $ \tod{\phi}{v} $ and $ \tod{\phi}{u} $ are linearly independent, so
 $$ -\dpd{}{u}\br{\lambda \circ \phi} = -\dpd{}{v}\br{\lambda \circ \phi} = 0, $$
-so $ \lambda \circ \phi $ is locally constant, that is $ \lambda $ is constant on $ \phi\br{U} $. $ S $ is connected, and covered by such charts, so $ \lambda $ is constant.
+so $ \lambda \circ \phi $ is locally constant, that is $ \lambda $ is constant on $ \phi\br{U} $. Then $ S $ is connected, and covered by such charts, so $ \lambda $ is constant.
 \item If $ \lambda\br{p} \equiv 0 $ for all $ p \in S $ then we already know that $ S $ is contained in a plane. Otherwise $ \lambda\br{p} \equiv \lambda_0 $ with $ \lambda_0 \ne 0 $. Without loss of generality $ \lambda_0 > 0 $. Now
-$$ \dpd{}{u}\br{N \circ \phi} = -\lambda_0\dpd{\phi}{u}, \qquad \dpd{}{v}\br{N \circ \phi} = -\lambda_0\dpd{\phi}{v}, $$
+$$ \dpd{}{u}\br{\N \circ \phi} = -\lambda_0\dpd{\phi}{u}, \qquad \dpd{}{v}\br{\N \circ \phi} = -\lambda_0\dpd{\phi}{v}, $$
 so
-$$ \dpd{}{u}\br{\dfrac{1}{\lambda_0}\br{N \circ \phi} + \phi} = 0, \qquad \dpd{}{v}\br{\dfrac{1}{\lambda_0}\br{N \circ \phi} + \phi} = 0, $$
-so there exists $ c_0 \in \R^3 $ such that $ \br{N \circ \phi} / \lambda_0 + \phi = c_0 $. Then $ \br{N \circ \phi} / \lambda_0 $ has length $ 1 / \lambda_0 $ and $ c_0 $ is constant, so $ \phi\br{u, v} $ lies in the sphere centred at $ c_0 $ radius $ 1 / \lambda_0 $.
+$$ \dpd{}{u}\br{\dfrac{1}{\lambda_0}\br{\N \circ \phi} + \phi} = 0, \qquad \dpd{}{v}\br{\dfrac{1}{\lambda_0}\br{\N \circ \phi} + \phi} = 0, $$
+so there exists $ c_0 \in \RR^3 $ such that $ \br{\N \circ \phi} / \lambda_0 + \phi = c_0 $. Then $ \br{\N \circ \phi} / \lambda_0 $ has length $ 1 / \lambda_0 $ and $ c_0 $ is constant, so $ \phi\br{u, v} $ lies in the sphere centred at $ c_0 $ radius $ 1 / \lambda_0 $.
 \end{enumerate}
 \end{proof}
 
@@ -1200,34 +1122,34 @@ so there exists $ c_0 \in \R^3 $ such that $ \br{N \circ \phi} / \lambda_0 + \ph
 What if $ \lambda_1\br{p} \ne \lambda_2\br{p} $?
 
 \begin{definition}
-Let $ p \in S $ be a point on a regular surface. Let $ \lambda_1\br{p}, \lambda_2\br{p} $ be the principal curvatures. Then
-$$ K\br{p} = \lambda_1\br{p}\lambda_2\br{p} = \det\br{dN_p} $$
+Let $ p \in S $ be a point on a regular surface. Let $ \lambda_1\br{p} $ and $ \lambda_2\br{p} $ be the principal curvatures. Then
+$$ \K\br{p} = \lambda_1\br{p}\lambda_2\br{p} = \det \d\N_p $$
 is the \textbf{Gaussian curvature} at $ p $ and
-$$ H\br{p} = \dfrac{1}{2}\br{\lambda_1\br{p} + \lambda_2\br{p}} = -\dfrac{1}{2}tr\br{dN_p} $$
+$$ \H\br{p} = \dfrac{1}{2}\br{\lambda_1\br{p} + \lambda_2\br{p}} = -\dfrac{1}{2}\Tr \d\N_p $$
 is the \textbf{mean curvature} at $ p $.
 \end{definition}
 
-Reversing the orientation of $ S $, that is replacing $ N $ by $ -N $, sends $ H\br{p} $ to $ -H\br{p} $ and $ K\br{p} $ to $ K\br{p} $.
+Reversing the orientation of $ S $, that is replacing $ \N $ by $ -\N $, sends $ \H\br{p} $ to $ -\H\br{p} $ and $ \K\br{p} $ to $ \K\br{p} $.
 
 \begin{example*}
-If $ S $ is a sphere of radius $ r $ then $ K = 1 / r^2 $ and $ H = 1 / r $. A plane has $ K = H = 0 $.
+If $ S $ is a sphere of radius $ r $ then $ \K = 1 / r^2 $ and $ \H = 1 / r $. A plane has $ \K = \H = 0 $.
 \end{example*}
 
 \pagebreak
 
 \subsection{What does Gaussian curvature mean?}
 
-Let $ S $ be a regular surface and $ p \in S $. Choose a chart $ \phi : U \to S $ on $ S $ near $ p $. Choose a curve through $ p $, $ \gamma\br{t} = \phi\br{ct, dt} $. Now $ \gamma'\br{t} \cdot N\br{\gamma\br{t}} = 0 $ for all $ t $. Differentiating,
-$$ \gamma''\br{t} \cdot N\br{\gamma\br{t}} + \gamma'\br{t} \cdot dN_{\gamma\br{t}}\br{\gamma'\br{t}} = 0, $$
+Let $ S $ be a regular surface, and let $ p \in S $. Choose a chart $ \phi : U \to S $ on $ S $ near $ p $. Choose a curve through $ p $, $ \gamma\br{t} = \phi\br{ct, dt} $. Now $ \gamma'\br{t} \cdot \N\br{\gamma\br{t}} = 0 $ for all $ t $. Differentiating,
+$$ \gamma''\br{t} \cdot \N\br{\gamma\br{t}} + \gamma'\br{t} \cdot \d\N_{\gamma\br{t}}\br{\gamma'\br{t}} = 0, $$
 or in other words
-$$ A\br{\gamma'\br{t}, \gamma'\br{t}} = \gamma''\br{t} \cdot N\br{\gamma\br{t}}. $$
-At $ t = 0 $
+$$ \A\br{\gamma'\br{t}, \gamma'\br{t}} = \gamma''\br{t} \cdot \N\br{\gamma\br{t}}. $$
+At $ t = 0 $,
 $$ \gamma'\br{t} = c\dpd{\phi}{u} + d\dpd{\phi}{v}, \qquad \gamma''\br{t} = c^2\dpd[2]{\phi}{u} + 2cd\dmd{\phi}{2}{u}{}{v}{} + d^2\dpd[2]{\phi}{v}. $$
 Thus
-$$ A\br{c\dpd{\phi}{u} + d\dpd{\phi}{v}, c\dpd{\phi}{u} + d\dpd{\phi}{v}} = \br{c^2\dpd[2]{\phi}{u} + 2cd\dmd{\phi}{2}{u}{}{v}{} + d^2\dpd[2]{\phi}{v}} \cdot N\br{p}. $$
+$$ \A\br{c\dpd{\phi}{u} + d\dpd{\phi}{v}, c\dpd{\phi}{u} + d\dpd{\phi}{v}} = \br{c^2\dpd[2]{\phi}{u} + 2cd\dmd{\phi}{2}{u}{}{v}{} + d^2\dpd[2]{\phi}{v}} \cdot \N\br{p}. $$
 
 \begin{proposition}
-If $ K\br{p} > 0 $ then all points of $ S $ near $ p $ lie on the same side of $ T_pS $. If $ K\br{p} < 0 $ then there are points of $ S $ near $ p $ on each side of $ T_pS $.
+If $ \K\br{p} > 0 $ then all points of $ S $ near $ p $ lie on the same side of $ \T_p S $. If $ \K\br{p} < 0 $ then there are points of $ S $ near $ p $ on each side of $ \T_p S $.
 \end{proposition}
 
 \begin{proof}
@@ -1237,19 +1159,19 @@ where
 $$ \lim_{\br{u, v} \to \br{0, 0}} \dfrac{R\br{u, v}}{u^2 + v^2} = 0. $$
 Consider
 \begin{align*}
-\abr{\phi\br{u, v} - p, N\br{p}}
-& = \dfrac{1}{2}\abr{\dpd[2]{\phi}{u}\br{0, 0}u^2 + 2\dmd{\phi}{2}{u}{}{v}{}\br{0, 0}uv + \dpd[2]{\phi}{v}\br{0, 0}v^2, N\br{p}} + \abr{R\br{u, v}, N\br{p}} \\
-& = \dfrac{1}{2}A\br{w, w} + \abr{R\br{u, v}, N\br{p}}, \qquad w = \dpd{\phi}{u}\br{0}u + \dpd{\phi}{v}\br{0}v.
+\abr{\phi\br{u, v} - p, \N\br{p}}
+& = \dfrac{1}{2}\abr{\dpd[2]{\phi}{u}\br{0, 0}u^2 + 2\dmd{\phi}{2}{u}{}{v}{}\br{0, 0}uv + \dpd[2]{\phi}{v}\br{0, 0}v^2, \N\br{p}} + \abr{R\br{u, v}, \N\br{p}} \\
+& = \dfrac{1}{2}\A\br{w, w} + \abr{R\br{u, v}, \N\br{p}}, \qquad w = \dpd{\phi}{u}\br{0}u + \dpd{\phi}{v}\br{0}v.
 \end{align*}
-$ A\br{w, w} $ is quadratic in $ \br{u, v} $ and $ R\br{u, v} $ is worse than quadratic in $ \br{u, v} $. So for $ u $ and $ v $ small, when we are close to $ p $, the function $ \abr{\phi\br{u, v} - p, N\br{p}} $ has the same sign as $ A\br{w, w} $. Write $ w = ax_1 + bx_2 $ where $ x_1 $ and $ x_2 $ are the principal directions then $ A\br{w, w} = \lambda_1a^2 + \lambda_2b^2 $.
+$ \A\br{w, w} $ is quadratic in $ \br{u, v} $ and $ R\br{u, v} $ is worse than quadratic in $ \br{u, v} $. So for $ u $ and $ v $ small, when we are close to $ p $, the function $ \abr{\phi\br{u, v} - p, \N\br{p}} $ has the same sign as $ \A\br{w, w} $. Write $ w = ax_1 + bx_2 $ where $ x_1 $ and $ x_2 $ are the principal directions then $ \A\br{w, w} = \lambda_1a^2 + \lambda_2b^2 $.
 \begin{itemize}
-\item $ \lambda_1, \lambda_2 > 0 $ gives $ A\br{w, w} > 0 $.
-\item $ \lambda_1 > 0 $ and $ \lambda_2 < 0 $ gives that $ A\br{w, w} > 0 $ can be positive or negative.
-\item $ \lambda_1, \lambda_2 < 0 $ gives $ A\br{w, w} < 0 $.
+\item $ \lambda_1, \lambda_2 > 0 $ gives $ \A\br{w, w} > 0 $.
+\item $ \lambda_1 > 0 $ and $ \lambda_2 < 0 $ gives that $ \A\br{w, w} $ can be positive or negative.
+\item $ \lambda_1, \lambda_2 < 0 $ gives $ \A\br{w, w} < 0 $.
 \end{itemize}
 \end{proof}
 
-In fact we can do slightly better than this. Consider the chart map $ \phi : U \to S $. After a translation of $ S $, without loss of generality $ \phi\br{0, 0} = \br{0, 0, 0} $, after a rigid motion to $ S \subseteq \R^3 $, without loss of generality
+In fact we can do slightly better than this. Consider the chart map $ \phi : U \to S $. After a translation of $ S $, without loss of generality $ \phi\br{0, 0} = \br{0, 0, 0} $, after a rigid motion to $ S \subseteq \RR^3 $, without loss of generality
 $$ \dpd{\phi}{u}\br{0, 0} = \br{1, 0, 0}, \qquad \dpd{\phi}{v}\br{0, 0} = \br{0, 1, 0}. $$
 Taylor series implies that
 \begin{align*}
@@ -1261,7 +1183,7 @@ Taylor series implies that
 \pagebreak
 
 Near $ \br{u, v} = \br{0, 0} $ the quadratic term satisfies
-$$ \br{u^2\dpd[2]{\phi}{u}\br{0, 0} + 2uv\dmd{\phi}{2}{u}{}{v}{}\br{0, 0} + v^2\dpd[2]{\phi}{v}\br{0, 0}} \cdot N\br{0, 0, 0} = A\br{\br{u, v, 0}, \br{u, v, 0}} = \lambda_1u^2 + \lambda_2v^2, $$
+$$ \br{u^2\dpd[2]{\phi}{u}\br{0, 0} + 2uv\dmd{\phi}{2}{u}{}{v}{}\br{0, 0} + v^2\dpd[2]{\phi}{v}\br{0, 0}} \cdot \N\br{0, 0, 0} = \A\br{\br{u, v, 0}, \br{u, v, 0}} = \lambda_1u^2 + \lambda_2v^2, $$
 because we chose $ \br{1, 0, 0} $ and $ \br{0, 1, 0} $ as our principal directions. So near $ \br{u, v} = \br{0, 0} $, the surface is approximated by the graph
 $$ \phi\br{u, v} \approx \br{u, v, \dfrac{1}{2}\br{\lambda_1u^2 + \lambda_2v^2}}. $$
 
@@ -1269,15 +1191,15 @@ $$ \phi\br{u, v} \approx \br{u, v, \dfrac{1}{2}\br{\lambda_1u^2 + \lambda_2v^2}}
 
 Say $ p \in S $ is
 \begin{itemize}
-\item \textbf{elliptic} if $ K\br{p} > 0 $, so either $ \lambda_1, \lambda_2 > 0 $ or $ \lambda_1, \lambda_2 < 0 $,
-\item \textbf{hyperbolic} if $ K\br{p} < 0 $, so either $ \lambda_1 < 0 $, $ \lambda_2 > 0 $ or vice versa,
-\item \textbf{parabolic} if $ K\br{p} = 0 $ and $ H\br{p} = 0 $, so $ \lambda_1 = 0 $, $ \lambda_2 \ne 0 $ or vice versa, and
-\item \textbf{planar} if $ K\br{p} = H\br{p} = 0 $, so $ \lambda_1 = \lambda_2 = 0 $.
+\item \textbf{elliptic} if $ \K\br{p} > 0 $, so either $ \lambda_1, \lambda_2 > 0 $ or $ \lambda_1, \lambda_2 < 0 $,
+\item \textbf{hyperbolic} if $ \K\br{p} < 0 $, so either $ \lambda_1 < 0 $ and $ \lambda_2 > 0 $ or vice versa,
+\item \textbf{parabolic} if $ \K\br{p} = 0 $ and $ \H\br{p} \ne 0 $, so $ \lambda_1 = 0 $ and $ \lambda_2 \ne 0 $ or vice versa, and
+\item \textbf{planar} if $ \K\br{p} = \H\br{p} = 0 $, so $ \lambda_1 = \lambda_2 = 0 $.
 \end{itemize}
 
 \begin{example*}
-\textbf{Monkey saddle}. Consider the surface with equation $ z = x^3 - 3x^2y $, so
-$$ z = \Re\br{\br{x + iy}^3} = \Re\br{r^3e^{i3\theta}} = r^3\cos\br{3\theta}, $$
+Consider the \textbf{Monkey saddle} with equation $ z = x^3 - 3x^2y $, so
+$$ z = \Re \br{x + iy}^3 = \Re r^3e^{i3\theta} = r^3\cos 3\theta, $$
 using polar coordinates $ x + iy = re^{i\theta} $. At $ \br{0, 0, 0} $, the principal curvatures are $ \lambda_1 = \lambda_2 = 0 $. So the previous theorem says, to second order near $ p = \br{0, 0, 0} $, the surface $ S $ looks like the plane $ z = 0 $. True, but not so informative. This has an umbilical point with $ \lambda_1 = \lambda_2 = 0 $ at $ \br{0, 0, 0} $, and hyperbolic points elsewhere.
 \end{example*}
 
@@ -1287,13 +1209,13 @@ We start with a simple observation.
 
 \begin{lemma}
 \label{lem:innerproduct}
-Let $ V $ be a two-dimensional vector space with inner product $ \abr{\cdot, \cdot} $. Let $ e_1, e_2 $ be an orthonormal basis for $ V $. Let $ x, y $ be elements of $ V $ and write $ x = x_1e_1 + x_2e_2 $ and $ y = y_1e_1 + y_2e_2 $. Then
+Let $ V $ be a two-dimensional vector space with inner product $ \abr{\cdot, \cdot} $. Let $ e_1 $ and $ e_2 $ be an orthonormal basis for $ V $. Let $ x $ and $ y $ be elements of $ V $ and write $ x = x_1e_1 + x_2e_2 $ and $ y = y_1e_1 + y_2e_2 $. Then
 $$ \abr{x, y} = \onebytwo{x_1}{x_2}\twobyone{y_1}{y_2}. $$
 That is, we can compute inner products in $ V $ using the ordinary matrix multiplication between row vectors and column vectors, provided that we remember to use an orthonormal basis when writing elements of $ V $ as vectors.
 \end{lemma}
 
 \begin{proof}
-Just write everything out.
+Just write everything out, so
 $$ \abr{x, y} = \abr{x_1e_1 + x_2e_2, y_1e_1 + y_2e_2} = x_1y_1\abr{e_1, e_1} + x_1y_2\abr{e_1, e_2} + x_2y_1\abr{e_2, e_1} + x_2y_2\abr{e_2, e_2} = x_1y_1 + x_2y_2, $$
 as required. The final equality here uses the fact that $ e_1 $ and $ e_2 $ are orthonormal.
 \end{proof}
@@ -1305,49 +1227,48 @@ There is nothing special about the fact that $ V $ is two-dimensional here. The 
 \begin{proposition}
 \label{prop:computing}
 Let $ \phi : U \to S $ be a chart on a regular surface $ S $. Define $ 2 \times 2 $ matrices
-$$ g = \twobytwo{\phi_u \cdot \phi_u}{\phi_u \cdot \phi_v}{\phi_v \cdot \phi_u}{\phi_v \cdot \phi_v}, \qquad A = \twobytwo{A\br{\phi_u, \phi_u}}{A\br{\phi_u, \phi_v}}{A\br{\phi_v, \phi_u}}{A\br{\phi_v, \phi_v}}, \qquad \phi_u = \dpd{\phi}{u}, \qquad \phi_v = \dpd{\phi}{v}. $$
-Then, writing $ \sigma = g^{-1}A $, we have
-$$ K = \det\br{\sigma} = \dfrac{\det\br{A}}{\det\br{g}}, \qquad H = \dfrac{1}{2}tr\br{\sigma}. $$
+$$ \g = \twobytwo{\phi_u \cdot \phi_u}{\phi_u \cdot \phi_v}{\phi_v \cdot \phi_u}{\phi_v \cdot \phi_v}, \qquad \A = \twobytwo{\A\br{\phi_u, \phi_u}}{\A\br{\phi_u, \phi_v}}{\A\br{\phi_v, \phi_u}}{\A\br{\phi_v, \phi_v}}, \qquad \phi_u = \dpd{\phi}{u}, \qquad \phi_v = \dpd{\phi}{v}. $$
+Then, writing $ \sigma = \g^{-1}\A $, we have
+$$ \K = \det \sigma = \dfrac{\det \A}{\det \g}, \qquad \H = \dfrac{1}{2}\Tr \sigma. $$
 \end{proposition}
 
 \begin{remark*}
-If $ \phi_u, \phi_v $ are the principal directions at $ p \in S $ then this is immediate, because in that case $ g $ is the identity matrix and Proposition \ref{prop:computing} just restates the definitions of $ K $ and $ H $.
+If $ \phi_u $ and $ \phi_v $ are the principal directions at $ p \in S $ then this is immediate, because in that case $ \g $ is the identity matrix and Proposition \ref{prop:computing} just restates the definitions of $ \K $ and $ \H $.
 \end{remark*}
 
 \pagebreak
 
 \begin{proof}
-Let $ p $ be a point on $ S $. Let us work in a basis for $ T_pS $ given by the principal directions $ x_1\br{p}, x_2\br{p} $. Then, because this is an orthonormal basis, we can apply Lemma \ref{lem:innerproduct} to find,
-$$ A = \twobyone{\phi_u}{\phi_v}\onebytwo{-dN_p\br{\phi_u}}{-dN_p\br{\phi_v}}. $$
-Here $ \br{\phi_u} $ is a row vector of size two and $ \br{-dN_p\br{\phi_u}} $ is a column vector of size two. Now write the matrix of $ dN_p : T_pS \to T_pS $ with respect to the basis $ x_1\br{p}, x_2\br{p} $ too,
-$$ A = \twobyone{\phi_u}{\phi_v}M\onebytwo{\phi_u}{\phi_v}, $$
-where $ M $, the matrix of $ dN_p $ with respect to the basis $ x_1\br{p}, x_2\br{p} $, is a $ 2 \times 2 $ matrix. Then
-$$ \det\br{A} = \det\twobyone{\phi_u}{\phi_v}\det\br{M}\det\onebytwo{\phi_u}{\phi_v} = \det\br{M}\det\br{\twobyone{\phi_u}{\phi_v}\onebytwo{\phi_u}{\phi_v}} = \det\br{M}\det\br{g}, $$
-where for the last equality we used Lemma \ref{lem:innerproduct} again. Since $ \det\br{M} = K $, by definition, this proves that $ K = \det\br{A} / \det\br{g} $. Furthermore,
-$$ A = \twobyone{\phi_u}{\phi_v}\onebytwo{\phi_u}{\phi_v}\onebytwo{\phi_u}{\phi_v}^{-1}M\onebytwo{\phi_u}{\phi_v} = gB, $$
-where $ B = \onebytwo{\phi_u}{\phi_v}^{-1}M\onebytwo{\phi_u}{\phi_v} $ is conjugate to $ M $. Thus $ \sigma = g^{-1}A $ is conjugate to $ M $, and so $ H = tr\br{M} = tr\br{\sigma} $ because conjugate matrices have the same trace.
+Let $ p $ be a point on $ S $. Let us work in a basis for $ \T_p S $ given by the principal directions $ x_1\br{p} $ and $ x_2\br{p} $. Then, because this is an orthonormal basis, we can apply Lemma \ref{lem:innerproduct} to find,
+$$ \A = \twobyone{\phi_u}{\phi_v}\onebytwo{-\d\N_p\br{\phi_u}}{-\d\N_p\br{\phi_v}}. $$
+Here $ \br{\phi_u} $ is a row vector of size two and $ \br{-\d\N_p\br{\phi_u}} $ is a column vector of size two. Now write the matrix of $ \d\N_p : \T_p S \to \T_p S $ with respect to the basis $ x_1\br{p} $ and $ x_2\br{p} $ too,
+$$ \A = \twobyone{\phi_u}{\phi_v}M\onebytwo{\phi_u}{\phi_v}, $$
+where $ M $, the matrix of $ \d\N_p $ with respect to the basis $ x_1\br{p} $ and $ x_2\br{p} $, is a $ 2 \times 2 $ matrix. Then
+$$ \det \A = \det \twobyone{\phi_u}{\phi_v}\det M\det \onebytwo{\phi_u}{\phi_v} = \det M\det \twobyone{\phi_u}{\phi_v}\onebytwo{\phi_u}{\phi_v} = \det M\det \g, $$
+where for the last equality we used Lemma \ref{lem:innerproduct} again. Since $ \det M = \K $, by definition, this proves that $ \K = \det \A / \det \g $. Furthermore,
+$$ \A = \twobyone{\phi_u}{\phi_v}\onebytwo{\phi_u}{\phi_v}\onebytwo{\phi_u}{\phi_v}^{-1}M\onebytwo{\phi_u}{\phi_v} = \g B, $$
+where $ B = \onebytwo{\phi_u}{\phi_v}^{-1}M\onebytwo{\phi_u}{\phi_v} $ is conjugate to $ M $. Thus $ \sigma = \g^{-1}\A $ is conjugate to $ M $, and so $ \H = \Tr M = \Tr \sigma $ because conjugate matrices have the same trace.
 \end{proof}
 
 \lecture{18}{Tuesday}{13/11/18}
 
 \begin{example*}
-Let $ S $ be the surface in $ \R^3 $ defined by the equation $ z = x^2 - y^2 $. Compute the Gaussian and mean curvature at each point of $ S $. Choose the chart
-$$ \function[\phi]{U = \R^2}{S}{\br{u, v}}{\br{u, v, u^2 - v^2}}. $$
+Let $ S $ be the surface in $ \RR^3 $ defined by the equation $ z = x^2 - y^2 $. Choose the chart
+$$ \function[\phi]{U = \RR^2}{S}{\br{u, v}}{\br{u, v, u^2 - v^2}}. $$
 Now $ \phi_u = \br{1, 0, 2u} $ and $ \phi_v = \br{0, 1, -2v} $, so
-$$ g = \twobytwo{\phi_u \cdot \phi_u}{\phi_u \cdot \phi_v}{\phi_v \cdot \phi_u}{\phi_v \cdot \phi_v} = \twobytwo{1 + 4u^2}{-4uv}{-4uv}{1 + 4v^2}. $$
+$$ \g = \twobytwo{\phi_u \cdot \phi_u}{\phi_u \cdot \phi_v}{\phi_v \cdot \phi_u}{\phi_v \cdot \phi_v} = \twobytwo{1 + 4u^2}{-4uv}{-4uv}{1 + 4v^2}. $$
 Also,
 $$ \phi_u \times \phi_v = \abs{\threebythree{i}{j}{k}{1}{0}{2u}{0}{1}{-2v}} = \br{-2u, 2v, 1}, $$
 and so
-$$ N = \dfrac{\phi_u \times \phi_v}{\abs{\phi_u \times \phi_v}} = \br{\dfrac{-2u}{\sqrt{1 + 4u^2 + 4v^2}}, \dfrac{2v}{\sqrt{1 + 4u^2 + 4v^2}}, \dfrac{1}{\sqrt{1 + 4u^2 + 4v^2}}}. $$
+$$ \N = \dfrac{\phi_u \times \phi_v}{\abs{\phi_u \times \phi_v}} = \br{\tfrac{-2u}{\sqrt{1 + 4u^2 + 4v^2}}, \tfrac{2v}{\sqrt{1 + 4u^2 + 4v^2}}, \tfrac{1}{\sqrt{1 + 4u^2 + 4v^2}}}. $$
 Now $ \phi_{uu} = \br{1, 0, 2}, \phi_{uv} = \br{0, 0, 0}, \phi_{vv} = \br{1, 0, -2} $, so
-$$ A = \twobytwo{N \cdot \phi_{uu}}{N \cdot \phi_{uv}}{N \cdot \phi_{vu}}{N \cdot \phi_{vv}} = \twobytwo{\tfrac{2}{\sqrt{1 + 4u^2 + 4v^2}}}{0}{0}{\tfrac{-2}{\sqrt{1 + 4u^2 + 4v^2}}} = \dfrac{1}{\sqrt{1 + 4u^2 + 4v^2}}\twobytwo{2}{0}{0}{-2}. $$
-
+$$ \A = \twobytwo{\N \cdot \phi_{uu}}{\N \cdot \phi_{uv}}{\N \cdot \phi_{vu}}{\N \cdot \phi_{vv}} = \twobytwo{\tfrac{2}{\sqrt{1 + 4u^2 + 4v^2}}}{0}{0}{\tfrac{-2}{\sqrt{1 + 4u^2 + 4v^2}}} = \dfrac{1}{\sqrt{1 + 4u^2 + 4v^2}}\twobytwo{2}{0}{0}{-2}. $$
 Then
-$$ \sigma = g^{-1}A = \dfrac{1}{1 + 4u^2 + 4v^2}\twobytwo{1 + 4v^2}{4uv}{4uv}{1 + 4u^2} \cdot A = \dfrac{2}{\br{1 + 4u + 4v^2}^{3 / 2}}\twobytwo{1 + 4v^2}{-4uv}{4uv}{-1 - 4u^2}. $$
+$$ \sigma = \g^{-1}\A = \dfrac{1}{1 + 4u^2 + 4v^2}\twobytwo{1 + 4v^2}{4uv}{4uv}{1 + 4u^2} \cdot \A = \dfrac{2}{\sqrt{1 + 4u + 4v^2}^3}\twobytwo{1 + 4v^2}{-4uv}{4uv}{-1 - 4u^2}. $$
 So
-$$ K = \det\br{\sigma} = 4\br{\dfrac{-\br{1 + 4u^2}\br{1 + 4v^2} + 16u^2v^2}{\br{1 + 4u^2 + 4v^2}^3}} = \dfrac{-4}{\br{1 + 4u^2 + 4v^2}^2}, $$
+$$ \K = \det \sigma = 4\br{\dfrac{-\br{1 + 4u^2}\br{1 + 4v^2} + 16u^2v^2}{\br{1 + 4u^2 + 4v^2}^3}} = \dfrac{-4}{\br{1 + 4u^2 + 4v^2}^2}, $$
 and
-$$ H = \dfrac{1}{2}tr\br{\sigma} = \dfrac{4v^2 - 4u^2}{\br{1 + 4u^2 + 4v^2}^{3 / 2}}. $$
+$$ \H = \dfrac{1}{2}\Tr \sigma = \dfrac{4v^2 - 4u^2}{\sqrt{1 + 4u^2 + 4v^2}^3}. $$
 \end{example*}
 
 \pagebreak
@@ -1355,23 +1276,23 @@ $$ H = \dfrac{1}{2}tr\br{\sigma} = \dfrac{4v^2 - 4u^2}{\br{1 + 4u^2 + 4v^2}^{3 /
 \subsection{The first fundamental form}
 
 \begin{definition}
-Let $ S \subset \R^3 $ be a regular surface and $ p \in S $. The \textbf{first fundamental form} at $ p $, also called the \textbf{metric} at $ p $, is the bilinear map
-$$ \function[g]{T_pS \times T_pS}{\R}{\br{v, w}}{\abr{v, w}}. $$
+Let $ S \subset \RR^3 $ be a regular surface, and let $ p \in S $. The \textbf{first fundamental form} at $ p $, also called the \textbf{metric} at $ p $, is the bilinear map
+$$ \function[\g]{\T_p S \times \T_p S}{\RR}{\br{v, w}}{\abr{v, w}}. $$
 \end{definition}
 
-$ g $ is symmetric, bilinear, and non-degenerate. If $ \phi : U \to S $ is a chart near $ p \in S $, then $ \phi_u, \phi_v $ are a basis for $ T_pS $ and in this basis, $ g $ has the form
+Then $ \g $ is symmetric, bilinear, and non-degenerate. If $ \phi : U \to S $ is a chart near $ p \in S $, then $ \phi_u $ and $ \phi_v $ are a basis for $ \T_p S $ and in this basis, $ \g $ has the form
 \begin{align*}
-g\br{a\phi_u + b\phi_v, c\phi_u + d\phi_v}
-& = acg\br{\phi_u, \phi_v} + adg\br{\phi_u, \phi_v} + bcg\br{\phi_u, \phi_v} + bdg\br{\phi_u, \phi_v} \\
-& = \onebytwo{a}{b}\twobytwo{g\br{\phi_u, \phi_u}}{g\br{\phi_u, \phi_v}}{g\br{\phi_v, \phi_u}}{g\br{\phi_v, \phi_v}}\twobyone{c}{d}
-= \onebytwo{a}{b}g\twobyone{c}{d},
+\g\br{a\phi_u + b\phi_v, c\phi_u + d\phi_v}
+& = ac\g\br{\phi_u, \phi_v} + ad\g\br{\phi_u, \phi_v} + bc\g\br{\phi_u, \phi_v} + bd\g\br{\phi_u, \phi_v} \\
+& = \onebytwo{a}{b}\twobytwo{\g\br{\phi_u, \phi_u}}{\g\br{\phi_u, \phi_v}}{\g\br{\phi_v, \phi_u}}{\g\br{\phi_v, \phi_v}}\twobyone{c}{d}
+= \onebytwo{a}{b}\g\twobyone{c}{d},
 \end{align*}
-that is the metric is represented by the symmetric matrix that we called $ g $ before. Metric determines arc-length. If $ \alpha : \sbr{a, b} \to S $ is a curve contained in $ \phi\br{U} $, so that $ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}} $ for some smooth functions $ u, v : \sbr{a, b} \to \R $, then
-$$ L\br{\alpha} = \intd{a}{b}{\abs{\alpha'\br{t}}}{t} = \intd{a}{b}{\abs{\dpd{\phi}{u}\dod{u}{t} + \dpd{\phi}{v}\dod{v}{t}}}{t} = \intd{a}{b}{\sqrt{\onebytwo{\dod{u}{t}}{\dod{v}{t}} \cdot g \cdot \onebytwo{\dod{u}{t}}{\dod{v}{t}}^T}}{t}. $$
+that is the metric is represented by the symmetric matrix that we called $ \g $ before. Metric determines arc-length. If $ \alpha : \sbr{a, b} \to S $ is a curve contained in $ \phi\br{U} $, so that $ \alpha\br{t} = \phi\br{u\br{t}, v\br{t}} $ for some smooth functions $ u, v : \sbr{a, b} \to \RR $, then
+$$ \L\br{\alpha} = \intd{a}{b}{\abs{\alpha'\br{t}}}{t} = \intd{a}{b}{\abs{\tpd{\phi}{u}\tod{u}{t} + \tpd{\phi}{v}\tod{v}{t}}}{t} = \intd{a}{b}{\sqrt{\onebytwo{\tod{u}{t}}{\tod{v}{t}} \cdot \g \cdot \twobyone{\tod{u}{t}}{\tod{v}{t}}}}{t}. $$
 
 \begin{definition}
 A smooth map $ F : S_1 \to S_2 $ is called a \textbf{local isometry} if it preserves the first fundamental form, so
-$$ \abr{dF_p\br{x}, dF_p\br{y}} = \abr{x, y}, \qquad x, y \in T_pS_1, \qquad p \in S_1. $$
+$$ \abr{\d F_p\br{x}, \d F_p\br{y}} = \abr{x, y}, \qquad x, y \in \T_p S_1, \qquad p \in S_1. $$
 $ F $ is an \textbf{isometry} if it is also bijective.
 \end{definition}
 
@@ -1382,12 +1303,12 @@ Local isometries are local diffeomorphisms.
 \lecture{19}{Friday}{16/11/18}
 
 \begin{proof}
-If $ F $ is a local isometry then, for each $ p \in S $, $ dF_p $ is injective. Suppose not. Then there exists $ 0 \ne v \in T_pS $ such that $ dF_p\br{v} = 0 $, so $ \abr{dF_p\br{v}, dF_p\br{w}} = 0 $ for all $ w \in T_pS $, so $ \abr{v, w} = 0 $ for all $ w\in T_pS $, so $ v = 0 $, a contradiction. Now $ dF_p : T_pS_1 \to T_{F\br{p}}S_2 $ is linear and injective, and $ \dim\br{T_pS_1} = \dim\br{T_pS_2} = 2 $, so $ dF_p $ is an isomorphism. From before, since $ dF_p $ is an isomorphism, $ F $ is a local diffeomorphism, that is, there is an open neighbourhood $ U $ of $ p $ in $ S_1 $ such that $ \eval{F}_U : U \to F\br{U} $ is a diffeomorphism.
+If $ F $ is a local isometry then, for each $ p \in S $, $ \d F_p $ is injective. Suppose not. Then there exists $ 0 \ne v \in \T_p S $ such that $ \d F_p\br{v} = 0 $, so $ \abr{\d F_p\br{v}, \d F_p\br{w}} = 0 $ for all $ w \in \T_p S $, so $ \abr{v, w} = 0 $ for all $ w \in \T_p S $, so $ v = 0 $, a contradiction. Now $ \d F_p : \T_p S_1 \to \T_{F\br{p}} S_2 $ is linear and injective, and $ \dim \T_p S_1 = \dim \T_p S_2 = 2 $, so $ \d F_p $ is an isomorphism. From before, since $ \d F_p $ is an isomorphism, $ F $ is a local diffeomorphism, that is, there is an open neighbourhood $ U $ of $ p $ in $ S_1 $ such that $ \eval{F}_U : U \to F\br{U} $ is a diffeomorphism.
 \end{proof}
 
 \begin{proposition}
 A smooth map $ F : S_1 \to S_2 $ between regular surfaces is a local isometry if and only if it preserves lengths of curves, that is if and only if for all $ \alpha : \sbr{a, b} \to S_1 $ smooth we have
-$$ L\br{\alpha} = L\br{F \circ \alpha}. $$
+$$ \L\br{\alpha} = \L\br{F \circ \alpha}. $$
 \end{proposition}
 
 \begin{proof}
@@ -1395,37 +1316,37 @@ $$ L\br{\alpha} = L\br{F \circ \alpha}. $$
 \begin{itemize}
 \item[$ \implies $] Suppose that $ F $ is a local isometry. Then
 \begin{align*}
-L\br{F \circ \alpha}
+\L\br{F \circ \alpha}
 & = \intd{a}{b}{\abs{\br{F \circ \alpha}'\br{t}}}{t}
 = \intd{a}{b}{\sqrt{\abr{\br{F \circ \alpha}'\br{t}, \br{F \circ \alpha}'\br{t}}}}{t} \\
-& = \intd{a}{b}{\sqrt{\abr{dF_{\alpha\br{t}}\br{\alpha'\br{t}}, dF_{\alpha\br{t}}\br{\alpha'\br{t}}}}}{t}
+& = \intd{a}{b}{\sqrt{\abr{\d F_{\alpha\br{t}}\br{\alpha'\br{t}}, \d F_{\alpha\br{t}}\br{\alpha'\br{t}}}}}{t}
 = \intd{a}{b}{\sqrt{\abr{\alpha'\br{t}, \alpha'\br{t}}}}{t} \\
 & = \intd{a}{b}{\abs{\alpha'\br{t}}}{t}
-= L\br{\alpha},
+= \L\br{\alpha},
 \end{align*}
-by definition of $ dF_{\alpha\br{t}} $ and as $ F $ is a local isometry.
-\item[$ \impliedby $] Given $ v \in T_pS_1 $ and a curve $ \alpha : \br{-\epsilon, \epsilon} \to S_1 $ with $ \alpha\br{0} = p $ and $ \alpha'\br{0} = v $. Consider the curve $ \eval{\alpha}_{\sbr{-\delta, t}} : \sbr{-\delta, t} \to S_1 $, so
+by definition of $ \d F_{\alpha\br{t}} $ and as $ F $ is a local isometry.
+\item[$ \impliedby $] Given $ v \in \T_p S_1 $ and a curve $ \alpha : \br{-\epsilon, \epsilon} \to S_1 $ with $ \alpha\br{0} = p $ and $ \alpha'\br{0} = v $. Consider the curve $ \eval{\alpha}_{\sbr{-\delta, t}} : \sbr{-\delta, t} \to S_1 $, so
 $$
 \begin{tikzcd}
 & p \in S_1 \arrow{r}{F} & S_2 \\
-\br{-\epsilon, \epsilon} \arrow{ur}{\alpha} & \sbr{-\delta, t} \arrow[subset]{l} \arrow{u}{\eval{\alpha}_{\sbr{\delta, t}}} \arrow{ur} &
+\br{-\epsilon, \epsilon} \arrow{ur}{\alpha} & \sbr{-\delta, t} \arrow[subset]{l} \arrow{u}{\eval{\alpha}_{\sbr{-\delta, t}}} \arrow{ur} &
 \end{tikzcd}.
 $$
 
 \pagebreak
 
-Know $ L\br{\eval{\alpha}_{\sbr{-\delta, t}}} = L\br{\eval{\br{F \circ \alpha}}_{\sbr{-\delta, t}}} $, that is
-$$ \intd{-\delta}{t}{\abs{\alpha'\br{s}}}{s} = \intd{-\delta}{t}{\abs{dF_{\alpha\br{s}}\br{\alpha'\br{s}}}}{s}. $$
-Taking $ \tod{}{t} $ and setting $ t = 0 $, $ \abs{\alpha'\br{0}} = \abs{dF_p\br{\alpha'\br{0}}} $, that is
-$$ \abr{v, v} = \abr{dF_p\br{v}, dF_p\br{v}}, \qquad v \in T_pS_1, \qquad p \in S_1. $$
+Know $ \L\br{\eval{\alpha}_{\sbr{-\delta, t}}} = \L\br{\eval{\br{F \circ \alpha}}_{\sbr{-\delta, t}}} $, that is
+$$ \intd{-\delta}{t}{\abs{\alpha'\br{s}}}{s} = \intd{-\delta}{t}{\abs{\d F_{\alpha\br{s}}\br{\alpha'\br{s}}}}{s}. $$
+Taking $ \tod{}{t} $ and setting $ t = 0 $, $ \abs{\alpha'\br{0}} = \abs{\d F_p\br{\alpha'\br{0}}} $, that is
+$$ \abr{v, v} = \abr{\d F_p\br{v}, \d F_p\br{v}}, \qquad v \in \T_p S_1, \qquad p \in S_1. $$
 Now,
 $$ \abr{X + Y, X + Y} = \abr{X, X} + \abr{X, Y} + \abr{Y, X} + \abr{Y, Y} = \abr{X, X} + 2\abr{X, Y} + \abr{Y, Y}, $$
 so
 $$ \abr{X, Y} = \dfrac{1}{2}\br{\abr{X + Y, X + Y} - \abr{X, X} - \abr{Y, Y}}. $$
-Set $ X = dF_p\br{v} $ and $ Y = dF_p\br{w} $, so
+Set $ X = \d F_p\br{v} $ and $ Y = \d F_p\br{w} $, so
 \begin{align*}
-\abr{dF_p\br{v}, dF_p\br{w}}
-& = \dfrac{1}{2}\br{\abr{dF_p\br{v + w}, dF_p\br{v + w}} - \abr{dF_p\br{v}, dF_p\br{v}} - \abr{dF_p\br{w}, dF_p\br{w}}} \\
+\abr{\d F_p\br{v}, \d F_p\br{w}}
+& = \dfrac{1}{2}\br{\abr{\d F_p\br{v + w}, \d F_p\br{v + w}} - \abr{\d F_p\br{v}, \d F_p\br{v}} - \abr{\d F_p\br{w}, \d F_p\br{w}}} \\
 & = \dfrac{1}{2}\br{\abr{v + w, v + w} - \abr{v, v} - \abr{w, w}}
 = \abr{v, w}.
 \end{align*}
@@ -1434,32 +1355,26 @@ Therefore $ F $ is a local isometry.
 \end{proof}
 
 \begin{example*}
-Let $ S \subset \R^3 $ be any regular surface. Let $ B \in SO\br{3} $, $ 3 \times 3 $ matrices $ B $ such that $ B^TB = Id $ and $ \det\br{B} = 1 $. Set
-$$ S' = \cbr{B\vec{x} \mid \vec{x} \in S}. $$
+Let $ S \subset \RR^3 $ be any regular surface. Let $ B \in \SO\br{3} $, $ 3 \times 3 $ matrices $ B $ such that $ B^\intercal B = \id $ and $ \det B = 1 $. Set
+$$ S' = \cbr{B\vec{x} \st \vec{x} \in S}. $$
 Then
 $$ \function[B]{S}{S'}{\vec{x}}{B\vec{x}} $$
-is an isometry. Need to check the following.
-\begin{itemize}
-\item Bijective.
-\item Local isometry. Let $ p \in S $ and $ v, w \in T_pS $ be arbitrary. Then $ dF_p\br{v} = Bv $ and
-$$ \abr{dF_p\br{v}, dF_p\br{w}} = \abr{Bv, Bw} = \br{Bv}^TBw = v^TB^TBw = v^Tw = \abr{v, w}, $$
-so $ B $ is a local isometry.
-\end{itemize}
+is bijective. Let $ p \in S $ and $ v, w \in \T_p S $ be arbitrary. Then $ \d F_p\br{v} = Bv $ and
+$$ \abr{\d F_p\br{v}, \d F_p\br{w}} = \abr{Bv, Bw} = \br{Bv}^\intercal Bw = v^\intercal B^\intercal Bw = v^\intercal w = \abr{v, w}, $$
+so $ B $ is a local isometry and an isometry.
 \end{example*}
 
 \begin{example*}
 Let
-$$ S_1 = \cbr{\br{x, y, 0} \in \R^3 \mid x \in \R, \ y \in \R}, \qquad S_2 = \cbr{\br{x, y, z} \in \R^3 \mid x^2 + y^2 = 1}. $$
+$$ S_1 = \cbr{\br{x, y, 0} \in \RR^3 \st x \in \RR, \ y \in \RR}, \qquad S_2 = \cbr{\br{x, y, z} \in \RR^3 \st x^2 + y^2 = 1}. $$
 Define
-$$ \function[F]{S_1}{S_2}{\br{u, v, 0}}{\br{\cos\br{u}, \sin\br{u}, v}}. $$
+$$ \function[F]{S_1}{S_2}{\br{u, v, 0}}{\br{\cos u, \sin u, v}}. $$
 At $ p = \br{u, v, 0} \in S_1 $ a tangent vector $ \vec{v} = \br{a, b, 0} $ can be written as $ \alpha'\br{0} $ where $ \alpha\br{t} = \br{u + at, v + bt, 0} $. Now
-$$ \br{F \circ \alpha}\br{t} = \br{\cos\br{u + at}, \sin\br{u + at}, v + bt}, $$
-so
-$$ \br{F \circ \alpha}'\br{0} = \br{-a\sin\br{u}, a\cos\br{u}, b}. $$
-Then
-$$ \abr{dF_p\br{\vec{v}}, dF_p\br{\vec{v}}} = \abr{\br{-a\sin\br{u}, a\cos\br{u}, b}, \br{-a\sin\br{u}, a\cos\br{u}, b}} = a^2 + b^2 = \abr{\vec{v}, \vec{v}}, \qquad \vec{v} \in T_pS_1, $$
+$$ \br{F \circ \alpha}\br{t} = \br{\cos \br{u + at}, \sin \br{u + at}, v + bt}, $$
+so $ \br{F \circ \alpha}'\br{0} = \br{-a\sin u, a\cos u, b} $. Then
+$$ \abr{\d F_p\br{\vec{v}}, \d F_p\br{\vec{v}}} = \abr{\br{-a\sin u, a\cos u, b}, \br{-a\sin u, a\cos u, b}} = a^2 + b^2 = \abr{\vec{v}, \vec{v}}, \qquad \vec{v} \in \T_p S_1, $$
 and so, as before,
-$$ \abr{\vec{v}, \vec{w}} = \abr{dF_p\br{\vec{v}}, dF_p\br{\vec{w}}}, \qquad \vec{v}, \vec{w} \in T_pS_1. $$
+$$ \abr{\vec{v}, \vec{w}} = \abr{\d F_p\br{\vec{v}}, \d F_p\br{\vec{w}}}, \qquad \vec{v}, \vec{w} \in \T_p S_1. $$
 Thus $ F $ is a local isometry. It is not an isometry because it is not bijective.
 \end{example*}
 
@@ -1469,12 +1384,12 @@ Thus $ F $ is a local isometry. It is not an isometry because it is not bijectiv
 
 \lecture{20}{Monday}{19/11/18}
 
-Now, $ \tod{\phi}{x_1} $ and $ \tod{\phi}{x_2} $ span $ T_pS $ and $ N\br{p} $ is orthogonal to $ T_pS $ so $ \tod{\phi}{x_1}, \tod{\phi}{x_2}, N $ form a basis for $ \R^3 $. Write
+Now, $ \tod{\phi}{x_1} $ and $ \tod{\phi}{x_2} $ span $ \T_p S $ and $ \N\br{p} $ is orthogonal to $ \T_p S $ so $ \tod{\phi}{x_1} $, $ \tod{\phi}{x_2} $, and $ \N $ form a basis for $ \RR^3 $. Write
 \begin{equation}
 \label{eq:2}
-\dmd{\phi}{2}{x_i}{}{x_j}{} = \Gamma_{ij}^1\dpd{\phi}{x_1} + \Gamma_{ij}^2\dpd{\phi}{x_2} + A_{ij}N,
+\dmd{\phi}{2}{x_i}{}{x_j}{} = \Gamma_{ij}^1\dpd{\phi}{x_1} + \Gamma_{ij}^2\dpd{\phi}{x_2} + \A_{ij}\N,
 \end{equation}
-for some coefficients $ \Gamma_{ij}^k $ and $ A_{ij} $.
+for some coefficients $ \Gamma_{ij}^k $ and $ \A_{ij} $. Then
 $$ \dmd{\phi}{2}{x_i}{}{x_j}{} = \dmd{\phi}{2}{x_j}{}{x_i}{}, $$
 so $ \Gamma_{ij}^k = \Gamma_{ji}^k $ for all $ i, j, k $.
 
@@ -1482,8 +1397,8 @@ so $ \Gamma_{ij}^k = \Gamma_{ji}^k $ for all $ i, j, k $.
 The $ \Gamma_{ij}^k $ are called \textbf{Christoffel symbols}.
 \end{definition}
 
-Taking $ \br{\ref{eq:2}} \cdot N $, we get
-$$ \dmd{\phi}{2}{x_i}{}{x_j}{} \cdot N = A_{ij}. $$
+Taking $ \br{\ref{eq:2}} \cdot \N $, we get
+$$ \dmd{\phi}{2}{x_i}{}{x_j}{} \cdot \N = \A_{ij}. $$
 
 \begin{note*}
 $ \nabla_ie_j = \Gamma_{ij}^ke_k $, where $ \nabla_i $ is the metric connection in the local frame $ e_j $.
@@ -1495,22 +1410,22 @@ The Christoffel symbols are determined only by the first fundamental form, or me
 
 \begin{proof}
 From $ \br{\ref{eq:2}} \cdot \tod{\phi}{x_k} $,
-$$ \dmd{\phi}{2}{x_i}{}{x_j}{} \cdot \dpd{\phi}{x_k} = \Gamma_{ij}^1g_{1k} + \Gamma_{ij}^2g_{2k}, \qquad g = \twobytwo{g_{11}}{g_{12}}{g_{21}}{g_{22}}. $$
+$$ \dmd{\phi}{2}{x_i}{}{x_j}{} \cdot \dpd{\phi}{x_k} = \Gamma_{ij}^1\g_{1k} + \Gamma_{ij}^2\g_{2k}, \qquad \g = \twobytwo{\g_{11}}{\g_{12}}{\g_{21}}{\g_{22}}. $$
 Also,
 $$ \dpd{}{x_i}\br{\dpd{\phi}{x_j} \cdot \dpd{\phi}{x_k}} = \dmd{\phi}{2}{x_i}{}{x_j}{} \cdot \dpd{\phi}{x_k} + \dpd{\phi}{x_j} \cdot \dmd{\phi}{2}{x_i}{}{x_k}{}. $$
 Taking $ j = k $,
-$$ \dpd{}{x_i}\br{g_{jj}} = 2\br{\Gamma_{ij}^1g_{1j} + \Gamma_{ij}^2g_{2j}}. $$
+$$ \dpd{}{x_i}\br{\g_{jj}} = 2\br{\Gamma_{ij}^1\g_{1j} + \Gamma_{ij}^2\g_{2j}}. $$
 If $ j \ne k $, then either $ i = j $ or $ i = k $. Taking $ i = j \ne k $,
-$$ \dpd{}{x_i}\br{g_{ik}} = \dmd{\phi}{2}{x_i}{}{x_i}{} \cdot \dpd{\phi}{x_k} + \dpd{\phi}{x_i} \cdot \dmd{\phi}{2}{x_i}{}{x_k}{} = \dmd{\phi}{2}{x_i}{}{x_i}{} \cdot \dpd{\phi}{x_k} + \dfrac{1}{2}\dpd{}{x_k}\br{g_{ii}}. $$
+$$ \dpd{}{x_i}\br{\g_{ik}} = \dmd{\phi}{2}{x_i}{}{x_i}{} \cdot \dpd{\phi}{x_k} + \dpd{\phi}{x_i} \cdot \dmd{\phi}{2}{x_i}{}{x_k}{} = \dmd{\phi}{2}{x_i}{}{x_i}{} \cdot \dpd{\phi}{x_k} + \dfrac{1}{2}\dpd{}{x_k}\br{\g_{ii}}. $$
 Rewriting,
-$$ \Gamma_{ij}^1g_{1k} + \Gamma_{ij}^2g_{2k} = \dmd{\phi}{2}{x_i}{}{x_i}{} \cdot \dpd{\phi}{x_k} = \dpd{}{x_i}\br{g_{ik}} - \dfrac{1}{2}\dpd{}{x_k}\br{g_{ii}}. $$
-We have lots of equations involving $ \Gamma_{ij}^k $, $ g_{ij} $, and derivatives of $ g_{ij} $. In fact we can solve these for $ \Gamma_{ij}^k $. $ i = j = 1 $ and $ k \in \cbr{1, 2} $ gives
-$$ \Gamma_{11}^1g_{11} + \Gamma_{11}^2g_{21} = \dfrac{1}{2}\dpd{g_{11}}{x_1}, \qquad \Gamma_{11}^1g_{12} + \Gamma_{11}^2g_{22} = \dpd{g_{12}}{x_1} - \dfrac{1}{2}\dpd{g_{11}}{x_2}. $$
+$$ \Gamma_{ij}^1\g_{1k} + \Gamma_{ij}^2\g_{2k} = \dmd{\phi}{2}{x_i}{}{x_i}{} \cdot \dpd{\phi}{x_k} = \dpd{}{x_i}\br{\g_{ik}} - \dfrac{1}{2}\dpd{}{x_k}\br{\g_{ii}}. $$
+We have lots of equations involving $ \Gamma_{ij}^k $, $ \g_{ij} $, and derivatives of $ \g_{ij} $. In fact we can solve these for $ \Gamma_{ij}^k $. Then $ i = j = 1 $ and $ k = 1, 2 $ gives
+$$ \Gamma_{11}^1\g_{11} + \Gamma_{11}^2\g_{21} = \dfrac{1}{2}\dpd{\g_{11}}{x_1}, \qquad \Gamma_{11}^1\g_{12} + \Gamma_{11}^2\g_{22} = \dpd{\g_{12}}{x_1} - \dfrac{1}{2}\dpd{\g_{11}}{x_2}. $$
 That is,
-$$ g\twobyone{\Gamma_{11}^1}{\Gamma_{11}^2} = \twobyone{\tfrac{1}{2}\tpd{g_{11}}{x_1}}{\tpd{g_{12}}{x_1} - \tfrac{1}{2}\tpd{g_{11}}{x_2}}. $$
-$ g $ is invertible, because $ \tod{\phi}{x_1} $ and $ \tod{\phi}{x_2} $ are linearly independent. Similarly,
-$$ g\twobyone{\Gamma_{21}^1}{\Gamma_{21}^2} = \twobyone{\tfrac{1}{2}\tpd{g_{11}}{x_2}}{\tfrac{1}{2}\tpd{g_{22}}{x_1}}, \qquad g\twobyone{\Gamma_{22}^1}{\Gamma_{22}^2} = \twobyone{\tpd{g_{21}}{x_2} - \tfrac{1}{2}\tpd{g_{22}}{x_1}}{\tfrac{1}{2}\tpd{g_{22}}{x_2}}. $$
-Thus can solve these equations to write all $ \Gamma_{ij}^k $ in terms of $ g_{ij} $'s and $ \tpd{g_{jk}}{x_i} $'s.
+$$ \g\twobyone{\Gamma_{11}^1}{\Gamma_{11}^2} = \twobyone{\tfrac{1}{2}\tpd{\g_{11}}{x_1}}{\tpd{\g_{12}}{x_1} - \tfrac{1}{2}\tpd{\g_{11}}{x_2}}. $$
+Then $ \g $ is invertible, because $ \tod{\phi}{x_1} $ and $ \tod{\phi}{x_2} $ are linearly independent. Similarly,
+$$ \g\twobyone{\Gamma_{21}^1}{\Gamma_{21}^2} = \twobyone{\tfrac{1}{2}\tpd{\g_{11}}{x_2}}{\tfrac{1}{2}\tpd{\g_{22}}{x_1}}, \qquad \g\twobyone{\Gamma_{22}^1}{\Gamma_{22}^2} = \twobyone{\tpd{\g_{21}}{x_2} - \tfrac{1}{2}\tpd{\g_{22}}{x_1}}{\tfrac{1}{2}\tpd{\g_{22}}{x_2}}. $$
+Thus can solve these equations to write all $ \Gamma_{ij}^k $ in terms of $ \g_{ij} $'s and $ \tpd{\g_{jk}}{x_i} $'s.
 \end{proof}
 
 \pagebreak
@@ -1519,7 +1434,7 @@ Thus can solve these equations to write all $ \Gamma_{ij}^k $ in terms of $ g_{i
 
 \lecture{21}{Tuesday}{20/11/18}
 
-Recall that $ K = \det\br{A_{ij}} / \det\br{g_{ij}} $. The goal is that $ K $ depends only on $ g $.
+Recall that $ \K = \det \A_{ij} / \det \g_{ij} $. The goal is that $ \K $ depends only on $ \g $.
 
 \begin{notation*}
 Set $ x_1 = u $ and $ x_2 = v $. Write $ \phi_u = \tod{\phi}{x_1} = \tod{\phi}{u} $, without confusion with indices.
@@ -1528,51 +1443,51 @@ Set $ x_1 = u $ and $ x_2 = v $. Write $ \phi_u = \tod{\phi}{x_1} = \tod{\phi}{u
 Mixed partial derivatives are equal, so
 $$ \dpd{}{x_2}\br{\dmd{\phi}{2}{x_1}{}{x_1}{}} = \dpd{}{x_1}\br{\dmd{\phi}{2}{x_1}{}{x_2}{}}, $$
 so
-$$ \dpd{}{x_2}\br{\Gamma_{11}^1\dpd{\phi}{x_1} + \Gamma_{11}^2\dpd{\phi}{x_2} + A_{11}N} = \dpd{}{x_1}\br{\Gamma_{12}^1\dpd{\phi}{x_1} + \Gamma_{12}^2\dpd{\phi}{x_2} + A_{12}N}. $$
+$$ \dpd{}{x_2}\br{\Gamma_{11}^1\dpd{\phi}{x_1} + \Gamma_{11}^2\dpd{\phi}{x_2} + \A_{11}\N} = \dpd{}{x_1}\br{\Gamma_{12}^1\dpd{\phi}{x_1} + \Gamma_{12}^2\dpd{\phi}{x_2} + \A_{12}\N}. $$
 Thus
 \begin{equation}
 \label{eq:3}
-\Gamma_{11}^1\phi_{uv} + \Gamma_{11v}^1\phi_u + \Gamma_{11}^2\phi_{vv} + \Gamma_{11v}^2\phi_v + A_{11v}N + A_{11}N_v = \Gamma_{12}^1\phi_{uu} + \Gamma_{12u}^1\phi_u + \Gamma_{12}^2\phi_{vu} + \Gamma_{12u}^2\phi_v + A_{12u}N + A_{12}N_u.
+\Gamma_{11}^1\phi_{uv} + \Gamma_{11v}^1\phi_u + \Gamma_{11}^2\phi_{vv} + \Gamma_{11v}^2\phi_v + \A_{11v}\N + \A_{11}\N_v = \Gamma_{12}^1\phi_{uu} + \Gamma_{12u}^1\phi_u + \Gamma_{12}^2\phi_{vu} + \Gamma_{12u}^2\phi_v + \A_{12u}\N + \A_{12}\N_u.
 \end{equation}
 Will take the $ \phi_u $-component of $ \br{\ref{eq:3}} $, and use
-$$ \phi_{uv} = \Gamma_{12}^1\phi_u + \Gamma_{12}^2\phi_v + A_{12}N, \qquad \phi_{vv} = \Gamma_{22}^1\phi_u + \Gamma_{22}^2\phi_v + A_{22}N, \qquad \Gamma_{uu} = \Gamma_{11}^1\phi_u + \Gamma_{11}^2\phi_v + A_{11}N, $$
-$$ A_{11} = -\dpd{\phi}{u} \cdot N_u, \qquad A_{21} = -\dpd{\phi}{v} \cdot N_u, \qquad A_{12} = -\dpd{\phi}{u} \cdot N_v, \qquad A_{22} = -\dpd{\phi}{v} \cdot N_v. $$
+$$ \phi_{uv} = \Gamma_{12}^1\phi_u + \Gamma_{12}^2\phi_v + \A_{12}\N, \qquad \phi_{vv} = \Gamma_{22}^1\phi_u + \Gamma_{22}^2\phi_v + \A_{22}\N, \qquad \Gamma_{uu} = \Gamma_{11}^1\phi_u + \Gamma_{11}^2\phi_v + \A_{11}\N, $$
+$$ \A_{11} = -\dpd{\phi}{u} \cdot \N_u, \qquad \A_{21} = -\dpd{\phi}{v} \cdot \N_u, \qquad \A_{12} = -\dpd{\phi}{u} \cdot \N_v, \qquad \A_{22} = -\dpd{\phi}{v} \cdot \N_v. $$
 Now
-$$ N_u = a\phi_u + b\phi_v, \qquad N_v = c\phi_u + d\phi_v, $$
-since $ N \cdot N = 1 $, so $ N_u \cdot N + N \cdot N_u = 0 $ and $ N_v \cdot N + N \cdot N_v = 0 $, so $ N_u, N_v \in T_pS $. Then
-$$ -A_{11} = ag_{11} + bg_{12}, \qquad -A_{21} = ag_{21} + bg_{22}, \qquad -A_{12} = cg_{11} + dg_{12}, \qquad -A_{22} = cg_{21} + dg_{22}, $$
+$$ \N_u = a\phi_u + b\phi_v, \qquad \N_v = c\phi_u + d\phi_v, $$
+since $ \N \cdot \N = 1 $, so $ \N_u \cdot \N + \N \cdot \N_u = 0 $ and $ \N_v \cdot \N + \N \cdot \N_v = 0 $, so $ \N_u, \N_v \in \T_p S $. Then
+$$ -\A_{11} = a\g_{11} + b\g_{12}, \qquad -\A_{21} = a\g_{21} + b\g_{22}, \qquad -\A_{12} = c\g_{11} + d\g_{12}, \qquad -\A_{22} = c\g_{21} + d\g_{22}, $$
 so
-$$ -A = g\twobytwo{a}{c}{b}{d}, $$
+$$ -\A = \g\twobytwo{a}{c}{b}{d}, $$
 so
-$$ \twobytwo{a}{c}{b}{d} = -g^{-1}A = \dfrac{-1}{g_{11}g_{12} - g_{12}^2}\twobytwo{g_{22}}{-g_{12}}{-g_{21}}{g_{11}}\twobytwo{A_{11}}{A_{12}}{A_{21}}{A_{22}}, $$
+$$ \twobytwo{a}{c}{b}{d} = -\g^{-1}\A = \dfrac{-1}{\g_{11}\g_{12} - \g_{12}^2}\twobytwo{\g_{22}}{-\g_{12}}{-\g_{21}}{\g_{11}}\twobytwo{\A_{11}}{\A_{12}}{\A_{21}}{\A_{22}}, $$
 so
-$$ a = \dfrac{g_{12}A_{21} - g_{22}A_{11}}{g_{11}g_{22} - g_{12}^2}, \qquad c = \dfrac{g_{12}A_{22} - g_{22}A_{12}}{g_{11}g_{22} - g_{12}^2}. $$
+$$ a = \dfrac{\g_{12}\A_{21} - \g_{22}\A_{11}}{\g_{11}\g_{22} - \g_{12}^2}, \qquad c = \dfrac{\g_{12}\A_{22} - \g_{22}\A_{12}}{\g_{11}\g_{22} - \g_{12}^2}. $$
 Now, take $ \br{\ref{eq:3}} $, dot with $ \phi_u $, and use these equations above. We find,
-$$ \Gamma_{11}^1\Gamma_{12}^1 + \Gamma_{11v}^1 + \Gamma_{11}^2\Gamma_{22}^1 + A_{11}\br{\dfrac{g_{12}A_{22} - g_{22}A_{12}}{\det\br{g}}} = \Gamma_{12}^1\Gamma_{11}^1 + \Gamma_{12u}^1 + \Gamma_{12}^2\Gamma_{12}^1 + A_{12}\br{\dfrac{g_{12}A_{21} - g_{22}A_{11}}{\det\br{g}}}. $$
+$$ \Gamma_{11}^1\Gamma_{12}^1 + \Gamma_{11v}^1 + \Gamma_{11}^2\Gamma_{22}^1 + \A_{11}\br{\dfrac{\g_{12}\A_{22} - \g_{22}\A_{12}}{\det \g}} = \Gamma_{12}^1\Gamma_{11}^1 + \Gamma_{12u}^1 + \Gamma_{12}^2\Gamma_{12}^1 + \A_{12}\br{\dfrac{\g_{12}\A_{21} - \g_{22}\A_{11}}{\det \g}}. $$
 Rearranging,
-$$ \Gamma_{11v}^1 - \Gamma_{12u}^1 = \Gamma_{12}^2\Gamma_{12}^1 - \Gamma_{11}^2\Gamma_{22}^1 + \dfrac{\br{A_{12}A_{21} - A_{11}A_{22}}g_{12}}{\det\br{g}}. $$
+$$ \Gamma_{11v}^1 - \Gamma_{12u}^1 = \Gamma_{12}^2\Gamma_{12}^1 - \Gamma_{11}^2\Gamma_{22}^1 + \dfrac{\br{\A_{12}\A_{21} - \A_{11}\A_{22}}\g_{12}}{\det \g}. $$
 In other words,
-$$ Kg_{12} = \Gamma_{12}^2\Gamma_{12}^1 - \Gamma_{11}^2\Gamma_{22}^1 + \Gamma_{12u}^1 - \Gamma_{11v}^1. $$
+$$ \K \g_{12} = \Gamma_{12}^2\Gamma_{12}^1 - \Gamma_{11}^2\Gamma_{22}^1 + \Gamma_{12u}^1 - \Gamma_{11v}^1. $$
 Similarly, taking the $ \phi_v $ component of $ \br{\ref{eq:3}} $
-$$ Kg_{11} = \Gamma_{11}^1\Gamma_{21}^2 + \Gamma_{11}^2\Gamma_{22}^2 - \Gamma_{12}^1\Gamma_{11}^2 - \Gamma_{12}^2\Gamma_{12}^2 + \Gamma_{11v}^2 - \Gamma_{12u}^2. $$
+$$ \K \g_{11} = \Gamma_{11}^1\Gamma_{21}^2 + \Gamma_{11}^2\Gamma_{22}^2 - \Gamma_{12}^1\Gamma_{11}^2 - \Gamma_{12}^2\Gamma_{12}^2 + \Gamma_{11v}^2 - \Gamma_{12u}^2. $$
 These are the \textbf{Gauss equations}.
 
 \begin{note*}
-$ Kg_{12} $ and $ Kg_{11} $ depend only on $ g $. But $ g $ is invertible, so $ g_{11} $ and $ g_{12} $ cannot simultaneously vanish.
+$ \K \g_{12} $ and $ \K \g_{11} $ depend only on $ \g $. But $ \g $ is invertible, so $ \g_{11} $ and $ \g_{12} $ cannot simultaneously vanish.
 \end{note*}
 
 We have proved the following.
 
 \begin{theorem}[Theorema Egregium, Gauss]
-The Gaussian curvature $ K $ depends only on the first fundamental form.
+The Gaussian curvature $ \K $ depends only on the first fundamental form.
 \end{theorem}
 
-In other words, it is an intrinsic invariant of the surface $ \br{S, g} $, as a Riemannian manifold.
+In other words, it is an intrinsic invariant of the surface $ \br{S, \g} $, as a Riemannian manifold.
 
 \pagebreak
 
 \begin{corollary}
-If $ f : S_1 \to S_2 $ is a local isometry then $ K_{S_1}\br{p} = K_{S_2}\br{f\br{p}} $ for all $ p \in S_1 $.
+If $ f : S_1 \to S_2 $ is a local isometry then $ \K_{S_1}\br{p} = \K_{S_2}\br{f\br{p}} $ for all $ p \in S_1 $.
 \end{corollary}
 
 \begin{corollary}
@@ -1580,7 +1495,7 @@ There is no local isometry from a plane to a sphere.
 \end{corollary}
 
 \begin{proof}
-A plane has $ K = 0 $ everywhere and a sphere has $ K = 1 / r^2 $ everywhere, where $ r $ is the radius.
+A plane has $ \K = 0 $ everywhere and a sphere has $ \K = 1 / r^2 $ everywhere, where $ r $ is the radius.
 \end{proof}
 
 In particular, there is no way to draw a map of the Earth on a flat sheet of paper without distorting lengths or angles. This is also why it is hard to gift-wrap a ball.
@@ -1588,7 +1503,7 @@ In particular, there is no way to draw a map of the Earth on a flat sheet of pap
 \lecture{22}{Friday}{23/11/18}
 
 \begin{theorem}
-Let $ S $ be a compact surface with $ K > 0 $, such that $ K $ is constant, then $ S $ is umbilical.
+Let $ S $ be a compact surface with $ \K > 0 $, such that $ \K $ is constant, then $ S $ is umbilical.
 \end{theorem}
 
 \begin{proof}
@@ -1599,42 +1514,42 @@ $$ \phi\br{u, v} = \br{u, v, F\br{u, v}} + \dots = \dfrac{1}{2}\br{\lambda_1u^2 
 by Taylor expansion. At $ \br{0, 0} $, $ F\br{0, 0} = F_u\br{0, 0} = F_v\br{0, 0} = 0 $, so
 $$ \dpd{\phi}{u}\br{0, 0} = \br{1, 0, F_u\br{0, 0}} = \br{1, 0, 0}, \qquad \dpd{\phi}{u}\br{0, 0} = \br{0, 1, F_v\br{0, 0}} = \br{0, 1, 0}, $$
 so
-$$ N = \dfrac{\phi_u \times \phi_v}{\abs{\phi_u \times \phi_v}} = \dfrac{\br{-F_u, -F_v, 1}}{\sqrt{1 + \abs{\nabla F}^2}} = \br{0, 0, 1}, $$
+$$ \N = \dfrac{\phi_u \times \phi_v}{\abs{\phi_u \times \phi_v}} = \dfrac{\br{-F_u, -F_v, 1}}{\sqrt{1 + \abs{\nabla F}^2}} = \br{0, 0, 1}, $$
 at $ \br{0, 0} $. Then
-$$ A = \twobytwo{F_{uu}}{F_{uv}}{F_{vu}}{F_{vv}} = \twobytwo{\lambda_1}{0}{0}{\lambda_2}, \qquad g = \twobytwo{\phi_u \cdot \phi_u}{\phi_u \cdot \phi_v}{\phi_v \cdot \phi_u}{\phi_v \cdot \phi_v} = \twobytwo{1}{0}{0}{1}. $$
-Thus $ K = \det\br{A} / \det\br{g} = \lambda_1\lambda_2 $. Let
-$$ E_1 = \dfrac{\br{1, 0, F_u}}{\sqrt{1 + F_u^2}}, \qquad E_2 = \dfrac{\br{0, 1, F_v}}{\sqrt{1 + F_v^2}}. $$
-Let
-$$ h_1\br{t} = A\br{E_1\br{0, t}, E_1\br{0, t}}, \qquad h_2\br{t} = A\br{E_2\br{t, 0}, E_2\br{t, 0}}. $$
-Check (Exercise)
-$$ h_1\br{t} = \eval{\dfrac{1}{1 + F_u^2} \cdot \br{\dfrac{F_{uu}}{\sqrt{1 + \abs{\nabla F}^2}}}}_{\br{0, t}}, \qquad h_2\br{t} = \eval{\dfrac{1}{1 + F_v^2} \cdot \br{\dfrac{F_{vv}}{\sqrt{1 + \abs{\nabla F}^2}}}}_{\br{t, 0}}. $$
+$$ \A = \twobytwo{F_{uu}}{F_{uv}}{F_{vu}}{F_{vv}} = \twobytwo{\lambda_1}{0}{0}{\lambda_2}, \qquad \g = \twobytwo{\phi_u \cdot \phi_u}{\phi_u \cdot \phi_v}{\phi_v \cdot \phi_u}{\phi_v \cdot \phi_v} = \twobytwo{1}{0}{0}{1}. $$
+Thus $ \K = \det \A / \det \g = \lambda_1\lambda_2 $. Let
+$$ E_1 = \dfrac{\br{1, 0, F_u}}{\sqrt{1 + F_u^2}}, \qquad E_2 = \dfrac{\br{0, 1, F_v}}{\sqrt{1 + F_v^2}}, $$
+and let
+$$ h_1\br{t} = \A\br{E_1\br{0, t}, E_1\br{0, t}}, \qquad h_2\br{t} = \A\br{E_2\br{t, 0}, E_2\br{t, 0}}. $$
+Check \footnote{Exercise}
+$$ h_1\br{t} = \eval{\dfrac{1}{1 + F_u^2} \cdot \dfrac{F_{uu}}{\sqrt{1 + \abs{\nabla F}^2}}}_{\br{0, t}}, \qquad h_2\br{t} = \eval{\dfrac{1}{1 + F_v^2} \cdot \dfrac{F_{vv}}{\sqrt{1 + \abs{\nabla F}^2}}}_{\br{t, 0}}. $$
 Recall that
-$$ \lambda_1\br{p} \le \lambda_1\br{\phi\br{0, t}} = \min\cbr{A\br{v, v} \mid v \in T_{\phi\br{0, t}}S, \ \abs{v} = 1} \le A\br{E_1\br{0, t}, E_1\br{0, t}} = h_1\br{t}, $$
+$$ \lambda_1\br{p} \le \lambda_1\br{\phi\br{0, t}} = \min\cbr{\A\br{v, v} \st v \in \T_{\phi\br{0, t}} S, \ \abs{v} = 1} \le \A\br{E_1\br{0, t}, E_1\br{0, t}} = h_1\br{t}, $$
 and
-$$ \lambda_2\br{p} \ge \lambda_2\br{\phi\br{t, 0}} = \max\cbr{A\br{v, v} \mid v \in T_{\phi\br{t, 0}}S, \ \abs{v} = 1} \ge A\br{E_2\br{t, 0}, E_2\br{t, 0}} = h_2\br{t}, $$
+$$ \lambda_2\br{p} \ge \lambda_2\br{\phi\br{t, 0}} = \max\cbr{\A\br{v, v} \st v \in \T_{\phi\br{t, 0}} S, \ \abs{v} = 1} \ge \A\br{E_2\br{t, 0}, E_2\br{t, 0}} = h_2\br{t}, $$
 so $ h_1\br{t} $ is minimum at $ t = 0 $ and $ h_2\br{t} $ is maximum at $ t = 0 $, so $ h_1''\br{0} \ge 0 $ and $ h_2''\br{0} \le 0 $, so
 $$ h_1''\br{0} - h_2''\br{0} \ge 0. $$
-Assume $ \lambda_1 < \lambda_2 $. Thus $ \lambda_1\lambda_2\br{\lambda_1 - \lambda_2} < 0 $, (Exercise) a contradiction.
+Assume $ \lambda_1 < \lambda_2 $. Thus $ \lambda_1\lambda_2\br{\lambda_1 - \lambda_2} < 0 $, \footnote{Exercise} a contradiction.
 \end{proof}
 
 \begin{corollary}
-Let $ K > 0 $ be constant. Then $ S $ is compact and connected implies that $ S = S^2 $.
+Let $ \K > 0 $ be constant. Then $ S $ is compact and connected implies that $ S = \S^2 $.
 \end{corollary}
 
 \pagebreak
 
 \section{Area of surfaces}
 
-\lecture{23}{Monday}{26/11/18}
-
 \subsection{Area}
 
-Let $ S \subset \R^3 $ be a regular surface and $ \phi : U \to S $ be a chart. How to measure the area on $ S $? Consider a tiny rectangle in $ U $ with sides $ \br{\delta u, 0} $ and $ \br{0, \delta v} $. The area of this, in $ U $, is $ \delta u\delta v $. If $ \delta u $ and $ \delta v $ are small then the area of the image of this rectangle in $ \phi\br{U} $ is approximately the area of the parallelogram in $ \R^3 $ with sides $ \br{\tod{\phi}{u}}\delta u $ and $ \br{\tod{\phi}{v}}\delta v $, that is
+\lecture{23}{Monday}{26/11/18}
+
+Let $ S \subset \RR^3 $ be a regular surface and $ \phi : U \to S $ be a chart. How to measure the area on $ S $? Consider a tiny rectangle in $ U $ with sides $ \br{\delta u, 0} $ and $ \br{0, \delta v} $. The area of this, in $ U $, is $ \delta u\delta v $. If $ \delta u $ and $ \delta v $ are small then the area of the image of this rectangle in $ \phi\br{U} $ is approximately the area of the parallelogram in $ \RR^3 $ with sides $ \br{\tod{\phi}{u}}\delta u $ and $ \br{\tod{\phi}{v}}\delta v $, that is
 $$ \abs{\br{\dpd{\phi}{u}\delta u} \times \br{\dpd{\phi}{v}\delta v}} = \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}\delta u\delta v. $$
 
 \begin{definition}
 If $ D \subset U $ is compact, then
-$$ area\br{\phi\br{D}} = \iintd{D}{\abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}}{u}{v}. $$
+$$ \area \phi\br{D} = \iintd{D}{\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}}{u}{v}. $$
 \end{definition}
 
 Need to show this integral
@@ -1648,7 +1563,7 @@ This definition does not depend on the choice of coordinate chart $ \phi : U \to
 \end{proposition}
 
 \begin{proof}
-Let $ \phi : U \to S $ and $ \psi : U' \to S $ be charts whose images contain $ \phi\br{D} = \psi\br{D} $. After shrinking $ U, U' $ if necessary, we have that $ f = \phi^{-1} \circ \psi : U' \to U $ is well-defined and smooth. Write
+Let $ \phi : U \to S $ and $ \psi : U' \to S $ be charts whose images contain $ \phi\br{D} = \psi\br{D} $. After shrinking $ U $ and $ U' $ if necessary, we have that $ f = \phi^{-1} \circ \psi : U' \to U $ is well-defined and smooth. Write
 $$ f\br{u, v} = \br{x\br{u, v}, y\br{u, v}}, $$
 so
 $$
@@ -1661,39 +1576,39 @@ Then $ \psi = \phi \circ f $ so
 $$ \dpd{\psi}{u} \times \dpd{\psi}{v} = \br{\dpd{\phi}{x}\dpd{x}{u} + \dpd{\phi}{y}\dpd{y}{u}} \times \br{\dpd{\phi}{x}\dpd{x}{v} + \dpd{\phi}{y}\dpd{y}{v}} = \Delta\br{\dpd{\phi}{x} \times \dpd{\phi}{y}}, \qquad \Delta\br{u, v} = \dpd{x}{u}\dpd{y}{v} - \dpd{y}{u}\dpd{x}{v}. $$
 So
 \begin{align*}
-area\br{\psi\br{D'}}
-& = \iintd{D'}{\abs{\dpd{\psi}{u} \times \dpd{\psi}{v}}}{u}{v} \\
-& = \iintd{D'}{\abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}\abs{\det\twobytwo{\tpd{x}{u}}{\tpd{y}{u}}{\tpd{x}{v}}{\tpd{y}{v}}}}{u}{v} \\
-& = \iintd{D}{\abs{\dpd{\phi}{x} \times \dpd{\phi}{y}}}{x}{y}
-= area\br{\phi\br{D}},
+\area \psi\br{D'}
+& = \iintd{D'}{\abs{\tpd{\psi}{u} \times \tpd{\psi}{v}}}{u}{v}
+= \iintd{D'}{\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}\abs{\det \twobytwo{\tpd{x}{u}}{\tpd{y}{u}}{\tpd{x}{v}}{\tpd{y}{v}}}}{u}{v} \\
+& = \iintd{D}{\abs{\tpd{\phi}{x} \times \tpd{\phi}{y}}}{x}{y}
+= \area \phi\br{D},
 \end{align*}
 by the change of variable formula.
 \end{proof}
 
 \begin{note*}
-$ S \subset \R^3 $, and $ \R^3 $ has a distinguished $ 3 $-form $ dx \wedge dy \wedge dz $. If $ S $ is oriented, so we have chosen a normal vector field $ N $ on $ S $, then can consider the $ 2 $-form $ \omega = 2_N\br{dx \wedge dy \wedge dz} $, where $ 2_N $ is the contraction, and measure areas on $ S $ using this $ 2 $-form. Up to sign, this gives the same notion of area.
+$ S \subset \RR^3 $, and $ \RR^3 $ has a distinguished $ 3 $-form $ \d x \wedge \d y \wedge \d z $. If $ S $ is oriented, so we have chosen a normal vector field $ \N $ on $ S $, then can consider the $ 2 $-form $ \omega = 2_\N\br{\d x \wedge \d y \wedge \d z} $, where $ 2_\N $ is the contraction, and measure areas on $ S $ using this $ 2 $-form. Up to sign, this gives the same notion of area.
 \end{note*}
 
 \pagebreak
 
 \begin{lemma}
-$$ area\br{\phi\br{D}} = \iintd{D}{\sqrt{\det\br{g}}}{u}{v}. $$
+$$ \area \phi\br{D} = \iintd{D}{\sqrt{\det \g}}{u}{v}. $$
 \end{lemma}
 
 \begin{proof}
 $ \abs{a \times b}^2 = \abs{a}^2\abs{b}^2 - \br{a \cdot b}^2 $, so
 $$ \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}^2 = \abs{\dpd{\phi}{u}}^2\abs{\dpd{\phi}{v}}^2 - \br{\dpd{\phi}{u} \cdot \dpd{\phi}{v}}^2. $$
 But
-$$ g = \twobytwo{\tpd{\phi}{u} \cdot \tpd{\phi}{u}}{\tpd{\phi}{u} \cdot \tpd{\phi}{v}}{\tpd{\phi}{v} \cdot \tpd{\phi}{u}}{\tpd{\phi}{v} \cdot \tpd{\phi}{v}}, $$
+$$ \g = \twobytwo{\tpd{\phi}{u} \cdot \tpd{\phi}{u}}{\tpd{\phi}{u} \cdot \tpd{\phi}{v}}{\tpd{\phi}{v} \cdot \tpd{\phi}{u}}{\tpd{\phi}{v} \cdot \tpd{\phi}{v}}, $$
 so
-$$ \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}^2 = g_{11}g_{22} - g_{21}^2 = \det\br{g}. $$
+$$ \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}^2 = \g_{11}\g_{22} - \g_{21}^2 = \det \g. $$
 Thus
-$$ area\br{\phi\br{D}} = \iintd{D}{\abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}}{u}{v} = \iintd{D}{\sqrt{\det\br{g}}}{u}{v}. $$
+$$ \area \phi\br{D} = \iintd{D}{\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}}{u}{v} = \iintd{D}{\sqrt{\det \g}}{u}{v}. $$
 \end{proof}
 
 \begin{definition}
-Assume $ S $ is compact. If $ f : S \to \R $ is a smooth function on $ S $, $ \phi : U \to S $ is a chart, and $ D \subset U $ is a compact subset, then we define
-$$ \intd{\phi\br{D}}{}{f}{A} = \iintd{D}{\br{f \circ \phi}\br{u, v}\abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}}{u}{v} = \iintd{D}{\br{f \circ \phi}\sqrt{\det\br{g}}}{u}{v}. $$
+Assume $ S $ is compact. If $ f : S \to \RR $ is a smooth function on $ S $, $ \phi : U \to S $ is a chart, and $ D \subset U $ is a compact subset, then we define
+$$ \intd{\phi\br{D}}{}{f}{A} = \iintd{D}{\br{f \circ \phi}\br{u, v}\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}}{u}{v} = \iintd{D}{\br{f \circ \phi}\sqrt{\det \g}}{u}{v}. $$
 \end{definition}
 
 This does not depend on chart $ \phi : U \to S $. To integrate over all of $ S $ we divide $ S $ into pieces
@@ -1710,21 +1625,21 @@ Claim that this is independent of the choice of decomposition.
 \lecture{24}{Tuesday}{27/11/18}
 
 \begin{example*}
-What is the surface area of the unit sphere in $ \R^3 $? Use spherical polar coordinates
-$$ \psi\br{\theta, \phi} = \br{\cos\br{\theta}\sin\br{\phi}, \sin\br{\theta}\sin\br{\phi}, \cos\br{\phi}}, \qquad \epsilon \le \theta \le 2\pi - \epsilon, \qquad \epsilon \le \phi \le \pi - \epsilon. $$
-Is this a regular surface?
-$$ \onebytwo{\psi_\theta}{\psi_\phi} = \threebyone{-\sin\br{\theta}\sin\br{\phi} & \cos\br{\theta}\cos\br{\phi}}{\cos\br{\theta}\sin\br{\phi} & \sin\br{\theta}\cos\br{\phi}}{0 & -\sin\br{\phi}}. $$
-Is this matrix rank two, that is are the columns linearly independent? If $ \sin\br{\phi} \ne 0 $ then the first two rows of the first column is not both zero and the last row of the second column is not zero. So this surface is regular, because $ \sin\br{\phi} \ne 0 $ in our chart, since we took $ \phi \in \br{0, \pi} $.
+What is the surface area of the unit sphere in $ \RR^3 $? Use spherical polar coordinates
+$$ \psi\br{\theta, \phi} = \br{\cos \theta\sin \phi, \sin \theta\sin \phi, \cos \phi}, \qquad \epsilon \le \theta \le 2\pi - \epsilon, \qquad \epsilon \le \phi \le \pi - \epsilon. $$
+Are the columns of the matrix
+$$ \onebytwo{\psi_\theta}{\psi_\phi} = \threebyone{-\sin \theta\sin \phi & \cos \theta\cos \phi}{\cos \theta\sin \phi & \sin \theta\cos \phi}{0 & -\sin \phi}. $$
+linearly independent? If $ \sin \phi \ne 0 $ then the first two rows of the first column is not both zero and the last row of the second column is not zero. So this surface is regular, because $ \sin \phi \ne 0 $ in our chart, since we took $ \phi \in \br{0, \pi} $. Then
 \begin{align*}
-area\br{\psi\br{D}}
+\area \psi\br{D}
 & = \iintd{D}{\abs{\psi_\theta \times \psi_\phi}}{\theta}{\phi}
-= \intd{\epsilon}{\pi - \epsilon}{\intd{\epsilon}{2\pi - \epsilon}{\sin\br{\phi}}{\theta}}{\phi} \\
-& = \br{2\pi - 2\epsilon}\sbr{\cos\br{\phi}}_{\pi - \epsilon}^\epsilon
-= \br{2\pi - 2\epsilon}\br{\cos\br{\epsilon} - \cos\br{\pi - \epsilon}}.
+= \intd{\epsilon}{\pi - \epsilon}{\intd{\epsilon}{2\pi - \epsilon}{\sin \phi}{\theta}}{\phi} \\
+& = \br{2\pi - 2\epsilon}\sbr{\cos \phi}_{\pi - \epsilon}^\epsilon
+= \br{2\pi - 2\epsilon}\br{\cos \epsilon - \cos \br{\pi - \epsilon}},
 \end{align*}
-Then
-$$ \lim_{\epsilon \to 0} area\br{\psi\br{D}} = 4\pi. $$
-Compute the area of the rest by using another chart, which tends to zero as $ \epsilon \to 0 $. Thus $ area\br{S^2} = 4\pi $.
+so
+$$ \lim_{\epsilon \to 0} \area \psi\br{D} = 4\pi. $$
+Compute the area of the rest by using another chart, which tends to zero as $ \epsilon \to 0 $. Thus $ \area \S^2 = 4\pi $.
 \end{example*}
 
 \pagebreak
@@ -1733,51 +1648,50 @@ Compute the area of the rest by using another chart, which tends to zero as $ \e
 
 \subsection{Geodesic curvature}
 
-Geodesics are the shortest paths. Let $ \gamma : \sbr{a, b} \to S $ be a regular curve in a regular surface $ S $. Suppose that $ S $ is oriented, with normal vector field $ N $, and that $ \gamma $ is parametrised by arc-length. Then
-$$ \br{\gamma'\br{t}, N\br{\gamma\br{t}} \times \gamma'\br{t}, N\br{\gamma\br{t}}} $$
-is an orthonormal basis for $ \R^3 $. Recall that the curvature of $ \gamma $ is $ \vec{\kappa}\br{t} = \gamma''\br{t} $ and that $ \gamma'' $ is orthogonal to $ \gamma' $, because $ \gamma'\br{t} \cdot \gamma'\br{t} = 1 $, so $ \tod{}{t}\br{\gamma''\br{t} \cdot \gamma'\br{t}} = 0 $, so $ 2\gamma''\br{t} \cdot \gamma'\br{t} = 0 $. So
-$$ \vec{\kappa}\br{t} = k_n\br{t}N + k_g\br{t}\br{N \times \gamma'}, $$
+Geodesics are the shortest paths. Let $ \gamma : \sbr{a, b} \to S $ be a regular curve in a regular surface $ S $. Suppose that $ S $ is oriented, with normal vector field $ \N $, and that $ \gamma $ is parametrised by arc-length. Then
+$$ \br{\gamma'\br{t}, \N\br{\gamma\br{t}} \times \gamma'\br{t}, \N\br{\gamma\br{t}}} $$
+is an orthonormal basis for $ \RR^3 $. Recall that the curvature of $ \gamma $ is $ \vec{\kappa}\br{t} = \gamma''\br{t} $ and that $ \gamma'' $ is orthogonal to $ \gamma' $, because $ \gamma'\br{t} \cdot \gamma'\br{t} = 1 $, so $ \tod{}{t}\br{\gamma''\br{t} \cdot \gamma'\br{t}} = 0 $, so $ 2\gamma''\br{t} \cdot \gamma'\br{t} = 0 $. So
+$$ \vec{\kappa}\br{t} = \k_n\br{t}\N + \k_g\br{t}\br{\N \times \gamma'}, $$
 where
-$$ k_n\br{t} = \vec{\kappa}\br{t} \cdot N $$
+$$ \k_n\br{t} = \vec{\kappa}\br{t} \cdot \N $$
 is the \textbf{normal curvature} of $ \gamma $ at $ t $, and
-$$ k_g\br{t} = \vec{\kappa}\br{t} \cdot \br{N \times \gamma'} $$
-is the \textbf{geodesic curvature} of $ \gamma $ at $ t $. $ k_g\br{t} $ is the amount that $ \gamma $ is curving along $ S $. $ \gamma $ is a \textbf{geodesic} if the geodesic curvature is zero.
+$$ \k_g\br{t} = \vec{\kappa}\br{t} \cdot \br{\N \times \gamma'} $$
+is the \textbf{geodesic curvature} of $ \gamma $ at $ t $, the amount that $ \gamma $ is curving along $ S $. Then $ \gamma $ is a \textbf{geodesic} if the geodesic curvature is zero.
 
 \lecture{25}{Friday}{30/11/18}
 
 \begin{example*}
-Let $ S $ be the $ xy $ plane and $ N = \br{0, 0, 1} $. Consider a curve $ \gamma\br{t} = \br{x\br{t}, y\br{t}, 0} $ parametrised by arc-length, so $ \br{\tod{x}{t}}^2 + \br{\tod{y}{t}}^2 = 1 $. Then the normal curvature is
-$$ k_n = \vec{\kappa} \cdot N = \br{x'', y'', 0} \cdot \br{0, 0, 1} = 0, $$
-and
-$$ N \times \gamma' = \br{0, 0, 1} \times \br{x', y', 0} = \br{-y', x', 0}, $$
-so the geodesic curvature is
-$$ k_g = \vec{\kappa} \cdot \br{N \times \gamma'} = \br{x'', y'', 0} \cdot \br{-y', x', 0} = x'y'' - x''y'. $$
-$ \vec{\kappa} = k_g\br{N \times \gamma'} $, so $ k_g = 0 $ if and only if $ \vec{\kappa} = 0 $, if and only if $ x'' = y'' = 0 $. That is, geodesics in the plane take the form
+Let $ S $ be the $ xy $ plane and $ \N = \br{0, 0, 1} $. Consider a curve
+$$ \gamma\br{t} = \br{x\br{t}, y\br{t}, 0} $$
+parametrised by arc-length, so $ \br{\tod{x}{t}}^2 + \br{\tod{y}{t}}^2 = 1 $. Then the normal curvature is
+$$ \k_n = \vec{\kappa} \cdot \N = \br{x'', y'', 0} \cdot \br{0, 0, 1} = 0, $$
+and $ \N \times \gamma' = \br{0, 0, 1} \times \br{x', y', 0} = \br{-y', x', 0} $, so the geodesic curvature is
+$$ \k_g = \vec{\kappa} \cdot \br{\N \times \gamma'} = \br{x'', y'', 0} \cdot \br{-y', x', 0} = x'y'' - x''y'. $$
+Then $ \vec{\kappa} = \k_g\br{\N \times \gamma'} $, so $ \k_g = 0 $ if and only if $ \vec{\kappa} = 0 $, if and only if $ x'' = y'' = 0 $. That is, geodesics in the plane take the form
 $$ \br{x\br{t}, y\br{t}} = \br{a_0, b_0} + t\br{a_1, b_1}, $$
 which are straight lines.
 \end{example*}
 
 \begin{example*}
 Let $ S $ be the unit sphere
-$$ \cbr{\br{x, y,z} \in \R^3 \mid x^2 + y^2 + z^2 = 1}. $$
-Consider a latitude of radius $ r $
-$$ \gamma\br{t} = \br{r\cos\br{\dfrac{t}{r}}, r\sin\br{\dfrac{t}{r}}, \sqrt{1 - r^2}}, \qquad 0 \le t \le 2\pi r. $$
-Compute the geodesic curvature $ k_g = \vec{\kappa} \cdot \br{N \times \gamma'} $.
-$$ \gamma'\br{t} = \br{-\sin\br{\dfrac{t}{r}}, \cos\br{\dfrac{t}{r}}, 0}, \qquad N\br{\gamma\br{t}} = \gamma\br{t} = \br{r\cos\br{\dfrac{t}{r}}, r\sin\br{\dfrac{t}{r}}, \sqrt{1 - r^2}}, $$
+$$ \cbr{\br{x, y,z} \in \RR^3 \st x^2 + y^2 + z^2 = 1}. $$
+Consider a latitude of radius $ r $,
+$$ \gamma\br{t} = \br{r\cos \tfrac{t}{r}, r\sin \tfrac{t}{r}, \sqrt{1 - r^2}}, \qquad 0 \le t \le 2\pi r. $$
+Then
+$$ \gamma'\br{t} = \br{-\sin \tfrac{t}{r}, \cos \tfrac{t}{r}, 0}, \qquad \N\br{\gamma\br{t}} = \gamma\br{t} = \br{r\cos \tfrac{t}{r}, r\sin \tfrac{t}{r}, \sqrt{1 - r^2}}, $$
 so
-$$ N \times \gamma' = \br{-\sqrt{1 - r^2}\cos\br{\dfrac{t}{r}}, -\sqrt{1 - r^2}\sin\br{\dfrac{t}{r}}, r}, \qquad \vec{\kappa}\br{t} = \gamma''\br{t} = \dfrac{1}{r}\br{-\cos\br{\dfrac{t}{r}}, -\sin\br{\dfrac{t}{r}}, 0}. $$
-
-\pagebreak
-
+$$ \N \times \gamma' = \br{-\sqrt{1 - r^2}\cos \tfrac{t}{r}, -\sqrt{1 - r^2}\sin \tfrac{t}{r}, r}, \qquad \vec{\kappa}\br{t} = \gamma''\br{t} = \dfrac{1}{r}\br{-\cos \tfrac{t}{r}, -\sin \tfrac{t}{r}, 0}. $$
 Thus
 \begin{align*}
-k_g
-& = \dfrac{1}{r}\br{-\cos\br{\dfrac{t}{r}}, -\sin\br{\dfrac{t}{r}}, 0} \cdot \br{-\sqrt{1 - r^2}\cos\br{\dfrac{t}{r}}, -\sqrt{1 - r^2}\sin\br{\dfrac{t}{r}}, r} \\
-& = \dfrac{\sqrt{1 - r^2}}{r}\br{\cos^2\br{\dfrac{t}{r}} + \sin^2\br{\dfrac{t}{r}}}
+\k_g
+& = \dfrac{1}{r}\br{-\cos \tfrac{t}{r}, -\sin \tfrac{t}{r}, 0} \cdot \br{-\sqrt{1 - r^2}\cos \tfrac{t}{r}, -\sqrt{1 - r^2}\sin \tfrac{t}{r}, r} \\
+& = \dfrac{\sqrt{1 - r^2}}{r}\br{\cos^2 \tfrac{t}{r} + \sin^2 \tfrac{t}{r}}
 = \dfrac{\sqrt{1 - r^2}}{r}.
 \end{align*}
 So a latitude is a geodesic if and only if $ r = 1 $, if and only if it is the equator.
 \end{example*}
+
+\pagebreak
 
 \begin{proposition}
 Local isometries send geodesics to geodesics.
@@ -1788,32 +1702,34 @@ Let $ \gamma : \sbr{a, b} \to S $ be a geodesic parametrised by arc-length, and 
 $$
 \begin{tikzcd}
 \gamma\br{t} \subset S \arrow{r}{F} & \br{F \circ \gamma}\br{t} \subset S' \\
-U \subset \R^2 \arrow{u}{\phi} \arrow[swap]{ur}{\psi = F \circ \phi}
+U \subset \RR^2 \arrow{u}{\phi} \arrow[swap]{ur}{\psi = F \circ \phi}
 \end{tikzcd}.
 $$
 From
-$$ \vec{\kappa}\br{t} = k_nN\br{\gamma\br{t}} + k_g\br{N\br{\gamma\br{t}} \times \gamma'\br{t}}, $$
-we see that $ \gamma $ is a geodesic if and only if $ \gamma''\br{t} $ is a multiple of $ N\br{\gamma\br{t}} $, if and only if
+$$ \vec{\kappa}\br{t} = \k_n\N\br{\gamma\br{t}} + \k_g\br{\N\br{\gamma\br{t}} \times \gamma'\br{t}}, $$
+we see that $ \gamma $ is a geodesic if and only if $ \gamma''\br{t} $ is a multiple of $ \N\br{\gamma\br{t}} $, if and only if
 $$ \gamma''\br{t} \cdot \phi_u = \gamma''\br{t} \cdot \phi_v = 0, $$
-for $ \phi : U \to \R^2 $ a chart at $ \gamma\br{t} $. Write $ \gamma\br{t} = \phi\br{u\br{t}, v\br{t}} $, then $ \gamma'\br{t} = \phi_uu' + \phi_vv' $, so
-$$ \gamma''\br{t} = \br{\phi_{uu}u' + \phi_{uv}v'}u' + \br{\phi_{uv}u' + \phi_{vv}v'}v', $$
+for $ \phi : U \to \RR^2 $ a chart at $ \gamma\br{t} $. Write
+$$ \gamma\br{t} = \phi\br{u\br{t}, v\br{t}}, $$
+so
+$$ \gamma'\br{t} = \phi_uu' + \phi_vv', \qquad \gamma''\br{t} = \br{\phi_{uu}u' + \phi_{uv}v'}u' + \br{\phi_{uv}u' + \phi_{vv}v'}v', $$
 so
 \begin{align*}
 0
 & = \gamma'' \cdot \phi_u
 = \br{\phi_u \cdot \phi_{uu}}\br{u'}^2 + 2\br{\phi_u \cdot \phi_{uv}}\br{u'v'} + \br{\phi_u \cdot \phi_{vv}}\br{v'}^2 \\
 & = \dfrac{1}{2}\dpd{}{u}\br{\phi_u \cdot \phi_u}\br{u'}^2 + \dpd{}{v}\br{\phi_u \cdot \phi_u}\br{u'v'} + \br{\dpd{}{v}\br{\phi_u \cdot \phi_v} - \dfrac{1}{2}\dpd{}{u}\br{\phi_v \cdot \phi_v}}\br{v'}^2 \\
-& = \dfrac{1}{2}g_{11u}\br{u'}^2 + g_{11v}\br{u'v'} + \br{g_{12v} - \dfrac{1}{2}g_{22u}}\br{v'}^2,
+& = \dfrac{1}{2}\g_{11u}\br{u'}^2 + \g_{11v}\br{u'v'} + \br{\g_{12v} - \dfrac{1}{2}\g_{22u}}\br{v'}^2,
 \end{align*}
-and similarly for $ \gamma'' \cdot \phi_v $. These are determined by $ u $, $ v $, and the first fundamental form $ g $. Since $ F $ is an isometry, it preserves $ g $ with respect to the chart $ \psi = F \circ \phi $, and $ F\br{\gamma\br{t}} = \psi\br{u\br{t}, v\br{t}} $ implies that
+and similarly for $ \gamma'' \cdot \phi_v $. These are determined by $ u $ and $ v $, and the first fundamental form $ \g $. Since $ F $ is an isometry, it preserves $ \g $ with respect to the chart $ \psi = F \circ \phi $, and $ F\br{\gamma\br{t}} = \psi\br{u\br{t}, v\br{t}} $ implies that
 $$ \br{F \circ \gamma}'' \cdot \psi_u = \gamma'' \cdot \phi_u = 0, \qquad \br{F \circ \gamma}'' \cdot \psi_v = \gamma'' \cdot \phi_v = 0. $$
 \end{proof}
 
-Let $ \phi : U \to S $ be a chart on a regular surface, and let $ \gamma\br{t} = \phi\br{u\br{t}, v\br{t}} $ be a curve on $ S $. Then $ \gamma $ is a geodesic if and only if
-$$ \br{g_{11}u' + g_{12}v'}' = \dfrac{1}{2}\br{g_{11u}\br{u'}^2 + 2g_{12u}\br{u'v'} + g_{22u}\br{v'}^2}, $$
+Let $ \phi : U \to S $ be a chart on a regular surface, and let $ \gamma\br{t} = \phi\br{u\br{t}, v\br{t}} $ be a curve on $ S $. Then $ \gamma $ is a geodesic if and only if \footnote{Exercise}
+$$ \br{\g_{11}u' + \g_{12}v'}' = \dfrac{1}{2}\br{\g_{11u}\br{u'}^2 + 2\g_{12u}\br{u'v'} + \g_{22u}\br{v'}^2}, $$
 and
-$$ \br{g_{21}u' + g_{22}v'}' = \dfrac{1}{2}\br{g_{11v}\br{u'}^2 + 2g_{12v}\br{u'v'} + g_{22v}\br{v'}^2}. $$
-(Exercise) These are the \textbf{geodesic equations}.
+$$ \br{\g_{21}u' + \g_{22}v'}' = \dfrac{1}{2}\br{\g_{11v}\br{u'}^2 + 2\g_{12v}\br{u'v'} + \g_{22v}\br{v'}^2}. $$
+These are the \textbf{geodesic equations}.
 
 \pagebreak
 
@@ -1821,7 +1737,7 @@ $$ \br{g_{21}u' + g_{22}v'}' = \dfrac{1}{2}\br{g_{11v}\br{u'}^2 + 2g_{12v}\br{u'
 
 \lecture{26}{Monday}{03/12/18}
 
-Claim that geodesics minimise arc-length, locally. That is, for any small perturbation $ \beta $ of $ \gamma $, $ L\br{\beta} \ge L\br{\gamma} $.
+Claim that geodesics minimise arc-length, locally. That is, for any small perturbation $ \beta $ of $ \gamma $, $ \L\br{\beta} \ge \L\br{\gamma} $.
 
 \begin{definition}
 A \textbf{variation} of $ \gamma : \sbr{0, L} \to S $ is a smooth map
@@ -1835,33 +1751,33 @@ Geodesics minimise arc-length locally. That is, if $ \gamma : \sbr{0, L} \to S $
 \end{proposition}
 
 \begin{proof}
-Let $ \gamma_s\br{t} $ be a variation of $ \gamma $. Then $ s \mapsto L\br{\gamma_s} $ is minimised at $ s = 0 $. This is a smooth function of $ s $. So
+Let $ \gamma_s\br{t} $ be a variation of $ \gamma $. Then $ s \mapsto \L\br{\gamma_s} $ is minimised at $ s = 0 $. This is a smooth function of $ s $. So
 \begin{align*}
 0
-& = \eval{\dod{}{s}\br{L\br{\gamma_s}}}_{s = 0}
+& = \eval{\dod{}{s}\br{\L\br{\gamma_s}}}_{s = 0}
 = \eval{\dod{}{s}\intd{0}{L}{\sqrt{\gamma_s'\br{t} \cdot \gamma_s'\br{t}}}{t}}_{s = 0} \\
-& = \intd{0}{L}{\eval{\dod{}{s}\sqrt{\gamma_s'\br{t} \cdot \gamma_s'\br{t}}}_{s = 0}}{t} & \sqrt{\gamma_s'\br{t} \cdot \gamma_s'\br{t}} \ \text{is smooth} \\
-& = \intd{0}{L}{\dfrac{\eval{\dod{}{s}\br{\gamma_s'\br{t} \cdot \gamma_s'\br{t}}}_{s = 0}}{\eval{2\sqrt{\gamma_s'\br{t} \cdot \gamma_s'\br{t}}}_{s = 0}}}{t}
-= \intd{0}{L}{\eval{\dod{}{s}\br{\gamma_s'\br{t}} \cdot \gamma_s'\br{t}}_{s = 0}}{t} & \abs{\gamma_0'\br{t}} = \abs{\gamma'\br{t}} = 1 \\
-& = \intd{0}{L}{\eval{\dod{}{s}\br{\dod{\gamma_s}{t}}}_{s = 0} \cdot \dod{\gamma_0}{t}}{t}
-= \intd{0}{L}{\eval{\dod{}{t}\br{\dod{\gamma_s}{s}}_{s = 0}} \cdot \dod{\gamma_0}{t}}{t} & \br{s, t} \mapsto \gamma_s\br{t} \ \text{is smooth} \\
-& = \sbr{\eval{\dod{\gamma_s}{s}}_{s = 0} \cdot \dod{\gamma_0}{t}}_0^L - \intd{0}{L}{\eval{\dod{\gamma_s}{s}}_{s = 0} \cdot \dod[2]{\gamma_0}{t}}{t} & \text{integration by parts} \\
-& = -\intd{0}{L}{\eval{\dod{\gamma_s}{s}}_{s = 0} \cdot \br{k_n\br{t}N\br{\gamma\br{t}} + k_g\br{t}\br{N\br{\gamma\br{t}} \times \gamma'\br{t}}}}{t} & \tod{\gamma_s}{s}\br{0} = \tod{\gamma_s}{s}\br{L} = 0 \\
-& = \intd{0}{L}{\eval{\dod{\gamma_s}{s}}_{s = 0} \cdot \br{k_g\br{t}\br{N\br{\gamma\br{t}} \times \gamma'\br{t}}}}{t} & N\br{\gamma\br{t}} \perp T_{\gamma\br{t}}S.
+& = \intd{0}{L}{\eval{\tod{}{s}\sqrt{\gamma_s'\br{t} \cdot \gamma_s'\br{t}}}_{s = 0}}{t} & \sqrt{\gamma_s'\br{t} \cdot \gamma_s'\br{t}} \ \text{is smooth} \\
+& = \intd{0}{L}{\tfrac{\eval{\tod{}{s}\br{\gamma_s'\br{t} \cdot \gamma_s'\br{t}}}_{s = 0}}{\eval{2\sqrt{\gamma_s'\br{t} \cdot \gamma_s'\br{t}}}_{s = 0}}}{t}
+= \intd{0}{L}{\eval{\tod{}{s}\br{\gamma_s'\br{t}} \cdot \gamma_s'\br{t}}_{s = 0}}{t} & \abs{\gamma_0'\br{t}} = \abs{\gamma'\br{t}} = 1 \\
+& = \intd{0}{L}{\eval{\tod{}{s}\br{\tod{\gamma_s}{t}}}_{s = 0} \cdot \tod{\gamma_0}{t}}{t}
+= \intd{0}{L}{\eval{\tod{}{t}\br{\tod{\gamma_s}{s}}_{s = 0}} \cdot \tod{\gamma_0}{t}}{t} & \br{s, t} \mapsto \gamma_s\br{t} \ \text{is smooth} \\
+& = \sbr{\eval{\tod{\gamma_s}{s}}_{s = 0} \cdot \tod{\gamma_0}{t}}_0^L - \intd{0}{L}{\eval{\tod{\gamma_s}{s}}_{s = 0} \cdot \tod[2]{\gamma_0}{t}}{t} & \text{integration by parts} \\
+& = -\intd{0}{L}{\eval{\tod{\gamma_s}{s}}_{s = 0} \cdot \br{\k_n\br{t}\N\br{\gamma\br{t}} + \k_g\br{t}\br{\N\br{\gamma\br{t}} \times \gamma'\br{t}}}}{t} & \tod{\gamma_s}{s}\br{0} = \tod{\gamma_s}{s}\br{L} = 0 \\
+& = \intd{0}{L}{\eval{\tod{\gamma_s}{s}}_{s = 0} \cdot \br{\k_g\br{t}\br{\N\br{\gamma\br{t}} \times \gamma'\br{t}}}}{t} & \N\br{\gamma\br{t}} \perp \T_{\gamma\br{t}} S.
 \end{align*}
-Let $ g : \sbr{0, L} \to \R $ be any smooth function such that $ g\br{0} = g\br{L} = 0 $. Can find a variation $ \gamma_s\br{t} $ with
-$$ \eval{\dod{\gamma_s}{s}}_{s = 0} = g\br{t}\br{N\br{\gamma\br{t}} \times \gamma'\br{t}}. $$
+Let $ g : \sbr{0, L} \to \RR $ be any smooth function such that $ g\br{0} = g\br{L} = 0 $. Can find a variation $ \gamma_s\br{t} $ with
+$$ \eval{\dod{\gamma_s}{s}}_{s = 0} = g\br{t}\br{\N\br{\gamma\br{t}} \times \gamma'\br{t}}. $$
 Thus we have
-$$ \intd{0}{L}{k_g\br{t}g\br{t}}{t} = 0, $$
-and, since $ k_g $ is continuous as a function of $ t $, and $ g $ is arbitrary, it follows that $ k_g\br{t} = 0 $ for all $ t $, that is $ \gamma $ was a geodesic.
+$$ \intd{0}{L}{\k_g\br{t}g\br{t}}{t} = 0, $$
+and, since $ \k_g $ is continuous as a function of $ t $, and $ g $ is arbitrary, it follows that $ \k_g\br{t} = 0 $ for all $ t $, that is $ \gamma $ was a geodesic.
 \end{proof}
 
 \begin{remark*}
 \hfill
 \begin{itemize}
-\item Geodesics need not be global minima for arc-length between two points. In $ S^2 $ with usual metric, a major arc is a geodesic but not a global minimum for arc-length.
-\item Geodesics between two points need not be unique. All great circles are geodesics from $ N $ to $ S $.
-\item Geodesics connecting two points need not exist. In $ \R^2 \setminus \cbr{0} $, $ 1 $ and $ -1 $ has no geodesic. $ \R^2 \setminus \cbr{0} $ is locally isometric to $ \R^2 $. Local isometries preserve geodesics, so geodesics in $ \R^2 \setminus \cbr{0} $ are straight lines.
+\item Geodesics need not be global minima for arc-length between two points. In $ \S^2 $ with usual metric, a major arc is a geodesic but not a global minimum for arc-length.
+\item Geodesics between two points need not be unique. All great circles are geodesics from $ \N $ to $ S $.
+\item Geodesics connecting two points need not exist. In $ \RR^2 \setminus \cbr{0} $, $ 1 $ and $ -1 $ has no geodesic, and $ \RR^2 \setminus \cbr{0} $ is locally isometric to $ \RR^2 $. Local isometries preserve geodesics, so geodesics in $ \RR^2 \setminus \cbr{0} $ are straight lines.
 \end{itemize}
 In general, it is hard to find geodesics explicitly. Need to solve the geodesic equation.
 \end{remark*}
@@ -1877,86 +1793,84 @@ Equates geometry and topology. Will prove this from its local version.
 \subsection{Local version of Gauss-Bonnet}
 
 \begin{theorem}[Local Gauss-Bonnet]
-Let $ \phi : U \to S $ be a chart which is smooth in $ \overline{U} $, the closure of $ U $ in $ \R^2 $, such that $ S = \phi\br{\overline{U}} $ is an oriented surface with boundary $ \partial S = \phi\br{\partial\overline{U}} $. Suppose that $ \overline{U} $ is diffeomorphic to a disc. Then,
-$$ \intd{S}{}{K}{A} + \intd{\partial S}{}{k_g}{s} = 2\pi, $$
-where $ A $ is the area, $ s $ is the arc-length, and $ \partial S $ is positively oriented with respect to $ S $.
-\begin{itemize}
-\item A \textbf{surface with boundary} is the same as a regular surface except that some points $ p \in S $ have charts $ \phi : U \subset \R^2 \to S $, where $ U $ is the intersection of an open neighbourhood of $ \br{0, 0} $ in $ R^2 $ and $ \cbr{y \ge 0} $. $ \phi $ here is smooth, which means there exists an open set $ V \subset \R^3 $ and $ \Phi : V \to \R^3 $ smooth such that $ \phi = \eval{\Phi}_U $ and $ U \subseteq V $.
-\item $ \partial S $ is the collection of all points with charts like this. This is a collection of regular curves. $ \partial S $ is \textbf{positively oriented} if in some parametrisation $ \gamma : \sbr{a, b} \to \partial S $, $ N \times \gamma' $ points into $ S $.
-\end{itemize}
+Let $ \phi : U \to S $ be a chart which is smooth in $ \overline{U} $, the closure of $ U $ in $ \RR^2 $, such that $ S = \phi\br{\overline{U}} $ is an oriented surface with boundary $ \partial S = \phi\br{\partial\overline{U}} $. Suppose that $ \overline{U} $ is diffeomorphic to a disc. Then,
+$$ \intd{S}{}{\K}{A} + \intd{\partial S}{}{\k_g}{s} = 2\pi, $$
+where $ A $ is the area, $ s $ is the arc-length, and $ \partial S $ is positively oriented with respect to $ S $. A \textbf{surface with boundary} is the same as a regular surface except that some points $ p \in S $ have charts $ \phi : U \subset \RR^2 \to S $, where $ U $ is the intersection of an open neighbourhood of $ \br{0, 0} $ in $ R^2 $ and $ \cbr{y \ge 0} $. $ \phi $ here is smooth, which means there exists an open set $ V \subset \RR^3 $ and $ \Phi : V \to \RR^3 $ smooth such that $ \phi = \eval{\Phi}_U $ and $ U \subseteq V $. Then $ \partial S $ is the collection of all points with charts like this, a collection of regular curves, and $ \partial S $ is \textbf{positively oriented} if in some parametrisation $ \gamma : \sbr{a, b} \to \partial S $, $ \N \times \gamma' $ points into $ S $.
 \end{theorem}
 
 \begin{proof}
 The idea is to recall
-$$ \intd{S}{}{K}{A} = \iintd{U}{\br{K \circ \phi}\abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}}{u}{v}. $$
-We will find functions $ M, L : U \to \R $ such that
-$$ \iintd{U}{\br{K \circ \phi}\abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}}{u}{v} = \iintd{U}{\br{\dpd{M}{u} \times \dpd{L}{v}}}{u}{v} = \int_{\partial U} \, L \, \dif u + M \, \dif v = 2\pi - \intd{\partial U}{}{k_g}{s}, $$
-by applying Green's theorem. For a precise version, make an orthonormal basis for $ T_pS $. Take $ E_1 = \phi_u / \abs{\phi_u} $ and $ E_2 = N \times E_1 $, so $ N = E_1 \times E_2 $. Have orthonormal basis $ E_1, E_2 $ for $ T_pS $ along $ \partial S $. So there exists a continuous function $ \theta : \sbr{0, L} \to \R $ such that
-$$ \gamma'\br{t} = \cos\br{\theta\br{t}}E_1\br{\gamma\br{t}} + \sin\br{\theta\br{t}}E_2\br{\gamma\br{t}}. $$
+$$ \intd{S}{}{\K}{A} = \iintd{U}{\br{\K \circ \phi}\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}}{u}{v}. $$
+We will find functions $ M, L : U \to \RR $ such that
+$$ \iintd{U}{\br{\K \circ \phi}\abs{\tpd{\phi}{u} \times \tpd{\phi}{v}}}{u}{v} = \iintd{U}{\tpd{M}{u} \times \tpd{L}{v}}{u}{v} = \int_{\partial U} \, L \, \d u + M \, \d v = 2\pi - \intd{\partial U}{}{\k_g}{s}, $$
+by applying Green's theorem. For a precise version, make an orthonormal basis for $ \T_p S $. Take
+$$ E_1 = \dfrac{\phi_u}{\abs{\phi_u}}, \qquad E_2 = \N \times E_1, $$
+so $ \N = E_1 \times E_2 $. Have an orthonormal basis $ E_1 $ and $ E_2 $ for $ \T_p S $ along $ \partial S $. So there exists a continuous function $ \theta : \sbr{0, L} \to \RR $ such that
+$$ \gamma'\br{t} = \cos \theta\br{t}E_1\br{\gamma\br{t}} + \sin \theta\br{t}E_2\br{\gamma\br{t}}. $$
 Here $ L $ is the length of the boundary, and $ \gamma : \sbr{0, L} \to \partial S $ is an arc-length parametrisation of $ \partial S $.
 \begin{itemize}
 \item Claim that
-$$ k_g\br{\gamma\br{t}} = \theta'\br{t} - E_1\br{t} \cdot E_2'\br{t}. $$
-$ k_g = \gamma'' \cdot \br{N \times \gamma'} $. Then
-$$ \gamma''\br{t} = \br{-\sin\br{\theta}E_1 + \cos\br{\theta}E_2}\theta'\br{t} + \cos\br{\theta}E_1' + \sin\br{\theta}E_2', \quad N \times \gamma'\br{t} = -\sin\br{\theta}E_1 + \cos\br{\theta}E_2, $$
+$$ \k_g\br{\gamma\br{t}} = \theta'\br{t} - E_1\br{t} \cdot E_2'\br{t}. $$
+$ \k_g = \gamma'' \cdot \br{\N \times \gamma'} $. Then
+$$ \gamma''\br{t} = \br{-\sin \theta E_1 + \cos \theta E_2}\theta'\br{t} + \cos \theta E_1' + \sin \theta E_2', \quad \N \times \gamma'\br{t} = -\sin \theta E_1 + \cos \theta E_2, $$
 so
-$$ k_g\br{\gamma\br{t}} = \gamma''\br{t} \cdot \br{N \times \gamma'\br{t}} = \theta'\br{t} + \br{\cos\br{\theta}E_1' + \sin\br{\theta}E_2'} \cdot \br{-\sin\br{\theta}E_1 + \cos\br{\theta}E_2}. $$
+$$ \k_g\br{\gamma\br{t}} = \gamma''\br{t} \cdot \br{\N \times \gamma'\br{t}} = \theta'\br{t} + \br{\cos \theta E_1' + \sin \theta E_2'} \cdot \br{-\sin \theta E_1 + \cos \theta E_2}. $$
 Now,
 $$ E_1\br{t} \cdot E_1\br{t} = 1, \qquad E_1\br{t} \cdot E_2\br{t} = 0, \qquad E_2\br{t} \cdot E_2\br{t} = 1. $$
 Differentiating,
 $$ E_1 \cdot E_1' = 0, \qquad E_1 \cdot E_2' + E_1' \cdot E_2 = 0, \qquad E_2 \cdot E_2' = 0, $$
-so $ k_g = \theta' - E_1 \cdot E_2' $, which was the claim.
+so $ \k_g = \theta' - E_1 \cdot E_2' $, which was the claim.
 
 \lecture{28}{Friday}{07/12/18}
 
 \item Claim that
-$$ \intd{0}{L}{E_1\br{t} \cdot E_2'\br{t}}{t} = \iintd{U}{\br{K \circ \phi}\abs{\phi_u \times \phi_v}}{u}{v}. $$
+$$ \intd{0}{L}{E_1\br{t} \cdot E_2'\br{t}}{t} = \iintd{U}{\br{\K \circ \phi}\abs{\phi_u \times \phi_v}}{u}{v}. $$
 This will help because it implies
-$$ \intd{S}{}{K}{A} + \intd{\partial S}{}{k_g}{s} = \intd{0}{L}{\theta'\br{t}}{t}. $$
+$$ \intd{S}{}{\K}{A} + \intd{\partial S}{}{\k_g}{s} = \intd{0}{L}{\theta'\br{t}}{t}. $$
 
 \pagebreak
 
 Let us show that
 \begin{equation}
 \label{eq:4}
-\dpd{E_1}{u} \cdot \dpd{E_2}{v} - \dpd{E_1}{v} \cdot \dpd{E_2}{u} = K\abs{\phi_u \times \phi_v}
+\dpd{E_1}{u} \cdot \dpd{E_2}{v} - \dpd{E_1}{v} \cdot \dpd{E_2}{u} = \K\abs{\phi_u \times \phi_v}
 \end{equation}
 Assuming $ \br{\ref{eq:4}} $ then, setting $ \gamma\br{t} = \phi\br{u\br{t}, v\br{t}} $, we have
 \begin{align*}
 \intd{0}{L}{E_1\br{t} \cdot E_2'\br{t}}{t}
-& = \intd{0}{L}{E_1\br{t} \cdot \br{\dpd{E_2}{u}u' + \dpd{E_2}{v}v'}}{t}
-= \int_{\partial U} \, E_1\br{t} \cdot \dpd{E_2}{u} \, \dif u + E_1\br{t} \cdot \dpd{E_2}{v} \, \dif v \\
-& = \iintd{U}{\br{\dpd{}{u}\br{E_1\br{t} \cdot \dpd{E_2}{v}} - \dpd{}{v}\br{E_1\br{t} \cdot \dpd{E_2}{u}}}}{u}{v} \\
-& = \iintd{U}{\br{\dpd{E_1}{u} \cdot \dpd{E_2}{v} - \dpd{E_1}{v} \cdot \dpd{E_2}{u}}}{u}{v} = \iintd{U}{K\abs{\phi_u \times \phi_v}}{u}{v},
+& = \intd{0}{L}{E_1\br{t} \cdot \br{\tpd{E_2}{u}u' + \tpd{E_2}{v}v'}}{t}
+= \int_{\partial U} \, E_1\br{t} \cdot \tpd{E_2}{u} \, \d u + E_1\br{t} \cdot \tpd{E_2}{v} \, \d v \\
+& = \iintd{U}{\br{\tpd{}{u}\br{E_1\br{t} \cdot \tpd{E_2}{v}} - \tpd{}{v}\br{E_1\br{t} \cdot \tpd{E_2}{u}}}}{u}{v} \\
+& = \iintd{U}{\br{\tpd{E_1}{u} \cdot \tpd{E_2}{v} - \tpd{E_1}{v} \cdot \tpd{E_2}{u}}}{u}{v} = \iintd{U}{\K\abs{\phi_u \times \phi_v}}{u}{v},
 \end{align*}
 by Green's theorem and $ \br{\ref{eq:4}} $, which proves the claim. It remains to prove $ \br{\ref{eq:4}} $. Note
 $$ E_1 \cdot \dpd{E_1}{u} = 0, \qquad E_1 \cdot \dpd{E_2}{u} + \dpd{E_1}{u} \cdot E_2 = 0, \qquad \dots. $$
 So
-$$ \dpd{E_1}{u} = aE_2 + \br{\dpd{E_1}{u} \cdot N}N = aE_2 - \br{E_1 \cdot \dpd{N}{u}}N = aE_2 + A\br{E_1, \dpd{\phi}{u}}N, $$
+$$ \dpd{E_1}{u} = aE_2 + \br{\dpd{E_1}{u} \cdot \N}\N = aE_2 - \br{E_1 \cdot \dpd{\N}{u}}\N = aE_2 + \A\br{E_1, \dpd{\phi}{u}}N, $$
 for some constant $ a $. Similarly,
-$$ \dpd{E_1}{v} = bE_2 + A\br{E_1, \dpd{\phi}{v}}N, \qquad \dpd{E_2}{u} = cE_1 + A\br{E_2, \dpd{\phi}{u}}N, \qquad \dpd{E_2}{v} = dE_1 + A\br{E_2, \dpd{\phi}{v}}N, $$
+$$ \dpd{E_1}{v} = bE_2 + \A\br{E_1, \dpd{\phi}{v}}\N, \qquad \dpd{E_2}{u} = cE_1 + \A\br{E_2, \dpd{\phi}{u}}\N, \qquad \dpd{E_2}{v} = dE_1 + \A\br{E_2, \dpd{\phi}{v}}\N, $$
 for some constants $ b, c, d $. Thus
-$$ \dpd{E_1}{u} \cdot \dpd{E_2}{v} - \dpd{E_1}{v} \cdot \dpd{E_2}{u} = A\br{E_1, \dpd{\phi}{u}}A\br{E_2, \dpd{\phi}{v}} - A\br{E_2, \dpd{\phi}{u}}A\br{E_1, \dpd{\phi}{v}}. $$
+$$ \dpd{E_1}{u} \cdot \dpd{E_2}{v} - \dpd{E_1}{v} \cdot \dpd{E_2}{u} = \A\br{E_1, \dpd{\phi}{u}}\A\br{E_2, \dpd{\phi}{v}} - \A\br{E_2, \dpd{\phi}{u}}\A\br{E_1, \dpd{\phi}{v}}. $$
 Writing
 $$ \dpd{\phi}{u} = c_{11}E_1 + c_{12}E_2, \qquad \dpd{\phi}{v} = c_{21}E_1 + c_{22}E_2, $$
 this is
 \begin{align*}
 \dpd{E_1}{u} \cdot \dpd{E_2}{v} - \dpd{E_1}{v} \cdot \dpd{E_2}{u}
-= \ & \br{c_{11}A\br{E_1, E_1} + c_{12}A\br{E_1, E_2}} \cdot \br{c_{21}A\br{E_2, E_1} + c_{22}A\br{E_2, E_2}} \\
-& - \br{c_{11}A\br{E_2, E_1} + c_{12}A\br{E_2, E_2}} \cdot \br{c_{21}A\br{E_1, E_1} + c_{22}A\br{E_1, E_2}} \\
-= \ & \br{c_{11}c_{22} - c_{12}c_{21}} \cdot \br{A\br{E_1, E_1}A\br{E_2, E_2} - A\br{E_1, E_2}A\br{E_2, E_1}} \\
-= \ & \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}\det\br{A}
-= \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}K,
+= \ & \br{c_{11}\A\br{E_1, E_1} + c_{12}\A\br{E_1, E_2}} \cdot \br{c_{21}\A\br{E_2, E_1} + c_{22}\A\br{E_2, E_2}} \\
+& - \br{c_{11}\A\br{E_2, E_1} + c_{12}\A\br{E_2, E_2}} \cdot \br{c_{21}\A\br{E_1, E_1} + c_{22}\A\br{E_1, E_2}} \\
+= \ & \br{c_{11}c_{22} - c_{12}c_{21}} \cdot \br{\A\br{E_1, E_1}\A\br{E_2, E_2} - \A\br{E_1, E_2}\A\br{E_2, E_1}} \\
+= \ & \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}\det \A
+= \abs{\dpd{\phi}{u} \times \dpd{\phi}{v}}\K,
 \end{align*}
 as claimed.
 \end{itemize}
 So at this point we know
-$$ \intd{S}{}{K}{A} + \intd{\partial S}{}{k_g}{s} = \intd{0}{L}{\dod{\theta}{t}}{t}. $$
-It remains to show that the right hand side is $ 2\pi $.
-$$ \intd{0}{L}{\dod{\theta}{t}}{t} = \theta\br{L} - \theta\br{0} $$
-is the total rotation of $ \gamma'\br{t} $ along the path $ \partial S $ with respect to the frame $ \br{E_1\br{t}, E_2\br{t}} $. The fact that this is $ 2\pi $ follows from the fact that $ \overline{U} $ is only diffeomorphic to a disc, so replace it by a disc. There is a \textbf{regular homotopy}
+$$ \intd{S}{}{\K}{A} + \intd{\partial S}{}{\k_g}{s} = \intd{0}{L}{\tod{\theta}{t}}{t}. $$
+It remains to show that the right hand side is $ 2\pi $. Since
+$$ \intd{0}{L}{\tod{\theta}{t}}{t} = \theta\br{L} - \theta\br{0} $$
+is the total rotation of $ \gamma'\br{t} $ along the path $ \partial S $ with respect to the frame $ \br{E_1\br{t}, E_2\br{t}} $, the fact that this is $ 2\pi $ follows from the fact that $ \overline{U} $ is only diffeomorphic to a disc, so replace it by a disc. There is a \textbf{regular homotopy}
 $$ \function[H]{\sbr{0, 1} \times \sbr{0, 1}}{X}{\br{s, t}}{\gamma_s\br{t}}, $$
-smooth in $ s, t $, from the boundary curve to an approximate tiny circle in $ T_pS $. Since $ Ind\br{\gamma} = \theta\br{L} - \theta\br{0} $ is invariant under regular homotopy, $ Ind\br{\gamma} $ is the index of a small circle in the plane, which is $ 2\pi $.
+smooth in $ s $ and $ t $, from the boundary curve to an approximate tiny circle in $ \T_p S $. Since $ \Ind \gamma = \theta\br{L} - \theta\br{0} $ is invariant under regular homotopy, $ \Ind \gamma $ is the index of a small circle in the plane, which is $ 2\pi $.
 \end{proof}
 
 \pagebreak
@@ -1966,36 +1880,43 @@ smooth in $ s, t $, from the boundary curve to an approximate tiny circle in $ T
 \lecture{29}{Monday}{10/12/18}
 
 \begin{definition}
-A \textbf{curvilinear triangle} in $ \R^2 $ is a continuous map $ \beta : \R \to \R^2 $ such that $ \beta\br{t} = \beta\br{t + 3} $ for all $ t $, and that there exist
-$$ t_0, t_1, t_2 \in \intco{0, 3}, \qquad 0 \le t_0 < t_1 < t_2 < 3, $$
-such that $ \beta $ is smooth on $ \br{t_0, t_1}, \br{t_1, t_2}, \br{t_2, t_3} $ where $ t_3 = t_0 + 3 $, and $ \eval{\beta}_{\intco{0, 3}} $ is injective, and the one-sided derivatives $ \beta_-'\br{t_i} $ and $ \beta_+'\br{t_i} $ exist and meet at an angle $ \theta_i $ that is not a multiple of $ \pi $.
+A \textbf{curvilinear triangle} in $ \RR^2 $ is a continuous map $ \beta : \RR \to \RR^2 $ such that
+\begin{itemize}
+\item $ \beta\br{t} = \beta\br{t + 3} $ for all $ t $, and
+\item there exist $ t_0, t_1, t_2 \in \intco{0, 3} $ such that $ 0 \le t_0 < t_1 < t_2 < 3 $ and
+\begin{itemize}
+\item $ \beta $ is smooth on $ \br{t_0, t_1} $, $ \br{t_1, t_2} $, and $ \br{t_2, t_3} $ where $ t_3 = t_0 + 3 $,
+\item $ \eval{\beta}_{\intco{0, 3}} $ is injective, and
+\item $ \beta_-'\br{t_i} $ and $ \beta_+'\br{t_i} $ exist and meet at an angle $ \theta_i $ that is not a multiple of $ \pi $.
+\end{itemize}
+\end{itemize}
 \end{definition}
 
-Let $ T \subset U \subset \R^2 $ be a curvilinear triangle and let $ \phi : U \to S $ be a chart on a regular surface $ S $. At each vertex of $ \phi\br{T} $, the edges incident to that vertex are parametrised by $ \gamma_{in} : \intoc{-\epsilon, 0} \to S $ and $ \gamma_{out} : \intco{0, \epsilon} \to S $. The tangent vectors meet at some angle $ \theta $, for $ -\pi < \theta < \pi $, so
-$$ \cos\br{\theta} = \dfrac{\gamma_{in}'\br{0} \cdot \gamma_{out}'\br{0}}{\abs{\gamma_{in}'\br{0}}\abs{\gamma_{out}'\br{0}}}. $$
-Choose the sign of $ \theta $ such that $ \theta > 0 $ if $ \br{\gamma_{in}'\br{0}, \gamma_{out}'\br{0}, N} $ is a positive basis of $ \R^3 $ and $ \theta < 0 $ if $ \br{\gamma_{in}'\br{0}, \gamma_{out}'\br{0}, N} $ is a negative basis of $ \R^3 $. $ \theta $ is the \textbf{exterior angle} at the vertex. The \textbf{interior angle} is $ \pi - \theta $.
+Let $ T \subset U \subset \RR^2 $ be a curvilinear triangle and let $ \phi : U \to S $ be a chart on a regular surface $ S $. At each vertex of $ \phi\br{T} $, the edges incident to that vertex are parametrised by $ \gamma_{in} : \intoc{-\epsilon, 0} \to S $ and $ \gamma_{out} : \intco{0, \epsilon} \to S $. The tangent vectors meet at some angle $ \theta $ for $ -\pi < \theta < \pi $, so
+$$ \cos \theta = \dfrac{\gamma_{in}'\br{0} \cdot \gamma_{out}'\br{0}}{\abs{\gamma_{in}'\br{0}}\abs{\gamma_{out}'\br{0}}}. $$
+Choose the sign of $ \theta $ such that $ \theta > 0 $ if $ \br{\gamma_{in}'\br{0}, \gamma_{out}'\br{0}, \N} $ is a positive basis of $ \RR^3 $ and $ \theta < 0 $ if $ \br{\gamma_{in}'\br{0}, \gamma_{out}'\br{0}, \N} $ is a negative basis of $ \RR^3 $. Then $ \theta $ is the \textbf{exterior angle} at the vertex. The \textbf{interior angle} is $ \pi - \theta $.
 
 \begin{theorem}[Gauss-Bonnet for curvilinear triangles]
-Let $ T \subset U \subset \R^2 $ be a curvilinear triangle and let $ \phi : U \to S $ be a chart on the regular surface $ S $. Suppose that $ \phi\br{\partial T} \subset S $ is oriented positively with respect to the orientation of $ S $. Let $ \theta_1, \theta_2, \theta_3 $ be the exterior angles and let $ \gamma_1, \gamma_2, \gamma_3 $ be the edges of $ \phi\br{T} $ parametrised by arc-length. Then,
-$$ \sum_{i = 1}^3 \intd{\gamma_i}{}{k_g}{s} + \sum_{i = 1}^3 \theta_i = 2\pi - \intd{\phi\br{T}}{}{K}{A}. $$
+Let $ T \subset U \subset \RR^2 $ be a curvilinear triangle and let $ \phi : U \to S $ be a chart on the regular surface $ S $. Suppose that $ \phi\br{\partial T} \subset S $ is oriented positively with respect to the orientation of $ S $. Let $ \theta_1, \theta_2, \theta_3 $ be the exterior angles and let $ \gamma_1, \gamma_2, \gamma_3 $ be the edges of $ \phi\br{T} $ parametrised by arc-length. Then,
+$$ \sum_{i = 1}^3 \intd{\gamma_i}{}{\k_g}{s} + \sum_{i = 1}^3 \theta_i = 2\pi - \intd{\phi\br{T}}{}{\K}{A}. $$
 \end{theorem}
 
-Think of the left hand side as $ \intd{\phi\br{\partial T}}{}{k_g}{s} $ where $ \phi\br{\partial T} $ is thought as having a $ \delta $-function of curvature of size $ \theta_i $ at the vertex $ i $.
+Think of the left hand side as $ \intd{\phi\br{\partial T}}{}{\k_g}{s} $ where $ \phi\br{\partial T} $ is thought as having a $ \delta $-function of curvature of size $ \theta_i $ at the vertex $ i $.
 
 \begin{proof}
-Essentially the same as in local Gauss-Bonnet. We still integrate $ k_g = \theta' - E_1 \cdot E_2' $, apply Green's theorem to the triangle $ T $, and get
-$$ \intd{\phi\br{T}}{}{K}{A} + \sum_{i = 1}^3 \intd{\gamma_i}{}{k_g}{s} = \intd{\partial S}{}{\theta'\br{t}}{t}. $$
+Essentially the same as in local Gauss-Bonnet. We still integrate $ \k_g = \theta' - E_1 \cdot E_2' $, apply Green's theorem to the triangle $ T $, and get
+$$ \intd{\phi\br{T}}{}{\K}{A} + \sum_{i = 1}^3 \intd{\gamma_i}{}{\k_g}{s} = \intd{\partial S}{}{\theta'\br{t}}{t}. $$
 But now, by topology, we have
 $$ \intd{\partial S}{}{\theta'\br{t}}{t} = 2\pi - \sum_{i = 1}^3 \theta_i, $$
 because the tangent vectors to the $ \gamma_i $ along $ \phi\br{T} = \partial\overline{S} $ still rotate a total of $ 2\pi $, but this includes jumps of $ \theta_1, \theta_2, \theta_3 $ at the three corners, so that $ \intd{\partial S}{}{\theta'\br{t}}{t} $ does not include these jumps.
 \end{proof}
 
 The following are consequences. Consider a \textbf{geodesic triangle} on $ S $ of geodesic edges, and interior angles $ \alpha_1, \alpha_2, \alpha_3 $. Gauss-Bonnet says,
-$$ \intd{\phi\br{T}}{}{K}{A} = 2\pi - \sum_{i = 1}^3 \intd{\gamma_i}{}{k_g}{s} - \sum_{i = 1}^3 \theta_i = 2\pi - \sum_{i = 1}^3 \br{\pi - \alpha_i} = \sum_{i = 1}^3 \alpha_i - \pi. $$
-For plane triangles, $ K = 0 $, so
+$$ \intd{\phi\br{T}}{}{\K}{A} = 2\pi - \sum_{i = 1}^3 \intd{\gamma_i}{}{\k_g}{s} - \sum_{i = 1}^3 \theta_i = 2\pi - \sum_{i = 1}^3 \br{\pi - \alpha_i} = \sum_{i = 1}^3 \alpha_i - \pi. $$
+For plane triangles, $ \K = 0 $, so
 $$ \sum_{i = 1}^3 \alpha_i = \pi. $$
-For geodesic triangles $ T $ on a sphere of radius one, $ K = 1 $, so
-$$ \sum_{i = 1}^3 \alpha_i = \pi + area\br{T} \ge \pi. $$
+For geodesic triangles $ T $ on a sphere of radius one, $ \K = 1 $, so
+$$ \sum_{i = 1}^3 \alpha_i = \pi + \area T \ge \pi. $$
 
 \pagebreak
 
@@ -2004,7 +1925,11 @@ $$ \sum_{i = 1}^3 \alpha_i = \pi + area\br{T} \ge \pi. $$
 \begin{proposition}
 Every compact regular surface admits a \textbf{triangulation}
 $$ S = \bigcup_{i = 1}^N T_i, $$
-that is a partition of $ S $ into curvilinear triangles $ T_i $ such that whenever $ T_i \cap T_j $ is non-empty then $ T_i \cap T_j $ is an edge or vertex of both $ T_i $ and $ T_j $, and each edge belongs to exactly two of the $ T_i $ if that edge lies in the interior of $ S $, and in exactly one of the $ T_i $ if that edge lies in $ \partial S $.
+that is a partition of $ S $ into curvilinear triangles $ T_i $ such that whenever $ T_i \cap T_j $ is non-empty then $ T_i \cap T_j $ is an edge or vertex of both $ T_i $ and $ T_j $, and each edge belongs to
+\begin{itemize}
+\item exactly two of the $ T_i $ if that edge lies in the interior of $ S $, and
+\item in exactly one of the $ T_i $ if that edge lies in $ \partial S $.
+\end{itemize}
 \end{proposition}
 
 $ S $ is sewn together from curvilinear triangles.
@@ -2014,23 +1939,23 @@ By compactness, we can cover $ S $ by finitely many charts $ \phi_i : U_i \to S 
 $$ \phi_i\br{U_i} \nsubseteq \bigcup_{j \ne i} \phi_j\br{U_j}, $$
 because otherwise just remove $ \br{U_i, \phi_i} $ from our cover. Then
 $$ V_i = \phi_i\br{U_i} \setminus \bigcup_{j \ne i} \phi_j\br{U_j} $$
-is non-empty, and closed in $ S $. Draw a curve $ C_i \subset \phi_i\br{U_i} $ which bounds a neighbourhood of $ V_i $. The union of the $ C_i $ divides $ S $ into regions, each of which is contained in a single chart, and that chart is homeomorphic to a disc in $ \R^2 $. Now work in $ U_i $. Now have a closed curve in $ U_i \subset \R^2 $. Triangulate the interior of this.
+is non-empty, and closed in $ S $. Draw a curve $ C_i \subset \phi_i\br{U_i} $ which bounds a neighbourhood of $ V_i $. The union of the $ C_i $ divides $ S $ into regions, each of which is contained in a single chart, and that chart is homeomorphic to a disc in $ \RR^2 $. Now work in $ U_i $. Now have a closed curve in $ U_i \subset \RR^2 $. Triangulate the interior of this.
 \end{proof}
 
 \lecture{30}{Tuesday}{11/12/18}
 
 \begin{lemma}
-Three curves with the same vertex of interior angles $ \alpha_1, \alpha_2 $ imply that the sum of the interior angles is $ \alpha_1 + \alpha_2 $.
+Three curves with the same vertex of interior angles $ \alpha_1 $ and $ \alpha_2 $ imply that the sum of the interior angles is $ \alpha_1 + \alpha_2 $.
 \end{lemma}
 
 \begin{proof}
-Without loss of generality we can take the velocity vectors $ \gamma_{in}'\br{0} $ and $ \gamma_{out}'\br{0} $ as unit vectors. Let $ \br{\cos\br{\alpha_1}, \sin\br{\alpha_1}} $ be a velocity vector of interior angle $ \alpha_1 $, $ \br{\cos\br{\alpha_1 + \alpha_2}, \sin\br{\alpha_1 + \alpha_2}} $ be a velocity vector of interior angle $ \alpha_2 $, and $ \phi $ be the difference of the interior angles. Then
+Without loss of generality we can take the velocity vectors $ \gamma_{in}'\br{0} $ and $ \gamma_{out}'\br{0} $ as unit vectors. Let $ \br{\cos \alpha_1, \sin \alpha_1} $ be a velocity vector of interior angle $ \alpha_1 $, $ \br{\cos \br{\alpha_1 + \alpha_2}, \sin \br{\alpha_1 + \alpha_2}} $ be a velocity vector of interior angle $ \alpha_2 $, and $ \phi $ be the difference of the interior angles. Then
 \begin{align*}
-\cos\br{\phi}
-& = \br{\cos\br{\alpha_1 + \alpha_2}, \sin\br{\alpha_1 + \alpha_2}} \cdot \br{\cos\br{\alpha_1}, \sin\br{\alpha_1}} \\
-& = \cos\br{\alpha_1 + \alpha_2}\cos\br{\alpha_1} + \sin\br{\alpha_1 + \alpha_2}\sin\br{\alpha_1}
-= \cos\br{\br{\alpha_1 + \alpha_2} - \alpha_1}
-= \cos\br{\alpha_2},
+\cos \phi
+& = \br{\cos \br{\alpha_1 + \alpha_2}, \sin \br{\alpha_1 + \alpha_2}} \cdot \br{\cos \alpha_1, \sin \alpha_1} \\
+& = \cos \br{\alpha_1 + \alpha_2}\cos \alpha_1 + \sin \br{\alpha_1 + \alpha_2}\sin \alpha_1
+= \cos \br{\br{\alpha_1 + \alpha_2} - \alpha_1}
+= \cos \br{\alpha_2},
 \end{align*}
 so $ \phi = \alpha_2 $.
 \end{proof}
@@ -2042,44 +1967,50 @@ where $ V $ is the number of vertices in the triangulation, $ E $ is the number 
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Triangulate $ S^2 $ by an inflated tetrahedron. $ V = 4, E = 6, F = 4 $, so $ \chi\br{S^2} = 4 - 6 + 4 = 2 $.
-\item Triangulate $ T^2 $ by two triangles in a square. $ V = 1, E = 3, F = 2 $, so $ \chi\br{T^2} = 1 - 3 + 2 = 0 $.
-\item Exercise: triangulate $ T^2 $ by eight triangles in a square, and compute $ \chi\br{T^2} $ using this triangulation.
-\item Exercise: triangulate $ \Sigma_g $, a surface of genus $ g $, by two tori without a disc and $ g - 2 $ tori without two discs, and show $ \chi\br{\Sigma_g} = 2 - 2g $.
+\item Triangulate $ \S^2 $ by an inflated tetrahedron. Then $ V = 4, E = 6, F = 4 $, so $ \chi\br{\S^2} = 4 - 6 + 4 = 2 $.
+\item Triangulate $ \T^2 $ by two triangles in a square. Then $ V = 1, E = 3, F = 2 $, so $ \chi\br{\T^2} = 1 - 3 + 2 = 0 $.
 \end{itemize}
 \end{example*}
+
+\begin{exercise*}
+\hfill
+\begin{itemize}
+\item Triangulate $ \T^2 $ by eight triangles in a square, and compute $ \chi\br{\T^2} $ using this triangulation.
+\item Triangulate $ \Sigma_g $, a surface of genus $ g $, by two tori without a disc and $ g - 2 $ tori without two discs, and show $ \chi\br{\Sigma_g} = 2 - 2g $.
+\end{itemize}
+\end{exercise*}
 
 \pagebreak
 
 \begin{theorem}[Gauss-Bonnet]
-Let $ S \subset \R^3 $ be a compact oriented surface, with, a possibly empty, positively oriented boundary. Then
-$$ \intd{S}{}{K}{A} + \intd{\partial S}{}{k_g}{s} = 2\pi\chi\br{S}, $$
+Let $ S \subset \RR^3 $ be a compact oriented surface, with, a possibly empty, positively oriented boundary. Then
+$$ \intd{S}{}{\K}{A} + \intd{\partial S}{}{\k_g}{s} = 2\pi\chi\br{S}, $$
 where $ \chi $ is the Euler characteristic. If $ \partial S = \emptyset $, then
-$$ \intd{S}{}{K}{A} = 2\pi\chi\br{S}. $$
+$$ \intd{S}{}{\K}{A} = 2\pi\chi\br{S}. $$
 \end{theorem}
 
 \begin{proof}
 Triangulate $ S $, so
 $$ S = \bigcup_{i = 1}^N T_i, $$
 where $ T_i $ is a curvilinear triangle with exterior angles $ \theta_{ij} $ for $ 1 \le j \le 3 $. Set the interior angles $ \alpha_{ij} = \pi - \theta_{ij} $. Then
-$$ \intd{T_i}{}{K}{A} + \intd{\partial T_i}{}{k_g}{s} = 2\pi - \sum_{j = 1}^3 \theta_{ij} = \sum_{j = 1}^3 \alpha_{ij} - \pi, $$
-by Gauss-Bonnet for $ T_i $. The integral of $ k_g $ along the edge $ T_i \cap T_j $ cancels because it occurs for $ T_i $ and $ T_j $ with opposite signs. All of the interior edges cancel out. At each interior vertex, the interior angles add up to $ 2\pi $. Boundary edges do not cancel. At boundary vertices, the interior angles sum to $ \pi $. Adding everything up,
-$$ \sum_{i = 1}^N \intd{T_i}{}{K}{A} + \sum_{i = 1}^N \intd{\partial T_i}{}{k_g}{s} = \sum_{i = 1}^N \sum_{j = 1}^3 \alpha_{ij} - \sum_{i = 1}^N \pi, $$
+$$ \intd{T_i}{}{\K}{A} + \intd{\partial T_i}{}{\k_g}{s} = 2\pi - \sum_{j = 1}^3 \theta_{ij} = \sum_{j = 1}^3 \alpha_{ij} - \pi, $$
+by Gauss-Bonnet for $ T_i $. The integral of $ \k_g $ along the edge $ T_i \cap T_j $ cancels because it occurs for $ T_i $ and $ T_j $ with opposite signs. All of the interior edges cancel out. At each interior vertex, the interior angles add up to $ 2\pi $. Boundary edges do not cancel. At boundary vertices, the interior angles sum to $ \pi $. Adding everything up,
+$$ \sum_{i = 1}^N \intd{T_i}{}{\K}{A} + \sum_{i = 1}^N \intd{\partial T_i}{}{\k_g}{s} = \sum_{i = 1}^N \sum_{j = 1}^3 \alpha_{ij} - \sum_{i = 1}^N \pi, $$
 so
-$$ \intd{S}{}{K}{A} + \intd{\partial S}{}{k_g}{s} = 2\pi V - \pi\#\cbr{\text{boundary vertices}} - \pi F. $$
+$$ \intd{S}{}{\K}{A} + \intd{\partial S}{}{\k_g}{s} = 2\pi V - \pi\#\cbr{\text{boundary vertices}} - \pi F. $$
 But counting edges,
 $$ 3F = \#\cbr{\text{interior edges}} + \#\cbr{\text{boundary edges}} = 2E - \#\cbr{\text{boundary edges}} = 2E - \#\cbr{\text{boundary vertices}}. $$
 So
-$$ \intd{S}{}{K}{A} + \intd{\partial S}{}{k_g}{s} = 2\pi\br{V + F} - \pi\br{3F + \#\cbr{\text{boundary vertices}}} = 2\pi\br{V - E + F}. $$
+$$ \intd{S}{}{\K}{A} + \intd{\partial S}{}{\k_g}{s} = 2\pi\br{V + F} - \pi\br{3F + \#\cbr{\text{boundary vertices}}} = 2\pi\br{V - E + F}. $$
 \end{proof}
 
 \begin{corollary}
-Let $ S \subset \R^3 $ be a compact oriented surface with $ \partial S = \emptyset $, such that $ K \ge 0 $ on $ S $. Then $ S \cong S^2 $.
+Let $ S \subset \RR^3 $ be a compact oriented surface with $ \partial S = \emptyset $, such that $ \K \ge 0 $ on $ S $. Then $ S \cong \S^2 $.
 \end{corollary}
 
 \begin{proof}
-There exists some point with $ K > 0 $ because there exists an elliptic point on $ S $, so
-$$ \chi\br{S} = \dfrac{1}{2\pi}\intd{S}{}{K}{A} > 0. $$
+There exists some point with $ \K > 0 $ because there exists an elliptic point on $ S $, so
+$$ \chi\br{S} = \dfrac{1}{2\pi}\intd{S}{}{\K}{A} > 0. $$
 But $ \chi\br{S} = 2 - 2g $ with $ g $ the genus and so $ g = 0 $ because $ \chi\br{S} > 0 $.
 \end{proof}
 

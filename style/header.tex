@@ -7,6 +7,7 @@
 \usepackage[UKenglish]{babel}
 \usepackage{commath}
 \usepackage{enumitem}
+\usepackage{etoolbox}
 \usepackage{fancyhdr}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
@@ -23,37 +24,97 @@
 \addto\captionsUKenglish{\renewcommand{\abstractname}{Syllabus}}
 \delimitershortfall5pt
 \ifx\thm\undefined\newtheorem{n}{}\else\newtheorem{n}{}[\thm]\fi
-\let\g\gg
-\let\l\ll
+\newcommand\newoperator[1]{\ifcsdef{#1}{\cslet{#1}{\relax}}{}\csdef{#1}{\operatorname{#1}}}
 \setlength{\parindent}{0cm}
 
 % Environments
 
 \theoremstyle{plain}
 \newtheorem{algorithm}[n]{Algorithm}
+\newtheorem*{algorithm*}{Algorithm}
+\newtheorem{algorithm**}{Algorithm}
 \newtheorem{conjecture}[n]{Conjecture}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem{conjecture**}{Conjecture}
 \newtheorem{corollary}[n]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{corollary**}{Corollary}
 \newtheorem{lemma}[n]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma**}{Lemma}
 \newtheorem{proposition}[n]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{proposition**}{Proposition}
 \newtheorem{theorem}[n]{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem**}{Theorem}
 
 \theoremstyle{definition}
-\newtheorem{axiom}{Axiom}
+\newtheorem{aim}[n]{Aim}
+\newtheorem*{aim*}{Aim}
+\newtheorem{aim**}{Aim}
+\newtheorem{axiom}[n]{Axiom}
+\newtheorem*{axiom*}{Axiom}
+\newtheorem{axiom**}{Axiom}
+\newtheorem{condition}[n]{Condition}
+\newtheorem*{condition*}{Condition}
+\newtheorem{condition**}{Condition}
 \newtheorem{definition}[n]{Definition}
-\newtheorem{example}[n]{Example}
-\newtheorem{exercise}{Exercise}
 \newtheorem*{definition*}{Definition}
+\newtheorem{definition**}{Definition}
+\newtheorem{example}[n]{Example}
 \newtheorem*{example*}{Example}
-
-\theoremstyle{remark}
-\newtheorem{notation}[n]{Notation}
-\newtheorem{remark}[n]{Remark}
+\newtheorem{example**}{Example}
+\newtheorem{exercise}[n]{Exercise}
+\newtheorem*{exercise*}{Exercise}
+\newtheorem{exercise**}{Exercise}
+\newtheorem{fact}[n]{Fact}
 \newtheorem*{fact*}{Fact}
+\newtheorem{fact**}{Fact}
+\newtheorem{goal}[n]{Goal}
+\newtheorem*{goal*}{Goal}
+\newtheorem{goal**}{Goal}
+\newtheorem{law}[n]{Law}
+\newtheorem*{law*}{Law}
+\newtheorem{law**}{Law}
+\newtheorem{plan}[n]{Plan}
+\newtheorem*{plan*}{Plan}
+\newtheorem{plan**}{Plan}
+\newtheorem{problem}[n]{Problem}
+\newtheorem*{problem*}{Problem}
+\newtheorem{problem**}{Problem}
+\newtheorem{question}[n]{Question}
+\newtheorem*{question*}{Question}
+\newtheorem{question**}{Question}
+\newtheorem{warning}[n]{Warning}
+\newtheorem*{warning*}{Warning}
+\newtheorem{warning**}{Warning}
+\newtheorem{acknowledgements}[n]{Acknowledgements}
+\newtheorem*{acknowledgements*}{Acknowledgements}
+\newtheorem{acknowledgements**}{Acknowledgements}
+\newtheorem{annotations}[n]{Annotations}
+\newtheorem*{annotations*}{Annotations}
+\newtheorem{annotations**}{Annotations}
+\newtheorem{assumption}[n]{Assumption}
+\newtheorem*{assumption*}{Assumption}
+\newtheorem{assumption**}{Assumption}
+\newtheorem{conclusion}[n]{Conclusion}
+\newtheorem*{conclusion*}{Conclusion}
+\newtheorem{conclusion**}{Conclusion}
+\newtheorem{claim}[n]{Claim}
+\newtheorem*{claim*}{Claim}
+\newtheorem{claim**}{Claim}
+\newtheorem{notation}[n]{Notation}
 \newtheorem*{notation*}{Notation}
+\newtheorem{notation**}{Notation}
+\newtheorem{note}[n]{Note}
 \newtheorem*{note*}{Note}
+\newtheorem{note**}{Note}
+\newtheorem{remark}[n]{Remark}
 \newtheorem*{remark*}{Remark}
+\newtheorem{remark**}{Remark}
 
-% Commands
+% Lectures
 
 \newcommand{\lecture}[3]{ % Lecture
   \marginpar{
@@ -63,33 +124,143 @@
   }
 }
 
+% Blackboard
+
+\renewcommand{\AA}{\mathbb{A}} % Blackboard A
+\newcommand{\BB}{\mathbb{B}}   % Blackboard B
+\newcommand{\CC}{\mathbb{C}}   % Blackboard C
+\newcommand{\DD}{\mathbb{D}}   % Blackboard D
+\newcommand{\EE}{\mathbb{E}}   % Blackboard E
+\newcommand{\FF}{\mathbb{F}}   % Blackboard F
+\newcommand{\GG}{\mathbb{G}}   % Blackboard G
+\newcommand{\HH}{\mathbb{H}}   % Blackboard H
+\newcommand{\II}{\mathbb{I}}   % Blackboard I
+\newcommand{\JJ}{\mathbb{J}}   % Blackboard J
+\newcommand{\KK}{\mathbb{K}}   % Blackboard K
+\newcommand{\LL}{\mathbb{L}}   % Blackboard L
+\newcommand{\MM}{\mathbb{M}}   % Blackboard M
+\newcommand{\NN}{\mathbb{N}}   % Blackboard N
+\newcommand{\OO}{\mathbb{O}}   % Blackboard O
+\newcommand{\PP}{\mathbb{P}}   % Blackboard P
+\newcommand{\QQ}{\mathbb{Q}}   % Blackboard Q
+\newcommand{\RR}{\mathbb{R}}   % Blackboard R
+\renewcommand{\SS}{\mathbb{S}} % Blackboard S
+\newcommand{\TT}{\mathbb{T}}   % Blackboard T
+\newcommand{\UU}{\mathbb{U}}   % Blackboard U
+\newcommand{\VV}{\mathbb{V}}   % Blackboard V
+\newcommand{\WW}{\mathbb{W}}   % Blackboard W
+\newcommand{\XX}{\mathbb{X}}   % Blackboard X
+\newcommand{\YY}{\mathbb{Y}}   % Blackboard Y
+\newcommand{\ZZ}{\mathbb{Z}}   % Blackboard Z
+
+% Brackets
+
 \renewcommand{\eval}[1]{\left. #1 \right|}          % Evaluation
 \newcommand{\br}{\del}                              % Brackets
 \newcommand{\abr}[1]{\left\langle #1 \right\rangle} % Angle brackets
 \newcommand{\fbr}[1]{\left\lfloor #1 \right\rfloor} % Floor brackets
 \newcommand{\lbr}[1]{\left\lfloor #1 \right\rfloor} % Ceiling brackets
+\newcommand{\st}{\ \middle| \ }                     % Such that
 
-\newcommand{\function}[5][]{ % Function
+% Calligraphic
+
+\newcommand{\AAA}{\mathcal{A}} % Calligraphic A
+\newcommand{\BBB}{\mathcal{B}} % Calligraphic B
+\newcommand{\CCC}{\mathcal{C}} % Calligraphic C
+\newcommand{\DDD}{\mathcal{D}} % Calligraphic D
+\newcommand{\EEE}{\mathcal{E}} % Calligraphic E
+\newcommand{\FFF}{\mathcal{F}} % Calligraphic F
+\newcommand{\GGG}{\mathcal{G}} % Calligraphic G
+\newcommand{\HHH}{\mathcal{H}} % Calligraphic H
+\newcommand{\III}{\mathcal{I}} % Calligraphic I
+\newcommand{\JJJ}{\mathcal{J}} % Calligraphic J
+\newcommand{\KKK}{\mathcal{K}} % Calligraphic K
+\newcommand{\LLL}{\mathcal{L}} % Calligraphic L
+\newcommand{\MMM}{\mathcal{M}} % Calligraphic M
+\newcommand{\NNN}{\mathcal{N}} % Calligraphic N
+\newcommand{\OOO}{\mathcal{O}} % Calligraphic O
+\newcommand{\PPP}{\mathcal{P}} % Calligraphic P
+\newcommand{\QQQ}{\mathcal{Q}} % Calligraphic Q
+\newcommand{\RRR}{\mathcal{R}} % Calligraphic R
+\newcommand{\SSS}{\mathcal{S}} % Calligraphic S
+\newcommand{\TTT}{\mathcal{T}} % Calligraphic T
+\newcommand{\UUU}{\mathcal{U}} % Calligraphic U
+\newcommand{\VVV}{\mathcal{V}} % Calligraphic V
+\newcommand{\WWW}{\mathcal{W}} % Calligraphic W
+\newcommand{\XXX}{\mathcal{X}} % Calligraphic X
+\newcommand{\YYY}{\mathcal{Y}} % Calligraphic Y
+\newcommand{\ZZZ}{\mathcal{Z}} % Calligraphic Z
+
+% Fraktur
+
+\newcommand{\aaa}{\mathfrak{a}}   % Fraktur a
+\newcommand{\bbb}{\mathfrak{b}}   % Fraktur b
+\newcommand{\ccc}{\mathfrak{c}}   % Fraktur c
+\newcommand{\ddd}{\mathfrak{d}}   % Fraktur d
+\newcommand{\eee}{\mathfrak{e}}   % Fraktur e
+\newcommand{\fff}{\mathfrak{f}}   % Fraktur f
+\renewcommand{\ggg}{\mathfrak{g}} % Fraktur g
+\newcommand{\hhh}{\mathfrak{h}}   % Fraktur h
+\newcommand{\iii}{\mathfrak{i}}   % Fraktur i
+\newcommand{\jjj}{\mathfrak{j}}   % Fraktur j
+\newcommand{\kkk}{\mathfrak{k}}   % Fraktur k
+\renewcommand{\lll}{\mathfrak{l}} % Fraktur l
+\newcommand{\mmm}{\mathfrak{m}}   % Fraktur m
+\newcommand{\nnn}{\mathfrak{n}}   % Fraktur n
+\newcommand{\ooo}{\mathfrak{o}}   % Fraktur o
+\newcommand{\ppp}{\mathfrak{p}}   % Fraktur p
+\newcommand{\qqq}{\mathfrak{q}}   % Fraktur q
+\newcommand{\rrr}{\mathfrak{r}}   % Fraktur r
+\newcommand{\sss}{\mathfrak{s}}   % Fraktur s
+\newcommand{\ttt}{\mathfrak{t}}   % Fraktur t
+\newcommand{\uuu}{\mathfrak{u}}   % Fraktur u
+\newcommand{\vvv}{\mathfrak{v}}   % Fraktur v
+\newcommand{\www}{\mathfrak{w}}   % Fraktur w
+\newcommand{\xxx}{\mathfrak{x}}   % Fraktur x
+\newcommand{\yyy}{\mathfrak{y}}   % Fraktur y
+\newcommand{\zzz}{\mathfrak{z}}   % Fraktur z
+
+% Geometry
+
+\newcommand{\iintd}[4]{\iint_{#1} \, #2 \, \dif #3 \, \dif #4}             % Double integral
+\newcommand{\RP}{\mathbb{RP}}                                              % Real projective space
+\newcommand{\intd}[4]{\int_{#1}^{#2} \, #3 \, \dif #4}                     % Single integral
+\newcommand{\iiintd}[5]{\iint_{#1} \, #2 \, \dif #3 \, \dif #4 \, \dif #5} % Triple integral
+
+% Logic
+
+\newcommand{\iffb}[2]{\br{#1 \leftrightarrow #2}} % Biconditional
+\newcommand{\andb}[2]{\br{#1 \land #2}}           % Conjunction
+\newcommand{\orb}[2]{\br{#1 \lor #2}}             % Disjunction
+\newcommand{\nib}[2]{\br{#1 \notin #2}}           % Element of
+\newcommand{\eqb}[2]{\br{#1 = #2}}                % Equal to
+\newcommand{\teb}[1]{\br{\exists #1}}             % Existential quantifier
+\newcommand{\impb}[2]{\br{#1 \rightarrow #2}}     % Implication
+\newcommand{\ltb}[2]{\br{#1 < #2}}                % Less than
+\newcommand{\leb}[2]{\br{#1 \le #2}}              % Less than or equal to
+\newcommand{\notb}[1]{\br{\neg #1}}               % Negation
+\newcommand{\inb}[2]{\br{#1 \in #2}}              % Not element of
+\newcommand{\neb}[2]{\br{#1 \ne #2}}              % Not equal to
+\newcommand{\subb}[2]{\br{#1 \subseteq #2}}       % Subset
+\newcommand{\fab}[1]{\br{\forall #1}}             % Universal quantifier
+
+% Maps
+
+\newcommand{\bijection}[7][]{ % Bijection
   \ifx &#1&
     \begin{array}{rcl}
-      #2 & \longrightarrow & #3 \\
-      #4 & \longmapsto     & #5
+      #2 & \longleftrightarrow & #3 \\
+      #4 & \longmapsto         & #5 \\
+      #6 & \longmapsfrom       & #7
     \end{array}
   \else
-    \fullfunction{#1}{#2}{#3}{#4}{#5}
+    \begin{array}{ccrcl}
+      #1 & : & #2 & \longrightarrow & #3 \\
+         &   & #4 & \longmapsto     & #5 \\
+         &   & #6 & \longmapsfrom   & #7
+    \end{array}
   \fi
 }
-
-\newcommand{\F}{\mathbb{F}}   % Finite fields
-\newcommand{\N}{\mathbb{N}}   % Natural numbers
-\newcommand{\Z}{\mathbb{Z}}   % Integral numbers
-\newcommand{\Q}{\mathbb{Q}}   % Rational numbers
-\newcommand{\R}{\mathbb{R}}   % Real numbers
-\newcommand{\C}{\mathbb{C}}   % Complex numbers
-\renewcommand{\H}{\mathbb{H}} % Quaternion numbers
-\newcommand{\A}{\mathbb{A}}   % Affine spaces
-\renewcommand{\P}{\mathbb{P}} % Projective spaces
-
 \newcommand{\correspondence}[2]{ % Correspondence
   \cbr{
     \begin{array}{c}
@@ -105,10 +276,21 @@
     \end{array}
   }
 }
+\newcommand{\function}[5][]{ % Function
+  \ifx &#1&
+    \begin{array}{rcl}
+      #2 & \longrightarrow & #3 \\
+      #4 & \longmapsto     & #5
+    \end{array}
+  \else
+    \begin{array}{ccrcl}
+      #1 & : & #2 & \longrightarrow & #3 \\
+         &   & #4 & \longmapsto     & #5
+    \end{array}
+  \fi
+}
 
-\newcommand{\intd}[4]{\int_{#1}^{#2} \, #3 \, \dif #4}                     % Single integral
-\newcommand{\iintd}[4]{\iint_{#1} \, #2 \, \dif #3 \, \dif #4}             % Double integral
-\newcommand{\iiintd}[5]{\iint_{#1} \, #2 \, \dif #3 \, \dif #4 \, \dif #5} % Triple integral
+% Matrices
 
 \newcommand{\onebytwo}[2]{     % One by two matrix
   \begin{pmatrix}
@@ -147,78 +329,121 @@
   \end{pmatrix}
 }
 
-\renewcommand{\aa}{\mathfrak{a}} % Fraktur a
-\newcommand{\bb}{\mathfrak{b}}   % Fraktur b
-\newcommand{\cc}{\mathfrak{c}}   % Fraktur c
-\newcommand{\dd}{\mathfrak{d}}   % Fraktur d
-\newcommand{\ee}{\mathfrak{e}}   % Fraktur e
-\newcommand{\ff}{\mathfrak{f}}   % Fraktur f
-\renewcommand{\gg}{\mathfrak{g}} % Fraktur g
-\newcommand{\hh}{\mathfrak{h}}   % Fraktur h
-\newcommand{\ii}{\mathfrak{i}}   % Fraktur i
-\newcommand{\jj}{\mathfrak{j}}   % Fraktur j
-\newcommand{\kk}{\mathfrak{k}}   % Fraktur k
-\renewcommand{\ll}{\mathfrak{l}} % Fraktur l
-\newcommand{\mm}{\mathfrak{m}}   % Fraktur m
-\newcommand{\nn}{\mathfrak{n}}   % Fraktur n
-\newcommand{\oo}{\mathfrak{o}}   % Fraktur o
-\newcommand{\pp}{\mathfrak{p}}   % Fraktur p
-\newcommand{\qq}{\mathfrak{q}}   % Fraktur q
-\newcommand{\rr}{\mathfrak{r}}   % Fraktur r
-\renewcommand{\ss}{\mathfrak{s}} % Fraktur s
-\renewcommand{\tt}{\mathfrak{t}} % Fraktur t
-\newcommand{\uu}{\mathfrak{u}}   % Fraktur u
-\newcommand{\vv}{\mathfrak{v}}   % Fraktur v
-\newcommand{\ww}{\mathfrak{w}}   % Fraktur w
-\newcommand{\xx}{\mathfrak{x}}   % Fraktur x
-\newcommand{\yy}{\mathfrak{y}}   % Fraktur y
-\newcommand{\zz}{\mathfrak{z}}   % Fraktur z
+% Number theory
 
-\renewcommand{\AA}{\mathcal{A}} % Calligraphic A
-\newcommand{\BB}{\mathcal{B}}   % Calligraphic B
-\newcommand{\CC}{\mathcal{C}}   % Calligraphic C
-\newcommand{\DD}{\mathcal{D}}   % Calligraphic D
-\newcommand{\EE}{\mathcal{E}}   % Calligraphic E
-\newcommand{\FF}{\mathcal{F}}   % Calligraphic F
-\newcommand{\GG}{\mathcal{G}}   % Calligraphic G
-\newcommand{\HH}{\mathcal{H}}   % Calligraphic H
-\newcommand{\II}{\mathcal{I}}   % Calligraphic I
-\newcommand{\JJ}{\mathcal{J}}   % Calligraphic J
-\newcommand{\KK}{\mathcal{K}}   % Calligraphic K
-\newcommand{\LL}{\mathcal{L}}   % Calligraphic L
-\newcommand{\MM}{\mathcal{M}}   % Calligraphic M
-\newcommand{\NN}{\mathcal{N}}   % Calligraphic N
-\newcommand{\OO}{\mathcal{O}}   % Calligraphic O
-\newcommand{\PP}{\mathcal{P}}   % Calligraphic P
-\newcommand{\QQ}{\mathcal{Q}}   % Calligraphic Q
-\newcommand{\RR}{\mathcal{R}}   % Calligraphic R
-\renewcommand{\SS}{\mathcal{S}} % Calligraphic S
-\newcommand{\TT}{\mathcal{T}}   % Calligraphic T
-\newcommand{\UU}{\mathcal{U}}   % Calligraphic U
-\newcommand{\VV}{\mathcal{V}}   % Calligraphic V
-\newcommand{\WW}{\mathcal{W}}   % Calligraphic W
-\newcommand{\XX}{\mathcal{X}}   % Calligraphic X
-\newcommand{\YY}{\mathcal{Y}}   % Calligraphic Y
-\newcommand{\ZZ}{\mathcal{Z}}   % Calligraphic Z
+\renewcommand{\symbol}[2]{\br{\tfrac{#1}{#2}}} % Power residue symbol
+\newcommand{\unit}[1]{\br{\ZZ / #1\ZZ}^\times} % Unit group
 
-\newcommand{\notb}[1]{\br{\neg #1}}               % Negation
-\newcommand{\orb}[2]{\br{#1 \lor #2}}             % Disjunction
-\newcommand{\andb}[2]{\br{#1 \land #2}}           % Conjunction
-\newcommand{\impb}[2]{\br{#1 \rightarrow #2}}     % Implication
-\newcommand{\iffb}[2]{\br{#1 \leftrightarrow #2}} % Biconditional
-\newcommand{\fab}[1]{\br{\forall #1}}             % Universal quantifier
-\newcommand{\teb}[1]{\br{\exists #1}}             % Existential quantifier
-\newcommand{\eqb}[2]{\br{#1 = #2}}                % Equal to
-\newcommand{\ltb}[2]{\br{#1 < #2}}                % Less than
-\newcommand{\leb}[2]{\br{#1 \le #2}}              % Less than or equal to
-\newcommand{\neb}[2]{\br{#1 \ne #2}}              % Not equal to
-\newcommand{\inb}[2]{\br{#1 \in #2}}              % An element of
-\newcommand{\nib}[2]{\br{#1 \notin #2}}           % Not an element of
-\newcommand{\subb}[2]{\br{#1 \subseteq #2}}       % Subset of
+% Operators
 
-\newcommand{\jacobi}[2]{\br{\tfrac{#1}{#2}}}        % Jacobi symbol
-\newcommand{\Unit}[1]{\br{\dfrac{\Z}{#1\Z}}^\times} % Unit group vertical
-\newcommand{\unit}[1]{\br{\Z / #1\Z}^\times}        % Unit group horizontal
+\newoperator{AG}    % Affine geometry
+\newoperator{alg}   % Algebraic closure
+\newoperator{Ann}   % Annihilator
+\newoperator{area}  % Area
+\newoperator{Aut}   % Automorphism group
+\newoperator{card}  % Cardinality
+\newoperator{ch}    % Characteristic
+\newoperator{Cl}    % Class group
+\newoperator{col}   % Column
+\newoperator{diam}  % Diameter
+\newoperator{Disc}  % Discriminant
+\newoperator{dom}   % Domain
+\newoperator{Em}    % Embedding set
+\newoperator{End}   % Endomorphism ring
+\newoperator{fin}   % Finite subset
+\newoperator{Fix}   % Fixed group
+\newoperator{Frac}  % Fraction field
+\newoperator{Gal}   % Galois group
+\newoperator{GL}    % General linear group
+\newoperator{Ham}   % Hamming weight
+\newoperator{Homeo} % Homeomorphism group
+\newoperator{Hom}   % Homomorphism group
+\newoperator{id}    % Identity function
+\newoperator{Im}    % Image
+\newoperator{Ind}   % Index
+\newoperator{Ker}   % Kernel
+\newoperator{lcm}   % Least common multiple
+\newoperator{Mat}   % Matrix ring
+\newoperator{mult}  % Multiplicity
+\newoperator{Nm}    % Norm
+\newoperator{ord}   % Order of vanishing
+\newoperator{Pay}   % Payley graph
+\newoperator{PG}    % Projective geometry
+\newoperator{PGL}   % Projective general linear group
+\newoperator{rad}   % Radical
+\newoperator{ran}   % Range
+\newoperator{Res}   % Residue
+\newoperator{rk}    % Rank
+\newoperator{Re}    % Real
+\newoperator{row}   % Row
+\newoperator{sgn}   % Sign
+\newoperator{Sing}  % Singular points
+\newoperator{sp}    % Span
+\newoperator{SL}    % Special linear group
+\newoperator{SO}    % Special orthogonal group
+\newoperator{Spec}  % Spectrum
+\newoperator{star}  % Star
+\newoperator{srg}   % Strongly regular graph
+\newoperator{Sym}   % Symmetric group
+\newoperator{Tr}    % Trace
+\newoperator{vol}   % Volume
+\newoperator{wt}    % Weight
+
+% Roman
+
+\newcommand{\A}{\mathrm{A}}   % Roman A
+\newcommand{\B}{\mathrm{B}}   % Roman B
+\newcommand{\C}{\mathrm{C}}   % Roman C
+\newcommand{\D}{\mathrm{D}}   % Roman D
+\newcommand{\E}{\mathrm{E}}   % Roman E
+\newcommand{\F}{\mathrm{F}}   % Roman F
+\newcommand{\G}{\mathrm{G}}   % Roman G
+\renewcommand{\H}{\mathrm{H}} % Roman H
+\newcommand{\I}{\mathrm{I}}   % Roman I
+\newcommand{\J}{\mathrm{J}}   % Roman J
+\newcommand{\K}{\mathrm{K}}   % Roman K
+\renewcommand{\L}{\mathrm{L}} % Roman L
+\newcommand{\M}{\mathrm{M}}   % Roman M
+\newcommand{\N}{\mathrm{N}}   % Roman N
+\renewcommand{\O}{\mathrm{O}} % Roman O
+\renewcommand{\P}{\mathrm{P}} % Roman P
+\newcommand{\Q}{\mathrm{Q}}   % Roman Q
+\newcommand{\R}{\mathrm{R}}   % Roman R
+\renewcommand{\S}{\mathrm{S}} % Roman S
+\newcommand{\T}{\mathrm{T}}   % Roman T
+\newcommand{\U}{\mathrm{U}}   % Roman U
+\newcommand{\V}{\mathrm{V}}   % Roman V
+\newcommand{\W}{\mathrm{W}}   % Roman W
+\newcommand{\X}{\mathrm{X}}   % Roman X
+\newcommand{\Y}{\mathrm{Y}}   % Roman Y
+\newcommand{\Z}{\mathrm{Z}}   % Roman Z
+
+\renewcommand{\a}{\mathrm{a}} % Roman a
+\renewcommand{\b}{\mathrm{b}} % Roman b
+\renewcommand{\c}{\mathrm{c}} % Roman c
+\renewcommand{\d}{\mathrm{d}} % Roman d
+\newcommand{\e}{\mathrm{e}}   % Roman e
+\newcommand{\f}{\mathrm{f}}   % Roman f
+\newcommand{\g}{\mathrm{g}}   % Roman g
+\newcommand{\h}{\mathrm{h}}   % Roman h
+\renewcommand{\i}{\mathrm{i}} % Roman i
+\renewcommand{\j}{\mathrm{j}} % Roman j
+\renewcommand{\k}{\mathrm{k}} % Roman k
+\renewcommand{\l}{\mathrm{l}} % Roman l
+\newcommand{\m}{\mathrm{m}}   % Roman m
+\renewcommand{\n}{\mathrm{n}} % Roman n
+\renewcommand{\o}{\mathrm{o}} % Roman o
+\newcommand{\p}{\mathrm{p}}   % Roman p
+\newcommand{\q}{\mathrm{q}}   % Roman q
+\renewcommand{\r}{\mathrm{r}} % Roman r
+\newcommand{\s}{\mathrm{s}}   % Roman s
+\renewcommand{\t}{\mathrm{t}} % Roman t
+\renewcommand{\u}{\mathrm{u}} % Roman u
+\renewcommand{\v}{\mathrm{v}} % Roman v
+\newcommand{\w}{\mathrm{w}}   % Roman w
+\newcommand{\x}{\mathrm{x}}   % Roman x
+\newcommand{\y}{\mathrm{y}}   % Roman y
+\newcommand{\z}{\mathrm{z}}   % Roman z
 
 % Tikz
 
