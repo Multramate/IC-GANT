@@ -1,0 +1,430 @@
+\def\module{M4P58 Modular Forms}
+\def\lecturer{Dr David Helm}
+\def\term{Autumn 2019}
+\def\cover{}
+\def\syllabus{}
+\def\thm{subsection}
+
+\input{../style/header}
+
+\begin{document}
+
+\input{../style/main}
+
+\section{Introduction}
+
+\lecture{1}{Friday}{04/10/19}
+
+The following are textbooks.
+\begin{itemize}
+\item Serre, A course in arithmetic, 1973
+\item J Shurman and F Diamond, A first course in modular forms, 2005
+\end{itemize}
+
+Let
+$$ f = q\prod_{n = 1}^\infty \br{1 - q^n}^2\br{1 - q^{11n}}^2 = \sum_{n = 1} b_nq^n = q - 2q^2 - q^3 + 2q^4 + q^5 + 2q^6 - 2q^7 + \dots, $$
+and let $ a_n $ be the number of solutions modulo $ n $ to the elliptic curve
+$$ E = \cbr{\br{x, y} \in \ZZ \st y^2 + y = x^3 - x^2 - 10x - 20}. $$
+\begin{itemize}
+\item Modulo $ 2 $, there are $ a_2 = 4 $ solutions $ \br{0, 0} $, $ \br{0, 1} $, $ \br{1, 0} $, $ \br{1, 1} $.
+\item Modulo $ 3 $, there are $ a_3 = 4 $ solutions $ \br{1, 0} $, $ \br{1, -1} $, $ \br{-1, 0} $, $ \br{-1, -1} $.
+\item Modulo $ 5 $, there are $ a_5 = 4 $ solutions $ \br{0, 0} $, $ \br{0, -1} $, $ \br{1, 0} $, $ \br{-1, -1} $.
+\item Modulo $ 7 $, there are $ a_7 = 9 $ solutions $ \br{1, 3} $, $ \br{2, 2} $, $ \br{2, -3} $, $ \br{-1, 1} $, $ \br{-1, -2} $, $ \br{-2, 1} $, $ \br{-2, -2} $, $ \br{-3, 1} $, $ \br{-3, -2} $.
+\end{itemize}
+If $ p \ne 11 $, then
+$$ a_p - p = -b_p. $$
+The following are some questions.
+\begin{itemize}
+\item What is the relationship between $ E $ and $ f $?
+\item Can we find similar relationships for other $ E $?
+\item How does one prove something like this?
+\end{itemize}
+Let
+$$ \HH = \cbr{x + iy \st x, y \in \RR, \ y > 0} \subseteq \CC. $$
+Then $ \HH $ has an action of
+$$ \SL_2\br{\RR} = \cbr{\twobytwo{a}{b}{c}{d} \st a, b, c, d \in \RR, \ ad - bc = 1}. $$
+Modular forms are complex functions on $ \HH $ with a high degree of symmetry. These functions are symmetric under the action of large discrete subgroups of $ \SL_2\br{\RR} $, in particular
+$$ \SL_2\br{\ZZ} = \cbr{\twobytwo{a}{b}{c}{d} \st a, b, c, d \in \ZZ, \ ad - bc = 1} \subseteq \SL_2\br{\RR}. $$
+Why are these interesting to number theorists? Power series expansions often involve expressions of interest to number theorists. For example,
+\begin{itemize}
+\item Bernoulli numbers,
+\item divisor functions $ \sigma_k\br{n} = \sum_{d \mid n} d^k $,
+\item number of points on elliptic curves, and
+\item traces of Galois representations.
+\end{itemize}
+
+\pagebreak
+
+\section{Modular forms of level one}
+
+\subsection{Modular functions and forms}
+
+\subsubsection{Modular actions}
+
+Let
+$$ \gamma = \twobytwo{a}{b}{c}{d}, \qquad a, b, c, d \in \RR. $$
+Then $ \SL_2\br{\RR} $ acts on $ \CC \cup \cbr{\infty} $ by
+$$ \gamma \cdot z =
+\begin{cases}
+\dfrac{az + b}{cz + d} & z \ne -\dfrac{d}{c} \\
+\infty & z = -\dfrac{d}{c}
+\end{cases}
+\qquad \gamma \cdot \infty = \dfrac{a}{c}.
+$$
+One checks that this gives a bijection from $ \CC \cup \cbr{\infty} $ to $ \CC \cup \cbr{\infty} $, where inverse is given by the inverse matrix
+$$ \gamma^{-1} = \twobytwo{d}{-b}{-c}{a}, $$
+and $ \gamma \cdot \br{\gamma' \cdot z} = \gamma\gamma' \cdot z $. One obtains a left action of $ \SL_2\br{\RR} $ on $ \CC \cup \cbr{\infty} $. An observation is
+$$ \Im \gamma z = \Im \dfrac{az + b}{cz + d} = \Im \dfrac{\br{az + b}\br{c\overline{z} + d}}{\abs{cz + d}^2} = \dfrac{\Im \br{az + b}\br{c\overline{z} + d}}{\abs{cz + d}^2} = \dfrac{\br{ad - bc}\Im z}{\abs{cz + d}^2}. $$
+
+\lecture{2}{Friday}{04/10/19}
+
+In particular, if $ \gamma \in \SL_2\br{\RR} $, then
+$$ \Im \gamma z = \dfrac{\Im z}{\abs{cz + d}^2}. $$
+So $ \SL_2\br{\RR} $ preserves $ \HH \cup \cbr{\infty} $. More generally, if $ \gamma \in \GL_2\br{\RR} $, then
+$$ \Im \gamma z = \dfrac{\det \gamma\Im z}{\abs{cz + d}^2}. $$
+So
+$$ \GL_2\br{\RR}_+ = \cbr{\gamma \in \GL_2\br{\RR} \st \det \gamma > 0} $$
+preserves $ \HH \cup \cbr{\infty} $. Define
+$$ \function[\eval{f}_{k, \gamma}]{\HH}{\CC}{z}{\det \gamma^{k - 1}f\br{\gamma z}\br{cz + d}^{-k}}, \qquad f : \HH \to \CC, \qquad \gamma \in \GL_2\br{\RR}_+, \qquad k \in \ZZ, $$
+where $ \det \gamma^{k - 1} $ is the fudge factor, which is one for $ \gamma \in \SL_2\br{\RR} $, and $ \br{cz + d}^{-k} $ is the twisted action on functions. Check that
+$$ \eval{f}_{k, \id} = f, \qquad \eval{\br{\eval{f}_{k, \gamma}}}_{k, \gamma'} = \eval{f}_{k, \gamma'\gamma}. $$
+This gives, for each $ k $, a left action of $ \GL_2\br{\RR}_+ $ on functions $ \HH \to \CC $, a \textbf{modular action of weight $ k $}. A modular form of weight $ k $ will be a sufficiently nice function $ f : \HH \to \CC $ such that $ \eval{f}_{k, \gamma} = f $ for all $ \gamma \in \SL_2\br{\ZZ} $. That is, for all $ \gamma \in \SL_2\br{\ZZ} $ and all $ z \in \HH $,
+$$ f\br{\gamma z}\br{cz + d}^{-k} = f\br{z}, \qquad \implies \qquad f\br{\gamma z} = f\br{z}\br{cz + d}^k, $$
+the \textbf{modular transformation law of weight $ k $}. The following are some observations.
+\begin{itemize}
+\item Let $ k = 0 $. Then constant functions satisfy $ f\br{\gamma z} = f\br{z} $. It will turn out that all functions of weight zero are constant.
+\item Let $ k $ be odd, and $ \gamma = -\id $. Then $ \gamma z = z $ for all $ z $ and $ cz + d = -1 $, so $ f\br{\gamma z} = f\br{z}\br{cz + d}^k $ gives $ f\br{z} = f\br{z}\br{-1}^k $, so $ f\br{z} = -f\br{z} $, so $ f\br{z} = 0 $ for all $ z $. So no functions $ f : \HH \to \CC $ satisfy the modular transformation law of weight $ k $, for all $ \gamma \in \SL_2\br{\ZZ} $, when $ k $ is odd.
+\end{itemize}
+
+\pagebreak
+
+\subsubsection{Review of complex analysis}
+
+Let $ f : U \to \CC $, for $ U \subseteq \CC $ open, and let $ p \in U $.
+
+\begin{definition}
+$ f $ is \textbf{holomorphic} at $ p $ if
+$$ f'\br{p'} = \lim_{\epsilon \to 0, \ \epsilon \in \CC} \dfrac{f\br{p' + \epsilon} - f\br{p'}}{\epsilon} $$
+exists for all $ p' $ in a neighbourhood of $ p $.
+\end{definition}
+
+\begin{proposition}
+$ f $ is holomorphic at $ p $ implies that $ f $ is continuous.
+\end{proposition}
+
+\begin{proposition}
+$ f $ is holomorphic at $ p $ implies that $ f $ is infinitely differentiable at $ p $, that is $ f^{\br{n}}\br{p} $ exists for all $ n \ge 0 $. Moreover, we have
+$$ f\br{z} = \sum_{n = 0}^\infty \dfrac{f^{\br{n}}\br{p}}{n!}\br{z - p}^n = f\br{p} + f'\br{p}\br{z - p} + \dfrac{f'\br{p}}{2}\br{z - p}^2 + \dots, $$
+for all $ z $ in a neighbourhood of $ p $.
+\end{proposition}
+
+\begin{corollary}
+If $ f $ is holomorphic and not identically zero on an open set $ U $, then the zeroes of $ f $ are isolated on $ U $.
+\end{corollary}
+
+More generally is the following.
+
+\begin{definition}
+$ f $ is \textbf{meromorphic} at $ p $ if there exists a neighbourhood $ U $ of $ p $ and $ g, h : U \to \CC $ holomorphic on $ U $ such that $ f = g / h $ on $ U \setminus \cbr{p} $. Such an $ f $ has a \textbf{Laurent series expansion} at $ p $,
+$$ f\br{z} = \sum_{i = -N}^\infty c_i\br{z - p}^i. $$
+The smallest $ i $ such that $ c_i \ne 0 $ is denoted by $ \ord_p f $, the \textbf{order of vanishing} of $ f $ at $ p $.
+\begin{itemize}
+\item If $ \ord_p f = -n $ for $ n > 0 $, we say $ f $ has a \textbf{pole of order $ n $}.
+\item If $ \ord_p f = n $ for $ n > 0 $, we say $ f $ has a \textbf{zero of order $ n $}.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+\hfill
+\begin{itemize}
+\item $ \ord_p fg = \ord_p f + \ord_p g $.
+\item $ \ord_p \br{f + g} \ge \min\cbr{\ord_p f, \ord_p g} $, with equality if $ \ord_p f \ne \ord_p g $.
+\end{itemize}
+\end{proposition}
+
+If $ f $ is holomorphic on $ U \setminus \cbr{p} $ for $ U $ a neighbourhood of $ p $, then $ f $ may or may not be meromorphic at $ p $.
+
+\begin{example*}
+$ f\br{z} = e^{-1 / z^2} $ is holomorphic on $ \CC \setminus \cbr{0} $, but not meromorphic at zero.
+\end{example*}
+
+\begin{theorem}
+Let $ f $ be holomorphic on $ U \setminus \cbr{p} $, and there exists $ n > 0 $ such that
+$$ \lim_{x \to p} \br{x - p}^nf\br{x} $$
+exists. Then $ f $ is meromorphic on $ U $, and $ \ord_p f \ge -n $.
+\end{theorem}
+
+\pagebreak
+
+\subsubsection{Modular functions}
+
+\begin{definition}
+$ f : \HH \to \CC $ is a \textbf{weakly modular function of weight $ k $} if
+\begin{itemize}
+\item $ f $ is meromorphic on $ \HH $, and
+\item $ f $ satisfies the modular transformation law of weight $ k $.
+\end{itemize}
+\end{definition}
+
+Consider
+$$ \gamma = \twobytwo{1}{1}{0}{1}, $$
+so $ \gamma z = z + 1 $ and $ cz + d = 1 $. The modular transformation law gives $ f\br{z + 1} = f\br{z} $. Let
+$$ \D = \cbr{q \st \abs{q} < 1}. $$
+Can define a function
+$$ \function[g]{\D \setminus \cbr{0}}{\CC}{q}{f\br{\dfrac{\log q}{2\pi i}}}, $$
+that is $ f\br{z} = g\br{e^{2\pi iz}} $ for $ z \in \HH $, where $ g $ is holomorphic or meromorphic on $ \cbr{z \st 0 < \abs{z} < 1} $ if and only if $ f $ is holomorphic or meromorphic on $ \HH $.
+
+\begin{definition}
+$ f : \HH \to \CC $ is a \textbf{modular form of weight $ k $} if
+\begin{enumerate}
+\item $ f $ satisfies the modular transformation law of weight $ k $,
+\item $ f $ is holomorphic on $ \HH $, and
+\item $ f $ is holomorphic at $ \infty $, so the function $ g : \D \setminus \cbr{0} \to \CC $, which is holomorphic on $ \D \setminus \cbr{0} $ by $ 2 $, extends to a holomorphic function on $ \D $.
+\end{enumerate}
+\end{definition}
+
+Then $ q \to 0 $ in $ \D $ if and only if $ \Im z \to +\infty $. Then $ 3 $ means $ g\br{q} $ is bounded as $ q \to 0 $ so $ f\br{z} $ is bounded as $ \Im z \to +\infty $. For $ f $ satisfying $ 3 $, $ g : \D \setminus \cbr{0} \to \CC $ has a series expansion
+$$ g\br{q} = \sum_n a_nq^n = a_0 + a_1q + \dots $$
+in $ q = e^{2\pi iz} $. We call this the \textbf{$ q $-expansion} for $ f $.
+
+\lecture{3}{Monday}{07/10/19}
+
+\begin{definition}
+$ f : \HH \to \CC $ is a \textbf{meromorphic modular form of weight $ k $} if the same conditions $ 1 $ to $ 3 $ hold, but with holomorphic weakened to meromorphic.
+\end{definition}
+
+\begin{note*}
+If $ f $ is only meromorphic at $ \infty $ then a finite number of negative powers of $ q $ can appear.
+\end{note*}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item The \textbf{modular discriminant}
+$$ \Delta\br{z} = q\prod_{n = 1}^\infty \br{1 - q^n}^{24} = q - 24q^2 + 252q^3 - 1472q^4 + \dots $$
+is a modular form of weight $ 12 $.
+\item The \textbf{$ \j $-invariant}
+$$ \j\br{z} = \dfrac{1}{q} + 744 + 196844q + 21493760q^2 + \dots $$
+is a meromorphic modular form of weight $ 0 $.
+\end{itemize}
+\end{example*}
+
+\pagebreak
+
+\subsubsection{Lattice functions}
+
+How can we construct modular forms?
+
+\begin{definition}
+A \textbf{lattice} in $ \CC $ is an abelian subgroup of $ \CC $ of the form $ \ZZ w_1 + \ZZ w_2 $, where $ w_1, w_2 \in \CC $ are $ \RR $-linearly independent. More generally if $ V $ is an $ \RR $-vector space, a \textbf{lattice} $ L $ in $ V $ is a discrete abelian subgroup of $ V $ that spans $ V $ over $ \RR $. For $ L \subseteq \CC $ a lattice and $ \lambda \in \CC^\times $, let
+$$ \lambda L = \cbr{\lambda x \st x \in L} \subseteq \CC. $$
+We say that $ L $ and $ \lambda L $ are \textbf{homothetic}. For $ z \in \HH $, let
+$$ \L_{z, 1} = \ZZ + \ZZ z = \cbr{az + b \st a, b \in \ZZ} \subseteq \CC. $$
+\end{definition}
+
+A question is when is $ \L_{z, 1} $ homothetic to $ \L_{z', 1} $, and what is a homothety factor?
+\begin{itemize}
+\item Suppose $ \L_{z, 1} = \lambda \L_{z', 1} $. Then there exist $ a, b, c, d $ such that $ \lambda z' = az + b $ and $ \lambda = cz + d $, so
+\begin{equation}
+\label{eq:1}
+\twobyone{\lambda z'}{\lambda} = \gamma\twobyone{z}{1}.
+\end{equation}
+On the other hand there exist $ a', b', c', d' $ such that $ z = a'\lambda z' + b'\lambda $ and $ 1 = c'\lambda z' + d'\lambda $, so
+\begin{equation}
+\label{eq:2}
+\gamma'\twobyone{\lambda z'}{\lambda} = \twobyone{z}{1}.
+\end{equation}
+$ \br{\ref{eq:1}} $ and $ \br{\ref{eq:2}} $ imply that
+$$ \gamma'\gamma\twobyone{z}{1} = \twobyone{z}{1}, $$
+so $ \gamma \in \SL_2\br{\ZZ} $. Moreover $ \br{\ref{eq:1}} $ implies that $ z' = \br{az + b} / \br{cz + d} $.
+\item Conversely, if $ \gamma \in \SL_2\br{\ZZ} $, then $ \gamma z = \br{az + b} / \br{cz + d} $, so
+$$ \L_{\gamma z, 1} = \br{cz + d}^{-1}\L_{az + b, cz + d}. $$
+But certainly $ \L_{az + b, cz + d} \subseteq \L_{z, 1} $. On the other hand if $ \gamma' $ is inverse to $ \gamma $,
+$$ \twobyone{z}{1} = \gamma'\gamma\twobyone{z}{1} = \gamma\twobyone{az + b}{cz + d} = \twobyone{a'\br{az + b} + b'\br{cz + d}}{c'\br{az + b} + d'\br{cz + d}}, $$
+so $ z \in \L_{az + b, cz + d} $ and $ 1 \in \L_{az + b, cz + d} $. So $ \L_{az + b, cz + d} = \L_{z, 1} $, so $ \L_{\gamma z, 1} = \br{cz + d}^{-1}\L_{z, 1} $.
+\end{itemize}
+
+\begin{definition}
+A \textbf{lattice function of weight $ k $} is a function $ F : \cbr{\text{lattices in} \ \CC} \to \CC $ such that
+$$ F\br{\lambda L} = \lambda^{-k}F\br{L}, $$
+for all lattices $ L $. Given such an $ F $, can define
+$$ \function[f]{\HH}{\CC}{z}{F\br{\L_{z, 1}}}. $$
+\end{definition}
+
+If $ F $ has weight $ k $, then
+$$ f\br{\gamma z} = F\br{\L_{\gamma z, 1}} = F\br{\br{cz + d}^{-1}\L_{z, 1}} = \br{cz + d}^kF\br{\L_{z, 1}} = \br{cz + d}^kf\br{z}. $$
+
+\pagebreak
+
+\subsection{Eisenstein series}
+
+\lecture{4}{Friday}{11/10/19}
+
+\begin{definition}
+For $ L \in \CC $, define the \textbf{Eisenstein series}
+$$ \G_k\br{L} = \sum_{w \in L, \ w \ne 0} \dfrac{1}{w^k}, \qquad \g_k\br{z} = \G_k\br{\L_{z, 1}} = \underset{\br{m, n} \ne \br{0, 0}}{\sum_{m = -\infty}^\infty \sum_{n = -\infty}^\infty} \dfrac{1}{\br{mz + n}^k}. $$
+\end{definition}
+
+Then
+$$ \G_k\br{\lambda L} = \sum_{w' \in \lambda L, \ w' \ne 0} \dfrac{1}{w'^k} = \sum_{w \in L, \ w \ne 0} \dfrac{1}{\br{\lambda w}^k} = \lambda^{-k}\G_k\br{L}. $$
+
+\begin{corollary}
+$ \g_k $ satisfies the modular transformation law of weight $ k $.
+\end{corollary}
+
+The following are some questions.
+\begin{itemize}
+\item Does $ \G_k $, or $ \g_k $, converge?
+\item Is $ \g_k $ holomorphic or meromorphic on $ \HH $?
+\item Is $ \g_k $ holomorphic at $ \infty $?
+\item What is the $ q $-expansion of $ \g_k $?
+\end{itemize}
+
+\subsubsection{Convergence and holomorphy on \texorpdfstring{$ \HH $}{H}}
+
+\begin{definition}
+Let $ U \subseteq \CC $ be open. A sequence of functions $ f_n : U \to \CC $ \textbf{converges uniformly on compact sets} to $ f $ if for all $ C \subseteq U $ compact and all $ \epsilon > 0 $, there exists $ N \in \ZZ $ such that for all $ n > N $,
+$$ \abs{f\br{z} - f_n\br{z}} < \epsilon, \qquad z \in C. $$
+\end{definition}
+
+\begin{theorem}
+A uniform limit of holomorphic functions is holomorphic. If $ f_n $ converges to $ f $ uniformly on compact sets and $ f_n $ is holomorphic on $ U $, then $ f $ is holomorphic on $ U $.
+\end{theorem}
+
+\begin{theorem}
+Let $ k \ge 4 $. The series $ \g_k\br{z} $ converges absolutely and uniformly on compact subsets of $ \HH $.
+\end{theorem}
+
+\begin{proof}
+Let
+$$ P_{z, r} = \cbr{az + b \st a, b \in \RR, \ \max\br{\abs{a}, \abs{b}} = r} \subseteq \CC, $$
+so $ P_{z, r} = rP_{z, 1} $, and there are $ 8r $ points on $ P_{z, r} \cap \L_{z, 1} $. Then
+$$ \g_k\br{z} = \sum_{r = 1}^\infty \sum_{w \in \L_{z, 1} \cap P_{z, r}} \dfrac{1}{w^k}. $$
+The function $ z \mapsto \abs{z} $ attains a non-zero minimum $ \delta\br{z} $ on $ P_{z, 1} $, so on $ P_{z, 1} $, have $ \abs{z} > \delta\br{z} $, so $ 1 / \abs{z}^k < 1 / \delta\br{z}^k $. On $ P_{z, r} $, have $ \abs{z} > r\delta\br{z} $, so $ 1 / \abs{z}^k < 1 / r^k\delta\br{z}^k $. Let $ C \subseteq \HH $ be compact. Then $ z \mapsto \delta\br{z} $ is a continuous function on $ C $ and attains a minimum $ \delta_C $. For all $ z \in C $ and all $ w \in P_{z, r} $, get $ \abs{w} > r\delta_C $, so
+$$ \dfrac{1}{\abs{w}^k} < \dfrac{1}{r^k\delta_C^k}. $$
+Thus for $ z \in C $, $ \g_k\br{z} $ is dominated by
+$$ \sum_{r = 1}^\infty \dfrac{8r}{r^k\delta_C^k} = \dfrac{8}{\delta_C^k}\sum_{r = 1}^\infty \dfrac{1}{r^{k - 1}}, $$
+which converges absolutely for $ k \ge 4 $.
+\end{proof}
+
+\begin{corollary}
+$ \g_k\br{z} $ is holomorphic on $ \HH $.
+\end{corollary}
+
+\subsubsection{\texorpdfstring{$ q $}{q}-expansion and holomorphy at \texorpdfstring{$ \infty $}{infinity}}
+
+The idea is to understand series of the form
+$$ \sum_{n = -\infty}^\infty \dfrac{1}{\br{z + n}^k}. $$
+
+\begin{theorem}
+A bounded holomorphic function on all of $ \CC $ is constant.
+\end{theorem}
+
+\begin{lemma}
+\hfill
+\begin{enumerate}
+\item
+$$ \dfrac{\pi^2}{\sin^2 \pi z} =  \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2}. $$
+\item
+$$ \pi\cot \pi z = \dfrac{1}{z} + \sum_{n = 1}^\infty \br{\dfrac{1}{z - n} + \dfrac{1}{z + n}} = \dfrac{1}{z} + \sum_{n = 1}^\infty \dfrac{2z}{z^2 - n^2}. $$
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item The right hand side converges absolutely and uniformly on compact subsets of $ \CC \setminus \ZZ $, so the right hand side is holomorphic on $ \CC \setminus \ZZ $. Locally around $ z = n $, the series looks like
+$$ \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2} = \dots + \dfrac{1}{\br{z - n + 1}^2} + \dfrac{1}{\br{z - n}^2} + \dfrac{1}{\br{z - n - 1}^2} + \dots = \dfrac{1}{\br{z - n}^2} + h_1\br{z}, $$
+where $ h_1\br{z} $ is holomorphic in a neighbourhood of $ z = n $. Similarly, the left hand side is meromorphic on $ \CC $, and the Laurent series near $ z = n $ is
+$$ \dfrac{\pi^2}{\sin^2 \pi z} = \pi\br{\dfrac{1}{\pi^2\br{z - n}^2} + \dfrac{1}{3} + \dfrac{1}{15}\pi^2\br{z - n}^2 + \dots} = \dfrac{1}{\br{z - n}^2} + h_2\br{z}, $$
+where $ h_2\br{z} $ is a holomorphic function. So the difference
+$$ g\br{z} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2} - \dfrac{\pi^2}{\sin^2 \pi z} $$
+is meromorphic on $ \CC $ and holomorphic on $ \CC \setminus \ZZ $, and the Laurent expression around $ z = n $ is
+$$ g\br{z} = \dfrac{1}{\br{z - n}^2} + h_1\br{z} - \br{\dfrac{1}{\br{z - n}^2} + h_2\br{z}} = h_1\br{z} - h_2\br{z}, $$
+so $ g\br{z} $ is holomorphic at $ z = n $ for all $ n $. Consider $ t \to \pm\infty $ for $ z = a + it $. The right hand side is
+$$ R = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2} = \sum_{n = a - N}^{a + N} \dfrac{1}{\br{z - n}^2} + \sum_{n = -\infty}^{a - N - 1} \dfrac{1}{\br{z - n}^2} + \sum_{n = a + N + 1}^\infty \dfrac{1}{\br{z - n}^2} = R_0 + R_- + R_+, $$
+where $ R_0 $ has finitely many terms that converge to less than $ \epsilon / 2 $ as $ t \to \pm\infty $ and $ R_- + R_+ < \epsilon / 2 $ for $ N \gg 0 $ independent of $ t $, so $ R < \epsilon $ converges to zero. Similarly, the left hand side is
+$$ \abs{\dfrac{\pi^2}{\sin^2 \pi z}} = \abs{\dfrac{2\pi^2}{e^{\pi iz} - e^{-\pi iz}}} \to 0, $$
+so $ \lim_{t \to \infty} g\br{a + it} = 0 $. Moreover, $ g\br{z + 1} = g\br{z} $ for all $ z $. Then
+$$ S = \cbr{z \in \CC \st n - 1 \le \Re z \le n, \ -N \le \Im z \le N}, \qquad n \in \ZZ $$
+is compact, so $ \abs{g\br{z}} $ attains a maximum in $ S $, so $ g\br{z} $ is bounded in $ S $. Since $ g\br{z} $ is also bounded in $ R_- + R_+ $, $ g\br{z} $ is bounded in $ \CC $, so $ g $ is constant. Since $ \lim_{t \to \infty} g\br{a + it} = 0 $, $ g = 0 $.
+
+\pagebreak
+
+\lecture{5}{Friday}{11/10/19}
+
+\item Check that the right hand side converges absolutely and uniformly on compact subsets of $ \CC \setminus \ZZ $, so the right hand side is meromorphic on $ \CC \setminus \ZZ $. Similarly, the left hand side is also meromorphic on $ \CC \setminus \ZZ $. Comparing derivatives,
+$$ -\dfrac{\pi^2}{\sin^2 \pi z} = -\dfrac{1}{z^2} - \sum_{n = 1}^\infty \br{\dfrac{1}{\br{z - n}^2} + \dfrac{1}{\br{z + n}^2}}, $$
+so the difference is constant. Let $ z = \tfrac{1}{2} $. The left hand side is $ \pi\cot \pi / 2 = 0 $ and the right hand side is
+$$ \dfrac{2}{1} + \br{-\dfrac{2}{1} + \dfrac{2}{3}} + \br{-\dfrac{2}{3} + \dfrac{2}{5}} + \dots \to 0, \qquad n \to \infty, $$
+so the difference is zero.
+\end{enumerate}
+\end{proof}
+
+Thus
+$$ \dfrac{1}{z} + \sum_{n = 1}^\infty \br{\dfrac{1}{z - n} + \dfrac{1}{z + n}} = \pi\cot \pi z = \pi i\dfrac{e^{\pi iz} + e^{-\pi iz}}{e^{\pi iz} - e^{-\pi iz}} = \pi i\dfrac{q + 1}{q - 1} = \pi i - \dfrac{2\pi i}{1 - q} = \pi i - 2\pi i\sum_{n = 0}^\infty q^n. $$
+Take $ \tod[k - 1]{}{z} $. For $ k \ge 2 $ even, get
+$$ -\br{k - 1}!\sum_{n = -\infty}^\infty \dfrac{1}{\br{z + n}^k} = -\br{2\pi i}^k\sum_{n = 1}^\infty n^{k - 1}q^n, $$
+so
+$$ \sum_{n = -\infty}^\infty \dfrac{1}{\br{z + n}^k} = \dfrac{\br{2\pi i}^k}{\br{k - 1}!}\sum_{n = 1}^\infty n^{k - 1}q^n. $$
+Collecting powers of $ q $,
+\begin{align*}
+\g_k\br{z}
+& = \underset{\br{m, n} \ne \br{0, 0}}{\sum_{m = -\infty}^\infty \sum_{n = -\infty}^\infty} \dfrac{1}{\br{mz + n}^k} \\
+& = 2\sum_{n = 1}^\infty \dfrac{1}{n^k} + 2\sum_{m = 1}^\infty \sum_{n = -\infty}^\infty \dfrac{1}{\br{mz + n}^k} \\
+& = 2\zeta\br{k} + \dfrac{2\br{2\pi i}^k}{\br{k - 1}!}\sum_{m = 1}^\infty \sum_{n = 1}^\infty n^{k - 1}q^{nm} & \zeta\br{s} = \sum_{n = 1}^\infty n^{-s} \\
+& = 2\zeta\br{k} + \dfrac{2\br{2\pi i}^k}{\br{k - 1}!}\sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n & \sigma_{k - 1}\br{n} = \sum_{d \mid n, \ d > 0} d^{k - 1}.
+\end{align*}
+
+\begin{corollary}
+$ \g_k\br{z} $ is holomorphic at $ \infty $. In particular, $ \g_k $ is a modular form of weight $ k $.
+\end{corollary}
+
+\subsubsection{Bernoulli numbers}
+
+\begin{definition}
+The \textbf{Bernoulli numbers} $ b_k $ are defined by
+$$ \sum_{k = 0}^\infty b_k\dfrac{x^k}{k!} = \dfrac{x}{e^x - 1}, $$
+a formal power series with rational coefficients.
+\end{definition}
+
+Then
+$$ b_0 = 1, \qquad b_1 = -\tfrac{1}{2}, \qquad b_2 = \tfrac{1}{6}, \qquad b_3 = 0, \qquad b_4 = -\tfrac{1}{20}, \qquad \dots, \qquad b_{2k} \in \QQ, \qquad b_{2k + 1} = 0, \qquad \dots. $$
+
+\pagebreak
+
+\begin{proposition}
+For all even $ k $,
+$$ \zeta\br{k} = -b_k\dfrac{\br{2\pi i}^k}{2k!}. $$
+\end{proposition}
+
+\begin{proof}
+On one hand,
+$$ \pi z\cot \pi z = \pi iz + \dfrac{2\pi iz}{e^{2\pi iz} - 1} = \pi iz + \sum_{k = 0}^\infty b_k\dfrac{\br{2\pi iz}^k}{k!}. $$
+On the other hand,
+\begin{align*}
+\pi\cot \pi z
+& = \dfrac{1}{z} + \sum_{n = 1}^\infty \dfrac{2z}{z^2 - n^2}
+= \dfrac{1}{z} - \dfrac{2z}{n^2}\sum_{n = 1}^\infty \dfrac{1}{1 - z^2 / n^2} \\
+& = \dfrac{1}{z} - \sum_{n = 1}^\infty \dfrac{2}{z}\sum_{k = 1}^\infty \br{\dfrac{z^2}{n^2}}^k
+= \dfrac{1}{z} - \dfrac{2}{z}\sum_{k = 1}^\infty z^{2k}\sum_{n = 1}^\infty \dfrac{1}{n^{2k}}
+= \dfrac{1}{z} - \dfrac{2}{z}\sum_{k = 1}^\infty \zeta\br{2k}z^{2k},
+\end{align*}
+so
+$$ \pi iz + \sum_{k = 0}^\infty b_k\dfrac{\br{2\pi iz}^k}{k!} = \pi z\cot \pi z = 1 - 2\sum_{k = 1}^\infty \zeta\br{2k}z^{2k}. $$
+Comparing,
+$$ b_{2k}\dfrac{\br{2\pi i}^{2k}}{\br{2k}!} = -2\zeta\br{2k}, $$
+get the desired formula.
+\end{proof}
+
+So
+$$ \g_k\br{z} = \dfrac{-b_k\br{2\pi i}^k}{k!} + \dfrac{2\br{2\pi i}^k}{\br{k - 1}!}\sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n. $$
+Set the \textbf{normalised Eisenstein series}
+$$ \E_k = \dfrac{\g_k}{2\zeta\br{k}} = 1 - \dfrac{2k}{b_k}\sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n. $$
+
+\begin{example*}
+$$ \E_4 = 1 + 240\sum_{n = 1}^\infty \sigma_3\br{n}q^n, \qquad \E_6 = 1 - 504\sum_{n = 1}^\infty \sigma_5\br{n}q^n, $$
+$$ \E_8 = 1 + 480\sum_{n = 1}^\infty \sigma_7\br{n}q^n, \qquad \E_{12} = 1 + \dfrac{65520}{691}\sum_{n = 1}^\infty \sigma_{11}\br{n}q^n. $$
+\end{example*}
+
+\end{document}
