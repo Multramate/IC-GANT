@@ -1,0 +1,355 @@
+\def\module{M4P61 Infinite Groups}
+\def\lecturer{Dr Isabel M\"uller}
+\def\term{Autumn 2019}
+\def\cover{}
+\def\syllabus{}
+\def\thm{subsection}
+
+\input{../style/header}
+
+\begin{document}
+
+\input{../style/main}
+
+\section{Introduction}
+
+\lecture{1}{Thursday}{03/10/19}
+
+Groups are ubiquitous throughout almost all areas in mathematics and many areas in physics. They arise naturally as the symmetries of classical mathematical objects, that is bijective maps which preserve the structure of the object studied. Well known groups include $ \SSS_n $, the group of symmetries of a set of size $ n $, or $ \DDD_n $, the group of symmetries of a regular $ n $-gon. From linear algebra we also know $ \GL_n\br{\RR} $, the group of all invertible linear transformations of the vector space $ \RR^n $, and $ \O\br{n} $, its subgroup of isometries. Historically, groups appeared for the first time in the work of Galois, when he tried to understand solutions of polynomial equations by studying the group of symmetries of their roots. He was the first to use the word group in the modern sense and that work dates back to 1829, when he was 18 years old. Another main contribution to the study of groups in mathematics came from Felix Klein's Erlangen program in 1872, in which he aimed to understand and classify euclidean, affine, projective, etc geometries by studying their group of symmetries. A huge milestone in the study of groups has been the classification of finite simple groups, which is a result based on the accumulated work of more than 100 authors on tens of thousands of pages published between 1954 and 2004.
+
+This course will focus on infinite groups. More specifically, we will aim to study and understand groups by their actions on geometric objects. In that sense, we can consider the course program as an inverse of Klein's Erlangen program. This area of mathematics goes back to the 1980s, hence is comparably new, and is nowadays wider known as geometric group theory. The two leading questions will roughly be the following.
+\begin{itemize}
+\item If we know that a given group $ G $ admits an action with properties $ P $ on a space of type $ T $, what
+does this tell me about the group $ G $ itself?
+\item Assume we are given a group $ G $. Does it act on a given space $ T $ with properties $ P $?
+\end{itemize}
+
+Our main goal in the first part will be the fundamental theorem of Bass-Serre theory, which states that a group acting on a tree is the fundamental group of a graph of groups. We first will introduce the notion of graphs in the sense of Serre and study group actions on these graphs. Afterwards, we will introduce free groups as the universal object in the class of groups and study how groups can arise as fundamental groups of graphs. We will see that groups can be presented by giving a set of generators accompanied with a set of relators and point out advantages and disadvantages of this viewpoint on groups.
+
+In the second chapter, we will learn how to construct new groups out of given data via free products, free amalgamated products and HNN extensions. The counterpoint to this, that is the question on whether a given group decomposes into the amalgamated product or HNN extension of other groups, will be of special interest and we will approach it by understanding their actions on trees. This second part concludes with the introduction of graphs of groups and the fundamental theorem of Bass-Serre theory.
+
+In the last part, we will investigate the word problem and its solvability in specific classes of groups. The word problem asks if two words on the generators of some group $ G $ represent the same element in it. Even for finitely presentable groups, the word problem is not always solvable, that is decidable. We will get to know Hopfian and residually finite groups as examples of classes in which the words problem actually is solvable. If time permits, we will conclude the lecture with an introduction into hyperbolic groups.
+
+The following are reading material.
+\begin{itemize}
+\item R C Lyndon and P E Schupp, Combinatorial group theory, 2001
+\item P de la Harpe, Topics in geometric group theory, 2000
+\item O Bogopolski, Introduction to group theory, 2008
+\item J Rotman, An introduction to the theory of groups, 1995
+\item W Magnus, A Karrass, and D Solitar, Combinatorial group theory, 2005
+\item D Robinson, A course in the theory of groups, 1993
+\end{itemize}
+
+\pagebreak
+
+\section{Geometric group theory}
+
+\subsection{Bass-Serre graphs}
+
+\begin{definition}
+A \textbf{graph} $ X $ is a tuple consisting of a set of vertices $ X^0 $, a set of edges $ X^1 $, together with functions $ \alpha, \omega : X^1 \to X^0 $ and $ \overline{\cdot} : X^1 \to X^1 $, such that $ \overline{\overline{e}} = e $ and $ \alpha\br{\overline{e}} = \omega\br{e} $ for every $ e \in X^1 $. We call $ \alpha\br{e} $ the \textbf{initial vertex}, $ \omega\br{e} $ the \textbf{terminal vertex}, and $ \overline{e} $ the \textbf{inverse vertex}.
+\end{definition}
+
+A convention is that unless otherwise specified, we identify edges $ e $ and $ e' $ if $ \alpha\br{e} = \alpha\br{e'} $ and $ \omega\br{e} = \omega\br{e'} $. The following are translations of notions.
+\begin{itemize}
+\item A subgraph is an \textbf{induced} subgraph.
+\item A graph homomorphism $ \phi $ from $ X $ to $ Y $ is a mapping from $ X^i \to Y^i $ for $ i = 0, 1 $ such that $ \phi\br{\alpha\br{e}} = \alpha\br{\phi\br{e}} $ and $ \phi\br{\overline{e}} = \overline{\phi\br{e}} $.
+\item Given $ x \in X^0 $, then we call the set $ \cbr{e \st \alpha\br{e} = x} $ the \textbf{star} of $ x $, or $ \star x $. The cardinality of $ \star x $ is called the \textbf{valency} of $ x $.
+\item A homomorphism $ \phi : X \to Y $ is \textbf{locally injective} if and only if its restriction to $ \star x $ is injective for all $ x \in X^0 $.
+\item An \textbf{orientation} of $ X $ is a choice of vertices $ X_+^1 \subseteq X^1 $ which picks exactly one of each pair $ \cbr{e, \overline{e}} $.
+\end{itemize}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item Fix $ n \in \NN_{\ge 1} $ for $ n \ne 2 $. Set
+$$ \CCC_n^0 = \cbr{0, \dots, n - 1}, \qquad \CCC_n^1 = \cbr{e_i, \overline{e_i} \st i < n}, \qquad \omega\br{e_i} = \alpha\br{e_{i + 1}} = i + 1 \mod n_i, \qquad i < n. $$
+Then $ \CCC_1 $ is
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[left]{$ 0 $};
+\draw [->] (0, 0) arc (180:-170:0.5);
+\draw (1, 0) node[right]{$ e_0 = \overline{e_0} $};
+\end{tikzpicture}.
+$$
+\item $ \CCC_\infty $ is given by
+$$ \CCC_\infty^0 = \ZZ, \qquad \CCC_\infty^1 = \cbr{e_i, \overline{e_i} \st i \in \ZZ}, \qquad \omega\br{e_i} = \alpha\br{e_{i + 1}}. $$
+Then $ \CCC_\infty $ is
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[above]{$ 0 $};
+\fill (1, 0) circle (0.1) node[above]{$ 1 $};
+\draw [dashed] (-2, 0) to (-1, 0);
+\draw [->] (-1, 0) to node[above]{$ e_{-1} $} (-0.1, 0);
+\draw [->] (0, 0) to node[above]{$ e_0 $} (0.9, 0);
+\draw [->] (1, 0) to node[above]{$ e_1 $} (1.9, 0);
+\draw [dashed] (2, 0) -- (3, 0);
+\end{tikzpicture}.
+$$
+\end{itemize}
+The graphs $ \CCC_n $ and $ \CCC_\infty $ for $ n \ne 2 $ are called \textbf{circuits}.
+\end{example}
+
+\lecture{2}{Tuesday}{08/10/19}
+
+A sequence $ p = e_1 \dots e_n $ with $ e_i \in X^1 $ is called a \textbf{path} from $ \alpha\br{e_1} = x_0 $ to $ x_n = \omega\br{e_n} $ if and only if $ \omega\br{e_i} = \alpha\br{e_{i + 1}} $ for all $ i < n $. We consider vertices to be paths of length zero. A path is called \textbf{reduced} if $ \overline{e_i} \ne e_{i + 1} $. If $ p $ is a path, then $ p^{-1} = \overline{e_n} \dots \overline{e_1} $ is called its \textbf{inverse path}. A path is called a \textbf{closed path} if $ \omega\br{e_n} = \alpha\br{e_1} $.
+
+\begin{note*}
+\hfill
+\begin{itemize}
+\item If we have a path $ p $ given, we can naturally consider it to be a subgraph via
+$$ X_p^0 = \cbr{\alpha\br{e_i} \st i < n} \cup \br{\omega\br{e_n}}, \qquad X_p^1 = \cbr{e_1, \dots, e_n, \overline{e_1}, \dots, \overline{e_n}}. $$
+\item If $ p = e_1 \dots e_n $ is closed, then a permutation of the form
+$$ e_{i + 1} \dots e_ne_1 \dots e_i $$
+is called a \textbf{cyclic permutation}. $ p $ is called \textbf{cyclically reduced} if every cyclic permutation is reduced.
+\end{itemize}
+\end{note*}
+
+\pagebreak
+
+\begin{exercise}
+\hfill
+\begin{itemize}
+\item Let $ \phi : X \to Y $ be a morphism of graphs. Then $ \phi $ is locally injective if and only if the image of any reduced path is reduced.
+\item If $ p $ is closed and reduced, then it contains a circuit as a substructure.
+\end{itemize}
+\end{exercise}
+
+If $ p = e_1 \dots e_n $ and $ q = f_1 \dots f_m $ such that $ \omega\br{e_n} = \alpha\br{f_1} $ then we denote by
+$$ pq = e_1 \dots e_nf_1 \dots f_m. $$
+A graph $ X $ is \textbf{connected} if for any $ x, y \in X^0 $ there is a path from $ x $ to $ y $. A connected graph without circuits is called a \textbf{tree}.
+
+\begin{exercise}
+\hfill
+\begin{itemize}
+\item $ X $ is a tree if and only if for all $ x, y \in X^0 $ there is a unique reduced path from $ x $ to $ y $.
+\item If $ X $ is connected and $ T $ is a tree, then any $ \phi : X \to T $ locally injective is already injective and $ X $ is a tree.
+\end{itemize}
+\end{exercise}
+
+\begin{lemma}
+Let $ X $ be a connected graph and $ T \subseteq X $ a maximal subtree of $ X $, then $ T^0 = X^0 $.
+\end{lemma}
+
+\begin{proof}
+Otherwise, there is some $ x \in X^0 \setminus T^0 $. As $ X $ is connected, there is some path $ p $ starting in $ T $, ending in $ x $. As $ x \notin T^0 $, there exists an edge in $ p $ such that $ \alpha\br{e} \in T^0 $ and $ \omega\br{e} \notin T^0 $. But then
+$$ T' = \br{T^0 \cup \cbr{\omega\br{e}}, T^1 \cup \cbr{e}} $$
+is again a tree, a contradiction.
+\end{proof}
+
+Such a tree $ T $ is called a \textbf{spanning tree} for $ X $.
+
+\subsection{Cayley graphs}
+
+\begin{definition}
+Let $ G $ be a group and $ X $ a graph. We say that $ G $ \textbf{acts} on $ X $ if and only if it acts on $ X^0 $ and $ X^1 $ as sets, such that
+\begin{itemize}
+\item $ g \cdot \alpha\br{e} = \alpha\br{g \cdot e} $, and
+\item $ g \cdot \overline{e} = \overline{g \cdot e} $.
+\end{itemize}
+\end{definition}
+
+\begin{note*}
+This just means that
+$$ \function[\phi_g]{X^0}{X^0}{x}{g \cdot x} $$
+is a morphism of graphs for any $ g \in G $.
+\end{note*}
+
+\begin{notation*}
+$ gh $ is multiplication and $ g \cdot h $ is action.
+\end{notation*}
+
+\begin{remark*}
+Given $ G $ and $ X $ arbitrary, then $ G $ acts on $ X $ by $ g \cdot x = x $ and $ g \cdot e = e $. Hence we will ask for nice properties of the action.
+\end{remark*}
+
+\begin{definition}
+Assume $ G $ acts on a graph $ X $. Then we say that $ G $ \textbf{acts without inversion of edges}, if $ g \cdot e \ne \overline{e} $ for all $ e \in X^1 $. We say that $ G $ \textbf{acts freely} on $ X $, if $ g \cdot x = x $ if and only if $ g = e_G $.
+\end{definition}
+
+\begin{definition}
+Let $ G $ be a group and $ S \subseteq G \setminus \cbr{e_G} $.
+\begin{itemize}
+\item We say that $ S $ \textbf{generates} $ G $, or $ G $ is \textbf{generated} by $ S $, if there is no proper subgroup of $ G $ containing $ S $. That is, the smallest subgroup $ H $ containing $ S $ equals $ G $.
+\item If $ S $ has some property $ P $, then we say that $ G $ is \textbf{$ P $-ly generated}. For example, if $ S $ is finite, then $ G $ is finitely generated.
+\item If $ P $ is a property of subgroups, then $ S $ \textbf{$ P $-ly generates} $ G $, if the smallest subgroup of $ G $ containing $ S $ with property $ P $, is already $ G $. For example, if the smallest normal subgroup of $ G $ containing $ S $ is already $ G $, then $ S $ normally generates $ G $.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+$ \br{\ZZ, +} $ is generated by $ \cbr{1} $ or $ \cbr{-1} $ or $ \cbr{-1, 1} $ or $ \cbr{2, 3} $ or $ \ZZ \setminus \cbr{0} $.
+\end{example}
+
+\pagebreak
+
+\begin{example}
+Let $ G $ be an infinite simple group. Then it is normally generated by any $ g \in G \setminus \cbr{e_G} $. A question is can it be generated by $ g $? No. $ G $ is cyclic and simple if and only if $ G = \ZZ / p\ZZ $ for $ p $ prime. \footnote{Exercise} $ A_\infty $ is an infinite simple group.
+\end{example}
+
+\lecture{3}{Wednesday}{09/10/19}
+
+\begin{definition}
+Assume $ G $ is a group and $ S \subseteq G \setminus \cbr{e_G} $. Then we define the graph $ \Gamma\br{G, S} $ via
+\begin{itemize}
+\item the vertex set is $ \Gamma\br{G, S}^0 = G $,
+\item the set of positive edges is $ \Gamma\br{G, S}_+^1 = G \times S $,
+\item for $ e $ an edge, we have $ \alpha\br{\br{g, s}} = g $ and $ \omega\br{\br{g, s}} = gs $, and
+\item the inverse of $ \br{g, s} $ is $ \overline{\br{g, s}} = \br{gs, s^{-1}} $, where
+$$ S^{-1} = \cbr{s^{-1} \st s \in S} $$
+is a set of new formal symbols. Thus $ \br{g, s^{-1}} \notin G \times S $, even if as elements $ s^{-1} = s' \in S $. If $ s = s^{-1} $, this avoids troubles.
+\end{itemize}
+We consider $ \Gamma\br{G, S} $ to be a labelled graph, where the label of $ \br{g, s} $ is $ s $.
+\end{definition}
+
+\begin{exercise}
+\hfill
+\begin{itemize}
+\item $ \Gamma\br{G, S} $ is connected if and only if $ S $ is a generating set for $ G $.
+\item Otherwise set $ H = \abr{S} \subsetneq G $. How does $ H $ relate to $ \Gamma\br{G, S} $?
+\end{itemize}
+\end{exercise}
+
+\begin{definition}
+If $ G $ is a group and $ S \subseteq G \setminus \cbr{e_G} $ generates $ G $, then $ \Gamma\br{G, S} $ is called the \textbf{Cayley graph} of $ G $ with respect to $ S $.
+\end{definition}
+
+\begin{exercise}
+Given $ S $ a connected graph. Is there a group $ G $ and $ S \subseteq G \setminus \cbr{e_G} $ such that $ X \cong \Gamma\br{G, S} $, where $ S $ is a generating set?
+\end{exercise}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item Recall $ \CCC_n $ and $ \CCC_\infty $. Then
+$$ \CCC_n \cong \Gamma\br{\ZZ / n\ZZ, \cbr{1}}, \qquad \CCC_\infty \cong \Gamma\br{\ZZ, \cbr{1}}. $$
+\item Careful. Cayley graphs depend heavily on the choice of $ S $. It is not always easy to determine whether it is cyclic. Consider
+$$ \Gamma_1 = \Gamma\br{\SSS_3, \cbr{\br{123}, \br{12}}}, \qquad \Gamma_2 = \Gamma\br{\ZZ / 6\ZZ, \cbr{2, 3}}. $$
+Then
+$$
+\begin{array}{ccc}
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1);
+\fill (0, -1) circle (0.1);
+\fill (-0.5, -2) circle (0.1);
+\fill (0.5, -2) circle (0.1);
+\fill (-1.5, -2.5) circle (0.1);
+\fill (1.5, -2.5) circle (0.1);
+\draw [->] (0, 0) to [bend left=45] node[right]{$ \br{12} $} (0.1, -1);
+\draw [->] (0, 0) to [bend right=45] node[left]{$ \br{123} $} (-1.5, -2.4);
+\draw [->] (0, -1) to [bend left=45] node[left]{$ \br{12} $} (-0.1, 0);
+\draw [->] (0, -1) to [bend left=45] node[right]{$ \br{123} $} (0.5, -1.9);
+\draw [->] (-0.5, -2) to [bend left=45] node[left]{$ \br{123} $} (-0.1, -1);
+\draw [->] (-0.5, -2) to [bend left=45] node[below]{$ \br{12} $} (-1.4, -2.5);
+\draw [->] (0.5, -2) to [bend left=45] node[below]{$ \br{123} $} (-0.5, -2.1);
+\draw [->] (0.5, -2) to [bend left=45] node[above]{$ \br{12} $} (1.5, -2.4);
+\draw [->] (-1.5, -2.5) to [bend left=45] node[above]{$ \br{12} $} (-0.6, -2);
+\draw [->] (-1.5, -2.5) to [bend right=45] node[below]{$ \br{123} $} (1.5, -2.6);
+\draw [->] (1.5, -2.5) to [bend right=45] node[right]{$ \br{123} $} (0.1, 0);
+\draw [->] (1.5, -2.5) to [bend left=45] node[below]{$ \br{12} $} (0.5, -2.1);
+\end{tikzpicture}
+& \qquad &
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1);
+\fill (0, -1) circle (0.1);
+\fill (-0.5, -2) circle (0.1);
+\fill (0.5, -2) circle (0.1);
+\fill (-1.5, -2.5) circle (0.1);
+\fill (1.5, -2.5) circle (0.1);
+\draw [->] (0, 0) to [bend left=45] node[right]{$ 3 $} (0.1, -1);
+\draw [->] (0, 0) to [bend left=45] node[right]{$ 2 $} (1.5, -2.4);
+\draw [->] (0, -1) to [bend left=45] node[left]{$ 3 $} (-0.1, 0);
+\draw [->] (0, -1) to [bend left=45] node[right]{$ 2 $} (0.5, -1.9);
+\draw [->] (-0.5, -2) to [bend left=45] node[left]{$ 2 $} (-0.1, -1);
+\draw [->] (-0.5, -2) to [bend left=45] node[below]{$ 3 $} (-1.4, -2.5);
+\draw [->] (0.5, -2) to [bend left=45] node[below]{$ 2 $} (-0.5, -2.1);
+\draw [->] (0.5, -2) to [bend left=45] node[above]{$ 3 $} (1.5, -2.4);
+\draw [->] (-1.5, -2.5) to [bend left=45] node[left]{$ 2 $} (-0.1, 0);
+\draw [->] (-1.5, -2.5) to [bend left=45] node[above]{$ 3 $} (-0.6, -2);
+\draw [->] (1.5, -2.5) to [bend left=45] node[below]{$ 3 $} (0.5, -2.1);
+\draw [->] (1.5, -2.5) to [bend left=45] node[below]{$ 2 $} (-1.5, -2.6);
+\end{tikzpicture}
+\\
+\Gamma_1 & & \Gamma_2
+\end{array}.
+$$
+Given $ \Gamma_i $, is the group abelian? A group is abelian if and only if all its generators commute, that is $ ab = ba $. For $ \Gamma_2 $, if $ a = 2 $ and $ b = 3 $, then $ \br{2}\br{3} = \br{3}\br{2} $.
+\end{itemize}
+\end{example}
+
+\pagebreak
+
+\begin{lemma}
+\label{lem:1.2.11}
+Every group $ G $ acts on its Cayley graph by left multiplication. The multiplication is free, label-preserving, and without inversion of edges. Furthermore, every $ \phi_g $ is a label-preserving automorphism of $ \Gamma\br{G, S} $.
+\end{lemma}
+
+\begin{proof}
+Define the action via $ h \cdot g = hg $ for all $ h \in G $ and all $ g \in \Gamma\br{G, S}^0 $, and $ h \cdot \br{g, s} = \br{hg, s} $. One checks easily that this defines an action. It is obviously label-preserving and hence without inversion of edges, as positive and negative edges have disjoint label sets. Now, if $ h \cdot g = g $, then $ hg = g $ and this $ h = e_G $. Hence the action is free. Clearly, $ \phi_h $ is injective, as $ \phi_h\br{g_1} = \phi_h\br{g_2} $ if and only if $ hg_1 = hg_2 $ if and only if $ g_1 = g_2 $. For surjectivity, note that $ g = hh^{-1}g $ and hence $ g = h \cdot \br{h^{-1}g} = \phi_h\br{h^{-1}g} $.
+\end{proof}
+
+\lecture{4}{Thursday}{10/10/19}
+
+\begin{lemma}
+Let $ G $ be some group and $ S \subseteq G \setminus \cbr{e_G} $ a generating set. Denote by $ \Aut_L \Gamma\br{G, S} $ the label-preserving automorphism group of its Cayley graph. Then
+$$ G \cong \Aut_L \Gamma\br{G, S}. $$
+\end{lemma}
+
+\begin{proof}
+By \ref{lem:1.2.11} we know that
+$$ \function[\Phi]{G}{\Aut_L \Gamma\br{G, S}}{h}{\phi_h}. $$
+One easily checks that this is a group homomorphism. If $ \phi_h = \phi_g $, then in particular they agree on the vertex $ e_G $, that is $ h = \phi_h\br{e_G} = \phi_g\br{e_G} = g $, so $ g = h $ and $ \Phi $ is injective. Now consider $ \phi \in \Aut_L \Gamma\br{G, S} $ arbitrary. We claim that $ \phi = \phi_h $ with $ h = \phi\br{e_G} $. As $ \phi $ is label-preserving and every vertex has exactly one outgoing and one incoming edge with label $ s $, we know that $ \phi\br{\br{g, s}} = \br{\phi\br{g}, s} $. Hence
+$$ \phi\br{\omega\br{\br{g, s}}} = \omega\br{\phi\br{\br{g, s}}} = \omega\br{\br{\phi\br{g}, s}} = \phi\br{g}s. $$
+As $ \Gamma\br{G, S} $ is connected, we get that two label-preserving automorphisms agree if and only if they agree on one vertex. Now, $ \phi\br{e_G} = h = \phi_h\br{e_G} $, so $ \phi = \phi_h $.
+\end{proof}
+
+\begin{example}
+The group of all automorphisms of $ \CCC_n $ is called the \textbf{dihedral group} and denoted by $ \DDD_n $. Note that every such automorphism is uniquely determined by its image on $ e_0 $. Hence if we consider $ \alpha\br{e_0} = e_1 $ and $ \beta\br{e_0} = \overline{e_{n - 1}} $, then
+$$ \DDD_n = \cbr{a^k, a^kb \st k < n}, \qquad \DDD_\infty = \cbr{a^k, a^kb \st k \in \ZZ}. $$
+\end{example}
+
+\begin{exercise}
+\hfill
+\begin{itemize}
+\item Draw the Cayley graphs of $ \DDD_n $ with respect to $ S = \cbr{a, b} $.
+\item Prove that $ \DDD_3 \cong \SSS_3 $.
+\item Determine the axis of the reflection and the representation $ a^k $ and $ a^kb $ for given $ \phi $ just by using $ \omega\br{\phi\br{e_0}} $ and $ \alpha\br{\phi\br{e_0}} $.
+\end{itemize}
+\end{exercise}
+
+\subsection{Words and paths}
+
+\begin{note*}
+If for some group element $ g $, both $ g = s_1 $ and $ g^{-1} = s_2 $ are in $ S $, then we distinguish the edges $ e_1 = \br{e_G, s_1} $ and $ e_2 = \br{e_G, s_2^{-1}} $ even though $ \alpha\br{e_1} = e_G = \alpha\br{e_2} $ and $ \omega\br{e_1} = s_1 = g = s_2^{-1} = \omega\br{e_2} $.
+\end{note*}
+
+\begin{definition}
+Let $ S $ be any set. We say that $ w $ is a \textbf{word} on $ S $ if and only if it is a finite sequence of the form
+$$ w = s_1^{\epsilon_1} \dots s_n^{\epsilon_n}, \qquad s_i \in S, \qquad \epsilon_i = -1, 1. $$
+We call $ S $ an \textbf{alphabet} and elements of $ S $ are \textbf{letters}. If $ S \subseteq G $, then every word in $ S $ considered as a product, defines some group element. We write
+$$ w \underset{G}{=} s_1^{\epsilon_1} \dots s_n^{\epsilon_n} \underset{G}{=} g, $$
+and we say that $ w $ \textbf{represents} $ G $.
+\end{definition}
+
+\begin{example}
+Consider $ \ZZ $ with $ S = \cbr{s_0 = -1, s_1 = 1} $. Then $ w_1 = s_0s_1 \ne s_1^{-1}s_1 = w_2 $ but $ w_1 \underset{G}{=} w_2 $.
+\end{example}
+
+\pagebreak
+
+\begin{remark}
+If $ S $ is a generating set for $ G $, then for every $ g \in G $, every word in $ S $ corresponds to a unique path $ p_w\br{g} $ in the Cayley graph starting at $ g $ and ending at $ gh $, where $ h \underset{G}{=} w $.
+\end{remark}
+
+\begin{example}
+Let $ \ZZ \times \ZZ $ and $ S = \cbr{a = \br{1, 0}, b = \br{0, 1}} $. Consider
+$$ w_1 = aabbab^{-1}, \qquad w_2 = baaa, \qquad w_3 = aba^{-1}a^{-1}. $$
+Then $ w_1 \underset{G}{=} w_2 $ and $ w_3 \underset{G}{=} ba^{-1} \underset{G}{=} a^{-1}b $.
+\end{example}
+
+\begin{definition}
+A word $ w = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $ on $ S $ is called \textbf{reduced} if and only if $ s_i = s_{i + 1} $ implies that $ \epsilon_i = \epsilon_{i + 1} $.
+\end{definition}
+
+Consider $ s \in G $ with $ s^2 = 1 $. Then $ s \underset{G}{=} s^{-1} $ and $ w = ss^{-1} $ is not reduced. But $ w' = ss $ is reduced.
+
+\end{document}
