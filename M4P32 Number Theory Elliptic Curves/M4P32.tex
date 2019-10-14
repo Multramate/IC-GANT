@@ -423,4 +423,75 @@ Let $ u \in \ZZ_p^\times $. If $ p > 2 $, then $ u $ is a square if and only if 
 Exercise. \footnote{Exercise}
 \end{proof}
 
+\pagebreak
+
+\section{Basic algebraic geometry}
+
+\lecture{5}{Monday}{14/10/19}
+
+An affine \textbf{algebraic curve} over $ k $ is an equation
+$$ f\br{x, y} = 0, \qquad 0 \ne f \in k\sbr{x, y}. $$
+The \textbf{degree} $ n = \deg f \in \NN_{> 0} $ of this curve is the total degree, so if $ f\br{x, y} = \sum_{i, j = 0}^n a_{ij}x^iy^j $, then
+$$ \deg f = \max\cbr{i + j \st a_{ij} \ne 0}. $$
+Algebraic curves of degree one are \textbf{lines}. Algebraic curves of degree two are \textbf{conics}. Two curves $ x = 0 $ and $ y = f\br{x} $ for $ f\br{x} \in k\sbr{x} $ have intersection points the zeroes of $ f\br{x} $, and a non-zero polynomial of degree $ n $ has $ n $ roots, but $ f\br{x} = x^2 + 1 $ has no real zeroes, so need to work over $ \CC $ or some algebraically closed field.
+
+\begin{definition}
+A field $ k $ is \textbf{algebraically closed} if any non-zero polynomial $ f\br{x} \in k\sbr{x} $ has a zero in $ k $.
+\end{definition}
+
+By induction on the degree,
+$$ f\br{x} = a_n\prod_{j = 1}^n \br{x - \alpha_j}, \qquad a_n, \alpha_j \in k. $$
+B\'ezout's theorem states that two algebraic curves of degree $ d_1 $ and $ d_2 $ respectively have $ d_1d_2 $ common points.
+\begin{itemize}
+\item We need to assume that $ k $ is algebraically closed. For example, the \textbf{fundamental theorem of algebra}, by Gauss, states that $ \CC $ is algebraically closed.
+\item We need to count multiplicities. There is a definition given for multiplicity. For example, if $ \underline{0} = \br{0, 0} $ is the intersection point of two curves $ f\br{x, y} = 0 $ and $ g\br{x, y} = 0 $ for $ f, g \in \CC\sbr{x, y} $, so $ f\br{\underline{0}} = g\br{\underline{0}} = 0 $, then the \textbf{multiplicity} at $ \underline{0} $ is
+$$ \dim_\CC \CC\sbr{\sbr{x, y}} / \abr{f, g} < \infty. $$
+\item We need to enlarge the plane to contain points at infinity. For example, the \textbf{real projective plane}
+$$ \PP^2\br{\RR} = \RR^2 \cup \cbr{\text{points at infinity}} $$
+is the equivalence classes of affine lines through $ \RR^2 $ modulo parallelism, where if $ l_1, l_2 \in \RR^2 $, then $ l_1 $ is parallel to $ l_2 $ if and only if $ l_1 \cap l_2 = \emptyset $ or $ l_1 = l_2 $, which is an equivalence relation. There is an injection from points in $ \cbr{y = 1} $ to affine lines through $ \underline{0} $, and for any class of parallel affine lines on $ \cbr{y = 1} $ there exists a unique line going through $ \underline{0} $ and parallel to these lines, so
+$$ \PP^2\br{\RR} = \cbr{\text{lines from} \ \cbr{y = 1}} \cup \cbr{\text{lines parallel to} \ \cbr{y = 1}}. $$
+This collection of subsets are called \textbf{projective lines}, which are two-dimensional subspaces in $ \RR^3 $, and points are one-dimensional subspaces in $ \RR^3 $. The set of points at infinity is a projective line, and any affine line $ l \subset \RR^2 $ gives a projective line $ l^\# = l \cup \cbr{\text{parallelism class}} $. Thus any two different projective lines intersect in exactly one point, and this definition makes sense for any field.
+\end{itemize}
+
+The following is an equivalent description of $ \PP^2\br{k} $. Let $ k $ be any field. Then
+$$ \PP^2\br{k} = k^3 \setminus \cbr{\underline{0}} / \sim $$
+is the equivalence classes $ \br{x_0, x_1, x_2} $ such that $ x_i \in k $ are not all zero modulo $ \sim $, where $ \underline{x} \sim \underline{y} $ if and only if $ \underline{x} = \lambda \cdot \underline{y} $ for $ \lambda \in k \setminus \cbr{\underline{0}} = k^* $.
+
+\begin{definition}
+The \textbf{projective $ n $-space} is
+$$ \PP^n\br{k} = k^{n + 1} \setminus \cbr{\underline{0}} / \sim. $$
+\end{definition}
+
+\begin{notation}
+The \textbf{homogeneous coordinates} $ \sbr{x_0 : \dots : x_n} $ is an equivalence class of non-zero vectors in $ k^{n + 1} $ modulo $ \sim $, so
+$$ \PP^n\br{k} = \cbr{\sbr{x_0 : \dots : x_n} \st x_i \in k \ \text{not all zero}}. $$
+\end{notation}
+
+\pagebreak
+
+\begin{definition}
+The \textbf{affine $ n $-space} is
+$$ \AA^n\br{k} = k^n. $$
+\end{definition}
+
+\begin{lemma}
+Let
+$$ \function[\phi_i]{\AA^n\br{k}}{\PP^n\br{k}}{\br{x_0, \dots, x_{n - 1}}}{\sbr{x_0 : \dots : x_{i - 1} : 1 : x_{i + 1} : \dots : x_{n - 1}}}. $$
+Then $ \phi_i $ is injective, and
+$$ \PP^n\br{k} = \bigcup_{i = 0}^n \Im \phi_i. $$
+\end{lemma}
+
+\begin{proof}
+Obvious.
+\end{proof}
+
+\begin{exercise}
+There is an isomorphism
+$$ \function{\PP^{n - 1}\br{k}}{\PP^n\br{k} \setminus \phi_n\br{\AA^n\br{k}}}{\sbr{x_0 : \dots : x_{n - 1}}}{\sbr{x_0 : \dots : x_{n - 1} : 0}}. $$
+\end{exercise}
+
+\begin{definition}
+The \textbf{points at infinity} of $ \PP^n\br{k} $ are the ones not in $ \phi_n\br{\AA^n\br{k}} $. They are recognisable as the graph of $ X_n = 0 $.
+\end{definition}
+
 \end{document}
