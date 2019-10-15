@@ -494,4 +494,82 @@ $$ \function{\PP^{n - 1}\br{k}}{\PP^n\br{k} \setminus \phi_n\br{\AA^n\br{k}}}{\s
 The \textbf{points at infinity} of $ \PP^n\br{k} $ are the ones not in $ \phi_n\br{\AA^n\br{k}} $. They are recognisable as the graph of $ X_n = 0 $.
 \end{definition}
 
+\lecture{6}{Tuesday}{15/10/19}
+
+Let $ \lambda : k^{n + 1} \to k $ be a non-trivial linear function. The image of
+$$ \Ker \lambda = \cbr{\alpha_0x_0 + \dots + \alpha_nx_n = 0 \st \br{x_0, \dots, x_n} \in k^{n + 1}, \ \text{not all} \ \alpha_i \in k \ \text{are zero}} \subset \PP^n\br{k} $$
+with respect to the quotient map $ k^{n + 1} \setminus \cbr{\underline{0}} \twoheadrightarrow \PP^n\br{k} $ is a \textbf{linear hyperplane}. This can be generalised by taking homogeneous polynomials in general.
+
+\begin{definition}
+A polynomial $ F\br{X_0, \dots, X_n} \in k\sbr{X_0, \dots, X_n} $ is \textbf{homogeneous} of degree $ d \in \NN $ if
+$$ F\br{X_0, \dots, X_n} = \sum \alpha_{i_0 \dots i_n}X_0^{i_0} \dots X_n^{i_n}, \qquad i_0 + \dots + i_n = d, $$
+so you only have degree $ d $ terms.
+\begin{itemize}
+\item If $ f $ is a degree $ d $ polynomial in $ k\sbr{x_1, \dots, x_n} $, then here is how to \textbf{homogenise} it. Change $ x_i $ to $ X_i $ and then introduce a new variable $ X_0 $ and multiply each term with a suitable power of $ X_0 $ such that the resulting polynomial is homogeneous of the smallest possible degree.
+\item If $ F $ is a degree $ d $ homogeneous polynomial in $ k\sbr{X_0, \dots, X_n} $, then here is how to \textbf{dehomogenise} it. Choose $ i $ with $ 0 \le i \le n $, set $ X_i = 1 $ and change all the other $ X_j $ to $ x_j $. If we chose $ i = 0 $ then this recovers the initial equation.
+\end{itemize}
+If $ f \in k\sbr{x_1, \dots, x_n} $ then the \textbf{points at infinity} of $ f = 0 $ are the zeroes of $ F $, the homogenisation of $ f $, which are in $ \PP^n\br{k} $ but not in $ \AA^n\br{k} $.
+\end{definition}
+
+If $ F \in k\sbr{X_0, \dots, X_n} $ is homogeneous of degree $ d $, then
+$$ \Z\br{F} = \cbr{\sbr{x_0 : \dots : x_n} \in \PP^n\br{k} \st F\br{x_0, \dots, x_n} = 0} $$
+does not depend on the representative. Homogenisation allows us to extend an algebraic subset in $ \AA^n\br{k} $ to $ \PP^n\br{k} $.
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ X^2 + YZ + Z^2 = 0 $ is homogeneous of degree two and gives rise to a conic in $ \PP^2\br{k} $.
+\item $ x^2 + x^3 = y^2 $ and $ xy = 1 $ homogenises to $ X^2Z + X^3 = Y^2Z $ and $ XY = Z^2 $.
+\item $ X^2 + Y^2 = Z^2 $ and $ YZ = X^2 $ dehomogenises to $ x^2 + y^2 = 1 $ and $ y = x^2 $.
+\end{itemize}
+\end{example*}
+
+\pagebreak
+
+\begin{theorem}[B\'ezout's theorem]
+If $ F, G \in k\sbr{X_0, X_1, X_2} $ be homogeneous non-zero polynomials of degree $ m $ and $ n $ respectively without common factors, so $ \gcd\br{f, g} = 1 $ up to associates, then
+$$ \abs{\cbr{F = 0} \cap \cbr{G = 0}} = m \cdot n, $$
+counted with multiplicities, where $ m \cdot n $ is always a positive integer.
+\end{theorem}
+
+Let $ \overline{k} $ be the \textbf{algebraic closure} of $ k $, the smallest algebraically closed field containing $ k $.
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ \overline{\QQ} $ is a subfield of $ \CC $.
+\item If $ k $ is algebraically closed, then $ k = \overline{k} $, so $ \overline{\CC} = \CC $, and $ \overline{\RR} = \CC $.
+\item If $ K $ is a field and $ \CCC $ is a collection of subfields $ k \in \CCC $ such that $ k $ are algebraically closed, then $ \bigcap_{k \in \CCC} k \subseteq K $ is an algebraically closed subfield.
+\end{itemize}
+\end{example*}
+
+\begin{corollary}
+If $ F $ and $ G $ are two homogeneous polynomials of degree $ a $ and $ b $ in $ k\sbr{X, Y, Z} $, for $ k $ any field not necessarily algebraically closed, then either the graphs of $ F = 0 $ and $ G = 0 $ in $ \PP^2\br{k} $ have at most $ ab $ points in common, or $ F $ and $ G $ have a common factor.
+\end{corollary}
+
+\begin{proof}
+Immediate from B\'ezout applied to $ \overline{k} $.
+\end{proof}
+
+\begin{definition}
+Let $ k $ be a field of $ \ch k \nmid d $, and let $ f \in k\sbr{x_1, \dots, x_n} $ be a polynomial of degree $ d > 0 $. Let $ P \in \AA^n\br{k} $ be a point on $ f = 0 $, that is $ f\br{P} = 0 $. Then we say that $ P $ is a \textbf{smooth point} or \textbf{non-singular point} if one of the partial derivatives of $ f $ does not vanish at $ P $, that is if there exists some $ i $ with $ 1 \le i \le n $ such that $ \tpd{f}{x_i}\br{P} = 0 $. Note that the definition of a partial derivative is formal, not a limiting process. We say that $ P $ is a \textbf{singular point} if all the partial derivatives vanish at $ P $.
+\end{definition}
+
+\begin{definition}
+Let $ k $ be a field of $ \ch k \nmid d > 0 $, and let $ F \in k\sbr{X_0, \dots, X_n} $ be a homogeneous polynomial of degree $ d $. Let $ P \in \PP^n\br{k} $. Then $ P $ is a \textbf{singular point} of $ F = 0 $ if any of the following conditions is true.
+\begin{itemize}
+\item $ \tpd{F}{X_i}\br{P} = 0 $ for $ i = 0, \dots, n $.
+\item $ F\br{P} = 0 $ and $ \tpd{F}{X_i}\br{P} = 0 $ for $ i = 0, \dots, n $.
+\item For some of $ \phi_i : \AA^n\br{k} \to \PP^n\br{k} $ such that $ P = \phi_i\br{p} $ for some $ p \in \AA^n\br{k} $, if $ f $ is a dehomogenisation of $ F $ then $ f\br{p} = 0 $ and $ \tpd{f}{x_i}\br{p} = 0 $ for all $ i $.
+\end{itemize}
+\end{definition}
+
+\begin{example*}
+$ x^3 = y^2 $ is a \textbf{cusp}.
+\end{example*}
+
+\begin{definition}
+If $ k $ is as above, then $ f = 0 $ or $ F = 0 $ is \textbf{non-singular} in $ \AA^n\br{k} $ or $ \PP^n\br{k} $ if it has no singular points over $ \overline{k} $.
+\end{definition}
+
 \end{document}
