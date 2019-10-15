@@ -350,4 +350,84 @@ The radical of $ I $ is the intersection of all prime ideals of $ A $ that conta
 Apply Proposition \ref{prop:5.3} to $ A / I $.
 \end{proof}
 
+\lecture{5}{Tuesday}{15/10/19}
+
+\begin{definition}
+Let $ I $ be an indexing set. For each $ i \in I $ we are given a ring $ R_i $. Consider the product set $ \prod_{i \in I} R_i $. This is $ \br{x_i}_{i \in I} $ for $ x_i \in R_i $. Define
+$$ 0 = \br{0}_{i \in I} \in \prod_{i \in I} R_i, \qquad 1 = \br{1}_{i \in I} \in \prod_{i \in I} R_i. $$
+Define addition and multiplication coordinate-wise, so
+$$ \br{a_i}_{i \in I} + \br{b_i}_{i \in I} = \br{a_i + b_i}_{i \in I}, \qquad \br{a_i}_{i \in I} \cdot \br{b_i}_{i \in I} = \br{a_i \cdot b_i}_{i \in I}, \qquad \br{a_i}_{i \in I}, \br{b_i}_{i \in I} \in \prod_{i \in I} R_i. $$
+Then $ \prod_{i \in I} R_i $ is a ring, the \textbf{product of rings}.
+\end{definition}
+
+A warning is if $ I $ has at least two elements, then $ \prod_{i \in I} R_i $ has zero-divisors.
+
+\begin{example*}
+$ R_1 \times R_2 $ has $ \br{1, 0} \cdot \br{0, 1} = \br{0, 0} = 0 $.
+\end{example*}
+
+If $ h_i : R \to R_i $ is a ring homomorphism for $ i \in I $, then $ \br{h_i}_{i \in I} $ is a ring homomorphism $ R \to \prod_{i \in I} R_i $.
+
+\begin{remark}
+Let $ \ppp_i $ for $ i \in I $ be all prime ideals of $ R $. Let $ h_i : R \to R / \ppp_i $. Then
+$$ h = \br{h_i}_{i \in I} : R \to \prod_{i \in I} R / \ppp_i $$
+is a homomorphism, and
+$$ \Ker h = \bigcap_{i \in I} \Ker h_i = \bigcap_{i \in I} \ppp_i = \NNN\br{R}. $$
+So there is an injective map
+$$ R / \NNN\br{R} \hookrightarrow \prod_{i \in I} R / \ppp_i, $$
+a product of integral domains. Now take $ f_j : R \to R / M_j $, so if we take the indexing set $ J $ to be the set of all maximal ideals of $ R $, then we obtain an injective map
+$$ R / \JJJ\br{R} \hookrightarrow \prod_{j \in J} R / M_j, $$
+a product of fields.
+\end{remark}
+
+\pagebreak
+
+\section{Localisation of rings}
+
+\begin{example*}
+Fix a prime $ p $. Then
+$$ \ZZ \subset \cbr{\dfrac{m}{p^k} \st m \in \ZZ, \ k \in \ZZ_{\ge 0}} \subset \QQ. $$
+\end{example*}
+
+\begin{definition}
+A subset $ S $ of a ring $ A $ is called a \textbf{multiplicative set} if $ 1 \in S $ and $ 0 \notin S $, and $ S $ is closed under multiplication.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item Let $ a \in A $ be a non-nilpotent. Then $ \cbr{1, a, \dots} $ is a multiplicative set.
+\item Let $ \ppp \subsetneq A $ be a prime ideal. Then $ A \setminus \ppp $ is a multiplicative set. Indeed, if $ x \notin \ppp $ and $ y \notin \ppp $ then $ xy \notin \ppp $ by the definition of a prime ideal.
+\item If we have a family $ \ppp_i $ for $ i \in I $ of prime ideals, then $ A \setminus \bigcup_{i \in I} \ppp_i $ is a multiplicative set.
+\item $ A^* $ is a multiplicative set.
+\item All non-zero-divisors in $ A $ form a multiplicative set.
+\item Let $ I \subsetneq A $ be an ideal. Then $ 1 + I = \cbr{1 + x \st x \in I} $ is a multiplicative set.
+\end{itemize}
+\end{example}
+
+\begin{definition}
+Consider $ A \times S $ and the equivalence relation on $ A \times S $ defined as
+$$ \br{a, s} \sim \br{b, t} \qquad \iff \qquad \exists u \in S, \ u\br{at - bs} = 0. $$
+Check that this is indeed an equivalence relation. \footnote{Exercise} The following is some notation.
+\begin{itemize}
+\item The equivalence class of $ \br{a, s} $ is written as $ a / s $. For example, if $ t \in S $, then $ a / s = at / st $.
+\item The set of equivalence classes is denoted by $ S^{-1}A $.
+\end{itemize}
+Define
+$$ \dfrac{a}{s} + \dfrac{b}{t} = \dfrac{at + bs}{st}, \qquad \dfrac{a}{s} \cdot \dfrac{b}{t} = \dfrac{ab}{st}. $$
+Need to check that these operations are well-defined. \footnote{Exercise} Define $ \tfrac{0}{1} $ as the zero of $ S^{-1}A $, and $ \tfrac{1}{1} $ as the one of $ S^{-1}A $. Then $ S^{-1}A $ is a ring, the \textbf{localisation of $ A $ with respect to a multiplicative set $ S $}.
+\end{definition}
+
+\begin{lemma}
+There is a ring homomorphism
+$$ \function[f]{A}{S^{-1}A}{x}{\dfrac{x}{1}}. $$
+This $ f $ is injective if and only if $ S $ has no zero-divisors.
+\end{lemma}
+
+\begin{proof}
+If $ S $ contains a zero-divisor, say $ u $, then there exists $ a \in A $ for $ a \ne 0 $ such that $ ua = 0 $. Then
+$$ f\br{a} = \dfrac{a}{1} = \dfrac{au}{u} = \dfrac{0}{u} = 0. $$
+So $ \Ker f $ contains $ a $, hence $ f $ is not injective. If $ f $ has no zero-divisors, then $ u \cdot a = u\br{a - 0} \ne 0 $ if $ a \ne 0 $ and any $ u \in S $. Hence $ f\br{a} \ne 0 $.
+\end{proof}
+
 \end{document}
