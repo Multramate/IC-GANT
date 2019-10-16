@@ -430,4 +430,43 @@ $$ f\br{a} = \dfrac{a}{1} = \dfrac{au}{u} = \dfrac{0}{u} = 0. $$
 So $ \Ker f $ contains $ a $, hence $ f $ is not injective. If $ f $ has no zero-divisors, then $ u \cdot a = u\br{a - 0} \ne 0 $ if $ a \ne 0 $ and any $ u \in S $. Hence $ f\br{a} \ne 0 $.
 \end{proof}
 
+\lecture{6}{Thursday}{16/10/19}
+
+If $ A $ is an integral domain, then $ \Ker f = 0 $. So $ A \hookrightarrow S^{-1}A $.
+
+\pagebreak
+
+\begin{example*}
+Let $ R = \ZZ $.
+\begin{itemize}
+\item If $ S = \cbr{1, a, \dots} $, then
+$$ S^{-1}\ZZ = \cbr{\dfrac{n}{a^m} \st n \in \ZZ, \ m \in \ZZ_{\ge 0}}. $$
+\item If $ S = \ZZ \setminus p\ZZ $, then
+$$ S^{-1}\ZZ = \cbr{\dfrac{n}{m} \st p \nmid m}. $$
+\item If $ S = \ZZ \setminus \bigcup_{p_i \ \text{prime}} p_i\ZZ $, then
+$$ S^{-1}\ZZ = \cbr{\dfrac{n}{m} \st p_i \nmid m}. $$
+\item If $ S = \ZZ^* = \cbr{\pm 1} $, then $ S^{-1}\ZZ = \ZZ $.
+\item If $ S = \cbr{\text{all non-zero elements}} $, then $ S^{-1}\ZZ = \QQ $.
+\item If $ S = \cbr{1 + I \st I \subset \ZZ \ \text{ideal}} = \cbr{1 + nk \st k \in \ZZ} $, then
+$$ S^{-1}\ZZ = \cbr{\dfrac{m}{1 + nk} \st m, k \in \ZZ}, $$
+where $ n $ is fixed.
+\end{itemize}
+\end{example*}
+
+\begin{example*}
+Let $ R = k\sbr{x} $, where $ k $ is a field.
+\begin{itemize}
+\item If $ S = k\sbr{x}^* = k^* $, then $ S^{-1}k\sbr{x} = k\sbr{x} $.
+\item If $ S = \cbr{\text{all non-zero elements}} $, then
+$$ S^{-1}k\sbr{x} = k\br{x} = \cbr{\dfrac{f\br{x}}{g\br{x}} \st g\br{x} \ \text{arbitrary non-zero polynomial}}. $$
+\end{itemize}
+\end{example*}
+
+\begin{example}
+Let $ k $ be a field, and let $ A = k\sbr{x, y} / \abr{xy} $. Note that $ A $ has zero-divisors, since $ xy = 0 $ in $ A $, but $ x \ne 0 $ in $ A $ and $ y \ne 0 $ in $ A $. Then $ S = \cbr{1, x, \dots} $ is a multiplicative set, since $ x^n \ne 0 $ in $ A $ for $ n = 1, 2, \dots $, because no power of the polynomial $ x $ is in $ \abr{xy} $. What is $ S^{-1}A $? Let $ f : A \to S^{-1}A $. Then $ a \in \Ker f $ if and only if $ a / 1 = 0 / 1 $, if and only if $ u \cdot \br{a \cdot 1 - 0 \cdot 1} = 0 $ for some $ u \in S $, if and only if $ ua = 0 $. Let $ a \ne 0 $. Then $ u = 1 $ is not interesting. Take $ u = x $ and $ a = y $, then $ xy = 0 $, hence $ y \in \Ker f $. Then $ f $ is a homomorphism, hence $ \Ker f $ is an ideal. So $ \abr{y} = yA \subset \Ker f $. In general,
+$$ a = \sum_{i, j \ge 0} a_{ij}x^iy^j \equiv a_{00} + \sum_{i \ge 1} a_{i0}x^i + \sum_{j \ge 1} a_{0j}y^j \mod \abr{xy}. $$
+Then $ \Ker f = yA = \abr{y} $, since $ \sum_{j \ge 1} a_{0j}y^j $ goes to zero, since it is annihilated by $ x $, and $ x^n \cdot \sum_{i \ge 0} a_ix^i $ is never zero in $ A $. Thus $ f\br{A} = k\sbr{x} $, and
+$$ S^{-1}A = \cbr{\dfrac{f\br{x}}{x^n} \st f\br{x} \in k\sbr{x}, \ n \ge 0} = k\sbr{x, x^{-1}} = \cbr{\sum_{i \in \ZZ, \ a_i = 0 \ \text{for almost all} \ i} a_ix^i \st a_i \in k}. $$
+\end{example}
+
 \end{document}
