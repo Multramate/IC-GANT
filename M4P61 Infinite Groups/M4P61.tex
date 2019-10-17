@@ -398,4 +398,48 @@ This proof generalises to the so-called ping-pong lemma, telling when two subgro
 
 Lecture 6 is a problem class.
 
+\pagebreak
+
+\lecture{7}{Thursday}{17/10/19}
+
+\begin{proposition}[Free groups III]
+Let $ S $ be an arbitrary non-empty set. Then there is a \textbf{group $ \F\br{S} $ which is free on $ S $}.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item Set $ S^\pm = \cbr{s^\epsilon \st \epsilon = -1, 1} $. If $ s_1 = s_2^{-1} \in S^\pm $, identify $ s_1^{-1} = \br{s_2^{-1}}^{-1} = s_2 $. Set $ \F'\br{S} $ to be the set of all words on $ S $. As usual, we denote the empty word by $ \epsilon $. Further, for two words $ u_1 $ and $ u_2 $ given by $ u_i = s_{i, 1}^{\epsilon_{i, 1}} \dots s_{i, n_i}^{\epsilon_{i, n_i}} $ let $ u_1u_2 = s_{1, 1}^{\epsilon_{1, 1}} \dots s_{1, n_1}^{\epsilon_{1, n_1}}s_{2, 1}^{\epsilon_{2, 1}} \dots s_{2, n_2}^{\epsilon_{2, n_2}} $. Note that this is not a group, since no inverses.
+\item We will define an equivalence relation on $ \F'\br{S} $. Say that $ u \sim v $ if and only if there exists a finite sequence of words such that $ u = u_0, \dots, u_n = v $ and each $ u_{i + 1} $ arises from $ u_i $ by inserting or deleting a subword of the form $ ss^{-1} $ for $ s \in S^\pm $. We say that $ u $ is reduced, if it does not contain a subword $ ss^{-1} $.
+\item Claim that every equivalence class contains exactly one reduced word. Assume $ u \sim v $. Then there exists $ u = u_0, \dots, u_n = v $. Choose this sequence such that $ \sum_{i = 0}^n \abs{u_i} $ is minimal, where $ \abs{u_i} $ denotes the word length of $ u_i $. As $ u $ and $ v $ are reduced, we know that $ \abs{u_0} < \abs{u_1} $ and $ \abs{u_n} < \abs{u_{n - 1}} $. Then there exists $ 0 < i < n $ such that $ \abs{u_{i - 1}} < \abs{u_i} $ and $ \abs{u_{i + 1}} < \abs{u_i} $. Say, $ u_i $ arises from $ u_{i - 1} $ by adding $ ss^{-1} $ and $ u_{i + 1} $ from $ u_i $ by deleting $ tt^{-1} $. Now either $ ss^{-1} $ and $ tt^{-1} $ are disjoint in $ u_i $, then replace the sequence $ u_{i - 1}u_iu_{i + 1} $ by $ u_{i - 1}u_i'u_{i + 1} $ where $ u_i' $ arises from $ u_{i - 1} $ by deleting $ tt^{-1} $, or not, then cancelling the subsequence $ u_iu_{i + 1} $ still gives a connecting sequence from $ u $ to $ v $. In both cases we obtain a sequence of smaller length, a contradiction.
+\item Denote by $ \sbr{u} $ the class $ u / \sim $. We set $ \sbr{u}\sbr{v} = \sbr{uv} $. This is clearly independent of choice, that is if $ u' \sim u $, then $ u'v \sim uv $. Hence associativity is clear. Also, if $ w = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $, then $ \sbr{w} = \sbr{s_1^{\epsilon_1}} \dots \sbr{s_n^{\epsilon_n}} $. Hence $ \sbr{S} = \cbr{\sbr{s} \st s \in S} $ generates $ \F\br{S} $. By the claim, every word has a unique reduced representation in $ \sbr{S} $. Hence $ \F\br{S} $ is free on $ \sbr{S} $.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}[Free groups IV]
+\label{prop:1.4.6}
+Assume $ F $ is a group and $ S \subseteq F $ is any set. Then $ F $ is a \textbf{free group with basis $ S $} if and only if $ F $ is the universal object in the class of groups with respect to $ S $, that is whenever $ G $ is a group and $ f : S \to G $ is any map, there exists a unique group homomorphism $ \phi : F \to G $ extending $ f $, so
+$$
+\begin{tikzcd}
+S \arrow{r}{f} & G \\
+F \arrow{u}{\id} \arrow[swap]{ur}{\exists !f} &
+\end{tikzcd}.
+$$
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Assume $ F $ is free on $ S $ and $ f : S \to G $ is any map. We first prove uniqueness of $ \phi $. By definition, for any $ g \in F $ there exists a unique reduced word on $ S $ such that $ w \underset{F}{=} g $, say $ w = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $. Then, if $ \phi : S \to G $ is a homomorphism of groups extending $ f $, clearly,
+$$ \phi\br{g} = f\br{s_1}^{\epsilon_1} \dots f\br{s_n}^{\epsilon_n}. $$
+Hence unique. Now for existence we prove that this actually is a homomorphism of groups, that is $ \phi\br{gh} = \phi\br{g}\phi\br{h} $. Let $ w_g \underset{F}{=} g $ and $ w_h \underset{F}{=} h $ be reduced. Then $ w_gw_h \underset{F}{=} gh $, but maybe not reduced. Say $ w_{gh} $ is the reduced word. If $ w_gw_h $ is not reduced, then $ w_g = w_g^1w_g^2 $ and $ w_h = w_h^1w_h^2 $ such that $ w_g^2 = \br{w_h^1}^{-1} $. Then clearly
+$$ \phi\br{gh} = f\br{w_g^1w_h^2} = f\br{w_g^1}f\br{w_g^2}f\br{w_h^1}^{-1}f\br{w_h^2} = \phi\br{g}\phi\br{h}. $$
+Hence $ \phi $ is indeed a group homomorphism.
+
+\pagebreak
+
+\item[$ \impliedby $] Let $ F $ be any group and $ S \subseteq F $ such that for any group $ G $ and $ f : S \to G $ there exists a unique homomorphism $ \phi : F \to G $ extending $ f $. First, consider $ G_1 = \abr{S} \le F $. Then the map $ f : S \to F $ sending $ S $ to itself extends to some $ \phi : F \to F $ with image $ G_1 $. But also, the homomorphism $ \id_F : F \to F $ is a homomorphism extending $ f $. By uniqueness, $ \phi = \id_F $ whence $ \abr{S} = G_1 = F $. Hence $ S $ generates $ F $. Next, consider $ G = \F\br{S} $ and $ f : S \to \F\br{S} $ the natural embedding from $ S $ into $ \F\br{S} $. We want to show that any element in $ F $ has a unique reduced representation on $ S $. Indeed, assume $ w = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $ is reduced for $ n > 0 $, but $ w \underset{F}{=} e_F $. Then any homomorphism $ \phi : F \to \F\br{S} $ extending $ f $ has to send $ w_G $ simultaneously to $ e_{\F\br{S}} $ and to $ w_{\F\br{S}} $, hence $ e_{\F\br{S}} \underset{\F\br{S}}{=} w $, a contradiction.
+\end{itemize}
+\end{proof}
+
 \end{document}
