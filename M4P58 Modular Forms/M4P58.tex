@@ -579,4 +579,98 @@ Let $ f $ be a non-zero meromorphic modular form of weight $ k $. Then
 $$ \ord_\infty f + \dfrac{\ord_\rho f}{3} + \dfrac{\ord_i f}{2} + \sum_{p \in \HH / \SL_2\br{\ZZ}, \ p \nsim \cbr{i, \rho}} \ord_p f = \dfrac{k}{12}. $$
 \end{theorem}
 
+\lecture{8}{Friday}{18/10/19}
+
+\begin{proof}
+Consider the closed curve $ C_{N, \epsilon} $,
+$$
+\begin{tikzpicture}[scale=4]
+\draw [dotted, thick] (-0.5, 0.866) arc (120:60:1);
+\draw [dotted, thick] (-0.5, 0.866) to (-0.5, 2);
+\draw [dotted, thick] (0.5, 0.866) to (0.5, 2);
+\draw (-0.5, 0.916) arc (90:25:0.05);
+\draw (-0.455, 0.89) arc (117:107.5:1);
+\draw (-0.3, 0.955) arc (-165:15:0.05);
+\draw (-0.205, 0.98) arc (101:92:1);
+\draw (-0.05, 0.995) arc (180:0:0.05);
+\draw (0.205, 0.98) arc (79:88:1);
+\draw (0.3, 0.955) arc (-15:165:0.05);
+\draw (0.455, 0.89) arc (63:72.5:1);
+\draw (0.5, 0.916) arc (90:155:0.05);
+\draw (-0.5, 1.5) to node[above]{$ \Im z = N $} node{$ < $} (0.5, 1.5);
+\draw (-0.5, 0.916) to (-0.5, 1.2);
+\draw (-0.5, 1.2) arc (270:90:0.05);
+\draw (-0.5, 1.3) to (-0.5, 1.5);
+\draw (0.5, 0.916) to (0.5, 1.2);
+\draw (0.5, 1.2) arc (270:90:0.05);
+\draw (0.5, 1.3) to (0.5, 1.5);
+\fill (0, 1) circle (0.0125) node[below]{$ i $};
+\fill (-0.25, 0.965) circle (0.0125) node[above]{$ z $};
+\fill (0.25, 0.965) circle (0.0125) node[below]{$ z $};
+\fill (-0.5, 1.25) circle (0.0125) node[right]{$ z $};
+\fill (-0.5, 0.866) circle (0.0125) node[below left]{$ \rho $};
+\fill (0.5, 1.25) circle (0.0125) node[right]{$ z $};
+\fill (0.5, 0.866) circle (0.0125) node[below right]{$ \rho' $};
+\end{tikzpicture},
+$$
+where the $ z $'s are zeroes or poles of $ f $, and the circles are of radius $ \epsilon $. Consider
+$$ \dfrac{1}{2\pi i}\intd{C_{N, \epsilon}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p \in \HH / \SL_2\br{\ZZ}, \ p \nsim \cbr{i, \rho}} \ord_p f, \qquad \epsilon \to 0. $$
+So it suffices to show
+$$ \lim_{\epsilon \to 0, \ N \to \infty} \dfrac{1}{2\pi i}\intd{C_{N, \epsilon}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = -\ord_\infty f - \dfrac{\ord_\rho f}{3} - \dfrac{\ord_i f}{2} + \dfrac{k}{12}. $$
+The vertical parts of the boundary cancel. The integral over the circular part of $ \partial\DDD $ approaches
+$$ \dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} + \dfrac{1}{2\pi i}\intd{i}{\rho'}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \dfrac{1}{2\pi i}\br{\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} - \intd{\rho}{i}{\dfrac{f'\br{-1 / z}}{f\br{-1 / z}}}{z}} $$
+Since $ f\br{-1 / z} = z^kf\br{z} $,
+$$ \d\br{z^kf\br{z}} = \br{kz^{k - 1}f\br{z} + z^kf'\br{z}}\d z, $$
+so
+$$ \dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} + \dfrac{1}{2\pi i}\intd{i}{\rho'}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}} - \dfrac{kz^{k - 1}f\br{z} + z^kf'\br{z}}{z^kf\br{z}}}{z} = -\dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{k}{z}}{z} = \dfrac{k}{12}. $$
+Since $ \d q = 2\pi iq\d z $, the top part is
+$$ \dfrac{1}{2\pi i}\intd{\tfrac{1}{2} + iN}{\tfrac{1}{2} - iN}{\dfrac{f'\br{z}}{f\br{z}}}{z} = -\dfrac{1}{2\pi i}\intd{\text{circle of radius} \ \epsilon}{}{\dfrac{g'\br{q}}{g\br{q}}}{q} = -\ord_\infty f. $$
+Near $ i $, $ f' / f = \ord_i f\br{z - i}^{-1} + h\br{z} $, where $ h\br{z} $ is holomorphic and $ h\br{z} \to 0 $ as $ \epsilon \to 0 $. Then the circle $ C_{\epsilon, i} $ of radius $ \epsilon $ centered at $ i $ is
+$$ \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{C_{\epsilon, i}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{\text{arc of half circle centered at} \ i}{}{\dfrac{\ord_i f}{z - i}}{z} = -\dfrac{\ord_i f}{2}. $$
+Similarly, at $ \rho $ and $ \rho' $, get that the circles $ C_{\epsilon, \rho} $ and $ C_{\epsilon, \rho'} $ of radius $ \epsilon $ centered at $ \rho $ and $ \rho' $ are
+$$ \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{C_{\epsilon, \rho}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{C_{\epsilon, \rho'}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = -\dfrac{\ord_\rho f}{6}, $$
+which gives $ -\ord_\rho f / 3 $.
+\end{proof}
+
+\pagebreak
+
+\subsubsection{Holomorphic modular forms}
+
+Let
+$$ \M_k = \cbr{\text{holomorphic modular forms of weight} \ k}, $$
+and let
+$$ \S_k = \cbr{\text{cusp forms of weight} \ k} = \cbr{f \in \M_k \st \ord_\infty f > 0} \subseteq \M_k. $$
+
+\begin{corollary}
+\hfill
+\begin{itemize}
+\item $ \M_k = 0 $ if $ k < 0 $, $ k = 2 $, or $ k $ odd.
+\item $ \M_0 $ are constants.
+\item $ \M_4 = \CC\E_4 $, where $ \ord_\rho \E_4 = 1 $ and no other zeroes.
+\item $ \M_6 = \CC\E_6 $, where $ \ord_i \E_6 = 1 $ and no other zeroes.
+\item $ \M_8 = \CC\E_8 $, where $ \ord_\rho \E_8 = 2 $ and no other zeroes.
+\item $ \M_{10} = \CC\E_{10} $, where $ \ord_\rho \E_{10} = \ord_i \E_{10} = 1 $ and no other zeroes.
+\item $ \M_{12} = \CC\E_{12} \oplus \CC\Delta $, where $ \ord_\infty \Delta = 1 $ and no other zeroes.
+\end{itemize}
+\end{corollary}
+
+\begin{corollary}
+$ \Delta : \M_k \to \S_{k + 12} $ is an isomorphism. On the other hand,
+$$ \M_k \cong \CC\E_k \oplus \S_k, \qquad k \ge 4 \ \text{even}, $$
+so
+$$ \M_k \cong \CC\E_k \oplus \dots \oplus \CC\E_{k - 12r}\Delta^r, \qquad k - 12r \in \cbr{0, 4, 6, 8, 10, 14}. $$
+So for $ k \ge 4 $, the set
+$$
+\begin{cases}
+\E_k, \dots, \E_{k - 12\fbr{k / 12}}\Delta^{\fbr{k / 12}} & k \not\equiv 2 \mod 12 \\
+\E_k, \dots, \E_{14}\Delta^{\fbr{k / 12} - 1} & k \equiv 2 \mod 12
+\end{cases}
+$$
+is a basis for $ \M_k $.
+\end{corollary}
+
+\begin{corollary}
+$ \E_4^2 = \E_8 $ and $ \E_4\E_6 = \E_{10} $.
+\end{corollary}
+
 \end{document}
