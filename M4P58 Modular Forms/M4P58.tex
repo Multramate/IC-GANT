@@ -521,7 +521,62 @@ Recall $ \Im \gamma z = \Im z / \abs{cz + d}^2 $ for $ \gamma \in \SL_2\br{\ZZ} 
 \item As $ c $ and $ d $ vary, $ \cbr{cz + d} $ forms a lattice in $ \CC $, so there exist only finitely many $ c $ and $ d $ such that $ \abs{cz + d} < 1 $. So $ \Im \gamma z $ attains a maximum as $ \gamma $ varies over $ \Gamma $, so there exists $ \gamma \in \Gamma $ such that $ \Im \gamma z $ is maximal. There exists $ n \in \ZZ $ such that $ \T^n\gamma z $ has real part between $ -\tfrac{1}{2} $ and $ \tfrac{1}{2} $. Consider $ \abs{\T^n\gamma z} $. If this is less than one, then
 $$ \Im \S\T^n\gamma z = \Im \dfrac{-1}{\T^n\gamma z} > \Im \T^n\gamma z = \Im \gamma z. $$
 Since $ \S\T^n\gamma \in \Gamma $, this contradicts maximality so $ \abs{\T^n\gamma z} \ge 1 $, so $ \T^n\gamma z \in \DDD $.
+
+\lecture{7}{Friday}{18/10/19}
+
+\item[$ 2, 3 $.] Let $ z, z' \in \DDD $ such that $ \gamma z = z' $. Without loss of generality $ \Im z' \ge \Im z $, so $ \abs{cz + d} \le 1 $. Note that $ \abs{cz + d} \ge \Im \br{cz + d} \ge \tfrac{\sqrt{3}}{2}c $, so $ c = -1, 0, 1 $. Note that can replace $ \gamma $ with $ -\gamma $ if convenient.
+\begin{itemize}
+\item[$ c = 0 $.] Then $ ad = 1 $, so can assume $ a = d = 1 $, so $ \gamma z = z + b $.
+Since $ z, z + b \in \DDD $, $ b = \pm 1 $ and $ \Re z = \mp\tfrac{1}{2} $.
+\item[$ c = 1 $.] Have $ \abs{z + d} \le 1 $ and $ \abs{z} \ge 1 $, so $ d = -1, 0, 1 $.
+\begin{itemize}
+\item[$ d = 0 $.] Then $ \abs{z} = 1 $, and $ \gamma z = \br{az - 1} / z = a - 1 / z $.
+The only possibilities are
+\begin{itemize}
+\item $ a = 0 $ and $ \gamma = \S $,
+\item $ a = 1 $ and $ \gamma = \T\S $, so $ z = \rho' $, or
+\item $ a = -1 $ and $ \gamma = \T^{-1}\S $, so $ z = \rho $.
+\end{itemize}
+\item[$ d = 1 $.] Then $ z = \rho $, and $ \gamma z = \br{\br{b + 1}z + b} / \br{z + 1} = b + 1 - 1 / \br{z + 1} $, so $ b = 0 $ or $ b = -1 $.
+\item[$ d = -1 $.] Then $ z = \rho' $ is similar.
+\end{itemize}
+\item[$ c = -1 $.] Similar.
+\end{itemize}
 \end{enumerate}
 \end{proof}
+
+\subsubsection{Further review of complex analysis}
+
+Recall that on any compact set, a meromorphic function has only finitely many zeroes and poles. If $ f\br{z} = g\br{e^{2\pi i z}} $ is meromorphic at infinity and $ g $ is meromorphic on $ \D = \abs{q} < 1 $, zeroes and poles of $ g $ are discrete with respect to $ q $, and $ \Im z \gg 0 $ if and only if $ \abs{q} < \epsilon $.
+
+\begin{definition}
+Let $ U \subseteq \CC $ be open, and let $ f : U \to \CC $ be meromorphic on $ U $. If $ f $ has a pole at $ p $, can write
+$$ f\br{z} = \sum_{n = \ord_p f < 0}^\infty a_n\br{z - p}^n. $$
+The coefficient $ a_{-1} $ is called the \textbf{residue} $ \Res_p f $ of $ f $ at $ p $.
+\end{definition}
+
+\begin{theorem}[Residue theorem]
+Let $ V $ be a region in $ \CC $ whose boundary $ \partial V $ is a simple closed curve. Then
+$$ \dfrac{1}{2\pi}\intd{\partial V}{}{f\br{z}}{z} = \sum_{p \in V \ \text{pole of} \ f} \Res_p f. $$
+\end{theorem}
+
+\begin{definition}
+Let $ f $ be meromorphic on $ U \subseteq \CC $ open. Then the \textbf{logarithmic derivative} $ \d\log f $ is the function $ f' / f $.
+\end{definition}
+
+If $ f\br{z} = c_n\br{z - p}^n + c_{n + 1}\br{z - p}^{n + 1} + \dots $, then if $ n \ne 0 $, then the leading term of $ f' $ is $ nc_n\br{z - p}^{n - 1} $ and the leading term of $ f $ is $ c_n\br{z - p}^n $, so the leading term of $ f' / f $ is $ n\br{z - p}^{-1} $. If $ n = 0 $, then $ f' / f $ is holomorphic. So $ f' / f $ is meromorphic with simple poles precisely at the points where $ \ord_p f \ne 0 $, and $ \Res_p f' / f $ at such $ p $ is $ \ord_p f $.
+
+\begin{theorem}[Argument principle]
+$$ \dfrac{1}{2\pi i}\intd{\partial V}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p \in V} \ord_p f. $$
+\end{theorem}
+
+\pagebreak
+
+\subsubsection{Controlling modular forms}
+
+\begin{theorem}
+Let $ f $ be a non-zero meromorphic modular form of weight $ k $. Then
+$$ \ord_\infty f + \dfrac{\ord_\rho f}{3} + \dfrac{\ord_i f}{2} + \sum_{p \in \HH / \SL_2\br{\ZZ}, \ p \nsim \cbr{i, \rho}} \ord_p f = \dfrac{k}{12}. $$
+\end{theorem}
 
 \end{document}
