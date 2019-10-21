@@ -576,4 +576,46 @@ If $ k $ is as above, then $ f = 0 $ or $ F = 0 $ is \textbf{non-singular} in $ 
 
 Lecture 7 is a problem class.
 
+\lecture{8}{Monday}{21/10/19}
+
+We need to compute the multiplicity up to some precision. Let $ f \in k\sbr{x, y} $, and let $ P \in \AA^2\br{k} $ such that $ f\br{P} = 0 $. If $ P = \br{a_1, a_2} $ is non-singular, the \textbf{tangent line} of $ f = 0 $ at $ P $ is
+$$ \dpd{f}{x}\br{P}\br{x - a_1} + \dpd{f}{y}\br{P}\br{y - a_2} = 0. $$
+This is a non-zero equation, by definition, so not both $ \tpd{f}{x}\br{P} $ and $ \tpd{f}{y}\br{P} $ is zero. Let $ f, g \in k\sbr{x, y} $ be non-zero polynomials as above, where $ f\br{P} = g\br{P} = 0 $. We say that $ f = 0 $ and $ g = 0 $ \textbf{intersect transversely} at $ P $ if the tangent lines of $ f = 0 $ and $ g = 0 $ at $ P $ are different.
+
+\begin{theorem}
+If $ f\br{P} = g\br{P} = 0 $ then the multiplicity at $ P $ is one if and only if the intersection is transversal at $ P $.
+\end{theorem}
+
+\pagebreak
+
+\section{Plane conics}
+
+Let $ X^2 + Y^2 = Z^2 $. If $ \br{a, b, c} \in \ZZ^3 $ is a solution, then $ \br{\lambda a, \lambda b, \lambda c} $ is a solution for $ \lambda \in \ZZ $. A \textbf{primitive solution} has $ \gcd\br{a, b, c} = \pm 1 $. Any solution can be written as a rescaling of a primitive solution by an integer.
+
+\begin{algorithm}[To find out if a plane conic is singular]
+Say $ f \in k\sbr{x, y} $ is degree two. Then $ \tpd{f}{x} $ and $ \tpd{f}{y} $ are both linear so will meet in at least one point, possibly at infinity. Just check whether this point is on $ f = 0 $.
+\end{algorithm}
+
+By diagonalisation of quadratic forms, if $ \ch k \ne 2 $, then for $ F \in k\sbr{X_0, X_1, X_2} $ of degree two homogeneous, after rescaling by a non-zero scalar, and a permutation of variables, we can assume that
+$$ F\br{X_0, X_1, X_2} = \alpha_0X_0^2 + \alpha_1X_1^2 + \alpha_2X_2^2. $$
+
+\begin{theorem}
+The following are equivalent.
+\begin{enumerate}
+\item $ F = 0 $ is singular.
+\item $ \alpha_0 \cdot \alpha_1 \cdot \alpha_2 = 0 $.
+\item $ F $ is the product of two linear polynomials over the algebraic closure.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$ F = 0 $ is non-singular if and only if the equations $ 2\alpha_iX_i = \tpd{F}{X_i} = 0 $ for all $ i $ has no non-zero simultaneous zeroes in $ k^{n + 1} $, if and only if not all $ \alpha_i $ are zero, so $ 1 $ and $ 2 $ are equivalent. Let us assume $ 2 $. After permuting variables
+$$ F = \alpha_0X_0^2 + \alpha_1X_1^2 = \br{\sqrt{\alpha_0}X_0 + i\sqrt{\alpha_1}X_1}\br{\sqrt{\alpha_0}X_0 - i\sqrt{\alpha_1}X_1}, $$
+so $ 2 $ implies $ 3 $. Converse $ 3 $ implies $ 2 $ is an exercise. \footnote{Exercise}
+\end{proof}
+
+\begin{algorithm}[To find all $ k $-points of a singular plane conic]
+Factor the conic into linear factors, possibly over an extension of $ k $, and then find all the $ k $-points on the lines.
+\end{algorithm}
+
 \end{document}
