@@ -673,4 +673,72 @@ is a basis for $ \M_k $.
 $ \E_4^2 = \E_8 $ and $ \E_4\E_6 = \E_{10} $.
 \end{corollary}
 
+\lecture{9}{Monday}{21/10/19}
+
+A variant is to write $ k = 4n + 6m $ with $ m = 0, 1 $ and $ n \ge 0 $, for $ k \ge 4 $. Then $ \M_k = \CC\E_4^n\E_6^m \oplus \S_k $ gives a basis
+$$ \E_4^n\E_6^m, \dots, \E_4^{n - 3\fbr{n / 3}}\E_6^m\Delta^{\fbr{n / 3}} $$
+for $ \M_k $. Since $ \Delta = \br{\E_4^3 - \E_6^2} / 1728 $, we see every modular form of weight $ k $ is a polynomial in $ \E_4 $ and $ \E_6 $, and
+$$ \Delta \in q + q^2\ZZ\sbr{\sbr{q}}, \qquad \E_4^n\E_6^m \in 1 + q\ZZ\sbr{\sbr{q}}, \qquad \E_4^{n - 3}\E_6^m\Delta \in q + q^2\ZZ\sbr{\sbr{q}}, \qquad \dots $$
+have integer coefficients. The upshot is if the $ q $-expansion of $ f $ has integer coefficients, then $ f $ is an integer combination of
+$$ \E_4^n\E_6^m, \dots, \E_4^{n - 3\fbr{n / 3}}\E_6^m\Delta^{\fbr{n / 3}}. $$
+
+\begin{notation*}
+$ \M_k\br{\ZZ} \subseteq \M_k $ consists of modular forms with integer $ q $-expansions.
+\end{notation*}
+
+\begin{theorem}
+$ \M_k\br{\ZZ} $ spans $ \M_k $, and $ f \in \M_k $ lies in $ \M_k\br{\ZZ} $ if and only if $ f $ is an integral polynomial in $ \E_4, \E_6, \Delta $.
+\end{theorem}
+
+\begin{definition}
+A \textbf{graded ring} is a ring $ R $, together with a direct sum decomposition, as abelian groups,
+$$ R = \bigoplus_{i \in \ZZ} R_i, $$
+such that $ R_i \cdot R_j \subseteq R_{i + j} $ for all $ i, j \in \ZZ $.
+\end{definition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ R = \CC\sbr{X, Y} $, where $ R_i $ are polynomials homogeneous of degree $ i $.
+\item $ R = \bigoplus_{k \in \ZZ} \M_k $.
+\end{itemize}
+\end{example*}
+
+\pagebreak
+
+Let $ \CC\sbr{X, Y} $ be graded with $ \deg X = 4 $ and $ \deg Y = 6 $. Have a homomorphism of graded rings
+$$ \function{\CC\sbr{X, Y}}{\bigoplus_{k \in \ZZ} \M_k}{\br{X, Y}}{\br{\E_4, \E_6}}. $$
+
+\begin{theorem}
+This is an isomorphism of graded rings.
+\end{theorem}
+
+\begin{proof}
+This map is surjective, since every $ f \in \M_k $ is a polynomial in $ \E_4 $ and $ \E_6 $. Remains to show this map is injective. Suppose not. There exists $ P\br{X, Y} $, homogeneous of degree $ k $, such that $ P\br{\E_4, \E_6} = 0 $. Write $ k = 4n + 6m $ with $ m = 0, 1 $. If $ P = c_0X^nY^n + \dots + c_rX^{n - 3r}Y^{m + 2r} $ where $ r = \fbr{n / 3} $, then
+$$ c_0\E_4^n\E_6^n + \dots + c_r\E_4^{n - 3r}\E_6^{m + 2r} = 0. $$
+Dividing by $ \E_4^{n - 3r}\E_6^{m + 2r} $, get $ Q\br{\E_4^3 / \E_6^2} = 0 $ where $ Q\br{X} = c_0X^r + \dots + c_r $. Since the roots of $ Q $ are discrete, and $ \E_4^3 / \E_6^2 $ is non-constant, this is impossible.
+\end{proof}
+
+\subsubsection{Meromorphic modular forms}
+
+\begin{note*}
+The meromorphic modular forms of weight zero form a field. For example, $ \j\br{z} = \E_4^3 / \Delta = 1728\E_4^3 / \br{\E_4^3 - \E_6^2} $ is a non-constant meromorphic modular form, with a pole of order one at infinity, a zero of order three at $ \rho $, and no other zeroes or poles.
+\end{note*}
+
+\begin{theorem}
+$ \j $ gives a bijection between $ \HH / \SL_2\br{\ZZ} $ and $ \CC $.
+\end{theorem}
+
+\begin{proof}
+Given $ \lambda \in \CC $, want $ z \in \HH $ such that $ \j\br{z} = \lambda $. Consider $ g = j - \lambda $. This is meromorphic of weight zero. There is a pole at infinity, and no other poles, and
+$$ \ord_\infty g + \dfrac{\ord_\rho g}{3} + \dfrac{\ord_i g}{2} + \sum_{p \in \HH / \SL_2\br{\ZZ}, \ p \nsim \cbr{i, \rho}} \ord_p g = 0. $$
+The only possibilities are
+\begin{itemize}
+\item $ g $ has a zero at $ \rho $ of order three, and no other zeroes,
+\item $ g $ has a zero at $ i $ of order two, and no other zeroes, or
+\item $ g $ has a simple zero somewhere else, and no others.
+\end{itemize}
+In each case, the zero of $ g $ is a unique $ \SL_2\br{\ZZ} $-orbit on which $ \j\br{z} = \lambda $. So $ \j $ is bijective.
+\end{proof}
+
 \end{document}
