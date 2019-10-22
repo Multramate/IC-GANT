@@ -618,4 +618,111 @@ so $ 2 $ implies $ 3 $. Converse $ 3 $ implies $ 2 $ is an exercise. \footnote{E
 Factor the conic into linear factors, possibly over an extension of $ k $, and then find all the $ k $-points on the lines.
 \end{algorithm}
 
+\lecture{9}{Tuesday}{22/10/19}
+
+\begin{algorithm}[To find all $ k $-points on a non-singular plane conic from one point]
+Let $ k $ be any field of $ \ch k \ne 2 $, and let $ C \ne \emptyset $ be a conic $ F = 0 $ over $ k $ for a degree two homogeneous polynomial $ F \in k\sbr{X, Y, Z} $ such that $ F = 0 $ is non-singular. If $ O \in C $, then we can construct a bijection between points over $ k $ in $ C $ and points on a projective line over $ k $ not containing $ O $.
+\end{algorithm}
+
+\begin{proof}
+Let $ \pi\br{P} $ be the projection of $ O $ through $ P $ onto a line $ l $ not containing $ O $. Claim that $ P \mapsto \pi\br{P} $ is a well-defined map. Any line can intersect $ C $ only at most two points, and it intersects $ C $ in exactly one point if and only if it is a tangent.
+\begin{itemize}
+\item If $ P \ne O $, then there is a unique line $ \overline{OP} $ between $ O $ and $ P $. Then $ \overline{OP} $ and $ l $ are different as $ l $ does not contain $ O $, but $ \overline{OP} $ does, so $ \overline{OP} \cap l $ is one point $ \pi\br{P} $, so $ \pi\br{P} $ is well-defined in this case.
+\item The tangent line of $ C $ at $ O $ intersects $ C $ at $ O $ with multiplicity at least two, so it does not intersect $ C $ in any other point, but it still has a unique intersection point with $ l $, so I take the latter to be $ \pi\br{O} $.
+\end{itemize}
+Claim that $ P \mapsto \pi\br{P} $ is a bijection.
+\begin{itemize}
+\item The map is injective, since if $ \pi\br{P} = \pi\br{P'} $, then $ \overline{OP} = \overline{OP'} $, so $ P, P', O \in \overline{OP} \cap C $, so $ P = P' $.
+\item The map is surjective. If $ O \ne Q \in l $, then there is another intersection point in $ \overline{OQ} \cap C $ over the algebraic closure. The bad thing is that the line intersects $ C $ in two points over the algebraic closure, neither of which is a rational point. Claim that if $ 0 \ne h \in k\sbr{x} $ has degree two, and it has a root over $ k $, then its other root is also defined over $ k $. Let $ h = ax^2 + bx + c $. There exists $ \alpha \in k $ such that $ h\br{\alpha} = 0 $, so I can factor out $ x - \alpha $, so $ h = \br{x - \alpha}g $ for $ g \in k\sbr{x} $. Then $ \deg g = 1 $, so $ g = a\br{x - \beta} $ for $ \beta \in k $, so $ \beta $ is the other root. Thus the other intersection point is another point $ P \in C $.
+\end{itemize}
+\end{proof}
+
+\begin{corollary}
+If $ k $ is infinite, then either $ C $ has no points, or it has infinitely many.
+\end{corollary}
+
+\pagebreak
+
+\appendix
+
+\section{Diagonalisation of quadratic forms}
+
+\begin{definition}
+Let $ k $ be any field, and let $ V $ be a $ k $-linear vector space. A \textbf{symmetric bilinear pairing} on $ V $ is a map $ \br{\cdot, \cdot} : V \times V \to k $ such that for all $ \alpha_1, \alpha_2 \in k $ and $ \underline{v_1}, \underline{v_2}, \underline{v_3} \in V $,
+\begin{itemize}
+\item $ \br{\alpha_1\underline{v_1} + \alpha_2\underline{v_2}, \underline{v_3}} = \alpha_1\br{\underline{v_1}, \underline{v_3}} + \alpha_2\br{\underline{v_2}, \underline{v_3}} $,
+\item $ \br{\underline{v_3}, \alpha_1\underline{v_1} + \alpha_2\underline{v_2}} = \alpha_1\br{\underline{v_3}, \underline{v_1}} + \alpha_2\br{\underline{v_3}, \underline{v_2}} $, and
+\item $ \br{\underline{v_1}, \underline{v_2}} = \br{\underline{v_2}, \underline{v_1}} $.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+Dot product in $ \RR^n $ over $ \RR $.
+\end{example}
+
+\begin{definition}
+If $ \ch k \ne 2 $, then the associated \textbf{quadratic form} to a symmetric bilinear pairing is
+$$ \function[\B]{V}{k}{\underline{v}}{\br{\underline{v}, \underline{v}}}. $$
+\end{definition}
+
+\begin{remark}
+Then $ \B $ is uniquely determined by $ \br{\cdot, \cdot} $, but the converse is also true, since
+$$ \B\br{\underline{v_1} + \underline{v_2}} = \br{\underline{v_1} + \underline{v_2}, \underline{v_1} + \underline{v_2}} = \br{\underline{v_1} + \underline{v_1}} + \br{\underline{v_1}, \underline{v_2}} + \br{\underline{v_2}, \underline{v_1}} + \br{\underline{v_2}, \underline{v_2}} = \B\br{\underline{v_1}} + \B\br{\underline{v_2}} + 2\br{\underline{v_1}, \underline{v_2}}, $$
+by bilinearity and symmetry, so
+$$ \br{\underline{v_1}, \underline{v_2}} = \dfrac{1}{2}\br{\B\br{\underline{v_1} + \underline{v_2}} - \B\br{\underline{v_1}} - \B\br{\underline{v_2}}}. $$
+\end{remark}
+
+\begin{example}
+Let $ V = k^n $, and let $ A $ be a symmetric $ n \times n $ matrix over $ k $. Then
+$$ \br{\underline{v_1}, \underline{v_2}} = \underline{v_1}^\intercal A\underline{v_2} \in k, \qquad \underline{v_1}, \underline{v_2} \in V $$
+is a symmetric bilinear pairing. More generally, let $ V $ be any finite-dimensional vector space, so $ V = \abr{\underline{e_1}, \dots, \underline{e_n}}_k $ for $ \cbr{\underline{e_i}} $ a $ k $-basis, and let the $ \br{i, j} $-th entry of $ A $ be $ \br{\underline{e_i}, \underline{e_j}} $. Under the unique isomorphism
+$$ \function[\phi]{V}{k^n}{\underline{e_i}}{\br{0, \dots, 0, 1, 0, \dots, 0}}, $$
+we get a symmetric bilinear pairing
+$$ \br{\underline{v}, \underline{w}} = \phi\br{\underline{v}}^\intercal A\phi\br{\underline{w}} \in k, \qquad \underline{v}, \underline{w} \in V. $$
+\end{example}
+
+\begin{definition}
+A \textbf{quadratic space} over $ k $ is an ordered pair $ \br{V, \br{\cdot, \cdot}} $ for $ V $ a finite-dimensional $ k $-linear vector space, and $ \br{\cdot, \cdot} : V \times V \to k $ a symmetric bilinear pairing. Two quadratic spaces $ \br{V, \br{\cdot, \cdot}} $ and $ \br{W, \abr{\cdot, \cdot}} $ are \textbf{isometric} if there exists $ \phi : V \to W $ an isomorphism such that $ \br{\underline{v}, \underline{w}} = \abr{\phi\br{\underline{v}}, \phi\br{\underline{w}}} $ for all $ \underline{v}, \underline{w} \in V $, so any quadratic space is isometric to a specimen from the example.
+\end{definition}
+
+\begin{remark}
+Change of basis has the following effect. Let $ A $ be the matrix of the symmetric bilinear pairing $ \br{\cdot, \cdot} $ in the basis $ \underline{e_1}, \dots, \underline{e_n} $. If the matrix of the change of basis is $ B $, in the basis the matrix of the symmetric bilinear pairing is $ B^\intercal AB $, since $ \br{B\underline{v}}^\intercal A\br{B\underline{w}} = \underline{v}^\intercal \br{B^\intercal AB}\underline{w} $.
+\end{remark}
+
+\begin{theorem}[Gram-Schmidt orthogonalisation process]
+If $ \br{V, \br{\cdot, \cdot}} $ is a quadratic space, then $ V $ has a basis $ \underline{e_1}, \dots, \underline{e_n} $ in which the matrix of $ \br{\cdot, \cdot} $ is diagonal.
+\end{theorem}
+
+\begin{proof}
+Two cases. If $ \B \equiv 0 $, then $ \br{\cdot, \cdot} \equiv 0 $. Otherwise for all $ \underline{v} \in V $ such that $ \B\br{\underline{v}} \ne 0 $. Let $ \underline{e_1} = \underline{v_1} $ and
+$$ \underline{v}^\perp = \cbr{\underline{w} \in V \st \br{\underline{v}, \underline{w}} = 0}. $$
+This is an $ k $-linear subspace, which is trivial as $ \underline{w} \mapsto \br{\underline{v}, \underline{w}} $ is $ k $-linear. Then $ \underline{v} \notin \Ker \br{\underline{v}, \cdot} $, so $ \dim \underline{v}^\perp = \dim V - 1 $. We apply the process to $ \br{\underline{v}^\perp, \eval{\br{\cdot, \cdot}}_{\underline{v}^\perp}} $, by using induction on the dimension.
+\end{proof}
+
+\pagebreak
+
+\begin{remark}
+The \textbf{general linear group}
+$$ \GL_{n + 1}\br{k} = \Aut_k k^{n + 1} $$
+acts on $ \PP^n\br{k} $, and maps scalar multiples to scalar multiples, so maps equivalence classes under rescaling to equivalence classes, so have an induced action on $ \PP^n\br{k} $. The centre $ \Z_{n + 1}\br{k} $ of $ \GL_{n + 1}\br{k} $ is the scalar matrices $ \cbr{\lambda \I_3 \st \lambda \in k^*} $, which acts trivially on $ \PP^n\br{k} $. This is a normal subgroup, so I can form the quotient group
+$$ \PGL_{n + 1}\br{k} = \GL_{n + 1}\br{k} / \Z_{n + 1}\br{k}, $$
+the \textbf{projective linear group} of rank $ n + 1 $. Projective algebraic geometry is invariant under projective linear transformations. If $ F = 0 $ is non-singular, then its image under $ \PGL_{n + 1}\br{k} $ is also non-singular, and multiplicities in B\'ezout's theorem does not change under $ \PGL_{n + 1}\br{k} $, etc.
+\end{remark}
+
+\begin{theorem}
+If $ \ch k \ne 2 $, then for $ F \in k\sbr{X_0, \dots, X_n} $ of degree two homogeneous, there exists a linear transformation, such that after the change of variables, $ F $ is of the form
+$$ \alpha_0X_0^2 + \dots + \alpha_nX_n^2, \qquad \alpha_0, \alpha_1, \alpha_2 \in k. $$
+\end{theorem}
+
+\begin{proof}
+Let $ F\br{X_0, \dots, X_n} = \sum_{i < j} a_{ij}X_iX_j $ for $ a_{ij} \in k $. It is the quadratic form on $ k^{n + 1} $ associated to the bilinear pairing in the standard basis with matrix $ A = \br{b_{ij}} $, where
+$$ b_{ij} =
+\begin{cases}
+\tfrac{1}{2}a_{ij} & i \le j \\
+\tfrac{1}{2}a_{ji} & i > j
+\end{cases}.
+$$
+Now apply the Gram-Schmidt theorem.
+\end{proof}
+
 \end{document}
