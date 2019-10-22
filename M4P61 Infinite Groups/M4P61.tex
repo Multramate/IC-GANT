@@ -442,4 +442,60 @@ Hence $ \phi $ is indeed a group homomorphism.
 \end{itemize}
 \end{proof}
 
+\lecture{8}{Tuesday}{22/10/19}
+
+\begin{remark}
+Note that we also proved that $ F $ is free on $ S \subseteq F $ if and only if $ F = \F\br{S} $. Hence, for every set $ S $ there is a unique, up to isomorphism, group $ F $ which is free on $ S $.
+\end{remark}
+
+\begin{lemma}
+Every group $ G $ is the quotient of some free group.
+\end{lemma}
+
+\begin{proof}
+Consider $ S \subseteq G $ some generating set of $ G $. Consider the homomorphism $ \phi : \F\br{S} \to G $. By \ref{prop:1.4.6} this exists. As $ S $ generates $ G $, it is surjective. Now by the isomorphism theorem, we have $ G \cong \F\br{S} / \Ker \phi $.
+\end{proof}
+
+\begin{remark}
+\label{rem:1.4.9}
+Let $ G $ be any group and $ S \subseteq G $ a generating set. Then if $ S $ is infinite then $ \abs{S} = \abs{G} $. Why? Note that $ \abs{\PPP^{\fin}\br{S}} = \abs{S} $ for all infinite sets $ S $, in ZF. As every element corresponds to a finite sequence in $ S $, we get
+$$ \abs{S} \le \abs{G} \le \abs{\PPP^{\fin}\br{S}} = \abs{S}. $$
+\end{remark}
+
+\begin{definition}
+Let $ G $ be an arbitrary group. The \textbf{rank} of $ G $ is the smallest cardinal $ \kappa $ such that $ G $ arises as the quotient of a free group of rank $ \kappa $. By \ref{rem:1.4.9} this is well-defined. We denote it by $ \rk G $.
+\end{definition}
+
+\begin{lemma}
+Let $ S $ and $ S' $ be any sets. Then $ \F\br{S} \cong \F\br{S'} $ if and only if $ \abs{S} = \abs{S'} $.
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] If $ \abs{S} = \abs{S'} $, then there exists a bijection $ f : S \to S' $. Let $ \phi : \F\br{S} \to \F\br{S'} $ be the unique homomorphism extending $ f $, and $ \psi : \F\br{S'} \to \F\br{S} $ the unique homomorphism extending $ f^{-1} $. Then $ \psi \circ \phi : \F\br{S} \to \F\br{S} $ extends $ \id_S : S \to \F\br{S} $. But clearly $ \id_{\F\br{S}} : \F\br{S} \to \F\br{S} $ is another such homomorphism, whence by uniqueness $ \psi \circ \phi = \id_{\F\br{S}} $, whence $ \phi $ is an isomorphism.
+\item[$ \impliedby $] Assume $ \F\br{S} \cong \F\br{S'} $. If both $ S $ and $ S' $ are infinite, then
+$$ \abs{S} = \abs{\F\br{S}} = \abs{\F\br{S'}} = \abs{S'}, $$
+by \ref{rem:1.4.9}. Otherwise assume $ S $ is finite. Set $ G = \ZZ / 2\ZZ $. Recall that any homomorphism from $ \F\br{S} $ to $ G $ is uniquely determined by its image on $ S $. Hence, there is a one to one correspondence between the set of homomorphisms $ \phi : \F\br{S} \to G $ and $ \PPP\br{S} $, via
+$$ \phi \mapsto X_\phi = \cbr{s \in S \st \phi\br{s} = 1}. $$
+Note, as $ \F\br{S} \cong \F\br{S'} $, there are as many homomorphisms from $ \F\br{S} \to G $ as from $ \F\br{S'} \to G $. Hence
+$$ 2^{\abs{S}} = \abs{\Hom\br{\F\br{S}, G}} = \abs{\Hom\br{\F\br{S'}, G}} = 2^{\abs{S'}}, $$
+and as $ S $ was finite, $ \abs{S} = \abs{S'} $.
+\end{itemize}
+\end{proof}
+
+\begin{definition}
+If $ G $ is free on $ S $, we call $ \abs{S} $ the \textbf{rank} of $ G $ and say that $ S $ is a basis of $ G $.
+\end{definition}
+
+\pagebreak
+
+\subsection{Presentations of groups}
+
+\begin{definition}
+Let $ G $ be any group and $ S \subseteq G $ a subset for $ G $. Recall that $ f : S \hookrightarrow G $. Let $ R $ be a set of words over $ S $. We say that $ G $ \textbf{allows the presentation} $ \abr{S \st R} $ if and only if $ S $ generates $ G $ and $ R $ normally generates $ \Ker \phi $. For brevity we write
+$$ G = \abr{S \st R}. $$
+We call the elements in $ G $ \textbf{generators} of $ G $ and the elements in $ R $ \textbf{relators}.
+\end{definition}
+
 \end{document}
