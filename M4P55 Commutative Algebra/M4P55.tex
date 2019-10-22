@@ -531,4 +531,57 @@ $$ \correspondence{\text{prime ideals of} \ S^{-1}A}{\text{prime ideals of} \ A 
 Prove $ S^{-1}\ppp $ is prime if $ \ppp $ is prime and $ \ppp \cap S = \emptyset $. Say $ a / s \cdot b / t \in S^{-1}\ppp $ for $ a / s, b / t \in S^{-1}A $. This implies $ v\br{abu - cst} = 0 $ for some $ u, v \in S $ and $ c \in \ppp $. Hence $ abuv = cstv \in \ppp $, so $ ab \in \ppp $, as $ u $ and $ v $ are units, so $ a \in \ppp $ or $ b \in \ppp $. Hence $ S^{-1}\ppp $ is prime. Next note that $ f^{-1}\br{S^{-1}\ppp} = \ppp $, assuming $ \ppp \cap S = \emptyset $. For if $ a \in A $ lies in $ S^{-1}\ppp $ then by definition there exists $ s \in S $ such that $ sa \in \ppp $. Then $ s $ is a unit and so $ a \in \ppp $. Hence $ \ppp $ is uniquely determined by $ S^{-1}\ppp $. Now let $ \qqq $ be an arbitrary prime ideal of $ S^{-1}A $. Then certainly $ \qqq = S^{-1}I $ for $ I = f^{-1}\br{\qqq} $. But the preimage of a prime ideal is prime. So $ I $ is prime. Moreover, $ I \cap S = \emptyset $ as no $ s \in S $ is in $ \qqq $, since $ \qqq $ is prime, so $ \qqq $ contains no units.
 \end{proof}
 
+\pagebreak
+
+\section{\texorpdfstring{$ \Spec R $}{Spec R} as a topological space}
+
+\lecture{8}{Tuesday}{22/10/19}
+
+A set $ X $ with a collection $ \UUU $ of subsets $ U \subset X $ is called a \textbf{topological space} if the following properties hold.
+\begin{enumerate}
+\item $ \UUU $ contains $ \emptyset $ and $ X $.
+\item If $ U $ and $ U' $ are in $ \UUU $, then $ U \cap U' $ is in $ \UUU $.
+\item If $ U_i $ are in $ \UUU $, where $ i $ is an element of an indexing set $ S $, then $ \bigcup_{i \in S} U_i $ is in $ \UUU $.
+\end{enumerate}
+Then the elements of $ \UUU $ are called \textbf{open subsets} of $ X $. The following is an equivalent definition. A set $ X $ with a family $ \VVV $ of subsets $ V \subset X $ is called a \textbf{topological space} if the following properties hold.
+\begin{enumerate}
+\item $ \VVV $ contains $ \emptyset $ and $ X $.
+\item If $ V $ and $ V' $ are in $ \VVV $, then $ V \cup V' $ is in $ \VVV $.
+\item If $ V_i $ are in $ \VVV $, where $ i $ is an element of an indexing set $ S $, then $ \bigcap_{i \in S} V_i $ is in $ \VVV $.
+\end{enumerate}
+Then the elements of $ \UUU $ are called \textbf{closed subsets} of $ X $. For the equivalence, if $ U $ is in $ \UUU $, then define the closed subsets as $ X \setminus U $ for $ U $ in $ \UUU $, and vice versa. Let $ R $ be a ring with unity. Let $ I \subset R $ be an ideal. Let $ \V_I $ be the set of all prime ideals in $ R $ that contain $ I $. Define $ \U_I = \Spec R \setminus \V_I $.
+
+\begin{proposition}
+The collection of subsets $ \V_I \subset \Spec R $, for all ideals $ I \subset R $, satisfies $ 1 $, $ 2 $, $ 3 $ of closed subsets, hence defines a topology on $ \Spec R $.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item If $ I = 0 $ is the zero ideal, then $ \V_0 = \Spec R $, all prime ideals of $ R $. If $ I = R $, then no prime ideals of $ R $ contain $ R $, so $ \V_R = \emptyset $, so $ 1 $ holds.
+\item It is enough to check that $ \V_I \cup \V_J = \V_{IJ} = \V_{I \cap J} $. Note that $ IJ \subset I \cap J $. An element of $ \V_I $ is a prime ideal $ \ppp \supset I $, so $ \ppp \supset IJ $. Conversely, let $ \ppp $ be a prime ideal such that $ IJ \subset \ppp $. Claim that $ I \subset \ppp $ or $ J \subset \ppp $. Suppose not. Then there exists $ x \in I $ such that $ x \notin \ppp $ and there exists $ y \in J $ such that $ y \notin \ppp $. Then $ xy \in IJ \subset \ppp $. This contradicts the definition of prime ideals. So the claim is proved. Thus $ 2 $ holds.
+\item $ J_i $ for $ i \in S $ is a collection of ideals. Claim that $ \bigcap_{i \in S} \V_{J_i} = \V_J $, where $ J = \sum_{i \in S} J_i $ is the smallest ideal of $ R $ containing all $ J_i $ for $ i \in S $. The elements of $ J $ are finite sums, where each summand is in some $ J_i $. If $ \ppp \supset J_i $ for $ i \in S $, then $ \ppp \supset J $. Conversely, if $ \ppp \supset J \supset J_i $, then $ \ppp \supset J_i $ for all $ i \in S $.
+\end{enumerate}
+\end{proof}
+
+Recall that if $ f : A \to B $ is a homomorphism of rings, then $ f^* : \Spec B \to \Spec A $ sends any prime ideal $ \ppp \subset B $ to the inverse image $ f^{-1}\br{\ppp} $, which is a prime ideal in $ A $. This breaks down for maximal ideals.
+
+\begin{example*}
+Take $ f : \ZZ \to \QQ $, then $ f^{-1}\br{0} = 0 $, which is not maximal in $ \ZZ $.
+\end{example*}
+
+A map of topological spaces is \textbf{continuous} if the inverse image of any open set is open. Equivalently, the inverse images of closed sets are closed.
+
+\begin{proposition}
+$ f^* $ is a continuous map.
+\end{proposition}
+
+\begin{proof}
+Let $ I $ be an ideal in $ A $. We need to show that $ \br{f^*}^{-1}\br{\V_I} = \V_J $ for some ideal $ J $ in $ B $. Let $ J $ be the smallest ideal in $ B $ containing $ f\br{I} $.
+\begin{itemize}
+\item[$ \subset $] Fix $ \ppp $ in $ \V_I $, a prime ideal in $ A $ such that $ \ppp \supset I $. The elements of the left hand side that are mapped to $ \ppp $ by $ f^* $ are the prime ideals $ \qqq \subset B $ such that $ \ppp = f^{-1}\br{\qqq} $. We have $ I \subset \ppp $, so $ f\br{I} \subset f\br{\ppp} \subset \qqq $, so $ J \subset \qqq $, by definition of $ J $.
+\item[$ \supset $] Take any prime ideal $ \qqq \subset B $ such that $ J \subset \qqq $. We have $ I \subset f^{-1}\br{f\br{I}} \subset f^{-1}\br{J} \subset f^{-1}\br{\qqq} $, so $ f^{-1}\br{\qqq} $ is a prime ideal in $ A $ containing $ I $. This ideal is exactly $ f^*\br{\qqq} $, so $ f^*\br{\qqq} $ is in $ \V_I $. Since $ \qqq \in \br{f^*}^{-1}\br{f^*\br{\qqq}} \subset \br{f^*}^{-1}\br{\V_I} $, so we are done.
+\end{itemize}
+\end{proof}
+
 \end{document}
