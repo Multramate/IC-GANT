@@ -584,4 +584,57 @@ Let $ I $ be an ideal in $ A $. We need to show that $ \br{f^*}^{-1}\br{\V_I} = 
 \end{itemize}
 \end{proof}
 
+\pagebreak
+
+\lecture{9}{Wednesday}{23/10/19}
+
+The following are particular cases.
+\begin{itemize}
+\item Assume $ f $ is surjective. Then $ B \cong A / \Ker f $. Then
+$$ \function{\cbr{\text{prime ideals in} \ B}}{\cbr{\text{prime ideals in} \ A \ \text{containing} \ \Ker f}}{\ppp \subset B}{f^{-1}\br{\ppp}}. $$
+So in this case $ f^* $ is injective and its image is $ \V_{\Ker f} $.
+\item Let $ S $ be a multiplicative set in $ A $. Let $ f : A \to S^{-1}A $ be the associated canonical map. By Theorem \ref{thm:6.9} the prime ideals of $ S^{-1}A $ are $ S^{-1}\ppp $, where $ \ppp $ is a prime ideal in $ A $ such that $ \ppp \cap S = \emptyset $. Thus $ f^* : \Spec S^{-1}A \to \Spec A $ is injective and its image consists of $ \ppp \subset A $ such that $ \ppp \cap S = \emptyset $.
+\end{itemize}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Let $ k $ be a field. Then $ \Spec k $ is one point.
+\item Let $ R = k\sbr{x} $, an integral domain. This is a PID, so every ideal is $ \abr{p\br{x}} $, where $ p\br{x} \in k\sbr{x} $ is monic. Then $ \abr{p\br{x}} $ is prime if and only if $ p\br{x} $ is irreducible, so
+$$ \Spec k\sbr{x} = \cbr{\abr{0}} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{is monic and irreducible}}. $$
+In particular, if $ k $ is algebraically closed, such as $ k = \CC $, then
+$$ \Spec k\sbr{x} = \cbr{\abr{0}} \cup \cbr{\abr{x - a} \st a \in k}. $$
+\item Let $ R = \ZZ $, a PID. Then
+$$ \Spec \ZZ = \cbr{\abr{0}} \cup \cbr{\abr{p} \st p \ \text{is a prime number}}. $$
+\item Let $ R = \ZZ\sbr{i} $ be the Gaussian integers, a PID. The tautological map $ f : \ZZ \to \ZZ\sbr{i} $ gives rise to $ f^* : \Spec \ZZ\sbr{i} \to \Spec \ZZ $. Take a usual prime $ p $ and decompose $ p $ into a product of primes in $ \ZZ\sbr{i} $.
+\begin{itemize}
+\item $ 2 = \br{1 + i}\br{1 - i} = -i\br{1 + i}^2 $, where $ 1 + i $ is a prime in $ \ZZ\sbr{i} $.
+\item If $ p \equiv 1 \mod 4 $, then $ p = \br{a + bi}\br{a - bi} $. In this case $ a + bi $ and $ a - bi $ are not associated primes.
+\item If $ p \equiv 3 \mod 4 $, then $ p $ stays prime in $ \ZZ\sbr{i} $.
+\end{itemize}
+Then
+$$
+\begin{array}{cccl}
+\Spec \ZZ\sbr{i} & \longrightarrow & \Spec \ZZ & \\
+\abr{0} & \longmapsto & \abr{0} & \\
+\abr{1 + i} & \longmapsto & \abr{2} & \text{ramified} \\
+\abr{3} & \longmapsto & \abr{3} & \text{inert} \\
+\abr{1 + 2i}, \abr{1 - 2i} & \longmapsto & \abr{5} & \text{split}
+\end{array}.
+$$
+\item Let $ R $ be an integral domain and let $ k $ be the fraction field of $ R $, so $ f : R \hookrightarrow k $. Then $ \Spec k = \cbr{\abr{0}} $ and $ f^* : \Spec k \to \Spec R $.
+\item Let $ k $ be a field, so $ f : k \hookrightarrow k\sbr{x} $. Then $ f^* : \Spec k\sbr{x} \to \Spec k $. If $ \ppp \subset k\sbr{x} $, then $ \ppp \cap k = \cbr{\abr{0}} $, otherwise if $ \ppp $ contains a unit of $ k\sbr{x} $ then $ \ppp = k\sbr{x} $, a contradiction.
+\end{itemize}
+\end{example*}
+
+Usually, every point of a topological space is a closed subset. But this is not always true. Recall that if $ Y $ is a subset of a topological space $ X $, then the \textbf{closure} of $ Y $ is the smallest closed subset of $ X $ containing $ Y $. It is the same as the intersection of all closed subsets containing $ Y $. Claim that if $ \ppp \subseteq R $ is a prime ideal, then the closure of $ \ppp $ is $ \V_\ppp $. Any closed subset of $ \Spec R $ containing $ \ppp $ is $ \V_J $, where $ J \subset \ppp $. This $ \V_J $ visibly contains $ \V_\ppp $. Hence $ \V_\ppp $ is the intersection of all such $ \V_J $.
+
+\begin{example*}
+In $ \Spec \ZZ $, the point $ \abr{p} $ is closed, because $ \V_{\abr{p}} = \cbr{\abr{p}} $. The point $ \abr{0} $ is not closed, as $ \V_{\abr{0}} = \Spec \ZZ $. The closure of $ \abr{0} $ is all of $ \Spec \ZZ $.
+\end{example*}
+
+\begin{example*}
+Let $ R = k\sbr{\sbr{t}} = \cbr{a_0 + a_1t + \dots \st a_i \in k} $, a local ring. Its unique maximal ideal is $ \abr{t} $. This is also a unique non-zero prime ideal. \footnote{Exercise} All ideals are $ \abr{0} $ and $ \abr{t^n} $. Then $ \Spec k\sbr{\sbr{t}} = \cbr{\abr{0}, \abr{t}} $. Similarly, $ \abr{0} $ is not a closed point, since its closure is $ \Spec k\sbr{\sbr{t}} $, and $ \abr{t} $ is a closed point.
+\end{example*}
+
 \end{document}
