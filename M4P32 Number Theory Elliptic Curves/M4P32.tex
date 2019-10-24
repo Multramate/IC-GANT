@@ -643,6 +643,103 @@ If $ k $ is infinite, then either $ C $ has no points, or it has infinitely many
 
 \pagebreak
 
+\section{The Hasse principle for smooth plane conics over \texorpdfstring{$ \QQ $}{Q}}
+
+\lecture{10}{Thursday}{24/10/19}
+
+Let $ C $ be a conic $ aX^2 + bY^2 + cZ^2 = 0 $ over $ \RR $. We rescale each of $ a, b, c $ by a non-zero square. Over $ \RR $ we can assume $ \cbr{a, b, c} = \cbr{1, -1} $. There are two cases.
+\begin{itemize}
+\item If $ X^2 + Y^2 + Z^2 = 0 $, then $ C\br{\RR} = \emptyset $.
+\item If $ X^2 + Y^2 - Z^2 = 0 $, then $ C\br{\RR} \ne \emptyset $.
+\end{itemize}
+Let $ C $ be a conic $ aX^2 + bY^2 + cZ^2 = 0 $ over $ \QQ_p $ such that $ p $ is an odd prime. After rescaling by a square I can assume that $ a, b, c \in \ZZ_p $. Then $ \abs{a}_p, \abs{b}_p, \abs{c}_p \le 1 $. By rescaling by a non-zero even power of $ p $, I can assume the following two cases.
+\begin{itemize}
+\item If $ \abs{a}_p, \abs{b}_p, \abs{c}_p = 1 $, then $ C $ is non-singular. As $ a, b, c \in \ZZ_p $, I can reduce the equation modulo $ p $. Pick $ x \ne 0 $, and let
+$$ A = \cbr{ax^2 + by^2 \st y \in \FF_p}. $$
+Assume $ A \subseteq \FF_p^* $, otherwise for some $ y $, $ ax^2 + by^2 + c0^2 = 0 $. If $ ax^2 + by^2 = ax^2 + by'^2 $, then $ y^2 = y'^2 $, so $ y = y' = 0 $ or $ y = -y' \ne 0 $, so $ \abs{A} = \br{p + 1} / 2 $. Let
+$$ B = \cbr{-cz^2 \st z \in \FF_p}. $$
+Similarly $ \abs{B} = \br{p + 1} / 2 $. If the equation has no solutions, then $ A \cap B = \emptyset $, so
+$$ p - 1 = \abs{\FF_p^*} \ge \abs{A \cup B} = \abs{A} + \abs{B} = \br{p + 1} / 2 + \br{p + 1} / 2 = p + 1, $$
+a contradiction. Then $ C $ has a point over $ \FF_p $, so it has a non-zero solution by Hensel's lemma. Thus $ C $ has a point over $ \QQ_p $.
+\item If $ \abs{c}_p = 1 / p $ and $ \abs{a}_p, \abs{b}_p = 1 $, then $ C $ is singular, and we could still use Hensel's lemma.
+\end{itemize}
+Let $ C $ be a conic $ aX^2 + bY^2 + cZ^2 = 0 $ over $ \QQ $. I can assume that
+\begin{itemize}
+\item $ a, b, c \in \ZZ $, by rescaling,
+\item $ a, b, c $ are relatively prime, by rescaling,
+\item $ a, b, c $ are square-free, since we can rescale individual variables by squares, and
+\item $ a, b, c $ are pairwise relatively prime, since if $ p $ is a prime number such that $ p \mid a $ and $ p \mid b $, then $ pa $ and $ pb $ are divisible by $ p^2 $, so I absorb the $ p^2 $ into $ X $ and $ Y $.
+\end{itemize}
+Now just by looking at the signs you can tell whether $ C $ has a solution or not over the reals, and just by looking at the valuations you can tell whether $ C $ has a solution or not over the individual $ p $-adic fields, but what can we say about the solutions of $ C $ over the rationals?
+
+\begin{lemma}
+\label{lem:5.1}
+Let $ U \subseteq \RR^n $ be a measurable set, for example open, and assume that it has measure $ \mu\br{U} > m \in \NN_{> 0} $. Then there exist $ c_0, \dots, c_m \in U $ such that $ c_i - c_0 \in \ZZ^n \subset \RR^n $ for all $ i = 1, \dots, m $.
+\end{lemma}
+
+\begin{proof}
+Let $ C = \intco{0, 1}^n \subseteq \RR^n $. Then $ C $ is measurable and $ \mu\br{C} = 1 $, and $ C + \ZZ^n = \RR^n $. For any set $ X \subseteq \RR^n $ let
+$$ \chi_X\br{\underline{t}} =
+\begin{cases}
+1 & \underline{t} \in X \\
+0 & \underline{t} \notin X
+\end{cases}
+$$
+be the characteristic function of $ X $. Then
+$$ m < \mu\br{U} = \intd{\RR^n}{}{\chi_U\br{\underline{t}}}{\underline{t}} = \sum_{\underline{x} \in \ZZ^n} \intd{\RR^n}{}{\chi_{\br{C + \underline{x}} \cap U}\br{\underline{t}}}{\underline{t}} = \intd{\RR^n}{}{\sum_{\underline{x} \in \ZZ^n} \chi_{\br{C + \underline{x}} \cap U}\br{\underline{t}}}{\underline{t}} = \intd{C}{}{\sum_{\underline{x} \in \ZZ^n} \chi_{C - \underline{x}}\br{\underline{t}}}{\underline{t}}. $$
+The function $ \sum_{\underline{x} \in \ZZ^n} \chi_{C - \underline{x}}\br{\underline{t}} $ is a counting function
+$$ \underline{x} \in C \mapsto \abs{\cbr{\underline{y} \in U \st \underline{x} - \underline{y} \in \ZZ^n}}, $$
+which is an integer-valued measurable function, and if $ \underline{x} < m $ for all points, then its integral over $ C $ is less than $ m $, a contradiction. Thus there exists $ \underline{x} \in C $ such that $ \abs{\underline{x} + \ZZ^n \cap U} > m $.
+\end{proof}
+
+\pagebreak
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item $ U \subseteq \RR^n $ is \textbf{symmetric} if for all $ \underline{x} \in U $, $ -\underline{x} \in U $.
+\item $ U \subseteq \RR^n $ is \textbf{convex} if for all $ \underline{x}, \underline{y} \in U $, there exists $ t \in \sbr{0, 1} $ such that $ t\underline{x} + \br{1 - t}\underline{y} \in U $.
+\end{itemize}
+\end{definition}
+
+\begin{corollary}[Minkowski's geometry of numbers]
+Let $ \Lambda \subseteq \RR^n $ be a subgroup of index $ m $. Let $ U \subseteq \RR^n $ be an open, convex, symmetric set of $ \mu\br{U} > 2^n \cdot m $. Then $ \Lambda \cap U \ne \emptyset $.
+\end{corollary}
+
+\begin{proof}
+Let $ V = U / 2 = \cbr{\tfrac{1}{2}\underline{x} \st \underline{x} \in U} $, so $ \mu\br{V} = 2^{-n} \cdot \mu\br{U} > m $. So by the Lemma \ref{lem:5.1} there exist $ c_o, \dots, c_m \in V $ such that $ c_i - c_0 \in \ZZ^n $ for all $ i = 0, \dots, m $. By the pigeonhole principle, as $ m + 1 > \sbr{\ZZ^n : \Lambda} $, there exist $ i \ne j $ such that $ c_i - c_0 \equiv c_j - c_0 \mod \Lambda $, so $ c_i - c_j = \br{c_i - c_0} - \br{c_j - c_0} \in \Lambda $. Then $ 2c_i \in U $, and $ -2c_i \in -U = U $ by symmetry of $ U $, so $ \tfrac{1}{2}\br{2c_i} + \tfrac{1}{2}\br{-2c_j} \in U $, as $ U $ is convex.
+\end{proof}
+
+\begin{theorem}
+If $ n \in \ZZ_{> 0} $ and one can solve $ t^2 \equiv -1 \mod n $ for $ t \in \ZZ $ then $ n $ is the sum of two squares.
+\end{theorem}
+
+\begin{proof}
+Consider the subgroup $ y \equiv tx \mod n $. This has index $ n $, since it is the kernel of the surjective homomorphism
+$$ \function{\ZZ^2}{\ZZ / n\ZZ}{\br{x, y}}{y - tx}, $$
+so this follows from the first isomorphism theorem. Consider the ball of radius $ \sqrt{2n} $. The volume is bigger than $ 4n $ in $ \RR^2 $ so there is a non-zero lattice point $ \br{a, b} $ which has $ a^2 + b^2 \equiv 0 \mod n $, but satisfies $ 0 < a^2 + b^2 < 2n $.
+\end{proof}
+
+\begin{theorem}[Hasse-Minkowski]
+The following are equivalent.
+\begin{enumerate}
+\item $ C $ has infinitely many points over $ \QQ $.
+\item $ C $ has one point over $ \QQ $.
+\item $ C $ has one point over $ \QQ_p $ for all $ p $ and over $ \RR $.
+\item $ C $ has one point over $ \QQ_p $ for all $ p \mid 2abc $.
+\end{enumerate}
+\end{theorem}
+
+The problem of solving conics over $ \QQ $ is algorithmically decidable, so there is a computer program which solves this problem.
+
+\begin{proof}
+$ 1 $ implies $ 2 $ implies $ 3 $ implies $ 4 $, and we proved $ 2 $ implies $ 1 $, so $ 4 $ implies $ 2 $ is enough.
+\end{proof}
+
+Let $ X \subseteq \PP^n\br{\QQ} $ be a projective algebraic variety, such as hypersurfaces or plane curves. The \textbf{local-global principle} holds for $ X $ if $ X\br{\QQ} \ne \emptyset $ if and only if $ X\br{\QQ_p} \ne \emptyset $ for all $ p $ prime number and $ X\br{\RR} \ne \emptyset $. Hasse-Minkowski implies that conics satisfy the local-global principle, but $ 3X^3 + 4Y^3 + 5Z^3 = 0 $ does not.
+
+\pagebreak
+
 \appendix
 
 \section{Diagonalisation of quadratic forms}
