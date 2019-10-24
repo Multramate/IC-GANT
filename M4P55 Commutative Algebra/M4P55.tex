@@ -637,4 +637,102 @@ In $ \Spec \ZZ $, the point $ \abr{p} $ is closed, because $ \V_{\abr{p}} = \cbr
 Let $ R = k\sbr{\sbr{t}} = \cbr{a_0 + a_1t + \dots \st a_i \in k} $, a local ring. Its unique maximal ideal is $ \abr{t} $. This is also a unique non-zero prime ideal. \footnote{Exercise} All ideals are $ \abr{0} $ and $ \abr{t^n} $. Then $ \Spec k\sbr{\sbr{t}} = \cbr{\abr{0}, \abr{t}} $. Similarly, $ \abr{0} $ is not a closed point, since its closure is $ \Spec k\sbr{\sbr{t}} $, and $ \abr{t} $ is a closed point.
 \end{example*}
 
+\pagebreak
+
+\section{Determinants}
+
+\lecture{10}{Thursday}{24/10/19}
+
+Let $ R $ be a commutative ring with unity. Let $ A $ be a matrix $ A = \br{a_{ij}}_{i, j = 1}^n $ for $ a_{ij} \in R $. Then
+$$ \det A = \sum_{\pi \in \SSS_n} \sgn \pi \cdot a_{1\pi\br{1}} \cdot \dots \cdot a_{n\pi\br{n}} \in R, $$
+where $ \sgn : \SSS_n \to \cbr{\pm 1} $. Let
+$$ \M_{ij} = \det\br{A \ \text{without $ j $-th column and $ i $-th row}} \in R. $$
+Then
+$$ \br{-1}^{j + 1}a_{i1}\M_{j1} + \dots + \br{-1}^{j + n}a_{in}\M_{jn} =
+\begin{cases}
+\det A & i = j \\
+0 & i \ne j
+\end{cases}.
+$$
+Define the \textbf{adjoint matrix} of $ A $ as the $ n \times n $ matrix $ A^\vee $ with entries $ \br{A^\vee}_{ij} = \br{-1}^{i + j}\M_{ji} $, so
+$$ A^\vee = \br{\br{-1}^{i + j}\M_{ij}}^\intercal. $$
+Then $ A \cdot A^\vee = A^\vee \cdot A = \det A \cdot \I_n $, where $ \I_n $ is the identity matrix.
+
+\section{Modules}
+
+\begin{definition}
+Let $ A $ be a commutative ring with unity. An \textbf{$ A $-module} $ M $ is an abelian group with an additional structure $ A \times M \to M $ such that
+$$ \lambda\br{x + y} = \lambda x + \lambda y, \qquad \br{\mu + \lambda}x = \mu x + \lambda x, \qquad \mu\br{\lambda x} = \br{\mu\lambda}x, \qquad 1x = x, \qquad \lambda, \mu \in R, \qquad x, y \in M. $$
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item If $ R $ is a field, then an $ R $-module is the same as a vector space.
+\item If $ R = \ZZ $, then an $ R $-module is the same as an abelian group. Remark that if $ G $ is an abelian group then $ n \cdot g = g + \dots + g $.
+\item If $ R $ is any ring, then subgroups of $ R $ that are $ R $-modules are the same as ideals.
+\item If $ k $ is a field, then $ k\sbr{x} $-modules are vector spaces $ V $ over $ k $ equipped with a linear transformation $ L : V \to V $. Here $ x $ acts on $ V $ as $ L $.
+\end{itemize}
+\end{example}
+
+\begin{definition}
+If $ M $ and $ N $ are $ R $-modules, then a \textbf{homomorphism of $ R $-modules} $ f : M \to N $ is a homomorphism of abelian groups such that $ f\br{rx} = rf\br{x} $ for all $ x \in M $ and all $ r \in R $.
+\end{definition}
+
+\begin{definition}
+Let $ \Hom_R\br{M, N} $ be the set of $ R $-module homomorphisms $ M \to N $.
+\end{definition}
+
+This is an abelian group. Moreover, it is an $ R $-module. If $ r \in R $ and $ f \in \Hom_R\br{M, N} $ then $ r \cdot f $ sends $ x \in M $ to $ rf\br{x} \in N $. Warning that if $ R $ is not commutative $ \Hom_R\br{M, N} $ is just an abelian group.
+
+\begin{definition}
+Let $ M $ and $ N $ be submodules of an $ R $-module. Define
+$$ \br{N : M} = \cbr{r \in R \st rM \subset N}. $$
+\end{definition}
+
+This is an ideal in $ R $.
+
+\begin{example*}
+The \textbf{annihilator} of $ M $ is
+$$ \br{0 : M} = \cbr{r \in R \st rM = 0} = \Ann M. $$
+\end{example*}
+
+\pagebreak
+
+\begin{definition}
+An $ R $-module $ M $ is \textbf{finitely generated} if there are elements $ x_1, \dots, x_n \in M $ such that for any $ m \in M $ there are $ r_1, \dots, r_n \in R $ such that $ m = r_1x_1 + \dots + r_nx_n $.
+\end{definition}
+
+\begin{example*}
+There is a \textbf{free} finitely generated module
+$$ R^{\oplus n} = \cbr{\br{t_1, \dots, t_n} \st t_i \in R}, $$
+with coordinate-wise addition and multiplication.
+\end{example*}
+
+\begin{remark*}
+Any finitely generated $ R $-module is a quotient of a free finitely generated $ R $-module. Indeed, define
+$$ \function[f_i]{R^{\oplus n}}{M}{\br{t_1, \dots, t_n}}{t_1x_1 + \dots + t_nx_n}. $$
+\end{remark*}
+
+Comment that $ JM $ is the smallest submodule of $ M $ containing all elements $ rm $ for $ r \in J $ and $ m \in M $, so
+$$ JM = \cbr{\text{finite sums} \ r_1m_1 + \dots + r_km_k} \subset M. $$
+
+\begin{lemma}
+Let $ A $ be a ring. Let $ M $ be a finitely generated $ A $-module. Let $ J \subset A $ be an ideal such that $ JM = M $. Then there is an $ a \in J $ such that $ \br{1 - a}M = 0 $.
+\end{lemma}
+
+\begin{proof}
+If $ M = 0 $, then it is fine. Suppose $ M \ne 0 $ and $ m_1, \dots, m_n $ are generators of $ M $. Then $ m_i \in M = JM $, so
+\begin{align*}
+m_1 & = x_{11}m_1 + \dots + x_{1n}m_n \\
+& \vdots \\
+m_n & = x_{n1}m_1 + \dots + x_{nn}m_n,
+\end{align*}
+for $ x_{ij} \in J $. Define $ X = \br{x_{ij}}_{i, j = 1}^n $. Then
+$$ \threebyone{m_1}{\vdots}{m_n} = X\threebyone{m_1}{\vdots}{m_n} \qquad \iff \qquad \br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0. $$
+Consider the adjoint matrix $ \br{\I_n - X}^\vee $. Then
+$$ \br{\I_n - X}^\vee\br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0 \qquad \iff \qquad \det \br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0. $$
+We have $ \det \br{\I_n - X} \in A $. Then $ \det \br{\I_n - X} $ is a product of diagonal entries $ \prod_{i = 1}^n \br{1 - x_{ii}} $, plus other terms but every non-diagonal term contains at least one factor in $ J $, so is in $ J $. Finally, $ \det \br{\I_n - X} = 1 - a $, where $ a \in J $. Now, $ \br{1 - a}m_i = 0 $ for $ i = 1, \dots, n $. Hence $ \br{1 - a}M = 0 $.
+\end{proof}
+
 \end{document}
