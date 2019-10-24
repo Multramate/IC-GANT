@@ -579,4 +579,101 @@ Let $ H $ be a group and $ S \subseteq H $, and $ R \subseteq \F\br{S} $. Then t
 \end{itemize}
 \end{proof}
 
+\lecture{10}{Thursday}{24/10/19}
+
+\begin{remark}
+We defined $ G = \abr{S \st R} $ through some $ \phi : \F\br{S} \to G $. Note that $ \phi $ and $ R $ do not determine each other uniquely.
+\end{remark}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Consider
+$$ G = \abr{x \st x^3} = \ZZ_3, $$
+and
+$$ \function[\phi_1]{\F\br{\cbr{x}}}{G}{x}{1}, \qquad \function[\phi_1]{\F\br{\cbr{x}}}{G}{x}{2}. $$
+\item Consider
+$$ G = \abr{x, y \st x^2, y^2, \br{xy}^3} = \SSS_3, $$
+as we saw, given by
+$$ \function[\phi_1]{\F\br{\cbr{x, y}}}{G}{\br{x, y}}{\br{\br{12}, \br{23}}}. $$
+An easy calculation shows that
+$$ \SSS_3 = \abr{x, y \st x^2, \br{xy}^3, x^{-1}y^{-1}\br{xy}^2}, $$
+via the same homomorphism $ \phi $.
+\end{itemize}
+\end{example*}
+
+It is hard to read even basic algebraic properties from a presentation, such as whether or not a group is finite.
+
+\begin{example*}
+$$ \SSS_3 = \abr{x, y \st x^2, y^2, \br{xy}^3}, \ \AAA_4 = \abr{x, y \st x^3, y^3, \br{xy}^2} \ \text{are finite}, \qquad G = \abr{x, y \st x^3, y^3, \br{xy}^3} \ \text{is infinite}. $$
+\end{example*}
+
+\pagebreak
+
+\begin{remark}
+More generally, a group in which every element has finite order is called \textbf{periodic}. Burnside asked, in 1902, whether every finitely generated periodic group is finite. This generalises to the following. Let $ S $ be any set and let $ w\br{S} $ denote the set of all words on $ S $. Define the groups
+$$ \B\br{m, n} = \abr{x_1, \dots, x_m \st w\br{\cbr{x_1, \dots, x_m}}^n}. $$
+They are called \textbf{free Burnside groups}. Are the $ \B\br{m, n} $ finite?
+\begin{itemize}
+\item Burnside proved for $ n = 2, 3 $.
+\item Sanov proved in 1940 for $ n = 4 $.
+\item Hall proved in 1958 for $ n = 6 $.
+\item Novikov and Adian disproved in 1968 for $ m \ge 2 $ and $ n \ge 667 $ odd.
+\item $ \B\br{2, 5} = \abr{x, y \st w\br{x, y}^5} $ is open.
+\end{itemize}
+\end{remark}
+
+\begin{exercise}
+Show that all $ \B\br{1, n} $ and $ \B\br{m, n} $ are finite.
+\end{exercise}
+
+Why bother? Most groups simply just come through their presentation and problems on groups, such as isomorphism problems and word problems, are best expressed through presentations. A very important class of groups are Coxeter groups. A group $ G $ is \textbf{Coxeter}, if
+$$ G = \abr{s_1, \dots, s_n \st s_i^2, \br{s_is_j}^{m_{ij}}, i, j = 1, \dots, n}, \qquad 1 \le m_{ij} \le \infty. $$
+
+\subsection{Group actions on graphs}
+
+Recall the definition of a group acting on a graph. Many statements in Bass-Serre theory start with the assumption that $ G $ acts on $ X $ without inversion of edges.
+
+\begin{definition}
+Let $ X $ be a graph. We define its \textbf{barycentric subdivision} $ \BBB\br{X} $ via
+\begin{itemize}
+\item $ \BBB\br{X}^0 = \cbr{v_e \st e \in X^1} $,
+\item $ \BBB\br{X}^1 = \cbr{e_1, e_2 \st e \in X^0} $ such that
+$$ \alpha\br{e_1} = \alpha\br{e}, \qquad \omega\br{e_1} = \alpha\br{e_2} = v_e, \qquad \omega\br{e_2} = \omega\br{e}, $$
+\item $ \overline{e_1} = \br{\overline{e}}_2 $.
+\end{itemize}
+\end{definition}
+
+Now, if $ G $ acts on $ X $, we can naturally extend the action via
+$$ g \cdot v_e = v_{ge}, \qquad g \cdot e_1 = \br{ge}_1, \qquad g \cdot e_2 = \br{ge}_2. $$
+
+\begin{note*}
+The action did not change on $ X^0 $.
+\end{note*}
+
+\begin{exercise}
+If $ G $ acts on $ X $, then it acts as above on $ \BBB\br{X} $ and this action is without inversion of edges.
+\end{exercise}
+
+\begin{definition}
+Let $ X $ be a tree. A reduced path is called a \textbf{geodesic}. For $ x, y \in X $, we denote the unique geodesic from $ x $ to $ y $ by $ x - y $. Its length is called the \textbf{distance} between $ x $ and $ y $ and denoted by $ \d\br{x, y} $.
+\end{definition}
+
+\begin{note*}
+$ \d $ defines a distance function and if $ \sigma \in \Aut X $, then it acts on $ X $ as an isometry.
+\end{note*}
+
+\begin{note*}
+Further, for $ X_1, X_2 \subseteq X $ disjoint subtrees of $ X $, there is a unique geodesic which starts in $ X_1 $, ends in $ X_2 $, and with all edges outside $ X_1^1 \cup X_2^1 $. We denote this by $ X_1 - X_2 $, and its length by $ \d\br{X_1, X_2} $.
+\end{note*}
+
+\begin{definition}
+Let $ X $ be a tree and $ \sigma \in \Aut X $. Then we set
+$$ \abs{\sigma} = \min\cbr{\d\br{x, \sigma\br{x}} \st x \in X^0}, $$
+and call it the \textbf{displacement length} of $ \sigma $. Let
+$$ Y
+_\sigma = \cbr{x \in X^0 \st \d\br{x, \sigma\br{x}} = \abs{\sigma}}. $$
+If $ \abs{\sigma} = 0 $, we write $ Y_\sigma = \mathring{\sigma} $, and if $ \abs{\sigma} > 0 $, we write $ Y_\sigma = \vec{\sigma} $.
+\end{definition}
+
 \end{document}
