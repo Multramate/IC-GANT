@@ -741,4 +741,81 @@ The only possibilities are
 In each case, the zero of $ g $ is a unique $ \SL_2\br{\ZZ} $-orbit on which $ \j\br{z} = \lambda $. So $ \j $ is bijective.
 \end{proof}
 
+\lecture{10}{Friday}{25/10/19}
+
+\begin{theorem}
+Every meromorphic modular form of weight zero is a rational function in $ \j $. That is, the field of meromorphic modular forms is $ \CC\br{\j} $.
+\end{theorem}
+
+\begin{proof}
+Let $ g $ be meromorphic of weight zero. Then $ g $ has finitely many $ \SL_2\br{\ZZ} $-orbits worth of poles in $ \HH $. Saw last time that $ \j $ is holomorphic in $ \HH $. If $ p $ is a pole of $ g $, then $ \br{\j\br{z} - \j\br{p}}^{n_p} $ is holomorphic on $ \HH $ and zero at $ z = p $. Doing this for all poles, there exists $ P \in \CC\sbr{X} $ such that $ P\br{\j}g\br{z} $ is holomorphic on $ \HH $. Then for some $ m $, $ P\br{\j}g\br{z}\Delta^m $ is holomorphic of weight $ 12m $. So it suffices to show if $ h $ is holomorphic of weight $ 12m $, then $ h / \Delta^m $ is a rational function in $ \j $, since if $ P\br{\j}g\br{z}\Delta^m = h $ then $ P\br{\j}g\br{z} \in \CC\br{\j} $, so $ g\br{z} \in \CC\br{\j} $. Then $ h $ is a sum of terms
+$$ h = \sum_{a, b} c_{a, b}\E_4^a\E_6^b, \qquad c_{a, b} \in \CC, \qquad 4a + 6b = 12m. $$
+Considering this equation modulo four and modulo three, find $ 3 \mid a $ and $ 2 \mid b $, so
+$$ \dfrac{h}{\Delta^m} = \sum_{a, b} c_{a, b}\br{\dfrac{\E_4^3}{\Delta}}^{\tfrac{a}{3}}\br{\dfrac{\E_6^2}{\Delta}}^{\tfrac{b}{2}}. $$
+So it suffices to show $ \E_4^3 / \Delta $ and $ \E_6^2 / \Delta $ are rational functions in $ \j $. Then $ \j = \E_4^3 / \Delta $, and
+$$ \dfrac{\E_6^2}{\Delta} = \dfrac{1728\E_6^2}{\E_4^3 - \E_6^2} = \dfrac{1728\br{\E_6^2 - \E_4^3} + 1728\E_4^3}{\E_4^3 - \E_6^2} = -1728 + \dfrac{1728\E_4^3}{\E_4^3 - \E_6^2} = \j - 1728. $$
+\end{proof}
+
+\pagebreak
+
+\subsection{Theta series}
+
+Let $ L \subseteq \RR^n $ be a lattice. For $ x, y \in L $, $ x \cdot y \in \RR $. Suppose $ x \cdot y \in \ZZ $ for all $ x, y \in L $. A question is for $ n \in \ZZ $, how many $ x \in L $ have $ x \cdot x = n $? The rough idea is to form the series
+$$ \sum_{x \in L} q^{x \cdot x} = \sum_{n = 0}^\infty a_nq^n, \qquad a_n = \#\cbr{x \in L \st x \cdot x = n}. $$
+We will show, with some slight modifications, and extra hypotheses on $ L $, this generating function turns out to be a modular form.
+
+\subsubsection{Lattices}
+
+Fix a lattice $ L \subseteq \RR^n $, so
+$$ L = \ZZ \cdot e_1 \oplus \dots \oplus \ZZ \cdot e_n. $$
+Given these $ e_i $, form a matrix $ A $ such that $ A_{ij} = e_i \cdot e_j $.
+
+\begin{note*}
+$ A = B^\intercal B $, where $ B $ is the matrix whose columns are the $ e_i $, and $ \abs{\det B} $ is the volume of the parallelogram spanned by $ e_i $, so $ \det A = \br{\det B}^2 > 0 $.
+\end{note*}
+
+\begin{definition}
+The \textbf{dual lattice} $ L^\vee $ is the set of $ y \in \RR^n $ such that $ y \cdot x \in \ZZ $ for all $ x \in L $.
+\end{definition}
+
+Let $ f_1, \dots, f_n $ be the dual basis to $ e_1, \dots, e_n $, that is the unique set of solutions $ f_1, \dots, f_n $ such that
+$$ f_i \cdot e_j =
+\begin{cases}
+1 & i = j \\
+0 & i \ne j
+\end{cases}.
+$$
+Then $ L^\vee $ is spanned by the $ f_i $. Clearly $ f_i \in L^\vee $ for all $ i $. Conversely, if $ y \in L^\vee $, then $ y \cdot e_i = a_i \in \ZZ $, then $ y = \sum_{i = 1}^n a_if_i $.
+
+\begin{proposition}
+Let $ C = A^{-1} $. Then
+$$ f_i = \sum_{j = 1}^n C_{ij}e_j. $$
+\end{proposition}
+
+\begin{proof}
+$$ f_i \cdot e_k = \sum_{j = 1}^n C_{ij}e_je_k = \sum_{j = 1}^n C_{ij}A_{jk} = \br{CA}_{ik} =
+\begin{cases}
+1 & i = k \\
+0 & i \ne k
+\end{cases}.
+$$
+\end{proof}
+
+\begin{definition}
+A lattice $ L $ is \textbf{self-dual} if $ L^\vee = L $ as subsets of $ \RR^n $.
+\end{definition}
+
+\begin{proposition}
+$ L $ is self-dual if and only if the associated matrix $ A $ has integer entries and determinant $ 1 $.
+\end{proposition}
+
+\begin{proof}
+Clearly if $ L = L^\vee $, then $ e_i \cdot e_j \in \ZZ $, so $ A $ has integer entries. Since $ L^\vee \subseteq L $, $ f_i $ is an integer combination of the $ e_j $, so $ C = A^{-1} $ has integer entries. So $ \det A = \pm 1 $, but already saw $ \det A > 0 $. Conversely if $ A $ has integer entries and determinant one, $ C = A^{-1} $ has integer entries. Then $ A $ has integer entries implies that $ e_i \cdot e_j \in \ZZ $ for all $ i $ and $ j $, so $ e_i \in L^\vee $ for all $ i $, so $ L \subseteq L^\vee $. Similarly, $ C $ has integer entries implies that $ L^\vee \subseteq L $.
+\end{proof}
+
+If $ L $ is self-dual, get an integer-valued quadratic form
+$$ \function[\Q_L]{\ZZ^n}{\ZZ}{\br{a_1, \dots, a_n}}{\br{a_1e_1 + \dots + a_ne_n} \cdot \br{a_1e_1 + \dots + a_ne_n} = \onebythree{a_1}{\dots}{a_n}A\threebyone{a_1}{\dots}{a_n}}. $$
+
+A question is given $ m $, how often does $ \Q_L $ represent $ m $?
+
 \end{document}
