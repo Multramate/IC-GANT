@@ -818,4 +818,104 @@ $$ \function[\Q_L]{\ZZ^n}{\ZZ}{\br{a_1, \dots, a_n}}{\br{a_1e_1 + \dots + a_ne_n
 
 A question is given $ m $, how often does $ \Q_L $ represent $ m $?
 
+\pagebreak
+
+\subsubsection{Fourier analysis}
+
+\lecture{11}{Friday}{25/10/19}
+
+Let $ f $ be a $ \C^\infty $ function on $ \RR^n \to \CC $.
+
+\begin{definition}
+We will say $ f $ is \textbf{rapidly decreasing} if for all $ m $,
+$$ \abs{\abs{x}^m \cdot f\br{x}} \to 0, \qquad \abs{x} \to \infty, $$
+where $ \abs{x} = \br{x \cdot x}^{1 / 2} $. For $ f \in \C^\infty $, rapidly decreasing, define
+$$ \widehat{f}\br{y} = \intd{\RR^n}{}{e^{-2\pi i\br{x \cdot y}}}{x} : \RR^n \to \CC. $$
+\end{definition}
+
+\begin{fact}
+If $ f $ is smooth and rapidly decreasing, so is $ \widehat{f} $.
+\end{fact}
+
+\begin{fact}
+If $ f\br{x} = e^{-\pi\br{x \cdot x}} $, then $ \widehat{f}\br{x} = f\br{x} $.
+\end{fact}
+
+\begin{fact}
+If $ f $ is smooth and rapidly decreasing, and $ \RR^n $ is a lattice with volume $ V $, then
+$$ \sum_{x \in L} f\br{x} = \dfrac{1}{v}\sum_{x \in L^\vee} \widehat{f}\br{x}. $$
+\end{fact}
+
+\subsubsection{Theta series}
+
+A crucial assumption is that $ L $ is self-dual. An assumption that can be removed is that $ L $ is even, so for all $ x \in L $, $ \Q_L\br{x} \in 2\ZZ $.
+
+\begin{definition}
+The \textbf{theta series} $ \Theta_L $ is defined by
+$$ \Theta_L\br{z} = \sum_{x \in L} q^{\tfrac{1}{2}x \cdot x} = \sum_{m = 0}^\infty a_mq^m, \qquad a_m = \#\cbr{x \in \ZZ^n \st \Q_L\br{x} = 2m}. $$
+\end{definition}
+
+\begin{theorem}
+\label{thm:thetaseries}
+$ \Theta_L $ is modular of weight $ n / 2 $.
+\end{theorem}
+
+\begin{example*}
+Let $ \Gamma_8 \subseteq \RR^8 $ be spanned by
+$$ e_1 = \br{\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, \dfrac{1}{2}}, \qquad e_2 = \br{1, 1, 0, 0, 0, 0, 0, 0}, $$
+$$ e_3 = \br{1, -1, 0, 0, 0, 0, 0, 0}, \qquad e_4 = \br{0, 1, -1, 0, 0, 0, 0, 0}, \qquad e_5 = \br{0, 0, 1, -1, 0, 0, 0, 0}, $$
+$$ e_6 = \br{0, 0, 0, 1, -1, 0, 0, 0}, \qquad e_7 = \br{0, 0, 0, 0, 1, -1, 0, 0}, \qquad e_8 = \br{0, 0, 0, 0, 0, 1, -1, 0}. $$
+Then
+$$ A =
+\begin{pmatrix}
+2 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 2 & 0 & -1 & 0 & 0 & 0 & 0 \\
+-1 & 0 & 2 & -1 & 0 & 0 & 0 & 0 \\
+0 & -1 & -1 & 2 & -1 & 0 & 0 & 0 \\
+0 & 0 & 0 & -1 & 2 & -1 & 0 & 0 \\
+0 & 0 & 0 & 0 & -1 & 2 & -1 & 0 \\
+0 & 0 & 0 & 0 & 0 & -1 & 2 & -1 \\
+0 & 0 & 0 & 0 & 0 & 0 & -1 & 2
+\end{pmatrix},
+$$
+and
+$$ \Q_L\br{z_1, \dots, z_8} = 2\br{z_1^2 + \dots + z_8^2 - z_1z_3 - z_2z_4 - z_3z_4 - z_4z_5 - z_6z_7 - z_7z_8}. $$
+\end{example*}
+
+If $ L \subseteq \RR^n $ is even and self-dual, and $ \Theta_L $ is modular of weight $ n / 2 $, then dimension is $ \sim 24 $.
+
+\begin{fact*}
+$ L \subseteq \RR^n $ even and self-dual implies that $ 8 \mid n $.
+\end{fact*}
+
+\begin{proof}
+Serre V.2.1 Corollary 2.
+\end{proof}
+
+\pagebreak
+
+\begin{proof}[Proof of Theorem \ref{thm:thetaseries}]
+Know, since $ L $ is even, that $ \Theta_L\br{z + 1} = \Theta_L\br{z} $. It suffices to show
+$$ \Theta_L\br{-\dfrac{1}{z}} = z^{\tfrac{n}{2}}\Theta_L\br{z}. $$
+Both sides are holomorphic on $ \HH $, so it suffices to show
+$$ \Theta_L\br{-\dfrac{1}{it}} = \br{it}^{\tfrac{n}{2}}\Theta_L\br{it}. $$
+For $ t \in \RR^\times $, let
+$$ L_t = t^{\tfrac{1}{2}} \cdot L, \qquad L_t^\vee = t^{-\tfrac{1}{2}} \cdot L = L_{t^{-1}}, $$
+so $ \vol L_t = t^{n / 2} $. By the facts,
+$$ \sum_{x \in L_t} e^{-\pi\br{x \cdot x}} = t^{-\tfrac{n}{2}}\sum_{x \in L_{t^{-1}}} e^{-\pi\br{x \cdot x}}, $$
+so
+$$ \sum_{x \in L} e^{-\pi\br{x \cdot x}t} = t^{-\tfrac{n}{2}}\sum_{x \in L} e^{-\tfrac{\pi\br{x \cdot x}}{2}}. $$
+Now return to $ \Theta_L $. The left hand side is
+$$ \Theta_L\br{-\dfrac{1}{it}} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{-\tfrac{1}{it}} \cdot \br{x \cdot x}} = \sum_{x \in L} e^{-\tfrac{\pi\br{x \cdot x}}{t}}, $$
+and the right hand side is
+$$ \Theta_L\br{it} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{it} \cdot \br{x \cdot x}} = \sum_{x \in L} e^{\pi\br{x \cdot x}t}, $$
+so the result follows.
+\end{proof}
+
+Let $ \Theta_L = \sum_{m = 1}^\infty a_mq^m $, where $ a_m $ is the number of ways $ \Q_L $ represents $ 2m $, so $ a_0 = 1 $. Then $ \Theta_L = \E_{n / 2} + g $, where $ g $ is a cusp form. The coefficients of $ \E_{n / 2} $ are constants times $ \sigma_{n / 2 - 1}\br{m} $, which grows like $ m^{n / 2 - 1} $.
+
+\begin{theorem}[Hasse]
+If $ g = \sum b_mq^m $ is a cusp form of weight $ k $, then $ \abs{b_m}m^{-k / 2} $ is bounded as $ n \to \infty $.
+\end{theorem}
+
 \end{document}
