@@ -659,7 +659,7 @@ $$ A = \cbr{ax^2 + by^2 \st y \in \FF_p}. $$
 Assume $ A \subseteq \FF_p^* $, otherwise for some $ y $, $ ax^2 + by^2 + c0^2 = 0 $. If $ ax^2 + by^2 = ax^2 + by'^2 $, then $ y^2 = y'^2 $, so $ y = y' = 0 $ or $ y = -y' \ne 0 $, so $ \abs{A} = \br{p + 1} / 2 $. Let
 $$ B = \cbr{-cz^2 \st z \in \FF_p}. $$
 Similarly $ \abs{B} = \br{p + 1} / 2 $. If the equation has no solutions, then $ A \cap B = \emptyset $, so
-$$ p - 1 = \abs{\FF_p^*} \ge \abs{A \cup B} = \abs{A} + \abs{B} = \br{p + 1} / 2 + \br{p + 1} / 2 = p + 1, $$
+$$ p - 1 = \abs{\FF_p^*} \ge \abs{A \cup B} = \abs{A} + \abs{B} = \dfrac{p + 1}{2} + \dfrac{p + 1}{2} = p + 1, $$
 a contradiction. Then $ C $ has a point over $ \FF_p $, so it has a non-zero solution by Hensel's lemma. Thus $ C $ has a point over $ \QQ_p $.
 \item If $ \abs{c}_p = 1 / p $ and $ \abs{a}_p, \abs{b}_p = 1 $, then $ C $ is singular, and we could still use Hensel's lemma.
 \end{itemize}
@@ -703,37 +703,84 @@ which is an integer-valued measurable function, and if $ \underline{x} < m $ for
 \end{definition}
 
 \begin{corollary}[Minkowski's geometry of numbers]
-Let $ \Lambda \subseteq \RR^n $ be a subgroup of index $ m $. Let $ U \subseteq \RR^n $ be an open, convex, symmetric set of $ \mu\br{U} > 2^n \cdot m $. Then $ \Lambda \cap U \ne \emptyset $.
+\label{cor:5.3}
+Let $ \Lambda \subseteq \RR^n $ be a subgroup of finite index $ m $. Let $ U \subseteq \RR^n $ be an open, convex, symmetric set of $ \mu\br{U} > 2^n \cdot m $. Then $ \Lambda \cap U \ne \emptyset $.
 \end{corollary}
 
 \begin{proof}
-Let $ V = U / 2 = \cbr{\tfrac{1}{2}\underline{x} \st \underline{x} \in U} $, so $ \mu\br{V} = 2^{-n} \cdot \mu\br{U} > m $. So by the Lemma \ref{lem:5.1} there exist $ c_o, \dots, c_m \in V $ such that $ c_i - c_0 \in \ZZ^n $ for all $ i = 0, \dots, m $. By the pigeonhole principle, as $ m + 1 > \sbr{\ZZ^n : \Lambda} $, there exist $ i \ne j $ such that $ c_i - c_0 \equiv c_j - c_0 \mod \Lambda $, so $ c_i - c_j = \br{c_i - c_0} - \br{c_j - c_0} \in \Lambda $. Then $ 2c_i \in U $, and $ -2c_i \in -U = U $ by symmetry of $ U $, so $ \tfrac{1}{2}\br{2c_i} + \tfrac{1}{2}\br{-2c_j} \in U $, as $ U $ is convex.
+Let
+$$ V = \dfrac{1}{2}U = \cbr{\tfrac{1}{2}\underline{x} \st \underline{x} \in U}, $$
+so $ \mu\br{V} = 2^{-n} \cdot \mu\br{U} > m $. So by the Lemma \ref{lem:5.1} there exist $ c_o, \dots, c_m \in V $ such that $ c_i - c_0 \in \ZZ^n $ for all $ i = 0, \dots, m $. By the pigeonhole principle, as
+$$ \abs{\cbr{c_i - c_0 \st i = 0, \dots, m}} = m + 1 > \sbr{\ZZ^n : \Lambda}, $$
+there exist $ i \ne j $ such that $ c_i - c_0 \equiv c_j - c_0 \mod \Lambda $, so $ c_i - c_j = \br{c_i - c_0} - \br{c_j - c_0} \in \Lambda $. Then $ 2c_i \in U $, and $ -2c_i \in -U = U $ by symmetry of $ U $, so $ \tfrac{1}{2}\br{2c_i} + \tfrac{1}{2}\br{-2c_j} \in U $, as $ U $ is convex.
 \end{proof}
 
 \begin{theorem}
-If $ n \in \ZZ_{> 0} $ and one can solve $ t^2 \equiv -1 \mod n $ for $ t \in \ZZ $ then $ n $ is the sum of two squares.
+If $ n \in \ZZ_{> 0} $ such that there exists $ t $ with $ t^2 \equiv 1 \mod n $, then $ n $ is a sum of two squares.
 \end{theorem}
 
 \begin{proof}
-Consider the subgroup $ y \equiv tx \mod n $. This has index $ n $, since it is the kernel of the surjective homomorphism
-$$ \function{\ZZ^2}{\ZZ / n\ZZ}{\br{x, y}}{y - tx}, $$
-so this follows from the first isomorphism theorem. Consider the ball of radius $ \sqrt{2n} $. The volume is bigger than $ 4n $ in $ \RR^2 $ so there is a non-zero lattice point $ \br{a, b} $ which has $ a^2 + b^2 \equiv 0 \mod n $, but satisfies $ 0 < a^2 + b^2 < 2n $.
+Define
+$$ \Gamma = \cbr{\br{x, y} \st y \equiv tx \mod n} \subseteq \ZZ^2. $$
+This has index $ n $, because it is the kernel of
+$$ \function{\ZZ^2}{\ZZ / n\ZZ}{\br{x, y}}{y - tx}. $$
+Let
+$$ V = \cbr{\br{x, y} \in \RR^2 \st x^2 + y^2 < 2n}. $$
+Then
+$$ \mu\br{V} = 2n \cdot \pi > 4n = 2^2 \cdot n = 2^2 \cdot \sbr{\ZZ^2 : \Lambda}. $$
+Corollary \ref{cor:5.3} implies that there exists $ \br{x, y} \in V \cap \Lambda $ such that $ \br{x, y} \ne \br{0, 0} $. Then $ \br{x, y} \in V $ implies that $ x^2 + y^2 < 2n $, and $ \br{x, y} \in \Lambda $ implies that $ y \equiv tx \mod n $, so
+$$ x^2 + y^2 \equiv x^2 + \br{tx}^2 \equiv x^2\br{t^2 + 1} \equiv 0 \mod n. $$
+So $ x^2 + y^2 = n $.
 \end{proof}
 
+\lecture{11}{Monday}{28/10/19}
+
 \begin{theorem}[Hasse-Minkowski]
-The following are equivalent.
+Let $ C $ be
+$$ f = ax^2 + by^2 + cz^2, \qquad a, b, c \in \ZZ, \qquad abc \ne 0, \qquad \br{a, b} = \br{b, c} = \br{c, a} = 1, $$
+where $ a, b, c $ are square-free. Let $ \Sigma = \cbr{p \mid 2abc} $. Then the following are equivalent.
 \begin{enumerate}
-\item $ C $ has infinitely many points over $ \QQ $.
-\item $ C $ has one point over $ \QQ $.
-\item $ C $ has one point over $ \QQ_p $ for all $ p $ and over $ \RR $.
-\item $ C $ has one point over $ \QQ_p $ for all $ p \mid 2abc $.
+\item $ C $ has infinitely many solutions in $ \PP^2\br{\QQ} $.
+\item $ C $ has a solution in $ \PP^2\br{\QQ} $.
+\item $ C $ has a solution in $ \PP^2\br{\QQ_p} $ for all $ p $, and in $ \PP^2\br{\RR} $.
+\item $ C $ has a solution in $ \PP^2\br{\QQ_p} $ for all $ p \in \Sigma $.
 \end{enumerate}
 \end{theorem}
 
 The problem of solving conics over $ \QQ $ is algorithmically decidable, so there is a computer program which solves this problem.
 
+\pagebreak
+
 \begin{proof}
-$ 1 $ implies $ 2 $ implies $ 3 $ implies $ 4 $, and we proved $ 2 $ implies $ 1 $, so $ 4 $ implies $ 2 $ is enough.
+$ 1 $ implies $ 2 $ implies $ 3 $ implies $ 4 $, and we proved $ 2 $ implies $ 1 $, so $ 4 $ implies $ 2 $ is enough. Assume $ 4 $. Claim that if $ p \mid a $, then there is a solution to
+$$ b + cz^2 \equiv 0 \mod p. $$
+By $ 4 $, there exists $ \br{x, y, z} \in \PP^2\br{\QQ_p} $ with $ ax^2 + by^2 + cz^2 = 0 $. Without loss of generality $ x, y, z \in \ZZ_p $, not all divisible by $ p $. If $ \abs{y}_p < 1 $ then $ cz^2 = -\br{ax^2 + by^2} \equiv 0 \mod p $, so $ \abs{z}_p < 1 $, then $ \abs{ax^2}_p \le 1 / p^2 $, so $ \abs{x}_p < 1 $, a contradiction. So $ \abs{y}_p = 1 $, so $ a\br{x / y}^2 + b + c\br{z / y}^2 = 0 $, with $ x / y, z / y \in \ZZ_p $. Then $ b + c\br{z / y}^2 \equiv 0 \mod p $.
+\begin{itemize}
+\item Now assume that $ p $ is odd and $ p \mid a $. Then let $ \alpha \in \ZZ / p\ZZ $ be a solution to $ b + c\alpha^2 \equiv 0 \mod p $, and impose the condition
+$$ \alpha s + t \equiv 0 \mod p. $$
+Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv bs^2 + c\br{\alpha s}^2 \equiv s^2\br{b + c\alpha^2} \equiv 0 \mod p $. If $ p $ is odd and $ p \mid b $ or $ p \mid c $, impose the analogous conditions.
+\item Now assume that $ p = 2 $.
+\begin{itemize}
+\item Let $ 2 \mid a $, or by symmetry $ 2 \mid b $ or $ 2 \mid c $. We will write a condition to ensure that $ ar^2 + bs^2 + ct^2 \equiv 0 \mod 8 $. We saw in the proof of the claim that there exist $ x, y, z \in \ZZ_2 $ with $ \abs{x}_2 \le 1 $ and $ \abs{y}_2 = \abs{z}_2 = 1 $, and $ ax^2 + by^2 + cz^2 = 0 $. Then $ ax^2 + by^2 + cz^2 \equiv ax^2 + b + c \mod 8 $, that is $ ax^2 + b + c \equiv 0 \mod 8 $.
+\begin{itemize}
+\item If $ \abs{x}_2 = 1 $, then $ a + b + c \equiv 0 \mod 8 $. Impose
+$$ s \equiv t \mod 4, \qquad r \equiv s \mod 2. $$
+Then either $ r, s, t $ all odd, and $ ar^2 + bs^2 + ct^2 \equiv a + b + c \equiv 0 \mod 8 $, or $ r, s, t $ all even, and $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv 4\br{b + c} \equiv -4a \equiv 0 \mod 8 $.
+\item If $ \abs{x}_2 < 1 $, then $ ax^2 + b + c \equiv b + c \mod 8 $, that is $ b + c \equiv 0 \mod 8 $. Impose
+$$ s \equiv t \mod 4, \qquad r \equiv 0 \mod 2. $$
+Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv bs^2 + cs^2 \equiv \br{b + c}s^2 \equiv 0 \mod 8 $.
+\end{itemize}
+\item Let $ 2 \nmid abc $. Let $ \br{x, y, z} \in \PP^2\br{\QQ_2} $ with $ ax^2 + by^2 + cz^2 = 0 $. Assume $ \max\br{\abs{x}_2, \abs{y}_2, \abs{z}_2} = 1 $. Then $ ax^2 + by^2 + cz^2 \equiv 0 \mod 2 $, that is $ x^2 + y^2 + z^2 \equiv 0 \mod 2 $. Then exactly one of $ x, y, z $ is even, without loss of generality $ \abs{x}_2 < 1 $ and $ \abs{y}_2 = \abs{z}_2 = 1 $. Then $ 0 = ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv b + c \mod 4 $. Impose conditions
+$$ r \equiv 0 \mod 2, \qquad s \equiv t \mod 2. $$
+Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv \br{b + c}s^2 \equiv 0 \mod 4 $.
+\end{itemize}
+\end{itemize}
+Let $ \Lambda \subseteq \ZZ^3 $ be the subgroup defined by all of these congruence conditions for $ p \in \Sigma $. Then
+$$ \sbr{\ZZ^3 : \Lambda} = \abs{4abc} = 4\prod_{p \mid abc} p, $$
+using the Chinese remainder theorem. If $ \br{r, s, t} \in \Lambda $ then $ ar^2 + bs^2 + ct^2 \equiv 0 \mod 4abc $. Let
+$$ V = \cbr{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}}. $$
+If $ \br{r, s, t} \in \Lambda \cap V $ then $ \abs{ar^2 + bs^2 + ct^2} < 4\abs{abc} $, so $ ar^2 + bs^2 + ct^2 = 0 $. By Corollary \ref{cor:5.3}, we just need to check that $ \mu\br{V} > 2^3 \cdot \abs{4abc} $, and
+$$ \mu\br{V} = \dfrac{\tfrac{4}{3}\pi\sqrt{\abs{4abc}}^3}{\sqrt{\abs{abc}}} = \dfrac{\pi}{3} \cdot 2^3 \cdot \abs{4abc} > 2^3 \cdot \abs{4abc}. $$
 \end{proof}
 
 Let $ X \subseteq \PP^n\br{\QQ} $ be a projective algebraic variety, such as hypersurfaces or plane curves. The \textbf{local-global principle} holds for $ X $ if $ X\br{\QQ} \ne \emptyset $ if and only if $ X\br{\QQ_p} \ne \emptyset $ for all $ p $ prime number and $ X\br{\RR} \ne \emptyset $. Hasse-Minkowski implies that conics satisfy the local-global principle, but $ 3X^3 + 4Y^3 + 5Z^3 = 0 $ does not.
