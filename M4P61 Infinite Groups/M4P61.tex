@@ -656,7 +656,7 @@ If $ G $ acts on $ X $, then it acts as above on $ \BBB\br{X} $ and this action 
 \end{exercise}
 
 \begin{definition}
-Let $ X $ be a tree. A reduced path is called a \textbf{geodesic}. For $ x, y \in X $, we denote the unique geodesic from $ x $ to $ y $ by $ x - y $. Its length is called the \textbf{distance} between $ x $ and $ y $ and denoted by $ \d\br{x, y} $.
+Let $ X $ be a tree. A reduced path is called a \textbf{geodesic}. For $ x, y \in X $, we denote the unique geodesic from $ x $ to $ y $ by $ \sbr{x - y} $. Its length is called the \textbf{distance} between $ x $ and $ y $ and denoted by $ \d\br{x, y} $.
 \end{definition}
 
 \begin{note*}
@@ -667,13 +667,52 @@ $ \d $ defines a distance function and if $ \sigma \in \Aut X $, then it acts on
 Further, for $ X_1, X_2 \subseteq X $ disjoint subtrees of $ X $, there is a unique geodesic which starts in $ X_1 $, ends in $ X_2 $, and with all edges outside $ X_1^1 \cup X_2^1 $. We denote this by $ X_1 - X_2 $, and its length by $ \d\br{X_1, X_2} $.
 \end{note*}
 
+\pagebreak
+
 \begin{definition}
 Let $ X $ be a tree and $ \sigma \in \Aut X $. Then we set
 $$ \abs{\sigma} = \min\cbr{\d\br{x, \sigma\br{x}} \st x \in X^0}, $$
 and call it the \textbf{displacement length} of $ \sigma $. Let
-$$ Y
-_\sigma = \cbr{x \in X^0 \st \d\br{x, \sigma\br{x}} = \abs{\sigma}}. $$
-If $ \abs{\sigma} = 0 $, we write $ Y_\sigma = \mathring{\sigma} $, and if $ \abs{\sigma} > 0 $, we write $ Y_\sigma = \vec{\sigma} $.
+$$ \widetilde{\sigma_{\min}} = \cbr{x \in X^0 \st \d\br{x, \sigma\br{x}} = \abs{\sigma}}. $$
+Then $ \sigma_{\min} $ is the induced subgraph on $ \widetilde{\sigma_{\min}} $. If $ \abs{\sigma} = 0 $, we write $ \sigma_{\min} = \mathring{\sigma} $, and if $ \abs{\sigma} > 0 $, we write $ \sigma_{\min} = \vec{\sigma} $.
 \end{definition}
+
+\lecture{11}{Tuesday}{29/10/19}
+
+\begin{definition}
+If $ X $ is a tree and $ G $ acting without inversion of edges as a group of automorphisms, we say that $ X $ is a \textbf{$ G $-tree}.
+\end{definition}
+
+\begin{proposition}
+Let $ X $ be a $ G $-tree, and $ \sigma \in G $.
+\begin{enumerate}
+\item If $ \abs{\sigma} = 0 $, then $ \mathring{\sigma} $ is a tree. Furthermore, if $ y \in X^0 $, then let $ x $ be the final vertex of $ \sbr{y - \mathring{\sigma}} $. Then
+$$ \d\br{y, \sigma\br{y}} = 2\d\br{y, x}, \qquad \sbr{y - \sigma\br{y}} = \sbr{y - x} \cup \sbr{x - \sigma\br{y}}. $$
+\item Assume $ \abs{\sigma} > 0 $. Then $ \vec{\sigma} \cong \CCC_\infty $ and $ \sigma $ acts on $ \vec{\sigma} $ by translation of length $ \abs{\sigma} $. If $ y \in X^0 $ is arbitrary and $ x $ is the terminal vertex of $ \sbr{y - \vec{\sigma}} $, then
+$$ \d\br{y, \sigma\br{y}} = 2\d\br{y, x} + \abs{\sigma}, \qquad \sbr{y - \sigma\br{y}} = \sbr{y - x} \cup \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma\br{y}}. $$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Let $ \abs{\sigma} = 0 $. Clearly, $ \mathring{\sigma} $ is a tree as for $ x $ and $ y $ fixed by $ \sigma $, clearly $ \sbr{x - y} $ has to be fixed by $ \sigma $, whence $ \sbr{x - y} \in \mathring{\sigma} $. Consider $ y \in X^0 $ arbitrary and $ x $ as described. We prove the statement by induction on $ \d\br{y, \mathring{\sigma}} $. Clearly, if $ \d\br{y, \mathring{\sigma}} = 0 $, then $ y \in \mathring{\sigma} $, and the statement holds, as all geodesics are the empty path. Now $ \d\br{y, \mathring{\sigma}} = n + 1 $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{y - x} $. Then $ \d\br{z, \mathring{\sigma}} = \d\br{z, x} = n $, whence $ \sbr{z - \sigma\br{z}} = \sbr{z - x} \cup \sbr{x - \sigma\br{z}} $. Now $ \sigma\br{z} $ is a neighbour of $ \sigma\br{y} $. Then either $ \sigma\br{y} \notin \sbr{x - \sigma\br{z}} $, then we are done, as $ \d\br{y, \sigma\br{y}} = \d\br{y, z} + \d\br{z, \sigma\br{z}} + \d\br{\sigma\br{z}, \sigma\br{y}} = 2\br{n + 1} = 2\d\br{y, x} $. Otherwise, $ \d\br{\sigma\br{y}, x} = n - 1 $. Clearly, $ \abs{\sigma^{-1}} = 0 $ and $ \mathring{\sigma^{-1}} = \mathring{\sigma} $. Then $ \d\br{\sigma\br{y}, x} = n - 1 < n + 1 = \d\br{x, y} = \d\br{\sigma^{-1}\br{\sigma\br{y}}, x} $. Hence $ \d\br{\sigma\br{y}, \sigma^{-1}\br{\sigma\br{y}}} = 2n > 2\d\br{\sigma\br{y}, x} $, a contradiction.
+\item Consider $ x \in \vec{\sigma} $. We want to show that $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Assume for a contradiction that the terminal edge of $ \sbr{x - \sigma\br{x}} $, call it $ e $, is the first edge inverse of $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{x - \sigma\br{x}} $. Then clearly, $ \sigma\br{z} $ is the terminal vertex of the first edge in $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. By assumption, this is the initial vertex of $ e $. But then $ \d\br{z, \sigma\br{z}} = \d\br{x, \sigma\br{x}} - 2 < \abs{\sigma} $, a contradiction. Note that if $ \d\br{x, \sigma\br{x}} = 1 $, then $ \sigma $ would invert the edge $ e $, a contradiction. Hence $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Inductively, this produces a tree
+$$ T = \dots - \sigma^{-1}\br{x} - x - \sigma\br{x} - \dots \subseteq \vec{\sigma}, $$
+and $ \sigma $ acts on $ T $ by translation with length $ \abs{\sigma} $. Now consider $ y \in X^0 \setminus T $. Note that $ \sigma \in \Aut T $. Thus $ \sbr{\sigma\br{x} - \sigma\br{y}} $ intersects $ T $ trivially. Hence, $ \d\br{y, \sigma\br{y}} = \d\br{y, x} + \d\br{x, \sigma\br{x}} + \d\br{\sigma\br{x}, \sigma\br{y}} = \d\br{y, x} + \abs{\sigma} + \d\br{x, y} = 2\d\br{x, y} + \abs{\sigma} > \abs{\sigma} $, for all $ y \notin T $. Hence $ T = \vec{\sigma} \cong \CCC_\infty $.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+Let $ X $ be a $ G $-tree and $ \sigma \in G $. Then
+\begin{itemize}
+\item if $ \abs{\sigma} = 0 $, then $ \sigma $ is called an \textbf{elliptic element}, and
+\item if $ \abs{\sigma} > 0 $, then $ \sigma $ is called a \textbf{hyperbolic element}.
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+If $ G $ does invert an edge, it resembles more a rotation. Indeed, the extended action on $ \BBB\br{X} $ yields that $ \sigma $ is elliptic.
+\end{remark}
 
 \end{document}
