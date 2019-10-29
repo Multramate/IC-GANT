@@ -564,13 +564,13 @@ Let $ k $ be a field of $ \ch k \nmid d > 0 $, and let $ F \in k\sbr{X_0, \dots,
 \end{itemize}
 \end{definition}
 
-\begin{example*}
-$ x^3 = y^2 $ is a \textbf{cusp}.
-\end{example*}
-
 \begin{definition}
 If $ k $ is as above, then $ f = 0 $ or $ F = 0 $ is \textbf{non-singular} in $ \AA^n\br{k} $ or $ \PP^n\br{k} $ if it has no singular points over $ \overline{k} $.
 \end{definition}
+
+\begin{example*}
+$ x^3 = y^2 $ is a singular curve.
+\end{example*}
 
 \lecture{7}{Thursday}{17/10/19}
 
@@ -737,7 +737,7 @@ So $ x^2 + y^2 = n $.
 
 \begin{theorem}[Hasse-Minkowski]
 Let $ C $ be
-$$ f = ax^2 + by^2 + cz^2, \qquad a, b, c \in \ZZ, \qquad abc \ne 0, \qquad \br{a, b} = \br{b, c} = \br{c, a} = 1, $$
+$$ f = aX^2 + bY^2 + cZ^2, \qquad a, b, c \in \ZZ, \qquad abc \ne 0, \qquad \br{a, b} = \br{b, c} = \br{c, a} = 1, $$
 where $ a, b, c $ are square-free. Let $ \Sigma = \cbr{p \mid 2abc} $. Then the following are equivalent.
 \begin{enumerate}
 \item $ C $ has infinitely many solutions in $ \PP^2\br{\QQ} $.
@@ -754,7 +754,8 @@ The problem of solving conics over $ \QQ $ is algorithmically decidable, so ther
 \begin{proof}
 $ 1 $ implies $ 2 $ implies $ 3 $ implies $ 4 $, and we proved $ 2 $ implies $ 1 $, so $ 4 $ implies $ 2 $ is enough. Assume $ 4 $. Claim that if $ p \mid a $, then there is a solution to
 $$ b + cz^2 \equiv 0 \mod p. $$
-By $ 4 $, there exists $ \br{x, y, z} \in \PP^2\br{\QQ_p} $ with $ ax^2 + by^2 + cz^2 = 0 $. Without loss of generality $ x, y, z \in \ZZ_p $, not all divisible by $ p $. If $ \abs{y}_p < 1 $ then $ cz^2 = -\br{ax^2 + by^2} \equiv 0 \mod p $, so $ \abs{z}_p < 1 $, then $ \abs{ax^2}_p \le 1 / p^2 $, so $ \abs{x}_p < 1 $, a contradiction. So $ \abs{y}_p = 1 $, so $ a\br{x / y}^2 + b + c\br{z / y}^2 = 0 $, with $ x / y, z / y \in \ZZ_p $. Then $ b + c\br{z / y}^2 \equiv 0 \mod p $.
+By $ 4 $, there exists $ \br{x, y, z} \in \PP^2\br{\QQ_p} $ with $ ax^2 + by^2 + cz^2 = 0 $. Without loss of generality $ x, y, z \in \ZZ_p $, not all divisible by $ p $. If $ \abs{y}_p < 1 $ then $ cz^2 = -\br{ax^2 + by^2} \equiv 0 \mod p $, so $ \abs{z}_p < 1 $, then $ \abs{ax^2}_p \le 1 / p^2 $, so $ \abs{x}_p < 1 $, a contradiction. So $ \abs{y}_p = 1 $, so $ a\br{x / y}^2 + b + c\br{z / y}^2 = 0 $, with $ x / y, z / y \in \ZZ_p $. Then
+$$ b + c\br{z / y}^2 \equiv 0 \mod p. $$
 \begin{itemize}
 \item Now assume that $ p $ is odd and $ p \mid a $. Then let $ \alpha \in \ZZ / p\ZZ $ be a solution to $ b + c\alpha^2 \equiv 0 \mod p $, and impose the condition
 $$ \alpha s + t \equiv 0 \mod p. $$
@@ -778,12 +779,81 @@ Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv \br{b + c}s^2 \equiv 0 \mod 
 Let $ \Lambda \subseteq \ZZ^3 $ be the subgroup defined by all of these congruence conditions for $ p \in \Sigma $. Then
 $$ \sbr{\ZZ^3 : \Lambda} = \abs{4abc} = 4\prod_{p \mid abc} p, $$
 using the Chinese remainder theorem. If $ \br{r, s, t} \in \Lambda $ then $ ar^2 + bs^2 + ct^2 \equiv 0 \mod 4abc $. Let
-$$ V = \cbr{\abs{a}x^2 + \abs{b}y^2 + \abs{c}z^2 < 4\abs{abc}}. $$
+$$ V = \cbr{\abs{a}X^2 + \abs{b}Y^2 + \abs{c}Z^2 < 4\abs{abc}}. $$
 If $ \br{r, s, t} \in \Lambda \cap V $ then $ \abs{ar^2 + bs^2 + ct^2} < 4\abs{abc} $, so $ ar^2 + bs^2 + ct^2 = 0 $. By Corollary \ref{cor:5.3}, we just need to check that $ \mu\br{V} > 2^3 \cdot \abs{4abc} $, and
 $$ \mu\br{V} = \dfrac{\tfrac{4}{3}\pi\sqrt{\abs{4abc}}^3}{\sqrt{\abs{abc}}} = \dfrac{\pi}{3} \cdot 2^3 \cdot \abs{4abc} > 2^3 \cdot \abs{4abc}. $$
 \end{proof}
 
 Let $ X \subseteq \PP^n\br{\QQ} $ be a projective algebraic variety, such as hypersurfaces or plane curves. The \textbf{local-global principle} holds for $ X $ if $ X\br{\QQ} \ne \emptyset $ if and only if $ X\br{\QQ_p} \ne \emptyset $ for all $ p $ prime number and $ X\br{\RR} \ne \emptyset $. Hasse-Minkowski implies that conics satisfy the local-global principle, but $ 3X^3 + 4Y^3 + 5Z^3 = 0 $ does not.
+
+\pagebreak
+
+\section{Plane cubics}
+
+\lecture{12}{Tuesday}{29/10/19}
+
+\begin{definition}
+A \textbf{plane cubic} is a cubic equation in two variables over a field, such as
+\begin{itemize}
+\item singular cubics over general fields, or
+\item non-singular cubics, particularly over $ \QQ $, and $ \QQ_p $ and $ \FF_p $.
+\end{itemize}
+\end{definition}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ 3x^3 + 4y^3 = 5 $ has points over $ \QQ_p $ for all $ p $, and it also has points over $ \RR $, but it has no points over $ \QQ $.
+\item $ x^3 + y^3 = 0 $ has lots of points over $ \QQ $, but it is singular, in fact $ x^3 + y^3 = \br{x + y}\br{x^2 - xy + y^2} $.
+\item $ x^3 + y^2 = 0 $ is also singular, and does not factor, even over $ \CC $.
+\item $ x^3 + y^3 = 1 $ has exactly two points over $ \QQ $, namely $ \br{1, 0} $ and $ \br{0, 1} $. This is a special case of Fermat's last theorem, $ a^3 + b^3 = c^3 $, where $ a, b, c \in \ZZ $ implies that $ abc = 0 $. This is a non-singular cubic with finitely many points over $ \QQ $, but not empty.
+\item $ x^3 + y^3 = 9 $ has at least two points over $ \QQ $, $ \br{2, 1} $ and $ \br{1, 2} $.
+\end{itemize}
+\end{example*}
+
+\begin{lemma}
+There are non-singular plane cubics over $ \QQ $ with infinitely many points, such as $ x^3 + y^3 = 9 $.
+\end{lemma}
+
+The \textbf{height} of $ \sbr{x : y : z} \in \PP^2\br{\QQ} $ is $ \abs{z} $ provided that $ x, y, z \in \ZZ $ are coprime.
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Height of $ \sbr{-17 / 7 : 20 / 7 : 1} $ is $ 7 $.
+\item Height of $ \sbr{1 : 2 : 1} $ is $ 1 $.
+\end{itemize}
+\end{example*}
+
+\begin{proof}
+Non-singular, since $ 3x^2 = 3y^2 = 0 $ implies that $ \br{x, y} = \br{0, 0} $, a contradiction. Draw tangent lines. For example, take the tangent line $ \br{x - 1} + 4\br{y - 2} = 0 $ at $ \br{1, 2} $, so $ 4y + x = 9 $. Then $ y^3 + \br{9 - 4y}^2 = 9 $ is $ -9\br{y - 2}^2\br{7y - 20} = 0 $, so $ \br{x, y} = \br{-17 / 7, 20 / 7} $. If $ \sbr{r : s : t} $ is a point on $ X^3 + Y^3 = 9Z^3 $, then the third point of intersection of the tangent line at $ \sbr{r : s : t} $ with this curve is
+$$ \sbr{R : S : T} = \sbr{r\br{r^3 + 2s^3} : -s\br{2r^3 + s^3} : t\br{r^3 - s^3}}. $$
+Claim that the height of $ \sbr{R : S : T} $ is greater than the height of $ \sbr{r : s : t} $. Assume that $ r, s, t \in \ZZ $ are coprime, and $ t > 0 $, so the height of $ \sbr{r : s : t} $ is $ t $. Then $ r^3 + s^3 = 9t^3 $ implies that $ \br{r, s} = \br{s, t} = \br{t, r} = 1 $, by considering any common prime factor, and using that $ 9 $ is not divisible by any cube. Let $ d $ be the GCD of $ R, S, T $. If $ p $ is a prime dividing both $ d $ and $ r $, then $ p \mid S $, so $ p \mid s^4 $, and $ p \mid s $. But $ \br{r, s} = 1 $, so this would be a contradiction, so $ \br{d, r} = 1 $. Since $ d \mid R $, we have $ d \mid \br{r^3 + 2s^3} $. Similarly, $ \br{d, s} = 1 $ and $ d \mid -S $, so $ d \mid \br{2r^3 + s^3} $. So $ d \mid 3\br{r^3, s^3} $, that is $ d \mid 3 $. So $ d \le 3 $, and the height of $ \sbr{R : S : T} $ is at least $ \abs{T / 3} $. So we just have to prove that $ \abs{r^3 - s^3} > 3 $. If not, then $ r, s = 0, \pm 1 $, which contradicts $ r^3 + s^3 = 9t^3 $ unless $ \sbr{r : s : t} = \sbr{1 : -1 : 0} $. The only way that we could reach this point is by starting at a point of the form $ \sbr{R : R : T} $, but then $ 2R^3 = 9T^3 $, which has no solutions.
+\end{proof}
+
+\begin{algorithm}
+Suppose that $ C $ is a singular plane cubic over a field $ k $, and that there is a singular point $ P $ with coordinates in $ k $. Then there are infinitely many points of $ C $ over $ k $, provided $ k $ is infinite, and we can find them all by drawing lines through $ P $ with rational slope.
+\end{algorithm}
+
+\begin{proof}
+Use B\'ezout exactly as for conics.
+\end{proof}
+
+\begin{remark}
+If $ C $ is singular then provided that either $ k $ has characteristic zero, or $ k $ is a finite field, then any singular point has coordinates in $ k $.
+\end{remark}
+
+\begin{proof}
+By B\'ezout, at most one singular point, and then use Galois theory.
+\end{proof}
+
+\begin{example}
+The \textbf{cusp} $ y^2 = x^3 $ is singular at $ \br{0, 0} $. Then $ y = tx $ gives $ x = t^2 $ and $ y = t^3 $.
+\end{example}
+
+\begin{example}
+The \textbf{node} $ y^2 = x^2\br{x + 1} $. Then $ y = tx $ gives $ x = t^2 - 1 $ and $ y = t^3 - t $.
+\end{example}
 
 \pagebreak
 
