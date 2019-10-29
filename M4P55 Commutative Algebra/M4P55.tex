@@ -718,6 +718,7 @@ Comment that $ JM $ is the smallest submodule of $ M $ containing all elements $
 $$ JM = \cbr{\text{finite sums} \ r_1m_1 + \dots + r_km_k} \subset M. $$
 
 \begin{lemma}
+\label{lem:9.7}
 Let $ A $ be a ring. Let $ M $ be a finitely generated $ A $-module. Let $ J \subset A $ be an ideal such that $ JM = M $. Then there is an $ a \in J $ such that $ \br{1 - a}M = 0 $.
 \end{lemma}
 
@@ -733,6 +734,68 @@ $$ \threebyone{m_1}{\vdots}{m_n} = X\threebyone{m_1}{\vdots}{m_n} \qquad \iff \q
 Consider the adjoint matrix $ \br{\I_n - X}^\vee $. Then
 $$ \br{\I_n - X}^\vee\br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0 \qquad \iff \qquad \det \br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0. $$
 We have $ \det \br{\I_n - X} \in A $. Then $ \det \br{\I_n - X} $ is a product of diagonal entries $ \prod_{i = 1}^n \br{1 - x_{ii}} $, plus other terms but every non-diagonal term contains at least one factor in $ J $, so is in $ J $. Finally, $ \det \br{\I_n - X} = 1 - a $, where $ a \in J $. Now, $ \br{1 - a}m_i = 0 $ for $ i = 1, \dots, n $. Hence $ \br{1 - a}M = 0 $.
+\end{proof}
+
+\lecture{11}{Tuesday}{29/10/19}
+
+\begin{remark*}
+If $ M $ is not finitely generated then this is false, such as $ A = \ZZ $ and $ M = \QQ $. If $ p $ is a prime, then $ p\QQ = \QQ $. So for $ J = \abr{p} $ we have $ JM = M $. But no non-zero integer annihilates $ \QQ $, since $ \QQ $ is not a finitely generated $ \ZZ $-module.
+\end{remark*}
+
+\begin{corollary}
+Let $ R $ be a ring and let $ M $ be a finitely generated $ R $-module. If $ f : M \to M $ is a surjective $ R $-module endomorphism, then $ f $ is an isomorphism.
+\end{corollary}
+
+\begin{proof}
+Define $ A = R\sbr{t} $. Let us equip $ M $ with the structure of an $ A $-module. Define $ t \cdot m = f\br{m} $ for $ m \in M $. This makes sense because $ f\br{rx} = rf\br{x} $ for all $ r \in R $. Then $ M $ is finitely generated also as an $ A $-module. If $ f\br{M} = M $, then $ tM = M $. Take $ J = \abr{t} \subset A $. By Lemma \ref{lem:9.7} there exists $ a \in \abr{t} $ such that $ \br{1 - a}M = 0 $. Take $ v \in M $ such that $ f\br{v} = 0 $. Then $ tv = 0 $, so $ av = 0 $. Since $ \br{1 - a}v = 0 $, we conclude $ v = 0 $.
+\end{proof}
+
+\pagebreak
+
+\begin{theorem}[Nakayama's lemma]
+Let $ A $ be a ring and let $ J \subset A $ be an ideal contained in the Jacobson radical $ \JJJ\br{A} $. If $ M $ is a finitely generated $ A $-module such that $ JM = M $, then $ M = 0 $.
+\end{theorem}
+
+\begin{proof}
+Lemma \ref{lem:9.7} implies that there exists $ a \in J $ such that $ \br{1 - a}M = 0 $. But $ a \in \JJJ\br{A} $, so $ 1 - a $ is a unit in $ A $. Then there exists $ u \in A $ such that $ u\br{1 - a} = 1 $. Hence $ M = u\br{1 - a}M = 0 $.
+\end{proof}
+
+\begin{corollary}
+\label{cor:9.10}
+Let $ A $ be a ring and $ J $ an ideal contained in the Jacobson radical of $ A $. Suppose $ M $ is an $ A $-module, and $ N \subset M $ is a submodule such that $ M / N $ is a finitely generated $ A $-module. Then $ M = N + JM $ implies $ M = N $.
+\end{corollary}
+
+\begin{proof}
+Apply Nakayama's lemma to $ M / N $. Indeed, we have $ M / N = J\br{M / N} $, so $ M / N = 0 $.
+\end{proof}
+
+Recall a ring is local when it has a unique maximal ideal. The quotient is called the \textbf{residue field}.
+
+\begin{example*}
+For $ k $ a field, $ k\sbr{\sbr{t}} \supset \abr{t} $ and $ k\sbr{\sbr{t_1, \dots, t_n}} \supset \abr{t_1, \dots, t_n} $ are local rings. \footnote{Exercise}
+\end{example*}
+
+If $ A $ is a ring with a prime ideal $ \ppp $, and $ S = A \setminus \ppp $, then $ S^{-1}A $ is a local ring.
+
+\begin{example*}
+If $ A = \ZZ $ and $ \ppp = \abr{p} $, then $ \abr{p} \supset \ZZ_{\abr{p}} = \cbr{a / b \st \br{b, p} = 1} $.
+\end{example*}
+
+\begin{theorem}
+Let $ R $ be a local ring with maximal ideal $ J $ and residue field $ k = R / J $. Let $ M $ be a finitely generated $ R $-module.
+\begin{enumerate}
+\item $ M / JM $ is a finite-dimensional vector space over $ k $.
+\item Let $ v_1, \dots, v_n $ be a basis of $ M / JM $ as a vector space over $ k $. Choose $ \widetilde{v_1}, \dots, \widetilde{v_n} \in M $ to be representatives of $ v_1, \dots, v_n $ respectively. That is, $ v_i = \widetilde{v_i} + JM $. Then $ \widetilde{v_1}, \dots, \widetilde{v_n} $ generate $ M $ as an $ R $-module. Moreover, this is a minimal set of generators of $ M $. That is, no proper subset generates $ M $.
+\item All minimal sets of generators of $ M $ are obtained in this way. In particular, all such sets have $ n $ elements.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$ J $ is the Jacobson radical of $ A $.
+\begin{enumerate}
+\item Any quotient of a finitely generated $ R $-module is a finitely generated $ R $-module. Hence $ M / JM $ is a finitely generated $ R $-module. But if $ x \in J $ then $ x \cdot M / JM = 0 $. So $ R $ acts on $ M / JM $ via the quotient $ k = R / J $. One says that the action of $ R $ descends to an action of $ k $. Thus $ M / JM $ is a $ k $-module, which is finitely generated. In other words, $ M / JM $ is a finite-dimensional $ k $-vector space.
+\item Consider $ N = R\widetilde{v_1} + \dots R\widetilde{v_n} = \cbr{r_1\widetilde{v_1} + \dots + r_n\widetilde{v_n} \st r_i \in R} \subset M $. Then $ M / JM $ is generated by $ v_1, \dots, v_n $, hence $ M = N + JM $, since $ M / JM = N / JN $. By Corollary \ref{cor:9.10} we have $ M = N $. If a proper subset of $ \widetilde{v_1}, \dots, \widetilde{v_n} $ generates $ M $, then a proper subset of $ v_1, \dots, v_n $ generates an $ n $-dimensional vector space, a contradiction.
+\end{enumerate}
 \end{proof}
 
 \end{document}
