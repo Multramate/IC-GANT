@@ -632,6 +632,8 @@ $$ G = \abr{s_1, \dots, s_n \st s_i^2, \br{s_is_j}^{m_{ij}}, i, j = 1, \dots, n}
 
 \subsection{Group actions on graphs}
 
+\subsubsection{Automorphisms of trees}
+
 Recall the definition of a group acting on a graph. Many statements in Bass-Serre theory start with the assumption that $ G $ acts on $ X $ without inversion of edges.
 
 \begin{definition}
@@ -718,5 +720,49 @@ If $ G $ does invert an edge, it resembles more a rotation. Indeed, the extended
 \lecture{12}{Wednesday}{30/10/19}
 
 Lecture 12 is a problem class.
+
+\pagebreak
+
+\lecture{13}{Thursday}{31/10/19}
+
+\begin{lemma}
+Let $ X $ be a $ G $-tree with trivial edge stabilisers, that is for all $ e \in X^1 $ and $ g \in G $ such that $ g \cdot e = e $, then $ g = \id_G $. If $ g, h \in G $ are hyperbolic such that $ \abs{\vec{g}^0 \cap \vec{h}^0} \ge \abs{h} + \abs{g} + 2 $, then $ g $ and $ h $ commute.
+\end{lemma}
+
+\begin{proof}
+First note that $ h^{-1} $ also is hyperbolic with $ \abs{h} = \abs{h^{-1}} $ and $ \vec{h^{-1}} = \vec{h} $, only that $ h^{-1} $ moves the elements on $ \vec{h} $ in the inverse direction. As $ g $ and $ h $ commute if and only if $ g $ and $ h^{-1} $ commute, we may assume that they translate the elements of $ L = \vec{g} \cap \vec{h} $ in the same direction. Let $ L^0 = \cbr{x_i \st k < i < j} $ with $ -\infty \le k < j \le \infty $. By assumption $ \br{j - 1} - k \ge \abs{g} + \abs{h} + 2 $, thus there is some $ i > k $ such that $ i + \abs{g} + \abs{h} + 1 < j $. Thus consider $ g^{-1}h^{-1}gh $, then
+$$ g^{-1}h^{-1}gh\br{x_i} = g^{-1}h^{-1}g\br{x_{i + \abs{h}}} = g^{-1}h^{-1}\br{x_{i + \abs{g} + \abs{h}}} = g^{-1}\br{x_{i + \abs{g}}} = x_i. $$
+Similarly, $ g^{-1}h^{-1}gh\br{x_{i + 1}} = g^{-1}h^{-1}\br{x_{i + \abs{g} + \abs{h} + 1}} = x_{i + 1} $. Hence $ g^{-1}h^{-1}gh $ fixes $ e $ with $ \alpha\br{e} = x_i $ and $ \omega\br{e} = x_{i + 1} $, where $ g^{-1}h^{-1}gh = e_G $, if and only if $ gh = hg $.
+\end{proof}
+
+\begin{exercise}
+Let $ X $ be a $ G $-tree.
+\begin{itemize}
+\item If $ x \in X^0 $ and $ g \in G $ such that $ \d\br{x, g^2 \cdot x} = 2\d\br{x, g \cdot x} > 0 $, then $ g $ is hyperbolic and $ x \in \vec{g} $.
+\item If $ g \in G $ is elliptic, and $ h \in G $ is arbitrary, then $ g^h = hgh^{-1} $ is elliptic with $ \mathring{g^h} = h\mathring{g} $.
+\item If $ g \in G $ is hyperbolic, and $ h \in G $ is arbitrary, then $ g^h = hgh^{-1} $ is hyperbolic with $ \vec{g^h} = h\vec{g} $ and $ \abs{g} = \abs{g^h} $.
+\end{itemize}
+\end{exercise}
+
+\begin{proposition}
+Let $ X $ be a $ G $-tree.
+\begin{itemize}
+\item If $ g $ and $ h $ are elliptic with $ \mathring{g} \cap \mathring{h} = \emptyset $, then $ gh $ is hyperbolic with $ \abs{gh} = 2\d\br{\mathring{g}, \mathring{h}} $. Furthermore, $ \vec{gh} $ intersects $ \mathring{g} $ and $ \mathring{h} $ non-trivially.
+\item If $ g $ and $ h $ are hyperbolic with $ \vec{g} \cap \vec{h} = \emptyset $, then $ gh $ is hyperbolic with $ \abs{gh} = \abs{g} + \abs{h} + 2\d\br{\vec{g}, \vec{h}} $.
+\end{itemize}
+\end{proposition}
+
+\subsubsection{Nielson-Schreier theorem}
+
+Recall that $ F $ is free of basis $ S $ if and only if $ S \cap S^{-1} = \emptyset $ and $ \Gamma\br{F, S} $ is a tree. Also, we know that $ F $ acts freely on $ \Gamma\br{F, S} $. Hence, every free group acts freely on a tree. We want to prove the inverse, that every group acting freely on a tree is free. Then we deduce that subgroups of free groups are free.
+
+\begin{definition}
+Let $ X $ be a graph and $ G $ a group acting on $ X $. For $ x \in X^0 \cup X^1 $ we denote by $ \OOO\br{x} $ the orbit of $ x $ under $ G $, that is $ \OOO\br{x} = \cbr{g \cdot x \st g \in G} $. Then we define the \textbf{factor graph} $ G \backslash X $ via
+\begin{itemize}
+\item $ \br{G \backslash X}^i = \cbr{\OOO\br{x} \st x \in X^i} $ for $ i = 0, 1 $,
+\item $ \alpha\br{\OOO\br{x}} = \OOO\br{\alpha\br{x}} $ for $ x \in X^1 $, and
+\item $ \overline{\OOO\br{x}} = \OOO\br{\overline{x}} $ for $ x \in X^1 $.
+\end{itemize}
+\end{definition}
 
 \end{document}
