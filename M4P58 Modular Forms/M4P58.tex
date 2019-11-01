@@ -576,7 +576,7 @@ $$ \dfrac{1}{2\pi i}\intd{\partial V}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p 
 
 \begin{theorem}
 Let $ f $ be a non-zero meromorphic modular form of weight $ k $. Then
-$$ \ord_\infty f + \dfrac{\ord_\rho f}{3} + \dfrac{\ord_i f}{2} + \sum_{p \in \HH / \SL_2\br{\ZZ}, \ p \nsim \cbr{i, \rho}} \ord_p f = \dfrac{k}{12}. $$
+$$ \ord_\infty f + \dfrac{\ord_\rho f}{3} + \dfrac{\ord_i f}{2} + \sum_{p \in \SL_2\br{\ZZ} \backslash \HH, \ p \nsim \cbr{i, \rho}} \ord_p f = \dfrac{k}{12}. $$
 \end{theorem}
 
 \lecture{8}{Friday}{18/10/19}
@@ -614,7 +614,7 @@ $$
 \end{tikzpicture},
 $$
 where the $ z $'s are zeroes or poles of $ f $, and the circles are of radius $ \epsilon $. Consider
-$$ \dfrac{1}{2\pi i}\intd{C_{N, \epsilon}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p \in \HH / \SL_2\br{\ZZ}, \ p \nsim \cbr{i, \rho}} \ord_p f, \qquad \epsilon \to 0. $$
+$$ \dfrac{1}{2\pi i}\intd{C_{N, \epsilon}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p \in \SL_2\br{\ZZ} \backslash \HH, \ p \nsim \cbr{i, \rho}} \ord_p f, \qquad \epsilon \to 0. $$
 So it suffices to show
 $$ \lim_{\epsilon \to 0, \ N \to \infty} \dfrac{1}{2\pi i}\intd{C_{N, \epsilon}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = -\ord_\infty f - \dfrac{\ord_\rho f}{3} - \dfrac{\ord_i f}{2} + \dfrac{k}{12}. $$
 The vertical parts of the boundary cancel. The integral over the circular part of $ \partial\DDD $ approaches
@@ -726,12 +726,12 @@ The meromorphic modular forms of weight zero form a field. For example, $ \j\br{
 \end{note*}
 
 \begin{theorem}
-$ \j $ gives a bijection between $ \HH / \SL_2\br{\ZZ} $ and $ \CC $.
+$ \j $ gives a bijection between $ \SL_2\br{\ZZ} \backslash \HH $ and $ \CC $.
 \end{theorem}
 
 \begin{proof}
 Given $ \lambda \in \CC $, want $ z \in \HH $ such that $ \j\br{z} = \lambda $. Consider $ g = j - \lambda $. This is meromorphic of weight zero. There is a pole at infinity, and no other poles, and
-$$ \ord_\infty g + \dfrac{\ord_\rho g}{3} + \dfrac{\ord_i g}{2} + \sum_{p \in \HH / \SL_2\br{\ZZ}, \ p \nsim \cbr{i, \rho}} \ord_p g = 0. $$
+$$ \ord_\infty g + \dfrac{\ord_\rho g}{3} + \dfrac{\ord_i g}{2} + \sum_{p \in \SL_2\br{\ZZ} \backslash \HH, \ p \nsim \cbr{i, \rho}} \ord_p g = 0. $$
 The only possibilities are
 \begin{itemize}
 \item $ g $ has a zero at $ \rho $ of order three, and no other zeroes,
@@ -895,16 +895,12 @@ Serre V.2.1 Corollary 2.
 \pagebreak
 
 \begin{proof}[Proof of Theorem \ref{thm:thetaseries}]
-Know, since $ L $ is even, that $ \Theta_L\br{z + 1} = \Theta_L\br{z} $. It suffices to show
-$$ \Theta_L\br{-\dfrac{1}{z}} = z^{\tfrac{n}{2}}\Theta_L\br{z}. $$
-Both sides are holomorphic on $ \HH $, so it suffices to show
+Know, since $ L $ is even, that $ \Theta_L\br{z + 1} = \Theta_L\br{z} $. It suffices to show $ \Theta_L\br{-1 / z} = z^{n / 2}\Theta_L\br{z} $. Both sides are holomorphic on $ \HH $, so it suffices to show
 $$ \Theta_L\br{-\dfrac{1}{it}} = \br{it}^{\tfrac{n}{2}}\Theta_L\br{it}. $$
-For $ t \in \RR^\times $, let
-$$ L_t = t^{\tfrac{1}{2}} \cdot L, \qquad L_t^\vee = t^{-\tfrac{1}{2}} \cdot L = L_{t^{-1}}, $$
-so $ \vol L_t = t^{n / 2} $. By the facts,
+For $ t \in \RR^\times $, let $ L_t = t^{\tfrac{1}{2}} \cdot L $ and $ L_t^\vee = t^{-\tfrac{1}{2}} \cdot L = L_{t^{-1}} $, so $ \vol L_t = t^{n / 2} $. By the facts,
 $$ \sum_{x \in L_t} e^{-\pi\br{x \cdot x}} = t^{-\tfrac{n}{2}}\sum_{x \in L_{t^{-1}}} e^{-\pi\br{x \cdot x}}, $$
 so
-$$ \sum_{x \in L} e^{-\pi\br{x \cdot x}t} = t^{-\tfrac{n}{2}}\sum_{x \in L} e^{-\tfrac{\pi\br{x \cdot x}}{2}}. $$
+$$ \sum_{x \in L} e^{-\pi\br{x \cdot x}t} = t^{-\tfrac{n}{2}}\sum_{x \in L} e^{-\tfrac{\pi\br{x \cdot x}}{t}}. $$
 Now return to $ \Theta_L $. The left hand side is
 $$ \Theta_L\br{-\dfrac{1}{it}} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{-\tfrac{1}{it}} \cdot \br{x \cdot x}} = \sum_{x \in L} e^{-\tfrac{\pi\br{x \cdot x}}{t}}, $$
 and the right hand side is
@@ -912,14 +908,73 @@ $$ \Theta_L\br{it} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{it} \
 so the result follows.
 \end{proof}
 
-Let $ \Theta_L = \sum_{m = 1}^\infty a_mq^m $, where $ a_m $ is the number of ways $ \Q_L $ represents $ 2m $, so $ a_0 = 1 $. Then $ \Theta_L = \E_{n / 2} + g $, where $ g $ is a cusp form. The coefficients of $ \E_{n / 2} $ are constants times $ \sigma_{n / 2 - 1}\br{m} $, which grows like $ m^{n / 2 - 1} $.
-
-\begin{theorem}[Hasse]
-If $ g = \sum b_mq^m $ is a cusp form of weight $ k $, then $ \abs{b_m}m^{-k / 2} $ is bounded as $ n \to \infty $.
-\end{theorem}
+Let $ \Theta_L = \sum_{m = 1}^\infty a_mq^m $, where $ a_m $ is the number of ways $ \Q_L $ represents $ 2m $, so $ a_0 = 1 $. Then
+$$ \Theta_L = \E_{\tfrac{n}{2}} + g, \qquad \E_{\tfrac{n}{2}} \sim \sigma_{\tfrac{n}{2} - 1}\br{m} \sim m^{\tfrac{n}{2} - 1}, $$
+where $ g $ is a cusp form.
 
 \lecture{12}{Monday}{28/10/19}
 
 Lecture 12 is a problem class.
+
+\lecture{13}{Friday}{01/11/19}
+
+\begin{proposition}
+Let
+$$ \E_k = \sum_{n = 0}^\infty a_nq^n = 1 + C\sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n. $$
+Then there exist $ A, B \in \RR_{> 0} $ such that
+$$ An^{k - 1} \le a_n \le Bn^{k - 1}. $$
+\end{proposition}
+
+\begin{proof}
+Set $ A = C $. Then
+$$ \sigma_{k - 1}\br{n} = \sum_{d \mid n} d^{k - 1} \ge n^{k - 1}, $$
+so $ a_n = C\sigma_{k - 1}\br{n} \ge Cn^{k - 1} $. Consider
+$$ \dfrac{\sigma_{k - 1}\br{n}}{n^{k - 1}} = \sum_{d \mid n} \dfrac{d^{k - 1}}{n^{k - 1}} = \sum_{d' \mid n} \dfrac{1}{d'^{k - 1}} \le \sum_{n = 1}^\infty \dfrac{1}{n^{k - 1}} = \zeta\br{k - 1}, $$
+so $ \sigma_{k - 1}\br{n} \le \zeta\br{k - 1}n^{k - 1} $. So set $ B = C \cdot \zeta\br{k - 1} $, so $ a_n \le Bn^{k - 1} $.
+\end{proof}
+
+\begin{theorem}[Hasse]
+Let $ f = \sum_{n = 1}^\infty a_nq^n $ be a cusp form of weight $ k $. Then
+$$ \abs{a_n} = \O\br{n^{\tfrac{k}{2}}}, $$
+that is $ \abs{a_n} / n^{k / 2} $ is bounded as $ n \to \infty $.
+\end{theorem}
+
+\begin{proof}
+$ f / q $ is holomorphic on $ \HH $, so $ \abs{f / q} $ is bounded as $ q \to 0 $, so $ \abs{f\br{z}} / e^{-2\pi \Im z} $ is bounded as $ \Im z \to \infty $. That is, there exist $ M \in \RR $ such that $ \abs{f\br{z}} \le Me^{-2\pi \Im z} $. Consider
+$$ \phi\br{z} = \abs{f\br{z}}\Im z^{k / 2}, $$
+so $ \lim_{\Im z \to \infty} \phi\br{z} = 0 $. Note that
+$$ \phi\br{\gamma z} = \abs{f\br{\gamma z}}\Im \gamma z^{\tfrac{k}{2}} = \abs{f\br{z}}\abs{cz + d}^k\dfrac{\Im z^{\tfrac{k}{2}}}{\abs{cz + d}^{2\tfrac{k}{2}}} = \abs{f\br{z}}\Im z^{\tfrac{k}{2}} = \phi\br{z}, \qquad \gamma \in \SL_2\br{\ZZ}. $$
+Then $ \phi\br{z} $ is determined by its values on the standard fundamental domain, so $ \phi\br{z} $ is bounded on $ \HH $, so $ \abs{f\br{z}} < M'\Im z^{-k / 2} $ for some $ M' \in \RR $. If $ z = x + iy $ for $ y $ fixed, then the residue theorem implies that
+$$ a_m = \dfrac{1}{2\pi i}\intd{C}{}{\dfrac{f\br{q}}{q^{m + 1}}}{q} = \intd{-\tfrac{1}{2}}{\tfrac{1}{2}}{\dfrac{f\br{x + iy}}{e^{2\pi i\br{x + iy}m}}}{x}, $$
+so
+$$ \abs{a_m} \le \intd{-\tfrac{1}{2}}{\tfrac{1}{2}}{\dfrac{\abs{f\br{x + iy}}}{e^{-2\pi ym}}}{x} \le \dfrac{\abs{f\br{x + iy}}}{e^{-2\pi ym}} \le e^{2\pi ym}M'y^{-\tfrac{k}{2}}. $$
+Set $ y = 1 / m $. Get $ \abs{a_n} \le e^{2\pi}M'm^{k / 2} $, so $ \abs{a_m} / m^{k / 2} $ is bounded.
+\end{proof}
+
+Had
+$$ \Theta_L = \E_{\tfrac{n}{2}} + g, \qquad \E_{\tfrac{n}{2}} \sim m^{\tfrac{n}{2} - 1}, \qquad g = \O\br{m^{n / 4}}. $$
+
+\begin{theorem}[Deligne]
+Let $ f = \sum_{n = 1}^\infty a_nq^n $ be a cusp form of weight $ k $. Then
+$$ \abs{a_n} = \O\br{n^{\tfrac{k - 1}{2}}\sigma_0\br{n}}. $$
+\end{theorem}
+
+\begin{proof}
+Very rough sketch of argument.
+\begin{itemize}[leftmargin=1in]
+\item[Ramanujan 1910s.] Conjectured by Ramanujan for $ f = \Delta $.
+\item[Weil 1940s.] For an algebraic variety $ V $ over $ \FF_q $, what can we say about $ \#V\br{\FF_{q^n}} $ for various $ n $? Weil associated to $ V $ and $ \FF_q $ a generating function called the \textbf{zeta function} $ \zeta_{V, q}\br{t} $ of $ V $ over $ \FF_q $, conjectured several things about $ \zeta_{V, q} $, and proved in the case of curves.
+\begin{itemize}
+\item $ \zeta_{V, q} $ is a rational function in $ t $.
+\item $ \zeta_{V, q} $ satisfies a certain symmetry under $ t \mapsto 1 / t $.
+\item The Riemann hypothesis
+$$ \zeta_{V, q}\br{t} = \dfrac{P_1\br{t} \dots P_{2d - 1}\br{t}}{P_0\br{t} \dots P_{2d}\br{t}}, \qquad \dim V = d, $$
+where the roots of $ P_i\br{t} $ have absolute value $ q^{i / 2} $.
+\end{itemize}
+\item[Eichler-Shimura 1950s.] Let $ \Gamma \subseteq \SL_2\br{\ZZ} $ be a nice \textbf{congruence subgroup}. Then $ X_\Gamma = \Gamma \backslash \HH $ has the structure of an algebraic curve over $ \QQ $, with \textbf{good reduction} at primes $ p $ not dividing $ \sbr{\SL_2\br{\ZZ} : \Gamma} $. Eichler, Shimura, and others studied $ \zeta_{V, p} $ for $ V = X_\Gamma $, and related $ \zeta_{V, p} $ to the $ p $-th Fourier coefficients of a basis for forms of weight two and \textbf{level} $ \Gamma $. The Weil conjectures bound $ a_p $ in terms of $ q^{1 / 2} $.
+\item[Deligne 1960s.] Deligne showed that in weight $ k $, there exists a \textbf{Kuga-Sato variety}, of dimension $ k - 1 $, whose zeta function has a factor coming from modular forms of weight $ k $ and level $ \Gamma $, and showed that if the Weil conjectures, particularly the Riemann hypothesis, holds, then get the coefficient bound.
+\item[Deligne 1970s.] Riemann hypothesis in higher dimensions.
+\end{itemize}
+\end{proof}
 
 \end{document}
