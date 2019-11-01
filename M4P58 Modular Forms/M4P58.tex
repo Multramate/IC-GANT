@@ -939,6 +939,8 @@ $$ \abs{a_n} = \O\br{n^{\tfrac{k}{2}}}, $$
 that is $ \abs{a_n} / n^{k / 2} $ is bounded as $ n \to \infty $.
 \end{theorem}
 
+\pagebreak
+
 \begin{proof}
 $ f / q $ is holomorphic on $ \HH $, so $ \abs{f / q} $ is bounded as $ q \to 0 $, so $ \abs{f\br{z}} / e^{-2\pi \Im z} $ is bounded as $ \Im z \to \infty $. That is, there exist $ M \in \RR $ such that $ \abs{f\br{z}} \le Me^{-2\pi \Im z} $. Consider
 $$ \phi\br{z} = \abs{f\br{z}}\Im z^{k / 2}, $$
@@ -976,5 +978,70 @@ where the roots of $ P_i\br{t} $ have absolute value $ q^{i / 2} $.
 \item[Deligne 1970s.] Riemann hypothesis in higher dimensions.
 \end{itemize}
 \end{proof}
+
+\pagebreak
+
+\subsection{Hecke operators}
+
+\subsubsection{Correspondences}
+
+\lecture{14}{Friday}{01/11/19}
+
+Let $ \Delta = \br{\E_4^3 - \E_6^2} / 1728 = \sum_{n = 1}^\infty \tau\br{n}q^n $. Then $ \tau\br{n} $ grows roughly like $ n^6 $ or $ n^{11 / 2 + \epsilon} $. Mordell proved
+\begin{itemize}
+\item $ \tau\br{mn} = \tau\br{n}\tau\br{m} $ if $ \br{m, n} = 1 $, and
+\item $ \tau\br{p^{n + 1}} = \tau\br{p}\tau\br{p^n} - p^{11}\tau\br{p^{n - 1}} $.
+\end{itemize}
+If $ \E_k = 1 + C\sum_n \sigma_{k - 1}\br{n}q^n $, set
+$$ \E_k' = \dfrac{1}{C} + \sum_n \sigma_{k - 1}\br{n}q^n. $$
+
+\begin{note*}
+\hfill
+\begin{itemize}
+\item If $ \br{m, n} = 1 $, then
+$$ \sigma_{k - 1}\br{nm} = \sum_{d \mid n} \sum_{d' \mid m} \br{dd'}^{k - 1} = \br{\sum_{d \mid n} d^{k - 1}}\br{\sum_{d' \mid m} d'^{k - 1}} = \sigma_{k - 1}\br{n}\sigma_{k - 1}\br{m}. $$
+\item Since $ \sigma_{k - 1}\br{p^n} = 1 + \dots + p^{n\br{k - 1}} $,
+\begin{align*}
+\sigma_{k - 1}\br{p}\sigma_{k - 1}\br{p^n}
+& = \br{1 + p^{k + 1}}\br{1 + \dots + p^{n\br{k - 1}}}
+= 1 + 2p^{k - 1} + \dots + 2p^{n\br{k - 1}} + p^{\br{n + 1}\br{k - 1}} \\
+& = \sigma_{k - 1}\br{p^{n + 1}} + p^{k - 1}\sigma_{k - 1}\br{p^{n - 1}},
+\end{align*}
+so $ \sigma_{k - 1}\br{p^{n + 1}} = \sigma_{k - 1}\br{p}\sigma_{k - 1}\br{p^n} - p^{k - 1}\sigma_{k - 1}\br{p^{n - 1}} $.
+\end{itemize}
+\end{note*}
+
+\begin{definition}
+Let $ X $ be a set. The \textbf{free abelian group on $ X $}, denoted $ \ZZ X $, is the set of finite formal sums
+$$ \sum_{i = 1}^r a_ix_i, \qquad a_i \in \ZZ, \qquad x_i \in X, $$
+where $ x_i $ are distinct. Add by combining like terms.
+\end{definition}
+
+\begin{definition}
+A \textbf{correspondence} on $ X $ is a homomorphism $ \ZZ X \to \ZZ X $. Let $ \Corr X $ be the set of correspondences on $ X $. Equivalently, a correspondence associates to each $ x \in X $, a finite formal sum
+$$ \sum_{i = 1}^r a_iy_i, \qquad a_i \in \ZZ, \qquad y_i \in X. $$
+\end{definition}
+
+If $ X $ is a finite set $ X = \cbr{x_1, \dots, x_r} $, any correspondence $ T $ can be represented, in a unique way, by the matrix $ M_T $ such that $ T_{x_i} = \sum_{j = 1}^r \br{M_T}_{ij}x_j $, and composition of correspondences is matrix multiplication. Let $ X $ be a set, and let $ \Fun_\CC X $ be the set of functions from $ X $ to $ \CC $. Then $ T \in \Corr X $ acts on $ \Fun_\CC X $ as follows. If $ Tx = \sum_i a_ix_i $ then $ \br{Tf}x = \sum_i a_if\br{x_i} $. Check $ \br{T \circ T'}f = T\br{T'f} $, etc. Let $ \LLL $ be the set of lattices in $ \CC $. The following are correspondences in $ \LLL $.
+\begin{itemize}
+\item For $ \lambda \in \CC^* $, have
+$$ \function[\R_\lambda]{\LLL}{\LLL}{L}{\lambda L}. $$
+\item For $ n \in \ZZ_{> 0} $, have
+$$ \function[\T_n]{\LLL}{\LLL}{L}{\sum_{L' \subseteq L, \ \text{index} \ n} L'}. $$
+Note that there are only finitely many $ L' \subseteq L $ of index $ n $, since if $ L' $ has index $ n $ in $ L $, then $ L' $ contains $ \R_nL $. Then $ L / \R_nL \cong \ZZ / n\ZZ \times \ZZ / n\ZZ $. The image of $ L' $ in $ L / \R_nL $ is a subgroup $ H $ of $ \ZZ / n\ZZ \times \ZZ / n\ZZ $ of order $ n $. The preimage of $ H $ in $ L $ is $ L' $. Thus there is a bijection
+$$ \correspondence{\text{subgroups of} \ L / \R_nL \ \text{of order} \ n}{\text{subgroups of index} \ n}. $$
+\end{itemize}
+
+\pagebreak
+
+\begin{proposition}
+\hfill
+\begin{enumerate}
+\item $ \R_\lambda\R_\mu = \R_{\lambda\mu} $.
+\item $ \R_\lambda\T_n = \T_n\R_\lambda $.
+\item $ \T_n\T_m = \T_{nm} $ if $ \br{m, n} = 1 $.
+\item $ \T_p\T_{p^n} = \T_{p^{n + 1}} + p\T_{p^{n + 1}}\R_p $.
+\end{enumerate}
+\end{proposition}
 
 \end{document}
