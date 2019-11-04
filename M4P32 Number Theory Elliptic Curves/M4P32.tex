@@ -627,13 +627,13 @@ Let $ k $ be any field of $ \ch k \ne 2 $, and let $ C \ne \emptyset $ be a coni
 \begin{proof}
 Let $ \pi\br{P} $ be the projection of $ O $ through $ P $ onto a line $ l $ not containing $ O $. Claim that $ P \mapsto \pi\br{P} $ is a well-defined map. Any line can intersect $ C $ only at most two points, and it intersects $ C $ in exactly one point if and only if it is a tangent.
 \begin{itemize}
-\item If $ P \ne O $, then there is a unique line $ \overline{OP} $ between $ O $ and $ P $. Then $ \overline{OP} $ and $ l $ are different as $ l $ does not contain $ O $, but $ \overline{OP} $ does, so $ \overline{OP} \cap l $ is one point $ \pi\br{P} $, so $ \pi\br{P} $ is well-defined in this case.
+\item If $ P \ne O $, then there is a unique line $ \overrightarrow{OP} $ between $ O $ and $ P $. Then $ \overrightarrow{OP} $ and $ l $ are different as $ l $ does not contain $ O $, but $ \overrightarrow{OP} $ does, so $ \overrightarrow{OP} \cap l $ is one point $ \pi\br{P} $, so $ \pi\br{P} $ is well-defined in this case.
 \item The tangent line of $ C $ at $ O $ intersects $ C $ at $ O $ with multiplicity at least two, so it does not intersect $ C $ in any other point, but it still has a unique intersection point with $ l $, so I take the latter to be $ \pi\br{O} $.
 \end{itemize}
 Claim that $ P \mapsto \pi\br{P} $ is a bijection.
 \begin{itemize}
-\item The map is injective, since if $ \pi\br{P} = \pi\br{P'} $, then $ \overline{OP} = \overline{OP'} $, so $ P, P', O \in \overline{OP} \cap C $, so $ P = P' $.
-\item The map is surjective. If $ O \ne Q \in l $, then there is another intersection point in $ \overline{OQ} \cap C $ over the algebraic closure. The bad thing is that the line intersects $ C $ in two points over the algebraic closure, neither of which is a rational point. Claim that if $ 0 \ne h \in k\sbr{x} $ has degree two, and it has a root over $ k $, then its other root is also defined over $ k $. Let $ h = ax^2 + bx + c $. There exists $ \alpha \in k $ such that $ h\br{\alpha} = 0 $, so I can factor out $ x - \alpha $, so $ h = \br{x - \alpha}g $ for $ g \in k\sbr{x} $. Then $ \deg g = 1 $, so $ g = a\br{x - \beta} $ for $ \beta \in k $, so $ \beta $ is the other root. Thus the other intersection point is another point $ P \in C $.
+\item The map is injective, since if $ \pi\br{P} = \pi\br{P'} $, then $ \overrightarrow{OP} = \overrightarrow{OP'} $, so $ P, P', O \in \overrightarrow{OP} \cap C $, so $ P = P' $.
+\item The map is surjective. If $ O \ne Q \in l $, then there is another intersection point in $ \overrightarrow{OQ} \cap C $ over the algebraic closure. The bad thing is that the line intersects $ C $ in two points over the algebraic closure, neither of which is a rational point. Claim that if $ 0 \ne h \in k\sbr{x} $ has degree two, and it has a root over $ k $, then its other root is also defined over $ k $. Let $ h = ax^2 + bx + c $. There exists $ \alpha \in k $ such that $ h\br{\alpha} = 0 $, so I can factor out $ x - \alpha $, so $ h = \br{x - \alpha}g $ for $ g \in k\sbr{x} $. Then $ \deg g = 1 $, so $ g = a\br{x - \beta} $ for $ \beta \in k $, so $ \beta $ is the other root. Thus the other intersection point is another point $ P \in C $.
 \end{itemize}
 \end{proof}
 
@@ -737,7 +737,7 @@ So $ x^2 + y^2 = n $.
 
 \begin{theorem}[Hasse-Minkowski]
 Let $ C $ be
-$$ f = aX^2 + bY^2 + cZ^2, \qquad a, b, c \in \ZZ, \qquad abc \ne 0, \qquad \br{a, b} = \br{b, c} = \br{c, a} = 1, $$
+$$ f = aX^2 + bY^2 + cZ^2 = 0, \qquad a, b, c \in \ZZ, \qquad abc \ne 0, \qquad \br{a, b} = \br{b, c} = \br{c, a} = 1, $$
 where $ a, b, c $ are square-free. Let $ \Sigma = \cbr{p \mid 2abc} $. Then the following are equivalent.
 \begin{enumerate}
 \item $ C $ has infinitely many solutions in $ \PP^2\br{\QQ} $.
@@ -858,6 +858,70 @@ The \textbf{node} $ y^2 = x^2\br{x + 1} $. Then $ y = tx $ gives $ x = t^2 - 1 $
 \lecture{13}{Thursday}{31/10/19}
 
 Lecture 13 is a problem class.
+
+\pagebreak
+
+\lecture{14}{Monday}{04/11/19}
+
+A cubic is \textbf{irreducible} if it does not have a linear factor.
+
+\begin{example*}
+Any non-singular cubic will be irreducible.
+\end{example*}
+
+\begin{theorem}
+\label{thm:6.7}
+Let $ f $ be an irreducible cubic over a field $ k $. Assume that $ f = 0 $ has at least one point over $ k $. Fix such a point $ \OOO $. Let $ G $ be the set of non-singular points of $ f = 0 $ with coordinates in $ k $. We can give $ G $ the structure of an abelian group with identity $ \OOO $.
+\end{theorem}
+
+Say that $ n $ points are in \textbf{general position} if no four of them lie on a line, and no seven of them lie on a conic.
+
+\begin{lemma}
+\label{lem:6.8}
+Given eight points in general position, there exists a ninth point such that any cubic passing through the first eight points also passes through the ninth.
+\end{lemma}
+
+\begin{proof}
+Let $ g $ be a cubic, so
+$$ g = a_1x^3 + a_2x^2 + a_3x + a_4 + a_5y^3 + a_6y^2 + a_7y + a_8x^2y + a_9xy^2 + a_{10}xy. $$
+The condition that my given eight points are contained in $ g = 0 $ gives me eight linear equations in $ a_1, \dots, a_{10} $. The condition of being in general position tells us that these equations are independent, so we have a two-dimensional space of solutions. So there exist cubics $ f_1 $ and $ f_2 $ such that every cubic containing the eight points is of the form $ \lambda_1f_1 + \lambda_2f_2 $ for $ \lambda_1, \lambda_2 \in k $. By B\'ezout, $ \cbr{f_1 = 0} \cap \cbr{f_2 = 0} $ has nine points, and the ninth point of intersection is the point we need.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:6.7}]
+$ P + Q $ is the third point of intersection of the line $ \overrightarrow{\OOO R} $, where $ R $ is the third point of intersection of the line through $ \overrightarrow{PQ} $. If $ P = Q $ take the tangent at $ P $. To see that $ P + Q \in G $, just note that given any two points in $ G $, the third point of intersection has coordinates in $ k $, such as by explicitly solving equations, and must be non-singular, else would have at least $ 2 + 1 + 1 = 4 $ points of intersection with multiplicity. Then $ P + Q = Q + P $ and $ P + \OOO = P $ by definition. Want an inverse $ -P $ such that $ P + \br{-P} = \OOO $. Let $ Q $ be the third point of intersection of the tangent line at $ \OOO $. Then $ -P $ is defined to be the third point of intersection of $ \overrightarrow{PQ} $ with $ f = 0 $. It remains to check that $ \br{P + Q} + R = P + \br{Q + R} $. Unfortunately this is not obvious. We follow Cassels' book, which almost proves it. Let
+$$
+\begin{tikzpicture}[scale=2]
+\fill (0, 0) circle (0.05) node[below left]{$ \OOO $};
+\fill (-1, 0) circle (0.05) node[below left]{$ P + Q $};
+\fill (-2, 0) circle (0.05) node[below left]{$ T $};
+\fill (0, 1) circle (0.05) node[below left]{$ V $};
+\fill (-1, 1) circle (0.05) node[below left]{$ R $};
+\fill (-2, 1) circle (0.05) node[below left]{$ Q $};
+\fill (0, 2) circle (0.05) node[below left]{$ Q + R $};
+\fill (-1, 2) circle (0.05) node[below left]{$ W_1 $} node[above right]{$ W_2 $};
+\fill (-2, 2) circle (0.05) node[below left]{$ P $};
+\draw (0.5, 0) to (-2.5, 0);
+\draw (0.5, 1) to (-2.5, 1);
+\draw (0.5, 2) to (-2.5, 2);
+\draw (0, -0.5) to (0, 2.5);
+\draw (-1, -0.5) to (-1, 2.5);
+\draw (-2, -0.5) to (-2, 2.5);
+\end{tikzpicture}.
+$$
+Associativity is the statement that $ W_1 = W_2 $. Apply Lemma \ref{lem:6.8} to $ \OOO, P, Q, R, T, V, P + Q, Q + R $. Consider three cubics
+\begin{itemize}
+\item $ f = 0 $,
+\item the three vertical lines, and
+\item the three horizontal lines.
+\end{itemize}
+There exists a unique ninth point $ W $ on all of these cubics. By B\'ezout, the ninth point of intersection of the first two cubics is $ W_1 $, so $ W = W_1 $. Similarly, $ W = W_2 $. So $ W_1 = W_2 $, and $ P + \br{Q + R} = \br{P + Q} + R $.
+\end{proof}
+
+\pagebreak
+
+\begin{note*}
+This requires $ \OOO, P, Q, R, T, V, P + Q, Q + R $ are in general position. This is an open condition. The equation $ P + \br{Q + R} = \br{P + Q} + R $ is a closed condition. To make this a complete proof, work in the Zariski topology.
+\end{note*}
 
 \pagebreak
 
