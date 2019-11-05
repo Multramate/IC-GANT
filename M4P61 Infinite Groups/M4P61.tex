@@ -373,6 +373,7 @@ Let $ G $ be finite. Then for all $ s \in S $ there exists $ n \in \NN_{> 0} $ s
 \end{example*}
 
 \begin{exercise}[Free groups II]
+\label{ex:1.4.3}
 A group $ G $ is \textbf{free on $ S \subseteq G $} if and only if $ \Gamma\br{G, S} $ of $ G $ with respect to $ S $ is a tree and $ S \cap S^{-1} = \emptyset $, considered as an intersection in $ G $.
 \end{exercise}
 
@@ -536,7 +537,7 @@ Let $ G = \abr{S \st R} $. Then we call $ G $ \textbf{finitely presented} if bot
 Claim that the group $ \SSS_3 $ allows the presentation
 $$ \abr{x, y \st x^2, y^2, \br{xy}^3}. $$
 Let
-$$ \function[\phi]{F\br{\cbr{x, y}}}{\SSS_3}{\br{x, y}}{\br{\br{12}, \br{23}}}. $$
+$$ \function[\phi]{\F\br{\cbr{x, y}}}{\SSS_3}{\br{x, y}}{\br{\br{12}, \br{23}}}. $$
 Clearly
 $$ \phi\br{x^2} = \br{12}^2 = e_{\SSS_3} = \br{23}^2 = \phi\br{y^2}. $$
 Also, $ xy = \br{132} $ and hence
@@ -574,7 +575,7 @@ Let $ H $ be a group and $ S \subseteq H $, and $ R \subseteq \F\br{S} $. Then t
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Assume $ H = \abr{S \st R} $ and $ f : S \to G $. Clearly, as $ S $ generates $ H $, any homomorphism $ \phi : H \to G $ extending $ f $ has to send $ h = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $ to $ f\br{s_1}^{\epsilon_1} \dots f\br{s_n}^{\epsilon_n} $. Hence $ \phi $ is uniquely determined, if it exists. Now, assume that $ \phi $ is a well-defined homomorphism of groups. By Remark \ref{rem:1.5.7}, that $ r \underset{H}{=} e_H $ for any $ r \in R $, whence $ \phi\br{r} = e_G = f\br{r} $. Now assume $ f\br{r} = e_G $ for all $ r \in R $. We want to show that $ \phi $ is well-defined, that is if $ w_1 \underset{H}{=} w_2 $, then $ \phi\br{w_1} \underset{G}{=} \phi\br{w_2} $. Clearly, this amounts to say that any word $ w_1w_2^{-1} $ which represents $ e_H $ is sent to $ e_G $. By \ref{rem:1.5.7}.$ 2 $, $ w $ represents $ e_H $ if and only if $ w \in \abr{R}^{\F\br{S}} $. By assumption $ \phi\br{R} = \cbr{e_G} $ and \ref{ex:1.5.3}.$ 2 $, the claim follows.
+\item[$ \implies $] Assume $ H = \abr{S \st R} $ and $ f : S \to G $. Clearly, as $ S $ generates $ H $, any homomorphism $ \phi : H \to G $ extending $ f $ has to send $ h = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $ to $ f\br{s_1}^{\epsilon_1} \dots f\br{s_n}^{\epsilon_n} $. Hence $ \phi $ is uniquely determined, if it exists. Now, assume that $ \phi $ is a well-defined homomorphism of groups. By \ref{rem:1.5.7}, that $ r \underset{H}{=} e_H $ for any $ r \in R $, whence $ \phi\br{r} = e_G = f\br{r} $. Now assume $ f\br{r} = e_G $ for all $ r \in R $. We want to show that $ \phi $ is well-defined, that is if $ w_1 \underset{H}{=} w_2 $, then $ \phi\br{w_1} \underset{G}{=} \phi\br{w_2} $. Clearly, this amounts to say that any word $ w_1w_2^{-1} $ which represents $ e_H $ is sent to $ e_G $. By \ref{rem:1.5.7}.$ 2 $, $ w $ represents $ e_H $ if and only if $ w \in \abr{R}^{\F\br{S}} $. By assumption $ \phi\br{R} = \cbr{e_G} $ and \ref{ex:1.5.3}.$ 2 $, the claim follows.
 \item[$ \impliedby $] Exercise. \footnote{Exercise}
 \end{itemize}
 \end{proof}
@@ -760,9 +761,124 @@ Recall that $ F $ is free of basis $ S $ if and only if $ S \cap S^{-1} = \empty
 Let $ X $ be a graph and $ G $ a group acting on $ X $. For $ x \in X^0 \cup X^1 $ we denote by $ \OOO\br{x} $ the orbit of $ x $ under $ G $, that is $ \OOO\br{x} = \cbr{g \cdot x \st g \in G} $. Then we define the \textbf{factor graph} $ G \backslash X $ via
 \begin{itemize}
 \item $ \br{G \backslash X}^i = \cbr{\OOO\br{x} \st x \in X^i} $ for $ i = 0, 1 $,
-\item $ \alpha\br{\OOO\br{x}} = \OOO\br{\alpha\br{x}} $ for $ x \in X^1 $, and
-\item $ \overline{\OOO\br{x}} = \OOO\br{\overline{x}} $ for $ x \in X^1 $.
+\item $ \alpha\br{\OOO\br{e}} = \OOO\br{\alpha\br{e}} $ for $ e \in X^1 $, and
+\item $ \overline{\OOO\br{e}} = \OOO\br{\overline{e}} $ for $ e \in X^1 $.
 \end{itemize}
 \end{definition}
+
+\lecture{14}{Tuesday}{05/11/19}
+
+\begin{remark}
+From now on we do not identify edges through their initial and terminal vertex any longer. In particular we can include $ \CCC_2 $ in the class of circuits where $ \CCC_2^0 = \cbr{0, 1} $ and $ \CCC_2^1 = \cbr{e_0, \overline{e_0}, e_1, \overline{e_1}} $, so $ \CCC_2 $ is
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[left]{$ 0 $};
+\fill (1, 0) circle (0.1) node[right]{$ 1 $};
+\draw [->] (0, 0) to [bend left=90] node[above]{$ e_0 $} (1, 0.1);
+\draw [->] (1, 0) to [bend left=90] node[below]{$ e_1 $} (0, -0.1);
+\end{tikzpicture}.
+$$
+Hence a tree is a connected graph without any $ \CCC_n $ for $ n \in \NN $. Now \ref{ex:1.4.3} changes to $ G $ is free on $ S $ if and only if $ \Gamma\br{G, S} $ is a tree.
+\end{remark}
+
+\pagebreak
+
+\begin{example}
+Consider the graph
+$$
+\begin{array}{c}
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[below]{$ x_0 $};
+\fill (0, 1) circle (0.1);
+\fill (-0.9, -0.5) circle (0.1);
+\fill (0.9, -0.5) circle (0.1);
+\draw [->] (0, 0) to (0, 0.9);
+\draw [->] (0, 0) to (-0.8, -0.5);
+\draw [->] (0, 0) to (0.8, -0.5);
+\draw (0, 0) circle (1);
+\end{tikzpicture}
+\\
+X
+\end{array}.
+$$
+Let $ G_1 = \cbr{\id} $, $ G_2 = \ZZ_3 $, and $ G_3 = \SSS_4 $ acting on $ X $, where $ \ZZ_3 \curvearrowright X $ fixing $ x_0 $. Then
+$$
+\begin{tikzpicture}
+\draw (-0.5, 0) node[left]{$ G_1 \backslash X \cong X, \qquad G_2 \backslash X \cong $};
+\fill (0, 0) circle (0.1) node[below]{$ \OOO\br{x_0} $};
+\fill (1, 0) circle (0.1) node[below]{$ \OOO\br{y} $};
+\draw [->] (0, 0) to (0.9, 0);
+\draw [->] (1, 0) arc (270:-80:0.5);
+\draw (1.5, 0) node[right]{$, \qquad G_3 \backslash X \cong \CCC_1 $};
+\end{tikzpicture}.
+$$
+\end{example}
+
+\begin{example}
+Let $ F $ be a free group on $ S $. Then if $ \abs{S} = n $,
+$$
+\begin{tikzpicture}
+\draw (-2, 0) node[left]{$ F \backslash \Gamma\br{F, S} \cong $};
+\fill (0, 0) circle (0.1);
+\draw (0, 0) arc (225:135:1) node[above]{$ s_1 $};
+\draw [->] (0, 1.4) arc (45:-35:1);
+\draw [dashed] (0.3, 0.7) arc (90:-180:1);
+\draw (0, 0) arc (-45:-135:1) node[left]{$ s_n $};
+\draw [->] (-1.4, 0) arc (135:55:1);
+\end{tikzpicture},
+$$
+a rose with $ n $ petals.
+\end{example}
+
+\begin{lemma}
+The factor graph $ G \backslash X $ is well-defined.
+\end{lemma}
+
+\begin{proof}
+Note $ \OOO\br{x} = \OOO\br{x'} $ if and only if $ x \in \OOO\br{x} $. Consider $ e' \in \OOO\br{e} $, that is there exists $ g \in G $ such that $ e' = g \cdot e $. Want to show that $ \alpha\br{e'} \in \OOO\br{\alpha\br{e}} $ and $ \overline{e'} \in \OOO\br{\overline{e}} $. Recall that group actions give rise to graph homomorphisms, whence $ \alpha\br{e'} = \alpha\br{g \cdot e} = g \cdot \alpha\br{e} \in \OOO\br{\alpha\br{e}} $. Same for $ \overline{e'} = \overline{g \cdot e} = g \cdot \overline{e} \in \OOO\br{\overline{e}} $.
+\end{proof}
+
+\begin{definition}
+We call the map
+$$ \function[\p]{X}{G \backslash X}{x}{\OOO\br{x}} $$
+a \textbf{projection}, and if $ y \in G \backslash X $, then any $ x \in X $ with $ \p\br{x} = y $ is called a \textbf{lift} of $ y $.
+\end{definition}
+
+\begin{lemma}
+If $ T' $ is a tree in $ G \backslash X $, then there is some tree $ T \subseteq X $ such that $ \eval{\p}_T : T \to T' $ is an isomorphism. Then $ T $ is called a lift of $ T' $.
+\end{lemma}
+
+\begin{proof}
+First note that for any $ f \in \br{G \backslash X}^1 $ and $ x \in \OOO\br{\alpha\br{f}} $, then there is some $ e \in X^1 $ such that $ \p\br{e} = f $ and $ \alpha\br{e} = x $. Denote by $ \TTT $ the set of all subtrees of $ X $ which project injectively into $ T' $. Note that for $ T' \ne \emptyset $ the set $ \TTT \ne \emptyset $ as any lift of any vertex in $ T' $ is in $ \TTT $. We can partially order $ \TTT $ by inclusion. Then every chain in $ \TTT $ has a maximal element, being the union. So, by Zorn's lemma, we obtain a maximal element $ T $. We claim that $ T \cong T' $. Otherwise, there was some $ f \in T' $ such that $ \alpha\br{f} \in \p\br{T} $ and $ \omega\br{f} \notin \p\br{T} $. Now let $ x = \p^{-1}\br{\alpha\br{f}} $. By the above, there exists $ e \in X^1 $ such that $ \alpha\br{e} = x $ and $ \p\br{e} = f $. But then $ T \cup \cbr{e, \omega\br{e}} $ is still a tree mapped injectively to $ T' $, a contradiction.
+\end{proof}
+
+\begin{theorem}[Free group VI]
+A group $ G $ is free if and only if it acts freely and without inversion of edges on a tree.
+\end{theorem}
+
+\begin{theorem}[Nielson-Schreier theorem]
+A subgroup of a free group is free.
+\end{theorem}
+
+\begin{proof}
+Let $ G $ be free on $ S $ and $ H \le G $. Then $ \Gamma\br{G, S} $ is a tree and $ G  $ acts on it freely without inversion of edges. Now clearly restricting the action to $ H $ yields that $ H $ acts freely on some tree. Hence $ H $ is free.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+Assume $ G $ acts freely on a tree $ X $, without inversion of edges. Set $ Y = G \backslash X $. If $ Y $ is finite, then
+$$ \rk G = \abs{Y_+^1} - \abs{Y^0} + 1. $$
+\end{exercise}
+
+\begin{lemma}
+If $ G $ is a free group of finite rank, and $ H \le G $ of index $ n $, then
+$$ \rk H - 1 = n\br{\rk G - 1}. $$
+\end{lemma}
+
+\begin{proof}
+Let $ \Gamma\br{G, S} $ be the Cayley graph. Then $ H $ acts on it via $ h : g \mapsto gh $ and $ h : \br{g, s} \mapsto \br{gh, s} $. Then $ \br{H \backslash \Gamma\br{G, S}}^0 = \cbr{gH \st g \in G} = G / H $ and $ \br{H \backslash \Gamma\br{G, S}}_+^1 = G / H \times S $. Hence,
+$$ \rk H = n \cdot \rk G - n + 1. $$
+\end{proof}
 
 \end{document}
