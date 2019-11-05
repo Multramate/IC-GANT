@@ -919,9 +919,75 @@ There exists a unique ninth point $ W $ on all of these cubics. By B\'ezout, the
 
 \pagebreak
 
-\begin{note*}
+\begin{remark}
 This requires $ \OOO, P, Q, R, T, V, P + Q, Q + R $ are in general position. This is an open condition. The equation $ P + \br{Q + R} = \br{P + Q} + R $ is a closed condition. To make this a complete proof, work in the Zariski topology.
-\end{note*}
+\end{remark}
+
+\lecture{15}{Tuesday}{05/11/19}
+
+\begin{definition}
+An \textbf{elliptic curve} over a field $ k $ is a non-singular plane cubic together with a fixed point $ \OOO $ with coordinates in $ k $.
+\end{definition}
+
+\begin{definition}
+A \textbf{point of inflexion} is a point $ P $ such that the tangent line to the curve at $ P $ only meets the curve at $ P $. Since we are considering cubics, these are points where the tangent line meets with multiplicity three.
+\end{definition}
+
+\begin{lemma}
+If $ \OOO $ is a point of inflexion, then $ P + Q + R = \OOO $ if and only if $ P, Q, R $ are collinear.
+\end{lemma}
+
+\begin{proof}
+$ P + Q + R = \OOO $ if and only if $ R = -\br{P + Q} $, if and only if $ R $ is the third point of intersection of the line through $ P $ and $ Q $.
+\end{proof}
+
+Consider cubic curves of the form $ y^2 = f\br{x} $, where $ f\br{x} $ is a monic cubic. In homogeneous coordinates,
+$$ Y^2Z - \br{X^3 + \alpha X^2Z + \beta XZ^2 + \gamma Z^3} = 0. $$
+
+\begin{lemma}
+\hfill
+\begin{enumerate}
+\item This has a unique point at infinity, which is non-singular.
+\item The point at infinity is a point of inflexion.
+\item This curve is always irreducible, and if $ \ch k \ne 2 $, then it is non-singular if and only if $ f\br{x} $ has distinct roots.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item $ Z = 0 $ implies that $ X^3 = 0 $, so $ X = 0 $, so $ \sbr{0 : 1 : 0} $ is the unique point at infinity, and $ \tpd{}{Z} = Y^2 = 1^2 = 1 \ne 0 $.
+\item $ \tpd{}{X} = \tpd{}{Y} = 0 $ at $ \sbr{0 : 1 : 0} $, so the tangent line is just $ \cbr{Z = 0} $. So the only point of the curve on this is $ \sbr{0 : 1 : 0} $, by $ 1 $.
+\item Any singular point is a point of $ y^2 = f\br{x} $, by $ 1 $. Then $ \tpd{}{y} = 2y = 0 $ and $ \tpd{}{x} = f'\br{x} = 0 $, and $ \ch k \ne 2 $ implies that $ y = 0 $ and $ f'\br{x} = 0 $, so $ f\br{x} = 0 $. Thus $ f\br{x} = f'\br{x} = 0 $ has a solution if and only if $ f\br{x} $ has a repeated root, since $ f\br{x} = \br{x - \alpha}g\br{x} $.
+\end{enumerate}
+\end{proof}
+
+If $ \ch k \ne 2 $, can always make any elliptic curve into a curve of this form. In general, need $ y^2 + \alpha y + \beta xy = f\br{x} $. If $ \ch k \ne 2, 3 $ then we can complete the cube in $ f\br{x} $, and write
+$$ y^2 = x^3 + ax + b, $$
+since $ x^3 + cx^2 + \dots = \br{x + \tfrac{1}{3}c}^3 + \dots $. Let $ \ch k \ne 2 $. If $ P = \br{x_0, y_0} $, what is $ -P $? The line through $ P $ and $ \OOO $ is $ x = x_0 $, \footnote{Exercise} so
+$$ -P = \br{x_0, -y_0}. $$
+Then $ 2P = \OOO $ if and only if $ P = -P $, if and only if $ y_0 = -y_0 $, if and only if $ y_0 = 0 $. So $ 2P = \OOO $ if and only if $ P = \br{x_0, 0} $ with $ x_0 $ a root of $ f\br{x} $. The \textbf{discriminant} of $ x^3 + ax + b $ is
+$$ 4a^3 + 27b^2. $$
+If $ x^3 + ax + b = \br{x - \alpha}\br{x - \beta}\br{x - \gamma} $, the discriminant is $ \br{\alpha - \beta}^2\br{\beta - \gamma}^2\br{\gamma - \alpha}^2 $. In particular, $ y^2 = x^3 + ax + b $ is an elliptic curve if and only if $ 4a^3 + 27b^2 \ne 0 $.
+
+\pagebreak
+
+Write $ \Delta = 4a^3 + 27b^2 $. What changes of variable can we make that turn $ y^2 = x^3 + ax + b $ into another equation $ y^2 = x^3 + a'x + b' $? If $ y' = u^3y $ and $ x' = u^2x $ for $ u \ne 0 $, then $ u^6y^2 = u^6x^3 + au^6x + bu^6 $, so $ y'^2 = x'^3 + au^6x + bu^6 $. This takes $ \br{a, b} \leftrightarrow \br{u^4a, u^6b} $ and $ \Delta \leftrightarrow u^{12}\Delta $.
+
+\begin{definition}
+The \textbf{$ j $-invariant} of $ y^2 = x^3 + ax + b $ is
+$$ -\dfrac{1728\br{4a}^3}{\Delta}. $$
+\end{definition}
+
+This is invariant under $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $.
+
+\begin{proposition}
+If $ k $ is algebraically closed, then two elliptic curves are isomorphic if and only if they have the same $ j $-invariant.
+\end{proposition}
+
+\begin{proof}
+Assume $ \ch k \ne 2, 3 $. Suppose that we have two elliptic curves $ y^2 = x^3 + ax + b $ and $ y^2 = x^3 + a'x + b' $. These have the same $ j $-invariants if and only if $ a^3 / \br{4a^3 + 27b^2} = a'^3 / \br{4a'^3 + 27b'^2} $, if and only if $ b^2 / a^3 = b'^2 / a'^3 $. If the two curves are isomorphic, then the $ j $-invariants are equal, as $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ does not change the $ j $-invariant. Conversely, assume $ b^2 / a^3 = b'^2 / a'^3 $, that is $ \br{a' / a}^3 = \br{b' / b}^2 $. Since $ k $ is algebraically closed, there exists $ u $ such that $ u^4 = a' / a $ and $ u^6 = b' / b $. Then the transformation $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ takes $ y^2 = x^3 + ax + b \leftrightarrow y^2 = x^3 + a'x + b' $. Implicitly assumed that $ a, b, a', b' \ne 0 $. More correctly, the equation is $ b^2a'^3 = b'^2a^3 $. If $ a = 0 $ then $ b \ne 0 $, as the curve is non-singular, so $ a' = 0 $, so $ b' \ne 0 $, so just choose $ u^6 = b' / b $. Similarly if $ b = 0 $ then $ a \ne 0 $, so $ b' = 0 $ and $ a' \ne 0 $, and choose $ u^4 = a' / a $.
+\end{proof}
 
 \pagebreak
 
