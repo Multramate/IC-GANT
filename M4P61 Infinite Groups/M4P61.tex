@@ -844,16 +844,35 @@ $$ \function[\p]{X}{G \backslash X}{x}{\OOO\br{x}} $$
 a \textbf{projection}, and if $ y \in G \backslash X $, then any $ x \in X $ with $ \p\br{x} = y $ is called a \textbf{lift} of $ y $.
 \end{definition}
 
-\begin{lemma}
+\begin{proposition}
+\label{prop:1.6.18}
 If $ T' $ is a tree in $ G \backslash X $, then there is some tree $ T \subseteq X $ such that $ \eval{\p}_T : T \to T' $ is an isomorphism. Then $ T $ is called a lift of $ T' $.
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
 First note that for any $ f \in \br{G \backslash X}^1 $ and $ x \in \OOO\br{\alpha\br{f}} $, then there is some $ e \in X^1 $ such that $ \p\br{e} = f $ and $ \alpha\br{e} = x $. Denote by $ \TTT $ the set of all subtrees of $ X $ which project injectively into $ T' $. Note that for $ T' \ne \emptyset $ the set $ \TTT \ne \emptyset $ as any lift of any vertex in $ T' $ is in $ \TTT $. We can partially order $ \TTT $ by inclusion. Then every chain in $ \TTT $ has a maximal element, being the union. So, by Zorn's lemma, we obtain a maximal element $ T $. We claim that $ T \cong T' $. Otherwise, there was some $ f \in T' $ such that $ \alpha\br{f} \in \p\br{T} $ and $ \omega\br{f} \notin \p\br{T} $. Now let $ x = \p^{-1}\br{\alpha\br{f}} $. By the above, there exists $ e \in X^1 $ such that $ \alpha\br{e} = x $ and $ \p\br{e} = f $. But then $ T \cup \cbr{e, \omega\br{e}} $ is still a tree mapped injectively to $ T' $, a contradiction.
 \end{proof}
 
+\begin{example*}
+Let $ X = \CCC_\infty $ and $ 3\ZZ \curvearrowright X $ via $ i \mapsto i + 3 $. Then
+$$
+\begin{tikzpicture}
+\draw (-0.5, 0.5) node[left]{$ 3\ZZ \backslash X \cong $};
+\fill (0, 0) circle (0.1) node[left]{$ \sbr{0} $};
+\fill (1, 0) circle (0.1) node[right]{$ \sbr{1} $};
+\fill (0.5, 1) circle (0.1) node[above]{$ \sbr{2} $};
+\draw (0, 0) to (1, 0);
+\draw (1, 0) to (0.5, 1);
+\draw (0.5, 1) to (0, 0);
+\end{tikzpicture}.
+$$
+\end{example*}
+
+\pagebreak
+
 \begin{theorem}[Free group VI]
-A group $ G $ is free if and only if it acts freely and without inversion of edges on a tree.
+\label{thm:1.6.19}
+A group $ G $ is free if and only if it acts freely on a tree.
 \end{theorem}
 
 \begin{theorem}[Nielson-Schreier theorem]
@@ -863,8 +882,6 @@ A subgroup of a free group is free.
 \begin{proof}
 Let $ G $ be free on $ S $ and $ H \le G $. Then $ \Gamma\br{G, S} $ is a tree and $ G  $ acts on it freely without inversion of edges. Now clearly restricting the action to $ H $ yields that $ H $ acts freely on some tree. Hence $ H $ is free.
 \end{proof}
-
-\pagebreak
 
 \begin{exercise}
 Assume $ G $ acts freely on a tree $ X $, without inversion of edges. Set $ Y = G \backslash X $. If $ Y $ is finite, then
@@ -877,8 +894,57 @@ $$ \rk H - 1 = n\br{\rk G - 1}. $$
 \end{lemma}
 
 \begin{proof}
-Let $ \Gamma\br{G, S} $ be the Cayley graph. Then $ H $ acts on it via $ h : g \mapsto gh $ and $ h : \br{g, s} \mapsto \br{gh, s} $. Then $ \br{H \backslash \Gamma\br{G, S}}^0 = \cbr{gH \st g \in G} = G / H $ and $ \br{H \backslash \Gamma\br{G, S}}_+^1 = G / H \times S $. Hence,
-$$ \rk H = n \cdot \rk G - n + 1. $$
+Let $ \Gamma\br{G, S} $ be the Cayley graph. Then $ H $ acts on it via $ h : g \mapsto gh $ and $ h : \br{g, s} \mapsto \br{gh, s} $. Then
+$$ \br{H \backslash \Gamma\br{G, S}}^0 = \cbr{gH \st g \in G} = G / H, \qquad \br{H \backslash \Gamma\br{G, S}}_+^1 = G / H \times S. $$
+Hence, $ \rk H = n \cdot \rk G - n + 1 $.
 \end{proof}
+
+\lecture{15}{Wednesday}{06/11/19}
+
+\begin{proof}[Proof of \ref{thm:1.6.19}]
+We already know that $ \Gamma\br{G, S} $ is a tree for $ G $ free on $ S $ and $ G $ acts freely on it. Now assume $ G $ acts freely on a tree $ X $. Set $ X' = G \backslash X $. Let $ T' $ be a spanning tree for $ X' $. By \ref{prop:1.6.18} there exists a lift $ T $ of $ T' $ such that $ \p\br{T} \cong T' $. Pick an orientation of $ X' $. We may assume $ G $ acts without inversion of edges, whence we can lift that orientation to $ X $. Denote by $ E' = X_+^1 \setminus T'^1 $. As the action is free, for every $ f \in E' $ there is a unique lift $ e \in X_+^1 $ with $ \alpha\br{e} \in T $. Set
+$$ E = \cbr{e \st \p\br{e} \in E', \ \alpha\br{e} \in T}. $$
+Clearly, $ \omega\br{e} \notin T $ for all $ e \in E $. Further, all $ gT $ are disjoint for distinct $ g $. Furthermore, the $ gT $ cover all vertices of $ X $. Also, for any $ e \in E $ there is a unique $ g_e \in G $ such that $ \omega\br{e} \in g_eT $. Now set $ S = \cbr{g_e \st e \in E} $. Define a graph $ T_G $ via
+$$ T_G^0 = \cbr{\br{gT} \st g \in G}, \qquad T_G^1 = X_+^1 \setminus \cbr{\br{gT}^1 \st g \in G}. $$
+For $ f \in T_G^1 $, $ \alpha\br{f} = \br{gT} $ and $ \omega\br{f} = \br{hT} $ if and only if $ \alpha\br{f} \in \br{gT}^0 $ and $ \omega\br{f} \in \br{hT}^0 $. We claim that $ T_G \cong \Gamma\br{G, S} $. Note that $ T_G $ is a tree, so this concludes the proof. Note that
+$$ S = \cbr{g \in X_+^1 \st \exists e \in X_+^1, \ \alpha\br{e} \in T, \ \omega\br{e} \in gT}. $$
+Hence, for $ f \in T_G^1 $, with $ \alpha\br{f} = \br{gT} $ and $ \omega\br{f} = \br{hT} $, whence for $ e = g^{-1}\br{f} $ we have $ \alpha\br{g^{-1}\br{f}} = g^{-1}\br{\alpha\br{f}} \in T $ and $ \omega\br{e} = g^{-1}\br{\omega\br{e}} \in g^{-1}hT $. Thus $ g^{-1}h \in S $. Define
+$$
+\begin{array}{ccrcl}
+\phi & : & T_G & \longmapsto & \Gamma\br{G, S} \\
+& & \br{gT} & \longmapsto & g \in \Gamma\br{G, S}^0 \\
+& & f & \longmapsto & \br{g, s}
+\end{array},
+\qquad \alpha\br{f} \in gT, \qquad \omega\br{f} = hT, \qquad g^{-1}h = s. $$
+One easily checks that $ \phi $ is an isomorphism $ T_G \xrightarrow{\sim} \Gamma\br{G, S} $.
+\end{proof}
+
+Recall for $ H \le G $ a subgroup of a free group, we studied $ H \curvearrowright \Gamma\br{G, S} $. Now we want to understand what $ H \backslash \Gamma\br{G, S} $ looks like and give another proof of Nielson-Schreier.
+
+\subsection{Fundamental groups of graphs}
+
+The following is the plan.
+\begin{itemize}
+\item Introduce fundamental groups.
+\item Show they always are free groups.
+\item View $ H $ as the fundamental group of $ H \backslash \Gamma\br{G, S} $.
+\item Deduce that $ H $ is free.
+\end{itemize}
+
+\pagebreak
+
+Let $ X $ be a connected graph and $ x \in X^0 $. Let us denote the set of closed paths starting at $ x $ by $ \PPP\br{X, x} $. We say that $ p, q \in \PPP\br{X, x} $ are \textbf{homotopic}, if there exists $ p = p_0, \dots, p_n = q $ such that $ p_{i + 1} $ arises from $ p_i $ by deleting or inserting subpaths of the form $ e\overline{e} $, for $ e \in X^1 $. This is an equivalence relation and every class has exactly one reduced representative. Denote the homotopy class of $ p $ by $ \sbr{p} $.
+
+\begin{exercise}
+Define a multiplication $ \sbr{p}\sbr{q} = \sbr{pq} $. Show that this is well-defined and yields a group structure.
+\end{exercise}
+
+\begin{definition}
+We denote the group of homotopy classes of $ \PPP\br{X, x} $ by $ \pi_1\br{X, x} $ and call it the \textbf{fundamental group} of $ X $ with respect to $ x $.
+\end{definition}
+
+\begin{exercise}
+Let $ X $ be connected and $ x, y \in X^0 $. Then $ \pi_1\br{X, x} \cong \pi_1\br{X, y} $.
+\end{exercise}
 
 \end{document}
