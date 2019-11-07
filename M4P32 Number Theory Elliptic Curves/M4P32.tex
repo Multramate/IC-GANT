@@ -301,20 +301,23 @@ If $ k $ is complete non-archimedean, such as $ k = \QQ_p $, then $ \sum_{n = 1}
 \end{lemma}
 
 \begin{proof}
-$ \sum_{n = 1}^\infty x_n $ converges if and only if $ \br{\sum_{n = 1}^m x_n}_{m \ge 1} $ converges. Since $ k $ is complete, this is if and only if $ \br{\sum_{n = 1}^m x_n}_{m \ge 1} $ is Cauchy. By Corollary \ref{cor:2.18}, this is if and only if $ x_{m + 1} \to 0 $. The final statement then follows from Lemma \ref{lem:2.17}.
+$ \sum_{n = 1}^\infty x_n $ converges if and only if
+\begin{align*}
+\br{\sum_{n = 1}^m x_n}_{m \ge 1} \ \text{converges} \qquad
+& \iff \qquad \br{\sum_{n = 1}^m x_n}_{m \ge 1} \ \text{is Cauchy} & k \ \text{is complete} \\
+& \iff \qquad x_{m + 1} \to 0 & \text{Corollary \ref{cor:2.18}}.
+\end{align*}
+The final statement then follows from Lemma \ref{lem:2.17}.
 \end{proof}
 
 \begin{lemma}
 \label{lem:2.20}
-If $ a_n \in \ZZ $ then $ \sum_{n = 0}^\infty a_np^n $ converges in $ \QQ_p $. If $ a_n = 0 $ for $ n < T $ and $ a_T \ne 0 $, and $ p \nmid a_T $, then $ \abs{\sum_{n = 0}^\infty a_np^n}_p = p^{-T} $.
+If $ a_n \in \ZZ $ then $ \sum_{n = 0}^\infty a_np^n $ converges in $ \QQ_p $. If $ a_n = 0 $ for $ n < T $ and $ a_T \ne 0 $, and $ p \nmid a_T $, then
+$$ \abs{\sum_{n = 0}^\infty a_np^n}_p = p^{-T}. $$
 \end{lemma}
 
 \begin{proof}
-Since $ a_n \in \ZZ $,
-$$ \abs{a_np^n}_p = \abs{a_n}_p \cdot \abs{p^n}_p \le \abs{p^n}_p = p^{-n} \to 0. $$
-Furthermore $ \abs{a_Tp^T}_p = p^{-T} $ and $ \abs{a_np^n}_p \le p^{-T - 1} $ if $ n \ge T + 1 $, so $ \abs{\sum_{n = T + 1}^\infty a_np^n}_p \le p^{-T - 1} $, so
-$$ \abs{a_Tp^T + \sum_{n = T + 1}^\infty a_np^n}_p = p^{-T}, $$
-by Lemma \ref{lem:2.7}.
+Since $ a_n \in \ZZ $, $ \abs{a_np^n}_p = \abs{a_n}_p \cdot \abs{p^n}_p \le \abs{p^n}_p = p^{-n} \to 0 $. Furthermore $ \abs{a_Tp^T}_p = p^{-T} $ and $ \abs{a_np^n}_p \le p^{-T - 1} $ if $ n \ge T + 1 $, so $ \abs{\sum_{n = T + 1}^\infty a_np^n}_p \le p^{-T - 1} $, so $ \abs{a_Tp^T + \sum_{n = T + 1}^\infty a_np^n}_p = p^{-T} $, by Lemma \ref{lem:2.7}.
 \end{proof}
 
 \lecture{4}{Thursday}{10/10/19}
@@ -968,11 +971,9 @@ since $ x^3 + cx^2 + \dots = \br{x + \tfrac{1}{3}c}^3 + \dots $. Let $ \ch k \ne
 $$ -P = \br{x_0, -y_0}. $$
 Then $ 2P = \OOO $ if and only if $ P = -P $, if and only if $ y_0 = -y_0 $, if and only if $ y_0 = 0 $. So $ 2P = \OOO $ if and only if $ P = \br{x_0, 0} $ with $ x_0 $ a root of $ f\br{x} $. The \textbf{discriminant} of $ x^3 + ax + b $ is
 $$ 4a^3 + 27b^2. $$
-If $ x^3 + ax + b = \br{x - \alpha}\br{x - \beta}\br{x - \gamma} $, the discriminant is $ \br{\alpha - \beta}^2\br{\beta - \gamma}^2\br{\gamma - \alpha}^2 $. In particular, $ y^2 = x^3 + ax + b $ is an elliptic curve if and only if $ 4a^3 + 27b^2 \ne 0 $.
+If $ x^3 + ax + b = \br{x - \alpha}\br{x - \beta}\br{x - \gamma} $, the discriminant is $ \br{\alpha - \beta}^2\br{\beta - \gamma}^2\br{\gamma - \alpha}^2 $. In particular, $ y^2 = x^3 + ax + b $ is an elliptic curve if and only if $ 4a^3 + 27b^2 \ne 0 $. Write $ \Delta = 4a^3 + 27b^2 $. What changes of variable can we make that turn $ y^2 = x^3 + ax + b $ into another equation $ y^2 = x^3 + a'x + b' $? If $ y' = u^3y $ and $ x' = u^2x $ for $ u \ne 0 $, then $ u^6y^2 = u^6x^3 + au^6x + bu^6 $, so $ y'^2 = x'^3 + au^6x + bu^6 $. This takes $ \br{a, b} \leftrightarrow \br{u^4a, u^6b} $ and $ \Delta \leftrightarrow u^{12}\Delta $.
 
 \pagebreak
-
-Write $ \Delta = 4a^3 + 27b^2 $. What changes of variable can we make that turn $ y^2 = x^3 + ax + b $ into another equation $ y^2 = x^3 + a'x + b' $? If $ y' = u^3y $ and $ x' = u^2x $ for $ u \ne 0 $, then $ u^6y^2 = u^6x^3 + au^6x + bu^6 $, so $ y'^2 = x'^3 + au^6x + bu^6 $. This takes $ \br{a, b} \leftrightarrow \br{u^4a, u^6b} $ and $ \Delta \leftrightarrow u^{12}\Delta $.
 
 \begin{definition}
 The \textbf{$ j $-invariant} of $ y^2 = x^3 + ax + b $ is
@@ -988,6 +989,47 @@ If $ k $ is algebraically closed, then two elliptic curves are isomorphic if and
 \begin{proof}
 Assume $ \ch k \ne 2, 3 $. Suppose that we have two elliptic curves $ y^2 = x^3 + ax + b $ and $ y^2 = x^3 + a'x + b' $. These have the same $ j $-invariants if and only if $ a^3 / \br{4a^3 + 27b^2} = a'^3 / \br{4a'^3 + 27b'^2} $, if and only if $ b^2 / a^3 = b'^2 / a'^3 $. If the two curves are isomorphic, then the $ j $-invariants are equal, as $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ does not change the $ j $-invariant. Conversely, assume $ b^2 / a^3 = b'^2 / a'^3 $, that is $ \br{a' / a}^3 = \br{b' / b}^2 $. Since $ k $ is algebraically closed, there exists $ u $ such that $ u^4 = a' / a $ and $ u^6 = b' / b $. Then the transformation $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ takes $ y^2 = x^3 + ax + b \leftrightarrow y^2 = x^3 + a'x + b' $. Implicitly assumed that $ a, b, a', b' \ne 0 $. More correctly, the equation is $ b^2a'^3 = b'^2a^3 $. If $ a = 0 $ then $ b \ne 0 $, as the curve is non-singular, so $ a' = 0 $, so $ b' \ne 0 $, so just choose $ u^6 = b' / b $. Similarly if $ b = 0 $ then $ a \ne 0 $, so $ b' = 0 $ and $ a' \ne 0 $, and choose $ u^4 = a' / a $.
 \end{proof}
+
+\lecture{16}{Thursday}{07/11/19}
+
+\begin{example}
+Let $ \ch k \ne 2, 3 $, and let $ y^2 = x^3 $ with $ \OOO = \sbr{0 : 1 : 0} $. The non-singular points are all points not equal to $ \br{0, 0} $. Intersect $ y^2 = x^3 $ with a line $ ax + by = 1 $. Then $ x^3 = y^2 = y^2\br{ax + by} $, so $ \br{x / y}^3 = a\br{x / y} + b $. Write $ u = x / y $, so $ u^3 - au - b = 0 $. If the roots of this cubic are $ u_1, u_2, u_3 $, then $ u_1 + u_2 + u_3 = 0 $. Conversely if $ u_1 + u_2 + u_3 = 0 $, then $ u_1, u_2, u_3 $ are the roots of $ u^3 - au - b = 0 $, so $ a = -\br{u_1u_2 + u_2u_3 + u_3u_1} $ and $ b = u_1u_2u_3 $. That is, $ \br{x_1, y_1} + \br{x_2, y_2} + \br{x_3, y_3} = 0 $ if and only if $ x_1 / y_1 + x_2 / y_2 + x_3 / y_3 = 0 $. We get an isomorphism to the group $ \br{k, +} $ by $ \br{x, y} \mapsto x / y $.
+\end{example}
+
+\begin{example}
+Let $ y^2 = x^2\br{x + 1} $, and let $ u = y + x $ and $ v = y - x $. Then $ x^3 = y^2 - x^2 = \br{y + x}\br{y - x} $ and $ x = \tfrac{1}{2}\br{u - v} $, so $ \br{u - v}^3 = 8uv $. Now take a line $ au + bv = 1 $. Then $ \br{u - v}^3 = 8uv = 8uv\br{au + bv} $. Set $ t = u / v $, so that $ \br{t - 1}^3 = 8t\br{at + b} $. The roots of this cubic are $ t_1, t_2, t_3 $ with $ t_1t_2t_3 = 1 $. So we have an isomorphism to the group $ \br{k^\times, \times} $, given by $ \br{x, y} \mapsto \br{y + x} / \br{y - x} $.
+\end{example}
+
+\begin{example}
+Let $ y^2 = x^3 + 1 $, and let $ k = \FF_5 = \ZZ / 5\ZZ $. The discriminant is $ \Delta = 27 \ne 0 $ in $ \FF_5 $. The squares modulo five are $ 0, 1, 4 $, and
+$$
+\begin{array}{c|c|c|c|c|c}
+x & 0 & 1 & 2 & 3 & 4 \\
+\hline
+y & \pm 1 & \times & \pm 2 & \times & 0
+\end{array}.
+$$
+Also the point $ \OOO $ at infinity. So six points, so $ \ZZ / 2\ZZ \times \ZZ / 3\ZZ \cong \ZZ / 6\ZZ $.
+\begin{itemize}
+\item $ 2P = \OOO $ if and only if $ y = 0 $. So $ \br{4, 0} $ has order two.
+\item Claim that $ \br{0, 1} $ is a point of order three. Then $ 3P = \OOO $ so we just need a line which only meets the curve at this point. Check that $ Y = Z $ in projective coordinates only goes through this point. \footnote{Exercise}
+\item So $ \br{0, 1} $ has order three and $ \br{4, 0} $ has order two. Then $ y = x + 1 $ passes through $ \br{0, 1} $ and $ \br{4, 0} = \br{-1, 0} $. The third point of intersection is $ \br{2, -2} = -\br{\br{0, 1} + \br{4, 0}} $, so $ \br{0, 1} + \br{4, 0} = -\br{2, -2} = \br{2, 2} $.
+\end{itemize}
+\end{example}
+
+\begin{exercise}
+Compute $ n\br{2, -2} $ for $ n = 0, \dots, 5 $.
+\end{exercise}
+
+\begin{notation}
+Write $ E $ for an elliptic curve, and $ E\br{k} $ for all its points over a field $ k $.
+\end{notation}
+
+\begin{example*}
+We just computed $ E\br{\FF_5} $ for $ E = \br{y = x^3 + 1} $.
+\end{example*}
+
+The main goal of the course is to take an elliptic curve $ E $ over $ \QQ $, and see what we can say about $ E\br{\QQ} $. The main theorem is the Mordell-Weil theorem, that $ E\br{\QQ} $ is a finitely generated abelian group. That is, there exists $ \ZZ^N \twoheadrightarrow E\br{\QQ} $, that is there exist $ g_1, \dots, g_N \in E\br{\QQ} $ such that every element is of the form $ \sum_{i = 1}^N a_ig_i $ for $ a_i \in \ZZ $. The group $ \br{\QQ, +} $ is not finitely generated. The structure theorem for finitely generated abelian groups is that any finitely generated abelian group is of the form $ H \times T $, where $ H \cong \ZZ^r $ for some $ r \ge 0 $, and $ T $ is finite. Both $ r $ and $ T $ are uniquely determined. Call $ r $ the \textbf{rank} of the group, and $ T $ the \textbf{torsion subgroup}, that is the subgroup of elements of finite order.
 
 \pagebreak
 
