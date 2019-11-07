@@ -702,7 +702,7 @@ $$ \d\br{y, \sigma\br{y}} = 2\d\br{y, x} + \abs{\sigma}, \qquad \sbr{y - \sigma\
 \item Let $ \abs{\sigma} = 0 $. Clearly, $ \mathring{\sigma} $ is a tree as for $ x $ and $ y $ fixed by $ \sigma $, clearly $ \sbr{x - y} $ has to be fixed by $ \sigma $, whence $ \sbr{x - y} \in \mathring{\sigma} $. Consider $ y \in X^0 $ arbitrary and $ x $ as described. We prove the statement by induction on $ \d\br{y, \mathring{\sigma}} $. Clearly, if $ \d\br{y, \mathring{\sigma}} = 0 $, then $ y \in \mathring{\sigma} $, and the statement holds, as all geodesics are the empty path. Now $ \d\br{y, \mathring{\sigma}} = n + 1 $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{y - x} $. Then $ \d\br{z, \mathring{\sigma}} = \d\br{z, x} = n $, whence $ \sbr{z - \sigma\br{z}} = \sbr{z - x} \cup \sbr{x - \sigma\br{z}} $. Now $ \sigma\br{z} $ is a neighbour of $ \sigma\br{y} $. Then either $ \sigma\br{y} \notin \sbr{x - \sigma\br{z}} $, then we are done, as $ \d\br{y, \sigma\br{y}} = \d\br{y, z} + \d\br{z, \sigma\br{z}} + \d\br{\sigma\br{z}, \sigma\br{y}} = 2\br{n + 1} = 2\d\br{y, x} $. Otherwise, $ \d\br{\sigma\br{y}, x} = n - 1 $. Clearly, $ \abs{\sigma^{-1}} = 0 $ and $ \mathring{\sigma^{-1}} = \mathring{\sigma} $. Then $ \d\br{\sigma\br{y}, x} = n - 1 < n + 1 = \d\br{x, y} = \d\br{\sigma^{-1}\br{\sigma\br{y}}, x} $. Hence $ \d\br{\sigma\br{y}, \sigma^{-1}\br{\sigma\br{y}}} = 2n > 2\d\br{\sigma\br{y}, x} $, a contradiction.
 \item Consider $ x \in \vec{\sigma} $. We want to show that $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Assume for a contradiction that the terminal edge of $ \sbr{x - \sigma\br{x}} $, call it $ e $, is the first edge inverse of $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{x - \sigma\br{x}} $. Then clearly, $ \sigma\br{z} $ is the terminal vertex of the first edge in $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. By assumption, this is the initial vertex of $ e $. But then $ \d\br{z, \sigma\br{z}} = \d\br{x, \sigma\br{x}} - 2 < \abs{\sigma} $, a contradiction. Note that if $ \d\br{x, \sigma\br{x}} = 1 $, then $ \sigma $ would invert the edge $ e $, a contradiction. Hence $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Inductively, this produces a tree
 $$ T = \dots - \sigma^{-1}\br{x} - x - \sigma\br{x} - \dots \subseteq \vec{\sigma}, $$
-and $ \sigma $ acts on $ T $ by translation with length $ \abs{\sigma} $. Now consider $ y \in X^0 \setminus T $. Note that $ \sigma \in \Aut T $. Thus $ \sbr{\sigma\br{x} - \sigma\br{y}} $ intersects $ T $ trivially. Hence, $ \d\br{y, \sigma\br{y}} = \d\br{y, x} + \d\br{x, \sigma\br{x}} + \d\br{\sigma\br{x}, \sigma\br{y}} = \d\br{y, x} + \abs{\sigma} + \d\br{x, y} = 2\d\br{x, y} + \abs{\sigma} > \abs{\sigma} $, for all $ y \notin T $. Hence $ T = \vec{\sigma} \cong \CCC_\infty $.
+and $ \sigma $ acts on $ T $ by translation with length $ \abs{\sigma} $. Now consider $ y \in X^0 \setminus T^0 $. Note that $ \sigma \in \Aut T $. Thus $ \sbr{\sigma\br{x} - \sigma\br{y}} $ intersects $ T $ trivially. Hence, $ \d\br{y, \sigma\br{y}} = \d\br{y, x} + \d\br{x, \sigma\br{x}} + \d\br{\sigma\br{x}, \sigma\br{y}} = \d\br{y, x} + \abs{\sigma} + \d\br{x, y} = 2\d\br{x, y} + \abs{\sigma} > \abs{\sigma} $, for all $ y \notin T $. Hence $ T = \vec{\sigma} \cong \CCC_\infty $.
 \end{enumerate}
 \end{proof}
 
@@ -853,26 +853,9 @@ If $ T' $ is a tree in $ G \backslash X $, then there is some tree $ T \subseteq
 First note that for any $ f \in \br{G \backslash X}^1 $ and $ x \in \OOO\br{\alpha\br{f}} $, then there is some $ e \in X^1 $ such that $ \p\br{e} = f $ and $ \alpha\br{e} = x $. Denote by $ \TTT $ the set of all subtrees of $ X $ which project injectively into $ T' $. Note that for $ T' \ne \emptyset $ the set $ \TTT \ne \emptyset $ as any lift of any vertex in $ T' $ is in $ \TTT $. We can partially order $ \TTT $ by inclusion. Then every chain in $ \TTT $ has a maximal element, being the union. So, by Zorn's lemma, we obtain a maximal element $ T $. We claim that $ T \cong T' $. Otherwise, there was some $ f \in T' $ such that $ \alpha\br{f} \in \p\br{T} $ and $ \omega\br{f} \notin \p\br{T} $. Now let $ x = \p^{-1}\br{\alpha\br{f}} $. By the above, there exists $ e \in X^1 $ such that $ \alpha\br{e} = x $ and $ \p\br{e} = f $. But then $ T \cup \cbr{e, \omega\br{e}} $ is still a tree mapped injectively to $ T' $, a contradiction.
 \end{proof}
 
-\begin{example*}
-Let $ X = \CCC_\infty $ and $ 3\ZZ \curvearrowright X $ via $ i \mapsto i + 3 $. Then
-$$
-\begin{tikzpicture}
-\draw (-0.5, 0.5) node[left]{$ 3\ZZ \backslash X \cong $};
-\fill (0, 0) circle (0.1) node[left]{$ \sbr{0} $};
-\fill (1, 0) circle (0.1) node[right]{$ \sbr{1} $};
-\fill (0.5, 1) circle (0.1) node[above]{$ \sbr{2} $};
-\draw (0, 0) to (1, 0);
-\draw (1, 0) to (0.5, 1);
-\draw (0.5, 1) to (0, 0);
-\end{tikzpicture}.
-$$
-\end{example*}
-
-\pagebreak
-
 \begin{theorem}[Free group VI]
 \label{thm:1.6.19}
-A group $ G $ is free if and only if it acts freely on a tree.
+A group $ G $ is free if and only if it acts freely and without inversion of edges on a tree.
 \end{theorem}
 
 \begin{theorem}[Nielson-Schreier theorem]
@@ -882,6 +865,8 @@ A subgroup of a free group is free.
 \begin{proof}
 Let $ G $ be free on $ S $ and $ H \le G $. Then $ \Gamma\br{G, S} $ is a tree and $ G  $ acts on it freely without inversion of edges. Now clearly restricting the action to $ H $ yields that $ H $ acts freely on some tree. Hence $ H $ is free.
 \end{proof}
+
+\pagebreak
 
 \begin{exercise}
 Assume $ G $ acts freely on a tree $ X $, without inversion of edges. Set $ Y = G \backslash X $. If $ Y $ is finite, then
@@ -931,13 +916,13 @@ The following is the plan.
 \item Deduce that $ H $ is free.
 \end{itemize}
 
-\pagebreak
-
 Let $ X $ be a connected graph and $ x \in X^0 $. Let us denote the set of closed paths starting at $ x $ by $ \PPP\br{X, x} $. We say that $ p, q \in \PPP\br{X, x} $ are \textbf{homotopic}, if there exists $ p = p_0, \dots, p_n = q $ such that $ p_{i + 1} $ arises from $ p_i $ by deleting or inserting subpaths of the form $ e\overline{e} $, for $ e \in X^1 $. This is an equivalence relation and every class has exactly one reduced representative. Denote the homotopy class of $ p $ by $ \sbr{p} $.
 
 \begin{exercise}
 Define a multiplication $ \sbr{p}\sbr{q} = \sbr{pq} $. Show that this is well-defined and yields a group structure.
 \end{exercise}
+
+\pagebreak
 
 \begin{definition}
 We denote the group of homotopy classes of $ \PPP\br{X, x} $ by $ \pi_1\br{X, x} $ and call it the \textbf{fundamental group} of $ X $ with respect to $ x $.
@@ -946,5 +931,71 @@ We denote the group of homotopy classes of $ \PPP\br{X, x} $ by $ \pi_1\br{X, x}
 \begin{exercise}
 Let $ X $ be connected and $ x, y \in X^0 $. Then $ \pi_1\br{X, x} \cong \pi_1\br{X, y} $.
 \end{exercise}
+
+\lecture{16}{Thursday}{07/11/19}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item If $ X $ is a tree, then $ \pi_1\br{X, x} = \cbr{e} $.
+\item If $ X \cong \CCC_n $ for $ 1 < n < \infty $, then $ \pi_1\br{X, x} = \br{\ZZ, +} $.
+\end{itemize}
+\end{example}
+
+\begin{definition}
+Let $ X $ be a connected graph and $ T \subseteq X $ a spanning tree of $ X $. Then for every $ y \in X^0 $, and $ x \in X^0 $ fixed, there is a unique reduced path in $ T $ from $ x $ to $ y $. Denote that path by $ p_y $. Now, if $ e \in X^1 $ we denote by $ p_e = p_{\alpha\br{e}}ep_{\omega\br{e}}^{-1} \in \PPP\br{X, x} $.
+\end{definition}
+
+\begin{note*}
+$ \sbr{p_{\overline{e}}} = \sbr{p_e}^{-1} $, and if $ e \in T^1 $, then $ \sbr{p_e} = 1 $.
+\end{note*}
+
+\begin{theorem}
+Let $ X $ be connected and $ T \subseteq X $ a spanning tree. Then $ \pi_1\br{X, x} $ is free on
+$$ S = \cbr{\sbr{p_e} \st e \in X_+^1 \setminus T^1}. $$
+\end{theorem}
+
+\begin{proof}
+First, if $ p \in \PPP\br{X, y} $ and $ p = e_1 \dots e_n $, then $ \sbr{p} = \sbr{p_{e_1}} \dots \sbr{p_{e_n}} $. As $ \sbr{p_e} = 1 $ for all $ e \in T $ we know that $ S $ generates $ \pi_1\br{X, x} $. Now let
+$$ w = \sbr{p_{e_1}} \dots \sbr{p_{e_n}} = \sbr{p_{e_1} \dots p_{e_n}}, \qquad e_i \notin T, \qquad e_{i + 1} = \overline{e_i} $$
+be a reduced word on $ S $. Then $ w = u_1e_1v_1 \dots u_ne_nv_n $, where $ v_iu_{i + 1} \in T $ and $ e_i \notin T $. Hence the reduced presentation of $ w $ is some $ t_1e_1 \dots t_ne_nt_{n + 1} $, where $ t_i $ might be empty. This is the empty word, if and only if $ n = 0 $ and $ t_n = \epsilon $, whence $ w = \epsilon $.
+\end{proof}
+
+\begin{example}
+The fundamental group of the rose with $ n $-many petals is the free group of rank $ n $.
+\end{example}
+
+\begin{remark}[Free group VII]
+A group is free if and only if it is the fundamental group of a graph.
+\end{remark}
+
+Let $ G $ be free on $ S $ and $ H \le G $, then $ H \curvearrowright \Gamma\br{G, S} $. Set $ Y = H \backslash \Gamma\br{G, S} $.
+
+\begin{lemma}
+\label{lem:1.7.9}
+The group $ H $ consists of all labels of paths in $ Y $ which start and end in $ H $.
+\end{lemma}
+
+Recall that
+\begin{itemize}
+\item $ Y^0 = \cbr{Hg \st g \in G} $ and $ Y^1 = \cbr{\br{Hg, s} \st s \in S} $, and
+\item $ \l\br{\br{g, s}} = s $, and if $ p = e_1 \dots e_n $, then $ \l\br{p} \underset{G}{=} \l\br{e_1} \dots \l\br{e_n} $.
+\end{itemize}
+
+\begin{proof}
+First, let $ p $ be a path in $ Y $ with $ \alpha\br{p} = \omega\br{p} = H $. Let $ p = e_1 \dots e_n $. Note $ \omega\br{e_{i + 1}} = \alpha\br{e_i}\l\br{e_i} $. Hence,
+$$ H = \alpha\br{e_1} = \omega\br{e_n} = \alpha\br{e_n}\l\br{e_n} = \omega\br{e_{n - 1}}\l\br{e_n} = \dots = \alpha\br{e_1}\l\br{e_1} \dots \l\br{e_n}. $$
+Conversely, if $ h \in H $, then note that every vertex in the factor has exactly one outgoing and one incoming edge of label $ s $. Hence $ h = s_1 \dots s_n $ for $ s_i \in S^\pm $ gives rise to a unique reduced path $ p $ in $ Y $ such that $ \alpha\br{p} = H $ and $ \omega\br{p} = \alpha\br{p}\l\br{s_1} \dots \l\br{s_n} = H \cdot h = H $.
+\end{proof}
+
+\begin{theorem}
+Let $ G $ be free and $ H \le G $ and $ Y = H \backslash \Gamma\br{G, S} $. If $ T $ is a spanning tree of $ Y $, then $ H \cong \pi_1\br{Y, H} $ and free on $ S = \cbr{\l\br{p_e} \st e \in Y_+^1 \setminus T^1} $.
+\end{theorem}
+
+\begin{proof}
+We claim that
+$$ \function[\phi]{\pi_1\br{Y, H}}{G}{\sbr{p}}{\l\br{p}} $$
+is injective. Clearly $ \phi $ is well-defined as homotopic paths have the same label, it is a homomorphism of groups, and by \ref{lem:1.7.9} its image is exactly $ H $. Note that every homotopy class has a unique reduced representative, $ \sbr{p} = \sbr{e_1} \dots \sbr{e_n} $ for $ e_i \in Y_+^1 \setminus T^1 $. This is mapped to the reduced word $ \l\br{e_1} \dots \l\br{e_n} = s_1 \dots s_n $. Hence $ \phi\br{\sbr{p}} = e_G $ if and only if $ \sbr{p} = 1 $.
+\end{proof}
 
 \end{document}
