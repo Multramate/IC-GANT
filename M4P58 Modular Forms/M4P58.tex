@@ -1041,7 +1041,7 @@ $$ \LLL = \cbr{\text{lattices in} \ \CC}. $$
 \begin{example*}
 The following are correspondences in $ \LLL $.
 \begin{itemize}
-\item For $ \lambda \in \CC^* $, have
+\item For $ \lambda \in \CC^\times $, have
 $$ \function[\R_\lambda]{\ZZ\LLL}{\ZZ\LLL}{L}{\lambda L}. $$
 \item For $ n \in \ZZ_{> 0} $, have
 $$ \function[\T_n]{\ZZ\LLL}{\ZZ\LLL}{L}{\sum_{L' \subseteq_n L} L'}. $$
@@ -1057,7 +1057,7 @@ $$ \correspondence{\text{subgroups of} \ L / \R_nL \ \text{of order} \ n}{\text{
 \item $ \R_\lambda\R_\mu = \R_{\lambda\mu} $.
 \item $ \R_\lambda\T_n = \T_n\R_\lambda $.
 \item $ \T_n\T_m = \T_{nm} $ if $ \br{m, n} = 1 $.
-\item $ \T_p\T_{p^n} = \T_{p^{n + 1}} + p\T_{p^{n + 1}}\R_p $ for $ p $ prime.
+\item $ \T_p\T_{p^n} = \T_{p^{n + 1}} + p\T_{p^{n + 1}}\R_p $.
 \end{enumerate}
 \end{proposition}
 
@@ -1109,8 +1109,8 @@ The $ p^2 - 1 $ elements of $ \br{\ZZ / p\ZZ}^2 \setminus \cbr{0} $ each spans a
 The latter case occurs if and only if $ L / L'' $ maps surjectively to $ \br{\ZZ / p\ZZ}^2 \cong L / \R_pL $, if and only if $ \R_pL \supseteq L'' $. Thus
 \begin{align*}
 \T_p\T_{p^r}L
-& = \sum_{L'' \subseteq_{p^{r + 1}} L} c_{p, p^r}\br{L'', L}
-= \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{cyclic}} L'' + \br{p + 1}\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L'' \\
+& = \sum_{L'' \subseteq_{p^{r + 1}} L} c_{p, p^r}\br{L'', L}L''
+= \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{cyclic}} L'' + \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} \br{p + 1}L'' \\
 & = \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L''
 = \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r - 1}} \R_pL} L''
 = \T_{p^{r + 1}}L + p\T_{p^{r - 1}}\R_pL.
@@ -1209,5 +1209,86 @@ An observation is that the dimensions of $ \M_4, \M_6, \M_8, \M_{10}, \S_{12} $ 
 \begin{definition}
 A function $ f \in \M_k $ is an \textbf{eigenform} if there exists $ \lambda_n \in \CC^\times $ such that $ \T_nf = \lambda_nf $ for all $ n \in \ZZ_{> 0} $.
 \end{definition}
+
+\lecture{17}{Friday}{08/11/19}
+
+\begin{proposition}
+\label{prop:eigenform}
+Let $ f \in \M_k $ be an eigenform, with $ k > 0 $, so $ \T_nf = \lambda_nf $ for all $ n $. Then if $ f = \sum_m c_mq^m $, we have $ c_1 \ne 0 $ and $ \lambda_nc_1 = c_n $ for all $ n \ge 1 $. In particular, if $ c_1 = 1 $, then $ c_n = \lambda_n $ for all $ n $.
+\end{proposition}
+
+\begin{proof}
+$$ \sum_{m = 0}^\infty \lambda_nc_mq^m = \lambda_nf = \T_nf = \sum_{m = 0}^\infty \gamma\br{m}q^m, \qquad \gamma\br{1} = \sum_{a \mid \br{1, n}} a^{k - 1}c\br{n} = c\br{n}, $$
+so $ \lambda_nc_1 = c_n $. Suppose $ c_1 = 0 $. Then $ c_n = 0 $ for all $ n \ge 1 $, so $ f $ is constant. Since $ k \ne 0 $, this does not happen.
+\end{proof}
+
+\begin{corollary}
+Recall $ \Delta\br{z} = \sum_n \tau\br{n}q^n $. Then
+\begin{itemize}
+\item $ \tau\br{mn} = \tau\br{n}\tau\br{m} $ if $ \br{m, n} = 1 $, and
+\item $ \tau\br{p^{r + 1}} = \tau\br{p}\tau\br{p^r} - p^{11}\tau\br{p^{r - 1}} $.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+$ \Delta \in \S_{12} $ is one-dimensional, so there exists $ \lambda_n $ such that $ \T_n\Delta = \lambda_n\Delta $. Proposition \ref{prop:eigenform} implies that $ \lambda_n = \tau\br{n} $ for all $ n $. Thus
+\begin{itemize}
+\item $ \tau\br{mn}\Delta = \lambda_{mn}\Delta = \T_{mn}\Delta = \T_m\T_n\Delta = \lambda_m\lambda_n\Delta = \tau\br{m}\tau\br{n}\Delta $, and
+\item $ \tau\br{p^{r + 1}}\Delta = \T_{p^{r + 1}}\Delta = \T_p\T_{p^r}\Delta - p^{11}\T_{p^{r - 1}}\Delta = \br{\tau\br{p}\tau\br{p^r} - p^{11}\tau\br{p^{r - 1}}}\Delta $.
+\end{itemize}
+\end{proof}
+
+In fact, the same argument shows if $ f \in \M_k $ for $ k > 0 $ is an eigenform, with $ q $-coefficient one, a \textbf{normalised eigenform}, and $ f = \sum_{n = 0}^\infty c_nq^n $, then
+\begin{itemize}
+\item $ c_{nm} = c_nc_m $ if $ \br{n, m} = 1 $, and
+\item $ c_{p^{r + 1}} = c_pc_{p^r} - p^{k - 1}c_{p^{r - 1}} $.
+\end{itemize}
+
+\begin{proposition}
+$ \E_k $ is an eigenform for all $ k $.
+\end{proposition}
+
+\begin{proof}
+It suffices to show $ \T_p\E_k = \lambda_p\E_k $ for all primes $ p $. Recall $ \E_k $ is a constant multiple of $ \G_k $, where $ \G_k\br{L} = \sum_{w \in L, \ w \ne 0} 1 / w^k $. Now
+$$ \br{\T_pf}\br{L} = \sum_{L' \subseteq_p L} \sum_{w \in L', \ w \ne 0} \dfrac{1}{w^k} = \sum_{w \in L, \ w \ne 0} c_w\dfrac{1}{w_k}, \qquad c_w = \#\cbr{L' \subseteq_p L \st w \in L'}. $$
+Note that $ pL \subseteq L' \subseteq L $. If $ w \in pL $, then $ w \in L' $ for all $ L' \subseteq_p L $, and there are $ p + 1 $ of these. If $ w \notin pL $, then $ pL \subseteq_{p^2} L $ and $ pL \subsetneq pL + \ZZ w \subsetneq L $, so $ pL \subsetneq_p pL + \ZZ w $ and $ pL + \ZZ w \subsetneq_p L $. In this case there exists a unique lattice of index $ p $ containing $ w $. Thus
+\begin{align*}
+\T_p\G_k\br{L}
+& = \sum_{w \in L \setminus pL} \dfrac{1}{w^k} + \sum_{w \in pL, \ w \ne 0} \br{p + 1}\dfrac{1}{w^k}
+= \sum_{w \in L, \ w \ne 0} \dfrac{1}{w^k} + p\sum_{w \in pL, \ w \ne 0} \dfrac{1}{w^k} \\
+& = \G_k\br{L} + p\sum_{w \in L, \ w \ne 0} \dfrac{1}{\br{pw}^k}
+= \G_k\br{L} + p^{1 - k}\sum_{w \in L} \dfrac{1}{w^k}
+= \br{1 + p^{1 - k}}\G_k\br{L},
+\end{align*}
+so $ \T_p\E_k = \br{1 + p^{k - 1}}\E_k $.
+\end{proof}
+
+A question is does $ \M_k $ have a basis of eigenforms for all $ k $? By linear algebra, there exist nice classes of operators that are guaranteed to admit bases of eigenvectors, such as self-adjoint, or more generally, normal operators.
+
+\pagebreak
+
+\subsubsection{Hermitian pairings}
+
+Let $ V $ be a $ \CC $-vector space and $ \abr{-, -} : V \times V \to \CC $ a \textbf{Hermitian pairing}. That is,
+\begin{itemize}
+\item $ \abr{\lambda v + w, x} = \lambda\abr{v, x} + \abr{w, x} $,
+\item $ \abr{x, y} = \overline{\abr{y, x}} $, and
+\item $ \abr{x, x} > 0 $ for all $ x $.
+\end{itemize}
+
+\begin{example*}
+The standard pairing
+$$ \function{\CC^n \times \CC^n}{\CC}{\abr{z, w}}{\sum_{i = 1}^n z_i\overline{w_i}}. $$
+\end{example*}
+
+\begin{definition}
+Let $ A : V \to V $ be $ \CC $-linear, and $ \abr{-, -} : V \times V \to \CC $ Hermitian. Then the \textbf{adjoint} $ A^* : V \to V $ is the unique linear map $ V \to V $ such that $ \abr{Av, w} = \abr{v, A^*w} $. We say $ A $ is \textbf{self-adjoint} if $ A^* = A $, and \textbf{normal} if $ A^* $ commutes with $ A $.
+\end{definition}
+
+\begin{theorem}
+If $ A $ is normal, then $ A $ has a basis of eigenvectors.
+\end{theorem}
+
+The idea is to show that there exists a pairing $ \abr{-, -}_k : \S_k \times \S_k \to \CC $ such that $ \abr{\T_nf, g} = \abr{f, \T_ng} $ for all $ n $, so $ \T_n $ are self-adjoint, hence diagonalisable.
 
 \end{document}
