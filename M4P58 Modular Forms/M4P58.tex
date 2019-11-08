@@ -57,7 +57,7 @@ Why are these interesting to number theorists? Power series expansions often inv
 
 \section{Modular forms of level one}
 
-\subsection{Modular functions and forms}
+\subsection{Modular forms}
 
 \subsubsection{Modular actions}
 
@@ -156,7 +156,7 @@ exists. Then $ f $ is meromorphic on $ U $, and $ \ord_p f \ge -n $.
 
 \pagebreak
 
-\subsubsection{Modular functions}
+\subsubsection{Modular forms}
 
 \begin{definition}
 $ f : \HH \to \CC $ is a \textbf{weakly modular function of weight $ k $} if
@@ -257,6 +257,8 @@ $$ f\br{\gamma z} = F\br{\L_{\gamma z, 1}} = F\br{\br{cz + d}^{-1}\L_{z, 1}} = \
 \pagebreak
 
 \subsection{Eisenstein series}
+
+\subsubsection{Eisenstein series}
 
 \lecture{4}{Friday}{11/10/19}
 
@@ -908,6 +910,8 @@ $$ \Theta_L\br{it} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{it} \
 so the result follows.
 \end{proof}
 
+\subsubsection{Asymptotic analysis}
+
 Let $ \Theta_L = \sum_{m = 1}^\infty a_mq^m $, where $ a_m $ is the number of ways $ \Q_L $ represents $ 2m $, so $ a_0 = 1 $. Then
 $$ \Theta_L = \E_{\tfrac{n}{2}} + g, \qquad \E_{\tfrac{n}{2}} \sim \sigma_{\tfrac{n}{2} - 1}\br{m} \sim m^{\tfrac{n}{2} - 1}, $$
 where $ g $ is a cusp form.
@@ -983,8 +987,6 @@ where the roots of $ P_i\br{t} $ have absolute value $ q^{i / 2} $.
 
 \subsection{Hecke operators}
 
-\subsubsection{Correspondences}
-
 \lecture{14}{Friday}{01/11/19}
 
 Let $ \Delta = \br{\E_4^3 - \E_6^2} / 1728 = \sum_{n = 1}^\infty \tau\br{n}q^n $. Then $ \tau\br{n} $ grows roughly like $ n^6 $ or $ n^{11 / 2 + \epsilon} $. Mordell proved
@@ -1011,6 +1013,8 @@ so
 $$ \sigma_{k - 1}\br{p^{n + 1}} = \sigma_{k - 1}\br{p}\sigma_{k - 1}\br{p^n} - p^{k - 1}\sigma_{k - 1}\br{p^{n - 1}}. $$
 \end{itemize}
 \end{note*}
+
+\subsubsection{Correspondences}
 
 \begin{definition}
 Let $ X $ be a set. The \textbf{free abelian group on $ X $}, denoted $ \ZZ X $, is the set of finite formal sums
@@ -1105,13 +1109,105 @@ The $ p^2 - 1 $ elements of $ \br{\ZZ / p\ZZ}^2 \setminus \cbr{0} $ each spans a
 The latter case occurs if and only if $ L / L'' $ maps surjectively to $ \br{\ZZ / p\ZZ}^2 \cong L / \R_pL $, if and only if $ \R_pL \supseteq L'' $. Thus
 \begin{align*}
 \T_p\T_{p^r}L
-& = \sum_{L'' \subseteq_{p^{r + 1}} L} c_{p, p^r}\br{L'', L} \\
-& = \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{cyclic}} L'' + \br{p + 1}\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L'' \\
-& = \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L'' \\
-& = \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r - 1}} \R_pL} L'' \\
-& = \T_{p^{r + 1}} + p\T_{p^{r - 1}}\R_pL.
+& = \sum_{L'' \subseteq_{p^{r + 1}} L} c_{p, p^r}\br{L'', L}
+= \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{cyclic}} L'' + \br{p + 1}\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L'' \\
+& = \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L''
+= \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r - 1}} \R_pL} L''
+= \T_{p^{r + 1}}L + p\T_{p^{r - 1}}\R_pL.
 \end{align*}
 \end{enumerate}
 \end{proof}
+
+\subsubsection{Hecke operators}
+
+\lecture{16}{Friday}{08/11/19}
+
+If $ F : \LLL \to \CC $, then
+$$ \T_nF\br{L} = \sum_{L' \subseteq_n L} F\br{L'}, \qquad \R_\lambda F\br{L} = F\br{\R_\lambda L}. $$
+Recall that $ F $ has weight $ k $ if $ F\br{\R_\lambda L} = \lambda^{-k}F\br{L} $ for all $ \lambda \in \CC^\times $, if and only if $ \R_\lambda F = \lambda^{-k}F $ for all $ \lambda \in \CC^\times $, so
+$$ \R_\lambda\T_nF = \T_n\R_\lambda F = \T_n\lambda^{-k}F = \lambda^{-k}\T_nF. $$
+So the $ \T_n $ and $ \R_\lambda $ preserve lattice functions of weight $ k $. Have a bijection
+$$ \function{\cbr{f : \HH \to \CC \st f\br{\gamma z} = \br{cz + d}^kf\br{z}}}{\cbr{\text{lattice functions} \ F \ \text{of weight} \ k}}{f\br{z}}{F\br{\L_{z, 1}}}. $$
+On lattice functions of weight $ k $, have
+$$ \T_p\T_{p^r} = \T_{p^{r + 1}} + p^{1 - k}\T_{p^{r - 1}}. $$
+
+\begin{definition}
+For $ f : \HH \to \CC $ corresponding to $ F : \LLL \to \CC $ of weight $ k $, define $ \T_nf $ by
+$$ \br{\T_nf}\br{z} = n^{k - 1}\br{\T_nF}\br{\L_{z, 1}} = n^{k - 1}\sum_{L' \subseteq_n \L_{z, 1}} F\br{L'}. $$
+\end{definition}
+
+On $ f : \HH \to \CC $, $ \T_n $ satisfy
+$$ \T_p\T_{p^r} = \T_{p^{r + 1}} + p^{k - 1}\T_{p^{r - 1}}. $$
+
+\pagebreak
+
+Need to rewrite $ \sum_{L' \subseteq_n \L_{z, 1}} F\br{L'} $ in terms of $ f $. Let
+$$ \S_n = \cbr{\twobytwo{a}{b}{0}{d} \in \Mat_{2 \times 2}\br{\ZZ} \st ad = n, \ a, d > 0, \ 0 \le b < d}, \qquad s_n = \twobytwo{a}{b}{0}{d} \in \S_n. $$
+
+\begin{lemma}
+The map
+$$ \function{\S_n}{\cbr{\text{sublattices of} \ \L_{z, 1} \ \text{of index} \ n}}{\twobytwo{a}{b}{0}{d}}{\L_{az + b, d}} $$
+is a bijection.
+\end{lemma}
+
+\begin{proof}
+For surjectivity, let $ L \subseteq_n \L_{z, 1} $. Then $ \L_{z, 1} / L $ is a group of order $ n $. Can consider $ 1 + L \in \L_{z, 1} / L $. Let $ d $ be the order of $ 1 + L $, that is $ d $ is the smallest positive integer such that $ d \in L $. Then $ d \mid n $, so set $ a = n / d $. Let $ L' = \ZZ + L $ be the lattice generated by $ 1 $ and $ L $. Then $ L \subseteq_d L' $ and $ L \subseteq_n \L_{z, 1} $, so $ L' \subseteq_a \L_{z, 1} $, so $ az \in L' $, so there exists $ b \in \ZZ $ such that $ az + b \in L $. Since $ d \in L $, without loss of generality can arrange $ 0 \le b < d $. Now $ d \in L $ and $ az + b \in L $, so $ L \subseteq_n \L_{z, 1} $ and $ \L_{az + b, d} \subseteq_n \L_{z, 1} $, so $ L = \L_{az + b, d} $. Thus surjective, and for injectivity, can recover $ a, b, d $ from $ \L_{az + b, d} \subseteq \L_{z, 1} $.
+\end{proof}
+
+Thus
+\begin{align*}
+\T_nf
+& = n^{k - 1}\sum_{L' \subseteq_n \L_{z, 1}} F\br{L'}
+= n^{k - 1}\sum_{s_n \in \S_n} F\br{\L_{az + b, d}} \\
+& = n^{k - 1}\sum_{s_n \in \S_n} d^{-k}F\br{\L_{\tfrac{az + b}{d}, 1}}
+= n^{k - 1}\sum_{s_n \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}.
+\end{align*}
+
+\begin{theorem}
+If $ f = \sum_{m = 0}^\infty c\br{m}q^m $ is modular of weight $ k $, then
+$$ \T_nf = \sum_{m = 0}^\infty \gamma\br{m}q^m, \qquad \gamma\br{m} = \sum_{a \mid \br{m, n}, \ a \ge 1} a^{k - 1}c\br{\dfrac{mn}{a^2}}. $$
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+\T_nf
+& = n^{k - 1}\sum_{s_n \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}
+= n^{k - 1}\sum_{s_n \in \S_n} \sum_{m = 0}^\infty d^{-k}c\br{m}e^{2\pi im\br{\tfrac{az + b}{d}}} \\
+& = n^{k - 1}\sum_{ad = n, \ a > 0} \sum_{b = 0}^{d - 1} \sum_{m = 0}^\infty d^{-k}c\br{m}q^{\tfrac{ma}{d}}e^{\tfrac{2\pi imb}{d}}
+= n^{k - 1}\sum_{m = 0}^\infty \sum_{ad = n, \ a > 0} d^{-k}c\br{m}q^{\tfrac{ma}{d}}\sum_{b = 0}^{d - 1} e^{\tfrac{2\pi imb}{d}}.
+\end{align*}
+Then
+$$ \sum_{b = 0}^{d - 1} e^{\tfrac{2\pi imb}{d}} =
+\begin{cases}
+d & d \mid m \\
+0 & d \nmid m
+\end{cases},
+$$
+so
+$$ \T_nf = n^{k - 1}\sum_{m = 0, \ d \mid m}^\infty \sum_{ad = n, \ a > 0} d^{1 - k}c\br{m}q^{\tfrac{ma}{d}} = \sum_{a \mid n, \ a > 0} \sum_{m' = 0}^\infty a^{k - 1}c\br{\dfrac{m'n}{a}}q^{m'a}. $$
+Which $ m' $ and $ a $ give $ q^m $? Need $ a \mid \br{m, n} $ for $ a > 0 $ and $ m'a = m $, so the coefficient is $ a^{k - 1}c\br{mn / a^2} $. The sum of these is $ \gamma\br{m} $.
+\end{proof}
+
+\begin{corollary}
+$ \T_n $ preserves $ \M_k $ and $ \S_k $.
+\end{corollary}
+
+In the case $ n = p $,
+$$ \T_pf = \sum_{m = 0}^\infty \gamma\br{m}q^m, \qquad \gamma\br{m} =
+\begin{cases}
+c\br{mp} + p^{k - 1}c\br{\dfrac{m}{p}} & p \mid m \\
+c\br{mp} & p \nmid m
+\end{cases}.
+$$
+
+\pagebreak
+
+\subsubsection{Eigenforms}
+
+An observation is that the dimensions of $ \M_4, \M_6, \M_8, \M_{10}, \S_{12} $ are one, so $ \E_4, \E_6, \E_8, \E_{10}, \Delta $ are eigenvectors for $ \T_n $ for all $ n $.
+
+\begin{definition}
+A function $ f \in \M_k $ is an \textbf{eigenform} if there exists $ \lambda_n \in \CC^\times $ such that $ \T_nf = \lambda_nf $ for all $ n \in \ZZ_{> 0} $.
+\end{definition}
 
 \end{document}
