@@ -1033,6 +1033,64 @@ The main goal of the course is to take an elliptic curve $ E $ over $ \QQ $, and
 
 \pagebreak
 
+\section{The torsion subgroup of \texorpdfstring{$ E\br{\QQ} $}{E(Q)}}
+
+\lecture{17}{Monday}{11/11/19}
+
+Let $ E $ be an elliptic curve over $ \QQ $. The torsion subgroup of $ E\br{\QQ} $ is $ \cbr{P \in E\br{\QQ} \st \exists n \ge 1, \ nP = \OOO} $. We will see that this is a finite abelian group, and we will see how to compute it. Write $ E $ as $ y^2 = x^3 + ax + b $ for $ a, b \in \QQ $. Making a change of variables $ \br{x, y} \mapsto \br{u^2x, u^3y} $ for some $ u \in \QQ^\times $, we can send $ \br{a, b} \mapsto \br{u^4a, u^6b} $, and we can assume $ a, b \in \ZZ $.
+
+\begin{theorem}[Lutz-Nagell]
+\label{thm:7.1}
+Let $ y^2 = x^3 + ax + b $ be an elliptic curve with $ a, b \in \ZZ $. Then the torsion subgroup of $ E\br{\QQ} $ is finite. If $ \br{x, y} $ is in this torsion subgroup, then $ x, y \in \ZZ $. Furthermore either $ y = 0 $ or $ y^2 \mid \br{4a^3 + 27b^2} $.
+\end{theorem}
+
+To do this we need a formula for $ x_d $ and $ y_d $ in terms of $ x $ and $ y $. Write $ P = \br{x_0, y_0} $ and $ 2P = \br{x_d, y_d} $. Then $ -2P = \br{x_d, -y_d} $ is the third point of intersection of the tangent line at $ P $. Let this tangent line be $ y = mx + c $. Differentiating $ y^2 = x^3 + ax + b $, $ m = \br{3x_0^2 + a} / 2y_0 $. We have to solve $ \br{mx + c}^2 = x^3 + ax + b $. This will have roots $ x_0, x_0, x_d $. The sum of the roots of this cubic is $ m^2 $. So
+$$ x_d = m^2 - 2x_0 = \dfrac{\br{3x_0 + a}^2 - 2x_0\br{2y_0}^2}{\br{2y_0}^2}. $$
+Then $ y_0^2 = x_0^3 + ax_0 + b $, so the \textbf{doubling formula} is as follows.
+
+\begin{algorithm}[Doubling formula]
+$$ x_d = \dfrac{x_0^4 - 2ax^2 - 8bx_0 + a^2}{4\br{x_0^3 + ax_0 + b}}, \qquad -y_d = mx_d + c. $$
+\end{algorithm}
+
+Similarly, if $ P = \br{x_1, y_1} $, $ Q = \br{x_2, y_2} $, and $ P + Q = \br{x_3, y_3} $, then the \textbf{addition formula} is as follows.
+
+\begin{algorithm}[Addition formula]
+$$ x_3 = \dfrac{-2y_1y_2 + \br{x_1 + x_2}\br{x_1x_2 + a} + 2b}{\br{x_1 - x_2}^2}, \qquad -y_3 = mx_3 + c. $$
+\end{algorithm}
+
+\begin{proof}[Proof of Theorem \ref{thm:7.1}]
+If $ \br{x, y} \in E\br{\QQ} $ is a torsion point, then by Corollary \ref{cor:8.12}, $ x, y \in \ZZ_p $ for all $ p $. So $ x, y \in \ZZ $. If $ \br{x, y} $ is a torsion point, then $ 2\br{x, y} $ is also a torsion point, since $ nP = \OOO $ implies that $ n\br{2P} = 2\br{nP} = 2\OOO = \OOO $. Then if $ 2\br{x, y} = \br{x_d, y_d} $, then $ x_d, y_d \in \ZZ $. We will show that this implies that $ y = 0 $ or $ y^2 \mid \br{4a^3 + 27b^2} $. Suppose that $ \br{x, y} $ is a torsion point and that $ y \ne 0 $. Then we have that $ y^2 \mid \br{3x^2 + a}^2 $ and $ y^2 = x^3 + ax + b $, and
+$$ \br{3x^2 + a}^2\br{3x^2 + 4a} - \br{x^3 + ax + b}\br{27x^3 + 27ax - 27b} = 4a^3 + 27b^2. $$
+So $ y^2 \mid \br{4a^3 + 27b^2} $, as required.
+\end{proof}
+
+\begin{example}
+If $ y^2 = x^3 + 1 $, then $ 4a^3 + 27b^2 = 27 $, so $ y = 0, \pm 1, \pm 3 $, so
+$$ T \subseteq \cbr{\br{-1, 0}, \br{0, \pm 1}, \br{2, \pm 3}, \OOO}. $$
+Then $ \br{0, 1} $ is a point of order three, by considering the line $ y = 1 $. That is, $ 2\br{0, 1} = \br{0, -1} = -\br{0, 1} $. Then we have a point of order three, and a point of order two, namely $ \br{-1, 0} $, so the group of torsion points has order at least six, so it is exactly of order six.
+\end{example}
+
+\begin{example}
+If $ y^2 = x^3 + 17 $, then $ 4a^3 + 27b^2 = 27\br{17}^2 $, so $ y = 0, \pm 1, \pm 3, \pm 17, \pm 51 $. If $ 17 \mid y $ then $ 17 \mid x^3 = y^2 - 17 $ then $ 17^2 \mid y^2 - x^3 = 17 $, a contradiction, etc. Then $ y = \pm 3 $, so $ x^3 = 9 - 17 = -8 $. So
+$$ T \subseteq \cbr{\br{-2, \pm 3}, \OOO}. $$
+Using the doubling formula for $ x_0 = -2 $, $ x_d = 8 $. We already saw that any torsion point has $ x = -2 $, so this cannot be a torsion point after all. So the torsion subgroup is just $ \cbr{\OOO} $.
+\end{example}
+
+\begin{remark*}
+This proves that there are infinitely many elements of $ E\br{\QQ} $, that is infinitely many $ x, y \in \QQ $ such that $ y^2 = x^3 + 17 $. Indeed the points $ n\br{-2, 3} $ are all distinct for $ n \in \ZZ $.
+\end{remark*}
+
+\pagebreak
+
+\section{\texorpdfstring{$ E\br{\QQ_p} $}{E(Qp)}}
+
+\begin{corollary}
+\label{cor:8.12}
+Any torsion point in $ E\br{\QQ_p} $ has $ x, y \in \ZZ_p $.
+\end{corollary}
+
+\pagebreak
+
 \appendix
 
 \section{Diagonalisation of quadratic forms}
