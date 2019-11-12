@@ -11,6 +11,8 @@
 
 \input{../style/main}
 
+\setcounter{section}{0}
+
 \section{Introduction}
 
 \lecture{1}{Thursday}{03/10/19}
@@ -997,5 +999,69 @@ We claim that
 $$ \function[\phi]{\pi_1\br{Y, H}}{G}{\sbr{p}}{\l\br{p}} $$
 is injective. Clearly $ \phi $ is well-defined as homotopic paths have the same label, it is a homomorphism of groups, and by \ref{lem:1.7.9} its image is exactly $ H $. Note that every homotopy class has a unique reduced representative, $ \sbr{p} = \sbr{e_1} \dots \sbr{e_n} $ for $ e_i \in Y_+^1 \setminus T^1 $. This is mapped to the reduced word $ \l\br{e_1} \dots \l\br{e_n} = s_1 \dots s_n $. Hence $ \phi\br{\sbr{p}} = e_G $ if and only if $ \sbr{p} = 1 $.
 \end{proof}
+
+\subsection{Outlook}
+
+\lecture{17}{Tuesday}{12/11/19}
+
+The goal is a rough version of the fundamental structure theorem. Assume $ G $ acts without inversion of edges on a tree $ X $. Then it is the fundamental group of some graph of groups $ \br{G, Y} $, such that $ Y = G \backslash X $.
+
+\pagebreak
+
+\section{Bass-Serre theory}
+
+Bass-Serre theory is a fancy name of groups acting on graphs. Until now, free actions. Now, drop the freedom and study the algebraic structures appearing, especially if factor graphs of $ G \circ G $ are simple. These structures correspond to freely amalgamated products and HNN extensions. We introduce them algebraically, and later view them as fundamental groups. Intuitively, graphs of groups are graphs for which each vertex and each edge is a group, and such that edge groups embed into vertex groups. From there we deduce the main theorem. Amalgamated products and HNN extensions are ways to build new groups out of two given ones. A pre-step will be free products.
+
+\subsection{Free products of groups}
+
+Given two groups $ G_1 $ and $ G_2 $, we already know one way of combining them, $ G_1 \times G_2 = \cbr{\br{g_1, g_2} \st g_i \in G_i} $.
+
+\begin{note*}
+$ G_i \hookrightarrow G_1 \times G_2 $ but there are non-trivial relations between $ G_1 $ and $ G_2 $, such as $ \sbr{g_1, g_2} = e_G $ for all $ g_i \in G_i $.
+\end{note*}
+
+\begin{definition}
+Let $ G $ be a group and $ A, B \le G $ subgroups of $ G $. Then we say that $ G $ is the \textbf{free product} of $ A $ and $ B $, writing $ G = A * B $, if and only if
+\begin{itemize}
+\item $ G = \abr{A, B} $, and
+\item Whenever $ g = g_0 \dots g_n $ such that $ n \in \NN $, and $ g_i \in A \cup B \setminus \cbr{e_G} $ and $ g_i \in A $ if and only if $ g_{i + 1} \in B $, then $ g \underset{G}{\ne} e_G $.
+\end{itemize}
+Such a presentation of $ g $ is called a \textbf{normal form} of length $ n + 1 $.
+\end{definition}
+
+\begin{remark}
+\hfill
+\begin{itemize}
+\item If $ A = \cbr{e_G} $, then $ G = A * B = B $. This is called a \textbf{trivial free product}. Everything else is called a \textbf{non-trivial free product}.
+\item $ \ZZ * \ZZ \cong G \cong \FF_2 $.
+\item $ \FF_{n + 1} \cong \FF_n * \ZZ $.
+\item $ A * B \cong G \cong B * A $.
+\end{itemize}
+\end{remark}
+
+\begin{lemma}
+Let $ A $ and $ B $ be groups. Then there is some $ G $, and $ i_A : A \hookrightarrow G $ and $ i_B : B \hookrightarrow G $ embeddings such that $ G = i_A\br{A} * i_B\br{B} $.
+\end{lemma}
+
+\begin{proof}
+By taking isomorphic copies if necessary, we may assume that $ A \cap B = \emptyset $. Define the set of elements of $ G $ as all words $ g = g_0 \dots g_n $ with $ g_i \in A \setminus \cbr{e_A} \cup B \setminus \cbr{e_B} $, and $ g_i \in A $ if and only if $ g_{i + 1} \in B $. For $ h = h_0 \dots h_m \in G $ we set inductively
+$$ g \cdot h =
+\begin{cases}
+g_0 \dots g_nh_0 \dots h_m & g_n \in A \iff h_0 \in B \\
+g_0 \dots g_{n - 1}xh_1 \dots h_m & g_n \in A \iff h_0 \in A, \ x = g_nh_0 \ne e_A \\
+g_0 \dots g_{n - 1}h_1 \dots h_m & g_n \in A \iff h_0 \in A, \ g_nh_0 = e_A
+\end{cases}.
+$$
+Identify the empty word with $ e_G $. Clearly, $ A $ and $ B $ inject into $ G $ as words with length one or zero, and $ G = A * B $.
+\end{proof}
+
+\begin{exercise}
+Show that $ \ZZ_2 * \ZZ_2 \cong \DDD_\infty $.
+\end{exercise}
+
+\begin{proposition}
+If $ A = \abr{S_A \st R_A} $ and $ B = \abr{S_B \st R_B} $, then if $ S_A \cap S_B = \emptyset $,
+$$ A * B = \abr{S_A \cup S_B \st R_A \cup R_B}. $$
+\end{proposition}
 
 \end{document}
