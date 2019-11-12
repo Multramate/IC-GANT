@@ -48,7 +48,7 @@ More than two variables, over $ \QQ $, is hopeless, so let $ x $ and $ y $ be tw
 A general equation in two variables of degree greater than four has only finitely many solutions over $ \QQ $.
 \end{theorem}
 
-General equations are nonsingular, so $ \br{x - y}\br{x^{100} + 10y + 1} = 0 $ and $ x^{73} - y^{109} = 0 $ are not general.
+General equations are non-singular, so $ \br{x - y}\br{x^{100} + 10y + 1} = 0 $ and $ x^{73} - y^{109} = 0 $ are not general.
 
 \begin{example}
 Let $ x^2 + y^2 = c $ for $ c \in \QQ $.
@@ -851,6 +851,7 @@ By B\'ezout, at most one singular point, and then use Galois theory.
 \end{proof}
 
 \begin{example}
+\label{eg:6.5}
 The \textbf{cusp} $ y^2 = x^3 $ is singular at $ \br{0, 0} $. Then $ y = tx $ gives $ x = t^2 $ and $ y = t^3 $.
 \end{example}
 
@@ -1026,7 +1027,7 @@ Write $ E $ for an elliptic curve, and $ E\br{k} $ for all its points over a fie
 \end{notation}
 
 \begin{example*}
-We just computed $ E\br{\FF_5} $ for $ E = \br{y = x^3 + 1} $.
+We just computed $ E\br{\FF_5} $ for $ E = \cbr{y = x^3 + 1} $.
 \end{example*}
 
 The main goal of the course is to take an elliptic curve $ E $ over $ \QQ $, and see what we can say about $ E\br{\QQ} $. The main theorem is the Mordell-Weil theorem, that $ E\br{\QQ} $ is a finitely generated abelian group. That is, there exists $ \ZZ^N \twoheadrightarrow E\br{\QQ} $, that is there exist $ g_1, \dots, g_N \in E\br{\QQ} $ such that every element is of the form $ \sum_{i = 1}^N a_ig_i $ for $ a_i \in \ZZ $. The group $ \br{\QQ, +} $ is not finitely generated. The structure theorem for finitely generated abelian groups is that any finitely generated abelian group is of the form $ H \times T $, where $ H \cong \ZZ^r $ for some $ r \ge 0 $, and $ T $ is finite. Both $ r $ and $ T $ are uniquely determined. Call $ r $ the \textbf{rank} of the group, and $ T $ the \textbf{torsion subgroup}, that is the subgroup of elements of finite order.
@@ -1037,7 +1038,9 @@ The main goal of the course is to take an elliptic curve $ E $ over $ \QQ $, and
 
 \lecture{17}{Monday}{11/11/19}
 
-Let $ E $ be an elliptic curve over $ \QQ $. The torsion subgroup of $ E\br{\QQ} $ is $ \cbr{P \in E\br{\QQ} \st \exists n \ge 1, \ nP = \OOO} $. We will see that this is a finite abelian group, and we will see how to compute it. Write $ E $ as $ y^2 = x^3 + ax + b $ for $ a, b \in \QQ $. Making a change of variables $ \br{x, y} \mapsto \br{u^2x, u^3y} $ for some $ u \in \QQ^\times $, we can send $ \br{a, b} \mapsto \br{u^4a, u^6b} $, and we can assume $ a, b \in \ZZ $.
+Let $ E $ be an elliptic curve over $ \QQ $. The torsion subgroup of $ E\br{\QQ} $ is
+$$ T = \cbr{P \in E\br{\QQ} \st \exists n \ge 1, \ nP = \OOO}. $$
+We will see that this is a finite abelian group, and we will see how to compute it. Write $ E $ as $ y^2 = x^3 + ax + b $ for $ a, b \in \QQ $. Making a change of variables $ \br{x, y} \mapsto \br{u^2x, u^3y} $ for some $ u \in \QQ^\times $, we can send $ \br{a, b} \mapsto \br{u^4a, u^6b} $, and we can assume $ a, b \in \ZZ $.
 
 \begin{theorem}[Lutz-Nagell]
 \label{thm:7.1}
@@ -1083,6 +1086,90 @@ This proves that there are infinitely many elements of $ E\br{\QQ} $, that is in
 \pagebreak
 
 \section{\texorpdfstring{$ E\br{\QQ_p} $}{E(Qp)}}
+
+\lecture{18}{Tuesday}{12/11/19}
+
+The next aim is to study elliptic curves over $ \QQ_p $ in order to show that torsion points have coordinates in $ \ZZ_p $.
+
+\begin{definition}
+Write $ \sbr{a_1 : \dots : a_{n + 1}} $ for some point, where all $ a_i \in \ZZ_p $, and at least one $ a_i \in \ZZ_p^\times $. There is a map
+$$ \function{\PP^n\br{\QQ_p}}{\PP^n\br{\FF_p}}{\sbr{a_1 : \dots : a_{n + 1}}}{\sbr{\overline{a_1} : \dots : \overline{a_{n + 1}}}}, \qquad \overline{a_i} = a_i \mod p, $$
+for all $ n $.
+\end{definition}
+
+Can also reduce lines in $ \PP^2\br{\QQ_p} $ modulo $ p $. Write any line as $ aX + bY + cZ = 0 $. Rescale so that $ a, b, c \in \ZZ_p $, and at least one is in $ \ZZ_p^\times $. Then $ \overline{a}X + \overline{b}Y + \overline{c}Z = 0 $ is a well-defined line in $ \PP^2\br{\FF_p} $. Let $ y^2 = g\br{x} $, where $ g $ is a monic cubic with distinct roots. Rescaling $ x $ and $ y $ if necessary, assume $ g\br{x} \in \ZZ_p\sbr{x} $. The \textbf{reduction} modulo $ p $ of the elliptic curve is then $ y^2 = \overline{g}\br{x} $, where $ \overline{g}\br{x} = g\br{x} \mod p $. This is an irreducible cubic, but it could be singular, if $ p = 2 $ or if $ p \mid \Delta $.
+
+\begin{example}
+Let $ p = 3 $ and $ E = \cbr{y^2 = x^3 - 18} $. This is $ y^2 = x^3 \mod 3 $, which has a singular point $ \br{0, 0} $. For example, $ \br{3, 3} \in E\br{\QQ_3} $ is $ \sbr{3 : 3 : 1} \mapsto \sbr{0 : 0 : 1} \mod 3 $, that is to the singular point. There is a point $ \br{x, y} $ on $ E\br{\QQ_3} $ with $ x = \tfrac{1}{9} $, since $ \br{\tfrac{1}{9}}^3 - 18 = \tfrac{1}{27^2}\br{1 - 18 \cdot 27^2} $ is a square, by Hensel's lemma for $ y^2 - \br{1 - 18 \cdot 27^2} $. Then $ y = \tfrac{1}{27}u $ for some $ u \in \ZZ_3^\times $. So $ \sbr{x : y : 1} = \sbr{27x : 27y : 27} = \sbr{3 : u : 27} \mapsto \sbr{0 : \overline{u} : 0} = \sbr{0 : 1 : 0} = \OOO \mod 3 $.
+\end{example}
+
+\begin{lemma}
+\hfill
+\begin{enumerate}
+\item If $ \br{x_0, y_0} \in E\br{\QQ_p} $ then either $ x_0, y_0 \in \ZZ_p $ or there exists $ n \ge 1 $ such that $ \abs{x_0}_p = p^{2n} $ and $ \abs{y_0}_p = p^{3n} $.
+\item If $ g\br{x} = x^3 \mod p $, and $ \br{x_0, y_0} \in E\br{\QQ_p} $ with $ \abs{x_0}_p, \abs{y_0}_p \le 1 $, then either $ \abs{x_0}_p = \abs{y_0}_p = 1 $ or $ \abs{x_0}_p, \abs{y_0}_p < 1 $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Write $ g\br{x} = x^3 + \alpha x^2 + \beta x + \gamma $ for $ \alpha, \beta, \gamma \in \ZZ_p $. If $ \abs{x_0}_p > 1 $, then $ \abs{x_0^3}_p > \abs{\alpha x_0^2}_p, \abs{\beta x_0}_p, \abs{\gamma}_p $. So $ \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p = \abs{x_0}_p^3 $. Then $ \abs{y_0}_p^2 = \abs{x_0}_p^3 $. If $ \abs{x_0}_p \le 1 $, then $ \abs{y_0}_p^2 = \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p \le 1 $.
+\item By assumption, $ p \mid \alpha, \beta, \gamma $. So
+$$ p \mid x_0 \qquad \iff \qquad p \mid \br{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma} \qquad \iff \qquad p \mid y_0^2 \qquad \iff \qquad p \mid y_0. $$
+That is, $ \abs{x_0}_p < 1 $ if and only if $ \abs{y_0}_p < 1 $.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+Write $ \overline{E} $ for the cubic $ y^2 = \overline{g}\br{x} $ in $ \PP^2\br{\FF_p} $. Let $ E\br{\QQ_p}^{\br{0}} $ be the points $ P $ whose image in $ \overline{E}\br{\FF_p} $ is non-singular. Let $ E\br{\QQ_p}^{\br{1}} $ be the points $ P $ whose image $ \overline{P} $ is $ \OOO \in \overline{E}\br{\FF_p} $. That is, $ E\br{\QQ_p}^{\br{1}} $ is the points $ \br{x, y} $ with $ \abs{x}_p, \abs{y}_p > 1 $.
+\end{definition}
+
+\begin{lemma}
+\label{lem:8.5}
+\hfill
+\begin{enumerate}
+\item $ E\br{\QQ_p}^{\br{0}} $ is a subgroup of $ E\br{\QQ_p} $.
+\item Reduction modulo $ p $ is a group homomorphism from $ E\br{\QQ_p}^{\br{0}} $ to the group of non-singular points $ \overline{E}\br{\FF_p} $. The kernel of this homomorphism is $ E\br{\QQ_p}^{\br{1}} $.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The group law is $ P + Q + R = \OOO $ if and only if $ P, Q, R $ are collinear.
+\begin{enumerate}
+\item Need to show that if $ P, Q, R $ are collinear, and $ P, Q \in E\br{\QQ_p}^{\br{0}} $, then $ R \in E\br{\QQ_p}^{\br{0}} $. That is, need that if $ \overline{P} $ and $ \overline{Q} $ are non-singular, then so is $ \overline{R} $. This follows from B\'ezout.
+\item The map is a group homomorphism because $ P + Q + R = \OOO $ implies that $ P, Q, R $ are collinear, so $ \overline{P}, \overline{Q}, \overline{R} $ are collinear, which implies that $ \overline{P} + \overline{Q} + \overline{R} = \OOO $. The kernel is $ E\br{\QQ_p}^{\br{1}} $ by definition.
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+The homomorphism $ E\br{\QQ_p}^{\br{0}} $ to the non-singular points in $ \overline{E}\br{\FF_p} $ is surjective.
+\end{remark}
+
+\pagebreak
+
+Let $ E\br{\QQ_p}^{\br{n}} $, for $ n \ge 1 $, be the $ \br{x, y} \in E\br{\QQ_p} $ with $ \abs{x_p} \ge p^{2n} $. Say $ \br{x, y} $ has \textbf{level} $ n $ if $ \abs{x}_p = p^{2n} $, so $ \abs{y}_p = p^{3n} $.
+
+\begin{corollary}
+$ E\br{\QQ_p}^{\br{n}} $ is a subgroup of $ E\br{\QQ_p} $ for all $ n $.
+\end{corollary}
+
+\begin{proof}
+Let $ E_n $ be the elliptic curve obtained by the change of variables $ \br{x, y} \mapsto \br{p^{2n}x, p^{3n}y} $. Then we have
+$$ E\br{\QQ_p}^{\br{n + 1}} \xrightarrow{\sim} E_n\br{\QQ_p}^{\br{1}}, $$
+which is a group by Lemma \ref{lem:8.5}.
+\end{proof}
+
+\begin{corollary}
+For each $ n \ge 1 $ there is a natural injection
+$$ E\br{\QQ_p}^{\br{n}} / E\br{\QQ_p}^{\br{n + 1}} \hookrightarrow \ZZ / p\ZZ. $$
+\end{corollary}
+
+\begin{proof}
+The map $ E \to E_n $ takes $ E\br{\QQ_p}^{\br{n}} $ to a subgroup of $ E_n\br{\QQ_p}^{\br{0}} $, and $ E\br{\QQ_p}^{\br{n + 1}} $ to $ E_n\br{\QQ_p}^{\br{1}} $. The curve $ E_n $ reduces to $ y^3 = x^3 $ modulo $ p $. So it suffices to show that if $ E' $ is an elliptic curve with reduction $ y^2 = x^3 $, then we have an injection
+$$ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} \hookrightarrow \ZZ / p\ZZ. $$
+But reduction modulo $ p $ is a homomorphism $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} $ to the non-singular points in $ y^2 = x^3 \mod p $. By Example \ref{eg:6.5}, the right hand side is isomorphic to $ \ZZ / p\ZZ $ via $ \br{x, y} \mapsto x / y $.
+\end{proof}
 
 \begin{corollary}
 \label{cor:8.12}
