@@ -995,11 +995,73 @@ By Lemma \ref{lem:11.1} it is enough to prove that any non-empty set of ideals o
 \section{Primary decomposition}
 
 \begin{definition}
-An ideal $ I \subsetneq R $ is called \textbf{primary} if for all $ x, y \in R $ such that $ xy \in I $ we have either $ x \in I $ or $ y^n \in I $ for some $ n \ge 1 $. Equivalently, every zero-divisor in $ R / I $ is nilpotent.
+An ideal $ I \subsetneq R $ is called \textbf{primary} if for all $ x, y \in R $ such that $ xy \in I $ we have either $ x \in I $ or $ y^n \in I $ for some $ n \ge 1 $. Equivalently, every zero-divisor in $ R / I $ is a nilpotent element of $ R / I $.
 \end{definition}
 
 \begin{example*}
 If $ R = \ZZ $ and $ p $ a prime number then $ \abr{p^n} $ is a primary ideal.
 \end{example*}
+
+\lecture{17}{Tuesday}{12/11/19}
+
+\begin{proposition}
+If $ \rad I $ is a maximal ideal, then $ I $ is primary. In particular, any power of a maximal ideal is primary.
+\end{proposition}
+
+\begin{proof}
+Recall $ \rad I $ is the intersection of all prime ideals containing $ I $. In particular, if $ \rad I $ is a maximal ideal, then it is a unique prime ideal containing $ I $. Then $ R / I $ has a unique prime ideal $ \rad I / I $, so $ R / I $ is a local ring. Hence $ \NNN\br{R / I} = \JJJ\br{R / I} = \rad I / I $. Clearly, $ \br{R / I} \setminus \br{\rad I / I} = \br{R / I}^* $. Thus any element of $ R / I $ is either a unit, or a nilpotent element. Hence $ I $ is primary. If $ M \subset R $ is a maximal ideal, then $ \rad M^n = M $.
+\end{proof}
+
+\begin{proposition}
+Let $ I \subset R $ be a primary ideal. Then $ \rad I $ is a prime ideal. This is the smallest prime ideal of $ R $ that contains $ I $.
+\end{proposition}
+
+\begin{remark*}
+$$ \cbr{\text{ideals} \ I \subset R \st \rad I \ \text{is a maximal ideal}} \subset \cbr{\text{primary ideals}} \subset \cbr{\text{ideals} \ I \subset R \st \rad I \ \text{is a prime ideal}}. $$
+\end{remark*}
+
+\begin{proof}
+Suppose $ xy \in \rad I $, so $ x^my^m = \br{xy}^m \in I $, but $ x \notin \rad I $, so $ x^m \notin I $. So in $ R / I $ we have $ x^my^m = 0 $ and $ x^m \ne 0 $. Since $ I $ is primary, every zero-divisor in $ R / I $ is nilpotent. Hence $ \br{y^m}^n = 0 $ for some $ n \ge 1 $. But then in $ R $ we have $ y^{mn} \in I $, so $ y \in \rad I $. This proves that $ \rad I $ is prime. Recall that $ \rad I $ is the intersection of all prime ideals containing $ I $. If $ \rad I $ is already a prime ideal, it is the smallest ideal containing $ I $.
+\end{proof}
+
+A \textbf{primary decomposition} of an ideal $ I \subset R $ is the representation
+$$ I = \bigcap_{m = 1} J_m, $$
+where $ J_1, \dots, J_m $ are primary ideals of $ R $. The aim is that any ideal in a Noetherian ring has a primary decomposition.
+
+\begin{example*}
+Let $ R = \ZZ $. Then $ n = \prod_{i = 1}^m p_i^{a_i} $, where $ p_i $'s are prime numbers, and $ a_i \ge 1 $, so
+$$ \abr{n} = \prod_{i = 1}^m \abr{p_i^{a_i}} = \bigcap_{i = 1}^m \abr{p_i^{a_i}}. $$
+Clearly, $ \abr{p_i} $ are maximal ideals of $ \ZZ $. So, $ \abr{p_i^{a_i}} $ are primary ideals of $ \ZZ $.
+\end{example*}
+
+\begin{definition}
+Let $ I \subsetneq R $ be an ideal. Then $ I $ is called \textbf{irreducible} if for any ideals $ J $ and $ K $ of $ R $ such that $ I = J \cap K $ we have $ I = J $ or $ I = K $. In other words, $ I $ is irreducible if $ I \ne J \cap K $, where $ I \subsetneq J $ and $ I \subsetneq K $.
+\end{definition}
+
+\begin{proposition}
+\hfill
+\begin{enumerate}
+\item Any prime ideal is irreducible.
+\item In a Noetherian ring, any irreducible ideal is primary.
+\end{enumerate}
+\end{proposition}
+
+\begin{exercise*}
+Show that
+$$ \cbr{\text{prime ideals}} \subset \cbr{\text{irreducible ideals}} \subset \cbr{\text{primary ideal}} $$
+is strict in general.
+\end{exercise*}
+
+\pagebreak
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Suppose $ \ppp \subset R $ is a prime ideal such that $ \ppp = J \cap K $, and $ \ppp \ne J $ and $ \ppp \ne K $. Let $ x \in J \setminus \ppp $ and $ y \in K \setminus \ppp $. Then $ xy \in JK \subset J \cap K = \ppp $. This is a contradiction, since $ \ppp $ is prime.
+\item Let $ I $ be an irreducible ideal of a Noetherian ring $ R $. Consider $ R / I $. Suppose $ x, y \in R / I $ such that $ xy = 0 $ and $ x \ne 0 $. The task is to show that $ y^n = 0 $ for some $ n \ge 1 $. Since $ R $ is Noetherian, $ R / I $ is Noetherian. Consider
+$$ \Ann y^m = \cbr{\alpha \in R / I \st \alpha y^m = 0}. $$
+Then $ \Ann y \subset \Ann y^2 \subset \dots \subset R / I $. There exists $ n \ge 1 $ such that $ \Ann y^n = \Ann y^{n + i} $, for all $ i \ge 0 $. Claim that $ \abr{x} \cap \abr{y^n} = \abr{0} $. Suppose $ 0 \ne a \in \abr{x} \cap \abr{y^n} $. Then $ ay = 0 $ and also $ a = by^n $ for some $ b \in R / I $. Then $ 0 = ay = by^{n + 1} $. This says that $ b \in \Ann y^{n + 1} = \Ann y^n $. Hence $ by^n = 0 $, so $ a = 0 $, a contradiction. But the ideal $ I \subset R $ is irreducible, hence the ideal $ \abr{0} \subset R / I $ is irreducible. We know that $ \abr{x} \ne 0 $. Thus $ \abr{y^n} = \abr{0} $, so $ y^n = 0 $. This finishes the proof.
+\end{enumerate}
+\end{proof}
 
 \end{document}
