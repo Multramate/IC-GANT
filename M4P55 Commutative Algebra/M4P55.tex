@@ -1047,9 +1047,8 @@ Let $ I \subsetneq R $ be an ideal. Then $ I $ is called \textbf{irreducible} if
 \end{proposition}
 
 \begin{exercise*}
-Show that
-$$ \cbr{\text{prime ideals}} \subset \cbr{\text{irreducible ideals}} \subset \cbr{\text{primary ideal}} $$
-is strict in general.
+$$ \cbr{\text{prime ideals}} \subset \cbr{\text{irreducible ideals}} \subset \cbr{\text{primary ideal}}. $$
+Show that these are strict in general.
 \end{exercise*}
 
 \pagebreak
@@ -1063,5 +1062,58 @@ $$ \Ann y^m = \cbr{\alpha \in R / I \st \alpha y^m = 0}. $$
 Then $ \Ann y \subset \Ann y^2 \subset \dots \subset R / I $. There exists $ n \ge 1 $ such that $ \Ann y^n = \Ann y^{n + i} $, for all $ i \ge 0 $. Claim that $ \abr{x} \cap \abr{y^n} = \abr{0} $. Suppose $ 0 \ne a \in \abr{x} \cap \abr{y^n} $. Then $ ay = 0 $ and also $ a = by^n $ for some $ b \in R / I $. Then $ 0 = ay = by^{n + 1} $. This says that $ b \in \Ann y^{n + 1} = \Ann y^n $. Hence $ by^n = 0 $, so $ a = 0 $, a contradiction. But the ideal $ I \subset R $ is irreducible, hence the ideal $ \abr{0} \subset R / I $ is irreducible. We know that $ \abr{x} \ne 0 $. Thus $ \abr{y^n} = \abr{0} $, so $ y^n = 0 $. This finishes the proof.
 \end{enumerate}
 \end{proof}
+
+\lecture{18}{Wednesday}{13/11/19}
+
+\begin{theorem}[Noether]
+Every ideal in a Noetherian ring has a primary decomposition.
+\end{theorem}
+
+\begin{proof}
+We shall in fact prove that every ideal is a finite intersection of irreducible ideals. Suppose this does not hold for a Noetherian ring $ R $. Let $ \Sigma $ be the set of proper ideals of $ R $ that are not finite intersections of irreducible ideals. Assume $ \Sigma \ne \emptyset $. In a Noetherian ring every non-empty set of ideals has a maximal element. Take a maximal element of $ \Sigma $. This is an ideal $ I \subsetneq R $. Then $ I $ is not a finite intersection of irreducible ideals, in particular $ I $ is not irreducible. Thus $ I = J \cap K $, where $ J $ and $ K $ are ideals of $ R $, and $ J \supsetneq I $ and $ K \supsetneq I $. Since $ I $ is a maximal element of $ \Sigma $, we can write $ J = \bigcap_{m = 1}^n J_m $ and $ K = \bigcap_{s = 1}^r K_s $, where each $ J_m $ and each $ K_s $ is irreducible. Hence
+$$ I = \br{\bigcap_{m = 1}^n J_m} \cap \br{\bigcap_{s = 1}^r K_s} $$
+is a finite intersection of irreducible ideals. This is a contradiction. This shows that $ \Sigma = \emptyset $.
+\end{proof}
+
+\begin{lemma}
+\label{lem:12.7}
+Let $ I_1, \dots, I_n $ be primary ideals in $ R $ such that $ \rad I_1 = \dots = \rad I_n $. Then $ \bigcap_{j = 1}^n I_j $ is also a primary ideal and
+$$ \rad \bigcap_{j = 1}^n I_j = \rad I_1 = \dots = \rad I_n. $$
+\end{lemma}
+
+\begin{proof}
+Let $ \ppp = \rad I_j $ for $ j = 1, \dots, n $, and let $ I = \bigcap_{j = 1}^n I_j $. Suppose $ x, y \in R $ such that $ xy \in I $, but $ x \notin I $. Hence $ x \notin I_j $ for some $ j $. We have $ xy \in I_j $ but $ x \notin I_j $ thus $ y \in \rad I_j $, since $ I_j $ is primary. So $ y \in \ppp $. Then
+$$ \rad I = \rad \bigcap_{j = 1}^n I_j = \bigcap_{j = 1}^n \rad I_j = \ppp. $$
+Hence $ y \in \rad I $. This shows that $ I $ is primary. Moreover, $ \rad I = \ppp $.
+\end{proof}
+
+\begin{lemma}
+Let $ I $ be a primary ideal of $ R $ such that $ \rad I $ is a prime ideal $ \ppp $. We say that $ I $ is a \textbf{$ \ppp $-primary ideal}. Then
+$$ \br{I : \abr{x}} =
+\begin{cases}
+R & x \in I \\
+\text{a $ \ppp $-primary ideal} & x \notin I
+\end{cases}.
+$$
+\end{lemma}
+
+\begin{proof}
+$ x \in I $ implies that $ 1 \in \br{I : \abr{x}} $. Hence $ \abr{I : \abr{x}} = R $. Now assume $ x \notin I $. Then
+$$ \br{I : \abr{x}} = \cbr{y \in R \st xy \in I}. $$
+Since $ I $ is primary, this implies $ y^n \in I $ and $ y \in \rad I = \ppp $. So $ I \subset \br{I : \abr{x}} \subset \ppp $, so $ \ppp = \rad I \subset \rad \br{I : \abr{x}} \subset \ppp $, so $ \rad \br{I : \abr{x}} = \ppp $. It remains to show that $ \br{I : \abr{x}} $ is primary. Assume $ yz \in \br{I : \abr{x}} $ whereas $ y \notin \rad \br{I : \abr{x}} = \ppp $. We must show that $ z \in \br{I : \abr{x}} $. Then $ yz \in \br{I : \abr{x}} $ implies that $ y\br{xz} = xyz \in I $. Since $ I $ is primary and $ y \notin \ppp = \rad I $, no power of $ y $ is contained in $ I $, therefore $ xz \in I $, so $ z \in \br{I : \abr{x}} $.
+\end{proof}
+
+\pagebreak
+
+Call a primary decomposition $ I = \bigcap_{j = 1}^k I_j $ \textbf{minimal} if
+\begin{itemize}
+\item $ \rad I_j \ne \rad I_k $ for $ j \ne k $, and
+\item for every $ j = 1, \dots, n $, $ \bigcap_{k = 1, \ k \ne j}^n I_k \subset I_j $.
+\end{itemize}
+Can achieve this by Lemma \ref{lem:12.7}.
+
+\begin{theorem}[First uniqueness theorem]
+Let $ I = \bigcap_{j = 1}^n I_j $ be a minimal primary decomposition. Write $ \ppp_j = \rad I_j $ for $ j = 1, \dots, n $. Then the ideals $ \ppp_1, \dots, \ppp_n $ are precisely the prime ideals of $ R $ of the form $ \rad \br{I : \abr{x}} $, where $ x \in R $. In particular, $ \ppp_1, \dots, \ppp_n $ do not depend on the primary decomposition chosen.
+\end{theorem}
 
 \end{document}
