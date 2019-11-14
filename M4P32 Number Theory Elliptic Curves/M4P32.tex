@@ -175,7 +175,7 @@ $ \br{x_n} $ converges implies that $ \br{x_n} $ is Cauchy, but in general $ \br
 \end{example*}
 
 \begin{example}
-Let $ p = 2 $. Then $ \br{x_n} = 3, 33, \dots $ is Cauchy with respect to $ \abs{\cdot}_2 $, and $ x_n = \tfrac{10^n - 1}{3} \to -\tfrac{1}{3} $ as $ n \to \infty $ because $ \abs{x_n + \tfrac{1}{3}}_2 = \abs{\tfrac{10^n}{3}}_2 = \abs{2^n\tfrac{5^n}{3}} = 2^{-n} \to 0 $.
+Let $ p = 2 $. Then $ \br{x_n} = 3, 33, \dots $ is Cauchy with respect to $ \abs{\cdot}_2 $, and $ x_n = \tfrac{10^n - 1}{3} \to -\tfrac{1}{3} $ as $ n \to \infty $ because $ \abs{x_n + \tfrac{1}{3}}_2 = \abs{\tfrac{10^n}{3}}_2 = \abs{2^n\tfrac{5^n}{3}}_2 = 2^{-n} \to 0 $.
 \end{example}
 
 \begin{example}
@@ -358,7 +358,7 @@ $ \ZZ $ is dense in $ \ZZ_p $.
 
 \begin{proof}
 If $ \alpha \in \ZZ_p $, write $ \alpha = \sum_n a_np^n $. Then
-$$ \abs{\alpha - \br{a_0 + \dots + a_mp^m}} \le p^{-\br{m + 1}}, $$
+$$ \abs{\alpha - \br{a_0 + \dots + a_mp^m}}_p \le p^{-\br{m + 1}}, $$
 and $ a_0 + \dots + a_mp^m \in \ZZ $.
 \end{proof}
 
@@ -1085,7 +1085,7 @@ This proves that there are infinitely many elements of $ E\br{\QQ} $, that is in
 
 \pagebreak
 
-\section{\texorpdfstring{$ E\br{\QQ_p} $}{E(Qp)}}
+\section{The torsion points in \texorpdfstring{$ E\br{\QQ_p} $}{E(Qp)}}
 
 \lecture{18}{Tuesday}{12/11/19}
 
@@ -1148,16 +1148,14 @@ The homomorphism $ E\br{\QQ_p}^{\br{0}} $ to the non-singular points in $ \overl
 
 \pagebreak
 
-Let $ E\br{\QQ_p}^{\br{n}} $, for $ n \ge 1 $, be the $ \br{x, y} \in E\br{\QQ_p} $ with $ \abs{x_p} \ge p^{2n} $. Say $ \br{x, y} $ has \textbf{level} $ n $ if $ \abs{x}_p = p^{2n} $, so $ \abs{y}_p = p^{3n} $.
+Let $ E\br{\QQ_p}^{\br{n}} $, for $ n \ge 1 $, be the $ \br{x, y} \in E\br{\QQ_p} $ with $ \abs{x}_p \ge p^{2n} $. Say $ \br{x, y} $ has \textbf{level} $ n $ if $ \abs{x}_p = p^{2n} $, so $ \abs{y}_p = p^{3n} $.
 
 \begin{corollary}
 $ E\br{\QQ_p}^{\br{n}} $ is a subgroup of $ E\br{\QQ_p} $ for all $ n $.
 \end{corollary}
 
 \begin{proof}
-Let $ E_n $ be the elliptic curve obtained by the change of variables $ \br{x, y} \mapsto \br{p^{2n}x, p^{3n}y} $. Then we have
-$$ E\br{\QQ_p}^{\br{n + 1}} \xrightarrow{\sim} E_n\br{\QQ_p}^{\br{1}}, $$
-which is a group by Lemma \ref{lem:8.5}.
+Let $ E_n $ be the elliptic curve obtained by the change of variables $ \br{x, y} \mapsto \br{p^{2n}x, p^{3n}y} $. Then we have $ E\br{\QQ_p}^{\br{n + 1}} \xrightarrow{\sim} E_n\br{\QQ_p}^{\br{1}} $, which is a group by Lemma \ref{lem:8.5}.
 \end{proof}
 
 \begin{corollary}
@@ -1166,15 +1164,91 @@ $$ E\br{\QQ_p}^{\br{n}} / E\br{\QQ_p}^{\br{n + 1}} \hookrightarrow \ZZ / p\ZZ. $
 \end{corollary}
 
 \begin{proof}
-The map $ E \to E_n $ takes $ E\br{\QQ_p}^{\br{n}} $ to a subgroup of $ E_n\br{\QQ_p}^{\br{0}} $, and $ E\br{\QQ_p}^{\br{n + 1}} $ to $ E_n\br{\QQ_p}^{\br{1}} $. The curve $ E_n $ reduces to $ y^3 = x^3 $ modulo $ p $. So it suffices to show that if $ E' $ is an elliptic curve with reduction $ y^2 = x^3 $, then we have an injection
-$$ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} \hookrightarrow \ZZ / p\ZZ. $$
-But reduction modulo $ p $ is a homomorphism $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} $ to the non-singular points in $ y^2 = x^3 \mod p $. By Example \ref{eg:6.5}, the right hand side is isomorphic to $ \ZZ / p\ZZ $ via $ \br{x, y} \mapsto x / y $.
+The map $ E \to E_n $ takes $ E\br{\QQ_p}^{\br{n}} $ to a subgroup of $ E_n\br{\QQ_p}^{\br{0}} $, and $ E\br{\QQ_p}^{\br{n + 1}} $ to $ E_n\br{\QQ_p}^{\br{1}} $. The curve $ E_n $ reduces to $ y^3 = x^3 $ modulo $ p $. So it suffices to show that if $ E' $ is an elliptic curve with reduction $ y^2 = x^3 $, then we have an injection $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} \hookrightarrow \ZZ / p\ZZ $. But reduction modulo $ p $ is a homomorphism $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} $ to the non-singular points in $ y^2 = x^3 \mod p $. By Example \ref{eg:6.5}, the right hand side is isomorphic to $ \ZZ / p\ZZ $ via $ \br{x, y} \mapsto x / y $.
 \end{proof}
+
+\lecture{19}{Thursday}{14/11/19}
+
+\begin{remark}
+The aim is that $ E\br{\QQ_p}^{\br{1}} $ has no non-trivial torsion points, that is if $ P \in E\br{\QQ_p}^{\br{1}} $ and $ mP = \OOO $ for $ m \ge 1 $, then $ P = \OOO $. The idea is if $ P $ has level $ n $, then $ P = \sbr{x : y : 1} = \sbr{p^{3n}x : p^{3n}y : p^{3n}} $ is close to $ \sbr{0 : 1 : 0} $. We are looking at points which are close to $ \OOO $, and the group law is simpler here. Near the identity in a Lie group, the group law becomes simpler. For example, in $ \GL_2\br{\CC} $,
+$$ \br{1 + \epsilon X}\br{1 + \epsilon Y} = 1 + \epsilon\br{X + Y} + \O\br{\epsilon^2}. $$
+\end{remark}
+
+Define
+$$
+\begin{array}{ccrcl}
+\u & : & E\br{\QQ_p}^{\br{1}} & \longrightarrow & p\ZZ_p \\
+& & \OOO & \longmapsto & 0 \\
+& & \br{x, y} & \longmapsto & \dfrac{x}{y}
+\end{array}.
+$$
+If $ \br{x, y} \in E\br{\QQ_p}^{\br{n}} $ then $ \abs{\u\br{x, y}}_p \le p^{-n} $, with equality if $ \br{x, y} $ has level $ n $. Also $ -\u\br{P} = \u\br{-P} $ because $ -\br{x, y} = \br{x, -y} $.
+
+\begin{lemma}
+\label{lem:8.10}
+If $ P, Q \in E\br{\QQ_p}^{\br{1}} $, then
+$$ \abs{\u\br{P + Q} - \u\br{P} - \u\br{Q}}_p \le \max\br{\abs{\u\br{P}}_p^5, \abs{\u\br{Q}}_p^5}. $$
+\end{lemma}
+
+\begin{proof}
+If $ P, Q, P + Q $ equal $ \OOO $, then the left hand side is equal to zero and we are done. So assume that none of them is equal to zero. Recall that we set $ E_n = \cbr{y^2 = x^3 + p^{4n}a + p^{6n}b} $. Without loss of generality assume that the level of $ Q $ is at least the level of $ P $, and take $ n $ as the level of $ P $. Then the right hand side is $ p^{-5n} $. Let $ R = -\br{P + Q} $, so $ P, Q, R $ are collinear, and let $ P_n, Q_n, R_n $ be the corresponding points on $ E_n $. Since $ P $ has level $ n $, $ P_n \in E_n\br{\QQ_p}^{\br{0}} $ but $ P_n \notin E_n\br{\QQ_p}^{\br{1}} $ and $ Q_n \in E_n\br{\QQ_p}^{\br{0}} $, so $ R_n \in E_n\br{\QQ_p}^{\br{0}} $. Let the line through $ P_n, Q_n, R_n $ be $ lx + my = 1 $. Since this line, when reduced modulo $ p $, does not pass through $ \br{0, 0} $, we have $ l, m \in \ZZ_p $. Then
+$$ y^2\br{lx + my} = x^3 + p^{4n}ax\br{lx + my}^2 + p^{6n}b\br{lx + my}^3. $$
+Write $ t = x / y $. So
+$$ lt + m = t^3 + p^{4n}at\br{lt + m}^2 + p^{6n}b\br{lt + m}^3. $$
+This equation is a cubic in $ t $, say $ c_0t^3 + c_1t^2 + c_2t + c_3 = 0 $. The sum of the roots of this cubic is $ -c_1 / c_0 $. So
+$$ c_0 = 1 + p^{4n}al^2 + p^{6n}bl^3 \in \ZZ_p^\times, \qquad c_1 = 2p^{4n}alm + 3p^{6n}bl^2m \in p^{4n}\ZZ_p^\times. $$
+So $ \abs{c_1 / c_0}_p \le p^{-4n} $. But
+$$ \abs{\u\br{P + Q} - \u\br{P} - \u\br{Q}}_p = \abs{\u\br{P} + \u\br{Q} + \u\br{R}}_p = p^{-n}\abs{\dfrac{c_1}{c_0}}_p \le p^{-5n} = \max\br{\abs{\u\br{P}}_p^5, \abs{\u\br{Q}}_p^5}. $$
+\end{proof}
+
+\pagebreak
+
+A reminder that if $ \abs{x}_p \ne \abs{y}_p $ then $ \abs{x + y}_p = \max\br{\abs{x}_p, \abs{y}_p} $. Writing $ x = \br{x + y} + \br{-y} $, deduce that if $ \abs{x + y}_p < \abs{x}_p $, then $ \abs{x}_p = \abs{y}_p $.
+
+\begin{corollary}
+\label{cor:8.11}
+\hfill
+\begin{enumerate}
+\item For all $ n \ge 1 $, $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 $ and $ \abs{\u\br{nP}}_p \le \abs{\u\br{P}}_p $.
+\item If $ p \nmid n $, then $ \abs{\u\br{nP}}_p = \abs{\u\br{P}}_p $.
+\item $ \abs{\u\br{pP}}_p = \abs{p}_p\abs{\u\br{P}}_p $.
+\item For all $ n \ge 1 $, $ \abs{\u\br{nP}}_p = \abs{n}_p\abs{\u\br{P}}_p $.
+\end{enumerate}
+\end{corollary}
 
 \begin{corollary}
 \label{cor:8.12}
-Any torsion point in $ E\br{\QQ_p} $ has $ x, y \in \ZZ_p $.
+If $ \br{x, y} \in E\br{\QQ_p} $ is a torsion point, then $ x, y \in \ZZ_p $.
 \end{corollary}
+
+\begin{proof}
+Assume $ nP = \OOO $ and $ P = \br{x, y} $ for $ n \ge 1 $. If $ P \in E\br{\QQ_p}^{\br{1}} $, then we have $ \abs{n}_p\abs{\u\br{P}}_p = \abs{\u\br{nP}}_p = \abs{\u\br{\OOO}}_p = 0 $. So $ \abs{\u\br{P}}_p = 0 $, so $ \u\br{P} = 0 $, so $ P = \OOO $. So $ P \notin E\br{\QQ_p}^{\br{1}} $, so $ x, y \in \ZZ_p $.
+\end{proof}
+
+\begin{corollary}
+If $ E\br{\QQ} $ is an elliptic curve of the form $ y^2 = x^3 + ax + b $ for $ a, b \in \ZZ $, and $ p \nmid 2\Delta $, then the subgroup of $ E\br{\QQ} $ of torsion points injects into $ \overline{E}\br{\FF_p} $.
+\end{corollary}
+
+\begin{proof}
+$ p \nmid 2\Delta $ implies that $ E\br{\QQ_p}^{\br{0}} = E\br{\QQ_p} $. By Corollary \ref{cor:8.12}, the torsion subgroup of $ E\br{\QQ} $ has trivial intersection with $ E\br{\QQ_p}^{\br{1}} = \Ker \br{E\br{\QQ_p} \to \overline{E}\br{\FF_p}} $.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:8.11}]
+\hfill
+\begin{enumerate}
+\item Induction on $ n $, where $ n = 1 $ is obvious. If the first statement $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 $ holds, then $ \abs{\u\br{nP}}_p \le \abs{\u\br{P}}_p $, otherwise $ \abs{\u\br{nP}}_p > \abs{\u\br{P}}_p $, and then $ \abs{\u\br{P}}_p^5 \ge \abs{\u\br{nP} - n\u\br{P}}_p = \abs{\u\br{nP}}_p > \abs{\u\br{P}}_p $ but $ \abs{\u\br{P}}_p \le 1 / p $, a contradiction. So we just need to assume both statements for $ n $, and deduce the first statement for $ n + 1 $.
+\begin{align*}
+\abs{\u\br{\br{n + 1}P} - \br{n + 1}\u\br{P}}_p
+& \le \max\br{\abs{\u\br{\br{n + 1}P} - \u\br{nP} - \u\br{P}}_p, \abs{\u\br{nP} - n\u\br{P}}_p} \\
+& \le \max\br{\abs{\u\br{nP}}_p^5, \abs{\u\br{P}}_p^5}
+= \abs{\u\br{P}}_p^5,
+\end{align*}
+by Lemma \ref{lem:8.10} and induction.
+\item We have $ \abs{n\u\br{P}}_p = \abs{\u\br{P}}_p $ and $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 < \abs{n\u\br{P}}_p $.
+\item Same as $ 2 $, because $ \abs{\u\br{P}}_p^5 < \abs{p}_p\abs{\u\br{P}}_p $.
+\item Induction on $ n $. If $ \br{n, p} = 1 $, then $ 2 $. Otherwise $ \abs{\u\br{nP}}_p = \abs{p}_p\abs{\u\br{\br{n / p}P}}_p $ by $ 3 $, and $ \abs{\u\br{\br{n / p}P}}_p = \abs{n / p}_p\abs{\u\br{P}}_p $ by induction.
+\end{enumerate}
+\end{proof}
 
 \pagebreak
 
