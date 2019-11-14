@@ -182,10 +182,6 @@ Let $ A $ be a non-zero ring. Then the following are equivalent.
 An ideal $ I \subset A $ is called \textbf{prime} if $ I \ne A $ and if whenever $ xy \in I $, then $ x \in I $ or $ y \in I $. An ideal $ J \subset A $ is called \textbf{maximal} if there is no ideal $ J' $ such that $ J \subsetneq J' \subsetneq A $.
 \end{definition}
 
-\begin{notation*}
-The set of prime ideals of $ A $ is called the \textbf{spectrum} of $ A $ and is denoted by $ \Spec A $.
-\end{notation*}
-
 \begin{lemma}
 An ideal $ I \subset A $ is prime if and only if $ A / I $ is an integral domain.
 \end{lemma}
@@ -201,6 +197,10 @@ An ideal $ J \subset A $ is maximal if and only if $ A / J $ is a field.
 \begin{proof}
 Obvious.
 \end{proof}
+
+\begin{definition}
+The set of prime ideals of $ A $ is called the \textbf{spectrum} of $ A $ and is denoted by $ \Spec A $.
+\end{definition}
 
 \begin{proposition}
 If $ f : A \to B $ is a ring homomorphism and $ I \subset B $ is a prime ideal, then $ f^{-1}\br{I} $ is a prime ideal of $ A $.
@@ -277,6 +277,7 @@ Any field is a local ring. If $ k $ is a field, then $ k\sbr{\sbr{t}} $ is a loc
 \end{example*}
 
 \begin{lemma}[Prime avoidance]
+\label{lem:4.12}
 Let $ A $ be a ring and let $ \ppp \subset A $ be a prime ideal. Suppose that $ I_1, \dots, I_n $ are ideals in $ A $ such that $ \bigcap_{j = 1}^n I_j \subset \ppp $. Then $ I_j \subset \ppp $ for some $ j $. If, moreover, $ \bigcap_{j = 1}^k I_j = \ppp $, then $ I_j = \ppp $ for some $ j $.
 \end{lemma}
 
@@ -1005,6 +1006,7 @@ If $ R = \ZZ $ and $ p $ a prime number then $ \abr{p^n} $ is a primary ideal.
 \lecture{17}{Tuesday}{12/11/19}
 
 \begin{proposition}
+\label{prop:12.2}
 If $ \rad I $ is a maximal ideal, then $ I $ is primary. In particular, any power of a maximal ideal is primary.
 \end{proposition}
 
@@ -1047,7 +1049,7 @@ Let $ I \subsetneq R $ be an ideal. Then $ I $ is called \textbf{irreducible} if
 \end{proposition}
 
 \begin{exercise*}
-$$ \cbr{\text{prime ideals}} \subset \cbr{\text{irreducible ideals}} \subset \cbr{\text{primary ideal}}. $$
+$$ \cbr{\text{prime ideals}} \subset \cbr{\text{irreducible ideals}} \subset \cbr{\text{primary ideals}}. $$
 Show that these are strict in general.
 \end{exercise*}
 
@@ -1083,11 +1085,12 @@ $$ \rad \bigcap_{j = 1}^n I_j = \rad I_1 = \dots = \rad I_n. $$
 
 \begin{proof}
 Let $ \ppp = \rad I_j $ for $ j = 1, \dots, n $, and let $ I = \bigcap_{j = 1}^n I_j $. Suppose $ x, y \in R $ such that $ xy \in I $, but $ x \notin I $. Hence $ x \notin I_j $ for some $ j $. We have $ xy \in I_j $ but $ x \notin I_j $ thus $ y \in \rad I_j $, since $ I_j $ is primary. So $ y \in \ppp $. Then
-$$ \rad I = \rad \bigcap_{j = 1}^n I_j = \bigcap_{j = 1}^n \rad I_j = \ppp. $$
-Hence $ y \in \rad I $. This shows that $ I $ is primary. Moreover, $ \rad I = \ppp $.
+$$ \rad I = \rad \bigcap_{j = 1}^n I_j = \bigcap_{j = 1}^n \rad I_j = \ppp, $$
+by problem sheet $ 2 $ question $ 2\br{b} $. Hence $ y \in \rad I $. This shows that $ I $ is primary. Moreover, $ \rad I = \ppp $.
 \end{proof}
 
 \begin{lemma}
+\label{lem:12.8}
 Let $ I $ be a primary ideal of $ R $ such that $ \rad I $ is a prime ideal $ \ppp $. We say that $ I $ is a \textbf{$ \ppp $-primary ideal}. Then
 $$ \br{I : \abr{x}} =
 \begin{cases}
@@ -1115,5 +1118,45 @@ Can achieve this by Lemma \ref{lem:12.7}.
 \begin{theorem}[First uniqueness theorem]
 Let $ I = \bigcap_{j = 1}^n I_j $ be a minimal primary decomposition. Write $ \ppp_j = \rad I_j $ for $ j = 1, \dots, n $. Then the ideals $ \ppp_1, \dots, \ppp_n $ are precisely the prime ideals of $ R $ of the form $ \rad \br{I : \abr{x}} $, where $ x \in R $. In particular, $ \ppp_1, \dots, \ppp_n $ do not depend on the primary decomposition chosen.
 \end{theorem}
+
+\lecture{19}{Thursday}{14/11/19}
+
+\begin{proof}
+Take any $ x \in R $. Then
+$$ \br{I : \abr{x}} = \br{\bigcap_{j = 1}^k I_j : \abr{x}} = \cbr{y \in R \st xy \in \bigcap_{j = 1}^k I_j} = \bigcap_{j = 1}^k \cbr{y \in R \st xy \in I_j} = \bigcap_{j = 1}^k \br{I_j : \abr{x}}. $$
+Take the radicals of these ideals. Problem sheet $ 2 $ question $ 2\br{b} $ says that the radical of an intersection is the intersection of their radicals, so $ \rad \br{I : \abr{x}} = \bigcap_{j = 1}^k \rad \br{I_j : \abr{x}} $. Note that by Lemma \ref{lem:12.8}
+$$ \rad \br{I_j : \abr{x}} =
+\begin{cases}
+R & x \in I_j \\
+\ppp_j & x \notin I_j
+\end{cases},
+$$
+so $ \rad \br{I : \abr{x}} = \bigcap_{x \notin I_j} \ppp_j $. So we recover all of $ \ppp_1, \dots, \ppp_n $ and nothing else. Lemma \ref{lem:4.12} says that $ \ppp = \bigcap_{i = 1}^m J_i $ is prime implies that $ \ppp $ is one of the $ J_i $'s. Hence if $ \rad \br{I : \abr{x}} $ is a prime ideal, then it is one of $ \ppp_j = \rad \br{I_j : \abr{x}} $ for $ x \notin I_j $.
+\end{proof}
+
+\begin{remark*}
+These prime ideals $ \ppp_1, \dots, \ppp_n $ are called the \textbf{associated primes} of $ I $.
+\end{remark*}
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Let $ R = \ZZ $. Then
+$$ \cbr{\text{prime ideals}} = \cbr{\abr{0}} \cup \cbr{\text{maximal ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p} \st p \ \text{prime}}, $$
+$$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p^n} \st p \ \text{prime}}. $$
+For example, $ \abr{4} \subsetneq \abr{2} \cap \abr{2} \subsetneq \ZZ $ is irreducible.
+\item Let $ R = k\sbr{x} $. Then
+$$ \cbr{\text{prime ideals}} = \cbr{\abr{0}} \cup \cbr{\text{maximal ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{monic irreducible polynomial}}, $$
+$$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p\br{x}^n} \st p\br{x} \ \text{monic irreducible polynomial}}. $$
+\item Let $ R = k\sbr{x, y} $. Then $ \abr{x} $ is prime, since $ k\sbr{x, y} / \abr{x} \cong k\sbr{y} $ is an integral domain, and $ \abr{x, y} $ is maximal, since $ k\sbr{x, y} / \abr{x, y} \cong k $ is a field.
+\begin{itemize}
+\item $ \abr{x, y^2} $ is not prime, since $ k\sbr{x, y} / \abr{x, y^2} \cong k \oplus ky $ is not an integral domain, where $ y^2 = 0 $. Then $ \rad \abr{x, y^2} = \abr{x, y} $, so Proposition \ref{prop:12.2} implies that $ \abr{x, y^2} $ is primary.
+\item $ \abr{xy} $ is not prime, since $ x^n, y^n \notin \abr{xy} $ for all $ n \ge 1 $ and $ xy \in \abr{xy} $, and $ k\sbr{x, y} / \abr{xy} $ has zero-divisors which are not nilpotent, so $ \abr{xy} $ is also not primary. Then $ \abr{xy} = \abr{x} = \abr{x} \cdot \abr{y} = \abr{x} \cap \abr{y} $ is a primary decomposition, where $ \abr{x} $ and $ \abr{y} $ are prime, hence primary.
+\item $ \abr{x^ay^b} = \abr{x^a} \cap \abr{x^b} $ for $ a, b \ge 1 $ is a primary decomposition, since $ \abr{x^a} $ and $ \abr{y^b} $ are primary. For example, $ \rad \abr{x^a} = \abr{x} $, since $ k\sbr{x, y} / \abr{x^a} \cong k\sbr{y} \oplus \dots \oplus k\sbr{y}x^{a - 1} $ has no non-nilpotent zero-divisors.
+\item $ \abr{x^2, xy^2} = \abr{x}\abr{x, y^2} $ for $ a, b \ge 1 $ is not primary, since $ y $ gives a zero-divisor in $ k\sbr{x, y} / \abr{x^2, xy^2} $ which is not nilpotent. Find a primary decomposition. \footnote{Exercise}
+\item $ \abr{x^2, xy, y^2} = \abr{x, y}^2 $, so it is primary but not irreducible, since $ \abr{x^2, xy, y^2} = \abr{x^2, y} \cap \abr{x, y^2} $.
+\end{itemize}
+\end{itemize}
+\end{example*}
 
 \end{document}
