@@ -394,7 +394,7 @@ is an arbitrary word on $ S $. Assume $ w \underset{G}{=} e_G = I $. Now, if $ \
 \end{example}
 
 \begin{remark*}
-This proof generalises to the so-called ping-pong lemma, telling when two subgroups $ \abr{A} $ and $ \abr{B} $ appear as a free product $ \abr{A} * \abr{B} $.
+This proof generalises to the so-called ping pong lemma, telling when two subgroups $ \abr{A} $ and $ \abr{B} $ appear as a free product $ \abr{A} * \abr{B} $.
 \end{remark*}
 
 \lecture{6}{Wednesday}{16/10/19}
@@ -635,8 +635,6 @@ $$ G = \abr{s_1, \dots, s_n \st s_i^2, \br{s_is_j}^{m_{ij}}, i, j = 1, \dots, n}
 
 \subsection{Group actions on graphs}
 
-\subsubsection{Automorphisms of trees}
-
 Recall the definition of a group acting on a graph. Many statements in Bass-Serre theory start with the assumption that $ G $ acts on $ X $ without inversion of edges.
 
 \begin{definition}
@@ -659,6 +657,8 @@ The action did not change on $ X^0 $.
 \begin{exercise}
 If $ G $ acts on $ X $, then it acts as above on $ \BBB\br{X} $ and this action is without inversion of edges.
 \end{exercise}
+
+\subsubsection{Automorphisms of trees}
 
 \begin{definition}
 Let $ X $ be a tree. A reduced path is called a \textbf{geodesic}. For $ x, y \in X $, we denote the unique geodesic from $ x $ to $ y $ by $ \sbr{x - y} $. Its length is called the \textbf{distance} between $ x $ and $ y $ and denoted by $ \d\br{x, y} $.
@@ -1014,7 +1014,8 @@ Bass-Serre theory is a fancy name of groups acting on graphs. Until now, free ac
 
 \subsection{Free products of groups}
 
-Given two groups $ G_1 $ and $ G_2 $, we already know one way of combining them, $ G_1 \times G_2 = \cbr{\br{g_1, g_2} \st g_i \in G_i} $.
+Given two groups $ G_1 $ and $ G_2 $, we already know one way of combining them,
+$$ G_1 \times G_2 = \cbr{\br{g_1, g_2} \st g_i \in G_i}. $$
 
 \begin{note*}
 $ G_i \hookrightarrow G_1 \times G_2 $ but there are non-trivial relations between $ G_1 $ and $ G_2 $, such as $ \sbr{g_1, g_2} = e_G $ for all $ g_i \in G_i $.
@@ -1033,9 +1034,9 @@ Such a presentation of $ g $ is called a \textbf{normal form} of length $ n + 1 
 \hfill
 \begin{itemize}
 \item If $ A = \cbr{e_G} $, then $ G = A * B = B $. This is called a \textbf{trivial free product}. Everything else is called a \textbf{non-trivial free product}.
-\item $ \ZZ * \ZZ \cong G \cong \FF_2 $.
-\item $ \FF_{n + 1} \cong \FF_n * \ZZ $.
-\item $ A * B \cong G \cong B * A $.
+\item $ G = \ZZ * \ZZ \cong \FF_2 $.
+\item $ G = \FF_{n + 1} \cong \FF_n * \ZZ $.
+\item $ G = A * B \cong B * A $.
 \end{itemize}
 \end{remark}
 
@@ -1044,7 +1045,7 @@ Let $ A $ and $ B $ be groups. Then there is some $ G $, and $ i_A : A \hookrigh
 \end{lemma}
 
 \begin{proof}
-By taking isomorphic copies if necessary, we may assume that $ A \cap B = \emptyset $. Define the set of elements of $ G $ as all words $ g = g_0 \dots g_n $ with $ g_i \in A \setminus \cbr{e_A} \cup B \setminus \cbr{e_B} $, and $ g_i \in A $ if and only if $ g_{i + 1} \in B $. For $ h = h_0 \dots h_m \in G $ we set inductively
+By taking isomorphic copies if necessary, we may assume that $ A \cap B = \cbr{1} $. Define the set of elements of $ G $ as all words $ g = g_0 \dots g_n $ with $ g_i \in A \setminus \cbr{e_A} \cup B \setminus \cbr{e_B} $, and $ g_i \in A $ if and only if $ g_{i + 1} \in B $. For $ h = h_0 \dots h_m \in G $ we set inductively
 $$ g \cdot h =
 \begin{cases}
 g_0 \dots g_nh_0 \dots h_m & g_n \in A \iff h_0 \in B \\
@@ -1059,13 +1060,57 @@ Identify the empty word with $ e_G $. Clearly, $ A $ and $ B $ inject into $ G $
 Show that $ \ZZ_2 * \ZZ_2 \cong \DDD_\infty $.
 \end{exercise}
 
+\lecture{18}{Wednesday}{13/11/19}
+
+Lecture 18 is a problem class.
+
+\pagebreak
+
+\lecture{19}{Thursday}{14/11/19}
+
 \begin{proposition}
 If $ A = \abr{S_A \st R_A} $ and $ B = \abr{S_B \st R_B} $, then if $ S_A \cap S_B = \emptyset $,
 $$ A * B = \abr{S_A \cup S_B \st R_A \cup R_B}. $$
 \end{proposition}
 
-\lecture{18}{Wednesday}{13/11/19}
+\begin{proof}
+$ A \cong \F\br{S_A} / \abr{R_A}^{\F\br{S_A}} $ and $ \phi_A : \F\br{S_A} \to A $ such that $ \Ker \phi_A = \abr{R_A}^{\F\br{S_A}} $. Similar for $ \phi_B $. We know that $ \phi_A \cup \phi_B : S_A \cup S_B \to A * B $ has a unique extension to a homomorphism of groups, say $ \psi : \F\br{S_A \cup S_B} \to A * B $. Clearly $ S_A \cup S_B $ generate $ A * B $. We claim that $ \Ker \psi = \abr{\Ker \phi_A \cup \Ker \phi_B} $. Then $ \Ker \psi \supseteq \Ker \phi_A \cup \Ker \phi_B $ is clear. Now let $ w = g_1 \dots g_2 $ be in normal form with respect to $ \F\br{S_A} * \F\br{S_B} $. Then $ \psi\br{w} = \psi\br{g_1} \dots \psi\br{g_n} $ is of alternating form. If $ \psi\br{w} = e_{A * B} $, then there exists $ i $ such that $ \psi\br{g_i} = e_{A * B} $. So $ g_i \in \Ker \phi_A \cup \Ker \phi_B $ . Inductively, as $ g' = g_1 \dots g_{i - 1}g_{i + 1} \dots g_n $ has a smaller normal form, whence $ \psi\br{g'} = e_G $, we conclude inductively that $ w \in \abr{\Ker \phi_A \cup \Ker \phi_B} $.
+\end{proof}
 
-Lecture 18 is a problem class.
+\begin{proposition}
+Let $ G $ be a group and $ A, B \le G $. Then $ G = A * B $ if and only if for any group $ H $, and $ \phi_A : A \to H $ and $ \phi_B : B \to H $ there is a unique homomorphism $ \psi : G \to H $ extending $ \phi_A $ and $ \phi_B $.
+\end{proposition}
+
+\begin{proof}
+Exercise. \footnote{Exercise}
+\end{proof}
+
+\begin{lemma}[Ping pong lemma]
+Let $ G $ be a group, $ A, B \le G $ such that $ \abs{A} + \abs{B} \ge 5 $, and $ H = \abr{A, B} $. Assume that $ G $ acts on some set $ X $. If there are non-empty subsets $ X_1, X_2 \subseteq X $ such that
+\begin{itemize}
+\item $ X_i \not\subseteq X_j $ for $ i \ne j $, and
+\item $ a\br{X_2} \subseteq X_1 $ for all $ a \in A \setminus \cbr{e_G} $ and $ b\br{X_1} \subseteq X_2 $ for all $ b \in B \setminus \cbr{e_G} $,
+\end{itemize}
+then $ H = A * B $.
+\end{lemma}
+
+\begin{proof}
+If $ A $ or $ B $ is trivial, then $ H = A * B $. For example, if $ A $ is trivial $ H = B = A * B $. Hence without loss of generality, $ \abs{A} \ge 3 $ and $ \abs{B} \ge 2 $. We want to show that no normal form with respect to $ A $ and $ B $ is trivial in $ G $. Consider $ w = a_1b_1 \dots a_nb_na_{n + 1} $. Then
+$$ w\br{X_2} = a_1b_1 \dots a_nb_na_{n + 1}\br{X_2} \subseteq \dots \subseteq a_1\br{X_2} \subseteq X_1. $$
+So $ w \ne e_G $. The same holds for $ w = bw'b' $. If $ w $ starts with a letter in $ A $ and ends with a letter in $ B $, or vice versa, take $ a' \in A \setminus \cbr{e_G, a} $ and consider $ w' = a'^{-1}wa' $, or $ w' = a'wa'^{-1} $. Then $ w' \ne e_G $ so $ w \ne e_G $. Hence $ H = A * B $.
+\end{proof}
+
+\begin{example}
+The \textbf{projective special linear group} $ \PSL_2\br{\ZZ} $, the \textbf{modular group}. Clearly general linear groups act on vector spaces. To any vector space we can associate a projective space by factoring through a non-zero scalar multiplication. We denote them by $ \sbr{x} $. If $ k^{n + 1} $ is a vector space, we can identify the projective space with $ k^n \cup \cbr{\infty} $ via
+$$ \sbr{x_1, \dots, x_{n + 1}} = \sbr{\dfrac{x_1}{x_{n + 1}}, \dots, \dfrac{x_n}{x_{n + 1}}, 1} \mapsto \br{\dfrac{x_1}{x_{n + 1}}, \dots, \dfrac{x_n}{x_{n + 1}}}, \qquad \sbr{x_1, \dots, x_n, 0} \mapsto \infty. $$
+If $ k = \RR $, then this is denoted by $ \PP_n $. We set $ \PGL_n\br{k} = \GL_n\br{k} / \lambda\I_n $. Recall that $ \SL_2\br{\ZZ} $ are those of determinant one. Then $ \lambda\I_2 \cap \SL_2\br{\ZZ} = \cbr{-\I_2, \I_2} $. So, consequently $ \PSL_2\br{\ZZ} = \SL_2\br{\ZZ} / \cbr{-\I_2, \I_2} $, and it acts on $ \PP_1 $. Then
+$$ \twobytwo{a}{b}{c}{d}\sbr{\twobyone{x}{1}} = \sbr{\twobyone{ax + b}{cx + d}} = \sbr{\twobyone{\tfrac{ax + b}{cx + d}}{1}}. $$
+Hence
+$$ \function{\PSL_2\br{\ZZ} \curvearrowright \RR \cup \cbr{\infty}}{\RR \cup \cbr{\infty}}{z}{\dfrac{az + b}{cz + d}}, \qquad A = \twobytwo{a}{b}{c}{d}. $$
+\end{example}
+
+\begin{lemma}
+$ \PSL_2\br{\ZZ} \cong \ZZ_2 * \ZZ_3 $.
+\end{lemma}
 
 \end{document}
