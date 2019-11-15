@@ -1455,4 +1455,67 @@ $$ \L\br{s, f} = \sum_{n = 1}^\infty \sigma_{k - 1}\br{n}n^{-s} = \prod_{p \ \te
 since $ \sigma_{k - 1}\br{mn} = \sigma_{k - 1}\br{m}\sigma_{k - 1}\br{n} $ for $ \br{m, n} = 1 $ and $ \sigma_{k - 1}\br{p^r} = 1 + \dots + p^{r\br{k - 1}} $.
 \end{example*}
 
+\lecture{20}{Friday}{15/11/19}
+
+Let $ f = \sum_{n = 1}^\infty a_nq^n $ be a cusp form. Recall that Hasse implies that $ \abs{a_n} \le Cn^{k / 2} $, so gives absolute convergence of $ \L\br{s, f} $ for $ \Re s > k / 2 + 1 $.
+
+\begin{theorem}
+\label{thm:lfunction}
+\hfill
+\begin{enumerate}
+\item $ \L\br{s, f} $ extends to a holomorphic function on all of $ \CC $.
+\item Set $ \R\br{s, f} = \br{2\pi}^{-s}\Gamma\br{s}\L\br{s, f} $. Then
+$$ \R\br{s, f} = \br{-1}^{\tfrac{k}{2}}\R\br{k - s, f}. $$
+\item If $ f $ is a normalised eigenform, then
+$$ \L\br{s, f} = \prod_{p \ \text{prime}} \dfrac{1}{1 - a_pp^{-s} + p^{k - 1}p^{-2s}}. $$
+\end{enumerate}
+\end{theorem}
+
+\pagebreak
+
+\begin{definition}
+The infinite product $ \prod_{n = 1}^\infty \br{1 + c_n} $ \textbf{converges} if $ \lim_{N \to \infty} \prod_{n = 1}^N \br{1 + c_n} $ converges to a non-zero number, if and only if $ \sum_{n = 1}^\infty \log \br{1 + c_n} $ converges. Then $ \prod_{n = 1}^\infty \br{1 + c_n} $ \textbf{converges absolutely} if $ \prod_{n = 1}^\infty \br{1 + \abs{c_n}} $ converges.
+\end{definition}
+
+\begin{lemma}
+$ \prod_{n = 1}^\infty \br{1 + c_n} $ converges absolutely if and only if $ \sum_{n = 1}^\infty \abs{c_n} $ converges.
+\end{lemma}
+
+\begin{proof}
+$$ \sum_{n = 1}^N \abs{c_n} \le \prod_{n = 1}^N \br{1 + \abs{c_n}} \le \prod_{n = 1}^N e^{\abs{c_n}} \le e^{\sum_{n = 1}^\infty \abs{c_n}}. $$
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:lfunction}]
+Recall that
+$$ \Gamma\br{s} = \intd{0}{\infty}{t^{s - 1}e^{-t}}{t} $$
+is meromorphic on $ \HH $, with poles at $ \ZZ_{\le 0} $ and never zero, and satisfies $ \Gamma\br{s + 1} = s\Gamma\br{s} $ so $ \Gamma\br{n} = \br{n - 1}! $. Substituting $ t \mapsto 2\pi nt $ in $ \Gamma\br{s} $,
+$$ \Gamma\br{s} = \intd{0}{\infty}{\br{2\pi nt}^{s - 1}e^{-2\pi nt}\br{2\pi n}}{t} = \br{2\pi n}^s\intd{0}{\infty}{t^{s - 1}e^{-2\pi nt}}{t}, $$
+so
+$$ \L\br{s, f} = \sum_{n = 1}^\infty a_nn^{-s} = \sum_{n = 1}^\infty a_n\dfrac{\br{2\pi}^s}{\Gamma\br{s}}\intd{0}{\infty}{t^{s - 1}e^{-2\pi nt}}{t}. $$
+Then
+\begin{align*}
+\R\br{s, f}
+& = \dfrac{\Gamma\br{s}}{\br{2\pi}^s}\L\br{s, f}
+= \sum_{n = 1}^\infty a_n\intd{0}{\infty}{t^{s - 1}e^{-2\pi nt}}{t}
+= \intd{0}{\infty}{t^{s - 1}\sum_{n = 1}^\infty a_ne^{-2\pi nt}}{t}
+= \intd{0}{\infty}{t^{s - 1}f\br{it}}{t} \\
+& = \intd{0}{1}{t^{s - 1}f\br{it}}{t} + \intd{1}{\infty}{t^{s - 1}f\br{it}}{t}
+= \intd{1}{\infty}{\br{\dfrac{1}{t}}^{s - 1}f\br{\dfrac{i}{t}}}{\br{\dfrac{1}{t}}} + \intd{1}{\infty}{t^{s - 1}f\br{it}}{t} \\
+& = \intd{1}{\infty}{\br{t^{-s - 1}\br{it}^kf\br{it} + t^{s - 1}f\br{it}}}{t}
+= \intd{1}{\infty}{f\br{it}\br{\br{-1}^{\tfrac{k}{2}}t^{k - s - 1} + t^{s - 1}}}{t},
+\end{align*}
+\begin{enumerate}
+\item $ \R\br{s, f} $ converges independently of $ s $ uniformly for $ s $ in a compact subset of $ \CC $, so it is holomorphic in $ s $, and extends to a holomorphic function on $ \CC $. Then $ \L\br{s, f} = \br{2\pi}^s\Gamma\br{s}^{-1}\R\br{s, f} $, so $ \L\br{s, f} $ is holomorphic since $ \Gamma\br{s} $ is non-vanishing.
+\item $ \R\br{s, f} $ is symmetric up to a sign under $ s \mapsto k - s $, so $ \R\br{s, f} = \br{-1}^{k / 2}\R\br{k - s, f} $.
+\item Now assume $ f $ is a normalised eigenform, so $ f = \sum_{n = 1}^\infty a_nq^n $ with $ a_1 = 1 $ and $ \T_nf = a_nf $. Then $ a_{nm} = a_na_m $ if $ \br{n, m} = 1 $, so
+$$ \L\br{s, f} = \sum_n a_nn^{-s} = \prod_{p \ \text{prime}} \sum_{k = 0}^\infty a_{p^k}p^{-ks}, $$
+a power series in $ p^{-s} $. Fix $ p $, and consider
+$$ \br{1 - a_pp^{-s} + p^{k - 1}p^{-2s}}\sum_{k = 0}^\infty a_{p^k}p^{-ks}. $$
+The $ p^0 $ coefficient is $ a_1 = 1 $, the $ p^1 $ coefficient is $ a_pp^{-s} - a_pp^{-s} = 0 $, and the $ p^{r + 1} $ coefficient is
+$$ a_{p^{r + 1}}p^{-\br{r + 1}s} - a_pa_{p^r}p^{-\br{r + 1}s} + p^{k - 1}a_{p^{r - 1}}p^{-\br{r + 1}s} = \br{a_{p^{r + 1}} - a_pa_{p^r} + p^{k - 1}a_{p^{r - 1}}}p^{-\br{r + 1}s} = 0, $$
+since $ a_{p^{r + 1}} = a_pa_{p^r} - p^{k - 1}a_{p^{r - 1}} $. So
+$$ \L\br{s, f} = \prod_{p \ \text{prime}} \sum_{k = 0}^\infty a_{p^k}p^{-ks} = \prod_{p \ \text{prime}} \dfrac{1}{1 - a_pp^{-s} + p^{k - 1}p^{-2s}}. $$
+\end{enumerate}
+\end{proof}
+
 \end{document}
