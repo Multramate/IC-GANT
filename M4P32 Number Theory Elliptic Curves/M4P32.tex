@@ -40,8 +40,7 @@ Let $ 3x^5 - 9x^3 + x^2 + \tfrac{148}{81} = 0 $, so $ 243x^5 - 729x^3 + 81x^2 + 
 More than two variables, over $ \QQ $, is hopeless, so let $ x $ and $ y $ be two variables.
 \begin{itemize}
 \item Degree one is very easy, since $ ax + by + c = 0 $ for $ b \ne 0 $ gives $ y = -c / b - \br{a / b}x $.
-\item Degree two and three are in this course.
-\item Degree four can be reduced to degree three.
+\item Degree two and three are in this course. Degree four can be reduced to degree three.
 \end{itemize}
 
 \begin{theorem}[Mordell's conjecture and Falting's theorem]
@@ -66,6 +65,10 @@ $$ \br{2m\br{x - 2}}^2 + x^2 - 6 = 0 \qquad \implies \qquad \br{2m^2 + 1}x^2 + \
 The sum of the roots of $ ax^2 + bx + c $ is $ -b / a $. So the second root, other than $ x = 2 $ and $ y = 1 $, is
 $$ x = \dfrac{8m^2 - 4m}{2m^2 + 1} - 2 = \dfrac{4m^2 - 4m - 2}{2m^2 + 1}, \qquad y = \dfrac{-2m^2 - 4m + 1}{2m^2 + 1}. $$
 \end{example}
+
+\begin{exercise}
+Do the case $ xy = 0 $.
+\end{exercise}
 
 \pagebreak
 
@@ -787,7 +790,9 @@ If $ \br{r, s, t} \in \Lambda \cap V $ then $ \abs{ar^2 + bs^2 + ct^2} < 4\abs{a
 $$ \mu\br{V} = \dfrac{\tfrac{4}{3}\pi\sqrt{\abs{4abc}}^3}{\sqrt{\abs{abc}}} = \dfrac{\pi}{3} \cdot 2^3 \cdot \abs{4abc} > 2^3 \cdot \abs{4abc}. $$
 \end{proof}
 
+\begin{remark}
 Let $ X \subseteq \PP^n\br{\QQ} $ be a projective algebraic variety, such as hypersurfaces or plane curves. The \textbf{local-global principle} holds for $ X $ if $ X\br{\QQ} \ne \emptyset $ if and only if $ X\br{\QQ_p} \ne \emptyset $ for all $ p $ prime number and $ X\br{\RR} \ne \emptyset $. Hasse-Minkowski implies that conics satisfy the local-global principle, but $ 3X^3 + 4Y^3 + 5Z^3 = 0 $ does not.
+\end{remark}
 
 \pagebreak
 
@@ -823,7 +828,7 @@ The \textbf{height} of $ \sbr{x : y : z} \in \PP^2\br{\QQ} $ is $ \abs{z} $ prov
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Height of $ \sbr{-17 / 7 : 20 / 7 : 1} $ is $ 7 $.
+\item Height of $ \sbr{-\tfrac{17}{7} : \tfrac{20}{7} : 1} $ is $ 7 $.
 \item Height of $ \sbr{1 : 2 : 1} $ is $ 1 $.
 \end{itemize}
 \end{example*}
@@ -894,7 +899,7 @@ The condition that my given eight points are contained in $ g = 0 $ gives me eig
 \begin{proof}[Proof of Theorem \ref{thm:6.7}]
 $ P + Q $ is the third point of intersection of the line $ \overrightarrow{\OOO R} $, where $ R $ is the third point of intersection of the line through $ \overrightarrow{PQ} $. If $ P = Q $ take the tangent at $ P $. To see that $ P + Q \in G $, just note that given any two points in $ G $, the third point of intersection has coordinates in $ k $, such as by explicitly solving equations, and must be non-singular, else would have at least $ 2 + 1 + 1 = 4 $ points of intersection with multiplicity. Then $ P + Q = Q + P $ and $ P + \OOO = P $ by definition. Want an inverse $ -P $ such that $ P + \br{-P} = \OOO $. Let $ Q $ be the third point of intersection of the tangent line at $ \OOO $. Then $ -P $ is defined to be the third point of intersection of $ \overrightarrow{PQ} $ with $ f = 0 $. It remains to check that $ \br{P + Q} + R = P + \br{Q + R} $. Unfortunately this is not obvious. We follow Cassels' book, which almost proves it. Let
 $$
-\begin{tikzpicture}[scale=2]
+\begin{tikzpicture}[scale=1.5]
 \fill (0, 0) circle (0.05) node[below left]{$ \OOO $};
 \fill (-1, 0) circle (0.05) node[below left]{$ P + Q $};
 \fill (-2, 0) circle (0.05) node[below left]{$ T $};
@@ -921,11 +926,11 @@ Associativity is the statement that $ W_1 = W_2 $. Apply Lemma \ref{lem:6.8} to 
 There exists a unique ninth point $ W $ on all of these cubics. By B\'ezout, the ninth point of intersection of the first two cubics is $ W_1 $, so $ W = W_1 $. Similarly, $ W = W_2 $. So $ W_1 = W_2 $, and $ P + \br{Q + R} = \br{P + Q} + R $.
 \end{proof}
 
-\pagebreak
-
 \begin{remark}
 This requires $ \OOO, P, Q, R, T, V, P + Q, Q + R $ are in general position. This is an open condition. The equation $ P + \br{Q + R} = \br{P + Q} + R $ is a closed condition. To make this a complete proof, work in the Zariski topology.
 \end{remark}
+
+\pagebreak
 
 \lecture{15}{Tuesday}{05/11/19}
 
@@ -974,14 +979,14 @@ Then $ 2P = \OOO $ if and only if $ P = -P $, if and only if $ y_0 = -y_0 $, if 
 $$ 4a^3 + 27b^2. $$
 If $ x^3 + ax + b = \br{x - \alpha}\br{x - \beta}\br{x - \gamma} $, the discriminant is $ \br{\alpha - \beta}^2\br{\beta - \gamma}^2\br{\gamma - \alpha}^2 $. In particular, $ y^2 = x^3 + ax + b $ is an elliptic curve if and only if $ 4a^3 + 27b^2 \ne 0 $. Write $ \Delta = 4a^3 + 27b^2 $. What changes of variable can we make that turn $ y^2 = x^3 + ax + b $ into another equation $ y^2 = x^3 + a'x + b' $? If $ y' = u^3y $ and $ x' = u^2x $ for $ u \ne 0 $, then $ u^6y^2 = u^6x^3 + au^6x + bu^6 $, so $ y'^2 = x'^3 + au^6x + bu^6 $. This takes $ \br{a, b} \leftrightarrow \br{u^4a, u^6b} $ and $ \Delta \leftrightarrow u^{12}\Delta $.
 
-\pagebreak
-
 \begin{definition}
 The \textbf{$ j $-invariant} of $ y^2 = x^3 + ax + b $ is
 $$ -\dfrac{1728\br{4a}^3}{\Delta}. $$
 \end{definition}
 
 This is invariant under $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $.
+
+\pagebreak
 
 \begin{proposition}
 If $ k $ is algebraically closed, then two elliptic curves are isomorphic if and only if they have the same $ j $-invariant.
@@ -1031,6 +1036,10 @@ We just computed $ E\br{\FF_5} $ for $ E = \cbr{y = x^3 + 1} $.
 \end{example*}
 
 The main goal of the course is to take an elliptic curve $ E $ over $ \QQ $, and see what we can say about $ E\br{\QQ} $. The main theorem is the Mordell-Weil theorem, that $ E\br{\QQ} $ is a finitely generated abelian group. That is, there exists $ \ZZ^N \twoheadrightarrow E\br{\QQ} $, that is there exist $ g_1, \dots, g_N \in E\br{\QQ} $ such that every element is of the form $ \sum_{i = 1}^N a_ig_i $ for $ a_i \in \ZZ $. The group $ \br{\QQ, +} $ is not finitely generated. The structure theorem for finitely generated abelian groups is that any finitely generated abelian group is of the form $ H \times T $, where $ H \cong \ZZ^r $ for some $ r \ge 0 $, and $ T $ is finite. Both $ r $ and $ T $ are uniquely determined. Call $ r $ the \textbf{rank} of the group, and $ T $ the \textbf{torsion subgroup}, that is the subgroup of elements of finite order.
+
+\begin{remark}
+Page 190 of Silverman shows that if $ E\br{L} / 2E\br{L} $ is finite for $ L $ a finite Galois extension of $ \QQ $ then $ E\br{\QQ} / 2E\br{\QQ} $ is finite. It is just a tiny bit of Galois cohomology using finiteness of $ 2 $-torsion. It is fairly straightforward to generalise the arguments we give for the finiteness of $ E\br{\QQ} / 2E\br{\QQ} $ to number fields, so by choosing $ L $ large enough, we could remove the assumption on $ E $.
+\end{remark}
 
 \pagebreak
 
@@ -1249,6 +1258,37 @@ by Lemma \ref{lem:8.10} and induction.
 \item Induction on $ n $. If $ \br{n, p} = 1 $, then $ 2 $. Otherwise $ \abs{\u\br{nP}}_p = \abs{p}_p\abs{\u\br{\br{n / p}P}}_p $ by $ 3 $, and $ \abs{\u\br{\br{n / p}P}}_p = \abs{n / p}_p\abs{\u\br{P}}_p $ by induction.
 \end{enumerate}
 \end{proof}
+
+\begin{remark}
+Just having coefficients in $ \ZZ_p $ is not enough in general, and need to actually be in the special form above. For example $ y^2 + xy = x^3 + 4x + 1 $ is an elliptic curve over $ \QQ_2 $ and $ \br{-\tfrac{1}{4}, \tfrac{1}{8}} $ is a point of order two on this curve even though it has non-integral coefficients. More generally, for an elliptic curve over a finite extension of $ \QQ_p $ there can be torsion if there are elements $ u $ in the maximal ideal with $ \abs{u}^5 > \abs{p} $. The argument shows that there is never any $ n $-torsion in $ E\br{\QQ_p}^{\br{1}} $ if $ p \nmid n $ but there can be $ p $-torsion if one works over a general complete field of characteristic zero such that $ \abs{p} < 1 $.
+\end{remark}
+
+\begin{example}
+Let $ y^2 = x^3 + 105^{10^{10}}x + 3 $. Neither $ 5 \mid \Delta $ nor $ 7 \mid \Delta $, where $ \Delta = 4\br{105^{10^{10}}}^3 + 27\br{3}^2 $. Modulo five and seven, $ y^2 = x^3 + 3 $. The squares modulo five are $ 0, 1, 4 $ and modulo seven are $ 0, 1, 2, 4 $. Then
+$$
+\begin{array}{c|c|c|c|c|c}
+x & 0 & 1 & 2 & 3 & 4 \\
+% \hline
+% x^3 + 3 & 3 & 4 & 1 & 0 & 2 \\
+\hline
+\#y & 0 & 2 & 2 & 1 & 0
+\end{array}
+\mod 5, \qquad
+\begin{array}{c|c|c|c|c|c|c|c}
+x & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+% \hline
+% x^3 + 3 & 3 & 4 & 4 & 2 & 4 & 2 & 2 \\
+\hline
+\#y & 0 & 2 & 2 & 2 & 2 & 2 & 2
+\end{array}
+\mod 7,
+$$
+so $ \#E\br{\FF_5} = 5 + 1 = 6 $ and $ \#E\br{\FF_7} = 12 + 1 = 13 $. So $ E\br{\FF_5} \cong \ZZ / 6\ZZ \cong \ZZ / 2\ZZ \times \ZZ / 3\ZZ $ and $ E\br{\FF_7} \cong \ZZ / 13\ZZ $, so the torsion subgroup is just $ \cbr{0} $.
+\end{example}
+
+\lecture{20}{Monday}{18/11/19}
+
+Lecture 20 is a problem class.
 
 \pagebreak
 
