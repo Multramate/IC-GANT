@@ -677,7 +677,7 @@ $$ \lambda\br{x + y} = \lambda x + \lambda y, \qquad \br{\mu + \lambda}x = \mu x
 \end{example}
 
 \begin{definition}
-If $ M $ and $ N $ are $ R $-modules, then a \textbf{homomorphism of $ R $-modules} $ f : M \to N $ is a homomorphism of abelian groups such that $ f\br{rx} = rf\br{x} $ for all $ x \in M $ and all $ r \in R $.
+If $ M $ and $ N $ are $ R $-modules, then a \textbf{homomorphism of $ R $-modules} $ f : M \to N $ is a homomorphism of abelian groups such that $ f\br{rx} = rf\br{x} $ for all $ x \in M $ and $ r \in R $.
 \end{definition}
 
 \begin{definition}
@@ -976,6 +976,7 @@ Recall that any finitely generated $ A $-module is a quotient of a free module $
 \end{proof}
 
 \begin{corollary}
+\label{cor:11.6}
 Let $ M $ be an $ A $-module. If $ 0 = M_0 \subset \dots \subset M_n = M $ are $ A $-submodules such that $ M_{i + 1} / M_i $ is a Noetherian $ A $-module, then $ M $ is also Noetherian. The same statement is true for Artinian modules.
 \end{corollary}
 
@@ -1158,5 +1159,66 @@ $$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{\abr{0}}
 \end{itemize}
 \end{itemize}
 \end{example*}
+
+\pagebreak
+
+\section{Artinian rings and modules}
+
+\lecture{20}{Tuesday}{19/11/19}
+
+\begin{definition}
+Let $ A $ be a ring and let $ M $ be an $ A $-module. Then $ M $ is a \textbf{simple} $ A $-module if the only proper submodule of $ M $ is zero. A \textbf{composition series} is a descending chain of submodules $ M = M_0 \supsetneq \dots \supsetneq M_n = 0 $ such that $ M_i / M_{i + 1} $ is a simple $ A $-module for $ i = 0, \dots, n - 1 $.
+\end{definition}
+
+\begin{proposition}
+The following are equivalent.
+\begin{itemize}
+\item $ M $ is both Noetherian and Artinian.
+\item $ M $ has a composition series.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Look at all proper submodules of $ M $. Since $ M $ is Noetherian, this set has a maximal element. Call it $ M_1 $. It is also Noetherian, so continue and build a descending chain. Since $ M_1 $ is maximal, $ M / M_1 $ is simple. All $ M_i / M_{i + 1} $ are simple. Since $ M $ is Artinian, this chain is stationary, so $ M_n = 0 $ for some $ n $.
+\item[$ \impliedby $] Corollary \ref{cor:11.6} says that if $ M_i / M_{i + 1} $ is both Noetherian and Artinian, then so is $ M $. A simple module is both Noetherian and Artinian.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+If $ M $ has a composition series of length $ n $, then any composition series of $ M $ has length $ n $.
+\end{proposition}
+
+\begin{proof}
+Let us denote by $ \l\br{M} $ the smallest length of a composition series of $ M $.
+\begin{enumerate}[label=Step \arabic*.]
+\item For a proper submodule $ N \subsetneq M $ we have $ \l\br{N} < \l\br{M} $. Indeed, let $ \br{M_i} $ be a composition series of length $ \l\br{M} $. Define $ N_i = N \cap M_i $, so
+$$
+\begin{tikzcd}[row sep=tiny]
+M = M_0 & \dots \arrow[subset]{l} & M_{n - 1} \arrow[subset]{l} & M_n = 0 \arrow[subset]{l} \\
+N = N_0 \arrow[subset]{u} & \dots \arrow[subset]{l} & N_{n - 1} \arrow[subset]{u} \arrow[subset]{l} & N_n = 0 \arrow[subset]{l} \\
+\end{tikzcd}.
+$$
+Then $ \Ker \br{N_i \to M_i / M_{i + 1}} = N_{i + 1} $, so $ N_i / N_{i + 1} \subset M_i / M_{i + 1} $, which is simple. After eliminating repetitions we get a composition of length at most $ \l\br{M} $. If the length is exactly $ \l\br{M} $, then $ N_{n - 1} = M_{n - 1} $, $ N_{n - 2} = M_{n - 2} $, etc, and finally $ N = M $.
+\item Any proper chain of submodules of $ M $ has length at most $ \l\br{M} $. Passing to a proper submodule decreases $ \l\br{M} $ at least by one. So the chain contains no more than $ \l\br{M} $ terms.
+\item So consider any composition series of $ M $. By step $ 2 $, it has length at most $ \l\br{M} $. By minimality of $ \l\br{M} $, it has length equal to $ \l\br{M} $.
+\end{enumerate}
+\end{proof}
+
+Define the \textbf{length} of a Noetherian and Artinian module $ M $ to be $ \l\br{M} $, the length of any composition series.
+
+\begin{exercise*}
+Any chain of submodules of $ M $ can be made into a composition series by inserting some submodules.
+\end{exercise*}
+
+\begin{proposition}
+Let $ M $ be a Noetherian and Artinian module. If $ N \subset M $ is a submodule, then
+$$ \l\br{M} = \l\br{N} + \l\br{M / N}. $$
+\end{proposition}
+
+\begin{proof}
+Exercise. \footnote{Exercise}
+\end{proof}
 
 \end{document}
