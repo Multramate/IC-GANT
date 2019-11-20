@@ -316,7 +316,7 @@ $ \NNN\br{A} $ is the intersection of all prime ideals of $ A $.
 \item[$ \subset $] Let $ I $ be the intersection of all prime ideals of $ A $. Let $ f \in A $ be such that $ f^n = 0 $. Take any prime ideal $ \ppp \subset A $. We know that $ f^n = 0 \in \ppp $. Then $ f\br{f \dots f} \in \ppp $ and $ \ppp $ prime implies that $ f \in \ppp $, so $ f \in I $.
 \item[$ \supset $] Let us prove the converse. Suppose $ f $ is not nilpotent, so $ f^n \ne 0 $ for all $ n \ge 1 $. We will show that there exists a prime ideal $ \ppp \subset A $ that does not contain $ f $. Let us consider all ideals of $ A $ that do not contain $ f^m $, where $ m \in \ZZ_{> 0} $. Let $ \Sigma $ be the set of ideals $ J \subset A $ such that
 $$ J \cap \cbr{f^m \st m \ge 1} = \emptyset. $$
-The zero ideal $ \abr{0} $ is in $ \Sigma $. So $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with a partial order given by inclusion. Applying Zorn's lemma we obtain that $ \Sigma $ contains a maximal element. Call it $ \ppp $. By construction, $ \ppp \cap \cbr{f^m \st m \ge 1} = \emptyset $, so $ f \notin \ppp $. It remains to prove that $ \ppp $ is prime. Enough to prove that if $ x \notin \ppp $ and $ y \notin \ppp $, then $ xy \notin \ppp $. Consider the ideal $ \ppp + \abr{x} \supsetneq \ppp $. Since $ \ppp $ is maximal in $ \Sigma $, thus $ \ppp + \abr{x} $ is not in $ \Sigma $. By definition of $ \Sigma $ there exists $ n \ge 1 $ such that $ f^n \in \ppp + \abr{x} $. Similarly, there exists $ m \ge 1 $ such that $ f^m \in \ppp + \abr{y} $. Then $ \br{\ppp + \abr{x}}\br{\ppp + \abr{y}} \subset \ppp + \abr{xy} $. In particular, $ f^{n + m} = f^n \cdot f^m \in \ppp + \abr{xy} $. If $ xy \in \ppp $, then $ f^{n + m} \in \ppp $, which is not possible. Therefore, $ xy \notin \ppp $. So $ \ppp $ is a prime ideal that does not contain $ f $.
+The zero ideal $ \abr{0} $ is in $ \Sigma $. So $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with a partial order given by inclusion. Applying Zorn's lemma we obtain that $ \Sigma $ contains a maximal element. Call it $ \ppp $. By construction, $ \ppp \cap \cbr{f^m \st m \ge 1} = \emptyset $, so $ f \notin \ppp $. It remains to prove that $ \ppp $ is prime. Enough to prove that if $ x \notin \ppp $ and $ y \notin \ppp $, then $ xy \notin \ppp $. Consider the ideal $ \ppp + \abr{x} \supsetneq \ppp $. Since $ \ppp $ is maximal in $ \Sigma $, thus $ \ppp + \abr{x} $ is not in $ \Sigma $. By definition of $ \Sigma $ there exists $ n \ge 1 $ such that $ f^n \in \ppp + \abr{x} $. Similarly, there exists $ m \ge 1 $ such that $ f^m \in \ppp + \abr{y} $. Then $ \br{\ppp + \abr{x}}\br{\ppp + \abr{y}} \subset \ppp + \abr{xy} $. In particular, $ f^{n + m} = f^nf^m \in \ppp + \abr{xy} $. If $ xy \in \ppp $, then $ f^{n + m} \in \ppp $, which is not possible. Therefore, $ xy \notin \ppp $. So $ \ppp $ is a prime ideal that does not contain $ f $.
 \end{itemize}
 \end{proof}
 
@@ -428,7 +428,7 @@ This $ f $ is injective if and only if $ S $ has no zero-divisors.
 \begin{proof}
 If $ S $ contains a zero-divisor, say $ u $, then there exists $ a \in A $ for $ a \ne 0 $ such that $ ua = 0 $. Then
 $$ f\br{a} = \dfrac{a}{1} = \dfrac{au}{u} = \dfrac{0}{u} = 0. $$
-So $ \Ker f $ contains $ a $, hence $ f $ is not injective. If $ f $ has no zero-divisors, then $ u \cdot a = u\br{a - 0} \ne 0 $ if $ a \ne 0 $ and any $ u \in S $. Hence $ f\br{a} \ne 0 $.
+So $ \Ker f $ contains $ a $, hence $ f $ is not injective. If $ f $ has no zero-divisors, then $ ua = u\br{a - 0} \ne 0 $ if $ a \ne 0 $ and any $ u \in S $. Hence $ f\br{a} \ne 0 $.
 \end{proof}
 
 \lecture{6}{Thursday}{16/10/19}
@@ -466,7 +466,7 @@ $$ S^{-1}k\sbr{x} = k\br{x} = \cbr{\dfrac{f\br{x}}{g\br{x}} \st g\br{x} \ \text{
 \begin{example}
 Let $ k $ be a field, and let $ A = k\sbr{x, y} / \abr{xy} $. Note that $ A $ has zero-divisors, since $ xy = 0 $ in $ A $, but $ x \ne 0 $ in $ A $ and $ y \ne 0 $ in $ A $. Then $ S = \cbr{1, x, \dots} $ is a multiplicative set, since $ x^n \ne 0 $ in $ A $ for $ n = 1, 2, \dots $, because no power of the polynomial $ x $ is in $ \abr{xy} $. What is $ S^{-1}A $? Let $ f : A \to S^{-1}A $. Then $ a \in \Ker f $ if and only if $ a / 1 = 0 / 1 $, if and only if $ u \cdot \br{a \cdot 1 - 0 \cdot 1} = 0 $ for some $ u \in S $, if and only if $ ua = 0 $. Let $ a \ne 0 $. Then $ u = 1 $ is not interesting. Take $ u = x $ and $ a = y $, then $ xy = 0 $, hence $ y \in \Ker f $. Then $ f $ is a homomorphism, hence $ \Ker f $ is an ideal. So $ \abr{y} = yA \subset \Ker f $. In general,
 $$ a = \sum_{i, j \ge 0} a_{ij}x^iy^j \equiv a_{00} + \sum_{i \ge 1} a_{i0}x^i + \sum_{j \ge 1} a_{0j}y^j \mod \abr{xy}. $$
-Then $ \Ker f = yA = \abr{y} $, since $ \sum_{j \ge 1} a_{0j}y^j $ goes to zero, since it is annihilated by $ x $, and $ x^n \cdot \sum_{i \ge 0} a_ix^i $ is never zero in $ A $. Thus $ f\br{A} = k\sbr{x} $, and
+Then $ \Ker f = yA = \abr{y} $, since $ \sum_{j \ge 1} a_{0j}y^j $ goes to zero, since it is annihilated by $ x $, and $ x^n\sum_{i \ge 0} a_ix^i $ is never zero in $ A $. Thus $ f\br{A} = k\sbr{x} $, and
 $$ S^{-1}A = \cbr{\dfrac{f\br{x}}{x^n} \st f\br{x} \in k\sbr{x}, \ n \ge 0} = k\sbr{x, x^{-1}} = \cbr{\sum_{i \in \ZZ, \ a_i = 0 \ \text{for almost all} \ i} a_ix^i \st a_i \in k}. $$
 \end{example}
 
@@ -1152,7 +1152,7 @@ $$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{\abr{0}}
 \item Let $ R = k\sbr{x, y} $. Then $ \abr{x} $ is prime, since $ k\sbr{x, y} / \abr{x} \cong k\sbr{y} $ is an integral domain, and $ \abr{x, y} $ is maximal, since $ k\sbr{x, y} / \abr{x, y} \cong k $ is a field.
 \begin{itemize}
 \item $ \abr{x, y^2} $ is not prime, since $ k\sbr{x, y} / \abr{x, y^2} \cong k \oplus ky $ is not an integral domain, where $ y^2 = 0 $. Then $ \rad \abr{x, y^2} = \abr{x, y} $, so Proposition \ref{prop:12.2} implies that $ \abr{x, y^2} $ is primary.
-\item $ \abr{xy} $ is not prime, since $ x^n, y^n \notin \abr{xy} $ for all $ n \ge 1 $ and $ xy \in \abr{xy} $, and $ k\sbr{x, y} / \abr{xy} $ has zero-divisors which are not nilpotent, so $ \abr{xy} $ is also not primary. Then $ \abr{xy} = \abr{x} = \abr{x} \cdot \abr{y} = \abr{x} \cap \abr{y} $ is a primary decomposition, where $ \abr{x} $ and $ \abr{y} $ are prime, hence primary.
+\item $ \abr{xy} $ is not prime, since $ x^n, y^n \notin \abr{xy} $ for all $ n \ge 1 $ and $ xy \in \abr{xy} $, and $ k\sbr{x, y} / \abr{xy} $ has zero-divisors which are not nilpotent, so $ \abr{xy} $ is also not primary. Then $ \abr{xy} = \abr{x} = \abr{x}\abr{y} = \abr{x} \cap \abr{y} $ is a primary decomposition, where $ \abr{x} $ and $ \abr{y} $ are prime, hence primary.
 \item $ \abr{x^ay^b} = \abr{x^a} \cap \abr{x^b} $ for $ a, b \ge 1 $ is a primary decomposition, since $ \abr{x^a} $ and $ \abr{y^b} $ are primary. For example, $ \rad \abr{x^a} = \abr{x} $, since $ k\sbr{x, y} / \abr{x^a} \cong k\sbr{y} \oplus \dots \oplus k\sbr{y}x^{a - 1} $ has no non-nilpotent zero-divisors.
 \item $ \abr{x^2, xy^2} = \abr{x}\abr{x, y^2} $ for $ a, b \ge 1 $ is not primary, since $ y $ gives a zero-divisor in $ k\sbr{x, y} / \abr{x^2, xy^2} $ which is not nilpotent. Find a primary decomposition. \footnote{Exercise}
 \item $ \abr{x^2, xy, y^2} = \abr{x, y}^2 $, so it is primary but not irreducible, since $ \abr{x^2, xy, y^2} = \abr{x^2, y} \cap \abr{x, y^2} $.
@@ -1219,6 +1219,59 @@ $$ \l\br{M} = \l\br{N} + \l\br{M / N}. $$
 
 \begin{proof}
 Exercise. \footnote{Exercise}
+\end{proof}
+
+\pagebreak
+
+\lecture{21}{Wednesday}{20/11/19}
+
+\begin{example}
+Suppose $ R $ is a $ k $-algebra, that is $ k $ is a field contained in $ R $ and $ R $ is a vector space over $ k $. For example, $ R = k $ or $ R = k\sbr{x_1, \dots, x_n} / I $, where $ I $ is an ideal in $ k\sbr{x_1, \dots, x_n} $.
+\begin{itemize}
+\item If $ \dim_k R < \infty $, then $ R $ is an Artinian ring. Indeed, ideals of $ R $ are vector subspaces, so any chain of ideals has finite length. Hence $ R $ is both Artinian and Noetherian.
+\item If $ R $ is a finite set, then $ R $ is Artinian and Noetherian.
+\item Let $ k\sbr{\sbr{x}} = \cbr{\sum_{i \ge 0} a_ix_i \st a_i \in k} $. Then $ \abr{x} \supsetneq \abr{x^2} \supsetneq \dots $ is an infinite descending chain. So $ k\sbr{\sbr{x}} $ is not Artinian. Similarly, $ k\sbr{x} $ is not Artinian.
+\end{itemize}
+\end{example}
+
+\begin{remark*}
+Hilbert's basis theorem says that if $ R $ is Noetherian, then so is $ R\sbr{x} $. The analogue of this does not hold for Artinian rings.
+\end{remark*}
+
+\begin{lemma}
+An Artinian integral domain is a field.
+\end{lemma}
+
+\begin{proof}
+Take $ x \ne 0 $ in an Artinian ring $ A $. Consider $ \abr{x} \supset \abr{x^2} \supset \dots $, which is stationary, so $ \abr{x^n} = \abr{x^{n + 1}} $ for some $ n \ge 0 $. Therefore, $ x^n = ax^{n + 1} $, so $ x^n\br{ax - 1} = 0 $. Then $ x^n \ne 0 $, so $ ax = 1 $, so $ x $ is invertible, that is $ x \in A^* $.
+\end{proof}
+
+\begin{corollary}
+In an Artinian ring every prime ideal is maximal.
+\end{corollary}
+
+\begin{corollary}
+In an Artinian ring the nilradical is the same as the Jacobson radical.
+\end{corollary}
+
+\begin{lemma}
+An Artinian ring has only finitely many maximal ideals.
+\end{lemma}
+
+\begin{proof}
+Assume this is false, so $ M_1, M_2, \dots $ are pairwise different maximal ideals. Then $ M_1 \supset M_1 \cap M_2 \supset \dots $ is stationary, so for some $ n \ge 1 $ we have $ M_1 \cap \dots \cap M_n = \br{M_1 \cap \dots \cap M_n} \cap M_{n + 1} $, so $ M_1 \cap \dots \cap M_n \subset M_{n + 1} $. By the prime avoidance lemma, $ M_{n + 1} $ contains some $ M_i $, where $ i \in \cbr{1, \dots, n} $. These are maximal ideals, hence $ M_i = M_{n + 1} $. This is a contradiction.
+\end{proof}
+
+\begin{definition*}
+An ideal $ I \subset R $ is called \textbf{nilpotent} if $ I^n = 0 $ for some $ n \ge 1 $.
+\end{definition*}
+
+\begin{lemma}
+If $ A $ is an Artinian or Noetherian ring, then the nilradical $ \NNN\br{A} $ is a nilpotent ideal, that is $ \NNN\br{A}^m = 0 $ for some $ m $.
+\end{lemma}
+
+\begin{proof}
+Assume $ A $ is Artinian. Consider $ \NNN\br{A} \supset \NNN\br{A}^2 \supset \dots $. There exists $ n \ge 1 $ such that $ \NNN\br{A}^n = \NNN\br{A}^{n + 1} $. Claim that $ \NNN\br{A}^n = 0 $. Assume $ \NNN\br{A}^n \ne 0 $. Consider all ideals $ I \subset A $ such that $ I\NNN\br{A}^n \ne 0 $. This set is non-empty. It contains $ \NNN\br{A} $, since $ \NNN\br{A}^{n + 1} = \NNN\br{A}^n = 0 $. Then $ A $ is Artinian, so this set has a minimal element. Call it $ I $. So we have $ I\NNN\br{A}^n \ne 0 $ hence $ x\NNN\br{A}^n \ne 0 $ for some $ x \in I $. We have $ \abr{x}\NNN\br{A}^n \ne 0 $ where $ \abr{x} \subset I $. Then $ \abr{x} $ belongs to our set, so by minimality of $ I $ we must have $ I = \abr{x} $. We have $ 0 \ne x\NNN\br{A}^n = x\NNN\br{A}^n\NNN\br{A}^n $, since $ \NNN\br{A}^n = \NNN\br{A}^m $, for any $ m \ge n $. So $ x\NNN\br{A}^n $ is an ideal in our set. Then $ x \in I $ so $ x\NNN\br{A}^n \subset I $. By minimality of $ I $ we must have $ x\NNN\br{A}^n = I $. Therefore $ \abr{x}\NNN\br{A}^n = I = \abr{x} $, so $ x $ can be written as $ xy $ for some $ y \in \NNN\br{A}^n \subset \NNN\br{A} $. Thus $ y^r = 0 $ for some $ r \ge 1 $. Then $ x = \dots = xy^r = 0 $. This says that $ I = \abr{x} = 0 $. This is a contradiction because $ I\NNN\br{A}^n \ne 0 $. Now assume $ A $ is Noetherian. Then every ideal is finitely generated, in particular $ \NNN\br{A} = \abr{x_1, \dots, x_n} $. Since each $ x_i $ is nilpotent there exists $ m \ge 1 $ such that $ x_i^m = 0 $ for all $ i $. Then any product of $ mn $ elements of $ \NNN\br{A} $ is $ \sum_{a_1 + \dots + a_n = mn} cx_1^{a_1} \dots x_n^{a_n} $. So there exists $ i $, for $ 1 \le i \le n $, such that $ a_i \ge m $. Hence $ x_1^{a_1} \dots x_n^{a_n} = 0 $, so $ \NNN\br{A}^{mn} = 0 $.
 \end{proof}
 
 \end{document}
