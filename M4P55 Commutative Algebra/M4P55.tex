@@ -1247,6 +1247,7 @@ Take $ x \ne 0 $ in an Artinian ring $ A $. Consider $ \abr{x} \supset \abr{x^2}
 \end{proof}
 
 \begin{corollary}
+\label{cor:13.7}
 In an Artinian ring every prime ideal is maximal.
 \end{corollary}
 
@@ -1255,6 +1256,7 @@ In an Artinian ring the nilradical is the same as the Jacobson radical.
 \end{corollary}
 
 \begin{lemma}
+\label{lem:13.9}
 An Artinian ring has only finitely many maximal ideals.
 \end{lemma}
 
@@ -1267,11 +1269,114 @@ An ideal $ I \subset R $ is called \textbf{nilpotent} if $ I^n = 0 $ for some $ 
 \end{definition*}
 
 \begin{lemma}
+\label{lem:13.10}
 If $ A $ is an Artinian or Noetherian ring, then the nilradical $ \NNN\br{A} $ is a nilpotent ideal, that is $ \NNN\br{A}^m = 0 $ for some $ m $.
 \end{lemma}
 
 \begin{proof}
-Assume $ A $ is Artinian. Consider $ \NNN\br{A} \supset \NNN\br{A}^2 \supset \dots $. There exists $ n \ge 1 $ such that $ \NNN\br{A}^n = \NNN\br{A}^{n + 1} $. Claim that $ \NNN\br{A}^n = 0 $. Assume $ \NNN\br{A}^n \ne 0 $. Consider all ideals $ I \subset A $ such that $ I\NNN\br{A}^n \ne 0 $. This set is non-empty. It contains $ \NNN\br{A} $, since $ \NNN\br{A}^{n + 1} = \NNN\br{A}^n = 0 $. Then $ A $ is Artinian, so this set has a minimal element. Call it $ I $. So we have $ I\NNN\br{A}^n \ne 0 $ hence $ x\NNN\br{A}^n \ne 0 $ for some $ x \in I $. We have $ \abr{x}\NNN\br{A}^n \ne 0 $ where $ \abr{x} \subset I $. Then $ \abr{x} $ belongs to our set, so by minimality of $ I $ we must have $ I = \abr{x} $. We have $ 0 \ne x\NNN\br{A}^n = x\NNN\br{A}^n\NNN\br{A}^n $, since $ \NNN\br{A}^n = \NNN\br{A}^m $, for any $ m \ge n $. So $ x\NNN\br{A}^n $ is an ideal in our set. Then $ x \in I $ so $ x\NNN\br{A}^n \subset I $. By minimality of $ I $ we must have $ x\NNN\br{A}^n = I $. Therefore $ \abr{x}\NNN\br{A}^n = I = \abr{x} $, so $ x $ can be written as $ xy $ for some $ y \in \NNN\br{A}^n \subset \NNN\br{A} $. Thus $ y^r = 0 $ for some $ r \ge 1 $. Then $ x = \dots = xy^r = 0 $. This says that $ I = \abr{x} = 0 $. This is a contradiction because $ I\NNN\br{A}^n \ne 0 $. Now assume $ A $ is Noetherian. Then every ideal is finitely generated, in particular $ \NNN\br{A} = \abr{x_1, \dots, x_n} $. Since each $ x_i $ is nilpotent there exists $ m \ge 1 $ such that $ x_i^m = 0 $ for all $ i $. Then any product of $ mn $ elements of $ \NNN\br{A} $ is $ \sum_{a_1 + \dots + a_n = mn} cx_1^{a_1} \dots x_n^{a_n} $. So there exists $ i $, for $ 1 \le i \le n $, such that $ a_i \ge m $. Hence $ x_1^{a_1} \dots x_n^{a_n} = 0 $, so $ \NNN\br{A}^{mn} = 0 $.
+\hfill
+\begin{itemize}
+\item Assume $ A $ is Artinian. Consider $ \NNN\br{A} \supset \NNN\br{A}^2 \supset \dots $. There exists $ n \ge 1 $ such that $ \NNN\br{A}^n = \NNN\br{A}^{n + 1} $. Claim that $ \NNN\br{A}^n = 0 $. Assume $ \NNN\br{A}^n \ne 0 $. Consider all ideals $ I \subset A $ such that $ I\NNN\br{A}^n \ne 0 $. This set is non-empty. It contains $ \NNN\br{A} $, since $ \NNN\br{A}^{n + 1} = \NNN\br{A}^n = 0 $. Then $ A $ is Artinian, so this set has a minimal element. Call it $ I $. So we have $ I\NNN\br{A}^n \ne 0 $ hence $ x\NNN\br{A}^n \ne 0 $ for some $ x \in I $. We have $ \abr{x}\NNN\br{A}^n \ne 0 $ where $ \abr{x} \subset I $. Then $ \abr{x} $ belongs to our set, so by minimality of $ I $ we must have $ I = \abr{x} $. We have $ 0 \ne x\NNN\br{A}^n = x\NNN\br{A}^n\NNN\br{A}^n $, since $ \NNN\br{A}^n = \NNN\br{A}^m $, for any $ m \ge n $. So $ x\NNN\br{A}^n $ is an ideal in our set. Then $ x \in I $ so $ x\NNN\br{A}^n \subset I $. By minimality of $ I $ we must have $ x\NNN\br{A}^n = I $. Therefore $ \abr{x}\NNN\br{A}^n = I = \abr{x} $, so $ x $ can be written as $ xy $ for some $ y \in \NNN\br{A}^n \subset \NNN\br{A} $. Thus $ y^r = 0 $ for some $ r \ge 1 $. Then $ x = \dots = xy^r = 0 $. This says that $ I = \abr{x} = 0 $. This is a contradiction because $ I\NNN\br{A}^n \ne 0 $.
+\item Now assume $ A $ is Noetherian. Then every ideal is finitely generated, in particular $ \NNN\br{A} = \abr{x_1, \dots, x_n} $. Since each $ x_i $ is nilpotent there exists $ m \ge 1 $ such that $ x_i^m = 0 $ for all $ i $. Then any product of $ mn $ elements of $ \NNN\br{A} $ is $ \sum_{a_1 + \dots + a_n = mn} cx_1^{a_1} \dots x_n^{a_n} $. So there exists $ i $, for $ 1 \le i \le n $, such that $ a_i \ge m $. Hence $ x_1^{a_1} \dots x_n^{a_n} = 0 $, so $ \NNN\br{A}^{mn} = 0 $.
+\end{itemize}
+\end{proof}
+
+\lecture{22}{Thursday}{21/11/19}
+
+\begin{corollary}
+\label{cor:13.11}
+Every ideal in a Noetherian or Artinian ring contains some power of its radical.
+\end{corollary}
+
+\begin{proof}
+If $ A $ is Noetherian, then $ A / I $ is also Noetherian. We have $ \rad I / I = \NNN\br{A / I} $. By Lemma \ref{lem:13.10} there exists $ m \ge 1 $ such that $ \NNN\br{A / I}^m = 0 $. Then $ \rad I^m \subset I $. The same proof works in the Artinian case.
+\end{proof}
+
+\pagebreak
+
+\begin{lemma}
+\label{lem:13.12}
+Let $ V $ be a vector space over a field $ k $. The following are equivalent.
+\begin{itemize}
+\item $ \dim_k V < \infty $.
+\item $ V $ is a Noetherian $ k $-module.
+\item $ V $ is an Artinian $ k $-module.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Obvious.
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.13}
+Let $ A $ be a ring. Let $ I_1, \dots, I_n $ be maximal ideals of $ A $, possibly with repetitions. Suppose $ I_1 \dots I_n = 0 $. Then $ A $ is Noetherian if and only if $ A $ is Artinian.
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Define $ M_r = I_1 \dots I_r $ for $ r = 1, \dots, n $, so $ A \supset M_1 = I_1 \supset \dots \supset M_n = \prod_{r = 1}^n I_r = 0 $. Then $ A $ is a Noetherian $ A $-module, so every subquotient module is also Noetherian. In particular, $ M_i / M_{i + 1} $ is a Noetherian $ A $-module. Since $ I_{r + 1}M_r = M_{r + 1} $, $ I_{r + 1} $ acts trivially on $ M_r / M_{r + 1} $. Therefore, $ M_r / M_{r + 1} $ is naturally an $ A / I_{r + 1} $-module. But $ A / I_{r + 1} $ is a field. Call it $ k $. The $ A $-submodules of $ M_r / M_{r + 1} $ are the same as the $ k $-submodules of $ M_r / M_{r + 1} $. By Lemma \ref{lem:13.12} $ M_r / M_{r + 1} $ is an Artinian $ k $-module hence $ M_r / M_{r + 1} $ is an Artinian $ A $-module. Now Proposition \ref{prop:11.4} implies that $ A $ is Artinian.
+\item[$ \impliedby $] Similar.
+\end{itemize}
+\end{proof}
+
+\begin{definition}
+The \textbf{Krull dimension} of a ring $ A $ is the supremum of all $ n \ge 0 $ such that $ A $ has an ascending chain of prime ideals $ \ppp_0 \subsetneq \dots \subsetneq \ppp_n $. If the supremum does not exist, the dimension is infinite. It is denoted $ \dim A $.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item Any field has dimension zero.
+\item If $ A $ is Artinian, then every prime ideal is maximal, hence $ \dim A = 0 $.
+\item Since $ \abr{0} \subsetneq \abr{p} $ for $ p $ a prime number, $ \dim \ZZ = 1 $.
+\item If $ k $ is a field, then $ \dim k\sbr{t} = 1 $.
+\item If $ k $ is a field, then $ \dim k\sbr{\sbr{t}} = 1 $.
+\item If $ k $ is a field, then $ \dim k\sbr{t_1, \dots, t_n} = n $.
+\end{itemize}
+\end{example}
+
+\begin{theorem}
+A ring is Artinian if and only if it is Noetherian and has dimension zero.
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Suppose $ A $ is Artinian. Corollary \ref{cor:13.7} says that every prime ideal is maximal, hence $ \dim A = 0 $. Lemma \ref{lem:13.9} says that $ A $ has only finitely many maximal ideals, say $ I_1, \dots, I_n $. Then $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = \NNN\br{A} $. Lemma \ref{lem:13.10} says $ \NNN\br{A}^m = 0 $ for some $ m \ge 1 $. Hence $ I_1^m \dots I_n^m = 0 $. Lemma \ref{lem:13.13} now implies that $ A $ is Noetherian.
+\item[$ \impliedby $] Now assume that $ A $ is Noetherian and $ \dim A = 0 $. By Emmy Noether's theorem the ideal $ \abr{0} $ has a primary decomposition, that is $ \abr{0} = J_1 \cap \dots \cap J_n $, where $ J_i $'s are primary. Recall $ \rad J_i $ is a prime ideal of $ A $. Since $ \dim A = 0 $, this ideal is maximal. The associated primes of $ \abr{0} $ are maximal ideals. By Corollary \ref{cor:13.11} each $ J_i $ contains a power of $ \rad J_i $. Therefore, the product of these powers of these maximal ideals is contained in $ \prod_{i = 1}^n J_i \subset \bigcap_{i = 1}^n J_i = \abr{0} $. Now Lemma \ref{lem:13.13} implies that $ A $ is Artinian.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+\begin{theorem}
+Any Artinian ring is a product of finitely many local Artinian rings.
+\end{theorem}
+
+\begin{definition}
+Two ideals $ I, J \subset R $ are \textbf{coprime} if $ I + J = R $.
+\end{definition}
+
+\begin{example*}
+Two distinct maximal ideals are coprime.
+\end{example*}
+
+Suppose $ I_1, \dots, I_n $ are ideals of $ R $. Define
+$$ \function[\phi]{R}{\prod_{j = 1}^n R / I_j}{x}{\br{x + I_1, \dots, x + I_n}}. $$
+
+\begin{lemma}[Chinese remainder theorem]
+\hfill
+\begin{itemize}
+\item If $ I_r $ and $ I_s $ are coprime whenever $ r \ne s $, then $ \prod_{j = 1}^n I_j = \bigcap_{j = 1}^n I_j $.
+\item $ \phi $ is surjective if and only if $ I_r $ and $ I_s $ are coprime for $ r \ne s $.
+\item $ \phi $ is injective if and only if $ \bigcap_{j = 1}^n I_j = \abr{0} $.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+See problem sheet $ 4 $ question $ 2 $.
 \end{proof}
 
 \end{document}
