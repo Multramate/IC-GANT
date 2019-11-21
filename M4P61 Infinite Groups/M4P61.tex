@@ -1333,9 +1333,65 @@ This is an action. Similarly we define $ G_2 \curvearrowright \W_B $. We shift t
 = \br{z_0, \dots, z_n}
 = z.
 \end{align*}
-Hence we can extend the action to $ G = G_1 * G_2 / \abr{\cbr{a^{-1}\phi\br{a} \st a \in A}}^N $.
+Hence we can extend the action to $ G = G_1 * G_2 / \abr{\cbr{a^{-1}\phi\br{a} \st a \in A}}^N $. If $ g \in G $, we can write it as $ g = z_0 \dots z_n $ where $ \br{z_0, \dots, z_n} $ is an $ A $-normal form. Then
+$$ g \cdot \br{e_{G_1}} = z_0 \dots z_n \cdot \br{e_{G_1}} = z_0 \dots z_{n - 1} \cdot \br{e_{G_1}, z_n} = \dots = z_0 \cdot \br{e_{G_1}, z_1, \dots, z_n} = \br{z_0, \dots, z_n}. $$
+Thus every $ g $ has a unique $ A $-normal form.
 \item[$ \impliedby $] Exercise. \footnote{Exercise}
 \end{itemize}
+\end{proof}
+
+\lecture{22}{Thursday}{21/11/19}
+
+\begin{corollary}
+\hfill
+\begin{itemize}
+\item No $ A $-normal form of length at least two can represent the trivial element in $ G_1 \underset{A}{*} G_2 $.
+\item We can identify $ G_1 \underset{A}{*} G_2 $ with $ \W_A $ and multiplication given by the action just defined.
+\item Clearly, $ G_1 $ and $ G_2 $ embed onto $ G_1 \underset{A}{*} G_2 = \W_A $ via $ \iota_1\br{g} = \br{a_g, x_g} $ for $ g \in G_1 $ and $ \iota_2\br{h} = \br{\phi^{-1}\br{b_h}, y_h} $ for $ h \in G_2 $. Also $ \iota_1\br{G_1} = \iota_2\br{G_2} = \iota_1\br{G_1} \cap \iota_2\br{G_2} $.
+\end{itemize}
+\end{corollary}
+
+\pagebreak
+
+\begin{fact}
+Let $ G_1, G_2, A $ be groups such that $ A $ embeds via $ i_k : A \hookrightarrow G_k $ for $ k = 1, 2 $. Then the following are equivalent.
+\begin{itemize}
+\item $ G_1 \underset{i_1\br{A} = i_2\br{A}}{*} G_2 \cong G $.
+\item There are embeddings $ j_k : G_k \hookrightarrow G $ with $ j_1 \circ i_1 = j_2 \circ i_2 $ such that for any $ H $ and homomorphisms $ \phi_k : G_k \to H $ such that $ \phi_1 \circ i_1 = \phi_2 \circ i_2 $ there is a unique $ \psi : G \to H $ such that $ \psi \circ j_k = \phi_k $. Thus
+$$
+\begin{tikzcd}
+& G_1 \arrow[dashed, hookrightarrow]{dr}{j_1} & \\
+A \arrow[hookrightarrow]{ur}{i_1} \arrow[hookrightarrow, swap]{dr}{i_2} & & G \\
+& G_2 \arrow[dashed, hookrightarrow, swap]{ur}{j_2} &
+\end{tikzcd},
+\qquad
+\begin{tikzcd}
+& G_1 \arrow[hookrightarrow]{dr}{j_1} \arrow[bend left=15]{drr}{\phi_1} & & \\
+A \arrow[hookrightarrow]{ur}{i_1} \arrow[hookrightarrow, swap]{dr}{i_2} & & G \arrow[dashed]{r}{\exists !\psi} & H \\
+& G_2 \arrow[hookrightarrow, swap]{ur}{j_2} \arrow[bend right=15, swap]{urr}{\phi_2} & &
+\end{tikzcd}.
+$$
+\end{itemize}
+\end{fact}
+
+\subsection{Amalgamated products and trees}
+
+\begin{definition}
+We call a graph $ X $ a \textbf{segment} if $ X^0 = \cbr{x, y} $ and $ X_+^1 = \cbr{e} $ such that $ \alpha\br{e} = x $ and $ \omega\br{e} = y $.
+\end{definition}
+
+\begin{theorem}
+Let $ G = G_1 \underset{A}{*} G_2 $. Then there is a tree $ X $ such that $ G $ acts on $ X $ without inversion of edges and such that the factor graph $ Y $ is a segment. Furthermore, there is a lift $ T = \cbr{x, y, e} $ of $ Y $, such that $ \Stab x = G_1 $, $ \Stab y = G_2 $, and $ \Stab e = A $.
+\end{theorem}
+
+\begin{proof}
+Let $ X^0 = G / G_1 \cup G / G_2 $ and $ X_+^1 = G / A $, with $ \alpha\br{gA} = gG_1 $ and $ \omega\br{gA} = gG_2 $. First, let us show that $ X $ is connected. Let $ g \in G $ and $ g = z_0 \dots z_n $ in $ A $-normal form. We show there is a path from $ G_1 $ to $ gG_i $ for $ i = 1, 2 $ by induction on $ n $. If $ n = 0 $ then either $ i = 1 $ and $ gG_i = z_0G_1 = G_1 $ and the empty path suffices, or $ i = 2 $ and $ gG_i = G_2 $, and $ \alpha\br{A} = G_1 $ and $ \omega\br{A} = G_2 $, so $ e = A $ suffices. Now let $ n > 0 $ and set $ g' = z_0 \dots z_{n - 1} $. Then $ z_n \in G_i $, whence $ g'G_i = z_0 \dots z_{n - 1}G_i = z_0 \dots z_{n - 1}z_nG_i = gG_i $, and by assumption there is a path from $ G_1 $ to $ g'G_1 = gG_1 $. Now, assume there is a circuit $ e_1 \dots e_n $. We may assume that $ \alpha\br{e_1} = G_1 $. As odd paths end in a coset of $ G_2 $, we know that $ n $ is even. Now there are $ x_1 \in G_1 $ and $ x_i \in G_i \setminus A $ for $ i > 1 $, and $ y_j \in G_2 \setminus A $ for $ j \ge 1 $ such that
+\begin{align*}
+\alpha\br{e_1} = G_1 = x_1G_1, & \qquad \omega\br{e_1} = x_1G_2 = x_1y_1G_2, \\
+& \vdots \\
+\alpha\br{e_n} = x_1y_1 \dots x_{\tfrac{n}{2}}y_{\tfrac{n}{2}}G_2, & \qquad \omega\br{e_n} = x_1y_1 \dots x_{\tfrac{n}{2}}y_{\tfrac{n}{2}}G_1 = G_1,
+\end{align*}
+a contradiction by uniqueness of $ A $-normal forms. Now every vertex $ g_1G_1 $ and $ g_2G_1 $ are in the same orbit, as $ g_2g_1^{-1} \cdot g_1G_1 = g_2G_1 $. The same for $ G_2 $. Hence $ Y = \sbr{G_1} \xrightarrow{\sbr{A}} \sbr{G_2} $. Also all $ gA $ are in the same orbit. Then $ Y $ has a lift $ G_1 \xrightarrow{A} G_A $ and $ \Stab G_1 = G_1 $, $ \Stab G_2 = G_2 $, and $ \Stab A = A $.
 \end{proof}
 
 \end{document}
