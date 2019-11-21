@@ -1333,6 +1333,87 @@ In fact $ E\br{\QQ} = \cbr{\OOO, \br{0, 0}, \br{\pm 1, 0}} $.
 
 \pagebreak
 
+\lecture{22}{Thursday}{21/11/19}
+
+\begin{theorem}
+\label{thm:9.2}
+Let $ K $ be a field of characteristic not equal to two, and let $ E $ be the elliptic curve $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $, for $ e_1, e_2, e_3 \in K $ distinct. Define
+$$
+\begin{array}{ccrcl}
+\delta & : & E\br{K} & \longrightarrow & \cbr{K^\times / \br{K^\times}^2}^3 \\
+& & \OOO & \longmapsto & \br{1, 1, 1} \\
+& & T_1 = \br{e_1, 0} & \longmapsto & \br{\br{e_1 - e_2}\br{e_1 - e_3}, e_1 - e_2, e_1 - e_3} \\
+& & T_2 = \br{e_2, 0} & \longmapsto & \br{e_2 - e_1, \br{e_2 - e_1}\br{e_2 - e_3}, e_2 - e_3} \\
+& & T_3 = \br{e_3, 0} & \longmapsto & \br{e_3 - e_1, e_e - e_2, \br{e_e - e_1}\br{e_3 - e_2}} \\
+& & \br{x, y} & \longmapsto & \br{x - e_1, x - e_2, x - e_3}, \qquad y \ne 0
+\end{array}.
+$$
+Then
+\begin{enumerate}
+\item $ \delta $ is a group homomorphism.
+\item $ \Ker \delta = 2E\br{K} $.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+\label{lem:9.3}
+Let $ K $ and $ E $ as in Theorem \ref{thm:9.2}. Let $ P = \br{x, y} \in E\br{K} $. If all $ x - e_i \in K^2 $ for $ i = 1, 2, 3 $, then there exists $ Q \in E\br{K} $ such that $ P = 2Q $.
+\end{lemma}
+
+\begin{proof}
+Write $ x - e_i = t_i^2 $ for $ i = 1, 2, 3 $ for $ t_i \in K $. Then $ y^2 = t_1^2t_2^2t_3^2 = \br{t_1t_2t_3}^2 $. Assume, after possibly changing the sign of some $ t_i $, that $ y = t_1t_2t_3 $. Set
+$$ Q = \br{x_0, y_0}, \qquad x_0 = x + t_1t_2 + t_2t_3 + t_3t_1, \qquad y_0 = \br{t_1 + t_2}\br{t_2 + t_3}\br{t_3 + t_1}. $$
+Need to check that $ Q \in E\br{K} $, and that $ 2Q = P $. Then
+$$ x_0 - e_1 = \br{x - e_1} + t_1t_2 + t_2t_3 + t_3t_1 = t_1^2 + t_1t_2 + t_2t_3 + t_3t_1 = \br{t_1 + t_2}\br{t_1 + t_3}. $$
+Similarly $ x_0 - e_2 = \br{t_2 + t_3}\br{t_2 + t_1} $ and $ x_0 - e_3 = \br{t_3 + t_1}\br{t_3 + t_2} $. So
+$$ \br{x_0 - e_1}\br{x_0 - e_2}\br{x_0 - e_3} = \br{t_1 + t_2}^2\br{t_2 + t_3}^2\br{t_3 + t_1}^2 = y_0^2, $$
+that is $ Q \in E\br{K} $. To compute $ 2Q $, we need to find the tangent line $ y = mx + c $. Write $ f\br{x} = \br{x - e_1}\br{x - e_2}\br{x - e_3} $, then
+\begin{align*}
+m
+& = \dfrac{f'\br{x_0}}{2y_0}
+= \dfrac{\br{x_0 - e_2}\br{x_0 - e_3} + \br{x_0 - e_3}\br{x_0 - e_1} + \br{x_0 - e_1}\br{x_0 - e_2}}{2y_0} \\
+& = \dfrac{\br{t_1 + t_2}\br{t_2 + t_3}\br{t_3 + t_1}\br{\br{t_1 + t_2} + \br{t_2 + t_3} + \br{t_3 + t_1}}}{2y_0}
+= t_1 + t_2 + t_3.
+\end{align*}
+Then
+$$ m\br{x_0 - x} = \br{t_1 + t_2 + t_3}\br{t_1t_2 + t_2t_3 + t_3t_1} = \br{t_1 + t_2}\br{t_2 + t_3}\br{t_3 + t_1} + t_1t_2t_3 = y_0 + y. $$
+So the point $ \br{x, -y} $ also lies on the tangent line to $ E $ at $ \br{x_0, y_0} $. So $ -2Q = \br{x, -y} $, that is $ 2Q = \br{x, y} = P $.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:9.2}]
+Once we know that $ \delta $ is a group homomorphism, then $ 2E\br{K} \subset \Ker \delta $, because $ \delta\br{2P} = \delta\br{P}^2 = 1 $. Lemma \ref{lem:9.3} implies that $ \Ker \delta \subset 2E\br{K} $. So we have $ 2 $. Need to prove that if $ P_1 + P_2 + P_3 = \OOO $, then $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $. Note that by definition, $ \delta\br{P} = \delta\br{-P} $. Note that by definition, $ \delta\br{P} = \delta\br{-P} $.
+\begin{itemize}
+\item If $ P_1 = P_2 = P_3 = \OOO $, then obvious.
+\item If $ P_1 = \OOO $ and $ P_2 \ne \OOO $, then $ P_2 + P_3 = \OOO $, and
+$$ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = \delta\br{P_2}\delta\br{P_3} = \delta\br{P_2}\delta\br{-P_2} = \delta\br{P_2}^2 = 1. $$
+By symmetry assume none of $ P_1, P_2, P_3 $ is equal to $ \OOO $.
+
+\pagebreak
+
+\item Otherwise $ P_1, P_2, P_3 $ all lie on some line $ Y = mX + c $. Write $ P_i = \br{x_i, y_i} $.
+\begin{itemize}
+\item Assume firstly that $ 2P_i \ne \OOO $ for $ i = 1, 2, 3 $, that is $ x_i \ne e_1, e_2, e_3 $. Then
+$$ \br{x - x_1}\br{x - x_2}\br{x - x_3} = \br{x - e_1}\br{x - e_2}\br{x - e_3} - \br{mx + c}^2. $$
+Substituting $ x = e_1 $, $ \br{e_1 - x_1}\br{e_1 - x_2}\br{e_1 - x_3} = -\br{me_1 + c}^2 $, that is
+$$ \br{x_1 - e_1}\br{x_2 - e_1}\br{x_3 - e_1} = \br{me_1 + c}^2 \in \br{K^\times}^2. $$
+Similarly $ \br{x_1 - e_2}\br{x_2 - e_2}\br{x_3 - e_2} \in \br{K^\times}^2 $ and $ \br{x_1 - e_3}\br{x_2 - e_3}\br{x_3 - e_3} \in \br{K^\times}^2 $. That is, $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $.
+\item Now assume that one of $ 2P_1, 2P_2, 2P_3 $ is equal to $ \OOO $. Without loss of generality $ P_1 = T_1 = \br{e_1, 0} $. Assume that $ 2P_2, 2P_3 \ne \OOO $. The calculation above shows that $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} \in K^\times / \br{K^\times}^2 \times 1 \times 1 $. By definition, $ \Im \delta \subset \cbr{\br{a, b, c} \st abc = 1} $. So $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $ in this case.
+\item Now assume that at least two of $ P_1, P_2, P_3 $ are equal to $ T_1, T_2, T_3 $. The only possibility with $ P_1 + P_2 + P_3 = \OOO $ but $ P_i \ne \OOO $ is $ \cbr{P_1, P_2, P_3} = \cbr{T_1, T_2, T_3} $. Then $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = \delta\br{T_1}\delta\br{T_2}\delta\br{T_3} = 1 $.
+\end{itemize}
+\end{itemize}
+\end{proof}
+
+\begin{remark}
+We have
+$$ \delta : E\br{K} / 2E\br{K} \xrightarrow{\sim} \Im \delta \subset \cbr{\br{a, b, c} \in \br{K^\times / \br{K^\times}^2}^3 \st abc = 1} \subset \br{K^\times / \br{K^\times}^2}^3. $$
+\end{remark}
+
+\begin{example*}
+$ \QQ^\times / \br{\QQ^\times}^2 $ is not a finite group, since for each prime $ p $, $ p \in \QQ^\times / \br{\QQ^\times}^2 $, and these are linearly independent, as elements of $ \QQ^\times / \br{\QQ^\times}^2 $, which is an $ \FF_2 $-vector space.
+\end{example*}
+
+\pagebreak
+
 \appendix
 
 \section{Diagonalisation of quadratic forms}
