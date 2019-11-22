@@ -1612,8 +1612,96 @@ Claim that $ \E_k\br{\gamma z} = \E_k\br{z} $ for $ \gamma \in \Gamma\br{N} $. L
 & = \br{cz + d}^k\sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{\br{ma + nc}z + \br{mb + nd}}^k},
 \end{align*}
 so $ m \equiv a \equiv d \equiv 1 \mod N $ and $ n \equiv b \equiv c \equiv 0 \mod N $, so $ ma + nc \equiv 1 \mod N $ and $ mb + nd \equiv 0 \mod N $. So $ \br{ma + nc, mb + nd} \in S^{0, 1} $. Moreover, the map
-$$ \bijection{S^{0, 1}}{S^{0, 1}}{\br{m, n}}{\br{ma + nc, mb + nd}}{\br{m'a' + n'c', m'b' + n'd'}}{\br{m', n'}}, \qquad \gamma = \twobytwo{a}{b}{c}{d}, \qquad \gamma^{-1} = \twobytwo{a'}{b'}{c'}{d'}. $$
-So $ \E_k^{0, 1}\br{\gamma z} = \E_k^{0, 1}\br{z}\br{cz + d}^k $.
+$$ \bijection{S^{0, 1}}{S^{0, 1}}{\br{m, n}}{\br{ma + nc, mb + nd}}{\br{m'a' + n'c', m'b' + n'd'}}{\br{m', n'}}, \qquad \gamma = \twobytwo{a}{b}{c}{d}, \qquad \gamma^{-1} = \twobytwo{a'}{b'}{c'}{d'} $$
+is a bijection. So
+$$ \E_k^{0, 1}\br{\gamma z} = \E_k^{0, 1}\br{z}\br{cz + d}^k. $$
 \end{example*}
+
+\lecture{23}{Friday}{22/11/19}
+
+Every congruence subgroup is conjugate to a subgroup of $ \SL_2\br{\ZZ} $, but
+$$ \twobytwo{1}{1}{0}{1} \in \SL_2\br{\ZZ} $$
+need not be in $ \Gamma $. On the other hand, if $ \Gamma \subseteq \SL_2\br{\ZZ} $, then $ \Gamma $ has finite index in $ \SL_2\br{\ZZ} $, so there exists a minimal $ n_\Gamma > 0 $ such that
+$$ \twobytwo{1}{n_\Gamma}{0}{1} \in \Gamma. $$
+Then if $ f $ is weakly modular of weight $ k $ and level $ \Gamma $, know $ f\br{z + n_\Gamma} = f\br{z} $ for all $ z $, so $ f $ is a function of $ q^{1 / n_\Gamma} $. Let $ g\br{q^{1 / n_\Gamma}} $ be a function on $ \D \setminus \cbr{0} $ such that $ f\br{z} = g\br{e^{2\pi iz / n_\Gamma}} $. Then if $ g $ is meromorphic on $ \D $, can express $ g $ as a Laurent series in $ q^{1 / n_\Gamma} $. We say $ f $ is \textbf{meromorphic at $ \infty $}, and the series for $ q $ is its \textbf{$ q $-expansion}.
+
+\begin{example*}
+For $ \Gamma = \Gamma_0\br{N} $ or $ \Gamma = \Gamma_1\br{N} $, $ n_\Gamma = 1 $. For $ \Gamma = \Gamma\br{N} $, $ n_\Gamma = N $.
+\end{example*}
+
+\pagebreak
+
+\subsubsection{A fundamental domain}
+
+A question is for $ \Gamma \subseteq \SL_2\br{\ZZ} $, can we write down a fundamental domain for $ \Gamma $? For $ \Gamma \subseteq \SL_2\br{\ZZ} $, write $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $. Set
+$$ \DDD_\Gamma = \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i^{-1} \cdot \DDD. $$
+
+\begin{theorem}
+\hfill
+\begin{enumerate}
+\item For all $ z \in \HH $, there exists $ \gamma \in \Gamma $ such that $ \gamma z \in \DDD_\Gamma $.
+\item The subset $ \cbr{z \in \DDD_\Gamma \st \Gamma \cdot z \cap \DDD_\Gamma \ne \cbr{z}} $ is contained in $ \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i \cdot \partial\DDD $, so has measure zero.
+\end{enumerate}
+That is, $ \DDD_\Gamma $ is a fundamental domain for $ \Gamma $.
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Fix $ z \in \HH $. There exists $ \gamma \in \SL_2\br{\ZZ} $ such that $ \gamma z \in \DDD $. Can write $ \gamma $ as $ \pm\gamma_i\gamma' $ for some $ i $ and $ \gamma' \in \Gamma $. Then $ \pm\gamma_i\gamma'z \in \DDD $, so $ \gamma_i\gamma'z \in \DDD $, so $ \gamma'z \in \gamma_i^{-1}\DDD \subseteq \DDD_\Gamma $.
+\item Let $ z \in \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i^{-1} \cdot \mathring{\DDD} $. Want $ \Gamma \cdot z \cap \DDD_\Gamma = \cbr{z} $. Suppose $ \gamma z \in \DDD_\Gamma $ for $ \gamma \in \Gamma $. There exist $ i $ and $ j $ such that $ z \in \gamma_i^{-1} \cdot \mathring{\DDD} $ and $ \gamma z \in \gamma_j^{-1} \cdot \mathring{\DDD} $, so $ \gamma_iz, \gamma_j\gamma z \in \mathring{\DDD} $. So $ \gamma_iz = \gamma_j\gamma z $ so $ \gamma^{-1}\gamma_j^{-1}\gamma_iz = z $. Then $ \Stab z = \pm\I_2 $, so $ \gamma_i = \pm\gamma_j\gamma $. Since $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $, this is only possible if $ i = j $. Then $ \gamma_i = \pm\gamma_i\gamma $, so $ \gamma = \pm\I_2 $. So $ z = \gamma z $.
+\end{enumerate}
+\end{proof}
+
+\begin{example*}
+$ \Gamma = \Gamma_0\br{2} $ has index three in $ \SL_2\br{\ZZ} $. The coset representatives are
+$$ \I_2 = \twobytwo{1}{0}{0}{1} : z \mapsto z, \qquad \S = \twobytwo{0}{-1}{1}{0} : z \mapsto -\dfrac{1}{z}, \qquad \S\T = \twobytwo{0}{-1}{1}{1} : z \mapsto -\dfrac{1}{z + 1}, $$
+so
+$$
+\begin{tikzpicture}[scale=2]
+\draw [dotted, thick] (-3, 0) to (3, 0);
+\draw [dotted, thick] (0, 0) to (0, 2);
+\draw [dashed] (-2, 0) arc (180:0:1);
+\draw [dashed] (-1, 0) arc (180:0:1);
+\draw [dashed] (0, 0) arc (180:0:1);
+\draw [dashed] (-0.7, 0) arc (180:0:0.35);
+\draw [dashed] (0, 0) arc (180:0:0.35);
+\draw [dashed] (-0.5, 0) to (-0.5, 2);
+\draw [dashed] (0.5, 0) to (0.5, 2);
+\draw (-0.5, 0.866) arc (60:0:1);
+\draw (0, 0) arc (180:60:0.35);
+\draw (-0.5, 0.866) to (-0.5, 2);
+\draw (0.5, 0.35) to (0.5, 2);
+\end{tikzpicture}.
+$$
+\end{example*}
+
+A question is for a given $ \Gamma $ and $ \DDD_\Gamma $, what are the ways to escape to $ \infty $ in $ \DDD_\Gamma $? Let $ \Gamma \subseteq \SL_2\br{\ZZ} $ be a congruence subgroup. Then
+$$ \SL_2\br{\ZZ} \cdot \infty = \cbr{\twobytwo{a}{b}{c}{d} \cdot \infty} = \cbr{\dfrac{a}{c} \st \twobytwo{a}{b}{c}{d} \in \SL_2\br{\ZZ}} = \QQ \cup \cbr{\infty}. $$
+
+\begin{definition}
+The set of \textbf{cusps} for $ \Gamma $ is the set of $ \Gamma $-orbits on $ \QQ \cup \cbr{\infty} $.
+\end{definition}
+
+\begin{note*}
+If $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $, then $ \cbr{\gamma_i^{-1} \cdot \infty} $ is a set of representatives for the $ \Gamma $-orbits on $ \QQ \cup \cbr{\infty} $.
+\end{note*}
+
+\begin{example*}
+Let $ p $ be prime, and let $ \Gamma = \Gamma_0\br{p} $. Then
+$$ \Gamma \cdot \infty = \cbr{\dfrac{a}{pc} \st \br{a, pc} = 1} \cup \cbr{\infty}, \qquad \Gamma \cdot 0 = \cbr{\dfrac{b}{d} \st d \nmid p}. $$
+\end{example*}
+
+\begin{definition}
+A weakly modular form $ f $ of weight $ k $ and level $ \Gamma $ is \textbf{holomorphic or meromorphic at all cusps} if for all $ \gamma \in \Gamma $, $ \eval{f}_{k, \gamma} $ is holomorphic or meromorphic at $ \infty $.
+\end{definition}
+
+\begin{note*}
+Since $ \eval{f}_{k, \gamma} = f $ for $ \gamma \in \Gamma $, it suffices to check on a set of coset representatives for $ \Gamma $ in $ \SL_2\br{\ZZ} $.
+\end{note*}
+
+\begin{definition}
+A \textbf{modular form of weight $ k $ and level $ \Gamma $} is a weakly modular form of weight $ k $ and level $ \Gamma $ that is holomorphic on $ \HH $ and at all cusps.
+\end{definition}
 
 \end{document}
