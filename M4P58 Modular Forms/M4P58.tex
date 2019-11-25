@@ -636,7 +636,7 @@ which gives $ -\ord_\rho f / 3 $.
 
 \pagebreak
 
-\subsubsection{Holomorphic modular forms}
+\subsubsection{The space of holomorphic modular forms}
 
 Let
 $$ \M_k = \cbr{\text{holomorphic modular forms of weight} \ k}, $$
@@ -721,7 +721,7 @@ $$ c_0\E_4^n\E_6^n + \dots + c_r\E_4^{n - 3r}\E_6^{m + 2r} = 0. $$
 Dividing by $ \E_4^{n - 3r}\E_6^{m + 2r} $, get $ Q\br{\E_4^3 / \E_6^2} = 0 $ where $ Q\br{X} = c_0X^r + \dots + c_r $. Since the roots of $ Q $ are discrete, and $ \E_4^3 / \E_6^2 $ is non-constant, this is impossible.
 \end{proof}
 
-\subsubsection{Meromorphic modular forms}
+\subsubsection{The space of meromorphic modular forms}
 
 \begin{note*}
 The meromorphic modular forms of weight zero form a field. For example, $ \j\br{z} = \E_4^3 / \Delta = 1728\E_4^3 / \br{\E_4^3 - \E_6^2} $ is a non-constant meromorphic modular form, with a pole of order one at $ \infty $, a zero of order three at $ \rho $, and no other zeroes or poles.
@@ -1649,7 +1649,7 @@ That is, $ \DDD_\Gamma $ is a fundamental domain for $ \Gamma $.
 \hfill
 \begin{enumerate}
 \item Fix $ z \in \HH $. There exists $ \gamma \in \SL_2\br{\ZZ} $ such that $ \gamma z \in \DDD $. Can write $ \gamma $ as $ \pm\gamma_i\gamma' $ for some $ i $ and $ \gamma' \in \Gamma $. Then $ \pm\gamma_i\gamma'z \in \DDD $, so $ \gamma_i\gamma'z \in \DDD $, so $ \gamma'z \in \gamma_i^{-1}\DDD \subseteq \DDD_\Gamma $.
-\item Let $ z \in \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i^{-1} \cdot \mathring{\DDD} $. Want $ \Gamma \cdot z \cap \DDD_\Gamma = \cbr{z} $. Suppose $ \gamma z \in \DDD_\Gamma $ for $ \gamma \in \Gamma $. There exist $ i $ and $ j $ such that $ z \in \gamma_i^{-1} \cdot \mathring{\DDD} $ and $ \gamma z \in \gamma_j^{-1} \cdot \mathring{\DDD} $, so $ \gamma_iz, \gamma_j\gamma z \in \mathring{\DDD} $. So $ \gamma_iz = \gamma_j\gamma z $ so $ \gamma^{-1}\gamma_j^{-1}\gamma_iz = z $. Then $ \Stab z = \pm\I_2 $, so $ \gamma_i = \pm\gamma_j\gamma $. Since $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $, this is only possible if $ i = j $. Then $ \gamma_i = \pm\gamma_i\gamma $, so $ \gamma = \pm\I_2 $. So $ z = \gamma z $.
+\item Let $ z \in \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i^{-1} \cdot \mathring{\DDD} $. Want $ \Gamma \cdot z \cap \DDD_\Gamma = \cbr{z} $. Suppose $ \gamma z \in \DDD_\Gamma $ for $ \gamma \in \Gamma $. There exist $ i $ and $ j $ such that $ z \in \gamma_i^{-1} \cdot \mathring{\DDD} $ and $ \gamma z \in \gamma_j^{-1} \cdot \mathring{\DDD} $, so $ \gamma_iz, \gamma_j\gamma z \in \mathring{\DDD} $. So $ \gamma_iz = \gamma_j\gamma z $ so $ \gamma^{-1}\gamma_j^{-1}\gamma_iz = z $. Then $ \Stab_{\SL_2\br{\ZZ}} z = \pm\I_2 $, so $ \gamma_i = \pm\gamma_j\gamma $. Since $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $, this is only possible if $ i = j $. Then $ \gamma_i = \pm\gamma_i\gamma $, so $ \gamma = \pm\I_2 $. So $ z = \gamma z $.
 \end{enumerate}
 \end{proof}
 
@@ -1703,5 +1703,72 @@ Since $ \eval{f}_{k, \gamma} = f $ for $ \gamma \in \Gamma $, it suffices to che
 \begin{definition}
 A \textbf{modular form of weight $ k $ and level $ \Gamma $} is a weakly modular form of weight $ k $ and level $ \Gamma $ that is holomorphic on $ \HH $ and at all cusps.
 \end{definition}
+
+\pagebreak
+
+\subsubsection{The space of modular forms}
+
+\lecture{24}{Monday}{25/11/19}
+
+Let
+$$ \M_k\br{\Gamma} = \cbr{\text{holomorphic modular forms of weight} \ k \ \text{and level} \ \Gamma}, $$
+and let
+$$ \S_k\br{\Gamma} = \cbr{f \in \M_k\br{\Gamma} \st f \ \text{vanishes at all cusps}}. $$
+
+\begin{note*}
+For any $ \gamma \in \GL_2\br{\QQ}_+ $, if $ f \in \M_k\br{\Gamma} $, then $ \eval{f}_{k, \gamma} \in \M_k\br{\gamma^{-1}\Gamma\gamma} $. If we consider the $ \CC $-vector space $ \widetilde{\M_k} = \bigcup_\Gamma \M_k\br{\Gamma} $, then $ \gamma $ acts on $ \widetilde{\M_k} $ by $ \gamma \cdot f = \eval{f}_{k, \gamma} $. In fact, $ \GL_2\br{\QQ}_+ \subseteq \GL_2\br{\AA_\QQ^\f} $ and the action extends to this larger group. If we enlarge $ \widetilde{\M_k} $ in a suitable way, the correct group that acts is $ \GL_2\br{\AA_\QQ} $.
+\end{note*}
+
+A question is what can we say about $ \dim_\CC \M_k\br{\Gamma} $? Assume $ \Gamma \subseteq \SL_2\br{\ZZ} $, and fix $ f \in \M_k\br{\Gamma} $. Write $ d = \sbr{\SL_2\br{\ZZ} : \Gamma} $, and write $ \SL_2\br{\ZZ} = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j $. Let
+$$ g = \prod_{j = 1}^d \eval{f}_{k, \alpha_j}. $$
+
+\begin{proposition}
+$ g $ is independent of the choice of $ \alpha_i $.
+\end{proposition}
+
+\begin{proof}
+Suppose I replace $ \alpha_j' $ such that $ \Gamma \cdot \alpha_j = \Gamma \cdot \alpha_j' $. Then there exists $ \gamma \in \Gamma $ such that $ \gamma\alpha_j = \alpha_j' $, so
+$$ \eval{f}_{k, \alpha_j'} = \eval{\br{\eval{f}_{k, \gamma}}}_{k, \alpha_j} = \eval{f}_{k, \alpha_j}. $$
+So the product defining $ g $ does not change.
+\end{proof}
+
+\begin{proposition}
+$ g \in \M_{kd} $.
+\end{proposition}
+
+\begin{proof}
+For $ \alpha \in \SL_2\br{\ZZ} $,
+$$ \eval{g}_{kd, \alpha} = \prod_{j = 1}^d \eval{\br{\eval{f}_{k, \alpha_j}}}_{k, \alpha} = \prod_{j = 1}^d \eval{f}_{k, \alpha_j\alpha}. $$
+Since $ \SL_2\br{\ZZ} = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j $, $ \SL_2\br{\ZZ} = \SL_2\br{\ZZ} \cdot \alpha = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j\alpha $. So the elements $ \alpha_i\alpha $ are another set of coset representatives for $ \Gamma $ in $ \SL_2\br{\ZZ} $. Since $ g $ was independent of the choice of representatives, $ \eval{g}_{kd, \alpha} = g $.
+\end{proof}
+
+Have
+$$ \sum_{p \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{1}{e_p}\ord_p g = \dfrac{kd}{12}, \qquad e_p =
+\begin{cases}
+\dfrac{1}{2}\br{\#\Stab_{\SL_2\br{\ZZ}} p} & p \in \HH \\
+1 & p \in \QQ \cup \cbr{\infty}
+\end{cases},
+$$
+so
+$$ \dfrac{kd}{12} = \sum_{p \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{1}{e_p}\sum_{j = 1}^d \ord_p \eval{f}_{k, \alpha_j} = \sum_{p \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{1}{e_p}\sum_{j = 1}^d \ord_{\alpha_j^{-1}p} f. $$
+As $ p $ runs over a set of representatives for $ \SL_2\br{\ZZ} $-orbits, and $ \alpha_j $ runs over the coset representatives for $ \Gamma $ in $ \SL_2\br{\ZZ} $, $ \alpha_j^{-1}p $ runs over the representatives for $ \Gamma $-orbits, so
+$$ \sum_{q \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{n_q}{e_q}\ord_q g = \dfrac{kd}{12}, \qquad n_q = \#\cbr{j \st \alpha_j^{-1}q \in \Gamma \cdot q} \ge 1. $$
+
+\begin{corollary}
+If $ \ord_\infty f \ge kd / 12n_\infty + 1 $ for $ f \in \M_k\br{\Gamma} $, then $ f = 0 $.
+\end{corollary}
+
+Then
+\begin{align*}
+n_\infty
+& = \#\cbr{j \st \alpha_j^{-1}\infty \in \Gamma \cdot \infty}
+= \#\cbr{j \st \exists \gamma \in \Gamma, \ \alpha_j^{-1}\infty
+= \gamma\infty} = \#\cbr{j \st \exists \gamma \in \Gamma, \ \alpha_j\gamma \in \Stab_{\SL_2\br{\ZZ}} \infty} \\
+& = \#\cbr{j \st \alpha_j \in \Stab_{\SL_2\br{\ZZ}} \infty\Gamma}
+= \#\Stab_{\SL_2\br{\ZZ}} \infty / \Gamma
+= \#\Stab_{\SL_2\br{\ZZ}} \infty / \Stab_\Gamma \infty,
+\end{align*}
+so $ f $ is a power series in $ q^{1 / n_\infty} $, and $ f $ is determined by its terms of order at most $ kd / 12n_\infty $. So $ f $ is determined by the first $ 1 + kd / 12 $ terms of its $ q $-expansion. Thus
+$$ \dim_\CC \M_k\br{\Gamma} \le 1 + \dfrac{kd}{12}. $$
 
 \end{document}
