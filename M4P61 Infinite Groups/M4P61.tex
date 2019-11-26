@@ -85,7 +85,7 @@ $$
 \draw [->] (-1, 0) to node[above]{$ e_{-1} $} (-0.1, 0);
 \draw [->] (0, 0) to node[above]{$ e_0 $} (0.9, 0);
 \draw [->] (1, 0) to node[above]{$ e_1 $} (1.9, 0);
-\draw [dashed] (2, 0) -- (3, 0);
+\draw [dashed] (2, 0) to (3, 0);
 \end{tikzpicture}.
 $$
 \end{itemize}
@@ -820,13 +820,13 @@ $$
 Let $ F $ be a free group on $ S $. Then if $ \abs{S} = n $,
 $$
 \begin{tikzpicture}
-\draw (-2, 0) node[left]{$ F \backslash \Gamma\br{F, S} \cong $};
+\draw (-1.5, 0) node[left]{$ F \backslash \Gamma\br{F, S} \cong $};
 \fill (0, 0) circle (0.1);
-\draw (0, 0) arc (225:135:1) node[above]{$ s_1 $};
-\draw [->] (0, 1.4) arc (45:-35:1);
-\draw [dashed] (0.3, 0.7) arc (90:-180:1);
-\draw (0, 0) arc (-45:-135:1) node[left]{$ s_n $};
-\draw [->] (-1.4, 0) arc (135:55:1);
+\draw (0, 0) to [bend left=60] (0, 1) node[above]{$ s_1 $};
+\draw [->] (0, 1) to [bend left=60] (0, 0.1);
+\draw [dashed] (0.2, 0.5) arc (90:-180:0.7);
+\draw (0, 0) to [bend left=60] (-1, 0) node[left]{$ s_n $};
+\draw [->] (-1, 0) to [bend left=60] (-0.1, 0);
 \end{tikzpicture},
 $$
 a rose with $ n $ petals.
@@ -1381,7 +1381,8 @@ We call a graph $ X $ a \textbf{segment} if $ X^0 = \cbr{x, y} $ and $ X_+^1 = \
 \end{definition}
 
 \begin{theorem}
-Let $ G = G_1 \underset{A}{*} G_2 $. Then there is a tree $ X $ such that $ G $ acts on $ X $ without inversion of edges and such that the factor graph $ Y $ is a segment. Furthermore, there is a lift $ T = \cbr{x, y, e} $ of $ Y $, such that $ \Stab x = G_1 $, $ \Stab y = G_2 $, and $ \Stab e = A $.
+\label{thm:3.3.2}
+Let $ G = G_1 \underset{A}{*} G_2 $. Then there is a tree $ X $ such that $ G $ acts on $ X $ without inversion of edges and such that the factor graph $ Y $ is a segment. Furthermore, there is a lift $ T = \cbr{x, y, e} $ of $ Y $, such that $ \Stab_G x = G_1 $, $ \Stab_G y = G_2 $, and $ \Stab_G e = A $.
 \end{theorem}
 
 \begin{proof}
@@ -1391,7 +1392,88 @@ Let $ X^0 = G / G_1 \cup G / G_2 $ and $ X_+^1 = G / A $, with $ \alpha\br{gA} =
 & \vdots \\
 \alpha\br{e_n} = x_1y_1 \dots x_{\tfrac{n}{2}}y_{\tfrac{n}{2}}G_2, & \qquad \omega\br{e_n} = x_1y_1 \dots x_{\tfrac{n}{2}}y_{\tfrac{n}{2}}G_1 = G_1,
 \end{align*}
-a contradiction by uniqueness of $ A $-normal forms. Now every vertex $ g_1G_1 $ and $ g_2G_1 $ are in the same orbit, as $ g_2g_1^{-1} \cdot g_1G_1 = g_2G_1 $. The same for $ G_2 $. Hence $ Y = \sbr{G_1} \xrightarrow{\sbr{A}} \sbr{G_2} $. Also all $ gA $ are in the same orbit. Then $ Y $ has a lift $ G_1 \xrightarrow{A} G_A $ and $ \Stab G_1 = G_1 $, $ \Stab G_2 = G_2 $, and $ \Stab A = A $.
+a contradiction by uniqueness of $ A $-normal forms. Now every vertex $ g_1G_1 $ and $ g_2G_1 $ are in the same orbit, as $ g_2g_1^{-1} \cdot g_1G_1 = g_2G_1 $. The same for $ G_2 $. Hence $ Y $ is
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[below]{$ \sbr{G_1} $};
+\fill (1, 0) circle (0.1) node[below]{$ \sbr{G_2} $};
+\draw [->] (0, 0) to node[above]{$ \sbr{A} $} (0.9, 0);
+\end{tikzpicture}.
+$$
+Also all $ gA $ are in the same orbit. Then $ Y $ has a lift
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[below]{$ G_1 $};
+\fill (1, 0) circle (0.1) node[below]{$ G_2 $};
+\draw [->] (0, 0) to node[above]{$ A $} (0.9, 0);
+\end{tikzpicture},
+$$
+and $ \Stab_G G_1 = G_1 $, $ \Stab_G G_2 = G_2 $, and $ \Stab_G A = A $.
 \end{proof}
+
+\lecture{23}{Tuesday}{26/11/19}
+
+\begin{remark}
+\label{rem:3.3.3}
+Consider $ gG_1 \in X^1 $. Fix $ \T_A^1 $ a set of representatives of left cosets of $ A $ in $ G_1 $. Then $ gG_1 = gxG_1 $ and $ gyA \ne gxA $ for all $ y \ne x \in \T_A \setminus \cbr{1} \subseteq G_1 $. Thus the valency of $ gG_1 $ is $ \abs{G_1 : A} $. Furthermore, $ \Stab_G gG_i = gG_ig^{-1} = G_i^g $.
+\end{remark}
+
+\pagebreak
+
+\begin{theorem}
+\label{thm:3.4}
+Let $ G $ be any graph acting on a tree $ X $ without inversion of edges, such that the factor graph is a segment. Then if $ T $ is any lift of $ Y $, so $ T = \cbr{x, y, e} $, set $ G_x = \Stab_G x = \cbr{g \in G \st g \cdot x = x} \le G $, $ G_y = \Stab_G y $, and $ G_e = \Stab_G e $. Then
+$$ G = G_x \underset{G_e}{*} G_y. $$
+\end{theorem}
+
+\begin{proof}
+Note that such a lift $ T \subseteq X $ exists. Note that $ G \cdot T = X $ and $ G_e = G_x \cap G_y $. Claim that $ H = \abr{G_x, G_y} = G $. Otherwise we prove that $ H \cdot T $ and $ \br{G \setminus H} \cdot T $ are disjoint. First clearly $ h \cdot x \ne g \cdot x $ for $ h \in H $ and $ g \in G $ as otherwise $ g^{-1}h \cdot x = x $ for $ g^{-1}h \in H $. Similarly $ h \cdot y \ne g \cdot y $. Clearly $ g \cdot x = h \cdot y $, as otherwise $ h^{-1}g \cdot x = y $, so $ \OOO\br{x} = \OOO\br{y} $, a contradiction. Hence $ H \cdot T \cap \br{G \setminus H} \cdot T = \emptyset $. As $ G \cdot T = X $ is connected, this implies $ G \setminus H = \emptyset $ and $ H = G $. Consider $ \phi_x : G_x \hookrightarrow G $ and $ \phi_y : G_y \hookrightarrow G $. For
+$$ G' = G_x \underset{G_e}{*} G_y, $$
+there is some $ \phi : G' \to G $ extending $ \id_{G_x} $ and $ \id_{G_y} $ by the universal property. Clearly $ \phi $ is surjective as $ \abr{G_x, G_y} = G $. We need to show that $ \phi $ is injective. By the proof of \ref{thm:3.3.2}, there is a tree $ X' $, where $ X'^0 = \cbr{gG_x, gG_y \st g \in G} $ and $ X'^1 = \cbr{gG_e \st g \in G} $, such that $ G' \curvearrowright X' $. Define
+$$ \function[\psi]{X'}{X}{gG_z}{\phi\br{g} \cdot z}, \qquad z \in \cbr{x, y, e}. $$
+One checks easily that this is a graph homomorphism, as $ \phi $ is a homomorphism of groups and $ G \curvearrowright X $. Clearly $ \psi $ is surjective, as $ \phi $ is surjective and $ G \cdot T = X $. It suffices to show that $ \psi $ is locally injective. By \ref{rem:3.3.3}, the star of $ gG_x $ is exactly
+$$ \cbr{gg_xG_e \st g_x \in \T_{G_e}^{G_x}}. $$
+Now for $ g_x \ne g_x' \in \T_{G_e}^{G_x} $, that is $ g_xG_e \ne g_x'G_e $ and $ g_x, g_x' \in G_x $, then $ \phi\br{gg_x} \cdot y \ne \phi\br{gg_x'} \cdot y $, as otherwise $ g_x^{-1}g^{-1}gg_x' = g_x^{-1}g_x' = \phi\br{g_x^{-1}g_x'} \cdot y = y $, so $ g_x^{-1}g_x' \in G_x \cap G_y = G_e $, a contradiction. Hence $ \psi\br{gg_xG_e} = \phi\br{gg_x} \cdot e \ne \phi\br{gg_x'} \cdot e = \psi\br{gg_x'G_e} $ and $ \psi $ is locally injective. Now $ \phi $ clearly is injective on $ G_x \cup G_y $. Now if $ g \in G' \setminus G_x $, then $ x = \psi\br{G_x} \ne \psi\br{gG_x} = \phi\br{g} \cdot x $. Hence $ \phi\br{g} \ne e_G $ and $ \phi $ is injective.
+\end{proof}
+
+\begin{example}
+Consider $ \DDD_\infty $. This acts on
+$$
+\begin{array}{c}
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[above]{$ 0 $};
+\fill (1, 0) circle (0.1) node[above]{$ 1 $};
+\draw [dashed] (-2, 0) to (-1, 0);
+\draw [->] (0, 0) to (-1, 0);
+\draw [->] (0, 0) to node[above]{$ e_0 $} (0.9, 0);
+\draw [->] (1, 0) to (1.9, 0);
+\draw [dashed] (2, 0) to (3, 0);
+\draw [->] (0.5, 0.5) arc (180:0:0.5);
+\draw [->] (0.5, -0.5) arc (0:-180:0.5);
+\fill (1, 1) node[above]{$ a $};
+\fill (0, -1) node[below]{$ b $};
+\end{tikzpicture}
+\\
+\CCC_\infty
+\end{array}
+$$
+as its automorphism group. This does invert an edge, as $ ab \cdot e_0 = \overline{e_0} $. Hence consider $ \BBB\br{\CCC_\infty} $ on which $ \DDD_\infty $ does act without inversion of edges. Set $ c = ab $. It is the rotation around $ \tfrac{1}{2} $ and $ a = cb $, so $ \DDD_\infty = \abr{b, c} $. Further $ \abr{b} \cong \abr{c} \cong \ZZ_2 $. The factor graph of $ \DDD_\infty \curvearrowright \BBB\br{\CCC_\infty} $ is
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[below]{$ \OOO\br{0} $};
+\fill (1, 0) circle (0.1) node[below]{$ \OOO\br{\tfrac{1}{2}} $};
+\draw [->] (0, 0) to (0.9, 0);
+\end{tikzpicture}.
+$$
+A lift is
+$$
+\begin{tikzpicture}
+\fill (0, 0) circle (0.1) node[below]{$ 0 $};
+\fill (1, 0) circle (0.1) node[below]{$ \tfrac{1}{2} $};
+\draw [->] (0, 0) to node[above]{$ e_{1 / 2} $} (0.9, 0);
+\end{tikzpicture}.
+$$
+As $ \Stab_{\CCC_\infty} 0 = \abr{b} $, $ \Stab_{\CCC_\infty} \tfrac{1}{2} = \abr{c} $, and $ \Stab_{\CCC_\infty} e_{1 / 2} = \cbr{e_{\CCC_\infty}} $, hence by \ref{thm:3.4}, $ \DDD_\infty \cong \ZZ_2 * \ZZ_2 $.
+\end{example}
 
 \end{document}
