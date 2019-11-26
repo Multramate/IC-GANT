@@ -1109,7 +1109,7 @@ for all $ n $.
 Can also reduce lines in $ \PP^2\br{\QQ_p} $ modulo $ p $. Write any line as $ aX + bY + cZ = 0 $. Rescale so that $ a, b, c \in \ZZ_p $, and at least one is in $ \ZZ_p^\times $. Then $ \overline{a}X + \overline{b}Y + \overline{c}Z = 0 $ is a well-defined line in $ \PP^2\br{\FF_p} $. Let $ y^2 = g\br{x} $, where $ g $ is a monic cubic with distinct roots. Rescaling $ x $ and $ y $ if necessary, assume $ g\br{x} \in \ZZ_p\sbr{x} $. The \textbf{reduction modulo $ p $} of the elliptic curve is then $ y^2 = \overline{g}\br{x} $, where $ \overline{g}\br{x} = g\br{x} \mod p $. This is an irreducible cubic, but it could be singular, if $ p = 2 $ or if $ p \mid \Delta $.
 
 \begin{example}
-Let $ p = 3 $ and $ E = \cbr{y^2 = x^3 - 18} $. This is $ y^2 = x^3 \mod 3 $, which has a singular point $ \br{0, 0} $. For example, $ \br{3, 3} \in E\br{\QQ_3} $ is $ \sbr{3 : 3 : 1} \mapsto \sbr{0 : 0 : 1} \mod 3 $, that is to the singular point. There is a point $ \br{x, y} $ on $ E\br{\QQ_3} $ with $ x = \tfrac{1}{9} $, since $ \br{\tfrac{1}{9}}^3 - 18 = \tfrac{1}{27^2}\br{1 - 18 \cdot 27^2} $ is a square, by Hensel's lemma for $ y^2 - \br{1 - 18 \cdot 27^2} $. Then $ y = \tfrac{1}{27}u $ for some $ u \in \ZZ_3^\times $. So $ \sbr{x : y : 1} = \sbr{27x : 27y : 27} = \sbr{3 : u : 27} \mapsto \sbr{0 : \overline{u} : 0} = \sbr{0 : 1 : 0} = \OOO \mod 3 $.
+Let $ p = 3 $ and $ E $ be $ y^2 = x^3 - 18 $. This is $ y^2 = x^3 \mod 3 $, which has a singular point $ \br{0, 0} $. For example, $ \br{3, 3} \in E\br{\QQ_3} $ is $ \sbr{3 : 3 : 1} \mapsto \sbr{0 : 0 : 1} \mod 3 $, that is to the singular point. There is a point $ \br{x, y} $ on $ E\br{\QQ_3} $ with $ x = \tfrac{1}{9} $, since $ \br{\tfrac{1}{9}}^3 - 18 = \tfrac{1}{27^2}\br{1 - 18 \cdot 27^2} $ is a square, by Hensel's lemma for $ y^2 - \br{1 - 18 \cdot 27^2} $. Then $ y = \tfrac{1}{27}u $ for some $ u \in \ZZ_3^\times $. So $ \sbr{x : y : 1} = \sbr{27x : 27y : 27} = \sbr{3 : u : 27} \mapsto \sbr{0 : \overline{u} : 0} = \sbr{0 : 1 : 0} = \OOO \mod 3 $.
 \end{example}
 
 \begin{lemma}
@@ -1470,6 +1470,109 @@ So $ 2^r = \#\Im \delta / 4 $.
 \begin{example*}
 If $ E $ is $ y^2 = x^3 - x $, then $ 2^r = 4 / 4 = 1 $ so $ r = 0 $. So $ E\br{\QQ} $ is finite.
 \end{example*}
+
+\lecture{24}{Tuesday}{26/11/19}
+
+\begin{example}
+Let $ E $ be
+$$ y^2 = \br{x - 5}\br{x - 6}\br{x + 11}. $$
+Then $ \Delta = \br{-5 - \br{-6}}^2\br{-5 - 11}^2\br{11 - \br{-6}}^2 = 2^817^2 $. Compute $ E\br{\QQ}_{\tors} $ and $ E\br{\QQ} / 2E\br{\QQ} $.
+\begin{itemize}
+\item  The only primes dividing $ \Delta $ are $ 2 $ and $ 17 $. Modulo three, $ y^2 = x\br{x + 1}\br{x - 1} = x^3 - x $. This has solutions $ \br{0, 0}, \br{1, 0}, \br{-1, 0} $ in $ \FF_3 $, so $ E\br{\FF_3} $ has four points, and $ E\br{\FF_3} \cong \br{\ZZ / 2\ZZ}^2 $. Then $ E\br{\QQ}_{\tors} \hookrightarrow E\br{\FF_3} \cong \br{\ZZ / 2\ZZ}^2 $. So
+$$ E\br{\QQ}_{\tors} = \cbr{\OOO, \br{5, 0}, \br{6, 0}, \br{-11, 0}}. $$
+\item Let
+$$ \function[\delta]{E\br{\QQ} / 2E\br{\QQ}}{\br{\QQ^\times / \br{\QQ^\times}^2}^2}{\br{x, y}}{\br{x - 5, x - 6, x + 11}, \qquad y \ne 0}. $$
+Then $ \Im \delta \subset \cbr{\br{a, b, c} \in \cbr{\pm 1, \pm 2, \pm 17, \pm 34}^3 \st abc = 1} $. From now on, regard $ \delta $ as
+$$
+\begin{array}{ccrcl}
+\delta & : & E\br{\QQ} / 2E\br{\QQ} & \longrightarrow & \br{\QQ^\times / \br{\QQ^\times}^2}^2 \\
+& & \br{x, y} & \longmapsto & \br{x - 5, x - 6} \\
+& & \OOO & \longmapsto & \br{1, 1} \\
+& & \br{5, 0} & \longmapsto & \br{-1, -1} \\
+& & \br{6, 0} & \longmapsto & \br{1, 17} \\
+& & \br{-11, 0} & \longmapsto & \br{-1, -17}
+\end{array}.
+$$
+To find $ \Im \delta $, we need to solve the equations
+$$ x - 5 = b_1u^2, \qquad x - 6 = b_2v^2, \qquad x + 11 = b_3w^2, $$
+for $ b_1, b_2, b_3 \in \cbr{\pm 1, \pm 2, \pm 17, \pm 34} $ and $ u, v, w \in \QQ^\times $ such that $ b_1b_2b_3 = 1 $, so
+$$ b_1u^2 - b_2v^2 = 1, \qquad b_1b_2w^2 - b_1u^2 = 16. $$
+For these to have solutions in $ \RR $, need $ b_1b_2 > 0 $. Also, $ \delta\br{\br{5, 0}} = \br{-1, -1} $, so if $ \br{b_1, b_2} \in \Im \delta $, then $ \br{-b_1, -b_2} \in \Im \delta $. So it suffices to determine which $ \br{b_1, b_2} \in \Im \delta $ for $ b_1, b_2 > 0 $.
+
+\pagebreak
+
+Let $ \checkmark $ be $ \br{b_1, b_2} \in \Im \delta $ and $ \times $ be $ \br{b_1, b_2} \notin \Im \delta $.
+\begin{itemize}
+\item $ \delta\br{\OOO} = \br{1, 1} $ and $ \delta\br{\br{6, 0}} = \br{1, 17} $, so $ \br{1, 1}, \br{1, 17} \in \Im \delta $. Then
+$$
+\begin{array}{c|cccc}
+b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
+\hline
+1 & \checkmark & & \checkmark & \\
+2 & & & & \\
+17 & & & & \\
+34 & & & &
+\end{array}.
+$$
+\item If $ \br{b_1, b_2} = \br{1, 2} $, then $ u^2 - 2v^2 = 1 $ and $ 2w^2 - u^2 = 16 $, so $ U^2 - 2V^2 = Z^2 $ and $ 2W^2 - U^2 = 16Z^2 $, so $ 2 \mid U, V, W, Z $, so $ U = V = W = Z = 0 $, a contradiction, so $ \br{1, 2} \notin \Im \delta $. Then $ \br{1, 34} = \br{1, 2}\br{1, 17} \notin \Im \delta $, so
+$$
+\begin{array}{c|cccc}
+b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
+\hline
+1 & \checkmark & \times & \checkmark & \times \\
+2 & & & & \\
+17 & & & & \\
+34 & & & &
+\end{array}.
+$$
+\item This argument only used $ 2 \mid b_2 $ and $ 2 \nmid b_1 $, so $ \br{17, 2}, \br{17, 34} \notin \Im \delta $. Then
+$$
+\begin{array}{c|cccc}
+b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
+\hline
+1 & \checkmark & \times & \checkmark & \times \\
+2 & & & & \\
+17 & & \times & & \times \\
+34 & & & &
+\end{array}.
+$$
+\item If $ \br{b_1, b_2} = \br{2, 1} $, then $ 2u^2 - v^2 = 1 $ and $ w^2 - u^2 = 8 $ has a solution $ u = v = 1 $ and $ w = 3 $, so $ \br{2, 1} \in \Im \delta $, so $ x - 5 = 2u^2 = 2 $ and $ y^2 = 36 = 6^2 $, so $ \br{x, y} = \br{7, \pm 6} $. Then $ \br{2, 17} = \br{2, 1}\br{1, 17} \in \Im \delta $ and $ \br{2, 2}, \br{2, 34}, \br{34, 2}, \br{34, 34} \notin \Im \delta $, so
+$$
+\begin{array}{c|cccc}
+b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
+\hline
+1 & \checkmark & \times & \checkmark & \times \\
+2 & \checkmark & \times & \checkmark & \times \\
+17 & & \times & & \times \\
+34 & & \times & & \times
+\end{array}.
+$$
+\item If $ \br{b_1, b_2} = \br{17, 1} $, then $ 17u^2 - v^2 = 1 $ and $ 17w^2 - 17u^2 = 16 $, so $ 17U^2 - V^2 = Z^2 $ and $ 17W^2 - 17U^2 = 16Z^2 $, so $ 17 \mid U, V, W, Z $, so $ U = V = W = Z = 0 $, a contradiction, so $ \br{17, 1} \notin \Im \delta $. Then $ \br{17, 17} = \br{1, 17}\br{17, 1} \notin \Im \delta $, so
+$$
+\begin{array}{c|cccc}
+b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
+\hline
+1 & \checkmark & \times & \checkmark & \times \\
+2 & \checkmark & \times & \checkmark & \times \\
+17 & \times & \times & \times & \times \\
+34 & & \times & & \times
+\end{array}.
+$$
+\item This argument only used $ 17 \mid b_1 $ and $ 17 \nmid b_2 $, so $ \br{34, 1}, \br{34, 17} \notin \Im \delta $. Then
+$$
+\begin{array}{c|cccc}
+b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
+\hline
+1 & \checkmark & \times & \checkmark & \times \\
+2 & \checkmark & \times & \checkmark & \times \\
+17 & \times & \times & \times & \times \\
+34 & \times & \times & \times & \times
+\end{array}.
+$$
+\end{itemize}
+Thus $ \#\Im \delta = 8 $ and $ E $ has rank one, since $ 2^{2 + r} = 8 $, and $ \br{7, \pm 6} \in E\br{\QQ} $ is not torsion.
+\end{itemize}
+\end{example}
 
 \pagebreak
 
