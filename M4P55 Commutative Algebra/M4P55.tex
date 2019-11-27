@@ -160,7 +160,7 @@ $ x \in A^* $ if and only if $ \abr{x} = A $, and $ R $ is a field if and only i
 Let $ A $ be a non-zero ring. Then the following are equivalent.
 \begin{enumerate}
 \item $ A $ is a field.
-\item There are no ideals in $ A $ other than $ \abr{0} $ and $ A $.
+\item There are no ideals in $ A $ other than $ 0 $ and $ A $.
 \item Every non-zero homomorphism $ f : A \to B $ is injective.
 \end{enumerate}
 \end{proposition}
@@ -216,7 +216,7 @@ $$ \function[f^*]{\Spec B}{\Spec A}{I \subset B}{f^{-1}\br{I} \subset A}. $$
 \lecture{3}{Wednesday}{09/10/19}
 
 \begin{remark}
-If $ f : A \to B $ is a ring homomorphism, then $ f^{-1}\br{\ppp} $, where $ \ppp \subset B $ is a prime ideal, is a prime ideal. But this is false for maximal ideals. Let $ A = \ZZ $, let $ B = \QQ $, and let $ f\br{x} = x $. Then $ \abr{0} \subset \QQ $ is a maximal ideal and $ f^{-1}\br{\abr{0}} = \abr{0} \subset \ZZ $ is not a maximal ideal. For example, $ \abr{0} \subsetneq \abr{2} \subsetneq \ZZ $.
+If $ f : A \to B $ is a ring homomorphism, then $ f^{-1}\br{\ppp} $, where $ \ppp \subset B $ is a prime ideal, is a prime ideal. But this is false for maximal ideals. Let $ A = \ZZ $, let $ B = \QQ $, and let $ f\br{x} = x $. Then $ 0 \subset \QQ $ is a maximal ideal and $ f^{-1}\br{0} = 0 \subset \ZZ $ is not a maximal ideal. For example, $ 0 \subsetneq \abr{2} \subsetneq \ZZ $.
 \end{remark}
 
 \begin{theorem}
@@ -239,7 +239,7 @@ Suppose that $ S $ is a partially ordered set such that every chain $ T \subset 
 Zorn's lemma is equivalent to the axiom of choice.
 
 \begin{proof}[Proof of Theorem \ref{thm:4.6}]
-Let $ \Sigma $ be the set of all ideals of $ A $ which are not equal to $ A $. Then $ \abr{0} \in \Sigma $, so $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with partial order given by inclusion. Enough to check the assumption of Zorn's lemma. Suppose $ T $ is a chain of ideals, so it is a collection of ideals $ J_i $ for $ i \in T $. Consider instead
+Let $ \Sigma $ be the set of all ideals of $ A $ which are not equal to $ A $. Then $ 0 \in \Sigma $, so $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with partial order given by inclusion. Enough to check the assumption of Zorn's lemma. Suppose $ T $ is a chain of ideals, so it is a collection of ideals $ J_i $ for $ i \in T $. Consider instead
 $$ I = \bigcup_{i \in T} J_i. $$
 Claim that $ T $ is a chain implies that $ I $ is an ideal. Then $ x \in I $ implies that $ x \in J_i $ for some $ i $. Take any $ x, y \in I $. Then $ x \in J_i $ and $ y \in J_k $ for some $ i, k \in T $, so $ T $ is a chain, hence $ i \le k $ or $ k \le i $, so $ J_i \subset J_k $ or $ J_k \subset J_i $. Without loss of generality assume $ J_i \subset J_k $. Then $ x, y \in J_k $, so $ x + y \in J_k \subset I $. Clearly, $ I $ is an upper bound.
 \end{proof}
@@ -301,9 +301,7 @@ $$ \br{x + y}^{n + m} = \sum_{i, j \ge 0, \ i + j = n + m} a_{ij}x^iy^j, \qquad 
 Clearly, either $ i \ge n $ or $ j \ge m $. Then $ a_{ij}x^iy^j = 0 $. Therefore, $ \br{x + y}^{n + m} = 0 $, hence $ x + y \in \NNN\br{A} $. If $ x + \NNN\br{A} $ is nilpotent in $ A / \NNN\br{A} $, then $ x^n + \NNN\br{A} = \NNN\br{A} $ is the trivial coset. Hence $ x^n \in \NNN\br{A} $. Thus $ \br{x^n}^m = 0 $ for some $ m $.
 \end{proof}
 
-\begin{definition}
 A ring $ A $ such that $ \NNN\br{A} = 0 $ is called a \textbf{reduced ring}.
-\end{definition}
 
 \begin{proposition}
 \label{prop:5.3}
@@ -316,15 +314,13 @@ $ \NNN\br{A} $ is the intersection of all prime ideals of $ A $.
 \item[$ \subset $] Let $ I $ be the intersection of all prime ideals of $ A $. Let $ f \in A $ be such that $ f^n = 0 $. Take any prime ideal $ \ppp \subset A $. We know that $ f^n = 0 \in \ppp $. Then $ f\br{f \dots f} \in \ppp $ and $ \ppp $ prime implies that $ f \in \ppp $, so $ f \in I $.
 \item[$ \supset $] Let us prove the converse. Suppose $ f $ is not nilpotent, so $ f^n \ne 0 $ for all $ n \ge 1 $. We will show that there exists a prime ideal $ \ppp \subset A $ that does not contain $ f $. Let us consider all ideals of $ A $ that do not contain $ f^m $, where $ m \in \ZZ_{> 0} $. Let $ \Sigma $ be the set of ideals $ J \subset A $ such that
 $$ J \cap \cbr{f^m \st m \ge 1} = \emptyset. $$
-The zero ideal $ \abr{0} $ is in $ \Sigma $. So $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with a partial order given by inclusion. Applying Zorn's lemma we obtain that $ \Sigma $ contains a maximal element. Call it $ \ppp $. By construction, $ \ppp \cap \cbr{f^m \st m \ge 1} = \emptyset $, so $ f \notin \ppp $. It remains to prove that $ \ppp $ is prime. Enough to prove that if $ x \notin \ppp $ and $ y \notin \ppp $, then $ xy \notin \ppp $. Consider the ideal $ \ppp + \abr{x} \supsetneq \ppp $. Since $ \ppp $ is maximal in $ \Sigma $, thus $ \ppp + \abr{x} $ is not in $ \Sigma $. By definition of $ \Sigma $ there exists $ n \ge 1 $ such that $ f^n \in \ppp + \abr{x} $. Similarly, there exists $ m \ge 1 $ such that $ f^m \in \ppp + \abr{y} $. Then $ \br{\ppp + \abr{x}}\br{\ppp + \abr{y}} \subset \ppp + \abr{xy} $. In particular, $ f^{n + m} = f^nf^m \in \ppp + \abr{xy} $. If $ xy \in \ppp $, then $ f^{n + m} \in \ppp $, which is not possible. Therefore, $ xy \notin \ppp $. So $ \ppp $ is a prime ideal that does not contain $ f $.
+The zero ideal $ 0 $ is in $ \Sigma $. So $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with a partial order given by inclusion. Applying Zorn's lemma we obtain that $ \Sigma $ contains a maximal element. Call it $ \ppp $. By construction, $ \ppp \cap \cbr{f^m \st m \ge 1} = \emptyset $, so $ f \notin \ppp $. It remains to prove that $ \ppp $ is prime. Enough to prove that if $ x \notin \ppp $ and $ y \notin \ppp $, then $ xy \notin \ppp $. Consider the ideal $ \ppp + \abr{x} \supsetneq \ppp $. Since $ \ppp $ is maximal in $ \Sigma $, thus $ \ppp + \abr{x} $ is not in $ \Sigma $. By definition of $ \Sigma $ there exists $ n \ge 1 $ such that $ f^n \in \ppp + \abr{x} $. Similarly, there exists $ m \ge 1 $ such that $ f^m \in \ppp + \abr{y} $. Then $ \br{\ppp + \abr{x}}\br{\ppp + \abr{y}} \subset \ppp + \abr{xy} $. In particular, $ f^{n + m} = f^nf^m \in \ppp + \abr{xy} $. If $ xy \in \ppp $, then $ f^{n + m} \in \ppp $, which is not possible. Therefore, $ xy \notin \ppp $. So $ \ppp $ is a prime ideal that does not contain $ f $.
 \end{itemize}
 \end{proof}
 
 \pagebreak
 
-\begin{definition}
 The \textbf{Jacobson radical} $ \JJJ\br{A} $ is the intersection of all maximal ideals of $ A $.
-\end{definition}
 
 \begin{proposition}
 $ x \in \JJJ\br{A} $ if and only if $ 1 - xy \in A^* $ for all $ y \in A $.
@@ -338,10 +334,8 @@ $ x \in \JJJ\br{A} $ if and only if $ 1 - xy \in A^* $ for all $ y \in A $.
 \end{itemize}
 \end{proof}
 
-\begin{definition}
 Let $ I $ be an ideal of $ A $. The \textbf{radical} of $ I $ is the set
 $$ \rad I = \cbr{x \in A \st \exists n \ge 1, \ x^n \in I}. $$
-\end{definition}
 
 \begin{proposition}
 The radical of $ I $ is the intersection of all prime ideals of $ A $ that contain $ I $.
@@ -602,11 +596,11 @@ So in this case $ f^* $ is injective and its image is $ \V_{\Ker f} $.
 \begin{itemize}
 \item Let $ k $ be a field. Then $ \Spec k $ is one point.
 \item Let $ R = k\sbr{x} $, an integral domain. This is a PID, so every ideal is $ \abr{p\br{x}} $, where $ p\br{x} \in k\sbr{x} $ is monic. Then $ \abr{p\br{x}} $ is prime if and only if $ p\br{x} $ is irreducible, so
-$$ \Spec k\sbr{x} = \cbr{\abr{0}} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{is monic and irreducible}}. $$
+$$ \Spec k\sbr{x} = \cbr{0} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{is monic and irreducible}}. $$
 In particular, if $ k $ is algebraically closed, such as $ k = \CC $, then
-$$ \Spec k\sbr{x} = \cbr{\abr{0}} \cup \cbr{\abr{x - a} \st a \in k}. $$
+$$ \Spec k\sbr{x} = \cbr{0} \cup \cbr{\abr{x - a} \st a \in k}. $$
 \item Let $ R = \ZZ $, a PID. Then
-$$ \Spec \ZZ = \cbr{\abr{0}} \cup \cbr{\abr{p} \st p \ \text{is a prime number}}. $$
+$$ \Spec \ZZ = \cbr{0} \cup \cbr{\abr{p} \st p \ \text{is a prime number}}. $$
 \item Let $ R = \ZZ\sbr{i} $ be the Gaussian integers, a PID. The tautological map $ f : \ZZ \to \ZZ\sbr{i} $ gives rise to $ f^* : \Spec \ZZ\sbr{i} \to \Spec \ZZ $. Take a usual prime $ p $ and decompose $ p $ into a product of primes in $ \ZZ\sbr{i} $.
 \begin{itemize}
 \item $ 2 = \br{1 + i}\br{1 - i} = -i\br{1 + i}^2 $, where $ 1 + i $ is a prime in $ \ZZ\sbr{i} $.
@@ -617,25 +611,25 @@ Then
 $$
 \begin{array}{cccl}
 \Spec \ZZ\sbr{i} & \longrightarrow & \Spec \ZZ & \\
-\abr{0} & \longmapsto & \abr{0} & \\
+0 & \longmapsto & 0 & \\
 \abr{1 + i} & \longmapsto & \abr{2} & \text{ramified} \\
 \abr{3} & \longmapsto & \abr{3} & \text{inert} \\
 \abr{1 + 2i}, \abr{1 - 2i} & \longmapsto & \abr{5} & \text{split}
 \end{array}.
 $$
-\item Let $ R $ be an integral domain and let $ k $ be the fraction field of $ R $, so $ f : R \hookrightarrow k $. Then $ \Spec k = \cbr{\abr{0}} $ and $ f^* : \Spec k \to \Spec R $.
-\item Let $ k $ be a field, so $ f : k \hookrightarrow k\sbr{x} $. Then $ f^* : \Spec k\sbr{x} \to \Spec k $. If $ \ppp \subset k\sbr{x} $, then $ \ppp \cap k = \cbr{\abr{0}} $, otherwise if $ \ppp $ contains a unit of $ k\sbr{x} $ then $ \ppp = k\sbr{x} $. A contradiction.
+\item Let $ R $ be an integral domain and let $ k $ be the fraction field of $ R $, so $ f : R \hookrightarrow k $. Then $ \Spec k = \cbr{0} $ and $ f^* : \Spec k \to \Spec R $.
+\item Let $ k $ be a field, so $ f : k \hookrightarrow k\sbr{x} $. Then $ f^* : \Spec k\sbr{x} \to \Spec k $. If $ \ppp \subset k\sbr{x} $, then $ \ppp \cap k = \cbr{0} $, otherwise if $ \ppp $ contains a unit of $ k\sbr{x} $ then $ \ppp = k\sbr{x} $. A contradiction.
 \end{itemize}
 \end{example*}
 
 Usually, every point of a topological space is a closed subset. But this is not always true. Recall that if $ Y $ is a subset of a topological space $ X $, then the \textbf{closure} of $ Y $ is the smallest closed subset of $ X $ containing $ Y $. It is the same as the intersection of all closed subsets containing $ Y $. Claim that if $ \ppp \subseteq R $ is a prime ideal, then the closure of $ \ppp $ is $ \V_\ppp $. Any closed subset of $ \Spec R $ containing $ \ppp $ is $ \V_J $, where $ J \subset \ppp $. This $ \V_J $ visibly contains $ \V_\ppp $. Hence $ \V_\ppp $ is the intersection of all such $ \V_J $.
 
 \begin{example*}
-In $ \Spec \ZZ $, the point $ \abr{p} $ is closed, because $ \V_{\abr{p}} = \cbr{\abr{p}} $. The point $ \abr{0} $ is not closed, as $ \V_{\abr{0}} = \Spec \ZZ $. The closure of $ \abr{0} $ is all of $ \Spec \ZZ $.
+In $ \Spec \ZZ $, the point $ \abr{p} $ is closed, because $ \V_{\abr{p}} = \cbr{\abr{p}} $. The point $ 0 $ is not closed, as $ \V_{0} = \Spec \ZZ $. The closure of $ 0 $ is all of $ \Spec \ZZ $.
 \end{example*}
 
 \begin{example*}
-Let $ R = k\sbr{\sbr{t}} = \cbr{a_0 + a_1t + \dots \st a_i \in k} $, a local ring. Its unique maximal ideal is $ \abr{t} $. This is also a unique non-zero prime ideal. \footnote{Exercise} All ideals are $ \abr{0} $ and $ \abr{t^n} $. Then $ \Spec k\sbr{\sbr{t}} = \cbr{\abr{0}, \abr{t}} $. Similarly, $ \abr{0} $ is not a closed point, since its closure is $ \Spec k\sbr{\sbr{t}} $, and $ \abr{t} $ is a closed point.
+Let $ R = k\sbr{\sbr{t}} = \cbr{a_0 + a_1t + \dots \st a_i \in k} $, a local ring. Its unique maximal ideal is $ \abr{t} $. This is also a unique non-zero prime ideal. \footnote{Exercise} All ideals are $ 0 $ and $ \abr{t^n} $. Then $ \Spec k\sbr{\sbr{t}} = \cbr{0, \abr{t}} $. Similarly, $ 0 $ is not a closed point, since its closure is $ \Spec k\sbr{\sbr{t}} $, and $ \abr{t} $ is a closed point.
 \end{example*}
 
 \pagebreak
@@ -644,10 +638,20 @@ Let $ R = k\sbr{\sbr{t}} = \cbr{a_0 + a_1t + \dots \st a_i \in k} $, a local rin
 
 \lecture{10}{Thursday}{24/10/19}
 
-Let $ R $ be a commutative ring with unity. Let $ A $ be a matrix $ A = \br{a_{ij}}_{i, j = 1}^n $ for $ a_{ij} \in R $. Then
+Let $ R $ be a commutative ring with unity. Let $ A $ be a matrix $ A = \br{a_{ij}}_{1 \le i, j \le n} $ for $ a_{ij} \in R $.
+
+\begin{definition}
+The \textbf{determinant} of $ A $ is
 $$ \det A = \sum_{\pi \in \SSS_n} \sgn \pi \cdot a_{1\pi\br{1}} \cdot \dots \cdot a_{n\pi\br{n}} \in R, $$
-where $ \sgn : \SSS_n \to \cbr{\pm 1} $. Let
+where $ \sgn : \SSS_n \to \cbr{\pm 1} $.
+\end{definition}
+
+\begin{definition}
+The \textbf{$ i, j $-minor} of $ A $ is
 $$ \M_{ij} = \det\br{A \ \text{without $ j $-th column and $ i $-th row}} \in R. $$
+\end{definition}
+
+\begin{proposition}
 Then
 $$ \br{-1}^{j + 1}a_{i1}\M_{j1} + \dots + \br{-1}^{j + n}a_{in}\M_{jn} =
 \begin{cases}
@@ -655,9 +659,19 @@ $$ \br{-1}^{j + 1}a_{i1}\M_{j1} + \dots + \br{-1}^{j + n}a_{in}\M_{jn} =
 0 & i \ne j
 \end{cases}.
 $$
-Define the \textbf{adjoint matrix} of $ A $ as the $ n \times n $ matrix $ A^\vee $ with entries $ \br{A^\vee}_{ij} = \br{-1}^{i + j}\M_{ji} $, so
-$$ A^\vee = \br{\br{-1}^{i + j}\M_{ij}}^\intercal. $$
-Then $ A \cdot A^\vee = A^\vee \cdot A = \det A \cdot \I_n $, where $ \I_n $ is the identity matrix.
+\end{proposition}
+
+\begin{definition}
+The \textbf{adjoint matrix} of $ A $ is the $ n \times n $ matrix $ A^\vee $ with entries
+$$ \br{A^\vee}_{ij} = \br{-1}^{i + j}\M_{ji} \qquad \iff \qquad A^\vee = \br{\br{-1}^{i + j}\M_{ij}}^\intercal. $$
+\end{definition}
+
+\begin{theorem}[Determinant trick]
+\label{thm:8.5}
+Then
+$$ A \cdot A^\vee = A^\vee \cdot A = \det A \cdot \I_n, $$
+where $ \I_n $ is the identity matrix.
+\end{theorem}
 
 \section{Modules}
 
@@ -1062,7 +1076,7 @@ Show that these are strict in general.
 \item Suppose $ \ppp \subset R $ is a prime ideal such that $ \ppp = J \cap K $, and $ \ppp \ne J $ and $ \ppp \ne K $. Let $ x \in J \setminus \ppp $ and $ y \in K \setminus \ppp $. Then $ xy \in JK \subset J \cap K = \ppp $. This is a contradiction, since $ \ppp $ is prime.
 \item Let $ I $ be an irreducible ideal of a Noetherian ring $ R $. Consider $ R / I $. Suppose $ x, y \in R / I $ such that $ xy = 0 $ and $ x \ne 0 $. The task is to show that $ y^n = 0 $ for some $ n \ge 1 $. Since $ R $ is Noetherian, $ R / I $ is Noetherian. Consider
 $$ \Ann y^m = \cbr{\alpha \in R / I \st \alpha y^m = 0}. $$
-Then $ \Ann y \subset \Ann y^2 \subset \dots \subset R / I $. There exists $ n \ge 1 $ such that $ \Ann y^n = \Ann y^{n + i} $, for all $ i \ge 0 $. Claim that $ \abr{x} \cap \abr{y^n} = \abr{0} $. Suppose $ 0 \ne a \in \abr{x} \cap \abr{y^n} $. Then $ ay = 0 $ and also $ a = by^n $ for some $ b \in R / I $. Then $ 0 = ay = by^{n + 1} $. This says that $ b \in \Ann y^{n + 1} = \Ann y^n $. Hence $ by^n = 0 $, so $ a = 0 $, a contradiction. But the ideal $ I \subset R $ is irreducible, hence the ideal $ \abr{0} \subset R / I $ is irreducible. We know that $ \abr{x} \ne 0 $. Thus $ \abr{y^n} = \abr{0} $, so $ y^n = 0 $. This finishes the proof.
+Then $ \Ann y \subset \Ann y^2 \subset \dots \subset R / I $. There exists $ n \ge 1 $ such that $ \Ann y^n = \Ann y^{n + i} $, for all $ i \ge 0 $. Claim that $ \abr{x} \cap \abr{y^n} = 0 $. Suppose $ 0 \ne a \in \abr{x} \cap \abr{y^n} $. Then $ ay = 0 $ and also $ a = by^n $ for some $ b \in R / I $. Then $ 0 = ay = by^{n + 1} $. This says that $ b \in \Ann y^{n + 1} = \Ann y^n $. Hence $ by^n = 0 $, so $ a = 0 $, a contradiction. But the ideal $ I \subset R $ is irreducible, hence the ideal $ 0 \subset R / I $ is irreducible. We know that $ \abr{x} \ne 0 $. Thus $ \abr{y^n} = 0 $, so $ y^n = 0 $. This finishes the proof.
 \end{enumerate}
 \end{proof}
 
@@ -1143,12 +1157,12 @@ These prime ideals $ \ppp_1, \dots, \ppp_n $ are called the \textbf{associated p
 \hfill
 \begin{itemize}
 \item Let $ R = \ZZ $. Then
-$$ \cbr{\text{prime ideals}} = \cbr{\abr{0}} \cup \cbr{\text{maximal ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p} \st p \ \text{prime}}, $$
-$$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p^n} \st p \ \text{prime}}. $$
+$$ \cbr{\text{prime ideals}} = \cbr{0} \cup \cbr{\text{maximal ideals}} = \cbr{0} \cup \cbr{\abr{p} \st p \ \text{prime}}, $$
+$$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{0} \cup \cbr{\abr{p^n} \st p \ \text{prime}}. $$
 For example, $ \abr{4} \subsetneq \abr{2} \cap \abr{2} \subsetneq \ZZ $ is irreducible.
 \item Let $ R = k\sbr{x} $. Then
-$$ \cbr{\text{prime ideals}} = \cbr{\abr{0}} \cup \cbr{\text{maximal ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{monic irreducible polynomial}}, $$
-$$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{\abr{0}} \cup \cbr{\abr{p\br{x}^n} \st p\br{x} \ \text{monic irreducible polynomial}}. $$
+$$ \cbr{\text{prime ideals}} = \cbr{0} \cup \cbr{\text{maximal ideals}} = \cbr{0} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{monic irreducible polynomial}}, $$
+$$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{0} \cup \cbr{\abr{p\br{x}^n} \st p\br{x} \ \text{monic irreducible polynomial}}. $$
 \item Let $ R = k\sbr{x, y} $. Then $ \abr{x} $ is prime, since $ k\sbr{x, y} / \abr{x} \cong k\sbr{y} $ is an integral domain, and $ \abr{x, y} $ is maximal, since $ k\sbr{x, y} / \abr{x, y} \cong k $ is a field.
 \begin{itemize}
 \item $ \abr{x, y^2} $ is not prime, since $ k\sbr{x, y} / \abr{x, y^2} \cong k \oplus ky $ is not an integral domain, where $ y^2 = 0 $. Then $ \rad \abr{x, y^2} = \abr{x, y} $, so Proposition \ref{prop:12.2} implies that $ \abr{x, y^2} $ is primary.
@@ -1325,19 +1339,20 @@ Let $ A $ be a ring. Let $ I_1, \dots, I_n $ be maximal ideals of $ A $, possibl
 The \textbf{Krull dimension} of a ring $ A $ is the supremum of all $ n \ge 0 $ such that $ A $ has an ascending chain of prime ideals $ \ppp_0 \subsetneq \dots \subsetneq \ppp_n $. If the supremum does not exist, the dimension is infinite. It is denoted $ \dim A $.
 \end{definition}
 
-\begin{example}
+\begin{example*}
 \hfill
 \begin{itemize}
 \item Any field has dimension zero.
 \item If $ A $ is Artinian, then every prime ideal is maximal, hence $ \dim A = 0 $.
-\item Since $ \abr{0} \subsetneq \abr{p} $ for $ p $ a prime number, $ \dim \ZZ = 1 $.
+\item Since $ 0 \subsetneq \abr{p} $ for $ p $ a prime number, $ \dim \ZZ = 1 $.
 \item If $ k $ is a field, then $ \dim k\sbr{t} = 1 $.
 \item If $ k $ is a field, then $ \dim k\sbr{\sbr{t}} = 1 $.
 \item If $ k $ is a field, then $ \dim k\sbr{t_1, \dots, t_n} = n $.
 \end{itemize}
-\end{example}
+\end{example*}
 
 \begin{theorem}
+\label{thm:13.15}
 A ring is Artinian if and only if it is Noetherian and has dimension zero.
 \end{theorem}
 
@@ -1345,14 +1360,13 @@ A ring is Artinian if and only if it is Noetherian and has dimension zero.
 \hfill
 \begin{itemize}
 \item[$ \implies $] Suppose $ A $ is Artinian. Corollary \ref{cor:13.7} says that every prime ideal is maximal, hence $ \dim A = 0 $. Lemma \ref{lem:13.9} says that $ A $ has only finitely many maximal ideals, say $ I_1, \dots, I_n $. Then $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = \NNN\br{A} $. Lemma \ref{lem:13.10} says $ \NNN\br{A}^m = 0 $ for some $ m \ge 1 $. Hence $ I_1^m \dots I_n^m = 0 $. Lemma \ref{lem:13.13} now implies that $ A $ is Noetherian.
-\item[$ \impliedby $] Now assume that $ A $ is Noetherian and $ \dim A = 0 $. By Emmy Noether's theorem the ideal $ \abr{0} $ has a primary decomposition, that is $ \abr{0} = J_1 \cap \dots \cap J_n $, where $ J_i $'s are primary. Recall $ \rad J_i $ is a prime ideal of $ A $. Since $ \dim A = 0 $, this ideal is maximal. The associated primes of $ \abr{0} $ are maximal ideals. By Corollary \ref{cor:13.11} each $ J_i $ contains a power of $ \rad J_i $. Therefore, the product of these powers of these maximal ideals is contained in $ \prod_{i = 1}^n J_i \subset \bigcap_{i = 1}^n J_i = \abr{0} $. Now Lemma \ref{lem:13.13} implies that $ A $ is Artinian.
+\item[$ \impliedby $] Now assume that $ A $ is Noetherian and $ \dim A = 0 $. By Emmy Noether's theorem the ideal $ 0 $ has a primary decomposition, that is $ 0 = J_1 \cap \dots \cap J_n $, where $ J_i $'s are primary. Recall $ \rad J_i $ is a prime ideal of $ A $. Since $ \dim A = 0 $, this ideal is maximal. The associated primes of $ 0 $ are maximal ideals. By Corollary \ref{cor:13.11} each $ J_i $ contains a power of $ \rad J_i $. Therefore, the product of these powers of these maximal ideals is contained in $ \prod_{i = 1}^n J_i \subset \bigcap_{i = 1}^n J_i = 0 $. Now Lemma \ref{lem:13.13} implies that $ A $ is Artinian.
 \end{itemize}
 \end{proof}
 
-\pagebreak
-
 \begin{theorem}
-Any Artinian ring is a product of finitely many local Artinian rings.
+\label{thm:13.16}
+Every Artinian ring is a finite direct product of local Artinian rings.
 \end{theorem}
 
 \begin{definition}
@@ -1363,15 +1377,18 @@ Two ideals $ I, J \subset R $ are \textbf{coprime} if $ I + J = R $.
 Two distinct maximal ideals are coprime.
 \end{example*}
 
+\pagebreak
+
 Suppose $ I_1, \dots, I_n $ are ideals of $ R $. Define
 $$ \function[\phi]{R}{\prod_{j = 1}^n R / I_j}{x}{\br{x + I_1, \dots, x + I_n}}. $$
 
 \begin{lemma}[Chinese remainder theorem]
+\label{lem:13.18}
 \hfill
 \begin{itemize}
 \item If $ I_r $ and $ I_s $ are coprime whenever $ r \ne s $, then $ \prod_{j = 1}^n I_j = \bigcap_{j = 1}^n I_j $.
 \item $ \phi $ is surjective if and only if $ I_r $ and $ I_s $ are coprime for $ r \ne s $.
-\item $ \phi $ is injective if and only if $ \bigcap_{j = 1}^n I_j = \abr{0} $.
+\item $ \phi $ is injective if and only if $ \bigcap_{j = 1}^n I_j = 0 $.
 \end{itemize}
 \end{lemma}
 
@@ -1382,5 +1399,35 @@ See problem sheet $ 4 $ question $ 2 $.
 \lecture{23}{Tuesday}{26/11/19}
 
 Lecture 23 is a test.
+
+\lecture{24}{Wednesday}{27/11/19}
+
+\begin{proof}[Proof of Theorem \ref{thm:13.16}]
+Let $ R $ be an Artinian ring. Then $ R $ has only finitely many maximal ideals, say $ J_1, \dots, J_n $. In the proof of Theorem \ref{thm:13.15} we have seen that for some $ k \ge 1 $, $ \prod_{i = 1}^n J_i^k = 0 $. Since the $ J_i $'s are maximal ideals, we have $ J_r + J_s = R $, whenever $ r \ne s $. This implies $ J_r^k + J_s^k = R $. Indeed, we can write $ 1 = x + y $ for $ x \in J_r $ and $ y \in J_s $, and $ 1 = 1^{2k} = \sum_{i = 0}^{2k} \binom{2k}{i}x^iy^{2k - i} $. Hence $ i \ge k $ or $ 2k - i \ge k $, so $ x^i \in J_r^k $ or $ y^{2k - i} \in J_s^k $, so $ x^iy^{2k - i} \in J_r^k $ or $ x^iy^{2k - i} \in J_s^k $. Hence $ 1 \in J_r^k + J_s^k $. Let $ \phi : R \to \prod_{i = 1}^n R / J_i^k $. Then $ \phi $ is surjective since $ R = J_i^k + J_s^k $ for $ r \ne s $, by Lemma \ref{lem:13.18}, and $ \phi $ is injective since $ \bigcap_{i = 1}^n J_i^k = \prod_{i = 1}^n J_i^k = 0 $. Therefore $ \phi $ is an isomorphism of rings. It remains to show that each $ R / J_i^k $ is a local Artinian ring. Then $ R $ is Artinian, so $ R / J_i^k $ is Artinian, and $ J_i \subset J_i^k \subset R / J_i^k $ is a maximal ideal of $ R / J_i^k $. The nilradical of $ R / J_i^k $ is $ J_i / J_i^k $. Indeed, every element is $ J_i / J_i^k $ is nilpotent, since $ \br{J_i / J_i^k}^k = 0 $ in $ R / J_i^k $. But the nilradical cannot be larger than $ J_i / J_i^k $ because this ideal is maximal. Thus $ \NNN\br{R / J_i^k} = J_i / J_i^k $. This is the intersection of all prime ideals of $ R / J_i^k $, so each prime ideal of $ R / J_i^k $ is equal to $ J_i / J_i^k $. So $ R / J_i^k $ is indeed a local ring.
+\end{proof}
+
+\begin{example*}
+Let $ R = k\sbr{x_1, \dots, x_n} / I $, where $ I $ is an ideal. Any finitely generated $ k $-algebra is like this. Then $ k\sbr{x_1, \dots, x_n} $ is Noetherian, so $ I = \abr{f_1, \dots, f_m} $, where $ f_i\br{x_1, \dots, x_n} \in k\sbr{x_1, \dots, x_n} $ for $ i = 1, \dots, m $. We know that $ R $ is Artinian if the dimension of the $ k $-vector space $ \dim_k R < \infty $. Then $ R = \prod_{i = 1}^n R / J_i^k $, for some $ k $, where $ J_i $'s are all maximal ideals. Assume $ k $ is algebraically closed, such as $ k = \CC $. Then the maximal ideals are precisely $ x_1 - a_1, \dots, x_n - a_n $, where $ a \in k^n $ such that $ f_1\br{a} = \dots = f_m\br{a} = 0 $.
+\end{example*}
+
+\section{Integral closure and normal rings}
+
+\begin{theorem}
+Let $ R $ be a ring and let $ A \subset R $ be a subring. In other words, $ R $ is an $ A $-algebra. Let $ x \in R $. The following are equivalent.
+\begin{enumerate}
+\item There are $ a_0, \dots, a_{n - 1} \in A $ such that $ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0 $.
+\item The $ A $-module $ A\sbr{x} $ is finitely generated. We have that $ A\sbr{x} \subset R $, and $ x $ is not an independent variable.
+\item There is a subring $ B $ in $ R $ such that $ A \subset B $, $ x \in B $, and $ B $ is finitely generated as an $ A $-module.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{itemize}[leftmargin=0.5in]
+\item[$ 1 \implies 2 $] $ x^{n + j} = -a_{n - 1}x^{n + j - 1} - \dots - a_0x^j $. By repeating this we express all powers of $ x $ as linear combinations of $ 1, \dots, x^{n - 1} $ with coefficients in $ A $. Hence $ A\sbr{x} $ is generated by $ 1, \dots, x^{n - 1} $.
+\item[$ 2 \implies 3 $] Take $ B = A\sbr{x} $.
+\item[$ 3 \implies 1 $] $ B $ is finitely generated as an $ A $-module, so suppose $ y_1, \dots, y_n $ are generators of $ B $. Then $ x, y_i \in B $ and $ B $ is a subring, hence $ xy_i \in B $ for $ i = 1, \dots, n $. Hence $ xy_i = \sum_{j = 1}^n a_{ij}y_j $ for $ a_{ij} \in A $. Let $ \AAA = \br{a_{ij}}_{1 \le i, j \le n} $. Consider $ d = \det \br{x\I_n - \AAA} \in B $, where $ \I_n $ is the identity matrix. By Theorem \ref{thm:8.5}, the determinant trick, we have $ dy_i = 0 $ for $ i = 1, \dots, n $. Hence $ dy = 0 $ for any $ y \in B $. But $ 1 \in B $, so taking $ y = 1 $ we get $ d = 0 $ in $ B $. Now let $ f\br{t} = \det \br{t\I_n - \AAA} \in A\sbr{t} $ be the characteristic polynomial of $ \AAA $. We obtain $ f\br{x} = 0 $, and $ f\br{t} $ is monic in $ A\sbr{t} $.
+\end{itemize}
+\end{proof}
 
 \end{document}
