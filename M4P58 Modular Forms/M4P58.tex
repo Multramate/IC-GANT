@@ -716,7 +716,7 @@ This is an isomorphism of graded rings.
 \end{theorem}
 
 \begin{proof}
-This map is surjective, since every $ f \in \M_k $ is a polynomial in $ \E_4 $ and $ \E_6 $. Remains to show this map is injective. Suppose not. There exists $ P\br{X, Y} $, homogeneous of degree $ k $, such that $ P\br{\E_4, \E_6} = 0 $. Write $ k = 4n + 6m $ with $ m = 0, 1 $. If $ P = c_0X^nY^n + \dots + c_rX^{n - 3r}Y^{m + 2r} $ where $ r = \fbr{n / 3} $, then
+This map is surjective, since every $ f \in \M_k $ is a polynomial in $ \E_4 $ and $ \E_6 $. It remains to show this map is injective. Suppose not. There exists $ P\br{X, Y} $, homogeneous of degree $ k $, such that $ P\br{\E_4, \E_6} = 0 $. Write $ k = 4n + 6m $ with $ m = 0, 1 $. If $ P = c_0X^nY^n + \dots + c_rX^{n - 3r}Y^{m + 2r} $ where $ r = \fbr{n / 3} $, then
 $$ c_0\E_4^n\E_6^n + \dots + c_r\E_4^{n - 3r}\E_6^{m + 2r} = 0. $$
 Dividing by $ \E_4^{n - 3r}\E_6^{m + 2r} $, get $ Q\br{\E_4^3 / \E_6^2} = 0 $ where $ Q\br{X} = c_0X^r + \dots + c_r $. Since the roots of $ Q $ are discrete, and $ \E_4^3 / \E_6^2 $ is non-constant, this is impossible.
 \end{proof}
@@ -1706,7 +1706,7 @@ A \textbf{modular form of weight $ k $ and level $ \Gamma $} is a weakly modular
 
 \pagebreak
 
-\subsubsection{The space of modular forms}
+\subsubsection{The space of holomorphic modular forms}
 
 \lecture{24}{Monday}{25/11/19}
 
@@ -1770,5 +1770,59 @@ n_\infty
 \end{align*}
 so $ f $ is a power series in $ q^{1 / n_\infty} $, and $ f $ is determined by its terms of order at most $ kd / 12n_\infty $. So $ f $ is determined by the first $ 1 + kd / 12 $ terms of its $ q $-expansion. Thus
 $$ \dim_\CC \M_k\br{\Gamma} \le 1 + \dfrac{kd}{12}. $$
+
+\pagebreak
+
+\subsubsection{The space of meromorphic modular forms}
+
+\lecture{25}{Friday}{29/11/19}
+
+Let $ \Gamma \subseteq \SL_2\br{\ZZ} $ be a congruence subgroup. Let $ \F_\Gamma $ be the field of meromorphic modular forms of weight zero and level $ \Gamma $, and let $ \F_N = \F_{\Gamma\br{N}} $, so $ \F_1 = \F_{\SL_2\br{\ZZ}} = \CC\br{\j} $. If $ M \mid N $, then $ \Gamma\br{N} \subseteq \Gamma\br{M} $, so $ \F_M \subseteq \F_N $. Then $ \SL_2\br{\ZZ} $ normalises $ \Gamma\br{N} $ so if $ f \in \F_N $, then $ \eval{f}_{0, \alpha} $ is modular for $ \alpha^{-1}\Gamma\br{N}\alpha = \Gamma\br{N} $ if $ \alpha \in \SL_2\br{\ZZ} $.
+
+\begin{note*}
+$ \eval{\br{fg}}_{0, \alpha} = \eval{f}_{0, \alpha} \cdot \eval{g}_{0, \alpha} $ and $ \eval{\br{f + g}}_{0, \alpha} = \eval{f}_{0, \alpha} + \eval{g}_{0, \alpha} $.
+\end{note*}
+
+Then $ \alpha \in \SL_2\br{\ZZ} $ gives an automorphism of $ \F_N $ fixing $ \F_1 $. Get an action of $ \SL_2\br{\ZZ} / \Gamma\br{N} $ on $ \F_N $ by field automorphisms and $ \F_1 $ is the fixed field.
+
+\begin{theorem}[Galois theory]
+Let $ F $ be a field and $ G $ a finite group acting faithfully on $ F $ by automorphisms, that is no $ g \in G $ acts on $ F $ as the identity except $ g = \id_G $. Then $ F $ is a Galois extension of $ F^G = \cbr{x \in F \st \forall g \in G, \ gx = x} $ with Galois group $ G $. In particular $ \sbr{F : F^G} = \#G $.
+\end{theorem}
+
+\begin{proposition}
+$ \SL_2\br{\ZZ} / \Gamma\br{N} \cong \SL_2\br{\ZZ / N\ZZ} $ acts faithfully on $ \F_N $.
+\end{proposition}
+
+\begin{proof}
+Use the dimension formulae for $ \M_k\br{\Gamma} $ to show that for $ k \gg 0 $ even, $ \dim \M_k\br{\Gamma\br{N}} > \dim \M_k\br{\Gamma} $ for $ \Gamma \supsetneq \Gamma\br{N} $, so there exists $ f \in \M_k\br{\Gamma\br{N}} $ such that the only elements of $ \SL_2\br{\ZZ} $ fixing $ f $ lie in $ \Gamma\br{N} $. Then $ f / \E_k $ lies in $ \F_N $ but not in $ \F_\Gamma $ for $ \Gamma \supsetneq \Gamma\br{N} $. So $ f / \E_k $ is not fixed by non-trivial elements of $ \SL_2\br{\ZZ} / \Gamma\br{N} $.
+\end{proof}
+
+The upshot is that $ \F_N / \F_1 $ is Galois with Galois group $ \SL_2\br{\ZZ / N\ZZ} $. Then $ \F_N $ is a finite and algebraic extension of $ \CC\br{\j} $, of transcendence degree one over $ \CC $. For $ \Gamma $ arbitrary in $ \SL_2\br{\ZZ} $, $ \Gamma \supseteq \Gamma\br{N} $ for some $ N $, so $ \F_\Gamma $ is the fixed field of $ \Gamma / \Gamma\br{N} $ in $ \F_N $, and $ \F_\Gamma / \F_1 $ is not Galois in general, but is algebraic of degree $ \sbr{\SL_2\br{\ZZ} : \Gamma} $.
+
+\begin{proposition}
+There exists a unique smooth and projective algebraic curve $ X\br{\Gamma} $ over $ \CC $, whose field of rational functions is $ \F_\Gamma $.
+\end{proposition}
+
+\begin{proof}
+Fix $ \Gamma $, and let $ f $ be a primitive element of $ \F_\Gamma $, that is $ f $ generates $ \F_\Gamma $ over $ \F_1 $. Consider the polynomial
+\begin{align*}
+P\br{X}
+& = \prod_{\SL_2\br{\ZZ} = \bigsqcup_j \Gamma \cdot \alpha_j} \br{X - \eval{f}_{0, \alpha_j}} \in \F_1\sbr{X} \\
+& = X^d + \dfrac{G_1\br{\j}}{H_1\br{\j}}X^{d - 1} + \dots + \dfrac{G_d\br{\j}}{H_d\br{\j}}, \qquad G_i, H_i \in \CC\sbr{Y}.
+\end{align*}
+Let
+$$ Q\br{X, Y} = H_1\br{Y} \dots H_d\br{Y}\br{X^d + \dfrac{G_1\br{Y}}{H_1\br{Y}}X^{d - 1} + \dots + \dfrac{G_d\br{Y}}{H_d\br{Y}}} \in \CC\sbr{X, Y}. $$
+Then $ Q\br{X, \j} = H_1\br{\j} \dots H_d\br{\j} \cdot P\br{X} $. Since $ P\br{f} = 0 $, $ Q\br{f, \j} = 0 $. Consider the map
+$$ \function[\phi]{\HH}{\CC^2}{z}{\br{f\br{z}, \j\br{z}}}. $$
+The image is contained in the zero locus of $ Q\br{X, Y} $, and factors through $ \Gamma \backslash \HH $. The following are some issues.
+\begin{itemize}
+\item This map is not necessarily defined everywhere. To fix, replace $ \CC^2 $ with $ \CP^2 $. Then $ \phi $ extends to $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} \to \CP^2 $.
+\item This map is not necessarily injective on $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} $, but will be generically injective since $ f $ is primitive.
+\item This image might be singular. There are standard ways to fix, such as normalisation. When these are fixed, the map becomes injective.
+\end{itemize}
+The upshot is to get a complex algebraic curve $ X\br{\Gamma} $ whose function field is $ \F_\Gamma $, whose complex points are in bijection with $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} $.
+\end{proof}
+
+$ \M_k\br{\Gamma} $ is the space of sections of certain line bundles on $ X\br{\Gamma} $.
 
 \end{document}
