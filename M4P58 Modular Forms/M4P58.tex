@@ -1141,7 +1141,7 @@ $$ \T_p\T_{p^r} = \T_{p^{r + 1}} + p^{k - 1}\T_{p^{r - 1}}. $$
 \pagebreak
 
 Need to rewrite $ \sum_{L' \subseteq_n \L_{z, 1}} F\br{L'} $ in terms of $ f $. Let
-$$ \S_n = \cbr{\twobytwo{a}{b}{0}{d} \in \Mat_{2 \times 2} \ZZ \st ad = n, \ a, d > 0, \ 0 \le b < d}, \qquad s_n = \twobytwo{a}{b}{0}{d} \in \S_n. $$
+$$ \S_n = \cbr{\twobytwo{a}{b}{0}{d} \in \Mat_{2 \times 2} \ZZ \st ad = n, \ a, d > 0, \ 0 \le b < d}, \qquad s = \twobytwo{a}{b}{0}{d} \in \S_n. $$
 
 \begin{lemma}
 The map
@@ -1157,9 +1157,9 @@ Thus
 \begin{align*}
 \T_nf
 & = n^{k - 1}\sum_{L' \subseteq_n \L_{z, 1}} F\br{L'}
-= n^{k - 1}\sum_{s_n \in \S_n} F\br{\L_{az + b, d}} \\
-& = n^{k - 1}\sum_{s_n \in \S_n} d^{-k}F\br{\L_{\tfrac{az + b}{d}, 1}}
-= n^{k - 1}\sum_{s_n \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}.
+= n^{k - 1}\sum_{s \in \S_n} F\br{\L_{az + b, d}} \\
+& = n^{k - 1}\sum_{s \in \S_n} d^{-k}F\br{\L_{\tfrac{az + b}{d}, 1}}
+= n^{k - 1}\sum_{s \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}.
 \end{align*}
 
 \begin{theorem}
@@ -1170,8 +1170,8 @@ $$ \T_nf = \sum_{m = 0}^\infty \gamma\br{m}q^m, \qquad \gamma\br{m} = \sum_{a \m
 \begin{proof}
 \begin{align*}
 \T_nf
-& = n^{k - 1}\sum_{s_n \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}
-= n^{k - 1}\sum_{s_n \in \S_n} \sum_{m = 0}^\infty d^{-k}c\br{m}e^{2\pi im\br{\tfrac{az + b}{d}}} \\
+& = n^{k - 1}\sum_{s \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}
+= n^{k - 1}\sum_{s \in \S_n} \sum_{m = 0}^\infty d^{-k}c\br{m}e^{2\pi im\br{\tfrac{az + b}{d}}} \\
 & = n^{k - 1}\sum_{ad = n, \ a > 0} \sum_{b = 0}^{d - 1} \sum_{m = 0}^\infty d^{-k}c\br{m}q^{\tfrac{ma}{d}}e^{\tfrac{2\pi imb}{d}}
 = n^{k - 1}\sum_{m = 0}^\infty \sum_{ad = n, \ a > 0} d^{-k}c\br{m}q^{\tfrac{ma}{d}}\sum_{b = 0}^{d - 1} e^{\tfrac{2\pi imb}{d}}.
 \end{align*}
@@ -1443,7 +1443,7 @@ In both these examples, and many others,
 $$ \zeta\br{s} = 2^s\pi^{s - 1}\sin \tfrac{\pi s}{2}\Gamma\br{1 - s}\zeta\br{1 - s}, \qquad \zeta\br{s} = \prod_{p \ \text{prime}} \dfrac{1}{1 - p^{-s}}, \qquad \L\br{s, \chi} = \prod_{p \nmid N} \dfrac{1}{1 - \chi\br{p}p^{-s}}. $$
 \end{example*}
 
-\subsubsection{Hecke \texorpdfstring{$ L $}{L}-functions}
+\subsubsection{Hecke \texorpdfstring{$ \L $}{L}-functions}
 
 Let $ f = \sum_{n = 0}^\infty a_nq^n \in \M_k $. Define
 $$ \L\br{s, f} = \sum_{n = 1}^\infty a_nn^{-s}. $$
@@ -1824,5 +1824,66 @@ The upshot is to get a complex algebraic curve $ X\br{\Gamma} $ whose function f
 \end{proof}
 
 $ \M_k\br{\Gamma} $ is the space of sections of certain line bundles on $ X\br{\Gamma} $.
+
+\pagebreak
+
+\subsection{Hecke operators}
+
+\subsubsection{Hecke operators}
+
+\lecture{26}{Friday}{29/11/19}
+
+Let $ f \in \M_k\br{\Gamma} $.
+\begin{enumerate}
+\item If $ \Gamma' \subseteq \Gamma $, then $ f \in \M_k\br{\Gamma'} $.
+\item If $ \alpha \in \GL_2\br{\QQ}_+ $, then $ \eval{f}_{k, \alpha} \in \M_k\br{\alpha^{-1}\Gamma\alpha} $.
+\item If $ \Gamma \subseteq \Gamma' $, can write $ \Gamma' = \bigsqcup_{i = 1}^d \Gamma \cdot \alpha_i $, then $ \sum_{i = 1}^d \eval{f}_{k, \alpha_i} $ is independent of choices and lives in $ \M_k\br{\Gamma'} $.
+\end{enumerate}
+The rough idea is given $ f \in \M_k\br{\Gamma} $, act on it by $ \alpha $ to get a modular form of level $ \alpha^{-1}\Gamma\alpha $, using $ 2 $, and average to get a modular form of level $ \Gamma' \supseteq \alpha^{-1}\Gamma\alpha $, using $ 3 $. Recall that if $ H, K \le G $ and $ g \in G $, then the \textbf{double coset} is
+$$ HgK = \cbr{hgk \st h \in H, \ k \in K}. $$
+That is, the orbit of $ G $ under the action of $ HxK $ on $ G $ such that $ \br{h, k} \cdot g = hgk^{-1} $.
+
+\begin{definition}
+Let $ f \in \M_k\br{\Gamma} $, $ \alpha \in \GL_2\br{\QQ}_+ $, and $ \Gamma' $ a congruence subgroup. Then
+$$ \eval{f}_{k, \Gamma\alpha\Gamma'} = \sum_{i = 1}^d \eval{f}_{k, \alpha_i}, \qquad \Gamma\alpha\Gamma' = \bigsqcup_{i = 1}^d \Gamma\alpha_i. $$
+\end{definition}
+
+The idea is that the $ \alpha_i $ are of the form $ \alpha\beta_i $ where $ \beta_i $ are a set of coset representatives for $ \alpha^{-1}\Gamma\alpha \cap \Gamma' $ in $ \Gamma' $, by the coursework, so
+$$ \sum_{i = 1}^d \eval{f}_{k, \alpha_i} = \sum_{i = 1}^d \br{\eval{f}_{k, \alpha}}_{k, \beta_i}. $$
+Then act by $ \alpha $, getting something modular of level $ \alpha^{-1}\Gamma\alpha $, so also modular of level $ \alpha^{-1}\Gamma\alpha \cap \Gamma $, and average to get $ \eval{f}_{k, \Gamma\alpha\Gamma'} $ modular of level $ \Gamma $. So the double coset $ \Gamma\alpha\Gamma' $ gives a map between $ \M_k\br{\Gamma} $ and $ \M_k\br{\Gamma'} $. Recall that
+$$ \Gamma_1\br{N} = \cbr{\twobytwo{a}{b}{c}{d} \in \SL_2\br{\ZZ} \st a \equiv d \equiv 1 \mod N, \ c \equiv 0 \mod N}. $$
+
+\begin{definition}
+For a prime $ p \nmid N $, define
+$$ \function[\T_p]{\M_k\br{\Gamma_1\br{N}}}{\M_k\br{\Gamma_1\br{N}}}{f}{\eval{f}_{k, \Gamma_1\br{N}s_p\Gamma_1\br{N}}}, \qquad s_p = \twobytwo{1}{0}{0}{p}. $$
+\end{definition}
+
+Recall that for $ \SL_2\br{\ZZ} $ we set
+$$ \T_pf = p^{k - 1}\sum_{s \in \S_p} d^{-k}f\br{\dfrac{az + b}{d}} = \sum_{s \in \S_p} \eval{f}_{k, s}, \qquad s = \twobytwo{a}{b}{0}{d}. $$
+To show this agrees with our new definition, we need that
+$$ \SL_2\br{\ZZ}s_p\SL_2\br{\ZZ} = \bigsqcup_{s \in \S_p} \SL_2\br{\ZZ}s. $$
+\begin{itemize}
+\item For the reverse containment, it suffices to show $ s \in \S_p $ lies in $ \SL_2\br{\ZZ}s_p\SL_2\br{\ZZ} $, and
+$$ \twobytwo{p}{0}{0}{1} = \twobytwo{0}{1}{-1}{0}s_p\twobytwo{0}{-1}{1}{0}, \qquad \twobytwo{1}{b}{0}{p} = s_p\twobytwo{1}{b}{0}{1}. $$
+\item For disjointness, if $ \SL_2\br{\ZZ}s = \SL_2\br{\ZZ}s' $ for $ s, s' \in \S_p $, then $ ss^{-1} \in \SL_2\br{\ZZ} $, so $ a = a' $ and $ d = d' $. If $ a = p $, then $ d = 1 $ and $ b = 0 $, and the same holds for $ b' $, so equal. If $ a = 1 $, have
+$$ \twobytwo{1}{\tfrac{b - b'}{p}}{0}{1} = \twobytwo{1}{b}{0}{p}\twobytwo{1}{b'}{0}{p}^{-1} \in \SL_2\br{\ZZ}, $$
+so $ p \mid b - b' $. Since $ 0 \le b, b' < p $, $ b = b' $.
+
+\pagebreak
+
+\item It remains to show that $ \SL_2\br{\ZZ}s_p\SL_2\br{\ZZ} $ is the union of $ p + 1 $ left cosets. The coursework gives that the number of cosets is
+$$ \#\SL_2\br{\ZZ} / s_p^{-1}\SL_2\br{\ZZ}s_p \cap \SL_2\br{\ZZ} = \#\SL_2\br{\ZZ} / \Gamma_0\br{p} = \sbr{\SL_2\br{\ZZ} : \Gamma_0\br{p}}, $$
+which is $ \sbr{\SL_2\br{\ZZ / p\ZZ} : \text{upper triangular matrices modulo} \ p} $. For upper triangular matrices
+$$ \twobytwo{a}{b}{0}{a^{-1}} $$
+of determinant one modulo $ p $, there are $ p\br{p - 1} $ possibilities. For $ \SL_2\br{\ZZ / p\ZZ} $,
+\begin{itemize}
+\item there are $ p^2 - 1 $ possibilities for the first row,
+\item the second row cannot be a multiple of the first row, so there are $ p^2 - p $ possibilities to get determinant one, and
+\item need to rescale the second row, so there are $ p $ possibilities left over,
+\end{itemize}
+so $ \#\SL_2\br{\ZZ / p\ZZ} = p\br{p^2 - 1} $. Thus the index is $ p + 1 $.
+\end{itemize}
+Extending from $ \T_p $ to $ \T_n $ for $ \br{n, N} = 1 $, we set
+$$ \function[\T_n]{\M_k\br{\Gamma_1\br{N}}}{\M_k\br{\Gamma_1\br{N}}}{f}{\sum_{ad = n, \ a \mid d} \eval{f}_{k, \Gamma_1\br{N}t\Gamma_1\br{N}}}, \qquad t = \twobytwo{a}{0}{0}{d}. $$
 
 \end{document}
