@@ -4,7 +4,7 @@
 
 ### Description
 
-The following lecture notes are taken during my third and fourth year in the MEng Joint Mathematics and Computing (Pure Mathematics and Computational Logic) course in Imperial College London. You can download them via the links below, or by navigating to their respective files within the repository.
+The following lecture notes are taken during my third and fourth year in the MEng Joint Mathematics and Computing (Pure Mathematics and Computational Logic) course in Imperial College London. You can download them via the links below, or by navigating to their respective files within the repository. **Pausing updates to notes until after Christmas due to examinations.**
 
 ### Disclaimer
 
@@ -70,8 +70,8 @@ This is my second year at lecture scribing, so errors and typos are definitely p
 
 (X) M4P51 Riemannian Geometry
 
-(X) M4P54 Differential Topology
+(D) M4P54 Differential Topology
 
-(X) M4P57 Complex Manifolds
+(D) M4P57 Complex Manifolds
 
 (D) M4P63 Algebra IV
