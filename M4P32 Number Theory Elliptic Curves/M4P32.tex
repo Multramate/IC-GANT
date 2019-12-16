@@ -1,8 +1,35 @@
 \def\module{M4P32 Number Theory: Elliptic Curves}
 \def\lecturer{Prof Toby Gee}
 \def\term{Autumn 2019}
-\def\cover{}
-\def\syllabus{}
+\def\cover{
+$$
+\begin{tikzpicture}[scale=2]
+\draw [domain=-2:0] plot (\x, {sqrt(\x*(\x - 1)*(\x + 2))});
+\draw [domain=-2:0] plot (\x, {-sqrt(\x*(\x - 1)*(\x + 2))});
+\draw [domain=1:2] plot (\x, {sqrt(\x*(\x - 1)*(\x + 2))});
+\draw [domain=1:2] plot (\x, {-sqrt(\x*(\x - 1)*(\x + 2))});
+\fill (0, 0) circle (0.05) node[below left]{$ \OOO $};
+\fill (-0.25, 0.7) circle (0.05) node[above]{$ P $};
+\fill (-2, 0) circle (0.05) node[below left]{$ Q $};
+\draw [dashed, domain=-3:3] plot (\x, {0.4*(\x + 2)});
+\fill (1.4, 1.35) circle (0.05) node[below right]{$ -\br{P + Q} $};
+\draw [dashed, domain=-3:3] plot (\x, \x);
+\fill (-1.4, -1.4) circle (0.05) node[below right]{$ P + Q $};
+\fill (-0.4, -0.95) circle (0.05) node[below]{$ R $};
+\draw [dashed, domain=-3:3] plot (\x, {-0.6*(\x + 2)});
+\fill (1.75, -2.25) circle (0.05) node[above right]{$ -\br{Q + R} $};
+\draw [dashed, domain=-2.5:2.5] plot (\x, {-1.3*\x});
+\fill (-1.1, 1.45) circle (0.05) node[above right]{$ Q + R $};
+\draw [dashed, domain=-3:3] plot (\x, {-0.8*\x + 0.55});
+\draw [dashed, domain=-3:3] plot (\x, {0.45*\x - 0.75});
+\fill (1.05, -0.3) circle (0.05) node[right]{$ S $};
+\draw [dashed, domain=-3:3] plot (\x, {-0.3*\x});
+\fill (-1.95, 0.55) circle (0.05) node[below left]{$ T $};
+\draw (0, -2.5) node {$ T = P + \br{Q + R} = \br{P + Q} + R = -S $};
+\end{tikzpicture}
+$$
+}
+\def\syllabus{The $ p $-adic numbers. Basic algebraic geometry. Plane conics. The Hasse principle. Plane cubics. The torsion subgroup of $ E\br{\QQ} $. The torsion points in $ E\br{\QQ_p} $. The weak Mordell-Weil theorem for $ E\br{\QQ} $. The full Mordell-Weil theorem for $ E\br{\QQ} $. Counting points over $ E\br{\FF_p} $. Torsion subgroups and ranks of $ E\br{\QQ} $.}
 \def\thm{section}
 
 \input{../style/header}
@@ -649,7 +676,7 @@ If $ k $ is infinite, then either $ C $ has no points, or it has infinitely many
 
 \pagebreak
 
-\section{The Hasse principle for smooth plane conics over \texorpdfstring{$ \QQ $}{Q}}
+\section{The Hasse principle}
 
 \lecture{10}{Thursday}{24/10/19}
 
@@ -1061,7 +1088,7 @@ $$ x_d = m^2 - 2x_0 = \dfrac{\br{3x_0 + a}^2 - 2x_0\br{2y_0}^2}{\br{2y_0}^2}. $$
 Then $ y_0^2 = x_0^3 + ax_0 + b $, so the \textbf{doubling formula} is as follows.
 
 \begin{algorithm}[Doubling formula]
-$$ x_d = \dfrac{x_0^4 - 2ax^2 - 8bx_0 + a^2}{4\br{x_0^3 + ax_0 + b}}, \qquad -y_d = mx_d + c. $$
+$$ x_d = \dfrac{x_0^4 - 2ax_0^2 - 8bx_0 + a^2}{4\br{x_0^3 + ax_0 + b}}, \qquad -y_d = mx_d + c. $$
 \end{algorithm}
 
 Similarly, if $ P = \br{x_1, y_1} $, $ Q = \br{x_2, y_2} $, and $ P + Q = \br{x_3, y_3} $, then the \textbf{addition formula} is as follows.
@@ -1121,9 +1148,9 @@ Let $ p = 3 $ and $ E $ be $ y^2 = x^3 - 18 $. This is $ y^2 = x^3 \mod 3 $, whi
 \end{lemma}
 
 \begin{proof}
-\hfill
+Write $ g\br{x} = x^3 + \alpha x^2 + \beta x + \gamma $ for $ \alpha, \beta, \gamma \in \ZZ_p $.
 \begin{enumerate}
-\item Write $ g\br{x} = x^3 + \alpha x^2 + \beta x + \gamma $ for $ \alpha, \beta, \gamma \in \ZZ_p $. If $ \abs{x_0}_p > 1 $, then $ \abs{x_0^3}_p > \abs{\alpha x_0^2}_p, \abs{\beta x_0}_p, \abs{\gamma}_p $. So $ \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p = \abs{x_0}_p^3 $. Then $ \abs{y_0}_p^2 = \abs{x_0}_p^3 $. If $ \abs{x_0}_p \le 1 $, then $ \abs{y_0}_p^2 = \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p \le 1 $.
+\item If $ \abs{x_0}_p > 1 $, then $ \abs{x_0^3}_p > \abs{\alpha x_0^2}_p, \abs{\beta x_0}_p, \abs{\gamma}_p $. So $ \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p = \abs{x_0}_p^3 $. Then $ \abs{y_0}_p^2 = \abs{x_0}_p^3 $. If $ \abs{x_0}_p \le 1 $, then $ \abs{y_0}_p^2 = \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p \le 1 $.
 \item By assumption, $ p \mid \alpha, \beta, \gamma $. So
 $$ p \mid x_0 \qquad \iff \qquad p \mid \br{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma} \qquad \iff \qquad p \mid y_0^2 \qquad \iff \qquad p \mid y_0. $$
 That is, $ \abs{x_0}_p < 1 $ if and only if $ \abs{y_0}_p < 1 $.
@@ -1268,16 +1295,12 @@ Let $ y^2 = x^3 + 105^{10^{10}}x + 3 $. Neither $ 5 \mid \Delta $ nor $ 7 \mid \
 $$
 \begin{array}{c|c|c|c|c|c}
 x & 0 & 1 & 2 & 3 & 4 \\
-% \hline
-% x^3 + 3 & 3 & 4 & 1 & 0 & 2 \\
 \hline
 \#y & 0 & 2 & 2 & 1 & 0
 \end{array}
 \mod 5, \qquad
 \begin{array}{c|c|c|c|c|c|c|c}
 x & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
-% \hline
-% x^3 + 3 & 3 & 4 & 4 & 2 & 4 & 2 & 2 \\
 \hline
 \#y & 0 & 2 & 2 & 2 & 2 & 2 & 2
 \end{array}
@@ -1292,11 +1315,11 @@ Lecture 20 is a problem class.
 
 \pagebreak
 
-\section{The Mordell-Weil theorem for \texorpdfstring{$ E\br{\QQ} $}{E(Q)}}
+\section{The weak Mordell-Weil theorem for \texorpdfstring{$ E\br{\QQ} $}{E(Q)}}
 
 \lecture{21}{Tuesday}{19/11/19}
 
-The Mordell-Weil theorem is that if $ E\br{\QQ} $ is an elliptic curve, then $ E\br{\QQ} $ is a finitely generated abelian group. The weak Mordell-Weil theorem is that $ E\br{\QQ} / 2E\br{\QQ} $ is a finite group. Assume that $ E $ can be written as
+The weak Mordell-Weil theorem is that $ E\br{\QQ} / 2E\br{\QQ} $ is a finite group. Assume that $ E $ can be written as
 $$ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3}, \qquad e_1, e_2, e_3 \in \QQ, $$
 if and only if the $ 2 $-torsion subgroup of $ E\br{\QQ} $ has order four, and these are the points $ \OOO, \br{e_1, 0}, \br{e_2, 0}, \br{e_3, 0} $.
 
@@ -1580,16 +1603,336 @@ Lecture 25 is a problem class.
 
 \pagebreak
 
+\section{The full Mordell-Weil theorem for \texorpdfstring{$ E\br{\QQ} $}{E(Q)}}
+
+\lecture{26}{Monday}{02/12/19}
+
+The Mordell-Weil theorem is that if $ E\br{\QQ} $ is an elliptic curve, then $ E\br{\QQ} $ is a finitely generated abelian group. So far, if all the $ 2 $-torsion points of $ E $ are defined over $ \QQ $, that is we can write $ E $ as $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_1, e_2, e_3 \in \QQ $, then $ E\br{\QQ} / 2E\br{\QQ} $ is finite, by the weak Mordell-Weil theorem. We do not need the assumption that $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_i \in \QQ $ for the rest of the argument. From now, assume that
+$$ y^2 = x^3 + Ax + B, \qquad A, B \in \ZZ $$
+is $ E $, and $ E\br{\QQ} / 2E\br{\QQ} $ is finite.
+
+\begin{note*}
+There are many abelian groups $ G $ with $ G / 2G $ finite but $ G $ not finitely generated.
+\end{note*}
+
+\begin{example*}
+$ G = \br{\QQ, +} $ and $ G / 2G = \cbr{0} $.
+\end{example*}
+
+What we need to show, morally, is that if $ P \in E\br{\QQ} $, then there is a bound on the biggest power of two such that there exists $ Q \in E\br{\QQ} $ with $ 2^nQ = P $. However, if $ P $ is a $ 3 $-torsion point, then $ 4P = P $, so $ 16P = 4\br{4P} = 4P = P $, etc. The idea is to follow what we did for $ x^3 + y^3 = 9 $, and show that usually $ 2P $ is more complicated than $ P $.
+
+\begin{definition}
+Let $ q \in \QQ $, and write $ q = l / m $ for $ l, m \in \ZZ $ and $ \br{l, m} = 1 $. The \textbf{height} of $ q $ is
+$$ \H\br{q} = \max\br{\abs{l}, \abs{m}}. $$
+If $ \br{x, y} \in E\br{\QQ} $, set
+$$ \H\br{\br{x, y}} = \H\br{x}, $$
+and set
+$$ \h\br{P} =
+\begin{cases}
+\log \H\br{\br{x, y}} & P = \br{x, y} \\
+0 & P = \OOO
+\end{cases}.
+$$
+\end{definition}
+
+\begin{example*}
+$ \H\br{-\tfrac{3}{5}} = 5 $.
+\end{example*}
+
+\begin{lemma}
+For any $ Q \in E\br{\QQ} $, there exists $ C = C\br{Q} \in \RR $ such that for all $ P \in E\br{\QQ} $,
+$$ \h\br{P + Q} \le 2\h\br{P} + C. $$
+\end{lemma}
+
+\begin{proof}
+Without loss of generality $ P \ne \OOO, \pm Q $. If $ Q = \OOO $, then we need to find $ C $ such that $ \h\br{P} \ge -C $ for all $ P $, but $ \h\br{P} = \log \H\br{P} \ge \log 1 = 0 $. So $ C = 0 $ works. So we may assume that $ P, Q \ne \OOO $ and $ P \ne \pm Q $. That is, $ P $ and $ Q $ are distinct, and $ -\br{P + Q} \ne \OOO $. We showed that if $ \br{x, y} \in E\br{\QQ} $ and $ \abs{x}_p > 1 $ for some $ p $, then there exists $ n \ge 1 $ such that $ \abs{x}_p = p^{2n} $ and $ \abs{y}_p = p^{3n} $. Then $ p^{2n}x, p^{3n}y \in \ZZ $, and $ p \nmid p^{2n}x, p^{3n}y $. Thus we can write
+$$ P = \br{\dfrac{a}{d^2}, \dfrac{b}{d^3}}, \qquad Q = \br{\dfrac{e}{g^2}, \dfrac{f}{g^3}}, \qquad a, b, d, e, f, g \in \ZZ, \qquad \br{d, ab} = \br{g, ef} = 1. $$
+So $ \H\br{P} = \max\br{\abs{a}, d^2} $. Let the line through $ P $ and $ Q $ be $ y = mx + c $. If $ P = \br{x_P, y_P} $ and $ Q = \br{x_Q, y_Q} $, then $ m = \br{y_Q - y_P} / \br{x_Q - x_P} $, and if $ P + Q = \br{x_3, y_3} $, then $ x_P, x_Q, x_3 $ are the three roots of $ \br{mx + c}^2 = x^3 + Ax + B $. So
+$$ x_P + x_Q + x_3 = -m^2 = -\br{\dfrac{y_Q - y_P}{x_Q - x_P}}^2 = \dfrac{\br{x_Q^3 + Ax_Q + B} + \br{x_P^3 + Ax_P + B} - 2y_Py_Q}{\br{x_Q - x_P}^2}, $$
+so
+$$ x_3 = \dfrac{\br{A + x_P^2}x_Q + \br{A + x_Q^2}x_P - 2y_Py_Q + 2B}{\br{x_Q - x_P}^2}. $$
+
+\pagebreak
+
+Substituting $ x_P = a / d^2 $ and $ y_P = b / d^3 $, and $ x_Q = e / g^2 $ and $ y_Q = f / g^3 $, and clearing powers of $ d $ and $ g $, get $ x_3 = N / D $, where
+$$ N = \br{2Bd^4 + Aad^2}g^4 + \br{Aed^4 + ea^2}g^2 - 2bfdg + e^2ad^2, \qquad D = a^2g^4 - 2ead^2g^2 + e^2g^4, $$
+so $ \H\br{P + Q} = \H\br{x_3} \le \max\br{\abs{N}, \abs{D}} $. Since $ Q = \br{e / g^2, f / g^3} $ is fixed, so are $ e, f, g $, as are $ A $ and $ B $. Want $ \h\br{P + Q} \le 2\h\br{P} + C $, that is $ \H\br{P + Q} \le \H\br{P}^2e^C $. That is, it suffices to prove
+$$ \max\br{\abs{N}, \abs{D}} \le K\max\br{a^2, d^4}, $$
+for some $ K > 0 $ independent of $ a, b, d $. Every term in $ N $ or $ D $ can be bounded by $ K'\max\br{a^2, d^4} $, except $ -2bfdg $. To deal with this term, since $ \br{a / d^2, b / d^3} \in E\br{\QQ} $, we have $ \br{b / d^3}^2 = \br{a / d^2}^3 + A\br{a / d^2} + B $. That is $ b^2d^2 = a^3d^2 + Aad^6 + Bd^8 \le K''^2\max\br{a^2, d^4}^2 $, that is $ bd \le K''\max\br{a^2, d^4} $, as required.
+\end{proof}
+
+\lecture{27}{Tuesday}{03/12/19}
+
+\begin{lemma}
+There exists $ D \in \RR $, depending only on $ E $, such that for all $ P \in E\br{\QQ} $,
+$$ \h\br{2P} \ge 4\h\br{P} - D. $$
+\end{lemma}
+
+If $ P = \br{x_0, y_0} $, then the tangent at $ P $ is $ y = mx + c $, where $ m = \br{3x_0^2 + A} / 2y_0 $. If $ 2P = \br{x_d, y_d} $, then
+$$ x_d = m^2 - 2x_0 = \dfrac{x_0^4 - 2Ax_0^2 - 8Bx_0 + A^2}{4\br{x_0^3 + Ax_0 + B}}, $$
+since $ y_0^2 = x_0^3 + Ax_0 + B $.
+
+\begin{proof}
+Write $ x_0 = s / t $ for $ \br{s, t} = 1 $, so $ \H\br{P} = \max\br{\abs{s}, \abs{t}} $ and $ x_d = f / g $, where
+$$ f = s^4 - 2As^2t^2 - 8Bst^3 + A^2t^4, \qquad g = 4\br{s^3t + Ast^3 + Bt^4}. $$
+Then
+$$ Cf + Dg = \br{16A^3 + 108B^2}t^7 = 4\Delta t^7, $$
+where
+$$ C = 12s^2t + 16At^3 \in \ZZ\sbr{s, t}, \qquad D = -3s^3 + 5Ast^2 + 27Bt^3 \in \ZZ\sbr{s, t} $$
+are homogeneous of degree three, and
+$$ Ef + Fg = \br{16A^3 + 108B^2}s^7 = 4\Delta s^7, $$
+where
+$$ E = 4\br{4A^3 + 27B^2}s^3 - 4A^2Bs^2t + 4A\br{3A^3 + 22B^2}st^2 + 12B\br{A^3 + 8B^2}t^3 \in \ZZ\sbr{s, t}, $$
+$$ F = A^2Bs^3 + A\br{5A^3 + 32B^2}s^2t + 2B\br{13A^3 + 96B^2}st^2 - 3A^2\br{A^3 + 8B^2}t^3 \in \ZZ\sbr{s, t} $$
+are homogeneous of degree three. In particular, $ \br{f, g} \mid \br{4\Delta s^7, 4\Delta t^7} = 4\Delta $, which only depends on $ E $. So $ \H\br{2P} \ge \max\br{\abs{f}, \abs{g}} / 4\Delta $. Want $ \h\br{2P} \ge 4\h\br{P} - D $, that is $ \H\br{2P} \ge \H\br{P}^4e^{-D} $, that is
+$$ \H\br{P}^4 \le K\H\br{2P}, $$
+for some $ K $. Then
+$$ \abs{t}^7 = \dfrac{1}{4\Delta}\abs{Cf + Dg} \le \dfrac{1}{4\Delta}\br{\abs{C}\abs{f} + \abs{D}\abs{g}} \le K'\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}}. $$
+Similarly $ \abs{s}^7 \le K''\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}} $. So $ \max\br{\abs{s}, \abs{t}}^7 \le K''\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}} $, that is $ \max\br{\abs{s}, \abs{t}}^4 \le K''\max\br{\abs{f}, \abs{g}} $, that is $ \H\br{P}^4 \le K''\H\br{2P} $.
+\end{proof}
+
+\begin{lemma}
+If $ K \in \RR $ then there are only finitely many $ P \in E\br{\QQ} $ with $ \h\br{P} \le K $.
+\end{lemma}
+
+\begin{proof}
+$ \h\br{P} \le K $ if and only if $ \H\br{P} \le e^K $, if and only if $ P = \br{x, y} $ with $ x = l / m $ such that $ \abs{l}, \abs{m} \le e^K $. So only finitely many $ l $ and $ m $, that is finitely many $ x $, that is finitely many $ P $.
+\end{proof}
+
+\pagebreak
+
+\begin{proposition}
+Let $ A $ be an abelian group and $ h : A \to \RR $. Assume that
+\begin{enumerate}
+\item for all $ Q \in A $, there exists $ C\br{Q} \in \RR $ such that for all $ P \in A $,
+$$ h\br{P + Q} \le 2h\br{P} + C\br{Q}, $$
+\item there exists $ D \in \RR $ such that for all $ P \in A $,
+$$ h\br{2P} \ge 4h\br{P} - D, $$
+\item if $ K \in \RR $, then $ \cbr{a \in A \st h\br{a} \le K} $ is finite, and
+\item $ A / 2A $ is finite.
+\end{enumerate}
+Then $ A $ is finitely generated.
+\end{proposition}
+
+\begin{proof}
+Write $ Q_1, \dots, Q_r \in A $ for a set of representatives of $ A / 2A $, that is
+$$ A / 2A = \cbr{\overline{Q_1}, \dots, \overline{Q_r}}, \qquad \overline{Q_i} = Q_i + 2A, $$
+by $ 4 $. Let $ C_1 = \max C\br{Q_i} $. Let $ C_2 = \br{C_1 + D} / 2 $. Let
+$$ S = \cbr{a \in A \st h\br{a} \le C_2} \cup \cbr{Q_1, \dots, Q_r}. $$
+Then $ S $ is finite, by $ 3 $. We will prove that $ S $ generates $ A $. Let $ B $ be the subgroup of $ A $ generated by $ S $. Take $ P_0 \in A $ arbitrary. By the definition of the $ Q_i $, we can write
+$$ P_{j - 1} = 2P_j - Q_{i_j}, \qquad 1 \le i_j \le r. $$
+For each $ j $,
+\begin{align*}
+h\br{P_j}
+& \le \dfrac{h\br{2P_j} + D}{4}
+= \dfrac{h\br{P_{j - 1} + Q_{i_j}} + D}{4} & \text{by} \ 2 \\
+& \le \dfrac{2h\br{P_{j - 1}} + C_1 + D}{4}
+= \dfrac{h\br{P_{j - 1}} + C_2}{2} & \text{by} \ 1.
+\end{align*}
+In particular if $ h\br{P_{j - 1}} > C_2 $, then $ h\br{P_j} < h\br{P_{j - 1}} $. If $ h\br{P_j} > C_2 $ for all $ j $, then we would have $ h\br{P_0} > h\br{P_1} > \dots $. This contradicts the finiteness of $ \cbr{a \in A \st h\br{a} \le h\br{P_0}} $. So there exists $ j $ such that $ h\br{P_j} \le C_2 $, that is $ P_j \in S $. Then
+$$ P_{k - 1} = 2P_k - Q_{i_k} \in B, \qquad j \ge k \ge 1. $$
+Then by descending induction on $ j $, $ P_0 \in B $, so $ A = B $, as required.
+\end{proof}
+
+\begin{corollary}[Mordell-Weil]
+If $ E\br{\QQ} $ is an elliptic curve, such that all points of order two are in $ E\br{\QQ} $, then $ E\br{\QQ} $ is a finitely generated abelian group, that is
+$$ E\br{\QQ} \cong T \times \ZZ^r, $$
+where $ T $ is finite and $ r \ge 0 $.
+\end{corollary}
+
+\begin{remark}
+The formulas for $ \H $ and $ \h $ look a bit ad hoc, but a modification works more cleanly. Define
+$$ \widehat{\h}\br{P} = \lim_{n \to \infty} \dfrac{\h\br{2^nP}}{4^n}. $$
+Then $ \h\br{2P} \ge 4\h\br{P} - D $, and a similar argument gives $ \h\br{2P} \le 4\h\br{P} + D' $, so $ \widehat{\h}\br{2P} = 4\widehat{\h}\br{P} $. In fact $ \widehat{\h} $ determines a quadratic form on $ E\br{\QQ} \otimes_\ZZ \QQ $.
+\end{remark}
+
+\pagebreak
+
+\section{Counting points over \texorpdfstring{$ E\br{\FF_p} $}{E(Fp)}}
+
+\lecture{28}{Thursday}{05/12/19}
+
+Let $ E $ be $ y^2 = x^3 - x $. Then $ E\br{\QQ} = \cbr{\OOO, \br{0, 0}, \br{\pm 1, 0}} $ and $ \Delta = -4 $. If $ p > 2 $, then $ E $ defines an elliptic curve over $ \FF_p $.
+
+\begin{theorem}[Hasse 1933]
+$ \abs{\#E\br{\FF_p} - \br{p + 1}} < 2\sqrt{p} $.
+\end{theorem}
+
+What more can we say about $ \#E\br{\FF_p} $?
+$$
+\begin{array}{c|c|c}
+p = 3 & p = 5 & p = 7 \\
+& & \\
+\begin{array}{c|c|c|c}
+x & 0 & 1 & 2 \\
+\hline
+\#\br{x, y} & 1 & 1 & 1
+\end{array}
+\quad & \quad
+\begin{array}{c|c|c|c|c|c}
+x & 0 & 1 & 2 & 3 & 4 \\
+\hline
+\#\br{x, y} & 1 & 1 & 2 & 2 & 1
+\end{array}
+\quad & \quad
+\begin{array}{c|c|c|c|c|c|c|c}
+x & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+\#\br{x, y} & 1 & 1 & 0 & 0 & 2 & 2 & 1
+\end{array}
+\\
+& & \\
+\#E\br{\FF_3} = 4 & \#E\br{\FF_5} = 8 & \#E\br{\FF_7} = 8
+\end{array}.
+$$
+Let $ \a_p = p + 1 - \#E\br{\FF_p} $, so $ \a_p / 2\sqrt{p} \in \br{-1, 1} $. Then
+$$
+\begin{array}{c|c|c|c|c|c|c}
+p & 3 & 5 & 7 & 11 & 13 & 17 \\
+\hline
+\a_p & 0 & -2 & 0 & 0 & 6 & 2
+\end{array}.
+$$
+
+If $ p \equiv 3 \mod 4 $, then $ -1 $ is not a quadratic residue modulo $ p $, that is not a square modulo $ p $. So if $ x^3 - x \ne 0 $, then exactly one of $ x^3 - x $ and $ \br{-x}^3 - \br{-x} = -\br{x^3 - x} $ is a square.
+
+\begin{proposition}
+If $ p \equiv 3 \mod 4 $, then the number of points $ x = x_0, -x_0 $ is exactly two for any $ x_0 \ne 0 $.
+\end{proposition}
+
+If $ p \equiv 1 \mod 4 $, then we can write $ p = a^2 + b^2 $ for some $ a $ and $ b $. Fix $ a $ and $ b $ by demanding $ a + ib \equiv -1 \mod \br{1 + i}^3 $. For example, if $ p = 5 = 2^2 + 1^2 $, then $ \cbr{a, b} = \cbr{\pm 1, \pm 2} $, so $ a = -1 $ and $ b = 2 $.
+
+\begin{proposition}
+If $ p \equiv 1 \mod 4 $, then $ \a_p = 2a $.
+\end{proposition}
+
+$ E $ is a \textbf{CM (complex multiplication)} elliptic curve. Let
+$$ \P\br{x} = \lim_{N \to \infty} \dfrac{\#\cbr{p \le N \st \a_p / 2\sqrt{p} = x}}{\#\cbr{p \le N}}. $$
+
+\begin{theorem}[Hecke 1920]
+Over all CM elliptic curves, $ \P\br{0} = \tfrac{1}{2} $, and if $ x \ne 0 $, then
+$$ \P\br{x} = \dfrac{1}{2\pi\sqrt{1 - x^2}}. $$
+\end{theorem}
+
+\begin{theorem}[Sato-Tate conjecture, Clozel-Harris-Shepherd-Barron-Taylor 2008]
+Over all non-CM elliptic curves,
+$$ \P\br{x} = \dfrac{2}{\pi}\sqrt{1 - x^2}. $$
+\end{theorem}
+
+Let $ E $ be $ y^2 + y = x^3 - x^2 $, the \textbf{first elliptic curve in nature}. Then $ E\br{\QQ} = \ZZ / 5\ZZ = \abr{\br{0, 0}} $ and $ \Delta = -11 $. If $ p \ne 11 $, then $ E $ defines an elliptic curve over $ \FF_p $. Computing $ \a_p $,
+$$
+\begin{array}{c|c|c|c|c|c|c}
+p & 2 & 3 & 5 & 7 & 13 & 17 \\
+\hline
+\a_p & -2 & -1 & 1 & -2 & 4 & -2
+\end{array}.
+$$
+Let $ z \in \CC $ such that $ \Im z > 0 $. Set $ q = e^{2\pi iz} $. Consider the infinite product
+\begin{align*}
+f\br{z}
+= q\prod_{n = 1}^\infty \br{1 - q^n}^2\br{1 - q^{11n}}^2
+& = q - 2q^2 - q^3 + 2q^4 + q^5 + 2q^6 - 2q^7 - 2q^9 \\
+& - 2q^{10} + q^{11} - 2q^{12} + 4q^{13} + 4q^{14} - q^{15} - 4q^{16} - 2q^{17} + \dots.
+\end{align*}
+Then $ f\br{z} $ is a holomorphic function, $ f\br{z + 1} = f\br{z} $, and $ f\br{-1 / 11z} = \br{11z}^2f\br{z} $, so $ f $ is a \textbf{modular form of level $ \Gamma_0\br{11} $ and weight two}.
+
+\begin{theorem}[Modularity of elliptic curves, Wiles 1995 and Breuil-Conrad-Diamond-Taylor 2001]
+For every elliptic curve $ E $ over $ \QQ $, there exists a corresponding weight two modular form $ f_E = q + b_2q^2 + b_3q^2 + \dots $, such that $ b_p = \a_p $.
+\end{theorem}
+
+\lecture{29}{Monday}{09/12/19}
+
+Lecture 29 is a problem class.
+
+\pagebreak
+
+\section{Torsion subgroups and ranks of \texorpdfstring{$ E\br{\QQ} $}{E(Q)}}
+
+\lecture{30}{Tuesday}{10/12/19}
+
+How large is the torsion subgroup on average? Let $ E $ be $ y^2 = x^3 + ax + b $. If we chose $ a, b \in \ZZ $ at random, what is the probability that $ E $ has any points of order two? That is, what is the probability that $ x^3 + ax + b $ has a rational root?
+
+\begin{proposition}
+$ 0\% $ of elliptic curves over $ \QQ $ has any points of order two. In fact, it can be shown that $ 100\% $ of elliptic curves over $ \QQ $ have trivial torsion subgroup.
+\end{proposition}
+
+How large can the torsion subgroup be? Is there any bound on the order of the torsion subgroup of $ E\br{\QQ} $?
+
+\begin{theorem}[Mazur 1977]
+For any $ E\br{\QQ} $, the torsion subgroup is of the form
+$$ 0, \qquad \ZZ / 2\ZZ, \qquad \ZZ / 3\ZZ, \qquad \ZZ / 4\ZZ, \qquad \ZZ / 5\ZZ, \qquad \ZZ / 6\ZZ, \qquad \ZZ / 7\ZZ, \qquad \ZZ / 8\ZZ, \qquad \ZZ / 9\ZZ, \qquad \ZZ / 10\ZZ, $$
+$$ \ZZ / 12\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 2\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 4\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 6\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 8\ZZ. $$
+\end{theorem}
+
+Is the same true for the rank? Heuristically, if the rank of $ E\br{\QQ} $ is large, then $ \#E\br{\FF_p} $ is also large.
+
+\begin{example}
+Let $ E $ be $ y^2 = x^3 - Dx $. If $ p \equiv 3 \mod 4 $, then $ \#E\br{\FF_p} = p + 1 $. But these curves can have rank $ 0, 1, 2, \dots $.
+\end{example}
+
+\begin{definition}
+The \textbf{Riemann zeta function} is
+$$ \zeta\br{s} = \sum_{n = 1}^\infty \dfrac{1}{n^s} = \prod_{p \ \text{prime}} \sum_{m = 0}^\infty \dfrac{1}{p^{ms}} = \prod_{p \ \text{prime}} \dfrac{1}{1 - p^{-s}}. $$
+\end{definition}
+
+Then $ \zeta\br{s} $ has a meromorphic continuation to $ \CC $ and a simple pole at $ s = 1 $, and converges for $ \Re s > 1 $.
+
+\begin{definition}
+The \textbf{$ \L $-function} of $ E\br{\QQ} $ is
+$$ \L\br{E, s} = \sum_{n = 1}^\infty \dfrac{\a_n}{n^s} = \prod_{p \nmid \Delta \ \text{prime}} \dfrac{1}{1 - \a_pp^{-s} + p^{1 - 2s}}\prod_{p \mid \Delta \ \text{prime}} \dfrac{1}{1 - \a_pp^{-s}}, $$
+where $ \a_p $ are as above, and $ \a_{p^n} = 1 + p^n - \#E\br{\FF_p} $.
+\end{definition}
+
+Then $ \L\br{E, s} $ converges for $ \Re s > \tfrac{3}{2} $, which follows from $ \abs{\a_p} < 2\sqrt{p} $.
+
+\begin{theorem}[Hasse-Weil conjecture]
+$ \L\br{E, s} $ has an analytic continuation to all of $ \CC $, so no poles.
+\end{theorem}
+
+This was conjectured in the 1940s and follows from modularity, which was known for CM elliptic curves $ y^2 = x^3 - Dx $ in the 1960s, which were the ones that Birch and Swinnerton-Dyer looked at.
+
+\begin{conjecture}[Birch-Swinnerton-Dyer 1965]
+The order of vanishing of $ \L\br{E, s} $ at $ s = 1 $ is the rank of $ E\br{\QQ} $.
+\end{conjecture}
+
+\begin{theorem}[Gross-Zagier 1986 and Kolyvagin 1989]
+The conjecture holds if $ E\br{\QQ} $ has rank at most one.
+\end{theorem}
+
+Nothing is known if the rank is greater than one. How large is the rank on average?
+
+\begin{conjecture}
+$ 100\% $ of elliptic curves over $ \QQ $ have rank at most one. In fact $ 50\% $ have rank zero and $ 50\% $ have rank one.
+\end{conjecture}
+
+Computing the rank of $ E $ basically comes down to computing $ E\br{\QQ} / 2E\br{\QQ} $, and that comes down to computing $ \Im \delta $ for $ \delta : E\br{\QQ} / 2E\br{\QQ} \hookrightarrow \br{\QQ^\times / \br{\QQ^\times}^2}^3 $. Define the \textbf{$ 2 $-Selmer group} $ \SSS_2 $ to be the same as $ \Im \delta $, except that you only demand that the equations you write have solutions in $ \QQ_p $ for all $ p $, and not necessarily in $ \QQ $. Then compute $ \Im \delta $ for $ \delta : E\br{\QQ} / 2E\br{\QQ} \hookrightarrow \SSS_2 $. The following is the best known result.
+
+\begin{theorem}[Bhargava-Shankar 2011]
+The average rank is less than one.
+\end{theorem}
+
+How large can the rank of $ E $ be?
+
+\begin{theorem}[Elkies 2006]
+There exists $ E\br{\QQ} $ with rank at least $ 28 $.
+\end{theorem}
+
+\begin{conjecture}
+There are only finitely many $ E\br{\QQ} $ of rank greater than $ 21 $.
+\end{conjecture}
+
+\pagebreak
+
 \appendix
 
 \section{Diagonalisation of quadratic forms}
 
 \begin{definition}
-Let $ k $ be any field, and let $ V $ be a $ k $-linear vector space. A \textbf{symmetric bilinear pairing} on $ V $ is a map $ \br{\cdot, \cdot} : V \times V \to k $ such that for all $ \alpha_1, \alpha_2 \in k $ and $ \underline{v_1}, \underline{v_2}, \underline{v_3} \in V $,
+Let $ k $ be any field, and let $ V $ be a $ k $-linear vector space. A \textbf{symmetric bilinear pairing} on $ V $ is a map $ \abr{\cdot, \cdot} : V \times V \to k $ such that for all $ \alpha_1, \alpha_2 \in k $ and $ \underline{v_1}, \underline{v_2}, \underline{v_3} \in V $,
 \begin{itemize}
-\item $ \br{\alpha_1\underline{v_1} + \alpha_2\underline{v_2}, \underline{v_3}} = \alpha_1\br{\underline{v_1}, \underline{v_3}} + \alpha_2\br{\underline{v_2}, \underline{v_3}} $,
-\item $ \br{\underline{v_3}, \alpha_1\underline{v_1} + \alpha_2\underline{v_2}} = \alpha_1\br{\underline{v_3}, \underline{v_1}} + \alpha_2\br{\underline{v_3}, \underline{v_2}} $, and
-\item $ \br{\underline{v_1}, \underline{v_2}} = \br{\underline{v_2}, \underline{v_1}} $.
+\item $ \abr{\alpha_1\underline{v_1} + \alpha_2\underline{v_2}, \underline{v_3}} = \alpha_1\abr{\underline{v_1}, \underline{v_3}} + \alpha_2\abr{\underline{v_2}, \underline{v_3}} $,
+\item $ \abr{\underline{v_3}, \alpha_1\underline{v_1} + \alpha_2\underline{v_2}} = \alpha_1\abr{\underline{v_3}, \underline{v_1}} + \alpha_2\abr{\underline{v_3}, \underline{v_2}} $, and
+\item $ \abr{\underline{v_1}, \underline{v_2}} = \abr{\underline{v_2}, \underline{v_1}} $.
 \end{itemize}
 \end{definition}
 
@@ -1599,41 +1942,41 @@ Dot product in $ \RR^n $ over $ \RR $.
 
 \begin{definition}
 If $ \ch k \ne 2 $, then the associated \textbf{quadratic form} to a symmetric bilinear pairing is
-$$ \function[\B]{V}{k}{\underline{v}}{\br{\underline{v}, \underline{v}}}. $$
+$$ \function[\B]{V}{k}{\underline{v}}{\abr{\underline{v}, \underline{v}}}. $$
 \end{definition}
 
 \begin{remark}
-Then $ \B $ is uniquely determined by $ \br{\cdot, \cdot} $, but the converse is also true, since
-$$ \B\br{\underline{v_1} + \underline{v_2}} = \br{\underline{v_1} + \underline{v_2}, \underline{v_1} + \underline{v_2}} = \br{\underline{v_1} + \underline{v_1}} + \br{\underline{v_1}, \underline{v_2}} + \br{\underline{v_2}, \underline{v_1}} + \br{\underline{v_2}, \underline{v_2}} = \B\br{\underline{v_1}} + \B\br{\underline{v_2}} + 2\br{\underline{v_1}, \underline{v_2}}, $$
+Then $ \B $ is uniquely determined by $ \abr{\cdot, \cdot} $, but the converse is also true, since
+$$ \B\br{\underline{v_1} + \underline{v_2}} = \abr{\underline{v_1} + \underline{v_2}, \underline{v_1} + \underline{v_2}} = \abr{\underline{v_1}, \underline{v_1}} + \abr{\underline{v_1}, \underline{v_2}} + \abr{\underline{v_2}, \underline{v_1}} + \abr{\underline{v_2}, \underline{v_2}} = \B\br{\underline{v_1}} + \B\br{\underline{v_2}} + 2\abr{\underline{v_1}, \underline{v_2}}, $$
 by bilinearity and symmetry, so
-$$ \br{\underline{v_1}, \underline{v_2}} = \dfrac{1}{2}\br{\B\br{\underline{v_1} + \underline{v_2}} - \B\br{\underline{v_1}} - \B\br{\underline{v_2}}}. $$
+$$ \abr{\underline{v_1}, \underline{v_2}} = \dfrac{1}{2}\br{\B\br{\underline{v_1} + \underline{v_2}} - \B\br{\underline{v_1}} - \B\br{\underline{v_2}}}. $$
 \end{remark}
 
 \begin{example}
 Let $ V = k^n $, and let $ A $ be a symmetric $ n \times n $ matrix over $ k $. Then
-$$ \br{\underline{v_1}, \underline{v_2}} = \underline{v_1}^\intercal A\underline{v_2} \in k, \qquad \underline{v_1}, \underline{v_2} \in V $$
+$$ \abr{\underline{v_1}, \underline{v_2}} = \underline{v_1}^\intercal A\underline{v_2} \in k, \qquad \underline{v_1}, \underline{v_2} \in V $$
 is a symmetric bilinear pairing. More generally, let $ V $ be any finite-dimensional vector space, so $ V = \abr{\underline{e_1}, \dots, \underline{e_n}}_k $ for $ \cbr{\underline{e_i}} $ a $ k $-basis, and let the $ \br{i, j} $-th entry of $ A $ be $ \br{\underline{e_i}, \underline{e_j}} $. Under the unique isomorphism
 $$ \function[\phi]{V}{k^n}{\underline{e_i}}{\br{0, \dots, 0, 1, 0, \dots, 0}}, $$
 we get a symmetric bilinear pairing
-$$ \br{\underline{v}, \underline{w}} = \phi\br{\underline{v}}^\intercal A\phi\br{\underline{w}} \in k, \qquad \underline{v}, \underline{w} \in V. $$
+$$ \abr{\underline{v}, \underline{w}} = \phi\br{\underline{v}}^\intercal A\phi\br{\underline{w}} \in k, \qquad \underline{v}, \underline{w} \in V. $$
 \end{example}
 
 \begin{definition}
-A \textbf{quadratic space} over $ k $ is an ordered pair $ \br{V, \br{\cdot, \cdot}} $ for $ V $ a finite-dimensional $ k $-linear vector space, and $ \br{\cdot, \cdot} : V \times V \to k $ a symmetric bilinear pairing. Two quadratic spaces $ \br{V, \br{\cdot, \cdot}} $ and $ \br{W, \abr{\cdot, \cdot}} $ are \textbf{isometric} if there exists $ \phi : V \to W $ an isomorphism such that $ \br{\underline{v}, \underline{w}} = \abr{\phi\br{\underline{v}}, \phi\br{\underline{w}}} $ for all $ \underline{v}, \underline{w} \in V $, so any quadratic space is isometric to a specimen from the example.
+A \textbf{quadratic space} over $ k $ is an ordered pair $ \br{V, \abr{\cdot, \cdot}} $ for $ V $ a finite-dimensional $ k $-linear vector space, and $ \abr{\cdot, \cdot} : V \times V \to k $ a symmetric bilinear pairing. Two quadratic spaces $ \br{V, \abr{\cdot, \cdot}} $ and $ \br{W, \abr{\abr{\cdot, \cdot}}} $ are \textbf{isometric} if there exists $ \phi : V \to W $ an isomorphism such that $ \abr{\underline{v}, \underline{w}} = \abr{\abr{\phi\br{\underline{v}}, \phi\br{\underline{w}}}} $ for all $ \underline{v}, \underline{w} \in V $, so any quadratic space is isometric to a specimen from the example.
 \end{definition}
 
 \begin{remark}
-Change of basis has the following effect. Let $ A $ be the matrix of the symmetric bilinear pairing $ \br{\cdot, \cdot} $ in the basis $ \underline{e_1}, \dots, \underline{e_n} $. If the matrix of the change of basis is $ B $, in the basis the matrix of the symmetric bilinear pairing is $ B^\intercal AB $, since $ \br{B\underline{v}}^\intercal A\br{B\underline{w}} = \underline{v}^\intercal \br{B^\intercal AB}\underline{w} $.
+Change of basis has the following effect. Let $ A $ be the matrix of the symmetric bilinear pairing $ \abr{\cdot, \cdot} $ in the basis $ \underline{e_1}, \dots, \underline{e_n} $. If the matrix of the change of basis is $ B $, in the basis the matrix of the symmetric bilinear pairing is $ B^\intercal AB $, since $ \br{B\underline{v}}^\intercal A\br{B\underline{w}} = \underline{v}^\intercal \br{B^\intercal AB}\underline{w} $.
 \end{remark}
 
 \begin{theorem}[Gram-Schmidt orthogonalisation process]
-If $ \br{V, \br{\cdot, \cdot}} $ is a quadratic space, then $ V $ has a basis $ \underline{e_1}, \dots, \underline{e_n} $ in which the matrix of $ \br{\cdot, \cdot} $ is diagonal.
+If $ \br{V, \abr{\cdot, \cdot}} $ is a quadratic space, then $ V $ has a basis $ \underline{e_1}, \dots, \underline{e_n} $ in which the matrix of $ \abr{\cdot, \cdot} $ is diagonal.
 \end{theorem}
 
 \begin{proof}
-Two cases. If $ \B \equiv 0 $, then $ \br{\cdot, \cdot} \equiv 0 $. Otherwise for all $ \underline{v} \in V $ such that $ \B\br{\underline{v}} \ne 0 $. Let $ \underline{e_1} = \underline{v_1} $ and
-$$ \underline{v}^\perp = \cbr{\underline{w} \in V \st \br{\underline{v}, \underline{w}} = 0}. $$
-This is an $ k $-linear subspace, which is trivial as $ \underline{w} \mapsto \br{\underline{v}, \underline{w}} $ is $ k $-linear. Then $ \underline{v} \notin \Ker \br{\underline{v}, \cdot} $, so $ \dim \underline{v}^\perp = \dim V - 1 $. We apply the process to $ \br{\underline{v}^\perp, \eval{\br{\cdot, \cdot}}_{\underline{v}^\perp}} $, by using induction on the dimension.
+Two cases. If $ \B \equiv 0 $, then $ \abr{\cdot, \cdot} \equiv 0 $. Otherwise for all $ \underline{v} \in V $ such that $ \B\br{\underline{v}} \ne 0 $. Let $ \underline{e_1} = \underline{v_1} $ and
+$$ \underline{v}^\perp = \cbr{\underline{w} \in V \st \abr{\underline{v}, \underline{w}} = 0}. $$
+This is an $ k $-linear subspace, which is trivial as $ \underline{w} \mapsto \abr{\underline{v}, \underline{w}} $ is $ k $-linear. Then $ \underline{v} \notin \Ker \abr{\underline{v}, \cdot} $, so $ \dim \underline{v}^\perp = \dim V - 1 $. We apply the process to $ \br{\underline{v}^\perp, \eval{\abr{\cdot, \cdot}}_{\underline{v}^\perp}} $, by using induction on the dimension.
 \end{proof}
 
 \pagebreak
