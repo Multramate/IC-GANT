@@ -4,7 +4,7 @@
 
 ### Description
 
-The following lecture notes are taken during my third and fourth year in the MEng Joint Mathematics and Computing (Pure Mathematics and Computational Logic) course in Imperial College London. You can download them via the links below, or by navigating to their respective files within the repository. **Pausing updates to notes until after Christmas due to examinations.**
+The following lecture notes are taken during my third and fourth year in the MEng Joint Mathematics and Computing (Pure Mathematics and Computational Logic) course in Imperial College London. You can download them via the links below, or by navigating to their respective files within the repository.
 
 ### Disclaimer
 
