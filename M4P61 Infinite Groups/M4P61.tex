@@ -1,8 +1,71 @@
 \def\module{M4P61 Infinite Groups}
 \def\lecturer{Dr Isabel M\"uller}
 \def\term{Autumn 2019}
-\def\cover{}
-\def\syllabus{}
+\def\cover{
+$$
+\newcommand{\drawright}[4]{
+\ifnum##4=0\else
+\fill (##1, ##2) circle (0.5);
+\draw (##1, ##2) to (##1, {##2 + ##3});
+\draw (##1, ##2) to ({##1 + ##3}, ##2);
+\draw (##1, ##2) to (##1, {##2 - ##3});
+\drawabove{##1}{\number\numexpr##2+##3\relax}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawright{\number\numexpr##1+##3\relax}{##2}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawbelow{##1}{\number\numexpr##2-##3\relax}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\fi
+}
+\newcommand{\drawabove}[4]{
+\ifnum##4=0\else
+\fill (##1, ##2) circle (0.5);
+\draw (##1, ##2) to ({##1 + ##3}, ##2);
+\draw (##1, ##2) to (##1, {##2 + ##3});
+\draw (##1, ##2) to ({##1 - ##3}, ##2);
+\drawright{\number\numexpr##1+##3\relax}{##2}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawabove{##1}{\number\numexpr##2+##3\relax}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawleft{\number\numexpr##1-##3\relax}{##2}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\fi
+}
+\newcommand{\drawleft}[4]{
+\ifnum##4=0\else
+\fill (##1, ##2) circle (0.5);
+\draw (##1, ##2) to (##1, {##2 + ##3});
+\draw (##1, ##2) to ({##1 - ##3}, ##2);
+\draw (##1, ##2) to (##1, {##2 - ##3});
+\drawabove{##1}{\number\numexpr##2+##3\relax}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawleft{\number\numexpr##1-##3\relax}{##2}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawbelow{##1}{\number\numexpr##2-##3\relax}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\fi
+}
+\newcommand{\drawbelow}[4]{
+\ifnum##4=0\else
+\fill (##1, ##2) circle (0.5);
+\draw (##1, ##2) to ({##1 + ##3}, ##2);
+\draw (##1, ##2) to (##1, {##2 - ##3});
+\draw (##1, ##2) to ({##1 - ##3}, ##2);
+\drawright{\number\numexpr##1+##3\relax}{##2}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawbelow{##1}{\number\numexpr##2-##3\relax}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\drawleft{\number\numexpr##1-##3\relax}{##2}{\number\numexpr##3/2\relax}{\number\numexpr##4-1\relax}
+\fi
+}
+\begin{tikzpicture}[scale=1/20]
+\fill (0, 0) circle (1) node[below left]{$ e $};
+\fill (64, 0) circle (1) node[below left]{$ a $};
+\fill (0, 64) circle (1) node[below left]{$ b $};
+\fill (-64, 0) circle (1) node[below left]{$ a^{-1} $};
+\fill (0, -64) circle (1) node[below left]{$ b^{-1} $};
+\draw (0, 0) to (64, 0);
+\draw (0, 0) to (0, 64);
+\draw (0, 0) to (-64, 0);
+\draw (0, 0) to (0, -64);
+\drawright{64}{0}{32}{6}
+\drawabove{0}{64}{32}{6}
+\drawleft{-64}{0}{32}{6}
+\drawbelow{0}{-64}{32}{6}
+\draw (0, -160) node[above]{$ \Gamma\br{\F\br{\cbr{a, b}}, \cbr{a, b}} $};
+\end{tikzpicture}
+$$
+}
+\def\syllabus{Bass-Serre graphs. Cayley graphs. Words and paths. Free groups. Presentations of groups. Group actions on graphs. The Nielson-Schreier theorem. Fundamental groups of graphs. Free products of groups. Amalgamated free products. HNN extensions. Graphs of groups. The fundamental structure theorem of Bass-Serre theory.}
 \def\thm{subsection}
 
 \input{../style/header}
@@ -10,8 +73,6 @@
 \begin{document}
 
 \input{../style/main}
-
-\setcounter{section}{0}
 
 \section{Introduction}
 
@@ -54,8 +115,8 @@ A \textbf{graph} $ X $ is a tuple consisting of a set of vertices $ X^0 $, a set
 
 A convention is that unless otherwise specified, we identify edges $ e $ and $ e' $ if $ \alpha\br{e} = \alpha\br{e'} $ and $ \omega\br{e} = \omega\br{e'} $. The following are translations of notions.
 \begin{itemize}
-\item A subgraph is an \textbf{induced} subgraph.
-\item A graph homomorphism $ \phi $ from $ X $ to $ Y $ is a mapping from $ X^i \to Y^i $ for $ i = 0, 1 $ such that $ \phi\br{\alpha\br{e}} = \alpha\br{\phi\br{e}} $ and $ \phi\br{\overline{e}} = \overline{\phi\br{e}} $.
+\item A \textbf{subgraph} is an induced subgraph.
+\item A graph \textbf{homomorphism} $ \phi $ from $ X $ to $ Y $ is a mapping from $ X^i \to Y^i $ for $ i = 0, 1 $ such that $ \phi\br{\alpha\br{e}} = \alpha\br{\phi\br{e}} $ and $ \phi\br{\overline{e}} = \overline{\phi\br{e}} $.
 \item Given $ x \in X^0 $, then we call the set $ \cbr{e \st \alpha\br{e} = x} $ the \textbf{star} of $ x $, or $ \star x $. The cardinality of $ \star x $ is called the \textbf{valency} of $ x $.
 \item A homomorphism $ \phi : X \to Y $ is \textbf{locally injective} if and only if its restriction to $ \star x $ is injective for all $ x \in X^0 $.
 \item An \textbf{orientation} of $ X $ is a choice of vertices $ X_+^1 \subseteq X^1 $ which picks exactly one of each pair $ \cbr{e, \overline{e}} $.
@@ -100,7 +161,7 @@ A sequence $ p = e_1 \dots e_n $ with $ e_i \in X^1 $ is called a \textbf{path} 
 \hfill
 \begin{itemize}
 \item If we have a path $ p $ given, we can naturally consider it to be a subgraph via
-$$ X_p^0 = \cbr{\alpha\br{e_i} \st i < n} \cup \br{\omega\br{e_n}}, \qquad X_p^1 = \cbr{e_1, \dots, e_n, \overline{e_1}, \dots, \overline{e_n}}. $$
+$$ X_p^0 = \cbr{\alpha\br{e_i} \st i \le n} \cup \cbr{\omega\br{e_n}}, \qquad X_p^1 = \cbr{e_1, \dots, e_n, \overline{e_1}, \dots, \overline{e_n}}. $$
 \item If $ p = e_1 \dots e_n $ is closed, then a permutation of the form
 $$ e_{i + 1} \dots e_ne_1 \dots e_i $$
 is called a \textbf{cyclic permutation}. $ p $ is called \textbf{cyclically reduced} if every cyclic permutation is reduced.
@@ -198,9 +259,9 @@ Assume $ G $ is a group and $ S \subseteq G \setminus \cbr{e_G} $. Then we defin
 \item for $ e $ an edge, we have $ \alpha\br{\br{g, s}} = g $ and $ \omega\br{\br{g, s}} = gs $, and
 \item the inverse of $ \br{g, s} $ is $ \overline{\br{g, s}} = \br{gs, s^{-1}} $, where
 $$ S^{-1} = \cbr{s^{-1} \st s \in S} $$
-is a set of new formal symbols. Thus $ \br{g, s^{-1}} \notin G \times S $, even if as elements $ s^{-1} = s' \in S $. If $ s = s^{-1} $, this avoids troubles.
+is a set of new formal symbols.
 \end{itemize}
-We consider $ \Gamma\br{G, S} $ to be a labelled graph, where the label of $ \br{g, s} $ is $ s $.
+Thus $ \br{g, s^{-1}} \notin G \times S $, even if as elements $ s^{-1} = s' \in S $. If $ s = s^{-1} $, this avoids troubles. We consider $ \Gamma\br{G, S} $ to be a labelled graph, where the label of $ \br{g, s} $ is $ s $.
 \end{definition}
 
 \begin{exercise}
@@ -216,7 +277,7 @@ If $ G $ is a group and $ S \subseteq G \setminus \cbr{e_G} $ generates $ G $, t
 \end{definition}
 
 \begin{exercise}
-Given $ S $ a connected graph. Is there a group $ G $ and $ S \subseteq G \setminus \cbr{e_G} $ such that $ X \cong \Gamma\br{G, S} $, where $ S $ is a generating set?
+Given $ X $ a connected graph, is there a group $ G $ and $ S \subseteq G \setminus \cbr{e_G} $ such that $ X \cong \Gamma\br{G, S} $, where $ S $ is a generating set?
 \end{exercise}
 
 \begin{example}
@@ -333,7 +394,7 @@ and we say that $ w $ \textbf{represents} $ G $.
 \end{definition}
 
 \begin{example}
-Consider $ \ZZ $ with $ S = \cbr{s_0 = -1, s_1 = 1} $. Then $ w_1 = s_0s_1 \ne s_1^{-1}s_1 = w_2 $ but $ w_1 \underset{G}{=} w_2 $.
+Consider $ G = \ZZ $ with $ S = \cbr{s_0 = -1, s_1 = 1} $. Then $ w_1 = s_0s_1 \ne s_1^{-1}s_1 = w_2 $ but $ w_1 \underset{G}{=} w_2 $.
 \end{example}
 
 \pagebreak
@@ -343,7 +404,7 @@ If $ S $ is a generating set for $ G $, then for every $ g \in G $, every word i
 \end{remark}
 
 \begin{example}
-Let $ \ZZ \times \ZZ $ and $ S = \cbr{a = \br{1, 0}, b = \br{0, 1}} $. Consider
+Let $ G = \ZZ \times \ZZ $ and $ S = \cbr{a = \br{1, 0}, b = \br{0, 1}} $. Consider
 $$ w_1 = aabbab^{-1}, \qquad w_2 = baaa, \qquad w_3 = aba^{-1}a^{-1}. $$
 Then $ w_1 \underset{G}{=} w_2 $ and $ w_3 \underset{G}{=} ba^{-1} \underset{G}{=} a^{-1}b $.
 \end{example}
@@ -514,7 +575,7 @@ Elements of $ R $ are called relators and identities in $ G $ are called \textbf
 \end{note*}
 
 \begin{example*}
-In $ S = \cbr{a, b} $, $ ab^2a^{-1} $ is a relator and $ ab^2 \underset{G}{=} $ is a relation, and $ ab^2a^{-1} \underset{G}{=} e_G $ if and only if $ ab^2 \underset{G}{=} a $.
+In $ S = \cbr{a, b} $, $ ab^2a^{-1} $ is a relator and $ ab^2 \underset{G}{=} a $ is a relation, and $ ab^2a^{-1} \underset{G}{=} e_G $ if and only if $ ab^2 \underset{G}{=} a $.
 \end{example*}
 
 \begin{remark}[Free groups V]
@@ -535,6 +596,15 @@ $$ g = \prod_{i = 1}^n u_ir_iu_i^{-1}, \qquad r_i \in R, \qquad u_i \in \F\br{S}
 Let $ G = \abr{S \st R} $. Then we call $ G $ \textbf{finitely presented} if both $ S $ and $ R $ are finite.
 \end{definition}
 
+\begin{remark}
+\label{rem:1.5.5}
+Let $ G $ be a group and $ S \subseteq G $, and $ R $ a set of words on $ S $. Then the following are equivalent.
+\begin{enumerate}
+\item $ G = \abr{S \st R} $.
+\item A word $ w $ on $ S $ represents $ e_G $ in $ G $ if and only if $ w \in \abr{R}^{\F\br{S}} $.
+\end{enumerate}
+\end{remark}
+
 \begin{example}
 Claim that the group $ \SSS_3 $ allows the presentation
 $$ \abr{x, y \st x^2, y^2, \br{xy}^3}. $$
@@ -542,29 +612,16 @@ Let
 $$ \function[\phi]{\F\br{\cbr{x, y}}}{\SSS_3}{\br{x, y}}{\br{\br{12}, \br{23}}}. $$
 Clearly
 $$ \phi\br{x^2} = \br{12}^2 = e_{\SSS_3} = \br{23}^2 = \phi\br{y^2}. $$
-Also, $ xy = \br{132} $ and hence
-$$ \phi\br{\br{xy}^3} = \br{132}^3 = e_{\SSS_3}, $$
-hence $ \br{xy}^3 \in \Ker \phi $. Thus, by \ref{ex:1.5.3}.$ 2 $ and as $ \phi $ is a homomorphism, we get
+Also, $ xy = \br{132} $ and hence $ \phi\br{\br{xy}^3} = \br{132}^3 = e_{\SSS_3} $, hence $ \br{xy}^3 \in \Ker \phi $. Thus, by \ref{ex:1.5.3}.$ 2 $ and as $ \phi $ is a homomorphism, we get
 $$ \abr{\cbr{x^2, y^2, \br{xy}^3}}^{\F\br{S}} \subseteq \Ker \phi. $$
-Now assume $ w = x^{k_1}y^{l_1} \dots x^{k_n}y^{l_n} $ on $ \cbr{x, y} $ such that $ w \underset{\SSS_3}{=} e_{\SSS_3} $, that is $ w \in \Ker \phi $. By \ref{ex:1.5.3}.$ 1 $, we can cancel all occurences of $ x^{\pm 2}y^{\pm 2} $. We obtain $ w' = xyxy \dots $ such that $ w' \underset{\SSS_3}{=} e_{\SSS_3} $ if and only if $ w' \underset{\SSS_3}{=} e_{\SSS_3} $. Now cancel $ \br{xy}^3 $ and obtain a word of length at most six. Now, note the relator $ \br{xy}^3 $ yields the relation $ xyx \underset{\SSS_3}{=} yxy $. Hence the only words left are of length at most three, that is
-$$ \epsilon, x, y, xy, yx, xyx = yxy. $$
-Hence, $ w $ is in $ \abr{R}^{\F\br{S}} $.
+Now assume $ w = x^{k_1}y^{l_1} \dots x^{k_n}y^{l_n} $ on $ \cbr{x, y} $ such that $ w \underset{\SSS_3}{=} e_{\SSS_3} $, that is $ w \in \Ker \phi $. By \ref{ex:1.5.3}.$ 1 $, we can cancel all occurences of $ x^{\pm 2}y^{\pm 2} $. We obtain $ w' = xyxy \dots $ such that $ w' \underset{\SSS_3}{=} e_{\SSS_3} $ if and only if $ w' \underset{\SSS_3}{=} e_{\SSS_3} $. Now cancel $ \br{xy}^3 $ and obtain a word of length at most six. Now, note the relator $ \br{xy}^3 $ yields the relation $ xyx \underset{\SSS_3}{=} yxy $. Hence the only words left are of length at most three, that is $ \epsilon, x, y, xy, yx, xyx = yxy $. Hence, $ w $ is in $ \abr{R}^{\F\br{S}} $.
 \end{example}
+
+\pagebreak
 
 \begin{exercise}
 For any set $ S $ and $ R $ a set of words on $ S $, there exists some $ G $ with $ G = \abr{R \st S} $.
 \end{exercise}
-
-\pagebreak
-
-\begin{remark}
-\label{rem:1.5.7}
-Let $ G $ be a group and $ S \subseteq G $, and let $ R $ be a set of words on $ S $. Then the following are equivalent.
-\begin{enumerate}
-\item $ G = \abr{S \st R} $.
-\item A word $ w $ on $ S $ represents $ e_G $ in $ G $ if and only if $ w \in \abr{R}^{\F\br{S}} $.
-\end{enumerate}
-\end{remark}
 
 \begin{proposition}
 Let $ H $ be a group and $ S \subseteq H $, and $ R \subseteq \F\br{S} $. Then the following are equivalent.
@@ -577,7 +634,7 @@ Let $ H $ be a group and $ S \subseteq H $, and $ R \subseteq \F\br{S} $. Then t
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Assume $ H = \abr{S \st R} $ and $ f : S \to G $. Clearly, as $ S $ generates $ H $, any homomorphism $ \phi : H \to G $ extending $ f $ has to send $ h = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $ to $ f\br{s_1}^{\epsilon_1} \dots f\br{s_n}^{\epsilon_n} $. Hence $ \phi $ is uniquely determined, if it exists. Now, assume that $ \phi $ is a well-defined homomorphism of groups. By \ref{rem:1.5.7}, that $ r \underset{H}{=} e_H $ for any $ r \in R $, whence $ \phi\br{r} = e_G = f\br{r} $. Now assume $ f\br{r} = e_G $ for all $ r \in R $. We want to show that $ \phi $ is well-defined, that is if $ w_1 \underset{H}{=} w_2 $, then $ \phi\br{w_1} \underset{G}{=} \phi\br{w_2} $. Clearly, this amounts to say that any word $ w_1w_2^{-1} $ which represents $ e_H $ is sent to $ e_G $. By \ref{rem:1.5.7}.$ 2 $, $ w $ represents $ e_H $ if and only if $ w \in \abr{R}^{\F\br{S}} $. By assumption $ \phi\br{R} = \cbr{e_G} $ and \ref{ex:1.5.3}.$ 2 $, the claim follows.
+\item[$ \implies $] Assume $ H = \abr{S \st R} $ and $ f : S \to G $. Clearly, as $ S $ generates $ H $, any homomorphism $ \phi : H \to G $ extending $ f $ has to send $ h = s_1^{\epsilon_1} \dots s_n^{\epsilon_n} $ to $ f\br{s_1}^{\epsilon_1} \dots f\br{s_n}^{\epsilon_n} $. Hence $ \phi $ is uniquely determined, if it exists. Now, assume that $ \phi $ is a well-defined homomorphism of groups. By \ref{rem:1.5.5}, that $ r \underset{H}{=} e_H $ for any $ r \in R $, whence $ \phi\br{r} = e_G = f\br{r} $. Now assume $ f\br{r} = e_G $ for all $ r \in R $. We want to show that $ \phi $ is well-defined, that is if $ w_1 \underset{H}{=} w_2 $, then $ \phi\br{w_1} \underset{G}{=} \phi\br{w_2} $. Clearly, this amounts to say that any word $ w_1w_2^{-1} $ which represents $ e_H $ is sent to $ e_G $. By \ref{rem:1.5.5}.$ 2 $, $ w $ represents $ e_H $ if and only if $ w \in \abr{R}^{\F\br{S}} $. By assumption $ \phi\br{R} = \cbr{e_G} $ and \ref{ex:1.5.3}.$ 2 $, the claim follows.
 \item[$ \impliedby $] Exercise. \footnote{Exercise}
 \end{itemize}
 \end{proof}
@@ -598,7 +655,7 @@ $$ \function[\phi_1]{\F\br{\cbr{x}}}{G}{x}{1}, \qquad \function[\phi_1]{\F\br{\c
 \item Consider
 $$ G = \abr{x, y \st x^2, y^2, \br{xy}^3} = \SSS_3, $$
 as we saw, given by
-$$ \function[\phi_1]{\F\br{\cbr{x, y}}}{G}{\br{x, y}}{\br{\br{12}, \br{23}}}. $$
+$$ \function[\phi]{\F\br{\cbr{x, y}}}{G}{\br{x, y}}{\br{\br{12}, \br{23}}}. $$
 An easy calculation shows that
 $$ \SSS_3 = \abr{x, y \st x^2, \br{xy}^3, x^{-1}y^{-1}\br{xy}^2}, $$
 via the same homomorphism $ \phi $.
@@ -608,7 +665,10 @@ via the same homomorphism $ \phi $.
 It is hard to read even basic algebraic properties from a presentation, such as whether or not a group is finite.
 
 \begin{example*}
-$$ \SSS_3 = \abr{x, y \st x^2, y^2, \br{xy}^3}, \ \AAA_4 = \abr{x, y \st x^3, y^3, \br{xy}^2} \ \text{are finite}, \qquad G = \abr{x, y \st x^3, y^3, \br{xy}^3} \ \text{is infinite}. $$
+$$ \SSS_3 = \abr{x, y \st x^2, y^2, \br{xy}^3}, \qquad \AAA_4 = \abr{x, y \st x^3, y^3, \br{xy}^2} $$
+are finite, and
+$$ G = \abr{x, y \st x^3, y^3, \br{xy}^3} $$
+is infinite.
 \end{example*}
 
 \pagebreak
@@ -627,11 +687,11 @@ They are called \textbf{free Burnside groups}. Are the $ \B\br{m, n} $ finite?
 \end{remark}
 
 \begin{exercise}
-Show that all $ \B\br{1, n} $ and $ \B\br{m, n} $ are finite.
+Show that all $ \B\br{1, n} $ and $ \B\br{m, 2} $ are finite.
 \end{exercise}
 
 Why bother? Most groups simply just come through their presentation and problems on groups, such as isomorphism problems and word problems, are best expressed through presentations. A very important class of groups are Coxeter groups. A group $ G $ is \textbf{Coxeter}, if
-$$ G = \abr{s_1, \dots, s_n \st s_i^2, \br{s_is_j}^{m_{ij}}, i, j = 1, \dots, n}, \qquad 1 \le m_{ij} \le \infty. $$
+$$ G = \abr{s_1, \dots, s_n \st s_i^2, \ \br{s_is_j}^{m_{ij}}, \ i, j = 1, \dots, n}, \qquad 1 \le m_{ij} \le \infty. $$
 
 \subsection{Group actions on graphs}
 
@@ -679,7 +739,7 @@ Let $ X $ be a tree and $ \sigma \in \Aut X $. Then we set
 $$ \abs{\sigma} = \min\cbr{\d\br{x, \sigma\br{x}} \st x \in X^0}, $$
 and call it the \textbf{displacement length} of $ \sigma $. Let
 $$ \widetilde{\sigma_{\min}} = \cbr{x \in X^0 \st \d\br{x, \sigma\br{x}} = \abs{\sigma}}. $$
-Then $ \sigma_{\min} $ is the induced subgraph on $ \widetilde{\sigma_{\min}} $. If $ \abs{\sigma} = 0 $, we write $ \sigma_{\min} = \mathring{\sigma} $, and if $ \abs{\sigma} > 0 $, we write $ \sigma_{\min} = \vec{\sigma} $.
+Then $ \sigma_{\min} $ is the induced subgraph on $ \widetilde{\sigma_{\min}} $. If $ \abs{\sigma} = 0 $, we write $ \sigma_{\min} = \mathring{\sigma} $, and if $ \abs{\sigma} > 0 $, we write $ \sigma_{\min} = \overrightarrow{\sigma} $.
 \end{definition}
 
 \lecture{11}{Tuesday}{29/10/19}
@@ -693,7 +753,7 @@ Let $ X $ be a $ G $-tree, and $ \sigma \in G $.
 \begin{enumerate}
 \item If $ \abs{\sigma} = 0 $, then $ \mathring{\sigma} $ is a tree. Furthermore, if $ y \in X^0 $, then let $ x $ be the final vertex of $ \sbr{y - \mathring{\sigma}} $. Then
 $$ \d\br{y, \sigma\br{y}} = 2\d\br{y, x}, \qquad \sbr{y - \sigma\br{y}} = \sbr{y - x} \cup \sbr{x - \sigma\br{y}}. $$
-\item Assume $ \abs{\sigma} > 0 $. Then $ \vec{\sigma} \cong \CCC_\infty $ and $ \sigma $ acts on $ \vec{\sigma} $ by translation of length $ \abs{\sigma} $. If $ y \in X^0 $ is arbitrary and $ x $ is the terminal vertex of $ \sbr{y - \vec{\sigma}} $, then
+\item Assume $ \abs{\sigma} > 0 $. Then $ \overrightarrow{\sigma} \cong \CCC_\infty $ and $ \sigma $ acts on $ \overrightarrow{\sigma} $ by translation of length $ \abs{\sigma} $. If $ y \in X^0 $ is arbitrary and $ x $ is the terminal vertex of $ \sbr{y - \overrightarrow{\sigma}} $, then
 $$ \d\br{y, \sigma\br{y}} = 2\d\br{y, x} + \abs{\sigma}, \qquad \sbr{y - \sigma\br{y}} = \sbr{y - x} \cup \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma\br{y}}. $$
 \end{enumerate}
 \end{proposition}
@@ -701,10 +761,16 @@ $$ \d\br{y, \sigma\br{y}} = 2\d\br{y, x} + \abs{\sigma}, \qquad \sbr{y - \sigma\
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Let $ \abs{\sigma} = 0 $. Clearly, $ \mathring{\sigma} $ is a tree as for $ x $ and $ y $ fixed by $ \sigma $, clearly $ \sbr{x - y} $ has to be fixed by $ \sigma $, whence $ \sbr{x - y} \in \mathring{\sigma} $. Consider $ y \in X^0 $ arbitrary and $ x $ as described. We prove the statement by induction on $ \d\br{y, \mathring{\sigma}} $. Clearly, if $ \d\br{y, \mathring{\sigma}} = 0 $, then $ y \in \mathring{\sigma} $, and the statement holds, as all geodesics are the empty path. Now $ \d\br{y, \mathring{\sigma}} = n + 1 $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{y - x} $. Then $ \d\br{z, \mathring{\sigma}} = \d\br{z, x} = n $, whence $ \sbr{z - \sigma\br{z}} = \sbr{z - x} \cup \sbr{x - \sigma\br{z}} $. Now $ \sigma\br{z} $ is a neighbour of $ \sigma\br{y} $. Then either $ \sigma\br{y} \notin \sbr{x - \sigma\br{z}} $, then we are done, as $ \d\br{y, \sigma\br{y}} = \d\br{y, z} + \d\br{z, \sigma\br{z}} + \d\br{\sigma\br{z}, \sigma\br{y}} = 2\br{n + 1} = 2\d\br{y, x} $. Otherwise, $ \d\br{\sigma\br{y}, x} = n - 1 $. Clearly, $ \abs{\sigma^{-1}} = 0 $ and $ \mathring{\sigma^{-1}} = \mathring{\sigma} $. Then $ \d\br{\sigma\br{y}, x} = n - 1 < n + 1 = \d\br{x, y} = \d\br{\sigma^{-1}\br{\sigma\br{y}}, x} $. Hence $ \d\br{\sigma\br{y}, \sigma^{-1}\br{\sigma\br{y}}} = 2n > 2\d\br{\sigma\br{y}, x} $, a contradiction.
-\item Consider $ x \in \vec{\sigma} $. We want to show that $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Assume for a contradiction that the terminal edge of $ \sbr{x - \sigma\br{x}} $, call it $ e $, is the first edge inverse of $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{x - \sigma\br{x}} $. Then clearly, $ \sigma\br{z} $ is the terminal vertex of the first edge in $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. By assumption, this is the initial vertex of $ e $. But then $ \d\br{z, \sigma\br{z}} = \d\br{x, \sigma\br{x}} - 2 < \abs{\sigma} $, a contradiction. Note that if $ \d\br{x, \sigma\br{x}} = 1 $, then $ \sigma $ would invert the edge $ e $, a contradiction. Hence $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Inductively, this produces a tree
-$$ T = \dots - \sigma^{-1}\br{x} - x - \sigma\br{x} - \dots \subseteq \vec{\sigma}, $$
-and $ \sigma $ acts on $ T $ by translation with length $ \abs{\sigma} $. Now consider $ y \in X^0 \setminus T^0 $. Note that $ \sigma \in \Aut T $. Thus $ \sbr{\sigma\br{x} - \sigma\br{y}} $ intersects $ T $ trivially. Hence, $ \d\br{y, \sigma\br{y}} = \d\br{y, x} + \d\br{x, \sigma\br{x}} + \d\br{\sigma\br{x}, \sigma\br{y}} = \d\br{y, x} + \abs{\sigma} + \d\br{x, y} = 2\d\br{x, y} + \abs{\sigma} > \abs{\sigma} $, for all $ y \notin T $. Hence $ T = \vec{\sigma} \cong \CCC_\infty $.
+\item Let $ \abs{\sigma} = 0 $. Clearly, $ \mathring{\sigma} $ is a tree as for $ x $ and $ y $ fixed by $ \sigma $, clearly $ \sbr{x - y} $ has to be fixed by $ \sigma $, whence $ \sbr{x - y} \in \mathring{\sigma} $. Consider $ y \in X^0 $ arbitrary and $ x $ as described. We prove the statement by induction on $ \d\br{y, \mathring{\sigma}} $. Clearly, if $ \d\br{y, \mathring{\sigma}} = 0 $, then $ y \in \mathring{\sigma} $, and the statement holds, as all geodesics are the empty path. Now $ \d\br{y, \mathring{\sigma}} = n + 1 $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{y - x} $. Then $ \d\br{z, \mathring{\sigma}} = \d\br{z, x} = n $, whence $ \sbr{z - \sigma\br{z}} = \sbr{z - x} \cup \sbr{x - \sigma\br{z}} $. Now $ \sigma\br{z} $ is a neighbour of $ \sigma\br{y} $. Then either $ \sigma\br{y} \notin \sbr{x - \sigma\br{z}} $, then we are done, as
+$$ \d\br{y, \sigma\br{y}} = \d\br{y, z} + \d\br{z, \sigma\br{z}} + \d\br{\sigma\br{z}, \sigma\br{y}} = 2\br{n + 1} = 2\d\br{y, x}. $$
+Otherwise, $ \d\br{\sigma\br{y}, x} = n - 1 $. Clearly, $ \abs{\sigma^{-1}} = 0 $ and $ \mathring{\sigma^{-1}} = \mathring{\sigma} $. Then
+$$ \d\br{\sigma\br{y}, x} = n - 1 < n + 1 = \d\br{x, y} = \d\br{\sigma^{-1}\br{\sigma\br{y}}, x}. $$
+Hence $ \d\br{\sigma\br{y}, \sigma^{-1}\br{\sigma\br{y}}} = 2n > 2\d\br{\sigma\br{y}, x} $, a contradiction.
+\item Consider $ x \in \overrightarrow{\sigma} $. We want to show that $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Assume for a contradiction that the terminal edge of $ \sbr{x - \sigma\br{x}} $, call it $ e $, is the first edge inverse of $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Let $ z $ be the terminal vertex of the first edge in $ \sbr{x - \sigma\br{x}} $. Then clearly, $ \sigma\br{z} $ is the terminal vertex of the first edge in $ \sbr{\sigma\br{x} - \sigma^2\br{x}} $. By assumption, this is the initial vertex of $ e $. But then $ \d\br{z, \sigma\br{z}} = \d\br{x, \sigma\br{x}} - 2 < \abs{\sigma} $, a contradiction. Note that if $ \d\br{x, \sigma\br{x}} = 1 $, then $ \sigma $ would invert the edge $ e $, a contradiction. Hence $ \sbr{x - \sigma^2\br{x}} = \sbr{x - \sigma\br{x}} \cup \sbr{\sigma\br{x} - \sigma^2\br{x}} $. Inductively, this produces a tree
+$$ T = \dots - \sigma^{-1}\br{x} - x - \sigma\br{x} - \dots \subseteq \overrightarrow{\sigma}, $$
+and $ \sigma $ acts on $ T $ by translation with length $ \abs{\sigma} $. Now consider $ y \in X^0 \setminus T^0 $. Note that $ \sigma \in \Aut T $. Thus $ \sbr{\sigma\br{x} - \sigma\br{y}} $ intersects $ T $ trivially. Hence,
+$$ \d\br{y, \sigma\br{y}} = \d\br{y, x} + \d\br{x, \sigma\br{x}} + \d\br{\sigma\br{x}, \sigma\br{y}} = \d\br{y, x} + \abs{\sigma} + \d\br{x, y} = 2\d\br{x, y} + \abs{\sigma} > \abs{\sigma}, $$
+for all $ y \notin T $. Hence $ T = \overrightarrow{\sigma} \cong \CCC_\infty $.
 \end{enumerate}
 \end{proof}
 
@@ -716,6 +782,8 @@ Let $ X $ be a $ G $-tree and $ \sigma \in G $. Then
 \end{itemize}
 \end{definition}
 
+\pagebreak
+
 \begin{remark}
 If $ G $ does invert an edge, it resembles more a rotation. Indeed, the extended action on $ \BBB\br{X} $ yields that $ \sigma $ is elliptic.
 \end{remark}
@@ -724,38 +792,38 @@ If $ G $ does invert an edge, it resembles more a rotation. Indeed, the extended
 
 Lecture 12 is a problem class.
 
-\pagebreak
-
 \lecture{13}{Thursday}{31/10/19}
 
 \begin{lemma}
-Let $ X $ be a $ G $-tree with trivial edge stabilisers, that is for all $ e \in X^1 $ and $ g \in G $ such that $ g \cdot e = e $, then $ g = \id_G $. If $ g, h \in G $ are hyperbolic such that $ \abs{\vec{g}^0 \cap \vec{h}^0} \ge \abs{h} + \abs{g} + 2 $, then $ g $ and $ h $ commute.
+Let $ X $ be a $ G $-tree with trivial edge stabilisers, that is for all $ e \in X^1 $ and $ g \in G $ such that $ g \cdot e = e $, then $ g = \id_G $. If $ g, h \in G $ are hyperbolic such that $ \abs{\overrightarrow{g}^0 \cap \overrightarrow{h}^0} \ge \abs{h} + \abs{g} + 2 $, then $ g $ and $ h $ commute.
 \end{lemma}
 
 \begin{proof}
-First note that $ h^{-1} $ also is hyperbolic with $ \abs{h} = \abs{h^{-1}} $ and $ \vec{h^{-1}} = \vec{h} $, only that $ h^{-1} $ moves the elements on $ \vec{h} $ in the inverse direction. As $ g $ and $ h $ commute if and only if $ g $ and $ h^{-1} $ commute, we may assume that they translate the elements of $ L = \vec{g} \cap \vec{h} $ in the same direction. Let $ L^0 = \cbr{x_i \st k < i < j} $ with $ -\infty \le k < j \le \infty $. By assumption $ \br{j - 1} - k \ge \abs{g} + \abs{h} + 2 $, thus there is some $ i > k $ such that $ i + \abs{g} + \abs{h} + 1 < j $. Thus consider $ g^{-1}h^{-1}gh $, then
-$$ g^{-1}h^{-1}gh\br{x_i} = g^{-1}h^{-1}g\br{x_{i + \abs{h}}} = g^{-1}h^{-1}\br{x_{i + \abs{g} + \abs{h}}} = g^{-1}\br{x_{i + \abs{g}}} = x_i. $$
-Similarly, $ g^{-1}h^{-1}gh\br{x_{i + 1}} = g^{-1}h^{-1}\br{x_{i + \abs{g} + \abs{h} + 1}} = x_{i + 1} $. Hence $ g^{-1}h^{-1}gh $ fixes $ e $ with $ \alpha\br{e} = x_i $ and $ \omega\br{e} = x_{i + 1} $, where $ g^{-1}h^{-1}gh = e_G $, if and only if $ gh = hg $.
+First note that $ h^{-1} $ also is hyperbolic with $ \abs{h} = \abs{h^{-1}} $ and $ \overrightarrow{h^{-1}} = \overrightarrow{h} $, only that $ h^{-1} $ moves the elements on $ \overrightarrow{h} $ in the inverse direction. As $ g $ and $ h $ commute if and only if $ g $ and $ h^{-1} $ commute, we may assume that they translate the elements of $ L = \overrightarrow{g} \cap \overrightarrow{h} $ in the same direction. Let
+$$ L^0 = \cbr{x_i \st k < i < j}, \qquad -\infty \le k < j \le \infty. $$
+By assumption $ \br{j - 1} - k \ge \abs{g} + \abs{h} + 2 $, thus there is some $ i > k $ such that $ i + \abs{g} + \abs{h} + 1 < j $. Thus consider $ g^{-1}h^{-1}gh $, then
+$$ g^{-1}h^{-1}gh \cdot x_i = g^{-1}h^{-1}g \cdot x_{i + \abs{h}} = g^{-1}h^{-1} \cdot x_{i + \abs{g} + \abs{h}} = g^{-1} \cdot x_{i + \abs{g}} = x_i. $$
+Similarly, $ g^{-1}h^{-1}gh \cdot x_{i + 1} = g^{-1}h^{-1} \cdot x_{i + \abs{g} + \abs{h} + 1} = x_{i + 1} $. Hence $ g^{-1}h^{-1}gh $ fixes $ e $ with $ \alpha\br{e} = x_i $ and $ \omega\br{e} = x_{i + 1} $, whence $ g^{-1}h^{-1}gh = e_G $, if and only if $ gh = hg $.
 \end{proof}
 
 \begin{exercise}
 Let $ X $ be a $ G $-tree.
 \begin{itemize}
-\item If $ x \in X^0 $ and $ g \in G $ such that $ \d\br{x, g^2 \cdot x} = 2\d\br{x, g \cdot x} > 0 $, then $ g $ is hyperbolic and $ x \in \vec{g} $.
+\item If $ x \in X^0 $ and $ g \in G $ such that $ \d\br{x, g^2 \cdot x} = 2\d\br{x, g \cdot x} > 0 $, then $ g $ is hyperbolic and $ x \in \overrightarrow{g} $.
 \item If $ g \in G $ is elliptic, and $ h \in G $ is arbitrary, then $ g^h = hgh^{-1} $ is elliptic with $ \mathring{g^h} = h\mathring{g} $.
-\item If $ g \in G $ is hyperbolic, and $ h \in G $ is arbitrary, then $ g^h = hgh^{-1} $ is hyperbolic with $ \vec{g^h} = h\vec{g} $ and $ \abs{g} = \abs{g^h} $.
+\item If $ g \in G $ is hyperbolic, and $ h \in G $ is arbitrary, then $ g^h = hgh^{-1} $ is hyperbolic with $ \overrightarrow{g^h} = h\overrightarrow{g} $ and $ \abs{g} = \abs{g^h} $.
 \end{itemize}
 \end{exercise}
 
 \begin{proposition}
 Let $ X $ be a $ G $-tree.
 \begin{itemize}
-\item If $ g $ and $ h $ are elliptic with $ \mathring{g} \cap \mathring{h} = \emptyset $, then $ gh $ is hyperbolic with $ \abs{gh} = 2\d\br{\mathring{g}, \mathring{h}} $. Furthermore, $ \vec{gh} $ intersects $ \mathring{g} $ and $ \mathring{h} $ non-trivially.
-\item If $ g $ and $ h $ are hyperbolic with $ \vec{g} \cap \vec{h} = \emptyset $, then $ gh $ is hyperbolic with $ \abs{gh} = \abs{g} + \abs{h} + 2\d\br{\vec{g}, \vec{h}} $.
+\item If $ g $ and $ h $ are elliptic with $ \mathring{g} \cap \mathring{h} = \emptyset $, then $ gh $ is hyperbolic with $ \abs{gh} = 2\d\br{\mathring{g}, \mathring{h}} $. Furthermore, $ \overrightarrow{gh} $ intersects $ \mathring{g} $ and $ \mathring{h} $ non-trivially.
+\item If $ g $ and $ h $ are hyperbolic with $ \overrightarrow{g} \cap \overrightarrow{h} = \emptyset $, then $ gh $ is hyperbolic with $ \abs{gh} = \abs{g} + \abs{h} + 2\d\br{\overrightarrow{g}, \overrightarrow{h}} $.
 \end{itemize}
 \end{proposition}
 
-\subsubsection{Nielson-Schreier theorem}
+\subsubsection{The Nielson-Schreier theorem}
 
 Recall that $ F $ is free of basis $ S $ if and only if $ S \cap S^{-1} = \emptyset $ and $ \Gamma\br{F, S} $ is a tree. Also, we know that $ F $ acts freely on $ \Gamma\br{F, S} $. Hence, every free group acts freely on a tree. We want to prove the inverse, that every group acting freely on a tree is free. Then we deduce that subgroups of free groups are free.
 
@@ -892,17 +960,17 @@ Hence, $ \rk H = n\rk G - n + 1 $.
 We already know that $ \Gamma\br{G, S} $ is a tree for $ G $ free on $ S $ and $ G $ acts freely on it. Now assume $ G $ acts freely on a tree $ X $. Set $ X' = G \backslash X $. Let $ T' $ be a spanning tree for $ X' $. By \ref{prop:1.6.18} there exists a lift $ T $ of $ T' $ such that $ \p\br{T} \cong T' $. Pick an orientation of $ X' $. We may assume $ G $ acts without inversion of edges, whence we can lift that orientation to $ X $. Denote by $ E' = X_+^1 \setminus T'^1 $. As the action is free, for every $ f \in E' $ there is a unique lift $ e \in X_+^1 $ with $ \alpha\br{e} \in T $. Set
 $$ E = \cbr{e \st \p\br{e} \in E', \ \alpha\br{e} \in T}. $$
 Clearly, $ \omega\br{e} \notin T $ for all $ e \in E $. Further, all $ gT $ are disjoint for distinct $ g $. Furthermore, the $ gT $ cover all vertices of $ X $. Also, for any $ e \in E $ there is a unique $ g_e \in G $ such that $ \omega\br{e} \in g_eT $. Now set $ S = \cbr{g_e \st e \in E} $. Define a graph $ T_G $ via
-$$ T_G^0 = \cbr{\br{gT} \st g \in G}, \qquad T_G^1 = X_+^1 \setminus \cbr{\br{gT}^1 \st g \in G}. $$
+$$ T_G^0 = \cbr{\br{gT} \st g \in G}, \qquad T_G^1 = X^1 \setminus \cbr{\br{gT}^1 \st g \in G}. $$
 For $ f \in T_G^1 $, $ \alpha\br{f} = \br{gT} $ and $ \omega\br{f} = \br{hT} $ if and only if $ \alpha\br{f} \in \br{gT}^0 $ and $ \omega\br{f} \in \br{hT}^0 $. We claim that $ T_G \cong \Gamma\br{G, S} $. Note that $ T_G $ is a tree, so this concludes the proof. Note that
 $$ S = \cbr{g \in X_+^1 \st \exists e \in X_+^1, \ \alpha\br{e} \in T, \ \omega\br{e} \in gT}. $$
-Hence, for $ f \in T_G^1 $, with $ \alpha\br{f} = \br{gT} $ and $ \omega\br{f} = \br{hT} $, whence for $ e = g^{-1}\br{f} $ we have $ \alpha\br{g^{-1}\br{f}} = g^{-1}\br{\alpha\br{f}} \in T $ and $ \omega\br{e} = g^{-1}\br{\omega\br{e}} \in g^{-1}hT $. Thus $ g^{-1}h \in S $. Define
+Hence, for $ f \in T_G^1 $, with $ \alpha\br{f} = \br{gT} $ and $ \omega\br{f} = \br{hT} $, whence for $ e = g^{-1} \cdot f $, we have $ \alpha\br{g^{-1} \cdot f} = g^{-1} \cdot \alpha\br{f} \in T $ and $ \omega\br{e} = g^{-1} \cdot \omega\br{f} \in g^{-1}hT $. Thus $ g^{-1}h \in S $. Define
 $$
 \begin{array}{ccrcl}
 \phi & : & T_G & \longmapsto & \Gamma\br{G, S} \\
-& & \br{gT} & \longmapsto & g \in \Gamma\br{G, S}^0 \\
+& & \br{gT} & \longmapsto & g \\
 & & f & \longmapsto & \br{g, s}
 \end{array},
-\qquad \alpha\br{f} \in gT, \qquad \omega\br{f} = hT, \qquad g^{-1}h = s. $$
+\qquad \alpha\br{f} = \br{gT}, \qquad \omega\br{f} = \br{hT}, \qquad g^{-1}h = s. $$
 One easily checks that $ \phi $ is an isomorphism $ T_G \xrightarrow{\sim} \Gamma\br{G, S} $.
 \end{proof}
 
@@ -960,7 +1028,7 @@ $$ S = \cbr{\sbr{p_e} \st e \in X_+^1 \setminus T^1}. $$
 \begin{proof}
 First, if $ p \in \PPP\br{X, y} $ and $ p = e_1 \dots e_n $, then $ \sbr{p} = \sbr{p_{e_1}} \dots \sbr{p_{e_n}} $. As $ \sbr{p_e} = 1 $ for all $ e \in T $ we know that $ S $ generates $ \pi_1\br{X, x} $. Now let
 $$ w = \sbr{p_{e_1}} \dots \sbr{p_{e_n}} = \sbr{p_{e_1} \dots p_{e_n}}, \qquad e_i \notin T, \qquad e_{i + 1} = \overline{e_i} $$
-be a reduced word on $ S $. Then $ w = u_1e_1v_1 \dots u_ne_nv_n $, where $ v_iu_{i + 1} \in T $ and $ e_i \notin T $. Hence the reduced presentation of $ w $ is some $ t_1e_1 \dots t_ne_nt_{n + 1} $, where $ t_i $ might be empty. This is the empty word, if and only if $ n = 0 $ and $ t_n = \epsilon $, whence $ w = \epsilon $.
+be a reduced word on $ S $. Then $ w = u_1e_1v_1 \dots u_ne_nv_n $, where $ v_iu_{i + 1} \in T $ and $ e_i \notin T $. Hence the reduced representation of $ w $ is some $ t_1e_1 \dots t_ne_nt_{n + 1} $, where $ t_i $ might be empty. This is the empty word, if and only if $ n = 0 $ and $ t_n = \epsilon $, whence $ w = \epsilon $.
 \end{proof}
 
 \begin{example}
@@ -978,20 +1046,17 @@ Let $ G $ be free on $ S $ and $ H \le G $, then $ H \curvearrowright \Gamma\br{
 The group $ H $ consists of all labels of paths in $ Y $ which start and end in $ H $.
 \end{lemma}
 
-Recall that
-\begin{itemize}
-\item $ Y^0 = \cbr{Hg \st g \in G} $ and $ Y^1 = \cbr{\br{Hg, s} \st s \in S} $, and
-\item $ \l\br{\br{g, s}} = s $, and if $ p = e_1 \dots e_n $, then $ \l\br{p} \underset{G}{=} \l\br{e_1} \dots \l\br{e_n} $.
-\end{itemize}
+Let $ \l\br{\br{g, s}} = s $, and if $ p = e_1 \dots e_n $, then $ \l\br{p} \underset{G}{=} \l\br{e_1} \dots \l\br{e_n} $.
 
 \begin{proof}
-First, let $ p $ be a path in $ Y $ with $ \alpha\br{p} = \omega\br{p} = H $. Let $ p = e_1 \dots e_n $. Note $ \omega\br{e_{i + 1}} = \alpha\br{e_i}\l\br{e_i} $. Hence,
+First, let $ p $ be a path in $ Y $ with $ \alpha\br{p} = \omega\br{p} = H $. Let $ p = e_1 \dots e_n $. Note $ \omega\br{e_i} = \alpha\br{e_i}\l\br{e_i} $. Hence,
 $$ H = \alpha\br{e_1} = \omega\br{e_n} = \alpha\br{e_n}\l\br{e_n} = \omega\br{e_{n - 1}}\l\br{e_n} = \dots = \alpha\br{e_1}\l\br{e_1} \dots \l\br{e_n}. $$
 Conversely, if $ h \in H $, then note that every vertex in the factor has exactly one outgoing and one incoming edge of label $ s $. Hence $ h = s_1 \dots s_n $ for $ s_i \in S^\pm $ gives rise to a unique reduced path $ p $ in $ Y $ such that $ \alpha\br{p} = H $ and $ \omega\br{p} = \alpha\br{p}\l\br{s_1} \dots \l\br{s_n} = H \cdot h = H $.
 \end{proof}
 
 \begin{theorem}
-Let $ G $ be free and $ H \le G $ and $ Y = H \backslash \Gamma\br{G, S} $. If $ T $ is a spanning tree of $ Y $, then $ H \cong \pi_1\br{Y, H} $ and free on $ S = \cbr{\l\br{p_e} \st e \in Y_+^1 \setminus T^1} $.
+Let $ G $ be free and $ H \le G $, and $ Y = H \backslash \Gamma\br{G, S} $. If $ T $ is a spanning tree of $ Y $, then $ H \cong \pi_1\br{Y, H} $ and free on
+$$ S = \cbr{\l\br{p_e} \st e \in Y_+^1 \setminus T^1}. $$
 \end{theorem}
 
 \begin{proof}
@@ -1004,7 +1069,7 @@ is injective. Clearly $ \phi $ is well-defined as homotopic paths have the same 
 
 \lecture{17}{Tuesday}{12/11/19}
 
-The goal is a rough version of the fundamental structure theorem. Assume $ G $ acts without inversion of edges on a tree $ X $. Then it is the fundamental group of some graph of groups $ \br{G, Y} $, such that $ Y = G \backslash X $.
+The goal is a rough version of the fundamental structure theorem. Assume $ G $ acts without inversion of edges on a tree $ X $. Then it is the fundamental group of some graph of groups $ \br{\GG, Y} $, such that $ Y = G \backslash X $.
 
 \pagebreak
 
@@ -1025,7 +1090,7 @@ $ G_i \hookrightarrow G_1 \times G_2 $ but there are non-trivial relations betwe
 Let $ G $ be a group and $ A, B \le G $ subgroups of $ G $. Then we say that $ G $ is the \textbf{free product} of $ A $ and $ B $, writing $ G = A * B $, if and only if
 \begin{itemize}
 \item $ G = \abr{A, B} $, and
-\item Whenever $ g = g_0 \dots g_n $ such that $ n \in \NN $, and $ g_i \in A \cup B \setminus \cbr{e_G} $ and $ g_i \in A $ if and only if $ g_{i + 1} \in B $, then $ g \underset{G}{\ne} e_G $.
+\item whenever $ g = g_0 \dots g_n $ such that $ n \in \NN $, and $ g_i \in A \cup B \setminus \cbr{e_G} $ and $ g_i \in A $ if and only if $ g_{i + 1} \in B $, then $ g \ne e_G $.
 \end{itemize}
 Such a presentation of $ g $ is called a \textbf{normal form} of length $ n + 1 $.
 \end{definition}
@@ -1033,7 +1098,7 @@ Such a presentation of $ g $ is called a \textbf{normal form} of length $ n + 1 
 \begin{remark}
 \hfill
 \begin{itemize}
-\item If $ A = \cbr{e_G} $, then $ G = A * B = B $. This is called a \textbf{trivial free product}. Everything else is called a \textbf{non-trivial free product}.
+\item If $ A = \cbr{e_G} $, then $ G = A * B = B $. This is called a \textbf{trivial} free product. Everything else is called a \textbf{non-trivial} free product.
 \item $ G = \ZZ * \ZZ \cong \FF_2 $.
 \item $ G = \FF_{n + 1} \cong \FF_n * \ZZ $.
 \item $ G = A * B \cong B * A $.
@@ -1094,15 +1159,15 @@ Let $ G $ be a group, $ A, B \le G $ such that $ \abs{A} + \abs{B} \ge 5 $, and 
 then $ H = A * B $.
 \end{lemma}
 
+\begin{proof}
+If $ A $ or $ B $ is trivial, then $ H = A * B $. For example, if $ A $ is trivial $ H = B = A * B $. Hence without loss of generality, $ \abs{A} \ge 3 $ and $ \abs{B} \ge 2 $. We want to show that no normal form with respect to $ A $ and $ B $ is trivial in $ G $. Consider $ w = a_1b_1 \dots a_nb_na_{n + 1} $. Then
+$$ w\br{X_2} = a_1b_1 \dots a_nb_na_{n + 1}\br{X_2} \subseteq a_1b_1 \dots a_nb_n\br{X_1} \subseteq \dots \subseteq a_1\br{X_2} \subseteq X_1. $$
+So $ w \ne e_G $. The same holds for $ w = bw'b' $. If $ w $ starts with a letter in $ A $ and ends with a letter in $ B $, or vice versa, take $ a' \in A \setminus \cbr{e_G, a} $ and consider $ w' = a'^{-1}wa $, or $ w' = a'wa^{-1} $. Then $ w' \ne e_G $ so $ w \ne e_G $. Hence $ H = A * B $.
+\end{proof}
+
 \begin{remark}
 If $ \abs{A} = \abs{B} = 2 $, then $ A \cong B \cong \ZZ_2 $ and $ H \cong \DDD_n $ is the dihedral group for some $ n \in \NN $.
 \end{remark}
-
-\begin{proof}
-If $ A $ or $ B $ is trivial, then $ H = A * B $. For example, if $ A $ is trivial $ H = B = A * B $. Hence without loss of generality, $ \abs{A} \ge 3 $ and $ \abs{B} \ge 2 $. We want to show that no normal form with respect to $ A $ and $ B $ is trivial in $ G $. Consider $ w = a_1b_1 \dots a_nb_na_{n + 1} $. Then
-$$ w\br{X_2} = a_1b_1 \dots a_nb_na_{n + 1}\br{X_2} \subseteq \dots \subseteq a_1\br{X_2} \subseteq X_1. $$
-So $ w \ne e_G $. The same holds for $ w = bw'b' $. If $ w $ starts with a letter in $ A $ and ends with a letter in $ B $, or vice versa, take $ a' \in A \setminus \cbr{e_G, a} $ and consider $ w' = a'^{-1}wa' $, or $ w' = a'wa'^{-1} $. Then $ w' \ne e_G $ so $ w \ne e_G $. Hence $ H = A * B $.
-\end{proof}
 
 \begin{example}
 The \textbf{projective special linear group} $ \PSL_2\br{\ZZ} $, the \textbf{modular group}. Clearly general linear groups act on vector spaces. To any vector space we can associate a projective space by factoring through a non-zero scalar multiplication. We denote them by $ \sbr{x} $. If $ k^{n + 1} $ is a vector space, we can identify the projective space with $ k^n \cup \cbr{\infty} $ via
@@ -1130,8 +1195,8 @@ $ \PSL_2\br{\ZZ} \cong \ZZ_2 * \ZZ_3 $.
 A fact is that $ \SL_2\br{\ZZ} $ is generated by
 $$ A = \twobytwo{0}{-1}{1}{0}, \qquad B = \twobytwo{1}{-1}{1}{0}. $$
 Hence $ \PSL_2\br{\ZZ} $ is generated by $ \sbr{A} = A / \cbr{\pm\I_2} $ and $ \sbr{B} = B / \cbr{\pm\I_2} $. Then
-$$ B^3 = \twobytwo{1}{-1}{1}{0}\twobytwo{1}{-1}{1}{0}\twobytwo{1}{-1}{1}{0} = \twobytwo{-1}{0}{0}{-1} \equiv \I_2 \equiv e_{\PSL_2\br{\ZZ}}. $$
-Similarly $ A^2 = -\I_2 $. Set $ X_1 = \RR_{< 0} $ and $ X_2 = \RR_{> 0} $. Then $ \sbr{A} \cdot x = -1 / x $ and $ \sbr{B} \cdot x = 1 - 1 / x $, and $ \sbr{B}^2 \cdot x = -1 / \br{x - 1} $. Now clearly $ \sbr{A} \cdot X_i = X_j $, and $ \sbr{B} \cdot X_1 \subsetneq X_2 $ and $ \sbr{B}^2 \cdot X_1 \subsetneq X_2 $. Hence $ \PSL_2\br{\ZZ} \cong \abr{\sbr{A}} * \abr{\sbr{B}} \cong \ZZ_2 * \ZZ_3 $.
+$$ B^3 = \twobytwo{1}{-1}{1}{0}\twobytwo{1}{-1}{1}{0}\twobytwo{1}{-1}{1}{0} = -\I_2 \equiv \I_2 \equiv e_{\PSL_2\br{\ZZ}}. $$
+Similarly $ A^2 = -\I_2 \equiv \I_2 $. Set $ X_1 = \RR_{< 0} $ and $ X_2 = \RR_{> 0} $. Then $ \sbr{A} \cdot x = -1 / x $ and $ \sbr{B} \cdot x = 1 - 1 / x $, and $ \sbr{B}^2 \cdot x = -1 / \br{x - 1} $. Now clearly $ \sbr{A} \cdot X_i = X_j $, and $ \sbr{B} \cdot X_1 \subsetneq X_2 $ and $ \sbr{B}^2 \cdot X_1 \subsetneq X_2 $. Hence $ \PSL_2\br{\ZZ} \cong \abr{\sbr{A}} * \abr{\sbr{B}} \cong \ZZ_2 * \ZZ_3 $.
 \end{proof}
 
 \begin{remark*}
@@ -1183,7 +1248,7 @@ $$ G_1 \underset{A = B}{*} G_2 \cong G_1 \underset{A = B'}{*} G_2? $$
 \end{exercise}
 
 \begin{exercise}
-\label{ex:3.2.4}
+\label{ex:2.2.4}
 If $ G_1 = \abr{S_1 \st R_1} $ and $ G_2 = \abr{S_2 \st R_2} $ with $ S_1 \cap S_2 = \emptyset $, then
 $$ G_1 \underset{A = B}{*} G_2 = \abr{S_1 \cup S_2 \st R_1 \cup R_2 \cup \cbr{a^{-1}\phi\br{a} \st a \in A}}. $$
 \end{exercise}
@@ -1195,9 +1260,9 @@ We will see that $ G_i \xhookrightarrow{\iota_i} G_1 \underset{A}{*} G_2 $, when
 \begin{example}
 \hfill
 \begin{itemize}
-\item Let $ k \le n, m $ and let $ \FF_k \le \FF_n, \FF_m $, where $ \FF_k $ is the group generated by the first $ k $-many generators. Then $ \FF_n \underset{\FF_k}{*} \FF_m \cong \FF_{n + m - k} $. Indeed, if $ \FF_n = \abr{a_1, \dots, a_n \st} $ and $ \FF_m = \abr{b_1, \dots, b_m \st} $, and $ \phi_i : a_i \mapsto b_i $ for $ i \le k $, by \ref{ex:3.2.4}
+\item Let $ k \le n, m $ and $ \FF_k \le \FF_n, \FF_m $, where $ \FF_k $ is the group generated by the first $ k $-many generators. Then $ \FF_n \underset{\FF_k}{*} \FF_m \cong \FF_{n + m - k} $. Indeed, if $ \FF_n = \abr{a_1, \dots, a_n \st} $ and $ \FF_m = \abr{b_1, \dots, b_m \st} $, and $ \phi_i : a_i \mapsto b_i $ for $ i \le k $, by \ref{ex:2.2.4}
 $$ \FF_n \underset{\FF_k}{*} \FF_m = \abr{a_1, \dots, a_n, b_1, \dots, b_m \st a_i^{-1}b_i, \ i = 1, \dots, k}. $$
-By inverse Tietze 2 $ k $-times, we get
+By \textbf{inverse Tietze 2} $ k $-times, we get
 $$ \FF_n \underset{\FF_k}{*} \FF_m = \abr{a_{k + 1}, \dots, a_n, b_1, \dots, b_m \st} \cong \FF_{n + m - k}. $$
 \item Consider
 $$
@@ -1269,16 +1334,16 @@ $$
 \lecture{21}{Wednesday}{20/11/19}
 
 \begin{definition}
-Let $ G_1 $ and $ G_2 $ be groups, and $ A \le G_1 $ and $ B \le G_2 $, and such that $ A \cong B $. Let $ \T_A $ be the set of representatives of right cosets of $ A $ in $ G_1 $, and similarly $ \T_B $. Now, we call some tuple $ \br{x_0, \dots, x_n} $ such that
+Let $ G_1 $ and $ G_2 $ be groups, and $ A \le G_1 $ and $ B \le G_2 $ such that $ A \cong B $. Let $ T_A $ be the set of representatives of right cosets of $ A $ in $ G_1 $, and similarly $ T_B $. Now, we call some tuple $ \br{x_0, \dots, x_n} $ such that
 \begin{itemize}
 \item $ x_0 \in A $, and
-\item $ x_i \in \T_A \setminus \cbr{e_{G_1}} \cup \T_B \setminus \cbr{e_{G_2}} $, and $ x_i \in \T_A $ if and only if $ x_{i + 1} \in \T_B $,
+\item $ x_i \in T_A \setminus \cbr{e_{G_1}} \cup T_B \setminus \cbr{e_{G_2}} $, and $ x_i \in T_A $ if and only if $ x_{i + 1} \in T_B $,
 \end{itemize}
-an \textbf{$ A $-normal form}, with respect to $ \T_A $ and $ \T_B $. We always pick $ e_{G_1} $ to represent $ A $. Similarly, we can define a \textbf{$ B $-normal form}.
+an \textbf{$ A $-normal form}, with respect to $ T_A $ and $ T_B $. We always pick $ e_{G_1} $ to represent $ A $. Similarly, we can define a \textbf{$ B $-normal form}.
 \end{definition}
 
 \begin{example}
-Let $ G_1 = \abr{a \st a^{12}} $ and $ G_2 = \abr{b \st b^{15}} $, let $ A = \abr{a^4} \cong \ZZ_3 \cong \abr{b^5} = B $, and fix $ \phi : a^4 \mapsto b^5 $. Choose $ \T_A = \cbr{e_{G_1}, a, a^2, a^3} $ and $ \T_B = \cbr{e_{G_2}, b, b^2, b^3, b^4} $. Consider $ g \in G = G_1 \underset{A = B}{*} G_2 $, where
+Let $ G_1 = \abr{a \st a^{12}} $ and $ G_2 = \abr{b \st b^{15}} $ and $ A = \abr{a^4} \cong \ZZ_3 \cong \abr{b^5} = B $, and fix $ \phi : a^4 \mapsto b^5 $. Choose $ T_A = \cbr{e_{G_1}, a, a^2, a^3} $ and $ T_B = \cbr{e_{G_2}, b, b^2, b^3, b^4} $. Consider $ g \in G = G_1 \underset{A = B}{*} G_2 $, where
 $$ g = \sbr{a^3ba^5} = a^3ba^5 / \abr{a'^{-1}\phi\br{a'} \st a' \in A}^{G_1 * G_2}. $$
 Then
 \begin{align*}
@@ -1305,7 +1370,9 @@ The following are equivalent.
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Assume $ G \cong G_1 \underset{A = B}{*} G_2 $. Recall that we identify the embedded images of $ G_1 $ and $ G_2 $ with the groups themselves. Fix $ \T_A = \cbr{x \st x \in \T_A} $ and $ \T_B = \cbr{y \st y \in \T_B} $. Then for every $ g \in G_1 $, there exist unique $ a_g \in A $ and $ x_g \in \T_A $ such that $ g = a_gx_g \in Ax_g $. Similarly for every $ h \in G_2 $, $ h = b_hy_h $. Now, as $ G = G_1 * G_2 / N $, we can write any $ f \in G $ as $ f = \sbr{g_1h_1 \dots g_nh_n} $, where all but possibly $ g_1 $ and $ h_n $ are non-trivial. Now $ h_n = b_{h_n}y_{h_n} $, and $ \sbr{b_{h_n}} = \sbr{\phi\br{a_n}} = \sbr{a_n} $. Hence
+\item[$ \implies $] Assume $ G \cong G_1 \underset{A = B}{*} G_2 $. Recall that we identify the embedded images of $ G_1 $ and $ G_2 $ with the groups themselves. Fix
+$$ T_A = \cbr{x \st x \in T_A}, \qquad T_B = \cbr{y \st y \in T_B}. $$
+Then for every $ g \in G_1 $, there exist unique $ a_g \in A $ and $ x_g \in T_A $ such that $ g = a_gx_g \in Ax_g $. Similarly for every $ h \in G_2 $, $ h = b_hy_h $. Now, as $ G = G_1 * G_2 / N $, we can write any $ f \in G $ as $ f = \sbr{g_1h_1 \dots g_nh_n} $, where all but possibly $ g_1 $ and $ h_n $ are non-trivial. Now $ h_n = b_{h_n}y_{h_n} $, and $ \sbr{b_{h_n}} = \sbr{\phi\br{a_n}} = \sbr{a_n} $. Hence
 \begin{align*}
 \sbr{g_1h_1 \dots g_nh_n}
 & = \sbr{g_1h_1 \dots g_na_ny_{h_n}} \\
@@ -1314,16 +1381,18 @@ The following are equivalent.
 & = \dots \\
 & = \sbr{a_{g_1a_1}x_{g_1a_1}y_{h_1b_1} \dots x_{g_na_n}y_{h_n}},
 \end{align*}
-and $ \br{a_{g_1a_1}, x_{g_1a_1}, y_{h_1b_1}, \dots, x_{g_na_n}, y_{h_n}} $ is an $ A $-normal form. For uniqueness the idea is as follows. We define an action of $ G_1 $ and $ G_2 $ on $ \W_A $, the set of all $ A $-normal forms. We extend this to $ G $ and show that if $ g = x_0 \dots x_n $, then $ g \cdot e_{G_1} = \br{x_0, \dots, x_n} $. Hence the normal form is unique. Note that there is a bijection between $ \W_A $ and $ \W_B $ via $ f : \br{x_0, \dots, x_n} \mapsto \br{\phi\br{x_0}, x_1, \dots, x_n} $. Now define $ G_1 \curvearrowright \W_A $. Pick $ z = \br{z_0, \dots, z_n} \in \W_A $. Then
+and $ \br{a_{g_1a_1}, x_{g_1a_1}, y_{h_1b_1}, \dots, x_{g_na_n}, y_{h_n}} $ is an $ A $-normal form. For uniqueness the idea is as follows. We define an action of $ G_1 $ and $ G_2 $ on $ W_A $, the set of all $ A $-normal forms. We extend this to $ G $ and show that if $ g = x_0 \dots x_n $, then $ g \cdot e_{G_1} = \br{x_0, \dots, x_n} $. Hence the normal form is unique. Note that there is a bijection
+$$ \function[f]{W_A}{W_B}{\br{x_0, \dots, x_n}}{\br{\phi\br{x_0}, x_1, \dots, x_n}}. $$
+Now define $ G_1 \curvearrowright W_A $. Pick $ z = \br{z_0, \dots, z_n} \in W_A $. Then
 $$ g \cdot z = a_gx_g \cdot z =
 \begin{cases}
 \br{gz_0, z_1, \dots, z_n} & g \in A \\
-\br{a_{gz_0}, x_{gz_0}, z_1, \dots, z_n} & g \notin A, \ z_1 \in G_2, \ z_1 \in \T_B \\
+\br{a_{gz_0}, x_{gz_0}, z_1, \dots, z_n} & g \notin A, \ z_1 \in G_2, \ z_1 \in T_B \\
 \br{gz_0z_1, z_2, \dots, z_n} & g \notin A, \ z_1 \in G_2, \ gz_0z_1 \in A \\
 \br{a_{gz_0z_1}, x_{gz_0z_1}, z_2, \dots, z_n} & g \notin A, \ z_1 \in G_2, \ gz_0z_1 \notin A
 \end{cases}.
 $$
-This is an action. Similarly we define $ G_2 \curvearrowright \W_B $. We shift that action to $ \W_A $ via $ h \cdot z = f^{-1}\br{h \cdot f\br{z}} $ for $ h \in G_2 $ and $ z \in \W_A $. Clearly, these actions extend to $ G_1 * G_2 \curvearrowright \W_A $. Further for $ z \in \W_A $ we have
+This is an action. Similarly we define $ G_2 \curvearrowright W_B $. We shift that action to $ W_A $ via $ h \cdot z = f^{-1}\br{h \cdot f\br{z}} $ for $ h \in G_2 $ and $ z \in W_A $. Clearly, these actions extend to $ G_1 * G_2 \curvearrowright W_A $. Further for $ z \in W_A $ we have
 \begin{align*}
 \phi\br{a}a^{-1} \cdot z
 & = \phi\br{a} \cdot \br{a^{-1}z_0, z_1, \dots, z_n}
@@ -1340,18 +1409,18 @@ Thus every $ g $ has a unique $ A $-normal form.
 \end{itemize}
 \end{proof}
 
+\pagebreak
+
 \lecture{22}{Thursday}{21/11/19}
 
 \begin{corollary}
 \hfill
 \begin{itemize}
 \item No $ A $-normal form of length at least two can represent the trivial element in $ G_1 \underset{A}{*} G_2 $.
-\item We can identify $ G_1 \underset{A}{*} G_2 $ with $ \W_A $ and multiplication given by the action just defined.
-\item Clearly, $ G_1 $ and $ G_2 $ embed onto $ G_1 \underset{A}{*} G_2 = \W_A $ via $ \iota_1\br{g} = \br{a_g, x_g} $ for $ g \in G_1 $ and $ \iota_2\br{h} = \br{\phi^{-1}\br{b_h}, y_h} $ for $ h \in G_2 $. Also $ \iota_1\br{G_1} = \iota_2\br{G_2} = \iota_1\br{G_1} \cap \iota_2\br{G_2} $.
+\item We can identify $ G_1 \underset{A}{*} G_2 $ with $ W_A $ and multiplication given by the action just defined.
+\item Clearly, $ G_1 $ and $ G_2 $ embed onto $ G_1 \underset{A}{*} G_2 = W_A $ via $ \iota_1\br{g} = \br{a_g, x_g} $ for $ g \in G_1 $ and $ \iota_2\br{h} = \br{\phi^{-1}\br{b_h}, y_h} $ for $ h \in G_2 $. Also $ \iota_1\br{A} = \iota_2\br{B} = \iota_1\br{G_1} \cap \iota_2\br{G_2} $.
 \end{itemize}
 \end{corollary}
-
-\pagebreak
 
 \begin{fact}
 Let $ G_1, G_2, A $ be groups such that $ A $ embeds via $ i_k : A \hookrightarrow G_k $ for $ k = 1, 2 $. Then the following are equivalent.
@@ -1374,66 +1443,54 @@ $$
 \end{itemize}
 \end{fact}
 
-\subsection{Amalgamated products and trees}
+\subsection{Amalgamated free products and trees}
 
 \begin{definition}
 We call a graph $ X $ a \textbf{segment} if $ X^0 = \cbr{x, y} $ and $ X_+^1 = \cbr{e} $ such that $ \alpha\br{e} = x $ and $ \omega\br{e} = y $.
 \end{definition}
 
 \begin{theorem}
-\label{thm:3.3.2}
+\label{thm:2.3.2}
 Let $ G = G_1 \underset{A}{*} G_2 $. Then there is a tree $ X $ such that $ G $ acts on $ X $ without inversion of edges and such that the factor graph $ Y $ is a segment. Furthermore, there is a lift $ T = \cbr{x, y, e} $ of $ Y $, such that $ \Stab_G x = G_1 $ and $ \Stab_G y = G_2 $, and $ \Stab_G e = A $.
 \end{theorem}
 
 \begin{proof}
-Let $ X^0 = G / G_1 \cup G / G_2 $ and $ X_+^1 = G / A $, with $ \alpha\br{gA} = gG_1 $ and $ \omega\br{gA} = gG_2 $. First, let us show that $ X $ is connected. Let $ g \in G $ and $ g = z_0 \dots z_n $ in $ A $-normal form. We show there is a path from $ G_1 $ to $ gG_i $ for $ i = 1, 2 $ by induction on $ n $. If $ n = 0 $ then either $ i = 1 $ and $ gG_i = z_0G_1 = G_1 $ and the empty path suffices, or $ i = 2 $ and $ gG_i = G_2 $, and $ \alpha\br{A} = G_1 $ and $ \omega\br{A} = G_2 $, so $ e = A $ suffices. Now let $ n > 0 $ and set $ g' = z_0 \dots z_{n - 1} $. Then $ z_n \in G_i $, whence $ g'G_i = z_0 \dots z_{n - 1}G_i = z_0 \dots z_{n - 1}z_nG_i = gG_i $, and by assumption there is a path from $ G_1 $ to $ g'G_1 = gG_1 $. Now, assume there is a circuit $ e_1 \dots e_n $. We may assume that $ \alpha\br{e_1} = G_1 $. As odd paths end in a coset of $ G_2 $, we know that $ n $ is even. Now there are $ x_1 \in G_1 $ and $ x_i \in G_i \setminus A $ for $ i > 1 $, and $ y_j \in G_2 \setminus A $ for $ j \ge 1 $ such that
+Let
+$$ X^0 = G / G_1 \cup G / G_2, \qquad X_+^1 = G / A, \qquad \alpha\br{gA} = gG_1, \qquad \omega\br{gA} = gG_2. $$
+First, let us show that $ X $ is connected. Let $ g \in G $ and $ g = z_0 \dots z_n $ in $ A $-normal form. We show there is a path from $ G_1 $ to $ gG_i $ for $ i = 1, 2 $ by induction on $ n $. If $ n = 0 $ then either $ i = 1 $ and $ gG_i = z_0G_1 = G_1 $ and the empty path suffices, or $ i = 2 $ and $ gG_i = G_2 $, and $ \alpha\br{A} = G_1 $ and $ \omega\br{A} = G_2 $, so $ e = A $ suffices. Now let $ n > 0 $ and set $ g' = z_0 \dots z_{n - 1} $. Then $ z_n \in G_i $, whence $ g'G_i = z_0 \dots z_{n - 1}G_i = z_0 \dots z_{n - 1}z_nG_i = gG_i $, and by assumption there is a path from $ G_1 $ to $ g'G_i = gG_i $. Now, assume there is a circuit $ e_1 \dots e_n $. We may assume that $ \alpha\br{e_1} = G_1 $. As odd paths end in a coset of $ G_2 $, we know that $ n $ is even. Now there are $ x_1 \in G_1 $ and $ x_i \in G_i \setminus A $ for $ i > 1 $, and $ y_j \in G_2 \setminus A $ for $ j \ge 1 $ such that
 \begin{align*}
 \alpha\br{e_1} = G_1 = x_1G_1, & \qquad \omega\br{e_1} = x_1G_2 = x_1y_1G_2, \\
 & \vdots \\
 \alpha\br{e_n} = x_1y_1 \dots x_{\tfrac{n}{2}}y_{\tfrac{n}{2}}G_2, & \qquad \omega\br{e_n} = x_1y_1 \dots x_{\tfrac{n}{2}}y_{\tfrac{n}{2}}G_1 = G_1,
 \end{align*}
-a contradiction by uniqueness of $ A $-normal forms. Now every vertex $ g_1G_1 $ and $ g_2G_1 $ are in the same orbit, as $ g_2g_1^{-1} \cdot g_1G_1 = g_2G_1 $. The same for $ G_2 $. Hence $ Y $ is
-$$
-\begin{tikzpicture}
-\fill (0, 0) circle (0.1) node[below]{$ \sbr{G_1} $};
-\fill (1, 0) circle (0.1) node[below]{$ \sbr{G_2} $};
-\draw [->] (0, 0) to node[above]{$ \sbr{A} $} (0.9, 0);
-\end{tikzpicture}.
-$$
-Also all $ gA $ are in the same orbit. Then $ Y $ has a lift
-$$
-\begin{tikzpicture}
-\fill (0, 0) circle (0.1) node[below]{$ G_1 $};
-\fill (1, 0) circle (0.1) node[below]{$ G_2 $};
-\draw [->] (0, 0) to node[above]{$ A $} (0.9, 0);
-\end{tikzpicture},
-$$
-and $ \Stab_G G_1 = G_1 $ and $ \Stab_G G_2 = G_2 $, and $ \Stab_G A = A $.
+a contradiction by uniqueness of $ A $-normal forms. Now every vertex $ g_1G_1 $ and $ g_2G_1 $ are in the same orbit, as $ g_2g_1^{-1} \cdot g_1G_1 = g_2G_1 $. The same for $ G_2 $. Hence $ Y $ is $ \sbr{G_1} \xrightarrow{\sbr{A}} \sbr{G_2} $. Also all $ gA $ are in the same orbit. Then $ Y $ has a lift $ G_1 \xrightarrow{A} G_2 $, and $ \Stab_G G_1 = G_1 $ and $ \Stab_G G_2 = G_2 $, and $ \Stab_G A = A $.
 \end{proof}
+
+\pagebreak
 
 \lecture{23}{Tuesday}{26/11/19}
 
 \begin{remark}
-\label{rem:3.3.3}
-Consider $ gG_1 \in X^1 $. Fix $ \T_A^1 $ a set of representatives of left cosets of $ A $ in $ G_1 $. Then $ gG_1 = gxG_1 $ and $ gyA \ne gxA $ for all $ y \ne x \in \T_A \setminus \cbr{1} \subseteq G_1 $. Thus the valency of $ gG_1 $ is $ \abs{G_1 : A} $. Furthermore, $ \Stab_G gG_i = gG_ig^{-1} = G_i^g $.
+\label{rem:2.3.3}
+Consider $ gG_1 \in X^0 $. Fix $ T_A^1 $ a set of representatives of left cosets of $ A $ in $ G_1 $. Then $ gG_1 = gxG_1 $ and $ gyA \ne gxA $ for all $ y \ne x \in T_A \setminus \cbr{1} \subseteq G_1 $. Thus the valency of $ gG_1 $ is $ \abs{G_1 : A} $. Furthermore, $ \Stab_{G_i} gG_i = gG_ig^{-1} = G_i^g $.
 \end{remark}
 
-\pagebreak
-
 \begin{theorem}
-\label{thm:3.4}
-Let $ G $ be any graph acting on a tree $ X $ without inversion of edges, such that the factor graph is a segment. Then if $ T $ is any lift of $ Y $, so $ T = \cbr{x, y, e} $, set $ G_x = \Stab_G x = \cbr{g \in G \st g \cdot x = x} \le G $ and $ G_y = \Stab_G y $, and $ G_e = \Stab_G e $. Then
+\label{thm:2.3.4}
+Let $ G $ be any group acting on a tree $ X $ without inversion of edges, such that the factor graph is a segment. Then if $ T $ is any lift of $ Y $, so $ T = \cbr{x, y, e} $, set $ G_x = \Stab_G x = \cbr{g \in G \st g \cdot x = x} \le G $ and $ G_y = \Stab_G y $, and $ G_e = \Stab_G e $. Then
 $$ G = G_x \underset{G_e}{*} G_y. $$
 \end{theorem}
 
 \begin{proof}
-Note that such a lift $ T \subseteq X $ exists. Note that $ G \cdot T = X $ and $ G_e = G_x \cap G_y $. Claim that $ H = \abr{G_x, G_y} = G $. Otherwise we prove that $ H \cdot T $ and $ \br{G \setminus H} \cdot T $ are disjoint. First clearly $ h \cdot x \ne g \cdot x $ for $ h \in H $ and $ g \in G $ as otherwise $ g^{-1}h \cdot x = x $ for $ g^{-1}h \in H $. Similarly $ h \cdot y \ne g \cdot y $. Clearly $ g \cdot x = h \cdot y $, as otherwise $ h^{-1}g \cdot x = y $, so $ \OOO\br{x} = \OOO\br{y} $, a contradiction. Hence $ H \cdot T \cap \br{G \setminus H} \cdot T = \emptyset $. As $ G \cdot T = X $ is connected, this implies $ G \setminus H = \emptyset $ and $ H = G $. Consider $ \phi_x : G_x \hookrightarrow G $ and $ \phi_y : G_y \hookrightarrow G $. For
+Note that such a lift $ T \subseteq X $ exists. Note that $ G \cdot T = X $ and $ G_e = G_x \cap G_y $. Claim that $ H = \abr{G_x, G_y} = G $. Otherwise we prove that $ H \cdot T $ and $ \br{G \setminus H} \cdot T $ are disjoint. First clearly $ h \cdot x \ne g \cdot x $ for $ h \in H $ and $ g \in G $ as otherwise $ g^{-1}h \cdot x = x $ for $ g^{-1}h \in H $. Similarly $ h \cdot y \ne g \cdot y $. Clearly $ g \cdot x \ne h \cdot y $, as otherwise $ h^{-1}g \cdot x = y $, so $ \OOO\br{x} = \OOO\br{y} $, a contradiction. Hence $ H \cdot T \cap \br{G \setminus H} \cdot T = \emptyset $. As $ G \cdot T = X $ is connected, this implies $ G \setminus H = \emptyset $ and $ H = G $. Consider $ \phi_x : G_x \hookrightarrow G $ and $ \phi_y : G_y \hookrightarrow G $. For
 $$ G' = G_x \underset{G_e}{*} G_y, $$
-there is some $ \phi : G' \to G $ extending $ \id_{G_x} $ and $ \id_{G_y} $ by the universal property. Clearly $ \phi $ is surjective as $ \abr{G_x, G_y} = G $. We need to show that $ \phi $ is injective. By the proof of \ref{thm:3.3.2}, there is a tree $ X' $, where $ X'^0 = \cbr{gG_x, gG_y \st g \in G} $ and $ X'^1 = \cbr{gG_e \st g \in G} $, such that $ G' \curvearrowright X' $. Define
-$$ \function[\psi]{X'}{X}{gG_z}{\phi\br{g} \cdot z}, \qquad z \in \cbr{x, y, e}. $$
-One checks easily that this is a graph homomorphism, as $ \phi $ is a homomorphism of groups and $ G \curvearrowright X $. Clearly $ \psi $ is surjective, as $ \phi $ is surjective and $ G \cdot T = X $. It suffices to show that $ \psi $ is locally injective. By \ref{rem:3.3.3}, the star of $ gG_x $ is exactly
-$$ \cbr{gg_xG_e \st g_x \in \T_{G_e}^{G_x}}. $$
-Now for $ g_x \ne g_x' \in \T_{G_e}^{G_x} $, that is $ g_xG_e \ne g_x'G_e $ and $ g_x, g_x' \in G_x $, then $ \phi\br{gg_x} \cdot y \ne \phi\br{gg_x'} \cdot y $, as otherwise $ g_x^{-1}g^{-1}gg_x' = g_x^{-1}g_x' = \phi\br{g_x^{-1}g_x'} \cdot y = y $, so $ g_x^{-1}g_x' \in G_x \cap G_y = G_e $, a contradiction. Hence $ \psi\br{gg_xG_e} = \phi\br{gg_x} \cdot e \ne \phi\br{gg_x'} \cdot e = \psi\br{gg_x'G_e} $ and $ \psi $ is locally injective. Now $ \phi $ clearly is injective on $ G_x \cup G_y $. Now if $ g \in G' \setminus G_x $, then $ x = \psi\br{G_x} \ne \psi\br{gG_x} = \phi\br{g} \cdot x $. Hence $ \phi\br{g} \ne e_G $ and $ \phi $ is injective.
+there is some $ \phi : G' \to G $ extending $ \id_{G_x} $ and $ \id_{G_y} $ by the universal property. Clearly $ \phi $ is surjective as $ \abr{G_x, G_y} = G $. We need to show that $ \phi $ is injective. By the proof of \ref{thm:2.3.2}, there is a tree $ X' $, where
+$$ X'^0 = \cbr{gG_x, gG_y \st g \in G}, \qquad X'^1 = \cbr{gG_e \st g \in G}, $$
+such that $ G' \curvearrowright X' $. Define
+$$ \function[\psi]{X'}{X}{gG_z}{\phi\br{g} \cdot z}, \qquad z \in T. $$
+One checks easily that this is a graph homomorphism, as $ \phi $ is a homomorphism of groups and $ G \curvearrowright X $. Clearly $ \psi $ is surjective, as $ \phi $ is surjective and $ G \cdot T = X $. It suffices to show that $ \psi $ is locally injective. By \ref{rem:2.3.3},
+$$ \star gG_x = \cbr{gg_xG_e \st g_x \in T_{G_e}^{G_x}}. $$
+Now for $ g_x \ne g_x' \in T_{G_e}^{G_x} $, that is $ g_xG_e \ne g_x'G_e $ and $ g_x, g_x' \in G_x $, then $ \phi\br{gg_x} \cdot y \ne \phi\br{gg_x'} \cdot y $, as otherwise $ g_x^{-1}g^{-1}gg_x' = g_x^{-1}g_x' = \phi\br{g_x^{-1}g_x'} \cdot y = y $, so $ g_x^{-1}g_x' \in G_x \cap G_y = G_e $, a contradiction. Hence $ \psi\br{gg_xG_e} = \phi\br{gg_x} \cdot e \ne \phi\br{gg_x'} \cdot e = \psi\br{gg_x'G_e} $ and $ \psi $ is locally injective. Now $ \phi $ clearly is injective on $ G_x \cup G_y $. Now if $ g \in G' \setminus G_x $, then $ x = \psi\br{G_x} \ne \psi\br{gG_x} = \phi\br{g} \cdot x $. Hence $ \phi\br{g} \ne e_G $ and $ \phi $ is injective.
 \end{proof}
 
 \begin{example}
@@ -1457,23 +1514,7 @@ $$
 \CCC_\infty
 \end{array}
 $$
-as its automorphism group. This does invert an edge, as $ ab \cdot e_0 = \overline{e_0} $. Hence consider $ \BBB\br{\CCC_\infty} $ on which $ \DDD_\infty $ does act without inversion of edges. Set $ c = ab $. It is the rotation around $ \tfrac{1}{2} $ and $ a = cb $, so $ \DDD_\infty = \abr{b, c} $. Further $ \abr{b} \cong \abr{c} \cong \ZZ_2 $. The factor graph of $ \DDD_\infty \curvearrowright \BBB\br{\CCC_\infty} $ is
-$$
-\begin{tikzpicture}
-\fill (0, 0) circle (0.1) node[below]{$ \OOO\br{0} $};
-\fill (1, 0) circle (0.1) node[below]{$ \OOO\br{\tfrac{1}{2}} $};
-\draw [->] (0, 0) to (0.9, 0);
-\end{tikzpicture}.
-$$
-A lift is
-$$
-\begin{tikzpicture}
-\fill (0, 0) circle (0.1) node[below]{$ 0 $};
-\fill (1, 0) circle (0.1) node[below]{$ \tfrac{1}{2} $};
-\draw [->] (0, 0) to node[above]{$ e_{1 / 2} $} (0.9, 0);
-\end{tikzpicture}.
-$$
-As $ \Stab_{\CCC_\infty} 0 = \abr{b} $ and $ \Stab_{\CCC_\infty} \tfrac{1}{2} = \abr{c} $, and $ \Stab_{\CCC_\infty} e_{1 / 2} = \cbr{e_{\CCC_\infty}} $, hence by \ref{thm:3.4}, $ \DDD_\infty \cong \ZZ_2 * \ZZ_2 $.
+as its automorphism group. This does invert an edge, as $ ab \cdot e_0 = \overline{e_0} $. Hence consider $ \BBB\br{\CCC_\infty} $ on which $ \DDD_\infty $ does act without inversion of edges. Set $ c = ab $. It is the rotation around $ \tfrac{1}{2} $ and $ a = cb $, so $ \DDD_\infty = \abr{b, c} $. Further $ \abr{b} \cong \abr{c} \cong \ZZ_2 $. The factor graph of $ \DDD_\infty \curvearrowright \BBB\br{\CCC_\infty} $ is $ \OOO\br{0} \to \OOO\br{\tfrac{1}{2}} $. A lift is $ 0 \xrightarrow{e_{1 / 2}} \tfrac{1}{2} $. As $ \Stab_{\CCC_\infty} 0 = \abr{b} $ and $ \Stab_{\CCC_\infty} \tfrac{1}{2} = \abr{c} $, and $ \Stab_{\CCC_\infty} e_{1 / 2} = \cbr{e_{\CCC_\infty}} $, hence by \ref{thm:2.3.4}, $ \DDD_\infty \cong \ZZ_2 * \ZZ_2 $.
 \end{example}
 
 \lecture{24}{Wednesday}{27/11/19}
@@ -1491,29 +1532,29 @@ In 1949, Higman, Neumann, and Neumann asked, given $ G $ and $ A, B \le G $, and
 \begin{definition}
 Given $ G $, consider $ \abr{t} $ the abelian free group on $ \cbr{t} $. Then we set
 $$ G' = G * \abr{t} / \abr{t^{-1}at\phi\br{a}^{-1} \st a \in A}^{G * \abr{t}}, $$
-and $ G' $ is called the \textbf{HNN extension} of $ G $ with respect to $ A = \phi^{-1}\br{B} $. We call $ G $ the \textbf{base group}, $ A $ and $ B $ the \textbf{associated subgroups}, and $ t $ the \textbf{stable letter}. We denote the HNN-extension by
-$$ \abr{G, t \st t^{-1}at = \phi\br{a}, \ a \in A}, $$
+and $ G' $ is called the \textbf{HNN extension} of $ G $ with respect to $ A = \phi^{-1}\br{B} $. We call $ G $ the \textbf{base group}, $ A $ and $ B $ the \textbf{associated subgroups}, and $ t $ the \textbf{stable letter}. We denote the HNN extension by
+$$ \abr{G, \ t \st t^{-1}at = \phi\br{a}, \ a \in A}, $$
 or $ G *_{A = B} $ or $ G *_A $.
 \end{definition}
 
 \begin{example}
 \hfill
 \begin{itemize}
-\item One relator groups $ G = \abr{S \st \cbr{r}} $.
-\item Baumslag-Soliter groups.
+\item \textbf{One relator groups} $ G = \abr{S \st \cbr{r}} $.
+\item Baumslag-Solitar groups.
 \item If $ \phi \in \Aut G $, then $ G \rtimes_\phi \ZZ = G *_G $.
 \item Fundamental groups of certain surfaces.
-\item Right angled Artin groups.
+\item Right-angled Artin groups.
 \end{itemize}
 \end{example}
 
-Fix a set $ \T_A $ of right cosets of $ A $ in $ G $ such that $ g = a_gx_g $ for $ x_g \in \T_A $ and $ x_{e_G} = e_G $. Similarly for $ \T_B $, $ g = b_gy_g $. Whenever we use $ \epsilon $ and $ \epsilon_i $, we assume $ \epsilon, \epsilon_i \in \cbr{-1, 1} $.
+Fix a set $ T_A $ of right cosets of $ A $ in $ G $ such that $ g = a_gx_g $ for $ x_g \in T_A $ and $ x_{e_G} = e_G $. Similarly for $ T_B $, $ g = b_gy_g $. Whenever we use $ \epsilon $ and $ \epsilon_i $, we assume $ \epsilon, \epsilon_i \in \cbr{-1, 1} $.
 
 \begin{definition}
 The sequence $ \br{g_0, t^{\epsilon_1}, g_1, \dots, t^{\epsilon_n}, g_n} $ is called a \textbf{normal form}, if
 \begin{itemize}
 \item $ g_0 \in G $ is arbitrary,
-\item $ g_i \in \T_A \cup \T_B $ for $ i > 0 $ and that $ g_i \in \T_A $ if and only if $ \epsilon_i = -1 $, and
+\item $ g_i \in T_A \cup T_B $ for $ i > 0 $ and that $ g_i \in T_A $ if and only if $ \epsilon_i = -1 $, and
 \item there is no subsequence of the form $ \br{t^\epsilon, e_G, t^{-\epsilon}} $.
 \end{itemize}
 We call a sequence of the form $ \br{t^{-1}, a, t} $ or $ \br{t, b, t^{-1}} $ where $ a \in A $ and $ b \in B $ a \textbf{pinch}.
@@ -1522,23 +1563,260 @@ We call a sequence of the form $ \br{t^{-1}, a, t} $ or $ \br{t, b, t^{-1}} $ wh
 \begin{example}
 Let $ G = \F\br{\cbr{a, b}} $ and $ A = \abr{a^2} \cong \ZZ \cong \abr{b^3} = B $, and
 $$ \function[\phi]{A}{B}{a^2}{b^3}. $$
-Let $ \T_A $ be the set of words which do not start with a proper power of $ a $ other than $ a^1 $, such as $ \epsilon $, $ b^{17}a^2 $, or $ ab^3a^5 $, but not $ a^2b $ or $ a^{-1}b^3 $, and $ \T_B $ the set of words which do not start with a proper power of $ b $ other than $ b $ or $ b^2 $. Consider $ g = b^2t^{-1}a^{-4}tb^5abt^{-1}a^4b^3a $. Then
+Let $ T_A $ be the set of words which do not start with a proper power of $ a $ other than $ a^1 $, such as $ \epsilon $, $ b^{17}a^2 $, or $ ab^3a^5 $, but not $ a^2b $ or $ a^{-1}b^3 $, and $ T_B $ the set of words which do not start with a proper power of $ b $ other than $ b $ or $ b^2 $. Consider
+$$ g = b^2t^{-1}a^{-4}tb^5abt^{-1}a^4b^3a. $$
+Then
 \begin{align*}
 g
-& = b^2t^{-1}a^{-4}tb^5ab^7t^{-1}b^3a & b^3a \in \T_A, \qquad t^{-1}a^4 = \phi\br{a}t^{-1} = b^6t^{-1} \\
-& = b^2t^{-1}a^{-2}tb^2ab^7t^{-1}b^3a & b^2ab^7 \in \T_B, \qquad tb^3 = \phi^{-1}\br{b^3}t = a^2t \\
+& = b^2t^{-1}a^{-4}tb^5ab^7t^{-1}b^3a & b^3a \in T_A, \qquad t^{-1}a^4 = \phi\br{a}t^{-1} = b^6t^{-1} \\
+& = b^2t^{-1}a^{-2}tb^2ab^7t^{-1}b^3a & b^2ab^7 \in T_B, \qquad tb^3 = \phi^{-1}\br{b^3}t = a^2t \\
 & = b^{-1}t^{-1}tb^2ab^7t^{-1}b^3a & t^{-1}a^{-2} = \phi\br{a^{-2}}t^{-1} = b^{-3}t^{-1} \\
 & = bab^7t^{-1}b^3a,
 \end{align*}
 and $ \br{bab^7, t^{-1}, b^3a} $ is a normal form.
 \end{example}
 
+\lecture{26}{Tuesday}{03/12/19}
+
+\begin{remark}
+If $ G = \abr{S \st R} $, then
+$$ G *_A = \abr{S, t \st R \cup \cbr{t^{-1}at\phi\br{a}^{-1} \st a \in A}}. $$
+\end{remark}
+
+\pagebreak
+
+\begin{theorem}[Britton's lemma]
+Let $ G' = G *_A $.
+\begin{enumerate}
+\item Every element $ g' \in G' $ can be written uniquely as $ g' = g_0t^{\epsilon_1}g_1 \dots t^{\epsilon_n}g_n $ with $ \br{g_0, t^{\epsilon_1}, g_1, \dots, t^{\epsilon_n}, g_n} $.
+\item If $ g' = g_0t^{\epsilon_1}g_1 \dots t^{\epsilon_n}g_n $, for $ n \ge 1 $ and such that $ g $ does not contain a pinch, then $ g \ne e_{G'} $.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item As $ G $ and $ t $ generate $ G' $, every $ g' \in G' $ can be written as a product of $ g_i $ and $ t^{\epsilon_i} $. Inductively, starting from the end replacing $ g_i = a_{g_i}x_{g_i} $ by $ b_{g_i}y_{g_i} $, and then replacing $ t^{-1}a $ by $ \phi\br{a}t^{-1} $ and $ tb $ by $ \phi^{-1}\br{b}t $, we can put $ g' $ into normal form. For uniqueness, we define an action of $ G * \abr{t} $ on $ W $, the set of normal forms. Fix $ \br{g_0, t^{\epsilon_1}, g_1, \dots, t^{\epsilon_n}, g_n} \in W $ and $ g \in G $. Then $ g \cdot w = \br{gg_0, t^{\epsilon_1}, g_1, \dots, t^{\epsilon_n}, g_n} $, and
+\begin{align*}
+t \cdot w & =
+\begin{cases}
+\br{\phi^{-1}\br{g_0}g_1, t^{\epsilon_2}, g_2, \dots, t^{\epsilon_n}, g_n} & \epsilon_1 = -1, \ g_0 \in B \\
+\br{\phi^{-1}\br{b_{g_0}}, t, y_{g_0}, t^{\epsilon_1}, g_1, \dots, t^{\epsilon_n}, g_n} & \text{otherwise}
+\end{cases},
+\\
+t^{-1} \cdot w & =
+\begin{cases}
+\br{\phi\br{g_0}g_1, t^{\epsilon_2}, g_2, \dots, t^{\epsilon_n}, g_n} & \epsilon_1 = 1, \ g_0 \in A \\
+\br{\phi\br{a_{g_0}}, t^{-1}, x_{g_0}, t^{\epsilon_1}, g_1, \dots, t^{\epsilon_n}, g_n} & \text{otherwise}
+\end{cases}.
+\end{align*}
+Now one checks that this defines a group action which factors through the normal subgroup $ N = \abr{t^{-1}at\phi\br{a}^{-1} \st a \in A}^{G * \abr{t}} $, and furthermore $ g \cdot e_G = \br{g_0, t^{\epsilon_1}, g_1, \dots, t^{\epsilon_n}, g_n} $ if $ g $ can be written as $ g_0t^{\epsilon_1}g_1 \dots t^{\epsilon_n}g_n $. Hence, normal forms are unique.
+\item Rewrite $ g $ into normal form. Show inductively that no $ t $'s are cancelled if there are no pinches, whence the normal form is of length $ 2n + 1 \ge 3 $. Hence, by $ 1 $, $ g \ne e_{G'} $.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+\hfill
+\begin{itemize}
+\item The map $ G \to G *_A $ is an embedding and it is such that $ t^{-1}At = B $ provides $ \phi : A \to B $.
+\item Every finite subgroup of $ G *_A $ is conjugate to a finite subgroup of $ G $.
+\item If $ A \ne G $ and $ B \ne G $, then $ G *_{A = B} $ contains a free subgroup of rank two.
+\end{itemize}
+\end{corollary}
+
 \begin{lemma}
 Every countable group can be embedded into a finitely generated group.
 \end{lemma}
 
 \begin{proof}
-Let $ G = \cbr{e_G, g_i \st i \in \NN} $. Consider $ G' = G * \abr{s \st} $. Define $ H_1 $ the subgroup generated by $ S_1 = \cbr{s^ig_is^i \st i \ge 0} $, and $ H_2 $ the subgroup generated by $ S_2 = \cbr{s^ig_is^i \st i \ge 1} $. Then $ H_i $ is the free group on $ S_i $, whence $ H_1 \cong H_2 $, where $ \phi\br{s^ig_is^i} = s^{i + 1}g_{i + 1}s^{i + 1} $. Let $ G'' = G' *_{H_1 = H_2} $. In $ G'' $ we have $ t^{-1}s^ig^is^it = s^{i + 1}g_{i + 1}s^{i + 1} $. Hence, $ G'' $ is generated by $ \cbr{g_0, s, t} $. Then $ G \hookrightarrow G'' $ and $ G'' $ is finitely generated.
+Let $ G = \cbr{e_G, g_i \st i \in \NN} $. Consider $ G' = G * \abr{s \st} $. Define $ H_1 $ as the subgroup generated by $ S_1 = \cbr{s^ig_is^i \st i \ge 0} $, and define $ H_2 $ as the subgroup generated by $ S_2 = \cbr{s^ig_is^i \st i \ge 1} $. Then $ H_i $ is the free group on $ S_i $, whence $ H_1 \cong H_2 $, where $ \phi\br{s^ig_is^i} = s^{i + 1}g_{i + 1}s^{i + 1} $. Let $ G'' = G' *_{H_1 = H_2} $. In $ G'' $ we have $ t^{-1}s^ig^is^it = s^{i + 1}g_{i + 1}s^{i + 1} $. Hence, $ G'' $ is generated by $ \cbr{g_0, s, t} $. Then $ G \hookrightarrow G'' $ and $ G'' $ is finitely generated.
+\end{proof}
+
+\subsection{HNN extensions and trees}
+
+\begin{definition}
+The graph consisting of one vertex and a pair of mutually inverse edges, is called a \textbf{loop}.
+\end{definition}
+
+\begin{theorem}
+\label{thm:2.5.2}
+If $ G' = G *_{A = B} $ is an HNN extension, then $ G' $ acts, without inversion of edges, on a tree $ X $ such that the factor graph $ Y $ is a loop. Furthermore, there is a segment $ T = \cbr{x, y, e, \overline{e}} $ in $ X $, then $ \Stab_{G'} x = G $ and $ \Stab_{G'} y = tGt^{-1} $, and $ \Stab_{G'} e = A $.
+\end{theorem}
+
+\begin{theorem}
+Let $ G $ act on a tree $ X $ without inversion of edges such that the factor graph $ Y $ is a loop. Let $ T = \cbr{x, y, e, \overline{e}} $ be any segment in $ X $ and $ G_z = \Stab_G z $ for $ z \in T $. Let $ t \in G $ such that $ y = t \cdot x $ and $ G_e' = t^{-1}G_et $. Then
+$$ G_e' \le G_x, \qquad G = \abr{G_x, \ t \st t^{-1}at = \phi\br{a}, \ a \in G_e}. $$
+\end{theorem}
+
+\begin{proof}[Proof of \ref{thm:2.5.2}]
+Let
+$$ X^0 = G' / G, \qquad X_+^1 = G' / A, \qquad \alpha\br{g'A} = g'G, \qquad \omega\br{g'A} = g'tG. $$
+Then $ G' $ acts on it by left multiplication. Clearly it is vertex transitive. Assume $ g' \in G'  $ inverts the edge $ A $. Then $ g'G = g'\alpha\br{A} = \omega\br{A} = tG $ and $ g'tG = g'\omega\br{A} = \alpha\br{A} = G $. Hence, there exist $ g_1, g_2 \in G $ such that $ g' = tg_1 $ and $ g'tg_2 = e_{G'} $, hence $ tg_1tg_2 = e_{G'} $, a contradiction. If $ g' $ inverts $ gA $, then $ g^{-1}g'g $ inverts $ A $, a contradiction.
+\end{proof}
+
+\pagebreak
+
+\subsection{Graphs of groups}
+
+\lecture{27}{Wednesday}{04/12/19}
+
+\begin{definition}
+The graphs associated to $ G $ in the case that $ G $ was an amalgamated product, in \ref{thm:2.3.2}, or $ G $ was an HNN extension, in \ref{thm:2.5.2}, are called the \textbf{Bass-Serre graphs} of $ G $.
+\end{definition}
+
+\begin{definition}
+A \textbf{graph of groups} $ \br{\GG, Y} $ consists of a connected graph $ Y $ and $ \GG $ consists of groups $ G_z $ for $ z \in Y $ such that $ G_e = G_{\overline{e}} $ and there are embeddings $ \alpha_e : G_e \hookrightarrow G_{\alpha\br{e}} $ for any $ e \in Y^1 $.
+\end{definition}
+
+\begin{definition}
+Let $ \br{\GG, Y} $ be a graph of groups. Define $ F\br{\GG, Y} $ as follows. Set $ S = \cbr{t_e \st e \in Y^1} $. Then
+$$ \F\br{\GG, Y} = \F\br{S} * \br{\underset{x \in Y^0}{*} G_x} / \abr{t_et_{\overline{e}}, \ t_e^{-1}\alpha_e\br{g}t_e\alpha_{\overline{e}}\br{g}^{-1} \st g \in G_e, \ e \in Y^1}^N. $$
+\end{definition}
+
+\begin{definition}[Fundamental groups of graphs of groups I]
+Let $ \br{\GG, Y} $ be a graph of groups and $ y \in Y^0 $ arbitrary. Then we define the \textbf{fundamental group of $ \br{\GG, Y} $ with respect to $ y $}, $ \pi_1\br{\GG, Y, y} $, as the subgroup of $ \F\br{\GG, Y} $ of all elements of the form $ g_0t_{e_1}g_1 \dots t_{e_n}g_n $ where $ e_0 \dots e_n $ is a closed path in $ Y $ starting in $ y $, so $ g_i \in G_{\omega\br{e_i}} $ and $ g_0 \in G_{\alpha\br{e_1}} = G_y $.
+\end{definition}
+
+\begin{definition}[Fundamental groups of graphs of groups II]
+Let $ \br{\GG, Y} $ be a graph of groups and $ T $ a spanning tree for $ Y $. Then the \textbf{fundamental group of $ \br{\GG, Y} $ with respect to $ T $}, $ \pi_1\br{\GG, Y, T} $, is the factor group of $ \F\br{G, Y} $ by the normal closure of $ \cbr{t_e \st e \in T^1} $.
+\end{definition}
+
+\begin{example}
+Fix $ \br{\GG, Y} $.
+\begin{itemize}
+\item If $ G_x = \cbr{e_G} $ for all $ x \in Y^0 $, then $ \pi_1\br{\GG, Y, y} \cong \pi_1\br{Y, y} $. Note that $ \F\br{\GG, Y} = F / \abr{t_et_{\overline{e}} \st e \in Y^1}^N $, hence $ t_{\overline{e}} = t_e^{-1} $. So two closed paths in $ Y $ are homotopic, if and only if they are equal as group elements.
+\item If $ Y = \cbr{x} $ is one vertex without an edge, then $ \pi_1\br{\GG, Y, x} = \pi_1\br{\GG, Y, Y} \cong G_x $.
+\item If $ Y = x \to y $ is a segment, then
+$$ \pi_1\br{\GG, Y, Y} \cong G_x \underset{\alpha_e\br{G_e} = \alpha_{\overline{e}}\br{G_e}}{*} G_y. $$
+Fix $ A = \alpha_e\br{G_e} $ and $ B = \alpha_{\overline{e}}\br{G_e} $, and $ \phi : A \to B $ via $ \phi = \alpha_{\overline{e}}\alpha_e^{-1} $. Then
+$$ \F\br{\GG, Y} = G_x * G_y * \F\br{\cbr{t_et_{\overline{e}}}} / \abr{t_et_{\overline{e}}, \ t_e^{-1}\alpha_e\br{g}t_e\alpha_{\overline{e}}\br{g}^{-1}, \ t_{\overline{e}}^{-1}\alpha_{\overline{e}}\br{g}t_{\overline{e}}\alpha_e\br{g}^{-1}}^N, $$
+so
+$$ \pi_1\br{\GG, Y, Y} = G_x * G_y / \abr{\alpha_e\br{g}\alpha_{\overline{e}}\br{g}^{-1} \st g \in G_e}^N = G_x * G_y / \abr{a\phi\br{a}^{-1} \st a \in A}^N. $$
+\item If $ Y = \ \overset{x}{\circlearrowright} $ is a loop, then
+$$ \pi_1\br{\GG, Y, x} \cong G_x *_{\alpha_e\br{G_e} = \alpha_{\overline{e}}\br{G_e}}. $$
+Note that $ \pi_1\br{\GG, Y, x} = \F\br{\GG, Y} $, since
+$$ \F\br{\GG, Y} = G_x * \F\br{\cbr{t_e}} / \abr{t_e^{-1}\alpha_e\br{g}t_e\alpha_{\overline{e}}\br{g}^{-1} \st g \in G_e}^N = G_x * \abr{t_e} / \abr{t_e^{-1}at_e\phi\br{a}^{-1} \st a \in A}^N, $$
+where $ A = \alpha_e\br{G_e} $.
+\end{itemize}
+\end{example}
+
+\begin{lemma}
+\label{lem:2.6.7}
+If $ \br{\GG, Y} $ is arbitrary, then $ \pi_1\br{\GG, Y, y} $ arises from a sequence of amalgamated products and HNN extensions of vertex and edge groups.
+\end{lemma}
+
+\begin{proof}
+First take $ T $ a spanning tree of $ Y $. Consider $ \pi_1\br{\GG, T, x} $. This comes from amalgamated products. For $ \abs{T} > 2 $, let $ e $ be an arbitrary edge in $ T $ between $ x $ and $ y $. Denote by $ T_1 $ the connected component of $ T \setminus \cbr{e, \overline{e}} $ containing $ x $ and by $ T_2 $ the one containing $ y $. Then
+$$ \pi_1\br{\GG, T, x} \cong \pi_1\br{\GG, T_1, x} \underset{G_e}{*} \pi_1\br{\GG, T_2, y} = \pi_1\br{\GG', Y', x}. $$
+Now consider the whole graph. The only things that were left over are some edges not in the spanning tree, and we can collapse this whole tree that was a series of amalgamated products into one vertex. Adding only one edge gives us an HNN extension, so do it one by one.
+\end{proof}
+
+\pagebreak
+
+\lecture{28}{Thursday}{05/12/19}
+
+\begin{corollary}
+By Lemma \ref{lem:2.6.7}, every group $ G_x $ embeds into $ \pi_1\br{\GG, Y, y} $. We will identify them, that is $ G_x \le \pi_1\br{\GG, Y, y} $.
+\end{corollary}
+
+\begin{lemma}
+Let $ \br{\GG, Y} $ be a graph of groups and $ y \in Y^0 $, and $ T \subseteq Y $ a spanning tree. Denote by $ \psi : \F\br{\GG, Y} \to \pi_1\br{\GG, Y, T} $. Then
+$$ \eval{\psi}_{\pi_1\br{\GG, Y, y}} : \pi_1\br{Y, y} \to \pi_1\br{\GG, Y, T} $$
+yields an isomorphism.
+\end{lemma}
+
+\begin{proof}
+As $ Y $ is connected, for every $ x \in Y^0 $ there is a unique reduced path $ p_{yx} $ from $ y $ to $ x $, using only edges in $ T $. Say $ p_{yx} = e_1 \dots e_n $, and we associate to it the element $ g_{yx} = t_{e_1} \dots t_{e_n} \in \F\br{\GG, Y} $. Now define a map
+$$
+\begin{array}{ccrcl}
+s & : & \bigcup_{x \in Y^0} G_x \cup \bigcup_{e \in Y^1} \cbr{t_e} & \longrightarrow & \pi_1\br{\GG, Y, y} \\
+& & g & \longmapsto & g_{yx}gg_{xy} \\
+& & t_e & \longmapsto & g_{y\alpha\br{e}}t_eg_{\omega\br{e}y}
+\end{array}.
+$$
+Let
+$$ \sigma : \F\br{\cbr{t_e \st e \in Y^1}} * \br{\underset{x \in Y^0}{*} G_x} \to \pi_1\br{\GG, Y, y} $$
+be the extension of $ s $. Then
+\begin{align*}
+\sigma\br{t_e} & = g_{yx}t_et_{\overline{e}}g_{xy} = e_{\pi_1\br{\GG, Y, y}}, \\
+\sigma\br{t_et_{\overline{e}}} & = g_{y\alpha\br{e}}t_eg_{\omega\br{e}y}g_{y\alpha\br{\overline{e}}}t_{\overline{e}}g_{\omega\br{\overline{e}}y} = g_{y\alpha\br{e}}t_eg_{\omega\br{e}y}g_{y\omega\br{e}}t_{\overline{e}}g_{\alpha\br{e}y} = e_{\pi_1\br{\GG, Y, y}}.
+\end{align*}
+Similarly $ \sigma\br{t_e^{-1}\alpha_e\br{g}t_e\alpha_{\overline{e}}\br{g}^{-1}} = e_{\pi_1\br{\GG, Y, y}} $. Hence $ \sigma $ induces a homomorphism $ \widetilde{\sigma} : \pi_1\br{\GG, Y, T} \to \pi_1\br{\GG, Y, y} $. Now it is easy to check that $ \widetilde{\sigma} \circ \eval{\psi}_{\pi_1\br{\GG, Y, y}} = \id_{\pi_1\br{\GG, Y, y}} $ and $ \eval{\psi}_{\pi_1\br{\GG, Y, y}} \circ \widetilde{\sigma} = \id_{\pi_1\br{\GG, Y, T}} $.
+\end{proof}
+
+\begin{corollary}
+$ \pi_1\br{\GG, Y, y} $ does not depend on $ y $ and $ \pi_1\br{\GG, Y, T} $ does not depend on $ T $. We then write $ \pi_1\br{\GG, Y} $ if we are only interested in the isomorphism type.
+\end{corollary}
+
+\subsection{The fundamental structure theorem of Bass-Serre theory}
+
+\begin{definition}
+Let $ \psi : X \to Y $ from a tree $ X $ into a connected $ Y $. We call $ \br{\widetilde{T}, \widetilde{Y}} $ a \textbf{lift of the pair $ \br{T, Y} $}, for $ T \subseteq Y $ a spanning tree, if $ \widetilde{T} \subseteq \widetilde{Y} \subseteq X $ such that
+\begin{itemize}
+\item $ \widetilde{T} $ is a lift of $ T $,
+\item $ \psi $ bijectively maps $ \widetilde{Y}^1 \setminus \widetilde{T}^1 $ onto $ Y^1 \setminus T^1 $, and
+\item if $ \widetilde{e} \in \widetilde{Y}^1 \setminus \widetilde{T}^1 $ then either $ \alpha\br{\widetilde{e}} \in \widetilde{T}^0 $ or $ \omega\br{\widetilde{e}} \in \widetilde{T}^0 $.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Fundamental theorem of Bass-Serre theory I]
+\label{thm:2.7.2}
+If $ G = \pi_1\br{\GG, Y, T} $ with respect to a spanning tree $ T $ then $ G $ acts without inversion of edges on a tree $ X $ such that $ G \backslash X \cong Y $ and the stabilisers of $ x \in X^0 $ is conjugate to some $ G_y $ for $ y \in Y^0 $, and similarly for $ e \in X^1 $. Moreover, for the canonical projection $ \psi : X \to Y $ there is a lift $ \br{\widetilde{T}, \widetilde{Y}} $ of $ \br{T, Y} $ such that
+\begin{enumerate}
+\item $ \Stab_G \widetilde{x} = G_x $ if $ \widetilde{x} $ is a lift of $ x $ and $ \Stab_G \widetilde{e} = \alpha_e\br{G_e} $ if $ \widetilde{e} $ is a lift of $ e $, and
+\item if the terminal vertex of $ \widetilde{e} \in \widetilde{Y}^1 $ does not lie in $ \widetilde{T}^0 $ then $ t_e^{-1} $ carries it back into $ \widetilde{T}^0 $.
+\end{enumerate}
+\end{theorem}
+
+\lecture{29}{Tuesday}{10/12/19}
+
+\begin{remark*}
+There is a notion of a word in normal form, if $ G = \pi_1\br{\GG, Y, T} $. It is no longer true that every word has a unique normal form, but still no non-trivial normal form represents the trivial element in $ G $.
+\end{remark*}
+
+\pagebreak
+
+\begin{proof}
+Cross reference with \ref{thm:2.3.2} and \ref{thm:2.5.2}. First, pick an orientation $ Y_+^1 $ of $ Y $. Define $ X $ as
+$$ X^0 = \bigcup_{x \in Y^0} G / G_x, \qquad X_+^1 = \bigcup_{e \in Y_+^1} G / G_e, \qquad \alpha\br{gG_e} = gG_{\alpha\br{e}}, \qquad \omega\br{gG_e} = gt_eG_{\omega\br{e}}. $$
+Clearly $ G $ acts on $ X $ by left multiplication, and without inversion of edges. To show that $ X $ is a tree one needs connectedness, from existence of normal forms, and no circuits, from the fact that no word in normal form represents the trivial element. Clearly, $ G \backslash X \cong Y $. For the stabiliser part, note that $ \Stab_G gG_x = g\Stab_G G_xg^{-1} = gG_xg^{-1} $. Define
+$$ \widetilde{T}^0 = \bigcup_{x \in T^0} \cbr{G_x}, \qquad \widetilde{T}_+^1 = \bigcup_{e \in T_+^1} \cbr{G_e}. $$
+For $ \widetilde{Y} $ add $ \cbr{G_e \st e \in Y_+^1 \setminus T_+^1} $ and their inverses and terminal vertices, for $ \alpha\br{e} \in T^0 $. Now
+\begin{enumerate}
+\item $ \Stab_G \widetilde{x} = \Stab_G G_x = G_x $ and $ \Stab_G \widetilde{e} = \Stab_G G_e = G_e $, and
+\item if $ \widetilde{e} \in \widetilde{Y}_+^1 \setminus \widetilde{T}_+^1 $, such that $ \alpha\br{\widetilde{e}} \in \widetilde{T}_+^0 $, then $ \alpha\br{\widetilde{e}} = G_{\alpha\br{e}} $ and $ \omega\br{\widetilde{e}} = \omega\br{G_e} = t_eG_{\omega\br{e}} $, hence $ t_e^{-1}\omega\br{\widetilde{e}} = G_{\omega\br{e}} \in \widetilde{T}^0 $.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+The tree $ X $ constructed above, is called the \textbf{Bass-Serre tree} of $ G $.
+\end{definition}
+
+\begin{definition}
+Let $ G \curvearrowright X $ without inversion of edges and $ Y = G \backslash X $. Let $ T $ be a spanning tree and $ \br{\widetilde{T}, \widetilde{Y}} $ a lift of $ \br{T, Y} $. We define $ \br{\GG, Y} $ as follows. For each $ z \in Y $, we let $ G_z = \Stab_G \widetilde{z} $. Furthermore, for $ e \in Y^1 \setminus T^1 $, with $ \omega\br{\widetilde{e}} \notin \widetilde{T}^0 $, choose $ t_e \in G $ arbitrary such that $ \omega\br{\widetilde{e}} = t_e\widetilde{\omega\br{e}} $. Finally, define
+$$ \function[\alpha_e]{G_e}{G_{\alpha\br{e}}}{g}{
+\begin{cases}
+g & \alpha\br{\widetilde{e}} \in \widetilde{T}^0 \\
+t_egt_e^{-1} & \alpha\br{\widetilde{e}} \in \widetilde{Y}^0 \setminus \widetilde{T}^0
+\end{cases}
+}. $$
+\end{definition}
+
+\begin{theorem}[Fundamental theorem of Bass-Serre theory II]
+\label{thm:2.7.5}
+Let $ G \curvearrowright X $ on a tree without inversion of edges, then there is a canonical isomorphism
+$$ \function[\phi]{G}{\pi_1\br{\GG, Y, T}}{t_e}{t_e}, $$
+which extends $ \Stab_G \widetilde{x} \to G_x $.
+\end{theorem}
+
+\begin{theorem}[Kurosh subgroup theorem]
+If $ G = \underset{A}{*} G_i $ for $ i \in I $, and $ H \le G $ such that $ H \cap x^{-1}Ax = \cbr{e_G} $ for all $ x \in G $, then there is a free group $ F $ such that
+$$ H = F * \br{\underset{x_j \in T_i}{*} x_jG_ix_j^{-1} \cap H}, $$
+where $ T_i $ is a collection of representatives of the double cosets $ H \backslash G / G_i $ containing $ e_G $.
+\end{theorem}
+
+\begin{proof}
+Let $ G = G_1 \underset{A}{*} G_2 $, the free group of $ Y = G_1 \xrightarrow{A} G_2 $. Now by \ref{thm:2.7.2}, $ G \curvearrowright X $, the Bass-Serre tree of $ G $, without inversion of edges, whence $ H \curvearrowright X $ without inversion of edges. Pick $ T_H \subseteq Y_H $, and pick a lift $ \br{\widetilde{T_H}, \widetilde{Y_H}} $. By \ref{thm:2.7.5}, $ H = \pi_1\br{\GG_H, Y_H, T_H} $ and $ H \backslash X \cong Y_H $. Then $ xG_1 \sim yG_1 $ if and only if $ HxG_1 = HyG_1 $. The vertices in $ \widetilde{T_H} $ give a complete system of representatives of $ H \backslash G / G_1 $. If $ xG_i \in \widetilde{T}^0 $, then $ \Stab_H xG_i = xG_ix^{-1} \cap H $.
 \end{proof}
 
 \end{document}
