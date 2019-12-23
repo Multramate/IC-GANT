@@ -27,14 +27,14 @@
 & \qquad \impb{\teb{y}\inb{y}{x}}{\teb{\phi : x \to \bigcup x}\fab{z}\impb{\inb{z}{x}}{\inb{\phi\br{z}}{z}}}
 \end{align*}
 }
-\def\syllabus{Propositional formulas and logical validity. The formal system $ \L $. Soundness and completeness. First-order languages and structures. Satisfaction and truth of formulas. The formal system $ K_\LLL $. G\"odel's completeness theorem. The compactness theorem. The L\"owenheim-Skolem theorem. The axioms of Zermelo-Fraenkel set theory. Ordinals. Cardinality. The axiom of choice.}
+\def\syllabus{Propositional formulas and logical validity. The formal system $ \L $. Soundness and completeness. First-order languages and structures. Satisfaction and truth of formulas. The formal system $ \K_\LLL $. G\"odel's completeness theorem. The compactness theorem. The L\"owenheim-Skolem theorem. The axioms of Zermelo-Fraenkel set theory. Ordinals. Cardinality. The axiom of choice.}
 \def\thm{subsection}
 
 \input{../style/header}
 
 \begin{document}
 
-\input{../style/main}
+\input{../style/cover}
 
 \section{Introduction}
 
@@ -754,7 +754,7 @@ Use the compactness theorem to prove $ P $ is compact. \footnote{Exercise}
 
 \lecture{7}{Thursday}{18/10/18}
 
-Lecture 7 is a problem class.
+Lecture 7 is a problems class.
 
 \pagebreak
 
@@ -1260,10 +1260,10 @@ Appendix A.1.
 
 \pagebreak
 
-\subsection{The formal system \texorpdfstring{$ K_\LLL $}{KL}}
+\subsection{The formal system \texorpdfstring{$ \K_\LLL $}{KL}}
 
 \begin{definition}
-Suppose $ \LLL $ is a first-order language. The formal system $ K_\LLL $ has, as formulas, $ \LLL $-formulas, and the following.
+Suppose $ \LLL $ is a first-order language. The formal system $ \K_\LLL $ has, as formulas, $ \LLL $-formulas, and the following.
 \begin{itemize}
 \item Axioms. For $ \LLL $-formulas $ \phi, \chi, \psi $,
 \begin{enumerate}[label=(A\arabic*)]
@@ -1281,11 +1281,11 @@ Suppose $ \LLL $ is a first-order language. The formal system $ K_\LLL $ has, as
 \item[(Gen)] \textbf{Generalisation}. From $ \phi $, deduce $ \fab{x_i}\phi $.
 \end{itemize}
 \end{itemize}
-A \textbf{proof} in $ K_\LLL $ is a finite sequence of $ \LLL $-formulas, each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A \textbf{theorem} of $ K_\LLL $ is the last formula in some proof. Write $ \vdash_{K_\LLL} \phi $ if $ \phi $ is a theorem in $ K_\LLL $.
+A \textbf{proof} in $ \K_\LLL $ is a finite sequence of $ \LLL $-formulas, each of which is an axiom, or deduced from previous formulas in the proof using a rule of deduction. A \textbf{theorem} of $ \K_\LLL $ is the last formula in some proof. Write $ \vdash_{\K_\LLL} \phi $ if $ \phi $ is a theorem in $ \K_\LLL $.
 \end{definition}
 
 \begin{note*}
-Books do not always use $ K_\LLL $, that is they write $ \vdash \phi $.
+Books do not always use $ \K_\LLL $, that is they write $ \vdash \phi $.
 \end{note*}
 
 \begin{definition}
@@ -1295,12 +1295,12 @@ Suppose $ \Sigma $ is a set of $ \LLL $-formulas and $ \psi $ is an $ \LLL $-for
 \item a formula in $ \Sigma $, or
 \item obtained from earlier formulas in the deduction using MP or Gen, with the restriction that, when Gen is applied, it does not involve a variable occurring freely in a formula in $ \Sigma $.
 \end{itemize}
-Write $ \Sigma \vdash_{K_\LLL} \psi $ if there is a deduction from $ \Sigma $ to $ \psi $.
+Write $ \Sigma \vdash_{\K_\LLL} \psi $ if there is a deduction from $ \Sigma $ to $ \psi $.
 \end{definition}
 
 \lecture{13}{Thursday}{01/11/18}
 
-Lecture 13 is a problem class.
+Lecture 13 is a problems class.
 
 \lecture{14}{Friday}{02/11/18}
 
@@ -1308,20 +1308,20 @@ Lecture 13 is a problem class.
 \hfill
 \begin{itemize}
 \item If $ \Sigma $ consists of closed formulas, do not need to worry about the restriction on Gen.
-\item $ \phi \vdash_{K_\LLL} \fab{x_1}\phi $.
+\item $ \phi \vdash_{\K_\LLL} \fab{x_1}\phi $.
 \end{itemize}
 \end{remark}
 
 \begin{theorem}
 \label{thm:2.4.4}
-Suppose $ \phi $ is an $ \LLL $-formula which is a substitution instance of a tautology in propositional logic. Then $ \vdash_{K_\LLL} \phi $.
+Suppose $ \phi $ is an $ \LLL $-formula which is a substitution instance of a tautology in propositional logic. Then $ \vdash_{\K_\LLL} \phi $.
 \end{theorem}
 
 \begin{example*}
 For an $ \LLL $-formula $ \phi $,
-$$ \vdash_{K_\LLL} \impb{\notb{\notb{\phi}}}{\phi}, $$
+$$ \vdash_{\K_\LLL} \impb{\notb{\notb{\phi}}}{\phi}, $$
 as this is a substitution instance of
-$$ \vdash_{K_\LLL} \impb{\notb{\notb{p_1}}}{p_1}. $$
+$$ \vdash_{\K_\LLL} \impb{\notb{\notb{p_1}}}{p_1}. $$
 \end{example*}
 
 \begin{proof}
@@ -1329,13 +1329,13 @@ There is a tautology $ \chi $ with propositional variables $ p_1, \dots, p_n $ a
 $$ \chi_1, \dots, \chi_r, $$
 where each $ \chi_i $ is a propositional formula, that is in $ \L $, and $ \chi_r = \chi $. If we substitute $ \psi_1, \dots, \psi_n $ for $ p_1, \dots, p_n $ in all $ \chi_j $, we obtain a sequence of $ \LLL $-formulas,
 $$ \phi_1, \dots, \phi_r, $$
-which is a proof of $ \phi = \phi_r $ in $ K_\LLL $.
+which is a proof of $ \phi = \phi_r $ in $ \K_\LLL $.
 \end{proof}
 
 \pagebreak
 
-\begin{theorem}[Soundness of $ K_\LLL $]
-If $ \vdash_{K_\LLL} \phi $, then $ \vDash \phi $, that is it is logically valid.
+\begin{theorem}[Soundness of $ \K_\LLL $]
+If $ \vdash_{\K_\LLL} \phi $, then $ \vDash \phi $, that is it is logically valid.
 \end{theorem}
 
 \begin{proof}
@@ -1356,7 +1356,7 @@ so $ \v'\sbr{\impb{\phi}{\psi}} = \F $. Thus $ \v\sbr{\fab{x_i}\impb{\phi}{\psi}
 
 \begin{example}
 \label{eg:2.4.6}
-Suppose $ \Sigma \vdash_{K_\LLL} \psi $, then for every valuation $ \v $ with $ \v\sbr{\sigma} = \T $ for all $ \sigma \in \Sigma $, we have $ \v\sbr{\psi} = \T $.
+Suppose $ \Sigma \vdash_{\K_\LLL} \psi $, then for every valuation $ \v $ with $ \v\sbr{\sigma} = \T $ for all $ \sigma \in \Sigma $, we have $ \v\sbr{\psi} = \T $.
 \end{example}
 
 \begin{proof}
@@ -1365,26 +1365,26 @@ Exercise. \footnote{Exercise}
 
 \begin{corollary}
 \label{cor:2.4.7}
-There is no $ \LLL $-formula $ \phi $ with $ \vdash_{K_\LLL} \phi $ and $ \vdash_{K_\LLL} \notb{\phi} $.
+There is no $ \LLL $-formula $ \phi $ with $ \vdash_{\K_\LLL} \phi $ and $ \vdash_{\K_\LLL} \notb{\phi} $.
 \end{corollary}
 
 \begin{theorem}[Deduction theorem]
-Suppose $ \LLL $ is a first-order language, $ \Sigma $ is a set of $ \LLL $-formulas, and $ \phi $ and $ \psi $ are $ \LLL $-formulas. Then if $ \Sigma \cup \cbr{\phi} \vdash_{K_\LLL} \psi $, then $ \Sigma \vdash_{K_\LLL} \impb{\phi}{\psi} $.
+Suppose $ \LLL $ is a first-order language, $ \Sigma $ is a set of $ \LLL $-formulas, and $ \phi $ and $ \psi $ are $ \LLL $-formulas. Then if $ \Sigma \cup \cbr{\phi} \vdash_{\K_\LLL} \psi $, then $ \Sigma \vdash_{\K_\LLL} \impb{\phi}{\psi} $.
 \end{theorem}
 
 \begin{proof}
 Follows proof of deduction theorem for $ \L $ in \ref{thm:1.2.5}, by induction on the length of the deduction.
 \begin{itemize}
-\item Base case. One line deduction. Argue exactly as in \ref{thm:1.2.5}. Note that $ \vdash_{K_\LLL} \impb{\phi}{\phi} $ by \ref{thm:2.4.4}.
+\item Base case. One line deduction. Argue exactly as in \ref{thm:1.2.5}. Note that $ \vdash_{\K_\LLL} \impb{\phi}{\phi} $ by \ref{thm:2.4.4}.
 \item Inductive step. Suppose $ \psi $ follows from earlier formulas in the deduction using MP or Gen. MP is exactly as in \ref{thm:1.2.5}. For Gen, suppose $ \psi $ is obtained using Gen, then $ \psi $ is $ \fab{x_i}\theta $ and
-$$ \Sigma \cup \cbr{\phi} \vdash_{K_\LLL} \theta, $$
+$$ \Sigma \cup \cbr{\phi} \vdash_{\K_\LLL} \theta, $$
 and $ x_i $ is not free in any formula in $ \Sigma \cup \cbr{\phi} $. By induction, we have
-$$ \Sigma \vdash_{K_\LLL} \impb{\phi}{\theta}. $$
+$$ \Sigma \vdash_{\K_\LLL} \impb{\phi}{\theta}. $$
 By K2,
-$$ \Sigma \vdash_{K_\LLL} \impb{\fab{x_i}\impb{\phi}{\theta}}{\impb{\phi}{\fab{x_i}\theta}}. $$
+$$ \Sigma \vdash_{\K_\LLL} \impb{\fab{x_i}\impb{\phi}{\theta}}{\impb{\phi}{\fab{x_i}\theta}}. $$
 By Gen,
-$$ \Sigma \vdash_{K_\LLL} \fab{x_i}\impb{\phi}{\theta}, $$
-for $ x_i $ not free in any formula in $ \Sigma $. So by MP, we get $ \Sigma \vdash_{K_\LLL} \impb{\phi}{\fab{x_i}\theta} $, which is $ \Sigma \vdash_{K_\LLL} \impb{\phi}{\psi} $.
+$$ \Sigma \vdash_{\K_\LLL} \fab{x_i}\impb{\phi}{\theta}, $$
+for $ x_i $ not free in any formula in $ \Sigma $. So by MP, we get $ \Sigma \vdash_{\K_\LLL} \impb{\phi}{\fab{x_i}\theta} $, which is $ \Sigma \vdash_{\K_\LLL} \impb{\phi}{\psi} $.
 \end{itemize}
 \end{proof}
 
@@ -1396,14 +1396,14 @@ for $ x_i $ not free in any formula in $ \Sigma $. So by MP, we get $ \Sigma \vd
 
 \begin{definition}
 A set $ \Sigma $ of $ \LLL $-formulas is \textbf{consistent} if there is no formula $ \phi $ with
-$$ \Sigma \vdash_{K_\LLL} \phi, \qquad \Sigma \vdash_{K_\LLL} \notb{\phi}. $$
+$$ \Sigma \vdash_{\K_\LLL} \phi, \qquad \Sigma \vdash_{\K_\LLL} \notb{\phi}. $$
 \end{definition}
 
-By soundness, or \ref{cor:2.4.7}, $ \emptyset $ is consistent, so $ K_\LLL $ is consistent.
+By soundness, or \ref{cor:2.4.7}, $ \emptyset $ is consistent, so $ \K_\LLL $ is consistent.
 
 \begin{remark*}
 If $ \Sigma $ is inconsistent, then
-$$ \Sigma \vdash_{K_\LLL} \chi, $$
+$$ \Sigma \vdash_{\K_\LLL} \chi, $$
 for any $ \LLL $-formula $ \chi $.
 \end{remark*}
 
@@ -1414,15 +1414,15 @@ $$ \psi_0, \psi_1, \dots \in \cbr{\psi_i : i \in \NN}. $$
 \label{prop:2.5.2}
 Suppose $ \Sigma $ is a consistent set of closed $ \LLL $-formulas and $ \phi $ is a closed $ \LLL $-formula.
 \begin{enumerate}
-\item Comparing \ref{prop:1.3.7}, if $ \Sigma \not\vdash_{K_\LLL} \phi $, then $ \Sigma \cup \cbr{\notb{\phi}} $ is consistent.
-\item Comparing the Lindenbaum lemma in \ref{prop:1.3.8}, there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LLL $-formulas such that, for every closed $ \LLL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_\LLL} \psi $ or $ \Sigma^* \vdash_{K_\LLL} \notb{\psi} $.
+\item Comparing \ref{prop:1.3.7}, if $ \Sigma \not\vdash_{\K_\LLL} \phi $, then $ \Sigma \cup \cbr{\notb{\phi}} $ is consistent.
+\item Comparing the Lindenbaum lemma in \ref{prop:1.3.8}, there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LLL $-formulas such that, for every closed $ \LLL $-formula $ \psi $, either $ \Sigma^* \vdash_{\K_\LLL} \psi $ or $ \Sigma^* \vdash_{\K_\LLL} \notb{\psi} $.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item As in \ref{prop:1.3.7}, use deduction theorem and $ \vdash_{K_\LLL} \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
+\item As in \ref{prop:1.3.7}, use deduction theorem and $ \vdash_{\K_\LLL} \impb{\impb{\notb{\phi}}{\phi}}{\phi} $.
 \item Use $ 1 $ and the enumeration $ \psi_0, \psi_1, \dots $ of the closed $ \LLL $-formulas.
 \end{enumerate}
 \end{proof}
@@ -1434,45 +1434,45 @@ Suppose $ \LLL $ is a countable first-order language and $ \Sigma $ is a consist
 
 \begin{theorem}
 \label{thm:2.5.4}
-Let $ \Sigma $ be a set of closed $ \LLL $-formulas and $ \phi $ a closed $ \LLL $-formula. If every model of $ \Sigma $ is a model of $ \phi $, then $ \Sigma \vdash_{K_\LLL} \phi $. That is, if $ \AAA \vDash \Sigma $, or $ \AAA \vDash \sigma $ for all $ \sigma \in \Sigma $, then $ \AAA \vDash \phi $, then $ \Sigma \vdash_{K_\LLL} \phi $.
+Let $ \Sigma $ be a set of closed $ \LLL $-formulas and $ \phi $ a closed $ \LLL $-formula. If every model of $ \Sigma $ is a model of $ \phi $, then $ \Sigma \vdash_{\K_\LLL} \phi $. That is, if $ \AAA \vDash \Sigma $, or $ \AAA \vDash \sigma $ for all $ \sigma \in \Sigma $, then $ \AAA \vDash \phi $, then $ \Sigma \vdash_{\K_\LLL} \phi $.
 \end{theorem}
 
 \begin{notation*}
-$ \Sigma \vDash \phi $, if every model of $ \Sigma $ is a model of $ \phi $. Then $ \Sigma \vDash \phi $ implies $ \Sigma \vdash_{K_\LLL} \phi $. The converse is soundness.
+$ \Sigma \vDash \phi $, if every model of $ \Sigma $ is a model of $ \phi $. Then $ \Sigma \vDash \phi $ implies $ \Sigma \vdash_{\K_\LLL} \phi $. The converse is soundness.
 \end{notation*}
 
 \begin{proof}
-May assume $ \Sigma $ is consistent. Otherwise, everything is a consequence of $ \Sigma $. By assumption, there is no model of $ \Sigma \cup \cbr{\notb{\phi}} $. So by \ref{thm:2.5.3}, $ \Sigma \cup \cbr{\notb{\phi}} $ is inconsistent. So by \ref{prop:2.5.2}.$ 1 $, $ \Sigma \vdash_{K_\LLL} \phi $.
+May assume $ \Sigma $ is consistent. Otherwise, everything is a consequence of $ \Sigma $. By assumption, there is no model of $ \Sigma \cup \cbr{\notb{\phi}} $. So by \ref{thm:2.5.3}, $ \Sigma \cup \cbr{\notb{\phi}} $ is inconsistent. So by \ref{prop:2.5.2}.$ 1 $, $ \Sigma \vdash_{\K_\LLL} \phi $.
 \end{proof}
 
-\begin{theorem}[G\"odel's completeness theorem for $ K_\LLL $]
-If $ \phi $ is an $ \LLL $-formula with $ \vDash \phi $, then $ \phi $ is a theorem of $ K_\LLL $, that is $ \vdash_{K_\LLL} \phi $.
+\begin{theorem}[G\"odel's completeness theorem for $ \K_\LLL $]
+If $ \phi $ is an $ \LLL $-formula with $ \vDash \phi $, then $ \phi $ is a theorem of $ \K_\LLL $, that is $ \vdash_{\K_\LLL} \phi $.
 \end{theorem}
 
 \begin{proof}
 If $ \phi $ is closed this follows from \ref{thm:2.5.4} with $ \Sigma = \emptyset $. Suppose $ \phi $ has free variables amongst $ x_1, \dots, x_n $, and consider the closed formula
 $$ \psi : \fab{x_1} \dots \fab{x_n}\phi. $$
-As $ \vDash \phi $, we obtain $ \vDash \psi $. So, by the closed case, $ \vdash_{K_\LLL} \psi $, that is
+As $ \vDash \phi $, we obtain $ \vDash \psi $. So, by the closed case, $ \vdash_{\K_\LLL} \psi $, that is
 \begin{equation}
 \label{eq:12}
-\vdash_{K_\LLL} \fab{x_1} \dots \fab{x_n}\phi.
+\vdash_{\K_\LLL} \fab{x_1} \dots \fab{x_n}\phi.
 \end{equation}
 If $ \theta $ is any formula, then
-$$ \vdash_{K_\LLL} \impb{\fab{x_i}\theta}{\theta}, $$
-by the K1 axiom. So from $ \br{\ref{eq:12}} $ and this fact, and MP, applied $ n $ times, we obtain $ \vdash_{K_\LLL} \phi $.
+$$ \vdash_{\K_\LLL} \impb{\fab{x_i}\theta}{\theta}, $$
+by the K1 axiom. So from $ \br{\ref{eq:12}} $ and this fact, and MP, applied $ n $ times, we obtain $ \vdash_{\K_\LLL} \phi $.
 \end{proof}
 
 \pagebreak
 
-\begin{corollary}[Compactness theorem for $ K_\LLL $]
+\begin{corollary}[Compactness theorem for $ \K_\LLL $]
 \label{cor:2.5.6}
 Suppose $ \Sigma $ is a set of closed $ \LLL $-formulas and every finite subset of $ \Sigma $ has a model. Then $ \Sigma $ has a model.
 \end{corollary}
 
 \begin{proof}
 Suppose $ \Sigma $ has no model. By \ref{thm:2.5.3}, $ \Sigma $ is inconsistent, so there is a formula $ \phi $ with
-$$ \Sigma \vdash_{K_\LLL} \phi, \qquad \Sigma \vdash_{K_\LLL} \notb{\phi}. $$ Deductions only involve finitely many formulas in $ \Sigma $. So there is a finite $ \Sigma_0 \subseteq \Sigma $ with
-$$ \Sigma_0 \vdash_{K_\LLL} \phi, \qquad \Sigma_0 \vdash_{K_\LLL} \notb{\phi}. $$
+$$ \Sigma \vdash_{\K_\LLL} \phi, \qquad \Sigma \vdash_{\K_\LLL} \notb{\phi}. $$ Deductions only involve finitely many formulas in $ \Sigma $. So there is a finite $ \Sigma_0 \subseteq \Sigma $ with
+$$ \Sigma_0 \vdash_{\K_\LLL} \phi, \qquad \Sigma_0 \vdash_{\K_\LLL} \notb{\phi}. $$
 But then $ \Sigma_0 $ is inconsistent, so has no model, a contradiction.
 \end{proof}
 
@@ -1653,7 +1653,7 @@ If $ \AAA $ and $ \BBB $ are countable dense linear orders without endpoints, th
 
 \begin{lemma}[Los-Vaught test]
 \label{lem:2.7.5}
-Let $ \Sigma = \Sigma_E \cup \Delta $. Then for every closed $ \LLL^= $-formula $ \phi $, we have either $ \Sigma \vdash_{K_{\LLL^=}} \phi $ or $ \Sigma \vdash_{K_{\LLL^=}} \notb{\phi} $. Say $ \Sigma $ is \textbf{complete}.
+Let $ \Sigma = \Sigma_E \cup \Delta $. Then for every closed $ \LLL^= $-formula $ \phi $, we have either $ \Sigma \vdash_{\K_{\LLL^=}} \phi $ or $ \Sigma \vdash_{\K_{\LLL^=}} \notb{\phi} $. Say $ \Sigma $ is \textbf{complete}.
 \end{lemma}
 
 \begin{proof}
@@ -1667,20 +1667,20 @@ This contradicts \ref{thm:2.7.4} and \ref{def:2.7.3}.$ 2 $.
 \begin{proof}[Proof of \ref{thm:2.7.2}]
 \hfill
 \begin{enumerate}
-\item Show that $ \QQQ \vDash \phi $ if and only if $ \Sigma \vdash_{K_{\LLL^=}} \phi $.
+\item Show that $ \QQQ \vDash \phi $ if and only if $ \Sigma \vdash_{\K_{\LLL^=}} \phi $.
 \begin{itemize}
 \item[$ \impliedby $] As $ \QQQ \vDash \Sigma $, this is \ref{eg:2.4.6}.
-\item[$ \implies $] If $ \Sigma \not\vdash_{K_{\LLL^=}} \phi $, then by \ref{lem:2.7.5}, $ \Sigma \vdash_{K_{\LLL^=}} \notb{\phi} $. So $ \QQQ \vDash \notb{\phi} $, so $ \QQQ \not\vDash \phi $.
+\item[$ \implies $] If $ \Sigma \not\vdash_{\K_{\LLL^=}} \phi $, then by \ref{lem:2.7.5}, $ \Sigma \vdash_{\K_{\LLL^=}} \notb{\phi} $. So $ \QQQ \vDash \notb{\phi} $, so $ \QQQ \not\vDash \phi $.
 \end{itemize}
-Similarly, $ \RRR \vDash \phi $ if and only if $ \Sigma \vdash_{K_{\LLL^=}} \phi $. So
-$$ \RRR \vDash \phi \qquad \iff \qquad \Sigma \vdash_{K_{\LLL^=}} \phi \qquad \iff \qquad \QQQ \vDash \phi. $$
-\item $ \Sigma $ is a \textbf{recursively enumerable} set of formulas. That is, we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ K_\LLL $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. The method is to run the algorithm which generates all consequences of $ \Sigma $. By $ 1 $, at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
+Similarly, $ \RRR \vDash \phi $ if and only if $ \Sigma \vdash_{\K_{\LLL^=}} \phi $. So
+$$ \RRR \vDash \phi \qquad \iff \qquad \Sigma \vdash_{\K_{\LLL^=}} \phi \qquad \iff \qquad \QQQ \vDash \phi. $$
+\item $ \Sigma $ is a \textbf{recursively enumerable} set of formulas. That is, we can write an algorithm to systematically generate the formulas in $ \Sigma $. Note that the set of axioms for $ \K_\LLL $ is also recursively enumerable. So the set of deductions from $ \Sigma $ is recursively enumerable. Therefore the set of consequences of $ \Sigma $ is recursively enumerable. The method is to run the algorithm which generates all consequences of $ \Sigma $. By $ 1 $, at some point, we will see either $ \theta $ or $ \notb{\theta} $. At this point, the method stops.
 \end{enumerate}
 \end{proof}
 
 \lecture{19}{Thursday}{15/11/18}
 
-Lecture 19 is a problem class.
+Lecture 19 is a problems class.
 
 \lecture{20}{Friday}{16/11/18}
 
@@ -2472,7 +2472,7 @@ If $ G' $ is another such operation, then $ G\br{\alpha} = G'\br{\alpha} $ for a
 We cannot say that $ G $ is unique here, as we have no control over what it does on sets which are not ordinals, and it is usually not relevant. We might say that $ G $ is uniquely determined on ordinals. In practice, we usually do not write $ F $ down explicitly as a first-order formula.
 
 \begin{remark}
-An application is the Lindenbaum lemma, comparing \ref{prop:1.3.8} and \ref{prop:2.5.2}. Suppose $ \LLL $ is a first-order language whose alphabet of symbols can be well ordered. Suppose $ \Sigma $ is a consistent set of closed $ \LLL $-formulas. Then there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LLL $-formulas such that, for every closed $ \LLL $-formula $ \psi $, either $ \Sigma^* \vdash_{K_\LLL} \psi $ or $ \Sigma^* \vdash_{K_\LLL} \notb{\psi} $.
+An application is the Lindenbaum lemma, comparing \ref{prop:1.3.8} and \ref{prop:2.5.2}. Suppose $ \LLL $ is a first-order language whose alphabet of symbols can be well ordered. Suppose $ \Sigma $ is a consistent set of closed $ \LLL $-formulas. Then there is a consistent set $ \Sigma^* \supseteq \Sigma $ of closed $ \LLL $-formulas such that, for every closed $ \LLL $-formula $ \psi $, either $ \Sigma^* \vdash_{\K_\LLL} \psi $ or $ \Sigma^* \vdash_{\K_\LLL} \notb{\psi} $.
 \end{remark}
 
 \begin{proof}
@@ -2481,8 +2481,8 @@ $$ \cbr{\phi_\alpha \st \alpha < \lambda}, $$
 for some ordinal $ \lambda $. Define, for each ordinal $ \alpha $, a consistent set $ G\br{\alpha} \supseteq \Sigma $ of closed $ \LLL $-formulas
 $$ G\br{\alpha} =
 \begin{cases}
-\Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} \vdash_{K_\LLL} \phi_\alpha \\
-\Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} \cup \cbr{\notb{\phi_\alpha}} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} \not\vdash_{K_\LLL} \phi_\alpha \\
+\Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} \vdash_{\K_\LLL} \phi_\alpha \\
+\Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} \cup \cbr{\notb{\phi_\alpha}} & \alpha < \lambda, \ \Sigma \cup \bigcup_{\beta < \alpha} G\br{\beta} \not\vdash_{\K_\LLL} \phi_\alpha \\
 \Sigma \cup \bigcup_{\beta < \lambda} G\br{\beta} & \alpha \ge \lambda
 \end{cases}.
 $$
@@ -2583,7 +2583,7 @@ So $ \alpha \notin S $. Thus there is no injective function $ \alpha \to A $.
 
 \lecture{28}{Thursday}{06/12/18}
 
-Lecture 28 is a problem class.
+Lecture 28 is a problems class.
 
 \lecture{29}{Friday}{07/12/18}
 
@@ -2897,13 +2897,13 @@ So $ \v'\sbr{\phi\br{x_1}} = \F $. This completes the inductive step.
 \begin{proof}[Proof of \ref{thm:2.5.3}]
 A series of steps. The notation is cumulative.
 \begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
-\item Let $ b_0, b_1, \dots $ be new constant symbols. Form $ \LLL^+ $ by adding these to the symbols of $ \LLL $. Regard $ \Sigma $ as a set of $ \LLL^+ $-formulas. Check that $ \Sigma $ is still consistent, in the formal system $ K_{\LLL^+} $. Note that $ \LLL^+ $ is still a countable language.
+\item Let $ b_0, b_1, \dots $ be new constant symbols. Form $ \LLL^+ $ by adding these to the symbols of $ \LLL $. Regard $ \Sigma $ as a set of $ \LLL^+ $-formulas. Check that $ \Sigma $ is still consistent, in the formal system $ \K_{\LLL^+} $. Note that $ \LLL^+ $ is still a countable language.
 \item Adding \textbf{witnesses}. Claim that there is a consistent set of closed $ \LLL^+ $-formulas $ \Sigma_\infty \supseteq \Sigma $ such that, for every $ \LLL^+ $-formula $ \theta\br{x_i} $ with one free variable, there is some $ b_j $ with
-$$ \Sigma_\infty \vdash_{K_{\LLL^+}} \impb{\notb{\fab{x_i}\theta\br{x_i}}}{\notb{\theta\br{b_j}}}. $$
+$$ \Sigma_\infty \vdash_{\K_{\LLL^+}} \impb{\notb{\fab{x_i}\theta\br{x_i}}}{\notb{\theta\br{b_j}}}. $$
 Think of $ \theta\br{x_i} $ as $ \notb{\chi\br{x_i}} $. Then this formula is essentially
 $$ \impb{\teb{x_i}\chi\br{x_i}}{\chi\br{b_j}}, $$
 so $ b_j $ witnesses the existence of $ x_i $ satisfying $ \chi $.
-\item By the Lindenbaum lemma in \ref{prop:2.5.2}, there is a consistent set $ \Sigma^* \supseteq \Sigma_\infty $ of closed $ \LLL^+ $-formulas such that, for every closed $ \phi $, either $ \Sigma^* \vdash_{K_{\LLL^+}} \phi $ or $ \Sigma^* \vdash_{K_{\LLL^+}} \notb{\phi} $.
+\item By the Lindenbaum lemma in \ref{prop:2.5.2}, there is a consistent set $ \Sigma^* \supseteq \Sigma_\infty $ of closed $ \LLL^+ $-formulas such that, for every closed $ \phi $, either $ \Sigma^* \vdash_{\K_{\LLL^+}} \phi $ or $ \Sigma^* \vdash_{\K_{\LLL^+}} \notb{\phi} $.
 \item Building a structure. Let
 $$ A = \cbr{\overline{t} \st t \ \text{is a closed term of} \ \LLL^+}. $$
 Note that
@@ -2915,7 +2915,7 @@ Note that
 Make $ A $ into an $ \LLL^+ $ structure.
 \begin{enumerate}
 \item Each constant symbol $ c $ of $ \LLL^+ $ is interpreted as $ \overline{c} \in A $.
-\item Suppose $ R $ is an $ n $-ary relation symbol. Define the relation $ \overline{R} \subseteq A^n $ by $ \br{\overline{t_1}, \dots, \overline{t_n}} \in \overline{R} $ if and only if $ \Sigma^* \vdash_{K_{\LLL^+}} R\br{t_1, \dots, t_n} $, where $ R\br{t_1, \dots, t_n} $ is a closed atomic $ \LLL^+ $-formula and $ t_1, \dots, t_n $ are closed $ \LLL^+ $-terms.
+\item Suppose $ R $ is an $ n $-ary relation symbol. Define the relation $ \overline{R} \subseteq A^n $ by $ \br{\overline{t_1}, \dots, \overline{t_n}} \in \overline{R} $ if and only if $ \Sigma^* \vdash_{\K_{\LLL^+}} R\br{t_1, \dots, t_n} $, where $ R\br{t_1, \dots, t_n} $ is a closed atomic $ \LLL^+ $-formula and $ t_1, \dots, t_n $ are closed $ \LLL^+ $-terms.
 \item Suppose $ f $ is an $ m $-ary function symbol. Define a function $ \overline{f} : A^m \to A $ by
 $$ \overline{f}\br{\overline{t_1}, \dots, \overline{t_m}} = \overline{f\br{t_1, \dots, t_m}}, $$
 for closed terms $ t_1, \dots, t_m $.
@@ -2925,7 +2925,7 @@ Call this structure $ \AAA $. Note that, if $ \v $ is a valuation in $ \AAA $ an
 \item Main lemma. Claim that, for every closed $ \LLL^+ $-formula $ \phi $,
 \begin{equation}
 \label{eq:15}
-\Sigma^* \vdash_{K_{\LLL^+}} \phi \qquad \iff \qquad \AAA \vDash \phi.
+\Sigma^* \vdash_{\K_{\LLL^+}} \phi \qquad \iff \qquad \AAA \vDash \phi.
 \end{equation}
 Prove by induction on the number of connectives and quantifiers in $ \phi $.
 \begin{itemize}
@@ -2942,8 +2942,8 @@ In cases $ 1 $ and $ 2 $, $ \psi $ and $ \chi $ are closed. So $ \br{\ref{eq:15}
 \begin{align*}
 \AAA \vDash \phi \qquad
 & \iff \qquad \AAA \not\vDash \psi & \text{by \ref{thm:2.3.3}} \\
-& \iff \qquad \Sigma^* \not\vdash_{K_{\LLL^+}} \psi & \text{by the induction hypothesis} \ \br{\ref{eq:15}} \\
-& \iff \qquad \Sigma^* \vdash_{K_{\LLL^+}} \notb{\psi} & \text{by step} \ 3.
+& \iff \qquad \Sigma^* \not\vdash_{\K_{\LLL^+}} \psi & \text{by the induction hypothesis} \ \br{\ref{eq:15}} \\
+& \iff \qquad \Sigma^* \vdash_{\K_{\LLL^+}} \notb{\psi} & \text{by step} \ 3.
 \end{align*}
 \item Exercise. \footnote{Exercise}
 \item $ \phi $ is $ \fab{x_i}\psi $.
@@ -2951,14 +2951,14 @@ In cases $ 1 $ and $ 2 $, $ \psi $ and $ \chi $ are closed. So $ \br{\ref{eq:15}
 \item $ x_i $ is not free in $ \psi $. So $ \psi $ is closed and we can use the inductive hypothesis.
 \item $ x_i $ is free in $ \psi $. So $ \psi\br{x_i} $ has a single free variable.
 \begin{itemize}
-\item[$ \impliedby $] Suppose for a contradiction that $ \AAA \vDash \phi $ and $ \Sigma^* \not\vdash_{K_{\LLL^+}} \phi $. Then by step $ 3 $,
-$$ \Sigma^* \vdash_{K_{\LLL^+}} \notb{\phi}. $$
+\item[$ \impliedby $] Suppose for a contradiction that $ \AAA \vDash \phi $ and $ \Sigma^* \not\vdash_{\K_{\LLL^+}} \phi $. Then by step $ 3 $,
+$$ \Sigma^* \vdash_{\K_{\LLL^+}} \notb{\phi}. $$
 By step $ 2 $,
-$$ \Sigma^* \vdash_{K_{\LLL^+}} \impb{\notb{\fab{x_i}\psi\br{x_i}}}{\notb{\psi\br{b_j}}}, $$
+$$ \Sigma^* \vdash_{\K_{\LLL^+}} \impb{\notb{\fab{x_i}\psi\br{x_i}}}{\notb{\psi\br{b_j}}}, $$
 for some constant symbol $ b_j $. That is,
-$$ \Sigma^* \vdash_{K_{\LLL^+}} \impb{\notb{\phi}}{\notb{\psi\br{b_j}}}. $$
+$$ \Sigma^* \vdash_{\K_{\LLL^+}} \impb{\notb{\phi}}{\notb{\psi\br{b_j}}}. $$
 So
-$$ \Sigma^* \vdash_{K_{\LLL^+}} \notb{\psi\br{b_j}}. $$
+$$ \Sigma^* \vdash_{\K_{\LLL^+}} \notb{\psi\br{b_j}}. $$
 $ \notb{\psi\br{b_j}} $ is closed and, by case $ 1 $, $ \br{\ref{eq:15}} $ applies. We obtain
 \begin{equation}
 \label{eq:16}

@@ -30,6 +30,7 @@ $$
 \draw (1, 0) to (1, -2) to node[right, near end]{$ l_{11} $} (1, -4);
 \draw (0, 0) to (0, -2) to [out=-90, in=135] node[above right, near end]{$ l_{12} $} (1, -4);
 \draw (1, -4) arc (-90:60:3) node[below]{$ l_{13} $};
+\draw (1, -4.5) node[below]{$ \PG\br{2, \FF_3} $};
 \end{tikzpicture}
 $$
 }
@@ -40,7 +41,7 @@ $$
 
 \begin{document}
 
-\input{../style/main}
+\input{../style/cover}
 
 \section{Introduction}
 
@@ -356,7 +357,7 @@ We will study
 \item constructions of $ t $-designs,
 \item conditions on parameters, such as
 \begin{itemize}
-\item if design parameters are $ v, k, r $ then easily $ b = vr / k $, so $ k \mid vr $ and $ vr / k \le \twobyone{v}{k} $,
+\item if design parameters are $ v, k, r $ then easily $ b = vr / k $, so $ k \mid vr $ and $ vr / k \le \binom{v}{k} $,
 \item in non-trivial $ 2 $-design, $ b \ge v $, so $ r \ge k $, by linear algebra, and
 \end{itemize}
 \item links to codes and graphs.
@@ -675,32 +676,30 @@ Recall that for $ v \in \ZZ_2^n $ and $ e \ge 1 $, $ \S_e\br{v} = \cbr{w \in \ZZ
 
 \begin{proposition}
 \label{prop:1.9}
-$$ \abs{\S_e\br{v}} = \twobyone{n}{0} + \dots + \twobyone{n}{e}. $$
+$$ \abs{\S_e\br{v}} = \binom{n}{0} + \dots + \binom{n}{e}. $$
 \end{proposition}
 
 \begin{proof}
-$ \abs{\S_e\br{v}} = d_0 + \dots + d_e $, where $ d_i $ is the number of vectors $ w \in \ZZ_2^n $ such that $ \d\br{v, w} = i $. The vector distance $ i $ from $ v $ are those where we change $ i $ of the coordinates. Thus
-$$ d_i = \twobyone{n}{i}. $$
+$ \abs{\S_e\br{v}} = d_0 + \dots + d_e $, where $ d_i $ is the number of vectors $ w \in \ZZ_2^n $ such that $ \d\br{v, w} = i $. The vector distance $ i $ from $ v $ are those where we change $ i $ of the coordinates. Thus $ d_i = \binom{n}{i} $.
 \end{proof}
 
 \begin{theorem}[Hamming bound]
 \label{thm:1.10}
 If $ C \in \ZZ_2^n $ corrects $ e $ errors, then
-$$ \abs{C} \le \dfrac{2^n}{\twobyone{n}{0} + \dots + \twobyone{n}{e}}. $$
+$$ \abs{C} \le \dfrac{2^n}{\binom{n}{0} + \dots + \binom{n}{e}}. $$
 \end{theorem}
 
 \lecture{5}{Tuesday}{16/10/18}
 
 \begin{proof}
 By definition, the spheres $ \S_e\br{c} $ for $ c \in C $ are disjoint. So
-$$ \abs{\bigcup_{c \in C} \S_e\br{c}} = \abs{C}\abs{\S_e\br{c}} = \abs{C}\br{\twobyone{n}{0} + \dots + \twobyone{n}{e}}, $$
-by \ref{prop:1.9}. Of course, $ \abs{\bigcup_{c \in C} \S_e\br{c}} \le 2^n $. Thus
-$$ \abs{C}\br{\twobyone{n}{0} + \dots + \twobyone{n}{e}} \le 2^n. $$
+$$ \abs{\bigcup_{c \in C} \S_e\br{c}} = \abs{C}\abs{\S_e\br{c}} = \abs{C}\br{\binom{n}{0} + \dots + \binom{n}{e}}, $$
+by \ref{prop:1.9}. Of course, $ \abs{\bigcup_{c \in C} \S_e\br{c}} \le 2^n $. Thus $ \abs{C}\br{\binom{n}{0} + \dots + \binom{n}{e}} \le 2^n $.
 \end{proof}
 
 \begin{example*}
 Let $ C $ be a linear code of length nine correcting two errors. What is $ \max\br{\dim C} $? By \ref{thm:1.10},
-$$ \abs{C} \le \dfrac{2^9}{\twobyone{9}{0} + \twobyone{9}{1} + \twobyone{9}{2}} = \dfrac{512}{46} < 12. $$
+$$ \abs{C} \le \dfrac{2^9}{\binom{9}{0} + \binom{9}{1} + \binom{9}{2}} = \dfrac{512}{46} < 12. $$
 Then $ \abs{C} = 2^{\dim C} $, since $ C $ is linear. So $ \dim C \le 3 $.
 \end{example*}
 
@@ -728,7 +727,7 @@ If $ C \subseteq \ZZ_2^n $ corrects $ e $ errors, then spheres $ \S_e\br{c} $ fo
 
 \begin{definition*}
 A code $ C \subseteq \ZZ_2^n $ is \textbf{$ e $-perfect} if $ C $ corrects $ e $ errors and
-$$ \abs{C} = \dfrac{2^n}{\twobyone{n}{0} + \dots + \twobyone{n}{e}}. $$
+$$ \abs{C} = \dfrac{2^n}{\binom{n}{0} + \dots + \binom{n}{e}}. $$
 Equivalently, $ \ZZ_2^n $ is a disjoint union of spheres $ \S_e\br{c} $ for $ c \in C $.
 \end{definition*}
 
@@ -749,12 +748,12 @@ $ \Ham k $ is $ 1 $-perfect by \ref{prop:1.7}, since length is $ 2^k - 1 $ and d
 \end{example*}
 
 Are there any more perfect codes? If $ C $ is $ e $-perfect then
-$$ \twobyone{n}{0} + \dots + \twobyone{n}{e} = 2^k, $$
+$$ \binom{n}{0} + \dots + \binom{n}{e} = 2^k, $$
 which is rare.
 
 \begin{example*}
 Let $ e = 2 $. Then
-$$ \twobyone{n}{0} + \twobyone{n}{1} + \twobyone{n}{2} = 2^k, $$
+$$ \binom{n}{0} + \binom{n}{1} + \binom{n}{2} = 2^k, $$
 so $ n^2 + n + 2 = 2^{k + 1} $, which is rare.
 \end{example*}
 
@@ -763,7 +762,7 @@ The following is a famous theorem, by van Lint-Tietavainen in 1973. The only $ e
 \item $ e = 1 $ and $ C = \Ham k $,
 \item $ n = 2e + 1 $, $ \dim C = 1 $, and $ C = \cbr{0 \dots 0, 1 \dots 1} $, and
 \item $ e = 3 $, $ n = 23 $, and $ \dim C = 12 $ is the Golay code, which is a miracle, since
-$$ \twobyone{23}{0} + \twobyone{23}{1} + \twobyone{23}{2} + \twobyone{23}{3} = 2048 = 2^{11}. $$
+$$ \binom{23}{0} + \binom{23}{1} + \binom{23}{2} + \binom{23}{3} = 2048 = 2^{11}. $$
 \end{itemize}
 
 \pagebreak
@@ -772,7 +771,7 @@ $$ \twobyone{23}{0} + \twobyone{23}{1} + \twobyone{23}{2} + \twobyone{23}{3} = 2
 
 \begin{example*}
 Let $ C $ be a linear code of length $ 15 $ correcting two errors. What is the largest possible $ \dim C $? By the Hamming bound,
-$$ \abs{C} \le \dfrac{2^{15}}{\twobyone{15}{0} + \twobyone{15}{1} + \twobyone{15}{2}} = \dfrac{2^{15}}{121} < 2^9. $$
+$$ \abs{C} \le \dfrac{2^{15}}{\binom{15}{0} + \binom{15}{1} + \binom{15}{2}} = \dfrac{2^{15}}{121} < 2^9. $$
 So $ \dim C \le 8 $. This is a negative result. There are no such codes of dimension at least nine. What about positive results?
 \end{example*}
 
@@ -781,14 +780,14 @@ So $ \dim C \le 8 $. This is a negative result. There are no such codes of dimen
 Let $ n, k, d \in \ZZ $, where $ 2 \le d \le n $ and $ 1 \le k \le n $, such that
 \begin{equation}
 \label{eq:1}
-\twobyone{n - 1}{0} + \dots + \twobyone{n - 1}{d - 2} < 2^{n - k}.
+\binom{n - 1}{0} + \dots + \binom{n - 1}{d - 2} < 2^{n - k}.
 \end{equation}
 Then there exists a linear code $ C $ of length $ n $ and dimension $ l $ with $ \d\br{C} \ge d $.
 \end{theorem}
 
 \begin{example*}
 Let $ C \subseteq \ZZ_2^{15} $ correcting two errors. Want $ \d\br{C} \ge 5 $. Putting $ n = 15 $ and $ d = 5 $ into $ \br{\ref{eq:1}} $,
-$$ \twobyone{14}{0} + \twobyone{14}{1} + \twobyone{14}{2} + \twobyone{14}{3} = 1 + 14 + 91 + 364 < 512 = 2^9 = 2^{15 - 6}. $$
+$$ \binom{14}{0} + \binom{14}{1} + \binom{14}{2} + \binom{14}{3} = 1 + 14 + 91 + 364 < 512 = 2^9 = 2^{15 - 6}. $$
 So by \ref{thm:1.12}, there exists such a $ C $ with $ \dim C = 6 $. Does there exist $ C $ of dimension seven or eight? \ref{thm:1.12} says nothing.
 \end{example*}
 
@@ -800,9 +799,7 @@ Need to find check matrix $ A $ satisfying
 \item $ A $ is $ \br{n - k} \times n $ matrix of rank $ n - k $, and
 \item any $ d - 1 $ columns of $ A $ are linearly independent, using \ref{prop:1.8}.
 \end{enumerate}
-We construct $ A $ inductively, adding one column at a time, satisfying $ 2 $ at each step. Start with $ n - k $ columns $ e_1, \dots, e_{n - k} \in \ZZ_2^{n - k} $. Write $ c_i = e_i $. Now suppose we have $ i $ columns $ c_1, \dots, c_i $, where $ n - k \le i \le n - 1 $. Let $ A_1 = \onebythree{c_1}{\dots}{c_i} $ be $ \br{n - k} \times i $, with any $ d - 1 $ columns linearly independent. The number of vectors in $ \ZZ_2^{n - k} $ in the span of at most $ d - 2 $ of $ c_1, \dots, c_i $ is at most
-$$ N_i = \twobyone{i}{0} + \dots + \twobyone{i}{d - 2}. $$
-Since $ i \le n - 1 $, $ N_i < 2^{n - k} $ by hypothesis $ \br{\ref{eq:1}} $. Hence there exists a vector $ c_{i + 1} \in \ZZ_2^{n - k} $ that is not in the span of at most $ d - 2 $ of $ c_1, \dots, c_i $. Let $ A_{i + 1} = \onebythree{c_1}{\dots}{c_{i + 1}} $. Then any $ d - 1 $ columns of $ A_{i + 1} $ are linearly independent. This process constructs $ A_{n - k}, \dots, A_n $. So $ A = A_n $ satisfies $ 1 $ and $ 2 $, as required.
+We construct $ A $ inductively, adding one column at a time, satisfying $ 2 $ at each step. Start with $ n - k $ columns $ e_1, \dots, e_{n - k} \in \ZZ_2^{n - k} $. Write $ c_i = e_i $. Now suppose we have $ i $ columns $ c_1, \dots, c_i $, where $ n - k \le i \le n - 1 $. Let $ A_1 = \onebythree{c_1}{\dots}{c_i} $ be $ \br{n - k} \times i $, with any $ d - 1 $ columns linearly independent. The number of vectors in $ \ZZ_2^{n - k} $ in the span of at most $ d - 2 $ of $ c_1, \dots, c_i $ is at most $ N_i = \binom{i}{0} + \dots + \binom{i}{d - 2} $. Since $ i \le n - 1 $, $ N_i < 2^{n - k} $ by hypothesis $ \br{\ref{eq:1}} $. Hence there exists a vector $ c_{i + 1} \in \ZZ_2^{n - k} $ that is not in the span of at most $ d - 2 $ of $ c_1, \dots, c_i $. Let $ A_{i + 1} = \onebythree{c_1}{\dots}{c_{i + 1}} $. Then any $ d - 1 $ columns of $ A_{i + 1} $ are linearly independent. This process constructs $ A_{n - k}, \dots, A_n $. So $ A = A_n $ satisfies $ 1 $ and $ 2 $, as required.
 \end{proof}
 
 \subsection{The Golay code}
@@ -1006,7 +1003,7 @@ $ \G_{23} $ is $ 3 $-perfect.
 \begin{itemize}
 \item $ 3 $-error correcting, that is want $ \d\br{\G_{23}} \ge 7 $. Since $ \G_{23} $ has the codeword $ 0^80^81^7 $ for $ a = b = x = 1^8 $, $ \d\br{\G_{23}} \le 7 $. Since $ \d\br{\G_{24}} = 8 $, $ \d\br{\G_{23}} \ge 7 $. Thus $ \d\br{\G_{23}} = 7 $ and $ 3 $-error correcting.
 \item Then
-$$ \abs{\G_{23}} = 2^{12} = \dfrac{2^{23}}{\twobyone{23}{0} + \twobyone{23}{1} + \twobyone{23}{2} + \twobyone{23}{3}}. $$
+$$ \abs{\G_{23}} = 2^{12} = \dfrac{2^{23}}{\binom{23}{0} + \binom{23}{1} + \binom{23}{2} + \binom{23}{3}}. $$
 Thus $ \G_{23} $ is $ 3 $-perfect.
 \end{itemize}
 \end{proof}
@@ -1991,7 +1988,7 @@ A question is for which values of $ k $ is there a Moore graph of valency $ k $ 
 
 \lecture{14}{Tuesday}{06/11/18}
 
-Lecture 14 is a problem class.
+Lecture 14 is a problems class.
 
 \subsubsection{Strongly regular graphs}
 
@@ -2133,8 +2130,8 @@ since no triangles, so $ \lambda = 0 $, and no squares, so $ \mu = 1 $.
 \item vertices $ 2 $-subsets of $ \cbr{1, \dots, n} $, and
 \item $ \cbr{i, j} \sim \cbr{k, l} $ if and only if $ \abs{\cbr{i, j} \cap \cbr{k, l}} = 1 $,
 \end{itemize}
-so $ v =\twobyone{n}{2} $ and $ k = 2\br{n - 2} $. Then $ \cbr{i, j} \sim \cbr{i, k} $ has common neighbours $ \cbr{i, l} $ for $ l \ne i, j, k $, and also $ \cbr{j, k} $, so $ \lambda = n - 2 $, and $ \cbr{i, j} \nsim \cbr{k, l} $ has common neighbours are $ \cbr{i, k}, \cbr{i, l}, \cbr{j, k}, \cbr{j, l} $, so $ \mu = 4 $. Thus for $ n \ge 4 $,
-$$ \T\br{n} = \srg\br{\twobyone{n}{2}, 2\br{n - 2}, n - 2, 4}. $$
+so $ v = \binom{n}{2} $ and $ k = 2\br{n - 2} $. Then $ \cbr{i, j} \sim \cbr{i, k} $ has common neighbours $ \cbr{i, l} $ for $ l \ne i, j, k $, and also $ \cbr{j, k} $, so $ \lambda = n - 2 $, and $ \cbr{i, j} \nsim \cbr{k, l} $ has common neighbours are $ \cbr{i, k}, \cbr{i, l}, \cbr{j, k}, \cbr{j, l} $, so $ \mu = 4 $. Thus for $ n \ge 4 $,
+$$ \T\br{n} = \srg\br{\binom{n}{2}, 2\br{n - 2}, n - 2, 4}. $$
 Show $ \overline{\T\br{5}} $ is the Petersen graph. Sheet $ 3 $. \footnote{Exercise}
 \item The \textbf{Lattice graph} $ \L\br{n} $ has
 \begin{itemize}
@@ -2888,7 +2885,7 @@ Thus $ x $ and $ y $ also have $ s_1 $ common neighbours. Similarly, working wit
 
 \lecture{20}{Tuesday}{20/11/18}
 
-Lecture 20 is a problem class.
+Lecture 20 is a problems class.
 
 \pagebreak
 
@@ -3578,16 +3575,16 @@ This is a vector space over $ F $ of dimension $ n $, and $ \abs{F^n} = q^n $ wh
 
 \begin{definition*}
 For $ 1 \le m \le n $, define the \textbf{$ q $-binomial coefficients}
-$$ \twobyone{n}{m}_q = \dfrac{\br{q^n - 1} \dots \br{q^{n - m + 1}}}{\br{q^m - 1} \dots \br{q - 1}}. $$
+$$ \binom{n}{m}_q = \dfrac{\br{q^n - 1} \dots \br{q^{n - m + 1}}}{\br{q^m - 1} \dots \br{q - 1}}. $$
 \end{definition*}
 
 \begin{example*}
-$$ \twobyone{n}{1}_q = \dfrac{q^n - 1}{q - 1}, \qquad \twobyone{4}{2}_2 = \dfrac{\br{2^4 - 1}\br{2^3 - 1}}{\br{2^2 - 1}\br{2 - 1}} = \dfrac{15 \cdot 7}{3 \cdot 1} = 35, \qquad \twobyone{2}{1}_q = q + 1. $$
+$$ \binom{n}{1}_q = \dfrac{q^n - 1}{q - 1}, \qquad \binom{4}{2}_2 = \dfrac{\br{2^4 - 1}\br{2^3 - 1}}{\br{2^2 - 1}\br{2 - 1}} = \dfrac{15 \cdot 7}{3 \cdot 1} = 35, \qquad \binom{2}{1}_q = q + 1. $$
 \end{example*}
 
 \lecture{26}{Tuesday}{04/12/18}
 
-Lecture 26 is a problem class.
+Lecture 26 is a problems class.
 
 \lecture{27}{Wednesday}{05/12/18}
 
@@ -3595,19 +3592,19 @@ Lecture 26 is a problem class.
 \label{prop:3.16}
 Let $ 1 \le m \le n - 1 $, $ F $ be a field, and $ \abs{F} = q $.
 \begin{enumerate}
-\item The number of $ m $-dimensional subspaces of $ F^n $ is $ \twobyone{n}{m}_q $.
+\item The number of $ m $-dimensional subspaces of $ F^n $ is $ \binom{n}{m}_q $.
 \item If $ 0 \ne v \in F^n $, then the number of $ m $-dimensional subspaces of $ F^n $ containing $ v $ is
 $$
 \begin{cases}
 1 & m = 1 \\
-\twobyone{n - 1}{m - 1}_q & m \ge 2
+\binom{n - 1}{m - 1}_q & m \ge 2
 \end{cases}.
 $$
 \item If $ v, w \in F^n $ are linearly independent and $ m \ge 2 $, then the number of $ m $-dimensional subspaces of $ F^n $ containing $ v $ and $ w $ is
 $$
 \begin{cases}
 1 & m = 2 \\
-\twobyone{n - 2}{m - 2}_q & m > 2
+\binom{n - 2}{m - 2}_q & m > 2
 \end{cases}.
 $$
 \end{enumerate}
@@ -3631,14 +3628,14 @@ This is $ \AG\br{2, F} $.
 $$ \lambda =
 \begin{cases}
 1 & m = 1 \\
-\twobyone{n - 1}{m - 1}_q & m \ge 2
+\binom{n - 1}{m - 1}_q & m \ge 2
 \end{cases}.
 $$
 \item If $ F = \ZZ_2 $ and $ m \ge 2 $, then this is a $ 3 $-$ \br{2^n, 2^m, r_3} $ design where
 $$ r_3 =
 \begin{cases}
 1 & m = 2 \\
-\twobyone{n - 2}{m - 2}_2 & m > 2
+\binom{n - 2}{m - 2}_2 & m > 2
 \end{cases}.
 $$
 \end{enumerate}
@@ -3676,14 +3673,12 @@ Thus $ N = \br{q^n - 1} \dots \br{q^n - q^{m - 1}} $.
 \item On the other hand, $ N $ is the number of $ m $-dimensional subspaces times the number of ordered bases of a particular $ m $-dimensional subspace $ W $, so
 $$ N = \br{\text{number of $ m $-dimensional subspaces}} \times \br{q^m - 1} \dots \br{q^m - q^{m - 1}}. $$
 Thus the number of $ m $-dimensional subspaces is
-$$ \dfrac{\br{q^n - 1} \dots \br{q^n - q^{m - 1}}}{\br{q^m - 1} \dots \br{q^m - q^{m - 1}}} = \dfrac{\br{q^n - 1} \dots \br{q^{n - m + 1} - 1}}{\br{q^m - 1} \dots \br{q - 1}} = \twobyone{n}{m}_q. $$
+$$ \dfrac{\br{q^n - 1} \dots \br{q^n - q^{m - 1}}}{\br{q^m - 1} \dots \br{q^m - q^{m - 1}}} = \dfrac{\br{q^n - 1} \dots \br{q^{n - m + 1} - 1}}{\br{q^m - 1} \dots \br{q - 1}} = \binom{n}{m}_q. $$
 \end{itemize}
 \item Let $ 0 \ne v \in F^n $.
 \begin{itemize}
 \item If $ m = 1 $, then $ \sp v $ is the only one-dimensional subspace containing $ v $, as desired.
-\item Suppose $ m \ge 2 $. Extend to a basis $ v, v_2, \dots, v_n $ of $ F^n $. Let $ V_0 = \sp \br{v_2, \dots, v_n} $. Let $ W $ be an $ m $-dimensional subspace of $ F^n $ containing $ v $. Let $ W_0 = W \cap V_0 $ be a subspace of $ V_0 $. Note that $ W_0 \cap \sp v = \cbr{0} $. Let $ w \in W $. Then $ w = \lambda v + w_0 $ where $ w_0 \in V_0 $, so $ w_0 = w - \lambda v \in W $. So $ w_0 \in W_0 $. Thus $ W = \sp v + W_0 $. Hence $ W = \sp v \oplus W_0 $, so $ W_0 $ has dimension $ m - 1 $. Proved that any $ m $-dimensional subspace of $ F^n $ containing $ v $ has the form $ \sp v \oplus U $ where $ U $ is an $ \br{m - 1} $-dimensional subspace of $ V_0 $. Thus the number of $ W $, the number of $ \br{m - 1} $-dimensional subspaces of $ V_0 $, which is $ \br{n - 1} $-dimensional, is
-$$ \twobyone{n - 1}{m - 1}_q, $$
-by $ 1 $.
+\item Suppose $ m \ge 2 $. Extend to a basis $ v, v_2, \dots, v_n $ of $ F^n $. Let $ V_0 = \sp \br{v_2, \dots, v_n} $. Let $ W $ be an $ m $-dimensional subspace of $ F^n $ containing $ v $. Let $ W_0 = W \cap V_0 $ be a subspace of $ V_0 $. Note that $ W_0 \cap \sp v = \cbr{0} $. Let $ w \in W $. Then $ w = \lambda v + w_0 $ where $ w_0 \in V_0 $, so $ w_0 = w - \lambda v \in W $. So $ w_0 \in W_0 $. Thus $ W = \sp v + W_0 $. Hence $ W = \sp v \oplus W_0 $, so $ W_0 $ has dimension $ m - 1 $. Proved that any $ m $-dimensional subspace of $ F^n $ containing $ v $ has the form $ \sp v \oplus U $ where $ U $ is an $ \br{m - 1} $-dimensional subspace of $ V_0 $. Thus the number of $ W $, the number of $ \br{m - 1} $-dimensional subspaces of $ V_0 $, which is $ \br{n - 1} $-dimensional, is $ \binom{n - 1}{m - 1}_q $, by $ 1 $.
 \end{itemize}
 \item Similar.
 \end{enumerate}
@@ -3817,10 +3812,10 @@ so by \ref{prop:3.19}, $ \Gamma\br{\BBB} $ is strongly regular. Work out the par
 
 \lecture{29}{Tuesday}{11/12/18}
 
-Lecture 29 is a test.
+Lecture 29 is a class test.
 
 \lecture{30}{Wednesday}{12/12/18}
 
-Lecture 30 is a problem class.
+Lecture 30 is a problems class.
 
 \end{document}

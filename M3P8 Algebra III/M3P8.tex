@@ -10,17 +10,15 @@ $$
 \draw (0, -5) node{Noetherian modules};
 \draw [fill=lightgray, opacity=0.1, very thick] (0, 2) circle (6.5);
 \draw (0, 8) node{Rings};
-\draw [fill=lightgray, opacity=0.1, very thick] (0, -0.75) ellipse (4.5 and 3.75);
 \draw (0, -4) node{Noetherian rings};
 \draw [fill=lightgray, opacity=0.1, very thick] (0, 2) circle (5.5);
 \draw (0, 6.5) node{Integral domains};
-\draw [fill=lightgray, opacity=0.1, very thick] (0, -0.25) ellipse (4.25 and 3.25);
 \draw (0, -3) node{Noetherian domains};
 \draw [fill=lightgray, opacity=0.1, very thick] (0, 1.75) ellipse (4.75 and 4.25);
 \draw (0, 5) node{Integrally closed domains};
 \draw [fill=lightgray, opacity=0.1, very thick] (0, 1.75) ellipse (4 and 2.75);
 \draw (0, 3.5) node{Unique factorisation domains};
-\draw [fill=lightgray, opacity=0.1, very thick] (0, 0.25) ellipse (4 and 2.75);
+\draw [fill=gray, opacity=0.1, very thick] (0, 0.25) ellipse (4 and 2.75);
 \draw (0, -2) node{Dedekind domains};
 \draw (0, 2.5) node{Principal ideal domains};
 \draw [fill=gray, opacity=0.1, very thick] (0, 0.5) ellipse (2.5 and 1.5);
@@ -37,7 +35,7 @@ $$
 
 \begin{document}
 
-\input{../style/main}
+\input{../style/cover}
 
 \section{Introduction}
 
@@ -150,7 +148,7 @@ $$ r_0 + \dots + r_nX^n, \qquad n \in \ZZ_{\ge 0}, \qquad r_0, \dots, r_n \in R.
 If $ n > m $, we consider $ r_0 + \dots + r_nX^n $ to represent the same polynomial of $ R\sbr{X} $ as $ s_0 + \dots + s_mX^m $ if $ r_i = s_i $ for $ i \le m $ and $ r_i = 0_R $ for $ i > m $. That is, you can pad out polynomials with terms of the form $ 0_RX^i $ without changing it. From a formal standpoint, it is better to define a polynomial to be an infinite sum
 $$ \sum_{n = 0}^\infty r_iX^i = r_0 + r_1X + \dots, \qquad r_i \in R, $$
 in which all but finitely many $ r_i $ are zero. This makes it easier to define addition and multiplication. The \textbf{degree} of such an expression is the largest $ i $ such that $ r_i $ is nonzero. We add and multiply in $ R\sbr{X} $ just as we would any other polynomials,
-$$ \sum_{i = 0}^\infty r_iX^i} +_{R\sbr{X}} \sum_{i = 0}^\infty s_iX^i = \sum_{i = 0}^\infty \br{r_i +_R s_i} X^i, \qquad \sum_{i = 0}^\infty r_iX^i \cdot_{R\sbr{X}} \sum_{i = 0}^\infty s_iX^i = \sum_{i = 0}^\infty \sum_{j = 0}^i \br{r_j \cdot_R s_{i - j}} X^i. $$
+$$ \sum_{i = 0}^\infty r_iX^i +_{R\sbr{X}} \sum_{i = 0}^\infty s_iX^i = \sum_{i = 0}^\infty \br{r_i +_R s_i} X^i, \qquad \sum_{i = 0}^\infty r_iX^i \cdot_{R\sbr{X}} \sum_{i = 0}^\infty s_iX^i = \sum_{i = 0}^\infty \sum_{j = 0}^i \br{r_j \cdot_R s_{i - j}} X^i. $$
 What about polynomial rings in more than one variable? Since the construction of polynomial rings takes an arbitrary ring as input, one can iterate it. Start with a ring $ R $, and consider first the ring $ R\sbr{X} $ and then the ring $ \br{R\sbr{X}}\sbr{Y} $. A polynomial of this has the form
 $$ \sum_{i = 0}^\infty \sum_{j = 0}^\infty r_{ij}X^jY^i, \qquad r_{ij} \in R. $$
 On the other hand, we can consider the ring $ \br{R\sbr{Y}}\sbr{X} $, whose polynomials have the form
@@ -884,7 +882,7 @@ Let $ K $ be a finite field. That is, a field with only finitely many elements. 
 \subsection{The Frobenius automorphism}
 
 Let $ p $ be a prime. For any ring $ R $, the map $ x \mapsto x^p $ on $ R $ certainly satisfies $ \br{xy}^p = x^py^p $ for $ x, y \in R $. On the other hand,
-$$ \br{x + y}^p = x^p + \twobyone{p}{1}xy^{p - 1} + \dots + \twobyone{p}{p - 1}x^{p - 1}y + y^p. $$
+$$ \br{x + y}^p = x^p + \binom{p}{1}xy^{p - 1} + \dots + \binom{p}{p - 1}x^{p - 1}y + y^p. $$
 Now the binomial coefficients satisfy $ p \mid p! / i!\br{p - i}! $ for $ 1 \le i \le p - 1 $, so if $ R $ has characteristic $ p $, we have $ \br{x + y}^p = x^p + y^p $. Thus, when $ R $ has characteristic $ p $, the map $ x \mapsto x^p $ is a ring homomorphism from $ R $ to $ R $, called the \textbf{Frobenius endomorphism} of $ R $. If $ R $ is a field of characteristic $ p $, then the Frobenius endomorphism is injective. If in addition $ R $ is finite, then any injective map from $ R $ to $ R $ is surjective. In particular the Frobenius endomorphism is a bijective and an isomorphism from $ R $ to $ R $ when $ R $ is a finite field of characteristic $ p $. In this case we call the map $ x \mapsto x^p $ the \textbf{Frobenius automorphism}. Composing the Frobenius endomorphism with itself, we find that for any $ r $, $ x \mapsto x^{p^r} $ is also an endomorphism of any ring $ R $ of characteristic $ p $.
 
 \begin{example*}
@@ -1067,7 +1065,7 @@ If $ K = \QQ $, $ \QQ\sbr{X} / \abr{X^2 - p} $ are pairwise nonisomorphic extens
 
 \lecture{11}{Monday}{29/10/18}
 
-Lecture 11 is a problem class.
+Lecture 11 is a problems class.
 
 \pagebreak
 
@@ -1501,7 +1499,7 @@ Any finitely generated $ R $-algebra $ S $ is isomorphic to a quotient $ R\sbr{X
 
 \lecture{17}{Monday}{12/11/18}
 
-Lecture 17 is a problem class.
+Lecture 17 is a problems class.
 
 \subsection{Polynomial rings over UFDs are UFDs}
 
@@ -1961,7 +1959,7 @@ We must show that every fractional ideal of $ R $ is invertible. Let $ I $ be su
 
 \lecture{24}{Wednesday}{28/11/18}
 
-Lecture 24 is a problem class.
+Lecture 24 is a problems class.
 
 \lecture{25}{Friday}{30/11/18}
 
@@ -2457,7 +2455,7 @@ This is a special case of a very general ring-theoretic phenomenon known as \tex
 
 \lecture{30}{Wednesday}{12/12/18}
 
-Lecture 30 is a problem class.
+Lecture 30 is a problems class.
 
 \pagebreak
 
