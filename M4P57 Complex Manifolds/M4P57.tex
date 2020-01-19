@@ -1,0 +1,472 @@
+\def\module{M4P57 Complex Manifolds}
+\def\lecturer{Prof Paolo Cascini}
+\def\term{Spring 2020}
+\def\cover{}
+\def\syllabus{}
+\def\thm{section}
+
+\input{../style/header}
+
+\begin{document}
+
+\input{../style/cover}
+
+\setcounter{section}{0}
+
+\section{Introduction}
+
+\lecture{1}{Thursday}{09/01/20}
+
+The following are references.
+\begin{itemize}
+\item O Biquard and A H\"oring, K\"ahler geometry and Hodge theory, 2008.
+\item J P Demailly, Complex analytic and differential geometry, 2012.
+\item C Voisin, Hodge theory and complex algebraic geometry, 2002.
+\item R O Wells, Differential analysis on complex manifolds, 1973.
+\item A Gathmann, Algebraic geometry, 2002
+\item P Griffiths and J Harris, Principles of algebraic geometry, 1978.
+\end{itemize}
+
+Complex manifolds are manifolds over $ \CC^n $.
+
+\begin{example}
+$ \CC^1 $ is a complex manifold. Any $ U \subset \CC^n $ open is a complex manifold.
+\end{example}
+
+\begin{example}
+The sphere $ \S^2 \subset \RR^3 $ is a complex manifold by
+$$ \S^2 \cong \CC \cup \cbr{\infty} = \PP_\CC^1 = \CP^1. $$
+More in general $ \PP_\CC^n $ is a complex manifold for all $ n $.
+\end{example}
+
+\begin{example}
+The torus
+$$ \S^1 \times \S^1 = \RR^2 / \ZZ^2 = \CC / \ZZ^2 $$
+is a complex manifold. More in general a $ 2n $-dimensional torus $ \CC^n / \Lambda $ for $ \Lambda \cong \ZZ^{2n} $ a lattice is a complex manifold.
+\end{example}
+
+\begin{example}
+Compact Riemannian surfaces of genus $ g > 1 $, called \textbf{hyperbolics}, are all complex manifolds.
+\end{example}
+
+\begin{example}
+\label{eg:1.5}
+Let $ f : \CC \to \CC $ be holomorphic. The graph of $ f $,
+$$ \Gamma_f = \cbr{\br{x, f\br{x}} \st x \in \CC} \subset \CC \times \CC, $$
+is a complex manifold. From $ \Gamma_f $ we can recover $ f $, by
+$$ f\br{x} = q\br{p^{-1}\br{x} \cap \Gamma_f}, $$
+where $ p, q : \CC^2 \to \CC $ are the projections to the first and second factors. This allows us to define $ f^{-1} $. Assume $ f $ is bijective. Define
+$$ \function[\tau]{\CC^2}{\CC^2}{\br{x, y}}{\br{y, x}}. $$
+Define
+$$ \Gamma_{f^{-1}} = \tau\br{\Gamma_f}. $$
+Then $ f^{-1} $ is the function induced by $ \Gamma_{f^{-1}} $. This makes sense even if $ f $ is not bijective. Then we get a multivalued function, such as $ \log z $ as the inverse of $ \exp z $.
+\end{example}
+
+\begin{example}
+Generalising Example \ref{eg:1.5}, we can consider two complex manifolds $ M $ and $ N $ and we can consider holomorphisms $ f : M \to N $. Given $ M $,
+$$ \Aut M = \cbr{f : M \to M \ \text{holomorphic bijective and} \ f^{-1} \ \text{holomorphic}}. $$
+If $ M = \CC $, there are lots of $ \C^\infty $-functions $ \CC \to \CC $ but the automorphisms of $ \CC $ are just affine linear maps. If $ M = \CC / \ZZ^2 $, then $ \Aut M $ is interesting.
+\end{example}
+
+\pagebreak
+
+\begin{example}
+Algebraic geometry is the zeroes of polynomials. That is, fix $ m $, and take $ f_1, \dots, f_k $ polynomials in $ m $ variables. Define
+$$ M = \cbr{\br{x_1, \dots, x_m} \in \CC^m \st f_1\br{x_1, \dots, x_m} = \dots = f_k\br{x_1, \dots, x_m} = 0}. $$
+Then $ M $ is called an \textbf{algebraic variety}. If $ M $ is smooth then $ M $ is a complex manifold. Fix $ m $, take $ F_1, \dots, F_k $ homogeneous polynomials in $ m + 1 $ variables, where $ F $ is \textbf{homogeneous} if it is the sum of monomials of the same degree. Consider
+$$ N = \cbr{\br{x_0, \dots, x_m} \in \PP_\CC^m \st F_1\br{x_0, \dots, x_m} = \dots = F_k\br{x_0, \dots, x_m} = 0}. $$
+Then $ N $ is called a \textbf{projective variety}. If $ N $ is smooth then $ N $ is a complex manifold.
+\end{example}
+
+The idea is if $ M $ is a differentiable manifold, then $ M $ contains lots of submanifolds $ N $. This is not true for complex manifolds. There exist complex manifolds without any proper complex submanifolds, which is not true for projective varieties. The following are questions.
+\begin{itemize}
+\item What can we say about the topology of complex manifolds? For example, what is $ \pi_1\br{M} $? What is the cohomology of $ M $?
+\item Assume that $ M $ and $ N $ are complex manifolds which are diffeomorphic. Are they also isomorphic, so there exists a biholomorphism $ M \to N $?
+\end{itemize}
+What is next?
+\begin{itemize}
+\item Hodge decomposition theorem. Understand the cohomology of $ M $ by using the complex structure.
+\item Kodaira embedding theorem. Understand when a compact complex manifold is projective.
+\end{itemize}
+
+\begin{note*}
+If $ M \subset \PP_\CC^m $ is a compact complex manifold then $ M $ is projective.
+\end{note*}
+
+\begin{example*}
+Let $ M = \Gamma_{\exp} $ for $ \exp : \CC \to \CC $. Then $ M \subset \CC^2 $ but it is not algebraic.
+\end{example*}
+
+\pagebreak
+
+\section{Local theory}
+
+\subsection{Holomorphic functions in several variables}
+
+\lecture{2}{Thursday}{09/01/20}
+
+\begin{notation}
+Given $ z_0 \in \CC $ and $ r > 0 $, the \textbf{disc} is
+$$ \D\br{z_0, r} = \cbr{z \in \CC \st \abs{z - z_0} < r}, $$
+and $ \partial\D\br{z_0, r} $ is the boundary of $ \D\br{z_0, r} $.
+\end{notation}
+
+\begin{definition}
+Let $ U \subset \CC $, and let $ f : U \to \CC $ be a function. Then $ f $ is \textbf{holomorphic at $ z_0 \in U $} if
+$$ \lim_{z \to z_0} \dfrac{f\br{z} - f\br{z_0}}{z - z_0} $$
+exists.
+\end{definition}
+
+\begin{theorem}[Cauchy]
+\label{thm:2.3}
+Let $ U \subset \CC $ be open, let $ f $ be holomorphic on $ U $, and let $ z_0 \in U $. Assume that if $ D = \D\br{z_0, r} \subset U $ then $ \overline{D} \subset U $. Then
+$$ f\br{z_0} = \dfrac{1}{2\pi i}\intd{\partial D}{}{\dfrac{f\br{z}}{z - z_0}}{z}. $$
+\end{theorem}
+
+\begin{notation}
+Fix $ z_0 = \br{z_{01}, \dots, z_{0n}} \in \CC^n $ and $ R = \br{r_1, \dots, r_n} \in \RR_{> 0}^n $. Then the \textbf{polydisc} is
+$$ \D\br{z_0, R} = \cbr{z = \br{z_1, \dots, z_n} \in \CC^n \st \abs{z_i - z_{0i}} < r_i \ \text{for each} \ i}, $$
+where $ R $ is the \textbf{polyradius}.
+\end{notation}
+
+\begin{definition}
+Let $ U \subset \CC^n $ be open, let $ f : U \to \CC $ be a continuous function, and let $ z = \br{z_1, \dots, z_n} \in \CC^n $. Then $ f $ is \textbf{holomorphic} at $ z $, if assuming that $ D = \D\br{z, R} \subset U $ for some $ R = \br{r_1, \dots, r_n} $ then
+$$ f\br{z_1, \dots, z_{i - 1}, \cdot, z_{i + 1}, \dots, z_n} : \D\br{z_i, r_i} \to \CC $$
+is holomorphic for all $ i $.
+\end{definition}
+
+\begin{example}
+Any convergent power series in $ n $-variables is holomorphic.
+\end{example}
+
+The opposite is also true.
+
+\begin{theorem}[Cauchy]
+\label{thm:2.7}
+Let $ U \subset \CC^n $ be an open set, let $ f : U \to \CC $ be holomorphic, and let $ z = \br{z_1, \dots, z_n} \in U $. Assume that if $ D = \D\br{z_0, R} $ for some $ R = \br{r_1, \dots, r_n} $ then $ \overline{D} \subset U $. If $ z' = \br{z_1', \dots, z_n'} \in D $ then
+$$ f\br{z'} = \dfrac{1}{\br{2\pi i}^n}\intd{\partial\D\br{z_1, r_1}}{}{\dots \intd{\partial\D\br{z_n, r_n}}{}{\dfrac{f\br{z}}{\br{z - z_1'} \dots \br{z - z_n'}}}{z_n \dots}}{z_1}. $$
+\end{theorem}
+
+\begin{proof}
+Use induction on $ n $ and Cauchy theorem at each step.
+\end{proof}
+
+\begin{corollary}
+Let $ U \subset \CC^n $ be open, let $ f : U \to \CC $ be holomorphic, and let $ z = \br{z_1, \dots, z_n} \in U $. Then there exists $ D = \D\br{z, R} \subset U $ for some $ R = \br{r_1, \dots, r_n} $ and there exists
+$$ p\br{w} = \sum_{m_1, \dots, m_n \ge 0} a_{m_1, \dots, m_n} \br{w_1 - z_1}^{m_1} \dots \br{w_n - z_n}^{m_n}, $$
+such that $ p $ is convergent on $ D $ and $ f\br{w} = p\br{w} $ inside $ D $.
+\end{corollary}
+
+\begin{proof}
+The idea is to use Theorem \ref{thm:2.7} and $ 1 / \br{1 - w} = \sum_{k \ge 0} w^k $.
+\end{proof}
+
+\begin{definition}
+Let $ U \subset \CC^n $ be open. Then $ f : U \to \CC^m $ is \textbf{holomorphic} if $ f_i = p_i \circ f $ is holomorphic for any $ i = 1, \dots, m $ where $ p_i : \CC^m \to \CC $ is the $ i $-th projection, so $ f = \br{f_1, \dots, f_m} $.
+\end{definition}
+
+\begin{fact*}
+If $ f : U \to \CC^m $ is holomorphic and $ g : V \to \CC^p $ is holomorphic where $ V \supset f\br{U} $ then $ g \circ f $ is holomorphic.
+\end{fact*}
+
+\begin{definition}
+Let $ U \subset \CC^n $ be open. A holomorphic function $ f : U \to \CC^m $ is \textbf{biholomorphic at $ z_0 \in U $} if there exists $ V \subset U $ an open neighbourhood of $ z_0 $ such that $ f : V \to f\br{V} $ is bijective and $ f^{-1} : f\br{V} \to V $ is holomorphic. Then $ f $ is \textbf{biholomorphic} if $ f $ is bijective and $ f $ is biholomorphic at any point.
+\end{definition}
+
+\begin{note*}
+$ f\br{V} $ is automatically open in $ \CC^m $ if $ m = n $.
+\end{note*}
+
+\pagebreak
+
+\begin{example}
+Let $ \Phi : \CC^n \to \CC^n $ be linear such that $ \det \Phi \ne 0 $. Then $ \Phi $ is a biholomorphism.
+\end{example}
+
+\begin{example}
+Let $ U = \CC \setminus \cbr{0} $ and
+$$ \function[f]{U}{U}{z}{z^2}. $$
+Check that $ f $ is biholomorphic at any point of $ U $ but $ f $ is not biholomorphic.
+\end{example}
+
+\begin{remark*}
+$ \CC^n \cong \RR^{2n} $ and $ \CC^m \cong \RR^{2m} $. Then $ f : U \subset \CC^n \to \CC^m $ holomorphic is also a diffeomorphism $ U \subset \RR^{2n} \to \RR^{2m} $.
+\end{remark*}
+
+\begin{theorem}[Hartogs]
+Let $ n \ge 2 $, let $ \epsilon = \br{\epsilon_1, \dots, \epsilon_n} $ and $ \delta = \br{\delta_1, \dots, \delta_n} $ such that $ \epsilon_i > \delta_i > 0 $, let $ U = \D\br{0, \epsilon} \setminus \overline{\D\br{0, \delta}} $, and let $ f : U \to \CC^m $ be holomorphic. Then there exists $ \overline{f} : \D\br{0, \epsilon} \to \CC^m $ holomorphic such that $ \eval{\overline{f}}_U = f $.
+\end{theorem}
+
+\begin{example*}
+Hartogs theorem is false for $ n = 1 $. If $ f\br{z} = 1 / z $, for all $ \epsilon > \delta > 0 $, then $ f $ cannot be extended.
+\end{example*}
+
+\subsection{Cauchy formula in one variable}
+
+\lecture{3}{Tuesday}{14/01/20}
+
+Let $ \omega = x + iy \in \CC $ for $ x, y \in \RR $, and let $ f : U \to \CC $ be $ \C^\infty $ for some $ U \subset \CC $. Recall that
+$$ \dpd{f}{\omega} = \dfrac{1}{2}\br{\dpd{}{x} - i\dpd{}{y}}f, \qquad \dpd{f}{\overline{\omega}} = \dfrac{1}{2}\br{\dpd{}{x} + i\dpd{}{y}}f. $$
+Recall that $ f $ is holomorphic if and only if $ \tpd{f}{\overline{\omega}} = 0 $ on $ U $. More in general, let $ U \subset \CC^n $ open, let $ z_i = x_i + iy_i $, and let $ f : U \to \CC $ be a $ \C^\infty $-function. Then $ f $ is holomorphic if and only if $ \tpd{f}{\overline{z_i}} = 0 $ for all $ i = 1, \dots, n $. Let $ \omega \in \CC $. Since $ \d x \wedge \d y = -\d y \wedge \d x $, let
+$$ \d A = \dfrac{i}{2} \d\omega \wedge \d\overline{\omega} = \dfrac{i}{2} \br{\d x + i \d y} \wedge \br{\d x - i \d y} = \d x \wedge \d y, $$
+which is the Lebesgue measure on $ \RR^2 \cong \CC $.
+
+\begin{proposition}
+Let $ f : U \to \CC $ for $ U \subset \CC $ be a $ \C^\infty $-function, and let $ D = \D\br{z, r} $ such that $ \overline{D} \subset U $. Then
+$$ f\br{z} = \dfrac{1}{2\pi i}\intd{\partial D}{}{\dfrac{f}{\omega - z}}{\omega} - \dfrac{1}{\pi}\intd{D}{}{\dfrac{1}{\omega - z}\dpd{f}{\overline{\omega}}}{A}. $$
+\end{proposition}
+
+\begin{proof}
+Assume $ z = 0 $. Recall that $ f\br{\omega} = 1 / \omega $ is locally integrable around zero, so
+$$ \intd{D}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A} = \lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A}. $$
+Away from zero
+\begin{align*}
+\d\br{\dfrac{f}{\omega} \d\omega}
+& = \dfrac{1}{\omega} \d f \wedge \d\omega + f \d\br{\dfrac{1}{\omega}} \wedge \d\omega
+= \dfrac{1}{\omega} \br{\dpd{f}{\omega} \d\omega + \dpd{f}{\overline{\omega}} \d\overline{\omega}} \wedge \d\omega + f\dpd{}{\omega}\br{\dfrac{1}{\omega}} \d\omega \wedge \d\omega \\
+& = \dfrac{1}{\omega}\dpd{f}{\overline{\omega}} \d\overline{\omega} \wedge \d\omega
+= \dfrac{2i}{\omega}\dpd{f}{\overline{\omega}} \d A.
+\end{align*}
+Then
+\begin{align*}
+\dfrac{1}{\pi}\intd{D}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A}
+& = \dfrac{1}{\pi}\lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A} \\
+& = \dfrac{1}{2\pi i}\lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{}{\br{\dfrac{f}{\omega} \d\omega}} & \dfrac{1}{\omega}\dpd{f}{\overline{\omega}} \d A = \dfrac{1}{2i} \d\br{\dfrac{f}{\omega} \d\omega} \\
+& = \dfrac{1}{2\pi i}\lim_{\epsilon \to 0} \br{\intd{\partial D}{}{\dfrac{f}{\omega}}{\omega} - \intd{\partial\D\br{0, \epsilon}}{}{\dfrac{f}{\omega}}{\omega}} & \text{Stokes' theorem} \\
+& = \dfrac{1}{2\pi i}\br{\intd{\partial D}{}{\dfrac{f}{\omega}}{\omega} - 2\pi if\br{0}} & \lim_{\epsilon \to 0} \intd{\partial\D\br{0, \epsilon}}{}{\dfrac{1}{\omega}}{\omega} = 2\pi i.
+\end{align*}
+\end{proof}
+
+If $ f $ is holomorphic, then $ \tpd{f}{\overline{\omega}} = 0 $, which implies Theorem \ref{thm:2.3}.
+
+\pagebreak
+
+\subsection{Rank theorem}
+
+Let $ U \subset \CC^n $ be open, and let $ f : U \to \CC^m $ be holomorphic. Then the \textbf{Jacobian} is
+$$ \J_f = \br{\dpd{f_j}{z_i}\br{z}}, $$
+where $ f_j = p_j \circ f $ and $ p_j : \CC^m \to \CC $ is the $ j $-th projection.
+
+\begin{exercise*}
+Show that the real Jacobian, which is $ 2n \times 2n $, has non-negative determinants.
+\end{exercise*}
+
+\begin{theorem}[Rank theorem]
+Let $ z \in U $ such that $ r = \rk \J_f\br{z'} $ is constant around $ z $. Then there exists $ z \in V \subset U \subset \CC^n $ and $ f\br{z} \in W \subset f\br{U} \subset \CC^m $ open such that $ \phi : \D\br{0, 1}^n \to V $ and $ \psi : \D\br{0, 1}^m \to W $ are biholomorphisms such that
+$$ \function[\eta = \psi^{-1} \circ f \circ \phi]{\D\br{0, 1}^n}{\D\br{0, 1}^m}{\br{z_1, \dots, z_n}}{\br{z_1, \dots, z_r, 0, \dots, 0}}, $$
+so
+$$
+\begin{tikzcd}
+\CC^n \supset U & V \arrow[subset]{l} \ni z \arrow{r}{f} & f\br{z} \in W \arrow[subset]{r} & f\br{U} \subset \CC^m \\
+& \D\br{0, 1}^n \arrow{u}{\phi} \arrow[swap]{r}{\eta} & \D\br{0, 1}^m \arrow[swap]{u}{\psi} &
+\end{tikzcd}.
+$$
+\end{theorem}
+
+\begin{theorem}[Inverse function theorem]
+Let $ f : U \to \CC^n $ be holomorphic for $ U \subset \CC^n $, and let $ z \in U $ such that $ \det \J_f\br{z} \ne 0 $. Then $ f $ is a biholomorphism at $ z $.
+\end{theorem}
+
+\begin{proof}
+$ \det \J_f\br{z} \ne 0 $ if and only if $ \rk \J_f\br{z} = n $, so $ \rk \J_f\br{z'} = n $ around $ z $, since $ \det \J_f\br{z} $ is a continuous function. Let $ \phi $ and $ \psi $ as in the theorem. Then $ \eta = \psi^{-1} \circ f \circ \phi = \id $, so on $ V $, $ f = \psi \circ \phi^{-1} $ is a composition of biholomorphisms, which is a biholomorphism.
+\end{proof}
+
+\begin{remark}
+Let $ f : U \to \CC^n $ for $ U \subset \CC^n $. Then $ \det \J_f\br{z} $ is a holomorphism, so
+$$ Z = \cbr{z \in U \st \det \J_f\br{z} = 0} $$
+is closed.
+\end{remark}
+
+\subsection{Holomorphic differential forms}
+
+Let $ U \subset \CC^n $ be open.
+
+\begin{definition}
+A \textbf{holomorphic vector field} on $ U $ is the expression
+$$ X = \sum_i a_i\dpd{}{z_i}, $$
+where $ a_i $ are holomorphic functions on $ U $.
+\end{definition}
+
+For all $ x \in U $, the \textbf{tangent space} is
+$$ \T_xU = \abr{\dpd{}{x_1}, \dots, \dpd{}{x_n}} \cong \CC^n. $$
+If $ x \in U $, then $ X\br{x} \in \T_xU $.
+
+\begin{notation}
+$$ \H^0\br{U, \OOO_U} = \cbr{\text{holomorphic functions} \ f : U \to \CC}, \qquad \H^0\br{U, \T_U} = \cbr{\text{holomorphic vector fields on} \ U}. $$
+\end{notation}
+
+\begin{remark*}
+$ R = \H^0\br{U, \OOO_U} $ is a ring and $ M = \H^0\br{U, \T_U} $ is a module over $ R $. That is, if $ X \in \H^0\br{U, \T_U} $ and $ f \in \H^0\br{U, \OOO_U} $, then $ fX \in \H^0\br{U, \T_U} $.
+\end{remark*}
+
+\pagebreak
+
+\begin{definition}
+Let $ R $ be a ring and $ M $ be an $ R $-module for $ p \ge 1 $. The \textbf{$ p $-th exterior power} $ \Lambda^pM $ of $ M $ is the $ R $-module $ M^{\otimes p} $ with the relations
+$$ m_1 \otimes \dots \otimes m_p - \epsilon\br{\sigma}m_{\sigma\br{1}} \otimes \dots \otimes m_{\sigma\br{p}}, \qquad m_1, \dots, m_p \in M, \qquad \sigma \in \SSS_p, $$
+where $ \epsilon\br{\sigma} = \br{-1}^m $ is the signature of $ \sigma $ and $ m $ is the number of transpositions defining $ \sigma $. Then $ M^* = \Hom_R\br{M, R} $ is the \textbf{dual} of $ M $ as an $ R $-module.
+\end{definition}
+
+\lecture{4}{Thursday}{16/01/20}
+
+Let $ R = \H^0\br{U, \OOO_U} $ and $ M = \H^0\br{U, \T_U} $.
+
+\begin{definition}
+Let $ p > 0 $. We define a \textbf{holomorphic $ p $-form}, as an element of
+$$ \H^0\br{U, \Omega_U^p} = \Lambda^pM^*. $$
+If $ p = 0 $, by convention a \textbf{holomorphic $ 0 $-form} is just an element in $ R $.
+\end{definition}
+
+Let $ z_1, \dots, z_n $ be coordinates for $ U $. Recall $ \eta \in M $ is given by $ \eta = \sum_i a_i\tpd{}{z_i} $ for holomorphic functions $ a_i \in R $. Then $ \omega \in M^* $ is given by the expression
+$$ \sum_i b_i \d z_i, \qquad b_i \in R, \qquad \d z_i\br{\dpd{}{z_j}} = \delta_{ij}. $$
+More in general $ \omega \in \H^0\br{U, \Omega_U^p} $ is given by
+$$ \omega = \sum_{\abs{I} = p} f_I \d z_{i_1} \wedge \dots \wedge \d z_{i_p}, \qquad f_I \in R, \qquad I = \br{i_1, \dots, i_p}, \qquad i_1 < \dots < i_p, $$
+where $ \d z_{i_1}, \dots, \d z_{i_p} $ is an $ R $-basis of $ \H^0\br{U, \Omega_U^p} $.
+
+\begin{example*}
+$$ \H^0\br{U, \Omega_U^p} \cong \Lambda^p\H^0\br{U, \Omega_U^1} $$
+is an isomorphism as $ R $-modules. This is not true for complex manifolds in general.
+\end{example*}
+
+The \textbf{exterior product} is
+$$ \function{\H^0\br{U, \Omega_U^p} \otimes \H^0\br{U, \Omega_U^q}}{\H^0\br{U, \Omega_U^{p + q}}}{\omega_1 \otimes \omega_2}{\omega_1 \wedge \omega_2}, $$
+where we just need to define
+$$ \omega_1 \wedge \omega_2 = f \d z_{i_1} \wedge \d z_{i_p} \otimes g \d z_{j_1} \wedge \d z_{j_q} = fg \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \wedge \d z_{j_1} \wedge \dots \wedge \d z_{j_q}, $$
+by linearity. Then $ \omega_1 \wedge \omega_2 = 0 $ if $ \cbr{i_1, \dots, i_p} \cap \cbr{j_1, \dots, j_q} \ne \emptyset $, since $ \d z_i \wedge \d z_i = 0 $.
+
+\begin{exercise*}
+Check that this definition coincides with the definition in M4P54.
+\end{exercise*}
+
+The \textbf{exterior derivative} is
+$$ \function[\d]{\H^0\br{U, \Omega_U^p}}{\H^0\br{U, \Omega_U^{p + 1}}}{f \d z_{i_1} \wedge \dots \wedge \d z_{i_p}}{\sum_{j = 1}^n \dpd{f}{z_j} \d z_j \wedge \d z_{i_1} \wedge \dots \wedge \d z_{i_p}}. $$
+By definition $ \d $ is $ \CC $-linear, but not $ R $-linear. That is,
+$$ \d\br{a\omega_1 + b\omega_2} = a \d\omega_1 + b \d\omega_2, \qquad \omega_1, \omega_2 \in \H^0\br{U, \Omega_U^p}, \qquad a, b \in \CC. $$
+
+\begin{theorem}
+Let $ U \subset \CC^n $ be open. Then
+\begin{itemize}
+\item the Leibnitz rule
+$$ \d\br{\omega_1 \wedge \omega_2} = \d\omega_1 \wedge \omega_2 + \br{-1}^p \omega_1 \wedge \d\omega_2, \qquad \omega_1 \in \H^0\br{U, \Omega_U^p}, \qquad \omega_2 \in \H^0\br{U, \Omega_U^q}, $$
+\item $ \d^2 = 0 $, that is
+$$ \d\br{\d\omega} = 0, \qquad \omega \in \H^0\br{U, \Omega_U^p}. $$
+\end{itemize}
+\end{theorem}
+
+\pagebreak
+
+\begin{definition}
+Let $ f : U \subset \CC^n \to \CC^m $ be holomorphic, let $ f_i = p_i \circ f : V \to \CC $ where $ p_i : \CC^m \to \CC $ is the $ i $-th projection, and let $ f\br{U} \subset V \subset \CC^m $ be open. Then if
+$$ \omega = h \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \in \H^0\br{V, \Omega_V^p}, \qquad h \in \H^0\br{U, \OOO_U}, $$
+so we can define the \textbf{pull-back} of $ \omega $,
+$$ f^*\br{\omega} = h \circ f \d f_{i_1} \wedge \dots \wedge \d f_{i_p} \in \H^0\br{U, \Omega_U^p}, $$
+since $ f_i \in \H^0\br{V, \OOO_V} = \H^0\br{V, \Omega_V^0} $ implies that $ \d f_i \in \H^0\br{V, \Omega_V^1} $, so
+$$
+\begin{tikzcd}
+U \arrow{r}{f} \arrow[swap]{dr}{h \circ f \in \H^0\br{U, \OOO_U}} & f\br{U} \subset V \arrow{d}{h} \\
+& \CC
+\end{tikzcd}.
+$$
+\end{definition}
+
+This is linear over $ \CC $ and over $ \H^0\br{U, \OOO_U} $.
+
+\begin{proposition}
+Let $ U \subset \CC^n $, $ V \subset \CC^m $, and $ W \subset \CC^{m'} $ be open, let $ f : U \to \CC^m $ and $ g : V \to \CC^{m'} $ be holomorphic such that $ V \supset f\br{U} $ and $ W \supset g\br{V} $, and let $ \omega \in \H^0\br{V, \Omega_V^p} $ and $ \eta \in \H^0\br{V, \Omega_V^q} $. Then
+\begin{itemize}
+\item $ f^*\br{\omega + \eta} = f^*\br{\omega} + f^*\br{\eta} $ if $ p = q $,
+\item $ f^*\br{\omega \wedge \eta} = f^*\br{\omega} \wedge f^*\br{\eta} $,
+\item $ \d f^*\br{\omega} = f^*\br{\d\omega} $, and
+\item $ f^*\br{g^*\br{\omega}} = \br{g \circ f}^*\br{\omega} $.
+\end{itemize}
+\end{proposition}
+
+Let $ U \subset \CC^n \cong \RR^{2n} $, and let $ z_i = x_i + iy_i $ for $ i = 1, \dots, n $ and $ x_i, y_i \in \RR $. Then
+$$ \d z_i = \d x_i + i \d y_i, $$
+so any holomorphic form is a differentiable form on $ \RR^{2n} $. A \textbf{$ \br{p, q} $-form} is a differentiable $ \br{p + q} $-form of the expression
+$$ \omega = \sum_{\abs{I} = p, \ \abs{J} = q} f_{I, J} \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \wedge \d\overline{z_{j_1}} \wedge \dots \wedge \d\overline{z_{j_q}}, \qquad \d\overline{z_j} = \d x_j - i \d y_j, \qquad f_{I, J} : U \to \CC \cong \RR^2 \in \C^\infty. $$
+We denote
+$$ \C^\infty\br{U, \Omega_U^{p, q}} = \cbr{\text{differentiable $ \br{p + q} $-forms on} \ U}. $$
+If $ \omega $ is a $ \br{p, q} $-form, then the \textbf{conjugate} $ \overline{\omega} $ of $ \omega $ is the $ \br{q, p} $-form defined by
+$$ \overline{\omega} = \sum_{\abs{I} = p, \ \abs{J} = q} \overline{f_{I, J}} \d\overline{z_{i_1}} \wedge \dots \wedge \d\overline{z_{i_p}} \wedge \d z_{j_1} \wedge \dots \wedge \d z_{j_q}. $$
+
+\pagebreak
+
+\section{Complex manifolds}
+
+\subsection{Objects}
+
+\begin{definition}
+A \textbf{complex manifold} of dimension $ n $ is a connected Hausdorff topological space $ X $, with a countable open cover $ \cbr{U_\alpha} $ of $ X $ such that for all $ \alpha $, there exists $ \phi_\alpha : U_\alpha \to \CC^n $ such that
+$$ \phi_\alpha : U_\alpha \to \phi_\alpha\br{U_\alpha} $$
+is a homeomorphism and
+$$ \phi_\alpha \circ \phi_\beta^{-1} : \phi_\beta\br{U_\alpha \cap U_\beta} \to \phi_\alpha\br{U_\alpha \cap U_\beta} $$
+is a biholomorphism for each $ \alpha $ and $ \beta $, so
+$$
+\begin{tikzcd}
+& U_\alpha \cap U_\beta \arrow[swap]{dl}{\phi_\alpha} \arrow{dr}{\phi_\beta} & \\
+\CC^n \supset \phi_\alpha\br{U_\alpha \cap U_\beta} \arrow[swap]{rr}{\phi_\alpha \circ \phi_\beta^{-1}} & & \phi_\beta\br{U_\alpha \cap U_\beta} \subset \CC^n
+\end{tikzcd}.
+$$
+The pair $ \br{U_\alpha, \phi_\alpha} $ is called a \textbf{holomorphic chart}. The set $ \cbr{\br{U_\alpha, \phi_\alpha}} $ is called a \textbf{holomorphic atlas} or a \textbf{complex structure}.
+\end{definition}
+
+Recall $ X $ is Hausdorff if for all $ x, y \in X $ there exist $ U $ and $ V $ open in $ X $ such that $ U \cap V = \emptyset $ and $ x \in U $ and $ y \in V $.
+
+\lecture{5}{Thursday}{16/01/20}
+
+\begin{example}
+If $ U \subset \CC^n $ is an open set then $ U $ is a complex manifold. More in general if $ X $ is a complex manifold and $ U \subset X $ is open then $ U $ is a complex manifold. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be a complex structure on $ M $. Then
+$$ \cbr{\br{\overline{U_\alpha}, \overline{\phi_\alpha}}} = \cbr{\br{U_\alpha \cap U, \eval{\phi_\alpha}_{\overline{U_\alpha}}}} $$
+is a complex structure of $ M $.
+\end{example}
+
+\begin{example}
+If $ X $ and $ Y $ are complex manifolds, then $ X \times Y $ is a complex manifold.
+\end{example}
+
+\begin{example}
+The projective space $ \PP_\CC^n $ or $ \CP^n $. Let
+$$ V^* = \CC^{n + 1} \setminus \cbr{0}, $$
+with coordinates $ \br{z_0, \dots, z_n} $. Define an equivalence on $ V^* $ as $ v_1 \sim v_2 $ for $ v_1, v_2 \in V^* $ if there exists $ \lambda \in \CC $ such that $ v_1 = \lambda v_2 $. Check that $ \sim $ is an equivalence. Consider the Euclidean topology on $ V^* $. Then there exists an induced topology on
+$$ X = V^* / \sim = \cbr{\sbr{v} \st v \in V^*}. $$
+with quotient map
+$$ \function[q]{V^*}{X}{v}{\sbr{v}}. $$
+Given $ v = \br{z_0, \dots, z_n} \in V^* $ we denote $ \sbr{v} = \sbr{z_0, \dots, z_n} $ such that $ z_i \ne 0 $ for some $ i $. Two elements $ \sbr{x_0, \dots, x_n} $ and $ \sbr{y_0, \dots, y_n} $ of $ X $ define the same point if and only if there exists $ \lambda $ such that $ x_i = \lambda y_i $ for all $ i $. Let
+$$ V_i = \cbr{\br{z_0, \dots, z_n} \in V^* \st z_i \ne 0}, $$
+which is open in $ V^* $, and let
+$$ U_i = q\br{V_i}, $$
+which is open in $ X $, such that $ \cbr{U_i} $ is a cover of $ X $, that is $ \bigcup_i U_i = X $. Let
+$$ H_i = \cbr{\br{z_0, \dots, z_n} \in V^* \st z_i = 1}. $$
+
+\pagebreak
+
+Then there exists a homeomorphism
+$$ \function[r_i]{H_i}{\CC^n}{\br{z_0, \dots, z_n}}{\sbr{z_0, \dots, z_{i - 1}, z_{i + 1}, \dots, z_n}}, $$
+and let
+$$ \function[q_i = \eval{q}_{H_i}]{H_i \subset V^*}{U_i \subset X}{\br{z_0, \dots, z_n}}{\sbr{z_0, \dots, z_n}} $$
+be also a homeomorphism.
+\begin{itemize}
+\item $ q_i $ is surjective. Take $ \sbr{x_0, \dots, x_n} \in U_i $. Then $ x_i \ne 0 $, so choose $ \lambda = 1 / x_i $. Then
+$$ \sbr{x_0, \dots, x_n} = \sbr{\dfrac{x_0}{x_i}, \dots, \dfrac{x_n}{x_i}} = q\br{z_0, \dots, z_n}, \qquad z_j = \dfrac{x_j}{x_i}, $$
+and in particular $ z_i = 1 $, so there exists $ \br{z_0, \dots, z_n} \in H_i $ such that $ q_i\br{z_0, \dots, z_n} = \sbr{x_0, \dots, x_n} $.
+\item $ q_i $ is injective. \footnote{Exercise}
+\end{itemize}
+For all $ i $, $ q_i^{-1} : U_i \to H_i $ and $ r_i : H_i \to \CC^n $ are homeomorphisms, so
+$$ \phi_i = r_i \circ q_i^{-1} : U_i \to \CC^n $$
+is also a homeomorphism. We want to show that $ \br{U_i, \phi_i} $ define a holomorphic atlas, so
+$$ \phi_i \circ \phi_j^{-1} : \phi_j\br{U_i \cap U_j} \to \phi_i\br{U_i \cap U_j} $$
+is a biholomorphism. Consider the case $ j = 0 $ and $ i = 1 $. Then $ \phi_0\br{U_0 \cap U_1} = \cbr{\br{x_1, \dots, x_n} \st x_1 \ne 0} $, so
+$$ \function[\phi_1 \circ \phi_0^{-1}]{\phi_0\br{U_0 \cap U_1}}{\phi_1\br{U_0 \cap U_1}}{\br{x_1, \dots, x_n}}{\br{1, \dfrac{x_2}{x_1}, \dots, \dfrac{x_n}{x_1}}} $$
+is a biholomorphism. Thus $ X $ is a compact complex manifold. If $ n = 1 $, then $ \PP_\CC^1 \cong \S^2 $.
+\end{example}
+
+\begin{example}
+The complex torus. Let
+$$ \function{\Lambda = \ZZ^{2n}}{\CC^n}{\br{a_1, \dots, a_n, b_1, \dots, b_n}}{\br{a_1 + ib_1, \dots, a_n + ib_n}}. $$
+Define an equivalence on $ \CC^n $ by $ v_1 \sim v_2 $ for $ v_1, v_2 \in \CC^n $ if $ v_1 - v_2 \in \Lambda $. Then $ X = \CC^n / \sim $ with quotient map $ q : \CC^n \to X $ is Hausdorff and compact. Topologically $ X \cong \sbr{0, 1}^{2n} / \sim $. For each $ x \in \CC^n $, we can find an open set $ x \in U \subset \CC^n $ such that $ \eval{q}_U : U \to X $ is a homeomorphism. The idea is if $ x \in \br{0, 1}^{2n} $ then we can take $ U = \br{0, 1}^{2n} $. If not, there exists a translation of $ \CC^n \to \CC^n $ such that the property holds. We define
+$$ \phi_V = \eval{q}_U^{-1} : V \subset \CC^n / \Lambda \to U \subset \CC^n, \qquad V = q\br{U}. $$
+Show that $ \br{V, \phi_V} $ define a complex structure on $ X $. \footnote{Exercise} This is also a compact complex manifold. More in general $ \CC^n / \Lambda $ where $ \Lambda \cong \ZZ^{2n} $ is a lattice is a compact complex manifold.
+\end{example}
+
+\end{document}
