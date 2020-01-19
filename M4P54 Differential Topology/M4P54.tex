@@ -1,0 +1,348 @@
+\def\module{M4P54 Differential Topology}
+\def\lecturer{Prof Paolo Cascini}
+\def\term{Spring 2020}
+\def\cover{}
+\def\syllabus{}
+\def\thm{section}
+
+\input{../style/header}
+
+\begin{document}
+
+\input{../style/cover}
+
+\section{Introduction}
+
+\lecture{1}{Thursday}{09/01/20}
+
+Differential topology is the study of the topology of a manifold using analysis. The topics are
+\begin{itemize}
+\item a review of differential forms,
+\item de Rham cohomology,
+\item Morse theory, and
+\item singular homology.
+\end{itemize}
+The following are references.
+\begin{itemize}
+\item J M Lee, Introduction to smooth manifolds, 2000
+\item L W Tu, Introduction to smooth manifolds, 2008
+\item J Milnor, Morse theory, 1960
+\item A Banyaga and D Hurtubise, Lectures on Morse homology, 2004
+\end{itemize}
+
+\pagebreak
+
+\section{Differential forms on manifolds}
+
+\subsection{Alternating \texorpdfstring{$ p $}{p}-forms on a vector space}
+
+Let $ V $ be a vector space over $ \RR $, and let $ p \ge 0 $. Then $ V^p = V \times \dots \times V $.
+
+\begin{definition}
+A multilinear map $ \omega : V^p \to \RR $ is called an \textbf{alternating $ p $-form} if we have
+$$ \omega\br{v_{\sigma\br{1}}, \dots, v_{\sigma\br{p}}} = \epsilon\br{\sigma}\omega\br{v_1, \dots, v_p}, \qquad v_1, \dots, v_p \in V \qquad \sigma \in \SSS_p, $$
+where $ \SSS_p $ is the group of permutations of $ p $ elements and $ \epsilon\br{\sigma} $ is the signature of $ \sigma $.
+\end{definition}
+
+Recall that if $ m $ is the number of transpositions in a decomposition of $ \sigma $, then $ \epsilon\br{\sigma} = \br{-1}^m $, where a \textbf{transposition} is $ \br{a_ia_j} $ for $ a_i \ne a_j $.
+
+\begin{notation}
+$ \Lambda^pV^* = \cbr{\text{alternating $ p $-forms} \ \omega \ \text{on} \ V} $ is called the \textbf{$ p $-th exterior power} of $ V $.
+\end{notation}
+
+Check that it is a vector space. \footnote{Exercise}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item $ \Lambda^0V^* = \RR $.
+\item $ \Lambda^1V^* = V^* = \Hom\br{V, \RR} $, the \textbf{dual} of $ V $.
+\end{itemize}
+\end{example}
+
+\begin{definition}
+Let $ \omega_1 \in \Lambda^pV^* $ and $ \omega_2 \in \Lambda^qV^* $. We define $ \omega_1 \wedge \omega_2 \in \Lambda^{p + q}V^* $ the \textbf{exterior product} of $ \omega_1 $ and $ \omega_2 $ by
+$$ \omega_1 \wedge \omega_2\br{v_1, \dots, v_{p + q}} = \sum_{\sigma \in \SSS_{p, q}} \epsilon\br{\sigma}\omega_1\br{v_{\sigma\br{1}}, \dots, v_{\sigma\br{p}}}\omega_2\br{v_{\sigma\br{p + 1}}, \dots, v_{\sigma\br{p + q}}}, \qquad v_1, \dots, v_{p + q} \in V, $$
+where
+$$ \SSS_{p, q} = \cbr{\sigma \in \SSS_{p + q} \st \sigma\br{1} < \dots < \sigma\br{p}, \ \sigma\br{p + 1} < \dots < \sigma\br{p + q}}. $$
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item Assume $ \omega_1, \omega_2 \in \Lambda^1V^* $. Then
+$$ \omega_1 \wedge \omega_2\br{v_1, v_2} = \omega_1\br{v_1}\omega_2\br{v_2} - \omega_1\br{v_2}\omega_2\br{v_1}, \qquad v_1, v_2 \in V. $$
+\item Assume $ \omega_1, \dots, \omega_p \in \Lambda^1V^* $. Then
+$$ \omega_1 \wedge \dots \wedge \omega_p\br{v_1, \dots, v_p} = \det \br{\omega_i\br{v_j}}_{i, j = 1, \dots, p}, \qquad v_1, \dots, v_p \in V. $$
+\end{itemize}
+\end{example}
+
+\begin{proposition}
+\label{prop:1.6}
+Let $ \omega_i \in \Lambda^{p_i}V^* $ for $ i = 1, 2, 3 $.
+\begin{itemize}
+\item Associativity $ \br{\omega_1 \wedge \omega_2} \wedge \omega_3 = \omega_1 \wedge \br{\omega_2 \wedge \omega_3} $.
+\item Distributivity $ \omega_1 \wedge \br{\omega_2 + \omega_3} = \omega_1 \wedge \omega_2 + \omega_1 \wedge \omega_3 $, assuming $ p_2 = p_3 $.
+\item Supercommutativity $ \omega_1 \wedge \omega_2 = \br{-1}^{p_1 \cdot p_2}\omega_2 \wedge \omega_1 $.
+\end{itemize}
+\end{proposition}
+
+\begin{definition}
+Let $ \Phi : V \to W $ be a linear map between vector spaces over $ \RR $. Let $ \omega \in \Lambda^pW^* $. Then the \textbf{pull-back} $ \Phi^*\br{\omega} \in \Lambda^pV^* $ of $ \omega $ is an alternating $ p $-form on $ V $ defined by
+$$ \Phi^*\br{\omega}\br{v_1, \dots, v_p} = \omega\br{\Phi\br{v_1}, \dots, \Phi\br{v_p}}, \qquad v_1, \dots, v_p \in V. $$
+\end{definition}
+
+\pagebreak
+
+\begin{proposition}
+\label{prop:1.8}
+Given $ \Phi : V \to W $ a linear map,
+\begin{itemize}
+\item the pull-back
+$$ \function[\Phi^*]{\Lambda^pW^*}{\Lambda^pV^*}{\omega}{\Phi^*\br{\omega}} $$
+is a linear map that preserves exterior products, that is
+$$ \Phi^*\br{\omega_1 \wedge \omega_2} = \Phi^*\br{\omega_1} \wedge \Phi^*\br{\omega_2}, \qquad \omega_1 \in \Lambda^pW^*, \qquad \omega_2 \in \Lambda^qW^*, $$
+\item if $ \Psi : W \to Z $ is linear then
+$$ \br{\Psi \circ \Phi}^*\br{\omega} = \Phi^*\br{\Psi^*\br{\omega}}, \qquad \omega \in \Lambda^pZ^*, $$
+\item assuming $ V = W $ and $ p = \dim V $, then
+$$ \Phi^*\br{\omega} = \br{\det \Phi}\omega, \qquad \omega \in \Lambda^pV^*. $$
+\end{itemize}
+\end{proposition}
+
+\subsection{Differential forms on manifolds}
+
+Let $ M $ be a smooth manifold of dimension $ n $, and let $ x \in M $. Then the tangent space $ \T_xM $ of $ M $ at $ x $ is a vector space of dimension $ n $.
+
+\begin{notation}
+Let
+$$ \Lambda^p\T_x^*M = \Lambda^p\br{\T_xM}^*. $$
+Consider the set
+$$ \Lambda^p\T^*M = \bigsqcup_{x \in M} \Lambda^p\T_x^*M, $$
+the \textbf{$ p $-th exterior bundle} on $ M $. There exists a morphism $ \pi : \Lambda^p\T^*M \to M $ such that for all $ x \in M $, $ \pi^{-1}\br{x} = \Lambda^p\T_x^*M $, so $ \Lambda^p\T^*M $ is a vector bundle and it is a smooth manifold, and $ \pi $ is a smooth morphism.
+\end{notation}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item $ \Lambda^0\T^*M = M \times \RR $.
+\item $ \Lambda^1\T^*M $ is the \textbf{cotangent bundle}, the dual of the tangent bundle.
+\end{itemize}
+\end{example}
+
+\lecture{2}{Monday}{13/01/20}
+
+\begin{definition}
+A \textbf{differential $ p $-form} $ \omega $ on $ M $ is a smooth section of $ \pi $. That is, it is a smooth morphism $ \omega : M \to \Lambda^p\T^*M $ such that $ \pi \circ \omega = \id_M $.
+\end{definition}
+
+Thus, $ \omega\br{x} \in \Lambda^p\T_x^*M $.
+
+\begin{notation}
+$$ \Omega^p\br{M} = \cbr{\text{differential $ p $-forms} \ \omega \ \text{on} \ M}, \qquad \Omega^\bullet\br{M} = \bigoplus_p \Omega^p\br{M}. $$
+\end{notation}
+
+\begin{example}
+$ \Omega^0\br{M} \cong \cbr{f : M \to \RR \ \text{$ \C^\infty $-function}} $.
+\end{example}
+
+\begin{exercise*}
+If $ n = \dim M $, then $ \Omega^{n + 1}\br{M} = 0 $.
+\end{exercise*}
+
+The algebra is the same as last week.
+
+\begin{definition}
+Let $ \omega_1 \in \Omega^p\br{M} $ and $ \omega_2 \in \Omega^q\br{M} $. Then $ \omega_1 \wedge \omega_2 \in \Omega^{p + q}\br{M} $ is defined by
+$$ \omega_1 \wedge \omega_2\br{x} = \omega_1\br{x} \wedge \omega_2\br{x} \in \Lambda^{p + q}\T_x^*M, \qquad x \in M. $$
+\end{definition}
+
+By Proposition \ref{prop:1.6}, associativity, distributivity, and supercommutativity hold for $ \Omega^p\br{M} $. Let $ F : M \to N $ be a smooth morphism between manifolds. Then for all $ x \in M $, the differential of $ F $ at $ x $ is the linear map
+$$ \D F_x : \T_xM \to \T_{F\br{x}}N. $$
+
+\pagebreak
+
+Thus, for all $ p \ge 0 $, we have a natural map, called the \textbf{pull-back},
+$$ \function[F_x^*]{\Lambda^p\T_{F\br{x}}^*N}{\Lambda^p\T_x^*M}{\omega\br{v_1, \dots, v_p}}{\omega\br{\D F_x\br{v_1}, \dots, \D F_x\br{v_p}}}, \qquad \omega \in \Lambda^p\T_{F\br{x}}^*N, \qquad v_1, \dots, v_p \in \T_x^*M. $$
+Thus, we can define
+$$ \function[F^*]{\Omega^p\br{N}}{\Omega^p\br{M}}{\omega\br{x}}{F^*\br{\omega\br{F\br{x}}}}, \qquad \omega \in \Omega^p\br{N}. $$
+By Proposition \ref{prop:1.8}, the pull-back preserves the exterior product, so
+$$ F^*\br{\omega_1 \wedge \omega_2} = F^*\br{\omega_1} \wedge F^*\br{\omega_2}. $$
+If $ G : N \to P $,
+$$ \br{G \circ F}^*\br{\omega} = F^*\br{G^*\br{\omega}}. $$
+
+\subsection{Local description of \texorpdfstring{$ p $}{p}-forms}
+
+Let $ M $ be a manifold of dimension $ n $, let $ x_0 \in M $, let $ \br{U, \phi} $ be a local chart around $ x_0 $, and let $ \br{x_1, \dots, x_n} $ be local coordinates around $ x_0 $. A basis of $ \T_{x_0}M $ is given by
+$$ \cbr{\dpd{}{x_1}, \dots, \dpd{}{x_n}}. $$
+A basis of $ \T_{x_0}^*M $ is given by
+$$ \cbr{\d x_1, \dots, \d x_n}, \qquad \d x_i\br{\dpd{}{x_j}} = \delta_{ij}. $$
+A basis of $ \Lambda^p\T_{x_0}^*M $ is
+$$ \d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad i_1 < \dots < i_p. $$
+Thus, $ \omega \in \Omega^p\br{M} $ is locally given by
+$$ \omega\br{x} = \sum_{\abs{I} = p} f_I\br{x} \d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad I = \br{i_1, \dots, i_p}, \qquad i_1 < \dots < i_p, $$
+where $ f_I $ is a $ \C^\infty $-function on $ U $ for all $ I $.
+
+\begin{example}
+Let $ F : M \to N $ be a smooth morphism between manifolds of dimension $ n $, and let $ \omega \in \Omega^n\br{N} $. Locally,
+$$ \omega\br{y} = f\br{y} \d y_1 \wedge \dots \wedge \d y_n, \qquad y \in N $$
+for some $ f \in \C^\infty $. Proposition \ref{prop:1.8} implies that
+$$ F^*\br{\omega}\br{x} = \br{f \circ F}\br{x}\det \D F_x \d x_1 \wedge \dots \wedge \d x_n, \qquad x \in M, $$
+where $ y_i = p_i \circ F $ and $ p_i : \RR^n \to \RR $ is the $ i $-th projection.
+\end{example}
+
+Let $ f : M \to \RR $ be a smooth function, so $ f \in \Omega^0\br{M} $. Locally, the \textbf{differential} is
+$$ \function[\d]{\Omega^0\br{M}}{\Omega^1\br{M}}{f}{\sum_{i = 1}^n \dpd{f}{x_i} \d x_i}. $$
+Check that $ \d f \in \Omega^1\br{M} $, so $ \d f $ is a $ 1 $-form on $ M $. Alternatively, $ \d f = f^*\br{\d x} $ for $ \d x $ a $ 1 $-form on $ \RR $, or $ \d f\br{X} = X\br{f} $ for any vector field $ X $ on $ M $. More in general, let $ \omega \in \Omega^p\br{M} $. Locally,
+$$ \omega = \sum_{\abs{I} = p} f_I \d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad f_I \in \C^\infty, $$
+so $ \d\omega \in \Omega^{p + 1}\br{M} $. Then the \textbf{de Rham differential} is
+$$ \function[\d]{\Omega^p\br{M}}{\Omega^{p + 1}\br{M}}{\omega}{\sum_{\abs{I} = p} \d f_I \wedge \d x_{i_1} \wedge \dots \wedge \d x_{i_p}}. $$
+
+\pagebreak
+
+\begin{proposition}
+\hfill
+\begin{itemize}
+\item The Leibnitz rule
+$$ \d\br{\omega_1 \wedge \omega_2} = \d\omega_1 \wedge \omega_2 + \br{-1}^p\omega_1 \wedge \d\omega_2, \qquad w_1 \in \Omega^p\br{M}, \qquad \omega_2 \in \Omega^q\br{M}. $$
+\item $ \d^2 = 0 $, that is
+$$ \d\br{\d\omega} = 0, \qquad \omega \in \Omega^p\br{M}. $$
+\item Let $ F : M \to N $ be a smooth morphism between manifolds. Then
+$$ F^*\br{\d\omega} = \d\br{F^*\br{\omega}}, \qquad \omega \in \Omega^p\br{M} $$
+so
+$$
+\begin{tikzcd}
+\Omega^p\br{M} \arrow{r}{\d} & \Omega^{p + 1}\br{M} \\
+\Omega^p\br{N} \arrow{u}{F^*} \arrow[swap]{r}{\d} & \Omega^{p + 1}\br{N} \arrow[swap]{u}{F^*}
+\end{tikzcd}.
+$$
+\end{itemize}
+\end{proposition}
+
+\lecture{3}{Tuesday}{14/01/20}
+
+\begin{definition}
+\hfill
+\begin{itemize}
+\item $ \omega \in \Omega^p\br{M} $ is \textbf{closed} if $ \d\omega = 0 $.
+\item $ \omega \in \Omega^p\br{M} $ is \textbf{exact} if there exists $ \omega' \in \Omega^{p - 1}\br{M} $ such that $ \d\omega' = \omega $.
+\end{itemize}
+\end{definition}
+
+$ \omega $ is exact implies that $ \omega $ is closed, since if $ \omega = \d\omega' $ then $ \d\omega = \d^2\omega' = 0 $.
+
+\subsection{Integration on manifolds}
+
+Let $ M $ be a manifold of dimension $ n $, let $ F : M \to M $ be a smooth morphism, and let $ \omega \in \Omega^n\br{M} $. Then
+$$ F^*\br{\omega}\br{x} = \det \D F_x\omega\br{F\br{x}}. $$
+Locally, assume $ \omega = f \d y_1 \wedge \dots \wedge \d y_n $ for some coordinates $ y_1, \dots, y_n $ and $ f \in \C^\infty $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas of $ M $, and let $ \phi_\alpha : U_\alpha \to V_\alpha \subset \RR^n $. Then
+$$ \function[h_{\alpha\beta} = \phi_\beta \circ \phi_\alpha^{-1}]{\phi_\alpha\br{U_\alpha \cap U_\beta} \subset \RR^n}{\phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR^n}{\omega\br{x}}{\br{f \circ h_{\alpha\beta}}\br{x}\det \br{\D h_{\alpha\beta}}_x \d x_1 \wedge \dots \wedge \d x_n}. $$
+Let $ D \subset \RR^n $ be compact such that $ \partial D $ has zero measure, so $ D $ is a domain of integration, let $ f : U \to \RR $ be a $ \C^\infty $-function where $ U \subset \RR^n $ is open such that $ D \subset U $, and let $ h : U \to h\br{U} \subset \RR^n $ be a diffeomorphism. Then
+$$ \intd{h^{-1}\br{D}}{}{f\br{y}}{y_1 \dots \d y_n} = \intd{h^{-1}\br{D}}{}{f\br{y}}{y_1 \wedge \dots \wedge \d y_n} = \intd{D}{}{\br{f \circ h}\br{x}\abs{\det \D h_x}}{x_1 \wedge \dots \wedge \d x_n}. $$
+
+\begin{definition}
+Let us assume that $ \omega = f\br{y}\d y_1 \wedge \dots \wedge \d y_n $ on $ U $. We define
+$$ \int_D \omega = \intd{D}{}{f\br{y}}{y_1 \wedge \dots \wedge \d y_n}, \qquad D \subset U. $$
+\end{definition}
+
+\begin{definition}
+Let $ U \subset \RR^n $ be an open set. We define the \textbf{support} of $ \omega $ as
+$$ \supp \omega = \overline{\cbr{x \in U \st \omega\br{x} \ne 0}}, \qquad \omega\br{x} \in \Lambda^p\T_x^*U. $$
+Then $ \omega $ has \textbf{compact support}, if $ \supp \omega $ is compact.
+\end{definition}
+
+Under this assumption, we can define
+$$ \int_U \omega = \int_D \omega \in \RR, $$
+which is well-defined.
+
+\begin{fact*}
+Under the same assumption, if $ \phi : V \to U $ is a diffeomorphism, provided that $ \det \D\phi_x > 0 $, since $ \det \D\phi_x \ne 0 $ for all $ x $, then
+$$ \int_U \omega = \int_V \phi^*\br{\omega}. $$
+\end{fact*}
+
+\pagebreak
+
+The goal is to define $ \int_M \omega $. Let $ V $ be a vector space over $ \RR $ of dimension $ n $, and let $ B = \br{b_1, \dots, b_n} \subset V $ and $ B' = \br{b_1', \dots, b_n'} \subset V $ be ordered bases of $ V $. Then $ B $ and $ B' $ have the \textbf{same orientation} if $ \det T > 0 $ where
+$$ \function[T]{V}{V}{b_i}{b_i'} $$
+is a linear map. Let $ \omega \in \Lambda^nV^* $ for $ \omega \ne 0 $. Then $ B $ and $ B' $ have the same orientation if and only if $ \omega\br{b_1, \dots, b_n} $ has the same sign as $ \omega\br{b_1', \dots, b_n'} $, by Proposition \ref{prop:1.8}. An \textbf{orientation} $ \Lambda $ of $ V $ is a set of all the ordered basis of $ V $ with the same orientation. Let $ \phi : V \to W $ be an isomorphism of vector spaces with fixed orientations $ \Lambda_v $ and $ \Lambda_w $ respectively. We say that $ \phi $ is \textbf{orientation preserving} if an ordered basis of $ V $ induces an ordered basis of $ W $, so $ \Lambda_v $ induces $ \Lambda_w $.
+
+\begin{example}
+Let $ V = \RR^n $, and let $ e_i = \br{0, \dots, 0, 1, 0, \dots, 0} $. Then $ e_1, \dots, e_n $ defines an orientation of $ V $ called \textbf{positive}.
+\end{example}
+
+Let $ M $ be a manifold. The idea is to find an orientation $ \Lambda_x $ of $ \T_xM $ for all $ x \in M $.
+\begin{itemize}[leftmargin=1in]
+\item[Special case.] Let $ M = U \subset \RR^n $ be open. There exists a natural isomorphism $ \phi_x : \T_xU \to \RR^n $. Let $ \Lambda_x^+ $ be an orientation on $ \T_xU $ such that $ \phi_x $ is orientation preserving with respect to the positive orientation on $ \RR^n $. Let $ \Lambda^+ = \cbr{\Lambda_x^+} $.
+\item[General case.] Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas on $ M $. On $ U_\alpha $, we define the orientation so that $ \br{\D\phi_\alpha}_x : \T_xU_\alpha \to \T_{\phi_\alpha\br{x}}\phi_\alpha\br{U} \subset \RR^n $ is orientation preserving. This is called the positive orientation on the chart $ \br{U_\alpha, \phi_\alpha} $. We define $ \Lambda $ on $ M $, which is a collection of $ \Lambda^+ $ on $ \T_xM $ for all $ x \in M $. Then $ M $ is \textbf{orientable} if there exists an atlas with positive orientation charts. This coincides in assuming that $ \det \D\br{\phi_\beta^{-1} \circ \phi_\alpha} > 0 $ for all $ \alpha $ and $ \beta $.
+\end{itemize}
+
+\lecture{4}{Thursday}{16/01/20}
+
+For all $ p \ge 0 $,
+$$ \Omega_\c^p\br{M} = \cbr{\omega \in \Omega^p\br{M} \st \supp M \ \text{is compact}}. $$
+If $ M $ is compact $ \Omega_\c^p\br{M} = \Omega^p\br{M} $. Let $ \omega \in \Omega_\c^r\br{M} $. Assume $ \supp \omega \subset U $ where $ \br{U, \phi} $ is a chart of $ M $, and $ \phi : U \to \phi\br{U} \subset \RR^n $. Assume also that $ \br{U, \phi} $ is positively oriented. Let $ \phi^{-1} : \phi\br{U} \to U $ such that $ \br{\phi^{-1}}^*\br{\omega} \in \Omega_\c^n\br{\phi\br{U}} $, that is $ \supp \br{\phi^{-1}}^*\br{\omega} \subset \phi\br{U} $. We define
+$$ \int_M \omega = \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega}. $$
+We need to show that, under the assumptions above, $ \int_M \omega $ does not depend on $ \br{U, \phi} $. Let $ \br{\overline{U}, \overline{\phi}} $ be also a positively oriented chart such that $ \supp \omega \subset \overline{U} $. We want to show that
+$$ \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega} = \int_{\overline{\phi}\br{\overline{U}}} \br{\overline{\phi}^{-1}}^*\br{\omega}. $$
+Let
+$$ \overline{\phi} \circ \phi^{-1} : \phi\br{U \cap \overline{U}} \to \overline{\phi}\br{U \cap \overline{U}}, $$
+so
+$$
+\begin{tikzcd}
+& U \cap \overline{U} \arrow[swap]{dl}{\phi} \arrow{dr}{\overline{\phi}} & \\
+\RR^n \supset \phi\br{U \cap \overline{U}} \arrow[swap]{rr}{\overline{\phi} \circ \phi^{-1}} & & \overline{\phi}\br{U \cap \overline{U}} \subset \RR^n
+\end{tikzcd}.
+$$
+
+\pagebreak
+
+Since both charts are positively oriented the determinant of the differential $ \D\br{\overline{\phi} \circ \phi^{-1}} $ is positive. Then
+\begin{align*}
+\int_{\overline{\phi}\br{U}} \br{\overline{\phi}^{-1}}^*\br{\omega}
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi}^{-1}}^*\br{\omega} & \br{\overline{\phi}^{-1}}^*\br{\omega} = 0 \ \text{outside} \ \overline{\phi}\br{U \cap \overline{U}} \\
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi} \circ \phi^{-1}}^*\br{\overline{\phi}^{-1}}^*\br{\omega} & \det \D\br{\overline{\phi} \circ \phi^{-1}} > 0 \\
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^* \circ \overline{\phi}^* \circ \br{\overline{\phi}^{-1}}^*\br{\omega} & \text{pull-back} \\
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^* \circ \br{\overline{\phi}^{-1} \circ \overline{\phi}}^*\br{\omega} & \text{pull-back} \\
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\br{\omega} & \det \D\br{\overline{\phi} \circ \phi^{-1}} > 0 \\
+& = \int_{\overline{\phi}\br{U}} \br{\phi^{-1}}^*\br{\omega} & \br{\phi^{-1}}^*\br{\omega} = 0 \ \text{outside} \ \phi\br{U \cap \overline{U}}.
+\end{align*}
+Let $ M $ be a manifold, and let $ U = \cbr{U_\alpha} $ be an open covering. A \textbf{partition of unity} with respect to $ U $ is a collection of smooth functions $ f_\alpha : M \to \sbr{0, 1} $ such that
+\begin{enumerate}
+\item $ \supp f_\alpha = \overline{\cbr{x \in M \st f_\alpha\br{x} = 0}} \subset U_\alpha $ for all $ \alpha $,
+\item $ \sum_\alpha f_\alpha\br{x} = 1 $ for all $ x \in M $, and
+\item for all $ x \in M $, there exists $ U \ni x $ open such that $ \supp f_\alpha \cap U \ne \emptyset $ for only finitely many $ \alpha $.
+\end{enumerate}
+
+\begin{remark*}
+$ 3 $ implies that $ 2 $ is a finite sum.
+\end{remark*}
+
+\begin{example}
+Let
+$$ M = \S^1 = \cbr{x \in \RR^2 \st \abs{x} = 1}, \qquad U_1 = \S^1 \setminus \cbr{\br{1, 0}}, \qquad U_2 = \S^1 \setminus \cbr{\br{-1, 0}}, $$
+so $ \cbr{U_i} $ is a cover. Let
+$$ f_1\br{\cos \theta, \sin \theta} = \dfrac{1}{2} - \dfrac{1}{2}\cos \theta, \qquad f_2\br{\cos \theta, \sin \theta} = \dfrac{1}{2} + \dfrac{1}{2}\cos \theta. $$
+Then $ f_i $ is a partition of unity.
+\end{example}
+
+\begin{theorem}
+Let $ M $ be a manifold, and let $ U = \cbr{U_\alpha} $ be an open covering of $ M $. Then there exists a partition of unity $ f_\alpha $ with respect to $ U $.
+\end{theorem}
+
+\begin{proof}
+We omit the proof.
+\end{proof}
+
+\begin{theorem}
+Let $ M $ be a manifold, and let $ n = \dim M $. Then $ M $ is orientable if and only if there exists $ \omega \in \Omega^n\br{M} $ which is never vanishing on $ M $.
+\end{theorem}
+
+$ \omega $ is called a \textbf{volume form} on $ M $.
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \impliedby $] Assume $ \omega \in \Omega^n\br{M} $ is a volume form. We want to define an orientation $ \Lambda_x $ of $ \T_xM $ for all $ x \in M $. Given an oriented basis $ v_1, \dots, v_n $ of $ \T_xM $ we say that it is positively oriented if $ \omega\br{x}\br{v_1, \dots, v_n} > 0 $. This defines $ \Lambda_x $ on $ \T_xM $ which is compatible with the choice of an atlas on $ M $. Indeed, the pull-back between two different charts is defined by the determinant, so it is orientation preserving, so $ M $ is orientable.
+\end{itemize}
+\end{proof}
+
+\end{document}
