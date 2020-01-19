@@ -1,0 +1,358 @@
+\def\module{M4P63 Algebra IV}
+\def\lecturer{Dr John Britnell}
+\def\term{Spring 2020}
+\def\cover{}
+\def\syllabus{}
+\def\thm{section}
+
+\input{../style/header}
+
+\begin{document}
+
+\input{../style/cover}
+
+\setcounter{section}{0}
+
+\section{Modules}
+
+\subsection{Modules over rings}
+
+\lecture{1}{Friday}{10/01/20}
+
+Let $ R $ be an \textbf{associative ring with unity}, that is an abelian group written additively with a multiplication which is associative but not necessarily commutative, with an identity $ 1 $ and distributive laws $ a\br{b + c} = ab + ac $ and $ \br{a + b}c = ac + bc $. Then
+$$ R^* = \cbr{r \in R \st \exists s \in R, \ rs = 1 = sr} $$
+is the unit group of $ R $. If $ R^* = R \setminus \cbr{0} $ then $ R $ is a \textbf{division ring}, or a \textbf{skew field}. In the case that $ R $ is commutative, $ R $ is a \textbf{field}.
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item Fields $ \CC $, $ \RR $, $ \QQ $, and $ \FF_q $, the field with $ q = p^a $ elements with $ p $ a prime and $ a \ge 1 $.
+\item Skew fields $ \HH = \cbr{a + bi + cj + dk \st a, b, c, d \in \RR} $ where $ i^2 = j^2 = k^2 = ijk = -1 $.
+\item Other rings are polynomial rings $ k\sbr{x} $ for $ k $ a field, more generally $ k\sbr{x_1, \dots, x_p} $, and $ \Mat_n k $, the $ n \times n $ matrices with entries from $ k $, a field.
+\end{itemize}
+\end{example*}
+
+\begin{definition}
+Let $ R $ be a ring. A \textbf{left $ R $-module} is an abelian group $ M $, written additively, together with a function $ * : R \times M \to M $ satisfying
+$$ r * \br{m_1 + m_2} = r * m_1 + r * m_2, \qquad \br{r_1 + r_2} * m = r_1 * m + r_2 * m, \qquad \br{r_1r_2} * m = r_1 * \br{r_2 * m}, \qquad 1 * m = m. $$
+\end{definition}
+
+We write $ rm $ for $ r * m $.
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item $ R $ is itself a left $ R $-module, with $ * $ as ring multiplication. More generally, let $ I $ be a left ideal of $ R $, so $ I $ is an additive subgroup, and $ rI \subseteq I $ for all $ r \in R $. Then $ I $ is an $ R $-module with $ * $ as ring multiplication.
+\item Let $ k $ be a field. Then any vector space over $ k $ is a $ k $-module, and vice versa.
+\item Any abelian group is a $ \ZZ $-module, with $ * $ defined by $ na = a + \dots + a $ for $ n \in \ZZ^+ $ and $ a \in A $, and $ \br{-n}a = -\br{na} $.
+\item Let $ k $ be a field. Let $ k^n $ be column vectors. Then $ k^n $ is a left $ \Mat_n k $-module, with $ * $ as the usual matrix-vector multiplication.
+\item Let $ M \in \Mat_n k $. Then we can define a left $ k\sbr{x} $-module structure on $ k^* $ by letting $ x $ act as $ M $ on $ k^* $. So $ \br{x^2 + 3x - 2} * v = M^2v + 3Mv - 2v $.
+\item Let $ G $ be a group. Any representation of $ G $ over the field $ k $ is a left module for $ k\sbr{G} $, the \textbf{group algebra}, a vector space over $ k $ with elements of $ G $ as a basis, with multiplication derived from that of $ G $.
+\end{itemize}
+\end{example*}
+
+\begin{definition}
+A \textbf{right $ R $-module} is defined similarly, with the $ R $-multiplication on the right, so $ M $ an abelian group under $ + $, and a map $ M \times R \to M $ satisfying
+$$ \br{m_1 + m_2} * r = m_1 * r + m_2 * r, \qquad m * \br{r_1 + r_2} = m * r_1 + m * r_2, \qquad m * \br{r_1r_2} = \br{m * r_1} * r_2, \qquad m * 1 = m. $$
+\end{definition}
+
+Left and right modules are not quite the same. If we amend this definition by putting the ring multiplication on the left, the third axiom becomes $ \br{r_1r_2}m = r_2\br{r_1m} $. But in a left module, we have $ \br{r_1r_2}m = r_1\br{r_2m} $.
+
+\begin{definition}
+Let $ R $ be a ring. The \textbf{opposite ring} $ R^{\op} $ is $ R $ with a redefined multiplication $ r *_{R^{\op}} s = s *_R r $.
+\end{definition}
+
+It is easy to see that a left $ R $-module is the same as a right $ R^{\op} $-module and vice versa. If $ R $ is commutative then $ R = R^{\op} $.
+
+\begin{exercise*}
+Show that $ \Mat_n k \cong \Mat_n k^{\op} $.
+\end{exercise*}
+
+Except where otherwise stated, $ R $-modules are assumed to be left $ R $-modules.
+
+\pagebreak
+
+\begin{definition}
+Let $ M_1 $ and $ M_2 $ be $ R $-modules. A map $ f : M_1 \to M_2 $ is an \textbf{$ R $-module homomorphism} if
+\begin{itemize}
+\item $ f $ is a group homomorphism, with respect to the $ + $ operation, and
+\item $ f\br{rm} = rf\br{m} $, for $ r \in R $ and $ m \in M $.
+\end{itemize}
+If $ f $ is bijective, then it is an \textbf{$ R $-module isomorphism}.
+\end{definition}
+
+\begin{definition}
+An additive subgroup $ L \le M $ is a \textbf{submodule} if $ rL \le L $ for $ r \in R $. In this case we automatically get an $ R $-module structure on the quotient $ M / L $ with multiplication given by $ r\br{m + L} = rm + L $.
+\end{definition}
+
+\begin{theorem}[First isomorphism theorem]
+Let $ f : M_1 \to M_2 $ be an $ R $-module homomorphism. Then $ \Im f \le M_2 $, $ \Ker f \le M_1 $, and $ \Im f \cong M / \Ker f $.
+\end{theorem}
+
+The other isomorphism theorems have $ R $-module versions too.
+
+\lecture{2}{Monday}{13/01/20}
+
+Let $ S $ be a set. We have a collection of $ R $-modules $ \br{M_s}_S $ indexed by $ S $.
+
+\begin{definition}
+The \textbf{direct product} is
+$$ \prod_{s \in S} M_s = \cbr{\br{m_s}_S \st m_s \in M_s}, $$
+with coordinate-wise addition and $ R $-multiplication, so
+$$ \br{m_s}_S + \br{n_s}_S = \br{m_s + n_s}_S, \qquad r\br{m_s}_S = \br{rm_s}_S. $$
+If $ M_s = M $ for all $ s \in S $, then we write $ M^S $ for $ \prod_{s \in S} M_s $. The \textbf{direct sum} is
+$$ \bigoplus_{s \in S} M_s = \cbr{\br{m_s}_S \st \text{all but finitely many coordinates} \ m_s \ \text{are zero}} \le \prod_{s \in S} M_s. $$
+If $ S $ is finite then the direct product and the direct sum are equal.
+\end{definition}
+
+\begin{example*}
+Let $ M = \ZZ_2 $, as a $ \ZZ $-module, and let $ S = \NN $. Then $ \bigoplus_{s \in \NN} \ZZ_2 $ is a countable $ \ZZ $-module but $ \prod_{s \in \NN} \ZZ_2 = \ZZ_2^\NN $ is uncountable.
+\end{example*}
+
+When $ \abs{S} = 2 $, generally we write $ M_1 \oplus M_2 $ for the direct sum or product. There are natural injective maps
+$$ \function[\iota_A]{A}{A \oplus B}{a}{\br{a, 0}}, \qquad \function[\iota_B]{B}{A \oplus B}{b}{\br{0, b}}, $$
+and surjective maps
+$$ \function[\pi_A]{A \oplus B}{A}{\br{a, b}}{a}, \qquad \function[\pi_B]{A \oplus B}{B}{\br{a, b}}{b}. $$
+
+\subsection{Exact sequences}
+
+\begin{definition}
+Suppose we have a sequence of $ R $-modules
+$$ \dots \xrightarrow{f_{n - 1}} M_n \xrightarrow{f_n} M_{n + 1} \xrightarrow{f_{n + 1}} \dots, $$
+with maps $ f_n : M_n \to M_{n + 1} $. Say the sequence is \textbf{exact at $ M_n $} if
+$$ \Im f_{n - 1} = \Ker f_n. $$
+The sequence is \textbf{exact} if it is exact everywhere. A \textbf{short exact sequence} is an exact sequence
+$$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0. $$
+Note that $ \alpha $ is injective and $ \beta $ is surjective. The first isomorphism theorem implies that $ B / \Im \alpha \cong C $, where $ \Im \alpha \cong A $. An easy case is
+$$ B \cong A \oplus C, $$
+with $ \Im \alpha = A \oplus 0 $ and $ \Im \beta = C $, so $ \alpha = \iota_A $ and $ \beta = \pi_\beta $. We say that the short exact sequence \textbf{splits} in this case.
+\end{definition}
+
+\pagebreak
+
+\begin{example*}
+A non-split short exact sequence of $ \ZZ $-modules, or abelian groups, is
+$$ 0 \to \ZZ / 2\ZZ \to \ZZ / 4\ZZ \to \ZZ / 2\ZZ \to 0. $$
+\end{example*}
+
+\begin{proposition}
+A short exact sequence
+$$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 $$
+is split if and only if there exists an $ R $-module homomorphism $ \sigma : C \to B $ such that $ \beta \circ \sigma = \id_C $.
+\end{proposition}
+
+Such a $ \sigma $ is called a \textbf{section} of $ \beta $.
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Suppose that the short exact sequence is split. So assume $ B = A \oplus C $, with $ \alpha = \iota_A $ and $ \beta = \pi_C $. Now $ \iota_C $ is a section for $ \beta $.
+\item[$ \impliedby $] For the converse, suppose that $ \sigma $ is a section for $ \beta $. We want $ f : A \oplus C \xrightarrow{\sim} B $ such that $ f \circ \iota_A = \alpha $ and $ \beta \circ f = \pi_C $, so
+$$
+\begin{tikzcd}
+& & A \oplus C \arrow{dr}{\pi_C} \arrow{dd}{f} & & \\
+0 \arrow{r} & A \arrow{ur}{\iota_A} \arrow[swap]{dr}{\alpha} & & C \arrow{r} & 0 \\
+& & B \arrow[swap]{ur}{\beta} & &
+\end{tikzcd}.
+$$
+Define
+$$ \function[f]{A \times C}{B}{\br{a, c}}{\alpha\br{a} + \sigma\br{c}}. $$
+Need to check the following.
+\begin{itemize}
+\item $ f $ is an $ R $-module homomorphism. \footnote{Exercise}
+\item $ f $ is injective. Suppose $ f\br{a, c} = 0 $. Then $ \alpha\br{a} + \sigma\br{c} = 0 $. Now $ \alpha\br{a} \in \Im \alpha = \Ker \beta $, so $ \beta\br{\alpha\br{a} + \sigma\br{c}} = \beta\br{\sigma\br{c}} = c $. Since $ \alpha\br{a} + \sigma\br{c} = 0 $, we have $ c = 0 $. Hence $ \alpha\br{a} = 0 $, and so $ a = 0 $ since $ \alpha $ is injective. We have shown that $ f $ is injective.
+\item $ f $ is surjective. Let $ b \in B $. Let $ c = \beta\br{b} $. We have $ \br{\beta \circ \sigma}\br{c} = c = \beta\br{b} $, so $ b - \sigma\br{c} \in \Ker \beta = \Im \alpha $. So there exists $ a \in A $ with $ \alpha\br{a} = b - \sigma\br{c} $. Then $ b = \alpha\br{a} + \sigma\br{c} = f\br{a, c} $.
+\item $ f \circ \iota_A = \alpha $ and $ \beta \circ f = \pi_C $. Immediate from the construction of $ f $.
+\end{itemize}
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+The short exact sequence
+$$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 $$
+is split if and only if there exists $ \rho : B \to A $ such that $ \rho \circ \alpha = \id_A $.
+\end{proposition}
+
+Such a $ \rho $ is a \textbf{retraction} of $ \alpha $.
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Once again, if the short exact sequence is split then the existence of $ \rho $ is clear.
+\item[$ \impliedby $] Suppose that $ \rho $ is a retraction for $ \alpha $. We define $ f : B \xrightarrow{\sim} A \oplus C $ such that $ f \circ \alpha = \iota_A $ and $ \pi_C \circ f = \beta $. Do this by
+$$ \function[g]{B}{A \oplus C}{b}{\br{\rho\br{a}, \beta\br{c}}}. $$
+Details are omitted.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+\subsection{Projective modules}
+
+\lecture{3}{Tuesday}{14/01/20}
+
+\begin{definition}
+An $ R $-module $ M $ is \textbf{projective} if any surjective map $ \beta : B \to M $ has a section. In other words, any short exact sequence
+$$ 0 \to A \to B \to M \to 0 $$
+splits.
+\end{definition}
+
+\begin{example*}
+The $ R $-module $ R $ is projective. Let
+$$ 0 \to A \to B \xrightarrow{\beta} R \to 0 $$
+be a short exact sequence. Since $ \beta $ is surjective, there exists $ b \in B $ such that $ \beta\br{b} = 1 $. Now for all $ r \in R $, $ \beta\br{rb} = r $. Now define
+$$ \function[\sigma]{R}{B}{r}{rb}. $$
+Then $ \sigma $ is a section for $ \beta $.
+\end{example*}
+
+\begin{proposition}
+An $ R $-module $ M $ is projective if and only if whenever $ \beta : B \to C $ is surjective, and $ f : M \to C $, there exists $ g : M \to B $ such that $ f = \beta \circ g $, so
+$$
+\begin{tikzcd}
+& & & M \arrow[dashed, swap]{dl}{g} \arrow{d}{f} & \\
+0 \arrow{r} & A \arrow{r} & B \arrow[swap]{r}{\beta} & C \arrow{r} & 0
+\end{tikzcd}.
+$$
+\end{proposition}
+
+Such a $ g $ is called a \textbf{lift} of $ f $.
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \impliedby $] Suppose that whenever $ \beta : B \to C $ is surjective and $ f : M \to C $ then there exists $ g : M \to B $ with $ f = \beta \circ g $. Suppose $ \beta : B \to M $ is a surjective map. Define $ f : M \to M $ to be $ \id_M $. Then there exists $ g : M \to B $ such that $ f = \beta \circ g $, so $ \id_M = \beta \circ g $. So $ g $ is a section for $ \beta $, and so $ M $ is projective.
+\item[$ \implies $] For the converse, suppose $ \beta : B \to C $ is surjective, and $ f : M \to C $. We construct a module $ X $ to complete a commuting square
+$$
+\begin{tikzcd}
+X \arrow{r}{\epsilon} \arrow[swap]{d}{\delta} & M \arrow{d}{f} \\
+B \arrow[swap]{r}{\beta} & C
+\end{tikzcd}.
+$$
+Let $ X $ be the submodule of $ B \oplus M $ defined by
+$$ X = \cbr{\br{b, m} \st \beta\br{b} = f\br{m}}. $$
+The maps $ \delta $ and $ \epsilon $ are just $ \pi_B $ and $ \pi_M $ respectively, in their restrictions to $ X $. It is clear that $ X \le B \oplus M $, and that the square above commutes. Now suppose that $ M $ is projective. Since $ \beta $ is surjective, we see that for all $ m \in M $ there exists $ b \in B $ with $ \beta\br{b} = f\br{m} $. It follows that $ \epsilon : X \to M $ is surjective. So $ \epsilon $ has a section $ \sigma : M \to X $. Define $ g = \delta \circ \sigma : M \to B $, so
+$$
+\begin{tikzcd}
+X \arrow[bend left=15]{r}{\epsilon} \arrow[swap]{d}{\delta} & M \arrow[bend left=15, dashed]{l}{\sigma} \arrow[dashed]{dl}{g} \arrow{d}{f} \\
+B \arrow[swap]{r}{\beta} & C
+\end{tikzcd}.
+$$
+Since $ \beta \circ \delta = f \circ \epsilon $, for all $ m \in M $ we have
+$$ \br{\beta \circ g}\br{m} = \br{\beta \circ \delta \circ \sigma}\br{m} = \br{f \circ \epsilon \circ \sigma}\br{m} = \br{f \circ \id_M}\br{m} = f\br{m}. $$
+So $ \beta \circ g = f $ as required.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+Such an $ X $ is the \textbf{pullback} of $ \beta $ and $ f $, and there is a short exact sequence
+$$ 0 \to A \to X \to M \to 0. $$
+
+\begin{definition}
+An $ R $-module $ M $ is \textbf{free} if $ M $ is a direct sum of copies of $ R $, so
+$$ M = \bigoplus_{s \in S} R. $$
+A \textbf{basis} for a module $ M $ is a set $ T $ of elements such that every element $ m \in M $ has a unique expression as
+$$ m = \sum_{i = 1}^m r_it_i, \qquad r_i \in R, \qquad t_i \in T. $$
+\end{definition}
+
+If $ M = \bigoplus_{s \in S} R $, then $ M $ has a basis consisting of elements with exactly one coordinate one, and the rest zero. On the other hand, if $ M $ has a basis $ T $ then it is straightforward to show that $ M \cong \bigoplus_{t \in T} R $.
+
+\begin{proposition}
+Let $ F $ be a free $ R $-module with basis $ T $. Let $ M $ be some $ R $-module, and let $ \psi : T \to M $ be a set map. Then $ \psi $ extends uniquely to a $ R $-module homomorphism $ \psi : F \to M $.
+\end{proposition}
+
+\begin{proof}
+Each element of $ F $ has a unique expression as $ \sum_i r_it_i $ for $ r_i \in R $ and $ t_i \in T $. Now define
+$$ \function[\psi]{F}{M}{\sum_i r_it_i}{\sum_i r_i\psi\br{t_i}}. $$
+It is easy to check that this respects $ + $ and $ R $-multiplication.
+\end{proof}
+
+\begin{proposition}
+A module $ M $ is projective if and only if there exists $ N $ such that $ M \oplus N $ is free, so projective modules are direct summands of free modules.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \implies $] Suppose $ M $ is projective. Let $ F $ be the free module with basis $ \cbr{b_m \st m \in M} $. Now the map $ b_m \mapsto m $ extends to an $ R $-module homomorphism $ F \to M $, which is clearly surjective. Then if $ K = \Ker \psi $, we have a short exact sequence
+$$ 0 \to K \to F \xrightarrow{\psi} M \to 0. $$
+Since $ M $ is projective, there is a section $ \sigma $ for $ \psi $, and so the short exact sequence splits, and $ F \cong K \oplus M $.
+
+\lecture{4}{Friday}{17/01/20}
+
+\item[$ \impliedby $] Suppose that $ M \oplus N = F $, a free module with basis $ T $. Suppose $ \beta : B \to C $ is surjective, and that $ f : M \to C $. Note that $ f \circ \pi_M : F \to C $. For each $ t \in T $, let $ b_t \in B $ be such that $ \beta\br{b_t} = \br{f \circ \pi_M}\br{t} $. The set map
+$$ \function{T}{B}{t}{b_t} $$
+extends to a homomorphism $ \widehat{g} : F \to B $. Now define $ g : M \to B $ by $ g = \widehat{g} \circ \iota_M $. We need to show $ f = \beta \circ g $. Take $ m \in M $. Then $ \iota_M\br{m} = \br{m, 0} \in F $ can be written as $ \sum_i r_it_i $, where $ t_i \in T $ and $ r_i \in R $. Applying $ \pi_M $, $ m = \sum_i r_im_{t_i} $. Then
+$$ g\br{m} = \br{\widehat{g} \circ \iota_M}\br{m} = \widehat{g}\br{\sum_i r_it_i} = \sum_i r_ib_{t_i}. $$
+So
+$$ \br{\beta \circ g}\br{m} = \beta\br{\sum_i r_ib_{t_i}} = \sum_i r_i\beta\br{b_{t_i}} = \sum_i r_if\br{m_{t_i}} = f\br{\sum_i r_im_{t_i}} = f\br{m}. $$
+Hence $ \beta \circ g = f $. So $ M $ is projective.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+\subsection{Injective modules}
+
+\begin{definition}
+Let $ M $ be an $ R $-module. Then $ M $ is \textbf{injective} if whenever $ \alpha : M \to B $ is an injective map, it has a retraction $ \rho : B \to M $, so $ \rho \circ \alpha = \id_M $. Equivalently, every short exact sequence
+$$ 0 \to M \to B \to C \to 0 $$
+splits.
+\end{definition}
+
+\begin{example*}
+Let $ k $ be a field. Then $ k $-modules are vector spaces. Every $ k $-module is injective. Suppose $ M $ and $ N $ are $ k $-vector spaces and $ \alpha : M \to N $ is a injective map. Then $ \Im \alpha $ is a submodule, or subspace, of $ N $. Take a basis for $ \Im \alpha $, and extend to a basis for $ N $. The basis vectors not in $ \Im \alpha $ form a basis for a complementary subspace $ U $, so $ N = \Im \alpha \oplus U $. Now $ \pi_{\Im \alpha} $ is surjective, and $ \alpha : M \to \Im \alpha $ is an isomorphism. This gives a retraction $ N \to M $.
+\end{example*}
+
+If $ R $ is a general ring, the module $ R $ need not be injective.
+
+\begin{example*}
+Let $ R = \ZZ $. Then $ R $-modules are abelian groups. There exists an injective $ \alpha : \ZZ \to \QQ $. But $ \ZZ $ is not a quotient of $ \QQ $, \footnote{Exercise} so no retraction exists for $ \alpha $.
+\end{example*}
+
+\begin{proposition}
+An $ R $-module $ M $ is injective if and only if whenever $ \alpha : A \to B $ is injective, and $ f : A \to M $, there exists $ g : B \to M $ such that $ f = g \circ \alpha $.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \impliedby $] Suppose that whenever $ \alpha : A \to B $ is injective, and $ f : A \to M $, there exists $ g : B \to M $ such that $ f = g \circ \alpha $. Suppose that $ \alpha : M \to B $ is injective. We have a map $ M \to M $, namely $ \id_M $. There exists $ g : B \to M $ such that $ \id_M = g \circ \alpha $. So $ g $ is a retraction for $ \alpha $, and so $ M $ is injective.
+\item[$ \implies $] For the converse, suppose $ \alpha : A \to B $ is injective, and $ M $ is an injective module, with $ f : A \to M $. We define a module $ Y $ completing a square
+$$
+\begin{tikzcd}
+A \arrow{r}{\alpha} \arrow[swap]{d}{f} & B \arrow{d}{\delta} \\
+M \arrow[swap]{r}{\epsilon} & Y
+\end{tikzcd},
+$$
+with $ \epsilon \circ f = \delta \circ \alpha $. Let $ Y $ be a quotient of $ B \oplus M $, by the kernel
+$$ K = \cbr{\br{\alpha\br{a}, -f\br{a}} \st a \in A}. $$
+Let $ \gamma : B \oplus M \to \br{B \oplus M} / K $ be the canonical quotient map. Then we define $ \delta = \gamma \circ \iota_B $ and $ \epsilon = \gamma \circ \iota_M $. By construction, we have
+\begin{align*}
+\br{\epsilon \circ f}\br{a}
+& = \br{\gamma \circ \iota_M \circ f}\br{a}
+= \gamma\br{0, f\br{a}}
+= \br{0, f\br{a}} + K \\
+& = \br{\alpha\br{a}, 0} + K
+= \gamma\br{\alpha\br{a}, 0}
+= \br{\gamma \circ \iota_B \circ \alpha}\br{a}
+= \br{\delta \circ \alpha}\br{a}.
+\end{align*}
+Hence $ \epsilon \circ f = \delta \circ \alpha $. Claim that $ \epsilon $ is injective. Suppose $ \epsilon\br{m} = 0 $. Then $ \iota_M\br{m} \in K $, so $ \br{0, m} = \br{\alpha\br{a}, -f\br{a}} $ for some $ a \in A $. But $ \alpha\br{a} = 0 $ implies that $ a = 0 $, and so $ m = -f\br{0} = 0 $. Since $ M $ is injective, $ \epsilon $ has a retraction $ \rho : Y \to M $. Define $ g : B \to M $ by $ g = \rho \circ \delta $, so
+$$
+\begin{tikzcd}
+A \arrow{r}{\alpha} \arrow[swap]{d}{f} & B \arrow[dashed, swap]{dl}{g} \arrow{d}{\delta} \\
+M \arrow[bend right=15, swap]{r}{\epsilon} & Y \arrow[bend right=15, dashed, swap]{l}{\rho}
+\end{tikzcd},
+$$
+We know that $ \br{\epsilon \circ f}\br{a} = \br{\delta \circ \alpha}\br{a} $ for all $ a \in A $. So
+$$ f\br{a} = \br{\id_M \circ f}\br{a} = \br{\rho \circ \epsilon \circ f}\br{a} = \br{\rho \circ \delta \circ \alpha}\br{a} = \br{g \circ \alpha}\br{a}, $$
+so $ f = g \circ \alpha $ as required.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+We know that projectives are direct summands of free modules. We might hope for a dual version of this for injective modules. But there is no straightforward way of doing this.
+
+\end{document}
