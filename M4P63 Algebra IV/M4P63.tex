@@ -355,4 +355,44 @@ so $ f = g \circ \alpha $ as required.
 
 We know that projectives are direct summands of free modules. We might hope for a dual version of this for injective modules. But there is no straightforward way of doing this.
 
+\lecture{5}{Monday}{20/01/20}
+
+\begin{proposition}[Baer's criterion for injectivity]
+Let $ M $ be an $ R $-module. Then $ M $ is injective if and only if every $ R $-module map $ f : I \to M $, where $ I $ is a left ideal of $ R $, has the form $ f\br{x} = xm $ for some $ m \in M $. Equivalently, every map $ I \to M $ extends to a map $ R \to M $.
+\end{proposition}
+
+Why are these two conditions equivalent? If $ f\br{x} = xm $ for $ x \in I $, then we can extend $ f $ to $ R $ by $ f\br{r} = rm $. Conversely, suppose that $ f : I \to M $ extends to $ f^+ : R \to M $. Let $ m = f^+\br{1} $. Then for all $ r \in R $, $ f^+\br{r} = rm $, and so $ f\br{x} = xm $ for $ x \in I $.
+
+\begin{proof}
+The proof requires Zorn's lemma. Let $ X $ be a non-empty set, partially ordered by $ \le $. If every chain, or totally ordered subset, in $ X $ has an upper bound in $ X $, then $ X $ has a maximal element.
+\begin{itemize}
+\item[$ \impliedby $] Suppose $ \alpha : A \to B $, where $ \alpha $ is injective. Suppose $ f : A \to M $. We want to show there exists $ g : B \to M $ such that $ f = g \circ \alpha $. We have $ \Im \alpha \le B $. Define
+$$ X = \cbr{\br{L, h} \st \Im \alpha \le L \le B, \ h : L \to M, \ f = h \circ \alpha}. $$
+Note that $ X \ne \emptyset $ since $ \br{\Im \alpha, f \circ \alpha^{-1}} $ is in it. Define $ \le $ on $ X $ by $ \br{L_1, h_1} \le \br{L_2, h_2} $ if $ L_1 \le L_2 $ and $ h_2 $ extends $ h_1 $, so $ \eval{h_2}_{L_1} = h_1 $. Suppose $ \cbr{\br{L_s, h_s} \st s \in S} $ is a chain in $ X $. Set $ L = \bigcup_{s \in S} L_s $. Then $ \Im \alpha \le L \le B $. Define
+$$ \function[h]{L}{M}{l}{h_s\br{l}}, \qquad l \in L_s. $$
+This does not depend on the choice of $ s $. Then $ \br{L, h} $ is an upper bound for the chain $ \cbr{\br{L_s, h_s} \st s \in S} $. Hence $ X $ has a maximal element, $ \br{L_0, h_0} $. We want to show that $ L_0 = B $. Then we may set $ g = h_0 $. Suppose that $ L_0 \ne B $. Let $ b \in B \setminus L_0 $. Note that $ Rb \le B $. Consider
+$$ L_0 + Rb = \cbr{l + rb \st l \in L_0, \ r \in R} \le B. $$
+We would like to extend $ h_0 $ to $ h_0^+ $ by specifying an image for $ h_0^+\br{b} $. The problem is that $ Rb \cap L_0 $ may not be $ \cbr{0} $, and if $ rb \in L_0 $ then we require $ rh_0^+\br{b} = h_0\br{rb} $, otherwise $ h_0^+ $ will not be well-defined. Note that
+$$ I = \cbr{r \in R \st rb \in L_0} $$
+is a left ideal for $ R $. Suppose that $ M $ has the condition from Baer's criterion, so every map $ I \to M $ has the form $ x \mapsto xm $ for some $ m \in M $. Note that $ \cbr{xb \st x \in I} $ is a submodule of $ L_0 $. Define a map
+$$ \function[\delta]{I}{M}{x}{h_0\br{xb}}. $$
+This is an $ R $-module homomorphism. So $ \delta\br{x} = xm $ for some $ m \in M $. Hence $ h_0\br{xb} = xm $ for all $ x \in I $. So we can safely define $ h_0^+\br{b} = m $. Now $ \br{L_0 + Rb, h_0^+} \in X $, and $ \br{L_0, h_0} < \br{L_0 + Rb, h_0^+} $, which contradicts the maximality of $ \br{L_0, h_0} $. Hence $ L_0 = B $, and we are done.
+\item[$ \implies $] The converse is left as an exercise. \footnote{Exercise}
+\end{itemize}
+\end{proof}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item Suppose $ R $ is a field. Then the only ideals of $ R $ are zero and $ R $. Any map $ 0 \to M $, for $ M $ an $ R $-module, can be extended to the zero map $ R \to M $. Hence any $ R $-module is injective.
+\item Let $ \ZZ $ be a module for itself. The ideals of $ \ZZ $ are $ k\ZZ $ for $ k \in \ZZ $. Define
+$$ \function[f]{k\ZZ}{\ZZ}{km}{m}. $$
+If $ k \ne 0, \pm 1 $, then $ f\br{k} = 1 $, and so $ f\br{x} \ne xm $ for $ m \in \ZZ $, since one is not divisible by $ k $ in $ \ZZ $. So Baer's criterion fails, and $ \ZZ $ is not injective. We already knew that $ \ZZ \to \QQ $ has no retraction.
+
+\pagebreak
+
+\item $ \QQ $ is injective as a $ \ZZ $-module. Suppose we have a map $ f : k\ZZ \to \QQ $. Let $ q = f\br{k} $. Then $ f\br{kt} = qt = \br{q / k}kt $. So $ f\br{x} = x\br{q / k} $ for all $ x $, so $ \QQ $ satisfies Baer's criterion.
+\end{itemize}
+\end{example}
+
 \end{document}
