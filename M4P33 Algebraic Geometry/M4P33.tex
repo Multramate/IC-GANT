@@ -354,6 +354,109 @@ We have seen that affine algebraic sets in $ \AA^n $ satisfy the following condi
 \item A finite union of affine algebraic sets is an affine algebraic set.
 \item An arbitrary intersection of affine algebraic sets is an affine algebraic set.
 \end{itemize}
-The are precisely the conditions satisfied by the closed sets in a topological space. Therefore, we can define a topological space in which the underlying set is $ \AA^n $ and closed sets are the affine algebraic sets. This is called the \textbf{Zariski topology}. For any affine algebraic set $ V \subseteq \AA^n $, we define the \textbf{Zariski topology} on $ V $ to be the subspace topology on $ V $ induced by the Zariski topology on $ \AA^n $.
+The are precisely the conditions satisfied by the closed sets in a topological space. Therefore, we can define a topological space in which the underlying set is $ \AA^n $ and closed sets are the affine algebraic sets. This is called the \textbf{Zariski topology}. This is a very different topology from the ones you are used to in analysis. In particular, it is a very long way from being Hausdorff. For any affine algebraic set $ V \subseteq \AA^n $, we define the \textbf{Zariski topology} on $ V $ to be the subspace topology on $ V $ induced by the Zariski topology on $ \AA^n $. Thus, a subset of $ V $ is Zariski closed in $ V $ if and only if it is Zariski closed in $ \AA^n $. Thus for closed sets it does not matter whether we say Zariski closed in $ V $ or Zariski closed in $ \AA^n $.
+
+\lecture{4}{Monday}{20/01/20}
+
+\begin{example*}
+The Zariski topology on $ \AA^1 $ is the same as the cofinite topology. Prove that the Zariski topology on $ \AA^1 $ is not Hausdorff. \footnote{Exercise}
+\end{example*}
+
+Thus we see that the Zariski topology has much fewer closed sets, or much fewer open sets, than for example the Euclidean topology.
+
+\begin{lemma}
+Suppose that $ k = \CC $, so there is a Euclidean topology on $ \AA_\CC^n $. If $ V $ is a Zariski closed subset of $ \AA_\CC^n $, then $ V $ is closed in the Euclidean topology, so the Euclidean topology is finer than the Zariski topology.
+\end{lemma}
+
+\begin{proof}
+Let $ f \in \CC\sbr{X_1, \dots, X_n} $ be a polynomial. It is a continuous function $ \AA_\CC^n \to \CC $ for the Euclidean topology. Since $ \cbr{0} $ is a closed subset of $ \CC $, $ \VV\br{f} = f^{-1}\br{0} $ is a closed subset of $ \AA_\CC^n $ in the Euclidean topology. We conclude by noting that intersections of closed sets are closed.
+\end{proof}
+
+\pagebreak
+
+On the other hand, for open sets Zariski open in $ V $ does not mean the same thing as Zariski open in $ \AA^n $. A Zariski open subset of $ V $ need not be Zariski open in $ \AA^n $.
+
+\begin{example*}
+Let $ V $ be the $ x $-axis in $ \AA^2 $. Then $ V \setminus \cbr{0} $ is open in $ V $, but not open in $ \AA^2 $.
+\end{example*}
+
+The open subsets of the Zariski topology are all very big. This is made precise, for $ \AA^1 $, by the following lemma.
+
+\begin{lemma}
+Prove that every pair $ U_1 $ and $ U_2 $ of non-empty open sets in $ \AA^1 $ has a non-empty intersection $ U_1 \cap U_2 $.
+\end{lemma}
+
+Hence the Zariski topology on $ \AA^1 $ is not Hausdorff. A subset of $ \AA^1 $ is dense in the Zariski topology if and only if it is infinite. At the moment, the Zariski topology is likely to seem very strange. It might also seem like, what is the point of such a strange topology? We will not use it in a very deep way, it is just a convenient language to be able to talk about open and closed sets. It does get used more seriously in the theory of schemes.
+
+\subsubsection{Connected and irreducible sets}
+
+Recall the definition of a connected topological space.
+
+\begin{definition}
+A topological space $ S $ is \textbf{connected} if it is not possible to write it as the union of two disjoint non-empty open sets. This is equivalent to, it is not possible to write $ S $ as the union of two disjoint non-empty closed sets.
+\end{definition}
+
+It is possible to talk about connectedness in the Zariski topology.
+
+\begin{example*}
+A finite set of points of size greater than one is not connected in the Zariski topology, since every subset is closed.
+\end{example*}
+
+Consider the following affine algebraic sets in $ \AA^2 $. Do they have one or two pieces? Do they have one or two pieces? I have deliberately not specified what I mean by pieces. There are multiple sensible interpretations, so there is not always a unique correct answer.
+\begin{itemize}
+\item The union of two disjoint lines $ \VV\br{X\br{X - 1}} $.
+\item The union of two intersecting lines $ \VV\br{XY} $.
+\item The hyperbola $ \VV\br{XY - 1} $.
+\end{itemize}
+
+\begin{example*}
+The union of two disjoint lines $ \VV\br{X\br{X - 1}} $ is not connected, since it unambiguously has two pieces, the two lines $ \VV\br{X} $ and $ \VV\br{X - 1} $, and each line is a non-empty closed subset.
+\end{example*}
+
+But there is a more refined notion for the Zariski topology.
+
+\begin{example*}
+The set $ \VV\br{XY} $ has more than one answer. The two axes form two pieces. It is a union of two lines, intersecting at the origin, joining them into one piece. Describe the Zariski closed subsets. \footnote{Exercise}
+\end{example*}
+
+The following notion gives us a way of formally understanding the example described.
+
+\begin{definition}
+A topological space $ S $ is \textbf{reducible} if it is empty, or there exist closed sets $ S_1, S_2 \subseteq S $ such that $ S = S_1 \cup S_2 $, and neither $ S_1 $ nor $ S_2 $ is equal to $ S $. A topological space $ S $ is \textbf{irreducible} if it is non-empty and it is not possible to write it as the union $ S_1 \cup S_2 $ of two closed sets, unless at least one of $ S_1 $ and $ S_2 $ is equal to $ S $ itself. Compared to the second definition of connected, we no longer require $ S_1 $ and $ S_2 $ to be disjoint.
+\end{definition}
+
+This is not a very useful notion for the topological spaces we consider in analysis.
+
+\begin{example*}
+Considering the real line with the Euclidean topology, we can write it as a union of proper closed subsets,
+$$ \RR = \cbr{x \in \RR \st x \le 0} \cup \cbr{x \in \RR \st x \ge 0}. $$
+These subsets are not disjoint because they intersect at zero. Of course, there are many other ways to write $ \RR $ as a union of proper closed subsets in the usual topology. The same is true for any other Hausdorff space.
+\end{example*}
+
+\pagebreak
+
+\begin{example*}
+The drawing of $ \VV\br{XY - 1} $ in $ \RR^2 $ is misleading. It looks like it has two pieces, but, as mentioned before, we are missing a lot by only looking at real solutions. For algebraic geometry, we need to look at complex solutions, and then over $ \CC $ it unambiguously has one piece. One way to visualise this is to note that, if we project down to the $ x $ coordinate, $ \VV\br{XY - 1} $ looks like the set $ \AA^1 \setminus \cbr{0} $. This is not a formal statement. We have not yet defined a notion of isomorphism of affine algebraic sets, and even if we had, $ \AA^1 \setminus \cbr{0} $ is not an affine algebraic set. In a few weeks we will develop technology to make this into a rigorous statement. But for now we use it as a heuristic. Then $ \RR \setminus \cbr{0} $ unambiguously has two pieces, but $ \CC \setminus \cbr{0} $ is connected in the usual analytic topology on $ \CC $ and unambiguously has one piece. So the hyperbola, over an algebraically closed field, should have only one piece.
+\end{example*}
+
+We prove below in the lecture that $ \VV\br{XY - 1} $ is irreducible, and also connected.
+
+\begin{lemma}
+The hyperbola $ H = \VV\br{XY - 1} $ is irreducible.
+\end{lemma}
+
+\begin{proof}
+We need to describe the Zariski closed subsets of $ H $. So let $ V \subseteq H $ be a proper Zariski closed subset. Since $ V \ne H $ there must be some polynomial $ f \in k\sbr{X, Y} $ which vanishes on $ V $ but does not vanish on all of $ H $. Because $ V \subseteq H $ and $ y = 1 / x $ on $ H $, we have $ f\br{x, y} = f\br{x, 1 / x} $ when $ \br{x, y} \in V $. Now $ f\br{X, 1 / X} $ is almost a polynomial in the single variable $ X $, except that it may contain negative powers of $ X $, so
+$$ f\br{X, \dfrac{1}{X}} = \sum_{n \in \ZZ} a_nX^n. $$
+We can multiply up by $ X^m $ where $ -m $ is the lowest exponent of $ X $ which appears in this expression. Then $ X^mf\br{X, 1 / X} $ is a polynomial in $ X $, which vanishes on $ V $. Furthermore $ f\br{X, 1 / X} $ is not identically zero because $ f $ does not vanish identically on $ H $. Hence $ X^mf\br{X, 1 / X} $ is a non-zero single-variable polynomial, therefore it has only finitely many roots. The roots of $ X^mf\br{X, 1 / X} = 0 $ are the possible $ x $ coordinates for points in $ V $. For each value of $ x $, there is at most one possible $ y $ such that $ \br{x, y} \in V $ because $ y = 1 / x $ on $ V $. Therefore $ V $ is finite. Thus we have shown that all proper Zariski closed subsets of $ H $ are finite. In particular, if $ V_1 $ and $ V_2 $ are two proper Zariski closed subsets of $ H $, they are both finite and so their union is finite. Hence $ V_1 \cup V_2 \ne H $ so $ H $ is irreducible.
+\end{proof}
+
+Thus the Zariski topology on $ H $ is the cofinite topology. Here is a bonus fact about connected sets in the Zariski topology which I did not mention in the lecture. The proof is surprisingly hard.
+
+\begin{theorem}
+Over $ \CC $, an affine algebraic set is connected in the Zariski topology if and only if it is connected in the Euclidean topology.
+\end{theorem}
+
+If $ V $ is an affine algebraic set, what condition on the ideal $ \II\br{V} $ is equivalent to $ V $ being irreducible?
 
 \end{document}
