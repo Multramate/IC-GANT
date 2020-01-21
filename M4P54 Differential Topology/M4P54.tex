@@ -199,9 +199,8 @@ $$ \function[\d]{\Omega^p\br{M}}{\Omega^{p + 1}\br{M}}{\omega}{\sum_{\abs{I} = p
 
 \pagebreak
 
-\lecture{3}{Tuesday}{14/01/20}
-
 \begin{proposition}
+\label{prop:1.16}
 \hfill
 \begin{itemize}
 \item The Leibnitz rule
@@ -219,6 +218,8 @@ $$
 $$
 \end{itemize}
 \end{proposition}
+
+\lecture{3}{Tuesday}{14/01/20}
 
 \begin{definition}
 \hfill
@@ -238,33 +239,25 @@ Locally, assume $ \omega = f \d y_1 \wedge \dots \wedge \d y_n $ for some coordi
 $$ h_{\alpha\beta} = \phi_\beta \circ \phi_\alpha^{-1} : \phi_\alpha\br{U_\alpha \cap U_\beta} \subset \RR^n \to \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR^n, $$
 such that
 $$ h_{\alpha\beta}^*\br{\omega}\br{x} = \br{f \circ h_{\alpha\beta}}\br{x}\det \br{\D h_{\alpha\beta}}_x \d x_1 \wedge \dots \wedge \d x_n. $$
-Let $ D \subset \RR^n $ be compact such that $ \partial D $ has zero measure, so $ D $ is a domain of integration, let $ f : U \to \RR $ be a $ \C^\infty $-function where $ U \subset \RR^n $ is open such that $ D \subset U $, and let $ h : U \to h\br{U} \subset \RR^n $ be a diffeomorphism. Then
+Let $ D \subset \RR^n $ be compact such that $ \partial D $ has zero measure, so $ D $ is a domain of integration, let $ f : U \to \RR $ be a $ \C^\infty $-function where $ U \subset \RR^n $ is open such that $ D \subset U $, and let $ h : U \to h\br{U} $ be a diffeomorphism. Then
 $$ \intd{h^{-1}\br{D}}{}{f\br{y}}{y_1 \dots \d y_n} = \intd{h^{-1}\br{D}}{}{f\br{y}}{y_1 \wedge \dots \wedge \d y_n} = \intd{D}{}{\br{f \circ h}\br{x}\abs{\det \D h_x}}{x_1 \wedge \dots \wedge \d x_n}. $$
-
-\begin{definition}
 Let us assume that $ \omega = f\br{y}\d y_1 \wedge \dots \wedge \d y_n $ on $ U $. We define
 $$ \int_D \omega = \intd{D}{}{f\br{y}}{y_1 \wedge \dots \wedge \d y_n}, \qquad D \subset U. $$
-\end{definition}
 
 \begin{definition}
 Let $ U \subset \RR^n $ be an open set. We define the \textbf{support} of $ \omega $ as
 $$ \supp \omega = \overline{\cbr{x \in U \st \omega\br{x} \ne 0}}, \qquad \omega\br{x} \in \Lambda^p\T_x^*U. $$
-Then $ \omega $ has \textbf{compact support}, if $ \supp \omega $ is compact. For all $ p \ge 0 $,
-$$ \Omega_\c^p\br{M} = \cbr{\omega \in \Omega^p\br{M} \st \supp M \ \text{is compact}}. $$
+Then $ \omega $ has \textbf{compact support}, if $ \supp \omega $ is compact.
 \end{definition}
 
+\begin{fact*}
 Under this assumption, we can define
 $$ \int_U \omega = \int_D \omega \in \RR, $$
-which is well-defined.
-
-\pagebreak
-
-\begin{fact*}
-Under the same assumption, if $ \phi : V \to U $ is a diffeomorphism, provided that $ \det \D\phi_x > 0 $, since $ \det \D\phi_x \ne 0 $ for all $ x $, then
+which is well-defined. Under the same assumption, if $ \phi : V \to U $ is a diffeomorphism, provided that $ \det \D\phi_x > 0 $, since $ \det \D\phi_x \ne 0 $ for all $ x $, then
 $$ \int_U \omega = \int_V \phi^*\br{\omega}. $$
 \end{fact*}
 
-\subsubsection{Orientation}
+\pagebreak
 
 Let $ V $ be a vector space over $ \RR $ of dimension $ n $, and let $ B = \br{b_1, \dots, b_n} \subset V $ and $ B' = \br{b_1', \dots, b_n'} \subset V $ be ordered bases of $ V $. Then $ B $ and $ B' $ have the \textbf{same orientation} if $ \det T > 0 $ where
 $$ \function[T]{V}{V}{b_i}{b_i'} $$
@@ -277,44 +270,42 @@ Let $ V = \RR^n $, and let $ e_i = \br{0, \dots, 0, 1, 0, \dots, 0} $. Then $ e_
 Let $ M $ be a manifold. The idea is to find an orientation $ \Lambda_x $ of $ \T_xM $ for all $ x \in M $.
 \begin{itemize}[leftmargin=1in]
 \item[Special case.] Let $ M = U \subset \RR^n $ be open. There exists a natural isomorphism $ \phi_x : \T_xU \to \RR^n $. Let $ \Lambda_x^+ $ be an orientation on $ \T_xU $ such that $ \phi_x $ is orientation preserving with respect to the positive orientation on $ \RR^n $. Let $ \Lambda^+ = \cbr{\Lambda_x^+} $.
-\item[General case.] Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas on $ M $. On $ U_\alpha $, we define the orientation so that
-$$ \br{\D\phi_\alpha}_x : \T_xU_\alpha \to \T_{\phi_\alpha\br{x}}\phi_\alpha\br{U} \subset \RR^n $$
-is orientation preserving. This is called the positive orientation on the chart $ \br{U_\alpha, \phi_\alpha} $. We define $ \Lambda $ on $ M $, which is a collection of $ \Lambda^+ $ on $ \T_xM $ for all $ x \in M $. Then $ M $ is \textbf{orientable} if there exists an atlas with positive orientation charts. This coincides in assuming that
-$$ \det \D\br{\phi_\beta^{-1} \circ \phi_\alpha} > 0, $$
-for all $ \alpha $ and $ \beta $.
+\item[General case.] Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas on $ M $. On $ U_\alpha $, we define the orientation so that $ \br{\D\phi_\alpha}_x : \T_xU_\alpha \to \T_{\phi_\alpha\br{x}}\phi_\alpha\br{U} \subset \RR^n $ is orientation preserving. This is called the positive orientation on the chart $ \br{U_\alpha, \phi_\alpha} $. We define $ \Lambda $ on $ M $, which is a collection of $ \Lambda^+ $ on $ \T_xM $ for all $ x \in M $. Then $ M $ is \textbf{orientable} if there exists an atlas with positive orientation charts. This coincides in assuming that $ \det \D\br{\phi_\beta^{-1} \circ \phi_\alpha} > 0 $ for all $ \alpha $ and $ \beta $.
 \end{itemize}
 
 \lecture{4}{Thursday}{16/01/20}
 
-If $ M $ is compact $ \Omega_\c^p\br{M} = \Omega^p\br{M} $. Let $ \omega \in \Omega_\c^r\br{M} $. Assume $ \supp \omega \subset U $ where $ \br{U, \phi} $ is a chart of $ M $, and $ \phi : U \to \phi\br{U} \subset \RR^n $. Assume also that $ \br{U, \phi} $ is positively oriented. Let $ \phi^{-1} : \phi\br{U} \to U $ such that $ \br{\phi^{-1}}^*\br{\omega} \in \Omega_\c^n\br{\phi\br{U}} $, that is $ \supp \br{\phi^{-1}}^*\br{\omega} \subset \phi\br{U} $. We define
+For all $ p \ge 0 $,
+$$ \Omega_\c^p\br{M} = \cbr{\omega \in \Omega^p\br{M} \st \supp M \ \text{is compact}}. $$
+If $ M $ is compact $ \Omega_\c^p\br{M} = \Omega^p\br{M} $.
+
+\begin{definition}
+Let $ \omega \in \Omega_\c^r\br{M} $. Assume $ \supp \omega \subset U $ where $ \br{U, \phi} $ is a chart of $ M $, and $ \phi : U \to \phi\br{U} \subset \RR^n $. Assume also that $ \br{U, \phi} $ is positively oriented. Let $ \phi^{-1} : \phi\br{U} \to U $ such that $ \br{\phi^{-1}}^*\br{\omega} \in \Omega_\c^n\br{\phi\br{U}} $, that is $ \supp \br{\phi^{-1}}^*\br{\omega} \subset \phi\br{U} $. We define
 $$ \int_M \omega = \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega}. $$
+\end{definition}
+
 We need to show that, under the assumptions above, $ \int_M \omega $ does not depend on $ \br{U, \phi} $. Let $ \br{\overline{U}, \overline{\phi}} $ be also a positively oriented chart such that $ \supp \omega \subset \overline{U} $. We want to show that
 $$ \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega} = \int_{\overline{\phi}\br{\overline{U}}} \br{\overline{\phi}^{-1}}^*\br{\omega}. $$
-Let
-$$ \overline{\phi} \circ \phi^{-1} : \phi\br{U \cap \overline{U}} \to \overline{\phi}\br{U \cap \overline{U}}, $$
-so
+Let $ \overline{\phi} \circ \phi^{-1} : \phi\br{U \cap \overline{U}} \to \overline{\phi}\br{U \cap \overline{U}} $, so
 $$
 \begin{tikzcd}
 & U \cap \overline{U} \arrow[swap]{dl}{\phi} \arrow{dr}{\overline{\phi}} & \\
 \RR^n \supset \phi\br{U \cap \overline{U}} \arrow[swap]{rr}{\overline{\phi} \circ \phi^{-1}} & & \overline{\phi}\br{U \cap \overline{U}} \subset \RR^n
 \end{tikzcd}.
 $$
-
-\pagebreak
-
 Since both charts are positively oriented the determinant of the differential $ \D\br{\overline{\phi} \circ \phi^{-1}} $ is positive, so
 \begin{align*}
 \int_{\overline{\phi}\br{U}} \br{\overline{\phi}^{-1}}^*\br{\omega}
 & = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi}^{-1}}^*\br{\omega}
 = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi} \circ \phi^{-1}}^*\br{\overline{\phi}^{-1}}^*\br{\omega}
 = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\overline{\phi}^*\br{\overline{\phi}^{-1}}^*\br{\omega} \\
-& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^* \circ \br{\overline{\phi}^{-1}\overline{\phi}}^*\br{\omega}
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\br{\overline{\phi}^{-1} \circ \overline{\phi}}^*\br{\omega}
 = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\br{\omega}
 = \int_{\overline{\phi}\br{U}} \br{\phi^{-1}}^*\br{\omega},
 \end{align*}
 by a property of the pull-back and since $ \br{\overline{\phi}^{-1}}^*\br{\omega} = 0 $ outside $ \overline{\phi}\br{U \cap \overline{U}} $.
 
-\subsubsection{Partitions of unity}
+\pagebreak
 
 Let $ M $ be a manifold, and let $ U = \cbr{U_\alpha} $ be an open covering. A \textbf{partition of unity} with respect to $ U $ is a collection of smooth functions $ f_\alpha : M \to \sbr{0, 1} $ such that
 \begin{enumerate}
@@ -347,22 +338,22 @@ We omit the proof.
 Let $ M $ be a manifold, and let $ n = \dim M $. Then $ M $ is orientable if and only if there exists $ \omega \in \Omega^n\br{M} $ which is never vanishing on $ M $, so $ \omega\br{x} \ne 0 $ for all $ x \in M $.
 \end{theorem}
 
-\begin{definition}
 $ \omega $ is called a \textbf{volume form} on $ M $.
-\end{definition}
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \impliedby $] Assume $ \omega \in \Omega^n\br{M} $ is a volume form. We want to construct an orientation $ \Lambda $ on $ M $, that is $ \Lambda_x $ on $ \T_xM $ for all $ x \in M $. Given an oriented basis $ v_1, \dots, v_n $ of $ \T_xM $ we say that it is \textbf{positively oriented} if $ \omega\br{x}\br{v_1, \dots, v_n} > 0 $. For all $ x \in M $, we define the orientation $ \Lambda_x $ on $ \T_xM $ by considering the class of positively oriented ordered basis of $ \T_xM $ which is compatible with the choice of an atlas on $ M $. Take any atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $, where $ \phi_\alpha : U_\alpha \to \RR^n $. On $ U_\alpha $, $ \omega = g_\alpha\phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n} $. Since $ \omega \ne 0 $, $ g_\alpha > 0 $ or $ g_\alpha < 0 $. If $ g_\alpha < 0 $ then switch $ x_1 $ with $ x_2 $, so $ g_\alpha > 0 $. After this change of coordinates, $ \br{U_\alpha, \phi_\alpha} $ is positively oriented, so $ M $ is orientable.
+\item[$ \impliedby $] Assume $ \omega \in \Omega^n\br{M} $ is a volume form. We want to construct an orientation $ \Lambda $ on $ M $, that is $ \Lambda_x $ on $ \T_xM $ for all $ x \in M $. Given an oriented basis $ v_1, \dots, v_n $ of $ \T_xM $ we say that it is \textbf{positively oriented} if $ \omega\br{x}\br{v_1, \dots, v_n} > 0 $. For all $ x \in M $, we define the orientation $ \Lambda_x $ on $ \T_xM $ by considering the class of positively oriented ordered basis of $ \T_xM $ which is compatible with the choice of an atlas on $ M $. Take any atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $, where $ \phi_\alpha : U_\alpha \to \RR^n $. On $ U_\alpha $,
+$$ \omega = g_\alpha\phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n}. $$
+Since $ \omega \ne 0 $, $ g_\alpha > 0 $ or $ g_\alpha < 0 $. If $ g_\alpha < 0 $ then switch $ x_1 $ with $ x_2 $, so $ g_\alpha > 0 $. After this change of coordinates, $ \br{U_\alpha, \phi_\alpha} $ is positively oriented, so $ M $ is orientable.
 
 \lecture{5}{Monday}{20/01/20}
 
-\item[$ \implies $] Assume that $ M $ is orientable, that is there exists an atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $ of positively oriented charts. On $ U_\alpha $, we consider $ \omega_\alpha = \phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n} $. Let $ f_\alpha $ be a partition of unity with respect to $ \cbr{U_\alpha} $. Let $ \widetilde{\omega_\alpha} = f_\alpha\omega_\alpha \in \Omega^n\br{U_\alpha} $. We may assume that $ \widetilde{\omega_\alpha} \in \Omega^n\br{M} $ by extending equal to zero outside $ U_\alpha $. We define $ \omega = \sum_\alpha \widetilde{\omega_\alpha} \in \Omega^n\br{M} $. For all $ \alpha $, since $ \sum_\alpha f_\alpha = 1 $ there exists $ \alpha $ such that $ \widetilde{\omega_\alpha} \ne 0 $, so $ \omega \ne 0 $.
+\item[$ \implies $] Assume that $ M $ is orientable, that is there exists an atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $ of positively oriented charts. On $ U_\alpha $, we consider
+$$ \omega_\alpha = \phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n}. $$
+Let $ f_\alpha $ be a partition of unity with respect to $ \cbr{U_\alpha} $. Let $ \widetilde{\omega_\alpha} = f_\alpha\omega_\alpha \in \Omega^n\br{U_\alpha} $. We may assume that $ \widetilde{\omega_\alpha} \in \Omega^n\br{M} $ by extending equal to zero outside $ U_\alpha $. We define $ \omega = \sum_\alpha \widetilde{\omega_\alpha} \in \Omega^n\br{M} $. For all $ \alpha $, since $ \sum_\alpha f_\alpha = 1 $ there exists $ \alpha $ such that $ \widetilde{\omega_\alpha} \ne 0 $, so $ \omega \ne 0 $.
 \end{itemize}
 \end{proof}
-
-\pagebreak
 
 Let $ M $ be an orientable manifold of dimension $ n $, and let $ \omega \in \Omega_\c^n\br{M} $. We want to define $ \int_M \omega $. So far we defined for $ \omega $ such that $ \supp \omega \subset U_\alpha $ where $ \br{U_\alpha, \phi_\alpha} $ is a chart.
 
@@ -371,12 +362,16 @@ Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be a positively oriented atlas on $ M $
 $$ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega. $$
 \end{definition}
 
+\pagebreak
+
 \begin{lemma}
 $ \int_M \omega $ does not depend on $ \cbr{\br{U_\alpha, \phi_\alpha}} $ and $ f_\alpha $.
 \end{lemma}
 
 \begin{proof}
-Under the assumption that $ \supp \omega \subset U_\alpha $ then we showed $ \int_{U_\alpha} \omega $ does not depend on $ \br{U_\alpha, \phi_\alpha} $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ and $ \cbr{\br{\overline{U_\alpha}, \overline{\phi_\alpha}}} $ be two atlases with positively oriented charts, and let $ f_\alpha $ and $ \overline{f_\alpha} $ be two partitions of unity with respect to $ \cbr{U_\alpha} $ and $ \cbr{\overline{U_\alpha}} $ respectively. Then $ \sum_\alpha f_\alpha = \sum_\alpha \overline{f_\alpha} = 1 $, so $ \int_M f_\alpha\omega = \sum_\beta \int_M \overline{f_\beta}f_\alpha\omega $. Thus
+Under the assumption that $ \supp \omega \subset U_\alpha $ then we showed $ \int_{U_\alpha} \omega $ does not depend on $ \br{U_\alpha, \phi_\alpha} $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ and $ \cbr{\br{\overline{U_\alpha}, \overline{\phi_\alpha}}} $ be two atlases with positively oriented charts, and let $ f_\alpha $ and $ \overline{f_\alpha} $ be two partitions of unity with respect to $ \cbr{U_\alpha} $ and $ \cbr{\overline{U_\alpha}} $ respectively. Then $ \sum_\alpha f_\alpha = \sum_\alpha \overline{f_\alpha} = 1 $, so
+$$ \int_M f_\alpha\omega = \sum_\beta \int_M \overline{f_\beta}f_\alpha\omega. $$
+Thus
 $$ \int_M \omega = \sum_\alpha \int_M f_\alpha\omega = \sum_{\alpha, \beta} \int_M \overline{f_\beta}f_\alpha\omega = \sum_\beta \int_M \sum_\alpha f_\alpha\overline{f_\beta}\omega = \sum_\beta \int_M \overline{f_\beta}\omega. $$
 \end{proof}
 
@@ -399,18 +394,114 @@ $$ \int_M \omega = \int_N F^*\br{\omega}. $$
 \begin{enumerate}
 \item Exercise. \footnote{Exercise}
 \item Exercise. \footnote{Exercise}
-\item Choose a positively oriented chart $ \br{U_\alpha, \phi_\alpha} $ on $ U_\alpha $, so $ \omega = g_\alpha\phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n} $ where $ g_\alpha > 0 $. Then $ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega $ where $ f_\alpha $ is a partition of unity. For all $ x \in M $ there exists $ \alpha $ such that $ x \in U_\alpha $ and $ \int_{U_\alpha} f_\alpha\omega > 0 $, so $ \int_M \omega > 0 $.
+\item Choose a positively oriented chart $ \br{U_\alpha, \phi_\alpha} $ on $ U_\alpha $, so
+$$ \omega = g_\alpha\phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n}, \qquad g_\alpha > 0. $$
+Then $ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega $ where $ f_\alpha $ is a partition of unity. For all $ x \in M $ there exists $ \alpha $ such that $ x \in U_\alpha $ and $ \int_{U_\alpha} f_\alpha\omega > 0 $, so $ \int_M \omega > 0 $.
 \item Let $ \br{U_\alpha, \phi_\alpha} $ be a positively oriented atlas on $ M $. Then $ \br{F^{-1}\br{U_\alpha}, \phi_\alpha \circ F} $ is an atlas on $ N $ which is positively oriented. Let $ f_\alpha $ be a partition of unity with respect to $ \cbr{U_\alpha} $. Then $ f_\alpha \circ F $ is a partition of the unity with respect to $ \cbr{F^{-1}\br{U_\alpha}} $, so
 $$ \int_N F^*\br{\omega} = \sum_\alpha \int_N \br{f_\alpha \circ F}F^*\br{\omega} = \sum_\alpha \int_N F^*\br{f_\alpha\omega} = \sum_\alpha \int_M f_\alpha\omega = \int_M \omega. $$
 \end{enumerate}
 \end{proof}
 
-\subsubsection{Manifolds with boundary}
+\pagebreak
+
+\subsection{Manifolds with boundary}
 
 \begin{notation}
 $$ \RR_{\ge 0}^n = \br{\RR_{\ge 0}}^n, \qquad \RR_+^n = \cbr{\br{x_1, \dots, x_n} \in \RR^n \st x_n \ge 0}. $$
 \end{notation}
 
 Let $ U \subset \RR_+^n $ be open, and let $ F : U \to \RR^m $ be a function. Then $ F $ is $ \C^\infty $ if it can be extended to a $ \C^\infty $-function $ \widetilde{F} : \widetilde{U} \to \RR^m $ where $ \widetilde{U} \supset U $ and $ \widetilde{U} $ is open.
+
+\lecture{6}{Tuesday}{21/01/20}
+
+\begin{definition}
+A \textbf{manifold with boundary} of dimension $ n $ is a Hausdorff topological space $ M $ such that there exists an open covering $ \cbr{U_\alpha} $, and for all $ \alpha $, there exists a homeomorphism $ \phi_\alpha : U_\alpha \to \RR_+^n = \RR^{n - 1} \times \RR_{\ge 0} $ such that for all $ \alpha $ and $ \beta $,
+$$ \phi_\alpha \circ \phi_\beta^{-1} : \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR_+^n \to \phi_\alpha\br{U_\alpha \cap U_\beta} \subset \RR_+^n $$
+is a diffeomorphism, so
+$$
+\begin{tikzcd}
+& U_\alpha \cap U_\beta \arrow[swap]{dl}{\phi_\alpha} \arrow{dr}{\phi_\beta} & \\
+\RR_+^n \supset \phi_\alpha\br{U_\alpha \cap U_\beta} \arrow[swap]{rr}{\phi_\alpha \circ \phi_\beta^{-1}} & & \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR_+^n
+\end{tikzcd}.
+$$
+\end{definition}
+
+\begin{definition}
+The \textbf{boundary} of $ M $ is
+$$ \partial M = \cbr{x \in M \st \exists \alpha, \ \phi_\alpha\br{x} \in \partial\RR_+^n = \RR^{n - 1} \times \cbr{0}}. $$
+Then $ \br{U_\alpha, \phi_\alpha} $ is called a \textbf{chart} and $ \cbr{\br{U_\alpha, \phi_\alpha}} $ is called an \textbf{atlas}.
+\end{definition}
+
+\begin{remark*}
+\hfill
+\begin{itemize}
+\item $ \partial M $ is closed in $ M $.
+\item $ \mathring{M} = M \setminus \partial M $ is a manifold of dimension $ n $.
+\end{itemize}
+\end{remark*}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item $ M = \sbr{0, 1} $ is a manifold with boundary $ \partial M = \cbr{0, 1} $.
+\item The closed disc $ \D = \cbr{x \in \RR^n \st \abs{x} \le 1} $ is a manifold with boundary $ \partial\D = \S^{n - 1} $.
+\item $ M = \sbr{0, 1} \times \S^1 $ is a manifold with boundary $ \partial M = \S^1 \sqcup \S^1 $.
+\end{itemize}
+\end{example}
+
+\begin{remark}
+\hfill
+\begin{itemize}
+\item We can define tangent spaces and differential forms exactly in the same way as usual manifolds.
+\item The definition of orientability is the same. If $ M $ is orientable, then $ \partial M $ is also orientable. As a convention, the positive orientation on the boundary of $ \RR_+^n = \RR^{n - 1} \times \cbr{0} $ is given by $ \br{-1}^n \d x_1 \wedge \dots \wedge \d x_{n - 1} $. This induces a positive orientation on $ \partial M $.
+\item Also partitions of unity for any open cover $ U_\alpha $ of $ M $ is defined the same way. If $ M $ is orientable, for any manifold with boundary, for all open covering $ U = \cbr{U_\alpha} $, there exists a partition of unity $ f_\alpha $. This implies that if $ \omega \in \Omega_\c^n\br{M} $, then $ \int_M \omega $ is defined the same way for manifolds.
+\end{itemize}
+\end{remark}
+
+\subsection{Stokes' theorem}
+
+\begin{theorem}[Stokes]
+For any manifold with boundary $ M $ of dimension $ n $, and for any $ \omega \in \Omega_\c^{n - 1}\br{M} $ we have
+$$ \intd{M}{}{}{\omega} = \int_{\partial M} \omega \in \Omega_\c^n\br{M}. $$
+\end{theorem}
+
+\pagebreak
+
+\begin{proof}
+Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas, and let $ f_\alpha : M \to \RR $ be a partition of unity with respect to this cover. Then $ \sum_\alpha f_\alpha = 1 $ on $ M $, so
+$$ \intd{M}{}{}{\omega} = \intd{M}{}{}{\br{\sum_\alpha f_\alpha\omega}} = \sum_\alpha \intd{M}{}{}{\br{f_\alpha\omega}} = \sum_\alpha \int_{\phi_\alpha\br{U_\alpha}} \br{\phi_\alpha^{-1}}^*\br{\d\br{f_\alpha\omega}}. $$
+Proposition \ref{prop:1.16} implies that
+$$ \br{\phi_\alpha^{-1}}^*\br{\d\br{f_\alpha\omega}} = \d\br{\br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega}}. $$
+Then $ \br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega} $ is an $ \br{n - 1} $-form on $ \phi_\alpha\br{U_\alpha} $. In coordinates,
+$$ \br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega} = \sum_{j = 1}^n \widetilde{f_\alpha}\omega_j \d x_1 \wedge \dots \wedge \widehat{\d x_j} \wedge \dots \wedge \d x_n, $$
+where $ \omega_j $ is a smooth function on $ \phi_\alpha\br{U_\alpha} $ and
+$$
+\begin{tikzcd}
+U_\alpha \arrow{r}{\widetilde{\phi_\alpha}} \arrow[swap]{d}{f_\alpha} & \phi_\alpha\br{U_\alpha} \arrow{dl}{\widetilde{f_\alpha}} \\
+\sbr{0, 1} &
+\end{tikzcd}.
+$$
+Then
+\begin{align*}
+\d\br{\br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega}}
+& = \d\br{\sum_{j = 1}^n \widetilde{f_\alpha}\omega_j \d x_1 \wedge \dots \wedge \widehat{\d x_j} \wedge \dots \wedge \d x_n} \\
+& = \sum_{j = 1}^n \sum_{k = 1}^n \dpd{}{x_k}\br{\widetilde{f_\alpha}\omega_j} \d x_k \wedge \d x_1 \wedge \dots \wedge \widehat{\d x_j} \wedge \dots \wedge \d x_n \\
+& = \sum_{j = 1}^n \dpd{}{x_j}\br{\widetilde{f_\alpha}\omega_j} \d x_j \wedge \d x_1 \wedge \dots \wedge \widehat{\d x_j} \wedge \dots \wedge \d x_n \\
+& = \sum_{j = 1}^n \br{-1}^{j - 1}\dpd{}{x_j}\br{\widetilde{f_\alpha}\omega_j} \d x_1 \wedge \dots \wedge \d x_n,
+\end{align*}
+so
+$$ \sum_\alpha \intd{\phi_\alpha\br{U_\alpha}}{}{}{\br{\br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega}}} = \sum_\alpha \intd{\RR_+^n}{}{}{\br{\br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega}}}, $$
+because $ \widetilde{f_\alpha} = 0 $ outside $ \phi_\alpha\br{U_\alpha} $. Thus
+\begin{align*}
+\intd{M}{}{}{\omega}
+& = \sum_\alpha \intd{\RR_+^n}{}{\sum_{j = 1}^n \br{-1}^{j - 1}\dpd{}{x_j}\br{\widetilde{f_\alpha}\omega_j}}{x_1 \wedge \dots \wedge \d x_n} \\
+& = \sum_\alpha \intd{-\infty}{\infty}{\dots \intd{-\infty}{\infty}{\intd{0}{\infty}{\sum_{j = 1}^n \br{-1}^{j - 1}\dpd{}{x_j}\br{\widetilde{f_\alpha}\omega_j}}{x_n}}{x_{n - 1} \dots}}{x_1} \\
+& = \sum_\alpha \sum_{j = 1}^n \intd{-\infty}{\infty}{\dots \widehat{\int_{-\infty}^\infty} \dots \intd{-\infty}{\infty}{\intd{0}{\infty}{\br{-1}^{j - 1}\dpd{}{x_j}\eval{\br{\widetilde{f_\alpha}\omega_j}}_{x_n = 0}}{x_n}}{x_{n - 1} \dots \widehat{\d x_j} \dots}}{x_1} \\
+& = \sum_\alpha \intd{-\infty}{\infty}{\dots \intd{-\infty}{\infty}{\br{-1}^{n - 1}\eval{\br{\widetilde{f_\alpha}\omega_j}}_{x_n = 0}}{x_{n - 1} \dots}}{x_1},
+\end{align*}
+since $ \eval{\br{f_\alpha\omega_j}}_{x_n = 0} = 0 $ for $ j = 1, \dots, n - 1 $, so
+$$ \intd{M}{}{}{\omega} = \sum_\alpha \intd{-\infty}{\infty}{\dots \intd{-\infty}{\infty}{\br{-1}^{n - 1}\eval{\br{\widetilde{f_\alpha}\omega_j}}_{x_n = 0}}{x_{n - 1} \dots}}{x_1} = \sum_\alpha \int_{\partial U_\alpha} \eval{f_\alpha}_{\partial U_\alpha}\omega = \int_{\partial M} \omega, $$
+where $ \partial U_\alpha = U_\alpha \cap \partial M $.
+\end{proof}
 
 \end{document}
