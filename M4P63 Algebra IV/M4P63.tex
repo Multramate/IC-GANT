@@ -372,9 +372,7 @@ Note that $ X \ne \emptyset $ since $ \br{\Im \alpha, f \circ \alpha^{-1}} $ is 
 $$ \function[h]{L}{M}{l}{h_s\br{l}}, \qquad l \in L_s. $$
 This does not depend on the choice of $ s $. Then $ \br{L, h} $ is an upper bound for the chain $ \cbr{\br{L_s, h_s} \st s \in S} $. Hence $ X $ has a maximal element, $ \br{L_0, h_0} $. We want to show that $ L_0 = B $. Then we may set $ g = h_0 $. Suppose that $ L_0 \ne B $. Let $ b \in B \setminus L_0 $. Note that $ Rb \le B $. Consider
 $$ L_0 + Rb = \cbr{l + rb \st l \in L_0, \ r \in R} \le B. $$
-We would like to extend $ h_0 $ to $ h_0^+ $ by specifying an image for $ h_0^+\br{b} $. The problem is that $ Rb \cap L_0 $ may not be $ \cbr{0} $, and if $ rb \in L_0 $ then we require $ rh_0^+\br{b} = h_0\br{rb} $, otherwise $ h_0^+ $ will not be well-defined. Note that
-$$ I = \cbr{r \in R \st rb \in L_0} $$
-is a left ideal for $ R $. Suppose that $ M $ has the condition from Baer's criterion, so every map $ I \to M $ has the form $ x \mapsto xm $ for some $ m \in M $. Note that $ \cbr{xb \st x \in I} $ is a submodule of $ L_0 $. Define a map
+We would like to extend $ h_0 $ to $ h_0^+ $ by specifying an image for $ h_0^+\br{b} $. The problem is that $ Rb \cap L_0 $ may not be $ \cbr{0} $, and if $ rb \in L_0 $ then we require $ rh_0^+\br{b} = h_0\br{rb} $, otherwise $ h_0^+ $ will not be well-defined. Note that $ I = \cbr{r \in R \st rb \in L_0} $ is a left ideal for $ R $. Suppose that $ M $ has the condition from Baer's criterion, so every map $ I \to M $ has the form $ x \mapsto xm $ for some $ m \in M $. Note that $ \cbr{xb \st x \in I} $ is a submodule of $ L_0 $. Define a map
 $$ \function[\delta]{I}{M}{x}{h_0\br{xb}}. $$
 This is an $ R $-module homomorphism. So $ \delta\br{x} = xm $ for some $ m \in M $. Hence $ h_0\br{xb} = xm $ for all $ x \in I $. So we can safely define $ h_0^+\br{b} = m $. Now $ \br{L_0 + Rb, h_0^+} \in X $, and $ \br{L_0, h_0} < \br{L_0 + Rb, h_0^+} $, which contradicts the maximality of $ \br{L_0, h_0} $. Hence $ L_0 = B $, and we are done.
 \item[$ \implies $] The converse is left as an exercise. \footnote{Exercise}
@@ -388,11 +386,77 @@ This is an $ R $-module homomorphism. So $ \delta\br{x} = xm $ for some $ m \in 
 \item Let $ \ZZ $ be a module for itself. The ideals of $ \ZZ $ are $ k\ZZ $ for $ k \in \ZZ $. Define
 $$ \function[f]{k\ZZ}{\ZZ}{km}{m}. $$
 If $ k \ne 0, \pm 1 $, then $ f\br{k} = 1 $, and so $ f\br{x} \ne xm $ for $ m \in \ZZ $, since one is not divisible by $ k $ in $ \ZZ $. So Baer's criterion fails, and $ \ZZ $ is not injective. We already knew that $ \ZZ \to \QQ $ has no retraction.
-
-\pagebreak
-
 \item $ \QQ $ is injective as a $ \ZZ $-module. Suppose we have a map $ f : k\ZZ \to \QQ $. Let $ q = f\br{k} $. Then $ f\br{kt} = qt = \br{q / k}kt $. So $ f\br{x} = x\br{q / k} $ for all $ x $, so $ \QQ $ satisfies Baer's criterion.
 \end{itemize}
 \end{example}
+
+\pagebreak
+
+\subsection{Hom}
+
+\lecture{6}{Tuesday}{21/01/20}
+
+Let $ A $ and $ B $ be two $ R $-modules.
+
+\begin{definition}
+Define
+$$ \Hom_R\br{A, B} = \cbr{\text{$ R $-module homomorphisms} \ A \to B}. $$
+\end{definition}
+
+We can define a natural addition on $ \Hom_R\br{A, B} $ by defining $ f_1 + f_2 $ by
+$$ \br{f_1 + f_2}\br{a} = f_1\br{a} + f_2\br{b}, \qquad f_1, f_2 \in \Hom_R\br{A, B}. $$
+This gives $ \Hom_R\br{A, B} $ the structure of an abelian group. Why does $ \Hom_R\br{A, B} $ not carry an $ R $-module structure in general? The only obvious candidate for $ rf $ is
+$$ \br{rf}\br{a} = rf\br{a} = f\br{ra}, \qquad r \in R, \qquad f \in \Hom_R\br{A, B}. $$
+Now suppose $ s \in R $. We have $ \br{rf}\br{sa} = rf\br{sa} = rsf\br{a} $. But for $ rf $ to be a homomorphism, we would need $ \br{rf}\br{sa} = s\br{rf}\br{a} = srf\br{a} $. If $ R $ is non-commutative, then $ rs $ may not be $ sr $, and so $ rf $ is not an $ R $-module homomorphism in general. Clearly, however, if $ R $ is commutative then $ rf $ is an $ R $-module homomorphism, and $ \Hom_R\br{A, B} $ has an $ R $-module structure. The following are observations.
+
+\begin{proposition}
+Suppose $ A, A_1, A_2, B, B_1, B_2, M $ are $ R $-modules, and $ \alpha : A \to B $.
+\begin{itemize}
+\item $ \Hom_R\br{A_1 \oplus A_2, B} \cong \Hom_R\br{A_1, B} \oplus \Hom_R\br{A_2, B} $.
+\item $ \Hom_R\br{A, B_1 \oplus B_2} \cong \Hom_R\br{A, B_1} \oplus \Hom_R\br{A, B_2} $.
+\item Then we can define
+$$ \function[\alpha_*]{\Hom_R\br{M, A}}{\Hom_R\br{M, B}}{f}{\alpha \circ f}, \qquad f : M \to A. $$
+\item We can also define
+$$ \function[\alpha^*]{\Hom_R\br{B, M}}{\Hom_R\br{A, M}}{g}{g \circ \alpha}, \qquad g : B \to M. $$
+\end{itemize}
+\end{proposition}
+
+Thus Hom is a bifunctor between the category of $ R $-modules and the category of abelian groups, additive in both arguments, covariant in the second argument and contravariant in the first argument.
+\begin{itemize}
+\item Bi means Hom takes two arguments.
+\item Functor means that homomorphisms between $ R $-modules turn into abelian group homomorphisms.
+\item Covariant means the homomorphism goes in the same direction.
+\item Contravariant means the direction gets reversed.
+\item Additive in both arguments means Hom respects direct sums.
+\end{itemize}
+
+\begin{proposition}
+Suppose $ \alpha : A \to B $ is surjective. Then $ \alpha^* : \Hom_R\br{B, M} \to \Hom_R\br{A, M} $ is injective.
+\end{proposition}
+
+\begin{proof}
+Suppose $ f_1, f_2 : B \to M $ are such that $ \alpha^*\br{f_1} = \alpha^*\br{f_2} $. Then $ f_1 \circ \alpha = f_2 \circ \alpha $, so $ \br{f_1 \circ \alpha}\br{a} = \br{f_2 \circ \alpha}\br{a} $ for all $ a \in A $. Let $ b \in B $. Then $ b = \alpha\br{a} $ for some $ a $, since $ \alpha $ is surjective, so $ f_1\br{b} = \br{f_1 \circ \alpha}\br{a} = \br{f_2 \circ \alpha}\br{a} = f_2\br{b} $, so $ f_1 = f_2 $.
+\end{proof}
+
+\begin{proposition}
+Suppose $ \alpha : A \to B $ is injective. Then $ \alpha_* : \Hom_R\br{M, A} \to \Hom_R\br{M, B} $ is injective.
+\end{proposition}
+
+\begin{proof}
+Suppose $ f_1, f_2 : M \to A $, and $ \alpha_*\br{f_1} = \alpha_*\br{f_2} $. Then $ \alpha \circ f_1 = \alpha \circ f_2 $, so $ \br{\alpha \circ f_1}\br{m} = \br{\alpha \circ f_2}\br{m} $ for all $ m \in M $. But $ \alpha $ is injective, so this implies $ f_1\br{m} = f_2\br{m} $ for all $ m \in M $.
+\end{proof}
+
+\pagebreak
+
+Suppose
+$$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 $$
+is a short exact sequence of $ R $-modules. Then we have a sequence
+$$ 0 \to \Hom_R\br{C, M} \xrightarrow{\beta^*} \Hom_R\br{B, M} \xrightarrow{\alpha^*} \Hom_R\br{A, M}. $$
+This is exact at $ \Hom_R\br{C, M} $, since $ \beta^* $ is injective. Claim that the sequence is also exact at $ \Hom_R\br{B, M} $, so it is an exact sequence. It is not necessarily a short exact sequence since $ \alpha^* $ is not generally surjective. Let $ g : B \to M $. We have
+$$ g \in \Ker \alpha^* \iff \alpha^*\br{g} = 0 \iff g \circ \alpha = 0 \iff g\br{\alpha\br{A}} = 0 \iff \Im \alpha \le \Ker g \iff \Ker \beta \le \Ker g, $$
+Then $ g \in \Ker \alpha^* $ if and only if for all $ b_1, b_2 \in B $, $ \beta\br{b_1} = \beta\br{b_2} $ implies that $ g\br{b_1} = g\br{b_2} $, so $ g \in \Ker \alpha^* $ if and only if
+$$ \function[f]{C}{M}{c}{g\br{b}}, \qquad \beta\br{b} = c $$
+is well-defined, since $ \beta $ is surjective, and $ f $ is an $ R $-module homomorphism. Thus
+$$ g \in \Ker \alpha^* \qquad \iff \qquad \exists f \in \Hom_R\br{C, M}, \ \beta^*\br{f} = g \qquad \iff \qquad g \in \Im \beta^*. $$
 
 \end{document}
