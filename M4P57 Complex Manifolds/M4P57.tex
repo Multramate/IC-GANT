@@ -631,4 +631,106 @@ $$ h_{\alpha\beta} = \phi_\alpha \circ \phi_\beta^{-1} : \phi_\beta\br{U_\alpha 
 then $ h_{\alpha\beta}^*\br{\omega_\beta} = \omega_\alpha $ for all $ \alpha $ and $ \beta $.
 \end{definition}
 
+\lecture{8}{Thursday}{23/01/20}
+
+\begin{notation}
+$$ \Omega_x^p\br{X} = \H^0\br{X, \Omega_x^p} = \cbr{\text{holomorphic $ p $-forms on} \ X}, $$
+$$ \OOO_x\br{X} = \H^0\br{X, \OOO_x} = \cbr{\text{holomorphic functions on} \ X}. $$
+\end{notation}
+
+$ R = \OOO_x\br{X} $ is a ring and $ M = \Omega_x^p\br{X} $ is an $ R $-module.
+
+\begin{lemma}
+Let $ f : X \to Y $ be holomorphic. Then $ f^* : \Omega^p\br{Y} \to \Omega^p\br{X} $.
+\end{lemma}
+
+\begin{proof}
+Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be a complex structure on $ Y $. We can write $ f^{-1}\br{U_\alpha} = \bigcup_{\alpha, \beta} V_{\alpha, \beta} $ where $ \cbr{\br{V_{\alpha, \beta}, \psi_{\alpha, \beta}}} $ is a complex structure on $ X $, so
+$$ \CC^n \xleftarrow{\psi_{\alpha, \beta}} V_{\alpha, \beta} \xrightarrow{\eval{f}_{V_{\alpha, \beta}}} U_\alpha \xrightarrow{\phi_\alpha} \CC^n. $$
+Assume $ \omega $ is defined by $ \omega_\alpha $ on $ \phi_\alpha\br{U_\alpha} $. Let
+$$ \omega_{\alpha, \beta} = \br{\br{\psi_{\alpha, \beta}^{-1}}^* \circ f^* \circ \phi_\alpha^*}\br{\omega_\alpha} $$
+be a $ p $-form on $ \psi_{\alpha, \beta}\br{V_{\alpha, \beta}} $. Check that $ \omega_{\alpha, \beta} $ are compatible with respect to the atlas on $ X $. \footnote{Exercise}
+\end{proof}
+
+As in the local case, we can define
+$$ \function{\Omega_x^p\br{X} \otimes \Omega_x^q\br{X}}{\Omega_x^{p + q}\br{X}}{\omega_1 \otimes \omega_2}{\omega_1 \wedge \omega_2}. $$
+Similarly there exists $ \d : \Omega_x^p\br{X} \to \Omega_x^{p + 1}\br{X} $.
+
+\subsection{Holomorphic vector bundles}
+
+\begin{definition}
+Let $ X $ be a complex manifold. A \textbf{holomorphic vector bundle} $ E $ of rank $ r $ on $ X $ is
+\begin{itemize}
+\item a complex manifold $ E $,
+\item a holomorphism $ \pi : E \to X $, and
+\item an open covering $ U_\alpha $ of $ X $,
+\end{itemize}
+such that there exists a biholomorphism $ \psi_\alpha : \pi^{-1}\br{U_\alpha} \to U_\alpha \times \CC^r $ such that if $ p_\alpha : U_\alpha \times \CC^r \to U_\alpha $ is the projection then $ \eval{\pi}_{\pi^{-1}\br{U_\alpha}} = p_\alpha \circ \psi_\alpha $, so
+$$
+\begin{tikzcd}
+E \arrow[swap]{d}{\pi} & \pi^{-1}\br{U_\alpha} \arrow[subset]{l} \arrow{r}{\psi_\alpha} \arrow[swap]{d}{\pi} & U_\alpha \times \CC^r \arrow{dl}{p_\alpha} \\
+X & U_\alpha \arrow[subset]{l} &
+\end{tikzcd}.
+$$
+\end{definition}
+
+For any $ x \in X $, there exists $ \alpha $ such that $ x \in U_\alpha $, so
+$$
+\begin{tikzcd}
+\pi^{-1}\br{x} \arrow{r}{\psi_\alpha} \arrow[swap]{d}{\pi} & \cbr{x} \times \CC^r \arrow{dl}{p_\alpha} \\
+x &
+\end{tikzcd}.
+$$
+
+\pagebreak
+
+Then $ E\br{x} = \pi^{-1}\br{x} $ is a vector space of rank $ r $ over $ \CC $. Let $ U_\alpha \ni x \in U_\beta $. There exists a biholomorphism $ \CC^r \cong p_\alpha^{-1}\br{x} \to p_\beta^{-1}\br{x} \cong \CC^r $ because they are both biholomorphic to $ \pi^{-1}\br{x} $, so $ g_{\alpha\beta}\br{x} \in \GL_r \CC $ because all the biholomorphisms from $ \CC^r \to \CC^r $ are linear. The holomorphisms $ g_{\alpha\beta} : U_\alpha \cap U_\beta \to \GL_r \CC $ are called \textbf{transition functions}. Then
+$$
+\begin{tikzcd}
+p_\alpha^{-1}\br{x} \arrow{rr}{\id} \arrow{dr} & & p_\alpha^{-1}\br{x} \\
+& p_\beta^{-1}\br{x} \arrow{ur} &
+\end{tikzcd}
+\qquad \implies \qquad \br{g_{\alpha\beta} \circ g_{\beta\alpha}}\br{x} = x, \qquad x \in U_\alpha \cap U_\beta, $$
+and
+$$
+\begin{tikzcd}
+p_\alpha^{-1}\br{x} \arrow{rr}{g_{\alpha\gamma}} \arrow{dr} & & p_\gamma^{-1}\br{x} \\
+& p_\beta^{-1}\br{x} \arrow{ur} &
+\end{tikzcd}
+\qquad \implies \qquad \br{g_{\alpha\beta} \circ g_{\beta\gamma}}\br{x} = g_{\alpha\gamma}\br{x}, \qquad x \in U_\alpha \cap U_\beta \cap U_\gamma. $$
+
+\begin{definition}
+Let $ X $ be a complex manifold, and let $ E $ and $ F $ be vector bundles on $ X $ of rank $ r $ and $ s $ respectively, with $ \pi : E \to X $ and $ \pi' : F \to X $. A \textbf{holomorphic map} $ f : E \to F $ is a holomorphic function $ E \to F $ such that $ \pi = \pi' \circ f $ and such that the rank of the induced linear map $ E\br{x} \to F\br{x} $ is independent of $ x \in X $, so
+$$
+\begin{tikzcd}
+E \arrow{rr}{f} \arrow[swap]{dr}{\pi} & & F \arrow{dl}{\pi'} \\
+& X &
+\end{tikzcd},
+\qquad
+\begin{tikzcd}
+E\br{x} = \pi^{-1}\br{x} \arrow{rr}{f} \arrow[swap]{dr}{\pi} & & \pi'^{-1}\br{x} = F\br{x} \arrow{dl}{\pi'} \\
+& x &
+\end{tikzcd}.
+$$
+\end{definition}
+
+\begin{example}
+$ \pi : E = X \times \CC^r \to X $ is a vector bundle of rank $ r $, called \textbf{trivial}.
+\end{example}
+
+\begin{definition}
+A vector bundle of rank one is called a \textbf{line bundle}.
+\end{definition}
+
+\begin{definition}
+Let $ \pi : E \to X $ and $ \pi'^{-1} : F \to X $ be vector bundles on $ X $ of rank $ r $ and $ s $ respectively.
+\begin{itemize}
+\item The \textbf{direct sum} $ E \oplus F $ is a $ \br{r + s} $-vector bundle such that $ \br{E \oplus F}\br{x} = E\br{x} \oplus F\br{x} $ for all $ x \in X $. The idea is to take an open cover which trivialises both $ E $ and $ F $. Find the transition function of $ E \oplus F $. \footnote{Exercise}
+\item The \textbf{tensor product} $ E \otimes F $ is the $ \br{r \cdot s} $-vector bundle such that $ \br{E \otimes F}\br{x} = E\br{x} \otimes F\br{x} $ for all $ x \in X $.
+\item The \textbf{$ p $-th exterior power} of $ E $ is the vector bundle $ \Lambda^pE $ such that $ \br{\Lambda^pE}\br{x} = \Lambda^p\br{E\br{x}} $. If $ p = r = \rk E $ then $ \det E = \Lambda^rE $ is a line bundle on $ X $.
+\item The \textbf{dual} of $ E $ is the rank $ r $ vector bundle $ E^* $ such that $ E^*\br{x} = \br{E\br{x}}^* $, the dual $ \Hom\br{E\br{x}, \CC} $ of $ E\br{x} $.
+\item Let $ f : E \to F $ be holomorphic maps. Then the \textbf{kernel} $ \Ker f $ is a vector bundle such that $ \br{\Ker f}\br{x} = \Ker f\br{x} \subset E\br{x} $. The \textbf{cokernel} $ \Coker f $ is a vector bundle such that $ \br{\Coker f}\br{x} = \Coker f\br{x} $.
+\end{itemize}
+\end{definition}
+
 \end{document}
