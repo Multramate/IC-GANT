@@ -231,7 +231,7 @@ $$
 
 $ \omega $ is exact implies that $ \omega $ is closed, since if $ \omega = \d\omega' $ then $ \d\omega = \d^2\omega' = 0 $.
 
-\subsection{Integration on manifolds}
+\subsection{Integrations on manifolds}
 
 Let $ M $ be a manifold of dimension $ n $, let $ F : M \to M $ be a smooth morphism, and let $ \omega \in \Omega^n\br{M} $. Then
 $$ F^*\br{\omega}\br{x} = \det \D F_x\omega\br{F\br{x}}. $$
@@ -259,15 +259,11 @@ $$ \int_U \omega = \int_V \phi^*\br{\omega}. $$
 
 \pagebreak
 
+\subsection{Orientation}
+
 Let $ V $ be a vector space over $ \RR $ of dimension $ n $, and let $ B = \br{b_1, \dots, b_n} \subset V $ and $ B' = \br{b_1', \dots, b_n'} \subset V $ be ordered bases of $ V $. Then $ B $ and $ B' $ have the \textbf{same orientation} if $ \det T > 0 $ where
 $$ \function[T]{V}{V}{b_i}{b_i'} $$
-is a linear map. Let $ \omega \in \Lambda^nV^* $ for $ \omega \ne 0 $. Then $ B $ and $ B' $ have the same orientation if and only if $ \omega\br{b_1, \dots, b_n} $ has the same sign as $ \omega\br{b_1', \dots, b_n'} $, by Proposition \ref{prop:1.8}. An \textbf{orientation} $ \Lambda $ of $ V $ is a set of all the ordered basis of $ V $ with the same orientation. Let $ \phi : V \to W $ be an isomorphism of vector spaces with fixed orientations $ \Lambda_v $ and $ \Lambda_w $ respectively. We say that $ \phi $ is \textbf{orientation preserving} if an ordered basis of $ V $ induces an ordered basis of $ W $, so $ \Lambda_v $ induces $ \Lambda_w $.
-
-\begin{example}
-Let $ V = \RR^n $, and let $ e_i = \br{0, \dots, 0, 1, 0, \dots, 0} $. Then $ e_1, \dots, e_n $ defines an orientation of $ V $ called \textbf{positive}.
-\end{example}
-
-Let $ M $ be a manifold. The idea is to find an orientation $ \Lambda_x $ of $ \T_xM $ for all $ x \in M $.
+is a linear map. Let $ \omega \in \Lambda^nV^* $ for $ \omega \ne 0 $. Then $ B $ and $ B' $ have the same orientation if and only if $ \omega\br{b_1, \dots, b_n} $ has the same sign as $ \omega\br{b_1', \dots, b_n'} $, by Proposition \ref{prop:1.8}. An \textbf{orientation} $ \Lambda $ of $ V $ is a set of all the ordered basis of $ V $ with the same orientation. Let $ \phi : V \to W $ be an isomorphism of vector spaces with fixed orientations $ \Lambda_v $ and $ \Lambda_w $ respectively. We say that $ \phi $ is \textbf{orientation preserving} if an ordered basis of $ V $ induces an ordered basis of $ W $, so $ \Lambda_v $ induces $ \Lambda_w $. Let $ V = \RR^n $, and let $ e_i = \br{0, \dots, 0, 1, 0, \dots, 0} $. Then $ e_1, \dots, e_n $ defines an orientation of $ V $ called \textbf{positive}. Let $ M $ be a manifold. The idea is to find an orientation $ \Lambda_x $ of $ \T_xM $ for all $ x \in M $.
 \begin{itemize}[leftmargin=1in]
 \item[Special case.] Let $ M = U \subset \RR^n $ be open. There exists a natural isomorphism $ \phi_x : \T_xU \to \RR^n $. Let $ \Lambda_x^+ $ be an orientation on $ \T_xU $ such that $ \phi_x $ is orientation preserving with respect to the positive orientation on $ \RR^n $. Let $ \Lambda^+ = \cbr{\Lambda_x^+} $.
 \item[General case.] Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas on $ M $. On $ U_\alpha $, we define the orientation so that $ \br{\D\phi_\alpha}_x : \T_xU_\alpha \to \T_{\phi_\alpha\br{x}}\phi_\alpha\br{U} \subset \RR^n $ is orientation preserving. This is called the positive orientation on the chart $ \br{U_\alpha, \phi_\alpha} $. We define $ \Lambda $ on $ M $, which is a collection of $ \Lambda^+ $ on $ \T_xM $ for all $ x \in M $. Then $ M $ is \textbf{orientable} if there exists an atlas with positive orientation charts. This coincides in assuming that $ \det \D\br{\phi_\beta^{-1} \circ \phi_\alpha} > 0 $ for all $ \alpha $ and $ \beta $.
@@ -275,15 +271,16 @@ Let $ M $ be a manifold. The idea is to find an orientation $ \Lambda_x $ of $ \
 
 \lecture{4}{Thursday}{16/01/20}
 
+\begin{notation}
 For all $ p \ge 0 $,
 $$ \Omega_\c^p\br{M} = \cbr{\omega \in \Omega^p\br{M} \st \supp M \ \text{is compact}}. $$
-If $ M $ is compact $ \Omega_\c^p\br{M} = \Omega^p\br{M} $.
+\end{notation}
 
-\begin{definition}
-Let $ \omega \in \Omega_\c^r\br{M} $. Assume $ \supp \omega \subset U $ where $ \br{U, \phi} $ is a chart of $ M $, and $ \phi : U \to \phi\br{U} \subset \RR^n $. Assume also that $ \br{U, \phi} $ is positively oriented. Let $ \phi^{-1} : \phi\br{U} \to U $ such that $ \br{\phi^{-1}}^*\br{\omega} \in \Omega_\c^n\br{\phi\br{U}} $, that is $ \supp \br{\phi^{-1}}^*\br{\omega} \subset \phi\br{U} $. We define
-$$ \int_M \omega = \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega}. $$
-\end{definition}
-
+If $ M $ is compact $ \Omega_\c^p\br{M} = \Omega^p\br{M} $. Let $ \omega \in \Omega_\c^r\br{M} $. Assume $ \supp \omega \subset U $ where $ \br{U, \phi} $ is a chart of $ M $, and $ \phi : U \to \phi\br{U} \subset \RR^n $. Assume also that $ \br{U, \phi} $ is positively oriented. Let $ \phi^{-1} : \phi\br{U} \to U $ such that $ \br{\phi^{-1}}^*\br{\omega} \in \Omega_\c^n\br{\phi\br{U}} $, that is $ \supp \br{\phi^{-1}}^*\br{\omega} \subset \phi\br{U} $. We define
+\begin{equation}
+\label{eq:1}
+\int_M \omega = \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega}.
+\end{equation}
 We need to show that, under the assumptions above, $ \int_M \omega $ does not depend on $ \br{U, \phi} $. Let $ \br{\overline{U}, \overline{\phi}} $ be also a positively oriented chart such that $ \supp \omega \subset \overline{U} $. We want to show that
 $$ \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega} = \int_{\overline{\phi}\br{\overline{U}}} \br{\overline{\phi}^{-1}}^*\br{\omega}. $$
 Let $ \overline{\phi} \circ \phi^{-1} : \phi\br{U \cap \overline{U}} \to \overline{\phi}\br{U \cap \overline{U}} $, so
@@ -307,12 +304,16 @@ by a property of the pull-back and since $ \br{\overline{\phi}^{-1}}^*\br{\omega
 
 \pagebreak
 
+\subsection{Partitions of unity}
+
+\begin{definition}
 Let $ M $ be a manifold, and let $ U = \cbr{U_\alpha} $ be an open covering. A \textbf{partition of unity} with respect to $ U $ is a collection of smooth functions $ f_\alpha : M \to \sbr{0, 1} $ such that
 \begin{enumerate}
 \item $ \supp f_\alpha = \overline{\cbr{x \in M \st f_\alpha\br{x} = 0}} \subset U_\alpha $ for all $ \alpha $,
 \item $ \sum_\alpha f_\alpha\br{x} = 1 $ for all $ x \in M $, and
 \item for all $ x \in M $, there exists $ U \ni x $ open such that $ \supp f_\alpha \cap U \ne \emptyset $ for only finitely many $ \alpha $.
 \end{enumerate}
+\end{definition}
 
 \begin{remark*}
 $ 3 $ implies that $ 2 $ is a finite sum.
@@ -335,6 +336,7 @@ We omit the proof.
 \end{proof}
 
 \begin{theorem}
+\label{thm:1.23}
 Let $ M $ be a manifold, and let $ n = \dim M $. Then $ M $ is orientable if and only if there exists $ \omega \in \Omega^n\br{M} $ which is never vanishing on $ M $, so $ \omega\br{x} \ne 0 $ for all $ x \in M $.
 \end{theorem}
 
@@ -364,14 +366,17 @@ $$ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega. $$
 
 \pagebreak
 
+\begin{remark}
+Note that for each $ \alpha $, we have that the support of $ f_\alpha\omega $ is contained in $ U_\alpha $ and therefore each term of the sum is well-defined as in $ \br{\ref{eq:1}} $. Indeed, we have
+$$ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega = \sum_\alpha \int_{\phi_\alpha\br{U_\alpha}} \br{\phi^{-1}}^*\br{f_\alpha}. $$
+\end{remark}
+
 \begin{lemma}
 $ \int_M \omega $ does not depend on $ \cbr{\br{U_\alpha, \phi_\alpha}} $ and $ f_\alpha $.
 \end{lemma}
 
 \begin{proof}
-Under the assumption that $ \supp \omega \subset U_\alpha $ then we showed $ \int_{U_\alpha} \omega $ does not depend on $ \br{U_\alpha, \phi_\alpha} $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ and $ \cbr{\br{\overline{U_\alpha}, \overline{\phi_\alpha}}} $ be two atlases with positively oriented charts, and let $ f_\alpha $ and $ \overline{f_\alpha} $ be two partitions of unity with respect to $ \cbr{U_\alpha} $ and $ \cbr{\overline{U_\alpha}} $ respectively. Then $ \sum_\alpha f_\alpha = \sum_\alpha \overline{f_\alpha} = 1 $, so
-$$ \int_M f_\alpha\omega = \sum_\beta \int_M \overline{f_\beta}f_\alpha\omega. $$
-Thus
+Under the assumption that $ \supp \omega \subset U_\alpha $ then we showed $ \int_{U_\alpha} \omega $ does not depend on $ \br{U_\alpha, \phi_\alpha} $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ and $ \cbr{\br{\overline{U_\alpha}, \overline{\phi_\alpha}}} $ be two atlases with positively oriented charts, and let $ f_\alpha $ and $ \overline{f_\alpha} $ be two partitions of unity with respect to $ \cbr{U_\alpha} $ and $ \cbr{\overline{U_\alpha}} $ respectively. Then $ \sum_\alpha f_\alpha = \sum_\alpha \overline{f_\alpha} = 1 $, so $ \int_M f_\alpha\omega = \sum_\beta \int_M \overline{f_\beta}f_\alpha\omega $. Thus
 $$ \int_M \omega = \sum_\alpha \int_M f_\alpha\omega = \sum_{\alpha, \beta} \int_M \overline{f_\beta}f_\alpha\omega = \sum_\beta \int_M \sum_\alpha f_\alpha\overline{f_\beta}\omega = \sum_\beta \int_M \overline{f_\beta}\omega. $$
 \end{proof}
 
@@ -406,10 +411,8 @@ $$ \int_N F^*\br{\omega} = \sum_\alpha \int_N \br{f_\alpha \circ F}F^*\br{\omega
 
 \subsection{Manifolds with boundary}
 
-\begin{notation}
+Denote
 $$ \RR_{\ge 0}^n = \br{\RR_{\ge 0}}^n, \qquad \RR_+^n = \cbr{\br{x_1, \dots, x_n} \in \RR^n \st x_n \ge 0}. $$
-\end{notation}
-
 Let $ U \subset \RR_+^n $ be open, and let $ F : U \to \RR^m $ be a function. Then $ F $ is $ \C^\infty $ if it can be extended to a $ \C^\infty $-function $ \widetilde{F} : \widetilde{U} \to \RR^m $ where $ \widetilde{U} \supset U $ and $ \widetilde{U} $ is open.
 
 \lecture{6}{Tuesday}{21/01/20}
@@ -424,21 +427,18 @@ $$
 \RR_+^n \supset \phi_\alpha\br{U_\alpha \cap U_\beta} \arrow[swap]{rr}{\phi_\alpha \circ \phi_\beta^{-1}} & & \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR_+^n
 \end{tikzcd}.
 $$
-\end{definition}
-
-\begin{definition}
 The \textbf{boundary} of $ M $ is
 $$ \partial M = \cbr{x \in M \st \exists \alpha, \ \phi_\alpha\br{x} \in \partial\RR_+^n = \RR^{n - 1} \times \cbr{0}}. $$
 Then $ \br{U_\alpha, \phi_\alpha} $ is called a \textbf{chart} and $ \cbr{\br{U_\alpha, \phi_\alpha}} $ is called an \textbf{atlas}.
 \end{definition}
 
-\begin{remark*}
+\begin{remark}
 \hfill
 \begin{itemize}
 \item $ \partial M $ is closed in $ M $.
 \item $ \mathring{M} = M \setminus \partial M $ is a manifold of dimension $ n $.
 \end{itemize}
-\end{remark*}
+\end{remark}
 
 \begin{example}
 \hfill
@@ -502,6 +502,88 @@ because $ \widetilde{f_\alpha} = 0 $ outside $ \phi_\alpha\br{U_\alpha} $. Thus
 since $ \eval{\br{f_\alpha\omega_j}}_{x_n = 0} = 0 $ for $ j = 1, \dots, n - 1 $, so
 $$ \intd{M}{}{}{\omega} = \sum_\alpha \intd{-\infty}{\infty}{\dots \intd{-\infty}{\infty}{\br{-1}^{n - 1}\eval{\br{\widetilde{f_\alpha}\omega_j}}_{x_n = 0}}{x_{n - 1} \dots}}{x_1} = \sum_\alpha \int_{\partial U_\alpha} \eval{f_\alpha}_{\partial U_\alpha}\omega = \int_{\partial M} \omega, $$
 where $ \partial U_\alpha = U_\alpha \cap \partial M $.
+\end{proof}
+
+\pagebreak
+
+\subsection{Applications of Stokes' theorem}
+
+\lecture{7}{Thursday}{23/01/20}
+
+\begin{theorem}[Integration by parts]
+Let $ M $ be an orientable $ n $-dimensional manifold with boundary, let $ \omega \in \Omega_\c^p\br{M} $, let $ \eta \in \Omega_\c^{n - p - 1}\br{M} $, and let $ p \in \cbr{0, \dots, n - 1} $. Then
+$$ \int_{\partial M} \omega \wedge \eta = \int_M \d\omega \wedge \eta + \br{-1}^p\int_M \omega \wedge \d\eta. $$
+\end{theorem}
+
+\begin{proof}
+$$ \int_{\partial M} \omega \wedge \eta = \intd{M}{}{}{\br{\omega \wedge \eta}} = \int_M \br{\d\omega \wedge \eta + \br{-1}^p\omega \wedge \d\eta}, $$
+by Stokes and the Leibnitz rule.
+\end{proof}
+
+\begin{theorem}[Brouwer's fixed point theorem]
+Let $ D = \cbr{x \in \RR^n \st \abs{x} \le 1} $ such that $ \partial D = \S^{n - 1} = \cbr{x \in \RR^n \st \abs{x} = 1} $, and let $ f : D \to D $ be a smooth morphism. Then $ f $ admits a fixed point, that is there exists $ x \in D $ such that $ f\br{x} = x $.
+\end{theorem}
+
+\begin{proof}
+Assume that $ f\br{x} \ne x $ for all $ x \in D $. For any $ x \in D $, consider the ray starting from $ f\br{x} $ and passing through $ x $. Let $ g\br{x} $ be the point where this ray intersects $ \partial D $ away from $ f\br{x} $. Note that if $ x \in \partial D $ then $ g\br{x} = x $. Then $ g : D \to \partial D $. It is easy to check that $ g $ is smooth. Since $ \partial D = \S^{n - 1} $ is orientable by Theorem \ref{thm:1.23} there exists a volume form $ \omega \in \Omega^{n - 1}\br{\partial D} $, so $ \omega\br{x} \ne 0 $. Since $ \omega \in \Omega^{n - 1}\br{\partial D} $, $ \d\omega \in \Omega^n\br{\partial D} $, which is an $ n $-dimensional manifold, so $ \d\omega = 0 $. Thus
+$$ 0 < \int_{\partial D} \omega = \int_{\partial D} g^*\br{\omega} = \intd{D}{}{}{g^*\br{\omega}} = \int_D g^*\br{\d\omega} = 0, $$
+by Stokes, a contradiction.
+\end{proof}
+
+\begin{example}
+Recall any exact form is closed, since $ \d^2 = 0 $. But the opposite is not always true. Let $ M = \RR^2 \setminus \cbr{0} $, and let
+$$ \omega = \dfrac{x}{x^2 + y^2} \d y - \dfrac{y}{x^2 + y^2} \d x \in \Omega^1\br{M}. $$
+Then $ \omega $ is closed, since
+$$ \d\omega = \dpd{}{x}\br{\dfrac{x}{x^2 + y^2}} \d x \wedge \d y - \dpd{}{y}\br{\dfrac{y}{x^2 + y^2}} \d y \wedge \d x = 0. $$
+We want to show that $ \omega $ is not exact. Assume that
+$$ \omega = \d f, \qquad f \in \Omega^0\br{M} = \cbr{\text{$ \C^\infty $-function}}. $$
+In particular $ \omega = \d f $ on $ \S^1 \subset M $. Let
+$$ \function[\gamma]{\sbr{0, 2\pi}}{\S^1}{\theta}{\br{\cos \theta, \sin \theta}}. $$
+Then
+$$ \int_{\S^1} \omega = \int_0^{2\pi} \gamma^*\br{\omega} = \int_0^{2\pi} \br{\br{\dfrac{\cos \theta}{\cos^2 \theta + \sin^2 \theta}}\cos \theta \d\theta - \br{\dfrac{\sin \theta}{\cos^2 \theta + \sin^2 \theta}}\br{-\sin \theta} \d\theta} = \intd{0}{2\pi}{}{\theta} = 2\pi, $$
+and
+$$ \int_{\S^1} \omega = \intd{\S^1}{}{}{f} = \int_{\partial\S^1} f = \int_\emptyset f = 0, $$
+so $ \omega $ is not exact.
+\end{example}
+
+\begin{theorem}
+Let $ M $ be an orientable manifold of dimension $ n $ without boundary, and let $ \omega \in \Omega_\c^n\br{M} $. Assume $ \omega $ is exact. Then
+$$ \int_M \omega = 0. $$
+\end{theorem}
+
+\begin{proof}
+Easy from Stokes.
+\end{proof}
+
+\pagebreak
+
+\begin{theorem}
+Let $ M $ be an orientable manifold of dimension $ n $ with boundary, and let $ \omega \in \Omega_\c^{n - 1}\br{M} $ be a closed form. Then
+$$ \int_{\partial M} \omega = 0. $$
+\end{theorem}
+
+\begin{proof}
+Easy from Stokes.
+\end{proof}
+
+\begin{definition}
+Let $ M $ be an orientable manifold of dimension $ n $, let $ \omega \in \Omega_\c^k\br{M} $, and let $ N \subset M $ be a submanifold of dimension $ k $. We can define
+$$ \int_M \omega = \int_N i^*\br{\omega}, $$
+where $ i : N \hookrightarrow M $ is the inclusion. We will denote
+$$ \eval{\omega}_N = i^*\br{\omega} \in \Omega_\c^k\br{N}. $$
+\end{definition}
+
+\begin{theorem}
+Let $ M $ be an oriented manifold of dimension $ n $, let $ \omega \in \Omega_\c^k\br{M} $, and let $ S \subset M $ be a compact orientable submanifold of dimension $ k $ such that $ \partial S = \emptyset $ and $ \int_S \omega \ne 0 $. Then
+\begin{itemize}
+\item $ \omega $ is not exact,
+\item $ \eval{\omega}_S $ is not exact, and
+\item $ S $ is not the boundary of an orientable manifold $ N \subset M $ of dimension $ k + 1 $.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+Exercise. \footnote{Exercise}
 \end{proof}
 
 \end{document}
