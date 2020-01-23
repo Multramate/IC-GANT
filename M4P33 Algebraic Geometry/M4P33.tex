@@ -457,6 +457,155 @@ Thus the Zariski topology on $ H $ is the cofinite topology. Here is a bonus fac
 Over $ \CC $, an affine algebraic set is connected in the Zariski topology if and only if it is connected in the Euclidean topology.
 \end{theorem}
 
+\subsubsection{Prime ideals and irreducible sets}
+
 If $ V $ is an affine algebraic set, what condition on the ideal $ \II\br{V} $ is equivalent to $ V $ being irreducible?
+
+\lecture{5}{Thursday}{23/01/20}
+
+\begin{definition}
+From commutative algebra, an ideal $ I $ in a ring $ R $ is a \textbf{prime ideal} if $ I \ne R $ and for every $ f, g \in R $, if $ fg \in I $, then $ f \in I $ or $ g \in I $, or both.
+\end{definition}
+
+\begin{lemma}
+\label{lem:irreducibleprime}
+An affine algebraic set $ V \subseteq \AA^n $ is irreducible if and only if $ \II\br{V} $ is a prime ideal in $ k\sbr{X_1, \dots, X_n} $.
+\end{lemma}
+
+\begin{proof}
+First suppose that $ V $ is irreducible. Suppose we have $ f, g \in k\sbr{X_1, \dots, X_n} $ such that $ fg \in \II\br{V} $. Let
+$$ V_1 = \cbr{\underline{x} \in V \st f\br{\underline{x}} = 0}, \qquad V_2 = \cbr{\underline{x} \in V \st g\br{\underline{x}} = 0}. $$
+For every $ \underline{x} \in V $, $ f\br{\underline{x}}g\br{\underline{x}} = 0 $ and hence either $ f\br{\underline{x}} = 0 $ or $ g\br{\underline{x}} = 0 $. Thus for every $ \underline{x} \in V $, either $ \underline{x} \in V_1 $ or $ \underline{x} \in V_2 $. In other words, $ V = V_1 \cup V_2 $. Furthermore $ V_1 $ and $ V_2 $ are closed subsets of $ V $. Hence as $ V $ is irreducible, either $ V_1 = V $ or $ V_2 = V $. If $ V_1 = V $ then $ f \in \II\br{V} $ and if $ V_2 = V $ then $ g \in \II\br{V} $. Now suppose that $ V $ is reducible. Then we can write it as a union $ V_1 \cup V_2 $ of proper closed subsets. Since $ V_1 $ is a proper closed subset of $ V $, there exists some $ f \in k\sbr{X_1, \dots, X_n} $ vanishing on $ V_1 $ but not on all of $ V $. Similarly there exists $ g $ vanishing on $ V_2 $ but not on all of $ V $. Thus neither $ f $ nor $ g $ is in $ \II\br{V} $, but the product $ fg $ vanishes on $ V_1 \cup V_2 $ and hence we have $ fg \in \II\br{V} $. Thus $ \II\br{V} $ is not prime. Then $ V $ is empty if and only if $ \II\br{V} = k\sbr{X_1, \dots, X_n} $, which is explicitly defined to not be a prime ideal. So it was ok to ignore this case above.
+\end{proof}
+
+\pagebreak
+
+\begin{definition}
+A \textbf{hypersurface} is an affine algebraic set in $ \AA^n $ defined by one polynomial equation, that is,
+$$ \cbr{\underline{x} \in \AA^n \st f\br{\underline{x}} = 0}, \qquad f \in k\sbr{X_1, \dots, X_n}. $$
+\end{definition}
+
+It follows from Lemma \ref{lem:irreducibleprime} together with Hilbert's Nullstellensatz that a hypersurface defined by a polynomial $ f $ is irreducible if and only if $ f $ is a power of an irreducible polynomial. See problem sheet $ 1 $.
+
+\begin{example*}
+We can use this to prove that the circle $ \cbr{\br{x, y} \st x^2 + y^2 = 1} $ is irreducible, by proving that the polynomial $ X^2 + Y^2 - 1 $ is irreducible. This is because, if $ f = X^2 + Y^2 - 1 = f_1f_2 $ then we can scale $ f_1 $ and $ f_2 $ by constants to get
+$$ f_1 = X + g_1\br{Y}, \qquad f_2 = X + g_2\br{Y}, $$
+since $ f $ has degree two in $ X $ and its $ X^2 $ term has coefficient one. Since $ f $ has no $ X $ term, we must have $ g_1 + g_2 = 0 $. But then
+$$ f_1f_2 = \br{X + g_1\br{Y}}\br{X - g_1\br{Y}} = X^2 - g_1\br{Y}^2, $$
+so $ g_1\br{Y}^2 = -Y^2 + 1 $, and $ -Y^2 + 1 $ is not a square. On the other hand, the hypersurface $ \cbr{\br{x, y} \st x^2 + y^2 = 0} $ is reducible, because $ X^2 + Y^2 $ factors as $ \br{X - iY}\br{X + iY} $.
+\end{example*}
+
+It can often be convenient to rewrite the definition of irreducible spaces in terms of open sets instead of closed sets.
+
+\begin{lemma}
+\label{lem:irreducibleopen}
+The following conditions on a topological space $ S $ are equivalent to irreducibility.
+\begin{itemize}
+\item $ S $ is non-empty, and every pair of non-empty open subsets $ U_1, U_2 \subseteq S $ have non-empty intersection $ U_1 \cap U_2 $.
+\item $ S $ is non-empty, and every non-empty open subset of $ S $ is dense in $ S $.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Just manipulation of the topological definition.
+\end{proof}
+
+\begin{corollary}
+\label{cor:irreducibleopen}
+Let $ S $ be a irreducible topological space and $ U \subseteq S $ a non-empty open subset. Then $ U $ is irreducible, in the subspace topology.
+\end{corollary}
+
+Lemma \ref{lem:irreducibleopen} says that irreducible is a very long way from Hausdorff. The Hausdorff condition says that a space has lots of pairs of disjoint non-empty open subsets, while an irreducible space has none.
+
+\begin{example*}
+We saw that $ \RR $, with the Euclidean topology, is reducible in many ways.
+\end{example*}
+
+Corollary \ref{cor:irreducibleopen} implies that $ \AA^1 \setminus \cbr{0} $ is irreducible, in the subspace topology induced by the Zariski topology on $ \AA^1 $, because it is open in $ \AA^1 $. Compare this to the fact that the hyperbola $ H $ is irreducible. This lends support to the heuristic argument that the hyperbola $ H $ is irreducible, but it is not a proof. Checking that the subspace topology on $ \AA^1 \setminus \cbr{0} $ is the same as the Zariski topology on $ H $ would require exactly the same work as the proof that $ H $ is irreducible to prove that the Zariski topology on $ H \subseteq \AA^2 $.
+
+\subsubsection{Irreducible components}
+
+Just like the definition of connected components, we can define the following.
+
+\begin{definition}
+Let $ S $ be a topological space. An \textbf{irreducible component} of $ S $ is a maximal irreducible subset of $ S $.
+\end{definition}
+
+Unlike connected components, irreducible components need not be disjoint.
+
+\begin{example*}
+The irreducible components of $ \cbr{\br{x, y} \st xy = 0} $ are the lines $ x = 0 $ and $ y = 0 $, which intersect in $ \cbr{\br{0, 0}} $.
+\end{example*}
+
+More generally, the irreducible components of a hypersurface $ \VV\br{f} $ correspond to the irreducible factors of $ f $. If $ f = f_1^{a_1} \dots f_m^{a_m} $, where the $ f_i $ are distinct irreducible polynomials, then the irreducible components of $ \VV\br{f} $ are $ \VV\br{f_1}, \dots, \VV\br{f_m} $. Irreducible components have the following key properties.
+
+\pagebreak
+
+\begin{proposition}
+\label{prop:irreduciblecomponent}
+Let $ V $ be an affine algebraic set. Then
+\begin{enumerate}
+\item the union of the irreducible components of $ V $ is all of $ V $, and
+\item $ V $ has only finitely many irreducible components.
+\end{enumerate}
+\end{proposition}
+
+Proposition \ref{prop:irreduciblecomponent}.$ 1 $ matches a property of connected components. Proposition \ref{prop:irreduciblecomponent}.$ 2 $ does not apply to the connected components of an arbitrary topological space.
+
+\begin{example*}
+$ \ZZ $ or $ \QQ $ with the subspace topology from $ \RR $.
+\end{example*}
+
+\begin{note*}
+Proposition \ref{prop:irreduciblecomponent}.$ 2 $ does imply that an affine algebraic set has only finitely many connected components for the Zariski topology, because each connected component must be a union of irreducible components.
+\end{note*}
+
+Proposition \ref{prop:irreduciblecomponent}.$ 2 $ is a finiteness statement, so it is not surprising that it follows from the Noetherian property, the descending chain condition on closed subsets. The key idea in the proof is as follows. If an affine algebraic set is reducible, then we can write it as a union of proper closed subsets. If these subsets are reducible, then we can write them in turn as unions of proper closed subsets. The following lemma says that this process eventually stops. After finitely many steps, we reach irreducible sets.
+
+\begin{lemma}
+\label{lem:irreducibleclosed}
+Every affine algebraic set can be written as a union of finitely many irreducible closed subsets.
+\end{lemma}
+
+\begin{proof}
+Suppose that $ V $ is an affine algebraic set which cannot be written as a union of finitely many irreducible closed subsets. Then $ V $ must be reducible, otherwise we could write it as a union of one irreducible closed subset. So $ V = V_1 \cup W_1 $, with $ V_1 $ and $ W_1 $ proper closed subsets of $ V $. Then $ V_1 $ and $ W_1 $ cannot both be unions of finitely many irreducible closed subsets, because taking the union of those decompositions would give us $ V $ as a union of finitely many irreducible closed subsets. Thus at least one of $ V_1 $ and $ W_1 $ does not satisfy the lemma. Without loss of generality, we may suppose that $ V_1 $ does not satisfy the lemma. Then $ V_1 $ must be reducible, so we can write $ V_1 = V_2 \cup W_2 $. We can repeat the argument. At least one of $ V_2 $ and $ W_2 $ does not satisfy the lemma, without loss of generality $ V_2 $, etc. Thus we build up a chain of closed subsets $ V \supset V_1 \supset V_2 \supset \dots $ where all these sets do not satisfy the lemma, and all the inclusions are strict. This contradicts Lemma 3.5, the descending chain condition for affine algebraic sets.
+\end{proof}
+
+In order to prove Proposition \ref{prop:irreduciblecomponent}, we want to show that the finitely many irreducible closed subsets in Lemma \ref{lem:irreducibleclosed} are the irreducible components. There is just one wrinkle. Consider $ V = \VV\br{XY} $. The irreducible components are $ \VV\br{X} $ and $ \VV\br{Y} $. But we could write $ V $ as a union of finitely many irreducible closed subsets by saying
+$$ V = \VV\br{X} \cup \VV\br{Y} \cup \cbr{\br{0, 2}}. $$
+Thus we can always add in extra sets to a decomposition as in Lemma \ref{lem:irreducibleclosed}, where the extra sets are contained in one of the other sets in the decomposition. Of course we can always just throw away these empty sets from the list without changing the union. Let $ V = V_1 \cup \dots \cup V_r $, as in Lemma \ref{lem:irreducibleclosed}. By throwing away any $ V_i $ which is contained in another $ V_j $, we can assume that $ V_i \not\subseteq V_j $ whenever $ i \ne j $, and still the union of the $ V_j $'s will be $ V $. Subject to this non-redundancy condition, there is only one way to write $ V $ as a finite union of irreducible closed subsets and we can prove the following.
+
+\begin{proposition}
+\label{prop:irreducibleclosed}
+Let $ V $ be an affine algebraic set. Write $ V = V_1 \cup \dots \cup V_r $, where the $ V_i $ are irreducible closed subsets and $ V_i \not\subseteq V_j $ for $ i \ne j $. Then $ V_1, \dots, V_r $ are precisely the irreducible components of $ V $.
+\end{proposition}
+
+\begin{proof}
+First we show that each $ V_i $ is an irreducible component. By hypothesis, $ V_i $ is irreducible. So if $ V_i $ is not an irreducible component, it is not a maximal irreducible set and must be contained in a larger irreducible set $ W \subseteq V $. But then
+$$ W = \br{V_1 \cap W} \cup \dots \cup \br{V_r \cap W}, $$
+where $ V_1 \cap W, \dots, V_r \cap W $ are closed subsets of $ W $. Because $ W $ is irreducible, we must have $ W = V_j \cap W $ for some $ j $. Thus $ V_i \subseteq W \subseteq V_j $. By the condition $ V_i \not\subseteq V_j $ for any $ j \ne i $, we must have $ i = j $ and $ W = V_i $. Thus $ V_i $ is an irreducible component of $ V $. Conversely, let $ C $ be an irreducible component of $ V $. Then
+$$ C = \br{V_1 \cap C} \cup \dots \cup \br{V_r \cap C}. $$
+By the same argument as before, the irreducibility of $ C $ implies that $ C \subseteq V_i $ for some $ i $. Then the maximality of $ C $ implies that $ C = V_i $.
+\end{proof}
+
+The combination of Lemma \ref{lem:irreducibleclosed} and Proposition \ref{prop:irreducibleclosed} proves both Proposition \ref{prop:irreduciblecomponent}.$ 1 $ and Proposition \ref{prop:irreduciblecomponent}.$ 2 $.
+
+\pagebreak
+
+\subsubsection{Primary decomposition of ideals}
+
+The irreducible component decomposition of an affine algebraic set can give a geometric understanding of the primary decomposition of ideals in the Noetherian ring $ k\sbr{X_1, \dots, X_n} $. However, the irreducible decomposition gives only partial information about the primary decomposition of an ideal, because ideals contain more information than affine algebraic sets. Recall that the algebraic set depends only on the radical of the ideal.
+
+\begin{example*}
+Let $ I = \abr{X^2, XY} \subseteq k\sbr{X, Y} $. Then $ \VV\br{I} $ is simply the line $ X = 0 $, which of course is irreducible. However a primary decomposition of $ I $ is
+$$ I = \abr{X} \cap \abr{X^2, XY, Y^2}. $$
+Here $ \abr{X} $ is the ideal of the line $ X = 0 $, the unique irreducible component of $ V = \VV\br{I} $. The ideal $ \abr{X^2, XY, Y^2} $ defines the point $ \cbr{\br{0, 0}} $, which is contained in $ V $ so is not an irreducible component.
+\end{example*}
+
+Thus the minimal associated primes of the primary decomposition of $ I $ corespond to the irreducible components of $ \VV\br{I} $, while non-minimal associated primes correspond to additional smaller sets strictly contained in the irreducible components, called \textbf{embedded components}. In scheme theory, we can think of $ \VV\br{I} $ as containing multiple copies of these embedded components.
+
+\begin{example*}
+The ideal $ I = \abr{X^2, XY} $ corresponds, in the world of schemes, to the line $ X = 0 $ with two copies of the origin.
+\end{example*}
 
 \end{document}
