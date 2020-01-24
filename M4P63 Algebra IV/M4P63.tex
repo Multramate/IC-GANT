@@ -379,7 +379,7 @@ This is an $ R $-module homomorphism. So $ \delta\br{x} = xm $ for some $ m \in 
 \end{itemize}
 \end{proof}
 
-\begin{example}
+\begin{example*}
 \hfill
 \begin{itemize}
 \item Suppose $ R $ is a field. Then the only ideals of $ R $ are zero and $ R $. Any map $ 0 \to M $, for $ M $ an $ R $-module, can be extended to the zero map $ R \to M $. Hence any $ R $-module is injective.
@@ -388,7 +388,7 @@ $$ \function[f]{k\ZZ}{\ZZ}{km}{m}. $$
 If $ k \ne 0, \pm 1 $, then $ f\br{k} = 1 $, and so $ f\br{x} \ne xm $ for $ m \in \ZZ $, since one is not divisible by $ k $ in $ \ZZ $. So Baer's criterion fails, and $ \ZZ $ is not injective. We already knew that $ \ZZ \to \QQ $ has no retraction.
 \item $ \QQ $ is injective as a $ \ZZ $-module. Suppose we have a map $ f : k\ZZ \to \QQ $. Let $ q = f\br{k} $. Then $ f\br{kt} = qt = \br{q / k}kt $. So $ f\br{x} = x\br{q / k} $ for all $ x $, so $ \QQ $ satisfies Baer's criterion.
 \end{itemize}
-\end{example}
+\end{example*}
 
 \pagebreak
 
@@ -448,15 +448,88 @@ Suppose $ f_1, f_2 : M \to A $, and $ \alpha_*\br{f_1} = \alpha_*\br{f_2} $. The
 
 \pagebreak
 
+\begin{proposition}
 Suppose
 $$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 $$
-is a short exact sequence of $ R $-modules. Then we have a sequence
+is a short exact sequence of $ R $-modules. Then we have an exact sequence
 $$ 0 \to \Hom_R\br{C, M} \xrightarrow{\beta^*} \Hom_R\br{B, M} \xrightarrow{\alpha^*} \Hom_R\br{A, M}. $$
+\end{proposition}
+
+\begin{proof}
 This is exact at $ \Hom_R\br{C, M} $, since $ \beta^* $ is injective. Claim that the sequence is also exact at $ \Hom_R\br{B, M} $, so it is an exact sequence. It is not necessarily a short exact sequence since $ \alpha^* $ is not generally surjective. Let $ g : B \to M $. We have
 $$ g \in \Ker \alpha^* \iff \alpha^*\br{g} = 0 \iff g \circ \alpha = 0 \iff g\br{\alpha\br{A}} = 0 \iff \Im \alpha \le \Ker g \iff \Ker \beta \le \Ker g, $$
-Then $ g \in \Ker \alpha^* $ if and only if for all $ b_1, b_2 \in B $, $ \beta\br{b_1} = \beta\br{b_2} $ implies that $ g\br{b_1} = g\br{b_2} $, so $ g \in \Ker \alpha^* $ if and only if
+Then $ g \in \Ker \alpha^* $ if and only if for all $ b_1, b_2 \in B $, $ \beta\br{b_1} = \beta\br{b_2} $ implies that $ g\br{b_1} = g\br{b_2} $, which is if and only if
 $$ \function[f]{C}{M}{c}{g\br{b}}, \qquad \beta\br{b} = c $$
 is well-defined, since $ \beta $ is surjective, and $ f $ is an $ R $-module homomorphism. Thus
 $$ g \in \Ker \alpha^* \qquad \iff \qquad \exists f \in \Hom_R\br{C, M}, \ \beta^*\br{f} = g \qquad \iff \qquad g \in \Im \beta^*. $$
+Hence $ \Ker \alpha^* = \Im \beta^* $. So the sequence is exact at $ \Hom_R\br{B, M} $.
+\end{proof}
+
+\lecture{7}{Friday}{24/01/20}
+
+\begin{example*}
+These examples show that $ \alpha : A \to B $ is injective does not imply $ \alpha^* : \Hom_R\br{B, M} \to \Hom_R\br{A, M} $ is surjective.
+\begin{itemize}
+\item The inclusion $ \alpha : \ZZ \to \QQ $ is a $ \ZZ $-module homomorphism. Let $ M = \ZZ $. Then we get $ \alpha^* : \Hom_\ZZ\br{\QQ, \ZZ} \to \Hom_\ZZ\br{\ZZ, \ZZ} $. Then $ \alpha $ is injective, but $ \alpha^* $ is not surjective. Why is this? In fact $ \Hom_\ZZ\br{\QQ, \ZZ} = 0 $. Suppose
+$$ \function[f]{\QQ}{\ZZ}{1}{k \ne 0}. $$
+Suppose $ p \nmid k $. Then there is no possible image for $ 1 / p \in \QQ $, since we would require $ pf\br{1 / p} = f\br{1} = k $. But $ \Hom_\ZZ\br{\ZZ, \ZZ} \cong \ZZ $, so $ \alpha^* $ is not surjective.
+\item Let $ \alpha : k\ZZ \to \ZZ $ be the inclusion, so $ \alpha $ is injective and not surjective. Let $ M = \ZZ $. So we get $ \alpha^* : \Hom_\ZZ\br{\ZZ, \ZZ} \to \Hom_\ZZ\br{k\ZZ, \ZZ} $. Suppose that $ g \in \Im \alpha^* $. Then $ g = f \circ \alpha $, where $ f : \ZZ \to \ZZ $. Then $ g\br{k} = f\br{k} = kf\br{1} $, so $ \Im g \le k\ZZ $. But there exists $ g \in \Hom_\ZZ\br{k\ZZ, \ZZ} $ such that $ g\br{k} = 1 $. So this $ g \notin \Im \alpha^* $, so $ \alpha^* $ is not surjective.
+\end{itemize}
+\end{example*}
+
+\begin{proposition}
+Let
+$$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 $$
+be exact. Then
+$$ 0 \to \Hom_R\br{M, A} \xrightarrow{\alpha_*} \Hom_R\br{M, B} \xrightarrow{\beta_*} \Hom_R\br{M, C} $$
+is exact.
+\end{proposition}
+
+\begin{proof}
+We already know that $ \alpha $ injective implies that $ \alpha_* $ is injective, so the sequence is exact at $ \Hom_R\br{M, A} $. We show that $ \Ker \beta_* = \Im \alpha_* $. Suppose $ g \in \Hom_R\br{M, B} $. Then
+$$ g \in \Ker \beta_* \qquad \iff \qquad \br{\beta \circ g}\br{M} = 0 \qquad \iff \qquad \Im g \le \Ker \beta \qquad \iff \qquad \Im g \le \Im \alpha. $$
+Note there exists $ \alpha^{-1} : \Im \alpha \to A $. If $ \Im g \le \Im \alpha $, then $ \alpha^{-1} \circ g : M \to A $. If $ f = \alpha^{-1} \circ g $, then $ \alpha \circ f = g $, so $ g \in \Im \alpha_* $. Conversely, if $ g \in \Im \alpha_* $, then $ g = \alpha \circ f $ for some $ f \in \Hom_R\br{M, A} $ and so $ \Im g \le \Im \alpha $. So
+$$ g \in \Ker \beta_* \qquad \iff \qquad \Im g \le \Im \alpha \qquad \iff \qquad g \in \Im \alpha_*. $$
+Hence $ \Ker \beta_* = \Im \alpha_* $. So the sequence is exact at $ \Hom_R\br{M, B} $.
+\end{proof}
+
+\pagebreak
+
+\begin{example*}
+These examples show that $ \beta : B \to C $ is surjective does not imply $ \beta_* : \Hom_R\br{M, B} \to \Hom_R\br{M, C} $ is surjective.
+\begin{itemize}
+\item Let
+$$ \function[\beta]{\sum_{q \in \QQ} \ZZ}{\QQ}{e_q}{q}. $$
+In general $ \beta : \sum_{m \in M} R \to M $ defined by mapping the basis vector $ e_m $ to $ m $, is a surjective homomorphism, so $ \beta $ is surjective. Let $ M = \QQ $. So we get $ \beta_* : \Hom_\ZZ\br{\QQ, \sum_{q \in \QQ} \ZZ} \to \Hom_\ZZ\br{\QQ, \QQ} $. Claim that $ \Hom_\ZZ\br{\QQ, \sum_{q \in \QQ} \ZZ} $ is trivial. Suppose $ f : \QQ \to \sum_{q \in \QQ} \ZZ $ is not zero. Suppose $ f\br{q_0} \ne 0 $. Then there exist $ q_1, \dots, q_t \in \QQ $ and $ a_1, \dots, a_t \in \ZZ $ such that $ f\br{q_0} = \sum_{i = 1}^t a_ie_{q_i} $. Now the projection of $ \sum_{q \in \QQ} \ZZ $ onto $ \ZZ e_{q_1} $ is a non-trivial $ \ZZ $-module homomorphism. But $ \ZZ e_{q_1} \cong \ZZ $, and so no non-trivial map $ \QQ \to \ZZ e_{q_1} $ exists. But $ \Hom_\ZZ\br{\QQ, \QQ} $ is not trivial, so $ \beta_* $ is not surjective.
+\item Let
+$$ 0 \to \ZZ_2 \to \ZZ_4 \to \ZZ_2 \to 0 $$
+be a short exact sequence of $ \ZZ $-modules. Then we have
+$$
+\begin{tikzcd}[row sep=tiny]
+0 \arrow{r} & \Hom_\ZZ\br{\ZZ_2, \ZZ_2} \arrow{r}{\alpha_*} \arrow[cong]{d} & \Hom_\ZZ\br{\ZZ_2, \ZZ_4} \arrow{r}{\beta_*} \arrow[cong]{d} & \Hom_\ZZ\br{\ZZ_2, \ZZ_2} \arrow[cong]{d} \\
+& \ZZ_2 & \ZZ_2 & \ZZ_2
+\end{tikzcd}.
+$$
+But there is no short exact sequence of abelian groups
+$$ 0 \to \ZZ_2 \to \ZZ_2 \to \ZZ_2 \to 0, $$
+and so $ \beta_* $ cannot be surjective.
+\end{itemize}
+\end{example*}
+
+\begin{proposition}
+Let $ M $ be an $ R $-module. Then $ M $ is injective if and only if for every injective map $ \alpha : A \to B $, we get $ \alpha^* : \Hom_R\br{B, M} \to \Hom_R\br{A, M} $ is surjective.
+\end{proposition}
+
+\begin{proof}
+$ M $ is injective if and only if for all injective $ \alpha : A \to B $, for all $ f \in \Hom_R\br{A, M} $, there exists $ g \in \Hom_R\br{B, M} $ such that $ f = g \circ \alpha $, so $ f = \alpha^*\br{g} $. This is if and only if for all injective $ \alpha : A \to B $, $ f \in \Im \alpha^* $ for all $ f \in \Hom_R\br{A, M} $, which is if and only if $ \alpha^* $ is surjective.
+\end{proof}
+
+\begin{proposition}
+Let $ M $ be an $ R $-module. Then $ M $ is projective if and only if whenever $ \beta : B \to C $ is surjective, the map $ \beta_* : \Hom_R\br{M, B} \to \Hom_R\br{M, C} $ is surjective.
+\end{proposition}
+
+\begin{proof}
+$ M $ is projective if and only if whenever $ \beta : B \to C $ is surjective, and $ f \in \Hom_R\br{M, C} $, there exists $ g \in \Hom_R\br{M, B} $ such that $ f = \beta \circ g $. This is if and only if whenever $ \beta : B \to C $ is surjective, and $ f \in \Hom_R\br{M, C} $, then $ f \in \Im \beta_* $, which is if and only if $ \beta_* $ is surjective.
+\end{proof}
 
 \end{document}
