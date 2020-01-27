@@ -88,8 +88,8 @@ Let $ \omega_i \in \Lambda^{p_i}V^* $ for $ i = 1, 2, 3 $.
 \end{proposition}
 
 \begin{definition}
-Let $ \Phi : V \to W $ be a linear map between vector spaces over $ \RR $. Let $ \omega \in \Lambda^pW^* $. Then the \textbf{pull-back} $ \Phi^*\br{\omega} \in \Lambda^pV^* $ of $ \omega $ is an alternating $ p $-form on $ V $ defined by
-$$ \Phi^*\br{\omega}\br{v_1, \dots, v_p} = \omega\br{\Phi\br{v_1}, \dots, \Phi\br{v_p}}, \qquad v_1, \dots, v_p \in V. $$
+Let $ \Phi : V \to W $ be a linear map between vector spaces over $ \RR $. Let $ \omega \in \Lambda^pW^* $. Then the \textbf{pull-back} $ \Phi^*\omega \in \Lambda^pV^* $ of $ \omega $ is an alternating $ p $-form on $ V $ defined by
+$$ \Phi^*\omega\br{v_1, \dots, v_p} = \omega\br{\Phi\br{v_1}, \dots, \Phi\br{v_p}}, \qquad v_1, \dots, v_p \in V. $$
 \end{definition}
 
 \pagebreak
@@ -99,13 +99,13 @@ $$ \Phi^*\br{\omega}\br{v_1, \dots, v_p} = \omega\br{\Phi\br{v_1}, \dots, \Phi\b
 Given $ \Phi : V \to W $ a linear map,
 \begin{itemize}
 \item the pull-back
-$$ \function[\Phi^*]{\Lambda^pW^*}{\Lambda^pV^*}{\omega}{\Phi^*\br{\omega}} $$
+$$ \function[\Phi^*]{\Lambda^pW^*}{\Lambda^pV^*}{\omega}{\Phi^*\omega} $$
 is a linear map that preserves exterior products, that is
-$$ \Phi^*\br{\omega_1 \wedge \omega_2} = \Phi^*\br{\omega_1} \wedge \Phi^*\br{\omega_2}, \qquad \omega_1 \in \Lambda^pW^*, \qquad \omega_2 \in \Lambda^qW^*, $$
+$$ \Phi^*\br{\omega_1 \wedge \omega_2} = \Phi^*\omega_1 \wedge \Phi^*\omega_2, \qquad \omega_1 \in \Lambda^pW^*, \qquad \omega_2 \in \Lambda^qW^*, $$
 \item if $ \Psi : W \to Z $ is linear then
-$$ \br{\Psi \circ \Phi}^*\br{\omega} = \Phi^*\br{\Psi^*\br{\omega}}, \qquad \omega \in \Lambda^pZ^*, $$
+$$ \br{\Psi \circ \Phi}^*\omega = \Phi^*\Psi^*\omega, \qquad \omega \in \Lambda^pZ^*, $$
 \item assuming $ V = W $ and $ p = \dim V $, then
-$$ \Phi^*\br{\omega} = \br{\det \Phi}\omega, \qquad \omega \in \Lambda^pV^*. $$
+$$ \Phi^*\omega = \br{\det \Phi}\omega, \qquad \omega \in \Lambda^pV^*. $$
 \end{itemize}
 \end{proposition}
 
@@ -164,11 +164,11 @@ $$ \D F_x : \T_xM \to \T_{F\br{x}}N. $$
 Thus, for all $ p \ge 0 $, we have a natural map, called the \textbf{pull-back},
 $$ \function[F_x^*]{\Lambda^p\T_{F\br{x}}^*N}{\Lambda^p\T_x^*M}{\omega\br{v_1, \dots, v_p}}{\omega\br{\D F_x\br{v_1}, \dots, \D F_x\br{v_p}}}, \qquad \omega \in \Lambda^p\T_{F\br{x}}^*N, \qquad v_1, \dots, v_p \in \T_x^*M. $$
 Thus, we can define
-$$ \function[F^*]{\Omega^p\br{N}}{\Omega^p\br{M}}{\omega\br{x}}{F^*\br{\omega\br{F\br{x}}}}, \qquad \omega \in \Omega^p\br{N}. $$
+$$ \function[F^*]{\Omega^p\br{N}}{\Omega^p\br{M}}{\omega\br{x}}{F^*\omega\br{F\br{x}}}, \qquad \omega \in \Omega^p\br{N}. $$
 By Proposition \ref{prop:1.8}, the pull-back preserves the exterior product, so
-$$ F^*\br{\omega_1 \wedge \omega_2} = F^*\br{\omega_1} \wedge F^*\br{\omega_2}. $$
+$$ F^*\br{\omega_1 \wedge \omega_2} = F^*\omega_1 \wedge F^*\omega_2. $$
 If $ G : N \to P $,
-$$ \br{G \circ F}^*\br{\omega} = F^*\br{G^*\br{\omega}}. $$
+$$ \br{G \circ F}^*\omega = F^*G^*\omega. $$
 
 \subsection{Local description of \texorpdfstring{$ p $}{p}-forms}
 
@@ -184,15 +184,15 @@ where $ f_I $ is a $ \C^\infty $-function on $ U $ for all $ I $.
 
 \begin{example}
 Let $ F : M \to N $ be a smooth morphism between manifolds of dimension $ n $, and let $ \omega \in \Omega^n\br{N} $. Locally,
-$$ \omega\br{y} = f\br{y} \d y_1 \wedge \dots \wedge \d y_n, \qquad y \in N $$
+$$ \omega\br{y} = f\br{y} \d y_1 \wedge \dots \wedge \d y_n, \qquad y \in N, $$
 for some $ f \in \C^\infty $. Proposition \ref{prop:1.8} implies that
-$$ F^*\br{\omega}\br{x} = \br{f \circ F}\br{x}\det \D F_x \d x_1 \wedge \dots \wedge \d x_n, \qquad x \in M, $$
+$$ F^*\omega\br{x} = \br{f \circ F}\br{x}\det \D F_x \d x_1 \wedge \dots \wedge \d x_n, \qquad x \in M, $$
 where $ y_i = p_i \circ F $ and $ p_i : \RR^n \to \RR $ is the $ i $-th projection.
 \end{example}
 
 Let $ f : M \to \RR $ be a smooth function, so $ f \in \Omega^0\br{M} $. Locally, the \textbf{differential} is
 $$ \function[\d]{\Omega^0\br{M}}{\Omega^1\br{M}}{f}{\sum_{i = 1}^n \dpd{f}{x_i} \d x_i}. $$
-Check that $ \d f \in \Omega^1\br{M} $, so $ \d f $ is a $ 1 $-form on $ M $. Alternatively, $ \d f = f^*\br{\d x} $ for $ \d x $ a $ 1 $-form on $ \RR $, or $ \d f\br{X} = X\br{f} $ for any vector field $ X $ on $ M $. More in general, let $ \omega \in \Omega^p\br{M} $. Locally,
+Check that $ \d f \in \Omega^1\br{M} $, so $ \d f $ is a $ 1 $-form on $ M $. Alternatively, $ \d f = f^*\d x $ for $ \d x $ a $ 1 $-form on $ \RR $, or $ \d f\br{X} = X\br{f} $ for any vector field $ X $ on $ M $. More in general, let $ \omega \in \Omega^p\br{M} $. Locally,
 $$ \omega = \sum_{\abs{I} = p} f_I \d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad f_I \in \C^\infty, $$
 so $ \d\omega \in \Omega^{p + 1}\br{M} $. Then the \textbf{de Rham differential} is
 $$ \function[\d]{\Omega^p\br{M}}{\Omega^{p + 1}\br{M}}{\omega}{\sum_{\abs{I} = p} \d f_I \wedge \d x_{i_1} \wedge \dots \wedge \d x_{i_p}}. $$
@@ -208,7 +208,7 @@ $$ \d\br{\omega_1 \wedge \omega_2} = \d\omega_1 \wedge \omega_2 + \br{-1}^p\omeg
 \item $ \d^2 = 0 $, that is
 $$ \d\br{\d\omega} = 0, \qquad \omega \in \Omega^p\br{M}. $$
 \item Let $ F : M \to N $ be a smooth morphism between manifolds. Then
-$$ F^*\br{\d\omega} = \d\br{F^*\br{\omega}}, \qquad \omega \in \Omega^p\br{M} $$
+$$ F^*\d\omega = \d\br{F^*\omega}, \qquad \omega \in \Omega^p\br{M} $$
 so
 $$
 \begin{tikzcd}
@@ -234,11 +234,11 @@ $ \omega $ is exact implies that $ \omega $ is closed, since if $ \omega = \d\om
 \subsection{Integrations on manifolds}
 
 Let $ M $ be a manifold of dimension $ n $, let $ F : M \to M $ be a smooth morphism, and let $ \omega \in \Omega^n\br{M} $. Then
-$$ F^*\br{\omega}\br{x} = \det \D F_x\omega\br{F\br{x}}. $$
+$$ F^*\omega\br{x} = \det \D F_x\omega\br{F\br{x}}. $$
 Locally, assume $ \omega = f \d y_1 \wedge \dots \wedge \d y_n $ for some coordinates $ y_1, \dots, y_n $ and $ f \in \C^\infty $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas of $ M $, where $ \phi_\alpha : U_\alpha \to V_\alpha \subset \RR^n $. Then
 $$ h_{\alpha\beta} = \phi_\beta \circ \phi_\alpha^{-1} : \phi_\alpha\br{U_\alpha \cap U_\beta} \subset \RR^n \to \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR^n, $$
 such that
-$$ h_{\alpha\beta}^*\br{\omega}\br{x} = \br{f \circ h_{\alpha\beta}}\br{x}\det \br{\D h_{\alpha\beta}}_x \d x_1 \wedge \dots \wedge \d x_n. $$
+$$ h_{\alpha\beta}^*\omega\br{x} = \br{f \circ h_{\alpha\beta}}\br{x}\det \br{\D h_{\alpha\beta}}_x \d x_1 \wedge \dots \wedge \d x_n. $$
 Let $ D \subset \RR^n $ be compact such that $ \partial D $ has zero measure, so $ D $ is a domain of integration, let $ f : U \to \RR $ be a $ \C^\infty $-function where $ U \subset \RR^n $ is open such that $ D \subset U $, and let $ h : U \to h\br{U} $ be a diffeomorphism. Then
 $$ \intd{h^{-1}\br{D}}{}{f\br{y}}{y_1 \dots \d y_n} = \intd{h^{-1}\br{D}}{}{f\br{y}}{y_1 \wedge \dots \wedge \d y_n} = \intd{D}{}{\br{f \circ h}\br{x}\abs{\det \D h_x}}{x_1 \wedge \dots \wedge \d x_n}. $$
 Let us assume that $ \omega = f\br{y}\d y_1 \wedge \dots \wedge \d y_n $ on $ U $. We define
@@ -254,7 +254,7 @@ Then $ \omega $ has \textbf{compact support}, if $ \supp \omega $ is compact.
 Under this assumption, we can define
 $$ \int_U \omega = \int_D \omega \in \RR, $$
 which is well-defined. Under the same assumption, if $ \phi : V \to U $ is a diffeomorphism, provided that $ \det \D\phi_x > 0 $, since $ \det \D\phi_x \ne 0 $ for all $ x $, then
-$$ \int_U \omega = \int_V \phi^*\br{\omega}. $$
+$$ \int_U \omega = \int_V \phi^*\omega. $$
 \end{fact*}
 
 \pagebreak
@@ -276,13 +276,13 @@ For all $ p \ge 0 $,
 $$ \Omega_\c^p\br{M} = \cbr{\omega \in \Omega^p\br{M} \st \supp M \ \text{is compact}}. $$
 \end{notation}
 
-If $ M $ is compact $ \Omega_\c^p\br{M} = \Omega^p\br{M} $. Let $ \omega \in \Omega_\c^r\br{M} $. Assume $ \supp \omega \subset U $ where $ \br{U, \phi} $ is a chart of $ M $, and $ \phi : U \to \phi\br{U} \subset \RR^n $. Assume also that $ \br{U, \phi} $ is positively oriented. Let $ \phi^{-1} : \phi\br{U} \to U $ such that $ \br{\phi^{-1}}^*\br{\omega} \in \Omega_\c^n\br{\phi\br{U}} $, that is $ \supp \br{\phi^{-1}}^*\br{\omega} \subset \phi\br{U} $. We define
+If $ M $ is compact $ \Omega_\c^p\br{M} = \Omega^p\br{M} $. Let $ \omega \in \Omega_\c^r\br{M} $. Assume $ \supp \omega \subset U $ where $ \br{U, \phi} $ is a chart of $ M $, and $ \phi : U \to \phi\br{U} \subset \RR^n $. Assume also that $ \br{U, \phi} $ is positively oriented. Let $ \phi^{-1} : \phi\br{U} \to U $ such that $ \br{\phi^{-1}}^*\omega \in \Omega_\c^n\br{\phi\br{U}} $, that is $ \supp \br{\phi^{-1}}^*\omega \subset \phi\br{U} $. We define
 \begin{equation}
 \label{eq:1}
-\int_M \omega = \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega}.
+\int_M \omega = \int_{\phi\br{U}} \br{\phi^{-1}}^*\omega.
 \end{equation}
 We need to show that, under the assumptions above, $ \int_M \omega $ does not depend on $ \br{U, \phi} $. Let $ \br{\overline{U}, \overline{\phi}} $ be also a positively oriented chart such that $ \supp \omega \subset \overline{U} $. We want to show that
-$$ \int_{\phi\br{U}} \br{\phi^{-1}}^*\br{\omega} = \int_{\overline{\phi}\br{\overline{U}}} \br{\overline{\phi}^{-1}}^*\br{\omega}. $$
+$$ \int_{\phi\br{U}} \br{\phi^{-1}}^*\omega = \int_{\overline{\phi}\br{\overline{U}}} \br{\overline{\phi}^{-1}}^*\omega. $$
 Let $ \overline{\phi} \circ \phi^{-1} : \phi\br{U \cap \overline{U}} \to \overline{\phi}\br{U \cap \overline{U}} $, so
 $$
 \begin{tikzcd}
@@ -292,15 +292,15 @@ $$
 $$
 Since both charts are positively oriented the determinant of the differential $ \D\br{\overline{\phi} \circ \phi^{-1}} $ is positive, so
 \begin{align*}
-\int_{\overline{\phi}\br{U}} \br{\overline{\phi}^{-1}}^*\br{\omega}
-& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi}^{-1}}^*\br{\omega}
-= \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi} \circ \phi^{-1}}^*\br{\overline{\phi}^{-1}}^*\br{\omega}
-= \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\overline{\phi}^*\br{\overline{\phi}^{-1}}^*\br{\omega} \\
-& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\br{\overline{\phi}^{-1} \circ \overline{\phi}}^*\br{\omega}
-= \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\br{\omega}
-= \int_{\overline{\phi}\br{U}} \br{\phi^{-1}}^*\br{\omega},
+\int_{\overline{\phi}\br{U}} \br{\overline{\phi}^{-1}}^*\omega
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi}^{-1}}^*\omega
+= \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\overline{\phi} \circ \phi^{-1}}^*\br{\overline{\phi}^{-1}}^*\omega
+= \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\overline{\phi}^*\br{\overline{\phi}^{-1}}^*\omega \\
+& = \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\br{\overline{\phi}^{-1} \circ \overline{\phi}}^*\omega
+= \int_{\overline{\phi}\br{U \cap \overline{U}}} \br{\phi^{-1}}^*\omega
+= \int_{\overline{\phi}\br{U}} \br{\phi^{-1}}^*\omega,
 \end{align*}
-by a property of the pull-back and since $ \br{\overline{\phi}^{-1}}^*\br{\omega} = 0 $ outside $ \overline{\phi}\br{U \cap \overline{U}} $.
+by a property of the pull-back and since $ \br{\overline{\phi}^{-1}}^*\omega = 0 $ outside $ \overline{\phi}\br{U \cap \overline{U}} $.
 
 \pagebreak
 
@@ -335,10 +335,10 @@ Let $ M $ be a manifold, and let $ U = \cbr{U_\alpha} $ be an open covering of $
 We omit the proof.
 \end{proof}
 
-\begin{theorem}
-\label{thm:1.23}
+\begin{proposition}
+\label{prop:1.23}
 Let $ M $ be a manifold, and let $ n = \dim M $. Then $ M $ is orientable if and only if there exists $ \omega \in \Omega^n\br{M} $ which is never vanishing on $ M $, so $ \omega\br{x} \ne 0 $ for all $ x \in M $.
-\end{theorem}
+\end{proposition}
 
 $ \omega $ is called a \textbf{volume form} on $ M $.
 
@@ -346,13 +346,13 @@ $ \omega $ is called a \textbf{volume form} on $ M $.
 \hfill
 \begin{itemize}
 \item[$ \impliedby $] Assume $ \omega \in \Omega^n\br{M} $ is a volume form. We want to construct an orientation $ \Lambda $ on $ M $, that is $ \Lambda_x $ on $ \T_xM $ for all $ x \in M $. Given an oriented basis $ v_1, \dots, v_n $ of $ \T_xM $ we say that it is \textbf{positively oriented} if $ \omega\br{x}\br{v_1, \dots, v_n} > 0 $. For all $ x \in M $, we define the orientation $ \Lambda_x $ on $ \T_xM $ by considering the class of positively oriented ordered basis of $ \T_xM $ which is compatible with the choice of an atlas on $ M $. Take any atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $, where $ \phi_\alpha : U_\alpha \to \RR^n $. On $ U_\alpha $,
-$$ \omega = g_\alpha\phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n}. $$
+$$ \omega = g_\alpha\phi_\alpha^*\d x_1 \wedge \dots \wedge \d x_n. $$
 Since $ \omega \ne 0 $, $ g_\alpha > 0 $ or $ g_\alpha < 0 $. If $ g_\alpha < 0 $ then switch $ x_1 $ with $ x_2 $, so $ g_\alpha > 0 $. After this change of coordinates, $ \br{U_\alpha, \phi_\alpha} $ is positively oriented, so $ M $ is orientable.
 
 \lecture{5}{Monday}{20/01/20}
 
 \item[$ \implies $] Assume that $ M $ is orientable, that is there exists an atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $ of positively oriented charts. On $ U_\alpha $, we consider
-$$ \omega_\alpha = \phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n}. $$
+$$ \omega_\alpha = \phi_\alpha^*\d x_1 \wedge \dots \wedge \d x_n. $$
 Let $ f_\alpha $ be a partition of unity with respect to $ \cbr{U_\alpha} $. Let $ \widetilde{\omega_\alpha} = f_\alpha\omega_\alpha \in \Omega^n\br{U_\alpha} $. We may assume that $ \widetilde{\omega_\alpha} \in \Omega^n\br{M} $ by extending equal to zero outside $ U_\alpha $. We define $ \omega = \sum_\alpha \widetilde{\omega_\alpha} \in \Omega^n\br{M} $. For all $ \alpha $, since $ \sum_\alpha f_\alpha = 1 $ there exists $ \alpha $ such that $ \widetilde{\omega_\alpha} \ne 0 $, so $ \omega \ne 0 $.
 \end{itemize}
 \end{proof}
@@ -368,7 +368,7 @@ $$ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega. $$
 
 \begin{remark}
 Note that for each $ \alpha $, we have that the support of $ f_\alpha\omega $ is contained in $ U_\alpha $ and therefore each term of the sum is well-defined as in $ \br{\ref{eq:1}} $. Indeed, we have
-$$ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega = \sum_\alpha \int_{\phi_\alpha\br{U_\alpha}} \br{\phi^{-1}}^*\br{f_\alpha}. $$
+$$ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega = \sum_\alpha \int_{\phi_\alpha\br{U_\alpha}} \br{\phi^{-1}}^*f_\alpha. $$
 \end{remark}
 
 \begin{lemma}
@@ -390,7 +390,7 @@ $$ \int_M \omega = -\int_{\overline{M}} \omega. $$
 \item Positivity. Let $ \omega $ be the volume form on $ M $. Then
 $$ \int_M \omega > 0. $$
 \item Diffeomorphism invariance. Let $ F : N \to M $ be an orientation preserving diffeomorphism. Then
-$$ \int_M \omega = \int_N F^*\br{\omega}. $$
+$$ \int_M \omega = \int_N F^*\omega. $$
 \end{enumerate}
 \end{proposition}
 
@@ -400,10 +400,10 @@ $$ \int_M \omega = \int_N F^*\br{\omega}. $$
 \item Exercise. \footnote{Exercise}
 \item Exercise. \footnote{Exercise}
 \item Choose a positively oriented chart $ \br{U_\alpha, \phi_\alpha} $ on $ U_\alpha $, so
-$$ \omega = g_\alpha\phi_\alpha^*\br{\d x_1 \wedge \dots \wedge \d x_n}, \qquad g_\alpha > 0. $$
+$$ \omega = g_\alpha\phi_\alpha^*\d x_1 \wedge \dots \wedge \d x_n, \qquad g_\alpha > 0. $$
 Then $ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega $ where $ f_\alpha $ is a partition of unity. For all $ x \in M $ there exists $ \alpha $ such that $ x \in U_\alpha $ and $ \int_{U_\alpha} f_\alpha\omega > 0 $, so $ \int_M \omega > 0 $.
 \item Let $ \br{U_\alpha, \phi_\alpha} $ be a positively oriented atlas on $ M $. Then $ \br{F^{-1}\br{U_\alpha}, \phi_\alpha \circ F} $ is an atlas on $ N $ which is positively oriented. Let $ f_\alpha $ be a partition of unity with respect to $ \cbr{U_\alpha} $. Then $ f_\alpha \circ F $ is a partition of the unity with respect to $ \cbr{F^{-1}\br{U_\alpha}} $, so
-$$ \int_N F^*\br{\omega} = \sum_\alpha \int_N \br{f_\alpha \circ F}F^*\br{\omega} = \sum_\alpha \int_N F^*\br{f_\alpha\omega} = \sum_\alpha \int_M f_\alpha\omega = \int_M \omega. $$
+$$ \int_N F^*\br{\omega} = \sum_\alpha \int_N \br{f_\alpha \circ F}F^*\omega = \sum_\alpha \int_N F^*\br{f_\alpha\omega} = \sum_\alpha \int_M f_\alpha\omega = \int_M \omega. $$
 \end{enumerate}
 \end{proof}
 
@@ -469,9 +469,9 @@ $$ \intd{M}{}{}{\omega} = \int_{\partial M} \omega \in \Omega_\c^n\br{M}. $$
 
 \begin{proof}
 Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas, and let $ f_\alpha : M \to \RR $ be a partition of unity with respect to this cover. Then $ \sum_\alpha f_\alpha = 1 $ on $ M $, so
-$$ \intd{M}{}{}{\omega} = \intd{M}{}{}{\br{\sum_\alpha f_\alpha\omega}} = \sum_\alpha \intd{M}{}{}{\br{f_\alpha\omega}} = \sum_\alpha \int_{\phi_\alpha\br{U_\alpha}} \br{\phi_\alpha^{-1}}^*\br{\d\br{f_\alpha\omega}}. $$
+$$ \intd{M}{}{}{\omega} = \intd{M}{}{}{\br{\sum_\alpha f_\alpha\omega}} = \sum_\alpha \intd{M}{}{}{\br{f_\alpha\omega}} = \sum_\alpha \int_{\phi_\alpha\br{U_\alpha}} \br{\phi_\alpha^{-1}}^*\d\br{f_\alpha\omega}. $$
 Proposition \ref{prop:1.16} implies that
-$$ \br{\phi_\alpha^{-1}}^*\br{\d\br{f_\alpha\omega}} = \d\br{\br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega}}. $$
+$$ \br{\phi_\alpha^{-1}}^*\d\br{f_\alpha\omega} = \d\br{\br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega}}. $$
 Then $ \br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega} $ is an $ \br{n - 1} $-form on $ \phi_\alpha\br{U_\alpha} $. In coordinates,
 $$ \br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega} = \sum_{j = 1}^n \widetilde{f_\alpha}\omega_j \d x_1 \wedge \dots \wedge \widehat{\d x_j} \wedge \dots \wedge \d x_n, $$
 where $ \omega_j $ is a smooth function on $ \phi_\alpha\br{U_\alpha} $ and
@@ -521,12 +521,16 @@ by Stokes and the Leibnitz rule.
 \end{proof}
 
 \begin{theorem}[Brouwer's fixed point theorem]
-Let $ D = \cbr{x \in \RR^n \st \abs{x} \le 1} $ such that $ \partial D = \S^{n - 1} = \cbr{x \in \RR^n \st \abs{x} = 1} $, and let $ f : D \to D $ be a smooth morphism. Then $ f $ admits a fixed point, that is there exists $ x \in D $ such that $ f\br{x} = x $.
+Let
+$$ D = \cbr{x \in \RR^n \st \abs{x} \le 1}, $$
+so
+$$ \partial D = \S^{n - 1} = \cbr{x \in \RR^n \st \abs{x} = 1}, $$
+and let $ f : D \to D $ be a smooth morphism. Then $ f $ admits a fixed point, that is there exists $ x \in D $ such that $ f\br{x} = x $.
 \end{theorem}
 
 \begin{proof}
-Assume that $ f\br{x} \ne x $ for all $ x \in D $. For any $ x \in D $, consider the ray starting from $ f\br{x} $ and passing through $ x $. Let $ g\br{x} $ be the point where this ray intersects $ \partial D $ away from $ f\br{x} $. Note that if $ x \in \partial D $ then $ g\br{x} = x $. Then $ g : D \to \partial D $. It is easy to check that $ g $ is smooth. Since $ \partial D = \S^{n - 1} $ is orientable by Theorem \ref{thm:1.23} there exists a volume form $ \omega \in \Omega^{n - 1}\br{\partial D} $, so $ \omega\br{x} \ne 0 $. Since $ \omega \in \Omega^{n - 1}\br{\partial D} $, $ \d\omega \in \Omega^n\br{\partial D} $, which is an $ n $-dimensional manifold, so $ \d\omega = 0 $. Thus
-$$ 0 < \int_{\partial D} \omega = \int_{\partial D} g^*\br{\omega} = \intd{D}{}{}{g^*\br{\omega}} = \int_D g^*\br{\d\omega} = 0, $$
+Assume that $ f\br{x} \ne x $ for all $ x \in D $. For any $ x \in D $, consider the ray starting from $ f\br{x} $ and passing through $ x $. Let $ g\br{x} $ be the point where this ray intersects $ \partial D $ away from $ f\br{x} $. Note that if $ x \in \partial D $ then $ g\br{x} = x $. Then $ g : D \to \partial D $. It is easy to check that $ g $ is smooth. Since $ \partial D = \S^{n - 1} $ is orientable by Proposition \ref{prop:1.23} there exists a volume form $ \omega \in \Omega^{n - 1}\br{\partial D} $, so $ \omega\br{x} \ne 0 $. Since $ \omega \in \Omega^{n - 1}\br{\partial D} $, $ \d\omega \in \Omega^n\br{\partial D} $, which is an $ n $-dimensional manifold, so $ \d\omega = 0 $. Thus
+$$ 0 < \int_{\partial D} \omega = \int_{\partial D} g^*\omega = \intd{D}{}{}{g^*\omega} = \int_D g^*\d\omega = 0, $$
 by Stokes, a contradiction.
 \end{proof}
 
@@ -540,11 +544,13 @@ $$ \omega = \d f, \qquad f \in \Omega^0\br{M} = \cbr{\text{$ \C^\infty $-functio
 In particular $ \omega = \d f $ on $ \S^1 \subset M $. Let
 $$ \function[\gamma]{\sbr{0, 2\pi}}{\S^1}{\theta}{\br{\cos \theta, \sin \theta}}. $$
 Then
-$$ \int_{\S^1} \omega = \int_0^{2\pi} \gamma^*\br{\omega} = \int_0^{2\pi} \br{\br{\dfrac{\cos \theta}{\cos^2 \theta + \sin^2 \theta}}\cos \theta \d\theta - \br{\dfrac{\sin \theta}{\cos^2 \theta + \sin^2 \theta}}\br{-\sin \theta} \d\theta} = \intd{0}{2\pi}{}{\theta} = 2\pi, $$
+$$ \int_{\S^1} \omega = \int_0^{2\pi} \gamma^*\omega = \int_0^{2\pi} \br{\br{\dfrac{\cos \theta}{\cos^2 \theta + \sin^2 \theta}}\cos \theta \d\theta - \br{\dfrac{\sin \theta}{\cos^2 \theta + \sin^2 \theta}}\br{-\sin \theta} \d\theta} = \intd{0}{2\pi}{}{\theta} = 2\pi, $$
 and
 $$ \int_{\S^1} \omega = \intd{\S^1}{}{}{f} = \int_{\partial\S^1} f = \int_\emptyset f = 0, $$
 so $ \omega $ is not exact.
 \end{example}
+
+\pagebreak
 
 \begin{theorem}
 Let $ M $ be an orientable manifold of dimension $ n $ without boundary, and let $ \omega \in \Omega_\c^n\br{M} $. Assume $ \omega $ is exact. Then
@@ -554,8 +560,6 @@ $$ \int_M \omega = 0. $$
 \begin{proof}
 Easy from Stokes.
 \end{proof}
-
-\pagebreak
 
 \begin{theorem}
 Let $ M $ be an orientable manifold of dimension $ n $ with boundary, and let $ \omega \in \Omega_\c^{n - 1}\br{M} $ be a closed form. Then
@@ -568,9 +572,9 @@ Easy from Stokes.
 
 \begin{definition}
 Let $ M $ be an orientable manifold of dimension $ n $, let $ \omega \in \Omega_\c^k\br{M} $, and let $ N \subset M $ be a submanifold of dimension $ k $. We can define
-$$ \int_M \omega = \int_N i^*\br{\omega}, $$
+$$ \int_M \omega = \int_N i^*\omega, $$
 where $ i : N \hookrightarrow M $ is the inclusion. We will denote
-$$ \eval{\omega}_N = i^*\br{\omega} \in \Omega_\c^k\br{N}. $$
+$$ \eval{\omega}_N = i^*\omega \in \Omega_\c^k\br{N}. $$
 \end{definition}
 
 \begin{theorem}
@@ -585,5 +589,111 @@ Let $ M $ be an oriented manifold of dimension $ n $, let $ \omega \in \Omega_\c
 \begin{proof}
 Exercise. \footnote{Exercise}
 \end{proof}
+
+\pagebreak
+
+\section{De Rham cohomology}
+
+\subsection{De Rham cohomology}
+
+\lecture{8}{Monday}{27/01/20}
+
+Let $ M $ be a manifold of dimension $ n $, and let $ p \ge 0 $. Then $ \omega_1, \omega_2 \in \Omega^p\br{M} $ are said to be \textbf{cohomologous} if $ \omega_1 - \omega_2 = \d\eta $ where $ \eta \in \Omega^{p - 1}\br{M} $. In particular $ \omega \in \Omega^p\br{M} $ is cohomologous to zero if it is exact. Let
+$$ \Z^p\br{M} = \Ker \br{\d : \Omega^p\br{M} \to \Omega^{p + 1}\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is closed}} \subset \Omega^p\br{M}, $$
+and let
+$$ \B^p\br{M} = \Im \br{\d : \Omega^{p - 1}\br{M} \to \Omega^p\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is exact}} \subset \Omega^p\br{M}. $$
+Then $ \B^p\br{M} \subset \Z^p\br{M} $ for all $ p \ge 0 $.
+
+\begin{notation}
+If $ p = 0 $, then $ \B^0\br{M} = 0 $.
+\end{notation}
+
+\begin{note*}
+If $ \omega_1, \omega_2 \in \Z^p\br{M} $ then $ \omega_1 - \omega_2 \in \B^p\br{M} $ if and only if $ \omega_1 $ and $ \omega_2 $ are cohomologous.
+\end{note*}
+
+Denote the \textbf{$ p $-th de Rham cohomology group} as
+$$ \H^p\br{M} = \Z^p\br{M} / \B^p\br{M} = \cbr{\sbr{\omega} \st \omega \in \Z^p\br{M}}, \qquad p \ge 0. $$
+where
+$$ \sbr{\omega} = \cbr{\omega' \in \Omega^p\br{M} \ \text{cohomologous to} \ \omega} $$
+is the \textbf{de Rham class} of $ \omega $.
+
+\begin{remark}
+$ \H^p\br{M} $ is a vector space over $ \RR $.
+\end{remark}
+
+\begin{definition}
+$ \b_p\br{M} = \dim \H^p\br{M} \in \ZZ_{\ge 0} \cup \cbr{\infty} $ is the \textbf{$ p $-th Betti number} of $ M $.
+\end{definition}
+
+\begin{proposition}
+If $ M $ is connected then
+$$ \H^0\br{M} = \RR, $$
+that is $ \b_0\br{M} = 1 $. More in general, $ \b_0\br{M} $ is the number of connected components of $ M $.
+\end{proposition}
+
+\begin{proof}
+Assume $ M $ is connected. Then $ \B^0\br{M} = 0 $, so
+\begin{align*}
+\H^0\br{M}
+& = \Z^0\br{M}
+= \cbr{f \in \Omega^0\br{M} \ \text{closed}} \\
+& = \cbr{f \in \Omega^0\br{M} \st \text{locally} \ \forall x \in M, \ \dpd{}{x_i}f\br{x} = 0} \\
+& = \cbr{f \in \Omega^0\br{M} \ \text{is locally constant}}
+= \RR.
+\end{align*}
+\end{proof}
+
+\begin{example*}
+Let $ M = \S^1 $. Then $ \H^0\br{M} = \RR $.
+\end{example*}
+
+\begin{proposition}
+Let $ M $ be a manifold of dimension $ n $. Then
+$$ \H^p\br{M} = 0, \qquad p \ge n + 1. $$
+\end{proposition}
+
+\begin{proof}
+Recall $ \Omega^p\br{M} = 0 $ if $ p \ge n + 1 $ because all alternating $ p $-forms for $ p \ge n + 1 $ on an $ n $-dimensional vector space are zero, so $ \Z^p\br{M} = 0 $. Thus $ \H^p\br{M} = 0 $.
+\end{proof}
+
+\begin{proposition}
+Let $ M $ be a compact orientable manifold of dimension $ n $ without boundary. Then
+$$ \H^n\br{M} \ne 0. $$
+\end{proposition}
+
+\begin{proof}
+$ M $ is orientable, so there exists a volume form $ \omega \in \Omega^n\br{M} = \Omega_\c^n\br{M} $, by Proposition \ref{prop:1.23}. Then $ \omega $ is closed, because $ \d\omega $ is an $ \br{n + 1} $-form on $ M $, so $ \omega \in \Z^n\br{M} $. We want to show that $ \sbr{\omega} \ne 0 $ in $ \H^n\br{M} $. Assume $ \sbr{\omega} = 0 $, so $ \omega $ is exact. Thus $ \omega = \d\eta $ where $ \eta $ is an $ \br{n - 1} $-form on $ M $, so
+$$ 0 < \int_M \omega = \int_M \d\eta = \int_{\partial M} \eta = \int_\emptyset \eta = 0, $$
+by Stokes, a contradiction.
+\end{proof}
+
+\pagebreak
+
+\begin{proposition}
+\label{prop:2.7}
+Let $ G : M \to N $ be a smooth morphism between manifolds. Then for all $ p \ge 0 $, $ G^* : \Omega^p\br{N} \to \Omega^p\br{M} $ takes closed forms of $ N $ to closed forms on $ M $ and exact forms of $ N $ to exact forms on $ M $.
+\end{proposition}
+
+\begin{proof}
+Proposition \ref{prop:1.16} implies that $ G^*\d = \d G^* $. If $ \omega $ is closed then $ \d G^*\omega = G^*\d\omega = G^*0 = 0 $, so $ G^*\omega $ is closed. If $ \omega = \d\eta $ is exact then $ G^*\omega = \d G^*\eta $ is also exact.
+\end{proof}
+
+Thus $ G^* : \Z^p\br{N} \to \Z^p\br{M} $ and $ G^* : \B^p\br{N} \to \B^p\br{M} $, so there exists a linear map
+$$ \function[G^*]{\H^p\br{N}}{\H^p\br{M}}{\sbr{\omega}}{\sbr{G^*\omega}}. $$
+
+\begin{proposition}
+Let $ M $ and $ N $ be diffeomorphic manifolds. Then for all $ p \ge 0 $, $ \H^p\br{M} \cong \H^p\br{N} $, that is $ \H^p\br{M} $ is a diffeomorphic invariant.
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:2.7} there exists $ F^* : \H^p\br{N} \to \H^p\br{M} $ and $ \br{F^{-1}}^* : \H^p\br{M} \to \H^p\br{N} $. By Proposition \ref{prop:1.8}, for all $ \omega \in \H^p\br{N} $,
+$$ \br{F^{-1}}^*F^*\omega = \br{F \circ F^{-1}}^*\omega = \id_N^*\omega = \omega, $$
+so $ \br{F^{-1}}^* \circ F^* = \id_{\H^p\br{N}} $. Similarly $ F^* \circ \br{F^{-1}}^* = \id_{\H^p\br{M}} $, so $ F^* $ is an isomorphism.
+\end{proof}
+
+\begin{definition}
+Let $ M_0 $ and $ M_1 $ be manifolds, and let $ f_0, f_1 : M_0 \to M_1 $ be smooth morphisms. Then $ f_0 $ and $ f_1 $ are smoothly \textbf{homotopic equivalent} if there exists a smooth morphism $ H : M_0 \times \sbr{0, 1} \to M_1 $ such that $ H\br{x, 0} = f_0\br{x} $ and $ H\br{x, 1} = f_1\br{x} $ for all $ x \in M_0 $.
+\end{definition}
 
 \end{document}
