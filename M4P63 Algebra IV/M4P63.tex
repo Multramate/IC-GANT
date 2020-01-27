@@ -532,4 +532,70 @@ Let $ M $ be an $ R $-module. Then $ M $ is projective if and only if whenever $
 $ M $ is projective if and only if whenever $ \beta : B \to C $ is surjective, and $ f \in \Hom_R\br{M, C} $, there exists $ g \in \Hom_R\br{M, B} $ such that $ f = \beta \circ g $. This is if and only if whenever $ \beta : B \to C $ is surjective, and $ f \in \Hom_R\br{M, C} $, then $ f \in \Im \beta_* $, which is if and only if $ \beta_* $ is surjective.
 \end{proof}
 
+\subsection{The snake lemma}
+
+\lecture{8}{Monday}{27/01/20}
+
+Let $ \alpha : A \to B $ be an $ R $-module homomorphism. The \textbf{cokernel} of $ \alpha $ is $ B / \Im \alpha $, written $ \Coker \alpha $. The sequence
+$$ 0 \to \Ker \alpha \to A \xrightarrow{\alpha} B \to \Coker \alpha \to 0 $$
+is exact.
+
+\begin{lemma}[The snake lemma]
+Suppose we have a commutative diagram
+$$
+\begin{tikzcd}
+& A \arrow{r}{\alpha} \arrow{d}{f} & B \arrow{r}{\beta} \arrow{d}{g} & C \arrow{r} \arrow{d}{h} & 0 \\
+0 \arrow{r} & X \arrow{r}{\phi} & Y \arrow{r}{\psi} & Z &
+\end{tikzcd},
+$$
+where the rows are exact. Then we obtain an exact sequence
+$$ \Ker f \xrightarrow{\overline{\alpha}} \Ker g \xrightarrow{\overline{\beta}} \Ker h \xrightarrow{\delta} \Coker f \xrightarrow{\overline{\phi}} \Coker g \xrightarrow{\overline{\psi}} \Coker h. $$
+\end{lemma}
+
+\pagebreak
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item The maps $ \overline{\alpha} : \Ker f \to \Ker g $ and $ \overline{\beta} : \Ker g \to \Ker h $ are obtained simply by restricting $ \alpha $ and $ \beta $ respectively. Observe that if $ a \in \Ker f $ then $ f\br{a} = 0 $, so $ \br{\phi \circ f}\br{a} = 0 $. But $ \phi \circ f = g \circ \overline{\alpha} $, and so $ \br{g \circ \overline{\alpha}}\br{a} = 0 $, so $ \overline{\alpha}\br{a} \in \Ker g $, which is what we wanted.
+\item The maps $ \overline{\phi} : \Coker f \to \Coker g $ and $ \overline{\psi} : \Coker g \to \Coker h $ are induced from $ \phi $ and $ \psi $ by
+$$ \overline{\phi}\br{x + \Im f} = \phi\br{x} + \Im g, \qquad \overline{\psi}\br{y + \Im g} = \psi\br{g} + \Im h. $$
+Check that these maps make sense. Suppose $ x_1 + \Im f = x_2 + \Im f $. Then $ x_1 - x_2 \in \Im f $, so there exists $ a \in A $ such that $ f\br{a} = x_1 - x_2 $. Now
+$$ \phi\br{x_1} - \phi\br{x_2} = \phi\br{x_1 - x_2} = \br{\phi \circ f}\br{a} = \br{g \circ \alpha}\br{a} \in \Im g. $$
+So $ \phi\br{x_1} + \Im g = \phi\br{x_2} + \Im g $. So $ \overline{\phi} $ is well-defined, and $ \overline{\psi} $ is shown to be well-defined by a similar argument.
+\item How is the \textbf{connecting homomorphism} $ \delta $ defined? Since $ \beta $ is surjective, for all $ c \in C $, there exists $ b \in B $ with $ \beta\br{b} = c $. Suppose $ c \in \Ker h $. Then $ \br{h \circ \beta}\br{b} = 0 $, so $ \br{\psi \circ g}\br{b} = 0 $. Hence $ g\br{b} \in \Ker \psi = \Im \phi $. Define
+$$ \delta\br{c} = x + \Im f, \qquad \phi\br{x} = g\br{b}, \qquad \beta\br{b} = c. $$
+Check this is well-defined. Suppose $ b_1, b_2, x_1, x_2 $ are such that $ \phi\br{x_1} = g\br{b_1} $ and $ \phi\br{x_2} = g\br{b_2} $, and $ \beta\br{b_1} = \beta\br{b_2} = c $. We have $ b_1 - b_2 \in \Ker \beta = \Im \alpha $. So $ b_1 - b_2 = \alpha\br{a} $ for some $ a \in A $. Then
+$$ \br{\phi \circ f}\br{a} = \br{g \circ \alpha}\br{a} = g\br{b_1 - b_2} = g\br{b_1} - g\br{b_2} = \phi\br{x_1} - \phi\br{x_2} = \phi\br{x_1 - x_2}. $$
+But $ \phi $ is injective, and so $ f\br{a} = x_1 - x_2 $, and so $ x_1 + \Im f = x_2 + \Im f $. So $ \delta $ is well-defined.
+\end{itemize}
+Exactness of the sequence is an exercise, on problem sheet.
+\end{proof}
+
+\subsection{Tensor products}
+
+\begin{definition}
+Let $ M $ be a left $ R $-module, and let $ L $ be a right $ R $-module. The \textbf{tensor product} $ L \otimes_R M $ is an abelian group generated as an abelian group by a set of \textbf{pure tensors}
+$$ \cbr{l \otimes m \st l \in L, \ m \in M}, $$
+subject to the relations
+$$ l_1 \otimes m + l_2 \otimes m = \br{l_1 + l_2} \otimes m, \qquad l_1, l_2 \in L, \qquad m \in M, $$
+$$ l \otimes m_1 + l \otimes m_2 = l \otimes \br{m_1 + m_2}, \qquad l \in L, \qquad m_1, m_2 \in M, $$
+$$ \br{lr} \otimes m = l \otimes \br{rm}, \qquad l \in L, \qquad m \in M, \qquad r \in R. $$
+\end{definition}
+
+The following are observations.
+\begin{itemize}
+\item In general, not every element of $ L \otimes_R M $ is a pure tensor. A general element of $ L \otimes_R M $ is a $ \ZZ $-linear combination of pure tensors.
+\item If $ R $ is commutative, $ L $ can be a left module, since left and right modules are the same. Also, in this case, $ L \otimes_R M $ has an $ R $-module structure, by $ r\br{l \otimes m} = rl \otimes m $.
+\item Suppose that $ S $ is a set of generators for $ L $, as an abelian group, and $ T $ is a set of generators for $ M $, as an abelian group. Then a smaller generating set for $ L \otimes_R M $ is $ \cbr{s \otimes t \st s \in S, \ t \in T} $. This is because if
+$$ l = \sum_{i = 1}^p a_is_i, \qquad m = \sum_{i = 1}^q b_jt_j, \qquad s_i \in S, \qquad t_i \in T, \qquad a_i, b_i \in \ZZ, $$
+then, from the relations,
+$$ l \otimes m = \sum_{i = 1}^p \sum_{j = 1}^q a_ib_js_i \otimes t_j. $$
+
+\pagebreak
+
+\item Tensor products can be counter intuitive, such as $ \ZZ_2 \otimes_\ZZ \ZZ_3 = 0 $. Why? Observe that for $ x \in \ZZ_2 $, $ x3 = 3x = x $. So for all $ x \in \ZZ_2 $ and $ y \in \ZZ_3 $,
+$$ x \otimes y = x3 \otimes y = x \otimes 3y = x \otimes 0 = x \otimes y - x \otimes y = 0. $$
+\end{itemize}
+
 \end{document}
