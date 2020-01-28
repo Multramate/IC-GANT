@@ -359,7 +359,7 @@ $$ \d\br{\d\omega} = 0, \qquad \omega \in \H^0\br{U, \Omega_U^p}. $$
 Let $ f : U \subset \CC^n \to \CC^m $ be holomorphic, let $ f_i = p_i \circ f : V \to \CC $ where $ p_i : \CC^m \to \CC $ is the $ i $-th projection, and let $ f\br{U} \subset V \subset \CC^m $ be open. Then if
 $$ \omega = h \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \in \H^0\br{V, \Omega_V^p}, \qquad h \in \H^0\br{U, \OOO_U}, $$
 then we can define the \textbf{pull-back} of $ \omega $,
-$$ f^*\br{\omega} = h \circ f \d f_{i_1} \wedge \dots \wedge \d f_{i_p} \in \H^0\br{U, \Omega_U^p}, $$
+$$ f^*\omega = h \circ f \d f_{i_1} \wedge \dots \wedge \d f_{i_p} \in \H^0\br{U, \Omega_U^p}, $$
 since $ f_i \in \H^0\br{V, \OOO_V} = \H^0\br{V, \Omega_V^0} $ implies that $ \d f_i \in \H^0\br{V, \Omega_V^1} $, so
 $$
 \begin{tikzcd}
@@ -374,10 +374,10 @@ This is linear over $ \CC $ and over $ \H^0\br{U, \OOO_U} $.
 \begin{proposition}
 Let $ U \subset \CC^n $, $ V \subset \CC^m $, and $ W \subset \CC^{m'} $ be open, let $ f : U \to \CC^m $ and $ g : V \to \CC^{m'} $ be holomorphic such that $ V \supset f\br{U} $ and $ W \supset g\br{V} $, and let $ \omega \in \H^0\br{V, \Omega_V^p} $ and $ \eta \in \H^0\br{V, \Omega_V^q} $. Then
 \begin{itemize}
-\item $ f^*\br{\omega + \eta} = f^*\br{\omega} + f^*\br{\eta} $ if $ p = q $,
-\item $ f^*\br{\omega \wedge \eta} = f^*\br{\omega} \wedge f^*\br{\eta} $,
-\item $ \d f^*\br{\omega} = f^*\br{\d\omega} $, and
-\item $ f^*\br{g^*\br{\omega}} = \br{g \circ f}^*\br{\omega} $.
+\item $ f^*\br{\omega + \eta} = f^*\omega + f^*\eta $ if $ p = q $,
+\item $ f^*\br{\omega \wedge \eta} = f^*\omega \wedge f^*\eta $,
+\item $ \d f^*\omega = f^*\d\omega $, and
+\item $ f^*g^*\omega = \br{g \circ f}^*\omega $.
 \end{itemize}
 \end{proposition}
 
@@ -628,7 +628,7 @@ a $ 2n $-dimensional vector space over $ \CC $. Then $ \T_x^\CC X = \T_x^\RR X \
 \begin{definition}
 Let $ X $ be a complex manifold of dimension $ n $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be a complex structure on $ X $. A \textbf{holomorphic $ p $-form} on $ X $ is the data $ \omega_\alpha $, the $ p $-forms on $ \phi_\alpha\br{U_\alpha} \subset \CC^n $ such that if
 $$ h_{\alpha\beta} = \phi_\alpha \circ \phi_\beta^{-1} : \phi_\beta\br{U_\alpha \cap U_\beta} \to \phi_\alpha\br{U_\alpha \cap U_\beta}, $$
-then $ h_{\alpha\beta}^*\br{\omega_\beta} = \omega_\alpha $ for all $ \alpha $ and $ \beta $.
+then $ h_{\alpha\beta}^*\omega_\beta = \omega_\alpha $ for all $ \alpha $ and $ \beta $.
 \end{definition}
 
 \lecture{8}{Thursday}{23/01/20}
@@ -684,7 +684,9 @@ $$
 
 \pagebreak
 
-Then $ E\br{x} = \pi^{-1}\br{x} $ is a vector space of rank $ r $ over $ \CC $. Let $ U_\alpha \ni x \in U_\beta $. There exists a biholomorphism $ \CC^r \cong p_\alpha^{-1}\br{x} \to p_\beta^{-1}\br{x} \cong \CC^r $ because they are both biholomorphic to $ \pi^{-1}\br{x} $, so $ g_{\alpha\beta}\br{x} \in \GL_r \CC $ because all the biholomorphisms from $ \CC^r \to \CC^r $ are linear. The holomorphisms $ g_{\alpha\beta} : U_\alpha \cap U_\beta \to \GL_r \CC $ are called \textbf{transition functions}. Then
+Then $ E\br{x} = \pi^{-1}\br{x} $ is a vector space of rank $ r $ over $ \CC $. Let $ U_\alpha \ni x \in U_\beta $. There exists a biholomorphism
+$$ \CC^r \cong p_\alpha^{-1}\br{x} \to p_\beta^{-1}\br{x} \cong \CC^r, $$
+because they are both biholomorphic to $ \pi^{-1}\br{x} $, so $ g_{\alpha\beta}\br{x} \in \GL_r \CC $ because all the biholomorphisms from $ \CC^r \to \CC^r $ are linear. The holomorphisms $ g_{\alpha\beta} : U_\alpha \cap U_\beta \to \GL_r \CC $ are called \textbf{transition functions}. Then
 $$
 \begin{tikzcd}
 p_\alpha^{-1}\br{x} \arrow{rr}{\id} \arrow{dr} & & p_\alpha^{-1}\br{x} \\
@@ -732,5 +734,93 @@ Let $ \pi : E \to X $ and $ \pi'^{-1} : F \to X $ be vector bundles on $ X $ of 
 \item Let $ f : E \to F $ be holomorphic maps. Then the \textbf{kernel} $ \Ker f $ is a vector bundle such that $ \br{\Ker f}\br{x} = \Ker f\br{x} \subset E\br{x} $. The \textbf{cokernel} $ \Coker f $ is a vector bundle such that $ \br{\Coker f}\br{x} = \Coker f\br{x} $.
 \end{itemize}
 \end{definition}
+
+\lecture{9}{Tuesday}{28/01/20}
+
+\begin{example}
+Let $ X = \PP_\CC^1 $, and let
+$$ \OOO\br{-1} = \cbr{\br{x, v} \st x = \sbr{x_0, \dots, x_n} \in \PP_\CC^n, \ v = \mu\br{x_0, \dots, x_n}, \ \mu \in \CC} \subset \PP_\CC^n \times \CC^{n + 1}. $$
+Then $ \pi = p_1 : \OOO\br{-1} \to \PP_\CC^n $, so
+$$ \pi^{-1}\br{\sbr{x_0, \dots, x_n}} = \cbr{v = \mu\br{x_0, \dots, x_n} \st \mu \in \CC} \cong \CC^1. $$
+
+\pagebreak
+
+Let $ \cbr{U_i} $ be an open covering of $ X $ given by $ U_i = \cbr{\sbr{x_0, \dots, x_n} \st x_i \ne 0} $. We define
+$$ \function[\psi_i]{\pi^{-1}\br{U_i}}{U_i \times \CC}{\br{\sbr{x_0, \dots, x_n}, \sbr{v_0, \dots, v_n}}}{\br{\sbr{x_0, \dots, x_n}, v_i}}. $$
+Then $ \psi_i $ is a biholomorphism, so $ \OOO\br{-1} $ is a complex manifold and $ \OOO\br{-1} $ is a line bundle. The \textbf{tautological line bundle} $ \OOO\br{1} $ is the dual of $ \OOO\br{-1} $. Let
+$$ \OOO\br{k} =
+\begin{cases}
+X \times \CC & k = 0 \\
+\OOO\br{1}^{\otimes k} & k > 0 \\
+\OOO\br{-1}^{\otimes k} & k < 0
+\end{cases},
+$$
+so $ \OOO\br{k} = \OOO\br{-k}^* $. \footnote{Exercise} On $ \PP_\CC^n $ these are the only line bundles. That is, if $ \LLL $ is a line bundle on $ \PP_\CC^1 $, there exists $ k \in \ZZ $ such that $ \LLL \cong \OOO\br{k} $. Let $ X = \PP_\CC^1 $, and let $ E $ be a line bundle of rank $ r $ on $ X $. Then
+$$ E \cong \bigoplus_{i = 1}^r \OOO\br{a_i}, \qquad a_1, \dots, a_r \in \ZZ. $$
+This is false for $ X = \PP_\CC^n $, with $ n \ge 2 $.
+\end{example}
+
+\begin{definition}
+Let $ f : Y \to X $ be a holomorphism between complex manifolds, and let $ E $ be a vector bundle of rank $ r $ on $ X $. Then there exists a vector bundle $ f^*E $ of rank $ r $ on $ Y $ defined by
+$$ f^*E = \cbr{\br{y, v} \in Y \times E \st f\br{y} = \pi\br{v}}, $$
+the \textbf{fibre product} of $ E $ and $ Y $ over $ X $, such that
+$$
+\begin{tikzcd}
+f^*E \arrow{r}{f'} \arrow[swap]{d}{\pi'} & E \arrow{d}{\pi} \\
+Y \arrow[swap]{r}{f} & X
+\end{tikzcd}.
+$$
+\end{definition}
+
+Let $ U = \cbr{U_i} $ be an open cover of $ X $ which trivialises $ E $, so
+$$
+\begin{tikzcd}
+\pi^{-1}\br{U_i} \arrow{rr}{\psi_i} \arrow[swap]{dr}{\pi} & & U_i \times \CC^r \arrow{dl}{p_1} \\
+& U_i &
+\end{tikzcd},
+$$
+and let $ U' = \cbr{f^{-1}\br{U_i}} $ be an open covering of $ Y $, so
+$$
+\begin{tikzcd}
+\pi'^{-1}\br{f^{-1}\br{U_i}} \arrow{r}{f'} \arrow[swap]{d}{\pi'} & \pi^{-1}\br{U_i} \arrow{r}{\psi_i} \arrow{d}{\pi} & U_i \times \CC^r \arrow{r}{p_2} & \CC^r \\
+f^{-1}\br{U_i} \arrow[swap]{r}{f} & U_i & &
+\end{tikzcd}.
+$$
+Then
+$$ \pi'^{-1}\br{f^{-1}\br{U_i}} = \cbr{\br{y, v} \in f^{-1}\br{U_i} \times \pi^{-1}\br{U_i} \st f\br{y} = \pi\br{v}}. $$
+Let
+$$ \function{\pi'^{-1}\br{f^{-1}\br{U_i}}}{f^{-1}\br{U_i} \times \CC^r}{\br{y, v}}{\br{y, p_2\br{\psi_i\br{v}}}}. $$
+Then $ f^*E $ is a vector bundle, and
+$$ f^*E\br{y} = \pi'^{-1}\br{y} = E\br{f\br{x}}, \qquad y \in Y. $$
+
+\begin{notation}
+Let $ f : Y \to X $ be a morphism, and let $ E $ be a vector bundle on $ X $. Then $ f^*E = \eval{E}_Y $, mostly used if $ f : Y \hookrightarrow X $.
+\end{notation}
+
+\pagebreak
+
+\begin{definition}
+Let $ E $ be a holomorphic vector bundle on a complex manifold $ X $, and let $ \pi : E \to X $. A \textbf{section} of $ E $ is a holomorphic function $ s : X \to E $ such that $ \pi \circ s = \id_X $.
+\end{definition}
+
+\begin{example}
+Let $ E = X \times \CC^r $ be the trivial vector bundle of rank $ r $. Fix $ v \in \CC^r $. Then
+$$ \function[s_v]{X}{E}{x}{\br{x, v}} $$
+is a section of $ E $. If $ v_1, \dots, v_r $ is a basis of $ \CC^r $ then $ s_{v_1}, \dots, s_{v_r} $ have the property that $ s_{v_1}\br{x}, \dots, s_{v_r}\br{x} $ forms a basis of $ E\br{x} $. Vice versa, assume $ E $ is a vector bundle on $ X $ of rank $ r $ such that there exist sections $ s_1, \dots, s_r $ of $ E $ such that for all $ x \in X $, $ s_1\br{x}, \dots, s_r\br{x} $ is a basis of $ E\br{x} $. Then $ E \cong X \times \CC^r $, since
+$$ \function{X \times \CC^r}{E}{\br{x, \br{v_1, \dots, v_r}}}{\sum_i v_is_i\br{x}} $$
+is a biholomorphism. Then $ s_1, \dots, s_r $ is called a \textbf{holomorphic frame} for $ E $. Recall that for all $ E \to X $ and for all $ x \in X $ there exists open $ U \ni x $ such that $ \eval{E}_U $ is trivial, so there exists a frame on $ U $ for $ \eval{E}_U $. This is called a \textbf{local frame} around $ x $.
+\end{example}
+
+\begin{example}
+Let $ X $ be a complex manifold of dimension $ n $, and let $ z_1, \dots, z_n $ be coordinates on $ \CC^n $. There exists an atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $ for $ \phi_\alpha : U_\alpha \to V_\alpha \subset \CC^n $. For all $ x \in U_\alpha $, $ \T_xU_\alpha \to \T_{\phi_\alpha\br{x}}V_\alpha $, and $ \T_{\phi_\alpha\br{x}}V_\alpha = \abr{\tpd{}{z_1}, \dots, \tpd{}{z_n}} $ is a frame of $ \T_{V_\alpha} $. Let
+$$ \T_X = \bigcup_{x \in X} \T_xX, $$
+and let $ \pi^{-1} : \T_X \to X $ such that $ \pi^{-1}\br{x} = \T_xX $. Then $ \T_X $ is a holomorphic vector bundle of rank $ n $ called the \textbf{tangent bundle}, where $ U = \cbr{U_\alpha} $ and
+$$ \psi_\alpha : \pi^{-1}\br{U_\alpha} = \eval{\T_X}_{U_\alpha} \to \eval{\T_{\CC^n}}_{V_\alpha} \cong V_\alpha \times \CC^r \to U_\alpha \times \CC^r $$
+defines the trivialisation. Let
+$$ \Omega_X^1 = \T_X^* $$
+be the \textbf{cotangent bundle} of $ X $, and let
+$$ \Omega_X^p = \Lambda^p\Omega_X^1, \qquad p \ge 1. $$
+A holomorphic $ p $-form on $ X $ is a section of $ \Omega_X^p $. \footnote{Exercise}
+\end{example}
 
 \end{document}
