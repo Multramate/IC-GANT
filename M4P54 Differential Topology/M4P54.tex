@@ -403,7 +403,7 @@ $$ \int_M \omega = \int_N F^*\omega. $$
 $$ \omega = g_\alpha\phi_\alpha^*\d x_1 \wedge \dots \wedge \d x_n, \qquad g_\alpha > 0. $$
 Then $ \int_M \omega = \sum_\alpha \int_{U_\alpha} f_\alpha\omega $ where $ f_\alpha $ is a partition of unity. For all $ x \in M $ there exists $ \alpha $ such that $ x \in U_\alpha $ and $ \int_{U_\alpha} f_\alpha\omega > 0 $, so $ \int_M \omega > 0 $.
 \item Let $ \br{U_\alpha, \phi_\alpha} $ be a positively oriented atlas on $ M $. Then $ \br{F^{-1}\br{U_\alpha}, \phi_\alpha \circ F} $ is an atlas on $ N $ which is positively oriented. Let $ f_\alpha $ be a partition of unity with respect to $ \cbr{U_\alpha} $. Then $ f_\alpha \circ F $ is a partition of the unity with respect to $ \cbr{F^{-1}\br{U_\alpha}} $, so
-$$ \int_N F^*\br{\omega} = \sum_\alpha \int_N \br{f_\alpha \circ F}F^*\omega = \sum_\alpha \int_N F^*\br{f_\alpha\omega} = \sum_\alpha \int_M f_\alpha\omega = \int_M \omega. $$
+$$ \int_N F^*\omega = \sum_\alpha \int_N \br{f_\alpha \circ F}F^*\omega = \sum_\alpha \int_N F^*\br{f_\alpha\omega} = \sum_\alpha \int_M f_\alpha\omega = \int_M \omega. $$
 \end{enumerate}
 \end{proof}
 
@@ -687,13 +687,73 @@ Let $ M $ and $ N $ be diffeomorphic manifolds. Then for all $ p \ge 0 $, $ \H^p
 \end{proposition}
 
 \begin{proof}
-By Proposition \ref{prop:2.7} there exists $ F^* : \H^p\br{N} \to \H^p\br{M} $ and $ \br{F^{-1}}^* : \H^p\br{M} \to \H^p\br{N} $. By Proposition \ref{prop:1.8}, for all $ \omega \in \H^p\br{N} $,
-$$ \br{F^{-1}}^*F^*\omega = \br{F \circ F^{-1}}^*\omega = \id_N^*\omega = \omega, $$
+By Proposition \ref{prop:2.7} there exists $ F^* : \H^p\br{N} \to \H^p\br{M} $ and $ \br{F^{-1}}^* : \H^p\br{M} \to \H^p\br{N} $. By Proposition \ref{prop:1.8},
+$$ \br{F^{-1}}^*F^*\omega = \br{F \circ F^{-1}}^*\omega = \id_N^*\omega = \omega, \qquad \omega \in \H^p\br{N} $$
 so $ \br{F^{-1}}^* \circ F^* = \id_{\H^p\br{N}} $. Similarly $ F^* \circ \br{F^{-1}}^* = \id_{\H^p\br{M}} $, so $ F^* $ is an isomorphism.
 \end{proof}
 
 \begin{definition}
 Let $ M_0 $ and $ M_1 $ be manifolds, and let $ f_0, f_1 : M_0 \to M_1 $ be smooth morphisms. Then $ f_0 $ and $ f_1 $ are smoothly \textbf{homotopic equivalent} if there exists a smooth morphism $ H : M_0 \times \sbr{0, 1} \to M_1 $ such that $ H\br{x, 0} = f_0\br{x} $ and $ H\br{x, 1} = f_1\br{x} $ for all $ x \in M_0 $.
 \end{definition}
+
+\lecture{9}{Tuesday}{28/01/20}
+
+A \textbf{homotopy} is a smooth morphism $ H : M_0 \times \sbr{0, 1} \to M_1 $ where $ M_0 $ and $ M_1 $ are smooth manifolds.
+
+\begin{notation}
+Let $ f_t\br{x} = H\br{x, t} $, so $ f_t : M_0 \to M_1 $ is a smooth morphism. Then $ f_0 $ and $ f_1 $ are said to be homotopic equivalent, denoted by $ f_0 \sim f_1 $, and $ \sim $ is an equivalence. \footnote{Exercise}
+\end{notation}
+
+\begin{definition}
+$ M_0 $ and $ M_1 $ are \textbf{homotopy equivalent} if there exist smooth morphisms $ f : M_0 \to M_1 $ and $ g : M_1 \to M_0 $ such that $ f \circ g \sim \id_{M_1} $ and $ g \circ f \sim \id_{M_0} $.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item Let $ M_0 = \RR^n $ and $ M_1 = \cbr{0} $. Then $ M_0 $ and $ M_1 $ are homotopy equivalent. Let
+$$ \function[f]{M_0}{M_1}{x}{0}, \qquad \function[g]{M_1}{M_0}{0}{0}. $$
+Then
+$$ \function[f \circ g]{M_1}{M_1}{0}{0}, $$
+so $ f \circ g = \id_{M_1} $, and
+$$ \function[g \circ f]{M_0}{M_0}{x}{0}. $$
+We want to show that $ g \circ f \sim \id_{M_0} $. Define a smooth morphism
+$$ \function[H]{M_0 \times \sbr{0, 1}}{M_0}{\br{x, t}}{tx}. $$
+Then $ H\br{x, 0} = 0 = \br{g \circ f}\br{x} $ for all $ x $, and $ H\br{x, 1} = x = \id_{M_0}\br{x} $ for all $ x $, so $ g \circ f \sim \id_{M_0} $. More in general $ M \subset \RR^n $ is called \textbf{convex} if for all $ x, y \in M $ the segment joining $ x $ to $ y $ is contained inside $ M $. If $ M $ is convex then $ M $ is homotopy equivalent to $ M \times \cbr{0} $.
+
+\pagebreak
+
+\item Let $ M_0 = \RR^2 \setminus \cbr{0} $ and $ M_1 = \S^1 $. Then $ M_0 $ and $ M_1 $ are homotopy equivalent. Let
+$$ \function[f]{M_0}{M_1}{x}{\dfrac{x}{\abs{x}}}, \qquad \function[g]{M_1}{M_0}{x}{x}. $$
+Then
+$$ \function[f \circ g]{M_1}{M_1}{x}{x}, $$
+so $ f \circ g = \id_{M_1} $, and
+$$ \function[g \circ f]{M_0}{M_0}{x}{\dfrac{x}{\abs{x}}}. $$
+Let
+$$ \function[H]{M_0 \times \sbr{0, 1}}{M_0}{\br{x, t}}{tx + \br{1 - t}\dfrac{x}{\abs{x}}} $$
+be smooth. Then $ H\br{x, 0} = x / \abs{x} = \br{g \circ f}\br{x} $ and $ H\br{x, 1} = x = \id_{M_0}\br{x} $, so $ g \circ f \sim \id_{M_0} $.
+\end{itemize}
+\end{example}
+
+\begin{proposition}
+Let $ M $ and $ N $ be manifolds, and let $ H : M \times \sbr{0, 1} \to N $. Denote
+$$ \function[f_t]{M}{N}{x}{H\br{x, t}}, \qquad t \in \sbr{0, 1}. $$
+Then for all $ p \ge 0 $, $ f_t^* : \H^p\br{N} \to \H^p\br{M} $ does not depend on $ t $.
+\end{proposition}
+
+\begin{proof}
+Let $ t_1, t_2 \in \sbr{0, 1} $ such that $ t_1 < t_2 $. The goal is $ f_{t_1}^*\sbr{\eta} = f_{t_2}^*\sbr{\eta} $ for all $ \sbr{\eta} \in \H^p\br{N} $. Let
+$$ \function[i_k]{M}{M \times \sbr{0, 1}}{x}{\br{x, t_k}}, \qquad k = 1, 2. $$
+Claim that for all $ p $ there exists a linear map $ h : \Omega^p\br{M \times \sbr{t_1, t_2}} \to \Omega^{p - 1}\br{M} $ such that
+$$ \d\br{h\br{\omega}} + h\br{\d\omega} = i_2^*\omega - i_1^*\omega \in \Omega^p\br{M}, \qquad \omega \in \Omega^p\br{M \times \sbr{0, 1}}. $$
+\begin{enumerate}[label=Step \arabic*., leftmargin=0.5in]
+\item The claim implies the proposition. Let $ \eta \in \Omega^p\br{N} $ be closed, so $ \d\eta = 0 $. Then $ H^*\eta $ is also closed, so let $ \omega = H^*\eta \in \Omega^p\br{M \times \sbr{t_1, t_2}} $. Apply $ h $. Then $ \d\omega = 0 $, so $ \d\br{h\br{\omega}} = i_2^*\omega - i_1^*\omega $ is exact. Thus
+$$ f_{t_1}^*\sbr{\eta} = \sbr{f_{t_1}^*\eta} = \sbr{i_1^*H^*\eta} = \sbr{i_1^*\omega} = \sbr{i_2^*\omega} = \sbr{i_2^*H^*\eta} = \sbr{f_{t_2}^*\eta} = f_{t_2}^*\sbr{\eta}, $$
+so the proposition follows.
+\item The proof of the claim. Let $ \omega \in \Omega^p\br{M \times \sbr{t_1, t_2}} $. Then for all $ \br{x, t} \in M \times \sbr{t_1, t_2} $, $ \omega\br{x, t} $ is an alternating $ p $-form on $ \T_{\br{x, t}}\br{M \times \sbr{t_1, t_2}} $. We want an alternating $ \br{p - 1} $-form $ h\omega\br{x} $ on $ \T_xM $. Let $ v_1, \dots, v_{p - 1} \in \T_xM $. Then
+$$ h\omega\br{x}\br{v_1, \dots, v_{p - 1}} = \intd{t_1}{t_2}{\omega\br{x, t}\br{v_1, \dots, v_{p - 1}, \dpd{}{t}}}{t} $$
+is a $ \br{p - 1} $-form on $ M $. Check $ h $ is linear. \footnote{Exercise}
+\end{enumerate}
+\end{proof}
 
 \end{document}
