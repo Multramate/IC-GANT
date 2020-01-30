@@ -892,4 +892,86 @@ E \arrow{rr}{f} \arrow[swap]{dr}{\pi} & & F \arrow{dl}{\pi'} \\
 $$
 Let $ X $ be a differentiable manifold of dimension $ m = 2n $. Then an \textbf{almost complex structure} on $ X $ is a smooth morphism between the real tangent bundle $ J : \T_X^\RR \to \T_X^\RR $ such that $ J^2 = -\id $. In particular, $ J\br{x} : \T_x^\RR X \to \T_x^\RR X $ is an almost complex structure for all $ x \in X $.
 
+\lecture{11}{Thursday}{30/01/20}
+
+\begin{proposition}
+Let $ X $ be a complex manifold. Then the underlying differentiable manifold admits an almost complex structure $ J : \T_X^\RR \to \T_X^\RR $ such that $ J^2 = -\id $.
+\end{proposition}
+
+\begin{proof}
+Let $ x \in X $, and let $ \br{U, \phi} $ be a complex chart around $ x $ such that
+$$ \function[\phi]{U}{V}{x}{0}. $$
+Fix holomorphic coordinates $ \br{z_1, \dots, z_n} $ on $ U $. The tangent bundle of $ X $ on $ U $ is trivial, with a local frame $ \tpd{}{z_1}, \dots, \tpd{}{z_n} $, so
+$$ \eval{\T_X}_U \xrightarrow{\sim} \T_V = V \times \CC^n. $$
+Define $ x_i = \Re z_i $ and $ y_i = \Im e_i $. Then $ \br{x_1, y_1, \dots, x_n, y_n} $ are smooth coordinates $ U \to \RR $ around $ x $, and $ \tpd{}{x_1}, \tpd{}{y_1}, \dots, \tpd{}{x_n}, \tpd{}{y_n} $ define a local smooth frame of $ \T_X^\RR $ on $ U $, so
+$$ \eval{\T_X^\RR}_U \xrightarrow{\sim} \T_V = V \times \RR^{2n}. $$
+In particular, there exists an almost complex structure $ J_U $ for $ \T_V \cong \eval{\T_X^\RR}_U $, so
+$$ J_U : \eval{\T_X^\RR}_U \to \eval{\T_X^\RR}_U, \qquad J_U^2 = -\id. $$
+
+\pagebreak
+
+Let $ f : V \to V $ be a biholomorphism, so
+$$
+\begin{tikzcd}
+& U \cap U' \arrow[swap]{dl}{\phi} \arrow{dr}{\phi} & \\
+V \arrow[swap]{rr}{f} & & V
+\end{tikzcd},
+$$
+and let $ z_1', \dots, z_n' $ be local holomorphic coordinates given by
+$$ z_i' = f_i\br{z_1, \dots, z_n}, \qquad f_i = \p_i \circ f, $$
+where $ \p_i : \CC^n \to \CC $ is the $ i $-th projection. Define
+$$ x_i' = \Re z_i' = \Re f_i\br{z_1, \dots, z_n} = u_i\br{z_1, \dots, z_n}, \qquad y_i' = \Im z_i' = \Im f_i\br{z_1, \dots, z_n} = v_i\br{z_1, \dots, z_n}, $$
+so $ f_j = u_j + iv_j $. The real Jacobian $ \J_f $ of $ f $ is given by the derivatives of $ u_j $ and $ v_j $ with respect to $ x_1, y_1, \dots, x_n, y_n $, a $ 2n \times 2n $ matrix of $ n \times n $ blocks of $ 2 \times 2 $ blocks of
+$$ \twobytwo{\tpd{u_j}{x_k}}{\tpd{u_j}{y_k}}{\tpd{v_j}{x_k}}{\tpd{v_j}{y_k}}. $$
+These define the transition function of $ \T_X^\RR $. To show that $ J $ extends to $ X $, it is enough to show that $ J $ commutes with $ \J_f $ at each point, so
+$$
+\begin{tikzcd}
+\eval{\T_X^\RR}_{U \cap U'} \arrow{r}{\J_f} \arrow[swap]{d}{J} & \eval{\T_X^\RR}_{U \cap U'} \arrow{d}{J} \\
+\eval{\T_X^\RR}_{U \cap U'} \arrow[swap]{r}{\J_f} & \eval{\T_X^\RR}_{U \cap U'}
+\end{tikzcd}.
+$$
+Since $ f_j $ is holomorphic $ \tpd{f_j}{\overline{z_k}} = 0 $ for all $ j $ and $ k $, so the Cauchy-Riemann equations
+$$ \dpd{u_j}{x_k} - \dpd{v_j}{y_k} = 0, \qquad \dpd{v_j}{x_k} + \dpd{u_j}{y_k} = 0, $$
+or
+$$ \twobytwo{\tpd{u_j}{x_k}}{\tpd{u_j}{y_k}}{\tpd{v_j}{x_k}}{\tpd{v_j}{y_k}} = \twobytwo{\tpd{v_j}{y_k}}{\tpd{u_j}{y_k}}{-\tpd{u_j}{y_k}}{\tpd{v_j}{y_k}}. $$
+Since $ J $ is the standard almost complex structure on $ \RR^{2n} $, where $ x_j \mapsto y_j $ and $ y_j \mapsto -x_j $,
+$$ J =
+\begin{pmatrix}
+0 & 1 & & & \\
+-1 & 0 & & 0 & \\
+& & \ddots & & \\
+& 0 & & 0 & 1 \\
+& & & -1 & 0
+\end{pmatrix}.
+$$
+Check that $ \J_f $ commutes with $ J $. \footnote{Exercise}
+\end{proof}
+
+\begin{corollary}
+Every complex manifold is orientable.
+\end{corollary}
+
+\begin{proof}
+We prove that if $ \T_X^\RR $ admits an almost complex structure then $ X $ is an orientable manifold. For all $ x \in X $ choose the orientation on $ \T_x^\RR X $, a vector space of dimension $ 2n $ over $ \RR $, given by any ordered basis of the form
+$$ v_1, \dots, v_n, J\br{v_1}, \dots, J\br{v_n}. $$
+Assume that $ v_1, \dots, v_n, J\br{v_1}, \dots, J\br{v_n} $ and $ w_1, \dots, w_n, J\br{w_1}, \dots, J\br{w_n} $ are ordered bases. Show that the determinant of the matrix given by the change of basis is positive. \footnote{Exercise}
+\end{proof}
+
+\pagebreak
+
+Let $ X $ be a complex manifold. Then there exists an almost complex structure $ J : \T_X^\RR \to \T_X^\RR $ on $ X $. Then $ J $ extends to
+$$ \function[J]{\T_X^\CC}{\T_X^\CC}{v \otimes \mu}{J\br{v} \otimes \mu}. $$
+For all $ x $, $ J\br{x} $ has two eigenvalues $ \pm i $, so
+$$ \T_X^\CC = \T_X^{1, 0} \oplus \T_X^{0, 1}, $$
+which are complex vector bundles and \textbf{eigenbundles}. Locally $ \T_X^{1, 0} $ and $ \T_X^{0, 1} $ are spanned by the frames $ \tpd{}{z_1}, \dots, \tpd{}{z_n} $ and $ \tpd{}{\overline{z_1}}, \dots, \tpd{}{\overline{z_n}} $ respectively. Moreover there exists a conjugation
+$$ \function{\T_X^\CC}{\T_X^\CC}{v \otimes \mu}{v \otimes \overline{\mu}} $$
+over $ \RR $, such that $ \overline{\T_X^{1, 0}} = \T_X^{0, 1} $ and $ \overline{\T_X^{0, 1}} = \T_X^{1, 0} $. Let
+$$ \Omega_{X, \CC}^1 = \Omega_{X, \CC}^1 = \Omega_{X, \CC}^{1, 0} \oplus \Omega_{X, \CC}^{0, 1} = \br{\T_X^{1, 0}}^* \oplus \br{\T_X^{0, 1}}^* $$
+be the dual of the complex vector bundle $ \T_X^\CC $.
+
+\begin{exercise*}
+Let $ V $ and $ W $ be vector spaces. Show that
+$$ \Lambda^p\br{V \oplus W} = \bigoplus_{a + b = p} \Lambda^aV \otimes \Lambda^bW. $$
+\end{exercise*}
+
 \end{document}
