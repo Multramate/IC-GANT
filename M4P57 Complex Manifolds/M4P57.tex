@@ -162,7 +162,7 @@ The idea is to use Theorem \ref{thm:2.7} and $ 1 / \br{1 - w} = \sum_{k \ge 0} w
 \end{proof}
 
 \begin{definition}
-Let $ U \subset \CC^n $ be open. Then $ f : U \to \CC^m $ is \textbf{holomorphic} if $ f_i = p_i \circ f $ is holomorphic for any $ i = 1, \dots, m $ where $ p_i : \CC^m \to \CC $ is the $ i $-th projection, so $ f = \br{f_1, \dots, f_m} $.
+Let $ U \subset \CC^n $ be open. Then $ f : U \to \CC^m $ is \textbf{holomorphic} if $ f_i = \p_i \circ f $ is holomorphic for any $ i = 1, \dots, m $ where $ \p_i : \CC^m \to \CC $ is the $ i $-th projection, so $ f = \br{f_1, \dots, f_m} $.
 \end{definition}
 
 \begin{fact*}
@@ -245,7 +245,7 @@ If $ f $ is holomorphic, then $ \tpd{f}{\overline{\omega}} = 0 $, which implies 
 
 Let $ U \subset \CC^n $ be open, and let $ f : U \to \CC^m $ be holomorphic. Then the \textbf{Jacobian} is
 $$ \J_f = \br{\dpd{f_j}{z_i}\br{z}}, $$
-where $ f_j = p_j \circ f $ and $ p_j : \CC^m \to \CC $ is the $ j $-th projection.
+where $ f_j = \p_j \circ f $ and $ \p_j : \CC^m \to \CC $ is the $ j $-th projection.
 
 \begin{exercise*}
 Show that the real Jacobian, which is $ 2n \times 2n $, has non-negative determinants.
@@ -263,9 +263,9 @@ $$
 $$
 \end{theorem}
 
-\begin{theorem}[Inverse function theorem]
+\begin{corollary}[Inverse function theorem]
 Let $ f : U \to \CC^n $ be holomorphic for $ U \subset \CC^n $, and let $ z \in U $ such that $ \det \J_f\br{z} \ne 0 $. Then $ f $ is a biholomorphism at $ z $.
-\end{theorem}
+\end{corollary}
 
 \begin{proof}
 $ \det \J_f\br{z} \ne 0 $ if and only if $ \rk \J_f\br{z} = n $, so $ \rk \J_f\br{z'} = n $ around $ z $, since $ \det \J_f\br{z} $ is a continuous function. Let $ \phi $ and $ \psi $ as in the theorem. Then $ \eta = \psi^{-1} \circ f \circ \phi = \id $, so on $ V $, $ f = \psi \circ \phi^{-1} $ is a composition of biholomorphisms, which is a biholomorphism.
@@ -317,7 +317,7 @@ $$ \H^0\br{U, \Omega_U^p} = \Lambda^pM^*. $$
 If $ p = 0 $, by convention a \textbf{holomorphic $ 0 $-form} is just an element in $ R $.
 \end{definition}
 
-Let $ z_1, \dots, z_n $ be coordinates for $ U $. Recall $ \eta \in M $ is given by $ \eta = \sum_i a_i\tpd{}{z_i} $ for holomorphic functions $ a_i \in R $. Then $ \omega \in M^* $ is given by the expression
+Let $ \br{z_1, \dots, z_n} $ be coordinates for $ U $. Recall $ \eta \in M $ is given by $ \eta = \sum_i a_i\tpd{}{z_i} $ for holomorphic functions $ a_i \in R $. Then $ \omega \in M^* $ is given by the expression
 $$ \sum_i b_i \d z_i, \qquad b_i \in R, \qquad \d z_i\br{\dpd{}{z_j}} = \delta_{ij}. $$
 More in general $ \omega \in \H^0\br{U, \Omega_U^p} $ is given by
 $$ \omega = \sum_{\abs{I} = p} f_I \d z_{i_1} \wedge \dots \wedge \d z_{i_p}, \qquad f_I \in R, \qquad I = \br{i_1, \dots, i_p}, \qquad i_1 < \dots < i_p, $$
@@ -343,7 +343,7 @@ $$ \function[\d]{\H^0\br{U, \Omega_U^p}}{\H^0\br{U, \Omega_U^{p + 1}}}{f \d z_{i
 By definition $ \d $ is $ \CC $-linear, but not $ R $-linear. That is,
 $$ \d\br{a\omega_1 + b\omega_2} = a \d\omega_1 + b \d\omega_2, \qquad \omega_1, \omega_2 \in \H^0\br{U, \Omega_U^p}, \qquad a, b \in \CC. $$
 
-\begin{theorem}
+\begin{proposition}
 Let $ U \subset \CC^n $ be open. Then
 \begin{itemize}
 \item the Leibnitz rule
@@ -351,12 +351,12 @@ $$ \d\br{\omega_1 \wedge \omega_2} = \d\omega_1 \wedge \omega_2 + \br{-1}^p \ome
 \item $ \d^2 = 0 $, that is
 $$ \d\br{\d\omega} = 0, \qquad \omega \in \H^0\br{U, \Omega_U^p}. $$
 \end{itemize}
-\end{theorem}
+\end{proposition}
 
 \pagebreak
 
 \begin{definition}
-Let $ f : U \subset \CC^n \to \CC^m $ be holomorphic, let $ f_i = p_i \circ f : V \to \CC $ where $ p_i : \CC^m \to \CC $ is the $ i $-th projection, and let $ f\br{U} \subset V \subset \CC^m $ be open. Then if
+Let $ f : U \subset \CC^n \to \CC^m $ be holomorphic, let $ f_i = \p_i \circ f : V \to \CC $ where $ \p_i : \CC^m \to \CC $ is the $ i $-th projection, and let $ f\br{U} \subset V \subset \CC^m $ be open. Then if
 $$ \omega = h \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \in \H^0\br{V, \Omega_V^p}, \qquad h \in \H^0\br{U, \OOO_U}, $$
 then we can define the \textbf{pull-back} of $ \omega $,
 $$ f^*\omega = h \circ f \d f_{i_1} \wedge \dots \wedge \d f_{i_p} \in \H^0\br{U, \Omega_U^p}, $$
@@ -394,7 +394,7 @@ $$ \overline{\omega} = \sum_{\abs{I} = p, \ \abs{J} = q} \overline{f_{I, J}} \d\
 
 \section{Complex manifolds}
 
-\subsection{Objects}
+\subsection{Complex manifolds}
 
 \begin{definition}
 A \textbf{complex manifold} of dimension $ n $ is a connected Hausdorff topological space $ X $, with a countable open cover $ \cbr{U_\alpha} $ of $ X $ such that for all $ \alpha $, there exists $ \phi_\alpha : U_\alpha \to \CC^n $ such that $ \phi_\alpha : U_\alpha \to \phi_\alpha\br{U_\alpha} $ is a homeomorphism and
@@ -463,7 +463,7 @@ $$ \phi_V = \eval{q}_U^{-1} : V \subset \CC^n / \Lambda \to U \subset \CC^n, \qq
 Show that $ \br{V, \phi_V} $ define a complex structure on $ X $. \footnote{Exercise} This is also a compact complex manifold. More in general $ \CC^n / \Lambda $ where $ \Lambda \cong \ZZ^{2n} $ is a lattice is a compact complex manifold.
 \end{example}
 
-\subsection{Morphisms}
+\subsection{Holomorphic functions on complex manifolds}
 
 \lecture{6}{Tuesday}{21/01/20}
 
@@ -508,6 +508,8 @@ Then $ \widetilde{f} = q \circ f : \CC \to X $ is an immersion.
 \item If $ \lambda $ is general then $ \widetilde{f}\br{\CC} $ is dense inside $ X $, so it is not closed. Thus it is not a complex submanifold of $ X $.
 \end{itemize}
 \end{example}
+
+\subsection{Complex submanifolds}
 
 \begin{definition}
 Let $ i : X \to Y $ be an embedding of complex manifolds. If $ i\br{X} \subset Y $ is closed then $ i\br{X} $ is called a \textbf{complex submanifold} of $ Y $. The \textbf{codimension} of $ X $ in $ Y $ is $ \dim Y - \dim X $.
@@ -555,6 +557,8 @@ $$ \br{\psi_\alpha \circ \psi_\beta^{-1}}\br{z_1, \dots, z_n} = \br{\phi_\alpha 
 is also a biholomorphism.
 \end{enumerate}
 \end{proof}
+
+\subsection{Examples of complex manifolds}
 
 \lecture{7}{Thursday}{23/01/20}
 
@@ -611,19 +615,21 @@ Check that it is a biholomorphism. \footnote{Exercise} This is true for any $ f 
 \end{itemize}
 \end{example}
 
+\subsection{Tangent spaces of complex manifolds}
+
 \begin{definition}
 Let $ X $ be a complex manifold of dimension $ n $, and let $ x \in X $. Then there exists a chart $ \br{U, \phi} $ around $ x $ such that $ \phi\br{U} \subset \CC^n $. The \textbf{holomorphic tangent space} $ \T_xX $ of $ X $ at $ x $, is the vector space over $ \CC $ generated by
 $$ \br{\dpd{}{z_1}, \dots, \dpd{}{z_n}}. $$
 Let $ X $ be a real manifold. The \textbf{real tangent space} $ \T_x^\RR X $ is the vector space over $ \RR $ defined by
 $$ \br{\dpd{}{x_1}, \dots, \dpd{}{x_n}, \dpd{}{y_1}, \dots, \dpd{}{y_n}}, $$
-where $ \br{x_1, \dots, x_n, y_1, \dots, y_n} $ are coordinates of $ \RR^{2n} $. The \textbf{complex tangent space} $ \T_x^\RR X $ is the vector space over $ \CC $ generated by
+where $ \br{x_1, \dots, x_n, y_1, \dots, y_n} $ are coordinates of $ \RR^{2n} $. The \textbf{complex tangent space} $ \T_x^\CC X $ is the vector space over $ \CC $ generated by
 $$ \br{\dpd{}{z_1}, \dots, \dpd{}{z_n}, \dpd{}{\overline{z_1}}, \dots, \dpd{}{\overline{z_n}}}, $$
 a $ 2n $-dimensional vector space over $ \CC $. Then $ \T_x^\CC X = \T_x^\RR X \otimes_\RR \CC $.
 \end{definition}
 
 \pagebreak
 
-\subsection{Holomorphic forms on complex manifolds}
+\subsection{Holomorphic differential forms on complex manifolds}
 
 \begin{definition}
 Let $ X $ be a complex manifold of dimension $ n $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be a complex structure on $ X $. A \textbf{holomorphic $ p $-form} on $ X $ is the data $ \omega_\alpha $, the $ p $-forms on $ \phi_\alpha\br{U_\alpha} \subset \CC^n $ such that if
@@ -656,50 +662,54 @@ As in the local case, we can define
 $$ \function{\Omega_x^p\br{X} \otimes \Omega_x^q\br{X}}{\Omega_x^{p + q}\br{X}}{\omega_1 \otimes \omega_2}{\omega_1 \wedge \omega_2}. $$
 Similarly there exists $ \d : \Omega_x^p\br{X} \to \Omega_x^{p + 1}\br{X} $.
 
+\pagebreak
+
+\section{Vector bundles}
+
 \subsection{Holomorphic vector bundles}
 
 \begin{definition}
-Let $ X $ be a complex manifold. A \textbf{holomorphic vector bundle} $ E $ of rank $ r $ on $ X $ is
-\begin{itemize}
-\item a complex manifold $ E $,
-\item a holomorphism $ \pi : E \to X $, and
-\item an open covering $ U_\alpha $ of $ X $,
-\end{itemize}
-such that there exists a biholomorphism $ \psi_\alpha : \pi^{-1}\br{U_\alpha} \to U_\alpha \times \CC^r $ such that if $ p_\alpha : U_\alpha \times \CC^r \to U_\alpha $ is the projection then $ \eval{\pi}_{\pi^{-1}\br{U_\alpha}} = p_\alpha \circ \psi_\alpha $, so
+Let $ X $ be a complex manifold. A \textbf{holomorphic vector bundle} $ E $ of rank $ r $ on $ X $ is a complex manifold $ E $, a holomorphism $ \pi : E \to X $, and an open covering $ U_\alpha $ of $ X $ such that there exists a biholomorphism
+$$ \psi_\alpha : \pi^{-1}\br{U_\alpha} \to U_\alpha \times \CC^r, $$
+such that if $ \p_\alpha : U_\alpha \times \CC^r \to U_\alpha $ is the projection then $ \eval{\pi}_{\pi^{-1}\br{U_\alpha}} = \p_\alpha \circ \psi_\alpha $, so
 $$
 \begin{tikzcd}
-E \arrow[swap]{d}{\pi} & \pi^{-1}\br{U_\alpha} \arrow[subset]{l} \arrow{r}{\psi_\alpha} \arrow[swap]{d}{\pi} & U_\alpha \times \CC^r \arrow{dl}{p_\alpha} \\
+E \arrow[swap]{d}{\pi} & \pi^{-1}\br{U_\alpha} \arrow[subset]{l} \arrow{r}{\psi_\alpha} \arrow[swap]{d}{\pi} & U_\alpha \times \CC^r \arrow{dl}{\p_\alpha} \\
 X & U_\alpha \arrow[subset]{l} &
 \end{tikzcd}.
 $$
+A vector bundle of rank one is called a \textbf{line bundle}.
 \end{definition}
 
 For any $ x \in X $, there exists $ \alpha $ such that $ x \in U_\alpha $, so
 $$
 \begin{tikzcd}
-\pi^{-1}\br{x} \arrow{r}{\psi_\alpha} \arrow[swap]{d}{\pi} & \cbr{x} \times \CC^r \arrow{dl}{p_\alpha} \\
+\pi^{-1}\br{x} \arrow{r}{\psi_\alpha} \arrow[swap]{d}{\pi} & \cbr{x} \times \CC^r \arrow{dl}{\p_\alpha} \\
 x &
 \end{tikzcd}.
 $$
-
-\pagebreak
-
 Then $ E\br{x} = \pi^{-1}\br{x} $ is a vector space of rank $ r $ over $ \CC $. Let $ U_\alpha \ni x \in U_\beta $. There exists a biholomorphism
-$$ \CC^r \cong p_\alpha^{-1}\br{x} \to p_\beta^{-1}\br{x} \cong \CC^r, $$
-because they are both biholomorphic to $ \pi^{-1}\br{x} $, so $ g_{\alpha\beta}\br{x} \in \GL_r \CC $ because all the biholomorphisms from $ \CC^r \to \CC^r $ are linear. The holomorphisms $ g_{\alpha\beta} : U_\alpha \cap U_\beta \to \GL_r \CC $ are called \textbf{transition functions}. Then
+$$ \CC^r \cong \p_\alpha^{-1}\br{x} \to \p_\beta^{-1}\br{x} \cong \CC^r, $$
+because they are both biholomorphic to $ \pi^{-1}\br{x} $, so $ g_{\alpha\beta}\br{x} \in \GL_r \CC $ because all the biholomorphisms from $ \CC^r \to \CC^r $ are linear. The holomorphisms
+$$ g_{\alpha\beta} : U_\alpha \cap U_\beta \to \GL_r \CC $$
+are called \textbf{transition functions}. Then
 $$
 \begin{tikzcd}
-p_\alpha^{-1}\br{x} \arrow{rr}{\id} \arrow{dr} & & p_\alpha^{-1}\br{x} \\
-& p_\beta^{-1}\br{x} \arrow{ur} &
-\end{tikzcd}
-\qquad \implies \qquad \br{g_{\alpha\beta} \circ g_{\beta\alpha}}\br{x} = x, \qquad x \in U_\alpha \cap U_\beta, $$
+\p_\alpha^{-1}\br{x} \arrow{rr}{\id} \arrow{dr} & & \p_\alpha^{-1}\br{x} \\
+& \p_\beta^{-1}\br{x} \arrow{ur} &
+\end{tikzcd},
+$$
+so
+$$ \br{g_{\alpha\beta} \circ g_{\beta\alpha}}\br{x} = x, \qquad x \in U_\alpha \cap U_\beta, $$
 and
 $$
 \begin{tikzcd}
-p_\alpha^{-1}\br{x} \arrow{rr}{g_{\alpha\gamma}} \arrow{dr} & & p_\gamma^{-1}\br{x} \\
-& p_\beta^{-1}\br{x} \arrow{ur} &
-\end{tikzcd}
-\qquad \implies \qquad \br{g_{\alpha\beta} \circ g_{\beta\gamma}}\br{x} = g_{\alpha\gamma}\br{x}, \qquad x \in U_\alpha \cap U_\beta \cap U_\gamma. $$
+\p_\alpha^{-1}\br{x} \arrow{rr}{g_{\alpha\gamma}} \arrow{dr} & & \p_\gamma^{-1}\br{x} \\
+& \p_\beta^{-1}\br{x} \arrow{ur} &
+\end{tikzcd},
+$$
+so
+$$ \br{g_{\alpha\beta} \circ g_{\beta\gamma}}\br{x} = g_{\alpha\gamma}\br{x}, \qquad x \in U_\alpha \cap U_\beta \cap U_\gamma. $$
 
 \begin{definition}
 Let $ X $ be a complex manifold, and let $ E $ and $ F $ be vector bundles on $ X $ of rank $ r $ and $ s $ respectively, with $ \pi : E \to X $ and $ \pi' : F \to X $. A \textbf{holomorphic map} $ f : E \to F $ is a holomorphic function $ E \to F $ such that $ \pi = \pi' \circ f $ and such that the rank of the induced linear map $ E\br{x} \to F\br{x} $ is independent of $ x \in X $, so
@@ -716,49 +726,58 @@ E\br{x} = \pi^{-1}\br{x} \arrow{rr}{f} \arrow[swap]{dr}{\pi} & & \pi'^{-1}\br{x}
 $$
 \end{definition}
 
+\pagebreak
+
+\subsection{Examples of holomorphic vector bundles}
+
 \begin{example}
 $ \pi : E = X \times \CC^r \to X $ is a vector bundle of rank $ r $, called \textbf{trivial}.
 \end{example}
 
-\begin{definition}
-A vector bundle of rank one is called a \textbf{line bundle}.
-\end{definition}
-
-\begin{definition}
-Let $ \pi : E \to X $ and $ \pi'^{-1} : F \to X $ be vector bundles on $ X $ of rank $ r $ and $ s $ respectively.
+\begin{example}
+Algebra of vector bundles. Let $ \pi : E \to X $ and $ \pi'^{-1} : F \to X $ be vector bundles on $ X $ of rank $ r $ and $ s $ respectively.
 \begin{itemize}
-\item The \textbf{direct sum} $ E \oplus F $ is a $ \br{r + s} $-vector bundle such that $ \br{E \oplus F}\br{x} = E\br{x} \oplus F\br{x} $ for all $ x \in X $. The idea is to take an open cover which trivialises both $ E $ and $ F $. Find the transition function of $ E \oplus F $. \footnote{Exercise}
-\item The \textbf{tensor product} $ E \otimes F $ is the $ \br{r \cdot s} $-vector bundle such that $ \br{E \otimes F}\br{x} = E\br{x} \otimes F\br{x} $ for all $ x \in X $.
-\item The \textbf{$ p $-th exterior power} of $ E $ is the vector bundle $ \Lambda^pE $ such that $ \br{\Lambda^pE}\br{x} = \Lambda^p\br{E\br{x}} $. If $ p = r = \rk E $ then $ \det E = \Lambda^rE $ is a line bundle on $ X $.
-\item The \textbf{dual} of $ E $ is the rank $ r $ vector bundle $ E^* $ such that $ E^*\br{x} = \br{E\br{x}}^* $, the dual $ \Hom\br{E\br{x}, \CC} $ of $ E\br{x} $.
-\item Let $ f : E \to F $ be holomorphic maps. Then the \textbf{kernel} $ \Ker f $ is a vector bundle such that $ \br{\Ker f}\br{x} = \Ker f\br{x} \subset E\br{x} $. The \textbf{cokernel} $ \Coker f $ is a vector bundle such that $ \br{\Coker f}\br{x} = \Coker f\br{x} $.
+\item The \textbf{direct sum} $ E \oplus F $ is the $ \br{r + s} $-vector bundle such that
+$$ \br{E \oplus F}\br{x} = E\br{x} \oplus F\br{x}, \qquad x \in X. $$
+The idea is to take an open cover which trivialises both $ E $ and $ F $. Find the transition function of $ E \oplus F $. \footnote{Exercise}
+\item The \textbf{tensor product} $ E \otimes F $ is the $ \br{r \cdot s} $-vector bundle such that
+$$ \br{E \otimes F}\br{x} = E\br{x} \otimes F\br{x}, \qquad x \in X. $$
+\item The \textbf{$ p $-th exterior power} of $ E $ is the vector bundle $ \Lambda^pE $ such that
+$$ \br{\Lambda^pE}\br{x} = \Lambda^p\br{E\br{x}}, \qquad x \in X. $$
+If $ p = r = \rk E $ then $ \det E = \Lambda^rE $ is a line bundle on $ X $.
+\item The \textbf{dual} of $ E $ is the rank $ r $ vector bundle $ E^* $ such that
+$$ E^*\br{x} = \br{E\br{x}}^*, \qquad x \in X, $$
+the dual $ \Hom\br{E\br{x}, \CC} $ of $ E\br{x} $.
+\item Let $ f : E \to F $ be a holomorphic map. Then the \textbf{kernel} $ \Ker f $ is a vector bundle such that
+$$ \br{\Ker f}\br{x} = \Ker f\br{x} \subset E\br{x}, \qquad x \in X. $$
+The \textbf{cokernel} $ \Coker f $ is a vector bundle such that
+$$ \br{\Coker f}\br{x} = \Coker f\br{x} \subset F\br{x}, \qquad x \in X. $$
 \end{itemize}
-\end{definition}
+\end{example}
 
 \lecture{9}{Tuesday}{28/01/20}
 
 \begin{example}
 Let $ X = \PP_\CC^1 $, and let
 $$ \OOO\br{-1} = \cbr{\br{x, v} \st x = \sbr{x_0, \dots, x_n} \in \PP_\CC^n, \ v = \mu\br{x_0, \dots, x_n}, \ \mu \in \CC} \subset \PP_\CC^n \times \CC^{n + 1}. $$
-Then $ \pi = p_1 : \OOO\br{-1} \to \PP_\CC^n $, so
+Then $ \pi = \p_1 : \OOO\br{-1} \to \PP_\CC^n $, so
 $$ \pi^{-1}\br{\sbr{x_0, \dots, x_n}} = \cbr{v = \mu\br{x_0, \dots, x_n} \st \mu \in \CC} \cong \CC^1. $$
-
-\pagebreak
-
 Let $ \cbr{U_i} $ be an open covering of $ X $ given by $ U_i = \cbr{\sbr{x_0, \dots, x_n} \st x_i \ne 0} $. We define
-$$ \function[\psi_i]{\pi^{-1}\br{U_i}}{U_i \times \CC}{\br{\sbr{x_0, \dots, x_n}, \sbr{v_0, \dots, v_n}}}{\br{\sbr{x_0, \dots, x_n}, v_i}}. $$
-Then $ \psi_i $ is a biholomorphism, so $ \OOO\br{-1} $ is a complex manifold and $ \OOO\br{-1} $ is a line bundle. The \textbf{tautological line bundle} $ \OOO\br{1} $ is the dual of $ \OOO\br{-1} $. Let
+$$ \function[\psi_i]{\pi^{-1}\br{U_i}}{U_i \times \CC}{\br{\sbr{x_0, \dots, x_n}, \br{v_0, \dots, v_n}}}{\br{\sbr{x_0, \dots, x_n}, v_i}}, $$
+which is a biholomorphism. Thus $ \OOO\br{-1} $ is a complex manifold and $ \OOO\br{-1} $ is a line bundle. The \textbf{tautological line bundle} $ \OOO\br{1} $ is the dual of $ \OOO\br{-1} $. Let
 $$ \OOO\br{k} =
 \begin{cases}
 X \times \CC & k = 0 \\
 \OOO\br{1}^{\otimes k} & k > 0 \\
 \OOO\br{-1}^{\otimes k} & k < 0
-\end{cases},
+\end{cases}.
 $$
-so $ \OOO\br{k} = \OOO\br{-k}^* $. \footnote{Exercise} On $ \PP_\CC^n $ these are the only line bundles. That is, if $ \LLL $ is a line bundle on $ \PP_\CC^1 $, there exists $ k \in \ZZ $ such that $ \LLL \cong \OOO\br{k} $. Let $ X = \PP_\CC^1 $, and let $ E $ be a line bundle of rank $ r $ on $ X $. Then
+Then $ \OOO\br{k} = \OOO\br{-k}^* $. \footnote{Exercise} On $ \PP_\CC^n $ these are the only line bundles. That is, if $ \LLL $ is a line bundle on $ \PP_\CC^1 $, there exists $ k \in \ZZ $ such that $ \LLL \cong \OOO\br{k} $. Let $ X = \PP_\CC^1 $, and let $ E $ be a line bundle of rank $ r $ on $ X $. Then
 $$ E \cong \bigoplus_{i = 1}^r \OOO\br{a_i}, \qquad a_1, \dots, a_r \in \ZZ. $$
 This is false for $ X = \PP_\CC^n $, with $ n \ge 2 $.
 \end{example}
+
+\pagebreak
 
 \begin{definition}
 Let $ f : Y \to X $ be a holomorphism between complex manifolds, and let $ E $ be a vector bundle of rank $ r $ on $ X $. Then there exists a vector bundle $ f^*E $ of rank $ r $ on $ Y $ defined by
@@ -775,29 +794,25 @@ $$
 Let $ U = \cbr{U_i} $ be an open cover of $ X $ which trivialises $ E $, so
 $$
 \begin{tikzcd}
-\pi^{-1}\br{U_i} \arrow{rr}{\psi_i} \arrow[swap]{dr}{\pi} & & U_i \times \CC^r \arrow{dl}{p_1} \\
+\pi^{-1}\br{U_i} \arrow{rr}{\psi_i} \arrow[swap]{dr}{\pi} & & U_i \times \CC^r \arrow{dl}{\p_1} \\
 & U_i &
-\end{tikzcd},
-$$
-and let $ U' = \cbr{f^{-1}\br{U_i}} $ be an open covering of $ Y $, so
-$$
-\begin{tikzcd}
-\pi'^{-1}\br{f^{-1}\br{U_i}} \arrow{r}{f'} \arrow[swap]{d}{\pi'} & \pi^{-1}\br{U_i} \arrow{r}{\psi_i} \arrow{d}{\pi} & U_i \times \CC^r \arrow{r}{p_2} & \CC^r \\
-f^{-1}\br{U_i} \arrow[swap]{r}{f} & U_i & &
 \end{tikzcd}.
 $$
-Then
-$$ \pi'^{-1}\br{f^{-1}\br{U_i}} = \cbr{\br{y, v} \in f^{-1}\br{U_i} \times \pi^{-1}\br{U_i} \st f\br{y} = \pi\br{v}}. $$
-Let
-$$ \function{\pi'^{-1}\br{f^{-1}\br{U_i}}}{f^{-1}\br{U_i} \times \CC^r}{\br{y, v}}{\br{y, p_2\br{\psi_i\br{v}}}}. $$
-Then $ f^*E $ is a vector bundle, and
-$$ f^*E\br{y} = \pi'^{-1}\br{y} = E\br{f\br{x}}, \qquad y \in Y. $$
+Then $ U' = \cbr{f^{-1}\br{U_i}} $ is an open covering of $ Y $, so
+$$
+\begin{tikzcd}
+\pi'^{-1}\br{f^{-1}\br{U_i}} \arrow{r}{f'} \arrow[swap]{d}{\pi'} & \pi^{-1}\br{U_i} \arrow{r}{\psi_i} \arrow{d}{\pi} & U_i \times \CC^r \arrow{r}{\p_2} & \CC^r \\
+f^{-1}\br{U_i} \arrow[swap]{r}{f} & U_i & &
+\end{tikzcd},
+$$
+and
+$$ \function{\pi'^{-1}\br{f^{-1}\br{U_i}} = \cbr{\br{y, v} \in f^{-1}\br{U_i} \times \pi^{-1}\br{U_i} \st f\br{y} = \pi\br{v}}}{f^{-1}\br{U_i} \times \CC^r}{\br{y, v}}{\br{y, \p_2\br{\psi_i\br{v}}}} $$
+is a biholomorphism. Thus $ f^*E $ is a vector bundle, where
+$$ f^*E\br{y} = \pi'^{-1}\br{y} = E\br{f\br{y}}, \qquad y \in Y. $$
 
 \begin{notation}
 Let $ f : Y \to X $ be a morphism, and let $ E $ be a vector bundle on $ X $. Then $ f^*E = \eval{E}_Y $, mostly used if $ f : Y \hookrightarrow X $.
 \end{notation}
-
-\pagebreak
 
 \begin{definition}
 Let $ E $ be a holomorphic vector bundle on a complex manifold $ X $, and let $ \pi : E \to X $. A \textbf{section} of $ E $ is a holomorphic function $ s : X \to E $ such that $ \pi \circ s = \id_X $.
@@ -811,16 +826,70 @@ $$ \function{X \times \CC^r}{E}{\br{x, \br{v_1, \dots, v_r}}}{\sum_i v_is_i\br{x
 is a biholomorphism. Then $ s_1, \dots, s_r $ is called a \textbf{holomorphic frame} for $ E $. Recall that for all $ E \to X $ and for all $ x \in X $ there exists open $ U \ni x $ such that $ \eval{E}_U $ is trivial, so there exists a frame on $ U $ for $ \eval{E}_U $. This is called a \textbf{local frame} around $ x $.
 \end{example}
 
+\pagebreak
+
 \begin{example}
-Let $ X $ be a complex manifold of dimension $ n $, and let $ z_1, \dots, z_n $ be coordinates on $ \CC^n $. There exists an atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $ for $ \phi_\alpha : U_\alpha \to V_\alpha \subset \CC^n $. For all $ x \in U_\alpha $, $ \T_xU_\alpha \to \T_{\phi_\alpha\br{x}}V_\alpha $, and $ \T_{\phi_\alpha\br{x}}V_\alpha = \abr{\tpd{}{z_1}, \dots, \tpd{}{z_n}} $ is a frame of $ \T_{V_\alpha} $. Let
+Let $ X $ be a complex manifold of dimension $ n $, and let $ \br{z_1, \dots, z_n} $ be coordinates on $ \CC^n $. There exists an atlas $ \cbr{\br{U_\alpha, \phi_\alpha}} $ for $ \phi_\alpha : U_\alpha \to V_\alpha \subset \CC^n $. For all $ x \in U_\alpha $, $ \T_xU_\alpha \to \T_{\phi_\alpha\br{x}}V_\alpha $, and $ \T_{\phi_\alpha\br{x}}V_\alpha = \abr{\tpd{}{z_1}, \dots, \tpd{}{z_n}} $ is a frame of $ \T_{V_\alpha} $. Let
 $$ \T_X = \bigcup_{x \in X} \T_xX, $$
 and let $ \pi^{-1} : \T_X \to X $ such that $ \pi^{-1}\br{x} = \T_xX $. Then $ \T_X $ is a holomorphic vector bundle of rank $ n $ called the \textbf{tangent bundle}, where $ U = \cbr{U_\alpha} $ and
 $$ \psi_\alpha : \pi^{-1}\br{U_\alpha} = \eval{\T_X}_{U_\alpha} \to \eval{\T_{\CC^n}}_{V_\alpha} \cong V_\alpha \times \CC^r \to U_\alpha \times \CC^r $$
-defines the trivialisation. Let
-$$ \Omega_X^1 = \T_X^* $$
-be the \textbf{cotangent bundle} of $ X $, and let
+defines the trivialisation. The \textbf{cotangent bundle} of $ X $ is
+$$ \Omega_X^1 = \T_X^*, $$
+and let
 $$ \Omega_X^p = \Lambda^p\Omega_X^1, \qquad p \ge 1. $$
 A holomorphic $ p $-form on $ X $ is a section of $ \Omega_X^p $. \footnote{Exercise}
 \end{example}
+
+\subsection{Complexified tangent bundles}
+
+\lecture{10}{Thursday}{30/01/20}
+
+Let $ X $ be a complex manifold. How to view $ X $ as a differentiable manifold? Let $ V $ be a vector space of dimension $ m $ over $ \RR $. An \textbf{almost complex structure} on $ V $ is a linear map $ J : V \to V $ such that $ J^2 = -\id_V $. If $ V $ admits an almost complex structure, then $ V $ can be seen as a vector space over $ \CC $. Let $ \lambda = a + ib $ for $ a, b \in \RR $, and let $ v \in V $. Define
+$$ \lambda v = av + bJ\br{v}. $$
+If $ \lambda_1, \lambda_2 \in \CC $, then $ \lambda_1\br{\lambda_2 v} = \br{\lambda_1\lambda_2}v $. \footnote{Exercise} Let $ v_1, \dots, v_n \in V $ be a basis over $ \CC $. Then
+$$ v_1, \dots, v_n, J\br{v_1}, \dots, J\br{v_n} $$
+is a basis of $ V $ over $ \RR $. The idea is to assume that $ a_i, b_i \in \RR $ such that $ \sum_i a_iv_i + \sum_i b_iJ\br{v_i} = 0 $, then
+$$ 0 = \sum_i a_iv_i + \sum_i b_iJ\br{v_i} = \sum_i \br{a_iv_i + b_iJ\br{v_i}} = \sum_i \br{a_i + ib_i}v_i, $$
+so $ a_i + ib_i = 0 $ for all $ i $. Thus $ a_i = b_i = 0 $, so $ m = 2n $. On a vector space an almost complex structure is a complex structure. Let $ V $ be a vector space of dimension $ 2n $ over $ \RR $. Then the \textbf{complexification} $ V_\CC = V \otimes_\RR \CC $ of $ V $ is a $ \CC $-vector space of dimension $ 2n $ over $ \CC $, where
+$$ \function[\lambda]{V_\CC}{V_\CC}{v \otimes \mu}{v \otimes \mu\lambda}, \qquad \lambda \in \CC. $$
+Let $ J $ be an almost complex structure on $ V $. Then we can extend $ J $ to a linear map
+$$ \function[J]{V_\CC}{V_\CC}{v \otimes \mu}{J\br{v} \otimes \mu}, $$
+such that $ J^2 = -\id_{V_\CC} $, \footnote{Exercise} so $ J^2 + \id_{V_\CC} = 0 $. Thus the eigenvalues of $ J $ on $ V_\CC $ are $ \pm i $. Let $ V^{1, 0} $ be the eigenspace for $ i $ and $ V^{0, 1} $ be the eigenspace for $ -i $, so
+$$ V_\CC = V^{1, 0} \oplus V^{0, 1}. $$
+The \textbf{conjugation}
+$$ \function[\overline{\cdot}]{V_\CC}{V_\CC}{v \otimes \mu}{v \otimes \overline{\mu}} $$
+on $ V_\CC $ in linear over $ \RR $, such that $ \overline{V^{1, 0}} = V^{0, 1} $ and $ \overline{V^{0, 1}} = V^{1, 0} $, \footnote{Exercise} so $ V^{1, 0} $ and $ V^{0, 1} $ are $ \CC $-vector spaces of dimension $ n $.
+
+\pagebreak
+
+\begin{example}
+Let $ W = \CC^n $ with coordinates $ \br{z_1, \dots, z_n} $, and let $ z_j = x_j + iy_j $ with coordinates $ \br{x_1, y_1, \dots, x_n, y_n} $ for $ \RR^{2n} $. Define
+$$ \function[J]{\RR^{2n}}{\RR^{2n}}{\br{x_1, y_1, \dots, x_n, y_n}}{\br{-y_1, x_1, \dots, -y_n, x_n}}. $$
+Then $ J^2 = \id_{\RR^{2n}} $, and $ J $ is the \textbf{standard almost complex structure} on $ \RR^{2n} $. Let $ V = \RR^{2n} $, so $ V_\CC \cong \CC^{2n} $ with complex coordinates $ \br{x_1, y_1, \dots, x_n, y_n} $. Then $ V^{0, 1} $ is spanned by $ x_j - iy_j $ and $ V^{1, 0} $ is spanned by $ x_j + iy_j $, where $ \overline{x_j + iy_j} = x_j - iy_j $ for $ j = 1, \dots, n $.
+\end{example}
+
+\begin{definition}
+Let $ X $ be a differentiable manifold. A \textbf{real, or complex, vector bundle} of rank $ r $ is a differentiable manifold $ E $ with a smooth morphism $ \pi : E \to X $ such that if $ K = \RR $, or $ K = \CC $, then there exists an open covering $ U = \cbr{U_i} $ of $ X $ such that
+\begin{itemize}
+\item for all $ x \in X $, the fibre of $ \pi $, $ E\br{x} = \pi^{-1}\br{x} $, is a vector space of rank $ r $ over $ K $,
+\item for all $ i $ there exists a diffeomorphism $ h_i $ such that
+$$
+\begin{tikzcd}
+\pi^{-1}\br{U_i} \arrow{rr}{h_i} \arrow[swap]{dr}{\pi} & & U_i \times K^r \arrow{r}{\p_2} \arrow{dl}{\p_1} & K^r \\
+& U_i & &
+\end{tikzcd},
+$$
+and for all $ x $, $ \p_2 \circ h_i : E\br{x} \to K^r $ is an isomorphism of vector spaces.
+\end{itemize}
+\end{definition}
+
+Pull-backs, sections, exterior powers, tensors, direct sums, frames, etc are the same as holomorphic vector bundles, where holomorphic becomes smooth and biholomorphic becomes diffeomorphic, and for all $ X $ there exists a tangent bundle $ \T_X $. Assume $ X $ is a complex manifold of dimension $ n $. Let $ \T_X $ be the holomorphic tangent bundle of $ X $. Then $ X $ is also a differentiable manifold of dimension $ 2n $, so let $ \T_X^\RR $ be the real tangent bundle of $ X $, which is a rank $ 2n $ vector bundle, and let $ \T_X^\CC = \T_X^\RR \otimes_\RR \CC $ be the complex tangent bundle of $ X $, which is a non-holomorphic complex vector bundle of rank $ 2n $. Smooth morphisms of real or complex vector bundles are defined similarly as holomorphisms between holomorphic vector bundles such that the rank of the image is constant, so
+$$
+\begin{tikzcd}
+E \arrow{rr}{f} \arrow[swap]{dr}{\pi} & & F \arrow{dl}{\pi'} \\
+& X &
+\end{tikzcd}.
+$$
+Let $ X $ be a differentiable manifold of dimension $ m = 2n $. Then an \textbf{almost complex structure} on $ X $ is a smooth morphism between the real tangent bundle $ J : \T_X^\RR \to \T_X^\RR $ such that $ J^2 = -\id $. In particular, $ J\br{x} : \T_x^\RR X \to \T_x^\RR X $ is an almost complex structure for all $ x \in X $.
 
 \end{document}
