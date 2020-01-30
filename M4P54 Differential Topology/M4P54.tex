@@ -598,29 +598,34 @@ Exercise. \footnote{Exercise}
 
 \lecture{8}{Monday}{27/01/20}
 
+\begin{definition}
 Let $ M $ be a manifold of dimension $ n $, and let $ p \ge 0 $. Then $ \omega_1, \omega_2 \in \Omega^p\br{M} $ are said to be \textbf{cohomologous} if $ \omega_1 - \omega_2 = \d\eta $ where $ \eta \in \Omega^{p - 1}\br{M} $. In particular $ \omega \in \Omega^p\br{M} $ is cohomologous to zero if it is exact. Let
 $$ \Z^p\br{M} = \Ker \br{\d : \Omega^p\br{M} \to \Omega^{p + 1}\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is closed}} \subset \Omega^p\br{M}, $$
 and let
 $$ \B^p\br{M} = \Im \br{\d : \Omega^{p - 1}\br{M} \to \Omega^p\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is exact}} \subset \Omega^p\br{M}. $$
+\end{definition}
+
 Then $ \B^p\br{M} \subset \Z^p\br{M} $ for all $ p \ge 0 $.
 
-\begin{notation}
+\begin{notation*}
 If $ p = 0 $, then $ \B^0\br{M} = 0 $.
-\end{notation}
+\end{notation*}
 
 \begin{note*}
 If $ \omega_1, \omega_2 \in \Z^p\br{M} $ then $ \omega_1 - \omega_2 \in \B^p\br{M} $ if and only if $ \omega_1 $ and $ \omega_2 $ are cohomologous.
 \end{note*}
 
+\begin{definition}
 Denote the \textbf{$ p $-th de Rham cohomology group} as
 $$ \H^p\br{M} = \Z^p\br{M} / \B^p\br{M} = \cbr{\sbr{\omega} \st \omega \in \Z^p\br{M}}, \qquad p \ge 0. $$
 where
 $$ \sbr{\omega} = \cbr{\omega' \in \Omega^p\br{M} \ \text{cohomologous to} \ \omega} $$
 is the \textbf{de Rham class} of $ \omega $.
+\end{definition}
 
-\begin{remark}
+\begin{remark*}
 $ \H^p\br{M} $ is a vector space over $ \RR $.
-\end{remark}
+\end{remark*}
 
 \begin{definition}
 $ \b_p\br{M} = \dim \H^p\br{M} \in \ZZ_{\ge 0} \cup \cbr{\infty} $ is the \textbf{$ p $-th Betti number} of $ M $.
@@ -639,7 +644,7 @@ Assume $ M $ is connected. Then $ \B^0\br{M} = 0 $, so
 & = \Z^0\br{M}
 = \cbr{f \in \Omega^0\br{M} \ \text{closed}} \\
 & = \cbr{f \in \Omega^0\br{M} \st \text{locally} \ \forall x \in M, \ \dpd{}{x_i}f\br{x} = 0} \\
-& = \cbr{f \in \Omega^0\br{M} \ \text{is locally constant}}
+& = \cbr{f \in \Omega^0\br{M} \ \text{locally constant}}
 = \RR.
 \end{align*}
 \end{proof}
@@ -649,6 +654,7 @@ Let $ M = \S^1 $. Then $ \H^0\br{M} = \RR $.
 \end{example*}
 
 \begin{proposition}
+\label{prop:2.5}
 Let $ M $ be a manifold of dimension $ n $. Then
 $$ \H^p\br{M} = 0, \qquad p \ge n + 1. $$
 \end{proposition}
@@ -672,7 +678,9 @@ by Stokes, a contradiction.
 
 \begin{proposition}
 \label{prop:2.7}
-Let $ G : M \to N $ be a smooth morphism between manifolds. Then for all $ p \ge 0 $, $ G^* : \Omega^p\br{N} \to \Omega^p\br{M} $ takes closed forms of $ N $ to closed forms on $ M $ and exact forms of $ N $ to exact forms on $ M $.
+Let $ G : M \to N $ be a smooth morphism between manifolds. Then
+$$ G^* : \Omega^p\br{N} \to \Omega^p\br{M}, \qquad p \ge 0 $$
+takes closed forms of $ N $ to closed forms on $ M $ and exact forms of $ N $ to exact forms on $ M $.
 \end{proposition}
 
 \begin{proof}
@@ -682,9 +690,11 @@ Proposition \ref{prop:1.16} implies that $ G^*\d = \d G^* $. If $ \omega $ is cl
 Thus $ G^* : \Z^p\br{N} \to \Z^p\br{M} $ and $ G^* : \B^p\br{N} \to \B^p\br{M} $, so there exists a linear map
 $$ \function[G^*]{\H^p\br{N}}{\H^p\br{M}}{\sbr{\omega}}{\sbr{G^*\omega}}. $$
 
-\begin{proposition}
-Let $ M $ and $ N $ be diffeomorphic manifolds. Then for all $ p \ge 0 $, $ \H^p\br{M} \cong \H^p\br{N} $, that is $ \H^p\br{M} $ is a diffeomorphic invariant.
-\end{proposition}
+\begin{corollary}
+Let $ M $ and $ N $ be diffeomorphic manifolds. Then
+$$ \H^p\br{M} \cong \H^p\br{N}, \qquad p \ge 0, $$
+that is $ \H^p\br{M} $ is a diffeomorphic invariant.
+\end{corollary}
 
 \begin{proof}
 By Proposition \ref{prop:2.7} there exists $ F^* : \H^p\br{N} \to \H^p\br{M} $ and $ \br{F^{-1}}^* : \H^p\br{M} \to \H^p\br{N} $. By Proposition \ref{prop:1.8},
@@ -692,16 +702,16 @@ $$ \br{F^{-1}}^*F^*\omega = \br{F \circ F^{-1}}^*\omega = \id_N^*\omega = \omega
 so $ \br{F^{-1}}^* \circ F^* = \id_{\H^p\br{N}} $. Similarly $ F^* \circ \br{F^{-1}}^* = \id_{\H^p\br{M}} $, so $ F^* $ is an isomorphism.
 \end{proof}
 
+\subsection{Homotopy invariance}
+
 \begin{definition}
-Let $ M_0 $ and $ M_1 $ be manifolds, and let $ f_0, f_1 : M_0 \to M_1 $ be smooth morphisms. Then $ f_0 $ and $ f_1 $ are smoothly \textbf{homotopic equivalent} if there exists a smooth morphism $ H : M_0 \times \sbr{0, 1} \to M_1 $ such that $ H\br{x, 0} = f_0\br{x} $ and $ H\br{x, 1} = f_1\br{x} $ for all $ x \in M_0 $.
+Let $ M_0 $ and $ M_1 $ be manifolds, and let $ f_0, f_1 : M_0 \to M_1 $ be smooth morphisms. Then $ f_0 $ and $ f_1 $ are \textbf{smoothly homotopic equivalent} if there exists a smooth morphism $ H : M_0 \times \sbr{0, 1} \to M_1 $ such that $ H\br{x, 0} = f_0\br{x} $ and $ H\br{x, 1} = f_1\br{x} $ for all $ x \in M_0 $. A \textbf{homotopy} is a smooth morphism $ H : M_0 \times \sbr{0, 1} \to M_1 $ where $ M_0 $ and $ M_1 $ are smooth manifolds.
 \end{definition}
 
 \lecture{9}{Tuesday}{28/01/20}
 
-A \textbf{homotopy} is a smooth morphism $ H : M_0 \times \sbr{0, 1} \to M_1 $ where $ M_0 $ and $ M_1 $ are smooth manifolds.
-
 \begin{notation}
-Let $ f_t\br{x} = H\br{x, t} $, so $ f_t : M_0 \to M_1 $ is a smooth morphism. Then $ f_0 $ and $ f_1 $ are said to be homotopic equivalent, denoted by $ f_0 \sim f_1 $, and $ \sim $ is an equivalence. \footnote{Exercise}
+Let $ f_t\br{x} = H\br{x, t} $, so $ f_t : M_0 \to M_1 $ is a smooth morphism. Then $ f_0 $ and $ f_1 $ are said to be homotopic equivalent, denoted by $ f_0 \sim f_1 $. Then $ \sim $ is an equivalence. \footnote{Exercise}
 \end{notation}
 
 \begin{definition}
@@ -709,6 +719,7 @@ $ M_0 $ and $ M_1 $ are \textbf{homotopy equivalent} if there exist smooth morph
 \end{definition}
 
 \begin{example}
+\label{eg:2.12}
 \hfill
 \begin{itemize}
 \item Let $ M_0 = \RR^n $ and $ M_1 = \cbr{0} $. Then $ M_0 $ and $ M_1 $ are homotopy equivalent. Let
@@ -736,24 +747,93 @@ be smooth. Then $ H\br{x, 0} = x / \abs{x} = \br{g \circ f}\br{x} $ and $ H\br{x
 \end{example}
 
 \begin{proposition}
-Let $ M $ and $ N $ be manifolds, and let $ H : M \times \sbr{0, 1} \to N $. Denote
+\label{prop:2.13}
+Let $ M $ and $ N $ be manifolds, and let $ H : M \times \sbr{0, 1} \to N $ be smooth. Denote
 $$ \function[f_t]{M}{N}{x}{H\br{x, t}}, \qquad t \in \sbr{0, 1}. $$
-Then for all $ p \ge 0 $, $ f_t^* : \H^p\br{N} \to \H^p\br{M} $ does not depend on $ t $.
+Then $ f_t^* : \H^p\br{N} \to \H^p\br{M} $ does not depend on $ t $ for all $ p \ge 0 $.
 \end{proposition}
 
 \begin{proof}
 Let $ t_1, t_2 \in \sbr{0, 1} $ such that $ t_1 < t_2 $. The goal is $ f_{t_1}^*\sbr{\eta} = f_{t_2}^*\sbr{\eta} $ for all $ \sbr{\eta} \in \H^p\br{N} $. Let
 $$ \function[i_k]{M}{M \times \sbr{0, 1}}{x}{\br{x, t_k}}, \qquad k = 1, 2. $$
 Claim that for all $ p $ there exists a linear map $ h : \Omega^p\br{M \times \sbr{t_1, t_2}} \to \Omega^{p - 1}\br{M} $ such that
-$$ \d\br{h\br{\omega}} + h\br{\d\omega} = i_2^*\omega - i_1^*\omega \in \Omega^p\br{M}, \qquad \omega \in \Omega^p\br{M \times \sbr{0, 1}}. $$
+\begin{equation}
+\label{eq:2}
+\d\br{h\br{\omega}} + h\br{\d\omega} = i_2^*\omega - i_1^*\omega \in \Omega^p\br{M}, \qquad \omega \in \Omega^p\br{M \times \sbr{0, 1}}.
+\end{equation}
 \begin{enumerate}[label=Step \arabic*., leftmargin=0.5in]
 \item The claim implies the proposition. Let $ \eta \in \Omega^p\br{N} $ be closed, so $ \d\eta = 0 $. Then $ H^*\eta $ is also closed, so let $ \omega = H^*\eta \in \Omega^p\br{M \times \sbr{t_1, t_2}} $. Apply $ h $. Then $ \d\omega = 0 $, so $ \d\br{h\br{\omega}} = i_2^*\omega - i_1^*\omega $ is exact. Thus
 $$ f_{t_1}^*\sbr{\eta} = \sbr{f_{t_1}^*\eta} = \sbr{i_1^*H^*\eta} = \sbr{i_1^*\omega} = \sbr{i_2^*\omega} = \sbr{i_2^*H^*\eta} = \sbr{f_{t_2}^*\eta} = f_{t_2}^*\sbr{\eta}, $$
 so the proposition follows.
-\item The proof of the claim. Let $ \omega \in \Omega^p\br{M \times \sbr{t_1, t_2}} $. Then for all $ \br{x, t} \in M \times \sbr{t_1, t_2} $, $ \omega\br{x, t} $ is an alternating $ p $-form on $ \T_{\br{x, t}}\br{M \times \sbr{t_1, t_2}} $. We want an alternating $ \br{p - 1} $-form $ h\omega\br{x} $ on $ \T_xM $. Let $ v_1, \dots, v_{p - 1} \in \T_xM $. Then
-$$ h\omega\br{x}\br{v_1, \dots, v_{p - 1}} = \intd{t_1}{t_2}{\omega\br{x, t}\br{v_1, \dots, v_{p - 1}, \dpd{}{t}}}{t} $$
-is a $ \br{p - 1} $-form on $ M $. Check $ h $ is linear. \footnote{Exercise}
+
+\lecture{10}{Thursday}{30/01/20}
+
+\item The proof of the claim. Let $ \omega \in \Omega^p\br{M \times \sbr{t_1, t_2}} $. Then for all $ \br{x, t} \in M \times \sbr{t_1, t_2} $, $ \omega\br{x, t} $ is an alternating $ p $-form on $ \T_{\br{x, t}}\br{M \times \sbr{t_1, t_2}} $. We want an alternating $ \br{p - 1} $-form $ h\br{\omega}\br{x} $ on $ \T_xM $. Let $ v_1, \dots, v_{p - 1} \in \T_xM $. Then
+$$ h\br{\omega}\br{x}\br{v_1, \dots, v_{p - 1}} = \intd{t_1}{t_2}{\omega\br{x, t}\br{\dpd{}{t}, v_1, \dots, v_{p - 1}}}{t} $$
+is a $ \br{p - 1} $-form on $ M $, and $ \tpd{}{t} $ is a global vector field. Check $ h $ is linear. \footnote{Exercise} It is enough to prove $ \br{\ref{eq:2}} $ locally. Remark that exactness is not a local property. Fix local coordinates $ \br{x_1, \dots, x_n, t} $ around a point of $ M \times \sbr{0, 1} $. Then
+$$ \omega = \sum_{\abs{I} = p} \omega_I + \sum_{\abs{J} = p - 1} \omega_J, \qquad \omega_I = g_I \d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad \omega_J = g_J \d x_{j_1} \wedge \dots \wedge \d x_{j_{p - 1}} \wedge \d t, $$
+where $ g_I $ and $ g_J $ are smooth functions. Any term of $ \br{\ref{eq:2}} $ is linear. So we just need to check $ \br{\ref{eq:2}} $ holds for $ \omega_I $ and $ \omega_J $.
+
+\pagebreak
+
+\begin{itemize}
+\item[$ \omega_I $.] Let $ \omega = g\br{x, t} \d x_{i_1} \wedge \dots \wedge \d x_{i_p} $. Then
+$$ \d\br{h\br{\omega\br{x, t}\br{\dpd{}{t}, v_1, \dots, v_{p - 1}}}} = \d\br{h\br{0}} = 0, $$
+and
+\begin{align*}
+h\br{\d\omega}
+& = h\br{\dpd{}{t}g\br{x, t} \d t \wedge \d x_{i_1} \wedge \dots \wedge \d x_{i_p} + \sum_{j = 1}^n \dpd{}{x_j}g\br{x, t} \d x_j \wedge \d x_{i_1} \wedge \dots \wedge \d x_{i_p}} \\
+& = \br{\intd{t_1}{t_2}{\dpd{}{t}g\br{x, t}}{t}} \d x_{i_1} \wedge \dots \wedge \d x_{i_p} + 0 \\
+& = \br{g\br{x, t_2} - g\br{x, t_1}} \d x_{i_1} \wedge \dots \wedge \d x_{i_p}
+= i_2^*\omega - i_1^*\omega,
+\end{align*}
+so $ \br{\ref{eq:2}} $ holds.
+\item[$ \omega_J $.] Let $ \omega = g\br{x, t} \d x_{j_1} \wedge \dots \wedge \d x_{j_{p - 1}} \wedge \d t $. Then
+\begin{align*}
+\d\br{h\br{\omega}}
+& = \br{-1}^{p - 1}\d\br{\br{\intd{t_1}{t_2}{g\br{x, t}}{t}} \d x_{j_1} \wedge \dots \wedge \d x_{j_{p - 1}}} \\
+& = \br{-1}^{p - 1}\sum_{j = 1}^n \dpd{}{x_j}\br{\intd{t_1}{t_2}{g\br{x, t}}{t}} \d x_j \wedge \d x_{j_1} \wedge \dots \wedge \d x_{j_{p - 1}} \\
+& = \br{-1}^{p - 1}\sum_{j = 1}^n \br{\intd{t_1}{t_2}{\dpd{}{x_j}g\br{x, t}}{t}} \d x_j \wedge \d x_{j_1} \wedge \dots \wedge \d x_{j_{p - 1}},
+\end{align*}
+and
+\begin{align*}
+h\br{\d\omega}
+& = h\br{\sum_{j = 1}^n \dpd{}{x_j}g\br{x, t} \d x_j \wedge \d x_{j_1} \wedge \dots \wedge \d x_{j_{p - 1}} \wedge \d t + 0} \\
+& = \br{-1}^{p - 1}\sum_{j = 1}^n \br{\intd{t_1}{t_2}{\dpd{}{x_j}g\br{x, t}}{t}} \d x_j \wedge \d x_{j_1} \wedge \dots \wedge \d x_{j_{p - 1}}
+= -\d\br{h\br{\omega}},
+\end{align*}
+and $ i_2^*\omega = i_1^*\omega = 0 $, so $ \br{\ref{eq:2}} $ holds.
+\end{itemize}
 \end{enumerate}
 \end{proof}
+
+\begin{corollary}
+\label{cor:2.14}
+Assume $ M $ and $ N $ are homotopy equivalent. Then there exist isomorphisms
+$$ \H^p\br{N} \to \H^p\br{M}, \qquad p \ge 0. $$
+\end{corollary}
+
+\begin{proof}
+There exist $ f : M \to N $ and $ g : N \to M $ such that $ g \circ f \sim \id_M $ and $ f \circ g \sim \id_N $. By Proposition \ref{prop:2.13} $ \br{g \circ f}^* : \H^p\br{M} \to \H^p\br{M} $ coincides with $ \id_M^* = \id_{\H^p\br{M}} $. Then $ f^* \circ g^* = \br{g \circ f}^* = \id_{\H^p\br{M}} $. Similarly $ g^* \circ f^* = \id_{\H^p\br{N}} $, so $ g^* $ and $ f^* $ are isomorphisms.
+\end{proof}
+
+\begin{definition}
+Let $ M $ be a manifold. Then $ M $ is \textbf{smoothly contractible} if $ M $ is homotopy equivalent to a point.
+\end{definition}
+
+\begin{example*}
+$ \RR^n $ is contractible, by Example \ref{eg:2.12}. If $ M \subset \RR^n $ is convex then $ M $ is contractible.
+\end{example*}
+
+\begin{theorem}[Poincar\'e lemma]
+If $ M $ is a contractible manifold then
+$$ \H^p\br{M} = 0, \qquad p \ge 1. $$
+\end{theorem}
+
+\begin{proof}
+By previous Corollary \ref{cor:2.14}, there exists an isomorphism $ \H^p\br{M} \to \H^p\br{\cbr{\text{point}}} $. Then $ \cbr{\text{point}} $ is a zero-dimensional manifold, so by Proposition \ref{prop:2.5}, $ \H^p\br{\cbr{\text{point}}} = 0 $ for all $ p > 0 $.
+\end{proof}
+
+Thus $ \H^p\br{\RR^n} = 0 $ for all $ p > 0 $, so $ \RR^n $ is not diffeomorphic to any compact orientable manifold.
 
 \end{document}
