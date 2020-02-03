@@ -187,7 +187,7 @@ Let $ F : M \to N $ be a smooth morphism between manifolds of dimension $ n $, a
 $$ \omega\br{y} = f\br{y} \d y_1 \wedge \dots \wedge \d y_n, \qquad y \in N, $$
 for some $ f \in \C^\infty $. Proposition \ref{prop:1.8} implies that
 $$ F^*\omega\br{x} = \br{f \circ F}\br{x}\det \D F_x \d x_1 \wedge \dots \wedge \d x_n, \qquad x \in M, $$
-where $ y_i = p_i \circ F $ and $ p_i : \RR^n \to \RR $ is the $ i $-th projection.
+where $ y_i = \p_i \circ F $ and $ \p_i : \RR^n \to \RR $ is the $ i $-th projection.
 \end{example}
 
 Let $ f : M \to \RR $ be a smooth function, so $ f \in \Omega^0\br{M} $. Locally, the \textbf{differential} is
@@ -235,7 +235,7 @@ $ \omega $ is exact implies that $ \omega $ is closed, since if $ \omega = \d\om
 
 Let $ M $ be a manifold of dimension $ n $, let $ F : M \to M $ be a smooth morphism, and let $ \omega \in \Omega^n\br{M} $. Then
 $$ F^*\omega\br{x} = \det \D F_x\omega\br{F\br{x}}. $$
-Locally, assume $ \omega = f \d y_1 \wedge \dots \wedge \d y_n $ for some coordinates $ y_1, \dots, y_n $ and $ f \in \C^\infty $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas of $ M $, where $ \phi_\alpha : U_\alpha \to V_\alpha \subset \RR^n $. Then
+Locally, assume $ \omega = f \d y_1 \wedge \dots \wedge \d y_n $ for some coordinates $ \br{y_1, \dots, y_n} $ and $ f \in \C^\infty $. Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas of $ M $, where $ \phi_\alpha : U_\alpha \to V_\alpha \subset \RR^n $. Then
 $$ h_{\alpha\beta} = \phi_\beta \circ \phi_\alpha^{-1} : \phi_\alpha\br{U_\alpha \cap U_\beta} \subset \RR^n \to \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR^n, $$
 such that
 $$ h_{\alpha\beta}^*\omega\br{x} = \br{f \circ h_{\alpha\beta}}\br{x}\det \br{\D h_{\alpha\beta}}_x \d x_1 \wedge \dots \wedge \d x_n. $$
@@ -327,9 +327,9 @@ $$ f_1\br{\cos \theta, \sin \theta} = \dfrac{1}{2} - \dfrac{1}{2}\cos \theta, \q
 Then $ f_i $ is a partition of unity.
 \end{example}
 
-\begin{theorem}
+\begin{proposition}
 Let $ M $ be a manifold, and let $ U = \cbr{U_\alpha} $ be an open covering of $ M $. Then there exists a partition of unity $ f_\alpha $ with respect to $ U $.
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 We omit the proof.
@@ -552,39 +552,37 @@ so $ \omega $ is not exact.
 
 \pagebreak
 
-\begin{theorem}
+\begin{proposition}
 Let $ M $ be an orientable manifold of dimension $ n $ without boundary, and let $ \omega \in \Omega_\c^n\br{M} $. Assume $ \omega $ is exact. Then
 $$ \int_M \omega = 0. $$
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 Easy from Stokes.
 \end{proof}
 
-\begin{theorem}
+\begin{proposition}
 Let $ M $ be an orientable manifold of dimension $ n $ with boundary, and let $ \omega \in \Omega_\c^{n - 1}\br{M} $ be a closed form. Then
 $$ \int_{\partial M} \omega = 0. $$
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 Easy from Stokes.
 \end{proof}
 
-\begin{definition}
 Let $ M $ be an orientable manifold of dimension $ n $, let $ \omega \in \Omega_\c^k\br{M} $, and let $ N \subset M $ be a submanifold of dimension $ k $. We can define
 $$ \int_M \omega = \int_N i^*\omega, $$
 where $ i : N \hookrightarrow M $ is the inclusion. We will denote
 $$ \eval{\omega}_N = i^*\omega \in \Omega_\c^k\br{N}. $$
-\end{definition}
 
-\begin{theorem}
+\begin{proposition}
 Let $ M $ be an oriented manifold of dimension $ n $, let $ \omega \in \Omega_\c^k\br{M} $, and let $ S \subset M $ be a compact orientable submanifold of dimension $ k $ such that $ \partial S = \emptyset $ and $ \int_S \omega \ne 0 $. Then
 \begin{itemize}
 \item $ \omega $ is not exact,
 \item $ \eval{\omega}_S $ is not exact, and
 \item $ S $ is not the boundary of an orientable manifold $ N \subset M $ of dimension $ k + 1 $.
 \end{itemize}
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 Exercise. \footnote{Exercise}
@@ -600,24 +598,24 @@ Exercise. \footnote{Exercise}
 
 \begin{definition}
 Let $ M $ be a manifold of dimension $ n $, and let $ p \ge 0 $. Then $ \omega_1, \omega_2 \in \Omega^p\br{M} $ are said to be \textbf{cohomologous} if $ \omega_1 - \omega_2 = \d\eta $ where $ \eta \in \Omega^{p - 1}\br{M} $. In particular $ \omega \in \Omega^p\br{M} $ is cohomologous to zero if it is exact. Let
-$$ \Z^p\br{M} = \Ker \br{\d : \Omega^p\br{M} \to \Omega^{p + 1}\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is closed}} \subset \Omega^p\br{M}, $$
+$$ \ZZZ^p\br{M} = \Ker \br{\d : \Omega^p\br{M} \to \Omega^{p + 1}\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is closed}} \subset \Omega^p\br{M}, $$
 and let
-$$ \B^p\br{M} = \Im \br{\d : \Omega^{p - 1}\br{M} \to \Omega^p\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is exact}} \subset \Omega^p\br{M}. $$
+$$ \BBB^p\br{M} = \Im \br{\d : \Omega^{p - 1}\br{M} \to \Omega^p\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is exact}} \subset \Omega^p\br{M}. $$
 \end{definition}
 
-Then $ \B^p\br{M} \subset \Z^p\br{M} $ for all $ p \ge 0 $.
+Then $ \BBB^p\br{M} \subset \ZZZ^p\br{M} $ for all $ p \ge 0 $.
 
 \begin{notation*}
-If $ p = 0 $, then $ \B^0\br{M} = 0 $.
+If $ p = 0 $, then $ \BBB^0\br{M} = 0 $.
 \end{notation*}
 
 \begin{note*}
-If $ \omega_1, \omega_2 \in \Z^p\br{M} $ then $ \omega_1 - \omega_2 \in \B^p\br{M} $ if and only if $ \omega_1 $ and $ \omega_2 $ are cohomologous.
+If $ \omega_1, \omega_2 \in \ZZZ^p\br{M} $ then $ \omega_1 - \omega_2 \in \BBB^p\br{M} $ if and only if $ \omega_1 $ and $ \omega_2 $ are cohomologous.
 \end{note*}
 
 \begin{definition}
 Denote the \textbf{$ p $-th de Rham cohomology group} as
-$$ \H^p\br{M} = \Z^p\br{M} / \B^p\br{M} = \cbr{\sbr{\omega} \st \omega \in \Z^p\br{M}}, \qquad p \ge 0. $$
+$$ \H^p\br{M} = \ZZZ^p\br{M} / \BBB^p\br{M} = \cbr{\sbr{\omega} \st \omega \in \ZZZ^p\br{M}}, \qquad p \ge 0. $$
 where
 $$ \sbr{\omega} = \cbr{\omega' \in \Omega^p\br{M} \ \text{cohomologous to} \ \omega} $$
 is the \textbf{de Rham class} of $ \omega $.
@@ -638,10 +636,10 @@ that is $ \b_0\br{M} = 1 $. More in general, $ \b_0\br{M} $ is the number of con
 \end{proposition}
 
 \begin{proof}
-Assume $ M $ is connected. Then $ \B^0\br{M} = 0 $, so
+Assume $ M $ is connected. Then $ \BBB^0\br{M} = 0 $, so
 \begin{align*}
 \H^0\br{M}
-& = \Z^0\br{M}
+& = \ZZZ^0\br{M}
 = \cbr{f \in \Omega^0\br{M} \ \text{closed}} \\
 & = \cbr{f \in \Omega^0\br{M} \st \text{locally} \ \forall x \in M, \ \dpd{}{x_i}f\br{x} = 0} \\
 & = \cbr{f \in \Omega^0\br{M} \ \text{locally constant}}
@@ -660,7 +658,7 @@ $$ \H^p\br{M} = 0, \qquad p \ge n + 1. $$
 \end{proposition}
 
 \begin{proof}
-Recall $ \Omega^p\br{M} = 0 $ if $ p \ge n + 1 $ because all alternating $ p $-forms for $ p \ge n + 1 $ on an $ n $-dimensional vector space are zero, so $ \Z^p\br{M} = 0 $. Thus $ \H^p\br{M} = 0 $.
+Recall $ \Omega^p\br{M} = 0 $ if $ p \ge n + 1 $ because all alternating $ p $-forms for $ p \ge n + 1 $ on an $ n $-dimensional vector space are zero, so $ \ZZZ^p\br{M} = 0 $. Thus $ \H^p\br{M} = 0 $.
 \end{proof}
 
 \begin{proposition}
@@ -669,7 +667,7 @@ $$ \H^n\br{M} \ne 0. $$
 \end{proposition}
 
 \begin{proof}
-$ M $ is orientable, so there exists a volume form $ \omega \in \Omega^n\br{M} = \Omega_\c^n\br{M} $, by Proposition \ref{prop:1.23}. Then $ \omega $ is closed, because $ \d\omega $ is an $ \br{n + 1} $-form on $ M $, so $ \omega \in \Z^n\br{M} $. We want to show that $ \sbr{\omega} \ne 0 $ in $ \H^n\br{M} $. Assume $ \sbr{\omega} = 0 $, so $ \omega $ is exact. Thus $ \omega = \d\eta $ where $ \eta $ is an $ \br{n - 1} $-form on $ M $, so
+$ M $ is orientable, so there exists a volume form $ \omega \in \Omega^n\br{M} = \Omega_\c^n\br{M} $, by Proposition \ref{prop:1.23}. Then $ \omega $ is closed, because $ \d\omega $ is an $ \br{n + 1} $-form on $ M $, so $ \omega \in \ZZZ^n\br{M} $. We want to show that $ \sbr{\omega} \ne 0 $ in $ \H^n\br{M} $. Assume $ \sbr{\omega} = 0 $, so $ \omega $ is exact. Thus $ \omega = \d\eta $ where $ \eta $ is an $ \br{n - 1} $-form on $ M $, so
 $$ 0 < \int_M \omega = \int_M \d\eta = \int_{\partial M} \eta = \int_\emptyset \eta = 0, $$
 by Stokes, a contradiction.
 \end{proof}
@@ -687,7 +685,7 @@ takes closed forms of $ N $ to closed forms on $ M $ and exact forms of $ N $ to
 Proposition \ref{prop:1.16} implies that $ G^*\d = \d G^* $. If $ \omega $ is closed then $ \d G^*\omega = G^*\d\omega = G^*0 = 0 $, so $ G^*\omega $ is closed. If $ \omega = \d\eta $ is exact then $ G^*\omega = \d G^*\eta $ is also exact.
 \end{proof}
 
-Thus $ G^* : \Z^p\br{N} \to \Z^p\br{M} $ and $ G^* : \B^p\br{N} \to \B^p\br{M} $, so there exists a linear map
+Thus $ G^* : \ZZZ^p\br{N} \to \ZZZ^p\br{M} $ and $ G^* : \BBB^p\br{N} \to \BBB^p\br{M} $, so there exists a linear map
 $$ \function[G^*]{\H^p\br{N}}{\H^p\br{M}}{\sbr{\omega}}{\sbr{G^*\omega}}. $$
 
 \begin{corollary}
@@ -835,5 +833,89 @@ By previous Corollary \ref{cor:2.14}, there exists an isomorphism $ \H^p\br{M} \
 \end{proof}
 
 Thus $ \H^p\br{\RR^n} = 0 $ for all $ p > 0 $, so $ \RR^n $ is not diffeomorphic to any compact orientable manifold.
+
+\lecture{11}{Monday}{03/02/20}
+
+\begin{proposition}
+Let $ M $ be a manifold, and let $ \omega \in \Omega^p\br{M} $ be a closed $ p $-form for $ p > 0 $. Then for all $ x \in X $, there exists a neighbourhood $ U \ni x $ such that $ \omega $ is exact on $ U $, that is there exists $ \eta \in \Omega^{p - 1}\br{U} $ such that $ \omega = \d\eta $ on $ U $.
+\end{proposition}
+
+\begin{proof}
+Let $ \br{U, \phi} $ be a chart around $ x $. I may assume that $ V = \phi\br{U} $ is a ball in $ \RR^n $. Then $ U $ is diffeomorphic to $ B = \cbr{z \st \abs{z - z_0} < r} $ for some $ z_0 \in \RR^n $ and $ r > 0 $, so $ \H^p\br{U} \cong \H^p\br{B} $ for all $ p \ge 0 $. Since $ B $ is contractible, $ \H^p\br{B} = 0 $ for all $ p > 0 $. The restriction of $ \omega $ on $ U $ gives a class $ \sbr{\omega} \in \H^p\br{U} = 0 $, so $ \omega $ is cohomologous to zero on $ U $. Thus $ \omega $ is exact on $ U $.
+\end{proof}
+
+\begin{definition}
+Let $ M $ be a manifold, let $ \gamma : \sbr{0, 1} \to M $ be a continuous or smooth path, and let $ x = \gamma\br{0} $ and $ y = \gamma\br{1} $. A \textbf{homotopy of paths} from $ x $ to $ y $ is a map
+$$ \functions[F]{\sbr{0, 1} \times \sbr{0, 1}}{M}{\br{0, t}}{x}{\br{1, t}}{y}. $$
+\end{definition}
+
+\begin{proposition}
+\label{prop:2.19}
+Let $ \gamma_0 $ and $ \gamma_1 $ be homotopic paths on a manifold $ M $, and let $ \omega \in \Omega^1\br{M} $ be closed. Then
+$$ \int_0^1 \gamma_0^*\omega = \int_{\gamma_0} \omega = \int_{\gamma_1} \omega. $$
+\end{proposition}
+
+\begin{proof}
+Lee's introduction to smooth manifolds. The idea is
+$$ \int_{\gamma_0} \omega - \int_{\gamma_1} \omega = \int_{\gamma_0 \cup \gamma_1} \omega = \int_{\Im F} \omega = 0, $$
+by Stokes' theorem.
+\end{proof}
+
+Recall that $ M $ is \textbf{simply connected}, so $ \pi_1\br{M} = 0 $, if any path $ \gamma $ from $ x $ to $ x $ is homotopic equivalent to a point.
+
+\begin{proposition}
+Let $ M $ be a simply connected orientable manifold. Then
+$$ \H^1\br{M} = 0. $$
+\end{proposition}
+
+\begin{proof}
+Let $ \omega \in \Omega^1\br{M} $ be a closed form. Then claim that $ \omega $ is exact if and only if $ \int_\gamma \omega = 0 $ for all loops $ \gamma $, that is paths from $ x $ to $ x $.
+\begin{itemize}
+\item The proof of the claim. Assume that $ \omega = \d f $ is exact for $ f \in \Omega^0\br{M} $. By Proposition \ref{prop:2.19},
+$$ \int_\gamma \omega = \int_{\text{trivial loop}} \omega = 0. $$
+Assume that $ \int_\gamma \omega = 0 $ for all loops $ \gamma $. Fix $ x $. Let
+$$ f\br{y} = \int_x^y \omega. $$
+Since $ \int_{\gamma_1 \cup \gamma_2} \omega = 0 $, $ f $ is well-defined, that is it does not depend on the choice of the path. Then $ \d f = \omega $. This can be checked locally, that is in an open set of $ \RR^n $. Here it follows from the fundamental theorem of calculus.
+\item The claim implies the proposition. Being simply connected, any loop inside $ M $ is homotopic equivalent to the trivial loop. For all loops $ \gamma $ and for all closed $ \omega $, $ \int_\gamma \omega = 0 $ by Proposition \ref{prop:2.19}, so $ \omega $ is exact. Thus $ \sbr{\omega} = 0 $ in $ \H^1\br{M} $.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+\subsection{Homological algebra}
+
+Let $ C^\bullet $ be a sequence of vector spaces, that is $ C^k $ is a vector space for $ k \in \ZZ $.
+
+\begin{definition}
+$ \br{C^\bullet, d^\bullet} $ is a \textbf{cochain complex} if $ C^\bullet $ is a sequence of vector spaces and $ d^\bullet $ is a sequence of linear maps $ d^k : C^k \to C^{k + 1} $ such that the composition $ d^{k + 1} \circ d^k : C^k \to C^{k + 1} \to C^{k + 2} $ is zero for all $ k $.
+\end{definition}
+
+\begin{definition}
+The elements of
+$$ \ZZZ^k\br{C^\bullet, d^\bullet} = \Ker \br{d^k : C^k \to C^{k + 1}} \subset C^k $$
+are called \textbf{cocycles}. The elements of
+$$ \BBB^k\br{C^\bullet, d^\bullet} = \Im \br{d^k : C^{k - 1} \to C^k} \subset C^k $$
+are called \textbf{coboundaries}. Then $ d^{k - 1} \circ d^k = 0 $, so $ \BBB^k \subset \ZZZ^k $. The quotients
+$$ \H^k\br{C^\bullet, d^\bullet} = \ZZZ^k\br{C^\bullet, d^\bullet} / \BBB^k\br{C^\bullet, d^\bullet} $$
+are the \textbf{$ k $-th cohomology groups} of $ \br{C^\bullet, d^\bullet} $.
+\end{definition}
+
+\begin{definition}
+Let $ \br{C^\bullet, d^\bullet} $ and $ \br{D^\bullet, d^\bullet} $ be two cochain complexes. A map $ f : \br{C^\bullet, d^\bullet} \to \br{D^\bullet, d^\bullet} $ is a sequence of linear maps $ f^k : C^k \to D^k $ such that $ f^{k + 1} \circ d^k = d^k \circ f^k $ for all $ k $, so
+$$
+\begin{tikzcd}
+\dots \arrow{r} & C^k \arrow{r}{d^k} \arrow{d}{f^k} & C^{k + 1} \arrow{r}{d^{k + 1}} \arrow{d}{f^{k + 1}} & C^{k + 2} \arrow{r} \arrow{d}{f^{k + 2}} & \dots \\
+\dots \arrow{r} & D^k \arrow{r}{d^k} & D^{k + 1} \arrow{r}{d^{k + 1}} & D^{k + 2} \arrow{r} & \dots
+\end{tikzcd}.
+$$
+\end{definition}
+
+\begin{proposition}
+Let $ f : \br{C^\bullet, d^\bullet} \to \br{D^\bullet, d^\bullet} $ be a map between cochain complexes. Then there exists a natural induced map $ f^k : \H^k\br{C^\bullet, d^\bullet} \to \H^k\br{D^\bullet, d^\bullet} $.
+\end{proposition}
+
+\begin{proof}
+Let $ \sbr{\omega} \in \H^k\br{C^\bullet, d^\bullet} = \ZZZ^k\br{C^\bullet, d^\bullet} / \BBB^k\br{C^\bullet, d^\bullet} $ for $ \omega \in \ZZZ^k\br{C^\bullet, d^\bullet} $, that is $ d^k\br{\omega} = 0 $. I want to check that $ f^k\br{\omega} \in \ZZZ^k\br{D^\bullet, d^\bullet} $. By definition of maps, $ d^k\br{f^k\br{\omega}} = f^{k + 1}\br{d^k\br{\omega}} = 0 $, so $ \ZZZ^k\br{C^\bullet, d^\bullet} \to \ZZZ^k\br{D^\bullet, d^\bullet} $. Now I need to check that if $ \omega \in \BBB^k\br{C^\bullet, d^\bullet} $ then $ f^k\br{\omega} \in \BBB^k\br{D^\bullet, d^\bullet} $. \footnote{Exercise}
+\end{proof}
 
 \end{document}
