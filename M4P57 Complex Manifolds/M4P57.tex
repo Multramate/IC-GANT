@@ -384,8 +384,8 @@ Let $ U \subset \CC^n $, $ V \subset \CC^m $, and $ W \subset \CC^{m'} $ be open
 Let $ U \subset \CC^n \cong \RR^{2n} $, and let $ z_i = x_i + iy_i $ for $ i = 1, \dots, n $ and $ x_i, y_i \in \RR $. Then
 $$ \d z_i = \d x_i + i \d y_i, $$
 so any holomorphic form is a differentiable form on $ \RR^{2n} $. A \textbf{$ \br{p, q} $-form} is a differentiable $ \br{p + q} $-form of the expression
-$$ \omega = \sum_{\abs{I} = p, \ \abs{J} = q} f_{I, J} \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \wedge \d\overline{z_{j_1}} \wedge \dots \wedge \d\overline{z_{j_q}}, \qquad \d\overline{z_j} = \d x_j - i \d y_j, \qquad f_{I, J} : U \to \CC \cong \RR^2 \in \C^\infty. $$
-We denote
+$$ \omega = \sum_{\abs{I} = p, \ \abs{J} = q} f_{I, J} \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \wedge \d\overline{z_{j_1}} \wedge \dots \wedge \d\overline{z_{j_q}}, \qquad f_{I, J} : U \to \CC \cong \RR^2 \in \C^\infty, $$
+where $ \d\overline{z_j} = \d x_j - i \d y_j $. We denote
 $$ \C^\infty\br{U, \Omega_U^{p, q}} = \cbr{\text{differentiable $ \br{p + q} $-forms on} \ U}. $$
 If $ \omega $ is a $ \br{p, q} $-form, then the \textbf{conjugate} $ \overline{\omega} $ of $ \omega $ is the $ \br{q, p} $-form defined by
 $$ \overline{\omega} = \sum_{\abs{I} = p, \ \abs{J} = q} \overline{f_{I, J}} \d\overline{z_{i_1}} \wedge \dots \wedge \d\overline{z_{i_p}} \wedge \d z_{j_1} \wedge \dots \wedge \d z_{j_q}. $$
@@ -966,12 +966,101 @@ $$ \T_X^\CC = \T_X^{1, 0} \oplus \T_X^{0, 1}, $$
 which are complex vector bundles and \textbf{eigenbundles}. Locally $ \T_X^{1, 0} $ and $ \T_X^{0, 1} $ are spanned by the frames $ \tpd{}{z_1}, \dots, \tpd{}{z_n} $ and $ \tpd{}{\overline{z_1}}, \dots, \tpd{}{\overline{z_n}} $ respectively. Moreover there exists a conjugation
 $$ \function{\T_X^\CC}{\T_X^\CC}{v \otimes \mu}{v \otimes \overline{\mu}} $$
 over $ \RR $, such that $ \overline{\T_X^{1, 0}} = \T_X^{0, 1} $ and $ \overline{\T_X^{0, 1}} = \T_X^{1, 0} $. Let
-$$ \Omega_{X, \CC}^1 = \Omega_{X, \CC}^1 = \Omega_{X, \CC}^{1, 0} \oplus \Omega_{X, \CC}^{0, 1} = \br{\T_X^{1, 0}}^* \oplus \br{\T_X^{0, 1}}^* $$
-be the dual of the complex vector bundle $ \T_X^\CC $.
+$$ \Omega_{X, \CC}^1 = \br{\T_X^\CC}^* $$
+be the dual of the complex vector bundle $ \T_X^\CC $. Then
+$$ \Omega_{X, \CC}^1 = \Omega_{X, \RR}^1 \otimes_\RR \CC = \Omega_{X, \CC}^{1, 0} \oplus \Omega_{X, \CC}^{0, 1} = \br{\T_X^{1, 0}}^* \oplus \br{\T_X^{0, 1}}^*. $$
 
 \begin{exercise*}
 Let $ V $ and $ W $ be vector spaces. Show that
-$$ \Lambda^p\br{V \oplus W} = \bigoplus_{a + b = p} \Lambda^aV \otimes \Lambda^bW. $$
+$$ \Lambda^k\br{V \oplus W} = \bigoplus_{p + q = k} \Lambda^pV \otimes \Lambda^qW $$
+is a canonical isomorphism.
 \end{exercise*}
+
+\lecture{12}{Tuesday}{04/02/20}
+
+Thus, for all $ k \ge 0 $
+$$ \Omega_{X, \CC}^k = \Lambda^k\Omega_{X, \CC}^1 = \bigoplus_{p + q = k} \Omega_X^{p, q}, \qquad \Omega_X^{p, q} = \Lambda^p\Omega_X^{1, 0} \otimes \Lambda^q\Omega_X^{0, 1}, $$
+where $ \Omega_X^{p, q} $ is a complex vector bundle for any $ p $ and $ q $.
+
+\begin{definition}
+The sections of $ \Omega_X^{p, q} $ are called \textbf{$ \br{p, q} $-forms} on $ X $, or \textbf{forms of type $ \br{p, q} $}.
+\end{definition}
+
+Locally, let $ x \in X $, and let $ \br{U \ni x, \phi} $ be a holomorphic chart for $ \phi : U \xrightarrow{\sim} V \subset \CC^n $. A $ \br{p, q} $-form on $ U $ can be locally written as
+$$ \omega = \sum_{I, J} \alpha_{I, J} \d z_I \wedge \d\overline{z_J} = \sum_{\abs{I} = p, \ \abs{J} = q} \alpha_{I, J} \d z_{i_1} \wedge \dots \wedge \d z_{i_p} \wedge \d\overline{z_{j_1}} \wedge \dots \wedge \d\overline{z_{j_q}}, $$
+where $ \alpha_{I, J} $ are smooth functions on $ U $. Let $ X $ be a manifold. If $ E $ is a complex vector bundle then
+$$ \C^\infty\br{X, E} = \cbr{\text{smooth sections of} \ E}. $$
+The \textbf{differential}
+$$ \d : \C^\infty\br{X, \Omega_X^k} \to \C^\infty\br{X, \Omega_X^{k + 1}} $$
+satisfies the Leibnitz rule and $ \d^2 = 0 $, so $ \d\br{\d\omega} = 0 $. If $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $, then $ \d\omega \in \C^\infty\br{X, \Omega_{X, \CC}^{p + q + 1}} $. Assume that locally $ \omega = \sum_{I, J} \alpha_{I, J} \d z_I \wedge \d\overline{z_J} $. Then
+$$ \d\omega = \sum_{I, J} \d\alpha_{I, J} \d z_I \wedge \d\overline{z_J}, \qquad \d\alpha_{I, J} = \sum_{i = 1}^n \dpd{}{z_i}\alpha_{I, J} \d z_i + \sum_{i = 1}^n \dpd{}{\overline{z_i}}\alpha_{I, J} \d\overline{z_i}. $$
+
+\pagebreak
+
+Let
+$$ \partial\alpha_{I, J} = \sum_{i = 1}^n \dpd{}{z_i}\alpha_{I, J} \d z_i \in \C^\infty\br{X, \Omega_X^{1, 0}}, \qquad \overline{\partial}\alpha_{I, J} = \sum_{i = 1}^n \dpd{}{z_i}\alpha_{I, J} \d\overline{z_i} \in \C^\infty\br{X, \Omega_X^{0, 1}}. $$
+Then $ \d = \partial + \overline{\partial} $ for smooth functions. Back to $ \d\omega $. Then
+$$ \d\omega = \sum_{I, J} \d\alpha_{I, J} \d z_I \wedge \d\overline{z_J} = \sum_{I, J} \partial\alpha_{I, J} \d z_I \wedge \d\overline{z_J} + \sum_{I, J} \overline{\partial}\alpha_{I, J} \d z_I \wedge \d\overline{z_J}. $$
+Let
+$$ \partial\omega = \sum_{I, J} \partial\alpha_{I, J} \d z_I \wedge \d\overline{z_J}, \qquad \overline{\partial}\omega = \sum_{I, J} \overline{\partial}\alpha_{I, J} \d z_I \wedge \d\overline{z_J}. $$
+Then $ \d = \partial + \overline{\partial} $ for $ \omega $.
+
+\begin{lemma}
+The maps
+$$ \partial : \C^\infty\br{X, \Omega_X^{p, q}} \to \C^\infty\br{X, \Omega_X^{p + 1, q}}, \qquad \overline{\partial} : \C^\infty\br{X, \Omega_X^{p, q}} \to \C^\infty\br{X, \Omega_X^{p, q + 1}} $$
+are linear. They satisfy the Leibnitz rule. That is, if $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $ and $ \eta \in \C^\infty\br{X, \Omega_X^{p', q'}} $, then
+$$ \partial\br{\omega \wedge \eta} = \partial\omega \wedge \eta + \br{-1}^{p + q}\omega + \partial\eta, \qquad \overline{\partial}\br{\omega \wedge \eta} = \overline{\partial}\omega \wedge \eta + \br{-1}^{p + q}\omega + \overline{\partial}\eta. $$
+\end{lemma}
+
+\begin{proof}
+$ \d $ satisfies the Leibnitz rule
+$$ \d\br{\omega \wedge \eta} = \d\omega \wedge \eta + \br{-1}^{p + q}\omega \wedge \d\eta, $$
+since $ \omega \in \C^\infty\br{X, \Omega_{X, \CC}^{p + q}} $, so
+\begin{align*}
+\partial\br{\omega \wedge \eta} + \overline{\partial}\br{\omega \wedge \eta}
+& = \br{\partial\omega + \overline{\partial}\omega} \wedge \eta + \br{-1}^{p + q}\omega \wedge \br{\partial\eta + \overline{\partial}\eta} \\
+& = \br{\partial\omega \wedge \eta + \br{-1}^{p + q}\omega \wedge \partial\eta} + \br{\overline{\partial}\omega \wedge \eta + \br{-1}^{p + q}\omega \wedge \overline{\partial}\eta}.
+\end{align*}
+Then $ \partial\br{\omega \wedge \eta} $ and $ \partial\omega \wedge \eta + \br{-1}^{p + q}\omega \wedge \partial\eta $ are $ \br{p + 1, q} $-forms, and $ \overline{\partial}\br{\omega \wedge \eta} $ and $ \overline{\partial}\omega \wedge \eta + \br{-1}^{p + q}\omega \wedge \overline{\partial}\eta $ are $ \br{p, q + 1} $-forms. Forms of the same type in the decomposition of $ \d\br{\omega \wedge \eta} $ must coincide.
+\end{proof}
+
+\begin{lemma}
+$ \partial^2 = \overline{\partial}^2 = \overline{\partial}\partial + \partial\overline{\partial} = 0 $.
+\end{lemma}
+
+\begin{proof}
+Let $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $. Because $ \d^2 = 0 $,
+$$ 0 = \d^2\omega = \br{\partial + \overline{\partial}}\br{\br{\partial + \overline{\partial}}\omega} = \partial^2\omega + \partial\overline{\partial}\omega + \overline{\partial}\partial\omega + \overline{\partial}^2\omega. $$
+Then $ \d^2\omega $ is a $ \br{p + q + 2} $-form, $ \partial^2\omega $ is a $ \br{p + 2, q} $-form, $ \partial\overline{\partial}\omega + \overline{\partial}\partial\omega $ is a $ \br{p + 1, q + 1} $-form, and $ \overline{\partial}^2\omega $ is a $ \br{p, q + 2} $-form. Forms of the same type in the decomposition of $ \d^2\omega $ must coincide.
+\end{proof}
+
+Let $ X $ be a complex manifold. Fix $ p, q \ge 0 $. Let
+\begin{align*}
+\ZZZ^{p, q}\br{X}
+& = \Ker \br{\overline{\partial} : \C^\infty\br{X, \Omega_X^{p, q}} \to \C^\infty\br{X, \Omega_X^{p, q + 1}}} \\
+& = \cbr{\omega \in \C^\infty\br{X, \Omega_X^{p, q}} \st \overline{\partial}\omega = 0}
+\end{align*}
+and let
+\begin{align*}
+\BBB^{p, q}\br{X}
+& = \Im \br{\overline{\partial} : \C^\infty\br{X, \Omega_X^{p, q - 1}} \to \C^\infty\br{X, \Omega_X^{p, q}}} \\
+& = \cbr{\omega \in \C^\infty\br{X, \Omega_X^{p, q}} \st \exists \eta \in \C^\infty\br{X, \Omega_X^{p, q - 1}}, \ \omega = \overline{\partial}\eta}.
+\end{align*}
+Since $ \overline{\partial}^2 = 0 $ we have $ \BBB^{p, q}\br{X} \subset \ZZZ^{p, q}\br{X} $ for all $ p $ and $ q $. The \textbf{Dolbeault cohomology} is
+$$ \H^{p, q}\br{X} = \ZZZ^{p, q}\br{X} / \BBB^{p, q}\br{X}. $$
+
+\begin{exercise*}
+Assume $ X $ and $ Y $ are biholomorphic complex manifolds. Then $ \H^{p, q}\br{X} = \H^{p, q}\br{Y} $.
+\end{exercise*}
+
+If $ \H^{p, q}\br{X} $ is finite dimensional then we define the \textbf{Hodge numbers} of $ X $ as
+$$ \h^{p, q} = \dim_\CC \H^{p, q}\br{X}. $$
+
+\pagebreak
+
+\begin{lemma}
+Let $ X $ be a complex manifold. Then
+$$ \H^{p, 0}\br{X} \cong \H^0\br{X, \Omega_X^p} = \cbr{\text{holomorphic sections of} \ \Omega_X^p} = \cbr{\text{holomorphic $ p $-forms on} \ X}. $$
+\end{lemma}
 
 \end{document}
