@@ -13,9 +13,9 @@
 
 \setcounter{section}{0}
 
-\section{Modules}
+\section{Modules over a ring}
 
-\subsection{Modules over rings}
+\subsection{Modules}
 
 \lecture{1}{Friday}{10/01/20}
 
@@ -361,10 +361,14 @@ We know that projectives are direct summands of free modules. We might hope for 
 Let $ M $ be an $ R $-module. Then $ M $ is injective if and only if every $ R $-module map $ f : I \to M $, where $ I $ is a left ideal of $ R $, has the form $ f\br{x} = xm $ for some $ m \in M $. Equivalently, every map $ I \to M $ extends to a map $ R \to M $.
 \end{proposition}
 
-Why are these two conditions equivalent? If $ f\br{x} = xm $ for $ x \in I $, then we can extend $ f $ to $ R $ by $ f\br{r} = rm $. Conversely, suppose that $ f : I \to M $ extends to $ f^+ : R \to M $. Let $ m = f^+\br{1} $. Then for all $ r \in R $, $ f^+\br{r} = rm $, and so $ f\br{x} = xm $ for $ x \in I $.
+Why are these two conditions equivalent? If $ f\br{x} = xm $ for $ x \in I $, then we can extend $ f $ to $ R $ by $ f\br{r} = rm $. Conversely, suppose that $ f : I \to M $ extends to $ f^+ : R \to M $. Let $ m = f^+\br{1} $. Then for all $ r \in R $, $ f^+\br{r} = rm $, and so $ f\br{x} = xm $ for $ x \in I $. The proof requires Zorn's lemma.
+
+\begin{lemma}[Zorn's lemma]
+Let $ X $ be a non-empty set, partially ordered by $ \le $. If every chain, or totally ordered subset, in $ X $ has an upper bound in $ X $, then $ X $ has a maximal element.
+\end{lemma}
 
 \begin{proof}
-The proof requires Zorn's lemma. Let $ X $ be a non-empty set, partially ordered by $ \le $. If every chain, or totally ordered subset, in $ X $ has an upper bound in $ X $, then $ X $ has a maximal element.
+\hfill
 \begin{itemize}
 \item[$ \impliedby $] Suppose $ \alpha : A \to B $, where $ \alpha $ is injective. Suppose $ f : A \to M $. We want to show there exists $ g : B \to M $ such that $ f = g \circ \alpha $. We have $ \Im \alpha \le B $. Define
 $$ X = \cbr{\br{L, h} \st \Im \alpha \le L \le B, \ h : L \to M, \ f = h \circ \alpha}. $$
@@ -372,7 +376,7 @@ Note that $ X \ne \emptyset $ since $ \br{\Im \alpha, f \circ \alpha^{-1}} $ is 
 $$ \function[h]{L}{M}{l}{h_s\br{l}}, \qquad l \in L_s. $$
 This does not depend on the choice of $ s $. Then $ \br{L, h} $ is an upper bound for the chain $ \cbr{\br{L_s, h_s} \st s \in S} $. Hence $ X $ has a maximal element, $ \br{L_0, h_0} $. We want to show that $ L_0 = B $. Then we may set $ g = h_0 $. Suppose that $ L_0 \ne B $. Let $ b \in B \setminus L_0 $. Note that $ Rb \le B $. Consider
 $$ L_0 + Rb = \cbr{l + rb \st l \in L_0, \ r \in R} \le B. $$
-We would like to extend $ h_0 $ to $ h_0^+ $ by specifying an image for $ h_0^+\br{b} $. The problem is that $ Rb \cap L_0 $ may not be $ \cbr{0} $, and if $ rb \in L_0 $ then we require $ rh_0^+\br{b} = h_0\br{rb} $, otherwise $ h_0^+ $ will not be well-defined. Note that $ I = \cbr{r \in R \st rb \in L_0} $ is a left ideal for $ R $. Suppose that $ M $ has the condition from Baer's criterion, so every map $ I \to M $ has the form $ x \mapsto xm $ for some $ m \in M $. Note that $ \cbr{xb \st x \in I} $ is a submodule of $ L_0 $. Define a map by
+We would like to extend $ h_0 $ to $ h_0^+ $ by specifying an image for $ h_0^+\br{b} $. The problem is that $ Rb \cap L_0 $ may not be $ \cbr{0} $, and if $ rb \in L_0 $ then we require $ rh_0^+\br{b} = h_0\br{rb} $, otherwise $ h_0^+ $ will not be well-defined. Note that $ I = \cbr{r \in R \st rb \in L_0} $ is a left ideal for $ R $. Suppose that $ M $ has the condition from Baer's criterion, so every map $ I \to M $ has the form $ x \mapsto xm $ for some $ m \in M $. Note that $ \cbr{xb \st x \in I} $ is a submodule of $ L_0 $. Define
 $$ \function[\delta]{I}{M}{x}{h_0\br{xb}}. $$
 This is an $ R $-module homomorphism. So $ \delta\br{x} = xm $ for some $ m \in M $. Hence $ h_0\br{xb} = xm $ for all $ x \in I $. So we can safely define $ h_0^+\br{b} = m $. Now $ \br{L_0 + Rb, h_0^+} \in X $, and $ \br{L_0, h_0} < \br{L_0 + Rb, h_0^+} $, which contradicts the maximality of $ \br{L_0, h_0} $. Hence $ L_0 = B $, and we are done.
 \item[$ \implies $] The converse is left as an exercise. \footnote{Exercise}
@@ -758,6 +762,7 @@ corresponds to a short exact sequence of abelian groups
 $$ 0 \to A \otimes_R M \to B \otimes_R M \to C \otimes_R M \to 0. $$
 
 \begin{proposition}
+\label{prop:projectiveflat}
 Every projective module is flat.
 \end{proposition}
 
@@ -777,11 +782,61 @@ It is clear from this that $ \overline{\alpha'} $ is injective if and only if $ 
 \end{proof}
 
 \begin{lemma}
+\label{lem:2}
 Every free $ R $-module is flat.
 \end{lemma}
 
 \lecture{11}{Monday}{03/02/20}
 
 Lecture 11 is a problems class.
+
+\lecture{12}{Tuesday}{04/02/20}
+
+\begin{proof}
+We know $ \br{A \oplus B} \otimes_R C \cong \br{A \otimes_R C} \oplus \br{B \otimes_R C} $. Similarly,
+$$ \br{\bigoplus_{s \in S} A_s} \otimes_R C \cong \bigoplus_{s \in S} \br{A_s \otimes_R C}. $$
+So Lemma \ref{lem:1} generalises, so $ \bigoplus_{s \in S} A_s $ is flat if and only if all of the $ A_s $ is flat for $ s \in S $. Let $ F $ be free. Then $ F = \bigoplus_{s \in S} R $, and so $ F $ is flat if and only if $ R $ is flat. But for any $ R $-module in $ A $, we have $ A \otimes_R R \cong A $, so
+$$
+\begin{tikzcd}[row sep=tiny]
+A \arrow{r}{\alpha} \arrow[cong]{d} & B \arrow[cong]{d} \\
+A \otimes_R R \arrow[dashed, swap]{r}{\alpha'} & B \otimes_R R
+\end{tikzcd},
+$$
+and it is easy to check that $ R $ is flat.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:projectiveflat}]
+Lemma \ref{lem:1} and Lemma \ref{lem:2} imply Proposition \ref{prop:projectiveflat}, since a projective module is a direct summand of a free module.
+\end{proof}
+
+There exist flat modules which are not projective. We will show that $ \QQ $ as a module for $ \ZZ $ is flat, and it is easy to see it is not projective. To do this we will study the case of modules over a PID.
+
+\pagebreak
+
+\subsection{Modules over a PID}
+
+Recall that $ R $ is an \textbf{integral domain} if $ R $ is commutative and $ rs = 0 $ implies that $ r = 0 $ or $ s = 0 $ for $ r, s \in R $. An integral domain is a \textbf{PID} if every ideal is $ \abr{a} = \cbr{ra \st r \in R} $ for some $ a \in R $.
+
+\begin{example*}
+The ring $ \ZZ $ is an example of a PID.
+\end{example*}
+
+\begin{proposition}
+Let $ R $ be a PID. Then every projective $ R $-module is free. Equivalently, every summand of a free module is free.
+\end{proposition}
+
+In fact we will show that any submodule of a free module is free. Moreover, if $ F_1 \le F_2 $, where $ F_1 $ and $ F_2 $ are free, and if $ B_1 $ and $ B_2 $ are bases for $ F_1 $ and $ F_2 $ respectively, then $ \abs{B_1} \le \abs{B_2} $. In particular, if $ M \le R^n $, then $ M \cong R^m $ for some $ m \le n $. For this, we will need the well-ordering theorem.
+
+\begin{theorem}[Well-ordering theorem]
+Let $ X $ be a set. There exists a well-order $ \le $ on $ X $, that is a total order such that every non-empty subset of $ X $ has a least element.
+\end{theorem}
+
+\begin{corollary}[Transfinite induction]
+Let $ X $ be a non-empty set well-ordered by $ \le $. Let $ x_0 $ be the least element of $ X $. Let $ S \subseteq X $. If $ x_0 \in S $, and $ s < t $ implies $ s \in S $ implies that $ t \in S $, then $ S = X $.
+\end{corollary}
+
+\begin{proof}
+Let $ F = \bigoplus_{s \in S} R $. Let $ \le $ be a well-order on $ S $. For $ s \in S $, let $ \pi_s $ be the projection map $ F \to R $ onto the $ s $-coordinate. Let $ e_s $ be the element of $ F $ with one in coordinate $ s $, and zero elsewhere. Suppose $ U $ is an $ R $-submodule of $ F $. Define $ R_t $ to be the submodule of $ F $ generated by $ \cbr{e_s \st s \le t} $. So if $ t_1 \le t_2 $ then $ R_{t_1} \le R_{t_2} $. Let $ U_t = U \cap R_t $. So $ t_1 < t_2 $ implies that $ U_{t_1} \le U_{t_2} $. Consider $ \pi_s\br{U_s} $. This is an ideal of $ R $. Hence there exists $ a_s \in R $ such that $ \pi_s\br{U_s} = \abr{a_s} $, since $ R $ is a PID. For each $ s $, let $ u_s \in U_s $ be such that $ \pi_s\br{u_s} = a_s $. In cases where $ a_s = 0 $, assume $ u_s = 0 $. Let $ B = \cbr{u_s \st s \in S, \ u_s \ne 0} $. Claim that $ B $ generates $ U $. We will actually prove that $ \cbr{u_s \st s \le t} $ generates $ U_t $, using transfinite induction. If $ s_0 $ is the least element of $ S $, it is easy to see that $ u_{s_0} $ generates $ U_{s_0} $. Suppose $ \cbr{u_s \st s \le t} $ generates $ U_t $ for all $ t < t_0 $. Let $ u \in U_{t_0} $. Then $ \pi_{t_0}\br{u} = ra_{t_0} $. Hence $ \pi_{t_0}\br{u - ru_{t_0}} = 0 $. So $ u - ru_{t_0} $ has zero in the $ t_0 $-coordinate, so $ u - ru_{t_0} \in \sp \cbr{e_s \st s < t_0} $. Clearly $ u - ru_{t_0} \in U $. We have $ u - ru_{t_0} = \sum_{i = 1}^q r_ie_{s_i} $, where $ s_i < t_0 $, and $ s_1 < \dots < s_q $. Then $ u - ru_{t_0} \in U \cap R_{s_q} = U_{s_q} = \sp \cbr{u_s \st s \le s_q} $ by inductive hypothesis. Hence $ u \in \sp \br{\cbr{u_s \st s \le s_q} \cup \cbr{u_{s_{t_0}}}} \subseteq \sp \cbr{u_s \st s \le s_{t_0}} $. Hence $ \cbr{u_s \st s \le s_{t_0}} $ generates $ U_{t_0} $, as required.
+\end{proof}
 
 \end{document}
