@@ -911,11 +911,146 @@ $$
 \end{definition}
 
 \begin{proposition}
-Let $ f : \br{C^\bullet, d^\bullet} \to \br{D^\bullet, d^\bullet} $ be a map between cochain complexes. Then there exists a natural induced map $ f^k : \H^k\br{C^\bullet, d^\bullet} \to \H^k\br{D^\bullet, d^\bullet} $.
+Let $ f : \br{C^\bullet, d^\bullet} \to \br{D^\bullet, d^\bullet} $ be a map between cochain complexes. Then there exists a natural induced map
+$$ f^k : \H^k\br{C^\bullet, d^\bullet} \to \H^k\br{D^\bullet, d^\bullet}. $$
 \end{proposition}
 
 \begin{proof}
-Let $ \sbr{\omega} \in \H^k\br{C^\bullet, d^\bullet} = \ZZZ^k\br{C^\bullet, d^\bullet} / \BBB^k\br{C^\bullet, d^\bullet} $ for $ \omega \in \ZZZ^k\br{C^\bullet, d^\bullet} $, that is $ d^k\br{\omega} = 0 $. I want to check that $ f^k\br{\omega} \in \ZZZ^k\br{D^\bullet, d^\bullet} $. By definition of maps, $ d^k\br{f^k\br{\omega}} = f^{k + 1}\br{d^k\br{\omega}} = 0 $, so $ \ZZZ^k\br{C^\bullet, d^\bullet} \to \ZZZ^k\br{D^\bullet, d^\bullet} $. Now I need to check that if $ \omega \in \BBB^k\br{C^\bullet, d^\bullet} $ then $ f^k\br{\omega} \in \BBB^k\br{D^\bullet, d^\bullet} $. \footnote{Exercise}
+Let $ \sbr{\omega} \in \H^k\br{C^\bullet, d^\bullet} = \ZZZ^k\br{C^\bullet, d^\bullet} / \BBB^k\br{C^\bullet, d^\bullet} $ for $ \omega \in \ZZZ^k\br{C^\bullet, d^\bullet} $, that is $ d^k\br{\omega} = 0 $. I want to check that $ f^k\br{\omega} \in \ZZZ^k\br{D^\bullet, d^\bullet} $. By definition of maps, $ d^k\br{f^k\br{\omega}} = f^{k + 1}\br{d^k\br{\omega}} = 0 $, so there is a map
+$$ \ZZZ^k\br{C^\bullet, d^\bullet} \to \ZZZ^k\br{D^\bullet, d^\bullet}. $$
+Now I need to check that if $ \omega \in \BBB^k\br{C^\bullet, d^\bullet} $ then $ f^k\br{\omega} \in \BBB^k\br{D^\bullet, d^\bullet} $. \footnote{Exercise}
+\end{proof}
+
+\lecture{12}{Tuesday}{04/02/20}
+
+\begin{definition}
+A sequence of linear maps
+$$ C^1 \xrightarrow{f^1} C^2 \to \dots \to C^{k - 1} \xrightarrow{f^{k - 1}} C^k $$
+between vector spaces is said to be \textbf{exact} if for all $ i $, $ \Ker f^i = \Im f^{i - 1} $.
+\end{definition}
+
+\begin{example}
+\hfill
+\begin{itemize}
+\item A sequence
+$$ 0 \to C^1 \xrightarrow{f^1} C^2 $$
+is exact if and only if $ f^1 $ is injective.
+\item A sequence
+$$ C^1 \xrightarrow{f^1} C^2 \to 0 $$
+is exact if and only if $ f^1 $ is surjective.
+\item An exact sequence
+$$ 0 \to C^1 \xrightarrow{f^1} C^2 \xrightarrow{f^2} C^3 \to 0 $$
+is called a \textbf{short exact sequence}. In particular $ f^1 $ is injective and $ f^2 $ is surjective.
+
+\pagebreak
+
+\item Any long exact sequence
+$$ C^1 \xrightarrow{f^1} C^2 \to \dots \to C^{q - 1} \xrightarrow{f^{q - 1}} C^q $$
+can be split into short exact sequences
+$$
+\begin{tikzcd}[column sep=tiny]
+\dots \arrow{r} & C^{k - 1} \arrow{rr}{f^{k - 1}} \arrow{dr} & & C^k \arrow{rr}{f^k} \arrow{dr} & & C^{k + 1} \arrow{r} & \dots \\
+& & \Im f^{k - 1} = \Ker f^k \arrow{ur} \arrow{dr} & & \Im f^k = \Ker f^{k + 1} \arrow{ur} \arrow{dr} & & \\
+& 0 \arrow{ur} & & 0 \arrow{ur} & & 0 &
+\end{tikzcd},
+\qquad k = 2, \dots, q - 1. $$
+\end{itemize}
+\end{example}
+
+\begin{lemma}[Snake lemma]
+Consider the commutative diagram
+$$
+\begin{tikzcd}
+& C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & C^3 \arrow{r} \arrow{d}{\alpha_3} & 0 \\
+0 \arrow{r} & D^1 \arrow{r}{g^1} & D^2 \arrow{r}{g^2} & D^3 &
+\end{tikzcd},
+$$
+such that both the horizontal lines are exact sequences. Then there exists a long exact sequence
+$$ \Ker \alpha_1 \to \Ker \alpha_2 \to \Ker \alpha_3 \xrightarrow{\delta} \Coker \alpha_1 \to \Coker \alpha_2 \to \Coker \alpha_3. $$
+If
+$$
+\begin{tikzcd}
+0 \arrow{r} & C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & C^3 \arrow{r} \arrow{d}{\alpha_3} & 0 \\
+0 \arrow{r} & D^1 \arrow{r}{g^1} & D^2 \arrow{r}{g^2} & D^3 \arrow{r} & 0
+\end{tikzcd},
+$$
+then
+$$ 0 \to \Ker \alpha_1 \to \Ker \alpha_2 \to \Ker \alpha_3 \xrightarrow{\delta} \Coker \alpha_1 \to \Coker \alpha_2 \to \Coker \alpha_3 \to 0. $$
+\end{lemma}
+
+\begin{proof}
+We are going to construct $ \delta : \Ker \alpha_3 \to \Coker \alpha_1 $. Let $ x \in \Ker \alpha_3 $. There exists $ y \in C^2 $ such that $ f^2\br{y} = x $ because $ f^2 $ is surjective. Let $ z = \alpha_2\br{y} $ then
+$$ g^2\br{z} = g^2\br{\alpha_2\br{y}} = \alpha_3\br{f^2\br{y}} = \alpha_3\br{x} = 0, $$
+since $ x \in \Ker \alpha_3 $. Then $ z \in \Ker g^2 = \Im g^1 $, so there exists $ w \in D^1 $ such that $ z = g^1\br{w} $. The idea is
+$$
+\begin{tikzcd}
+& 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & \\
+& \Ker \alpha_1 \arrow{r} \arrow{d} & \Ker \alpha_2 \arrow{r} \arrow{d} & \Ker \alpha_3 \arrow{d} \arrow[out=0, in=180]{dddll} & \\
+& C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & y \in C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & x \in C^3 \arrow{r} \arrow{d}{\alpha_3} & 0 \\
+0 \arrow{r} & w \in D^1 \arrow[swap]{r}{g^1} \arrow{d} & z \in D^2 \arrow[swap]{r}{g^2} \arrow{d} & D^3 \arrow{d} &\\
+& \Coker \alpha_1 \arrow{r} \arrow{d} & \Coker \alpha_2 \arrow{r} \arrow{d} & \Coker \alpha_3 \arrow{d} & \\
+& 0 & 0 & 0 &
+\end{tikzcd}.
+$$
+Define $ \delta\br{x} = \sbr{w} \in \Coker \alpha^1 = D^1 / \Im \alpha^1 $. Need to check that $ \delta $ is well-defined, so $ \sbr{w} $ does not depend on our choice of $ w $ and $ y $. The rest is an exercise. \footnote{Exercise}
+\end{proof}
+
+\pagebreak
+
+\subsection{The Mayer-Vietoris sequence}
+
+The idea is given a manifold $ M $, we may write $ M = U \cup V $ with open $ U $ and $ V $ so that $ H^i\br{U} $, $ H^i\br{V} $, and $ H^i\br{U \cap V} $ are easy to compute, so this will give us $ H^i\br{M} $.
+
+\begin{example*}
+Let $ M = \S^2 $, and let $ U = M \setminus \cbr{n} $ and $ V = M \setminus \cbr{s} $. Then $ U, V \cong \RR^2 $ and $ U \cap V \cong \S^1 $.
+\end{example*}
+
+Let $ M $ be a manifold, and let $ U $ and $ V $ be open such that $ M = U \cup V $. Assume $ U \cap V \ne \emptyset $. Let
+$$ i_U : U \to M, \qquad i_V : V \to M, \qquad j_U : U \cap V \to U, \qquad j_V : U \cap V \to V $$
+be inclusions, and let $ i_U^*, i_V^*, j_U^*, j_V^* $ be pull-backs.
+
+\begin{proposition}
+For all $ p $ there exist short exact sequences
+$$ 0 \to \Omega^p\br{M} \xrightarrow{f} \Omega^p\br{U} \oplus \Omega^p\br{V} \xrightarrow{g} \Omega^p\br{U \cap V} \to 0, $$
+where $ f = \br{i_U^*, i_V^*} $ and $ g = j_V^* - j_U^* $. More precisely, if $ \omega_1 \in \Omega^p\br{U} $ and $ \omega_2 \in \Omega^p\br{V} $ then $ g\br{\omega_1, \omega_2} = j_V^*\omega_2 - j_U^*\omega_1 $.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item $ f $ is injective. Assume $ \omega \in \Omega^p\br{M} $ such that $ f\br{\omega} = 0 $, so $ i_U^*\omega = i_V^*\omega = 0 $. Since $ M = U \cup V $ then $ \omega = 0 $ on $ M $, so $ f $ is injective.
+\item $ \Im f = \Ker g $. Let $ f\br{\omega} \in \Im f $, so $ f\br{\omega} = \br{i_U^*\omega, i_V^*\omega} $. Then $ g\br{f\br{\omega}} = j_V^*i_V^*\omega - j_U^*i_U^*\omega = l^*\omega - l^*\omega = 0 $, where
+$$
+\begin{tikzcd}
+& U \arrow{dr}{i_U} & \\
+U \cap V \arrow{ur}{j_U} \arrow{rr}{l} \arrow[swap]{dr}{j_V} & & M \\
+& V \arrow[swap]{ur}{i_V} &
+\end{tikzcd},
+$$
+so $ \Im f \subset \Ker g $. Now let $ \br{\omega_1, \omega_2} \in \Ker g $, so $ j_V^*\omega_2 = j_U^*\omega_1 $ for $ \omega_1 \in \Omega^p\br{U} $ and $ \omega_2 \in \Omega^p\br{V} $. The restriction of $ \omega_2 $ on $ U \cap V $ coincides with the restriction of $ \omega_1 $ on $ U \cap V $. Then define
+$$ \omega =
+\begin{cases}
+\omega_1 & \text{on} \ U \\
+\omega_2 & \text{on} \ V
+\end{cases}.
+$$
+Then $ f\br{\omega} = \br{\omega_1, \omega_2} $, so $ \Ker g \subset \Im f $.
+\item $ g $ is surjective. Let $ \eta \in \Omega^p\br{U \cap V} $, and let $ \cbr{f_U, f_V} $ be a partition of unity with respect to $ \cbr{U, V} $. Then $ \supp f_U \subset U $ and $ f_U + f_V = 1 $. Let $ \eta_1 \in \Omega^p\br{U} $ be defined by
+$$ \eta_1 =
+\begin{cases}
+f_U \cdot \eta & \text{on} \ U \cap V \\
+0 & \text{outside} \ \supp f_V
+\end{cases},
+$$
+and let $ \eta_2 \in \Omega^p\br{V} $ be defined by
+$$ \eta_2 =
+\begin{cases}
+f_V \cdot \eta & \text{on} \ U \cap V \\
+0 & \text{outside} \ \supp f_U
+\end{cases}.
+$$
+Then $ g\br{-\eta_2, \eta_1} = \eval{\eta_1}_{U \cap V} + \eval{\eta_2}_{U \cap V} = \br{f_U + f_V} \cdot \eta = \eta $, so $ \eta \in \Im g $.
+\end{itemize}
 \end{proof}
 
 \end{document}
