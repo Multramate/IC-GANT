@@ -882,12 +882,12 @@ Since $ \int_{\gamma_1 \cup \gamma_2} \omega = 0 $, $ f $ is well-defined, that 
 
 \pagebreak
 
-\subsection{Homological algebra}
+\subsection{Some homological algebra}
 
 Let $ C^\bullet $ be a sequence of vector spaces, that is $ C^k $ is a vector space for $ k \in \ZZ $.
 
 \begin{definition}
-$ \br{C^\bullet, d^\bullet} $ is a \textbf{cochain complex} if $ C^\bullet $ is a sequence of vector spaces and $ d^\bullet $ is a sequence of linear maps $ d^k : C^k \to C^{k + 1} $ such that the composition $ d^{k + 1} \circ d^k : C^k \to C^{k + 1} \to C^{k + 2} $ is zero for all $ k $.
+$ \br{C^\bullet, d^\bullet} $ is a \textbf{cochain complex} if $ C^\bullet $ is a sequence of vector spaces and $ d^\bullet $ is a sequence of linear maps $ d^k : C^k \to C^{k + 1} $ such that the composition $ d^{k + 1} \circ d^k : C^k \to C^{k + 1} \to C^{k + 2} $ is zero for all $ k $. Then $ d^\bullet $ is the \textbf{differential}.
 \end{definition}
 
 \begin{definition}
@@ -985,7 +985,7 @@ since $ x \in \Ker \alpha_3 $. Then $ z \in \Ker g^2 = \Im g^1 $, so there exist
 $$
 \begin{tikzcd}
 & 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & \\
-& \Ker \alpha_1 \arrow{r} \arrow{d} & \Ker \alpha_2 \arrow{r} \arrow{d} & \Ker \alpha_3 \arrow{d} \arrow[out=0, in=180]{dddll} & \\
+& \Ker \alpha_1 \arrow{r} \arrow{d} & \Ker \alpha_2 \arrow{r} \arrow{d} & \Ker \alpha_3 \arrow{d} \arrow[in=180, out=0]{dddll} & \\
 & C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & y \in C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & x \in C^3 \arrow{r} \arrow{d}{\alpha_3} & 0 \\
 0 \arrow{r} & w \in D^1 \arrow[swap]{r}{g^1} \arrow{d} & z \in D^2 \arrow[swap]{r}{g^2} \arrow{d} & D^3 \arrow{d} &\\
 & \Coker \alpha_1 \arrow{r} \arrow{d} & \Coker \alpha_2 \arrow{r} \arrow{d} & \Coker \alpha_3 \arrow{d} & \\
@@ -999,17 +999,12 @@ Define $ \delta\br{x} = \sbr{w} \in \Coker \alpha^1 = D^1 / \Im \alpha^1 $. Need
 
 \subsection{The Mayer-Vietoris sequence}
 
-The idea is given a manifold $ M $, we may write $ M = U \cup V $ with open $ U $ and $ V $ so that $ H^i\br{U} $, $ H^i\br{V} $, and $ H^i\br{U \cap V} $ are easy to compute, so this will give us $ H^i\br{M} $.
-
-\begin{example*}
-Let $ M = \S^2 $, and let $ U = M \setminus \cbr{n} $ and $ V = M \setminus \cbr{s} $. Then $ U, V \cong \RR^2 $ and $ U \cap V \cong \S^1 $.
-\end{example*}
-
-Let $ M $ be a manifold, and let $ U $ and $ V $ be open such that $ M = U \cup V $. Assume $ U \cap V \ne \emptyset $. Let
+The idea is given a manifold $ M $, we may write $ M = U \cup V $ with open $ U $ and $ V $ so that $ H^i\br{U} $, $ H^i\br{V} $, and $ H^i\br{U \cap V} $ are easy to compute, so this will give us $ H^i\br{M} $. Let $ M $ be a manifold, and let $ U $ and $ V $ be open such that $ M = U \cup V $. Assume $ U \cap V \ne \emptyset $. Let
 $$ i_U : U \to M, \qquad i_V : V \to M, \qquad j_U : U \cap V \to U, \qquad j_V : U \cap V \to V $$
 be inclusions, and let $ i_U^*, i_V^*, j_U^*, j_V^* $ be pull-backs.
 
 \begin{proposition}
+\label{prop:2.28}
 For all $ p $ there exist short exact sequences
 $$ 0 \to \Omega^p\br{M} \xrightarrow{f} \Omega^p\br{U} \oplus \Omega^p\br{V} \xrightarrow{g} \Omega^p\br{U \cap V} \to 0, $$
 where $ f = \br{i_U^*, i_V^*} $ and $ g = j_V^* - j_U^* $. More precisely, if $ \omega_1 \in \Omega^p\br{U} $ and $ \omega_2 \in \Omega^p\br{V} $ then $ g\br{\omega_1, \omega_2} = j_V^*\omega_2 - j_U^*\omega_1 $.
@@ -1038,19 +1033,123 @@ Then $ f\br{\omega} = \br{\omega_1, \omega_2} $, so $ \Ker g \subset \Im f $.
 \item $ g $ is surjective. Let $ \eta \in \Omega^p\br{U \cap V} $, and let $ \cbr{f_U, f_V} $ be a partition of unity with respect to $ \cbr{U, V} $. Then $ \supp f_U \subset U $ and $ f_U + f_V = 1 $. Let $ \eta_1 \in \Omega^p\br{U} $ be defined by
 $$ \eta_1 =
 \begin{cases}
-f_U \cdot \eta & \text{on} \ U \cap V \\
+f_V \cdot \eta & \text{on} \ U \cap V \\
 0 & \text{outside} \ \supp f_V
 \end{cases},
 $$
 and let $ \eta_2 \in \Omega^p\br{V} $ be defined by
 $$ \eta_2 =
 \begin{cases}
-f_V \cdot \eta & \text{on} \ U \cap V \\
+f_U \cdot \eta & \text{on} \ U \cap V \\
 0 & \text{outside} \ \supp f_U
 \end{cases}.
 $$
 Then $ g\br{-\eta_2, \eta_1} = \eval{\eta_1}_{U \cap V} + \eval{\eta_2}_{U \cap V} = \br{f_U + f_V} \cdot \eta = \eta $, so $ \eta \in \Im g $.
 \end{itemize}
+\end{proof}
+
+\lecture{13}{Thursday}{06/02/20}
+
+\begin{theorem}[Mayer-Vietoris]
+\label{thm:2.29}
+Let $ M $ be a manifold, and let $ U $ and $ V $ be open in $ M $ such that $ M = U \cup V $ and $ U \cap V \ne \emptyset $. Then for all $ p \ge 0 $ there exists a linear $ \delta : \H^p\br{U \cap V} \to \H^{p + 1}\br{M} $ such that
+$$
+\begin{tikzcd}
+\dots \arrow{r} & \H^p\br{M} \arrow{r}{\br{i_U^*, i_V^*}} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r}{j_V^* - j_U^*} & \H^p\br{U \cap V} \arrow[in=180, out=0, swap]{dll}{\delta} & \\
+& \H^{p + 1}\br{M} \arrow{r}{\br{i_U^*, i_V^*}} & \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} \arrow{r}{j_V^* - j_U^*} & \H^{p + 1}\br{U \cap V} \arrow{r} & \dots
+\end{tikzcd}
+$$
+is exact.
+\end{theorem}
+
+\pagebreak
+
+\begin{example}
+Let $ M = \S^1 $, let $ N = \br{0, 1} $ and $ S = \br{0, -1} $, and let $ U = M \setminus \cbr{N} $ and $ V = M \setminus \cbr{S} $, so $ M = U \cup V $ and $ U \cap V = M \setminus \cbr{N, S} $. Then
+$$ \H^p\br{U} \cong \H^p\br{V} \cong \H^p\br{\br{0, 1}} \cong
+\begin{cases}
+\RR & p = 0 \\
+0 & p > 0
+\end{cases},
+\qquad \br{0, 1} \subset \RR, $$
+and
+$$ \H^p\br{U \cap V} = \H^p\br{U \setminus \cbr{S}} = \H^p\br{\br{0, \dfrac{1}{2}} \cup \br{\dfrac{1}{2}, 1}} =
+\begin{cases}
+\RR^2 & p = 0 \\
+0 & p > 0
+\end{cases},
+\qquad \br{0, \dfrac{1}{2}}, \br{\dfrac{1}{2}, 1} \subset \RR, $$
+so
+$$
+\begin{tikzcd}[column sep=tiny, row sep=tiny]
+0 \arrow{r} & \H^0\br{M} \arrow{r} \arrow[cong]{d} & \H^0\br{U} \oplus \H^0\br{V} \arrow{r}{\phi} \arrow[cong]{d} & \H^0\br{U \cap V} \arrow{r}{\delta} \arrow[cong]{d} & \H^1\br{M} \arrow{r} & \H^1\br{U} \oplus \H^1\br{V} \arrow{r} \arrow[cong]{d} & \H^1\br{U \cap V} \arrow{r} \arrow[cong]{d} & \dots \\
+& \RR & \RR \oplus \RR & \RR^2 & & 0 \oplus 0 & 0 &
+\end{tikzcd}.
+$$
+Then $ \Im \phi = \RR \subset \H^0\br{U \cap V} = \RR^2 $. Thus
+$$ \H^1\br{M} = \Coker \phi = \RR^2 / \Im \phi \cong \RR. $$
+\end{example}
+
+\begin{remark}
+Let
+$$ 0 \to C^1 \to \dots \to C^k \to 0 $$
+be an exact sequence. Then
+$$ \sum_k \br{-1}^k\dim C^k = 0. \footnote{Exercise} $$
+\end{remark}
+
+In our $ M = \S^1 $ case $ 1 - 2 + 2 - \dim \H^1\br{M} = 0 $, so $ \dim \H^1\br{M} = 1 $. Thus $ \H^1\br{M} \cong \RR $.
+
+\begin{example}
+Let $ M = \S^n \subset \RR^{n + 1} $ be the $ n $-dimensional sphere. Then
+$$ \H^p\br{M} =
+\begin{cases}
+\RR & p = 0, n \\
+0 & \text{otherwise}
+\end{cases}.
+$$
+By induction on $ n $. If $ n = 1 $, then ok. Assume $ n > 1 $. Let $ U = M \setminus \cbr{N} $ and $ V = M \setminus \cbr{S} $, so $ U \cap V \ne \emptyset $ and $ U \cup V = M $. Then
+$$ U \cong V \cong \RR^n, \qquad U \cap V = V \setminus \cbr{N} \cong \RR^n \setminus \cbr{0} \cong \S^{n - 1}, $$
+so
+$$
+\begin{tikzcd}[column sep=small, row sep=tiny]
+0 \arrow{r} & \H^0\br{M} \arrow{r} \arrow[cong]{d} & \H^0\br{U} \oplus \H^0\br{V} \arrow{r} \arrow[cong]{d} & \H^0\br{U \cap V} \arrow{r}{\delta} \arrow[cong]{d} & \H^1\br{M} \arrow{r} & \H^1\br{U} \oplus \H^1\br{V} \arrow{r} \arrow[cong]{d} & \dots \\
+& \RR & \RR \oplus \RR & \RR & & 0 \oplus 0 &
+\end{tikzcd}.
+$$
+Then $ 1 - 2 + 1 - \dim \H^1\br{M} = 0 $, so $ \dim \H^1\br{M} = 0 $. Thus $ \H^1\br{M} = 0 $. Then for $ p > 0 $
+$$
+\begin{tikzcd}[row sep=tiny]
+\dots \arrow{r} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r} \arrow[cong]{d} & \H^p\br{U \cap V} \arrow{r}{\delta} & \H^{p + 1}\br{M} \arrow{r} & \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} \arrow{r} \arrow[cong]{d} & \dots \\
+& 0 \oplus 0 & & & 0 \oplus 0 &
+\end{tikzcd}
+$$
+is exact, so $ \H^p\br{U \cap V} \cong \H^{p + 1}\br{M} $. By induction
+$$ \H^p\br{U \cap V} = \H^{p + 1}\br{M} =
+\begin{cases}
+\RR & p = n - 1 \\
+0 & \text{otherwise}
+\end{cases}.
+$$
+\end{example}
+
+\pagebreak
+
+\begin{proof}[Proof of Theorem \ref{thm:2.29}]
+By Proposition \ref{prop:2.28} for all $ p $
+$$
+\begin{tikzcd}
+0 \arrow{r} & \Omega^p\br{M} \arrow{r} \arrow{d}{\d_M^p} & \Omega^p\br{U} \oplus \Omega^p\br{V} \arrow{r} \arrow{d}{\d_U^p \oplus \d_V^p} & \Omega^p\br{U \cap V} \arrow{r} \arrow{d}{\d_{U \cap V}^p} & 0 \\
+0 \arrow{r} & \Omega^{p + 1}\br{M} \arrow{r} & \Omega^{p + 1}\br{U} \oplus \Omega^{p + 1}\br{V} \arrow{r} & \Omega^{p + 1}\br{U \cap V} \arrow{r} & 0
+\end{tikzcd}
+$$
+are exact. Recall $ \d $ commutes with the pull-back. By the strong snake lemma,
+$$
+\begin{tikzcd}
+& \Coker \d_M^{p - 1} \arrow{r} \arrow{d}{\d_M^p} & \Coker \br{\d_U^{p - 1}, \d_V^{p - 1}} \arrow{r} \arrow{d}{\d_U^p \oplus \d_V^p} & \Coker \d_{U \cap V}^{p - 1} \arrow{r} \arrow{d}{\d_{U \cap V}^p} & 0 \\
+0 \arrow{r} & \Ker \d_M^{p + 1} \arrow{r} & \Ker \br{\d_U^{p + 1}, \d_V^{p + 1}} \arrow{r} & \Ker \d_{U \cap V}^{p + 1} &
+\end{tikzcd},
+$$
+which is well-defined, since $ \d^2 = 0 $.
 \end{proof}
 
 \end{document}
