@@ -1130,4 +1130,74 @@ $$ \sigma \overset{U'}{=} f' = \br{f_1', \dots, f_r'}, \qquad \sigma = \sum_{j =
 Let $ A' $ be the matrix with respect to this frame. Then
 $$ \nabla\br{\sigma} \overset{U'}{=} A'f' + \d f'. $$
 
+\lecture{14}{Thursday}{06/02/20}
+
+Let $ g : \br{U \cap U'} \times \CC^r \to \br{U \cap U'} \times \CC^r $ be the transition function from the trivialisation of $ U' $ to the trivialisation of $ U $. Then $ g\br{x} \in \GL_r \CC $ for all $ x \in U \cap U' $, so $ f = gf' $. Denote by $ \D g $ the differential of $ g $. Then
+$$ \d f = \d\br{gf'} = \D g \cdot f' + g \d f' = g\br{g^{-1}\D g \cdot f' + \d f'}, $$
+by the Leibnitz rule. Thus,
+$$ Af + \d f \overset{U}{=} Agf' + g\br{g^{-1}\D g \cdot f' + \d f'} \overset{U}{=} g\br{\br{g^{-1}\D g + g^{-1}Ag}f' + \d f'} \overset{U'}{=} \br{g^{-1}\D g + g^{-1}Ag}f' + \d f', $$
+so $ A' = g^{-1}\D g + g^{-1}Ag $. What is $ \nabla^2 $? The idea is
+$$ \C^\infty\br{X, E} \xrightarrow{\nabla} \C^\infty\br{X, \Omega_{X, \CC}^1 \otimes E} \xrightarrow{\nabla} \C^\infty\br{X, \Omega_{X, \CC}^1 \otimes \Omega_{X, \CC}^1 \otimes E} \xrightarrow{\wedge} \C^\infty\br{X, \Omega_{X, \CC}^2 \otimes E}. $$
+Then the \textbf{curvature} operator is
+$$ \nabla^2 : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_{X, \CC}^2 \otimes E}. $$
+
+\begin{remark}
+If $ X $ has dimension one, then $ \Omega_{X, \CC}^2 = 0 $, so $ \nabla^2 = 0 $.
+\end{remark}
+
+Again for all $ x \in X $, take $ U $ as above. Let $ s_1, \dots, s_r $ be a frame, let $ A = \br{a_{ij}} $ be the $ \br{r \times r} $-matrix of $ 1 $-forms, and let $ \D A $ be the differential of $ A $.
+
+\begin{notation}
+$ A \wedge A = \br{\sum_{k = 1}^r \br{a_{ik} \wedge a_{kj}}} $ is an $ \br{r \times r} $-matrix of $ 2 $-forms.
+\end{notation}
+
+Let $ \sigma \overset{U}{=} \br{f_1, \dots, f_r} = \sum_i f_is_i $ on $ U $. Then
+$$ \nabla^2\br{\sigma}  = \nabla\br{Af + \d f} = A\br{Af + \d f} + \d\br{A f + \d f} = A \wedge Af + A \d f + \D A \cdot f - A \d f + \d^2f = \br{A \wedge A + \D A}f $$
+is $ \C^\infty $-linear, so $ \nabla^2\br{h\sigma} = h\nabla^2\br{\sigma} $. Let
+$$ \Theta_\nabla \cdot \sigma = \nabla^2\br{\sigma}, \qquad \Theta_\nabla \overset{U}{=} A \wedge A + DA. $$
+
+\pagebreak
+
+\section{K\"ahler manifolds}
+
+\subsection{Hermitian metrics}
+
+\begin{definition}
+Let $ V $ be a vector space over $ \CC $. A \textbf{Hermitian inner product} on $ V $ is a map
+$$ \function{V \times V}{\CC}{\br{v, w}}{\abr{v, w}}, $$
+such that
+\begin{itemize}
+\item $ \abr{v, w} = \overline{\abr{w, v}} $,
+\item it is linear on the first factor, and
+\item $ \abr{v, v} \ge 0 $ and $ \abr{v, v} = 0 $ if and only if $ v = 0 $.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+$ V = \CC $ and $ \abr{z_1, z_2} = z_1 \cdot \overline{z_2} $.
+\end{example}
+
+\begin{definition}
+Let $ X $ be a manifold, and let $ E $ be a complex vector bundle on $ X $. A \textbf{Hermitian metric} $ h $, or $ \abr{\cdot, \cdot} $, on $ E $ is a choice of a Hermitian inner product
+$$ \abr{\cdot, \cdot}_x : E\br{x} \times E\br{x} \to \CC, \qquad x \in X, $$
+such that
+$$ \abr{s\br{x}, t\br{x}}_x, \qquad U \subset X, \qquad s, t \in \C^\infty\br{U, E} $$
+is a $ \C^\infty $-function with respect to $ x $ on $ U $. The notation is $ h_x = \abr{\cdot, \cdot}_x $. The pair $ \br{E, \abr{\cdot, \cdot}} = \br{E, h} $ is called a \textbf{Hermitian vector bundle}.
+\end{definition}
+
+Let $ \br{E, h} $ be a Hermitian vector bundle, and let $ x \in X $. Locally, let $ s_1, \dots, s_n $ be a frame on $ U \ni x $. For any $ x \in U $, $ \abr{s_i\br{x}, s_j\br{x}}_x = h_{ij}\br{x} $ is a smooth function for all $ i $ and $ j $. Then
+$$ H = \br{h_{ij}}_{i, j = 1}^r $$
+is an $ \br{r \times r} $-matrix of smooth functions. Let $ \sigma, \sigma' \in \C^\infty\br{U, E} $, and let $ \sigma \overset{U}{=} f = \br{f_1, \dots, f_r} $ and $ \sigma' \overset{U}{=} f' = \br{f_1', \dots, f_r'} $. Then
+$$ \abr{\sigma\br{x}, \sigma'\br{x}} = f^\intercal H\overline{f'}. $$
+Now assume that $ U' $ is a different open set with frame $ \br{s_1', \dots, s_r'} $. Assume $ g : \br{U \cap U'} \times \CC^r \to \br{U \cap U'} \times \CC^r $ is the transition function from the trivialisation on $ U' $ to the trivialisation on $ U $. Let $ H' $ be the matrix of $ h $ with respect to $ s_1', \dots, s_r' $. Then
+$$ H' = g^\intercal H\overline{g}. $$
+
+\begin{proposition}
+Let $ \pi : E \to X $ be a complex vector bundle on $ X $. Then $ E $ always admits a Hermitian metric.
+\end{proposition}
+
+\begin{proof}
+Let $ U = \cbr{U_i} $ be an open cover of open sets of $ X $, trivialising $ E $, so $ \phi_i : \pi^{-1}\br{U_i} \xrightarrow{\sim} U_i \times \CC^r $, and let $ f_i : X \to \sbr{0, 1} $ be a partition of unity with respect to $ U $. For each $ i $, consider a Hermitian metric on $ \CC^r $. Then there is a Hermitian metric $ \widetilde{h_i} $ on $ U_i \times \CC^r $. Let $ h_i $ be the Hermitian metric on $ \eval{E}_{U_i} $ induced by $ \phi_i $. Take $ h = \sum_i f_ih_i $. Check that $ h $ defines a Hermitian metric on $ X $. \footnote{Exercise}
+\end{proof}
+
 \end{document}
