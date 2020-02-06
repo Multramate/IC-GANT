@@ -840,7 +840,7 @@ $$ \Omega_X^p = \Lambda^p\Omega_X^1, \qquad p \ge 1. $$
 A holomorphic $ p $-form on $ X $ is a section of $ \Omega_X^p $. \footnote{Exercise}
 \end{example}
 
-\subsection{Complexified tangent bundles}
+\subsection{Complexification of tangent bundles}
 
 \lecture{10}{Thursday}{30/01/20}
 
@@ -883,13 +883,14 @@ and for all $ x $, $ \p_2 \circ h_i : E\br{x} \to K^r $ is an isomorphism of vec
 \end{itemize}
 \end{definition}
 
-Pull-backs, sections, exterior powers, tensors, direct sums, frames, etc are the same as holomorphic vector bundles, where holomorphic becomes smooth and biholomorphic becomes diffeomorphic, and for all $ X $ there exists a tangent bundle $ \T_X $. Assume $ X $ is a complex manifold of dimension $ n $. Let $ \T_X $ be the holomorphic tangent bundle of $ X $. Then $ X $ is also a differentiable manifold of dimension $ 2n $, so let $ \T_X^\RR $ be the real tangent bundle of $ X $, which is a rank $ 2n $ vector bundle, and let $ \T_X^\CC = \T_X^\RR \otimes_\RR \CC $ be the complex tangent bundle of $ X $, which is a non-holomorphic complex vector bundle of rank $ 2n $. Smooth morphisms of real or complex vector bundles are defined similarly as holomorphisms between holomorphic vector bundles such that the rank of the image is constant, so
+Pull-backs, sections, exterior powers, tensors, direct sums, frames, etc are the same as holomorphic vector bundles, where holomorphic becomes smooth and biholomorphic becomes diffeomorphic, and for all $ X $ there exists a tangent bundle $ \T_X $. Assume $ X $ is a complex manifold of dimension $ n $. Let $ \T_X $ be the holomorphic tangent bundle of $ X $. Then $ X $ is also a differentiable manifold of dimension $ 2n $, so let $ \T_X^\RR $ be the \textbf{real tangent bundle} of $ X $, which is a rank $ 2n $ vector bundle, and let $ \T_X^\CC = \T_X^\RR \otimes_\RR \CC $ be the \textbf{complex tangent bundle} of $ X $, which is a non-holomorphic complex vector bundle of rank $ 2n $. Smooth morphisms of real or complex vector bundles are defined similarly as holomorphisms between holomorphic vector bundles such that the rank of the image is constant, so
 $$
 \begin{tikzcd}
 E \arrow{rr}{f} \arrow[swap]{dr}{\pi} & & F \arrow{dl}{\pi'} \\
 & X &
 \end{tikzcd}.
 $$
+
 Let $ X $ be a differentiable manifold of dimension $ m = 2n $. Then an \textbf{almost complex structure} on $ X $ is a smooth morphism between the real tangent bundle $ J : \T_X^\RR \to \T_X^\RR $ such that $ J^2 = -\id $. In particular, $ J\br{x} : \T_x^\RR X \to \T_x^\RR X $ is an almost complex structure for all $ x \in X $.
 
 \lecture{11}{Thursday}{30/01/20}
@@ -921,7 +922,7 @@ and let $ z_1', \dots, z_n' $ be local holomorphic coordinates given by
 $$ z_i' = f_i\br{z_1, \dots, z_n}, \qquad f_i = \p_i \circ f, $$
 where $ \p_i : \CC^n \to \CC $ is the $ i $-th projection. Define
 $$ x_i' = \Re z_i' = \Re f_i\br{z_1, \dots, z_n} = u_i\br{z_1, \dots, z_n}, \qquad y_i' = \Im z_i' = \Im f_i\br{z_1, \dots, z_n} = v_i\br{z_1, \dots, z_n}, $$
-so $ f_j = u_j + iv_j $. The real Jacobian $ \J_f $ of $ f $ is given by the derivatives of $ u_j $ and $ v_j $ with respect to $ x_1, y_1, \dots, x_n, y_n $, a $ 2n \times 2n $ matrix of $ n \times n $ blocks of $ 2 \times 2 $ blocks of
+so $ f_j = u_j + iv_j $. The real Jacobian $ \J_f $ of $ f $ is given by the derivatives of $ u_j $ and $ v_j $ with respect to $ x_1, y_1, \dots, x_n, y_n $, a $ \br{2n \times 2n} $-matrix of $ n \times n $ blocks of $ 2 \times 2 $ blocks of
 $$ \twobytwo{\tpd{u_j}{x_k}}{\tpd{u_j}{y_k}}{\tpd{v_j}{x_k}}{\tpd{v_j}{y_k}}. $$
 These define the transition function of $ \T_X^\RR $. To show that $ J $ extends to $ X $, it is enough to show that $ J $ commutes with $ \J_f $ at each point, so
 $$
@@ -933,8 +934,8 @@ $$
 Since $ f_j $ is holomorphic $ \tpd{f_j}{\overline{z_k}} = 0 $ for all $ j $ and $ k $, so the Cauchy-Riemann equations
 $$ \dpd{u_j}{x_k} - \dpd{v_j}{y_k} = 0, \qquad \dpd{v_j}{x_k} + \dpd{u_j}{y_k} = 0, $$
 or
-$$ \twobytwo{\tpd{u_j}{x_k}}{\tpd{u_j}{y_k}}{\tpd{v_j}{x_k}}{\tpd{v_j}{y_k}} = \twobytwo{\tpd{v_j}{y_k}}{\tpd{u_j}{y_k}}{-\tpd{u_j}{y_k}}{\tpd{v_j}{y_k}}. $$
-Since $ J $ is the standard almost complex structure on $ \RR^{2n} $, where $ x_j \mapsto y_j $ and $ y_j \mapsto -x_j $,
+$$ \twobytwo{\tpd{u_j}{x_k}}{\tpd{u_j}{y_k}}{\tpd{v_j}{x_k}}{\tpd{v_j}{y_k}} = \twobytwo{\tpd{v_j}{y_k}}{\tpd{u_j}{y_k}}{-\tpd{u_j}{y_k}}{\tpd{v_j}{y_k}}, $$
+hold. Since $ J $ is the standard almost complex structure on $ \RR^{2n} $, where $ x_j \mapsto y_j $ and $ y_j \mapsto -x_j $,
 $$ J =
 \begin{pmatrix}
 0 & 1 & & & \\
@@ -958,6 +959,8 @@ Assume that $ v_1, \dots, v_n, J\br{v_1}, \dots, J\br{v_n} $ and $ w_1, \dots, w
 \end{proof}
 
 \pagebreak
+
+\subsection{Differential forms on complex tangent bundles}
 
 Let $ X $ be a complex manifold. Then there exists an almost complex structure $ J : \T_X^\RR \to \T_X^\RR $ on $ X $. Then $ J $ extends to
 $$ \function[J]{\T_X^\CC}{\T_X^\CC}{v \otimes \mu}{J\br{v} \otimes \mu}. $$
@@ -991,7 +994,7 @@ $$ \omega = \sum_{I, J} \alpha_{I, J} \d z_I \wedge \d\overline{z_J} = \sum_{\ab
 where $ \alpha_{I, J} $ are smooth functions on $ U $. Let $ X $ be a manifold. If $ E $ is a complex vector bundle then
 $$ \C^\infty\br{X, E} = \cbr{\text{smooth sections of} \ E}. $$
 The \textbf{differential}
-$$ \d : \C^\infty\br{X, \Omega_X^k} \to \C^\infty\br{X, \Omega_X^{k + 1}} $$
+$$ \d : \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X, \Omega_{X, \CC}^{k + 1}} $$
 satisfies the Leibnitz rule and $ \d^2 = 0 $, so $ \d\br{\d\omega} = 0 $. If $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $, then $ \d\omega \in \C^\infty\br{X, \Omega_{X, \CC}^{p + q + 1}} $. Assume that locally $ \omega = \sum_{I, J} \alpha_{I, J} \d z_I \wedge \d\overline{z_J} $. Then
 $$ \d\omega = \sum_{I, J} \d\alpha_{I, J} \d z_I \wedge \d\overline{z_J}, \qquad \d\alpha_{I, J} = \sum_{i = 1}^n \dpd{}{z_i}\alpha_{I, J} \d z_i + \sum_{i = 1}^n \dpd{}{\overline{z_i}}\alpha_{I, J} \d\overline{z_i}. $$
 
@@ -1006,9 +1009,9 @@ $$ \partial\omega = \sum_{I, J} \partial\alpha_{I, J} \d z_I \wedge \d\overline{
 Then $ \d = \partial + \overline{\partial} $ for $ \omega $.
 
 \begin{lemma}
-The maps
+The linear maps
 $$ \partial : \C^\infty\br{X, \Omega_X^{p, q}} \to \C^\infty\br{X, \Omega_X^{p + 1, q}}, \qquad \overline{\partial} : \C^\infty\br{X, \Omega_X^{p, q}} \to \C^\infty\br{X, \Omega_X^{p, q + 1}} $$
-are linear. They satisfy the Leibnitz rule. That is, if $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $ and $ \eta \in \C^\infty\br{X, \Omega_X^{p', q'}} $, then
+satisfy the Leibnitz rule. That is, if $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $ and $ \eta \in \C^\infty\br{X, \Omega_X^{p', q'}} $, then
 $$ \partial\br{\omega \wedge \eta} = \partial\omega \wedge \eta + \br{-1}^{p + q}\omega + \partial\eta, \qquad \overline{\partial}\br{\omega \wedge \eta} = \overline{\partial}\omega \wedge \eta + \br{-1}^{p + q}\omega + \overline{\partial}\eta. $$
 \end{lemma}
 
@@ -1034,6 +1037,8 @@ $$ 0 = \d^2\omega = \br{\partial + \overline{\partial}}\br{\br{\partial + \overl
 Then $ \d^2\omega $ is a $ \br{p + q + 2} $-form, $ \partial^2\omega $ is a $ \br{p + 2, q} $-form, $ \partial\overline{\partial}\omega + \overline{\partial}\partial\omega $ is a $ \br{p + 1, q + 1} $-form, and $ \overline{\partial}^2\omega $ is a $ \br{p, q + 2} $-form. Forms of the same type in the decomposition of $ \d^2\omega $ must coincide.
 \end{proof}
 
+\subsection{Dolbeault cohomology}
+
 Let $ X $ be a complex manifold. Fix $ p, q \ge 0 $. Let
 \begin{align*}
 \ZZZ^{p, q}\br{X}
@@ -1053,14 +1058,76 @@ $$ \H^{p, q}\br{X} = \ZZZ^{p, q}\br{X} / \BBB^{p, q}\br{X}. $$
 Assume $ X $ and $ Y $ are biholomorphic complex manifolds. Then $ \H^{p, q}\br{X} = \H^{p, q}\br{Y} $.
 \end{exercise*}
 
+\pagebreak
+
 If $ \H^{p, q}\br{X} $ is finite dimensional then we define the \textbf{Hodge numbers} of $ X $ as
 $$ \h^{p, q} = \dim_\CC \H^{p, q}\br{X}. $$
+Our goal is if $ X $ is K\"ahler and compact
+$$ \bigoplus_{p + q = k} \H^{p, q}\br{X} = \H^{p + q}\br{X} $$
+as the de Rham cohomology. In particular this is true if $ X $ is projective. How to compute $ \H^{p, q}\br{X} $? We need to use analysis.
+
+\begin{proposition}
+Let $ X $ be a complex manifold. Then there exists an isomorphism
+$$ \H^{p, 0}\br{X} \cong \H^0\br{X, \Omega_X^p} = \cbr{\text{holomorphic sections of} \ \Omega_X^p} = \cbr{\text{holomorphic $ p $-forms on} \ X}, \qquad p \ge 0. $$
+\end{proposition}
+
+\lecture{13}{Thursday}{06/02/20}
+
+\begin{remark}
+If $ X $ is compact then $ \H^{0, 0}\br{X} = \CC $ because $ \H^{0, 0}\br{X} = \H^0\br{X, \OOO_X} $ are constants.
+\end{remark}
+
+\begin{proof}
+$$ \H^{p, 0}\br{X} = \ZZZ^{p, 0}\br{X} / \BBB^{p, 0}\br{X} = \ZZZ^{p, 0}\br{X} = \cbr{\omega \in \C^\infty\br{X, \Omega_X^{p, 0}} \st \overline{\partial}\omega = 0}. $$
+Locally $ \omega = \sum_{\abs{I} = p} \alpha_I\d z_I $. Then
+$$ \overline{\partial}\omega = \sum_{\abs{I} = p} \overline{\partial}\alpha_I \d z_I = \sum_{\abs{I} = p} \sum_{i = 1}^n \dpd{}{\overline{z_j}}\alpha_I \d\overline{z_j} \wedge \d z_I, $$
+where $ \d\overline{z_j} \wedge \d z_I $ are linearly independent. For all $ I $ and for all $ j $, the Cauchy-Riemann equations $ \tpd{}{\overline{z_j}}\alpha_I = 0 $ hold, so for all $ I $, $ \alpha_I $ is holomorphic. Then $ \omega = \sum_{\abs{I} = p} \alpha_I \d z_I $ is a holomorphic $ p $-form, so $ \omega \in \H^0\br{X, \Omega_X^p} $.
+\end{proof}
+
+\subsection{Connections}
+
+Let $ X $ be a differentiable manifold, and let $ E $ be a complex vector bundle. Then
+$$ \C^\infty\br{X, E} = \cbr{\text{$ \C^\infty $-sections of} \ E}. $$
+Is there a way to compute the derivatives of these sections?
+
+\begin{definition}
+Let $ X $ and $ E $ be as above. A \textbf{connection} of $ E $ is a $ \CC $-linear map
+$$ \nabla : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_{X, \CC}^1 \otimes E} $$
+such that the Leibnitz rule holds, so
+$$ \nabla\br{f\omega} = f\nabla\br{\omega} + \d f \otimes \omega, \qquad f \in \C^\infty, \qquad \omega \in \C^\infty\br{X, E}. $$
+\end{definition}
+
+The following is the idea. Let $ \omega \in \C^\infty\br{X, E} $. Then
+$$ \nabla\br{\omega} = \sum_i \eta_i \otimes \omega_i, $$
+where $ \eta_i $ are $ 1 $-forms on $ X $ and $ \omega_i $ are sections of $ E $. Let $ x \in X $, and let $ v \in \T_xX $. Then
+$$ \nabla_v\br{\omega}_x = \sum_i \eta_i\br{v}\omega_i $$
+is a section of $ E $ at $ x $. The goal is to study connections locally. Let $ x \in X $, and let $ \br{U, \phi} $ be a chart around $ x $ that trivialises $ E $, so $ \pi^{-1}\br{U} = U \times \CC^r $ for $ \pi : E \to X $ and $ r = \rk E $. Then there exists a frame $ s_1, \dots, s_r \in \C^\infty\br{U, E} $ of $ E $ on $ U $. Let $ \sigma \in \C^\infty\br{X, E} $ be any section. Locally on $ U $ we write
+$$ \sigma \overset{U}{=} f = \br{f_1, \dots, f_r}, \qquad \sigma = \sum_{i = 1}^r f_is_i, \qquad f_1, \dots, f_r \in \C^\infty\br{U}. $$
+By the Leibnitz rule, on $ U $,
+$$ \nabla\br{\sigma} = \sum_{i = 1}^r \nabla\br{f_is_i} = \sum_{i = 1}^r \br{f_i\nabla\br{s_i} + \d f_i \otimes s_i} \in \C^\infty\br{U, \Omega_{X, \CC}^1 \otimes E}. $$
 
 \pagebreak
 
-\begin{lemma}
-Let $ X $ be a complex manifold. Then
-$$ \H^{p, 0}\br{X} \cong \H^0\br{X, \Omega_X^p} = \cbr{\text{holomorphic sections of} \ \Omega_X^p} = \cbr{\text{holomorphic $ p $-forms on} \ X}. $$
-\end{lemma}
+\begin{notation}
+$ \d f = \br{\d f_1, \dots, \d f_r} $.
+\end{notation}
+
+Then
+$$ \nabla\br{s_j} = \sum_{i = 1}^r a_{ij} \otimes s_i, \qquad a_{ij} \in \C^\infty\br{U, \Omega_{X, \CC}^1}. $$
+
+\begin{notation}
+$ A = \br{a_{ij}} $ is an $ \br{r \times r} $-matrix with coefficients $ 1 $-forms.
+\end{notation}
+
+With this notation, this becomes
+$$ \nabla\br{\sigma} \overset{U}{=} Af + \d f. $$
+\begin{itemize}
+\item $ A $ depends very much on the choice of the frame.
+\item Locally on $ U $, $ \nabla $ is determined by $ A $.
+\end{itemize}
+Consider another chart $ \br{U', \phi'} $ which also gives a trivialisation of $ E $. So we can choose a corresponding frame $ s_1', \dots, s_r' $. Assume $ \sigma \in \C^\infty\br{U \cap U', E} $. Then $ \sigma \overset{U}{=} \br{f_1, \dots, f_r} $ and
+$$ \sigma \overset{U'}{=} f' = \br{f_1', \dots, f_r'}, \qquad \sigma = \sum_{j = 1}^r f_j's_j', \qquad f_1', \dots, f_r' \in \C^\infty\br{U}. $$
+Let $ A' $ be the matrix with respect to this frame. Then
+$$ \nabla\br{\sigma} \overset{U'}{=} A'f' + \d f'. $$
 
 \end{document}
