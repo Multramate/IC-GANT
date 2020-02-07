@@ -333,7 +333,8 @@ If $ I $ is any ideal, then $ \rad I $ is always a radical ideal.
 \end{note*}
 
 \begin{theorem}[Hilbert's Nullstellensatz]
-Let $ I $ be any ideal in the polynomial ring $ k\sbr{X_1, \dots, X_n} $ over an algebraically closed field $ k $. Then
+\label{thm:strongnullstellensatz}
+Let $ I $ be any ideal in the polynomial ring $ k\sbr{X_1, \dots, X_n} $ over an algebraically closed field $ k $. Then we have
 $$ \II\br{\VV\br{I}} = \rad I. $$
 \end{theorem}
 
@@ -971,6 +972,7 @@ $$ \cbr{\text{dominant rational maps} \ V \dashrightarrow W} \to \cbr{\text{$ k 
 \end{proposition}
 
 \begin{corollary}
+\label{cor:algebrageometry}
 Irreducible affine algebraic sets $ V $ and $ W $ are birationally equivalent if and only if their function fields $ k\br{V} $ and $ k\br{W} $ are $ k $-isomorphic.
 \end{corollary}
 
@@ -1036,30 +1038,14 @@ The line $ \AA^1 $ is isomorphic to the parabola $ \VV\br{Y - X^2} \subseteq \AA
 
 Thus it is useful to use different terminology. We talk about affine algebraic sets when we mean subsets of $ \AA^n $, and we talk about \textbf{affine varieties} when we mean an affine algebraic set up to isomorphism, forgetting its embedding into $ \AA^n $. Proposition \ref{prop:kva} is more naturally stated in terms of affine varieties rather than affine algebraic sets. In the proof we had to choose a generating set for $ A $, for which there is no distinguished choice. Different choices of generating set would lead to isomorphic affine algebraic sets, but embedded differently into affine space. So it is better to say that each finitely generated reduced $ k $-algebra $ A $ is the coordinate ring of some affine variety $ V $, with no distinguished choice of embedding into $ \AA^n $. I mentioned this philosophy about affine varieties before, and I will mention it again after we have defined quasi-projective varieties. For those who know some fancy categorical language, we can sum up all the results on the equivalence between affine geometric objects and their coordinate rings by saying that $ V \mapsto k\sbr{V} $ is an equivalence of categories
 $$ \cbr{\text{affine varieties over} \ k} \to \cbr{\text{reduced finitely generated $ k $-algebras}}^{\op}, $$
-where the superscript $ \op $ indicates that the directions of morphisms are reversed.
-
-\subsubsection{Dictionary between algebraic varieties and ideals}
-
-Let $ A $ be a reduced finitely generated $ k $-algebra and $ V $ an affine variety such that $ A \cong k\sbr{V} $. How can we work out the geometry of $ V $ from the algebra of $ A $? If we choose an embedding of $ V $ into $ \AA^n $, then we get an isomorphism $ k\sbr{X_1, \dots, X_n} / \II\br{V} \to A $. We conclude that
-$$ \correspondence{\text{Zariski closed subsets of} \ V}{\text{radical ideals in} \ A}. $$
-We also get
+where the superscript $ \op $ indicates that the directions of morphisms are reversed. Let $ A $ be a reduced finitely generated $ k $-algebra and $ V $ an affine variety such that $ A \cong k\sbr{V} $. How can we work out the geometry of $ V $ from the algebra of $ A $? If we choose an embedding of $ V $ into $ \AA^n $, then we get an isomorphism $ k\sbr{X_1, \dots, X_n} / \II\br{V} \to A $. We conclude that
+$$ \correspondence{\text{Zariski closed subsets of} \ V}{\text{radical ideals in} \ A}, $$
 $$ \correspondence{\text{irreducible Zariski closed subsets of} \ V}{\text{prime ideals in} \ A}, $$
-and
 $$ \correspondence{\text{points of} \ V}{\text{maximal ideals in} \ A}. $$
 
 \subsubsection{The weak and strong Nullstellensatz}
 
-Now we aim to prove Hilbert's Nullstellensatz. There are many different proofs, all of which require some difficult algebra. We will roughly follow the method in Shafarevich appendix A, which incorporates the hard algebra into one statement which we can quote, and then do the rest as geometrically as possible. Recall the statement of Hilbert’s Nullstellensatz, also called the strong Nullstellensatz.
-
-\begin{theorem}[Strong Nullstellensatz]
-\label{thm:strongnullstellensatz}
-Let $ I $ be any ideal in the polynomial ring $ k\sbr{X_1, \dots, X_n} $ over an algebraically closed field $ k $. We have
-$$ \II\br{\VV\br{I}} = \rad I. $$
-\end{theorem}
-
-In order to prove this, we will first prove a weaker version, which is called the weak Nullstellensatz, then use that to deduce the strong Nullstellensatz.
-
-\pagebreak
+Now we aim to prove Hilbert's Nullstellensatz. There are many different proofs, all of which require some difficult algebra. We will roughly follow the method in Shafarevich appendix A, which incorporates the hard algebra into one statement which we can quote, and then do the rest as geometrically as possible. Recall the statement of Hilbert’s Nullstellensatz, Theorem \ref{thm:strongnullstellensatz}, also called the strong Nullstellensatz. In order to prove this, we will first prove a weaker version, which is called the weak Nullstellensatz, then use that to deduce the strong Nullstellensatz.
 
 \begin{theorem}[Weak Nullstellensatz]
 Let $ I $ be an ideal in the polynomial ring $ k\sbr{X_1, \dots, X_n} $ over an algebraically closed field $ k $. If $ \VV\br{I} = \emptyset $, then $ I = k\sbr{X_1, \dots, X_n} $.
@@ -1075,6 +1061,8 @@ To show that it fails when $ k $ is not algebraically closed, consider the ideal
 The strong Nullstellensatz easily implies the weak Nullstellensatz. If $ \VV\br{I} = \emptyset $ then the strong Nullstellensatz tells us that $ \rad I = \II\br{\emptyset} = k\sbr{X_1, \dots, X_n} $. In particular, $ 1 \in \rad I $ but then $ 1 \in I $ so $ I = k\sbr{X_1, \dots, X_n} $.
 \end{note*}
 
+\pagebreak
+
 \begin{proof}[Proof of Theorem \ref{thm:strongnullstellensatz}]
 We use a method called the Rabinowitsch trick, introducing an extra variable. Let $ I $ be an ideal in $ k\sbr{X_1, \dots, X_n} $ and let $ V = \VV\br{I} \subseteq \AA^n $. It is easy to see that $ \rad I \subseteq \II\br{V} $. Thus we have to prove that $ \II\br{V} \subseteq \rad I $. Let $ f \in \II\br{V} $. Define a new polynomial $ g $ with an extra variable $ Y $ by
 $$ g\br{X_1, \dots, X_n, Y} = f\br{X_1, \dots, X_n} \cdot Y - 1. $$
@@ -1087,6 +1075,120 @@ $$ 1 = a_0 - b_0 + \sum_{j \ge 1} \br{a_j + b_{j - 1}f - b_j}Y^j. $$
 Looking at the terms of degree zero in $ Y $ gives $ b_0 = a_0 - 1 \in I - 1 $, then terms of degree one in $ Y $ gives $ b_1 = a_1 + b_0f \in I - f $, using $ a_1 \in I $ and $ b_0 \in I - 1 $. Continuing by induction on $ j $, these imply that
 $$ b_j = a_j + b_{j - 1}f \in I - f^j, \qquad j \ge 0, $$
 where $ I - f^j $ means the coset $ \cbr{t - f^j \st t \in I} $. But $ b $ is a polynomial, so $ b_j = 0 $ once $ j $ gets large enough. Thus for some $ j $, we get $ 0 \in I - f^j $, that is $ f^j \in I $. This proves that $ f \in \rad I $.
+\end{proof}
+
+\lecture{12}{Friday}{07/02/20}
+
+We can restate the weak Nullstellensatz in elementary terms as, if $ f_1, \dots, f_m \in k\sbr{X_1, \dots, X_n} $ are a finite set of polynomials, and the ideal $ I $ which they generate is not the whole polynomial ring, then there exists a common solution $ \br{x_1, \dots, x_n} \in k^n $ to the equations
+$$ f_1\br{x_1, \dots, x_n} = 0, \qquad, \dots, \qquad f_m\br{x_1, \dots, x_n} = 0. $$
+We prove this in two steps.
+\begin{enumerate}[label=Step \arabic*., leftmargin=0.5in]
+\item There exists a larger field $ K $ containing $ k $ such that these equations have a common solution in $ K^n $.
+\item If the equations have a common solution in $ K^n $, then they also have a common solution in $ k^n $.
+\end{enumerate}
+
+\subsubsection{Finding a solution in a bigger field}
+
+The proof of step $ 1 $ is fairly short, and relies on Zorn's lemma.
+
+\begin{lemma}
+Let $ f_1, \dots, f_m $ be polynomials in $ k\sbr{X_1, \dots, X_n} $, such that the ideal $ I = \abr{f_1, \dots, f_m} $ is not equal to $ k\sbr{X_1, \dots, X_n} $. Then there exists a field $ K $ which is a finitely generated extension of $ k $ such that the equations $ f_1 = \dots = f_m = 0 $ have a common solution $ \br{x_1, \dots, x_n} \in K^n $.
+\end{lemma}
+
+Because $ I \ne k\sbr{X_1, \dots, X_n} $, we can use Zorn's lemma to show that $ I $ is contained in some maximal ideal $ M \subseteq k\sbr{X_1, \dots, X_n} $. This is a natural way to start. We are trying to show that $ \VV\br{I} $ has a point, and last time we saw that points in $ \VV\br{I} $ correspond to maximal ideals in $ k\sbr{X_1, \dots, X_n} $ containing $ I $. We cannot just quote the correspondence from the previous lecture because we used the Nullstellensatz in proving that correspondence, but this justifies why obtaining a maximal ideal is a good first step.
+
+\begin{proof}
+Let $ K = k\sbr{X_1, \dots, X_n} / M $. Let $ x_1, \dots, x_n $ denote the images of $ X_1, \dots, X_n $ in $ K $. Then $ K $ is a field because $ M $ is a maximal ideal, and it is finitely generated as an extension of $ k $ because it is generated by $ x_1, \dots, x_n $. Since $ f_j\br{X_1, \dots, X_n} \in I \subseteq M $, we get that $ f_j\br{x_1, \dots, x_n} = 0 $ in $ K $ for each $ j $. Thus $ \br{x_1, \dots, x_n} $ is the required common solution to $ f_1, \dots, f_m $ in $ K^n $.
+\end{proof}
+
+\pagebreak
+
+\subsubsection{Shrinking the field required}
+
+Before proving step $ 2 $, we begin by quoting an algebraic result.
+
+\begin{lemma}
+\label{lem:algebraicallyindependent}
+Let $ k $ be an algebraically closed field and let $ K $ be a finitely generated extension field of $ k $. Then there exist $ t_1, \dots, t_d, u \in K $ such that
+\begin{itemize}
+\item $ K = k\br{t_1, \dots, t_d, u} $,
+\item $ t_1, \dots, t_d $ are algebraically independent over $ k $, that is there is no non-zero polynomial in $ d $ variables with coefficients in $ k $ whose value at $ \br{t_1, \dots, t_d} $ is zero, and
+\item $ u $ is algebraic over $ k\br{t_1, \dots, t_d} $, that is there exists a non-zero polynomial in one variable with coefficients in the field $ k\br{t_1, \dots, t_d} $ which is zero at $ u $.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+This follows from the primitive element theorem in field theory. For a full proof, see Proposition A.7 in the appendix of Shafarevich basic algebraic geometry.
+\end{proof}
+
+Lemma \ref{lem:algebraicallyindependent} has a nice geometric interpretation. Every finitely generated extension of $ k $ is isomorphic to the field of fractions of a hypersurface. We need to use the Nullstellensatz to prove this geometric interpretation, so that is postponed until after we have finished the proof of the Nullstellensatz.
+
+\begin{theorem}
+\label{thm:shrinkingfield}
+Let $ k $ be an algebraically closed field and let $ K $ be a finitely generated extension field of $ k $. Let $ f_1, \dots, f_m \in k\sbr{X_1, \dots, X_n} $. Suppose there exists a common solution $ \br{x_1, \dots, x_n} \in K^n $ to the equations $ f_1 = \dots = f_m = 0 $. Then there exists a common solution $ \br{y_1, \dots, y_n} \in k^n $ to the equations $ f_1 = \dots = f_m = 0 $.
+\end{theorem}
+
+\begin{proof}
+Write $ K = k\br{t_1, \dots, t_d, u} $ as in Lemma \ref{lem:algebraicallyindependent}. Let $ K' = k\br{t_1, \dots, t_d} $. Because $ t_1, \dots, t_d $ are algebraically independent, we can identify $ K' $ with $ k\br{T_1, \dots, T_d} $, the field of fractions of the polynomial ring $ k\sbr{T_1, \dots, T_d} $. This will allow us to substitute a vector $ \underline{z} \in k^d $ into an element $ \alpha \in K' $ and get out an element $ \alpha\br{\underline{z}} \in k $, as long as the denominator of $ \alpha $ does not vanish at $ \underline{z} $. We use two facts about the finite algebraic extension $ K / K' $.
+\begin{enumerate}[label=Fact \arabic*., leftmargin=0.5in]
+\item There exists a minimal polynomial $ p\br{U} \in K'\sbr{U} $ for $ u $. That is, $ p\br{u} = 0 $, $ p $ has leading coefficient one, and $ p $ divides every other polynomial $ q\br{U} \in K'\sbr{U} $ such that $ q\br{u} = 0 $.
+\item Every element of $ K $ can be written in the form $ a\br{u} $ for some polynomial $ a\br{U} \in K'\sbr{U} $.
+\end{enumerate}
+The idea of the proof is to consider the almost hypersurface
+$$ H = \cbr{\br{z_1, \dots, z_d, s} \in k^{d + 1} \st p\br{z_1, \dots, z_d, s} = 0}. $$
+The almost is because $ p $ is not a polynomial in $ k\sbr{T_1, \dots, T_d, U} $ but rather may have denominators, so we have to ignore the places where these denominators vanish. Then we construct a rational map $ \phi : H \dashrightarrow \VV\br{f_1, \dots, f_m} $. The domain of definition of $ \phi $ is an open subset of an almost hypersurface, and we can easily check that this is non-empty. Then a point in the image of $ \phi $ gives us a point in $ \VV\br{f_1, \dots, f_m} $, as desired. In particular, we apply fact $ 2 $ to $ x_1, \dots, x_n \in K $, our common solution to $ f_1 = \dots = f_m = 0 $, so we can write $ x_i = a_i\br{u} $ where $ a_i\br{U} \in K'\sbr{U} $. In the informal outline, these $ a_i \in k\br{T_1, \dots, T_d}\sbr{U} $ define a rational map $ \phi : H \dashrightarrow \AA^n $. Next we check that the image of this rational map is contained in $ \VV\br{f_1, \dots, f_m} $. We know that $ \br{x_1, \dots, x_n} $ is a common solution to the polynomials $ f_1, \dots, f_m $. Hence
+$$ f_j\br{a_1\br{u}, \dots, a_n\br{u}} = 0 \in K, \qquad j = 1, \dots, m. $$
+In other words, the single-variable polynomial $ f_j\br{a_1\br{U}, \dots, a_n\br{U}} \in K'\sbr{U} $ has $ u $ as a root. Therefore, fact $ 1 $ tells us that this polynomial is divisible by $ p\br{U} $. Thus there exist polynomials $ q_1, \dots, q_m \in K'\sbr{U} $ such that
+\begin{equation}
+\label{eq:1}
+f_j\br{a_1\br{U}, \dots, a_n\br{U}} = q_j\br{U}p\br{U} \in K'\sbr{U}, \qquad j = 1, \dots, m.
+\end{equation}
+Now, if $ \br{z_1, \dots, z_d, s} \in k^{d + 1} $ satisfies $ p\br{z_1, \dots, z_d, s} = 0 $, then $ \br{\ref{eq:1}} $ implies that
+$$ f_j\br{a_1\br{z_1, \dots, z_d, s}, \dots, a_n\br{z_1, \dots, z_d, s}} = 0, \qquad j = 1, \dots, m, $$
+
+\pagebreak
+
+so long as all the denominators involved are non-zero. Thus we just have to find $ \br{z_1, \dots, z_d, s} $ where all these denominators will be non-zero. So consider the polynomials
+$$ p\br{U}, a_i\br{U}, q_j\br{U} \in K'\sbr{U}. $$
+Their coefficients are elements of the field $ K' $ which we are identifying with the field of fractions $ k\br{T_1, \dots, T_d} $. Let $ \sigma \in k\sbr{T_1, \dots, T_d} $ denote the product of the denominators of all these fractions. Because the denominator of a fraction is never zero, $ \sigma $ is not the zero polynomial in $ k\sbr{T_1, \dots, T_d} $. Therefore, there exists $ \br{s_1, \dots, s_d} \in k^d $ such that $ \sigma\br{s_1, \dots, s_d} \ne 0 $. Then the denominators of the coefficients of $ p, a_i, q_j $ do not vanish at $ s_1, \dots, s_d $, so we can substitute $ \br{s_1, \dots, s_d} $ into each of these coefficients, as elements of $ K' $, and get out values in $ k $. Thus we get new polynomials
+$$ \widetilde{p}\br{U}, \widetilde{a_i}\br{U}, \widetilde{q_j}\br{U} \in k\sbr{U}. $$
+The leading coefficient of $ \widetilde{p}\br{U} $ is one, which is unchanged by this process. So $ \widetilde{p}\br{U} $ has the same degree as $ p\br{U} $. In particular $ \widetilde{p}\br{U} $ is not a constant polynomial. Hence as $ k $ is algebraically closed, there exists $ s \in k $ such that $ \widetilde{p}\br{s} = 0 $. Let $ y_i = \widetilde{a_i}\br{s} \in k $. Then $ \br{\ref{eq:1}} $ tells us that
+$$ f_j\br{y_1, \dots, y_n} = \widetilde{q_j}\br{s}\widetilde{p}\br{s}, \qquad j = 1, \dots, m. $$
+But we chose $ s $ such that $ \widetilde{p}\br{s} = 0 $, and so we conclude that $ \br{y_1, \dots, y_n} \in k^n $ is a common solution to $ f_1 = \dots = f_m = 0 $.
+\end{proof}
+
+Combining Lemma \ref{lem:algebraicallyindependent} and Theorem \ref{thm:shrinkingfield} proves the weak Nullstellensatz.
+
+\subsubsection{Hypersurfaces and birational equivalence}
+
+Now we prove the geometrical interpretation of Lemma \ref{lem:algebraicallyindependent}.
+
+\begin{proposition}
+\label{prop:irreduciblehypersurface}
+Let $ K $ be a finitely generated extension of $ k $. Then there exists an irreducible hypersurface $ H \subseteq \AA^{d + 1} $ for some $ d $ such that $ K $ is isomorphic to the field of functions $ k\br{H} $.
+\end{proposition}
+
+\begin{corollary}
+\label{cor:irreduciblehypersurface}
+Let $ V \subseteq \AA^n $ be an irreducible affine algebraic set. Then there exists an irreducible hypersurface $ H \subseteq \AA^{d + 1} $ for some $ d $ such that $ V $ is birationally equivalent to $ H $.
+\end{corollary}
+
+Corollary \ref{cor:irreduciblehypersurface} tells us that, even if $ V $ is a complicated algebraic set defined by many equations, provided we only care about properties of $ V $ which are preserved by birational equivalence, we can replace $ V $ by a simpler set defined by just one equation, that is a hypersurface.
+
+\begin{note*}
+It is not true that every irreducible affine algebraic set is isomorphic to a hypersurface.
+\end{note*}
+
+\begin{proof}[Proof of Proposition \ref{prop:irreduciblehypersurface}]
+Write $ K = k\br{t_1, \dots, t_d, u} $ as in Lemma \ref{lem:algebraicallyindependent}, and let $ K' = k\br{t_1, \dots, t_d} $. Because $ u $ is algebraic over $ K' $, let $ p\br{U} \in K'\sbr{U} $ be the minimal polynomial of $ u $ over $ K' $. Each coefficient of $ p\br{U} $ is a fraction whose numerator and denominator are polynomials in $ t_1, \dots, t_d $. We can multiply up by a suitable element of $ k\sbr{t_1, \dots, t_d} $ to clear the denominators, and also replace $ t_1, \dots, t_d $ by indeterminates $ T_1, \dots, T_d $ to get a polynomial $ g \in k\sbr{T_1, \dots, T_d, U} $ such that $ g\br{t_1, \dots, t_d, u} = 0 $ in the field $ K $. Assuming we multiplied up by a lowest common denominator for the coefficients of $ p $, $ g $ is irreducible. Let $ H $ be the hypersurface in $ \AA^{d + 1} $ defined by the polynomial $ g $. Because $ g $ is irreducible, it generates a radical ideal in $ k\sbr{X_1, \dots, X_n} $ and so the strong Nullstellensatz implies that $ \II\br{H} = \abr{g} $. Thus the coordinate ring is given by
+$$ k\sbr{H} = k\sbr{T_1, \dots, T_d, U} / \abr{g}. $$
+There is a $ k $-algebra homomorphism
+$$ \function[\alpha]{k\sbr{T_1, \dots, T_d, U}}{K}{\br{T_1, \dots, T_d, U}}{\br{t_1, \dots, t_d, u}}. $
+A little algebra, using Gauss' lemma, shows that the kernel of $ \alpha $ is generated by $ g $, so $ \alpha $ induces an injection $ k\sbr{H} \hookrightarrow K $. Furthermore, the image of $ \alpha $ generates $ K $ as a field, so $ \alpha $ induces an isomorphism from the fraction field of $ k\sbr{H} $ to $ K $. The fraction field of $ k\sbr{H} $ is the function field $ k\br{H} $. Thus we have shown that $ k\br{H} \cong k\br{V} $. By Corollary \ref{cor:algebrageometry}, this implies that $ V $ is birationally equivalent to $ H $.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:irreduciblehypersurface}]
+Apply Proposition \ref{prop:irreduciblehypersurface} to the function field $ K = k\br{V} $.
 \end{proof}
 
 \end{document}
