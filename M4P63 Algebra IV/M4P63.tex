@@ -594,7 +594,7 @@ The following are observations.
 \item Suppose that $ S $ is a set of generators for $ L $, as an abelian group, and $ T $ is a set of generators for $ M $, as an abelian group. Then a smaller generating set for $ L \otimes_R M $ is $ \cbr{s \otimes t \st s \in S, \ t \in T} $. This is because if
 $$ l = \sum_{i = 1}^p a_is_i, \qquad m = \sum_{i = 1}^q b_jt_j, \qquad s_i \in S, \qquad t_i \in T, \qquad a_i, b_i \in \ZZ, $$
 then, from the relations,
-$$ l \otimes m = \sum_{i = 1}^p \sum_{j = 1}^q a_ib_js_i \otimes t_j. $$
+$$ l \otimes m = \sum_{i = 1}^p \sum_{j = 1}^q a_ib_j\br{s_i \otimes t_j}. $$
 \end{itemize}
 
 \begin{example*}
@@ -857,7 +857,13 @@ Now $ u_{s_i} \in U_{s_i} \subseteq R_{s_i} $, and so $ \pi_{s_k}\br{u_{s_i}} = 
 We have shown that $ B $ is a basis for $ U $. Hence $ U $ is free. Since the elements of $ B $ are indexed by a subset of $ S $, we have $ \abs{B} \le \abs{S} $.
 \end{proof}
 
+\lecture{13}{Friday}{07/02/20}
+
+Lecture 13 is a problems class.
+
 \pagebreak
+
+\lecture{14}{Monday}{10/02/20}
 
 \begin{definition}
 Let $ R $ be an integral domain. Let $ M $ be an $ R $-module. Say that $ m \in M $ is a \textbf{torsion element} if there exists $ r \in R \setminus \cbr{0} $ such that $ rm = 0 $.
@@ -892,15 +898,79 @@ If $ \D\br{M} = M $, then $ M $ is \textbf{divisible}.
 \end{definition}
 
 \begin{proposition}
-\hfill
-\begin{itemize}
-\item If $ R $ is a PID then $ M $ is injective if and only if $ M $ is divisible.
-\item If $ R $ is a PID then $ M $ is flat if and only if $ M $ is torsion-free.
-\end{itemize}
+Let $ R $ be an integral domain. Then if an $ R $-module $ M $ is injective then it is divisible.
 \end{proposition}
 
-\lecture{13}{Friday}{07/02/20}
+\begin{proof}
+Recall that for an integral domain $ R $, and $ a \in R \setminus \cbr{0} $, the map
+$$ \function[f]{R}{\abr{a}}{r}{ra} $$
+is an isomorphism. Suppose $ M $ is an injective $ R $-module. Let
+$$ \function[g]{R}{M}{1}{m}. $$
+Then $ g \circ f^{-1} $ is a homomorphism $ \abr{a} \to M $, and $ \br{g \circ f^{-1}}\br{a} = g\br{1} = m $. Now by Baer's criterion, there is a map $ h : R \to M $ extending $ g \circ f^{-1} $. Now $ ah\br{1} = h\br{a} = \br{g \circ f^{-1}}\br{a} = m $. Hence there exists $ l \in M $ such that $ al = m $. So $ m $ is a divisible element, and so $ M $ is divisible.
+\end{proof}
 
-Lecture 13 is a problems class.
+\begin{proposition}
+Let $ R $ be a PID. If $ M $ is a divisible $ R $-module then $ M $ is injective.
+\end{proposition}
+
+So divisible equals injective when $ R $ is a PID.
+
+\begin{proof}
+We use Baer's criterion. Let $ I $ be an ideal of $ R $, and $ f : I \to M $ an $ R $-module homomorphism. Since $ R $ is a PID, $ I = \abr{a} $ for some $ a \in R $. Suppose $ f\br{a} = m $. If $ a = 0 $ there is nothing to prove, since the zero map $ R \to M $ extends $ f $. So assume $ a \ne 0 $. Since $ m $ is divisible, there exists $ l \in M $ with $ al = m $. Now the map given by
+$$ \function{R}{M}{1}{l} $$
+extends $ f $. So Baer's criterion is satisfied, and so $ M $ is injective.
+\end{proof}
+
+\begin{proposition}
+Let $ R $ be an integral domain. Let $ M $ be a flat $ R $-module. Then $ M $ is torsion-free.
+\end{proposition}
+
+\begin{proof}
+Let $ a \in R \setminus \cbr{0} $. Then
+$$ \function[f]{R}{R}{1}{a} $$
+is an injective $ R $-module homomorphism. Suppose that $ M $ is flat. Then the map
+$$ \function[g]{R \otimes_R M}{R \otimes_R M}{r \otimes m}{ra \otimes m = r \otimes am} $$
+is injective. But $ R \otimes_R M $ is canonically isomorphic to $ M $, under which the map $ g $ corresponds to $ m \mapsto am $. Since $ g $ is injective, we have $ am \ne 0 $ for $ m \ne 0 $. Hence $ m $ is not a torsion element, if $ m \ne 0 $, and so $ M $ is torsion-free.
+\end{proof}
+
+\pagebreak
+
+We now build up to the following.
+
+\begin{proposition}
+Let $ R $ be a PID. If $ M $ is a torsion-free $ R $-module then $ M $ is flat.
+\end{proposition}
+
+The following is the strategy. We want to prove that whenever $ \alpha : A \to B $ is injective, so is $ \alpha' : A \otimes_R M \to B \otimes_R M $, where $ M $ is torsion-free.
+\begin{enumerate}
+\item Prove this in the case that $ B $ is free, and $ A $ is a submodule of $ B $, and $ \alpha $ is the inclusion map, by
+\begin{itemize}
+\item first reducing the problem to the case that $ A $ and $ B $ are finitely generated, so $ B \cong \RR^n $, and
+\item then using induction on the rank $ n $ of $ B $.
+\end{itemize}
+\item Show the general case follows from $ 1 $.
+\end{enumerate}
+
+\begin{lemma}
+Let $ R $ be a PID, let $ I = \abr{a} $ be an ideal of $ R $, and let $ M $ be a torsion-free $ R $-module. Then $ g : I \otimes_R M \to R \otimes_R M $ is injective.
+\end{lemma}
+
+\begin{proof}
+The homomorphism given by
+$$ \function{R}{I}{r}{ra} $$
+gives a map $ f : R \otimes_R M \to I \otimes_R M $. Now $ g \circ f $ is a map
+$$ \function[g \circ f]{R \otimes_R M}{R \otimes_R M}{r}{ra}. $$
+Now $ f $ is surjective, and $ g \circ f $ is injective, since $ R $ is an integral domain. But this implies that $ g $ is injective, as required.
+\end{proof}
+
+\begin{lemma}
+Let $ A $ be a right $ R $-module. Let $ M $ be a left $ R $-module. Suppose $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A \otimes_R M $. There exists a finitely generated submodule $ A_0 \le A $ such that $ a_i \in A_0 $ for all $ i $, and $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A_0 \otimes_R M $.
+\end{lemma}
+
+\begin{proof}
+Recall that $ A \otimes_R M = \F\br{A \times M} / K $, where $ K $ is generated by certain relators. If $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A \otimes_R M $, then in $ \F\br{A \times M} $, we have $ \sum_{i = 1}^t \br{a_i \otimes m_i} \in K $. So there exist relators $ s_1, \dots, s_q $, or their negations, such that
+$$ \sum_{i = 1}^t \br{a_i \otimes m_i} = \sum_{i = 1}^q s_i. $$
+Only finitely many elements of $ A $ are involved in the relators $ s_1, \dots, s_q $. Let $ A_0 $ be generated by these together with $ a_1, \dots, a_t $. Then certainly $ a_i \in A_0 $ for all $ i $. And $ \sum_{i = 1}^t \br{a_i \otimes m_i} = \sum_{i = 1}^q s_i $ in $ \F\br{A_0 \times M} $ so $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A_0 \otimes_R M $. Clearly $ A_0 $ is finitely generated.
+\end{proof}
 
 \end{document}
