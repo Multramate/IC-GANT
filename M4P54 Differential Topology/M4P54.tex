@@ -1054,7 +1054,7 @@ Then $ g\br{-\eta_2, \eta_1} = \eval{\eta_1}_{U \cap V} + \eval{\eta_2}_{U \cap 
 \label{thm:2.29}
 Let $ M $ be a manifold, and let $ U $ and $ V $ be open in $ M $ such that $ M = U \cup V $ and $ U \cap V \ne \emptyset $. Then for all $ p \ge 0 $ there exists a linear $ \delta : \H^p\br{U \cap V} \to \H^{p + 1}\br{M} $ such that
 $$
-\begin{tikzcd}
+\begin{tikzcd}[column sep=small]
 \dots \arrow{r} & \H^p\br{M} \arrow{r}{\br{i_U^*, i_V^*}} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r}{j_V^* - j_U^*} & \H^p\br{U \cap V} \arrow[in=180, out=0, swap]{dll}{\delta} & \\
 & \H^{p + 1}\br{M} \arrow{r}{\br{i_U^*, i_V^*}} & \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} \arrow{r}{j_V^* - j_U^*} & \H^{p + 1}\br{U \cap V} \arrow{r} & \dots
 \end{tikzcd}
@@ -1107,7 +1107,10 @@ $$ \H^p\br{M} =
 0 & \text{otherwise}
 \end{cases}.
 $$
-By induction on $ n $. If $ n = 1 $, then ok. Assume $ n > 1 $. Let $ U = M \setminus \cbr{N} $ and $ V = M \setminus \cbr{S} $, so $ U \cap V \ne \emptyset $ and $ U \cup V = M $. Then
+By induction on $ n $.
+\begin{itemize}[leftmargin=0.5in]
+\item[$ n = 1 $.] Ok.
+\item[$ n > 1 $.] Let $ U = M \setminus \cbr{N} $ and $ V = M \setminus \cbr{S} $, so $ U \cap V \ne \emptyset $ and $ U \cup V = M $. Then
 $$ U \cong V \cong \RR^n, \qquad U \cap V = V \setminus \cbr{N} \cong \RR^n \setminus \cbr{0} \cong \S^{n - 1}, $$
 so
 $$
@@ -1118,7 +1121,7 @@ $$
 $$
 Then $ 1 - 2 + 1 - \dim \H^1\br{M} = 0 $, so $ \dim \H^1\br{M} = 0 $. Thus $ \H^1\br{M} = 0 $. Then for $ p > 0 $
 $$
-\begin{tikzcd}[row sep=tiny]
+\begin{tikzcd}[column sep=small, row sep=tiny]
 \dots \arrow{r} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r} \arrow[cong]{d} & \H^p\br{U \cap V} \arrow{r}{\delta} & \H^{p + 1}\br{M} \arrow{r} & \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} \arrow{r} \arrow[cong]{d} & \dots \\
 & 0 \oplus 0 & & & 0 \oplus 0 &
 \end{tikzcd}
@@ -1130,6 +1133,7 @@ $$ \H^p\br{U \cap V} = \H^{p + 1}\br{M} =
 0 & \text{otherwise}
 \end{cases}.
 $$
+\end{itemize}
 \end{example}
 
 \pagebreak
@@ -1145,11 +1149,108 @@ $$
 are exact. Recall $ \d $ commutes with the pull-back. By the strong snake lemma,
 $$
 \begin{tikzcd}
-& \Coker \d_M^{p - 1} \arrow{r} \arrow{d}{\d_M^p} & \Coker \br{\d_U^{p - 1}, \d_V^{p - 1}} \arrow{r} \arrow{d}{\d_U^p \oplus \d_V^p} & \Coker \d_{U \cap V}^{p - 1} \arrow{r} \arrow{d}{\d_{U \cap V}^p} & 0 \\
+& \Coker \d_M^{p - 1} \arrow{r} \arrow{d}{\partial_M^p = \d_M^p} & \Coker \br{\d_U^{p - 1}, \d_V^{p - 1}} \arrow{r} \arrow{d}{\br{\partial_U^p, \partial_V^p} = \br{\d_U^p, \d_V^p}} & \Coker \d_{U \cap V}^{p - 1} \arrow{r} \arrow{d}{\partial_{U \cap V}^p = \d_{U \cap V}^p} & 0 \\
 0 \arrow{r} & \Ker \d_M^{p + 1} \arrow{r} & \Ker \br{\d_U^{p + 1}, \d_V^{p + 1}} \arrow{r} & \Ker \d_{U \cap V}^{p + 1} &
 \end{tikzcd},
 $$
-which is well-defined, since $ \d^2 = 0 $.
+which is well-defined, since $ \d^{p + 1} \circ \d^p = 0 $. By the weak snake lemma again,
+$$ \Ker \partial_M^p \to \Ker \br{\partial_U^p, \partial_V^p} \to \Ker \partial_{U \cap V}^p \xrightarrow{\delta} \Coker \partial_M^p \to \Coker \br{\partial_U^p, \partial_V^p} \to \Coker \partial_{U \cap V}^p. $$
+Then $ \Coker \d_M^{p - 1} = \Omega^p\br{M} / \Im \d_M^{p - 1} $. There exists
+$$ \H^p\br{M} = \Ker \d_M^p / \Im \d_M^{p - 1} \xrightarrow{\sim} \Ker \br{\Omega^p\br{M} / \Im \d_M^{p - 1} \to \Ker \d_M^{p + 1}} = \Ker \partial_M^p. $$
+Similarly, $ \Ker \br{\partial_U^p, \partial_V^p} \cong \H^p\br{U} \oplus \H^p\br{V} $ and $ \Ker \partial_{U \cap V}^p \cong \H^p\br{U \cap V} $. There exists
+$$ \H^{p + 1}\br{M} = \Ker \d_M^{p + 1} / \Im \d_M^p \xrightarrow{\sim} \Coker \br{\Omega^p\br{M} / \Im \d_M^{p - 1} \to \Ker \d_M^{p + 1}} = \Coker \partial_M^p. $$
+Similarly, $ \Coker \br{\partial_U^p, \partial_V^p} \cong \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} $ and $ \Coker \partial_{U \cap V}^p \cong \H^{p + 1}\br{U \cap V} $.
 \end{proof}
+
+\lecture{14}{Monday}{10/02/20}
+
+\begin{example}
+Let $ \TT^2 = \S^1 \times \S^1 $ be the torus. Then
+$$ \H^p\br{\TT^2} =
+\begin{cases}
+\RR & p = 0, 2 \\
+\RR \oplus \RR & p = 1
+\end{cases}.
+$$
+We leave the proof as an exercise. \footnote{Exercise}
+\end{example}
+
+\begin{definition}
+Let $ M $ be a manifold, and let $ U = \cbr{U_i} $ be an open cover of $ M $. Then $ U $ is said to be \textbf{good} if for all $ I = \br{i_1, \dots, i_p} $, $ U_{i_1} \cap \dots \cap U_{i_p} $ is either $ \emptyset $ or contractible.
+\end{definition}
+
+\begin{lemma}
+\label{lem:2.35}
+Let $ M $ be a connected manifold which admits a finite good cover. Then for all $ p \ge 0 $, $ \H^p\br{M} $ is a finite dimensional vector space.
+\end{lemma}
+
+\begin{exercise*}
+Find a counterexample without assuming there exists a finite good cover.
+\end{exercise*}
+
+\begin{proof}
+Let $ U $ be a finite good cover. Define $ k = \#U $. By induction on $ k $.
+\begin{itemize}[leftmargin=0.5in]
+\item[$ k = 1 $.] $ M = U_1 $ is contractible, so
+$$ \H^p\br{M} =
+\begin{cases}
+\RR & p = 0 \\
+0 & \text{otherwise}
+\end{cases}.
+$$
+\item[$ k > 1 $.] Assume ok for covers with at most $ k - 1 $ elements. Let $ U = \bigcup_{i = 1}^{k - 1} U_i $ and $ V = U_k $. Then $ U \cup V = M $ and $ U \cap V \ne \emptyset $, so Mayer-Vietoris holds. By induction $ \H^p\br{U} $ and $ \H^p\br{V} $ are finite dimensional, since $ \H^p\br{U} $ is covered by $ k - 1 $ of $ U_i $ and $ \H^p\br{V} $ is contractible. Then $ U \cap V = \bigcup_{i = 1}^{k - 1} \br{U_i \cap U_k} $, and $ \cbr{U_i \cap U_k} $ is a good cover of $ U \cap V $ with $ k - 1 $ elements. \footnote{Exercise} By induction $ \H^p\br{U \cap V} $ is finite dimensional. Thus $ \H^p\br{M} $ is also finite dimensional.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+\begin{fact*}
+Any manifold admits a good cover.
+\end{fact*}
+
+\begin{theorem}
+Let $ M $ be a compact connected manifold. Then $ \H^p\br{M} $ is finite dimensional.
+\end{theorem}
+
+\begin{proof}
+Follows from the fact and Lemma \ref{lem:2.35}.
+\end{proof}
+
+\subsection{Compactly supported de Rham cohomology}
+
+Let $ M $ be a manifold, and let $ \omega \in \Omega_\c^p\br{M} $. Then $ \d\omega \in \Omega_\c^{p + 1}\br{M} $ and $ \d^2 = 0 $, so
+$$ \Omega_\c^p\br{M} \xrightarrow{\d} \Omega_\c^{p + 1}\br{M} \xrightarrow{\d} \dots. $$
+
+\begin{definition}
+$$ \H_\c^p\br{M} = \ZZZ_\c^p\br{M} / \BBB_\c^p\br{M} = \Ker \br{\d : \Omega_\c^p\br{M} \to \Omega_\c^{p + 1}\br{M}} / \Im \br{\d : \Omega_\c^{p - 1}\br{M} \to \Omega_\c^p\br{M}}. $$
+\end{definition}
+
+\begin{example*}
+If $ M $ is compact, then
+$$ \H_\c^p\br{M} = \H^p\br{M}, \qquad p \ge 0. $$
+\end{example*}
+
+\begin{lemma}
+Let $ M $ be a non-compact connected manifold. Then
+$$ \H_\c^0\br{M} = 0. $$
+\end{lemma}
+
+Recall if $ M $ is connected $ \H^0\br{M} = \RR $.
+
+\begin{proof}
+$ \H^0\br{M} = \cbr{f \ \text{constant on} \ M} $ and $ \H_\c^0\br{M} = \cbr{f \ \text{constant on} \ M \ \text{and with compact support}} $. Since $ M $ is non-compact, if $ f \in \Omega_\c^0\br{M} $, then $ \supp f \subsetneq M $. Thus there exists $ x \in M $ such that $ f\br{x} = 0 $, so $ f \equiv 0 $, since $ f $ is constant.
+\end{proof}
+
+Let $ f : M \to N $ be a smooth morphism between manifolds, and let $ \omega \in \Omega_\c^p\br{N} \subset \Omega^p\br{N} $. Then $ f^*\omega \in \Omega^p\br{M} $, and $ \supp f^*\omega \subset f^{-1}\br{\supp \omega} $, which is not compact in general, so $ f^*\omega \notin \Omega_\c^p\br{M} $ in general.
+
+\begin{definition}
+$ f $ is called \textbf{proper} if $ f^{-1}\br{K} $ is compact for all compact subsets $ K \subset N $.
+\end{definition}
+
+If $ f $ is proper, then $ f^* : \Omega_\c^p\br{N} \to \Omega_\c^p\br{M} $ is well-defined.
+
+\begin{exercise*}
+If $ f $ is a diffeomorphism then $ f^* $ induces an isomorphism $ \H_\c^p\br{N} \to \H_\c^p\br{M} $.
+\end{exercise*}
 
 \end{document}
