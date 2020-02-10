@@ -98,7 +98,7 @@ What is not in the course?
 
 \subsubsection{Affine space}
 
-Let $ k $ be an algebraically closed field. We are going to be thinking about solutions to polynomials, so everything is much simpler over algebraically closed fields. Number theorists might be interested in other fields, but you generally have to start by understanding the algebraically closed case first. In this course we will stop with the algebraically closed case too. Apart from being algebraically closed, it usually does not matter much which field we use to do algebraic geometry, except sometimes it matters whether the characteristic is zero or positive. In this course I will take care to mention results which depend on the characteristic, and sometimes we might consider only the characteristic zero case. You will not lose much if you just assume that $ k = \CC $ throughout the course, except when it will be explicitly something else. Indeed it is often useful to think about $ k = \CC $ because then you can use your usual geometric intuition. When I draw pictures on the whiteboard, I am usually only drawing the real solutions because it is hard to draw shapes in $ \CC^2 $. This is cheating but it is often very useful. The real solutions are not the full picture but in many cases we can still see the important features there.
+Let $ k $ be an algebraically closed field. We are going to be thinking about solutions to polynomials, so everything is much simpler over algebraically closed fields. We already saw this in B\'ezout's theorem. Number theorists might be interested in other fields, but you generally have to start by understanding the algebraically closed case first. In this course we will stop with the algebraically closed case too. Apart from being algebraically closed, it usually does not matter much which field we use to do algebraic geometry, except sometimes it matters whether the characteristic is zero or positive. In this course I will take care to mention results which depend on the characteristic, and sometimes we might consider only the characteristic zero case. You will not lose much if you just assume that $ k = \CC $ throughout the course, except when it will be explicitly something else. Indeed it is often useful to think about $ k = \CC $ because then you can use your usual geometric intuition. When I draw pictures on the whiteboard, I am usually only drawing the real solutions because it is hard to draw shapes in $ \CC^2 $. This is cheating but it is often very useful. The real solutions are not the full picture but in many cases we can still see the important features there.
 
 \begin{definition*}
 Algebraic geometers write $ \AA^n $ to mean $ k^n $, and call it \textbf{affine $ n $-space}.
@@ -870,8 +870,8 @@ The two lemmas we proved for rational functions also hold for rational maps. The
 
 \begin{example*}
 An important example of a rational map is the projection from a point onto a hyperplane. Let $ H $ be a hyperplane in $ \AA^n $, that is a set defined by a single linear equation. Let $ p $ be a point in $ \AA^n \setminus H $. For simplicity, we shall assume that $ p $ is the origin and that
-$$ H = \cbr{\br{x_1, \dots, x_n} \in \AA^n \st x_n = 1}. $$
-We could always reduce to this case by a suitable change of coordinates. Let us write $ H_p $ for the hyperplane through $ p $ parallel to $ H $, that is
+$$ H = \cbr{\br{x_1, \dots, x_n} \in \AA^n \st x_n = 1}, $$
+since we could always reduce to this case by a suitable change of coordinates. Let us write $ H_p $ for the hyperplane through $ p $ parallel to $ H $, that is
 $$ H_p = \cbr{\br{x_1, \dots, x_n} \in \AA^n \st x_n = 0}. $$
 For each point $ x \in \AA^n \setminus H_p $, let $ L_x $ denote the line which passes through $ p $ and $ x $. Since $ x \notin H_p $, $ L_x $ intersects $ H $ in exactly one point. Call this point $ \phi\br{x} $. We can write this algebraically as
 $$ \rational[\phi]{\AA^n}{H}{\br{x_1, \dots, x_n}}{\br{\dfrac{x_1}{x_n}, \dots, \dfrac{x_{n - 1}}{x_n}, 1}}, $$
@@ -911,7 +911,7 @@ A rational map is \textbf{dominant} if its image is Zariski dense in $ W $.
 \end{definition*}
 
 \begin{example*}
-$ \psi $ from the end of the previous lecture is dominant if we consider it as a rational map $ \AA^1 \dashrightarrow V $ but it is not dominant if we consider it as a rational map $ \AA^1 \dashrightarrow \AA^2 $. This is like surjectivity. Whether a function is surjective or not depends on what codomain you declare it to have.
+$ \psi $ from the end of the previous lecture is dominant if we consider it as a rational map $ \AA^1 \dashrightarrow V $ but it is not dominant if we consider it as a rational map $ \AA^1 \dashrightarrow \AA^2 $. This is like surjectivity, since whether a function is surjective or not depends on what codomain you declare it to have.
 \end{example*}
 
 Let $ V, W, T $ be irreducible affine algebraic sets. If $ \phi : V \dashrightarrow W $ is a dominant rational map and $ \psi : W \dashrightarrow T $ is a rational map, where $ \psi $ is not required to be dominant, then it makes sense to compose them because we know that $ \dom \psi $ is a Zariski open subset of $ W $, while $ \Im \phi $ is a Zariski dense subset of $ W $ and so $ \dom \psi \cap \Im \phi \ne \emptyset $. Thus there are at least some points where $ \psi \circ \phi $ is defined. One can check, by writing out $ \psi $ in terms of fractions of polynomials, then substituting in fractions of polynomials representing $ \phi $, that $ \psi \circ \phi $ is a rational map $ V \dashrightarrow T $.
@@ -951,7 +951,7 @@ A \textbf{$ k $-homomorphism} means that $ \phi^* $ restricts to the identity on
 
 \subsubsection{From algebra homomorphisms to regular maps}
 
-We have seen that each regular map $ f : V \to W $ induces a $ k $-algebra homomorphism $ f^* : k\sbr{W} \to k\sbr{V} $, and that each dominant rational map $ \phi : V \dashrightarrow W $ induces a $ k $-field homomorphism $ \phi^* : k\br{W} \to k\br{V} $. We can also carry out these constructions in the reverse direction. Starting with a $ k $-algebra homomorphism and getting a regular map, or similarly for rational maps. Observe that if $ f : V \to W $ is a regular map and $ W \subseteq \AA^n $, we can recover $ f $ from $ f^* : k\sbr{W} \to k\sbr{V} $ by taking the coordinate functions $ X_1, \dots, X_n \in k\sbr{W} $ on $ W $ and pulling them back to get $ f_1 = f^*\br{X_1}, \dots, f_n = f^*\br{X_n} \in k\sbr{V} $. These are precisely the regular functions on $ V $ such that $ f = \br{f_1, \dots, f_n} $. We generalise this procedure for any $ k $-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $. Starting from an arbitrary k-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $, we define a regular map $ s : V \to W $ by
+We have seen that each regular map $ f : V \to W $ induces a $ k $-algebra homomorphism $ f^* : k\sbr{W} \to k\sbr{V} $, and that each dominant rational map $ \phi : V \dashrightarrow W $ induces a $ k $-field homomorphism $ \phi^* : k\br{W} \to k\br{V} $. We can also carry out these constructions in the reverse direction. Starting with a $ k $-algebra homomorphism and getting a regular map, or similarly for rational maps. Observe that if $ f : V \to W $ is a regular map and $ W \subseteq \AA^n $, we can recover $ f $ from $ f^* : k\sbr{W} \to k\sbr{V} $ by taking the coordinate functions $ X_1, \dots, X_n \in k\sbr{W} $ on $ W $ and pulling them back to get $ f_1 = f^*\br{X_1}, \dots, f_n = f^*\br{X_n} \in k\sbr{V} $. These are precisely the regular functions on $ V $ such that $ f = \br{f_1, \dots, f_n} $. We generalise this procedure for any $ k $-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $. Starting from an arbitrary $ k $-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $, we define a regular map $ s : V \to W $ by
 $$ s = \br{\alpha\br{X_1}, \dots, \alpha\br{X_n}}. $$
 Here $ \alpha\br{X_1}, \dots, \alpha\br{X_n} \in k\sbr{V} $. Then $ \alpha = s^* : k\sbr{W} \to k\sbr{V} $. Thus every $ k $-algebra homomorphism $ k\sbr{W} \to k\sbr{V} $ is the pull-back by some regular map $ V \to W $. We conclude the following.
 
@@ -1016,7 +1016,7 @@ Let $ A $ be a finitely generated reduced $ k $-algebra. Then there exists an af
 \begin{proof}
 Pick a finite set $ f_1, \dots, f_n \in A $ which generates $ A $ as a $ k $-algebra. We can define a homomorphism
 $$ \function[\alpha]{k\sbr{X_1, \dots, X_n}}{A}{\br{X_1, \dots, X_n}}{\br{f_1, \dots, f_n}}. $$
-Let $ I = \Ker \phi $ and let $ V = \VV\br{I} \subseteq \AA^n $. The homomorphism $ \alpha $ is surjective because $ f_1, \dots, f_n $ generate $ A $, and so $ A \cong k\sbr{X_1, \dots, X_n} / I $. Thus $ k\sbr{X_1, \dots, X_n} / I $ is a reduced $ k $-algebra. It follows that $ I $ is a radical ideal. Hence the Nullstellensatz tells us that $ I = \II\br{V} $. Thus
+Let $ I = \Ker \alpha $ and let $ V = \VV\br{I} \subseteq \AA^n $. The homomorphism $ \alpha $ is surjective because $ f_1, \dots, f_n $ generate $ A $, and so $ A \cong k\sbr{X_1, \dots, X_n} / I $. Thus $ k\sbr{X_1, \dots, X_n} / I $ is a reduced $ k $-algebra. It follows that $ I $ is a radical ideal. Hence the Nullstellensatz tells us that $ I = \II\br{V} $. Thus
 $$ k\sbr{V} \cong k\sbr{X_1, \dots, X_n} / \II\br{V} \cong k\sbr{X_1, \dots, X_n} / I \cong A. $$
 \end{proof}
 
@@ -1183,12 +1183,144 @@ It is not true that every irreducible affine algebraic set is isomorphic to a hy
 Write $ K = k\br{t_1, \dots, t_d, u} $ as in Lemma \ref{lem:algebraicallyindependent}, and let $ K' = k\br{t_1, \dots, t_d} $. Because $ u $ is algebraic over $ K' $, let $ p\br{U} \in K'\sbr{U} $ be the minimal polynomial of $ u $ over $ K' $. Each coefficient of $ p\br{U} $ is a fraction whose numerator and denominator are polynomials in $ t_1, \dots, t_d $. We can multiply up by a suitable element of $ k\sbr{t_1, \dots, t_d} $ to clear the denominators, and also replace $ t_1, \dots, t_d $ by indeterminates $ T_1, \dots, T_d $ to get a polynomial $ g \in k\sbr{T_1, \dots, T_d, U} $ such that $ g\br{t_1, \dots, t_d, u} = 0 $ in the field $ K $. Assuming we multiplied up by a lowest common denominator for the coefficients of $ p $, $ g $ is irreducible. Let $ H $ be the hypersurface in $ \AA^{d + 1} $ defined by the polynomial $ g $. Because $ g $ is irreducible, it generates a radical ideal in $ k\sbr{X_1, \dots, X_n} $ and so the strong Nullstellensatz implies that $ \II\br{H} = \abr{g} $. Thus the coordinate ring is given by
 $$ k\sbr{H} = k\sbr{T_1, \dots, T_d, U} / \abr{g}. $$
 There is a $ k $-algebra homomorphism
-$$ \function[\alpha]{k\sbr{T_1, \dots, T_d, U}}{K}{\br{T_1, \dots, T_d, U}}{\br{t_1, \dots, t_d, u}}. $
+$$ \function[\alpha]{k\sbr{T_1, \dots, T_d, U}}{K}{\br{T_1, \dots, T_d, U}}{\br{t_1, \dots, t_d, u}}. $$
 A little algebra, using Gauss' lemma, shows that the kernel of $ \alpha $ is generated by $ g $, so $ \alpha $ induces an injection $ k\sbr{H} \hookrightarrow K $. Furthermore, the image of $ \alpha $ generates $ K $ as a field, so $ \alpha $ induces an isomorphism from the fraction field of $ k\sbr{H} $ to $ K $. The fraction field of $ k\sbr{H} $ is the function field $ k\br{H} $. Thus we have shown that $ k\br{H} \cong k\br{V} $. By Corollary \ref{cor:algebrageometry}, this implies that $ V $ is birationally equivalent to $ H $.
 \end{proof}
 
 \begin{proof}[Proof of Corollary \ref{cor:irreduciblehypersurface}]
 Apply Proposition \ref{prop:irreduciblehypersurface} to the function field $ K = k\br{V} $.
 \end{proof}
+
+\pagebreak
+
+\section{Projective varieties}
+
+\subsection{Projective algebraic sets}
+
+\subsubsection{Projective space}
+
+\lecture{13}{Monday}{10/02/20}
+
+Projective space consists of affine space together with points at infinity, one for each direction. The purpose for adding extra points is that it avoids special cases where a point disappears to infinity.
+
+\begin{example*}
+A pair of parallel lines do not intersect in affine space but they do intersect at a point at infinity in projective space.
+\end{example*}
+
+\begin{definition*}
+\textbf{Projective $ n $-space}, $ \PP^n $, is the set of lines through the origin in $ \AA^{n + 1} $.
+\end{definition*}
+
+A convenient way to label points in $ \PP^n $ is via homogeneous coordinates. These are just coordinates in $ k^{n + 1} \setminus \cbr{\br{0, \dots, 0}} $. Any sequence of coordinates $ \underline{x} \in k^{n + 1} \setminus \cbr{\br{0, \dots, 0}} $ represents the unique line through the origin and $ \underline{x} $ in $ \AA^{n + 1} $. Two sequences of homogeneous coordinates $ \br{x_0, \dots, x_n} $ and $ \br{y_0, \dots, y_n} $ represent the same point in $ \PP^n $ if and only if there exists $ \lambda \in k \setminus \cbr{0} $ such that $ \br{x_0, \dots, x_n} = \br{\lambda y_0, \dots, \lambda y_n} $. Thus projective $ n $-space is the quotient of $ k^{n + 1} \setminus \cbr{\br{0, \dots, 0}} $ by the equivalence relation
+$$ \br{x_0, \dots, x_n} \sim \br{\lambda x_0, \dots, \lambda x_n}, \qquad \lambda \in k \setminus \cbr{0}. $$
+We call a representative for an equivalence class the \textbf{homogeneous coordinates} of that point in $ \PP^n $, and there are many choices for each point, by scaling by $ \lambda $. To avoid confusion between homogeneous coordinates for $ \PP^n $ and ordinary coordinates for $ \AA^n $, we usually write homogeneous coordinates as $ \sbr{x_0 : \dots : x_n} $. Observe that we can embed
+$$ \function{\AA^n}{\PP^n}{\br{x_1, \dots, x_n}}{\sbr{1 : x_1 : \dots : x_n}}. $$
+Any other homogeneous coordinates where the first coordinate is non-zero can be re-scaled to have first coordinate one. So we are left with the points with first coordinate equal to zero. These are the \textbf{points at infinity}. A point $ \sbr{0 : x_1 : \dots : x_n} $ can be seen as a point in $ \PP^{n - 1} $, by just dropping the initial zero. Thus
+$$ \PP^n = \AA^n \cup \PP^{n - 1}. $$
+Similarly, we can embed $ \AA^1 $ by the map $ x \mapsto \sbr{1 : x} $, and then the point at infinity is $ \sbr{0 : 1} $, so
+$$ \PP^1 = \AA^1 \cup \cbr{\sbr{0 : 1}}. $$
+Over the complex numbers, $ \PP_\CC^1 $ is also called the \textbf{Riemann sphere}. Thinking about projective space as affine space plus points at infinity can be useful if we want to make use of our geometric intuition about affine space or the algebraic tools we have developed for working with affine algebraic sets. On the other hand, thinking about projective space in terms of homogeneous coordinates emphasises that all points of projective space look the same. We can only distinguish points at infinity from points in affine space after choosing a convention for how we embed $ \AA^n $ into $ \PP^n $.
+
+\begin{example*}
+We could have used $ \sbr{x_1 : \dots : x_n : 1} $ instead.
+\end{example*}
+
+Throughout this lecture we will use the convention above.
+
+\subsubsection{Definition and examples}
+
+A projective algebraic set is a subset of projective space defined by the vanishing of a finite list of polynomials. What does it mean for a polynomial to vanish at a point in projective space? Because a single point in $ \PP^n $ can be represented by many different homogeneous coordinates, it does not make sense to evaluate a polynomial in $ k\sbr{X_0, \dots, X_n} $ at a point of $ \PP^n $. We have to restrict attention to homogeneous polynomials.
+
+\begin{definition*}
+A polynomial $ f \in k\sbr{X_0, \dots, X_n} $ is \textbf{homogeneous} if every term of $ f $ has the same degree.
+\end{definition*}
+
+\begin{example*}
+$ X_0^3 + X_0^2X_1 + 3X_2^3 - X_0X_1X_2 $ is homogeneous of degree three while $ X_0X_1 - X_2 $ is not homogeneous because it has a term of degree two and a term of degree one.
+\end{example*}
+
+If $ \sbr{x_0 : \dots : x_n} $ and $ \sbr{y_0 : \dots : y_n} $ represent the same point $ p \in \PP^n $, then
+$$ \br{x_0, \dots, x_n} = \lambda\br{y_0, \dots, y_n}, \qquad \lambda \in k \setminus \cbr{0}. $$
+
+\pagebreak
+
+Hence if $ f \in k\sbr{X_0, \dots, X_n} $ is a homogeneous polynomial of degree $ d $, then
+$$ f\br{x_0, \dots, x_n} = \lambda^df\br{y_0, \dots, y_n}. $$
+Thus the actual value of $ f $ at $ p $ is not well-defined, but it is well-defined to ask whether or not $ f $ is zero at $ p $.
+
+\begin{definition*}
+A \textbf{projective algebraic set} is a set of the form
+$$ \cbr{\sbr{x_0 : \dots : x_n} \in \PP^n \st f_1\br{x_0, \dots, x_n} = \dots = f_m\br{x_0, \dots, x_n} = 0}, $$
+for some finite list of homogeneous polynomials $ f_1, \dots, f_m \in k\sbr{X_0, \dots, X_n} $.
+\end{definition*}
+
+By definition, a projective algebraic set is the vanishing of finitely many homogeneous polynomials. We can use the Hilbert basis theorem to show that the vanishing set of an infinite collection of homogeneous polynomials is a projective algebraic set. This is similar to the analogous result for affine algebraic sets, but a little trickier due to the word homogeneous.
+
+\begin{example*}
+An example of a projective algebraic set is
+$$ V' = \cbr{\sbr{w : x : y} \in \PP^2 \st wx - y^2 = 0}. $$
+What is $ V = V' \cap \AA^2 $, using the embedding $ \AA^2 \to \PP^2 $ which we considered before? To find this, we just substitute $ w = 1 $ into the equation for $ V' $, so
+$$ V = \cbr{\br{x, y} \in \AA^2 \st x - y^2 = 0}, $$
+that is an affine parabola. The polynomial $ X - Y^2 $ is not homogeneous. Therefore consider instead the homogeneous polynomial $ WX - Y^2 $. When $ W = 1 $, this restricts to $ X - Y^2 $. That takes care of the points of $ V' $ where $ w \ne 0 $, since we can scale the homogeneous coordinates of such a point to get $ w = 1 $. But $ V' $ contains extra points where $ w = 0 $. We can also work out the intersection of $ V' $ with the $ \PP^1 $ at infinity. Substituting $ w = 0 $ into the equation $ wx - y^2 = 0 $ for $ V' $ gives also $ y = 0 $. There is only one point of $ \PP^2 $ with $ w = y = 0 $, the point $ \sbr{0 : 1 : 0} $, since any other value for $ x $ could be scaled to one. So we get
+$$ V' = V \cup \cbr{\sbr{0 : 1 : 0}}. $$
+Thus geometrically, $ V' $ consists of the parabola $ V $ together with a point at infinity in the direction $ \br{1, 0} $, that is along the $ x $-axis. Informally, the two arms of the parabola close up at infinity.
+\end{example*}
+
+We would like to reverse this process, and go from an affine algebraic set to a projective algebraic set.
+
+\begin{example*}
+Consider the affine hyperbola
+$$ H = \cbr{\br{x, y} \in \AA^2 \st xy - 1 = 0}. $$
+We need to turn the polynomial $ XY - 1 $ into a homogeneous polynomial, using a new variable $ W $ in $ k\sbr{W, X, Y} $, which restricts to $ XY - 1 $ when $ W = 1 $. To do this, note that the highest degree term in $ XY - 1 $ has degree two. We multiply each term by an appropriate power of $ W $ to get all terms of degree two, so we have to replace the constant one by $ W^2 $. Thus we get $ XY - W^2 = 0 $. Thus we consider
+$$ H' = \cbr{\sbr{w : x : y} \in \PP^2 \st xy - w^2 = 0}. $$
+Again, when $ w \ne 0 $, we can scale to get $ w = 1 $, so we can substitute that in and see that we just get back $ H' $. When $ w = 0 $, the equation becomes $ xy = 0 $, so we now get two points at infinity. Either $ x = 0 $, giving the point $ \sbr{0 : 0 : 1} \in \PP^2 $, or $ y = 0 $, giving the point $ \sbr{0 : 1 : 0} \in \PP^2 $. Thus
+$$ H' = H \cup \cbr{\sbr{0 : 0 : 1}, \sbr{0 : 1 : 0}}. $$
+Geometrically, $ H' $ consists of $ H $ together with points at infinity along the $ x $-axis and $ y $-axis. These axes are the asymptotes of $ H $.
+\end{example*}
+
+Compare the two above examples, where $ V' $ had equation $ wx - y^2 $, and $ H' $ had equation $ xy - w^2 $. These equations differ only by relabelling the coordinates. Thus $ V' $ and $ H' $ are isomorphic. We have not yet defined isomorphism of projective algebraic sets, but just relabelling the coordinates should certainly be an isomorphism. From the point of view of projective geometry, the only difference between the hyperbola and the parabola is that the parabola has one point at infinity while the hyperbola has two points at infinity. It turns out that $ V' $ and $ H' $ are also isomorphic to the projective line $ \PP^1 $. We will need to define isomorphism of projective algebraic sets before we can prove this.
+
+\pagebreak
+
+\subsubsection{Homogenisation}
+
+The process we went through above to obtain $ V' $ from $ V $ and $ H' $ from $ H $ can be generalised.
+
+\begin{definition*}
+For any polynomial $ f \in k\sbr{X_1, \dots, X_n} $, we define the \textbf{homogenisation} of $ f $ to be the polynomial in $ \overline{f} \in k\sbr{X_0, \dots, X_n} $ obtained by the following procedure. Let $ d $ be the maximum degree of terms of $ f $. Then multiply each term of $ f $ by $ X_0^{d - e} $, where $ e $ is the degree of this term in $ f $.
+\end{definition*}
+
+\begin{example*}
+If
+$$ f\br{X_1, X_2, X_3} = X_1^3 + 4X_1X_2X_3 - X_1^2 - X_2^2 + 5X_3 + 8, $$
+then the homogenisation is
+$$ \overline{f}\br{X_0, X_1, X_2, X_3} = X_1^3 + 4X_1X_2X_3 - X_1^2X_0 - X_2^2X_0 + 5X_3X_0^2 + 8X_0^3. $$
+\end{example*}
+
+Let $ V \subseteq \AA^n $ be an affine algebraic set. Let $ W \subseteq \PP^n $ be the set defined by the homogenisations of all polynomials in $ \II\br{V} $. Then $ W $ is the smallest projective algebraic set containing $ V $. This is not entirely obvious, because we have defined it using infinitely many homogeneous polynomials. We will prove this in the next lecture. When we substitute $ x_0 = 1 $ into the polynomials defining $ W $, we just get back $ \II\br{V} $, so
+$$ W \cap \cbr{\sbr{1 : x_1 : \dots : x_n}} = V. $$
+This proves that every affine algebraic set $ V $ is of the form $ W \cap \AA^n $ for some projective algebraic set $ W $. We call $ W $ the \textbf{projective closure} of $ V $. When defining the projective closure, it is not enough to just take the homogenisations of some finite list of polynomials which define $ V $. You must take all of $ \II\br{V} $. The standard example of this below shows that if we just use homogenisations of a generating set, instead of all of $ \II\br{V} $, we still get a projective algebraic set $ V' $ such that $ V' \cap \AA^n = V $, but it might not be the smallest such set.
+
+\begin{example*}
+Here is a more complex example, the twisted cubic curve. Let
+$$ C = \cbr{\br{t, t^2, t^3} \in \AA^3} = \VV\br{Y - X^2, Z - XY} \subseteq \AA^3. $$
+Parametrically, we can write this as
+$$ C = \cbr{\sbr{1 : t : t^3 : t^3} \in \PP^3}. $$
+Homogenising the parametric description, we might expect the projective closure to be
+$$ C' = \cbr{\sbr{s^3 : s^2t : st^2 : t^3} \in \PP^3} = C \cup \cbr{\sbr{0 : 0 : 0 : 1}}. $$
+One can check that $ C' $ is a projective algebraic set. But if we homogenise the two defining polynomials $ Y - X^2 $ and $ Z - XY $, we get the projective algebraic set
+$$ C'' = \cbr{\sbr{w : x : y : z} \in \PP^3 \st wy - x^2 = wz - xy = 0}. $$
+It is still true that we can reverse this by just setting $ w = 1 $, so $ C'' \cap \AA^3 = C $. But what happens at infinity? Substituting in $ w = 0 $, one can check that
+$$ C'' = C \cup \cbr{\sbr{0 : x : y : z} \in \PP^3 \st -x^2 = -xy = 0} = C \cup \cbr{\sbr{0 : 0 : y : z} \in \PP^3}. $$
+Thus the intersection of $ C'' $ with the plane at infinity is a copy of $ \PP^1 $. Thus $ C'' \ne C' $. It contains an extra line at infinity. This is not what we should expect, if $ C'' $ were the projective closure of $ C $, since the dimension of the intersection with the plane at infinity should be smaller than the dimension of the initial affine algebraic set, speaking informally. If we homogenised all polynomials in $ \II\br{C} $ and not just the two generators, then you can calculate that the projective closure of $ C $ is in fact
+$$ C' = \cbr{\sbr{w : x : y : z} \in \PP^3 \st wy - x^2 = wz - xy = xz - y^2 = 0} = C \cup \cbr{\sbr{0 : 0 : 0 : 1}}. $$
+The three polynomials $ Y - X^2, Z - XY, XZ - Y^2 $ are a generating set for $ \II\br{C} $ and their homogenisations define $ C' $. The extra polynomial involves only $ x, y, z $ and is in the ideal generated by $ Y - X^2 $ and $ Z - XY $. I am not giving a procedure to find the projective closure of a given affine algebraic set. I just assert that this happens to work in this case. There is an algorithm but you would not want to have to use it by hand.
+\end{example*}
+
+\pagebreak
+
+\subsubsection{Zariski topology on projective space}
+
+We can define the Zariski topology on $ \PP^n $ by saying that the closed subsets are the projective algebraic sets. Observe that $ \AA^n $ is embedded as a Zariski open subset in $ \PP^n $, because the complement $ \PP^n \setminus \AA^n $ is described by the homogeneous polynomial equaiton $ X_0 = 0 $. The existence of projective closures shows that the Zariski topology on $ \AA^n $ is the same as the subspace topology coming from the Zariski topology on $ \AA^n \subseteq \PP^n $. The terminology projective closure is justified by noting that the smallest projective algebraic set containing $ V \subseteq \AA^n $ which we just described is the same as the closure of $ V $ in the Zariski topology on $ \PP^n $.
 
 \end{document}
