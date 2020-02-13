@@ -1142,7 +1142,7 @@ $$
 By Proposition \ref{prop:2.28} for all $ p $
 $$
 \begin{tikzcd}
-0 \arrow{r} & \Omega^p\br{M} \arrow{r} \arrow{d}{\d_M^p} & \Omega^p\br{U} \oplus \Omega^p\br{V} \arrow{r} \arrow{d}{\d_U^p \oplus \d_V^p} & \Omega^p\br{U \cap V} \arrow{r} \arrow{d}{\d_{U \cap V}^p} & 0 \\
+0 \arrow{r} & \Omega^p\br{M} \arrow{r} \arrow{d}{\d_M^p} & \Omega^p\br{U} \oplus \Omega^p\br{V} \arrow{r} \arrow{d}{\br{\d_U^p, \d_V^p}} & \Omega^p\br{U \cap V} \arrow{r} \arrow{d}{\d_{U \cap V}^p} & 0 \\
 0 \arrow{r} & \Omega^{p + 1}\br{M} \arrow{r} & \Omega^{p + 1}\br{U} \oplus \Omega^{p + 1}\br{V} \arrow{r} & \Omega^{p + 1}\br{U \cap V} \arrow{r} & 0
 \end{tikzcd}
 $$
@@ -1321,14 +1321,17 @@ Let $ M $ be a manifold of dimension $ n $, let $ x \in M $, and let $ i : M \se
 \end{theorem}
 
 \begin{proof}
-Injectivity.
-\begin{itemize}[leftmargin=0.5in]
+\hfill
+\begin{itemize}
+\item Injectivity.
+\begin{itemize}
 \item[$ p \ge 2 $.] Let $ \omega \in \Omega_\c^p\br{M \setminus \cbr{x}} $ be closed such that $ i_*\sbr{\omega} = 0 $, so $ \sbr{i_*\omega} = 0 $ in $ \H_\c^p\br{M} $. The goal is $ \sbr{\omega} = 0 $. There exists $ \eta \in \Omega_\c^{p - 1}\br{M} $ such that $ i_*\omega = \d\eta $. By Poincar\'e lemma there exists $ U \subset M $ containing $ x $ such that $ \H^q\br{U} = 0 $ for all $ q \ge 1 $. Then $ i_*\omega = 0 $ in a neighbourhood of $ x $ because $ \supp \omega \subset M \setminus \cbr{x} $, so $ \d\eta = 0 $ in a neighbourhood of $ x $. By taking $ U $ smaller we can assume $ \eta $ is closed. Since $ p \ge 2 $, $ \sbr{\eta} \in \H^{p - 1}\br{U} = 0 $, so $ \eta $ is exact. Then there exists $ \sigma \in \Omega^{p - 2}\br{U} $ such that $ \eta = \d\sigma $ on $ U $. Let $ \br{U, M \setminus \cbr{x}} $ be an open cover of $ M $, let $ \br{f_U, f_{M \setminus \cbr{x}}} $ be a partition of unity, and let $ \eta' = \eta - \d\br{i_*\br{f_U\sigma}} $. On a neighbourhood of $ x $, $ \eta' = 0 $ because $ i_*\br{f_U\sigma} = \sigma $, so $ \supp \eta' \subset M \setminus \cbr{x} $. Thus $ \eta' \in \Omega_\c^{p - 1}\br{M \setminus \cbr{x}} $ and $ \omega = \d\eta' $, so $ \sbr{\omega} = 0 $.
 \item[$ p = 1 $.] The same proof. Let $ \omega \in \Omega_\c^1\br{M \setminus \cbr{x}} $ be closed such that $ \sbr{i_*\omega} = 0 $. There exists $ \eta \in \Omega_\c^0\br{M} $ such that $ i_*\omega = \d\eta $. By taking an open set $ U \subset M $ such that $ x \in U $, we may assume $ \d\eta = 0 $. Then $ \eta $ is constant on $ U $, so $ \eta = c $. Let $ \eta' = \eta - c $. Then $ \eta' = 0 $ on $ U $. If $ M $ is compact then $ \eta' \in \Omega_\c^0\br{M \setminus \cbr{x}} $. Thus $ \omega = \d\eta' $, so $ \sbr{\omega} = 0 $.
 \end{itemize}
-Surjectivity.
-\begin{itemize}[leftmargin=0.5in]
+\item Surjectivity.
+\begin{itemize}
 \item[$ p \ge 1 $.] Let $ \sbr{\omega} \in \Omega_\c^p\br{M} $ such that $ \omega $ is closed. By Poincar\'e lemma there exists open $ U \ni x $ such that $ \omega $ is exact, so there exists $ \sigma \in \Omega^{p - 1}\br{U} $ such that $ \omega = \d\sigma $. Let $ \br{f_U, f_{M \setminus \cbr{x}}} $ be a partition of unity as before, and let $ \omega' = \omega - \d\br{i_*\br{f_U\sigma}} $. Then $ \omega' = 0 $ in a neighbourhood of $ x $ and $ \sbr{\omega'} = \sbr{\omega} $, and $ \eval{\omega'}_{M \setminus \cbr{x}} \in \Omega_\c^p\br{M \setminus \cbr{x}} $. Thus $ \sbr{i_*\eval{\omega'}_{M \setminus \cbr{x}}} = \sbr{\omega'} = \sbr{\omega} $.
+\end{itemize}
 \end{itemize}
 \end{proof}
 
@@ -1351,6 +1354,94 @@ $$ \H_\c^p\br{\RR^n} = \H_\c^p\br{\S^n} =
 \end{cases},
 \qquad p \ge 1, $$
 and $ \H_\c^0\br{\RR^n} = 0 $.
+\end{example}
+
+\lecture{16}{Thursday}{13/02/20}
+
+Let $ M $ be a manifold such that $ M = U \cup V $ for open $ U $ and $ V $ such that $ U \cap V \ne \emptyset $, and let
+$$
+\begin{tikzcd}
+& U \arrow[hookrightarrow]{dr}{i_U} & \\
+U \cap V \arrow[hookrightarrow]{ur}{j_U} \arrow[hookrightarrow, swap]{dr}{j_V} & & M \\
+& V \arrow[hookrightarrow, swap]{ur}{i_V} &
+\end{tikzcd},
+\qquad
+\begin{tikzcd}
+& \Omega^p\br{U} \arrow{dr}{i_{U*}} & \\
+\Omega^p\br{U \cap V} \arrow{ur}{j_{U*}} \arrow[swap]{dr}{j_{V*}} & & \Omega^p\br{M} \\
+& \Omega^p\br{V} \arrow[swap]{ur}{i_{V*}} &
+\end{tikzcd},
+\qquad p \ge 0. $$
+
+\begin{proposition}
+We have a short exact sequence
+$$ 0 \leftarrow \Omega^p\br{M} \xleftarrow{i} \Omega^p\br{U} \oplus \Omega^p\br{V} \xleftarrow{j} \Omega^p\br{U \cap V} \leftarrow 0, $$
+where $ i = i_{U*} + i_{V*} $ and $ j = \br{j_{U*}, -j_{V*}} $.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item $ j $ is injective. Let $ \omega \in \Omega^p\br{U \cap V} $ such that $ j\br{\omega} = 0 $, so $ j_{U*}\omega = j_{V*}\omega = 0 $. Then $ \omega = 0 $, so $ j $ is injective.
+\item $ \Ker i = \Im j $. Let $ \omega \in \Omega^p\br{U \cap V} $. Then $ i\br{j\br{\omega}} = i\br{j_{U*}\omega, -j_{V*}\omega} = i_{U*}j_{V*}\omega - i_{U*}j_{V*}\omega = 0 $, so $ \Ker i \supset \Im j $. Let $ \br{\omega_1, \omega_2} \in \Ker i $. Then $ i_{U*}\omega_1 + i_{V*}\omega_2 = 0 $, so $ i_{V*}\omega_1 = -i_{V*}\omega_2 $, so $ \supp \omega_1 \subset U \cap V $ and $ \supp \omega_2 \subset U \cap V $, so there exists $ \eta \in \Omega^p\br{U \cap V} $ such that $ j_{U*}\eta = \omega_1 $ and $ j_{V*}\eta = -\omega_2 $, so $ \br{\omega_1, \omega_2} = j\br{\eta} $, so $ \Ker i \subset \Im j $.
+\item $ i $ is surjective. Let $ \omega \in \Omega_\c^p\br{M} $, and let $ \cbr{f_U, f_V} $ be a partition of unity with respect to $ \cbr{U, V} $. Define $ \omega_U = f_U \cdot \eval{\omega}_U \in \Omega_\c^p\br{U} $ and $ \omega_V = f_V \cdot \eval{\omega}_V \in \Omega_\c^p\br{V} $. Then $ i\br{\omega_U, \omega_V} = i_{U*}\omega_U + i_{V*}\omega_V = f_U \cdot \omega + f_V \cdot \omega = \br{f_U + f_V} \cdot \omega = \omega $.
+\end{itemize}
+\end{proof}
+
+Thus for all $ p $ we get
+$$
+\begin{tikzcd}
+0 \arrow{r} & \Omega_\c^p\br{U \cap V} \arrow{r} \arrow{d}{\d} & \Omega_\c^p\br{U} \oplus \Omega_\c^p\br{V} \arrow{r} \arrow{d}{\br{\d, \d}} & \Omega_\c^p\br{M} \arrow{r} \arrow{d}{\d} & 0 \\
+0 \arrow{r} & \Omega_\c^{p + 1}\br{U \cap V} \arrow{r} & \Omega_\c^{p + 1}\br{U} \oplus \Omega_\c^{p + 1}\br{V} \arrow{r} & \Omega_\c^{p + 1}\br{M} \arrow{r} & 0
+\end{tikzcd}.
+$$
+
+\begin{theorem}
+There exists $ \delta : \H_\c^p\br{M} \to \H_\c^{p + 1}\br{U \cap V} $ such that
+$$
+\begin{tikzcd}[column sep=small]
+\dots \arrow{r} & \H_\c^p\br{U \cap V} \arrow{r} & \H_\c^p\br{U} \oplus \H_\c^p\br{V} \arrow{r} & \H_\c^p\br{M} \arrow[in=180, out=0, swap]{dll}{\delta} & \\
+& \H_\c^{p + 1}\br{U \cap V} \arrow{r} & \H_\c^{p + 1}\br{U} \oplus \H_\c^{p + 1}\br{V} \arrow{r} & \H_\c^{p + 1}\br{M} \arrow{r} & \dots
+\end{tikzcd}.
+$$
+\end{theorem}
+
+\begin{proof}
+Same proof as Mayer-Vietoris for $ \H^p\br{M} $.
+\end{proof}
+
+\subsection{Poincar\'e duality}
+
+Let $ M $ be an orientable manifold. Then
+$$ \H^p\br{M} \cong \H_\c^{n - p}\br{M}^*. $$
+
+\begin{proposition}
+Let $ M $ be a manifold. Then the bilinear map
+$$ \function[\cup]{\H^p\br{M} \times \H^q\br{M}}{\H^{p + q}\br{M}}{\br{\sbr{\omega}, \sbr{\eta}}}{\sbr{\omega \wedge \eta}} $$
+is well-defined, and if $ \sbr{\omega} \cup \sbr{\eta} = \sbr{\omega \wedge \eta} $ then $ \sbr{\omega} \cup \sbr{\eta} = \br{-1}^{p \cdot q}\sbr{\eta} \wedge \sbr{\omega} $.
+\end{proposition}
+
+\begin{proof}
+Follows from the Leibnitz rule and Proposition \ref{prop:1.6}.
+\end{proof}
+
+\pagebreak
+
+\begin{lemma}
+\label{lem:2.48}
+Let $ M $ be oriented without boundary of dimension $ n $. Then there exists a linear map
+$$ \function[\I_M]{\H_\c^n\br{M}}{\RR}{\sbr{\omega}}{\int_M \omega}, $$
+and $ \I_M $ is surjective.
+\end{lemma}
+
+Then $ \I_M $ is called \textbf{integration}.
+
+\begin{proof}
+Let $ \omega \in \Omega_\c^n\br{M} $ such that $ \sbr{\omega} = 0 $, so $ \omega $ is exact. By Stokes $ \int_M \omega = 0 $, so $ \I_M $ is well-defined and it is linear. It is enough to show there exists closed $ \omega \in \Omega_\c^n\br{M} $ such that $ \int_M \omega \ne 0 $. Take a volume form $ \omega_0 $, which exists because $ M $ is oriented. Take $ f \in \C^\infty\br{M} $ for $ f \ge 0 $ and with compact support. Let $ f \cdot \omega_0 \in \Omega_\c^n\br{M} $. Then $ \omega $ is closed because $ \Omega_\c^{n + 1}\br{M} = 0 $ and $ \int_M \omega = \int_M \br{f \cdot \omega_0} > 0 $, by definition of volume forms.
+\end{proof}
+
+\begin{example}
+Let $ M = \S^n $, and let $ \omega \in \Omega_\c^n\br{M} $ such that $ \int_M \omega = 0 $. We want to show that $ \omega $ is exact. Since $ M $ is compact, $ \H_\c^n\br{M} = \H^n\br{M} = \RR $. By Lemma \ref{lem:2.48} $ \I_M : \H_\c^n\br{M} \to \RR $ is surjective, and $ \H_\c^n\br{M} = \RR $, so $ \I_M $ is injective. Since $ \int_M \omega = 0 $, $ \I_M\br{\sbr{\omega}} = 0 $, so $ \sbr{\omega} = 0 $. Thus $ \omega $ is exact.
 \end{example}
 
 \end{document}
