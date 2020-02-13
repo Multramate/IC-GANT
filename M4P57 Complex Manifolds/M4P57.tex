@@ -1098,31 +1098,31 @@ Is there a way to compute the derivatives of these sections?
 Let $ X $ and $ E $ be as above. A \textbf{connection} of $ E $ is a $ \CC $-linear map
 $$ \nabla : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_{X, \CC}^1 \otimes E} $$
 such that the Leibnitz rule holds, so
-$$ \nabla\br{f\omega} = f \cdot \nabla\br{\omega} + \d f \otimes \omega, \qquad f \in \C^\infty\br{X}, \qquad \omega \in \C^\infty\br{X, E}. $$
+$$ \nabla\br{f\omega} = f \cdot \nabla\omega + \d f \otimes \omega, \qquad f \in \C^\infty\br{X}, \qquad \omega \in \C^\infty\br{X, E}. $$
 \end{definition}
 
 The following is the idea. Let $ \omega \in \C^\infty\br{X, E} $. Then
-$$ \nabla\br{\omega} = \sum_i \eta_i \otimes \omega_i, $$
+$$ \nabla\omega = \sum_i \eta_i \otimes \omega_i, $$
 where $ \eta_i $ are $ 1 $-forms on $ X $ and $ \omega_i $ are sections of $ E $. Let $ x \in X $, and let $ v \in \T_xX $. Then
-$$ \nabla_v\br{\omega}_x = \sum_i \eta_i\br{v}\omega_i $$
+$$ \nabla_v\omega_x = \sum_i \eta_i\br{v}\omega_i $$
 is a section of $ E $ at $ x $. The goal is to study connections locally. Let $ x \in X $, and let $ \br{U, \phi} $ be a chart around $ x $ that trivialises $ E $, so $ \pi^{-1}\br{U} = U \times \CC^r $ for $ \pi : E \to X $ and $ r = \rk E $. Then there exists a frame $ s_1, \dots, s_r \in \C^\infty\br{U, E} $ of $ E $ on $ U $. Let $ \sigma \in \C^\infty\br{X, E} $ be any section. Locally on $ U $ we write
 $$ \sigma \overset{U}{=} f = \br{f_1, \dots, f_r}, \qquad \sigma = \sum_{i = 1}^r f_is_i, \qquad f_1, \dots, f_r \in \C^\infty\br{U}. $$
 By the Leibnitz rule, on $ U $,
-$$ \nabla\br{\sigma} = \sum_{i = 1}^r \nabla\br{f_is_i} = \sum_{i = 1}^r \br{f_i \cdot \nabla\br{s_i} + \d f_i \otimes s_i} \in \C^\infty\br{U, \Omega_{X, \CC}^1 \otimes E}. $$
+$$ \nabla\sigma = \sum_{i = 1}^r \nabla\br{f_is_i} = \sum_{i = 1}^r \br{f_i \cdot \nabla s_i + \d f_i \otimes s_i} \in \C^\infty\br{U, \Omega_{X, \CC}^1 \otimes E}. $$
 
 \begin{notation*}
 $ \d f = \br{\d f_1, \dots, \d f_r} $.
 \end{notation*}
 
 Then
-$$ \nabla\br{s_j} = \sum_{i = 1}^r a_{ij} \otimes s_i, \qquad a_{ij} \in \C^\infty\br{U, \Omega_{X, \CC}^1}. $$
+$$ \nabla s_j = \sum_{i = 1}^r a_{ij} \otimes s_i, \qquad a_{ij} \in \C^\infty\br{U, \Omega_{X, \CC}^1}. $$
 
 \begin{notation*}
 $ A = \br{a_{ij}} $ is an $ \br{r \times r} $-matrix with coefficients $ 1 $-forms.
 \end{notation*}
 
 With this notation, this becomes
-$$ \nabla\br{\sigma} \overset{U}{=} Af + \d f. $$
+$$ \nabla\sigma \overset{U}{=} A \cdot f + \d f. $$
 \begin{itemize}
 \item $ A $ depends very much on the choice of the frame.
 \item Locally on $ U $, $ \nabla $ is determined by $ A $.
@@ -1130,7 +1130,7 @@ $$ \nabla\br{\sigma} \overset{U}{=} Af + \d f. $$
 Consider another chart $ \br{U', \phi'} $ which also gives a trivialisation of $ E $. So we can choose a corresponding frame $ s_1', \dots, s_r' $. Assume $ \sigma \in \C^\infty\br{U \cap U', E} $. Then
 $$ \sigma \overset{U'}{=} f' = \br{f_1', \dots, f_r'}, \qquad \sigma = \sum_{j = 1}^r f_j's_j', \qquad f_1', \dots, f_r' \in \C^\infty\br{U}. $$
 Let $ A' $ be the matrix with respect to this frame. Then
-$$ \nabla\br{\sigma} \overset{U'}{=} A'f' + \d f'. $$
+$$ \nabla\sigma \overset{U'}{=} A' \cdot f' + \d f'. $$
 
 \pagebreak
 
@@ -1138,12 +1138,18 @@ $$ \nabla\br{\sigma} \overset{U'}{=} A'f' + \d f'. $$
 
 Let
 $$ g : \br{U \cap U'} \times \CC^r \to \br{U \cap U'} \times \CC^r $$
-be the transition function from the trivialisation of $ U' $ to the trivialisation of $ U $. Then $ g\br{x} \in \GL_r \CC $ for all $ x \in U \cap U' $, so $ f = gf' $. Denote by $ \D g $ the differential of $ g $. Then
-$$ \d f = \d\br{gf'} = \D g \cdot f' + g \d f' = g\br{g^{-1}\D g \cdot f' + \d f'}, $$
+be the transition function from the trivialisation of $ U' $ to the trivialisation of $ U $. Then $ g\br{x} \in \GL_r \CC $ for all $ x \in U \cap U' $, and $ f = g \cdot f' $. Denote by $ \D g $ the differential of $ g $. Then
+$$ \d f = \d\br{g \cdot f'} = \D g \cdot f' + g \cdot \d f' = g \cdot \br{g^{-1} \cdot \D g \cdot f' + \d f'}, $$
 by the Leibnitz rule. Thus,
-$$ Af + \d f \overset{U}{=} Agf' + g\br{g^{-1}\D g \cdot f' + \d f'} \overset{U}{=} g\br{\br{g^{-1}\D g + g^{-1}Ag}f' + \d f'} \overset{U'}{=} \br{g^{-1}\D g + g^{-1}Ag}f' + \d f', $$
+\begin{align*}
+A' \cdot f' + \d f'
+& \overset{U'}{=} A \cdot f + \d f
+\overset{U}{=} A \cdot g \cdot f' + g \cdot \br{g^{-1} \cdot \D g \cdot f' + \d f'}
+\overset{U}{=} g \cdot \br{\br{g^{-1} \cdot \D g + g^{-1} \cdot A \cdot g}f' + \d f'} \\
+& \overset{U'}{=} \br{g^{-1} \cdot \D g + g^{-1} \cdot A \cdot g} \cdot f' + \d f',
+\end{align*}
 so
-$$ A' = g^{-1}\D g + g^{-1}Ag. $$
+$$ A' = g^{-1} \cdot \D g + g^{-1} \cdot A \cdot g. $$
 
 \subsection{Curvature operators}
 
@@ -1159,15 +1165,20 @@ If $ X $ has dimension one, then $ \Omega_{X, \CC}^2 = 0 $, so $ \nabla^2 = 0 $.
 Again for all $ x \in X $, take $ U $ as above. Let $ s_1, \dots, s_r $ be a frame, let $ A = \br{a_{ij}} $ be the $ \br{r \times r} $-matrix of $ 1 $-forms, and let $ \D A $ be the differential of $ A $.
 
 \begin{notation*}
-$$ A \wedge A = \br{\sum_{k = 1}^r \br{a_{ik} \wedge a_{kj}}} $$
-is an $ \br{r \times r} $-matrix of $ 2 $-forms.
+$ A \wedge A = \br{\sum_{k = 1}^r \br{a_{ik} \wedge a_{kj}}} $ is an $ \br{r \times r} $-matrix of $ 2 $-forms.
 \end{notation*}
 
 Let $ \sigma \overset{U}{=} \br{f_1, \dots, f_r} = \sum_i f_is_i $ on $ U $. Then
-$$ \nabla^2\br{\sigma}  = \nabla\br{Af + \d f} = A\br{Af + \d f} + \d\br{A f + \d f} = A \wedge Af + A \d f + \D A \cdot f - A \d f + \d^2f = \br{A \wedge A + \D A}f $$
-is $ \C^\infty $-linear, so $ \nabla^2\br{h\sigma} = h\nabla^2\br{\sigma} $. The \textbf{curvature operator} is
+\begin{align*}
+\nabla^2\sigma
+& = \nabla\br{A \cdot f + \d f}
+= A \wedge \br{A \cdot f + \d f} + \d\br{A \cdot f + \d f} \\
+& = A \wedge A \cdot f + A \wedge \d f + \D A \cdot f - A \wedge \d f + \d^2f
+= \br{A \wedge A + \D A} \cdot f
+\end{align*}
+is $ \C^\infty $-linear, so $ \nabla^2\br{h\sigma} = h\nabla^2\sigma $. The \textbf{curvature operator} is
 $$ \Theta_\nabla \overset{U}{=} A \wedge A + DA, $$
-so $ \Theta_\nabla \cdot \sigma = \nabla^2\br{\sigma} $.
+so $ \Theta_\nabla\br{\sigma} = \nabla^2\sigma $.
 
 \subsection{Hermitian metrics}
 
@@ -1186,22 +1197,22 @@ such that
 $ V = \CC $ and $ \abr{z_1, z_2} = z_1 \cdot \overline{z_2} $.
 \end{example*}
 
-\pagebreak
-
 \begin{definition}
 Let $ X $ be a manifold, and let $ E $ be a complex vector bundle on $ X $. A \textbf{Hermitian metric} $ h $, or $ \abr{\cdot, \cdot} $, on $ E $ is a choice of a Hermitian inner product
 $$ h_x = \abr{\cdot, \cdot}_x : E\br{x} \times E\br{x} \to \CC, \qquad x \in X, $$
 such that for any open set $ U \subset X $ and for $ s, t \in \C^\infty\br{U, E} $, $ \abr{s\br{x}, t\br{x}}_x $ is a $ \C^\infty $-function with respect to $ x $ on $ U $. The pair $ \br{E, \abr{\cdot, \cdot}} = \br{E, h} $ is called a \textbf{Hermitian vector bundle}.
 \end{definition}
 
+\pagebreak
+
 Let $ \br{E, h} $ be a Hermitian vector bundle, and let $ x \in X $. Locally, let $ s_1, \dots, s_r $ be a frame on $ U \ni x $. For any $ x \in U $, $ \abr{s_i\br{x}, s_j\br{x}}_x = h_{ij}\br{x} $ is a smooth function for all $ i $ and $ j $, so
 $$ H = \br{h_{ij}}_{i, j = 1}^r $$
 is an $ \br{r \times r} $-matrix of smooth functions. Let $ \sigma, \sigma' \in \C^\infty\br{U, E} $, and let $ \sigma \overset{U}{=} f = \br{f_1, \dots, f_r} $ and $ \sigma' \overset{U}{=} f' = \br{f_1', \dots, f_r'} $. Then
-$$ \abr{\sigma\br{x}, \sigma'\br{x}}_x = f^\intercal H\overline{f'}. $$
+$$ \abr{\sigma\br{x}, \sigma'\br{x}}_x = f^\intercal \cdot H \cdot \overline{f'}. $$
 Now assume that $ U' $ is a different open set with frame $ \br{s_1', \dots, s_r'} $. Assume
 $$ g : \br{U \cap U'} \times \CC^r \to \br{U \cap U'} \times \CC^r $$
 is the transition function from the trivialisation on $ U' $ to the trivialisation on $ U $. Let $ H' $ be the matrix of $ h $ with respect to $ s_1', \dots, s_r' $. Then
-$$ H' = g^\intercal H\overline{g}. $$
+$$ H' = g^\intercal \cdot H \cdot \overline{g}. $$
 
 \begin{proposition}
 Let $ \pi : E \to X $ be a complex vector bundle on $ X $. Then $ E $ always admits a Hermitian metric.
@@ -1231,49 +1242,103 @@ $$ \function{\C^\infty\br{X, \Omega_{X, \CC}^p \otimes E} \times \C^\infty\br{X,
 where $ \cbr{\sigma, \tau} $ is defined as follows. Let $ x \in X $, let $ s_1, \dots, s_r $ be a frame of $ E $ around $ x $, let $ H $ be the matrix associated to the Hermitian metric with respect to the frame, and let
 $$ \sigma = \sum_i \sigma_i \otimes s_i, \qquad \tau = \sum_i \tau_i \otimes s_i, \qquad \sigma_i \in \C^\infty\br{X, \Omega_{X, \CC}^p}, \qquad \tau_i \in \C^\infty\br{X, \Omega_{X, \CC}^q}. $$
 Then we define, around $ x $,
-$$ \cbr{\sigma, \tau} = \sigma^\intercal H\overline{\tau} = \sum_{i, j = 1}^r h_{ij}\sigma_i \wedge \overline{\tau_j}. $$
-
-\pagebreak
+$$ \cbr{\sigma, \tau} = \sigma^\intercal \cdot H \cdot \overline{\tau} = \sum_{i, j = 1}^r h_{ij}\sigma_i \wedge \overline{\tau_j}. $$
 
 This is uniquely defined, and does not depend on the frame, so it extends to $ X $. In particular $ \cbr{\sigma, \tau} $ is a smooth $ \br{p + q} $-form.
 
+\pagebreak
+
 \begin{definition}
-Let $ E $ be a complex Hermitian vector bundle on $ X $, and let $ \nabla $ be a connection on $ X $. We say that $ \nabla $ is \textbf{Hermitian}, or \textbf{compatible with the metric}, if the Leibnitz rule holds, so we have
-$$ \d\cbr{\sigma, \tau} = \cbr{\nabla\br{\sigma}, \tau} + \br{-1}^p\cbr{\sigma, \nabla\br{\tau}}, \qquad \sigma \in \C^\infty\br{X, E \otimes \Omega_{X, \CC}^p}, \qquad \tau \in \C^\infty\br{X, E \otimes \Omega_{X, \CC}^q}. $$
+Let $ E $ be a complex Hermitian vector bundle on $ X $, and let $ \nabla $ be a connection on $ E $. We say that $ \nabla $ is \textbf{Hermitian}, or \textbf{compatible with the metric}, if the Leibnitz rule holds, so we have
+$$ \d\cbr{\sigma, \tau} = \cbr{\nabla\sigma, \tau} + \br{-1}^p\cbr{\sigma, \nabla\tau}, \qquad \sigma \in \C^\infty\br{X, E \otimes \Omega_{X, \CC}^p}, \qquad \tau \in \C^\infty\br{X, E \otimes \Omega_{X, \CC}^q}. $$
 \end{definition}
 
-\begin{proposition}
-Let $ x \in X $, and let $ s_1, \dots, s_r $ be a local frame of $ E $. Assume $ s_1, \dots, s_r $ is an orthonormal frame around $ x \in X $. Let $ \nabla $ be a connection compatible with the metric, and let $ A $ be the associated matrix with respect to $ s_1, \dots, s_r $. Then
-$$ \overline{A}^\intercal = -A, $$
-that is $ A $ is \textbf{anti-autodual}.
-\end{proposition}
+Let $ x \in X $, and let $ s_1, \dots, s_r $ be a local frame of $ E $. Assume $ s_1, \dots, s_r $ is an orthonormal frame around $ x \in X $. Let $ \nabla $ be a connection compatible with the metric, and let $ A $ be the associated matrix with respect to $ s_1, \dots, s_r $. Gram-Schmidt is an algorithm that gives an orthonormal basis of $ E\br{x} $ for all $ x $, which is $ \C^\infty $, say $ s_1', \dots, s_r' $. Then with respect to this frame $ H = \id_r $ because $ \abr{s_i', s_j'}_x = \delta_{ij} $.
 
-Gram-Schmidt is an algorithm that gives an orthonormal basis of $ E\br{x} $ for all $ x $, which is $ \C^\infty $, say $ s_1', \dots, s_r' $. Then with respect to this frame $ H = \id_r $ because $ \abr{s_i', s_j'}_x = \delta_{ij} $.
+\begin{proposition}
+$ A $ is anti-autodual, that is
+$$ \overline{A}^\intercal = -A. $$
+\end{proposition}
 
 \begin{proof}
 Let $ \sigma $ and $ \tau $ be as before, and let $ \sigma_1, \dots, \sigma_r $ and $ \tau_1, \dots, \tau_r $ be the components of $ \sigma $ and $ \tau $ with respect to the frame $ s_1, \dots, s_r $. Then $ \cbr{\sigma, \tau} = \sigma^\intercal \wedge \overline{\tau} $. Since $ \nabla $ is Hermitian, the Leibnitz rule holds, so
 $$ \d\cbr{\sigma, \tau} = \d\br{\sigma^\intercal \wedge \overline{\tau}} = \d\sigma^\intercal \wedge \overline{\tau} + \br{-1}^p\sigma^\intercal \wedge \d\overline{\tau}, $$
 by the usual Leibnitz rule for $ \d $. Then
-$$ \cbr{\nabla\br{\sigma}, \tau} = \cbr{A \wedge \sigma + \d\sigma, \tau} = \cbr{A \wedge \sigma, \tau} + \cbr{\d\sigma, \tau} = \br{A \wedge \sigma}^\intercal \wedge \overline{\tau} + \d\sigma^\intercal \wedge \overline{\tau} = \br{-1}^p\sigma^\intercal \wedge A^\intercal \wedge \overline{\tau} + \d\sigma^\intercal \wedge \overline{\tau}, $$
+$$ \cbr{\nabla\sigma, \tau} = \cbr{A \wedge \sigma + \d\sigma, \tau} = \cbr{A \wedge \sigma, \tau} + \cbr{\d\sigma, \tau} = \br{A \wedge \sigma}^\intercal \wedge \overline{\tau} + \d\sigma^\intercal \wedge \overline{\tau} = \br{-1}^p\sigma^\intercal \wedge A^\intercal \wedge \overline{\tau} + \d\sigma^\intercal \wedge \overline{\tau}, $$
 and
-$$ \cbr{\sigma, \nabla\br{\tau}} = \sigma^\intercal \wedge \overline{\nabla\br{\tau}} = \sigma^\intercal \wedge \br{\overline{A \wedge \tau + \d\tau}} = \sigma^\intercal \wedge \overline{A} \wedge \overline{\tau} + \sigma^\intercal \wedge \d\overline{\tau}. $$
-By the Leibnitz rule, $ \sigma^\intercal \wedge \br{A^\intercal + \overline{A}} \wedge \overline{\tau} = 0 $. This is true for all $ \sigma $ and $ \tau $, so $ A^\intercal + \overline{A} = 0 $.
+$$ \cbr{\sigma, \nabla\tau} = \sigma^\intercal \wedge \overline{\nabla\tau} = \sigma^\intercal \wedge \br{\overline{A \wedge \tau + \d\tau}} = \sigma^\intercal \wedge \overline{A} \wedge \overline{\tau} + \sigma^\intercal \wedge \d\overline{\tau}. $$
+By the Leibnitz rule,
+$$ \sigma^\intercal \wedge \br{A^\intercal + \overline{A}} \wedge \overline{\tau} = 0. $$
+This is true for all $ \sigma $ and $ \tau $, so $ A^\intercal + \overline{A} = 0 $.
 \end{proof}
 
 \begin{exercise*}
 Let $ s_1, \dots, s_r $ be any frame, let $ H $ be the matrix given by the metric with respect to $ s_1, \dots, s_r $, and let $ A $ be the matrix given by the connection with respect to $ s_1, \dots, s_r $ where the connection is Hermitian. Then
-$$ \D H = A^\intercal H + H\overline{A}, $$
+$$ \D H = A^\intercal \cdot H + H \cdot \overline{A}, $$
 where if $ H = \br{h_{ij}} $ then $ \D H = \br{\d h_{ij}} $. A hint is to do the same calculation.
 \end{exercise*}
 
 \begin{theorem}
-If $ E \to X $ is a complex Hermitian veector bundle, then there exists a connection $ \nabla $ compatible with $ h $.
+If $ E \to X $ is a complex Hermitian vector bundle, then there exists a connection $ \nabla $ compatible with $ h $.
 \end{theorem}
 
 \subsection{Holomorphic vector bundles}
 
-Let $ X $ be a complex manifold, and let $ E $ be holomorphic vector bundle. Then $ \Omega_{X, \CC}^1 \xrightarrow{\sim} \Omega_X^{1, 0} \oplus \Omega_X^{0, 1} $. Given $ \nabla : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_{X, \CC}^1 \otimes E} $, we can define
-$$ \nabla^{1, 0} : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_X^{1, 0} \otimes E}, \qquad \nabla^{0, 1} : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_X^{0, 1} \otimes E}, $$
-such that $ \nabla = \nabla^{1, 0} + \nabla^{0, 1} $.
+\lecture{16}{Thursday}{13/02/20}
+
+\begin{proposition}
+\label{prop:5.9}
+Let $ X $ be a complex manifold, and let $ \pi : E \to X $ be a holomorphic vector bundle of rank $ r $. Then for all $ q \ge 0 $ there exists a $ \CC $-linear map
+$$ \overline{\partial_E} : \C^\infty\br{X, \Omega_X^{0, q} \otimes E} \to \C^\infty\br{X, \Omega_X^{0, q + 1} \otimes E}, $$
+which satisfies the Leibnitz rule and $ \overline{\partial_E} = 0 $. Moreover if $ \sigma $ is a holomorphic section of $ \Omega_X^{0, q} \otimes E $ then $ \overline{\partial_E}\sigma = 0 $.
+\end{proposition}
+
+The idea is to do it locally in a canonical way, so does not depend on the choice of the trivialisation.
+
+\begin{proof}
+Let $ x \in X $. There exists a holomorphic frame $ s_1, \dots, s_r $ of $ E $ locally around $ x $ in $ U $. Let $ \sigma \in \C^\infty\br{X, \Omega_X^{0, q} \otimes E} $. Then locally, $ \sigma \overset{U}{=} \sum_{i = 1}^r f_i \otimes s_i $ where $ f_i \in \C^\infty\br{U} $ are $ \br{0, q} $-forms locally around $ x $. We define
+$$ \overline{\partial_E}x \overset{U}{=} \sum_{i = 1}^r \overline{\partial}f_i \otimes s_i \in \C^\infty\br{U, \Omega_X^{0, q + 1} \otimes E}. $$
+
+\pagebreak
+
+We want to show that it can be extended to $ X $. Let $ U' \subset X $ be open, let $ s_1', \dots, s_r' $ be a holomorphic frame on $ U' $ of $ E $, and let
+$$ g : \br{U \cap U'} \times \CC^r \to \br{U \cap U'} \times \CC^r $$
+be the transition map from the trivialisation of $ U' $ to the trivialisation of $ U $. Then $ \sigma \overset{U}{=} \sum_{i = 1}^r f_i' \otimes s_i' $, and
+$$ \overline{\partial_E}x \overset{U'}{=} \sum_{i = 1}^r \overline{\partial}f_i' \otimes s_i'. $$
+Since $ g $ is holomorphic, that is $ \overline{\partial}g = 0 $, this implies that $ \overline{\partial_E} $ on $ U $ coincides with $ \overline{\partial_E} $ on $ U' $. Recall for $ \nabla $ the change of frame was
+$$ A' = g^{-1} \cdot \D g + g^{-1} \cdot A \cdot g, $$
+so $ \overline{\partial_E} $ extends to $ X $. Let $ \sigma $ be a holomorphic section of $ \Omega_X^{0, q} \otimes E $. Then, on $ U $ if $ s_i $ and $ f_i $ are as before, then $ f_i $ are holomorphic $ \br{0, q} $-forms. Thus $ \overline{\partial}f_i = 0 $, so $ \overline{\partial_E}\sigma = 0 $.
+\end{proof}
+
+Vice versa if $ \nabla : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_{X, \CC}^1 \otimes E} $ is a connection and $ X $ is a complex manifold, then
+$$ \Omega_{X, \CC}^1 \xrightarrow{\sim} \Omega_X^{1, 0} \oplus \Omega_X^{0, 1}, \qquad \Omega_{X, \CC}^1 \otimes E = \br{\Omega_X^{1, 0} \otimes E} \oplus \br{\Omega_X^{0, 1} \otimes E}. $$
+Then for all $ \sigma $,
+$$ \nabla\sigma = \nabla^{1, 0}\sigma + \nabla^{0, 1}\sigma, $$
+where
+$$ \nabla^{1, 0} : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_X^{1, 0} \otimes E}, \qquad \nabla^{0, 1} : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_X^{0, 1} \otimes E}. $$
+
+\begin{theorem}
+Assume $ X $ is a complex manifold and $ E $ is a holomorphic Hermitian vector bundle of rank $ r $. Then there exists a unique connection
+$$ \nabla_E : \C^\infty\br{X, E} \to \C^\infty\br{X, \Omega_{X, \CC}^1 \otimes E}, $$
+such that $ \nabla_E^{0, 1} = \overline{\partial_E} $, defined in Proposition \ref{prop:5.9}, and $ \nabla_E $ is compatible with $ h $.
+\end{theorem}
+
+$ \nabla_E $ is called the \textbf{Chern connection} and $ \nabla_E^2 $ is called the \textbf{Chern curvature}.
+
+\begin{proof}
+Fix $ x \in X $, on $ U \ni x $. There exists a local holomorphic frame $ s_1, \dots, s_r $. Let $ H $ be the matrix defining the metric $ h $ on $ U $, so $ H = \br{h_{ij}} $ is an $ \br{r \times r} $-matrix for $ h_{ij} \in \C^\infty\br{U} $. Define the $ \br{r \times r} $-matrix $ \partial H = \br{\partial h_{ij}} $ for $ \partial h_{ij} \in \C^\infty\br{U, \Omega_X^{1, 0}} $. We define
+$$ A = \overline{H}^{-1} \cdot \partial\overline{H}, $$
+an $ \br{r \times r} $-matrix of $ 1 $-forms on $ U $. This $ A $ will be the matrix defining $ \nabla_E $. Let $ \sigma \overset{U}{=} \sum_i f_is_i \in \C^\infty\br{U, E} $ where $ f_i \in \C^\infty\br{U} $. Then
+$$ \nabla_E\sigma \overset{U}{=} A \cdot f + \d f. $$
+Let $ A = \br{a_{ij}} $ where by definition of $ A $, $ a_{ij} $ are $ \br{1, 0} $-forms. Thus
+$$ \nabla_E^{0, 1}\sigma = A^{0, 1} \cdot f + \overline{\partial}f \overset{U}{=} \overline{\partial_E}\sigma. $$
+Recall that $ \nabla $ associated to $ A $ is compatible with $ h $ if and only if $ \D H = A^\intercal \cdot H + H \cdot \overline{A} $. Since $ H $ is Hermitian, it follows that $ H^\intercal = \overline{H} $, so
+$$ A^\intercal H = \br{\overline{H}^{-1} \cdot \partial\overline{H}}^\intercal \cdot H = \br{\partial\overline{H}}^\intercal \cdot \br{\overline{H}^{-1}}^\intercal \cdot H = \partial H \cdot H^{-1} \cdot H = \partial H, $$
+and
+$$ H \cdot \overline{A} = H \cdot \overline{\overline{H}^{-1} \cdot \partial\overline{H}} = H \cdot H^{-1} \cdot \overline{\partial} H = \overline{\partial} H. $$
+Thus
+$$ \D H = \br{\d h_{ij}} = \br{\partial h_{ij} + \overline{\partial}h_{ij}} = \partial H + \overline{\partial H} = A^\intercal \cdot H + H \cdot \overline{A}, $$
+so on $ U $, $ \nabla_E $ is compatible with $ h $.
+\end{proof}
 
 \end{document}
