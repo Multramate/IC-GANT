@@ -15,8 +15,6 @@
 
 \section{Modules over a ring}
 
-\subsection{Modules}
-
 \lecture{1}{Friday}{10/01/20}
 
 Let $ R $ be an \textbf{associative ring with unity}, that is an abelian group written additively with a multiplication which is associative but not necessarily commutative, with an identity $ 1 $ and distributive laws $ a\br{b + c} = ab + ac $ and $ \br{a + b}c = ac + bc $. Then
@@ -31,6 +29,8 @@ is the unit group of $ R $. If $ R^* = R \setminus \cbr{0} $ then $ R $ is a \te
 \item Other rings are polynomial rings $ k\sbr{x} $ for $ k $ a field, more generally $ k\sbr{x_1, \dots, x_p} $, and $ \Mat_n k $, the $ n \times n $ matrices with entries from $ k $, a field.
 \end{itemize}
 \end{example*}
+
+\subsection{Modules}
 
 \begin{definition}
 Let $ R $ be a ring. A \textbf{left $ R $-module} is an abelian group $ M $, written additively, together with a function $ * : R \times M \to M $ satisfying
@@ -72,6 +72,8 @@ Except where otherwise stated, $ R $-modules are assumed to be left $ R $-module
 
 \pagebreak
 
+\subsection{Homomorphisms}
+
 \begin{definition}
 Let $ M_1 $ and $ M_2 $ be $ R $-modules. A map $ f : M_1 \to M_2 $ is an \textbf{$ R $-module homomorphism} if
 \begin{itemize}
@@ -86,10 +88,13 @@ An additive subgroup $ L \le M $ is a \textbf{submodule} if $ rL \le L $ for $ r
 \end{definition}
 
 \begin{theorem}[First isomorphism theorem]
-Let $ f : M_1 \to M_2 $ be an $ R $-module homomorphism. Then $ \Im f \le M_2 $, $ \Ker f \le M_1 $, and $ \Im f \cong M / \Ker f $.
+Let $ f : M_1 \to M_2 $ be an $ R $-module homomorphism. Then
+$$ \Im f \le M_2, \qquad \Ker f \le M_1, \qquad \Im f \cong M / \Ker f. $$
 \end{theorem}
 
 The other isomorphism theorems have $ R $-module versions too.
+
+\subsection{Direct products and direct sums}
 
 \lecture{2}{Monday}{13/01/20}
 
@@ -119,16 +124,19 @@ $$ \function[\pi_A]{A \oplus B}{A}{\br{a, b}}{a}, \qquad \function[\pi_B]{A \opl
 \begin{definition}
 Suppose we have a sequence of $ R $-modules
 $$ \dots \xrightarrow{f_{n - 1}} M_n \xrightarrow{f_n} M_{n + 1} \xrightarrow{f_{n + 1}} \dots, $$
-with maps $ f_n : M_n \to M_{n + 1} $. Say the sequence is \textbf{exact at $ M_n $} if
-$$ \Im f_{n - 1} = \Ker f_n. $$
-The sequence is \textbf{exact} if it is exact everywhere. A \textbf{short exact sequence} is an exact sequence
+with maps $ f_n : M_n \to M_{n + 1} $. Say the sequence is \textbf{exact at $ M_n $} if $ \Im f_{n - 1} = \Ker f_n $. The sequence is \textbf{exact} if it is exact everywhere. A \textbf{short exact sequence} is an exact sequence
 $$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0. $$
-Note that $ \alpha $ is injective and $ \beta $ is surjective. The first isomorphism theorem implies that $ B / \Im \alpha \cong C $, where $ \Im \alpha \cong A $. An easy case is
-$$ B \cong A \oplus C, $$
-with $ \Im \alpha = A \oplus 0 $ and $ \Im \beta = C $, so $ \alpha = \iota_A $ and $ \beta = \pi_\beta $. We say that the short exact sequence \textbf{splits} in this case.
 \end{definition}
 
+\begin{note*}
+$ \alpha $ is injective and $ \beta $ is surjective.
+\end{note*}
+
 \pagebreak
+
+The first isomorphism theorem implies that $ B / \Im \alpha \cong C $, where $ \Im \alpha \cong A $. An easy case is
+$$ B \cong A \oplus C, $$
+with $ \Im \alpha = \Im \iota_A = A \oplus 0 $ and $ \Im \beta = \Im \pi_\beta = C $. We say that the short exact sequence \textbf{splits} in this case.
 
 \begin{example*}
 A non-split short exact sequence of $ \ZZ $-modules, or abelian groups, is
@@ -149,7 +157,7 @@ Such a $ \sigma $ is called a \textbf{section} of $ \beta $.
 \item[$ \implies $] Suppose that the short exact sequence is split. So assume $ B = A \oplus C $, with $ \alpha = \iota_A $ and $ \beta = \pi_C $. Now $ \iota_C $ is a section for $ \beta $.
 \item[$ \impliedby $] For the converse, suppose that $ \sigma $ is a section for $ \beta $. We want $ f : A \oplus C \xrightarrow{\sim} B $ such that $ f \circ \iota_A = \alpha $ and $ \beta \circ f = \pi_C $, so
 $$
-\begin{tikzcd}
+\begin{tikzcd}[row sep=tiny]
 & & A \oplus C \arrow{dr}{\pi_C} \arrow{dd}{f} & & \\
 0 \arrow{r} & A \arrow{ur}{\iota_A} \arrow[swap]{dr}{\alpha} & & C \arrow{r} & 0 \\
 & & B \arrow[swap]{ur}{\beta} & &
@@ -181,11 +189,12 @@ Such a $ \rho $ is a \textbf{retraction} of $ \alpha $.
 \item[$ \implies $] Once again, if the short exact sequence is split then the existence of $ \rho $ is clear.
 \item[$ \impliedby $] Suppose that $ \rho $ is a retraction for $ \alpha $. We define $ f : B \xrightarrow{\sim} A \oplus C $ such that $ f \circ \alpha = \iota_A $ and $ \pi_C \circ f = \beta $. Do this by
 $$ \function[g]{B}{A \oplus C}{b}{\br{\rho\br{a}, \beta\br{c}}}. $$
-Details are omitted.
 \end{itemize}
 \end{proof}
 
 \pagebreak
+
+\section{Projective and injective modules}
 
 \subsection{Projective modules}
 
@@ -208,7 +217,7 @@ Then $ \sigma $ is a section for $ \beta $.
 \begin{proposition}
 An $ R $-module $ M $ is projective if and only if whenever $ \beta : B \to C $ is surjective, and $ f : M \to C $, there exists $ g : M \to B $ such that $ f = \beta \circ g $, so
 $$
-\begin{tikzcd}
+\begin{tikzcd}[row sep=small]
 & & & M \arrow[dashed, swap]{dl}{g} \arrow{d}{f} & \\
 0 \arrow{r} & A \arrow{r} & B \arrow[swap]{r}{\beta} & C \arrow{r} & 0
 \end{tikzcd}.
@@ -237,8 +246,8 @@ X \arrow[bend left=15]{r}{\epsilon} \arrow[swap]{d}{\delta} & M \arrow[bend left
 B \arrow[swap]{r}{\beta} & C
 \end{tikzcd}.
 $$
-Since $ \beta \circ \delta = f \circ \epsilon $, for all $ m \in M $ we have
-$$ \br{\beta \circ g}\br{m} = \br{\beta \circ \delta \circ \sigma}\br{m} = \br{f \circ \epsilon \circ \sigma}\br{m} = \br{f \circ \id_M}\br{m} = f\br{m}. $$
+Since $ \beta \circ \delta = f \circ \epsilon $, we have
+$$ \br{\beta \circ g}\br{m} = \br{\beta \circ \delta \circ \sigma}\br{m} = \br{f \circ \epsilon \circ \sigma}\br{m} = \br{f \circ \id_M}\br{m} = f\br{m}, \qquad m \in M. $$
 So $ \beta \circ g = f $ as required.
 \end{itemize}
 \end{proof}
@@ -247,6 +256,8 @@ So $ \beta \circ g = f $ as required.
 
 Such an $ X $ is the \textbf{pullback} of $ \beta $ and $ f $, and there is a short exact sequence
 $$ 0 \to A \to X \to M \to 0. $$
+
+\subsection{Free modules}
 
 \begin{definition}
 An $ R $-module $ M $ is \textbf{free} if $ M $ is a direct sum of copies of $ R $, so
@@ -395,6 +406,8 @@ If $ k \ne 0, \pm 1 $, then $ f\br{k} = 1 $, and so $ f\br{x} \ne xm $ for $ m \
 \end{example*}
 
 \pagebreak
+
+\section{Hom and tensor product}
 
 \subsection{Hom}
 
@@ -752,6 +765,8 @@ $$ \phi : \br{B \otimes_R M} / \Im \alpha' \to C \otimes_R M. $$
 It is easy to check that $ \phi $ and $ \psi $ are mutually inverse, and so both are isomorphisms. In particular $ \phi $ is injective, and so $ \Im \alpha' = \Ker \beta' $ as required.
 \end{proof}
 
+\subsection{Flat modules}
+
 \begin{definition}
 A left $ R $-module $ M $ is \textbf{flat} if $ A \to B $ is injective implies that $ A \otimes_R M \to B \otimes_R M $ is injective.
 \end{definition}
@@ -809,17 +824,17 @@ and it is easy to check that $ R $ is flat.
 Lemma \ref{lem:projectiveflat1} and Lemma \ref{lem:projectiveflat2} imply Proposition \ref{prop:projectiveflat}, since a projective module is a direct summand of a free module.
 \end{proof}
 
-There exist flat modules which are not projective. We will show that $ \QQ $ as a module for $ \ZZ $ is flat, and it is easy to see it is not projective. To do this we will study the case of modules over a PID.
-
 \pagebreak
 
-\subsection{Modules over a PID}
+\section{Modules over a PID}
 
-Recall that $ R $ is an \textbf{integral domain} if $ R $ is commutative and $ rs = 0 $ implies that $ r = 0 $ or $ s = 0 $ for $ r, s \in R $. An integral domain is a \textbf{PID} if every ideal is $ \abr{a} = \cbr{ra \st r \in R} $ for some $ a \in R $.
+There exist flat modules which are not projective. We will show that $ \QQ $ as a module for $ \ZZ $ is flat, and it is easy to see it is not projective. To do this we will study the case of modules over a PID. Recall that $ R $ is an \textbf{integral domain} if $ R $ is commutative and $ rs = 0 $ implies that $ r = 0 $ or $ s = 0 $ for $ r, s \in R $. An integral domain is a \textbf{PID} if every ideal is $ \abr{a} = \cbr{ra \st r \in R} $ for some $ a \in R $.
 
 \begin{example*}
 The ring $ \ZZ $ is an example of a PID.
 \end{example*}
+
+\subsection{Free and projective modules}
 
 \begin{proposition}
 Let $ R $ be a PID. Then every projective $ R $-module is free. Equivalently, every summand of a free module is free.
@@ -840,11 +855,7 @@ Let $ F = \bigoplus_{s \in S} R $. Let $ \le $ be a well-order on $ S $. For $ s
 $$ R_t = \sp \cbr{e_s \st s \le t}. $$
 So if $ t_1 \le t_2 $ then $ R_{t_1} \le R_{t_2} $. Let
 $$ U_t = U \cap R_t. $$
-So $ t_1 < t_2 $ implies that $ U_{t_1} \le U_{t_2} $. Consider $ \pi_s\br{U_s} $. This is an ideal of $ R $. Hence there exists $ a_s \in R $ such that
-$$ \pi_s\br{U_s} = \abr{a_s}, $$
-since $ R $ is a PID. For each $ s $, let $ u_s \in U_s $ be such that
-$$ \pi_s\br{u_s} = a_s. $$
-In cases where $ a_s = 0 $, assume $ u_s = 0 $. Let
+So $ t_1 < t_2 $ implies that $ U_{t_1} \le U_{t_2} $. Consider $ \pi_s\br{U_s} $. This is an ideal of $ R $. Hence there exists $ a_s \in R $ such that $ \pi_s\br{U_s} = \abr{a_s} $, since $ R $ is a PID. For each $ s $, let $ u_s \in U_s $ be such that $ \pi_s\br{u_s} = a_s $. In cases where $ a_s = 0 $, assume $ u_s = 0 $. Let
 $$ B = \cbr{u_s \st s \in S, \ u_s \ne 0}. $$
 \begin{itemize}
 \item Claim that $ B $ generates $ U $. We will actually prove that $ B_t = \cbr{u_s \st s \le t} $ generates $ U_t $, using transfinite induction. If $ s_0 $ is the least element of $ S $, it is easy to see that $ B_{s_0} = \cbr{u_{s_0}} $ generates $ U_{s_0} $. Suppose $ B_t $ generates $ U_t $ for all $ t < t_0 $. Let $ u \in U_{t_0} $. Then $ \pi_{t_0}\br{u} = ra_{t_0} $. Hence $ \pi_{t_0}\br{u - ru_{t_0}} = 0 $. So $ u - ru_{t_0} $ has zero in the $ t_0 $-coordinate, so $ u - ru_{t_0} \in \sp \cbr{e_s \st s < t_0} $. Clearly $ u - ru_{t_0} \in U $. We have $ u - ru_{t_0} = \sum_{i = 1}^q r_ie_{s_i} $, where $ s_i < t_0 $, and $ s_1 < \dots < s_q $. Then
@@ -863,23 +874,9 @@ Lecture 13 is a problems class.
 
 \pagebreak
 
+\subsection{Injective and divisible modules}
+
 \lecture{14}{Monday}{10/02/20}
-
-\begin{definition}
-Let $ R $ be an integral domain. Let $ M $ be an $ R $-module. Say that $ m \in M $ is a \textbf{torsion element} if there exists $ r \in R \setminus \cbr{0} $ such that $ rm = 0 $.
-\end{definition}
-
-\begin{proposition}
-The torsion elements of $ M $ form a submodule $ \T\br{M} $.
-\end{proposition}
-
-\begin{proof}
-Easy, using the fact that integral domains are commutative.
-\end{proof}
-
-\begin{definition}
-If $ \T\br{M} = 0 $, then $ M $ is \textbf{torsion-free}. If $ \T\br{M} = M $, then $ M $ is a \textbf{torsion module}.
-\end{definition}
 
 \begin{definition}
 Let $ R $ be an integral domain, and $ M $ an $ R $-module. Let $ m \in M $. Say that $ m $ is \textbf{infinitely divisible} if for all $ r \in R \setminus \cbr{0} $ there exists $ l \in M $ such that $ rl = m $.
@@ -920,6 +917,24 @@ We use Baer's criterion. Let $ I $ be an ideal of $ R $, and $ f : I \to M $ an 
 $$ \function{R}{M}{1}{l} $$
 extends $ f $. So Baer's criterion is satisfied, and so $ M $ is injective.
 \end{proof}
+
+\subsection{Flat and torsion-free modules}
+
+\begin{definition}
+Let $ R $ be an integral domain. Let $ M $ be an $ R $-module. Say that $ m \in M $ is a \textbf{torsion element} if there exists $ r \in R \setminus \cbr{0} $ such that $ rm = 0 $.
+\end{definition}
+
+\begin{proposition}
+The torsion elements of $ M $ form a submodule $ \T\br{M} $.
+\end{proposition}
+
+\begin{proof}
+Easy, using the fact that integral domains are commutative.
+\end{proof}
+
+\begin{definition}
+If $ \T\br{M} = 0 $, then $ M $ is \textbf{torsion-free}. If $ \T\br{M} = M $, then $ M $ is a \textbf{torsion module}.
+\end{definition}
 
 \begin{proposition}
 Let $ R $ be an integral domain. Let $ M $ be a flat $ R $-module. Then $ M $ is torsion-free.
@@ -971,7 +986,9 @@ Let $ A $ be a right $ R $-module. Let $ M $ be a left $ R $-module. Suppose $ \
 \end{lemma}
 
 \begin{proof}
-Recall that $ A \otimes_R M = \F_{\ab}\br{A \times M} / K $, where $ K $ is generated by certain relators. If $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A \otimes_R M $, then in $ \F_{\ab}\br{A \times M} $, we have $ \sum_{i = 1}^t \br{a_i \otimes m_i} \in K $. So there exist relators $ s_1, \dots, s_q $, or their negations, such that
+Recall that
+$$ A \otimes_R M = \F_{\ab}\br{A \times M} / K, $$
+where $ K $ is generated by certain relators. If $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A \otimes_R M $, then in $ \F_{\ab}\br{A \times M} $, we have $ \sum_{i = 1}^t \br{a_i \otimes m_i} \in K $. So there exist relators $ s_1, \dots, s_q $, or their negations, such that
 $$ \sum_{i = 1}^t \br{a_i \otimes m_i} = \sum_{i = 1}^q s_i. $$
 Only finitely many elements of $ A $ are involved in the relators $ s_1, \dots, s_q $. Let $ A_0 $ be generated by these together with $ a_1, \dots, a_t $. Then certainly $ a_i \in A_0 $ for all $ i $. And $ \sum_{i = 1}^t \br{a_i \otimes m_i} = \sum_{i = 1}^q s_i $ in $ \F_{\ab}\br{A_0 \times M} $ so $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A_0 \otimes_R M $. Clearly $ A_0 $ is finitely generated.
 \end{proof}
@@ -984,10 +1001,14 @@ Let $ F = \F\br{S} = \bigoplus_{s \in S} R $. Let $ U $ be a finitely generated 
 \end{lemma}
 
 \begin{proof}
-Let $ u_1, \dots, u_q $ be generators for $ U $. Every $ u_i $ is an $ R $-linear combination of elements of $ S $. Since each of these linear combinations mentions only finitely many elements of $ S $, there is a finite subset $ T \subseteq S $ such that every $ u_i $ is an $ R $-linear combination of elements of $ T $. So $ U \le \F\br{T} $. We have $ \F\br{S} = \F\br{T} \oplus \F\br{S \setminus T} $, and so
+Let $ u_1, \dots, u_q $ be generators for $ U $. Every $ u_i $ is an $ R $-linear combination of elements of $ S $. Since each of these linear combinations mentions only finitely many elements of $ S $, there is a finite subset $ T \subseteq S $ such that every $ u_i $ is an $ R $-linear combination of elements of $ T $. So $ U \le \F\br{T} $. We have
+$$ \F\br{S} = \F\br{T} \oplus \F\br{S \setminus T}, $$
+and so
 $$ \F\br{S} \otimes_R M \cong \br{\F\br{T} \otimes_R M} \oplus \br{\F\br{S \setminus T} \otimes_R M}. $$
 It follows that the natural map $ \F\br{T} \otimes_R M \to \F\br{S} \otimes_R M $ is injective.
 \end{proof}
+
+\pagebreak
 
 Lemma \ref{lem:torsionflat2} and Lemma \ref{lem:torsionflat3} tell us that if $ F $ is free and $ U \le F $, and if $ M $ is an $ R $-module, if $ U \otimes_R M \to F \otimes_R M $ is not injective, then there exists a finitely generated $ U_0 < U $ and a finite rank free submodule $ F_0 < F $ such that $ U_0 \otimes_R M \to F_0 \otimes_R M $ is not injective.
 
@@ -998,19 +1019,17 @@ Let $ R $ be a PID. Let $ F $ be free, and $ U \le F $. Let $ M $ be torsion-fre
 
 \begin{proof}
 We assume that $ F = R^n $. We do this by induction on $ n $.
-\begin{itemize}[leftmargin=1in]
+\begin{itemize}[leftmargin=1.5in]
 \item[Base case.] Let $ n = 1 $. So $ F $ is $ R $, and $ U $ is an ideal of $ R $. By Lemma \ref{lem:torsionflat1}, $ U \otimes_R M \to F \otimes_R M $ is injective in this case.
-
-\pagebreak
-
-\item[Inductive step.] The induction hypothesis is $ U \le R^{n - 1} $ implies that $ U \otimes_R M \to R^{n - 1} \otimes_R M $ is injective. Assume $ U \le F = R^n $. Write $ R^n = R \oplus R^{n - 1} $. So we have a short exact sequence
+\item[Inductive hypothesis.] $ U \le F = R^{n - 1} $ implies that $ U \otimes_R M \to F \otimes_R M $ is injective.
+\item[Inductive step.] Assume $ U \le F = R^n $. Write $ R^n = R \oplus R^{n - 1} $. So we have a short exact sequence
 $$ 0 \to R \to R^n \to R^{n - 1} \to 0. $$
 We also have a short exact sequence
-$$ 0 \to U_1 \to U \to \pi_{R^{n - 1}}\br{U} \to 0, \qquad U_1 = U \cap \br{R \oplus 0^{n - 1}}. $$
-Identifying $ R $ with $ R \oplus 0^{n - 1} $, we get a commuting diagram
+$$ 0 \to U_1 \to U \to \pi_{R^{n - 1}}\br{U} \to 0, $$
+where $ U_1 = U \cap \br{R \oplus 0^{n - 1}} $. Identifying $ R $ with $ R \oplus 0^{n - 1} $, we get a commuting diagram
 $$
-\begin{tikzcd}[row sep=tiny]
-0 \arrow{r} & U_1 \arrow{r} \arrow[subset]{d} & U \arrow{r} \arrow[subset]{d} & \pi_{R^{n - 1}}\br{U} \arrow{r} \arrow[subset]{d} & 0 \\
+\begin{tikzcd}
+0 \arrow{r} & U_1 \arrow{r} \arrow{d} & U \arrow{r} \arrow{d} & \pi_{R^{n - 1}}\br{U} \arrow{r} \arrow{d} & 0 \\
 0 \arrow{r} & R \arrow{r} & R^n \arrow{r} & R^{n - 1} \arrow{r} & 0
 \end{tikzcd},
 $$
@@ -1025,9 +1044,15 @@ The initial zero in the bottom row comes from the fact that
 $$ 0 \to R \to R^n \to R^{n - 1} \to 0 $$
 is split, since $ R^n = R \oplus R^{n - 1} $, and so
 $$ R^n \otimes_R M \cong \br{R \otimes_R M} \oplus \br{R^{n - 1} \otimes_R M}. $$
-Now $ f $ is injective by Lemma \ref{lem:torsionflat1}, and $ h $ is injective by the inductive hypothesis. The snake lemma tells us that the sequence $ 0 = \Ker f \to \Ker g \to \Ker h = 0 $ is exact at $ \Ker g $, and so $ \Ker g = 0 $. So $ g $ is injective, and this completes the induction.
+Now $ f $ is injective by Lemma \ref{lem:torsionflat1}, and $ h $ is injective by the inductive hypothesis. The snake lemma tells us that the sequence
+$$ \Ker f \to \Ker g \to \Ker h $$
+is exact at $ \Ker g $. So
+$$ 0 \to \Ker g \to 0 $$
+is exact, and so $ \Ker g = 0 $. So $ g $ is injective, and this completes the induction.
 \end{itemize}
 \end{proof}
+
+\pagebreak
 
 \begin{proof}[Proof of Proposition \ref{prop:torsionflat}]
 Prove that if $ \alpha : A \to B $ is injective, and $ M $ is torsion-free, over a PID $ R $, then $ \alpha' : A \otimes_R M \to B \otimes_R M $ is injective. There exists a free module $ F $ such that $ B $ is quotient of $ F $. So there is a short exact sequence
@@ -1036,8 +1061,8 @@ Now $ A \cong \alpha A = \Im \alpha $. Let $ F_A $ be the $ \delta $-preimage of
 $$ 0 \to K \to F_A \to \alpha A \to 0. $$
 We have a commuting diagram
 $$
-\begin{tikzcd}[row sep=tiny]
-0 \arrow{r} & K \arrow{r} \arrow[cong]{d} & F_A \arrow{r} \arrow[subset]{d} & \alpha A \arrow{r} \arrow[subset]{d} & 0 \\
+\begin{tikzcd}
+0 \arrow{r} & K \arrow{r} \arrow[cong]{d} & F_A \arrow{r} \arrow[hookrightarrow]{d} & \alpha A \arrow{r} \arrow[hookrightarrow]{d} & 0 \\
 0 \arrow{r} & K \arrow{r} & F \arrow{r} & B \arrow{r} & 0
 \end{tikzcd}.
 $$
@@ -1051,6 +1076,75 @@ $$
 is commuting, and exact along rows. Let $ u \in \Ker g \le \alpha A \otimes_R M \cong A \otimes_R M $. Since $ \gamma $ is surjective, there is $ w \in F_A \otimes_R M $ with $ \gamma\br{w} = u $. So $ \br{g \circ \gamma}\br{w} = 0 $. So $ \br{\epsilon \circ f}\br{w} = 0 $. So $ f\br{w} \in \Ker \epsilon = \Im \delta $, so $ f\br{w} = \delta\br{k} $ for $ k \in K \otimes_R M $. Since $ f $ is injective, by Lemma \ref{lem:torsionflat4}, we get $ w = \beta\br{k} \in \Im \beta $. So $ w \in \Ker \gamma $, so $ u = 0 $. Hence $ g $ is injective, as required.
 \end{proof}
 
-We have shown that if $ R $ is a PID, and if $ M $ is torsion-free, then $ M $ is flat.
+\lecture{16}{Friday}{14/02/20}
+
+We have shown that if $ R $ is a PID, and if $ M $ is torsion-free, then $ M $ is flat. For an $ R $-module $ M $
+$$ \text{free} \implies \text{projective} \implies \text{flat} \implies \text{torsion-free}, \qquad \text{injective} \implies \text{divisible}. $$
+Over a PID
+$$ \text{free} \iff \text{projective} \implies \text{flat} \iff \text{torsion-free}, \qquad \text{injective} \iff \text{divisible}. $$
+
+\begin{example*}
+Do we have projective if and only if flat, over a general ring, or over a PID? The answer is no.
+\end{example*}
+
+The $ \ZZ $-module $ \QQ $ is torsion-free, so flat. Is $ \QQ $ projective? Is $ \QQ $ free, since $ \ZZ $ is a PID? Consider a free $ \ZZ $-module $ F = \bigoplus_{s \in S} \ZZ $. Let $ s_0 \in S $. Then let
+$$ x = \br{x_s}_{s \in S} =
+\begin{cases}
+1 & s = s_0 \\
+0 & \text{otherwise}
+\end{cases}
+\in F. $$
+It is clear there are no $ y \in F $ such that $ 2y = x $. So $ x $ is not a divisible element of $ F $. Indeed, $ \D\br{F} = \cbr{0} $. But $ \D\br{\QQ} = \QQ $. Hence $ \QQ \not\cong F $. So $ \QQ $ is an example of a flat module which is not projective.
+
+\pagebreak
+
+\section{Resolutions}
+
+\subsection{Free resolutions}
+
+\begin{definition}
+Let $ M $ be an $ R $-module. A \textbf{resolution}, or \textbf{left resolution}, for $ M $ is a sequence of $ R $-modules $ A_0, A_1, \dots $, with homomorphisms $ d : A_{i + 1} \to A_i $, and also a homomorphism $ A_0 \to M $, such that
+$$ \dots \xrightarrow{d} A_1 \xrightarrow{d} A_0 \to M \to 0 $$
+is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}. So we can talk about free resolutions, projective resolutions, flat resolutions. We do not use the term injective resolution in this context. A \textbf{right resolution}, or \textbf{coresolution}, for $ M $ is a sequence of $ R $-modules $ A^0, A^1, \dots $, with homomorphisms $ d : A^i \to A^{i + 1} $, and $ M \to A^0 $, such that
+$$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} \dots $$
+is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}. An injective resolution always means a right injective resolution.
+\end{definition}
+
+\begin{proposition}
+Let $ M $ be an $ R $-module. Then $ M $ has free, projective, and flat resolutions.
+\end{proposition}
+
+\begin{proof}
+Since free implies projective implies flat, it is enough to show that free resolutions exist. Use the fact that for any module $ L $, there exists a free module $ F $ and $ K \le F $ such that $ L \cong F / K $. So we get a short exact sequence
+$$ 0 \to K \to F \to L \to 0. $$
+It follows that we can find $ F_0, F_1, \dots $, and $ K_0 \le F_0, K_1 \le F_1, \dots $ such that
+$$ 0 \to K_0 \to F_0 \to M \to 0, \qquad 0 \to K_1 \to F_1 \to K_0 \to 0, \dots $$
+are all exact. Since $ K_i \le F_i $, we may consider the maps $ F_{i + 1} \to K_i $ as maps $ F_{i + 1} \to F_i $ with image $ K_i $. But $ K_i $ is the kernel of the map $ F_i \to K_{i - 1} $, so the sequence
+$$ \dots \to F_1 \to F_0 \to M \to 0 $$
+is exact, and a free resolution for $ M $.
+\end{proof}
+
+\subsection{Injective coresolutions}
+
+Injective coresolutions exist too, but the proof is more intricate. It involves making use of properties of the abelian group $ \QQ / \ZZ $.
+
+\begin{proposition}
+Let $ A $ be an abelian group, and let $ a \in A \setminus \cbr{0} $. There is a homomorphism $ f : A \to \QQ / \ZZ $ such that $ f\br{a} \ne 0 $. % has an injective coresolution.
+\end{proposition}
+
+\begin{proof}
+Start by defining $ f_0 : \abr{a} \to \QQ / \ZZ $. If $ a $ has finite order $ t $, then $ f_0 : a \mapsto 1 / t + \ZZ $. If $ a $ has infinite order, then $ f_0 : a \mapsto \tfrac{1}{2} + \ZZ $. We will use Zorn's lemma. Let $ X $ be the set
+$$ \cbr{\br{B, f} \st B \le A, \ a \in B, \ f : B \to \QQ / \ZZ, \ f \ \text{extends} \ f_0}. $$
+Then $ X $ is non-empty, since $ \br{\abr{a}, f_0} \in X $. Define a partial order $ \le $ on $ X $ by $ \br{B_1, f_1} \le \br{B_2, f_2} $ if $ B_1 \le B_2 $ and $ f_2 $ extends $ f $. Let $ \cbr{\br{B_s, f_s} \st s \in S} $ be a chain in $ X $, where $ S $ is a suitable indexing set. Then $ \cbr{B_s \st s \in S} $ is a chain of subgroups of $ A $. So the union $ B = \bigcup_{s \in S} B_s $ is a subgroup of $ A $, containing $ a $. Define
+$$ \function[f]{B}{\QQ / \ZZ}{b}{f_s\br{b}}, \qquad b \in B_s. $$
+This is well-defined since if $ b \in B_t $ then $ f_s\br{b} = f_t\br{b} $. Now $ \br{B, f} $ is an upper bound for $ \cbr{B_s \st s \in S} $ in $ X $. So by Zorn's lemma, $ X $ has a maximal element, which we will call $ \br{B, f} $. We show that $ B = A $. Since $ f\br{a} = f_0\br{a} $, this will complete the proof. Suppose $ x \in A \setminus B $. Then let $ I < \ZZ $ be defined by
+$$ I = \cbr{k \st kx \in B}. $$
+
+\pagebreak
+
+Since $ \ZZ $ is a PID, we have $ I = n\ZZ $ for some $ n $. We have $ \abr{B, x} \le A $, and $ \abr{B, x} \cong B \oplus \abr{x} / \abr{nx - b_0} $, where $ b_0 = nx $ in $ A $. Define
+$$ \function[\phi]{B \oplus \abr{x}}{\QQ / \ZZ}{\br{b, kx}}{f\br{b} + \dfrac{kf\br{b_0}}{n}}, $$
+so sending $ x $ to $ f\br{b_0} / n $. We see that $ \phi\br{nx - b_0} = 0 $, so $ \phi $ induces a map $ B \oplus \abr{x} / \abr{nx - b_0} \to \QQ / \ZZ $, and hence a map $ f' : \abr{B, x} \to \QQ / \ZZ $. But $ f'\br{a} = f_0\br{a} $, so $ \br{\abr{B, x}, f} $ is an element of $ X $ greater than $ \br{B, f} $, contradicting maximality of $ \br{B, f} $. Hence $ B = A $ as required.
+\end{proof}
 
 \end{document}
