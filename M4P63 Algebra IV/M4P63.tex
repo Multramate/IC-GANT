@@ -194,8 +194,6 @@ $$ \function[g]{B}{A \oplus C}{b}{\br{\rho\br{a}, \beta\br{c}}}. $$
 
 \pagebreak
 
-\section{Projective and injective modules}
-
 \subsection{Projective modules}
 
 \lecture{3}{Tuesday}{14/01/20}
@@ -217,7 +215,7 @@ Then $ \sigma $ is a section for $ \beta $.
 \begin{proposition}
 An $ R $-module $ M $ is projective if and only if whenever $ \beta : B \to C $ is surjective, and $ f : M \to C $, there exists $ g : M \to B $ such that $ f = \beta \circ g $, so
 $$
-\begin{tikzcd}[row sep=small]
+\begin{tikzcd}
 & & & M \arrow[dashed, swap]{dl}{g} \arrow{d}{f} & \\
 0 \arrow{r} & A \arrow{r} & B \arrow[swap]{r}{\beta} & C \arrow{r} & 0
 \end{tikzcd}.
@@ -1146,5 +1144,100 @@ Since $ \ZZ $ is a PID, we have $ I = n\ZZ $ for some $ n $. We have $ \abr{B, x
 $$ \function[\phi]{B \oplus \abr{x}}{\QQ / \ZZ}{\br{b, kx}}{f\br{b} + \dfrac{kf\br{b_0}}{n}}, $$
 so sending $ x $ to $ f\br{b_0} / n $. We see that $ \phi\br{nx - b_0} = 0 $, so $ \phi $ induces a map $ B \oplus \abr{x} / \abr{nx - b_0} \to \QQ / \ZZ $, and hence a map $ f' : \abr{B, x} \to \QQ / \ZZ $. But $ f'\br{a} = f_0\br{a} $, so $ \br{\abr{B, x}, f} $ is an element of $ X $ greater than $ \br{B, f} $, contradicting maximality of $ \br{B, f} $. Hence $ B = A $ as required.
 \end{proof}
+
+\lecture{17}{Monday}{17/02/20}
+
+\begin{proposition}
+For every abelian group $ A $, there is an injective abelian group $ I $ such that $ A $ is isomorphic to a subgroup of $ I $.
+\end{proposition}
+
+\begin{proof}
+We know that $ \QQ / \ZZ $ is injective, as a $ \ZZ $-module, since it is divisible, and $ \ZZ $ is a PID. So $ \prod_{s \in S} \QQ / \ZZ $ is also injective. Take $ S = A \setminus \cbr{0} $. Then define, for each $ s \in S $, $ f_s : A \to \QQ / \ZZ $ such that $ f_s\br{s} \ne 0 $. Define
+$$ \function[f]{A}{\prod_{s \in S} \QQ / \ZZ}{a}{\br{f_s\br{a}}_{s \in S}}. $$
+Now if $ s \in A \setminus \cbr{0} $, then $ f_s\br{s} \ne 0 $, so $ f\br{s} \ne 0 $. So $ f $ is injective. It is easy to check that $ f $ is a homomorphism.
+\end{proof}
+
+\begin{proposition}
+Let $ M $ be a right $ R $-module, and let $ A $ be an abelian group. Then $ \Hom_\ZZ\br{M, A} $ is a left $ R $-module, with the $ R $-action defined by $ \br{rf}\br{m} = f\br{mr} $.
+\end{proposition}
+
+\begin{proof}
+This is clearer if we write the map $ f $ on the right instead of the left. Then the proposition becomes $ \br{m}\br{rf} = \br{mr}f $, and it is easy to see this works.
+\end{proof}
+
+\begin{proposition}
+Let $ M $ be a left $ R $-module, and $ A $ an abelian group. Then $ \Hom_\ZZ\br{R, A} $ is a left $ R $-module, and there is a natural isomorphism
+$$ \Hom_R\br{M, \Hom_\ZZ\br{R, A}} \cong \Hom_\ZZ\br{M, A}. $$
+\end{proposition}
+
+\begin{proof}
+Write $ H = \Hom_\ZZ\br{R, A} $. Define
+$$ \function[\Phi]{\Hom_R\br{M, H}}{\Hom_\ZZ\br{M, A}}{f}{\br{m \mapsto f\br{m}\br{1}}}, \qquad m \in M, \qquad 1 \in R. $$
+Check the following.
+\begin{itemize}
+\item $ \Phi\br{f} $ is a homomorphism, since
+\begin{align*}
+\Phi\br{f}\br{m_1 + m_2}
+& = f\br{m_1 + m_2}\br{1} \\
+& = \br{f\br{m_1} + f\br{m_2}}\br{1} \\
+& = f\br{m_1}\br{1} + f\br{m_2}\br{1} & \text{definition of} \ + \ \text{in} \ \Hom_\ZZ\br{R, A} \\
+& = \Phi\br{f}\br{m_1} + \Phi\br{f}\br{m_2}.
+\end{align*}
+\item $ \Phi $ is a homomorphism, since
+\begin{align*}
+\Phi\br{f_1 + f_2}\br{m}
+& = \br{f_1 + f_2}\br{m}\br{1} \\
+& = \br{f_1\br{m} + f_2\br{m}}\br{1} & \text{definition of} \ + \ \text{in} \ \Hom_\ZZ\br{M, A} \\
+& = f_1\br{m}\br{1} + f_2\br{m}\br{1} \\
+& = \Phi\br{f_1}\br{m} + \Phi\br{f_2}\br{m} \\
+& = \br{\Phi\br{f_1} + \Phi\br{f_2}}\br{m} & \text{definition of} \ + \ \text{in} \ \Hom_\ZZ\br{M, A},
+\end{align*}
+so since $ m $ was arbitrary, $ \Phi\br{f_1 + f_2} = \Phi\br{f_1} + \Phi\br{f_2} $.
+\end{itemize}
+
+\pagebreak
+
+Now define
+$$ \function[\Psi]{\Hom_\ZZ\br{M, A}}{\Hom_R\br{M, H}}{p}{\br{m \mapsto \br{r \mapsto p\br{rm}}}}, \qquad m \in M, \qquad r \in R. $$
+Check the following.
+\begin{itemize}
+\item $ \Psi\br{p}\br{m} $ is a homomorphism, since
+\begin{align*}
+\Psi\br{p}\br{m}\br{r_1 + r_2}
+& = p\br{\br{r_1 + r_2}m}
+= p\br{r_1m + r_2m} \\
+& = p\br{r_1m} + p\br{r_2m}
+= \Psi\br{p}\br{m}\br{r_1} + \Psi\br{p}\br{m}\br{r_1}.
+\end{align*}
+\item $ \Psi\br{p} $ is an $ R $-module homomorphism, since
+\begin{align*}
+\Psi\br{p}\br{m_1 + m_2}\br{r}
+& = p\br{r\br{m_1 + m_2}}
+= p\br{rm_1 + rm_2}
+= p\br{rm_1} + p\br{rm_2} \\
+& = \Psi\br{p}\br{m_1}\br{r} + \Psi\br{p}\br{m_2}\br{r}
+= \br{\Psi\br{p}\br{m_1} + \Psi\br{p}\br{m_2}}\br{r},
+\end{align*}
+so $ \Psi\br{p}\br{m_1 + m_2} = \Psi\br{p}\br{m_1} + \Psi\br{p}\br{m_2} $, and for $ h \in H $, we have $ \br{sh}\br{r} = h\br{rs} $, by definition of the $ R $-module structure on $ H $, so
+$$ s\Psi\br{p}\br{m}\br{r} = \Psi\br{p}\br{m}\br{rs} = p\br{rsm} = \Psi\br{p}\br{sm}\br{r}, $$
+so $ s\Psi\br{p}\br{m} = \Psi\br{p}\br{sm} $.
+\item $ \Psi $ is a homomorphism, since
+\begin{align*}
+\Psi\br{p_1 + p_2}\br{m}\br{r}
+& = \br{p_1 + p_2}\br{rm}
+= p_1\br{rm} + p_2\br{rm} \\
+& = \Psi\br{p_1}\br{m}\br{r} + \Psi\br{p_2}\br{m}\br{r}
+= \br{\Psi\br{p_1} + \Psi\br{p_2}}\br{m}\br{r},
+\end{align*}
+so $ \Psi\br{p_1 + p_2} = \Psi\br{p_1} + \Psi\br{p_2} $.
+\end{itemize}
+Then $ \Psi \circ \Phi = \id_{\Hom_R\br{M, H}} $ and $ \Phi \circ \Psi = \id_{\Hom_\ZZ\br{M, A}} $. \footnote{Exercise} Hence $ \Phi $ and $ \Psi $ are isomorphisms.
+\end{proof}
+
+We are interested in the case $ A = \QQ / \ZZ $. Write $ S = \Hom_\ZZ\br{M, \QQ / \ZZ} $. We will show
+\begin{itemize}
+\item $ S $ is injective, as a left $ R $-module, and
+\item there exists, for every $ m \in M \setminus \cbr{0} $, an $ R $-module homomorphism $ f : M \to S $ such that $ f\br{m} \ne 0 $.
+\end{itemize}
 
 \end{document}
