@@ -827,6 +827,7 @@ The set of points where $ \phi $ is regular is called the \textbf{domain of defi
 This is the set of points where it makes sense to assign a value to $ \phi\br{x} $. For $ x \in \dom \phi $, the value $ \phi\br{x} $ is independent of which fraction $ f / g $ we choose to represent $ \phi $, as long as $ g\br{x} \ne 0 $.
 
 \begin{lemma}
+\label{lem:domaindefinition}
 The domain of definition of a rational function $ \phi \in k\br{V} $ is a non-empty Zariski open subset of $ V $.
 \end{lemma}
 
@@ -1320,12 +1321,6 @@ The three polynomials $ Y - X^2, Z - XY, XZ - Y^2 $ are a generating set for $ \
 
 \pagebreak
 
-\subsubsection{Zariski topology on projective space}
-
-We can define the Zariski topology on $ \PP^n $ by saying that the closed subsets are the projective algebraic sets. Observe that $ \AA^n $ is embedded as a Zariski open subset in $ \PP^n $, because the complement $ \PP^n \setminus \AA^n $ is described by the homogeneous polynomial equation $ X_0 = 0 $. The existence of projective closures shows that the Zariski topology on $ \AA^n $ is the same as the subspace topology coming from the Zariski topology on $ \AA^n \subseteq \PP^n $. The terminology projective closure is justified by noting that the smallest projective algebraic set containing $ V \subseteq \AA^n $ which we just described is the same as the closure of $ V $ in the Zariski topology on $ \PP^n $.
-
-\subsubsection{Homogeneous ideals}
-
 I did not actually prove that the projective closure $ \overline{V} $ of $ V \subseteq \AA^n $ is a projective algebraic set, because we constructed $ V $ as the zero set of infinitely many homogeneous polynomials, but said that a projective algebraic set must be defined using finitely many homogeneous polynomials. We can prove that these are equivalent using the Hilbert basis theorem, but it is a little more subtle than in the affine case.
 
 \begin{definition*}
@@ -1359,6 +1354,10 @@ By the Hilbert basis theorem, there exists a finite set $ g_1, \dots, g_r $ of p
 \end{proof}
 
 Thus any set of homogeneous polynomials, even an infinite set, defines a projective algebraic set. We can use Proposition \ref{prop:homogeneousideal} to prove that every projective algebraic set is a finite union of irreducible components, by the same proof as for affine algebraic sets.
+
+\subsubsection{Zariski topology on projective space}
+
+We can define the Zariski topology on $ \PP^n $ by saying that the closed subsets are the projective algebraic sets. Observe that $ \AA^n $ is embedded as a Zariski open subset in $ \PP^n $, because the complement $ \PP^n \setminus \AA^n $ is described by the homogeneous polynomial equation $ X_0 = 0 $. The existence of projective closures shows that the Zariski topology on $ \AA^n $ is the same as the subspace topology coming from the Zariski topology on $ \AA^n \subseteq \PP^n $. The terminology projective closure is justified by noting that the smallest projective algebraic set containing $ V \subseteq \AA^n $ which we just described is the same as the closure of $ V $ in the Zariski topology on $ \PP^n $.
 
 \subsubsection{The projective Nullstellensatz}
 
@@ -1436,7 +1435,7 @@ $$ V' = V \cap \cbr{\sbr{w : x : y} \st w \ne 0} = \cbr{\br{x, y} \in \AA^2 \st 
 There is a regular map given by
 $$ \function[\phi']{V'}{\AA^1}{\br{x, y}}{x}. $$
 Does this extend to a regular map $ \phi : V \to \PP^1 $? We guess it should send the point at infinity $ \sbr{0 : 0 : 1} \in V $ to the point at infinity $ \sbr{0 : 1} \in \PP^1 $. To attempt to construct such a map, write $ \phi' $ in homogeneous coordinates using the embedding $ \AA^2 \hookrightarrow \PP^2 $, so
-$$ \function[\phi]{V}{\PP^1}{\sbr{1 : x : y}}{\sbr{1 : x}}. $$
+$$ \function[\phi']{V'}{\AA^1}{\sbr{1 : x : y}}{\sbr{1 : x}}. $$
 Now we homogenise, that is multiply by powers of the extra coordinate $ w $ to make all the polynomials homogeneous of degree one, so
 $$ \function[\phi]{V}{\PP^1}{\sbr{w : x : y}}{\sbr{w : x}}. $$
 
@@ -1489,7 +1488,7 @@ In practice, every regular map can be written down by specifying lists of polyno
 As another example, taking $ V $ and $ V' $ as in the previous example, let us try to extend the inverse of $ \phi $ from affine to projective algebraic sets. On affine algebraic sets, the inverse of $ \phi' $ is given by
 $$ \function[\psi']{\AA^1}{V'}{t}{\br{t, t^2}}. $$
 In projective coordinates, this is
-$$ \function[\psi]{\PP^1}{V}{\sbr{1 : t}}{\sbr{1 : t : t^2}}. $$
+$$ \function[\psi']{\AA^1}{V'}{\sbr{1 : t}}{\sbr{1 : t : t^2}}. $$
 Homogenising, by inserting powers of $ s $ to make all the polynomials on right hand side degree two, we get
 $$ \function[\psi]{\PP^1}{V}{\sbr{s : t}}{\sbr{s^2 : st : t^2}}. $$
 Now recalling that $ s $ and $ t $ cannot both be zero at the same point, $ s^2, st, t^2 $ are never simultaneously zero for $ \sbr{s : t} \in \PP^1 $, so in this case the single expression $ \sbr{s^2 : st : t^2} $ is enough to define a regular map $ \psi : \PP^1 \to V $ everywhere on $ \PP^1 $. Note that the image of $ \phi $ is indeed contained in $ V $.
@@ -1534,7 +1533,7 @@ Let $ S $ be any topological space, not necessarily Hausdorff. Let $ \cbr{U_\alp
 \begin{proof}
 Let
 $$ Z = \cbr{x \in V \st \phi\br{x} = \psi\br{x}}. $$
-By hypothesis, $ Z $ contains a dense subset of $ V $. Hence in order to show that $ Z = V $, it suffices to show that $ Z $ is closed in $ V $. From the definition of regular maps, we know that we can cover $ V $ by Zariski open sets $ U_\alpha $ such that on each $ U_\alpha $, both $ \phi $ and $ \psi $ are defined by sequences of homogeneous polynomials,
+By hypothesis, $ Z $ contains a dense subset of $ V $. Hence in order to show that $ Z = V $, it suffices to show that $ Z $ is closed in $ V $. From the definition of regular maps, we know that we can cover $ V $ by Zariski open sets $ U_\alpha $ such that on each $ U_\alpha $, both $ \phi $ and $ \psi $ are defined by sequences of homogeneous polynomials, so
 $$ \eval{\phi}_{U_\alpha} = \sbr{f_{\alpha, 0} : \dots : f_{\alpha, m}}, \qquad \eval{\psi}_{U_\alpha} = \sbr{g_{\alpha, 0} : \dots : g_{\alpha, m}}. $$
 By the general topological fact, it suffices to show that $ Z \cap U_\alpha $ is relatively closed in the subspace topology on $ U_\alpha $ for every $ \alpha $. Now
 $$ Z \cap U_\alpha = \cbr{x \in U_\alpha \st \sbr{f_{\alpha, 0}\br{x} : \dots : f_{\alpha, m}\br{x}} = \sbr{g_{\alpha, 0}\br{x} : \dots : g_{\alpha, m}\br{x}}}. $$
@@ -1621,7 +1620,7 @@ Let $ V \subseteq \PP^m $ and $ W \subseteq \PP^n $ be irreducible quasi-project
 \begin{itemize}
 \item $ f_0, \dots, f_n $ are homogeneous of the same degree,
 \item $ f_0, \dots, f_n $ are not all identically zero on $ V $, noting that this looks a little like the $ b \ne 0 $ condition in defining the field of fractions, and
-\item there exists a non-empty Zariski dense open set $ A \subseteq V $ such that, for all $ x \in A $, the homogeneous coordinates $ \sbr{f_0\br{x}, \dots, f_n\br{x}} $ make sense and define a point in $ W $.
+\item there exists a non-empty Zariski dense open set $ A \subseteq V $ such that, for all $ x \in A $, the homogeneous coordinates $ \sbr{f_0\br{x} : \dots : f_n\br{x}} $ make sense and define a point in $ W $.
 \end{itemize}
 Define an equivalence relation $ \sim $ on $ S $ by,
 $$ \br{f_0, \dots, f_n} \sim \br{g_0, \dots, g_n} \qquad \iff \qquad \sbr{f_0\br{x} : \dots : f_n\br{x}} = \sbr{g_0\br{x} : \dots : g_n\br{x}} \in \PP^n, $$
@@ -1631,5 +1630,125 @@ for all $ i $ and $ j $. Having defined $ S $ and $ \sim $, we then define a \te
 \end{definition*}
 
 These two definitions of $ S $ and $ \sim $ are more formal ways of writing the two parts of the definition of a rational map. Observe that this resembles the equivalence relation used in defining the field of fractions. One needs to check that $ \sim $ really is an equivalence relation. This is a detail which was hidden in my informal statement of the definition. This uses the fact that $ V $ is irreducible and Lemma \ref{lem:projectivedense} that if two polynomials are equal on a Zariski dense set, then they are equal everywhere. Just as with fractions, we usually just write down a single representative for a rational map. There is a special notation for representatives of rational maps in $ S $, namely $ \sbr{f_0 : \dots : f_n} $. We have seen examples on problem sheets of UFD-like situations where one can choose a lowest terms representative for the rational map, but this is not always possible.
+
+\pagebreak
+
+\subsubsection{Domain of definition of rational maps}
+
+\lecture{16}{Monday}{17/02/20}
+
+\begin{definition*}
+A rational map $ \phi : V \to W $ is \textbf{regular} at a point $ x \in V $ if there exists at least one list of polynomials $ \br{f_0, \dots, f_n} \in S $ representing $ \phi $ such that $ \sbr{f_0\br{x} : \dots : f_n\br{x}} \ne \sbr{0 : \dots : 0} $ and $ \sbr{f_0\br{x} : \dots : f_n\br{x}} \in W $. If $ \phi $ is regular at $ x \in V $, then the equivalence relation $ \sim $ ensures that the value $ \phi\br{x} \in W $ makes sense and is well-defined, with homogeneous coordinates given by $ \sbr{f_0\br{x} : \dots : f_n\br{x}} $. This point is independent of the choice of polynomials representing $ \phi $, as well as independent of the choice of homogeneous coordinates for $ x $. Just as for affine algebraic sets, we define the \textbf{domain of definition} of a rational map to be the set of points where it is regular, the union of the sets where each representative of the equivalence class makes sense as a map.
+\end{definition*}
+
+\begin{note*}
+Just as in the affine case, when checking whether $ \phi $ is regular at a point $ x $, it is not enough to check whether the representation $ \sbr{f_0 : \dots : f_n} $ which we first used to define the map is regular at $ x $. We have to check whether there exists any representation $ \sbr{g_0 : \dots : g_n} $ for $ \phi $ which is defined at $ x $.
+\end{note*}
+
+\begin{note*}
+Furthermore, the domain of definition of a rational map can change if we change the target set $ W $.
+\end{note*}
+
+\begin{example*}
+Consider the map defined by
+$$ \function{\PP^1}{\PP^2}{\sbr{s : t}}{\sbr{s^2 : st : t^2}}. $$
+This is regular at every point. We could interpret the same formula as defining a rational map $ \PP^1 \dashrightarrow W $ where $ W \subseteq \PP^2 $ is the open set $ W = \cbr{\sbr{w : x : y} \st w \ne 0} $. As a rational map $ \PP^1 \dashrightarrow W $, this is not regular at the point $ \sbr{0 : 1} $ because this point maps to $ \sbr{0 : 0 : 1} \notin W $.
+\end{example*}
+
+\begin{lemma}
+Let $ \phi : V \dashrightarrow W $ be a rational map. The domain of definition of $ \phi $ is a non-empty Zariski open subset of $ V $.
+\end{lemma}
+
+\begin{proof}
+Similar to the affine case, in Lemma \ref{lem:domaindefinition}.
+\end{proof}
+
+It follows immediately from the definition of regular maps between quasi-projective algebraic sets that if a rational map is regular at every point, then it is a regular map. In the affine case, in Lemma \ref{lem:rationalregular}, we had to work to prove that if a rational map is regular at every point, then there is a single polynomial expression which defines the map everywhere. In the quasi-projective case, we do not need to do this because our definition of regular map allows different expressions at different points.
+
+\begin{example*}
+Let $ C $ denote the affine algebraic set
+$$ C = \cbr{\br{x, y} \in \AA^2 \st y = x^3}. $$
+This has projective closure
+$$ \overline{C} = \cbr{\sbr{w : x : y} \in \PP^2 \st w^2y = x^3} = C \cup \cbr{\sbr{0 : 0 : 1}}. $$
+Consider the regular map of affine algebraic sets given by
+$$ \function[\phi]{C}{\AA^1}{\br{x, y}}{x}. $$
+If we try to extend this to a map of projective algebraic sets $ \overline{\phi} : \overline{C} \to \PP^1 $, we would say that for points $ \sbr{1 : x : y} \in C \subseteq \overline{C} $,
+$$ \function[\phi]{C}{\AA^1}{\br{\sbr{1 : x : y}}}{\sbr{1 : x}}, $$
+and this homogenises to
+$$ \rational[\overline{\phi}]{\overline{C}}{\PP^1}{\br{\sbr{w : x : y}}}{\sbr{w : x}}. $$
+Thus $ \overline{\phi} $ is a rational map $ \overline{C} \dashrightarrow \PP^1 $. The above expression for $ \overline{\phi} $ is not defined at the point $ \sbr{0 : 0 : 1} \in \overline{C} $. We can prove that there is no other expression for $ \overline{\phi} $ which is defined at that point, and so $ \overline{\phi} $ is not regular at $ \sbr{0 : 0 : 1} $. See problem sheet $ 3 $, question $ 3 $.
+\end{example*}
+
+Thus a regular map of affine algebraic sets extends to a rational map between their projective closures, but the extended map is not necessarily regular at the points at infinity.
+
+\pagebreak
+
+\subsubsection{Birational maps}
+
+Just as in the affine case, if we have irreducible quasi-projective sets $ V, W, T $ and rational maps $ \phi : V \dashrightarrow W $ and $ \psi : W \dashrightarrow T $, if the image of $ \phi $ is dense in $ W $, then the composite $ \psi \circ \phi $ is a rational map $ V \dashrightarrow T $. The following definitions are the same as the affine case.
+
+\begin{definition*}
+A rational map $ \phi : V \dashrightarrow W $ is \textbf{dominant} if its image is dense in $ W $. A rational map $ \phi : V \dashrightarrow W $ is a \textbf{birational equivalence} if it is dominant and there exists a dominant rational map $ \psi : W \dashrightarrow V $ such that $ \psi \circ \phi = \id_V $ and $ \phi \circ \psi = \id_W $, where these composite rational maps are defined. Irreducible algebraic sets $ V $ and $ W $ are \textbf{birational} if there exists a birational equivalence $ V \dashrightarrow W $.
+\end{definition*}
+
+\begin{note*}
+$ \AA^n $ is birational to $ \PP^n $. Consider the regular map
+$$ \function[\phi]{\AA^n}{\PP^n}{\br{x_1, \dots, x_n}}{\sbr{1 : x_1 : \dots : x_n}}, $$
+and the rational map
+$$ \rational[\psi]{\PP^n}{\AA^n}{\sbr{x_0 : \dots : x_n}}{\br{\dfrac{x_1}{x_0}, \dots, \dfrac{x_n}{x_0}}}. $$
+Each of these is dominant and composing them in either direction gives the identity, so these are birational equivalences. Observe that $ \phi $ is an isomorphism from $ \AA^n $ to an open subset of $ \PP^n $.
+\end{note*}
+
+We can generalise this to show that if $ V $ is any irreducible quasi-projective variety and $ U $ is a Zariski open subset of $ V $, thus $ U $ is also an irreducible quasi-projective variety, then $ U $ is birational to $ V $. Indeed, this is a corollary of the following stronger result, which makes precise the intuition that varieties are birational if and only if they are the same almost everywhere.
+
+\begin{note*}
+We need the concept of quasi-projective varieties to state this lemma, even if $ V $ and $ W $ are both affine or both projective, because it is necessary to interpret the statement that $ A $ and $ B $ are isomorphic.
+\end{note*}
+
+\begin{lemma}
+Irreducible quasi-projective varieties $ V $ and $ W $ are birational if and only if there exist non-empty Zariski open subsets $ A \subseteq V $ and $ B \subseteq W $ such that $ A $ is isomorphic to $ B $, as quasi-projective varieties.
+\end{lemma}
+
+\begin{proof}
+Let $ \phi : V \dashrightarrow W $ and $ \psi : W \dashrightarrow V $ be an inverse pair of rational maps. Let $ A_1 = \dom \phi $ and $ B_1 = \dom \psi $. Then $ B_1 $ is a non-empty open subset of $ W $. Since $ \phi $ induces a continuous map $ A_1 \to W $, $ A = \eval{\phi}_{A_1}^{-1}\br{B_1} $ is an open subset of $ V $. Furthermore, since $ \phi $ is dominant, its image intersects the open set $ B_1 \subseteq W $. Therefore $ A $ is non-empty. Similarly $ B = \eval{\psi}_{B_1}^{-1}\br{A_1} $ is a non-empty open subset of $ W $. One can now check that $ \eval{\phi}_A $ and $ \eval{\psi}_B $ form an inverse pair of isomorphisms between $ A $ and $ B $.
+\end{proof}
+
+If $ V $ is a quasi-projective algebraic set, we define a \textbf{rational function} on $ V $ to be a rational map $ \phi : V \dashrightarrow \AA^1 $. By definition, this is the same as a rational map $ \phi' : V \dashrightarrow \PP^1 $ except that we declare $ \phi $ to be non-regular at points where $ \phi'\br{x} = \infty = \sbr{0 : 1} \in \PP^1 $. We can therefore say
+$$ \phi\br{x} = \sbr{f\br{x} : g\br{x}} = \sbr{1 : \dfrac{g\br{x}}{f\br{x}}} = \dfrac{g\br{x}}{f\br{x}} \in \AA^1, $$
+whenever $ f\br{x} \ne 0 $, for suitable polynomials $ f $ and $ g $. Of course, as always with rational maps, we might need to use different polynomials to evaluate it at different points. The rational functions on $ V $ form a field $ k\br{V} $. Just as in the affine case, $ V $ is birational to $ W $ if and only if $ k\br{V} $ is $ k $-isomorphic to $ k\br{W} $. This allows us to calculate
+$$ k\br{\PP^n} = k\br{\AA^n} = k\br{X_1, \dots, X_n}. $$
+
+\pagebreak
+
+\subsection{Rigidity and images of maps}
+
+\subsubsection{Linear spaces in projective space}
+
+We want to define a fundamental example of a rational map, the projection from a point to a hyperplane. First, we need to make a few other definitions.
+
+\begin{definition*}
+A \textbf{hyperplane} in $ \PP^n $ is the projective algebraic set defined by a single homogeneous linear equation,
+$$ H = \cbr{\sbr{x_0 : \dots : x_n} \in \PP^n \st h_0x_0 + \dots + h_nx_n = 0}, $$
+for some $ h_0, \dots, h_n \in k $, not all zero. More generally, a \textbf{linear subspace} of $ \PP^n $ is a subset defined by any set of homogeneous linear equations.
+\end{definition*}
+
+\begin{example*}
+Examples of linear subspaces are $ \PP^n $ itself with the empty set of equations, $ \emptyset $ with too many equations, and singletons. We cannot define the singleton $ \cbr{\sbr{p_0 : \dots : p_n}} $ by the equations $ x_0 = p_0, \dots, x_n = p_n $ because these are not homogeneous. Instead, we can write homogeneous equations asserting that the ratios between pairs of coordinates are correct, so
+$$ \cbr{\sbr{p_0 : \dots : p_n}} = \cbr{\sbr{x_0 : \dots : x_n} \in \PP^n \st p_ix_j = p_jx_i \ \text{for all} \ i, j}. $$
+\end{example*}
+
+If $ \Lambda $ is a linear subspace of $ \PP^n $, then the affine cone $ \C\br{\Lambda} $, the set of points in $ \AA^{n + 1} $ satisfying the same equations as $ \Lambda $, is a vector subspace of $ k^{n + 1} $. As a vector space, we know what is meant by $ \dim \C\br{\Lambda} $. We define
+$$ \dim \Lambda = \dim \C\br{\Lambda} - 1. $$
+We have not yet defined the dimension of an arbitrary algebraic set. This definition is only for linear subspaces of projective space. The $ -1 $ is because $ \C\br{\Lambda} $ contains a line for each point in $ \Lambda $.
+
+\begin{example*}
+$ \PP^n $ has dimension $ n $, a hyperplane has dimension $ n - 1 $, and a point has dimension zero.
+\end{example*}
+
+If $ \Lambda $ is a linear subspace of $ \PP^n $ of dimension $ d $, then $ \C\br{\Lambda} \cong k^{d + 1} $, as a vector space, and $ \Lambda = \br{\C\br{\Lambda} \setminus \cbr{0}} $ modulo multiplying by scalars, so $ \Lambda \cong \PP^d $.
+
+\begin{definition*}
+A \textbf{line} in $ \PP^n $ is a linear subspace of dimension one.
+\end{definition*}
 
 \end{document}
