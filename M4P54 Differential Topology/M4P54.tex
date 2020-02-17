@@ -1220,32 +1220,31 @@ Follows from the fact and Lemma \ref{lem:2.35}.
 
 Let $ M $ be a manifold, and let $ \omega \in \Omega_\c^p\br{M} $. Then $ \d\omega \in \Omega_\c^{p + 1}\br{M} $ and $ \d^2 = 0 $, so
 $$ \Omega_\c^p\br{M} \xrightarrow{\d} \Omega_\c^{p + 1}\br{M} \xrightarrow{\d} \dots. $$
-Let
+
+\begin{definition}
+The \textbf{$ p $-th compactly supported de Rham cohomology group} is
 $$ \H_\c^p\br{M} = \ZZZ_\c^p\br{M} / \BBB_\c^p\br{M} = \Ker \br{\d : \Omega_\c^p\br{M} \to \Omega_\c^{p + 1}\br{M}} / \Im \br{\d : \Omega_\c^{p - 1}\br{M} \to \Omega_\c^p\br{M}}. $$
+\end{definition}
 
 \begin{example*}
 If $ M $ is compact, then
 $$ \H_\c^p\br{M} = \H^p\br{M}, \qquad p \ge 0. $$
 \end{example*}
 
-\begin{lemma}
+\begin{proposition}
 Let $ M $ be a non-compact connected manifold. Then
 $$ \H_\c^0\br{M} = 0. $$
-\end{lemma}
+\end{proposition}
 
-Recall if $ M $ is connected $ \H^0\br{M} = \RR $.
+Recall if $ M $ is connected $ \H^0\br{M} = \RR $, since $ \H^0\br{M} = \cbr{f \ \text{constant on} \ M} $.
 
 \begin{proof}
-$ \H^0\br{M} = \cbr{f \ \text{constant on} \ M} $ and $ \H_\c^0\br{M} = \cbr{f \ \text{constant on} \ M \ \text{and with compact support}} $. Since $ M $ is non-compact, if $ f \in \Omega_\c^0\br{M} $, then $ \supp f \subsetneq M $. Thus there exists $ x \in M $ such that $ f\br{x} = 0 $, so $ f \equiv 0 $, since $ f $ is constant.
+$ \H_\c^0\br{M} = \cbr{f \ \text{constant on} \ M \ \text{and with compact support}} $. Since $ M $ is non-compact, if $ f \in \Omega_\c^0\br{M} $, then $ \supp f \subsetneq M $. Thus there exists $ x \in M $ such that $ f\br{x} = 0 $, so $ f \equiv 0 $, since $ f $ is constant.
 \end{proof}
 
-Let $ f : M \to N $ be a smooth morphism between manifolds, and let $ \omega \in \Omega_\c^p\br{N} \subset \Omega^p\br{N} $. Then $ f^*\omega \in \Omega^p\br{M} $, and $ \supp f^*\omega \subset f^{-1}\br{\supp \omega} $, which is not compact in general, so $ f^*\omega \notin \Omega_\c^p\br{M} $ in general.
-
-\begin{definition}
-$ f $ is called \textbf{proper} if $ f^{-1}\br{K} $ is compact for all compact subsets $ K \subset N $.
-\end{definition}
-
-If $ f $ is proper, then $ f^* : \Omega_\c^p\br{N} \to \Omega_\c^p\br{M} $ is well-defined.
+\begin{remark}
+Let $ f : M \to N $ be a smooth morphism between manifolds, and let $ \omega \in \Omega_\c^p\br{N} \subset \Omega^p\br{N} $. Then $ f^*\omega \in \Omega^p\br{M} $, and $ \supp f^*\omega \subset f^{-1}\br{\supp \omega} $, which is not compact in general, so $ f^*\omega \notin \Omega_\c^p\br{M} $ in general. If $ f $ is \textbf{proper}, that is $ f^{-1}\br{K} $ is compact for all compact subsets $ K \subset N $, then $ f^* : \Omega_\c^p\br{N} \to \Omega_\c^p\br{M} $ is well-defined.
+\end{remark}
 
 \begin{exercise*}
 If $ f $ is a diffeomorphism then $ f^* $ induces an isomorphism $ \H_\c^p\br{N} \to \H_\c^p\br{M} $.
@@ -1254,24 +1253,20 @@ If $ f $ is a diffeomorphism then $ f^* $ induces an isomorphism $ \H_\c^p\br{N}
 \lecture{15}{Tuesday}{11/02/20}
 
 \begin{definition}
-Let $ M_0 $ and $ M_1 $ be manifolds without boundary, and let $ f_i : M_0 \to M_1 $ be smooth morphisms for $ i = 0, 1 $. Then $ f_0 $ and $ f_1 $ are \textbf{smoothly properly homotopic} if there exists a smooth $ H : M_0 \times \sbr{0, 1} \to M $ such that $ H\br{\cdot, i} = f_i\br{\cdot} $ for $ i = 0, 1 $ and $ H $ is proper.
+Let $ M_0 $ and $ M_1 $ be manifolds without boundary, and let $ f_i : M_0 \to M_1 $ be smooth morphisms for $ i = 0, 1 $. Then $ f_0 $ and $ f_1 $ are \textbf{properly smoothly homotopic} if there exists a smooth $ H : M_0 \times \sbr{0, 1} \to M $ such that $ H\br{\cdot, i} = f_i\br{\cdot} $ for $ i = 0, 1 $ and $ H $ is proper. Then $ M_0 $ and $ M_1 $ are \textbf{properly smoothly homotopically equivalent} if there exist smooth morphisms $ f : M_0 \to M_1 $ and $ g : M_1 \to M_0 $ such that $ f \circ g \sim \id_{M_1} $ and $ g \circ f \sim \id_{M_0} $, where the equivalences are properly homotopic.
 \end{definition}
 
 \begin{notation*}
 $ f_t\br{\cdot} = H\br{\cdot, t} : M_0 \to M_1 $.
 \end{notation*}
 
-\begin{remark*}
+\begin{remark}
 To say that $ H $ is proper is not the same as saying $ f_t $ is proper for all $ t $.
-\end{remark*}
+\end{remark}
 
 \begin{exercise*}
 Find $ H $ such that $ f_t $ is proper but $ H $ is not. A hint is to let $ M_0 = M_1 = \RR $ and $ H : \RR \times \sbr{0, 1} \to \RR $ such that $ f_t^{-1}\br{0} $ is bounded for all $ t $ but $ H^{-1}\br{0} $ is not.
 \end{exercise*}
-
-\begin{definition}
-$ M_0 $ and $ M_1 $ are \textbf{properly smoothly homotopically equivalent} if there exist smooth morphisms $ f : M_0 \to M_1 $ and $ g : M_1 \to M_0 $ such that $ f \circ g \sim \id_{M_1} $ and $ g \circ f \sim \id_{M_0} $, where the equivalences are properly homotopic.
-\end{definition}
 
 \begin{proposition}
 If $ M_0 $ and $ M_1 $ are properly homotopically equivalent then
@@ -1280,7 +1275,7 @@ $$ \H_\c^p\br{M_0} \cong \H_\c^p\br{M_1}. $$
 
 Let $ M $ be a manifold, and let $ i : U \hookrightarrow M $ be an open set. Then there exist linear \textbf{push-forwards}
 $$ i_* : \Omega_\c^p\br{U} \to \Omega_\c^p\br{M}, \qquad p \ge 0. $$
-Let $ \omega \in \Omega_\c^p\br{U} $. Then $ \omega = 0 $ outside $ K \subset U $. We can define
+Let $ \omega \in \Omega_\c^p\br{U} $. Then $ \omega = 0 $ outside $ U $. We can define
 $$ i_*\omega =
 \begin{cases}
 \omega & \text{on} \ U \\
@@ -1294,15 +1289,14 @@ If $ j : V \hookrightarrow U $ and $ i : U \hookrightarrow M $, then $ \br{i \ci
 \begin{lemma}
 Let $ M $ be a manifold, and let $ i : U \hookrightarrow M $ be an immersion such that $ U $ is open. Then for all $ p \ge 0 $, $ i_* : \Omega_\c^p\br{U} \to \Omega_\c^p\br{M} $ commutes with $ \d $, that is
 $$ \d\br{i_*\omega} = i_*\d\omega, \qquad \omega \in \Omega_\c^p\br{U}. $$
-\end{lemma}
-
 In particular if $ \omega $ is closed then $ i_*\omega $ is closed, and if $ \omega $ is exact then $ i_*\omega $ is exact.
+\end{lemma}
 
 \begin{proof}
 $$ \d\br{i_*\omega} =
 \begin{cases}
 \d\omega & \text{on} \ U \\
-0 & \text{otherwise}
+0 & \text{on} \ M \setminus U
 \end{cases}
 = i_*\d\omega. $$
 Let $ \omega $ be closed, so $ \d\omega = 0 $. Then $ \d\br{i_*\omega} = i_*\d\omega = 0 $, so $ i_*\omega $ is closed. Similarly for exactness.
@@ -1311,14 +1305,14 @@ Let $ \omega $ be closed, so $ \d\omega = 0 $. Then $ \d\br{i_*\omega} = i_*\d\o
 Let $ U \hookrightarrow M $ be as before. Then there exist
 $$ i_* : \H_\c^p\br{U} \to \H_\c^p\br{M}, \qquad p \ge 0. $$
 
-\begin{theorem}[Punctured manifolds]
-\label{thm:2.43}
+\begin{proposition}[Punctured manifolds]
+\label{prop:2.43}
 Let $ M $ be a manifold of dimension $ n $, let $ x \in M $, and let $ i : M \setminus \cbr{x} \hookrightarrow M $. Then
 \begin{itemize}
 \item for all $ p \ge 2 $, $ i_* : \H_\c^p\br{M \setminus \cbr{x}} \to \H_\c^p\br{M} $ is an isomorphism.
 \item for all $ p \ge 1 $, if $ M $ is compact $ i_* : \H_\c^p\br{M \setminus \cbr{x}} \to \H_\c^p\br{M} = \H^p\br{M} $ is an isomorphism.
 \end{itemize}
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 \hfill
@@ -1326,7 +1320,7 @@ Let $ M $ be a manifold of dimension $ n $, let $ x \in M $, and let $ i : M \se
 \item Injectivity.
 \begin{itemize}
 \item[$ p \ge 2 $.] Let $ \omega \in \Omega_\c^p\br{M \setminus \cbr{x}} $ be closed such that $ i_*\sbr{\omega} = 0 $, so $ \sbr{i_*\omega} = 0 $ in $ \H_\c^p\br{M} $. The goal is $ \sbr{\omega} = 0 $. There exists $ \eta \in \Omega_\c^{p - 1}\br{M} $ such that $ i_*\omega = \d\eta $. By Poincar\'e lemma there exists $ U \subset M $ containing $ x $ such that $ \H^q\br{U} = 0 $ for all $ q \ge 1 $. Then $ i_*\omega = 0 $ in a neighbourhood of $ x $ because $ \supp \omega \subset M \setminus \cbr{x} $, so $ \d\eta = 0 $ in a neighbourhood of $ x $. By taking $ U $ smaller we can assume $ \eta $ is closed. Since $ p \ge 2 $, $ \sbr{\eta} \in \H^{p - 1}\br{U} = 0 $, so $ \eta $ is exact. Then there exists $ \sigma \in \Omega^{p - 2}\br{U} $ such that $ \eta = \d\sigma $ on $ U $. Let $ \br{U, M \setminus \cbr{x}} $ be an open cover of $ M $, let $ \br{f_U, f_{M \setminus \cbr{x}}} $ be a partition of unity, and let $ \eta' = \eta - \d\br{i_*\br{f_U\sigma}} $. On a neighbourhood of $ x $, $ \eta' = 0 $ because $ i_*\br{f_U\sigma} = \sigma $, so $ \supp \eta' \subset M \setminus \cbr{x} $. Thus $ \eta' \in \Omega_\c^{p - 1}\br{M \setminus \cbr{x}} $ and $ \omega = \d\eta' $, so $ \sbr{\omega} = 0 $.
-\item[$ p = 1 $.] The same proof. Let $ \omega \in \Omega_\c^1\br{M \setminus \cbr{x}} $ be closed such that $ \sbr{i_*\omega} = 0 $. There exists $ \eta \in \Omega_\c^0\br{M} $ such that $ i_*\omega = \d\eta $. By taking an open set $ U \subset M $ such that $ x \in U $, we may assume $ \d\eta = 0 $. Then $ \eta $ is constant on $ U $, so $ \eta = c $. Let $ \eta' = \eta - c $. Then $ \eta' = 0 $ on $ U $. If $ M $ is compact then $ \eta' \in \Omega_\c^0\br{M \setminus \cbr{x}} $. Thus $ \omega = \d\eta' $, so $ \sbr{\omega} = 0 $.
+\item[$ p = 1 $.] The same proof. Let $ \omega \in \Omega_\c^1\br{M \setminus \cbr{x}} $ be closed such that $ \sbr{i_*\omega} = 0 $. There exists $ \eta \in \Omega_\c^0\br{M} $ such that $ i_*\omega = \d\eta $. By taking an open set $ U \subset M $ such that $ x \in U $, we may assume $ \d\eta = 0 $, so $ \eta = c $ is constant on $ U $. Let $ \eta' = \eta - c $. Then $ \eta' = 0 $ on $ U $. If $ M $ is compact then $ \eta' \in \Omega_\c^0\br{M \setminus \cbr{x}} $. Thus $ \omega = \d\eta' $, so $ \sbr{\omega} = 0 $.
 \end{itemize}
 \item Surjectivity.
 \begin{itemize}
@@ -1346,7 +1340,7 @@ $$ \H_\c^p\br{\RR^n} =
 0 & \text{otherwise}
 \end{cases}.
 $$
-Recall $ \RR^n \cong \S^n \setminus \cbr{x} $ for $ x \in \S^n $. By Theorem \ref{thm:2.43}, by $ M = \S^n $,
+Recall $ \RR^n \cong \S^n \setminus \cbr{x} $ for $ x \in \S^n $. By Proposition \ref{prop:2.43}, by $ M = \S^n $,
 $$ \H_\c^p\br{\RR^n} = \H_\c^p\br{\S^n} =
 \begin{cases}
 \RR & p = n \\
@@ -1355,6 +1349,8 @@ $$ \H_\c^p\br{\RR^n} = \H_\c^p\br{\S^n} =
 \qquad p \ge 1, $$
 and $ \H_\c^0\br{\RR^n} = 0 $.
 \end{example}
+
+\pagebreak
 
 \lecture{16}{Thursday}{13/02/20}
 
@@ -1412,13 +1408,13 @@ Same proof as Mayer-Vietoris for $ \H^p\br{M} $.
 
 \subsection{Poincar\'e duality}
 
-Let $ M $ be an orientable manifold. Then
-$$ \H^p\br{M} \cong \H_\c^{n - p}\br{M}^*. $$
+Let $ M $ be an orientable manifold. Then $ \H^p\br{M} \cong \H_\c^{n - p}\br{M}^* $, the dual of $ \H_\c^{n - p}\br{M} $.
 
 \begin{proposition}
 Let $ M $ be a manifold. Then the bilinear map
 $$ \function[\cup]{\H^p\br{M} \times \H^q\br{M}}{\H^{p + q}\br{M}}{\br{\sbr{\omega}, \sbr{\eta}}}{\sbr{\omega \wedge \eta}} $$
-is well-defined, and if $ \sbr{\omega} \cup \sbr{\eta} = \sbr{\omega \wedge \eta} $ then $ \sbr{\omega} \cup \sbr{\eta} = \br{-1}^{p \cdot q}\sbr{\eta} \wedge \sbr{\omega} $.
+is well-defined, and
+$$ \sbr{\omega} \cup \sbr{\eta} = \br{-1}^{p \cdot q}\sbr{\eta} \cup \sbr{\omega}. $$
 \end{proposition}
 
 \begin{proof}
@@ -1434,14 +1430,119 @@ $$ \function[\I_M]{\H_\c^n\br{M}}{\RR}{\sbr{\omega}}{\int_M \omega}, $$
 and $ \I_M $ is surjective.
 \end{lemma}
 
-Then $ \I_M $ is called \textbf{integration}.
+$ \I_M $ is called \textbf{integration}.
 
 \begin{proof}
-Let $ \omega \in \Omega_\c^n\br{M} $ such that $ \sbr{\omega} = 0 $, so $ \omega $ is exact. By Stokes $ \int_M \omega = 0 $, so $ \I_M $ is well-defined and it is linear. It is enough to show there exists closed $ \omega \in \Omega_\c^n\br{M} $ such that $ \int_M \omega \ne 0 $. Take a volume form $ \omega_0 $, which exists because $ M $ is oriented. Take $ f \in \C^\infty\br{M} $ for $ f \ge 0 $ and with compact support. Let $ f \cdot \omega_0 \in \Omega_\c^n\br{M} $. Then $ \omega $ is closed because $ \Omega_\c^{n + 1}\br{M} = 0 $ and $ \int_M \omega = \int_M \br{f \cdot \omega_0} > 0 $, by definition of volume forms.
+Let $ \omega \in \Omega_\c^n\br{M} $ such that $ \sbr{\omega} = 0 $, so $ \omega $ is exact. By Stokes $ \int_M \omega = 0 $, so $ \I_M $ is well-defined and it is linear. It is enough to show there exists closed $ \omega \in \Omega_\c^n\br{M} $ such that $ \int_M \omega \ne 0 $. Take a volume form $ \omega_0 $, which exists because $ M $ is oriented. Take $ f \in \C^\infty\br{M} $ for $ f \ge 0 $ and with compact support. Let $ \omega = f \cdot \omega_0 \in \Omega_\c^n\br{M} $. Then $ \omega $ is closed because $ \Omega_\c^{n + 1}\br{M} = 0 $ and $ \int_M \omega = \int_M \br{f \cdot \omega_0} > 0 $, by definition of volume forms.
 \end{proof}
 
 \begin{example}
 Let $ M = \S^n $, and let $ \omega \in \Omega_\c^n\br{M} $ such that $ \int_M \omega = 0 $. We want to show that $ \omega $ is exact. Since $ M $ is compact, $ \H_\c^n\br{M} = \H^n\br{M} = \RR $. By Lemma \ref{lem:2.48} $ \I_M : \H_\c^n\br{M} \to \RR $ is surjective, and $ \H_\c^n\br{M} = \RR $, so $ \I_M $ is injective. Since $ \int_M \omega = 0 $, $ \I_M\br{\sbr{\omega}} = 0 $, so $ \sbr{\omega} = 0 $. Thus $ \omega $ is exact.
 \end{example}
+
+\lecture{17}{Monday}{17/02/20}
+
+Let $ M $ be a connected manifold of dimension $ n $. If $ \omega_2 \in \H_\c^q\br{M} $ then $ \sbr{\omega_1 \wedge \omega_2} \in \H_\c^{p + q}\br{M} $. Then
+$$ \cup : \H^p\br{M} \times \H_\c^q\br{M} \to \H_\c^{p + q}\br{M}. $$
+Let $ M $ be an oriented manifold without boundary of dimension $ n $. Then
+$$ \function[\I_M]{\H_\c^n\br{M}}{\RR}{\sbr{\omega}}{\int_M \omega}. $$
+Choose $ q = n - p $. Then
+$$ \I_M \circ \cup : \H^p\br{M} \times \H_\c^{n - p}\br{M} \to \H_\c^n\br{M} \to \RR. $$
+Recall that if $ \phi : V \times W \to \RR $ is bilinear, then there exists
+$$ \function{V}{W^* = \Hom\br{W, \RR}}{v}{\phi_v}, \qquad \function[\phi_v]{W}{\RR}{w}{\phi\br{v, w}}. $$
+Thus, we get
+$$ \phi : \H^p\br{M} \to \H_\c^{n - p}\br{M}^*. $$
+Poincar\'e duality says that this is an isomorphism.
+
+\begin{example}
+Assume $ M $ is compact and oriented. Then $ \H^p\br{M} \xrightarrow{\sim} \H^{n - p}\br{M} $, so $ \b^p\br{M} = \b^{n - p}\br{M} $.
+\end{example}
+
+\begin{example}
+Let $ U \subset \RR^n $ be an open subset diffeomorphic to $ \RR^n $. Then
+$$ \H^p\br{U} =
+\begin{cases}
+\RR & p = 0 \\
+0 & p > 0
+\end{cases},
+\qquad \H_\c^p\br{U} =
+\begin{cases}
+0 & p < n \\
+\RR & p = n
+\end{cases}.
+$$
+We want to show that Poincar\'e duality holds. We just need to check that Poincar\'e duality holds for $ p = 0 $. It is enough to show that $ \phi : \H^0\br{U} \to \H_\c^n\br{U}^* $ is injective. That is, there exists $ \omega $ such that $ \phi\br{\omega} \ne 0 $. Given $ \omega \in \H^0\br{U} $,
+$$ \function[\phi\br{\omega}]{\H_\c^n\br{U}}{\RR}{\eta}{\int_U \eta \wedge \omega}. $$
+Then $ \omega = c $ is a constant function on $ U $, so
+$$ \function[\phi\br{\omega}]{\H_\c^n\br{U}}{\RR}{\eta}{\int_U c\omega}. $$
+If $ c \ne 0 $ there exists $ \eta $ such that this map is not zero, so $ \phi\br{\omega} \ne 0 $. Thus $ \phi $ is an isomorphism.
+\end{example}
+
+\pagebreak
+
+\begin{lemma}
+Let
+$$ C^1 \xrightarrow{f^1} C^2 \xrightarrow{f^2} C^3 $$
+be exact, where $ C^i $ are vector spaces of finite dimension. Then there exists
+$$ \br{C^3}^* \xrightarrow{\br{f^2}^*} \br{C^2}^* \xrightarrow{\br{f^1}^*} \br{C^1}^*, $$
+which is also exact, where
+$$
+\begin{tikzcd}
+C^1 \arrow{r}{f^1} \arrow[swap]{dr}{\br{f^1}^*\phi} & C^2 \arrow{d}{\phi} \\
+& \RR
+\end{tikzcd}.
+$$
+\end{lemma}
+
+\begin{proof}
+By assumption $ \Ker f^2 = \Im f^1 $. We want to prove $ \Ker \br{f^1}^* = \Im \br{f^2}^* $.
+\begin{itemize}
+\item Let $ \phi \in \Im \br{f^2}^* $. Then there exists $ \psi \in \br{C^3}^* $ such that $ \br{f^2}^*\psi = \phi $, so $ \psi \circ f^2 = \phi $, so $ 0 = \psi \circ f^2 \circ f^1 = \phi \circ f^1 = \br{f^1}^*\phi $, so $ \phi \in \Ker \br{f^1}^* $.
+\item Let $ \phi \in \Ker \br{f^1}^* $. Then $ \phi \circ f^1 = 0 $, so $ \Ker f^2 = \Im f^1 \subset \Ker \phi $, so there exists $ \overline{\phi} : C^2 / \Ker f^2 \to \RR $, so there exists $ \psi : C^3 \to \RR $ extending $ \overline{\phi} $ such that $ \psi \circ f^2 = \phi $, so $ \br{f^2}^*\psi = \phi $, so $ \phi \in \Im \br{f^2}^* $.
+\end{itemize}
+\end{proof}
+
+\begin{lemma}[Five lemma]
+Let
+$$
+\begin{tikzcd}
+C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & C^3 \arrow{r}{f^3} \arrow{d}{\alpha_3} & C^4 \arrow{r}{f^4} \arrow{d}{\alpha_4} & C^5 \arrow{d}{\alpha_5} \\
+D^1 \arrow{r}{g^1} & D^2 \arrow{r}{g^2} & D^3 \arrow{r}{g^3} & D^4 \arrow{r}{g^4} & D^5
+\end{tikzcd},
+$$
+such that the horizontal lines are exact. Suppose
+\begin{itemize}
+\item $ \alpha_1 $ is surjective,
+\item $ \alpha_5 $ is injective, and
+\item $ \alpha_2 $ and $ \alpha_4 $ are isomorphisms.
+\end{itemize}
+Then $ \alpha_3 $ is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item $ \alpha_3 $ is injective. Let $ x \in C^3 $ such that $ \alpha_3\br{x} = 0 $, so if $ y = f^3\br{x} $ then $ \alpha_4\br{y} = 0 $. Since $ \alpha_4 $ is an isomorphism, $ y = 0 $. Then $ x \in \Ker f^3 = \Im f^2 $, so there exists $ z \in C^2 $ such that $ f^2\br{z} = x $. Let $ w = \alpha_2\br{z} $ then $ g^2\br{w} = 0 $, so $ w \in \Ker g^2 = \Im g^1 $. Then there exists $ t \in D^1 $ such that $ g^1\br{t} = w $. Since $ \alpha_1 $ is surjective there exists $ s \in C^1 $ such that $ \alpha_1\br{s} = t $, so
+$$
+\begin{tikzcd}
+s \in C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & z \in C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & x \in C^3 \arrow{r}{f^3} \arrow{d}{\alpha_3} & y \in C^4 \arrow{r}{f^4} \arrow{d}{\alpha_4} & C^5 \arrow{d}{\alpha_5} \\
+t \in D^1 \arrow{r}{g^1} & w \in D^2 \arrow{r}{g^2} & 0 \in D^3 \arrow{r}{g^3} & 0 \in D^4 \arrow{r}{g^4} & D^5
+\end{tikzcd}.
+$$
+We want to show that $ f^1\br{s} = z $, and $ \alpha_2\br{f^1\br{s}} = g^1\br{\alpha_1\br{s}} = g^1\br{t} = w = \alpha_2\br{z} $, so $ f^1\br{s} = z $, since $ \alpha_2 $ is injective. Thus $ x = f^2\br{z} = f^2\br{f^1\br{s}} = 0 $, so $ \alpha_3 $ is injective.
+\item Show that $ \alpha_3 $ is surjective. \footnote{Exercise}
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+We will prove the following.
+
+\begin{theorem}[Poincar\'e duality]
+Assume that $ M $ is an oriented manifold, without boundary, such that there exists a finite open cover $ U = \cbr{U_i} $ such that $ U_{i_1} \cap \dots \cap U_{i_q} $ is $ \emptyset $ or open $ U \subset \RR^n $ such that $ U \cong \RR^n $ is diffeomorphic. Then
+$$ \H^p\br{M} \xrightarrow{\sim} \H_\c^{n - p}\br{M}^*, \qquad p \ge 0, \qquad n = \dim M. $$
+\end{theorem}
+
+Any compact manifold $ M $ admits such a cover.
 
 \end{document}
