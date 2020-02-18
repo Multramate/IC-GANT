@@ -124,7 +124,9 @@ $$ \function[\pi_A]{A \oplus B}{A}{\br{a, b}}{a}, \qquad \function[\pi_B]{A \opl
 \begin{definition}
 Suppose we have a sequence of $ R $-modules
 $$ \dots \xrightarrow{f_{n - 1}} M_n \xrightarrow{f_n} M_{n + 1} \xrightarrow{f_{n + 1}} \dots, $$
-with maps $ f_n : M_n \to M_{n + 1} $. Say the sequence is \textbf{exact at $ M_n $} if $ \Im f_{n - 1} = \Ker f_n $. The sequence is \textbf{exact} if it is exact everywhere. A \textbf{short exact sequence} is an exact sequence
+with maps $ f_n : M_n \to M_{n + 1} $. Say the sequence is \textbf{exact at $ M_n $} if
+$$ \Im f_{n - 1} = \Ker f_n. $$
+The sequence is \textbf{exact} if it is exact everywhere. A \textbf{short exact sequence} is an exact sequence
 $$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0. $$
 \end{definition}
 
@@ -1098,15 +1100,15 @@ It is clear there are no $ y \in F $ such that $ 2y = x $. So $ x $ is not a div
 
 \section{Resolutions}
 
-\subsection{Free resolutions}
-
 \begin{definition}
-Let $ M $ be an $ R $-module. A \textbf{resolution}, or \textbf{left resolution}, for $ M $ is a sequence of $ R $-modules $ A_0, A_1, \dots $, with homomorphisms $ d : A_{i + 1} \to A_i $, and also a homomorphism $ A_0 \to M $, such that
-$$ \dots \xrightarrow{d} A_1 \xrightarrow{d} A_0 \to M \to 0 $$
-is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}. So we can talk about free resolutions, projective resolutions, flat resolutions. We do not use the term injective resolution in this context. A \textbf{right resolution}, or \textbf{coresolution}, for $ M $ is a sequence of $ R $-modules $ A^0, A^1, \dots $, with homomorphisms $ d : A^i \to A^{i + 1} $, and $ M \to A^0 $, such that
-$$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} \dots $$
+Let $ M $ be an $ R $-module. A \textbf{resolution}, or \textbf{left resolution}, for $ M $ is a sequence of $ R $-modules $ A_0, A_1, A_2, \dots $, with homomorphisms $ d : A_{i + 1} \to A_i $, and also a homomorphism $ A_0 \to M $, such that
+$$ \dots \to A_2 \xrightarrow{d} A_1 \xrightarrow{d} A_0 \to M \to 0 $$
+is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}. So we can talk about free resolutions, projective resolutions, flat resolutions. We do not use the term injective resolution in this context. A \textbf{right resolution}, or \textbf{coresolution}, for $ M $ is a sequence of $ R $-modules $ A^0, A^1, A^2, \dots $, with homomorphisms $ d : A^i \to A^{i + 1} $, and $ M \to A^0 $, such that
+$$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} A^2 \to \dots $$
 is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}. An injective resolution always means a right injective resolution.
 \end{definition}
+
+\subsection{Existence}
 
 \begin{proposition}
 Let $ M $ be an $ R $-module. Then $ M $ has free, projective, and flat resolutions.
@@ -1115,14 +1117,12 @@ Let $ M $ be an $ R $-module. Then $ M $ has free, projective, and flat resoluti
 \begin{proof}
 Since free implies projective implies flat, it is enough to show that free resolutions exist. Use the fact that for any module $ L $, there exists a free module $ F $ and $ K \le F $ such that $ L \cong F / K $. So we get a short exact sequence
 $$ 0 \to K \to F \to L \to 0. $$
-It follows that we can find $ F_0, F_1, \dots $, and $ K_0 \le F_0, K_1 \le F_1, \dots $ such that
-$$ 0 \to K_0 \to F_0 \to M \to 0, \qquad 0 \to K_1 \to F_1 \to K_0 \to 0, \dots $$
+It follows that we can find $ F_0, F_1, F_2, \dots $, and $ K_0 \le F_0, K_1 \le F_1, K_2 \le F_2, \dots $ such that
+$$ 0 \to K_0 \to F_0 \to M \to 0, \qquad 0 \to K_1 \to F_1 \to K_0 \to 0, \qquad 0 \to K_2 \to F_2 \to K_1 \to 0, \qquad \dots $$
 are all exact. Since $ K_i \le F_i $, we may consider the maps $ F_{i + 1} \to K_i $ as maps $ F_{i + 1} \to F_i $ with image $ K_i $. But $ K_i $ is the kernel of the map $ F_i \to K_{i - 1} $, so the sequence
-$$ \dots \to F_1 \to F_0 \to M \to 0 $$
+$$ \dots \to F_2 \to F_1 \to F_0 \to M \to 0 $$
 is exact, and a free resolution for $ M $.
 \end{proof}
-
-\subsection{Injective coresolutions}
 
 Injective coresolutions exist too, but the proof is more intricate. It involves making use of properties of the abelian group $ \QQ / \ZZ $.
 
@@ -1234,10 +1234,112 @@ so $ \Psi\br{p_1 + p_2} = \Psi\br{p_1} + \Psi\br{p_2} $.
 Then $ \Psi \circ \Phi = \id_{\Hom_R\br{M, H}} $ and $ \Phi \circ \Psi = \id_{\Hom_\ZZ\br{M, A}} $. \footnote{Exercise} Hence $ \Phi $ and $ \Psi $ are isomorphisms.
 \end{proof}
 
-We are interested in the case $ A = \QQ / \ZZ $. Write $ S = \Hom_\ZZ\br{M, \QQ / \ZZ} $. We will show
-\begin{itemize}
-\item $ S $ is injective, as a left $ R $-module, and
-\item there exists, for every $ m \in M \setminus \cbr{0} $, an $ R $-module homomorphism $ f : M \to S $ such that $ f\br{m} \ne 0 $.
-\end{itemize}
+We are interested in the case $ A = \QQ / \ZZ $. Write $ S = \Hom_\ZZ\br{M, \QQ / \ZZ} $.
+
+\lecture{18}{Tuesday}{18/02/20}
+
+\begin{proposition}
+$ S $ is injective as a left $ R $-module.
+\end{proposition}
+
+\begin{proof}
+Let $ M $ and $ N $ be $ R $-modules, and $ \alpha : M \to N $ an injective homomorphism. By identifying $ M $ with $ \Im \alpha $, we may assume that $ M \le N $, and $ \alpha $ is the inclusion map. Since $ \QQ / \ZZ $ is injective as an abelian group, any $ \ZZ $-module homomorphism $ M \to S $ extends to a homomorphism $ N \to S $. Define
+$$ \function[\Theta]{\Hom_\ZZ\br{N, \QQ / \ZZ}}{\Hom_\ZZ\br{M, \QQ / \ZZ}}{f}{\eval{f}_M}, $$
+the restriction to $ M $. We see that $ \Theta $ is surjective. Similarly, we can define
+$$ \function[\Theta']{\Hom_R\br{N, S}}{\Hom_R\br{M, S}}{f}{\eval{f}_M}. $$
+Then $ \Theta' $ is an abelian group homomorphism. But we know there is a naturally defined isomorphism between $ \Hom_R\br{M, S} $ and $ \Hom_\ZZ\br{M, \QQ / \ZZ} $. So we get
+$$
+\begin{tikzcd}
+\Hom_\ZZ\br{N, \QQ / \ZZ} \arrow{r}{\Theta} \arrow{d}{\Psi}[swap]{\sim} & \Hom_\ZZ\br{M, \QQ / \ZZ} \arrow{d}{\Psi}[swap]{\sim} \\
+\Hom_R\br{N, S} \arrow[swap]{r}{\Theta'} & \Hom_R\br{M, S}
+\end{tikzcd}.
+$$
+It is easy to see that this diagram commutes. It follows that $ \Theta' $ is surjective. So any $ R $-module homomorphism $ M \to S $ extends to a homomorphism $ N \to S $. Hence $ S $ is injective.
+\end{proof}
+
+\pagebreak
+
+\begin{proposition}
+Let $ M $ be a left $ R $-module, and $ m \in M \setminus \cbr{0} $. Then there exists $ f : M \to S $ such that $ f\br{m} \ne 0 $.
+\end{proposition}
+
+\begin{proof}
+We know there is an abelian group homomorphism $ g : M \to \QQ / \ZZ $ such that $ g\br{m} \ne 0 $. Now $ \Psi\br{g} \in \Hom_R\br{M, S} $, and $ \Psi\br{g}\br{m}\br{1} = g\br{m} \ne 0 $ for $ 1 \in R $, so $ \Psi\br{g}\br{m} $ is not the zero map.
+\end{proof}
+
+\begin{proposition}
+Let $ M $ be a left $ R $-module. There exists an injective $ R $-module $ I $ such that $ M $ is isomorphic to a submodule of $ I $. Equivalently, there exists an injection $ M \to I $.
+\end{proposition}
+
+\begin{proof}
+Same as abelian groups. Let $ T = M \setminus \cbr{0} $. Then $ I = \prod_{t \in T} S $ is injective. Let $ f_t $ be a homomorphism $ M \to S $ such that $ f_t\br{t} \ne 0 $. Then
+$$ \function[f]{M}{I}{m}{\br{f_t\br{m}}_{t \in T}} $$
+is injective, and a homomorphism.
+\end{proof}
+
+\begin{proposition}
+Every $ R $-module admits an injective resolution.
+\end{proposition}
+
+Thus there exists injective $ I_0, I_1, I_2, \dots $ such that
+$$ 0 \to M \to I_0 \to I_1 \to I_2 \to \dots $$
+is exact.
+
+\begin{proof}
+Let $ M $ be an $ R $-module. Then $ M $ injects into some injective module $ I_0 $. Let $ C_0 = I_0 / \Im \br{M \to I_0} $. Then $ C_0 $ injects into some injective $ I_1 $. This induces a map $ I_0 \to I_1 $ whose kernel is $ \Im \br{M \to I_0} $. Further terms in the sequence are constructed in an identical manner.
+\end{proof}
+
+\subsection{Uniqueness}
+
+\begin{proposition}
+Let $ M $ and $ N $ be $ R $-modules, and $ \phi : M \to N $. Let $ \br{P_i} $ be a projective resolution for $ M $, and $ \br{Q_i} $ a projective resolution for $ N $.
+\begin{enumerate}
+\item There exist $ R $-module homomorphisms $ f_i : P_i \to Q_i $ such that the diagram
+$$
+\begin{tikzcd}
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed]{d}{f_2} & P_1 \arrow{r}{d_0} \arrow[dashed]{d}{f_1} & P_0 \arrow{r} \arrow[dashed]{d}{f_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
+\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r} & N \arrow{r} & 0
+\end{tikzcd}
+$$
+commutes.
+\item Let $ g_i : P_i \to Q_i $ be such that the diagram
+$$
+\begin{tikzcd}
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[bend right=30, swap]{d}{f_2} \arrow[bend left=30]{d}{g_2} & P_1 \arrow{r}{d_0} \arrow[bend right=30, swap]{d}{f_1} \arrow[bend left=30]{d}{g_1} & P_0 \arrow{r} \arrow[bend right=30, swap]{d}{f_0} \arrow[bend left=30]{d}{g_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
+\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r} & N \arrow{r} & 0
+\end{tikzcd}
+$$
+commutes. Then there exist homomorphisms $ s_i : P_i \to Q_{i + 1} $ such that
+$$ g_i - f_i =
+\begin{cases}
+s_{i - 1} \circ d_{i - 1} + d_i' \circ s_i & i > 0 \\
+d_0' \circ s_0 & i = 0
+\end{cases},
+$$
+so
+$$
+\begin{tikzcd}
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed, swap]{dl}{s_2} & P_1 \arrow{r}{d_0} \arrow[dashed, swap]{dl}{s_1} & P_0 \arrow{r} \arrow[dashed, swap]{dl}{s_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
+\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r} & N \arrow{r} & 0
+\end{tikzcd}.
+$$
+\end{enumerate}
+\end{proposition}
+
+\pagebreak
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item The map $ q : Q_0 \to N $ is surjective. There is a map $ p : P_0 \to N $, given by composing $ P_0 \to M $ with $ \phi $. Since $ P_0 $ is projective there exists $ f_0 : P_0 \to Q_0 $ such that $ p = q \circ f_0 $. Suppose the maps $ f_0, \dots, f_{t - 1} $ have been constructed, so
+$$
+\begin{tikzcd}
+P_t \arrow{r}{d_{t - 1}} & P_{t - 1} \arrow{r}{d_{t - 2}} \arrow{d}{f_{t - 1}} & P_{t - 2} \arrow{d}{f_{t - 2}} \arrow{r} & \dots \\
+Q_t \arrow{r}{d_{t - 1}'} & Q_{t - 1} \arrow{r}{d_{t - 2}'} & Q_{t - 2} \arrow{r} & \dots
+\end{tikzcd}.
+$$
+Observe that $ d_{t - 2}' \circ f_{t - 1} \circ d_{t - 1} = f_{t - 2} \circ d_{t - 2} \circ d_{t - 1} $, since the existing squares of the diagram commute. But $ d_{t - 2} \circ d_{t - 1} = 0 $. So $ d_{t - 2}' \circ f_{t - 1} \circ d_{t - 1} = 0 $, so $ \Im \br{f_{t - 1} \circ d_{t - 1}} \le \Ker d_{t - 2}' = \Im d_{t - 1}' $. Now the map $ d_{t - 1}' : Q_t \to \Im d_{t - 1}' $ is obviously surjective, and $ P_t $ is projective. So there is a map $ f_t : P_t \to Q_t $ such that $ f_{t - 1} \circ d_{t - 1} = d_{t - 1}' \circ f_t $. Now inductively, maps $ f_i $ exist for all $ i $.
+\end{enumerate}
+\end{proof}
 
 \end{document}
