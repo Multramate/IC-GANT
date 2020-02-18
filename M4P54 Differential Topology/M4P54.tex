@@ -185,7 +185,7 @@ where $ f_I $ is a $ \C^\infty $-function on $ U $ for all $ I $.
 \begin{example}
 Let $ F : M \to N $ be a smooth morphism between manifolds of dimension $ n $, and let $ \omega \in \Omega^n\br{N} $. Locally,
 $$ \omega\br{y} = f\br{y} \d y_1 \wedge \dots \wedge \d y_n, \qquad y \in N, $$
-for some $ f \in \C^\infty $. Proposition \ref{prop:1.8} implies that
+for some $ f \in \C^\infty $. By Proposition \ref{prop:1.8},
 $$ F^*\omega\br{x} = \br{f \circ F}\br{x}\det \D F_x \d x_1 \wedge \dots \wedge \d x_n, \qquad x \in M, $$
 where $ y_i = \p_i \circ F $ and $ \p_i : \RR^n \to \RR $ is the $ i $-th projection.
 \end{example}
@@ -470,7 +470,7 @@ $$ \intd{M}{}{}{\omega} = \int_{\partial M} \omega \in \Omega_\c^n\br{M}. $$
 \begin{proof}
 Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas, and let $ f_\alpha : M \to \RR $ be a partition of unity with respect to this cover. Then $ \sum_\alpha f_\alpha = 1 $ on $ M $, so
 $$ \intd{M}{}{}{\omega} = \intd{M}{}{}{\br{\sum_\alpha f_\alpha\omega}} = \sum_\alpha \intd{M}{}{}{\br{f_\alpha\omega}} = \sum_\alpha \int_{\phi_\alpha\br{U_\alpha}} \br{\phi_\alpha^{-1}}^*\d\br{f_\alpha\omega}. $$
-Proposition \ref{prop:1.16} implies that
+By Proposition \ref{prop:1.16},
 $$ \br{\phi_\alpha^{-1}}^*\d\br{f_\alpha\omega} = \d\br{\br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega}}. $$
 Then $ \br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega} $ is an $ \br{n - 1} $-form on $ \phi_\alpha\br{U_\alpha} $. In coordinates,
 $$ \br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega} = \sum_{j = 1}^n \widetilde{f_\alpha}\omega_j \d x_1 \wedge \dots \wedge \widehat{\d x_j} \wedge \dots \wedge \d x_n, $$
@@ -682,7 +682,7 @@ takes closed forms of $ N $ to closed forms on $ M $ and exact forms of $ N $ to
 \end{proposition}
 
 \begin{proof}
-Proposition \ref{prop:1.16} implies that $ G^*\d = \d G^* $. If $ \omega $ is closed then $ \d G^*\omega = G^*\d\omega = G^*0 = 0 $, so $ G^*\omega $ is closed. If $ \omega = \d\eta $ is exact then $ G^*\omega = \d G^*\eta $ is also exact.
+By Proposition \ref{prop:1.16}, $ G^*\d = \d G^* $. If $ \omega $ is closed then $ \d G^*\omega = G^*\d\omega = G^*0 = 0 $, so $ G^*\omega $ is closed. If $ \omega = \d\eta $ is exact then $ G^*\omega = \d G^*\eta $ is also exact.
 \end{proof}
 
 Thus $ G^* : \ZZZ^p\br{N} \to \ZZZ^p\br{M} $ and $ G^* : \BBB^p\br{N} \to \BBB^p\br{M} $, so there exists a linear map
@@ -1451,7 +1451,7 @@ $$ \I_M \circ \cup : \H^p\br{M} \times \H_\c^{n - p}\br{M} \to \H_\c^n\br{M} \to
 Recall that if $ \phi : V \times W \to \RR $ is bilinear, then there exists
 $$ \function{V}{W^* = \Hom\br{W, \RR}}{v}{\phi_v}, \qquad \function[\phi_v]{W}{\RR}{w}{\phi\br{v, w}}. $$
 Thus, we get
-$$ \phi : \H^p\br{M} \to \H_\c^{n - p}\br{M}^*. $$
+$$ \mu_M : \H^p\br{M} \to \H_\c^{n - p}\br{M}^*. $$
 Poincar\'e duality says that this is an isomorphism.
 
 \begin{example}
@@ -1481,6 +1481,7 @@ If $ c \ne 0 $ there exists $ \eta $ such that this map is not zero, so $ \phi\b
 \pagebreak
 
 \begin{lemma}
+\label{lem:2.53}
 Let
 $$ C^1 \xrightarrow{f^1} C^2 \xrightarrow{f^2} C^3 $$
 be exact, where $ C^i $ are vector spaces of finite dimension. Then there exists
@@ -1539,10 +1540,46 @@ We want to show that $ f^1\br{s} = z $, and $ \alpha_2\br{f^1\br{s}} = g^1\br{\a
 We will prove the following.
 
 \begin{theorem}[Poincar\'e duality]
-Assume that $ M $ is an oriented manifold, without boundary, such that there exists a finite open cover $ U = \cbr{U_i} $ such that $ U_{i_1} \cap \dots \cap U_{i_q} $ is $ \emptyset $ or open $ U \subset \RR^n $ such that $ U \cong \RR^n $ is diffeomorphic. Then
-$$ \H^p\br{M} \xrightarrow{\sim} \H_\c^{n - p}\br{M}^*, \qquad p \ge 0, \qquad n = \dim M. $$
+Assume that $ M $ is an oriented manifold, without boundary, such that there exists a finite open cover $ U = \cbr{U_i} $ such that $ U_{i_1} \cap \dots \cap U_{i_q} $ is $ \emptyset $ or diffeomorphic to $ \RR^n $. Then
+$$ \H^p\br{M} \xrightarrow{\sim} \H_\c^{n - p}\br{M}^*, \qquad p \ge 0, \qquad n = \dim M $$
+is an isomorphism.
 \end{theorem}
 
 Any compact manifold $ M $ admits such a cover.
+
+\lecture{18}{Tuesday}{18/02/20}
+
+\begin{proof}
+Let $ N = \#U $. We proceed by induction on $ N $. Then $ N = 1 $ is ok, so let $ N > 1 $. Let $ U = \bigcup_{i = 1}^{N - 1} U_i $ and $ V = U_N $, so $ M = U \cup V $. Both $ U $ and $ V $, and $ U \cap V $, satisfy Poincar\'e duality by induction. The idea is to use classical Mayer-Vietoris and compact support Mayer-Vietoris, and the five lemma. By Mayer-Vietoris,
+$$ \H^{p - 1}\br{U} \oplus \H^{p - 1}\br{V} \xrightarrow{g} \H^{p - 1}\br{U \cap V} \xrightarrow{\delta} \H^p\br{M} \xrightarrow{f} \H^p\br{U} \oplus \H^p\br{V} \to \dots, $$
+where $ f = \br{i_U^*, i_V^*} $ and $ g = j_V^* - j_U^* $. By compact support Mayer-Vietoris,
+$$ \dots \to \H_\c^{n - p}\br{U} \oplus \H_\c^{n - p}\br{V} \xrightarrow{i} \H_\c^{n - p}\br{M} \xrightarrow{\delta_\c} \H_\c^{n - \br{p - 1}}\br{M} \xrightarrow{j} \H_\c^{n - \br{p - 1}}\br{U} \oplus \H_\c^{n - \br{p - 1}}\br{V}, $$
+where $ j = \br{j_{U*}, -j_{V*}} $ and $ i = i_{U*} + i_{V*} $. Taking the dual, by Lemma \ref{lem:2.53},
+$$ \H_\c^{n - \br{p - 1}}\br{U}^* \oplus \H_\c^{n - \br{p - 1}}\br{V}^* \xrightarrow{j^*} \H_\c^{n - \br{p - 1}}\br{U \cap V}^* \xrightarrow{\delta_\c^*} \H_\c^{n - p}\br{M}^* \xrightarrow{i^*} \H_\c^{n - p}\br{U}^* \oplus \H_\c^{n - p}\br{V}^* \to \dots. $$
+We get a diagram
+$$
+\begin{tikzcd}[column sep=tiny]
+\H^{p - 1}\br{U} \oplus \H^{p - 1}\br{V} \arrow{r}{g} \arrow{d}{\br{-1}^{n_{p - 1}}\mu_U \oplus \mu_V} & \H^{p - 1}\br{U \cap V} \arrow{r}{\delta} \arrow{d}{\br{-1}^{n_{p - 1}}\mu_{U \cap V}} & \H^p\br{M} \arrow{r}{f} \arrow{d}{\br{-1}^{n_p}\mu_M} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r} \arrow{d}{\br{-1}^{n_p}\mu_U \oplus \mu_V} & \dots \\
+\H_\c^{n - \br{p - 1}}\br{U}^* \oplus \H_\c^{n - \br{p - 1}}\br{V}^* \arrow{r}{j^*} & \H_\c^{n - \br{p - 1}}\br{U \cap V}^* \arrow{r}{\delta_\c^*} & \H_\c^{n - p}\br{M}^* \arrow{r}{i^*} & \H_\c^{n - p}\br{U}^* \oplus \H_\c^{n - p}\br{V}^* \arrow{r} & \dots
+\end{tikzcd},
+$$
+where $ n_0 = 1 $ and $ n_p = \br{-1}^pn_{p - 1} $. The goal is to show that $ \mu_M $ is an isomorphism. The idea is by the five lemma, it is enough to show that
+\begin{enumerate}
+\item all the other vertical arrows are isomorphisms, and
+\item the diagram is commutative.
+\end{enumerate}
+We know $ 1 $ is ok by induction on $ N $. We need to show $ 2 $.
+\begin{itemize}
+\item The first square. We want to show that $ \mu_{U \cap V} \circ g = j^* \circ \br{\mu_U \oplus \mu_V} $. Let $ \omega_U \in \Omega^{p - 1}\br{U} $ and $ \omega_V \in \Omega^{p - 1}\br{V} $ be closed forms. We want to show
+$$ \mu_{U \cap V}\br{g\br{\sbr{\omega_U}, \sbr{\omega_V}}} = j^*\br{\mu_U\br{\sbr{\omega_U}}, \mu_V\br{\sbr{\omega_V}}} $$
+in $ \H_\c^{n - \br{p - 1}}\br{U \cap V}^* $. That is, we want to show that on any element of $ \H_\c^{n - \br{p - 1}}\br{U \cap V} $ they coincide. Let $ \eta \in \Omega_\c^{n - \br{p - 1}}\br{U \cap V} $. Recall $ g = j_V^* - j_U^* $. Then
+$$ \int_{U \cap V} g\br{\omega_U, \omega_V} \wedge \eta = \int_U \omega_U \wedge j\br{\eta} + \int_V \omega_V \wedge j\br{\eta}, $$
+since
+$$ g\br{\omega_U, \omega_V} = j_V^*\omega_V - j_U^*\omega_U, \qquad \omega_U \wedge j\br{\eta} = \omega_U \wedge j_{U*}\eta, \qquad \omega_V \wedge j\br{\eta} = \omega_V \wedge j_{V*}\eta. $$
+\item The second square. We want an explicit construction of $ \delta_\c $ and $ \delta $. Let $ \omega \in \Omega^p\br{M} $ be a closed form, and let $ \cbr{f_U, f_V} $ be a partition of the unity with respect to $ \cbr{U, V} $. Define
+$$ \omega_U = f_U \cdot \eval{\omega}_U \in \Omega_\c^p\br{U}, \qquad \omega_V = f_V \cdot \eval{\omega}_V \in \Omega_\c^p\br{V}, $$
+so $ \br{\omega_U, \omega_V} \in \Omega_\c^p\br{U} \oplus \Omega_\c^p\br{V} $. Recall $ i = i_{U*} + i_{V*} $. Then $ i\br{\omega_U, \omega_V} = i_{U*}\omega_U + i_{V*}\omega_V = \omega_U + \omega_V = f_U \cdot \omega + f_V \cdot \omega = \omega $. Since $ \omega $ is closed, $ i\br{\d\omega_U, \d\omega_V} = \d\br{i_{U*}\omega_U} + \d\br{i_{V*}\omega_V} = 0 $, so $ \br{\d\omega_U, \d\omega_V} \in \Ker i = \Im j $. Since $ j $ is injective there exists a unique $ \delta_\c\omega $ such that $ j\br{\delta_\c\omega} = \br{\d\omega_U, \d\omega_V} $.
+\end{itemize}
+\end{proof}
 
 \end{document}
