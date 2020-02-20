@@ -1532,4 +1532,103 @@ is positive definite, where $ z_1, \dots, z_n $ are local coordinates around $ x
 Let $ L = X \times \CC $, let $ s $ be the constant section, and let $ \phi = 1 $ on $ X $. Then $ \Theta_L = 0 $, so $ \c_1\br{L} = 0 $.
 \end{example}
 
+\pagebreak
+
+\lecture{20}{Thursday}{20/02/20}
+
+\begin{example}
+The Fubini-Study metric. Let $ X = \PP_\CC^n $, let
+$$ \OOO\br{-1} = \cbr{\br{\sbr{x}, v} \st \sbr{x} \in \PP_\CC^n, \ v = \lambda x, \ \lambda \in \CC}, $$
+and let $ U_i = \cbr{\sbr{x} \in \PP_\CC^n \st x_i \ne 0} \subset \PP_\CC^n $ be a trivialising open set. Then $ \pi^{-1}\br{U_i} \cong U_i \times \CC $. Define
+$$ \phi_i\br{\sbr{x_0, \dots, x_n}} = -\log \dfrac{\sum_j \abs{x_j}^2}{\abs{x_i}^2} \in \br{0, \infty}. $$
+Then $ \phi_i $ is well-defined. Claim that it defines $ h $ on $ \OOO\br{-1} $. Let
+$$ g_{ij} : \br{U_j \cap U_i} \times \CC \to \br{U_j \cap U_i} \times \CC $$
+be the transition $ g_{ij} = x_i / x_j $ from $ U_j $ to $ U_i $, and let $ h_i = e^{-\phi_i} $ on $ U_i $. Then
+$$ h_j = g_{ij} \cdot h_i \cdot \overline{g_{ij}}, \footnote{Exercise} $$
+which extends globally to $ X $, is a metric on $ \OOO\br{-1} $. Let $ \OOO\br{1} $ be the dual of $ \OOO\br{-1} $. Define
+$$ \psi_i = -\phi_i = \log \dfrac{\sum_j \abs{x_j}^2}{\abs{x_i}^2}. $$
+Then $ \psi_i $ defines a metric on $ \OOO\br{1} $. Claim that $ \OOO\br{1} $ is positive, so
+$$ \br{\dmd{}{2}{z_i}{}{\overline{z_j}}{}\phi} $$
+is positive definite. Let us take $ i = 0 $, so $ z_j = x_j / x_0 $ are coordinates on $ U_0 \cong \CC^n $, and
+$$ \psi_0 = \log \br{1 + \sum_{j = 1}^n \abs{z_j}^2}. $$
+Then
+$$ \dpd{}{z_k}\br{\dpd{}{\overline{z_l}}\psi_0} = \dpd{}{z_k}\br{\dfrac{z_l}{1 + \sum_j \abs{z_j}^2}} = \dfrac{\delta_{kl}\br{1 + \sum_j \abs{z_j}^2} - z_l\overline{z_k}}{\br{1 + \sum_j \abs{z_j}^2}^2}. $$
+Fix $ z \in \CC^n $, and let
+$$ T = \br{\dmd{}{2}{z_k}{}{\overline{z_l}}{}\psi_0\br{z}}. $$
+We want to show that $ T $ is positive definite. If $ n = 1 $, then $ T = \br{1 + \abs{z}^2}^{-2} > 0 $, so ok. If $ n > 1 $, let $ \abr{\cdot, \cdot} $ be the standard inner product on $ \CC^n $ and let $ \norm{\cdot} $ be the norm induced by it. For each $ w \in \CC^n $, we have
+$$ \abr{Tw, w} = \dfrac{\br{1 + \norm{z}^2}\norm{w}^2 - \abs{\abr{z, w}}^2}{\br{1 + \norm{z}^2}^2} $$
+The Cauchy-Schwarz inequality implies $ \abs{\abr{z, w}}^2 \le \norm{z}^2\norm{w}^2 $. Thus,
+$$ \abr{Tw, w} \ge \dfrac{\norm{w}^2}{\br{1 + \norm{z}^2}} \ge 0. $$
+and the equality holds if and only if $ w = 0 $. Thus $ T $ is positive definite and $ \OOO\br{1} $ is a positive line bundle.
+\end{example}
+
+\pagebreak
+
+\section{K\"ahler manifolds}
+
+\subsection{K\"ahler manifolds}
+
+\begin{definition}
+Let $ V \subset \CC^n $ be open. A \textbf{positive} real $ \br{1, 1} $-form on $ V $ is a real $ \br{1, 1} $-form
+$$ \omega = \dfrac{i}{2}\sum_{j, k = 1}^n h_{jk} \d z_j \wedge \d\overline{z_k}, $$
+such that $ \br{h_{jk}} $ is positive definite.
+\end{definition}
+
+If $ z_1 = x_1 + iy_1 $, then $ \tfrac{i}{2} \d z_1 \wedge \d\overline{z_1} = \d x_1 \wedge \d y_1 $. Then $ \omega $ defines a Hermitian metric on $ \T_V^\CC = \abr{\tpd{}{z_i}, \tpd{}{\overline{z_j}}} $. Let $ \omega $ be a positive real $ \br{1, 1} $-form as in the above. Then $ \omega^n $ is a real $ \br{n, n} $-form such that if $ z_j = x_j + iy_j $ then
+$$ \omega^n = \det h_{ij} \d x_1 \wedge \d y_1 \wedge \dots \wedge \d x_n \wedge \d y_n $$
+is a volume form.
+
+\begin{definition}
+Globally, let $ X $ be a complex manifold, and let $ \omega \in \C^\infty\br{X, \Omega_X^{1, 1}} $ be a real $ \br{1, 1} $-form. Then $ \omega $ is said to be \textbf{positive} if for all $ x \in X $, there exists an open $ U \ni x $ and there exists a biholomorphism $ \phi : U \to V \subset \CC^n $ such that $ \br{\phi^{-1}}^*\omega $ is a positive $ \br{1, 1} $-form on $ V $.
+\end{definition}
+
+In particular $ \omega^n $ is a volume form on $ X $, so $ X $ is oriented.
+
+\begin{definition}
+A complex manifold $ X $ is called \textbf{K\"ahler} if there exists a positive real $ \br{1, 1} $-form $ \omega $ on $ X $ such that $ \d\omega = 0 $. Such $ \omega $ is called a \textbf{K\"ahler form} on $ X $.
+\end{definition}
+
+\begin{notation*}
+$ \br{X, \omega} $, where $ X $ is a K\"ahler manifold and $ \omega $ is a K\"ahler form.
+\end{notation*}
+
+\begin{example}
+Let $ X = \CC^n $, and let $ \omega = \tfrac{i}{2}\sum_j \d z_j \wedge \d\overline{z_j} $. Then $ \omega $ is K\"ahler, so $ \CC^n $ is K\"ahler.
+\end{example}
+
+\begin{example}
+Let $ X = \CC^n / \Lambda $ be the complex torus for a lattice $ \Lambda \subset \CC^n $. Claim that $ X $ is K\"ahler. Let $ \omega $ be as in the previous example. Consider
+$$ \function[\psi]{\CC^n}{\CC^n}{z}{z + \lambda}, $$
+for some fixed $ \lambda \in \Lambda $. Then $ \psi^*\omega = \omega $, so $ \omega $ descends to a positive closed real $ \br{1, 1} $-form on $ X $, that is there exists $ \omega' $ on $ X $ such that $ q^*\omega' = \omega $ for $ q : \CC^n \to X $. Thus $ X $ is K\"ahler.
+\end{example}
+
+\begin{example}
+Let $ X = \PP_\CC^n $. Recall that if $ h $ is the Fubini-Study metric on $ \OOO\br{1} $. Then $ i\Theta_h $ is a real positive $ \br{1, 1} $-form and $ \d\Theta_h = 0 $, so $ X $ is K\"ahler.
+\end{example}
+
+\begin{lemma}
+\label{lem:6.7}
+Let $ X $ be a complex manifold, let $ \omega $ be a K\"ahler form on $ X $, and let $ i : Y \hookrightarrow X $ be an immersion for a complex submanifold $ Y $. Then $ i^*\omega $ is a K\"ahler form on $ Y $. In particular $ Y $ is K\"ahler.
+\end{lemma}
+
+\begin{proof}
+Exercise. \footnote{Exercise}
+\end{proof}
+
+\begin{corollary}
+Let $ X $ be a projective manifold. Then $ X $ is K\"ahler.
+\end{corollary}
+
+\begin{proof}
+$ X $, by definition, is a complex submanifold of $ \PP_\CC^n $. By the previous example $ \PP_\CC^n $ is K\"ahler, so $ X $ is K\"ahler by Lemma \ref{lem:6.7}.
+\end{proof}
+
+\begin{fact*}
+Every compact complex submanifold of $ \PP_\CC^n $ is a projective manifold.
+\end{fact*}
+
+\begin{example*}
+Let $ X $ be a complex manifold of dimension one. Then $ X $ is K\"ahler. \footnote{Exercise}
+\end{example*}
+
 \end{document}
