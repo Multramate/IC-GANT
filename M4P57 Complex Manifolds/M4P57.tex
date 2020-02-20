@@ -1037,6 +1037,8 @@ $$ 0 = \d^2\omega = \br{\partial + \overline{\partial}}\br{\br{\partial + \overl
 Then $ \d^2\omega $ is a $ \br{p + q + 2} $-form, $ \partial^2\omega $ is a $ \br{p + 2, q} $-form, $ \partial\overline{\partial}\omega + \overline{\partial}\partial\omega $ is a $ \br{p + 1, q + 1} $-form, and $ \overline{\partial}^2\omega $ is a $ \br{p, q + 2} $-form. Forms of the same type in the decomposition of $ \d^2\omega $ must coincide.
 \end{proof}
 
+\subsection{Dolbeault cohomology}
+
 Let $ X $ be a complex manifold. Fix $ p, q \ge 0 $. Let
 \begin{align*}
 \ZZZ^{p, q}\br{X}
@@ -1049,7 +1051,7 @@ and let
 & = \Im \br{\overline{\partial} : \C^\infty\br{X, \Omega_X^{p, q - 1}} \to \C^\infty\br{X, \Omega_X^{p, q}}} \\
 & = \cbr{\omega \in \C^\infty\br{X, \Omega_X^{p, q}} \st \exists \eta \in \C^\infty\br{X, \Omega_X^{p, q - 1}}, \ \omega = \overline{\partial}\eta}.
 \end{align*}
-Since $ \overline{\partial}^2 = 0 $ we have $ \BBB^{p, q}\br{X} \subset \ZZZ^{p, q}\br{X} $ for all $ p $ and $ q $. The \textbf{Dolbeault cohomology} is
+Since $ \overline{\partial}^2 = 0 $ we have $ \BBB^{p, q}\br{X} \subset \ZZZ^{p, q}\br{X} $ for all $ p $ and $ q $. The \textbf{Dolbeault cohomology group} of $ X $ is
 $$ \H^{p, q}\br{X} = \ZZZ^{p, q}\br{X} / \BBB^{p, q}\br{X}. $$
 
 \pagebreak
@@ -1060,7 +1062,7 @@ $$ \H^{p, q}\br{X} = \H^{p, q}\br{Y}. $$
 \end{exercise*}
 
 If $ \H^{p, q}\br{X} $ is finite dimensional then we define the \textbf{Hodge numbers} of $ X $ as
-$$ \h^{p, q} = \dim_\CC \H^{p, q}\br{X}. $$
+$$ \h^{p, q}\br{X} = \dim_\CC \H^{p, q}\br{X}. $$
 
 \lecture{13}{Thursday}{06/02/20}
 
@@ -1430,25 +1432,104 @@ since $ \partial\overline{\partial} + \overline{\partial}\partial = 0 $.
 
 \pagebreak
 
-\subsection{Line bundles}
+\subsection{De Rham cohomology}
+
+Given a complex manifold $ X $, we define
+\begin{align*}
+\ZZZ^k\br{X}
+& = \Ker \br{\d : \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X, \Omega_{X, \CC}^{k + 1}}}, \qquad k \ge 0 \\
+& = \cbr{\omega \in \C^\infty\br{X, \Omega_{X, \CC}^k} \st \d\omega = 0},
+\end{align*}
+and we define
+\begin{align*}
+\BBB^k\br{X}
+& = \Im \br{\d : \C^\infty\br{X, \Omega_{X, \CC}^{k - 1}} \to \C^\infty\br{X, \Omega_{X, \CC}^k}}, \qquad k \ge 1 \\
+& = \cbr{\omega \in \C^\infty\br{X, \Omega_{X, \CC}^k} \st \exists \eta \in \C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}, \ \omega = \d\eta}.
+\end{align*}
+For convenience, we define $ \BBB^0 = 0 $. Since $ \d \circ \d = 0 $, it follows that $ \BBB^k\br{X} \subset \ZZZ^k\br{X} $ for each $ k \ge 0 $. Thus, we may define
+$$ \H^k\br{X, \CC} = \ZZZ^k\br{X} / \BBB^k\br{X}. $$
+The group $ \H^k\br{X, \CC} $ is called the \textbf{de Rham cohomology group} of $ X $. If it is finite dimensional, then their dimension
+$$ \h^k\br{X} = \dim \H^k\br{X, \CC} $$
+is called the \textbf{Betti number} of $ X $.
+
+\begin{remark}
+If $ X $ and $ X' $ are diffeomorphic complex manifolds then $ \H^k\br{X, \CC} \cong \H^k\br{X', \CC} $ for any $ k \ge 0 $. The same result is not true for the Dolbeault cohomology groups.
+\end{remark}
+
+\subsection{Holomorphic line bundles}
 
 Let $ X $ be a complex manifold, let $ L $ be a complex line bundle, a vector bundle of rank one, and let $ \nabla $ be a connection on $ L $. Then $ \Theta_\nabla $ is a $ \C^\infty $-linear operator. The idea is $ L^* \otimes L = \Hom\br{L, L} $, so $ \Theta_\nabla \in \C^\infty\br{X, \Omega_{X, \CC}^2} $.
 
 \begin{proposition}
-The curvature of $ \nabla $ defines a global $ 2 $-form $ \Theta_\nabla \in \C^\infty\br{X, \Omega_{X, \CC}^2} $ such that
+\hfill
 \begin{enumerate}
-\item $ \d\Theta_\nabla = 0 $, and
-\item if $ \nabla' $ is also a connection then there exists a $ 1 $-form $ \eta $ such that $ \Theta_{\nabla'} - \Theta_\nabla = \d\eta $.
+\item The curvature of $ \nabla $ defines a global $ 2 $-form $ \Theta_\nabla \in \C^\infty\br{X, \Omega_{X, \CC}^2} $ such that $ \d\Theta_\nabla = 0 $.
+\item If $ \nabla' $ is also a connection then there exists a $ 1 $-form $ \eta $ such that $ \Theta_{\nabla'} - \Theta_\nabla = \d\eta $.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-Let $ U' \subset X $ be another open set trivialising $ L $, and let $ g : \br{U \cap U'} \times \CC \to \br{U \cap U'} \times \CC $. Recall that if $ \br{a'} = A' $ is the matrix representing $ \nabla $ with respect to the trivialisation on $ U $, then $ a' = g^{-1} \cdot \d g + a $, so
-$$ \d a' = \d\br{g^{-1} \cdot \d g} + \d a = g^{-2} \cdot \d g \wedge \d g + g^{-1} \cdot \d^2g + \d a = \d a, $$
-since $ \d g^{-1} = g^{-2} \cdot \d g $. \footnote{Exercise} Thus $ \d a = \d a' $ does not depend on $ U $, so $ \d a $ is a global $ 2 $-form on $ X $.
+\hfill
 \begin{enumerate}
-\item Let $ x \in X $, and let $ x \in U $ be open with a non-zero local section $ s \in \C^\infty\br{U, L} $. There exists $ A = \br{a} $ with $ a $ a $ 1 $-form on $ U $ representing $ \nabla $. That is, if $ \sigma = fs $ where $ f \in \C^\infty\br{U} $ then $ \nabla\sigma \overset{U}{=} f \cdot a + \d f $ and $ \nabla^2\sigma = f \cdot \Theta_\nabla $. Recall that $ \Theta_\nabla = a \wedge a + \d a = \d a $ is a $ 2 $-form on $ U $, since $ a $ is a $ 1 $-form. Note that $ \d\Theta_\nabla = \d^2a = 0 $, so $ 1 $ holds.
+\item Let $ x \in X $, and let $ x \in U $ be open with a non-zero local section $ s \in \C^\infty\br{U, L} $. There exists $ A = \br{a} $ with the $ 1 $-form $ a $ on $ U $ representing $ \nabla $. That is, if $ \sigma = fs \in \C^\infty\br{U, L} $ where $ f \in \C^\infty\br{U} $, then $ \nabla\sigma \overset{U}{=} f \cdot a + \d f $ and $ \nabla^2\sigma = f \cdot \Theta_\nabla $. Recall that $ \Theta_\nabla = a \wedge a + \d a = \d a $ is a $ 2 $-form on $ U $, since $ a $ is a $ 1 $-form. Note that $ \d\Theta_\nabla = \d^2a = 0 $, so $ 1 $ holds. Let $ U' \subset X $ be another open set trivialising $ L $, and let
+$$ g : \br{U \cap U'} \times \CC \to \br{U \cap U'} \times \CC $$
+be the transition. Recall that if $ \br{a'} = A' $ is the matrix representing $ \nabla $ with respect to the trivialisation on $ U $, then $ a' = g^{-1} \cdot \d g + a $, so
+$$ \d a' = \d\br{g^{-1} \cdot \d g} + \d a = g^{-2} \cdot \d g \wedge \d g + g^{-1} \cdot \d^2g + \d a = \d a, $$
+since $ \d g^{-1} = g^{-2} \cdot \d g $. \footnote{Exercise} Thus $ \Theta_{\nabla'} = \d a' = \d a $ does not depend on $ U $, so $ \Theta_{\nabla'} $ is a global $ 2 $-form on $ X $.
+
+\lecture{19}{Thursday}{20/02/20}
+
+\item Let $ \nabla' $ be also a connection on $ L $. On $ U $, let $ b $ be the $ 1 $-form representing $ \nabla' $ so that $ \Theta_{\nabla'} \overset{U}{=} \d b $, so $ \Theta_{\nabla'} - \Theta_\nabla \overset{U}{=} \d\br{b - a} $. Let $ U' $, $ g $, and $ a' $ be as above, and let $ b' $ be the $ 1 $-form representing $ \nabla' $ on $ U' $. Then
+$$ b' - a' = \br{g^{-1} \cdot \d g + b} - \br{g^{-1} \cdot \d g + a} = b - a. $$
+Thus $ \eta = b - a $ is a global $ 1 $-form.
 \end{enumerate}
 \end{proof}
+
+\pagebreak
+
+\begin{remark}
+Thus, if $ L $ is a line bundle on a complex manifold $ X $, there exists a $ 2 $-form $ \Theta_\nabla $ on $ X $ such that $ \sbr{\Theta_\nabla} $ does not depend on $ \nabla $, and depends only on $ L $, as an element in $ \H^2\br{X, \CC} $, the de Rham cohomology over $ \CC $. We can define
+$$ \c_1\br{L} = \sbr{\dfrac{i}{2\pi}\Theta_\nabla} \in \H^2\br{X, \CC}, $$
+the \textbf{first Chern class} of $ L $. For vector bundles $ E $ of rank $ r $ on $ X $, then we can define
+$$ \c_1\br{E} = \c_1\br{\Lambda^rE}. $$
+\end{remark}
+
+Let $ X $ be a complex manifold, and let $ \br{L, h} $ be a Hermitian holomorphic line bundle. Then there exists a unique Chern connection $ \nabla_L $ compatible with $ h $ and such that $ \nabla_L^{0, 1} = \overline{\partial_L} $. Fix a non-vanishing section $ s \in \C^\infty\br{U, L} $. Then $ h\br{x} = \abr{s, s}_x : U \to \RR $, because $ \abr{v, w} = \overline{\abr{w, v}} $ and $ h $ is positive definite, so
+$$ \phi = -\log h\br{x}, $$
+the \textbf{weight} of $ \br{L, h} $ on $ U $ with respect to $ s $, is well-defined, and $ h = e^{-\phi} $. Let $ a $ be the $ 1 $-form defining $ \nabla_L $. Recall that
+$$ a = h^{-1} \cdot \partial h = e^\phi \cdot \partial e^{-\phi} = e^\phi \cdot \br{-e^{\phi}} \cdot \partial\phi = -\partial\phi, $$
+so
+$$ \Theta_L = \Theta_{\nabla_L} = \d a = \br{\partial + \overline{\partial}}\br{-\partial\phi} = -\overline{\partial}\partial\phi = \partial\overline{\partial}\phi. $$
+In particular $ \Theta_L $ is a $ \br{1, 1} $-form on $ X $.
+
+\begin{remark*}
+Linear algebra. Let $ V $ be a vector space over $ \CC $ of dimension $ n $. Then $ V_\RR $ is a vector space over $ \RR $ of dimension $ 2n $, so $ V_\CC = V_\RR \otimes_\RR \CC $ is a vector space over $ \CC $ of dimension $ 2n $. There exists a conjugation
+$$ \function{V_\CC}{V_\CC}{v}{\overline{v}}. $$
+Let $ W_\CC = V_\CC^* = W^{1, 0} \oplus W^{0, 1} $. Then
+$$ \Lambda^kW_\CC = \bigoplus_{p + q = k} W^{p, q}, \qquad W^{p, q} = \Lambda^pW^{1, 0} \otimes \Lambda^qW^{0, 1}. $$
+There exists a conjugation on $ \Lambda^kW_\CC $. Then the eigenspace with respect to the eigenvalue one via the conjugation is the real forms on $ V $.
+\end{remark*}
+
+\begin{example*}
+Let $ V = \CC^n $. Then $ \d z_j + \d\overline{z_j} $ is real and $ i\br{\d z_j - \d\overline{z_j}} $ is real.
+\end{example*}
+
+Back to $ L $. Then
+$$ \overline{i\Theta_L} = -i\overline{\partial}\partial\phi = i\partial\overline{\partial}\phi = i\Theta_L, $$
+so $ \tfrac{i}{2\pi}\Theta_L $ is a real $ \br{1, 1} $-form. Thus the first Chern class of a holomorphic line bundle is defined by a real $ \br{1, 1} $-form.
+
+\begin{remark}
+Assume $ \br{L, h} $ is a holomorphic line bundle with $ h = e^{-\phi} $ locally at $ x \in X $. Then if $ \br{L^{-1}, h'} $ is with respect to the induced frame, we can write $ h' = e^\phi $.
+\end{remark}
+
+\begin{definition}
+Let $ \br{L, h} $ be a Hermitian holomorphic line bundle on $ X $. Then $ L $ is \textbf{positive} if for all $ x \in X $, $ h = e^{-\phi} $ locally at $ x $, such that
+$$ \br{\dmd{}{2}{z_i}{}{\overline{z_j}}{}\phi} $$
+is positive definite, where $ z_1, \dots, z_n $ are local coordinates around $ x $.
+\end{definition}
+
+\begin{example}
+Let $ L = X \times \CC $, let $ s $ be the constant section, and let $ \phi = 1 $ on $ X $. Then $ \Theta_L = 0 $, so $ \c_1\br{L} = 0 $.
+\end{example}
 
 \end{document}
