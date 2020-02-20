@@ -132,7 +132,7 @@ the \textbf{$ p $-th exterior bundle} on $ M $. There exists a morphism $ \pi : 
 \lecture{2}{Monday}{13/01/20}
 
 \begin{definition}
-A \textbf{differential $ p $-form} $ \omega $ on $ M $ is a smooth section of $ \pi $. That is, it is a smooth morphism $ \omega : M \to \Lambda^p\T^*M $ such that $ \pi \circ \omega = \id_M $.
+A \textbf{differential $ p $-form} $ \omega $ on $ M $ is a smooth section of $ \pi $, that is it is a smooth morphism $ \omega : M \to \Lambda^p\T^*M $ such that $ \pi \circ \omega = \id_M $.
 \end{definition}
 
 Thus, $ \omega\br{x} \in \Lambda^p\T_x^*M $.
@@ -1372,14 +1372,14 @@ U \cap V \arrow[hookrightarrow]{ur}{j_U} \arrow[hookrightarrow, swap]{dr}{j_V} &
 \begin{proposition}
 We have a short exact sequence
 $$ 0 \leftarrow \Omega^p\br{M} \xleftarrow{i} \Omega^p\br{U} \oplus \Omega^p\br{V} \xleftarrow{j} \Omega^p\br{U \cap V} \leftarrow 0, $$
-where $ i = i_{U*} + i_{V*} $ and $ j = \br{j_{U*}, -j_{V*}} $.
+where $ i = i_{U*} + i_{V*} $ and $ j = \br{-j_{U*}, j_{V*}} $.
 \end{proposition}
 
 \begin{proof}
 \hfill
 \begin{itemize}
 \item $ j $ is injective. Let $ \omega \in \Omega^p\br{U \cap V} $ such that $ j\br{\omega} = 0 $, so $ j_{U*}\omega = j_{V*}\omega = 0 $. Then $ \omega = 0 $, so $ j $ is injective.
-\item $ \Ker i = \Im j $. Let $ \omega \in \Omega^p\br{U \cap V} $. Then $ i\br{j\br{\omega}} = i\br{j_{U*}\omega, -j_{V*}\omega} = i_{U*}j_{V*}\omega - i_{U*}j_{V*}\omega = 0 $, so $ \Ker i \supset \Im j $. Let $ \br{\omega_1, \omega_2} \in \Ker i $. Then $ i_{U*}\omega_1 + i_{V*}\omega_2 = 0 $, so $ i_{V*}\omega_1 = -i_{V*}\omega_2 $, so $ \supp \omega_1 \subset U \cap V $ and $ \supp \omega_2 \subset U \cap V $, so there exists $ \eta \in \Omega^p\br{U \cap V} $ such that $ j_{U*}\eta = \omega_1 $ and $ j_{V*}\eta = -\omega_2 $, so $ \br{\omega_1, \omega_2} = j\br{\eta} $, so $ \Ker i \subset \Im j $.
+\item $ \Ker i = \Im j $. Let $ \omega \in \Omega^p\br{U \cap V} $. Then $ i\br{j\br{\omega}} = i\br{-j_{U*}\omega, j_{V*}\omega} = -i_{U*}j_{U*}\omega + i_{V*}j_{V*}\omega = 0 $, so $ \Ker i \supset \Im j $. Let $ \br{\omega_1, \omega_2} \in \Ker i $. Then $ i_{U*}\omega_1 + i_{V*}\omega_2 = 0 $, so $ i_{V*}\omega_1 = -i_{V*}\omega_2 $, so $ \supp \omega_1 \subset U \cap V $ and $ \supp \omega_2 \subset U \cap V $, so there exists $ \eta \in \Omega^p\br{U \cap V} $ such that $ j_{U*}\eta = -\omega_1 $ and $ j_{V*}\eta = \omega_2 $, so $ \br{\omega_1, \omega_2} = j\br{\eta} $, so $ \Ker i \subset \Im j $.
 \item $ i $ is surjective. Let $ \omega \in \Omega_\c^p\br{M} $, and let $ \cbr{f_U, f_V} $ be a partition of unity with respect to $ \cbr{U, V} $. Define $ \omega_U = f_U \cdot \eval{\omega}_U \in \Omega_\c^p\br{U} $ and $ \omega_V = f_V \cdot \eval{\omega}_V \in \Omega_\c^p\br{V} $. Then $ i\br{\omega_U, \omega_V} = i_{U*}\omega_U + i_{V*}\omega_V = f_U \cdot \omega + f_V \cdot \omega = \br{f_U + f_V} \cdot \omega = \omega $.
 \end{itemize}
 \end{proof}
@@ -1451,12 +1451,12 @@ $$ \I_M \circ \cup : \H^p\br{M} \times \H_\c^{n - p}\br{M} \to \H_\c^n\br{M} \to
 Recall that if $ \phi : V \times W \to \RR $ is bilinear, then there exists
 $$ \function{V}{W^* = \Hom\br{W, \RR}}{v}{\phi_v}, \qquad \function[\phi_v]{W}{\RR}{w}{\phi\br{v, w}}. $$
 Thus, we get
-$$ \mu_M : \H^p\br{M} \to \H_\c^{n - p}\br{M}^*. $$
+$$ \H^p\br{M} \to \H_\c^{n - p}\br{M}^*. $$
 Poincar\'e duality says that this is an isomorphism.
 
-\begin{example}
+\begin{example*}
 Assume $ M $ is compact and oriented. Then $ \H^p\br{M} \xrightarrow{\sim} \H^{n - p}\br{M} $, so $ \b^p\br{M} = \b^{n - p}\br{M} $.
-\end{example}
+\end{example*}
 
 \begin{example}
 Let $ U \subset \RR^n $ be an open subset diffeomorphic to $ \RR^n $. Then
@@ -1471,7 +1471,7 @@ $$ \H^p\br{U} =
 \RR & p = n
 \end{cases}.
 $$
-We want to show that Poincar\'e duality holds. We just need to check that Poincar\'e duality holds for $ p = 0 $. It is enough to show that $ \phi : \H^0\br{U} \to \H_\c^n\br{U}^* $ is injective. That is, there exists $ \omega $ such that $ \phi\br{\omega} \ne 0 $. Given $ \omega \in \H^0\br{U} $,
+We want to show that Poincar\'e duality holds. We just need to check that Poincar\'e duality holds for $ p = 0 $. It is enough to show that $ \phi : \H^0\br{U} \to \H_\c^n\br{U}^* $ is injective, that is there exists $ \omega $ such that $ \phi\br{\omega} \ne 0 $. Given $ \omega \in \H^0\br{U} $,
 $$ \function[\phi\br{\omega}]{\H_\c^n\br{U}}{\RR}{\eta}{\int_U \eta \wedge \omega}. $$
 Then $ \omega = c $ is a constant function on $ U $, so
 $$ \function[\phi\br{\omega}]{\H_\c^n\br{U}}{\RR}{\eta}{\int_U c\omega}. $$
@@ -1480,19 +1480,24 @@ If $ c \ne 0 $ there exists $ \eta $ such that this map is not zero, so $ \phi\b
 
 \pagebreak
 
+We will prove the following.
+
+\begin{theorem}[Poincar\'e duality]
+\label{thm:2.52}
+Assume that $ M $ is an oriented manifold, without boundary, such that there exists a finite open cover $ U = \cbr{U_i} $ such that $ U_{i_1} \cap \dots \cap U_{i_q} $ is $ \emptyset $ or diffeomorphic to $ \RR^n $. Then
+$$ \mu_M : \H^p\br{M} \xrightarrow{\sim} \H_\c^{n - p}\br{M}^*, \qquad p \ge 0, \qquad n = \dim M $$
+is an isomorphism.
+\end{theorem}
+
+Any compact manifold $ M $ admits such a cover.
+
 \begin{lemma}
 \label{lem:2.53}
 Let
 $$ C^1 \xrightarrow{f^1} C^2 \xrightarrow{f^2} C^3 $$
 be exact, where $ C^i $ are vector spaces of finite dimension. Then there exists
 $$ \br{C^3}^* \xrightarrow{\br{f^2}^*} \br{C^2}^* \xrightarrow{\br{f^1}^*} \br{C^1}^*, $$
-which is also exact, where
-$$
-\begin{tikzcd}
-C^1 \arrow{r}{f^1} \arrow[swap]{dr}{\br{f^1}^*\phi} & C^2 \arrow{d}{\phi} \\
-& \RR
-\end{tikzcd}.
-$$
+which is also exact, where $ \br{f^1}^*\phi = \phi \circ f^1 $ and $ \br{f^2}^*\phi = \phi \circ f^2 $.
 \end{lemma}
 
 \begin{proof}
@@ -1521,49 +1526,35 @@ Then $ \alpha_3 $ is an isomorphism.
 \end{lemma}
 
 \begin{proof}
-\hfill
-\begin{itemize}
-\item $ \alpha_3 $ is injective. Let $ x \in C^3 $ such that $ \alpha_3\br{x} = 0 $, so if $ y = f^3\br{x} $ then $ \alpha_4\br{y} = 0 $. Since $ \alpha_4 $ is an isomorphism, $ y = 0 $. Then $ x \in \Ker f^3 = \Im f^2 $, so there exists $ z \in C^2 $ such that $ f^2\br{z} = x $. Let $ w = \alpha_2\br{z} $ then $ g^2\br{w} = 0 $, so $ w \in \Ker g^2 = \Im g^1 $. Then there exists $ t \in D^1 $ such that $ g^1\br{t} = w $. Since $ \alpha_1 $ is surjective there exists $ s \in C^1 $ such that $ \alpha_1\br{s} = t $, so
+Let $ x \in C^3 $ such that $ \alpha_3\br{x} = 0 $, so if $ y = f^3\br{x} $ then $ \alpha_4\br{y} = 0 $. Since $ \alpha_4 $ is an isomorphism, $ y = 0 $. Then $ x \in \Ker f^3 = \Im f^2 $, so there exists $ z \in C^2 $ such that $ f^2\br{z} = x $. Let $ w = \alpha_2\br{z} $ then $ g^2\br{w} = 0 $, so $ w \in \Ker g^2 = \Im g^1 $. Then there exists $ t \in D^1 $ such that $ g^1\br{t} = w $. Since $ \alpha_1 $ is surjective there exists $ s \in C^1 $ such that $ \alpha_1\br{s} = t $, so
 $$
 \begin{tikzcd}
 s \in C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & z \in C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & x \in C^3 \arrow{r}{f^3} \arrow{d}{\alpha_3} & y \in C^4 \arrow{r}{f^4} \arrow{d}{\alpha_4} & C^5 \arrow{d}{\alpha_5} \\
 t \in D^1 \arrow{r}{g^1} & w \in D^2 \arrow{r}{g^2} & 0 \in D^3 \arrow{r}{g^3} & 0 \in D^4 \arrow{r}{g^4} & D^5
 \end{tikzcd}.
 $$
-We want to show that $ f^1\br{s} = z $, and $ \alpha_2\br{f^1\br{s}} = g^1\br{\alpha_1\br{s}} = g^1\br{t} = w = \alpha_2\br{z} $, so $ f^1\br{s} = z $, since $ \alpha_2 $ is injective. Thus $ x = f^2\br{z} = f^2\br{f^1\br{s}} = 0 $, so $ \alpha_3 $ is injective.
-\item Show that $ \alpha_3 $ is surjective. \footnote{Exercise}
-\end{itemize}
+We want to show that $ f^1\br{s} = z $, and $ \alpha_2\br{f^1\br{s}} = g^1\br{\alpha_1\br{s}} = g^1\br{t} = w = \alpha_2\br{z} $, so $ f^1\br{s} = z $, since $ \alpha_2 $ is injective. Thus $ x = f^2\br{z} = f^2\br{f^1\br{s}} = 0 $, so $ \alpha_3 $ is injective. Show that $ \alpha_3 $ is surjective. \footnote{Exercise}
 \end{proof}
 
 \pagebreak
 
-We will prove the following.
-
-\begin{theorem}[Poincar\'e duality]
-Assume that $ M $ is an oriented manifold, without boundary, such that there exists a finite open cover $ U = \cbr{U_i} $ such that $ U_{i_1} \cap \dots \cap U_{i_q} $ is $ \emptyset $ or diffeomorphic to $ \RR^n $. Then
-$$ \H^p\br{M} \xrightarrow{\sim} \H_\c^{n - p}\br{M}^*, \qquad p \ge 0, \qquad n = \dim M $$
-is an isomorphism.
-\end{theorem}
-
-Any compact manifold $ M $ admits such a cover.
-
 \lecture{18}{Tuesday}{18/02/20}
 
-\begin{proof}
+\begin{proof}[Proof of Theorem \ref{thm:2.52}]
 Let $ N = \#U $. We proceed by induction on $ N $. Then $ N = 1 $ is ok, so let $ N > 1 $. Let $ U = \bigcup_{i = 1}^{N - 1} U_i $ and $ V = U_N $, so $ M = U \cup V $. Both $ U $ and $ V $, and $ U \cap V $, satisfy Poincar\'e duality by induction. The idea is to use classical Mayer-Vietoris and compact support Mayer-Vietoris, and the five lemma. By Mayer-Vietoris,
 $$ \H^{p - 1}\br{U} \oplus \H^{p - 1}\br{V} \xrightarrow{g} \H^{p - 1}\br{U \cap V} \xrightarrow{\delta} \H^p\br{M} \xrightarrow{f} \H^p\br{U} \oplus \H^p\br{V} \to \dots, $$
 where $ f = \br{i_U^*, i_V^*} $ and $ g = j_V^* - j_U^* $. By compact support Mayer-Vietoris,
 $$ \dots \to \H_\c^{n - p}\br{U} \oplus \H_\c^{n - p}\br{V} \xrightarrow{i} \H_\c^{n - p}\br{M} \xrightarrow{\delta_\c} \H_\c^{n - \br{p - 1}}\br{M} \xrightarrow{j} \H_\c^{n - \br{p - 1}}\br{U} \oplus \H_\c^{n - \br{p - 1}}\br{V}, $$
-where $ j = \br{j_{U*}, -j_{V*}} $ and $ i = i_{U*} + i_{V*} $. Taking the dual, by Lemma \ref{lem:2.53},
+where $ j = \br{-j_{U*}, j_{V*}} $ and $ i = i_{U*} + i_{V*} $. Taking the dual, by Lemma \ref{lem:2.53},
 $$ \H_\c^{n - \br{p - 1}}\br{U}^* \oplus \H_\c^{n - \br{p - 1}}\br{V}^* \xrightarrow{j^*} \H_\c^{n - \br{p - 1}}\br{U \cap V}^* \xrightarrow{\delta_\c^*} \H_\c^{n - p}\br{M}^* \xrightarrow{i^*} \H_\c^{n - p}\br{U}^* \oplus \H_\c^{n - p}\br{V}^* \to \dots. $$
 We get a diagram
 $$
 \begin{tikzcd}[column sep=tiny]
-\H^{p - 1}\br{U} \oplus \H^{p - 1}\br{V} \arrow{r}{g} \arrow{d}{\br{-1}^{n_{p - 1}}\mu_U \oplus \mu_V} & \H^{p - 1}\br{U \cap V} \arrow{r}{\delta} \arrow{d}{\br{-1}^{n_{p - 1}}\mu_{U \cap V}} & \H^p\br{M} \arrow{r}{f} \arrow{d}{\br{-1}^{n_p}\mu_M} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r} \arrow{d}{\br{-1}^{n_p}\mu_U \oplus \mu_V} & \dots \\
+\H^{p - 1}\br{U} \oplus \H^{p - 1}\br{V} \arrow{r}{g} \arrow{d}{n_{p - 1} \cdot \mu_U \oplus \mu_V} & \H^{p - 1}\br{U \cap V} \arrow{r}{\delta} \arrow{d}{n_{p - 1} \cdot \mu_{U \cap V}} & \H^p\br{M} \arrow{r}{f} \arrow{d}{n_p \cdot \mu_M} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r} \arrow{d}{n_p \cdot \mu_U \oplus \mu_V} & \dots \\
 \H_\c^{n - \br{p - 1}}\br{U}^* \oplus \H_\c^{n - \br{p - 1}}\br{V}^* \arrow{r}{j^*} & \H_\c^{n - \br{p - 1}}\br{U \cap V}^* \arrow{r}{\delta_\c^*} & \H_\c^{n - p}\br{M}^* \arrow{r}{i^*} & \H_\c^{n - p}\br{U}^* \oplus \H_\c^{n - p}\br{V}^* \arrow{r} & \dots
 \end{tikzcd},
 $$
-where $ n_0 = 1 $ and $ n_p = \br{-1}^pn_{p - 1} $. The goal is to show that $ \mu_M $ is an isomorphism. The idea is by the five lemma, it is enough to show that
+where $ n_0 = 1 $ and $ n_p = \br{-1}^{p - 1}n_{p - 1} $. The goal is to show that $ \mu_M $ is an isomorphism. The idea is by the five lemma, it is enough to show that
 \begin{enumerate}
 \item all the other vertical arrows are isomorphisms, and
 \item the diagram is commutative.
@@ -1571,15 +1562,70 @@ where $ n_0 = 1 $ and $ n_p = \br{-1}^pn_{p - 1} $. The goal is to show that $ \
 We know $ 1 $ is ok by induction on $ N $. We need to show $ 2 $.
 \begin{itemize}
 \item The first square. We want to show that $ \mu_{U \cap V} \circ g = j^* \circ \br{\mu_U \oplus \mu_V} $. Let $ \omega_U \in \Omega^{p - 1}\br{U} $ and $ \omega_V \in \Omega^{p - 1}\br{V} $ be closed forms. We want to show
-$$ \mu_{U \cap V}\br{g\br{\sbr{\omega_U}, \sbr{\omega_V}}} = j^*\br{\mu_U\br{\sbr{\omega_U}}, \mu_V\br{\sbr{\omega_V}}} $$
-in $ \H_\c^{n - \br{p - 1}}\br{U \cap V}^* $. That is, we want to show that on any element of $ \H_\c^{n - \br{p - 1}}\br{U \cap V} $ they coincide. Let $ \eta \in \Omega_\c^{n - \br{p - 1}}\br{U \cap V} $. Recall $ g = j_V^* - j_U^* $. Then
-$$ \int_{U \cap V} g\br{\omega_U, \omega_V} \wedge \eta = \int_U \omega_U \wedge j\br{\eta} + \int_V \omega_V \wedge j\br{\eta}, $$
-since
-$$ g\br{\omega_U, \omega_V} = j_V^*\omega_V - j_U^*\omega_U, \qquad \omega_U \wedge j\br{\eta} = \omega_U \wedge j_{U*}\eta, \qquad \omega_V \wedge j\br{\eta} = \omega_V \wedge j_{V*}\eta. $$
-\item The second square. We want an explicit construction of $ \delta_\c $ and $ \delta $. Let $ \omega \in \Omega^p\br{M} $ be a closed form, and let $ \cbr{f_U, f_V} $ be a partition of the unity with respect to $ \cbr{U, V} $. Define
+$$ \mu_{U \cap V}\br{g\br{\sbr{\omega_U}, \sbr{\omega_V}}} = j^*\br{\mu_U\br{\sbr{\omega_U}}, \mu_V\br{\sbr{\omega_V}}}, $$
+in $ \H_\c^{n - \br{p - 1}}\br{U \cap V}^* $, that is we want to show that on any element of $ \H_\c^{n - \br{p - 1}}\br{U \cap V} $ they coincide. Let $ \eta \in \Omega_\c^{n - \br{p - 1}}\br{U \cap V} $. Recall $ g = j_V^* - j_U^* $. Then
+$$ \int_{U \cap V} g\br{\omega_U, \omega_V} \wedge \eta = -\int_U \omega_U \wedge j_{U*}\eta + \int_V \omega_V \wedge j_{V^*}\eta, $$
+since $ g\br{\omega_U, \omega_V} = j_V^*\omega_V - j_U^*\omega_U $.
+
+\lecture{19}{Thursday}{20/02/20}
+
+\item The second square. We want an explicit construction of $ \delta $ and $ \delta_\c $. Let $ \omega \in \Omega^p\br{M} $ be a closed form, and let $ \cbr{f_U, f_V} $ be a partition of the unity with respect to $ \cbr{U, V} $. Define
 $$ \omega_U = f_U \cdot \eval{\omega}_U \in \Omega_\c^p\br{U}, \qquad \omega_V = f_V \cdot \eval{\omega}_V \in \Omega_\c^p\br{V}, $$
-so $ \br{\omega_U, \omega_V} \in \Omega_\c^p\br{U} \oplus \Omega_\c^p\br{V} $. Recall $ i = i_{U*} + i_{V*} $. Then $ i\br{\omega_U, \omega_V} = i_{U*}\omega_U + i_{V*}\omega_V = \omega_U + \omega_V = f_U \cdot \omega + f_V \cdot \omega = \omega $. Since $ \omega $ is closed, $ i\br{\d\omega_U, \d\omega_V} = \d\br{i_{U*}\omega_U} + \d\br{i_{V*}\omega_V} = 0 $, so $ \br{\d\omega_U, \d\omega_V} \in \Ker i = \Im j $. Since $ j $ is injective there exists a unique $ \delta_\c\omega $ such that $ j\br{\delta_\c\omega} = \br{\d\omega_U, \d\omega_V} $.
+so $ \br{\omega_U, \omega_V} \in \Omega_\c^p\br{U} \oplus \Omega_\c^p\br{V} $. Recall $ i = i_{U*} + i_{V*} $. Then
+$$ i\br{\omega_U, \omega_V} = i_{U*}\omega_U + i_{V*}\omega_V = \omega_U + \omega_V = f_U \cdot \omega + f_V \cdot \omega = \omega. $$
+If $ \omega $ is closed, then $ i\br{\d\omega_U, \d\omega_V} = \d\br{i_{U*}\omega_U} + \d\br{i_{V*}\omega_V} = 0 $, so $ \br{\d\omega_U, \d\omega_V} \in \Ker i = \Im j \subset \Omega_\c^{p + 1}\br{U} \oplus \Omega_\c^{p + 1}\br{V} $. Since $ j $ is injective there exists a unique $ \delta_\c\br{\omega} \in \Omega_\c^{p + 1}\br{U \cap V} $ such that $ j\br{\delta_\c\br{\omega}} = \br{\d\omega_U, \d\omega_V} $. Since $ f_U + f_V = 1 $, $ \d f_U + \d f_V = 0 $, so $ \d f_U = -\d f_V $. Then
+$$ j\br{\delta_\c\br{\omega}} = \br{\d\omega_U, \d\omega_V} = \br{\d f_U \wedge \eval{\omega}_U, \d f_V \wedge \eval{\omega}_V} = \br{-\d f_V \wedge \eval{\omega}_U, \d f_V \wedge \eval{\omega}_V} = j\br{\d f_V \wedge \eval{\omega}_{U \cap V}}. $$
+
+\pagebreak
+
+Since $ j $ is injective, $ \delta_\c\br{\omega} = \d f_V \wedge \eval{\omega}_{U \cap V} $, so $ \delta_\c : \Omega_\c^p\br{M} \to \Omega_\c^{p + 1} $. Let $ \eta $ be a form on $ M $. Since $ \delta_\c\br{\d\eta} = \d f_V \wedge \eval{\d \eta}_{U \cap V} = -\d\delta_\c\br{\eta} $, $ \delta_\c $ maps closed forms to closed forms and exact forms to exact forms, so
+$$ \function[\delta_\c]{\H_\c^p\br{M}}{\H_\c^{p + 1}\br{U \cap V}}{\omega}{\d f_V \wedge \eval{\omega}_{U \cap V}}. $$
+By construction, it makes the long exact sequence exact. Similarly
+$$ \function[\delta]{\H^p\br{U \cap V}}{\H^{p + 1}\br{M}}{\omega}{
+\begin{cases}
+\d f_V \wedge \omega & \text{on} \ U \cap V \\
+0 & \text{otherwise}
+\end{cases}
+}.
+$$
+Now we check that the second square is commutative, that is
+$$ n_{p - 1} \cdot \mu_M\br{\delta\br{\sbr{\omega_1}}} = n_p \cdot \delta_\c^*\br{\mu_{U \cap V}\br{\sbr{\omega_1}}}, \qquad \omega_1 \in \Omega^{p - 1}\br{U \cap V}. $$
+That is,
+$$ n_{p - 1}\int_M \delta\br{\omega_1} \wedge \omega_2 = n_p\int_{U \cap V} \omega_1 \wedge \delta_\c\br{\omega_2}, \qquad \omega_2 \in \Omega_\c^{n - p}\br{M}. $$
+Then for all $ \omega_2 \in \Omega_\c^{n - p}\br{M} $,
+$$ n_{p - 1}\int_M \delta\br{\omega_1} \wedge \omega_2 = n_{p - 1}\int_{U \cap V} \d f_V \wedge \omega_1 \wedge \omega_2 = n_p\int_{U \cap V} \omega_1 \wedge \d f_V \wedge \omega_2 = n_p\int_{U \cap V} \omega_1 \wedge \delta_\c\br{\omega_2}. $$
+\item The third square. To check $ \br{\mu_U \oplus \mu_V} \circ f = i^* \circ \mu_M $, so
+$$ \br{\mu_U \oplus \mu_V}\br{f\br{\sbr{\omega}}} = i^*\br{\mu_M\br{\sbr{\omega}}}, \qquad \omega \in \Omega^p\br{M}, $$
+in $ \H_\c^{n - p}\br{U}^* \oplus \H_\c^{n - p}\br{V}^* $. Let $ \eta_U \in \Omega_\c^{n - p}\br{U} $ and $ \eta_V \in \Omega_\c^{n - p}\br{V} $. Then
+$$ \int_U \eval{\omega}_U \wedge \eta_U + \int_V \eval{\omega}_V \wedge \eta_V = \int_M \omega \wedge i\br{\eta_U, \eta_V}. $$
 \end{itemize}
 \end{proof}
+
+The following is an easy consequence.
+
+\begin{corollary}
+Let $ M $ be an oriented compact connected manifold of dimension $ n $. Then
+$$ \H^n\br{M} = \RR, $$
+and
+$$ \H_\c^p\br{M \setminus \cbr{x}} = \H^p\br{M}, \qquad x \in M, \qquad 1 \le p < n. $$
+\end{corollary}
+
+\begin{definition}
+The \textbf{Euler characteristic} of $ M $ is
+$$ \chi\br{M} = \sum_{p = 0}^n \br{-1}^p \dim \H^p\br{M}. $$
+\end{definition}
+
+\begin{corollary}
+If $ M $ is a compact oriented manifold of odd dimension then $ \chi\br{M} = 0 $.
+\end{corollary}
+
+\begin{proof}
+By Poincar\'e duality, $ \dim \H^i\br{M} = \dim \H^{n - i}\br{M} $.
+\end{proof}
+
+\subsection{Degree of a morphism}
+
+Let $ M $ and $ N $ be connected oriented manifolds of dimension $ n $, and let $ f : M \to N $ be a proper smooth morphism. Then $ f^* : \H_\c^n\br{N} = \RR \to \H_\c^n\br{M} = \RR $ by Poincar\'e duality and connectedness, so $ f\br{x} = cx $ for some $ \deg f = c \in \RR $. For any $ \omega \in \Omega_\c^n\br{M} $,
+$$ \int_M f^*\omega = c\int_M \omega. $$
 
 \end{document}
