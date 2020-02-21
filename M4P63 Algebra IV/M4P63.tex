@@ -1292,21 +1292,22 @@ Let $ M $ be an $ R $-module. Then $ M $ injects into some injective module $ I_
 \subsection{Uniqueness}
 
 \begin{proposition}
+\label{prop:projectiveresolution}
 Let $ M $ and $ N $ be $ R $-modules, and $ \phi : M \to N $. Let $ \br{P_i} $ be a projective resolution for $ M $, and $ \br{Q_i} $ a projective resolution for $ N $.
 \begin{enumerate}
 \item There exist $ R $-module homomorphisms $ f_i : P_i \to Q_i $ such that the diagram
 $$
 \begin{tikzcd}
-\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed]{d}{f_2} & P_1 \arrow{r}{d_0} \arrow[dashed]{d}{f_1} & P_0 \arrow{r} \arrow[dashed]{d}{f_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
-\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r} & N \arrow{r} & 0
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed]{d}{f_2} & P_1 \arrow{r}{d_0} \arrow[dashed]{d}{f_1} & P_0 \arrow{r}{p} \arrow[dashed]{d}{f_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
+\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes.
 \item Let $ g_i : P_i \to Q_i $ be such that the diagram
 $$
 \begin{tikzcd}
-\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[bend right=30, swap]{d}{f_2} \arrow[bend left=30]{d}{g_2} & P_1 \arrow{r}{d_0} \arrow[bend right=30, swap]{d}{f_1} \arrow[bend left=30]{d}{g_1} & P_0 \arrow{r} \arrow[bend right=30, swap]{d}{f_0} \arrow[bend left=30]{d}{g_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
-\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r} & N \arrow{r} & 0
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[bend right=30, swap]{d}{g_2} \arrow[bend left=30]{d}{f_2} & P_1 \arrow{r}{d_0} \arrow[bend right=30, swap]{d}{g_1} \arrow[bend left=30]{d}{f_1} & P_0 \arrow{r}{p} \arrow[bend right=30, swap]{d}{g_0} \arrow[bend left=30]{d}{f_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
+\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes. Then there exist homomorphisms $ s_i : P_i \to Q_{i + 1} $ such that
@@ -1319,8 +1320,8 @@ $$
 so
 $$
 \begin{tikzcd}
-\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed, swap]{dl}{s_2} & P_1 \arrow{r}{d_0} \arrow[dashed, swap]{dl}{s_1} & P_0 \arrow{r} \arrow[dashed, swap]{dl}{s_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
-\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r} & N \arrow{r} & 0
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed, swap]{dl}{s_2} & P_1 \arrow{r}{d_0} \arrow[dashed, swap]{dl}{s_1} & P_0 \arrow{r}{p} \arrow[dashed, swap]{dl}{s_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
+\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
 \end{tikzcd}.
 $$
 \end{enumerate}
@@ -1334,12 +1335,94 @@ $$
 \item The map $ q : Q_0 \to N $ is surjective. There is a map $ p : P_0 \to N $, given by composing $ P_0 \to M $ with $ \phi $. Since $ P_0 $ is projective there exists $ f_0 : P_0 \to Q_0 $ such that $ p = q \circ f_0 $. Suppose the maps $ f_0, \dots, f_{t - 1} $ have been constructed, so
 $$
 \begin{tikzcd}
-P_t \arrow{r}{d_{t - 1}} & P_{t - 1} \arrow{r}{d_{t - 2}} \arrow{d}{f_{t - 1}} & P_{t - 2} \arrow{d}{f_{t - 2}} \arrow{r} & \dots \\
-Q_t \arrow{r}{d_{t - 1}'} & Q_{t - 1} \arrow{r}{d_{t - 2}'} & Q_{t - 2} \arrow{r} & \dots
+\dots \arrow{r}{d_t} & P_t \arrow{r}{d_{t - 1}} \arrow[dashed]{d}{f_t} & P_{t - 1} \arrow{r}{d_{t - 2}} \arrow{d}{f_{t - 1}} & P_{t - 2} \arrow{d}{f_{t - 2}} \arrow{r} & \dots \\
+\dots \arrow{r}{d_t'} & Q_t \arrow{r}{d_{t - 1}'} & Q_{t - 1} \arrow{r}{d_{t - 2}'} & Q_{t - 2} \arrow{r} & \dots
 \end{tikzcd}.
 $$
 Observe that $ d_{t - 2}' \circ f_{t - 1} \circ d_{t - 1} = f_{t - 2} \circ d_{t - 2} \circ d_{t - 1} $, since the existing squares of the diagram commute. But $ d_{t - 2} \circ d_{t - 1} = 0 $. So $ d_{t - 2}' \circ f_{t - 1} \circ d_{t - 1} = 0 $, so $ \Im \br{f_{t - 1} \circ d_{t - 1}} \le \Ker d_{t - 2}' = \Im d_{t - 1}' $. Now the map $ d_{t - 1}' : Q_t \to \Im d_{t - 1}' $ is obviously surjective, and $ P_t $ is projective. So there is a map $ f_t : P_t \to Q_t $ such that $ f_{t - 1} \circ d_{t - 1} = d_{t - 1}' \circ f_t $. Now inductively, maps $ f_i $ exist for all $ i $.
+\item We want $ s_i $ such that $ g_i - f_i = d_i' \circ s_i + s_{i - 1} \circ d_{i - 1} $. Let $ h_i = g_i - f_i $. We see that the diagram
+$$
+\begin{tikzcd}
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow{d}{h_2} & P_1 \arrow{r}{d_0} \arrow{d}{h_1} & P_0 \arrow{r}{p} \arrow{d}{h_0} & M \arrow{r} \arrow{d}{0} & 0 \\
+\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
+\end{tikzcd}
+$$
+commutes, since we want $ h_i \circ d_i = d_i' \circ h_{i + 1} $, but we have
+$$ h_i \circ d_i = g_i \circ d_i - f_i \circ d_i = d_i' \circ g_{i + 1} - d_i' \circ f_{i + 1} = d_i' \circ h_{i + 1}', $$
+so we are fine.
+\begin{itemize}[leftmargin=1in]
+\item[Base case.] Let $ x \in P_0 $. Then $ \br{q \circ h_0}\br{x} = \br{0 \circ p}\br{x} = 0 $ so $ \Im h_0 \le \Ker q = \Im d_0' $. We have a surjective map $ d_0' : Q_1 \to \Im d_0' $, and a map $ h_0 : P_0 \to \Im d_0' $. Since $ P_0 $ is projective, there exists $ s_0 : P_0 \to Q_1 $ such that $ h_0 = d_0' \circ s_0 $.
+\item[Inductive step.] Suppose we have maps $ s_0, \dots, s_{t - 1} $, with $ s_i : P_i \to Q_{i + 1} $, and $ h_i = d_i' \circ s_i + s_{i - 1} \circ d_{i - 1} $ for $ i = 1, \dots, t - 1 $, so
+$$
+\begin{tikzcd}
+\dots \arrow{r}{d_{t + 1}} & P_{t + 1} \arrow{r}{d_t} \arrow[swap]{d}{h_{t + 1}} & P_t \arrow{r}{d_{t - 1}} \arrow[dashed, swap]{dl}{s_t} \arrow[swap]{d}{h_t} & P_{t - 1} \arrow{r}{d_{t - 2}} \arrow[swap]{dl}{s_{t - 1}} \arrow[swap]{d}{h_{t - 1}} & P_{t - 2} \arrow{r}{d_{t - 3}} \arrow[swap]{dl}{s_{t - 2}} \arrow[swap]{d}{h_{t - 2}} & \dots \\
+\dots \arrow[swap]{r}{d_{t + 1}'} & Q_{t + 1} \arrow[swap]{r}{d_t'} & Q_t \arrow[swap]{r}{d_{t - 1}'} & Q_{t - 1} \arrow[swap]{r}{d_{t - 2}'} & Q_{t - 2} \arrow[swap]{r}{d_{t - 3}'} & \dots
+\end{tikzcd}.
+$$
+Look at $ h_t - s_{t - 1} \circ d_{t - 1} $. We want to show that the image of this map is contained in $ \Im d_t' = \Ker d_{t - 1}' $. So check
+\begin{align*}
+d_{t - 1}' \circ \br{h_t - s_{t - 1} \circ d_{t - 1}}
+& = d_{t - 1}' \circ h_t - d_{t - 1}' \circ s_{t - 1} \circ d_{t - 1} \\
+& = h_{t - 1} \circ d_{t - 1} - \br{h_{t - 1} - s_{t - 2} \circ d_{t - 2}} \circ d_{t - 1} \\
+& = h_{t - 1} \circ d_{t - 1} - h_{t - 1} \circ d_{t - 1} + s_{t - 2} \circ d_{t - 2} \circ d_{t - 1}.
+\end{align*}
+Now $ d_{t - 2} \circ d_{t - 1} = 0 $, so we have $ d_{t - 1}' \circ \br{h_t - s_{t - 1} \circ d_{t - 1}} = 0 $. So $ h_t - s_{t - 1} \circ d_{t - 1} \in \Ker d_{t - 1}' $. Now we have the situation
+$$
+\begin{tikzcd}
+& P_t \arrow[dashed, swap]{dl}{s_t} \arrow{d}{h_t - s_{t - 1} \circ d_{t - 1}} \\
+Q_{t + 1} \arrow[swap]{r}{d_t'} & \Im d_t'
+\end{tikzcd},
+$$
+and since $ P_t $ is projective, there exists $ s_t $ such that $ d_t' \circ s_t = h_t - s_{t - 1} \circ d_{t - 1} $, so $ h_t = d_t' \circ s_t + s_{t - 1} \circ d_{t - 1} $ as required.
+\end{itemize}
 \end{enumerate}
+\end{proof}
+
+\lecture{19}{Friday}{21/02/20}
+
+Lecture 19 is a problems class.
+
+\pagebreak
+
+The following is the equivalent result for injectives.
+
+\begin{proposition}
+Let $ M $ and $ N $ be $ R $-modules, and $ \phi : M \to N $ a homomorphism. Let $ \br{I_t} $ be an injective resolution for $ M $, and $ \br{J_t} $ another injective resolution for $ N $. Then
+\begin{itemize}
+\item there exist maps $ f_i : I_i \to J_i $ such that the diagram
+$$
+\begin{tikzcd}
+0 \arrow{r} & M \arrow{r}{i} \arrow{d}{\phi} & I_0 \arrow{r}{d_0} \arrow[dashed]{d}{f_0} & I_1 \arrow{r}{d_1} \arrow[dashed]{d}{f_1} & I_2 \arrow{r}{d_2} \arrow[dashed]{d}{f_2} & \dots \\
+0 \arrow{r} & N \arrow{r}{j} & J_0 \arrow{r}{d_0'} & J_1 \arrow{r}{d_1'} & J_2 \arrow{r}{d_2'} & \dots
+\end{tikzcd}
+$$
+commutes, and
+\item if $ \br{g_i} $ is another set of maps $ g_i : I_i \to J_i $ such that the diagram
+$$
+\begin{tikzcd}
+0 \arrow{r} & M \arrow{r}{i} \arrow{d}{\psi} & I_0 \arrow{r}{d_0} \arrow[bend right=30, swap]{d}{f_0} \arrow[bend left=30]{d}{g_0} & I_1 \arrow{r}{d_1} \arrow[bend right=30, swap]{d}{f_1} \arrow[bend left=30]{d}{g_1} & I_2 \arrow{r}{d_2} \arrow[bend right=30, swap]{d}{f_2} \arrow[bend left=30]{d}{g_2} & \dots \\
+0 \arrow{r} & N \arrow{r}{j} & J_0 \arrow{r}{d_0'} & J_1 \arrow{r}{d_1'} & J_2 \arrow{r}{d_2'} & \dots
+\end{tikzcd}
+$$
+commutes, then there exist maps $ s_i : I_{i + 1} \to J_i $ such that
+$$ g_i - f_i =
+\begin{cases}
+s_i \circ d_i + d_{i - 1}' \circ s_{i - 1} & i > 0 \\
+s_0 \circ d_0 & i = 0
+\end{cases},
+$$
+so
+$$
+\begin{tikzcd}
+0 \arrow{r} & M \arrow{r}{i} \arrow{d}{\psi} & I_0 \arrow{r}{d_0} & I_1 \arrow{r}{d_1} \arrow[dashed, swap]{dl}{s_0} & I_2 \arrow{r}{d_2} \arrow[dashed, swap]{dl}{s_1} & \dots \arrow[dashed, swap]{dl}{s_2} \\
+0 \arrow{r} & N \arrow{r}{j} & J_0 \arrow{r}{d_0'} & J_1 \arrow{r}{d_1'} & J_2 \arrow{r}{d_2'} & \dots
+\end{tikzcd}.
+$$
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+Very similar to Proposition \ref{prop:projectiveresolution}.
 \end{proof}
 
 \end{document}
