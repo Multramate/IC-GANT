@@ -1738,7 +1738,7 @@ for some $ h_0, \dots, h_n \in k $, not all zero. More generally, a \textbf{line
 
 \begin{example*}
 Examples of linear subspaces are $ \PP^n $ itself with the empty set of equations, $ \emptyset $ with too many equations, and singletons. We cannot define the singleton $ \cbr{\sbr{p_0 : \dots : p_n}} $ by the equations $ x_0 = p_0, \dots, x_n = p_n $ because these are not homogeneous. Instead, we can write homogeneous equations asserting that the ratios between pairs of coordinates are correct, so
-$$ \cbr{\sbr{p_0 : \dots : p_n}} = \cbr{\sbr{x_0 : \dots : x_n} \in \PP^n \st p_ix_j = p_jx_i \ \text{for all} \ i, j}. $$
+$$ \cbr{\sbr{p_0 : \dots : p_n}} = \cbr{\sbr{x_0 : \dots : x_n} \in \PP^n \st \forall i, j, \ p_ix_j = p_jx_i}. $$
 \end{example*}
 
 If $ \Lambda $ is a linear subspace of $ \PP^n $, then the affine cone $ \C\br{\Lambda} $, the set of points in $ \AA^{n + 1} $ satisfying the same equations as $ \Lambda $, is a vector subspace of $ k^{n + 1} $. As a vector space, we know what is meant by $ \dim \C\br{\Lambda} $. We define
@@ -1806,16 +1806,16 @@ Many sets that we want to work with, for example, the graph of a regular map $ V
 \begin{example*}
 To see informally why $ \PP^1 \times \PP^1 \not\cong \PP^2 $, recall that $ \PP^1 = \AA^1 \cup \cbr{\text{point}} $ so
 $$ \PP^1 \times \PP^1 = \br{\AA^1 \times \AA^1} \cup \br{\AA^1 \times \cbr{\text{point}}} \cup \br{\cbr{\text{point}} \times \AA^1} \cup \br{\text{point} \times \cbr{\text{point}}} = \AA^2 \cup \AA^1 \cup \AA^1 \cup \cbr{\text{point}}. $$
-Meanwhile
-$$ \PP^2 = \AA^2 \cup \PP^1 = \AA^2 \cup \AA^1 \cup \cbr{\text{point}}. $$
-Thus $ \PP^1 \times \PP^1 $ contains an extra copy of $ \AA^1 $ compared to $ \PP^2 $. This is only an informal argument. A rigorous proof will be on problem sheet $ 4 $.
+Meanwhile $ \PP^2 = \AA^2 \cup \PP^1 = \AA^2 \cup \AA^1 \cup \cbr{\text{point}} $. Thus $ \PP^1 \times \PP^1 $ contains an extra copy of $ \AA^1 $ compared to $ \PP^2 $. This is only an informal argument. A rigorous proof will be on problem sheet $ 4 $.
 \end{example*}
 
-We could try giving an ad hoc definition for $ \PP^m \times \PP^n $ by hand. It is fairly clear what algebraic subsets of $ \PP^m \times \PP^n $, sets defined by polynomials in the two sets of homogeneous coordinates $ \sbr{x_0 : \dots : x_m} $ and $ \sbr{y_0 : \dots : y_n} $, should mean. In order for the zero set of such a polynomial to be well-defined, it must be \textbf{bihomogeneous}, that is homogeneous in the $ x $ variables and homogeneous in the $ y $ variables, but the $ x $ and $ y $ degrees can potentially be different. Similarly, we could give a definition of regular maps between subvarieties of $ \PP^m \times \PP^n $ involving bihomogeneous polynomials. But it would be annoying to have just defined quasi-projective varieties, unifying affine and projective varieties, and then immediately have to introduce ad hoc definitions for another different kind of variety. So we aim to construct the product in a way which makes it a quasi-projective set, and then we can just reuse the definitions from before.
+We could try giving an ad hoc definition for $ \PP^m \times \PP^n $ by hand. It is fairly clear what algebraic subsets of $ \PP^m \times \PP^n $, sets defined by polynomials in the two sets of homogeneous coordinates $ \sbr{x_0 : \dots : x_m} $ and $ \sbr{y_0 : \dots : y_n} $, should mean. In order for the zero set of such a polynomial to be well-defined, it must be \textbf{bihomogeneous}, that is homogeneous in the $ x $ variables and homogeneous in the $ y $ variables, but the $ x $ and $ y $ degrees can potentially be different. Similarly, we could give a definition of regular maps between subvarieties of $ \PP^m \times \PP^n $ involving bihomogeneous polynomials. But it would be annoying to have just defined quasi-projective varieties, unifying affine and projective varieties, and then immediately have to introduce ad hoc definitions for another different kind of variety. So we aim to construct the product in a way which makes it a quasi-projective set, and then we can just reuse the definitions from before. Furthermore, projective varieties have special properties of their own. In particular, we will prove that the image of a projective variety under a regular map is always closed. By showing that the product of projective varieties is itself a projective variety, we will be able to apply these properties to products too.
 
 \pagebreak
 
-Furthermore, projective varieties have special properties of their own. In particular, we will prove that the image of a projective variety under a regular map is always closed. By showing that the product of projective varieties is itself a projective variety, we will be able to apply these properties to products too. To construct the product $ \PP^m \times \PP^n $ as a projective algebraic set, we will embed it inside some larger $ \PP^N $. The homogeneous coordinates of a point in $ \PP^m \times \PP^n $ will be given by an $ \br{m + 1} \times \br{n + 1} $ matrix, so we need
+\subsubsection{The Segre embedding}
+
+To construct the product $ \PP^m \times \PP^n $ as a projective algebraic set, we will embed it inside some larger $ \PP^N $. The homogeneous coordinates of a point in $ \PP^m \times \PP^n $ will be given by an $ \br{m + 1} \times \br{n + 1} $ matrix, so we need
 $$ N = \br{m + 1}\br{n + 1} - 1 = mn + m + n. $$
 Thus the number of homogeneous coordinates needed to specify a point in $ \PP^N $ is $ \br{m + 1}\br{n + 1} $. We will arrange the homogeneous coordinates of points in $ \PP^N $ as if they were entries of a matrix. Thus we label them as
 $$ \sbr{\br{z_{ij} \st 0 \le i \le m, \ 0 \le j \le n}}, $$
@@ -1839,5 +1839,174 @@ We can define an inverse to $ \sigma_{m, n} $ as follows. Let $ a \in \Sigma_{m,
 \end{proof}
 
 This construction shows that the projections $ \pi_1 : \Sigma_{m, n} \to \PP^m $ and $ \pi_2 : \Sigma_{m, n} \to \PP^n $ are regular maps, since each column of the matrix is non-zero on a Zariski open subset of $ \Sigma_{m, n} $. The map $ \sigma_{m, n} : \PP^m \times \PP^n \to \PP^N $ is called the \textbf{Segre embedding} and its image $ \Sigma_{m, n} \subseteq \PP^N $ is called the \textbf{Segre variety}.
+
+\lecture{19}{Monday}{24/02/20}
+
+\begin{example*}
+When $ m = n = 1 $, $ N = 3 $. The Segre variety $ \Sigma_{m, n} \subseteq \PP^3 $ is defined by the single equation
+$$ \det \twobytwo{z_{00}}{z_{01}}{z_{10}}{z_{11}} = z_{00}z_{11} - z_{10}z_{01} = 0. $$
+The Segre embedding is given by
+$$ \sigma_{m, n}\br{\sbr{x_1 : x_2}, \sbr{y_1 : y_2}} = \sbr{x_1y_1 : x_1y_2 : x_2y_1 : x_2y_2}. $$
+We see that $ \Sigma_{m, n} $ is an irreducible quadric hypersurface in $ \PP^3 $. Therefore by problem sheet $ 3 $, question $ 4 $, it is birational to $ \PP^2 $ and $ \AA^2 $. This is not surprising, because of course $ \PP^1 \times \PP^1 $ should have an open subset isomorphic to $ \AA^1 \times \AA^1 \cong \AA^2 $, which in turn is an open subset of $ \PP^2 $. We gave an informal argument earlier that $ \PP^1 \times \PP^1 $ should not be isomorphic to $ \PP^2 $. A rigorous proof of this will be on the next problem sheet.
+\end{example*}
+
+\pagebreak
+
+Because $ \Sigma_{m, n} $ is a projective algebraic set, it has a subspace topology induced by the Zariski topology on $ \PP^N $ and so we get a Zariski topology on $ \PP^m \times \PP^n $. One can check that this topology is the same as what we expect, namely the following.
+
+\begin{lemma}
+Let $ V \subseteq \PP^m \times \PP^n $. Then $ \sigma_{m, n}\br{V} \subseteq \Sigma_{m, n} $ is closed if and only if
+$$ V = \cbr{\br{\sbr{x_0 : \dots : x_m}, \sbr{y_0 : \dots : y_n}} \st \forall 1 \le i \le s, \ f_i\br{x_0, \dots, x_m, y_0, \dots, y_n} = 0}, $$
+where $ f_1, \dots, f_s \in k\sbr{X_0, \dots, X_m, Y_0, \dots, Y_n} $ are bihomogeneous polynomials.
+\end{lemma}
+
+We say that a polynomial $ f \in k\sbr{X_0, \dots, X_m, Y_0, \dots, Y_n} $ is \textbf{bihomogeneous of degree $ \br{d, e} $} if every term of $ f $ has degree $ d $ with respect to the $ X $ variables and degree $ e $ with respect to the $ Y $ variables.
+
+\begin{proof}
+Suppose that $ \sigma_{m, n}\br{V} $ is Zariski closed in $ \PP^N $. Then it is defined by some homogeneous polynomials $ g_r\br{z_{00}, \dots, z_{mn}} $. Making the substitutions $ z_{ij} = x_iy_j $, as in the definition of $ \sigma_{m, n} $, we get a finite set of polynomials which define $ V $. If $ g_r $ is homogeneous in $ z_{ij} $ of degree $ d_r $, then $ g_r \circ \sigma_{m, n} $ is bihomogeneous of degree $ \br{d_r, d_r} $. It is easy to see that if $ V $ is defined by polynomials $ f_r $, where $ f_r $ is bihomogeneous of degree $ \br{d_r, d_r} $, then we can reverse this process to get homogeneous polynomials in $ z_{ij} $ which define $ \sigma_{m, n}\br{V} $. But what if the defining polynomials for $ V $ include some $ f $ which is bihomogeneous of degree $ \br{d, e} $, where $ d \ne e $? Without loss of generality, suppose that $ d > e $. Then $ f = 0 $ is equivalent to the system of equations
+$$ x_0^{d - e}f = 0, \qquad \dots, \qquad x_m^{d - e}f = 0, $$
+and these equations are bihomogeneous of degree $ \br{d, d} $.
+\end{proof}
+
+\subsubsection{Graphs of regular functions}
+
+If $ V \subseteq \PP^m $ and $ W \subseteq \PP^n $ are projective algebraic sets, then their product $ V \times W \subseteq \PP^m \times \PP^n $ is a Zariski closed subset of $ \PP^m \times \PP^n $, since the homogeneous polynomials defining $ V $ become bihomogeneous polynomials of degree $ \br{d, 0} $ while those defining $ W $ become bihomogeneous polynomials of degree $ \br{0, e} $, and therefore $ V \times W $ is itself a projective variety. Similarly, if $ V \subseteq \PP^m $ and $ W \subseteq \PP^n $ are quasi-projective algebraic sets, then the product $ V \times W $ is also quasi-projective, since it is the intersection of an open subset and a closed subset in $ \PP^m \times \PP^n $, and therefore in $ \PP^N $ via the Segre embedding.
+
+\begin{example*}
+One useful example of a subvariety of a product is the graph of a regular function. Let $ V \subseteq \PP^n $ and $ W \subseteq \PP^m $ be quasi-projective algebraic sets, and let $ \phi : V \to W $ be a regular map. The \textbf{graph} of $ \phi $ is
+$$ \Gamma = \cbr{\br{x, y} \in V \times W \st y = \phi\br{x}}. $$
+To check that this is closed in $ V \times W $, observe that $ \Gamma $ is the preimage of the diagonal $ \Delta \subseteq \PP^m \times \PP^m $ under the regular map
+$$ \br{\iota \circ \phi, \iota} : V \times W \to \PP^m \times \PP^m, $$
+where $ \iota $ denotes the inclusion map $ W \to \PP^m $. Since $ \br{\iota \circ \phi, \iota} $ is a regular map, it is continuous. Therefore it suffices to check that the diagonal is a Zariski closed subset of $ \PP^m \times \PP^m $. This is true because we can describe the diagonal by bihomogeneous equations as
+$$ \Delta = \cbr{\br{\sbr{x_0 : \dots : x_m}, \sbr{y_0 : \dots : y_m}} \st \forall i, j, \ x_iy_j = x_jy_i}. $$
+\end{example*}
+
+\subsubsection{Images of projective varieties}
+
+The following is a key property of projective algebraic varieties, which is analogous to compactness for Hausdorff topological spaces.
+
+\begin{theorem}
+\label{thm:imageclosed}
+Let $ V $ be a projective variety. Let $ \phi : V \to W $ be a regular map into any quasi-projective variety. Then the image of $ \phi $ is Zariski closed.
+\end{theorem}
+
+Clearly Theorem \ref{thm:imageclosed} is false if $ V $ is not projective.
+
+\begin{example*}
+Consider the projection of the hyperbola $ \cbr{\br{x, y} \st xy = 1} $ onto one of the axes.
+\end{example*}
+
+\pagebreak
+
+Theorem \ref{thm:imageclosed} shows that projective varieties are similar to compact spaces in topology, since if $ S $ is a compact topological space and $ T $ is a Hausdorff topological space, then the image of any continuous map $ S \to T $ is closed. By applying Theorem \ref{thm:imageclosed} to $ \iota \circ \phi $, where $ \iota $ is an embedding $ W \to \PP^m $, we see that the image of a projective variety under a regular map is again a projective variety. Before proving Theorem \ref{thm:imageclosed}, we shall state some important corollaries.
+
+\begin{corollary}
+\label{cor:regularconstant}
+Every regular function on an irreducible projective variety is constant.
+\end{corollary}
+
+\begin{proof}
+Let $ V $ be an irreducible projective variety and $ \phi : V \to \AA^1 $ a regular function. Let $ \iota : \AA^1 \to \PP^1 $ be the natural inclusion. Then $ \iota \circ \phi : V \to \PP^1 $ is a regular map, so by Theorem \ref{thm:imageclosed}, its image is a closed subset of $ \PP^1 $. But the image of $ \iota \circ \phi $ is contained in $ \AA^1 $, so it cannot be all of $ \PP^1 $. Therefore the image of $ \phi $ is finite. Since $ V $ is irreducible, its image is also irreducible and therefore consists of a single point.
+\end{proof}
+
+Thus projective algebraic sets are essentially opposite to affine ones, since an affine algebraic set is determined by its ring of regular functions while a projective algebraic set has no regular functions except constants.
+
+\begin{corollary}
+\label{cor:regularpoint}
+The image of a regular map from an irreducible projective variety to an affine variety is a point.
+\end{corollary}
+
+\begin{proof}
+Suppose we have a regular map $ \phi : V \to W $, where $ V $ is projective and irreducible and $ W $ is affine. We can suppose that $ W \subseteq \AA^m $, and let $ X_1, \dots, X_m $ denote the coordinate functions on $ W $. Then $ X_1 \circ \phi, \dots, X_m \circ \phi $ are all constant by Corollary \ref{cor:regularconstant}, and so $ \phi $ is constant.
+\end{proof}
+
+\begin{lemma}
+\label{lem:hypersurfaceintersection}
+Let $ V \subseteq \PP^n $ be an infinite projective algebraic set and let $ H \subseteq \PP^n $ be a hyperplane. Then the intersection $ V \cap H $ is non-empty.
+\end{lemma}
+
+We use the following fact. This fact is proved for $ \PP^2 $ on problem sheet $ 3 $ using the Veronese embedding, and the proof generalises to arbitrary $ \PP^n $.
+
+\begin{fact*}
+If $ H \subseteq \PP^n $ is a hypersurface, then the complement $ \PP^n \setminus H $ is isomorphic to an affine algebraic set.
+\end{fact*}
+
+\begin{proof}
+Suppose for contradiction that Lemma \ref{lem:hypersurfaceintersection} were false, then $ V \cap H = \emptyset $. Then $ V \subseteq \PP^n \setminus H $, which is isomorphic to an affine algebraic set $ \AA^n $ for some $ n $. Hence we get an injective regular map $ \iota : V \to \AA^n $. Pick an infinite irreducible component $ V_1 \subseteq V $. Then $ V_1 $ is a projective algebraic set so, by Corollary \ref{cor:regularpoint}, $ \iota $ is constant on $ V_1 $, and since $ \iota $ is injective, $ V_1 $ maps to a point. But $ V $ has only finitely many irreducible components, so this contradicts the hypothesis that $ V $ is infinite.
+\end{proof}
+
+\subsubsection{Completeness of varieties}
+
+To prove Theorem \ref{thm:imageclosed}, we will use the graph $ \Gamma \subseteq V \times W $ of $ \phi $. The image of $ \phi $ is the same as the projection of $ \Gamma $ onto $ W $. Hence Theorem \ref{thm:imageclosed} can be deduced from the following theorem, which will be a more convenient statement to prove.
+
+\begin{theorem}
+\label{thm:projectionclosed}
+Let $ V $ be a projective variety. For any quasi-projective variety $ W $, the second projection map $ \pi_2 : V \times W \to W $ maps closed sets to closed sets.
+\end{theorem}
+
+Again, we can see that Theorem \ref{thm:projectionclosed} does not apply when $ V $ is not projective by taking $ V = W = \AA^1 $ and taking the hyperbola as a closed subset of $ V \times W $. At first sight, Theorem \ref{thm:projectionclosed} looks stronger than Theorem \ref{thm:imageclosed} because it applies to all closed subsets of $ V \times W $, not just the graphs $ \Gamma $ of regular maps $ \phi : V \to W $, using that $ \Im \phi = \pi_2\br{\Gamma} $. In fact it is easy to deduce Theorem \ref{thm:projectionclosed} from Theorem \ref{thm:imageclosed}, by applying it to $ \pi_2 \circ \iota : Z \to W $ where $ \iota $ is the inclusion map $ Z \to V \times W $ for any closed subset $ Z \subseteq V \times W $.
+
+\begin{definition*}
+A variety $ V $ is \textbf{complete} if it satisfies the conclusion of Theorem \ref{thm:projectionclosed}. In other words, for every quasi-projective variety $ W $, the second projection $ \pi_2 : V \times W \to W $ maps closed sets to closed sets.
+\end{definition*}
+
+For quasi-projective varieties, complete is equivalent to projective, but if we go beyond the world of quasi-projective varieties, and we have not defined non-quasi-projective varieties at all in this course, then it is possible to find algebraic varieties which are complete but not projective. Completeness is the natural analogue in algebraic geometry for compactness in topology. This is justified by the following result from topology.
+
+\begin{lemma}
+\label{lem:projectionclosed}
+Let $ S $ be a topological space. Then $ S $ is compact if and only if, for every topological space $ T $, the second projection map $ S \times T \to T $ maps closed sets to closed sets.
+\end{lemma}
+
+\pagebreak
+
+\begin{note*}
+In Lemma \ref{lem:projectionclosed}, we use closed sets for the product topology on $ S \times T $, while in Theorem \ref{thm:projectionclosed} we use closed sets for the Zariski topology on $ V \times W $, coming from the Segre embedding. These are not the same thing, since we have seen, in the case $ \AA^1 \times \AA^1 $, that the Zariski topology on a product has more closed sets than the product topology.
+\end{note*}
+
+We remark that, over the complex numbers, an algebraic variety is complete if and only if it is compact for the analytic topology. This is hard to prove.
+
+\subsubsection{Images of quasi-projective varieties}
+
+Completeness tells us that images of regular maps of projective algebraic sets are closed. We know that this is false for affine algebraic sets, by considering our favourite example of the hyperbola and its projection to $ \AA^1 $. So what can we say about the images of regular maps of affine, or more generally quasi-projective algebraic sets? We might speculate that they would always be quasi-projective, that is the intersection of an open and a closed set. But this is not true either. Consider the regular map given by
+$$ \function[\phi]{\AA^2}{\AA^2}{\br{x, y}}{\br{x, xy}}. $$
+The image of $ \phi $ is $ \cbr{\br{x, y} \st x \ne 0} \cup \cbr{\br{0, 0}} $. This is the union of an open set with a closed set, not their intersection. It turns out that this is more or less as bad as things can get.
+
+\begin{definition*}
+Let $ S $ be any topological space. A \textbf{locally closed} subset of $ S $ is the intersection between an open and a closed set. A \textbf{constructible} subset of $ S $ is a finite union of locally closed sets.
+\end{definition*}
+
+\begin{example*}
+Quasi-projective algebraic sets are locally closed subsets of $ \PP^n $.
+\end{example*}
+
+Equivalently, a constructible set is any set which can be obtained by starting with a finite list of open and closed sets, and combining them in any way using unions and intersections. The image of the map $ \br{x, y} \mapsto \br{x, xy} $ considered above is the typical example to keep in mind for a constructible set which is not locally closed. Chevalley's theorem tells us that the image of a regular map between quasi-projective varieties is constructible. Indeed it tells us slightly more. The image of a constructible set is constructible.
+
+\begin{theorem}[Chevalley's theorem]
+Let $ \phi : V \to W $ be a regular map of quasi-projective algebraic sets. The image of any constructible set in $ V $ is a constructible set in $ W $.
+\end{theorem}
+
+We will prove completeness of projective varieties and Chevalley's theorem in the next lecture. Their proofs are linked but neither theorem is an easy consequence of the other.
+
+\subsubsection{Chevalley's theorem and mathematical logic}
+
+This is not a formal part of the course, so I will not define things carefully. For anyone with an interest in mathematical logic, we remark on a logical interpretation of Chevalley's theorem. In logic, we consider formulas made out of some algebraic operations. In the context of algebraic geometry, these will be polynomial equations over an algebraically closed field, and combine these using logical operations, $ \land, \lor, \lnot, \exists, \forall $.
+
+\begin{example*}
+A logical formula might look like $ \br{\lnot\br{xy = z}} \land \exists\br{u, v}\br{\br{x = u^2} \land \br{y = uv} \land \br{z = v^2}} $.
+\end{example*}
+
+If we allow just $ \land, \lor, \lnot $ then formulas like this define unions and intersections of Zariski open and closed sets in $ \AA^n $, that is constructible sets. If we also allow quantifiers, then we can also get images of regular maps.
+
+\begin{example*}
+The part of the formula above starting with $ \exists\br{u, v} $ defines the image of the regular map $ \br{u, v} \mapsto \br{u^2, uv, v^2} $.
+\end{example*}
+
+But Chevalley's theorem tells us that images of regular maps are actually also constructible sets, so we deduce the following.
+
+\begin{fact*}
+Every formula, made out of polynomials over an algebraically closed field, is equivalent to a formula without quantifiers.
+\end{fact*}
+
+This is called \textbf{elimination of quantifiers for algebraically closed fields}.
 
 \end{document}
