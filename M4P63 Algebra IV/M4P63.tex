@@ -1108,7 +1108,7 @@ $$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} A^2 \to \dots $$
 is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}. An injective resolution always means a right injective resolution.
 \end{definition}
 
-\subsection{Existence}
+\subsection{Existence of projective resolutions}
 
 \begin{proposition}
 Let $ M $ be an $ R $-module. Then $ M $ has free, projective, and flat resolutions.
@@ -1123,6 +1123,8 @@ are all exact. Since $ K_i \le F_i $, we may consider the maps $ F_{i + 1} \to K
 $$ \dots \to F_2 \to F_1 \to F_0 \to M \to 0 $$
 is exact, and a free resolution for $ M $.
 \end{proof}
+
+\subsection{Existence of injective resolutions}
 
 Injective coresolutions exist too, but the proof is more intricate. It involves making use of properties of the abelian group $ \QQ / \ZZ $.
 
@@ -1289,7 +1291,7 @@ is exact.
 Let $ M $ be an $ R $-module. Then $ M $ injects into some injective module $ I_0 $. Let $ C_0 = I_0 / \Im \br{M \to I_0} $. Then $ C_0 $ injects into some injective $ I_1 $. This induces a map $ I_0 \to I_1 $ whose kernel is $ \Im \br{M \to I_0} $. Further terms in the sequence are constructed in an identical manner.
 \end{proof}
 
-\subsection{Uniqueness}
+\subsection{Uniqueness of projective resolutions}
 
 \begin{proposition}
 \label{prop:projectiveresolution}
@@ -1384,6 +1386,8 @@ Lecture 19 is a problems class.
 
 \pagebreak
 
+\subsection{Uniqueness of injective resolutions}
+
 The following is the equivalent result for injectives.
 
 \begin{proposition}
@@ -1423,6 +1427,103 @@ $$
 
 \begin{proof}
 Very similar to Proposition \ref{prop:projectiveresolution}.
+\end{proof}
+
+\pagebreak
+
+\section{Chain complexes}
+
+\subsection{Chain complexes}
+
+\lecture{20}{Monday}{24/02/20}
+
+\begin{definition}
+A \textbf{chain complex} is a series $ A_* = \br{A_i} $, with maps $ d_i^A = d_i = d : A_{i + 1} \to A_i $ such that $ d^2 = 0 $, that is $ d_{i + 1} \circ d_i = 0 $, or $ \Im d_{i + 1} \le \Ker d_i $. A \textbf{cochain complex} is a series $ A^* = \br{A^i} $ with maps $ d_i^A = d_i = d : A^i \to A^{i + 1} $ such that $ d^2 = 0 $, or $ \Im d_i \le \Ker d_{i + 1} $.
+\end{definition}
+
+\begin{definition}
+Let $ A_* $ be a chain complex. The \textbf{$ n $-th homology group} of $ A_* $ is $ \Ker d_{n - 1} / \Im d_n $. We write $ \H_n\br{A_*} $. Also write $ \H_*\br{A_*} = \br{\H_n\br{A_*}} $. Let $ A^* $ be a cochain complex. The \textbf{$ n $-th cohomology group} of $ A^* $ is $ \Ker d_n / \Im d_{n - 1} $. We write $ \H^n\br{A^*} $, and $ \H^*\br{A^*} = \br{\H^n\br{A^*}} $.
+\end{definition}
+
+\begin{example*}
+Let $ A_i = \ZZ^3 $ for all $ i $, and let $ d\br{a, b, c} = \br{0, 0, a} $. Certainly $ d^2 = 0 $, so this is a chain complex. Then
+$$ \Ker d = \cbr{\br{0, b, c}} = 0 \oplus \ZZ^2, \qquad \Im d = \cbr{\br{0, 0, a}} = 0^2 \oplus \ZZ. $$
+Now $ \Ker d_{n - 1} / \Im d_n = \cbr{\br{0, b, 0} + 0^2 \oplus \ZZ} $.
+\end{example*}
+
+Let $ A_* $ and $ B_* $ be chain complexes. Let $ f = \br{f_i} $ be a family of $ R $-module homomorphisms $ f_i : A_i \to B_i $. Say that $ f $ is a \textbf{map of chain complexes} if $ f \circ d = d \circ f $, that is $ f_i \circ d_i^A = d_i^B \circ f_{i + 1} $. So
+$$
+\begin{tikzcd}
+\dots \arrow{r} & A_{n + 1} \arrow{r}{d_n} \arrow{d}{f_{n + 1}} & A_n \arrow{r}{d_{n - 1}} \arrow{d}{f_n} & A_{n - 1} \arrow{r} \arrow{d}{f_{n - 1}} & \dots \\
+\dots \arrow{r} & B_{n + 1} \arrow{r}{d_n} & B_n \arrow{r}{d_{n - 1}} & A_{n - 1} \arrow{r} & \dots
+\end{tikzcd}
+$$
+commutes. Say that $ f $ \textbf{has property $ \PPP $} if all $ f_i $ have property $ \PPP $, where $ \PPP $ is injective, surjective, etc. A sequence
+$$ A_* \xrightarrow{f} B_* \xrightarrow{g} C_* $$
+is \textbf{exact} at $ B_* $ if
+$$ A_n \xrightarrow{f_n} B_n \xrightarrow{g_n} C_n $$
+is exact at $ B_n $ for all $ n $. A sequence of chain complexes is \textbf{exact} if it is exact everywhere. An \textbf{exact sequence}
+$$ 0 \to A_* \to B_* \to C_* \to 0 $$
+is a short exact sequence of chain complexes.
+
+\begin{proposition}
+A map of chain complexes $ f : A_* \to B_* $ induces a map on the homology, $ f_* : \H_*\br{A_*} \to \H_*\br{B_*} $, given by
+$$ \function[f_{*i}]{\H_i\br{A_*}}{\H_i\br{B_*}}{x + \Im d_i^A}{f_i\br{x} + \Im d_i^B}. $$
+\end{proposition}
+
+\begin{proof}
+Let $ x \in \Ker d_{i - 1}^A $. Then $ \br{f_{i - 1} \circ d_{i - 1}^A}\br{x} = 0 $, so $ \br{d_{i - 1}^B \circ f_i}\br{x} = 0 $. Hence $ f_i\br{x} \in \Ker d_{i - 1}^B $. So $ f_i $ certainly induces a map $ \overline{f_i} : \Ker d_{i - 1}^A \to \Ker d_{i - 1}^B / \Im d_i^B $. So there exists $ y \in A_{i + 1} $ with $ d_i^A\br{y} = x $. Now $ f_i\br{x} = \br{f_i \circ d_i^A}\br{y} = \br{d_i^B \circ f_{i + 1}}\br{y} \in \Im d_i^B $, so $ \overline{f_i}\br{x} = 0 $. Hence $ \Im d_i^A \le \Ker \overline{f_i} $ so $ \overline{f_i} $ induces a map
+$$ \Ker d_{i - 1}^A / \Im d_i^A = \H_i\br{A_*} \to \Ker d_{i - 1}^B / \Im d_i^B = \H_i\br{B_*}. $$
+\end{proof}
+
+Let $ A_* $ and $ B_* $ be chain complexes, and let $ f $ and $ g $ be maps between them. We say that $ f $ and $ g $ are \textbf{equal up to homotopy} if there exist maps $ s_i : A_i \to B_{i + 1} $ such that $ g_i - f_i = s_{i - 1} \circ d_{i - 1}^A + d_i^B \circ s_i $.
+
+\begin{proposition}
+If $ f, g : A_* \to B_* $ are equal up to homotopy, then $ f_* = g_* $, so $ f $ and $ g $ induce the same map on homology.
+\end{proposition}
+
+\begin{proof}
+Exercise. \footnote{Exercise}
+\end{proof}
+
+\pagebreak
+
+\begin{proposition}
+Let
+$$ 0 \to A_* \xrightarrow{f} B_* \xrightarrow{g} C_* \to 0 $$
+be a short exact sequence. This induces a long exact sequence
+$$
+\begin{tikzcd}
+\dots \arrow{r} & \H_{n + 1}\br{A_*} \arrow{r} & \H_{n + 1}\br{B_*} \arrow{r} & \H_{n + 1}\br{C_*} \arrow[in=180, out=0, swap]{dll} & \\
+& \H_n\br{A_*} \arrow{r} & \H_n\br{B_*} \arrow{r} & \H_n\br{C_*} \arrow[in=180, out=0, swap]{dll} & \\
+& \H_{n - 1}\br{A_*} \arrow{r} & \H_{n - 1}\br{B_*} \arrow{r} & \H_{n - 1}\br{C_*} \arrow{r} & \dots
+\end{tikzcd}.
+$$
+\end{proposition}
+
+\begin{proof}
+We have a commuting diagram with exact rows
+$$
+\begin{tikzcd}
+0 \arrow{r} & A_{n + 1} \arrow{r} \arrow{d}{d_n^A} & B_{n + 1} \arrow{r} \arrow{d}{d_n^B} & C_{n + 1} \arrow{r} \arrow{d}{d_n^C} & 0 \\
+0 \arrow{r} & A_n \arrow{r} & B_n \arrow{r} & C_n \arrow{r} & 0
+\end{tikzcd}.
+$$
+Notice $ \Im d_n \le \Ker d_{n - 1} $, so we can change this to
+$$
+\begin{tikzcd}
+0 \arrow{r} & A_{n + 1} \arrow{r} \arrow{d} & B_{n + 1} \arrow{r} \arrow{d} & C_{n + 1} \arrow{r} \arrow{d} & 0 \\
+0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r} & \Ker d_{n - 1}^B \arrow{r} & \Ker d_{n - 1}^C &
+\end{tikzcd}.
+$$
+Now $ \Im d_{n + 1} \le \Ker d_n $, so the maps $ A_{n + 1} \to \Ker d_{n + 1} $ induce maps $ A_{n + 1} / \Im d_{n + 1} \to \Ker d_{n - 1} $. So we get a diagram
+$$
+\begin{tikzcd}
+& A_{n + 1} / \Im d_{n + 1}^A \arrow{r} \arrow{d} & B_{n + 1} / \Im d_{n + 1}^B \arrow{r} \arrow{d} & C_{n + 1} / \Im d_{n + 1}^C \arrow{r} \arrow{d} & 0 \\
+0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r} & \Ker d_{n - 1}^B \arrow{r} & \Ker d_{n - 1}^C &
+\end{tikzcd}.
+$$
+We are now in the position to apply the snake lemma.
 \end{proof}
 
 \end{document}
