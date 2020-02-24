@@ -1324,7 +1324,7 @@ Let $ M $ be a manifold of dimension $ n $, let $ x \in M $, and let $ i : M \se
 \end{itemize}
 \item Surjectivity.
 \begin{itemize}
-\item[$ p \ge 1 $.] Let $ \sbr{\omega} \in \Omega_\c^p\br{M} $ such that $ \omega $ is closed. By Poincar\'e lemma there exists open $ U \ni x $ such that $ \omega $ is exact, so there exists $ \sigma \in \Omega^{p - 1}\br{U} $ such that $ \omega = \d\sigma $. Let $ \br{f_U, f_{M \setminus \cbr{x}}} $ be a partition of unity as before, and let $ \omega' = \omega - \d\br{i_*\br{f_U\sigma}} $. Then $ \omega' = 0 $ in a neighbourhood of $ x $ and $ \sbr{\omega'} = \sbr{\omega} $, and $ \eval{\omega'}_{M \setminus \cbr{x}} \in \Omega_\c^p\br{M \setminus \cbr{x}} $. Thus $ \sbr{i_*\eval{\omega'}_{M \setminus \cbr{x}}} = \sbr{\omega'} = \sbr{\omega} $.
+\item[$ p \ge 1 $.] Let $ \sbr{\omega} \in \Omega_\c^p\br{M} $ such that $ \omega $ is closed. By Poincar\'e lemma there exists an open $ U \ni x $ such that $ \omega $ is exact, so there exists $ \sigma \in \Omega^{p - 1}\br{U} $ such that $ \omega = \d\sigma $. Let $ \br{f_U, f_{M \setminus \cbr{x}}} $ be a partition of unity as before, and let $ \omega' = \omega - \d\br{i_*\br{f_U\sigma}} $. Then $ \omega' = 0 $ in a neighbourhood of $ x $ and $ \sbr{\omega'} = \sbr{\omega} $, and $ \eval{\omega'}_{M \setminus \cbr{x}} \in \Omega_\c^p\br{M \setminus \cbr{x}} $. Thus $ \sbr{i_*\eval{\omega'}_{M \setminus \cbr{x}}} = \sbr{\omega'} = \sbr{\omega} $.
 \end{itemize}
 \end{itemize}
 \end{proof}
@@ -1625,7 +1625,99 @@ By Poincar\'e duality, $ \dim \H^i\br{M} = \dim \H^{n - i}\br{M} $.
 
 \subsection{Degree of a morphism}
 
-Let $ M $ and $ N $ be connected oriented manifolds of dimension $ n $, and let $ f : M \to N $ be a proper smooth morphism. Then $ f^* : \H_\c^n\br{N} = \RR \to \H_\c^n\br{M} = \RR $ by Poincar\'e duality and connectedness, so $ f\br{x} = cx $ for some $ \deg f = c \in \RR $. For any $ \omega \in \Omega_\c^n\br{M} $,
-$$ \int_M f^*\omega = c\int_M \omega. $$
+Let $ M $ and $ N $ be connected oriented manifolds of dimension $ n $, and let $ f : M \to N $ be a proper smooth morphism. Then $ f^* : \H_\c^n\br{N} \cong \RR \to \H_\c^n\br{M} \cong \RR $ by Poincar\'e duality and connectedness, so $ f\br{x} = c \cdot x $ for some $ \deg f = c \in \RR $. For any $ \omega \in \Omega_\c^n\br{M} $,
+$$ \int_M f^*\omega = \deg f \cdot \int_M \omega. $$
+
+\pagebreak
+
+\lecture{20}{Monday}{24/02/20}
+
+\begin{proposition}
+Let $ M, N, P $ be connected oriented manifolds of dimension $ n $.
+\begin{itemize}
+\item If $ f : M \to N $ and $ g : N \to P $ are smooth and proper morphisms then
+$$ \deg \br{g \circ f} = \deg f \cdot \deg g $$
+\item If $ f $ is a diffeomorphism then
+$$ \deg g =
+\begin{cases}
+1 & f \ \text{is orientation preserving} \\
+-1 & \text{otherwise}
+\end{cases}.
+$$
+\item If $ f, g : M \to N $ are smooth proper and properly homotopic equivalent then
+$$ \deg f = \deg g. $$
+\end{itemize}
+\end{proposition}
+
+\begin{theorem}[Mapping degree theorem]
+\label{thm:2.59}
+Let $ f : M \to N $ be a proper smooth morphism between connected oriented manifolds of dimension $ n $. Then $ \deg f \in \ZZ $.
+\end{theorem}
+
+\begin{definition}
+Let $ f : M \to N $ be a smooth morphism. Then $ y \in N $ is \textbf{regular} if for all $ x \in f^{-1}\br{y} $, $ \D f_x $ has maximal rank.
+\end{definition}
+
+\begin{theorem}[Preimage theorem]
+Let $ f : M \to N $ be a smooth morphism, and let $ y \in N $ be a regular value. Then $ f^{-1}\br{y} $ is a manifold of dimension $ \dim M - \rk \D f_x $ where $ x \in f^{-1}\br{y} $.
+\end{theorem}
+
+\begin{theorem}[Implicit function theorem]
+Let $ f : M \to N $ be a smooth morphism, and let $ x \in M $ be such that $ \D f_x $ is an isomorphism. Then there exists an open $ x \in U \subset M $ such that $ \eval{f}_U : U \to f\br{U} $ is an isomorphism.
+\end{theorem}
+
+\begin{theorem}[Sard's theorem]
+Let $ f : M \to N $ be smooth. Then if $ Z \subset N $ is the set of regular values of $ f $ then $ Z \cap f\br{M} $ is dense in $ f\br{M} $.
+\end{theorem}
+
+\begin{proof}[Proof of Theorem \ref{thm:2.59}]
+Recall $ \dim M = \dim N $, and if $ \omega \in \Omega_\c^n\br{N} $ and if $ \D f_x $ is of rank less than $ n $ for all $ x $, then $ \deg f = 0 $. We are done. In particular we may assume there exists $ x $ such that $ \D f_x $ has rank equal to $ n $. Let $ y = f\br{x} $. By Sard's theorem, we may assume that for all $ x \in f^{-1}\br{y} $, $ \D f_x $ has rank $ n $. By the preimage theorem $ f^{-1}\br{y} $ is a manifold of dimension zero, so
+$$ f^{-1}\br{y} = \cbr{x_1, \dots, x_k} $$
+is a finite set, because $ f $ is proper. By the implicit function theorem, for all $ i $ there exists an open set $ U_i \ni x $ such that $ \eval{f}_U $ is a diffeomorphism and $ f\br{U_i} = U $. Let $ \omega \in \Omega_\c^n\br{N} $ be such that $ \int_U \omega = 1 $ and $ \supp \omega \subset U $. Since $ \eval{f}_{U_i} $ is a diffeomorphism
+$$ \int_{U_i} \eval{f}_{U_i}^*\omega = \sgn\br{\det \D f_x}\int_U \omega, $$
+and $ \eval{f}_{U_i}^*\omega $ has support in $ U_i $. Since $ \supp f^*\omega \subset \bigcup_i U_i $,
+$$ \int_M f^*\omega = \sum_{i = 1}^k \int_{U_i} f^*\omega = \sum_{i = 1}^k \sgn \br{\det \D f_x}\int_U \omega = \sum_{i = 1}^k \sgn \br{\det \D f_x}\int_M \omega, $$
+so $ \deg f = \sum_{i = 1}^k \sgn \br{\det \D f_{x_i}} \in \ZZ $, which does not depend on $ y $, if $ y $ is a regular point.
+\end{proof}
+
+As an immediate consequence of the proof of the theorem, we get the following.
+
+\begin{corollary}
+Let $ f : M \to N $ be a proper smooth morphism between connected oriented manifolds of dimension $ n $. Assume that $ f $ is not surjective. Then $ \deg f = 0 $.
+\end{corollary}
+
+\pagebreak
+
+\begin{example}
+Let $ M = \S^n = N $, and let
+$$ \function[f]{M}{N}{x}{-x} $$
+be the antipodal map. Claim that $ \deg f = \br{-1}^{n + 1} $. Let $ i : \S^n \hookrightarrow \RR^{n + 1} $, let
+$$ \widetilde{\omega} = x_1 \d x_2 \wedge \dots \wedge \d x_{n + 1}\in \Omega^n\br{\RR^{n + 1}}, $$
+and let $ \omega = i_*\widetilde{\omega} \in \Omega^n\br{\S^n} $. By Stokes and $ \S^n = \partial\D^{n + 1} $,
+$$ \int_{\S^n} \omega = \int_{\S^n} i^*\widetilde{\omega} = \int_{\D^{n + 1}} \d\widetilde{\omega} = \int_{\D^{n + 1}} \d x_1 \wedge \dots \wedge \d x_{n + 1} \ne 0, $$
+so $ f $ can be extended to
+$$ \function[\widetilde{f}]{\RR^{n + 1}}{\RR^{n + 1}}{x}{-x}. $$
+Then $ \widetilde{f} \circ i = i \circ f $ and $ \widetilde{f}^*\widetilde{\omega} = \br{-1}^{n + 1}\widetilde{\omega} $, so
+$$ f^*\omega = f^*i^*\widetilde{\omega} = \br{i \circ f}^*\widetilde{\omega} = \br{\widetilde{f} \circ i}^*\widetilde{\omega} = i^*\widetilde{f}^*\widetilde{\omega} = \br{-1}^{n + 1}i^*\widetilde{\omega} = \br{-1}^{n + 1}\omega. $$
+Thus
+$$ \br{-1}^{n + 1}\int_{\S^n} \omega = \int_{\S^n} f^*\omega = \deg f\int_{\S^n} \omega, $$
+so $ \deg f = \br{-1}^{n + 1} $.
+\end{example}
+
+\pagebreak
+
+\section{Morse theory}
+
+\begin{definition}
+Let $ M $ be a manifold of dimension $ n $, and let $ f : M \to \RR $ be smooth. A \textbf{critical point} of $ f $ is a point $ x \in M $ such that $ \D f_x = 0 $, that is if $ x_1, \dots, x_n $ are local coordinates at $ x $, then
+$$ \dpd{}{x_i}f\br{x} = 0, \qquad i = 1, \dots, n. $$
+For such $ x $, we define the Hessian of $ f $ to be
+$$ \H_f = \br{\dmd{}{2}{x_i}{}{x_j}{}f\br{x}}. $$
+Then $ x $ is called \textbf{non-degenerate} if $ \det \H_f\br{x} \ne 0 $. A function such that every critical point is non-degenerate is called a \textbf{Morse function}.
+\end{definition}
+
+\begin{fact*}
+By Sard's theorem most of the functions satisfy this property.
+\end{fact*}
 
 \end{document}
