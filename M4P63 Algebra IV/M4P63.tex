@@ -30,7 +30,7 @@ is the unit group of $ R $. If $ R^* = R \setminus \cbr{0} $ then $ R $ is a \te
 \end{itemize}
 \end{example*}
 
-\subsection{Modules}
+\subsection{Modules over rings}
 
 \begin{definition}
 Let $ R $ be a ring. A \textbf{left $ R $-module} is an abelian group $ M $, written additively, together with a function $ * : R \times M \to M $ satisfying
@@ -72,7 +72,7 @@ Except where otherwise stated, $ R $-modules are assumed to be left $ R $-module
 
 \pagebreak
 
-\subsection{Homomorphisms}
+\subsection{Homomorphisms and submodules}
 
 \begin{definition}
 Let $ M_1 $ and $ M_2 $ be $ R $-modules. A map $ f : M_1 \to M_2 $ is an \textbf{$ R $-module homomorphism} if
@@ -105,10 +105,15 @@ The \textbf{direct product} is
 $$ \prod_{s \in S} M_s = \cbr{\br{m_s}_S \st m_s \in M_s}, $$
 with coordinate-wise addition and $ R $-multiplication, so
 $$ \br{m_s}_S + \br{n_s}_S = \br{m_s + n_s}_S, \qquad r\br{m_s}_S = \br{rm_s}_S. $$
-If $ M_s = M $ for all $ s \in S $, then we write $ M^S $ for $ \prod_{s \in S} M_s $. The \textbf{direct sum} is
-$$ \bigoplus_{s \in S} M_s = \cbr{\br{m_s}_S \st \text{all but finitely many coordinates} \ m_s \ \text{are zero}} \le \prod_{s \in S} M_s. $$
-If $ S $ is finite then the direct product and the direct sum are equal.
+If $ M_s = M $ for all $ s \in S $, then we write $ M^S $ for $ \prod_{s \in S} M_s $.
 \end{definition}
+
+\begin{definition}
+The \textbf{direct sum} is
+$$ \bigoplus_{s \in S} M_s = \cbr{\br{m_s}_S \st \text{all but finitely many coordinates} \ m_s \ \text{are zero}} \le \prod_{s \in S} M_s. $$
+\end{definition}
+
+If $ S $ is finite then the direct product and the direct sum are equal.
 
 \begin{example*}
 Let $ M = \ZZ_2 $, as a $ \ZZ $-module, and let $ S = \NN $. Then $ \bigoplus_{s \in \NN} \ZZ_2 $ is a countable $ \ZZ $-module but $ \prod_{s \in \NN} \ZZ_2 = \ZZ_2^\NN $ is uncountable.
@@ -196,6 +201,8 @@ $$ \function[g]{B}{A \oplus C}{b}{\br{\rho\br{a}, \beta\br{c}}}. $$
 
 \pagebreak
 
+\section{Projective and injective modules}
+
 \subsection{Projective modules}
 
 \lecture{3}{Tuesday}{14/01/20}
@@ -217,7 +224,7 @@ Then $ \sigma $ is a section for $ \beta $.
 \begin{proposition}
 An $ R $-module $ M $ is projective if and only if whenever $ \beta : B \to C $ is surjective, and $ f : M \to C $, there exists $ g : M \to B $ such that $ f = \beta \circ g $, so
 $$
-\begin{tikzcd}
+\begin{tikzcd}[row sep=small]
 & & & M \arrow[dashed, swap]{dl}{g} \arrow{d}{f} & \\
 0 \arrow{r} & A \arrow{r} & B \arrow[swap]{r}{\beta} & C \arrow{r} & 0
 \end{tikzcd}.
@@ -407,7 +414,7 @@ If $ k \ne 0, \pm 1 $, then $ f\br{k} = 1 $, and so $ f\br{x} \ne xm $ for $ m \
 
 \pagebreak
 
-\section{Hom and tensor product}
+\section{Hom and tensor products}
 
 \subsection{Hom}
 
@@ -566,7 +573,7 @@ $$
 \end{tikzcd},
 $$
 where the rows are exact. Then we obtain an exact sequence
-$$ \Ker f \xrightarrow{\overline{\alpha}} \Ker g \xrightarrow{\overline{\beta}} \Ker h \xrightarrow{\delta} \Coker f \xrightarrow{\overline{\phi}} \Coker g \xrightarrow{\overline{\psi}} \Coker h. $$
+$$ \Ker f \xrightarrow{\alpha} \Ker g \xrightarrow{\beta} \Ker h \xrightarrow{\delta} \Coker f \xrightarrow{\overline{\phi}} \Coker g \xrightarrow{\overline{\psi}} \Coker h. $$
 \end{lemma}
 
 \pagebreak
@@ -574,7 +581,7 @@ $$ \Ker f \xrightarrow{\overline{\alpha}} \Ker g \xrightarrow{\overline{\beta}} 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item The maps $ \overline{\alpha} : \Ker f \to \Ker g $ and $ \overline{\beta} : \Ker g \to \Ker h $ are obtained simply by restricting $ \alpha $ and $ \beta $ respectively. Observe that if $ a \in \Ker f $ then $ f\br{a} = 0 $, so $ \br{\phi \circ f}\br{a} = 0 $. But $ \phi \circ f = g \circ \overline{\alpha} $, and so $ \br{g \circ \overline{\alpha}}\br{a} = 0 $, so $ \overline{\alpha}\br{a} \in \Ker g $, which is what we wanted.
+\item The maps $ \alpha : \Ker f \to \Ker g $ and $ \beta : \Ker g \to \Ker h $ are obtained simply by restricting $ \alpha $ and $ \beta $ respectively. Observe that if $ a \in \Ker f $ then $ f\br{a} = 0 $, so $ \br{\phi \circ f}\br{a} = 0 $. But $ \phi \circ f = g \circ \alpha $, and so $ \br{g \circ \alpha}\br{a} = 0 $, so $ \alpha\br{a} \in \Ker g $, which is what we wanted.
 \item The maps $ \overline{\phi} : \Coker f \to \Coker g $ and $ \overline{\psi} : \Coker g \to \Coker h $ are induced from $ \phi $ and $ \psi $ by
 $$ \overline{\phi}\br{x + \Im f} = \phi\br{x} + \Im g, \qquad \overline{\psi}\br{y + \Im g} = \psi\br{g} + \Im h. $$
 Check that these maps make sense. Suppose $ x_1 + \Im f = x_2 + \Im f $. Then $ x_1 - x_2 \in \Im f $, so there exists $ a \in A $ such that $ f\br{a} = x_1 - x_2 $. Now
@@ -1076,17 +1083,19 @@ $$
 is commuting, and exact along rows. Let $ u \in \Ker g \le \alpha A \otimes_R M \cong A \otimes_R M $. Since $ \gamma $ is surjective, there is $ w \in F_A \otimes_R M $ with $ \gamma\br{w} = u $. So $ \br{g \circ \gamma}\br{w} = 0 $. So $ \br{\epsilon \circ f}\br{w} = 0 $. So $ f\br{w} \in \Ker \epsilon = \Im \delta $, so $ f\br{w} = \delta\br{k} $ for $ k \in K \otimes_R M $. Since $ f $ is injective, by Lemma \ref{lem:torsionflat4}, we get $ w = \beta\br{k} \in \Im \beta $. So $ w \in \Ker \gamma $, so $ u = 0 $. Hence $ g $ is injective, as required.
 \end{proof}
 
+We have shown that if $ R $ is a PID, and if $ M $ is torsion-free, then $ M $ is flat.
+
+\subsection{Modules over PIDs}
+
 \lecture{16}{Friday}{14/02/20}
 
-We have shown that if $ R $ is a PID, and if $ M $ is torsion-free, then $ M $ is flat. For an $ R $-module $ M $
+For an $ R $-module $ M $
 $$ \text{free} \implies \text{projective} \implies \text{flat} \implies \text{torsion-free}, \qquad \text{injective} \implies \text{divisible}. $$
 Over a PID
 $$ \text{free} \iff \text{projective} \implies \text{flat} \iff \text{torsion-free}, \qquad \text{injective} \iff \text{divisible}. $$
+Do we have projective if and only if flat, over a general ring, or over a PID? The answer is no.
 
 \begin{example*}
-Do we have projective if and only if flat, over a general ring, or over a PID? The answer is no.
-\end{example*}
-
 The $ \ZZ $-module $ \QQ $ is torsion-free, so flat. Is $ \QQ $ projective? Is $ \QQ $ free, since $ \ZZ $ is a PID? Consider a free $ \ZZ $-module $ F = \bigoplus_{s \in S} \ZZ $. Let $ s_0 \in S $. Then let
 $$ x = \br{x_s}_{s \in S} =
 \begin{cases}
@@ -1095,18 +1104,27 @@ $$ x = \br{x_s}_{s \in S} =
 \end{cases}
 \in F. $$
 It is clear there are no $ y \in F $ such that $ 2y = x $. So $ x $ is not a divisible element of $ F $. Indeed, $ \D\br{F} = \cbr{0} $. But $ \D\br{\QQ} = \QQ $. Hence $ \QQ \not\cong F $. So $ \QQ $ is an example of a flat module which is not projective.
+\end{example*}
 
 \pagebreak
 
-\section{Resolutions}
+\section{Projective and injective resolutions}
 
 \begin{definition}
 Let $ M $ be an $ R $-module. A \textbf{resolution}, or \textbf{left resolution}, for $ M $ is a sequence of $ R $-modules $ A_0, A_1, A_2, \dots $, with homomorphisms $ d : A_{i + 1} \to A_i $, and also a homomorphism $ A_0 \to M $, such that
 $$ \dots \to A_2 \xrightarrow{d} A_1 \xrightarrow{d} A_0 \to M \to 0 $$
-is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}. So we can talk about free resolutions, projective resolutions, flat resolutions. We do not use the term injective resolution in this context. A \textbf{right resolution}, or \textbf{coresolution}, for $ M $ is a sequence of $ R $-modules $ A^0, A^1, A^2, \dots $, with homomorphisms $ d : A^i \to A^{i + 1} $, and $ M \to A^0 $, such that
-$$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} A^2 \to \dots $$
-is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}. An injective resolution always means a right injective resolution.
+is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}.
 \end{definition}
+
+So we can talk about free resolutions, projective resolutions, flat resolutions. We do not use the term injective resolution in this context.
+
+\begin{definition}
+A \textbf{right resolution}, or \textbf{coresolution}, for $ M $ is a sequence of $ R $-modules $ A^0, A^1, A^2, \dots $, with homomorphisms $ d : A^i \to A^{i + 1} $, and $ M \to A^0 $, such that
+$$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} A^2 \to \dots $$
+is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}.
+\end{definition}
+
+An injective resolution always means a right injective resolution.
 
 \subsection{Existence of projective resolutions}
 
@@ -1137,11 +1155,11 @@ Start by defining $ f_0 : \abr{a} \to \QQ / \ZZ $. If $ a $ has finite order $ t
 $$ \cbr{\br{B, f} \st B \le A, \ a \in B, \ f : B \to \QQ / \ZZ, \ f \ \text{extends} \ f_0}. $$
 Then $ X $ is non-empty, since $ \br{\abr{a}, f_0} \in X $. Define a partial order $ \le $ on $ X $ by $ \br{B_1, f_1} \le \br{B_2, f_2} $ if $ B_1 \le B_2 $ and $ f_2 $ extends $ f $. Let $ \cbr{\br{B_s, f_s} \st s \in S} $ be a chain in $ X $, where $ S $ is a suitable indexing set. Then $ \cbr{B_s \st s \in S} $ is a chain of subgroups of $ A $. So the union $ B = \bigcup_{s \in S} B_s $ is a subgroup of $ A $, containing $ a $. Define
 $$ \function[f]{B}{\QQ / \ZZ}{b}{f_s\br{b}}, \qquad b \in B_s. $$
-This is well-defined since if $ b \in B_t $ then $ f_s\br{b} = f_t\br{b} $. Now $ \br{B, f} $ is an upper bound for $ \cbr{B_s \st s \in S} $ in $ X $. So by Zorn's lemma, $ X $ has a maximal element, which we will call $ \br{B, f} $. We show that $ B = A $. Since $ f\br{a} = f_0\br{a} $, this will complete the proof. Suppose $ x \in A \setminus B $. Then let $ I < \ZZ $ be defined by
-$$ I = \cbr{k \st kx \in B}. $$
 
 \pagebreak
 
+This is well-defined since if $ b \in B_t $ then $ f_s\br{b} = f_t\br{b} $. Now $ \br{B, f} $ is an upper bound for $ \cbr{B_s \st s \in S} $ in $ X $. So by Zorn's lemma, $ X $ has a maximal element, which we will call $ \br{B, f} $. We show that $ B = A $. Since $ f\br{a} = f_0\br{a} $, this will complete the proof. Suppose $ x \in A \setminus B $. Then let $ I < \ZZ $ be defined by
+$$ I = \cbr{k \st kx \in B}. $$
 Since $ \ZZ $ is a PID, we have $ I = n\ZZ $ for some $ n $. We have $ \abr{B, x} \le A $, and $ \abr{B, x} \cong B \oplus \abr{x} / \abr{nx - b_0} $, where $ b_0 = nx $ in $ A $. Define
 $$ \function[\phi]{B \oplus \abr{x}}{\QQ / \ZZ}{\br{b, kx}}{f\br{b} + \dfrac{kf\br{b_0}}{n}}, $$
 so sending $ x $ to $ f\br{b_0} / n $. We see that $ \phi\br{nx - b_0} = 0 $, so $ \phi $ induces a map $ B \oplus \abr{x} / \abr{nx - b_0} \to \QQ / \ZZ $, and hence a map $ f' : \abr{B, x} \to \QQ / \ZZ $. But $ f'\br{a} = f_0\br{a} $, so $ \br{\abr{B, x}, f} $ is an element of $ X $ greater than $ \br{B, f} $, contradicting maximality of $ \br{B, f} $. Hence $ B = A $ as required.
@@ -1380,10 +1398,6 @@ and since $ P_t $ is projective, there exists $ s_t $ such that $ d_t' \circ s_t
 \end{enumerate}
 \end{proof}
 
-\lecture{19}{Friday}{21/02/20}
-
-Lecture 19 is a problems class.
-
 \pagebreak
 
 \subsection{Uniqueness of injective resolutions}
@@ -1429,27 +1443,25 @@ $$
 Very similar to Proposition \ref{prop:projectiveresolution}.
 \end{proof}
 
+\lecture{19}{Friday}{21/02/20}
+
+Lecture 19 is a problems class.
+
 \pagebreak
 
-\section{Chain complexes}
+\section{Chain and cochain complexes}
 
 \subsection{Chain complexes}
 
 \lecture{20}{Monday}{24/02/20}
 
 \begin{definition}
-A \textbf{chain complex} is a series $ A_* = \br{A_i} $, with maps $ d_i^A = d_i = d : A_{i + 1} \to A_i $ such that $ d^2 = 0 $, that is $ d_{i + 1} \circ d_i = 0 $, or $ \Im d_{i + 1} \le \Ker d_i $. A \textbf{cochain complex} is a series $ A^* = \br{A^i} $ with maps $ d_i^A = d_i = d : A^i \to A^{i + 1} $ such that $ d^2 = 0 $, or $ \Im d_i \le \Ker d_{i + 1} $.
+A \textbf{chain complex} is a series $ A_* = \br{A_i} $, with maps $ d_i^A = d_i = d : A_{i + 1} \to A_i $ such that $ d^2 = 0 $, that is $ d_{i + 1} \circ d_i = 0 $, or $ \Im d_{i + 1} \le \Ker d_i $.
 \end{definition}
 
 \begin{definition}
-Let $ A_* $ be a chain complex. The \textbf{$ n $-th homology group} of $ A_* $ is $ \Ker d_{n - 1} / \Im d_n $. We write $ \H_n\br{A_*} $. Also write $ \H_*\br{A_*} = \br{\H_n\br{A_*}} $. Let $ A^* $ be a cochain complex. The \textbf{$ n $-th cohomology group} of $ A^* $ is $ \Ker d_n / \Im d_{n - 1} $. We write $ \H^n\br{A^*} $, and $ \H^*\br{A^*} = \br{\H^n\br{A^*}} $.
+A \textbf{cochain complex} is a series $ A^* = \br{A^i} $ with maps $ d_i^A = d_i = d : A^i \to A^{i + 1} $ such that $ d^2 = 0 $, or $ \Im d_i \le \Ker d_{i + 1} $.
 \end{definition}
-
-\begin{example*}
-Let $ A_i = \ZZ^3 $ for all $ i $, and let $ d\br{a, b, c} = \br{0, 0, a} $. Certainly $ d^2 = 0 $, so this is a chain complex. Then
-$$ \Ker d = \cbr{\br{0, b, c}} = 0 \oplus \ZZ^2, \qquad \Im d = \cbr{\br{0, 0, a}} = 0^2 \oplus \ZZ. $$
-Now $ \Ker d_{n - 1} / \Im d_n = \cbr{\br{0, b, 0} + 0^2 \oplus \ZZ} $.
-\end{example*}
 
 Let $ A_* $ and $ B_* $ be chain complexes. Let $ f = \br{f_i} $ be a family of $ R $-module homomorphisms $ f_i : A_i \to B_i $. Say that $ f $ is a \textbf{map of chain complexes} if $ f \circ d = d \circ f $, that is $ f_i \circ d_i^A = d_i^B \circ f_{i + 1} $. So
 $$
@@ -1466,8 +1478,27 @@ is exact at $ B_n $ for all $ n $. A sequence of chain complexes is \textbf{exac
 $$ 0 \to A_* \to B_* \to C_* \to 0 $$
 is a short exact sequence of chain complexes.
 
+\subsection{Homology groups}
+
+\begin{definition}
+Let $ A_* $ be a chain complex. The \textbf{$ n $-th homology group} of $ A_* $ is $ \Ker d_{n - 1} / \Im d_n $. We write $ \H_n\br{A_*} $. Also write $ \H_*\br{A_*} = \br{\H_n\br{A_*}} $.
+\end{definition}
+
+\begin{definition}
+Let $ A^* $ be a cochain complex. The \textbf{$ n $-th cohomology group} of $ A^* $ is $ \Ker d_n / \Im d_{n - 1} $. We write $ \H^n\br{A^*} $, and $ \H^*\br{A^*} = \br{\H^n\br{A^*}} $.
+\end{definition}
+
+\begin{example*}
+Let $ A_i = \ZZ^3 $ for all $ i $, and let $ d\br{a, b, c} = \br{0, 0, a} $. Certainly $ d^2 = 0 $, so this is a chain complex. Then
+$$ \Ker d = \cbr{\br{0, b, c}} = 0 \oplus \ZZ^2, \qquad \Im d = \cbr{\br{0, 0, a}} = 0^2 \oplus \ZZ. $$
+Now
+$$ \Ker d_{n - 1} / \Im d_n = \cbr{\br{0, b, 0} + 0^2 \oplus \ZZ}. $$
+\end{example*}
+
 \begin{proposition}
-A map of chain complexes $ f : A_* \to B_* $ induces a map on the homology, $ f_* : \H_*\br{A_*} \to \H_*\br{B_*} $, given by
+A map of chain complexes $ f : A_* \to B_* $ induces a map on the homology,
+$$ f_* : \H_*\br{A_*} \to \H_*\br{B_*}, $$
+given by
 $$ \function[f_{*i}]{\H_i\br{A_*}}{\H_i\br{B_*}}{x + \Im d_i^A}{f_i\br{x} + \Im d_i^B}. $$
 \end{proposition}
 
@@ -1476,7 +1507,10 @@ Let $ x \in \Ker d_{i - 1}^A $. Then $ \br{f_{i - 1} \circ d_{i - 1}^A}\br{x} = 
 $$ \Ker d_{i - 1}^A / \Im d_i^A = \H_i\br{A_*} \to \Ker d_{i - 1}^B / \Im d_i^B = \H_i\br{B_*}. $$
 \end{proof}
 
-Let $ A_* $ and $ B_* $ be chain complexes, and let $ f $ and $ g $ be maps between them. We say that $ f $ and $ g $ are \textbf{equal up to homotopy} if there exist maps $ s_i : A_i \to B_{i + 1} $ such that $ g_i - f_i = s_{i - 1} \circ d_{i - 1}^A + d_i^B \circ s_i $.
+\pagebreak
+
+Let $ A_* $ and $ B_* $ be chain complexes, and let $ f $ and $ g $ be maps between them. We say that $ f $ and $ g $ are \textbf{equal up to homotopy} if there exist maps $ s_i : A_i \to B_{i + 1} $ such that
+$$ g_i - f_i = s_{i - 1} \circ d_{i - 1}^A + d_i^B \circ s_i. $$
 
 \begin{proposition}
 If $ f, g : A_* \to B_* $ are equal up to homotopy, then $ f_* = g_* $, so $ f $ and $ g $ induce the same map on homology.
@@ -1486,44 +1520,128 @@ If $ f, g : A_* \to B_* $ are equal up to homotopy, then $ f_* = g_* $, so $ f $
 Exercise. \footnote{Exercise}
 \end{proof}
 
-\pagebreak
+\subsection{The long exact sequence in homology}
 
 \begin{proposition}
 Let
 $$ 0 \to A_* \xrightarrow{f} B_* \xrightarrow{g} C_* \to 0 $$
 be a short exact sequence. This induces a long exact sequence
-$$
-\begin{tikzcd}
-\dots \arrow{r} & \H_{n + 1}\br{A_*} \arrow{r} & \H_{n + 1}\br{B_*} \arrow{r} & \H_{n + 1}\br{C_*} \arrow[in=180, out=0, swap]{dll} & \\
-& \H_n\br{A_*} \arrow{r} & \H_n\br{B_*} \arrow{r} & \H_n\br{C_*} \arrow[in=180, out=0, swap]{dll} & \\
-& \H_{n - 1}\br{A_*} \arrow{r} & \H_{n - 1}\br{B_*} \arrow{r} & \H_{n - 1}\br{C_*} \arrow{r} & \dots
-\end{tikzcd}.
-$$
+$$ \dots \to \H_{n + 1}\br{A_*} \to \H_{n + 1}\br{B_*} \to \H_{n + 1}\br{C_*} \to \H_n\br{A_*} \to \H_n\br{B_*} \to \H_n\br{C_*} \to \dots. $$
 \end{proposition}
 
 \begin{proof}
 We have a commuting diagram with exact rows
 $$
 \begin{tikzcd}
-0 \arrow{r} & A_{n + 1} \arrow{r} \arrow{d}{d_n^A} & B_{n + 1} \arrow{r} \arrow{d}{d_n^B} & C_{n + 1} \arrow{r} \arrow{d}{d_n^C} & 0 \\
-0 \arrow{r} & A_n \arrow{r} & B_n \arrow{r} & C_n \arrow{r} & 0
+0 \arrow{r} & A_{n + 1} \arrow{r}{f_{n + 1}} \arrow{d}{d_n^A} & B_{n + 1} \arrow{r}{g_{n + 1}} \arrow{d}{d_n^B} & C_{n + 1} \arrow{r} \arrow{d}{d_n^C} & 0 \\
+0 \arrow{r} & A_n \arrow{r}{f_n} & B_n \arrow{r}{g_n} & C_n \arrow{r} & 0
 \end{tikzcd}.
 $$
 Notice $ \Im d_n \le \Ker d_{n - 1} $, so we can change this to
 $$
 \begin{tikzcd}
-0 \arrow{r} & A_{n + 1} \arrow{r} \arrow{d} & B_{n + 1} \arrow{r} \arrow{d} & C_{n + 1} \arrow{r} \arrow{d} & 0 \\
-0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r} & \Ker d_{n - 1}^B \arrow{r} & \Ker d_{n - 1}^C &
+0 \arrow{r} & A_{n + 1} \arrow{r}{f_{n + 1}} \arrow{d}{d_n^A} & B_{n + 1} \arrow{r}{g_{n + 1}} \arrow{d}{d_n^B} & C_{n + 1} \arrow{r} \arrow{d}{d_n^C} & 0 \\
+0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r}{f_n} & \Ker d_{n - 1}^B \arrow{r}{g_n} & \Ker d_{n - 1}^C &
 \end{tikzcd}.
 $$
 Now $ \Im d_{n + 1} \le \Ker d_n $, so the maps $ A_{n + 1} \to \Ker d_{n + 1} $ induce maps $ A_{n + 1} / \Im d_{n + 1} \to \Ker d_{n - 1} $. So we get a diagram
 $$
 \begin{tikzcd}
-& A_{n + 1} / \Im d_{n + 1}^A \arrow{r} \arrow{d} & B_{n + 1} / \Im d_{n + 1}^B \arrow{r} \arrow{d} & C_{n + 1} / \Im d_{n + 1}^C \arrow{r} \arrow{d} & 0 \\
-0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r} & \Ker d_{n - 1}^B \arrow{r} & \Ker d_{n - 1}^C &
+& A_{n + 1} / \Im d_{n + 1}^A \arrow{r}{f_{n + 1}} \arrow{d}{\overline{d_n^A}} & B_{n + 1} / \Im d_{n + 1}^B \arrow{r}{g_{n + 1}} \arrow{d}{\overline{d_n^B}} & C_{n + 1} / \Im d_{n + 1}^C \arrow{r} \arrow{d}{\overline{d_n^C}} & 0 \\
+0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r}{f_n} & \Ker d_{n - 1}^B \arrow{r}{g_n} & \Ker d_{n - 1}^C &
 \end{tikzcd}.
 $$
-We are now in the position to apply the snake lemma.
+We are now in the position to apply the snake lemma, so
+$$ \Ker \overline{d_n^A} \to \Ker \overline{d_n^B} \to \Ker \overline{d_n^C} \to \Coker \overline{d_n^A} \to \Coker \overline{d_n^B} \to \Coker \overline{d_n^C} $$
+is an exact sequence. Then
+$$ \Ker \overline{d_n^A} = \Ker d_n^A / \Im d_{n + 1}^A = \H_{n + 1}\br{A_*}, \qquad \Coker \overline{d_n^A} = \Ker d_{n - 1}^A / \Im d_n^A = \H_n\br{A_*}. $$
+Similarly for $ B_* $ and $ C_* $. So we have an exact sequence
+$$ \H_{n + 1}\br{A_*} \to \H_{n + 1}\br{B_*} \to \H_{n + 1}\br{C_*} \to \H_n\br{A_*} \to \H_n\br{B_*} \to \H_n\br{C_*}. $$
+Since consecutive values of $ i $ give a sequence overlapping in three terms we can glue them together, to give the long exact sequence in the proposition.
+\end{proof}
+
+\pagebreak
+
+\section{Derived functors}
+
+\subsection{Covariant and contravariant functors}
+
+\lecture{21}{Tuesday}{25/02/20}
+
+The following are two variations.
+
+\begin{definition}
+A \textbf{covariant functor} $ F $ from the category of left or right $ R $-modules to the category of abelian groups is a map from $ R $-modules to abelian groups such that if $ \phi : M \to N $ is an $ R $-module homomorphism then there exists an abelian group homomorphism $ F\br{\phi} : F\br{M} \to F\br{N} $, which respects identity maps, so $ F\br{\id_M} = \id_{F\br{M}} $, and respects composition, so $ F\br{\phi_1\phi_2} = F\br{\phi_1}F\br{\phi_2} $.
+\end{definition}
+
+The map $ F $ on homomorphisms is \textbf{additive} if $ F\br{\phi_1 + \phi_2} = F\br{\phi_1} + F\br{\phi_2} $. If
+$$ 0 \to A \to B \to C \to 0 $$
+be a short exact sequence, then $ F $ is \textbf{right exact} if
+$$ F\br{A} \to F\br{B} \to F\br{C} \to 0 $$
+is exact, \textbf{left exact} if
+$$ 0 \to F\br{A} \to F\br{B} \to F\br{C} $$
+is exact. Then $ F $ is \textbf{exact} if both left and right exact.
+
+\begin{definition}
+A \textbf{contravariant functor} $ F $ from the category of left or right $ R $-modules to the category of abelian groups is a map from $ R $-modules to abelian groups such that if $ \phi : M \to N $ is an $ R $-module homomorphism then there exists an abelian group homomorphism $ F\br{\phi} : F\br{N} \to F\br{M} $, which respects identity maps, so $ F\br{\id_M} = \id_{F\br{M}} $, and respects composition, so $ F\br{\phi_1\phi_2} = F\br{\phi_2}F\br{\phi_1} $.
+\end{definition}
+
+Similarly, if
+$$ 0 \to A \to B \to C \to 0 $$
+be a short exact sequence. then $ F $ is \textbf{right exact} if
+$$ F\br{C} \to F\br{B} \to F\br{A} \to 0 $$
+is exact, and \textbf{left exact} if
+$$ 0 \to F\br{C} \to F\br{B} \to F\br{A} $$
+is exact.
+
+\begin{example*}
+Some functors we have seen. Fix a left $ R $-module $ M $.
+\begin{itemize}
+\item $ F\br{A} = \Hom_R\br{M, A} $, where
+$$ \function[F\br{\phi}]{F\br{A} = \Hom_R\br{M, A}}{F\br{B} = \Hom_R\br{M, B}}{f}{\phi \circ f}, \qquad \phi : A \to B, $$
+is covariant, left exact, and exact if and only if $ M $ is projective.
+\item $ F\br{A} = \Hom_R\br{A, M} $, where
+$$ \function[F\br{\phi}]{F\br{B} = \Hom_R\br{B, M}}{F\br{A} = \Hom_R\br{A, M}}{f}{f \circ \phi}, \qquad \phi : A \to B, $$
+is contravariant, left exact, and exact if and only if $ M $ is injective.
+\item For a right $ R $-module $ A $, $ F\br{A} = A \otimes_R M $ is covariant, right exact, and exact if and only if $ M $ is flat.
+\end{itemize}
+\end{example*}
+
+\pagebreak
+
+\subsection{Left derived functors}
+
+Let $ F $ be the functor $ F\br{A} = A \otimes_R M $, where $ M $ is a fixed $ R $-module. Let $ P_* \to A $ be a projective resolution for $ A $. So $ P_* = \br{P_i}_{i \ge 0} $ for projective $ P_i $, and
+$$ \dots \to P_2 \xrightarrow{d_1} P_1 \xrightarrow{d_0} P_0 \xrightarrow{\phi} A \to 0 $$
+is exact. Consider the sequence
+$$ \dots \to P_2 \to P_1 \to P_0 \to 0. $$
+This is no longer exact, but it is a chain complex. And if we apply $ F $, we get a chain complex $ F\br{P_*} $,
+$$ \dots \to F\br{P_2} \to F\br{P_1} \to F\br{P_0} \to 0. $$
+Define
+$$ \L_nF\br{A} = \H_n\br{F\br{P_*}}. $$
+
+\begin{theorem}
+\hfill
+\begin{enumerate}
+\item $ \L_nF\br{A} $ does not depend on the choice of resolution $ P_* $.
+\item $ \L_nF $ is an additive functor from right $ R $-modules to abelian groups.
+\item $ \L_0F = F $.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item
+\item
+\item We have a short exact sequence
+$$ 0 \to \Im d_0 \xrightarrow{\subset} P_0 \xrightarrow{\phi} A \to 0. $$
+Since $ F $ is right exact, we get an exact sequence
+$$ F\br{\Im d_0} \to F\br{P_0} \to F\br{A} \to 0. $$
+Now $ d_0 : P_1 \to \Im d_0 $ is surjective, and $ F $ preserves surjectivity. So $ F\br{d_0} : F\br{P_1} \to F\br{\Im d_0} $ is surjective. So
+$$ F\br{P_1} \to F\br{P_0} \to F\br{A} \to 0 $$
+is exact. So, setting $ P_{-1} = 0 $, we get $ \L_0F\br{P_*} = F\br{P_0} / \Im F\br{d_0} = F\br{A} $.
+\end{enumerate}
 \end{proof}
 
 \end{document}
