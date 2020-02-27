@@ -191,7 +191,7 @@ where $ y_i = \p_i \circ F $ and $ \p_i : \RR^n \to \RR $ is the $ i $-th projec
 \end{example}
 
 Let $ f : M \to \RR $ be a smooth function, so $ f \in \Omega^0\br{M} $. Locally, the \textbf{differential} is
-$$ \function[\d]{\Omega^0\br{M}}{\Omega^1\br{M}}{f}{\sum_{i = 1}^n \dpd{f}{x_i} \d x_i}. $$
+$$ \function[\d]{\Omega^0\br{M}}{\Omega^1\br{M}}{f}{\sum_{i = 1}^n \dpd{}{x_i}f \d x_i}. $$
 Check that $ \d f \in \Omega^1\br{M} $, so $ \d f $ is a $ 1 $-form on $ M $. Alternatively, $ \d f = f^*\d x $ for $ \d x $ a $ 1 $-form on $ \RR $, or $ \d f\br{X} = X\br{f} $ for any vector field $ X $ on $ M $. More in general, let $ \omega \in \Omega^p\br{M} $. Locally,
 $$ \omega = \sum_{\abs{I} = p} f_I \d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad f_I \in \C^\infty, $$
 so $ \d\omega \in \Omega^{p + 1}\br{M} $. Then the \textbf{de Rham differential} is
@@ -1781,23 +1781,23 @@ $$ \function[f]{M}{\RR}{\br{x, y, z}}{z}. $$
 \pagebreak
 
 For all $ h $ define
-$$ S_h = \cbr{p \in M \st f\br{p} \le h} = f^{-1}\br{\intoc{0, h}}. $$
+$$ \S_h = \cbr{p \in M \st f\br{p} \le h} = f^{-1}\br{\intoc{0, h}}. $$
 \begin{itemize}
-\item If $ h < 0 $ then $ S_h = \emptyset $.
-\item If $ 0 < h < a $ then $ S_h $ is homotopically equivalent to a $ 0 $-cell, where
+\item If $ h < 0 $ then $ \S_h = \emptyset $.
+\item If $ 0 < h < a $ then $ \S_h $ is homotopically equivalent to a $ 0 $-cell, where
 $$
 \begin{tikzpicture}
-\draw (-2, 0) node{$ S_h = $};
+\draw (-2, 0) node{$ \S_h = $};
 \draw (-1, 0) arc (-132:-48:1.5 and 2);
 \draw [fill=lightgray] (0, 0) ellipse (1 and 0.25);
 \draw (1.75, 0) node{$ \sim $};
 \fill (2.5, 0) circle (0.1);
 \end{tikzpicture}.
 $$
-\item If $ a < h < b $ then $ S_h $ is homotopically equivalent to a $ 1 $-cell attached to the previous $ S_h $, where
+\item If $ a < h < b $ then $ \S_h $ is homotopically equivalent to a $ 1 $-cell attached to the previous $ \S_h $, where
 $$
 \begin{tikzpicture}
-\draw (-2.5, 0) node{$ S_h = $};
+\draw (-2.5, 0) node{$ \S_h = $};
 \draw (-1.5, 1) arc (-180:0:1.5 and 2);
 \draw (-0.5, 1) arc (-180:0:0.5 and 1);
 \draw [fill=lightgray] (-1, 1) ellipse (0.5 and 0.25);
@@ -1810,10 +1810,10 @@ $$
 \draw [thick] (4, -0.25) to (4, 0.25);
 \end{tikzpicture}.
 $$
-\item If $ b < h < c $ then $ S_h $ is homotopically equivalent to a $ 1 $-cell attached to the previous $ S_h $, where
+\item If $ b < h < c $ then $ \S_h $ is homotopically equivalent to a $ 1 $-cell attached to the previous $ \S_h $, where
 $$
 \begin{tikzpicture}
-\draw (-2.5, 0) node{$ S_h = $};
+\draw (-2.5, 0) node{$ \S_h = $};
 \draw (-1, 1.5) arc (-228:48:1.5 and 2);
 \draw (0, 0) ellipse (0.5 and 1);
 \draw [fill=lightgray] (0, 1.5) ellipse (1 and 0.25);
@@ -1831,10 +1831,10 @@ $$
 \draw [thick] (4, 0) to (5, 0);
 \end{tikzpicture}.
 $$
-\item If $ h > c $ then $ S_h $ is homotopically equivalent to a $ 2 $-cell attached to the previous $ S_h $, where
+\item If $ h > c $ then $ \S_h $ is homotopically equivalent to a $ 2 $-cell attached to the previous $ \S_h $, where
 $$
 \begin{tikzpicture}
-\draw (-2.5, 0) node{$ S_h = $};
+\draw (-2.5, 0) node{$ \S_h = $};
 \draw (0, 0) ellipse (1.5 and 2);
 \draw (0, 0) ellipse (0.5 and 1);
 \draw [dotted, thick] (-1.5, 0) arc (-180:0:0.5 and 0.25);
@@ -1855,8 +1855,11 @@ $$
 \end{tikzpicture}.
 $$
 \end{itemize}
-Thus $ M = \text{$ 0 $-cell} \ \sqcup \ \text{two $ 1 $-cells} \ \sqcup \ \text{$ 2 $-cell} $.
+Thus
+$$ M = \text{$ 0 $-cell} \ \sqcup \ \text{two $ 1 $-cells} \ \sqcup \ \text{$ 2 $-cell}. $$
 \end{example}
+
+Given a Morse function $ f : M \to \RR $, the goal is to study the level sets of $ f $, $ \S_h = f^{-1}\br{\intoc{-\infty, h}} $.
 
 \begin{definition}
 Let $ M $ be a manifold, let $ f : M \to \RR $ be a Morse function, and let $ x \in M $ be critical. Denote
@@ -1864,20 +1867,37 @@ $$ \Eig^- \H_f\br{x} = \cbr{\text{eigenvectors of} \ \H_f \ \text{with negative 
 Recall that $ \H_f $ is a symmetric matrix. The \textbf{index} of $ f $ at $ x $ is the dimension of $ \Eig^- \H_f\br{x} $.
 \end{definition}
 
+\pagebreak
+
 \begin{lemma}[Morse]
 Let $ M $ be a manifold of dimension $ n $, let $ f : M \to \RR $ be a Morse function, and let $ x_0 \in M $ be a critical point. Then there exist local coordinates $ \br{x_1, \dots, x_n} $ around $ x_0 $ such that $ x_0 = \br{0, \dots, 0} $ and
 $$ f = f\br{x_0} - \sum_{i = 1}^\lambda x_i^2 + \sum_{i = \lambda + 1}^n x_i^2, $$
 where $ \lambda $ is the index of $ f $ at $ x $.
 \end{lemma}
 
-\pagebreak
-
 Thus the set of critical points of $ f $ is discrete, since locally at critical $ x_0 $,
 $$ f = f\br{x_0} - \sum_{i = 1}^\lambda x_i^2 + \sum_{i = \lambda + 1}^n x_i^2 $$
 has no more critical points.
 
 \begin{example}
-Let $ f : T \to \RR $ be as in the previous example. Then the critical points $ 0, a, b, c $ have index $ \lambda = 0, 1, 1, 2 $ respectively.
+Let $ f : M \to \RR $ be as in the previous example. Then
+$$
+\begin{tikzpicture}
+\draw (-2.5, 0) node{$ M = $};
+\draw (0, 0) ellipse (1.5 and 2);
+\draw (0, 0) ellipse (0.5 and 1);
+\draw [dotted, thick] (-1.5, 0) arc (-180:0:0.5 and 0.25);
+\draw [dotted, thick] (0.5, 0) arc (-180:0:0.5 and 0.25);
+\draw [dotted] (-1.5, 0) arc (180:0:0.5 and 0.25);
+\draw [dotted] (0.5, 0) arc (180:0:0.5 and 0.25);
+\draw [->, dashed] (2, -2.5) to (2, 2.5) node[above]{$ z $};
+\draw (1, 2) node[above]{$ f $};
+\draw [->, dashed, thick] (0, -2) node[below]{$ \lambda = 0 $} to (2, -2) node[right]{$ 0 $};
+\draw [->, dashed, thick] (0, -1) node[below]{$ \lambda = 1 $} to (2, -1) node[right]{$ a $};
+\draw [->, dashed, thick] (0, 1) node[above]{$ \lambda = 1 $} to (2, 1) node[right]{$ b $};
+\draw [->, dashed, thick] (0, 2) node[above]{$ \lambda = 2 $} to (2, 2) node[right]{$ c $};
+\end{tikzpicture}.
+$$
 \end{example}
 
 \subsection{CW-complexes}
@@ -1904,5 +1924,58 @@ Such $ M $ is called a \textbf{CW-complex}. Then $ M $ is a \textbf{finite CW-co
 \end{example}
 
 A \textbf{subcomplex} of a CW-complex $ M $ is a closed subspace of $ M $ which is a union of cells of $ M $. A \textbf{closed cell} is the image of $ \D_n $ in a cell. An \textbf{open cell} is the image of $ \D_n \setminus \partial\D_n $ in a cell. Open cells are not open in $ M $ in general.
+
+\pagebreak
+
+\subsection{Flows}
+
+\lecture{22}{Thursday}{27/02/20}
+
+\begin{definition}
+Let $ M $ be a manifold, then a \textbf{flow} or a \textbf{group of diffeomorphisms} of $ M $ is the collection of diffeomorphisms $ \phi_t : M \to M $ for $ t \in \RR $ such that there exists $ \phi : \RR \times M \to M $ with $ \phi_t = \phi\br{t, \cdot} $ and
+\begin{itemize}
+\item $ \phi_0 = \id_M $, and
+\item $ \phi_{t + s} = \phi_t \circ \phi_s $.
+\end{itemize}
+For all $ x \in M $, the \textbf{flow line} or the \textbf{integral curve} for the flow is
+$$ \function[\gamma_x]{\RR}{M}{t}{\phi\br{t, x}}, $$
+where $ \gamma_x\br{0} = x $.
+\end{definition}
+
+Since $ \tod{}{t}\eval{\gamma_x}_{t = 0} \in \T_xM $, the flow defines a vector field on $ M $, that is a smooth section of $ \T M $. On the other hand, given a vector field, we can find a flow. Let $ X $ be a section of $ \T M $. There exists $ \phi_t $, and $ \gamma_x $, as above such that $ \tod{}{t}\eval{\gamma_x}_{t = 0} \in \T_xM $, locally around $ t = 0 $.
+
+\begin{example}
+Let $ M = \RR $, and let $ X = x^2\partial_x $. Find the flow. \footnote{Exercise}
+\end{example}
+
+\begin{definition}
+Let $ M $ be a manifold. A \textbf{Riemannian metric} $ g $ on $ M $ is a collection of inner products for $ \T_xM $ for $ x \in M $ given by $ g_x : \T_xM \times \T_xM \to \RR $ such that for all vector fields $ X $ and $ Y $ we have that $ g_x\br{X\br{x}, Y\br{x}} : M \to \RR $ is smooth. A \textbf{Riemannian manifold} $ \br{M, g} $ is a manifold $ M $ and a Riemannian metric $ g $ on $ M $.
+\end{definition}
+
+Then $ g $ gives $ \T M \xrightarrow{\sim} \Omega^1\br{M} = \br{\T M}^* $.
+
+\begin{definition}
+Let $ \br{M, g} $ be a Riemannian manifold, and let $ f : M \to \RR $ be a smooth function. The \textbf{gradient vector field} $ \nabla f $ of $ f $ is the unique vector field on $ M $ such that for all vector fields $ X $, $ g\br{\nabla f, X} = X\br{f} = \D f\br{X} $, the derivative of $ f $ with respect to $ X $.
+\end{definition}
+
+Thus, $ \norm{\nabla f}^2 = g\br{\nabla f, \nabla f} = \D f\br{\nabla f} $. In particular $ \nabla f\br{x} = 0 $ if and only if $ x $ is a critical point of $ f $, and $ \nabla f $ is orthogonal to any vector tangent to $ f^{-1}\br{c} $ for all regular values $ c \in \RR $. In particular, for all smooth functions $ f : M \to \RR $, we can take the flow $ \phi $ associated to $ -\nabla f $ such that if $ \gamma_x\br{t} = \phi\br{t, x} $ then $ \tod{}{t}\gamma_x\br{0} = -\nabla f\br{\gamma_x\br{0}} $ where $ \gamma_x\br{0} = x $. This is called the \textbf{gradient flow} of $ f $. The integral curve of this flow are called \textbf{gradient flow lines}.
+
+\begin{lemma}
+$ f $ decreases along the gradient lines, that is $ f\br{\gamma_x\br{t}} $ is a decreasing function with respect to $ t $.
+\end{lemma}
+
+\begin{proof}
+$$ 0 \le -\norm{\nabla f\br{\gamma_x\br{t}}}^2 = \D f_{\gamma_x\br{t}}\br{-\nabla f\br{\gamma_x\br{t}}} = \D f_{\gamma_x\br{t}}\br{\dod{}{t}\gamma_x\br{t}} = \dod{}{t}f\br{\gamma_x\br{t}}. $$
+\end{proof}
+
+\begin{proposition}
+Let $ M $ be a compact manifold, and let $ f : M \to \RR $ be a Morse function. Then every gradient flow line begins and ends with a critical point of $ f $, that is $ \lim_{t \to \pm\infty} \gamma_x\br{t} $ exist and are critical points of $ f $.
+\end{proposition}
+
+\begin{proof}
+First we prove that if the limit exists then it is a critical point of $ f $. For all $ x $, $ f\br{\gamma_x\br{\cdot}} : \RR \to \RR $ is a bounded function. Then
+$$ 0 = \lim_{t \to \pm\infty} \dod{}{t}f\br{\gamma_x\br{t}} = \lim_{t \to \pm\infty} -\norm{\nabla f\br{\gamma_x\br{t}}}^2, $$
+so the limit is critical. The goal is to show that limits exist. Since $ M $ is compact and $ f $ is a Morse function, the set of critical points is finite. Fix $ \epsilon > 0 $. Let $ U $ be the union of open balls of radius $ \epsilon > 0 $ around each critical point, so $ U $ is open in $ M $. Then $ M \setminus U $ is compact, so $ \norm{\nabla f\br{\cdot}}^2 $ admits a minimum inside $ M \setminus U $, but it cannot be zero, but $ \lim_{t \to \pm\infty} \norm{\nabla f\br{\gamma_x\br{t}}}^2 = 0 $. Thus if $ \pm t $ is very large then $ \gamma_x\br{t} \notin M \setminus U $, so if $ \epsilon $ is sufficiently small, $ \gamma_x\br{t} $ is in a ball around a single critical point for $ t \to \pm\infty $. This implies that the limit is the critical point.
+\end{proof}
 
 \end{document}
