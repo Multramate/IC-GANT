@@ -206,45 +206,45 @@ Hartogs theorem is false for $ n = 1 $. If $ f\br{z} = 1 / z $, for all $ \epsil
 \lecture{3}{Tuesday}{14/01/20}
 
 Let $ \omega = x + iy \in \CC $ for $ x, y \in \RR $, and let $ f : U \to \CC $ be $ \C^\infty $ for some $ U \subset \CC $. Recall that
-$$ \dpd{f}{\omega} = \dfrac{1}{2}\br{\dpd{}{x} - i\dpd{}{y}}f, \qquad \dpd{f}{\overline{\omega}} = \dfrac{1}{2}\br{\dpd{}{x} + i\dpd{}{y}}f. $$
-Recall that $ f $ is holomorphic if and only if $ \tpd{f}{\overline{\omega}} = 0 $ on $ U $. More in general, let $ U \subset \CC^n $ be open, let $ z_i = x_i + iy_i $, and let $ f : U \to \CC $ be a $ \C^\infty $-function. Then $ f $ is holomorphic if and only if $ \tpd{f}{\overline{z_i}} = 0 $ for all $ i = 1, \dots, n $. Let $ \omega \in \CC $. Since $ \d x \wedge \d y = -\d y \wedge \d x $, let
+$$ \dpd{}{\omega}f = \dfrac{1}{2}\br{\dpd{}{x} - i\dpd{}{y}}f, \qquad \dpd{}{\overline{\omega}}f = \dfrac{1}{2}\br{\dpd{}{x} + i\dpd{}{y}}f. $$
+Recall that $ f $ is holomorphic if and only if $ \tpd{}{\overline{\omega}}f = 0 $ on $ U $. More in general, let $ U \subset \CC^n $ be open, let $ z_i = x_i + iy_i $, and let $ f : U \to \CC $ be a $ \C^\infty $-function. Then $ f $ is holomorphic if and only if $ \tpd{}{\overline{z_i}}f = 0 $ for all $ i = 1, \dots, n $. Let $ \omega \in \CC $. Since $ \d x \wedge \d y = -\d y \wedge \d x $, let
 $$ \d A = \dfrac{i}{2} \d\omega \wedge \d\overline{\omega} = \dfrac{i}{2} \br{\d x + i \d y} \wedge \br{\d x - i \d y} = \d x \wedge \d y, $$
 which is the Lebesgue measure on $ \RR^2 \cong \CC $.
 
 \begin{proposition}
 Let $ f : U \to \CC $ for $ U \subset \CC $ be a $ \C^\infty $-function, and let $ D = \D\br{z, r} $ such that $ \overline{D} \subset U $. Then
-$$ f\br{z} = \dfrac{1}{2\pi i}\intd{\partial D}{}{\dfrac{f}{\omega - z}}{\omega} - \dfrac{1}{\pi}\intd{D}{}{\dfrac{1}{\omega - z}\dpd{f}{\overline{\omega}}}{A}. $$
+$$ f\br{z} = \dfrac{1}{2\pi i}\intd{\partial D}{}{\dfrac{f}{\omega - z}}{\omega} - \dfrac{1}{\pi}\intd{D}{}{\dfrac{1}{\omega - z}\dpd{}{\overline{\omega}}f}{A}. $$
 \end{proposition}
 
 \begin{proof}
 Assume $ z = 0 $. Recall that $ f\br{\omega} = 1 / \omega $ is locally integrable around zero, so
-$$ \intd{D}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A} = \lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A}. $$
+$$ \intd{D}{}{\dfrac{1}{\omega}\dpd{}{\overline{\omega}}f}{A} = \lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{\dfrac{1}{\omega}\dpd{}{\overline{\omega}}f}{A}. $$
 Away from zero
 \begin{align*}
 \d\br{\dfrac{f}{\omega} \d\omega}
 & = \dfrac{1}{\omega} \d f \wedge \d\omega + f \d\br{\dfrac{1}{\omega}} \wedge \d\omega
-= \dfrac{1}{\omega} \br{\dpd{f}{\omega} \d\omega + \dpd{f}{\overline{\omega}} \d\overline{\omega}} \wedge \d\omega + f\dpd{}{\omega}\br{\dfrac{1}{\omega}} \d\omega \wedge \d\omega \\
-& = \dfrac{1}{\omega}\dpd{f}{\overline{\omega}} \d\overline{\omega} \wedge \d\omega
-= \dfrac{2i}{\omega}\dpd{f}{\overline{\omega}} \d A.
+= \dfrac{1}{\omega} \br{\dpd{}{\omega}f \d\omega + \dpd{}{\overline{\omega}}f \d\overline{\omega}} \wedge \d\omega + f\dpd{}{\omega}\br{\dfrac{1}{\omega}} \d\omega \wedge \d\omega \\
+& = \dfrac{1}{\omega}\dpd{}{\overline{\omega}}f \d\overline{\omega} \wedge \d\omega
+= \dfrac{2i}{\omega}\dpd{}{\overline{\omega}}f \d A.
 \end{align*}
 Then
 \begin{align*}
-\dfrac{1}{\pi}\intd{D}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A}
-& = \dfrac{1}{\pi}\lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{\dfrac{1}{\omega}\dpd{f}{\overline{\omega}}}{A} \\
-& = \dfrac{1}{2\pi i}\lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{}{\br{\dfrac{f}{\omega} \d\omega}} & \dfrac{1}{\omega}\dpd{f}{\overline{\omega}} \d A = \dfrac{1}{2i} \d\br{\dfrac{f}{\omega} \d\omega} \\
+\dfrac{1}{\pi}\intd{D}{}{\dfrac{1}{\omega}\dpd{}{\overline{\omega}}f}{A}
+& = \dfrac{1}{\pi}\lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{\dfrac{1}{\omega}\dpd{}{\overline{\omega}}f}{A} \\
+& = \dfrac{1}{2\pi i}\lim_{\epsilon \to 0} \intd{D \setminus \D\br{0, \epsilon}}{}{}{\br{\dfrac{f}{\omega} \d\omega}} & \dfrac{1}{\omega}\dpd{}{\overline{\omega}}f \d A = \dfrac{1}{2i} \d\br{\dfrac{f}{\omega} \d\omega} \\
 & = \dfrac{1}{2\pi i}\lim_{\epsilon \to 0} \br{\intd{\partial D}{}{\dfrac{f}{\omega}}{\omega} - \intd{\partial\D\br{0, \epsilon}}{}{\dfrac{f}{\omega}}{\omega}} & \text{Stokes' theorem} \\
 & = \dfrac{1}{2\pi i}\br{\intd{\partial D}{}{\dfrac{f}{\omega}}{\omega} - 2\pi if\br{0}} & \lim_{\epsilon \to 0} \intd{\partial\D\br{0, \epsilon}}{}{\dfrac{1}{\omega}}{\omega} = 2\pi i.
 \end{align*}
 \end{proof}
 
-If $ f $ is holomorphic, then $ \tpd{f}{\overline{\omega}} = 0 $, which implies Theorem \ref{thm:2.3}.
+If $ f $ is holomorphic, then $ \tpd{}{\overline{\omega}}f = 0 $, which implies Theorem \ref{thm:2.3}.
 
 \pagebreak
 
 \subsection{Rank theorem}
 
 Let $ U \subset \CC^n $ be open, and let $ f : U \to \CC^m $ be holomorphic. Then the \textbf{Jacobian} is
-$$ \J_f = \br{\dpd{f_j}{z_i}\br{z}}, $$
+$$ \J_f = \br{\dpd{}{z_i}f_j\br{z}}, $$
 where $ f_j = \p_j \circ f $ and $ \p_j : \CC^m \to \CC $ is the $ j $-th projection.
 
 \begin{exercise*}
@@ -339,7 +339,7 @@ Check that this definition coincides with the definition in M4P54.
 \end{exercise*}
 
 The \textbf{exterior derivative} is
-$$ \function[\d]{\H^0\br{U, \Omega_U^p}}{\H^0\br{U, \Omega_U^{p + 1}}}{f \d z_{i_1} \wedge \dots \wedge \d z_{i_p}}{\sum_{j = 1}^n \dpd{f}{z_j} \d z_j \wedge \d z_{i_1} \wedge \dots \wedge \d z_{i_p}}. $$
+$$ \function[\d]{\H^0\br{U, \Omega_U^p}}{\H^0\br{U, \Omega_U^{p + 1}}}{f \d z_{i_1} \wedge \dots \wedge \d z_{i_p}}{\sum_{j = 1}^n \dpd{}{z_j}f \d z_j \wedge \d z_{i_1} \wedge \dots \wedge \d z_{i_p}}. $$
 By definition $ \d $ is $ \CC $-linear, but not $ R $-linear. That is,
 $$ \d\br{a\omega_1 + b\omega_2} = a \d\omega_1 + b \d\omega_2, \qquad \omega_1, \omega_2 \in \H^0\br{U, \Omega_U^p}, \qquad a, b \in \CC. $$
 
@@ -565,7 +565,7 @@ is also a biholomorphism.
 \begin{example}
 Let $ U \subset \CC^n $ be open, let $ k \le n $, let $ f_1, \dots, f_k : U \to \CC $, and let
 $$ V = \cbr{x \in \CC^n \st f_1\br{x} = \dots = f_k\br{x} = 0}. $$
-Assume that $ \br{\tpd{f_i}{z_j}} $ has maximal rank $ k $ at any point of $ U $. Then $ V $ is a complex submanifold of $ U $. The idea is if $ f = \br{f_1, \dots, f_k} : U \to \CC^k $, then $ f $ is a submersion around any point of $ V $, and use the previous Theorem \ref{thm:3.11}.
+Assume that $ \br{\tpd{}{z_j}f_i} $ has maximal rank $ k $ at any point of $ U $. Then $ V $ is a complex submanifold of $ U $. The idea is if $ f = \br{f_1, \dots, f_k} : U \to \CC^k $, then $ f $ is a submersion around any point of $ V $, and use the previous Theorem \ref{thm:3.11}.
 \end{example}
 
 \begin{example}
@@ -883,20 +883,19 @@ and for all $ x $, $ \p_2 \circ h_i : E\br{x} \to K^r $ is an isomorphism of vec
 \end{itemize}
 \end{definition}
 
-Pull-backs, sections, exterior powers, tensors, direct sums, frames, etc are the same as holomorphic vector bundles, where holomorphic becomes smooth and biholomorphic becomes diffeomorphic, and for all $ X $ there exists a tangent bundle $ \T_X $. Assume $ X $ is a complex manifold of dimension $ n $. Let $ \T_X $ be the holomorphic tangent bundle of $ X $. Then $ X $ is also a differentiable manifold of dimension $ 2n $, so let $ \T_X^\RR $ be the \textbf{real tangent bundle} of $ X $, which is a rank $ 2n $ vector bundle, and let $ \T_X^\CC = \T_X^\RR \otimes_\RR \CC $ be the \textbf{complex tangent bundle} of $ X $, which is a non-holomorphic complex vector bundle of rank $ 2n $. Smooth morphisms of real or complex vector bundles are defined similarly as holomorphisms between holomorphic vector bundles such that the rank of the image is constant, so
+Pull-backs, sections, exterior powers, tensors, direct sums, frames, etc are the same as holomorphic vector bundles, where holomorphic becomes smooth and biholomorphic becomes diffeomorphic, and for all $ X $ there exists a tangent bundle $ \T_X $. Assume $ X $ is a complex manifold of dimension $ n $. Let $ \T_X $ be the holomorphic tangent bundle of $ X $. Then $ X $ is also a differentiable manifold of dimension $ 2n $, so let $ \T_{X, \RR} $ be the \textbf{real tangent bundle} of $ X $, which is a rank $ 2n $ vector bundle, and let $ \T_{X, \CC} = \T_{X, \RR} \otimes_\RR \CC $ be the \textbf{complex tangent bundle} of $ X $, which is a non-holomorphic complex vector bundle of rank $ 2n $. Smooth morphisms of real or complex vector bundles are defined similarly as holomorphisms between holomorphic vector bundles such that the rank of the image is constant, so
 $$
 \begin{tikzcd}
 E \arrow{rr}{f} \arrow[swap]{dr}{\pi} & & F \arrow{dl}{\pi'} \\
 & X &
 \end{tikzcd}.
 $$
-
-Let $ X $ be a differentiable manifold of dimension $ m = 2n $. Then an \textbf{almost complex structure} on $ X $ is a smooth morphism between the real tangent bundle $ J : \T_X^\RR \to \T_X^\RR $ such that $ J^2 = -\id $. In particular, $ J\br{x} : \T_x^\RR X \to \T_x^\RR X $ is an almost complex structure for all $ x \in X $.
+Let $ X $ be a differentiable manifold of dimension $ m = 2n $. Then an \textbf{almost complex structure} on $ X $ is a smooth morphism between the real tangent bundle $ J : \T_{X, \RR} \to \T_{X, \RR} $ such that $ J^2 = -\id $. In particular, $ J\br{x} : \T_x^\RR X \to \T_x^\RR X $ is an almost complex structure for all $ x \in X $.
 
 \lecture{11}{Thursday}{30/01/20}
 
 \begin{proposition}
-Let $ X $ be a complex manifold. Then the underlying differentiable manifold admits an almost complex structure $ J : \T_X^\RR \to \T_X^\RR $ such that $ J^2 = -\id $.
+Let $ X $ be a complex manifold. Then the underlying differentiable manifold admits an almost complex structure $ J : \T_{X, \RR} \to \T_{X, \RR} $ such that $ J^2 = -\id $.
 \end{proposition}
 
 \begin{proof}
@@ -904,10 +903,10 @@ Let $ x \in X $, and let $ \br{U, \phi} $ be a complex chart around $ x $ such t
 $$ \function[\phi]{U}{V}{x}{0}. $$
 Fix holomorphic coordinates $ \br{z_1, \dots, z_n} $ on $ U $. The tangent bundle of $ X $ on $ U $ is trivial, with a local frame $ \tpd{}{z_1}, \dots, \tpd{}{z_n} $, so
 $$ \eval{\T_X}_U \xrightarrow{\sim} \T_V = V \times \CC^n. $$
-Define $ x_i = \Re z_i $ and $ y_i = \Im e_i $. Then $ \br{x_1, y_1, \dots, x_n, y_n} $ are smooth coordinates $ U \to \RR $ around $ x $, and $ \tpd{}{x_1}, \tpd{}{y_1}, \dots, \tpd{}{x_n}, \tpd{}{y_n} $ define a local smooth frame of $ \T_X^\RR $ on $ U $, so
-$$ \eval{\T_X^\RR}_U \xrightarrow{\sim} \T_V = V \times \RR^{2n}. $$
-In particular, there exists an almost complex structure $ J_U $ for $ \T_V \cong \eval{\T_X^\RR}_U $, so
-$$ J_U : \eval{\T_X^\RR}_U \to \eval{\T_X^\RR}_U, \qquad J_U^2 = -\id. $$
+Define $ x_i = \Re z_i $ and $ y_i = \Im e_i $. Then $ \br{x_1, y_1, \dots, x_n, y_n} $ are smooth coordinates $ U \to \RR $ around $ x $, and $ \tpd{}{x_1}, \tpd{}{y_1}, \dots, \tpd{}{x_n}, \tpd{}{y_n} $ define a local smooth frame of $ \T_{X, \RR} $ on $ U $, so
+$$ \eval{\T_{X, \RR}}_U \xrightarrow{\sim} \T_V = V \times \RR^{2n}. $$
+In particular, there exists an almost complex structure $ J_U $ for $ \T_V \cong \eval{\T_{X, \RR}}_U $, so
+$$ J_U : \eval{\T_{X, \RR}}_U \to \eval{\T_{X, \RR}}_U, \qquad J_U^2 = -\id. $$
 
 \pagebreak
 
@@ -924,14 +923,14 @@ where $ \p_i : \CC^n \to \CC $ is the $ i $-th projection. Define
 $$ x_i' = \Re z_i' = \Re f_i\br{z_1, \dots, z_n} = u_i\br{z_1, \dots, z_n}, \qquad y_i' = \Im z_i' = \Im f_i\br{z_1, \dots, z_n} = v_i\br{z_1, \dots, z_n}, $$
 so $ f_j = u_j + iv_j $. The real Jacobian $ \J_f $ of $ f $ is given by the derivatives of $ u_j $ and $ v_j $ with respect to $ x_1, y_1, \dots, x_n, y_n $, a $ \br{2n \times 2n} $-matrix of $ n \times n $ blocks of $ 2 \times 2 $ blocks of
 $$ \twobytwo{\tpd{u_j}{x_k}}{\tpd{u_j}{y_k}}{\tpd{v_j}{x_k}}{\tpd{v_j}{y_k}}. $$
-These define the transition function of $ \T_X^\RR $. To show that $ J $ extends to $ X $, it is enough to show that $ J $ commutes with $ \J_f $ at each point, so
+These define the transition function of $ \T_{X, \RR} $. To show that $ J $ extends to $ X $, it is enough to show that $ J $ commutes with $ \J_f $ at each point, so
 $$
 \begin{tikzcd}
-\eval{\T_X^\RR}_{U \cap U'} \arrow{r}{\J_f} \arrow[swap]{d}{J} & \eval{\T_X^\RR}_{U \cap U'} \arrow{d}{J} \\
-\eval{\T_X^\RR}_{U \cap U'} \arrow[swap]{r}{\J_f} & \eval{\T_X^\RR}_{U \cap U'}
+\eval{\T_{X, \RR}}_{U \cap U'} \arrow{r}{\J_f} \arrow[swap]{d}{J} & \eval{\T_{X, \RR}}_{U \cap U'} \arrow{d}{J} \\
+\eval{\T_{X, \RR}}_{U \cap U'} \arrow[swap]{r}{\J_f} & \eval{\T_{X, \RR}}_{U \cap U'}
 \end{tikzcd}.
 $$
-Since $ f_j $ is holomorphic $ \tpd{f_j}{\overline{z_k}} = 0 $ for all $ j $ and $ k $, so the Cauchy-Riemann equations
+Since $ f_j $ is holomorphic $ \tpd{}{\overline{z_k}}f_j = 0 $ for all $ j $ and $ k $, so the Cauchy-Riemann equations
 $$ \dpd{u_j}{x_k} - \dpd{v_j}{y_k} = 0, \qquad \dpd{v_j}{x_k} + \dpd{u_j}{y_k} = 0, $$
 or
 $$ \twobytwo{\tpd{u_j}{x_k}}{\tpd{u_j}{y_k}}{\tpd{v_j}{x_k}}{\tpd{v_j}{y_k}} = \twobytwo{\tpd{v_j}{y_k}}{\tpd{u_j}{y_k}}{-\tpd{u_j}{y_k}}{\tpd{v_j}{y_k}}, $$
@@ -953,7 +952,7 @@ Every complex manifold is orientable.
 \end{corollary}
 
 \begin{proof}
-We prove that if $ \T_X^\RR $ admits an almost complex structure then $ X $ is an orientable manifold. For all $ x \in X $ choose the orientation on $ \T_x^\RR X $, a vector space of dimension $ 2n $ over $ \RR $, given by any ordered basis of the form
+We prove that if $ \T_{X, \RR} $ admits an almost complex structure then $ X $ is an orientable manifold. For all $ x \in X $ choose the orientation on $ \T_x^\RR X $, a vector space of dimension $ 2n $ over $ \RR $, given by any ordered basis of the form
 $$ v_1, \dots, v_n, J\br{v_1}, \dots, J\br{v_n}. $$
 Assume that $ v_1, \dots, v_n, J\br{v_1}, \dots, J\br{v_n} $ and $ w_1, \dots, w_n, J\br{w_1}, \dots, J\br{w_n} $ are ordered bases. Show that the determinant of the matrix given by the change of basis is positive. \footnote{Exercise}
 \end{proof}
@@ -962,15 +961,15 @@ Assume that $ v_1, \dots, v_n, J\br{v_1}, \dots, J\br{v_n} $ and $ w_1, \dots, w
 
 \subsection{Differential forms on complex tangent bundles}
 
-Let $ X $ be a complex manifold. Then there exists an almost complex structure $ J : \T_X^\RR \to \T_X^\RR $ on $ X $. Then $ J $ extends to
-$$ \function[J]{\T_X^\CC}{\T_X^\CC}{v \otimes \mu}{J\br{v} \otimes \mu}. $$
+Let $ X $ be a complex manifold. Then there exists an almost complex structure $ J : \T_{X, \RR} \to \T_{X, \RR} $ on $ X $. Then $ J $ extends to
+$$ \function[J]{\T_{X, \CC}}{\T_{X, \CC}}{v \otimes \mu}{J\br{v} \otimes \mu}. $$
 For all $ x $, $ J\br{x} $ has two eigenvalues $ \pm i $, so
-$$ \T_X^\CC = \T_X^{1, 0} \oplus \T_X^{0, 1}, $$
+$$ \T_{X, \CC} = \T_X^{1, 0} \oplus \T_X^{0, 1}, $$
 which are complex vector bundles and \textbf{eigenbundles}. Locally $ \T_X^{1, 0} $ and $ \T_X^{0, 1} $ are spanned by the frames $ \tpd{}{z_1}, \dots, \tpd{}{z_n} $ and $ \tpd{}{\overline{z_1}}, \dots, \tpd{}{\overline{z_n}} $ respectively. Moreover there exists a conjugation
-$$ \function{\T_X^\CC}{\T_X^\CC}{v \otimes \mu}{v \otimes \overline{\mu}} $$
+$$ \function{\T_{X, \CC}}{\T_{X, \CC}}{v \otimes \mu}{v \otimes \overline{\mu}} $$
 over $ \RR $, such that $ \overline{\T_X^{1, 0}} = \T_X^{0, 1} $ and $ \overline{\T_X^{0, 1}} = \T_X^{1, 0} $. Let
-$$ \Omega_{X, \CC}^1 = \br{\T_X^\CC}^* $$
-be the dual of the complex vector bundle $ \T_X^\CC $. Then
+$$ \Omega_{X, \CC}^1 = \T_{X, \CC}^* $$
+be the dual of the complex vector bundle $ \T_{X, \CC} $. Then
 $$ \Omega_{X, \CC}^1 = \Omega_{X, \RR}^1 \otimes_\RR \CC = \Omega_X^{1, 0} \oplus \Omega_X^{0, 1} = \br{\T_X^{1, 0}}^* \oplus \br{\T_X^{0, 1}}^*. $$
 
 \begin{exercise*}
@@ -1239,8 +1238,8 @@ Let $ U = \cbr{U_i} $ be an open cover of open sets of $ X $, trivialising $ E $
 
 \lecture{15}{Tuesday}{11/02/20}
 
-Let $ E \to X $ be a complex Hermitian vector bundle of rank $ r $. Fix $ p, q \ge 0 $. There exists a bilinear
-$$ \function{\C^\infty\br{X, \Omega_{X, \CC}^p \otimes E} \times \C^\infty\br{X, \Omega_{X, \CC}^q \otimes E}}{\C^\infty\br{X, \Omega_{X, \CC}^{p + q}}}{\br{\sigma, \tau}}{\cbr{\sigma, \tau}}, $$
+Let $ E \to X $ be a complex Hermitian vector bundle of rank $ r $. Fix $ p, q \ge 0 $. There exists a bilinear \textbf{cup product}
+$$ \function[\cbr{\cdot, \cdot}]{\C^\infty\br{X, \Omega_{X, \CC}^p \otimes E} \times \C^\infty\br{X, \Omega_{X, \CC}^q \otimes E}}{\C^\infty\br{X, \Omega_{X, \CC}^{p + q}}}{\br{\sigma, \tau}}{\cbr{\sigma, \tau}}, $$
 where $ \cbr{\sigma, \tau} $ is defined as follows. Let $ x \in X $, let $ s_1, \dots, s_r $ be a frame of $ E $ around $ x $, let $ H $ be the matrix associated to the Hermitian metric with respect to the frame, and let
 $$ \sigma = \sum_i \sigma_i \otimes s_i, \qquad \tau = \sum_i \tau_i \otimes s_i, \qquad \sigma_i \in \C^\infty\br{X, \Omega_{X, \CC}^p}, \qquad \tau_i \in \C^\infty\br{X, \Omega_{X, \CC}^q}. $$
 
@@ -1413,9 +1412,9 @@ $$ \D H = \D H_2 + \D\br{\id + C_0^\intercal} \cdot H_2 + H_2 \cdot \D\br{\id + 
 so
 $$ \D H\br{0} = \D H_2\br{0} + \D C_0^\intercal\br{0} + \D\overline{C_0}\br{0} = \br{\partial H_2\br{0} + \D C_0^\intercal\br{0}} + \br{\overline{\partial}H_2\br{0} + \D\overline{C_0}\br{0}}. $$
 Write $ C_0 = \br{c_{ij}} $, where
-$$ c_{ij} = -\sum_{l = 1}^n \dpd{\br{H_2}_{ji}}{z_l}\br{0}z_l. $$
+$$ c_{ij} = -\sum_{l = 1}^n \dpd{}{z_l}\br{H_2}_{ji}\br{0}z_l. $$
 Then
-$$ \d c_{ij} = -\sum_{l = 1}^n \sum_{k = 1}^n \dpd{\br{H_2}_{ji}}{z_l}\br{0}\dpd{z_l}{z_k} \d z_k = -\sum_{l = 1}^n \dpd{\br{H_2}_{ji}}{z_l}\br{0} \d z_l, $$
+$$ \d c_{ij} = -\sum_{l = 1}^n \sum_{k = 1}^n \dpd{}{z_l}\br{H_2}_{ji}\br{0}\dpd{}{z_k}z_l \d z_k = -\sum_{l = 1}^n \dpd{}{z_l}\br{H_2}_{ji}\br{0} \d z_l, $$
 so
 $$ \D C_0^\intercal\br{0} = \partial C_0^\intercal\br{0} = -\partial H_2\br{0}. $$
 Similarly
@@ -1566,6 +1565,9 @@ and the equality holds if and only if $ w = 0 $. Thus $ T $ is positive definite
 
 \section{K\"ahler manifolds}
 
+The idea is if $ \br{X, \omega} $ is compact K\"ahler and $ k \ge 0 $, then
+$$ \H^k\br{X, \CC} \cong \bigoplus_{p + q = k} \H^{p, q}\br{X}. $$
+
 \subsection{K\"ahler manifolds}
 
 \begin{definition}
@@ -1574,7 +1576,7 @@ $$ \omega = \dfrac{i}{2}\sum_{j, k = 1}^n h_{jk} \d z_j \wedge \d\overline{z_k},
 such that $ \br{h_{jk}} $ is positive definite.
 \end{definition}
 
-If $ z_1 = x_1 + iy_1 $, then $ \tfrac{i}{2} \d z_1 \wedge \d\overline{z_1} = \d x_1 \wedge \d y_1 $. Then $ \omega $ defines a Hermitian metric on $ \T_V^\CC = \abr{\tpd{}{z_i}, \tpd{}{\overline{z_j}}} $. Let $ \omega $ be a positive real $ \br{1, 1} $-form as in the above. Then $ \omega^n $ is a real $ \br{n, n} $-form such that if $ z_j = x_j + iy_j $ then
+If $ z_1 = x_1 + iy_1 $, then $ \tfrac{i}{2} \d z_1 \wedge \d\overline{z_1} = \d x_1 \wedge \d y_1 $. Then $ \omega $ defines a Hermitian metric on $ \T_{V, \CC} = \abr{\tpd{}{z_i}, \tpd{}{\overline{z_j}}} $. Let $ \omega $ be a positive real $ \br{1, 1} $-form as in the above. Then $ \omega^n $ is a real $ \br{n, n} $-form such that if $ z_j = x_j + iy_j $ then
 $$ \omega^n = \det h_{ij} \d x_1 \wedge \d y_1 \wedge \dots \wedge \d x_n \wedge \d y_n $$
 is a volume form.
 
@@ -1634,5 +1636,69 @@ Let $ X $ be a complex manifold of dimension one. Then $ X $ is K\"ahler. \footn
 \lecture{21}{Tuesday}{25/02/20}
 
 Lecture 21 is a problems class.
+
+\pagebreak
+
+\lecture{22}{Thursday}{27/02/20}
+
+Let $ \br{X, \omega} $ be compact K\"ahler. For all $ x \ge 1 $, $ \omega^k = \omega \wedge \dots \wedge \omega $ is closed by Leibnitz rule. Claim that $ \sbr{\omega^k} \ne 0 $ in $ \H^k\br{X, \CC} $. Assume $ \sbr{\omega^k} = 0 $, so there exists a $ \br{2k - 1} $-form $ \eta $ such that $ \omega^k = \d\eta $. Since $ \omega $ is closed and $ \omega^n $ is a volume form,
+$$ 0 < \int_X \omega^n = \int_X \omega^{n - k} \wedge \d\eta = \int_X \d\br{\omega^{n - k} \wedge \eta} = \int_{\partial X} \omega^{n - k} \wedge \eta = 0, $$
+by the Leibnitz rule. Thus
+$$ \H^k\br{X, \CC} \ne 0, \qquad k \in 2\ZZ. $$
+
+\begin{example}
+Pick $ \lambda \in \CC $ such that $ 0 < \abs{\lambda} < 1 $. Then $ \ZZ $ acts on $ \CC^n \setminus \cbr{0} $ by
+$$ \function{\br{\ZZ \times \br{\CC^n \setminus \cbr{0}}}}{\CC^n \setminus \cbr{0}}{\br{n, z}}{\lambda^nz}. $$
+Let $ X = \CC^n \setminus \cbr{0} / \ZZ $. Similarly to the case of complex tori, $ X $ can be shown to have a complex structure. Then $ \S^{2n - 1} \subset \RR^{2n} \setminus \cbr{0} = \CC^n \setminus \cbr{0} \cong \S^{2n - 1} \times \RR_{> 0} $, so $ X \sim \S^{2n - 1} \times \S^1 $. Thus if $ n \ge 2 $, then $ \H^k\br{X, \CC} = 0 $, so $ X $ is not K\"ahler.
+\end{example}
+
+\subsection{Hodge \texorpdfstring{$ \star $}{*} operator}
+
+Let $ V $ be a vector space over $ \CC $ of dimension $ n $ with an inner product $ \abr{\cdot, \cdot} : V \times V \to \CC $. There is a canonical inner product on $ \Lambda^pV $ for all $ p \ge 1 $,
+$$ \abr{v_1 \wedge \dots \wedge v_p, w_1 \wedge \dots \wedge w_p} = \det \br{\abr{v_i, w_j}}. $$
+In particular there exists a unique up to orientation $ \omega \in \Lambda^nV $ such that $ \norm{\omega} = 1 $. The \textbf{Hodge $ \star $ operator} $ \star : \Lambda^pV \to \Lambda^{n - p}V $ for $ p \ge 0 $ is such that
+$$ \alpha \wedge \star\beta = \abr{\alpha, \beta}\omega \in \Lambda^nV, \qquad \alpha, \beta \in \Lambda^pV. $$
+Let $ e_1, \dots, e_n $ be an orthonormal basis of $ V $. Then
+\begin{itemize}
+\item $ \star 1 = \omega $,
+\item $ \star\omega = 1 $,
+\item $ \star e_1 = e_1 \wedge \dots \wedge e_n $,
+\item $ \star e_i = \br{-1}^{i - 1}e_1 \wedge \dots \wedge \widehat{e_i} \wedge \dots \wedge e_n $, and
+\item more in general if $ I = \cbr{i_1, \dots, i_k} \subset \cbr{1, \dots, n} $ is ordered such that $ e_I = e_{i_1} \wedge \dots \wedge e_{i_k} $, and $ \CCC I = \cbr{1, \dots, n} \setminus I $ such that $ \sigma : \cbr{1, \dots, n} \to \cbr{I, \CCC I} $ is a permutation, then
+$$ \star e_I = \epsilon\br{\sigma}e_{\CCC I}, $$
+where $ \epsilon $ is the signature of $ \sigma $, so
+$$ \star\star\eta = \br{-1}^{k\br{n - k}}\eta, \qquad \eta \in \Lambda^kV. $$
+\end{itemize}
+Let $ X $ be a complex manifold, and let $ E $ be a Hermitian holomorphic vector bundle. Recall that we defined
+$$ \cbr{\cdot, \cdot} : \C^\infty\br{X, \Omega_{X, \CC}^p \otimes E} \times \C^\infty\br{X, \Omega_{X, \CC}^q \otimes E} \to \C^\infty\br{X, \Omega_{X, \CC}^{p + q}}. $$
+Take $ p = q = 0 $ and $ E = \Omega_{X, \CC}^k $. If $ \omega $ is a positive real $ \br{1, 1} $-form then $ \omega $ induces a Hermitian metric on $ \T_{X, \CC} $. Locally, let $ e_1, \dots, e_n $ be an orthonormal frame of $ \T_{X, \CC} $. Then $ e_1^*, \dots, e_n^* $ define a metric on $ \Omega_{X, \CC}^1 $ locally, where $ e_i^*\br{e_j} = \delta_{ij} $. It is easy to check that such a choice is canonical, so the metric on $ \Omega_{X, \CC}^1 $ extends to $ X $. This induces a metric on $ \Omega_{X, \CC}^k $ for all $ k \ge 0 $, so there exists a cup product
+$$ \cbr{\cdot, \cdot} : \C^\infty\br{X, \Omega_{X, \CC}^k} \times \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X}. $$
+
+\pagebreak
+
+\begin{lemma}
+Let $ \br{X, \omega} $ be K\"ahler of dimension $ n $. Then there exists a $ \CC $-linear
+$$ \star : \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X, \Omega_{X, \CC}^{n - k}}, \qquad k \ge 0, $$
+such that
+$$ \alpha \wedge\star\beta = \cbr{\alpha, \beta}\omega^n, \qquad \alpha, \beta \in \C^\infty\br{X, \Omega_{X, \CC}^k}. $$
+\end{lemma}
+
+Check that it is defined globally on $ X $.
+
+\begin{definition}
+Let $ E $ be a vector bundle. Then let
+$$ \C_\c^\infty\br{X, E} = \cbr{s \in \C^\infty\br{X, E} \st s \ \text{has compact support}}. $$
+Let $ E $ be Hermitian, and let $ \omega $ be a positive real $ \br{1, 1} $-form. Then let
+$$ \br{\alpha, \beta}_E = \int_X \cbr{\alpha, \beta}\omega^n, \qquad \alpha, \beta \in \C_\c^\infty\br{X, E}. $$
+Let $ \br{X, \omega} $ be K\"ahler, let $ E $ and $ F $ be Hermitian vector bundles on $ X $, and let $ P : \C_\c^\infty\br{X, E} \to \C_\c^\infty\br{X, F} $ be $ \CC $-linear. Then the \textbf{adjoint} of $ P $ is a $ \CC $-linear map $ P^* : \C_\c^\infty\br{X, F} \to \C_\c^\infty\br{X, E} $ such that
+$$ \br{P\alpha, \beta}_F = \br{\alpha, P^*\beta}_E, \qquad \alpha \in \C_\c^\infty\br{X, E}, \qquad \beta \in \C_\c^\infty\br{X, E}. $$
+\end{definition}
+
+In particular $ \d : \C_\c^\infty\br{X, \Omega_{X, \CC}^k} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}} $ gives $ \d^* : \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $.
+
+\begin{lemma}
+Let $ \br{X, \omega} $ be K\"ahler of dimension $ n $. Then
+$$ \d^*\beta = \br{-1}^{nk + 1}\star\d\br{\star\beta}, \qquad \beta \in \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}}. $$
+\end{lemma}
 
 \end{document}
