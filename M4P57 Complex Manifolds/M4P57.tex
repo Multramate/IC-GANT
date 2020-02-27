@@ -1701,4 +1701,103 @@ Let $ \br{X, \omega} $ be K\"ahler of dimension $ n $. Then
 $$ \d^*\beta = \br{-1}^{nk + 1}\star\d\br{\star\beta}, \qquad \beta \in \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}}. $$
 \end{lemma}
 
+\lecture{23}{Thursday}{27/02/20}
+
+\begin{proof}
+Let $ \alpha \in \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $. Then
+\begin{align*}
+\br{\d\alpha, \beta}
+& = \int_X \d\alpha \wedge \star\beta & \cbr{\eta_1, \eta_2}\omega^n = \eta_1 \wedge \star\eta_2 \\
+& = \int_X \d\br{\alpha \wedge \star\beta} - \br{-1}^k\int_X \alpha \wedge \d\br{\star\beta} & \text{the Leibnitz rule} \\
+& = \br{-1}^{k + 1}\int_X \alpha \wedge \d\br{\star\beta} & \text{Stokes} \\
+& = \br{-1}^{\br{n - k}k + k + 1}\int_X \alpha \wedge \star\star\d\br{\star\beta} & \star\star\eta = \br{-1}^{k\br{n - k}}\eta \\
+& = \br{-1}^{nk + 1}\int_X \alpha \wedge \star\star\d\br{\star\beta} & k^2 - k \ \text{is even} \\
+& = \br{-1}^{nk + 1}\int_X \cbr{\alpha, \star\d\br{\star\beta}}\omega^n & \cbr{\eta_1, \eta_2}\omega^n = \eta_1 \wedge \star\eta_2 \\
+& = \br{-1}^{nk + 1}\br{\alpha, \star\d\br{\star\beta}}.
+\end{align*}
+\end{proof}
+
+Let $ \br{X, \omega} $ be a K\"ahler manifold. The \textbf{Hodge-de Rham operator} is
+$$ \Delta = \d\d^* + \d^*\d : \C_\c^\infty\br{X, \Omega_{X, \CC}^k} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^k}. $$
+Then $ \alpha \in \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $ is said to be \textbf{harmonic} if $ \Delta\alpha = 0 $. Let
+$$ \HHH^k\br{X} = \cbr{\alpha \ \text{harmonic $ k $-form on} \ X} = \Ker \Delta. $$
+
+\begin{lemma}
+\label{lem:6.13}
+Let $ \br{X, \omega} $ be K\"ahler, and let $ \alpha \in \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $. Then $ \alpha $ is harmonic if and only if $ \d\alpha = \d^*\alpha = 0 $.
+\end{lemma}
+
+\begin{proof}
+If $ \d\alpha = \d^*\alpha = 0 $, then $ \Delta\alpha = 0 $. Assume $ \Delta\alpha = 0 $. Then
+$$ 0 = \br{\Delta\alpha, \alpha} = \br{\d\br{\d^*\alpha} + \d^*\br{\d\alpha}, \alpha} = \br{\d^*\alpha, \d^*\alpha} + \br{\d\alpha, \d\alpha} = \norm{\d^*\alpha}^2 + \norm{\d\alpha}^2, $$
+so $ \d\alpha = \d^*\alpha = 0 $.
+\end{proof}
+
+\pagebreak
+
+\begin{example}
+Let $ X = \CC^n $, and let $ \omega = \tfrac{i}{2}\sum_i \d z_i \wedge \d\overline{z_i} $. Then $ \br{X, \omega} $ is K\"ahler. Let $ k = 0 $, let $ z_j = x_j + iy_j $, and let $ f \in \C^\infty\br{X} $ such that $ f = f\br{x_1, \dots, x_n, y_1, \dots, y_n} $. Then
+$$ \Delta f = \sum_{i = 1}^n \br{\dpd[2]{}{x_i}f + \dpd[2]{}{y_i}f} \in \C^\infty\br{X}, \footnote{Exercise} $$
+the Laplacian.
+\end{example}
+
+\begin{lemma}
+Let $ \br{X, \omega} $ be K\"ahler. Then $ \Delta $ and $ \star $ commute, that is
+$$ \Delta\star\alpha = \star\Delta\alpha, \qquad \alpha \in \C^\infty\br{X, \Omega_{X, \CC}^k}. $$
+\end{lemma}
+
+\begin{proof}
+Use $ \d^* = \br{-1}^{nk + 1}\star\d\star $ and $ \star\star = \br{-1}^{k\br{n - k}} $.
+\end{proof}
+
+\begin{lemma}
+Let $ \br{X, \omega} $ be K\"ahler. Then $ \Delta $ is auto-adjoint, that is
+$$ \cbr{\Delta\alpha, \beta}\omega^n = \cbr{\alpha, \Delta\beta}\omega^n, \qquad \alpha, \beta \in \C^\infty\br{X, \Omega_{X, \CC}^k}. $$
+\end{lemma}
+
+\begin{proof}
+$$ \cbr{\Delta\alpha, \beta}\omega^n = \cbr{\d\br{\d^*\alpha}0 + \d^*\br{\d\alpha}, \beta}\omega^n = \cbr{\alpha, \d^*\br{\d\beta} + \d\br{\d^*\beta}}\omega^n = \cbr{\alpha, \Delta\beta}\omega^n. $$
+\end{proof}
+
+\begin{theorem}
+\label{thm:6.17}
+Let $ \br{X, \omega} $ be a compact K\"ahler manifold. Then, for all $ k \ge 0 $,
+\begin{enumerate}
+\item $ \HHH^k\br{X} $ is a finite dimensional vector space, and
+\item there exist orthogonal decompositions
+$$ \C^\infty\br{X, \Omega_{X, \CC}^k} = \HHH^k\br{X} \oplus \Delta\br{\C^\infty\br{X, \Omega_{X, \CC}^k}} = \HHH^k\br{X} \oplus \d\br{\C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}} \oplus \d^*\br{\C^\infty\br{X, \Omega_{X, \CC}^{k + 1}}}, $$
+such that
+$$ \Ker \d = \HHH^k\br{X} \oplus \d\br{\C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}}, \qquad \Ker \d^* = \HHH^k\br{X} \oplus \d^*\br{\C^\infty\br{X, \Omega_{X, \CC}^{k + 1}}}. $$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Hard, omit the proof, see H\"oring.
+\item If $ \alpha \in \HHH^k\br{X} $ and $ \beta \in \C^\infty\br{X, \Omega_{X, \CC}^k} $, then $ \br{\alpha, \Delta\beta} = \br{\Delta\alpha, \beta} = 0 $. If $ \alpha \in \C^\infty\br{X, \Omega_{X, \CC}^{k - 1}} $ and $ \beta \in \C^\infty\br{X, \Omega_{X, \CC}^{k + 1}} $, then $ \br{\d\alpha, \d^*\beta} = \br{\d\br{\d\alpha}, \beta} = 0 $.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+Let $ \br{X, \omega} $ be compact K\"ahler, and let $ k \ge 0 $. Then
+$$ \HHH^k\br{X} = \H^k\br{X, \CC}. $$
+\end{theorem}
+
+\begin{proof}
+By Theorem \ref{thm:6.17} $ \Ker \d = \HHH^k\br{X} \oplus \d\br{\C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}} $, so
+$$ \HHH^k\br{X} = \Ker \d / \d\br{\C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}} = \ZZZ^k\br{X} / \BBB^k\br{X} = \H^k\br{X, \CC}. $$
+\end{proof}
+
+\begin{theorem}[Poincar\'e duality]
+Let $ \br{X, \omega} $ be a compact K\"ahler manifold. Then there exists an isomorphism
+$$ \H^k\br{X, \CC} \to \H^{n - k}\br{X, \CC}, \qquad k \ge 0. $$
+\end{theorem}
+
+\begin{proof}
+Want to check
+$$ \star : \HHH^k\br{X} \xrightarrow{\sim} \HHH^{n - k}\br{X}. $$
+Given a harmonic $ k $-form $ \alpha $ then $ \star\alpha $ is a harmonic $ k $-form, since $ \Delta\star\alpha = \star\Delta\alpha = \star 0 = 0 $, by Theorem \ref{lem:6.13}.
+\end{proof}
+
 \end{document}
