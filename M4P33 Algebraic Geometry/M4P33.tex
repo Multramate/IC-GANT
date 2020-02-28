@@ -1321,6 +1321,12 @@ The three polynomials $ Y - X^2, Z - XY, XZ - Y^2 $ are a generating set for $ \
 
 \pagebreak
 
+\subsubsection{Zariski topology on projective space}
+
+We can define the Zariski topology on $ \PP^n $ by saying that the closed subsets are the projective algebraic sets. Observe that $ \AA^n $ is embedded as a Zariski open subset in $ \PP^n $, because the complement $ \PP^n \setminus \AA^n $ is described by the homogeneous polynomial equation $ X_0 = 0 $. The existence of projective closures shows that the Zariski topology on $ \AA^n $ is the same as the subspace topology coming from the Zariski topology on $ \AA^n \subseteq \PP^n $. The terminology projective closure is justified by noting that the smallest projective algebraic set containing $ V \subseteq \AA^n $ which we just described is the same as the closure of $ V $ in the Zariski topology on $ \PP^n $.
+
+\subsubsection{Homogeneous ideals}
+
 I did not actually prove that the projective closure $ \overline{V} $ of $ V \subseteq \AA^n $ is a projective algebraic set, because we constructed $ V $ as the zero set of infinitely many homogeneous polynomials, but said that a projective algebraic set must be defined using finitely many homogeneous polynomials. We can prove that these are equivalent using the Hilbert basis theorem, but it is a little more subtle than in the affine case.
 
 \begin{definition*}
@@ -1354,10 +1360,6 @@ By the Hilbert basis theorem, there exists a finite set $ g_1, \dots, g_r $ of p
 \end{proof}
 
 Thus any set of homogeneous polynomials, even an infinite set, defines a projective algebraic set. We can use Proposition \ref{prop:homogeneousideal} to prove that every projective algebraic set is a finite union of irreducible components, by the same proof as for affine algebraic sets.
-
-\subsubsection{Zariski topology on projective space}
-
-We can define the Zariski topology on $ \PP^n $ by saying that the closed subsets are the projective algebraic sets. Observe that $ \AA^n $ is embedded as a Zariski open subset in $ \PP^n $, because the complement $ \PP^n \setminus \AA^n $ is described by the homogeneous polynomial equation $ X_0 = 0 $. The existence of projective closures shows that the Zariski topology on $ \AA^n $ is the same as the subspace topology coming from the Zariski topology on $ \AA^n \subseteq \PP^n $. The terminology projective closure is justified by noting that the smallest projective algebraic set containing $ V \subseteq \AA^n $ which we just described is the same as the closure of $ V $ in the Zariski topology on $ \PP^n $.
 
 \subsubsection{The projective Nullstellensatz}
 
@@ -1578,6 +1580,8 @@ So long as $ \sbr{s : t} \in \AA^1 \setminus \cbr{0} $, this does give a point i
 $$ H = \cbr{\sbr{w : x : y} \in \PP^2 \st xy = w^2} \cap \AA^2, $$
 so $ \phi $ is a regular map $ \AA^1 \setminus \cbr{0} \to H $. The projection $ \br{x, y} \mapsto x $ is a regular inverse to $ \phi $. Hence $ \AA^1 \setminus \cbr{0} $ and $ H $ are isomorphic as quasi-projective algebraic sets.
 \end{example*}
+
+\subsubsection{Varieties}
 
 As mentioned previously, we use the word \textbf{variety} to mean an algebraic set considered up to isomorphism, not caring about how it is embedded into affine or projective space.
 
@@ -1982,6 +1986,7 @@ Quasi-projective algebraic sets are locally closed subsets of $ \PP^n $.
 Equivalently, a constructible set is any set which can be obtained by starting with a finite list of open and closed sets, and combining them in any way using unions and intersections. The image of the map $ \br{x, y} \mapsto \br{x, xy} $ considered above is the typical example to keep in mind for a constructible set which is not locally closed. Chevalley's theorem tells us that the image of a regular map between quasi-projective varieties is constructible. Indeed it tells us slightly more. The image of a constructible set is constructible.
 
 \begin{theorem}[Chevalley's theorem]
+\label{thm:chevalleytheorem}
 Let $ \phi : V \to W $ be a regular map of quasi-projective algebraic sets. The image of any constructible set in $ V $ is a constructible set in $ W $.
 \end{theorem}
 
@@ -2088,6 +2093,7 @@ $$ \Res_{d, e}\br{a_0, \dots, a_d, b_0, \dots, b_e} = 0. $$
 This can be proved by going through the linear algebra from the end of the proof of Theorem \ref{thm:projectionclosed2}. Indeed it is possible to work out the polynomial $ \Res_{d, e} $ explicitly in this way. We shall just quote this as a result of algebra. The algebra actually gives us something more. This works not just for polynomials over an algebraically closed field, but for polynomials over any integral domain, provided we replace have a common zero by have a common factor of positive degree.
 
 \begin{theorem}
+\label{thm:domainresultant}
 Fix $ d, e \in \ZZ_{> 0} $. There exists a universal polynomial $ \Res_{d, e} \in \ZZ\sbr{A_0, \dots, A_d, B_0, \dots, B_e} $ such that, for any integral domain $ R $ and any values $ a_0, \dots, a_d, b_0, \dots, b_e \in R $, the homogeneous polynomials
 $$ f = \sum_{i = 0}^d a_iS^iT^{d - i} \in R\sbr{S, T}, \qquad g = \sum_{i = 0}^e b_iS^iT^{e - i} \in R\sbr{S, T} $$
 have a common factor of positive degree in $ R\sbr{S, T} $ if and only if
@@ -2097,5 +2103,92 @@ $$ \Res_{d, e}\br{a_0, \dots, a_d, b_0, \dots, b_e} = 0. $$
 From the perspective of elementary algebra, when stating Theorem \ref{thm:fieldresultant}, it is simpler to look at inhomogeneous polynomials in one variable and roots in $ \AA^1 $ instead of homogeneous polynomials in two variables and roots in $ \PP^1 $. Of course, we can convert back and forth by homogenising and dehomogenising the polynomials, replacing $ f\br{S, T} $ by $ f\br{1, T} $ and vice versa, but we have to be a little bit careful. We have to worry about the possibility that $ f\br{S, T} $ and $ g\br{S, T} $ might have a common root at $ \infty = \sbr{0 : 1} \in \PP^1 $ but not anywhere in $ \AA^1 = \PP^1 \setminus \cbr{\infty} $. It turns out that $ f\br{S, T} $ has a root at $ \infty $ if and only if the dehomogenised polynomial $ f\br{1, T} $ has degree strictly less than $ \deg f\br{S, T} $. Thus, Theorem \ref{thm:fieldresultant} implies that $ \Res_{d, e} $ vanishes on the coefficients of two single variable polynomials
 $$ f\br{T} = \sum_{i = 0}^d a_iT^i, \qquad g\br{T} = \sum_{i = 0}^e b_iT^i $$
 if and only if $ f $ and $ g $ have a common root in $ k $, as long as $ f $ and $ g $ have degrees exactly $ d $ and $ e $ respectively. If $ \deg f < d $, but we still write out $ f $ as in the above with $ a_d = 0 $, then looking at $ \Res_{d, e} $ might give the wrong answer for whether $ f $ and $ g $ have a common root, and similarly if $ \deg g < e $.
+
+\subsubsection{Proof of Chevalley's theorem}
+
+\lecture{21}{Friday}{28/02/20}
+
+We shall now prove Chevalley's theorem. We will reduce the proof to projections by using graphs, in a similar way to what we did for completeness. We can also reduce to the case where $ V $ and $ W $ are affine spaces, and perform a few more simplifications. The real work of the proof lies in the first two lemmas. After proving these lemmas, we will show the sequence of simpler steps to get from there to Theorem \ref{thm:chevalleytheorem}.
+
+\begin{lemma}
+\label{lem:projectioneither}
+Let $ \pi : \PP^1 \times \AA^m \to \AA^m $ denote the second projection map. Let $ V $ be an irreducible closed subset of $ \PP^1 \times \AA^m $ and let $ T $ be a proper closed subset of $ V $. Then either
+\begin{enumerate}
+\item $ \pi\br{T} $ is strictly contained in $ \pi\br{V} $, or
+\item $ V = \PP^1 \times \pi\br{V} $.
+\end{enumerate}
+\end{lemma}
+
+\pagebreak
+
+\begin{proof}
+Let $ W = \pi\br{V} $. By the completeness of $ \PP^1 $, $ W $ is closed in $ \AA^m $, by Theorem \ref{thm:projectionclosed}. Since $ V $ is irreducible, $ W $ is also irreducible. Hence the ring of regular functions $ k\sbr{W} $ is an integral domain. We write $ k\sbr{W}\sbr{X, Y} $ for the ring of polynomials in two variables $ X $ and $ Y $ with coefficients in $ k\sbr{W} $. Let $ I \subseteq k\sbr{W}\sbr{X, Y} $ denote the homogeneous ideal of polynomials which vanish on $ V \subseteq \PP^1 \times W $. Assume that $ V \ne \PP^1 \times W $, otherwise conclusion $ 2 $ holds so we have nothing to prove. Thus $ I \ne \cbr{0} $. Let $ f $ be a homogeneous polynomial in $ I $ which has minimum degree with respect to $ X $ and $ Y $. Since $ V $ is irreducible, $ f $ has no factorisation into factors of positive degree, since if $ f = f_1f_2 $, then $ V \cup \cbr{f_1 = 0} $ and $ V \cup \cbr{f_2 = 0} $ would be two closed subsets which cover $ V $. Since $ T $ is closed and properly contained in $ V $, there exists $ g \in k\sbr{W}\sbr{X, Y} $ which vanishes on $ T $ but not on $ V $. Since $ g $ does not vanish on $ V $, $ f $ does not divide $ g $. Since $ f $ has no factors of positive degree, we conclude that $ f $ and $ g $ have no common factors of positive degree. Hence we can use the resultant over the integral domain $ k\sbr{W} $, by Theorem \ref{thm:domainresultant}, to say that
+$$ \Res_{d, e}\br{f, g} \ne 0, \qquad d = \deg f, \qquad e = \deg g $$
+in $ k\sbr{W} $. Now $ \Res_{d, e}\br{f, g} $ is an element of $ k\sbr{W} $, that is it is a regular function on $ W $. Since it is not identically zero, we can choose $ w \in W $ such that $ \Res_{d, e}\br{f, g}\br{w} \ne 0 $. This is the same as saying that
+$$ \Res_{d, e}\br{f_w, g_w} \ne 0, $$
+where $ f_w, g_w \in k\sbr{X, Y} $ are the polynomials obtained from $ f $ and $ g $ by evaluating their coefficients at $ w $. By the defining property of the resultant over the algebraically closed field $ k $, we conclude that $ f_w $ and $ g_w $ have no common root in $ \PP^1 $. But $ \pi^{-1}\br{w} \cap T $ is contained in the set of common roots of $ f_w $ and $ g_w $. Thus $ \pi^{-1}\br{w} \cap T = \emptyset $, that is $ w \notin \pi\br{T} $.
+\end{proof}
+
+Lemma \ref{lem:projectioneither} needed $ \PP^1 \times \AA^m $ in order to use completeness, here we need $ \AA^{1 + m} \to \AA^m $ so that we can set up an induction
+$$ \AA^{2 + m} \to \AA^{1 + m} \to \AA^m, $$
+etc.
+
+\begin{lemma}
+\label{lem:projectionopen}
+Let $ \pi : \AA^{1 + m} \to \AA^m $ denote projection onto the last $ m $ coordinates. Let $ Z \subseteq \AA^{1 + m} $ be an irreducible locally closed subset. Let $ W $ be the Zariski closure of $ \pi\br{Z} $ in $ \AA^m $. Then $ \pi\br{Z} $ contains a non-empty open subset of $ W $.
+\end{lemma}
+
+\begin{proof}
+We embed $ \AA^{1 + m} = \AA^1 \times \AA^m $ into $ \PP^1 \times \AA^m $, in order to be able to use Lemma \ref{lem:projectioneither}. Let $ V $ be the closure of $ Z $ in $ \PP^1 \times \AA^m $. By completeness, in Theorem \ref{thm:projectionclosed}, $ \pi\br{V} $ is closed in $ \AA^m $, so $ \pi\br{V} = W $. Let $ T = V \setminus Z $. Since $ Z $ is locally closed, $ T $ is a closed subset of $ \PP^1 \times \AA^m $. We can now apply Lemma \ref{lem:projectioneither}. We get two cases.
+\begin{enumerate}[label=Case \arabic*., leftmargin=0.5in]
+\item $ \pi\br{T} $ is strictly contained in $ \pi\br{V} $. Completeness tells us that $ \pi\br{T} $ is closed in $ \AA^m $. Hence $ W \setminus \pi\br{T} $ is an open subset of $ W $. Since $ Z = V \setminus T $, it is clear that $ W \setminus \pi\br{T} $ is contained in $ \pi\br{Z} $. And $ W \setminus \pi\br{T} $ is non-empty because $ \pi\br{T} \ne W $.
+\item $ V = \PP^1 \times W $. In this case, an element $ w \in W $ is in the image of $ Z $ if and only if $ \PP^1 \times \cbr{w} $ is not contained in $ T $. That is,
+$$ \pi\br{Z} = \cbr{w \in W \st \PP^1 \times \cbr{w} \not\subseteq T}. $$
+It is easy to see that the complement
+$$ W \setminus \pi\br{Z} = \cbr{w \in W \st \PP^1 \times \cbr{w} \subseteq T} $$
+is a closed subset of $ W $, so $ \pi\br{Z} $ is open in $ W $. And $ \pi\br{Z} $ is certainly non-empty.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+\label{cor:projectionopen}
+Let $ \pi : \AA^{n + m} \to \AA^m $ denote projection onto the last $ m $ coordinates. Let $ Z \subseteq \AA^{n + m} $ be a constructible subset. Let $ W $ be the Zariski closure of $ \pi\br{Z} $ in $ \AA^m $. Then $ \pi\br{Z} $ contains a dense open subset of $ W $.
+\end{corollary}
+
+\pagebreak
+
+\begin{proof}
+It suffices to assume that $ Z $ is an irreducible locally closed set. If it was not, we could simply break it up first into finitely many locally closed sets, by the definition of constructible sets, and then break up each of these into finitely many irreducible components. The proof is by induction on $ n $. The base case is Lemma \ref{lem:projectionopen}. We factor $ \pi : \AA^{n + m} \to \AA^m $ as
+$$ \AA^{n + m} \xrightarrow{p} \AA^{1 + m} \xrightarrow{q} \AA^m. $$
+Let $ W' $ be the Zariski closure of $ p\br{Z} $. By induction, $ p\br{Z} $ contains a dense open subset $ U \subseteq W' $. Since $ U $ is dense in $ W' $, $ q\br{U} $ is dense in $ q\br{W'} = \pi\br{Z} $ which in turn is dense in $ W $. Therefore $ W $ is equal to the closure of $ q\br{U} $ in $ \AA^m $. Then $ U $ is an open subset of the closed subset $ W' $ in $ \AA^{1 + m} $, so $ U $ is locally closed in $ \AA^{1 + m} $. Hence we can apply Lemma \ref{lem:projectionopen} to conclude that $ q\br{U} $ contains a non-empty open subset of $ W $. Because $ Z $, and hence $ W $, is irreducible, this non-empty open subset is dense in $ W $.
+\end{proof}
+
+\begin{lemma}
+\label{lem:projectionconstructible}
+Let $ \pi : \AA^{n + m} \to \AA^m $ denote projection onto the last $ m $ coordinates. If $ Z \subseteq \AA^{n + m} $ is a constructible subset, then $ \pi\br{Z} $ is constructible.
+\end{lemma}
+
+\begin{proof}
+Let $ W_1 $ be the Zariski closure of $ \pi\br{Z} $. By Corollary \ref{cor:projectionopen}, $ \pi\br{Z} $ contains a dense open subset $ U_1 \subseteq W_1 $. Then $ Z_1 = \pi^{-1}\br{W_1 \setminus U_1} $ is a proper closed subset of $ Z $. In particular $ Z_1 $ is itself constructible. Now repeat this argument. Let $ W_2 $ be the Zariski closure of $ \pi\br{Z_1} $. By Corollary \ref{cor:projectionopen}, $ \pi\br{Z_1} $ contains a dense open subset $ U_2 \subseteq W_2 $. Then $ Z_2 = \pi^{-1}\br{W_2 \setminus U_2} $ is a proper closed subset of $ Z_1 $. We repeat this, getting $ W_3, U_3, Z_3 $, etc. Now $ \pi\br{Z_1} $ is contained in the closed set $ W_1 \setminus U_1 $, so $ W_2 \subseteq W_1 \setminus U_1 $. Since $ U_1 \ne \emptyset $, $ W_2 \ne W_1 $. Similarly, $ W_3 \ne W_2 $ etc. Hence we get a strictly descending chain of closed subsets of $ \AA^m $,
+$$ W_1 \supsetneq W_2 \supsetneq \dots. $$
+By the Noetherian property of the Zariski topology, in Lemma \ref{lem:descendingchain}, this chain must terminate. So we eventually get to $ W_r = \emptyset $. But then $ \pi\br{Z_{r - 1}} \subseteq W_r $, so $ Z_{r - 1} $ is empty. We cannot go back any further than that, since it is entirely possible that $ U_{r - 1} = W_{r - 1} $. Then
+$$ \pi\br{Z} = U_1 \cup \pi\br{Z_1} = \dots = U_1 \cup \dots \cup U_{r - 1}. $$
+Each $ U_i $ is an open subset of a closed subset of $ \AA^n $, so we conclude that $ \pi\br{Z} $ is constructible. Since $ q\br{U} \subseteq \pi\br{Z} $, this completes the proof.
+\end{proof}
+
+This argument, building a descending chain of closed subsets and concluding that it terminates, is called \textbf{Noetherian induction}. Now we can finish the proof of Theorem \ref{thm:chevalleytheorem}. By considering the graph of a regular map $ \phi : V \to W $, just as for completeness, we can reduce it to the following.
+
+\begin{theorem}
+\label{thm:projectionconstructible}
+Let $ V $ and $ W $ be quasi-projective algebraic sets. The second projection $ \pi_2 : V \times W \to W $ maps constructible sets to constructible sets.
+\end{theorem}
+
+\begin{proof}
+Let $ Z $ be a contructible subset of $ V \times W $. Suppose that $ V \subseteq \PP^n $ and $ W \subseteq \PP^m $. Then $ Z $ is also constructible as a subset of $ \PP^n \times \PP^m $, so we can replace $ V $ and $ W $ by $ \PP^n $ and $ \PP^m $. Let
+$$ U_i = \cbr{\sbr{x_0 : \dots : x_m} \in \PP^m \st x_i \ne 0}. $$
+The $ U_i $ form an open cover for $ \PP^m $, and each of them is isomorphic to $ \AA^m $. If each set $ Z \cap \br{V \times U_i} $ has a constructible image, then $ \pi\br{Z} $ is a finite union of constructible sets, so is itself constructible. So it suffices to prove Theorem \ref{thm:projectionconstructible} for $ W = \AA^m $. A similar argument allows us to replace $ V = \PP^n $ by $ V = \AA^n $. Thus the proof of Theorem \ref{thm:projectionconstructible} is reduced to Lemma \ref{lem:projectionconstructible}.
+\end{proof}
+
+The real hard work in this argument was in the proof of Lemma \ref{lem:projectioneither} and Lemma \ref{lem:projectionopen}, while the rest consisted of a series of relatively simple steps allowing us to gradually simplify the varieties and regular maps which we had to work with. A sequence of reductions like this, before you do the hard work on a simpler case of the original problem, is a very common technique in algebraic geometry, common enough to be given its own name, \textbf{d\'evissage}.
 
 \end{document}
