@@ -569,7 +569,7 @@ Suppose we have a commutative diagram
 $$
 \begin{tikzcd}
 & A \arrow{r}{\alpha} \arrow{d}{f} & B \arrow{r}{\beta} \arrow{d}{g} & C \arrow{r} \arrow{d}{h} & 0 \\
-0 \arrow{r} & X \arrow{r}{\phi} & Y \arrow{r}{\psi} & Z &
+0 \arrow{r} & X \arrow[swap]{r}{\phi} & Y \arrow[swap]{r}{\psi} & Z &
 \end{tikzcd},
 $$
 where the rows are exact. Then we obtain an exact sequence
@@ -1077,7 +1077,7 @@ Tensoring with $ M $,
 $$
 \begin{tikzcd}
 K \otimes_R M \arrow{r}{\beta} \arrow[cong]{d} & F_A \otimes_R M \arrow{r}{\gamma} \arrow{d}{f} & \alpha A \otimes_R M \arrow{r} \arrow{d}{g} & 0 \\
-K \otimes_R M \arrow{r}{\delta} & F \otimes_R M \arrow{r}{\epsilon} & B \otimes_R M \arrow{r} & 0
+K \otimes_R M \arrow[swap]{r}{\delta} & F \otimes_R M \arrow[swap]{r}{\epsilon} & B \otimes_R M \arrow{r} & 0
 \end{tikzcd}
 $$
 is commuting, and exact along rows. Let $ u \in \Ker g \le \alpha A \otimes_R M \cong A \otimes_R M $. Since $ \gamma $ is surjective, there is $ w \in F_A \otimes_R M $ with $ \gamma\br{w} = u $. So $ \br{g \circ \gamma}\br{w} = 0 $. So $ \br{\epsilon \circ f}\br{w} = 0 $. So $ f\br{w} \in \Ker \epsilon = \Im \delta $, so $ f\br{w} = \delta\br{k} $ for $ k \in K \otimes_R M $. Since $ f $ is injective, by Lemma \ref{lem:torsionflat4}, we get $ w = \beta\br{k} \in \Im \beta $. So $ w \in \Ker \gamma $, so $ u = 0 $. Hence $ g $ is injective, as required.
@@ -1112,7 +1112,7 @@ It is clear there are no $ y \in F $ such that $ 2y = x $. So $ x $ is not a div
 
 \begin{definition}
 Let $ M $ be an $ R $-module. A \textbf{resolution}, or \textbf{left resolution}, for $ M $ is a sequence of $ R $-modules $ A_0, A_1, A_2, \dots $, with homomorphisms $ d : A_{i + 1} \to A_i $, and also a homomorphism $ A_0 \to M $, such that
-$$ \dots \to A_2 \xrightarrow{d} A_1 \xrightarrow{d} A_0 \to M \to 0 $$
+$$ \dots \xrightarrow{d} A_2 \xrightarrow{d} A_1 \xrightarrow{d} A_0 \to M \to 0 $$
 is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}.
 \end{definition}
 
@@ -1120,7 +1120,7 @@ So we can talk about free resolutions, projective resolutions, flat resolutions.
 
 \begin{definition}
 A \textbf{right resolution}, or \textbf{coresolution}, for $ M $ is a sequence of $ R $-modules $ A^0, A^1, A^2, \dots $, with homomorphisms $ d : A^i \to A^{i + 1} $, and $ M \to A^0 $, such that
-$$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} A^2 \to \dots $$
+$$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} A^2 \xrightarrow{d} \dots $$
 is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}.
 \end{definition}
 
@@ -1270,7 +1270,7 @@ $$ \function[\Theta']{\Hom_R\br{N, S}}{\Hom_R\br{M, S}}{f}{\eval{f}_M}. $$
 Then $ \Theta' $ is an abelian group homomorphism. But we know there is a naturally defined isomorphism between $ \Hom_R\br{M, S} $ and $ \Hom_\ZZ\br{M, \QQ / \ZZ} $. So we get
 $$
 \begin{tikzcd}
-\Hom_\ZZ\br{N, \QQ / \ZZ} \arrow{r}{\Theta} \arrow{d}{\Psi}[swap]{\sim} & \Hom_\ZZ\br{M, \QQ / \ZZ} \arrow{d}{\Psi}[swap]{\sim} \\
+\Hom_\ZZ\br{N, \QQ / \ZZ} \arrow{r}{\Theta} \arrow{d}{\sim}[swap]{\Psi} & \Hom_\ZZ\br{M, \QQ / \ZZ} \arrow{d}{\Psi}[swap]{\sim} \\
 \Hom_R\br{N, S} \arrow[swap]{r}{\Theta'} & \Hom_R\br{M, S}
 \end{tikzcd}.
 $$
@@ -1319,7 +1319,7 @@ Let $ M $ and $ N $ be $ R $-modules, and $ \phi : M \to N $. Let $ \br{P_i} $ b
 $$
 \begin{tikzcd}
 \dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed]{d}{f_2} & P_1 \arrow{r}{d_0} \arrow[dashed]{d}{f_1} & P_0 \arrow{r}{p} \arrow[dashed]{d}{f_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
-\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
+\dots \arrow[swap]{r}{d_2'} & Q_2 \arrow[swap]{r}{d_1'} & Q_1 \arrow[swap]{r}{d_0'} & Q_0 \arrow[swap]{r}{q} & N \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes.
@@ -1327,7 +1327,7 @@ commutes.
 $$
 \begin{tikzcd}
 \dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[bend right=30, swap]{d}{g_2} \arrow[bend left=30]{d}{f_2} & P_1 \arrow{r}{d_0} \arrow[bend right=30, swap]{d}{g_1} \arrow[bend left=30]{d}{f_1} & P_0 \arrow{r}{p} \arrow[bend right=30, swap]{d}{g_0} \arrow[bend left=30]{d}{f_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
-\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
+\dots \arrow[swap]{r}{d_2'} & Q_2 \arrow[swap]{r}{d_1'} & Q_1 \arrow[swap]{r}{d_0'} & Q_0 \arrow[swap]{r}{q} & N \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes. Then there exist homomorphisms $ s_i : P_i \to Q_{i + 1} $ such that
@@ -1341,7 +1341,7 @@ so
 $$
 \begin{tikzcd}
 \dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow[dashed, swap]{dl}{s_2} & P_1 \arrow{r}{d_0} \arrow[dashed, swap]{dl}{s_1} & P_0 \arrow{r}{p} \arrow[dashed, swap]{dl}{s_0} & M \arrow{r} \arrow{d}{\phi} & 0 \\
-\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
+\dots \arrow[swap]{r}{d_2'} & Q_2 \arrow[swap]{r}{d_1'} & Q_1 \arrow[swap]{r}{d_0'} & Q_0 \arrow[swap]{r}{q} & N \arrow{r} & 0
 \end{tikzcd}.
 $$
 \end{enumerate}
@@ -1356,7 +1356,7 @@ $$
 $$
 \begin{tikzcd}
 \dots \arrow{r}{d_t} & P_t \arrow{r}{d_{t - 1}} \arrow[dashed]{d}{f_t} & P_{t - 1} \arrow{r}{d_{t - 2}} \arrow{d}{f_{t - 1}} & P_{t - 2} \arrow{d}{f_{t - 2}} \arrow{r} & \dots \\
-\dots \arrow{r}{d_t'} & Q_t \arrow{r}{d_{t - 1}'} & Q_{t - 1} \arrow{r}{d_{t - 2}'} & Q_{t - 2} \arrow{r} & \dots
+\dots \arrow[swap]{r}{d_t'} & Q_t \arrow[swap]{r}{d_{t - 1}'} & Q_{t - 1} \arrow[swap]{r}{d_{t - 2}'} & Q_{t - 2} \arrow[swap]{r} & \dots
 \end{tikzcd}.
 $$
 Observe that $ d_{t - 2}' \circ f_{t - 1} \circ d_{t - 1} = f_{t - 2} \circ d_{t - 2} \circ d_{t - 1} $, since the existing squares of the diagram commute. But $ d_{t - 2} \circ d_{t - 1} = 0 $. So $ d_{t - 2}' \circ f_{t - 1} \circ d_{t - 1} = 0 $, so $ \Im \br{f_{t - 1} \circ d_{t - 1}} \le \Ker d_{t - 2}' = \Im d_{t - 1}' $. Now the map $ d_{t - 1}' : Q_t \to \Im d_{t - 1}' $ is obviously surjective, and $ P_t $ is projective. So there is a map $ f_t : P_t \to Q_t $ such that $ f_{t - 1} \circ d_{t - 1} = d_{t - 1}' \circ f_t $. Now inductively, maps $ f_i $ exist for all $ i $.
@@ -1364,7 +1364,7 @@ Observe that $ d_{t - 2}' \circ f_{t - 1} \circ d_{t - 1} = f_{t - 2} \circ d_{t
 $$
 \begin{tikzcd}
 \dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow{d}{h_2} & P_1 \arrow{r}{d_0} \arrow{d}{h_1} & P_0 \arrow{r}{p} \arrow{d}{h_0} & M \arrow{r} \arrow{d}{0} & 0 \\
-\dots \arrow{r}{d_2'} & Q_2 \arrow{r}{d_1'} & Q_1 \arrow{r}{d_0'} & Q_0 \arrow{r}{q} & N \arrow{r} & 0
+\dots \arrow[swap]{r}{d_2'} & Q_2 \arrow[swap]{r}{d_1'} & Q_1 \arrow[swap]{r}{d_0'} & Q_0 \arrow[swap]{r}{q} & N \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes, since we want $ h_i \circ d_i = d_i' \circ h_{i + 1} $, but we have
@@ -1411,7 +1411,7 @@ Let $ M $ and $ N $ be $ R $-modules, and $ \phi : M \to N $ a homomorphism. Let
 $$
 \begin{tikzcd}
 0 \arrow{r} & M \arrow{r}{i} \arrow{d}{\phi} & I_0 \arrow{r}{d_0} \arrow[dashed]{d}{f_0} & I_1 \arrow{r}{d_1} \arrow[dashed]{d}{f_1} & I_2 \arrow{r}{d_2} \arrow[dashed]{d}{f_2} & \dots \\
-0 \arrow{r} & N \arrow{r}{j} & J_0 \arrow{r}{d_0'} & J_1 \arrow{r}{d_1'} & J_2 \arrow{r}{d_2'} & \dots
+0 \arrow{r} & N \arrow[swap]{r}{j} & J_0 \arrow[swap]{r}{d_0'} & J_1 \arrow[swap]{r}{d_1'} & J_2 \arrow[swap]{r}{d_2'} & \dots
 \end{tikzcd}
 $$
 commutes, and
@@ -1419,7 +1419,7 @@ commutes, and
 $$
 \begin{tikzcd}
 0 \arrow{r} & M \arrow{r}{i} \arrow{d}{\psi} & I_0 \arrow{r}{d_0} \arrow[bend right=30, swap]{d}{f_0} \arrow[bend left=30]{d}{g_0} & I_1 \arrow{r}{d_1} \arrow[bend right=30, swap]{d}{f_1} \arrow[bend left=30]{d}{g_1} & I_2 \arrow{r}{d_2} \arrow[bend right=30, swap]{d}{f_2} \arrow[bend left=30]{d}{g_2} & \dots \\
-0 \arrow{r} & N \arrow{r}{j} & J_0 \arrow{r}{d_0'} & J_1 \arrow{r}{d_1'} & J_2 \arrow{r}{d_2'} & \dots
+0 \arrow{r} & N \arrow[swap]{r}{j} & J_0 \arrow[swap]{r}{d_0'} & J_1 \arrow[swap]{r}{d_1'} & J_2 \arrow[swap]{r}{d_2'} & \dots
 \end{tikzcd}
 $$
 commutes, then there exist maps $ s_i : I_{i + 1} \to J_i $ such that
@@ -1433,7 +1433,7 @@ so
 $$
 \begin{tikzcd}
 0 \arrow{r} & M \arrow{r}{i} \arrow{d}{\psi} & I_0 \arrow{r}{d_0} & I_1 \arrow{r}{d_1} \arrow[dashed, swap]{dl}{s_0} & I_2 \arrow{r}{d_2} \arrow[dashed, swap]{dl}{s_1} & \dots \arrow[dashed, swap]{dl}{s_2} \\
-0 \arrow{r} & N \arrow{r}{j} & J_0 \arrow{r}{d_0'} & J_1 \arrow{r}{d_1'} & J_2 \arrow{r}{d_2'} & \dots
+0 \arrow{r} & N \arrow[swap]{r}{j} & J_0 \arrow[swap]{r}{d_0'} & J_1 \arrow[swap]{r}{d_1'} & J_2 \arrow[swap]{r}{d_2'} & \dots
 \end{tikzcd}.
 $$
 \end{itemize}
@@ -1466,8 +1466,8 @@ A \textbf{cochain complex} is a series $ A^* = \br{A^i} $ with maps $ d_i^A = d_
 Let $ A_* $ and $ B_* $ be chain complexes. Let $ f = \br{f_i} $ be a family of $ R $-module homomorphisms $ f_i : A_i \to B_i $. Say that $ f $ is a \textbf{map of chain complexes} if $ f \circ d = d \circ f $, that is $ f_i \circ d_i^A = d_i^B \circ f_{i + 1} $. So
 $$
 \begin{tikzcd}
-\dots \arrow{r} & A_{n + 1} \arrow{r}{d_n} \arrow{d}{f_{n + 1}} & A_n \arrow{r}{d_{n - 1}} \arrow{d}{f_n} & A_{n - 1} \arrow{r} \arrow{d}{f_{n - 1}} & \dots \\
-\dots \arrow{r} & B_{n + 1} \arrow{r}{d_n} & B_n \arrow{r}{d_{n - 1}} & A_{n - 1} \arrow{r} & \dots
+\dots \arrow{r}{d_{n + 1}} & A_{n + 1} \arrow{r}{d_n} \arrow{d}{f_{n + 1}} & A_n \arrow{r}{d_{n - 1}} \arrow{d}{f_n} & A_{n - 1} \arrow{r}{d_{n - 2}} \arrow{d}{f_{n - 1}} & \dots \\
+\dots \arrow[swap]{r}{d_{n + 1}} & B_{n + 1} \arrow[swap]{r}{d_n} & B_n \arrow[swap]{r}{d_{n - 1}} & A_{n - 1} \arrow[swap]{r}{d_{n - 2}} & \dots
 \end{tikzcd}
 $$
 commutes. Say that $ f $ \textbf{has property $ \PPP $} if all $ f_i $ have property $ \PPP $, where $ \PPP $ is injective, surjective, etc. A sequence
@@ -1534,21 +1534,21 @@ We have a commuting diagram with exact rows
 $$
 \begin{tikzcd}
 0 \arrow{r} & A_{n + 1} \arrow{r}{f_{n + 1}} \arrow{d}{d_n^A} & B_{n + 1} \arrow{r}{g_{n + 1}} \arrow{d}{d_n^B} & C_{n + 1} \arrow{r} \arrow{d}{d_n^C} & 0 \\
-0 \arrow{r} & A_n \arrow{r}{f_n} & B_n \arrow{r}{g_n} & C_n \arrow{r} & 0
+0 \arrow{r} & A_n \arrow[swap]{r}{f_n} & B_n \arrow[swap]{r}{g_n} & C_n \arrow{r} & 0
 \end{tikzcd}.
 $$
 Notice $ \Im d_n \le \Ker d_{n - 1} $, so we can change this to
 $$
 \begin{tikzcd}
 0 \arrow{r} & A_{n + 1} \arrow{r}{f_{n + 1}} \arrow{d}{d_n^A} & B_{n + 1} \arrow{r}{g_{n + 1}} \arrow{d}{d_n^B} & C_{n + 1} \arrow{r} \arrow{d}{d_n^C} & 0 \\
-0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r}{f_n} & \Ker d_{n - 1}^B \arrow{r}{g_n} & \Ker d_{n - 1}^C &
+0 \arrow{r} & \Ker d_{n - 1}^A \arrow[swap]{r}{f_n} & \Ker d_{n - 1}^B \arrow[swap]{r}{g_n} & \Ker d_{n - 1}^C &
 \end{tikzcd}.
 $$
 Now $ \Im d_{n + 1} \le \Ker d_n $, so the maps $ A_{n + 1} \to \Ker d_{n + 1} $ induce maps $ A_{n + 1} / \Im d_{n + 1} \to \Ker d_{n - 1} $. So we get a diagram
 $$
 \begin{tikzcd}
 & A_{n + 1} / \Im d_{n + 1}^A \arrow{r}{f_{n + 1}} \arrow{d}{\overline{d_n^A}} & B_{n + 1} / \Im d_{n + 1}^B \arrow{r}{g_{n + 1}} \arrow{d}{\overline{d_n^B}} & C_{n + 1} / \Im d_{n + 1}^C \arrow{r} \arrow{d}{\overline{d_n^C}} & 0 \\
-0 \arrow{r} & \Ker d_{n - 1}^A \arrow{r}{f_n} & \Ker d_{n - 1}^B \arrow{r}{g_n} & \Ker d_{n - 1}^C &
+0 \arrow{r} & \Ker d_{n - 1}^A \arrow[swap]{r}{f_n} & \Ker d_{n - 1}^B \arrow[swap]{r}{g_n} & \Ker d_{n - 1}^C &
 \end{tikzcd}.
 $$
 We are now in the position to apply the snake lemma, so
@@ -1571,7 +1571,10 @@ Since consecutive values of $ i $ give a sequence overlapping in three terms we 
 The following are two variations.
 
 \begin{definition}
-A \textbf{covariant functor} $ F $ from the category of left or right $ R $-modules to the category of abelian groups is a map from $ R $-modules to abelian groups such that if $ \phi : M \to N $ is an $ R $-module homomorphism then there exists an abelian group homomorphism $ F\br{\phi} : F\br{M} \to F\br{N} $, which respects identity maps, so $ F\br{\id_M} = \id_{F\br{M}} $, and respects composition, so $ F\br{\phi_1\phi_2} = F\br{\phi_1}F\br{\phi_2} $.
+A \textbf{covariant functor} $ F $ from the category of left or right $ R $-modules to the category of abelian groups is a map from $ R $-modules to abelian groups such that if $ \phi : M \to N $ is an $ R $-module homomorphism then there exists an abelian group homomorphism
+$$ F\br{\phi} : F\br{M} \to F\br{N}, $$
+which respects identity maps, so $ F\br{\id_M} = \id_{F\br{M}} $, and respects composition, so
+$$ F\br{\phi_1 \circ \phi_2} = F\br{\phi_1} \circ F\br{\phi_2}. $$
 \end{definition}
 
 The map $ F $ on homomorphisms is \textbf{additive} if $ F\br{\phi_1 + \phi_2} = F\br{\phi_1} + F\br{\phi_2} $. If
@@ -1583,12 +1586,15 @@ $$ 0 \to F\br{A} \to F\br{B} \to F\br{C} $$
 is exact. Then $ F $ is \textbf{exact} if both left and right exact.
 
 \begin{definition}
-A \textbf{contravariant functor} $ F $ from the category of left or right $ R $-modules to the category of abelian groups is a map from $ R $-modules to abelian groups such that if $ \phi : M \to N $ is an $ R $-module homomorphism then there exists an abelian group homomorphism $ F\br{\phi} : F\br{N} \to F\br{M} $, which respects identity maps, so $ F\br{\id_M} = \id_{F\br{M}} $, and respects composition, so $ F\br{\phi_1\phi_2} = F\br{\phi_2}F\br{\phi_1} $.
+A \textbf{contravariant functor} $ F $ from the category of left or right $ R $-modules to the category of abelian groups is a map from $ R $-modules to abelian groups such that if $ \phi : M \to N $ is an $ R $-module homomorphism then there exists an abelian group homomorphism
+$$ F\br{\phi} : F\br{N} \to F\br{M}, $$
+which respects identity maps, so $ F\br{\id_M} = \id_{F\br{M}} $, and respects composition, so
+$$ F\br{\phi_1 \circ \phi_2} = F\br{\phi_2} \circ F\br{\phi_1}. $$
 \end{definition}
 
 Similarly, if
 $$ 0 \to A \to B \to C \to 0 $$
-be a short exact sequence. then $ F $ is \textbf{right exact} if
+be a short exact sequence, then $ F $ is \textbf{right exact} if
 $$ F\br{C} \to F\br{B} \to F\br{A} \to 0 $$
 is exact, and \textbf{left exact} if
 $$ 0 \to F\br{C} \to F\br{B} \to F\br{A} $$
@@ -1612,7 +1618,7 @@ is contravariant, left exact, and exact if and only if $ M $ is injective.
 \subsection{Left derived functors}
 
 Let $ F $ be the functor $ F\br{A} = A \otimes_R M $, where $ M $ is a fixed $ R $-module. Let $ P_* \to A $ be a projective resolution for $ A $. So $ P_* = \br{P_i}_{i \ge 0} $ for projective $ P_i $, and
-$$ \dots \to P_2 \xrightarrow{d_1} P_1 \xrightarrow{d_0} P_0 \xrightarrow{\phi} A \to 0 $$
+$$ \dots \xrightarrow{d_2} P_2 \xrightarrow{d_1} P_1 \xrightarrow{d_0} P_0 \xrightarrow{\phi} A \to 0 $$
 is exact. Consider the sequence
 $$ \dots \to P_2 \to P_1 \to P_0 \to 0. $$
 This is no longer exact, but it is a chain complex. And if we apply $ F $, we get a chain complex $ F\br{P_*} $,
@@ -1625,15 +1631,61 @@ $$ \L_nF\br{A} = \H_n\br{F\br{P_*}}. $$
 \begin{enumerate}
 \item $ \L_nF\br{A} $ does not depend on the choice of resolution $ P_* $.
 \item $ \L_nF $ is an additive functor from right $ R $-modules to abelian groups.
-\item $ \L_0F = F $.
+\item $ \L_0F\br{A} = F\br{A} $.
 \end{enumerate}
 \end{theorem}
+
+\lecture{22}{Friday}{28/02/20}
 
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item
-\item
+\item Let $ P_* \to A $ and $ Q_* \to A $ be projective resolutions. Then there exist maps of chain complexes $ f : P_* \to Q_* $ and $ g : Q_* \to P_* $. So $ g \circ f : P_* \to P_* $, so
+$$
+\begin{tikzcd}
+\dots \arrow{r}{d_2} & P_2 \arrow{r}{d_1} \arrow{d}{g_2 \circ f_2} & P_1 \arrow{r}{d_0} \arrow{d}{g_1 \circ f_1} & P_0 \arrow{r} \arrow{d}{g_0 \circ f_0} & A \arrow{r} \arrow{d}{\id} & 0 \\
+\dots \arrow[swap]{r}{d_2} & P_2 \arrow[swap]{r}{d_1} & P_1 \arrow[swap]{r}{d_0} & P_0 \arrow{r} & A \arrow{r} & 0
+\end{tikzcd},
+$$
+and $ g \circ f $ is equal to $ \id $ up to homotopy. Apply $ F $ to everything. Since $ F $ is right exact,
+$$
+\begin{tikzcd}
+\dots \arrow{r}{F\br{d_2}} & F\br{P_2} \arrow{r}{F\br{d_1}} \arrow{d}{F\br{g_2} \circ F\br{f_2}} & F\br{P_1} \arrow{r}{F\br{d_0}} \arrow{d}{F\br{g_1} \circ F\br{f_1}} & F\br{P_0} \arrow{r} \arrow{d}{F\br{g_0} \circ F\br{f_0}} & F\br{A} \arrow{r} \arrow{d}{\id} & 0 \\
+\dots \arrow[swap]{r}{F\br{d_2}} & F\br{P_2} \arrow[swap]{r}{F\br{d_1}} & F\br{P_1} \arrow[swap]{r}{F\br{d_0}} & F\br{P_0} \arrow{r} & F\br{A} \arrow{r} & 0
+\end{tikzcd}.
+$$
+The diagram remains commutative, since $ F $ preserves composition. Now
+$$ g_i \circ f_i - \id = s_{i - 1} \circ d_{i - 1} + d_i \circ s_i, $$
+for suitable maps $ s_i $. Then
+$$ F\br{g_i} \circ F\br{f_i} - \id = F\br{s_{i - 1}} \circ F\br{d_{i - 1}} + F\br{d_i} \circ F\br{s_i}. $$
+So $ F\br{g_i} \circ F\br{f_i} $ is $ \id $ up to homotopy. Hence $ F\br{g} \circ F\br{f} $ induces the identity on homology $ \H_*\br{F\br{P_*}} $. Also $ F\br{f} \circ F\br{g} $ induces the identity on $ \H_*\br{F\br{Q_*}} $. Now we have
+$$ \overline{F\br{f_i}} : \H_i\br{F\br{P_*}} \to \H_i\br{F\br{Q_*}}, \qquad \overline{F\br{g_i}} : \H_i\br{F\br{Q_*}} \to \H_i\br{F\br{P_*}}, $$
+and $ \overline{F\br{f_i}} \circ \overline{F\br{g_i}} = \id $ and $ \overline{F\br{g_i}} \circ \overline{F\br{f_i}} = \id $, so $ \overline{F\br{f_i}} $ and $ \overline{F\br{g_i}} $ are isomorphisms. So $ \H_n\br{F\br{P_*}} \cong \H_n\br{F\br{Q_*}} $ as required. This argument tells us nothing about $ \H_0\br{F\br{P_*}} $.
+
+\pagebreak
+
+\item Let $ \phi : A \to B $. Let $ P_* \to A $ and $ Q_* \to B $ be projective resolutions. Then there exists $ f : P_* \to Q_* $ such that
+$$
+\begin{tikzcd}
+P_* \arrow{r} \arrow[swap]{d}{f} & A \arrow{r} \arrow{d}{\phi} & 0 \\
+Q_* \arrow{r} & B \arrow{r} & 0
+\end{tikzcd}
+$$
+commutes. Then $ F $ is covariant and right exact. So
+$$
+\begin{tikzcd}
+F\br{P_*} \arrow{r} \arrow[swap]{d}{F\br{f}} & F\br{A} \arrow{r} \arrow{d}{F\br{\phi}} & 0 \\
+F\br{Q_*} \arrow{r} & F\br{B} \arrow{r} & 0
+\end{tikzcd}
+$$
+is commutative, where $ F\br{f} = \br{F\br{f_i}} $. If $ g : P_* \to Q_* $ is such that
+$$
+\begin{tikzcd}
+P_* \arrow{r} \arrow[swap]{d}{g} & A \arrow{r} \arrow{d}{\phi} & 0 \\
+Q_* \arrow{r} & B \arrow{r} & 0
+\end{tikzcd}
+$$
+commutes, then $ \overline{f} $ and $ \overline{g} $, the induced maps on homology, are equal. So there exists a map $ \overline{F\br{f_i}} : \L_iF\br{A} \to \L_iF\br{B} $, and is independent of the choice of $ f $. So we can write $ \L_nF\br{\phi} = \overline{F\br{f_i}} $. Then $ \L_nF $ preserves identity and compositions and is additive, since $ F $ is an additive functor. \footnote{Exercise}
 \item We have a short exact sequence
 $$ 0 \to \Im d_0 \xrightarrow{\subset} P_0 \xrightarrow{\phi} A \to 0. $$
 Since $ F $ is right exact, we get an exact sequence
@@ -1642,6 +1694,66 @@ Now $ d_0 : P_1 \to \Im d_0 $ is surjective, and $ F $ preserves surjectivity. S
 $$ F\br{P_1} \to F\br{P_0} \to F\br{A} \to 0 $$
 is exact. So, setting $ P_{-1} = 0 $, we get $ \L_0F\br{P_*} = F\br{P_0} / \Im F\br{d_0} = F\br{A} $.
 \end{enumerate}
+\end{proof}
+
+\begin{proposition}[Horseshoe lemma]
+Suppose
+$$ 0 \to A \to B \to C \to 0 $$
+is an exact sequence of $ R $-modules. Suppose $ P_* \to A $ and $ R_* \to C $ are projective resolutions. Define $ Q_i = P_i \oplus R_i $. Then there exist maps $ Q_{i + 1} \to Q_i $ and $ Q_0 \to B $ such that $ Q_* \to B $ is a projective resolution, and such that
+$$
+\begin{tikzcd}[row sep=small]
+& 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & \\
+\dots \arrow{r} & P_2 \arrow{r} \arrow{d}{\iota} & P_1 \arrow{r} \arrow{d}{\iota} & P_0 \arrow{r} \arrow{d}{\iota} & A \arrow{r} \arrow{d} & 0 \\
+\dots \arrow[dashed]{r} & Q_2 \arrow[dashed]{r} \arrow{d}{\pi} & Q_1 \arrow[dashed]{r} \arrow{d}{\pi} & Q_0 \arrow[dashed]{r} \arrow{d}{\pi} & B \arrow[dashed]{r} \arrow{d} & 0 \\
+\dots \arrow{r} & R_2 \arrow{r} \arrow{d} & R_1 \arrow{r} \arrow{d} & R_0 \arrow{r} \arrow{d} & C \arrow{r} \arrow{d} & 0 \\
+& 0 & 0 & 0 & 0 &
+\end{tikzcd}
+$$
+commutes, where if $ x \in P_i $ and $ y \in R_i $ then $ \iota\br{x} = \br{x, 0} $ and $ \pi\br{x, y} = y $.
+\end{proposition}
+
+\begin{note*}
+$ Q_i $ is a direct sum of projectives, so is itself projective.
+\end{note*}
+
+\pagebreak
+
+\begin{proof}
+We have the setup
+$$
+\begin{tikzcd}
+0 \arrow{d} & 0 \arrow{d} & \\
+P_0 \arrow{r}{\phi} \arrow[swap]{d}{\iota} & A \arrow{r} \arrow{d}{f} & 0 \\
+Q_0 \arrow[swap]{d}{\pi} & B \arrow{d}{g} & \\
+R_0 \arrow[swap]{r}{\psi} \arrow{d} & C \arrow{r} \arrow{d} & 0 \\
+0 & 0 &
+\end{tikzcd}.
+$$
+Since $ B \to C $ is surjective, and $ R_0 $ is projective, there exists $ h : R_0 \to B $ such that $ g \circ h = \psi $. Now define
+$$ \function[\chi]{Q_0}{B}{\br{x, y}}{\br{f \circ \phi}\br{x} + h\br{y}}, \qquad x \in P_0, \qquad y \in R_0. $$
+This construction guarantees that the squares are commutative. It is easy to see that $ \chi $ is surjective, so
+$$
+\begin{tikzcd}
+0 \arrow{d} & 0 \arrow{d} & \\
+P_0 \arrow{r}{\phi} \arrow[swap]{d}{\iota} & A \arrow{r} \arrow{d}{f} & 0 \\
+Q_0 \arrow[dashed]{r}{\chi} \arrow[swap]{d}{\pi} & B \arrow[dashed]{r} \arrow{d}{g} & 0 \\
+R_0 \arrow[dashed]{ur}{h} \arrow[swap]{r}{\psi} \arrow{d} & C \arrow{r} \arrow{d} & 0 \\
+0 & 0 &
+\end{tikzcd}.
+$$
+Now we have a short exact sequence
+$$ 0 \to \Ker \phi \xrightarrow{\iota} \Ker \chi \xrightarrow{\pi} \Ker \psi \to 0, $$
+by the snake lemma. So now we can iterate, replacing $ A, B, C $ with these kernels, to construct a map $ Q_1 \to Q_0 $, and so on.
+\end{proof}
+
+\begin{proposition}
+Let $ F $ be an additive functor, and let $ A $ and $ B $ be $ R $-modules. There is a canonical isomorphism $ F\br{A} \oplus F\br{B} \to F\br{A \oplus B} $.
+\end{proposition}
+
+\begin{proof}
+Let $ M = A \oplus B $. Consider functions
+$$ \function[p_1]{M}{M}{\br{a, b}}{\br{a, 0}}, \qquad \function[p_2]{M}{M}{\br{a, b}}{\br{0, b}}. $$
+Then $ p_i^2 = p_i $, $ p_1 \circ p_2 = p_2 \circ p_1 = 0 $, and $ p_1 + p_2 = \id_M $. If $ q_1 $ and $ q_2 $ are maps on a module $ M $ satisfying these relations, then $ M = q_1\br{M} \oplus q_2\br{M} $.
 \end{proof}
 
 \end{document}
