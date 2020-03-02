@@ -1949,16 +1949,22 @@ Let $ M = \RR $, and let $ X = x^2\partial_x $. Find the flow. \footnote{Exercis
 \end{example}
 
 \begin{definition}
-Let $ M $ be a manifold. A \textbf{Riemannian metric} $ g $ on $ M $ is a collection of inner products for $ \T_xM $ for $ x \in M $ given by $ g_x : \T_xM \times \T_xM \to \RR $ such that for all vector fields $ X $ and $ Y $ we have that $ g_x\br{X\br{x}, Y\br{x}} : M \to \RR $ is smooth. A \textbf{Riemannian manifold} $ \br{M, g} $ is a manifold $ M $ and a Riemannian metric $ g $ on $ M $.
+Let $ M $ be a manifold. A \textbf{Riemannian metric} $ g $ on $ M $ is a collection of inner products for $ \T_xM $ for $ x \in M $ given by
+$$ g_x : \T_xM \times \T_xM \to \RR, $$
+such that for all vector fields $ X $ and $ Y $ we have that $ g_x\br{X\br{x}, Y\br{x}} : M \to \RR $ is smooth. A \textbf{Riemannian manifold} $ \br{M, g} $ is a manifold $ M $ and a Riemannian metric $ g $ on $ M $.
 \end{definition}
 
 Then $ g $ gives $ \T M \xrightarrow{\sim} \Omega^1\br{M} = \br{\T M}^* $.
 
 \begin{definition}
-Let $ \br{M, g} $ be a Riemannian manifold, and let $ f : M \to \RR $ be a smooth function. The \textbf{gradient vector field} $ \nabla f $ of $ f $ is the unique vector field on $ M $ such that for all vector fields $ X $, $ g\br{\nabla f, X} = X\br{f} = \D f\br{X} $, the derivative of $ f $ with respect to $ X $.
+Let $ \br{M, g} $ be a Riemannian manifold, and let $ f : M \to \RR $ be a smooth function. The \textbf{gradient vector field} $ \nabla f $ of $ f $ is the unique vector field on $ M $ such that for all vector fields $ X $,
+$$ g\br{\nabla f, X} = X\br{f} = \D f\br{X}, $$
+the derivative of $ f $ with respect to $ X $.
 \end{definition}
 
-Thus, $ \norm{\nabla f}^2 = g\br{\nabla f, \nabla f} = \D f\br{\nabla f} $. In particular $ \nabla f\br{x} = 0 $ if and only if $ x $ is a critical point of $ f $, and $ \nabla f $ is orthogonal to any vector tangent to $ f^{-1}\br{c} $ for all regular values $ c \in \RR $. In particular, for all smooth functions $ f : M \to \RR $, we can take the flow $ \phi $ associated to $ -\nabla f $ such that if $ \gamma_x\br{t} = \phi\br{t, x} $ then $ \tod{}{t}\gamma_x\br{0} = -\nabla f\br{\gamma_x\br{0}} $ where $ \gamma_x\br{0} = x $. This is called the \textbf{gradient flow} of $ f $. The integral curve of this flow are called \textbf{gradient flow lines}.
+Thus,
+$$ \norm{\nabla f}^2 = g\br{\nabla f, \nabla f} = \D f\br{\nabla f}. $$
+In particular $ \nabla f\br{x} = 0 $ if and only if $ x $ is a critical point of $ f $, and $ \nabla f $ is orthogonal to any vector tangent to $ f^{-1}\br{c} $ for all regular values $ c \in \RR $. In particular, for all smooth functions $ f : M \to \RR $, we can take the flow $ \phi $ associated to $ -\nabla f $ such that if $ \gamma_x\br{t} = \phi\br{t, x} $ then $ \tod{}{t}\gamma_x\br{0} = -\nabla f\br{\gamma_x\br{0}} $ where $ \gamma_x\br{0} = x $. This is called the \textbf{gradient flow} of $ f $. The integral curve of this flow are called \textbf{gradient flow lines}.
 
 \begin{lemma}
 $ f $ decreases along the gradient lines, that is $ f\br{\gamma_x\br{t}} $ is a decreasing function with respect to $ t $.
@@ -1972,10 +1978,75 @@ $$ 0 \le -\norm{\nabla f\br{\gamma_x\br{t}}}^2 = \D f_{\gamma_x\br{t}}\br{-\nabl
 Let $ M $ be a compact manifold, and let $ f : M \to \RR $ be a Morse function. Then every gradient flow line begins and ends with a critical point of $ f $, that is $ \lim_{t \to \pm\infty} \gamma_x\br{t} $ exist and are critical points of $ f $.
 \end{proposition}
 
+\pagebreak
+
 \begin{proof}
 First we prove that if the limit exists then it is a critical point of $ f $. For all $ x $, $ f\br{\gamma_x\br{\cdot}} : \RR \to \RR $ is a bounded function. Then
 $$ 0 = \lim_{t \to \pm\infty} \dod{}{t}f\br{\gamma_x\br{t}} = \lim_{t \to \pm\infty} -\norm{\nabla f\br{\gamma_x\br{t}}}^2, $$
-so the limit is critical. The goal is to show that limits exist. Since $ M $ is compact and $ f $ is a Morse function, the set of critical points is finite. Fix $ \epsilon > 0 $. Let $ U $ be the union of open balls of radius $ \epsilon > 0 $ around each critical point, so $ U $ is open in $ M $. Then $ M \setminus U $ is compact, so $ \norm{\nabla f\br{\cdot}}^2 $ admits a minimum inside $ M \setminus U $, but it cannot be zero, but $ \lim_{t \to \pm\infty} \norm{\nabla f\br{\gamma_x\br{t}}}^2 = 0 $. Thus if $ \pm t $ is very large then $ \gamma_x\br{t} \notin M \setminus U $, so if $ \epsilon $ is sufficiently small, $ \gamma_x\br{t} $ is in a ball around a single critical point for $ t \to \pm\infty $. This implies that the limit is the critical point.
+so the limit is critical. The goal is to show that limits exist. Since $ M $ is compact and $ f $ is a Morse function, the set of critical points is finite. Fix $ \epsilon > 0 $. Let $ U $ be the union of open balls of radius $ \epsilon > 0 $ around each critical point, so $ U $ is open in $ M $. Then $ M \setminus U $ is compact, so $ \norm{\nabla f\br{\cdot}}^2 $ admits a minimum inside $ M \setminus U $, but it cannot be zero, but $ \lim_{t \to \pm\infty} \norm{\nabla f\br{\gamma_x\br{t}}}^2 = 0 $. If $ \pm t $ is very large then $ \gamma_x\br{t} \notin M \setminus U $, so if $ \epsilon $ is sufficiently small, $ \gamma_x\br{t} $ is in a ball around a single critical point for $ t \to \pm\infty $. This implies that the limit is the critical point.
+\end{proof}
+
+\lecture{23}{Monday}{02/03/20}
+
+\begin{definition}
+Let $ X $ be a topological space, and let $ S \subset X $. Then $ S $ is called a \textbf{deformation retract} of $ X $ if there exists $ F : X \times \sbr{0, 1} \to X $ such that $ F\br{x, 0} = x $ and $ F\br{x, 1} \in S $ for all $ x \in X $, and $ F\br{s, 1} = s $ for all $ s \in S $.
+\end{definition}
+
+This implies that $ S $ and $ X $ are homotopy equivalent.
+
+\begin{theorem}[First fundamental theorem of Morse theory]
+\label{thm:4.8}
+Let $ M $ be a manifold, let $ f : M \to \RR $, let $ a < b \in \RR $ such that $ f^{-1}\br{\sbr{a, b}} $ does not contain any critical point, and let $ \S_t = f^{-1}\br{\intoc{-\infty, t}} $ for all $ t \in \RR $. Then $ \S_a $ is a deformation retract of $ \S_b $.
+\end{theorem}
+
+The idea is that we will use a perturbation of the gradient flow.
+
+\begin{proof}
+There exists $ \epsilon > 0 $ such that $ f^{-1}\br{\sbr{a - \epsilon, b + \epsilon}} $ does not contain any critical point. Fix a metric $ g $ on $ M $. Define $ \rho $ smooth on $ M $ such that $ \rho\br{x} \ge 0 $ and
+$$ \rho\br{x} =
+\begin{cases}
+\dfrac{1}{\norm{\nabla f}^2} & x \in f^{-1}\br{\sbr{a, b}} \\
+0 & x \in M \setminus f^{-1}\br{\sbr{a - \epsilon, b + \epsilon}}
+\end{cases}.
+$$
+Define $ X\br{x} = -\rho\br{x}\nabla f\br{x} $. There exists a flow $ \phi\br{t, x} $ induced by $ X $, that is if $ \gamma_x\br{t} = \phi\br{t, x} $ then $ \tod{}{t}\gamma_x\br{0} = X\br{x} $. By definition of $ \nabla f $,
+$$ \dod{}{t}f\br{\gamma_x\br{t}} = \D f_{\gamma_x\br{t}}\br{\dod{}{t}\gamma_x\br{t}} = g\br{\nabla f, \dod{}{t}\gamma_x\br{t}} = g\br{\nabla f, -\rho\br{\gamma_x\br{t}}\nabla f} = -\rho\br{\gamma_x\br{t}}\norm{\nabla f}^2 \le 0, $$
+so $ f\br{\gamma_x\br{t}} $ is decreasing. Moreover forall $ t $ such that $ f\br{\gamma_x\br{t}} \in \sbr{a, b} $ we have that $ \tod{}{t}f\br{\gamma_x\br{t}} = -1 $, by definition of $ \rho $. If $ \gamma_x\br{s} \in f^{-1}\br{\sbr{a, b}} $ for all $ s \in \sbr{0, t} $, by the fundamental theorem of calculus
+$$ f\br{\gamma_x\br{t}} - f\br{\gamma_x\br{0}} = \intd{0}{t}{\dod{}{s}f\br{\gamma_x\br{s}}}{s} = -t, $$
+so $ f\br{\gamma_x\br{t}} = f\br{x} - t $. Then
+\begin{enumerate}
+\item if $ f\br{x} \le b $ then $ f\br{\phi_{b - a}\br{x}} = f\br{\gamma_x\br{b - a}} \le a $, and
+\item if $ f\br{x} > b $ then $ f\br{\phi_{b - a}\br{x}} > a $.
+\end{enumerate}
+$ 1 $ implies that $ \phi_{b - a}\br{\S_b} \subset \S_a $ and $ 2 $ implies that $ \phi_{a - b}\br{\S_a} \subset \S_b $. Recall that $ \phi_{a - b} = \phi_{b - a}^{-1} $, so $ \S_a $ and $ \S_b $ are diffeomorphic. Now we define
+$$ \function[F]{\S_b \times \sbr{0, 1}}{\S_b}{\br{x, t}}{
+\begin{cases}
+x & f\br{x} \le a \\
+\phi_{t\br{f\br{x} - a}}\br{x} & a \le f\br{x} \le b
+\end{cases}
+}. $$
+Then $ F\br{x, 0} = x $, since $ \phi_0\br{x} = x $, and
+$$ F\br{x, 1} =
+\begin{cases}
+x & f\br{x} \le a \\
+\phi_{f\br{x} - a}\br{x} = \gamma_x\br{f\br{x} - a} & a \le f\br{x} \le b
+\end{cases}.
+$$
+In particular if $ x \in \S_a $, then $ F\br{x, 1} = x $ and for all $ x \in \S_b $, $ F\br{x, 1} \in \S_a $.
+\end{proof}
+
+\pagebreak
+
+\begin{theorem}[Reeb's theorem]
+Let $ M $ be a compact manifold, and let $ f : M \to \RR $ be a Morse function. Assume that $ f $ admits exactly two critical points. Then $ M $ is homeomorphic to a sphere $ \S^n $.
+\end{theorem}
+
+\begin{proof}
+There exists a unique $ x_{\min} $ such that $ h_{\min} = f\br{x_{\min}} $ is the minimum and there exists a unique $ x_{\max} $ such that $ h_{\max} = f\br{x_{\max}} $ is the maximum. Both $ x_{\min} $ and $ x_{\max} $ are critical points. Then $ \lambda\br{x_{\min}} = n $ and $ \lambda\br{x_{\max}} = 0 $. By the Morse lemma, around $ x_{\min} $, we can write locally
+$$ f\br{x} = h_{\min} + \sum_{i = 1}^n x_i^2, $$
+for some local coordinates $ x_1, \dots, x_n $ such that $ x_{\min} = \underline{0} $. Let $ a > h_{\min} $ be sufficiently close to $ x_{\min} $. Then
+$$ \S_a = \cbr{h_{\min} + \sum_{i = 1}^n x_i^2 \le a} = \D_n. $$
+Similarly there exists $ b < h_{\max} $ sufficiently close such that $ M \setminus \S_b \cong \D_n $. By Theorem \ref{thm:4.8}, since there does not exist critical points in $ f^{-1}\br{\sbr{a, b}} $ we know that $ \S_b \cong \S_a \cong \D_n $. We proved that $ M = H_+ \cup H_- \cong \D_n \cup \D_n $ where $ H_- = \S_b $ and $ \H_+ = \overline{M \setminus \S_b} $. Let $ \phi_+ : \D_n \xrightarrow{\sim} H_+ $ and $ \phi_- : \D_n \xrightarrow{\sim} H_- $. The problem is that in general $ \eval{\phi_+}_{\partial\D_n} \ne \eval{\phi_-}_{\partial\D_n} $.
 \end{proof}
 
 \end{document}
