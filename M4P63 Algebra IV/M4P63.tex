@@ -1623,7 +1623,7 @@ is exact. Consider the sequence
 $$ \dots \to P_2 \to P_1 \to P_0 \to 0. $$
 This is no longer exact, but it is a chain complex. And if we apply $ F $, we get a chain complex $ F\br{P_*} $,
 $$ \dots \to F\br{P_2} \to F\br{P_1} \to F\br{P_0} \to 0. $$
-Define
+Define \textbf{left derived functors}
 $$ \L_nF\br{A} = \H_n\br{F\br{P_*}}. $$
 
 \begin{theorem}
@@ -1660,7 +1660,9 @@ for suitable maps $ s_i $. Then
 $$ F\br{g_i} \circ F\br{f_i} - \id = F\br{s_{i - 1}} \circ F\br{d_{i - 1}} + F\br{d_i} \circ F\br{s_i}. $$
 So $ F\br{g_i} \circ F\br{f_i} $ is $ \id $ up to homotopy. Hence $ F\br{g} \circ F\br{f} $ induces the identity on homology $ \H_*\br{F\br{P_*}} $. Also $ F\br{f} \circ F\br{g} $ induces the identity on $ \H_*\br{F\br{Q_*}} $. Now we have
 $$ \overline{F\br{f_i}} : \H_i\br{F\br{P_*}} \to \H_i\br{F\br{Q_*}}, \qquad \overline{F\br{g_i}} : \H_i\br{F\br{Q_*}} \to \H_i\br{F\br{P_*}}, $$
-and $ \overline{F\br{f_i}} \circ \overline{F\br{g_i}} = \id $ and $ \overline{F\br{g_i}} \circ \overline{F\br{f_i}} = \id $, so $ \overline{F\br{f_i}} $ and $ \overline{F\br{g_i}} $ are isomorphisms. So $ \H_n\br{F\br{P_*}} \cong \H_n\br{F\br{Q_*}} $ as required. This argument tells us nothing about $ \H_0\br{F\br{P_*}} $.
+and $ \overline{F\br{f_i}} \circ \overline{F\br{g_i}} = \id $ and $ \overline{F\br{g_i}} \circ \overline{F\br{f_i}} = \id $, so $ \overline{F\br{f_i}} $ and $ \overline{F\br{g_i}} $ are isomorphisms. So
+$$ \H_n\br{F\br{P_*}} \cong \H_n\br{F\br{Q_*}}, $$
+as required. This argument tells us nothing about $ \H_0\br{F\br{P_*}} $.
 
 \pagebreak
 
@@ -1696,6 +1698,10 @@ is exact. So, setting $ P_{-1} = 0 $, we get $ \L_0F\br{P_*} = F\br{P_0} / \Im F
 \end{enumerate}
 \end{proof}
 
+\pagebreak
+
+\subsection{The long exact sequence of left derived functors}
+
 \begin{proposition}[Horseshoe lemma]
 Suppose
 $$ 0 \to A \to B \to C \to 0 $$
@@ -1716,12 +1722,10 @@ commutes, where if $ x \in P_i $ and $ y \in R_i $ then $ \iota\br{x} = \br{x, 0
 $ Q_i $ is a direct sum of projectives, so is itself projective.
 \end{note*}
 
-\pagebreak
-
 \begin{proof}
 We have the setup
 $$
-\begin{tikzcd}
+\begin{tikzcd}[row sep=small]
 0 \arrow{d} & 0 \arrow{d} & \\
 P_0 \arrow{r}{\phi} \arrow[swap]{d}{\iota} & A \arrow{r} \arrow{d}{f} & 0 \\
 Q_0 \arrow[swap]{d}{\pi} & B \arrow{d}{g} & \\
@@ -1733,7 +1737,7 @@ Since $ B \to C $ is surjective, and $ R_0 $ is projective, there exists $ h : R
 $$ \function[\chi]{Q_0}{B}{\br{x, y}}{\br{f \circ \phi}\br{x} + h\br{y}}, \qquad x \in P_0, \qquad y \in R_0. $$
 This construction guarantees that the squares are commutative. It is easy to see that $ \chi $ is surjective, so
 $$
-\begin{tikzcd}
+\begin{tikzcd}[row sep=small]
 0 \arrow{d} & 0 \arrow{d} & \\
 P_0 \arrow{r}{\phi} \arrow[swap]{d}{\iota} & A \arrow{r} \arrow{d}{f} & 0 \\
 Q_0 \arrow[dashed]{r}{\chi} \arrow[swap]{d}{\pi} & B \arrow[dashed]{r} \arrow{d}{g} & 0 \\
@@ -1746,6 +1750,8 @@ $$ 0 \to \Ker \phi \xrightarrow{\iota} \Ker \chi \xrightarrow{\pi} \Ker \psi \to
 by the snake lemma. So now we can iterate, replacing $ A, B, C $ with these kernels, to construct a map $ Q_1 \to Q_0 $, and so on.
 \end{proof}
 
+\pagebreak
+
 \begin{proposition}
 Let $ F $ be an additive functor, and let $ A $ and $ B $ be $ R $-modules. There is a canonical isomorphism $ F\br{A} \oplus F\br{B} \to F\br{A \oplus B} $.
 \end{proposition}
@@ -1755,5 +1761,81 @@ Let $ M = A \oplus B $. Consider functions
 $$ \function[p_1]{M}{M}{\br{a, b}}{\br{a, 0}}, \qquad \function[p_2]{M}{M}{\br{a, b}}{\br{0, b}}. $$
 Then $ p_i^2 = p_i $, $ p_1 \circ p_2 = p_2 \circ p_1 = 0 $, and $ p_1 + p_2 = \id_M $. If $ q_1 $ and $ q_2 $ are maps on a module $ M $ satisfying these relations, then $ M = q_1\br{M} \oplus q_2\br{M} $.
 \end{proof}
+
+\lecture{23}{Monday}{02/03/20}
+
+\begin{proposition}
+Let
+$$ 0 \to A \to B \to C \to 0 $$
+be a short exact sequence of right $ R $-modules. This gives rise to a long exact sequence
+$$ \dots \to \L_nF\br{A} \to \L_nF\br{B} \to \L_nF\br{C} \to \dots \to \L_0F\br{A} \to \L_0F\br{B} \to \L_0F\br{C} \to 0. $$
+\end{proposition}
+
+\begin{proof}
+Let $ P_* \to A $ be a projective resolution and $ R_* \to C $ be a projective resolution. By the Horseshoe lemma, there exists a projective resolution $ Q_* \to B $ such that
+$$ 0 \to P_* \to Q_* \to R_* \to 0 $$
+is a split short exact sequence of chain complexes, that is $ Q_i = P_i \oplus R_i $. Since $ Q_i = P_i \oplus R_i $, and since $ F $ is an additive functor, we have $ F\br{Q_i} = F\br{P_i} \oplus F\br{R_i} $. So
+$$ 0 \to F\br{P_*} \to F\br{Q_*} \to F\br{R_*} \to 0 $$
+is a short exact sequence. Therefore we get a long exact sequence on homology,
+$$ \dots \to \H_n\br{F\br{P_*}} \to \H_n\br{F\br{Q_*}} \to \H_n\br{F\br{R_*}} \to \dots. $$
+Since $ \H_n\br{F\br{P_*}} = \L_nF\br{A} $ this gives the long sequence that we need. Since $ \L_0F\br{A} = F\br{A} $, and $ F $ is right exact, the sequence terminates
+$$ \L_0F\br{A} \to \L_0F\br{B} \to \L_0F\br{C} \to 0, $$
+as required.
+\end{proof}
+
+\subsection{General derived functors}
+
+\begin{proposition}
+\hfill
+\begin{itemize}
+\item Let $ F $ be any covariant, right exact, additive functor from left or right $ R $-modules to abelian groups. Then the left derived functors $ \L_nF $ can be defined in just the same way as we did for the case $ F\br{A} = A \otimes_R M $. All of the results we have proved follow in the more general case, by the same arguments.
+\item If $ F $ is a covariant, left exact, additive functor from $ R $-modules to abelian groups, then we can define \textbf{right derived functors} $ \R^iF $ in a similar manner. Instead of working with a projective resolution, we use an injective resolution,
+$$ 0 \to A \to I_0 \to I_1 \to I_2 \to \dots. $$
+By similar arguments, we show that $ \R^iF\br{A} $ is independent of the choice of injective resolution. All of the results we proved for left derived functors have natural analogies for right derived functors. The argument requires a version of the Horseshoe lemma for injective resolutions, which is exactly what one might expect.
+\item We can even construct derived functors for contravariant functors. If $ F $ is contravariant and right exact, we get a left derived functor, which is defined using an injective resolution. If $ F $ is contravariant and left exact, we get a right derived functor, which is defined using a projective resolution.
+\end{itemize}
+\end{proposition}
+
+\pagebreak
+
+\section{Tor and Ext}
+
+\subsection{Tor and Ext}
+
+\begin{definition}
+Let $ F $ be the functor $ F\br{A} = A \otimes_R B $. Then $ F $ is covariant, left exact, and additive. So $ \L_nF $ exists. Define
+$$ \Tor_i^R\br{A, B} = \L_iF\br{A}. $$
+\end{definition}
+
+\begin{fact*}
+Let $ F' $ be the functor $ F'\br{B} = A \otimes_R B $. Then $ F' $ is covariant, right exact, and additive. So $ \L_nF' $ exists. We have
+$$ \L_iF'\br{B} \cong \L_iF\br{A} = \Tor_i^R\br{A, B}. $$
+\end{fact*}
+
+\begin{definition}
+Let $ F $ be the functor $ F\br{B} = \Hom_R\br{A, B} $. Then $ F $ is covariant, left exact, and additive, so $ \R^nF $ exists. Define
+$$ \Ext_R^i\br{A, B} = \R^iF\br{B}. $$
+\end{definition}
+
+\begin{fact*}
+Let $ F' $ be the functor $ F'\br{A} = \Hom_R\br{A, B} $. Then $ F' $ is contravariant, left exact, and additive, so $ R^nF' $ exists. We have
+$$ \R^iF'\br{A} \cong \R^iF\br{B} = \Ext_R^i\br{A, B}. $$
+\end{fact*}
+
+The two facts above are the \textbf{balancing theorems} for Tor and Ext. Their proof is beyond the scope of the course. The following is an observation. Suppose $ A $ is projective. Then a projective resolution for $ A $ is
+$$ 0 \to \dots \to 0 \to A \xrightarrow{\id} A \to 0. $$
+So $ \L_iF\br{A} = 0 $ for $ i \ge 1 $, and $ \L_0F\br{A} = F\br{A} $, for $ F $ possessing left derived functors. Similarly, if $ A $ is injective, then an injective resolution is
+$$ 0 \to A \xrightarrow{\id} A \to 0 \to \dots \to 0, $$
+so $ \R^iF\br{A} = 0 $ for $ i \ge 1 $, and $ \R^0F\br{A} = F\br{A} $, for $ F $ possessing right derived functors.
+
+\subsection{Tor}
+
+In fact the property $ \Tor_i^R\br{A, B} = 0 $ for all $ i \ge 0 $ characterises flat modules, so either $ A $ or $ B $ is flat.
+
+\begin{proposition}
+Let $ F\br{A} = A \otimes_R B $. Then $ \L_iF\br{A} = 0 $ for $ i \ge 1 $ for all $ A $ if and only if $ B $ is flat.
+\end{proposition}
+
+Similarly if $ F'\br{B} = A \otimes_R B $, then $ \L_iF'\br{B} = 0 $ for $ i \ge 1 $ for all $ B $ if and only if $ A $ is flat.
 
 \end{document}
