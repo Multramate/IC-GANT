@@ -953,7 +953,7 @@ A \textbf{$ k $-homomorphism} means that $ \phi^* $ restricts to the identity on
 
 \subsubsection{From algebra homomorphisms to regular maps}
 
-We have seen that each regular map $ f : V \to W $ induces a $ k $-algebra homomorphism $ f^* : k\sbr{W} \to k\sbr{V} $, and that each dominant rational map $ \phi : V \dashrightarrow W $ induces a $ k $-field homomorphism $ \phi^* : k\br{W} \to k\br{V} $. We can also carry out these constructions in the reverse direction. Starting with a $ k $-algebra homomorphism and getting a regular map, or similarly for rational maps. Observe that if $ f : V \to W $ is a regular map and $ W \subseteq \AA^n $, we can recover $ f $ from $ f^* : k\sbr{W} \to k\sbr{V} $ by taking the coordinate functions $ X_1, \dots, X_n \in k\sbr{W} $ on $ W $ and pulling them back to get $ f_1 = f^*\br{X_1}, \dots, f_n = f^*\br{X_n} \in k\sbr{V} $. These are precisely the regular functions on $ V $ such that $ f = \br{f_1, \dots, f_n} $. We generalise this procedure for any $ k $-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $. Starting from an arbitrary $ k $-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $, we define a regular map $ s : V \to W $ by
+We have seen that each regular map $ f : V \to W $ induces a $ k $-algebra homomorphism $ f^* : k\sbr{W} \to k\sbr{V} $, and that each dominant rational map $ \phi : V \dashrightarrow W $ induces a $ k $-field homomorphism $ \phi^* : k\br{W} \to k\br{V} $. We can also carry out these constructions in the reverse direction. Starting with a $ k $-algebra homomorphism and getting a regular map, or similarly for rational maps. Observe that if $ f : V \to W $ is a regular map and $ W \subseteq \AA^n $, we can recover $ f $ from $ f^* : k\sbr{W} \to k\sbr{V} $ by taking the coordinate functions $ X_1, \dots, X_n \in k\sbr{W} $ on $ W $ and pulling them back to get $ f_1 = f^*X_1, \dots, f_n = f^*X_n \in k\sbr{V} $. These are precisely the regular functions on $ V $ such that $ f = \br{f_1, \dots, f_n} $. We generalise this procedure for any $ k $-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $. Starting from an arbitrary $ k $-algebra homomorphism $ \alpha : k\sbr{W} \to k\sbr{V} $, we define a regular map $ s : V \to W $ by
 $$ s = \br{\alpha\br{X_1}, \dots, \alpha\br{X_n}}. $$
 Here $ \alpha\br{X_1}, \dots, \alpha\br{X_n} \in k\sbr{V} $. Then $ \alpha = s^* : k\sbr{W} \to k\sbr{V} $. Thus every $ k $-algebra homomorphism $ k\sbr{W} \to k\sbr{V} $ is the pull-back by some regular map $ V \to W $. We conclude the following.
 
@@ -2190,5 +2190,82 @@ The $ U_i $ form an open cover for $ \PP^m $, and each of them is isomorphic to 
 \end{proof}
 
 The real hard work in this argument was in the proof of Lemma \ref{lem:projectioneither} and Lemma \ref{lem:projectionopen}, while the rest consisted of a series of relatively simple steps allowing us to gradually simplify the varieties and regular maps which we had to work with. A sequence of reductions like this, before you do the hard work on a simpler case of the original problem, is a very common technique in algebraic geometry, common enough to be given its own name, \textbf{d\'evissage}.
+
+\pagebreak
+
+\section{Dimension}
+
+\subsection{Definitions}
+
+\subsubsection{Dimension and transcendence degree}
+
+\lecture{22}{Monday}{02/03/20}
+
+We want to define the dimension of algebraic varieties. There are several different definitions, all equivalent but each being useful in different situations. None of these definitions is particularly obvious, so we begin by listing some properties that the dimension of an irreducible quasi-projective variety $ V $ ought to have. We only consider irreducible varieties here, because a reducible variety might have components of different dimensions so it is harder to be confident about what properties the dimension of a reducible variety should have.
+\begin{enumerate}
+\item $ \dim V \in \NN $.
+\item $ \dim V = 0 $ if and only if $ V $ is a point. Remember that we are assuming that $ V $ is irreducible.
+\item $ \dim \AA^n = \dim \PP^n = n $.
+\item A hypersurface in $ \AA^n $ or $ \PP^n $ has dimension $ n - 1 $.
+\item If $ U $ is an open subset of $ V $, then $ \dim U = \dim V $. Note that this holds for manifolds in differential geometry.
+\item If $ V $ and $ W $ are birational, then $ \dim V = \dim W $. This follows from $ 5 $.
+\end{enumerate}
+Actually, we can generalise property $ 6 $ to something stronger than this. We do not need a birational map $ V \dashrightarrow W $, just generically finite dominant rational maps, which are defined as follows.
+
+\begin{definition*}
+Let $ V $ and $ W $ be irreducible quasi-projective varieties. A dominant rational map $ \phi : V \dashrightarrow W $ is \textbf{generically finite} if there is a non-empty open set $ U \subseteq W $ such that $ \phi^{-1}\br{x} $ is finite for every $ x \in U $.
+\end{definition*}
+
+\begin{note*}
+There is more than one possible definition of generically finite for non-dominant rational maps used by different authors. I shall avoid the issue by only using the words generically finite when the map is dominant.
+\end{note*}
+
+Now we expect the following.
+\begin{itemize}
+\item[$ 7 $.] If there exists a generically finite dominant rational map $ \phi : V \dashrightarrow W $, then $ \dim V = \dim W $.
+\end{itemize}
+It turns out that these properties are enough to tell us the dimension of every irreducible quasi-projective variety, thanks to the following lemma.
+
+\begin{lemma}
+Let $ V $ be an irreducible quasi-projective variety. Then there exists a generically finite dominant rational map $ V \dashrightarrow \PP^d $ for some $ d $.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lem:quasiprojectiveaffine}, $ V $ has a non-empty affine open subset $ U \subseteq V $. By Corollary \ref{cor:irreduciblehypersurface}, which we used in the proof of the Nullstellensatz, $ U $ is birational to a hypersurface $ H $ in some affine space $ \AA^n $. Taking the projective closure $ \overline{H} $ of $ H $ in $ \PP^n $, we conclude that $ V $ is birational to $ \overline{H} $. Now projection from any point $ p \in \PP^n \setminus \overline{H} $ gives a generically finite dominant rational map $ \overline{H} \dashrightarrow \PP^{n - 1} $.
+\end{proof}
+
+Using properties $ 3 $ and $ 7 $, we can calculate $ \dim V $ by finding a generically finite dominant rational map $ V \dashrightarrow \PP^d $ and then saying that $ \dim V = d $. There is one problem with this definition. Maybe we can find generically finite dominant rational maps from $ V $ to two different projective spaces, giving two values for $ \dim V $. Fortunately this cannot happen, which is proved using the notion of transcendence degree from algebra.
+
+\begin{theorem}
+\label{thm:algebraicallyindependent}
+Let $ k $ and $ K $ be fields, with $ k \subseteq K $. All maximal $ k $-algebraically independent sets in $ K $ have the same cardinality.
+\end{theorem}
+
+\begin{definition*}
+Let $ k $ and $ K $ be fields, with $ k \subseteq K $. The \textbf{transcendence degree} of the extension $ K $ over $ k $ is the cardinality of a maximal $ k $-algebraically independent set in $ K $.
+\end{definition*}
+
+\pagebreak
+
+\begin{note*}
+We already made use of the idea of transcendence degree in the proof of Corollary \ref{cor:irreduciblehypersurface}, even if we did not prove it. In the proof of Corollary \ref{cor:irreduciblehypersurface}, we took a maximal $ k $-algebraically independent set $ z_1, \dots, z_d $ in $ k\br{V} $, then proved that $ V $ is birational to a hypersurface in $ \AA^{d + 1} $. Theorem \ref{thm:algebraicallyindependent} shows that the value of $ d $ here is the same for all maximal $ k $-algebraically independent sets in $ k\br{V} $.
+\end{note*}
+
+\begin{definition*}
+The \textbf{dimension} of an irreducible quasi-projective variety $ V $ is the transcendence degree, over $ k $, of the field of rational functions $ k\br{V} $.
+\end{definition*}
+
+It is easy to see that this definition satisfies all the above desired properties. This definition satisfies property $ 3 $ above, since $ k\br{\PP^n} = k\br{\AA^n} = k\br{X_1, \dots, X_n} $ has transcendence degree $ n $ because $ \cbr{X_1, \dots, X_n} $ is a maximal algebraically independent set, so $ \dim \AA^n = n $. It clearly also satisfies property $ 6 $. In particular, if $ V $ and $ W $ are birational, then they have the same dimension because $ k\br{V} \cong k\br{W} $. We need to prove that it satisfies property $ 7 $. It will then be easy to deduce the rest of the properties listed above.
+
+\begin{lemma}
+Let $ V $ and $ W $ be irreducible quasi-projective varieties. If $ \phi : V \dashrightarrow W $ is a generically finite dominant rational map, then
+$$ \trdeg\br{k\br{V} / k} = \trdeg\br{k\br{W} / k}. $$
+\end{lemma}
+
+\begin{proof}
+We can replace $ V $ by the open subset $ \dom \phi $, so that $ \phi $ becomes a regular map. Using Lemma \ref{lem:quasiprojectiveaffine}, we can replace $ V $ and $ W $ by affine open subsets, and then replace $ V $ by the graph of $ \phi $ in $ V \times W $. Hence it suffices to assume that $ \phi = \eval{\pi_2}_V $, where $ \pi_2 $ is the projection $ \AA^{m + n} \to \AA^n $, $ V $ is a closed subset of $ \AA^{m + n} $, and $ W $ is the Zariski closure of $ \pi_2\br{V} $. By induction, by breaking up $ \phi $ into projections $ \AA^{m + n} \to \dots \to \AA^n $, we may reduce to the case $ m = 1 $. Since $ \phi $ is a dominant rational map, it induces an injection of fields $ \phi^* : k\br{W} \to k\br{V} $. We have to prove that the resulting field extension $ k\br{V} / \phi^*k\br{W} $ is algebraic, and hence that the transcendence degrees are the same. Look at the coordinate function $ X_1 $ on $ V $. This is the coordinate which is discarded by $ \pi $. Because $ \phi $ is a projection, $ X_2, \dots, X_{1 + n} $ on $ V $ are all in $ \phi^*k\br{W} $ and so the field $ k\br{V} $ is generated by $ \phi^*k\br{W} $ and $ X_1 $. Since $ \phi $ is generically finite, $ V $ is strictly contained in $ W \times \AA^1 $. Hence there is a non-zero polynomial $ f \in k\sbr{W}\sbr{X_{1 + n}} $ which vanishes on $ V $. This gives a $ k\br{W} $-algebraic relation satisfied by $ \eval{X_1}_V $ in $ k\br{V} $. Now $ k\br{V} $ is generated by $ k\br{W} $ and $ \eval{X_1}_V $, so $ k\br{V} $ is algebraic over $ k\br{W} $ as required.
+\end{proof}
+
+This allows us to restate the definition by saying, $ \dim V = d $ if and only if there exists a generically finite dominant rational map $ V \dashrightarrow \PP^d $.
 
 \end{document}
