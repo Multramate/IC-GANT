@@ -130,7 +130,7 @@ where $ R $ is the \textbf{polyradius}.
 \end{notation}
 
 \begin{definition}
-Let $ U \subset \CC^n $ be open, let $ f : U \to \CC $ be a continuous function, and let $ z = \br{z_1, \dots, z_n} \in \CC^n $. Then $ f $ is \textbf{holomorphic} at $ z $, if assuming that $ D = \D\br{z, R} \subset U $ for some $ R = \br{r_1, \dots, r_n} $ then
+Let $ U \subset \CC^n $ be open, let $ f : U \to \CC $ be a continuous function, and let $ z = \br{z_1, \dots, z_n} \in \CC^n $. Then $ f $ is \textbf{holomorphic at $ z $}, if assuming that $ D = \D\br{z, R} \subset U $ for some $ R = \br{r_1, \dots, r_n} $ then
 $$ f\br{z_1, \dots, z_{i - 1}, \cdot, z_{i + 1}, \dots, z_n} : \D\br{z_i, r_i} \to \CC $$
 is holomorphic for all $ i $.
 \end{definition}
@@ -349,7 +349,7 @@ Let $ U \subset \CC^n $ be open. Then
 \item the Leibnitz rule
 $$ \d\br{\omega_1 \wedge \omega_2} = \d\omega_1 \wedge \omega_2 + \br{-1}^p \omega_1 \wedge \d\omega_2, \qquad \omega_1 \in \H^0\br{U, \Omega_U^p}, \qquad \omega_2 \in \H^0\br{U, \Omega_U^q}, $$
 \item $ \d^2 = 0 $, that is
-$$ \d\br{\d\omega} = 0, \qquad \omega \in \H^0\br{U, \Omega_U^p}. $$
+$$ \d\d\omega = 0, \qquad \omega \in \H^0\br{U, \Omega_U^p}. $$
 \end{itemize}
 \end{proposition}
 
@@ -669,7 +669,7 @@ Similarly there exists $ \d : \Omega_x^p\br{X} \to \Omega_x^{p + 1}\br{X} $.
 \subsection{Holomorphic vector bundles}
 
 \begin{definition}
-Let $ X $ be a complex manifold. A \textbf{holomorphic vector bundle} $ E $ of rank $ r $ on $ X $ is a complex manifold $ E $, a holomorphism $ \pi : E \to X $, and an open covering $ U_\alpha $ of $ X $ such that there exists a biholomorphism
+Let $ X $ be a complex manifold. A \textbf{holomorphic vector bundle $ E $ of rank $ r $} on $ X $ is a complex manifold $ E $, a holomorphism $ \pi : E \to X $, and an open covering $ U_\alpha $ of $ X $ such that there exists a biholomorphism
 $$ \psi_\alpha : \pi^{-1}\br{U_\alpha} \to U_\alpha \times \CC^r, $$
 such that if $ \p_\alpha : U_\alpha \times \CC^r \to U_\alpha $ is the projection then $ \eval{\pi}_{\pi^{-1}\br{U_\alpha}} = \p_\alpha \circ \psi_\alpha $, so
 $$
@@ -994,7 +994,7 @@ where $ \alpha_{I, J} $ are smooth functions on $ U $. Let $ X $ be a manifold. 
 $$ \C^\infty\br{X, E} = \cbr{\text{smooth sections of} \ E}. $$
 The \textbf{differential}
 $$ \d : \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X, \Omega_{X, \CC}^{k + 1}} $$
-satisfies the Leibnitz rule and $ \d^2 = 0 $, so $ \d\br{\d\omega} = 0 $. If $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $, then $ \d\omega \in \C^\infty\br{X, \Omega_{X, \CC}^{p + q + 1}} $. Assume that locally $ \omega = \sum_{I, J} \alpha_{I, J} \d z_I \wedge \d\overline{z_J} $. Then
+satisfies the Leibnitz rule and $ \d^2 = 0 $, so $ \d\d\omega = 0 $. If $ \omega \in \C^\infty\br{X, \Omega_X^{p, q}} $, then $ \d\omega \in \C^\infty\br{X, \Omega_{X, \CC}^{p + q + 1}} $. Assume that locally $ \omega = \sum_{I, J} \alpha_{I, J} \d z_I \wedge \d\overline{z_J} $. Then
 $$ \d\omega = \sum_{I, J} \d\alpha_{I, J} \d z_I \wedge \d\overline{z_J}, \qquad \d\alpha_{I, J} = \sum_{i = 1}^n \dpd{}{z_i}\alpha_{I, J} \d z_i + \sum_{i = 1}^n \dpd{}{\overline{z_i}}\alpha_{I, J} \d\overline{z_i}. $$
 
 \pagebreak
@@ -1648,15 +1648,19 @@ $$ \H^k\br{X, \CC} \ne 0, \qquad k \in 2\ZZ. $$
 
 \begin{example}
 Pick $ \lambda \in \CC $ such that $ 0 < \abs{\lambda} < 1 $. Then $ \ZZ $ acts on $ \CC^n \setminus \cbr{0} $ by
-$$ \function{\br{\ZZ \times \br{\CC^n \setminus \cbr{0}}}}{\CC^n \setminus \cbr{0}}{\br{n, z}}{\lambda^nz}. $$
-Let $ X = \CC^n \setminus \cbr{0} / \ZZ $. Similarly to the case of complex tori, $ X $ can be shown to have a complex structure. Then $ \S^{2n - 1} \subset \RR^{2n} \setminus \cbr{0} = \CC^n \setminus \cbr{0} \cong \S^{2n - 1} \times \RR_{> 0} $, so $ X \sim \S^{2n - 1} \times \S^1 $. Thus if $ n \ge 2 $, then $ \H^k\br{X, \CC} = 0 $, so $ X $ is not K\"ahler.
+$$ \function{\ZZ \times \br{\CC^n \setminus \cbr{0}}}{\CC^n \setminus \cbr{0}}{\br{n, z}}{\lambda^nz}. $$
+Let $ X = \CC^n \setminus \cbr{0} / \ZZ $ be a \textbf{Hopf manifold}. Similarly to the case of complex tori, $ X $ can be shown to have a complex structure. Then
+$$ \S^{2n - 1} \subset \RR^{2n} \setminus \cbr{0} = \CC^n \setminus \cbr{0} \cong \S^{2n - 1} \times \RR_{> 0}, $$
+so $ X \sim \S^{2n - 1} \times \S^1 $. Thus if $ n \ge 2 $, then $ \H^k\br{X, \CC} = 0 $, so $ X $ is not K\"ahler.
 \end{example}
 
 \subsection{Hodge \texorpdfstring{$ \star $}{*} operator}
 
-Let $ V $ be a vector space over $ \CC $ of dimension $ n $ with an inner product $ \abr{\cdot, \cdot} : V \times V \to \CC $. There is a canonical inner product on $ \Lambda^pV $ for all $ p \ge 1 $,
+Let $ V $ be a vector space over $ \RR $ of dimension $ n $ with an inner product $ \abr{\cdot, \cdot} : V \times V \to \RR $. There is a canonical inner product on $ \Lambda^pV $ for all $ p \ge 1 $,
 $$ \abr{v_1 \wedge \dots \wedge v_p, w_1 \wedge \dots \wedge w_p} = \det \br{\abr{v_i, w_j}}. $$
-In particular there exists a unique up to orientation $ \omega \in \Lambda^nV $ such that $ \norm{\omega} = 1 $. The \textbf{Hodge $ \star $ operator} $ \star : \Lambda^pV \to \Lambda^{n - p}V $ for $ p \ge 0 $ is such that
+In particular there exists a unique up to orientation $ \omega \in \Lambda^nV $ such that $ \norm{\omega} = 1 $. The \textbf{Hodge $ \star $ operator} is
+$$ \star : \Lambda^pV \to \Lambda^{n - p}V, \qquad p \ge 0, $$
+such that
 $$ \alpha \wedge \star\beta = \abr{\alpha, \beta}\omega \in \Lambda^nV, \qquad \alpha, \beta \in \Lambda^pV. $$
 Let $ e_1, \dots, e_n $ be an orthonormal basis of $ V $. Then
 \begin{itemize}
@@ -1669,36 +1673,42 @@ $$ \star e_I = \epsilon\br{\sigma}e_{\CCC I}, $$
 where $ \epsilon $ is the signature of $ \sigma $, so
 $$ \star\star\eta = \br{-1}^{k\br{n - k}}\eta, \qquad \eta \in \Lambda^kV. $$
 \end{itemize}
+Assume now that $ V $ is a complex vector space of dimension $ n $ with a Hermitian metric $ \abr{\cdot, \cdot} $. Then, for each $ k \ge 0 $, we can extend the Hodge $ \star $ operator to $ V_\CC $ to a $ \CC $-linear map
+$$ \star : \Lambda^kV_\CC \to \Lambda^{2n - k}V_\CC, $$
+so that
+$$ \alpha \wedge \overline{\star\beta} = \abr{\alpha, \beta}\omega, \qquad \alpha, \beta \in \Lambda^kV_\CC. $$
+
+\begin{note*}
+In particular, $ \overline{\star\beta} = \star\overline{\beta} $.
+\end{note*}
+
+\pagebreak
+
 Let $ X $ be a complex manifold, and let $ E $ be a Hermitian holomorphic vector bundle. Recall that we defined
 $$ \cbr{\cdot, \cdot} : \C^\infty\br{X, \Omega_{X, \CC}^p \otimes E} \times \C^\infty\br{X, \Omega_{X, \CC}^q \otimes E} \to \C^\infty\br{X, \Omega_{X, \CC}^{p + q}}. $$
 Take $ p = q = 0 $ and $ E = \Omega_{X, \CC}^k $. If $ \omega $ is a positive real $ \br{1, 1} $-form then $ \omega $ induces a Hermitian metric on $ \T_{X, \CC} $. Locally, let $ e_1, \dots, e_n $ be an orthonormal frame of $ \T_{X, \CC} $. Then $ e_1^*, \dots, e_n^* $ define a metric on $ \Omega_{X, \CC}^1 $ locally, where $ e_i^*\br{e_j} = \delta_{ij} $. It is easy to check that such a choice is canonical, so the metric on $ \Omega_{X, \CC}^1 $ extends to $ X $. This induces a metric on $ \Omega_{X, \CC}^k $ for all $ k \ge 0 $, so there exists a cup product
 $$ \cbr{\cdot, \cdot} : \C^\infty\br{X, \Omega_{X, \CC}^k} \times \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X}. $$
 
-\pagebreak
-
 \begin{lemma}
 Let $ \br{X, \omega} $ be K\"ahler of dimension $ n $. Then there exists a $ \CC $-linear
-$$ \star : \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X, \Omega_{X, \CC}^{n - k}}, \qquad k \ge 0, $$
+$$ \star : \C^\infty\br{X, \Omega_{X, \CC}^k} \to \C^\infty\br{X, \Omega_{X, \CC}^{2n - k}}, \qquad k \ge 0, $$
 such that
-$$ \alpha \wedge\star\beta = \cbr{\alpha, \beta}\omega^n, \qquad \alpha, \beta \in \C^\infty\br{X, \Omega_{X, \CC}^k}. $$
+$$ \alpha \wedge \overline{\star\beta} = \cbr{\alpha, \beta}\omega^n, \qquad \alpha, \beta \in \C^\infty\br{X, \Omega_{X, \CC}^k}. $$
 \end{lemma}
 
-Check that it is defined globally on $ X $.
-
-\begin{definition}
-Let $ E $ be a vector bundle. Then let
+Check that it is defined globally on $ X $. Let $ E $ be a vector bundle. Then let
 $$ \C_\c^\infty\br{X, E} = \cbr{s \in \C^\infty\br{X, E} \st s \ \text{has compact support}}. $$
 Let $ E $ be Hermitian, and let $ \omega $ be a positive real $ \br{1, 1} $-form. Then let
 $$ \br{\alpha, \beta}_E = \int_X \cbr{\alpha, \beta}\omega^n, \qquad \alpha, \beta \in \C_\c^\infty\br{X, E}. $$
 Let $ \br{X, \omega} $ be K\"ahler, let $ E $ and $ F $ be Hermitian vector bundles on $ X $, and let $ P : \C_\c^\infty\br{X, E} \to \C_\c^\infty\br{X, F} $ be $ \CC $-linear. Then the \textbf{adjoint} of $ P $ is a $ \CC $-linear map $ P^* : \C_\c^\infty\br{X, F} \to \C_\c^\infty\br{X, E} $ such that
-$$ \br{P\alpha, \beta}_F = \br{\alpha, P^*\beta}_E, \qquad \alpha \in \C_\c^\infty\br{X, E}, \qquad \beta \in \C_\c^\infty\br{X, E}. $$
-\end{definition}
-
-In particular $ \d : \C_\c^\infty\br{X, \Omega_{X, \CC}^k} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}} $ gives $ \d^* : \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $.
+$$ \br{P\alpha, \beta}_F = \br{\alpha, P^*\beta}_E, \qquad \alpha \in \C_\c^\infty\br{X, E}, \qquad \beta \in \C_\c^\infty\br{X, F}. $$
+In particular if $ \d : \C_\c^\infty\br{X, \Omega_{X, \CC}^k} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}} $ then
+$$ \d^* : \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^k}. $$
 
 \begin{lemma}
+\label{lem:6.11}
 Let $ \br{X, \omega} $ be K\"ahler of dimension $ n $. Then
-$$ \d^*\beta = \br{-1}^{nk + 1}\star\d\br{\star\beta}, \qquad \beta \in \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}}. $$
+$$ \d^*\beta = -\star\d\star\beta, \qquad \beta \in \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 1}}. $$
 \end{lemma}
 
 \lecture{23}{Thursday}{27/02/20}
@@ -1707,20 +1717,27 @@ $$ \d^*\beta = \br{-1}^{nk + 1}\star\d\br{\star\beta}, \qquad \beta \in \C_\c^\i
 Let $ \alpha \in \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $. Then
 \begin{align*}
 \br{\d\alpha, \beta}
-& = \int_X \d\alpha \wedge \star\beta & \cbr{\eta_1, \eta_2}\omega^n = \eta_1 \wedge \star\eta_2 \\
-& = \int_X \d\br{\alpha \wedge \star\beta} - \br{-1}^k\int_X \alpha \wedge \d\br{\star\beta} & \text{the Leibnitz rule} \\
-& = \br{-1}^{k + 1}\int_X \alpha \wedge \d\br{\star\beta} & \text{Stokes} \\
-& = \br{-1}^{\br{n - k}k + k + 1}\int_X \alpha \wedge \star\star\d\br{\star\beta} & \star\star\eta = \br{-1}^{k\br{n - k}}\eta \\
-& = \br{-1}^{nk + 1}\int_X \alpha \wedge \star\star\d\br{\star\beta} & k^2 - k \ \text{is even} \\
-& = \br{-1}^{nk + 1}\int_X \cbr{\alpha, \star\d\br{\star\beta}}\omega^n & \cbr{\eta_1, \eta_2}\omega^n = \eta_1 \wedge \star\eta_2 \\
-& = \br{-1}^{nk + 1}\br{\alpha, \star\d\br{\star\beta}}.
+& = \int_X \d\alpha \wedge \overline{\star\beta} & \cbr{\eta_1, \eta_2}\omega^n = \eta_1 \wedge \overline{\star\eta_2} \\
+& = \intd{X}{}{}{\br{\alpha \wedge \overline{\star\beta}}} - \br{-1}^k\int_X \alpha \wedge \d\overline{\star\beta} & \text{the Leibnitz rule} \\
+& = \br{-1}^{k + 1}\int_X \alpha \wedge \d\overline{\star\beta} & \text{Stokes} \\
+& = \br{-1}^{\br{2n - k}k + k + 1}\int_X \alpha \wedge \star\star\d\overline{\star\beta} & \star\star\eta = \br{-1}^{k\br{2n - k}}\eta \\
+& = -\int_X \alpha \wedge \star\star\d\overline{\star\beta} & k^2 - k \ \text{is even} \\
+& = -\int_X \cbr{\alpha, \star\d\overline{\star\beta}}\omega^n & \cbr{\eta_1, \eta_2}\omega^n = \eta_1 \wedge \overline{\star\eta_2} \\
+& = -\int_X \cbr{\alpha, \star\d\overline{\star\beta}}\omega^n & \overline{\star\eta} = \star\overline{\eta} \\
+& = -\br{\alpha, \star\d\star\beta}.
 \end{align*}
 \end{proof}
 
+\pagebreak
+
+\subsection{Harmonic forms}
+
+\begin{definition}
 Let $ \br{X, \omega} $ be a K\"ahler manifold. The \textbf{Hodge-de Rham operator} is
 $$ \Delta = \d\d^* + \d^*\d : \C_\c^\infty\br{X, \Omega_{X, \CC}^k} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^k}. $$
 Then $ \alpha \in \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $ is said to be \textbf{harmonic} if $ \Delta\alpha = 0 $. Let
 $$ \HHH^k\br{X} = \cbr{\alpha \ \text{harmonic $ k $-form on} \ X} = \Ker \Delta. $$
+\end{definition}
 
 \begin{lemma}
 \label{lem:6.13}
@@ -1729,11 +1746,9 @@ Let $ \br{X, \omega} $ be K\"ahler, and let $ \alpha \in \C_\c^\infty\br{X, \Ome
 
 \begin{proof}
 If $ \d\alpha = \d^*\alpha = 0 $, then $ \Delta\alpha = 0 $. Assume $ \Delta\alpha = 0 $. Then
-$$ 0 = \br{\Delta\alpha, \alpha} = \br{\d\br{\d^*\alpha} + \d^*\br{\d\alpha}, \alpha} = \br{\d^*\alpha, \d^*\alpha} + \br{\d\alpha, \d\alpha} = \norm{\d^*\alpha}^2 + \norm{\d\alpha}^2, $$
+$$ 0 = \br{\Delta\alpha, \alpha} = \br{\d\d^*\alpha + \d^*\d\alpha, \alpha} = \br{\d^*\alpha, \d^*\alpha} + \br{\d\alpha, \d\alpha} = \norm{\d^*\alpha}^2 + \norm{\d\alpha}^2, $$
 so $ \d\alpha = \d^*\alpha = 0 $.
 \end{proof}
-
-\pagebreak
 
 \begin{example}
 Let $ X = \CC^n $, and let $ \omega = \tfrac{i}{2}\sum_i \d z_i \wedge \d\overline{z_i} $. Then $ \br{X, \omega} $ is K\"ahler. Let $ k = 0 $, let $ z_j = x_j + iy_j $, and let $ f \in \C^\infty\br{X} $ such that $ f = f\br{x_1, \dots, x_n, y_1, \dots, y_n} $. Then
@@ -1747,7 +1762,7 @@ $$ \Delta\star\alpha = \star\Delta\alpha, \qquad \alpha \in \C^\infty\br{X, \Ome
 \end{lemma}
 
 \begin{proof}
-Use $ \d^* = \br{-1}^{nk + 1}\star\d\star $ and $ \star\star = \br{-1}^{k\br{n - k}} $.
+Use $ \d^* = -\star\d\star $ and $ \star\star = \br{-1}^{k\br{2n - k}} $.
 \end{proof}
 
 \begin{lemma}
@@ -1756,7 +1771,7 @@ $$ \cbr{\Delta\alpha, \beta}\omega^n = \cbr{\alpha, \Delta\beta}\omega^n, \qquad
 \end{lemma}
 
 \begin{proof}
-$$ \cbr{\Delta\alpha, \beta}\omega^n = \cbr{\d\br{\d^*\alpha}0 + \d^*\br{\d\alpha}, \beta}\omega^n = \cbr{\alpha, \d^*\br{\d\beta} + \d\br{\d^*\beta}}\omega^n = \cbr{\alpha, \Delta\beta}\omega^n. $$
+$$ \cbr{\Delta\alpha, \beta}\omega^n = \cbr{\d\d^*\alpha + \d^*\d\alpha, \beta}\omega^n = \cbr{\alpha, \d^*\d\beta + \d\d^*\beta}\omega^n = \cbr{\alpha, \Delta\beta}\omega^n. $$
 \end{proof}
 
 \begin{theorem}
@@ -1779,6 +1794,8 @@ $$ \Ker \d = \HHH^k\br{X} \oplus \d\br{\C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}}
 \end{enumerate}
 \end{proof}
 
+\pagebreak
+
 \begin{theorem}
 Let $ \br{X, \omega} $ be compact K\"ahler, and let $ k \ge 0 $. Then
 $$ \HHH^k\br{X} = \H^k\br{X, \CC}. $$
@@ -1791,7 +1808,7 @@ $$ \HHH^k\br{X} = \Ker \d / \d\br{\C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}} = \Z
 
 \begin{theorem}[Poincar\'e duality]
 Let $ \br{X, \omega} $ be a compact K\"ahler manifold. Then there exists an isomorphism
-$$ \H^k\br{X, \CC} \to \H^{n - k}\br{X, \CC}, \qquad k \ge 0. $$
+$$ \H^k\br{X, \CC} \to \H^{2n - k}\br{X, \CC}, \qquad k \ge 0. $$
 \end{theorem}
 
 \begin{proof}
@@ -1799,5 +1816,107 @@ Want to check
 $$ \star : \HHH^k\br{X} \xrightarrow{\sim} \HHH^{n - k}\br{X}. $$
 Given a harmonic $ k $-form $ \alpha $ then $ \star\alpha $ is a harmonic $ k $-form, since $ \Delta\star\alpha = \star\Delta\alpha = \star 0 = 0 $, by Theorem \ref{lem:6.13}.
 \end{proof}
+
+\subsection{Harmonic \texorpdfstring{$ \br{p, q} $}{(p, q)}-forms}
+
+\lecture{24}{Tuesday}{03/03/20}
+
+The goal is to study a similar decomposition for $ \br{p, q} $-forms. Let $ \omega $ be a positive real $ \br{1, 1} $-form. Locally at $ x \in X $, choose local coordinates $ z_1, \dots, z_n $ around $ x $. Then $ \Omega_{X, \CC}^1 $ is spanned by $ \d z_1, \dots, \d z_n, \d\overline{z_1}, \dots, \d\overline{z_n} $. After a linear change of basis, we may assume that the frame is orthonormal at $ x $, and not locally around $ x $, so
+$$ \threebyone{z_1'}{\vdots}{z_n'} = A \cdot \threebyone{z_1}{\vdots}{z_n}, $$
+where $ A $ is fixed. Then $ h_{ij} = \id + \OOO\br{\abs{z}} $, so $ \cbr{\d z_i, \d z_j} = \delta_{ij} $. This implies that if $ \alpha $ is a $ \br{p, q} $-form around $ x $, so
+$$ \alpha = \sum_{\abs{I} = p, \ \abs{J} = q} \alpha_{I, J} \d z_I \wedge \d\overline{z_J}, $$
+then $ \star\alpha $ is an $ \br{n - p, n - q} $-form at the point $ x $. Since $ \star $ does not depend on choice of coordinates, $ \star\alpha $ is a $ \br{n - p, n - q} $-form, so
+$$ \star : \C^\infty\br{X, \Omega_X^{p, q}} \to \C^\infty\br{X, \Omega_X^{n - p, n - q}}. $$
+Thus, if $ \alpha $ is a $ \br{p, q} $-form and $ \beta $ is a $ \br{p', q'} $-form such that $ p + q = p' + q' $ then $ \cbr{\alpha, \beta} = 0 $ unless $ p = p' $ and $ q = q' $, so
+$$ \C^\infty\br{X, \Omega_{X, \CC}^k} = \bigoplus_{p + q = k} \C^\infty\br{X, \Omega_X^{p, q}} $$
+is an orthogonal decomposition. Recall that $ \partial : \C^\infty\br{X, \Omega_X^{p, q}} \to \C^\infty\br{X, \Omega_X^{p + 1, q}} $. Then there exist
+$$ \partial^* : \C^\infty\br{X, \Omega_X^{p + 1, q}} \to \C^\infty\br{X, \Omega_X^{p, q}}, \qquad \overline{\partial}^* : \C^\infty\br{X, \Omega_X^{p, q + 1}} \to \C^\infty\br{X, \Omega_X^{p, q}}. $$
+Like Lemma \ref{lem:6.11}, like in the case of $ \d $,
+$$ \partial^* = \br{-1}\star\partial\star, \qquad \overline{\partial}^* = \br{-1}\star\overline{\partial}\star. $$
+Moreover we define
+$$ \Delta_\partial = \partial\partial^* + \partial^*\partial, \qquad \Delta_{\overline{\partial}} = \overline{\partial}\overline{\partial}^* + \overline{\partial}^*\overline{\partial}. $$
+We say that a form $ \alpha $ is \textbf{$ \Delta_\partial $-harmonic} if $ \Delta_\partial\alpha = 0 $ and \textbf{$ \Delta_{\overline{\partial}} $-harmonic} if $ \Delta_{\overline{\partial}}\alpha = 0 $. As for $ \Delta $ we have the following.
+
+\pagebreak
+
+\begin{lemma}
+\hfill
+\begin{itemize}
+\item $ \Delta_\partial\alpha = 0 $ if and only if $ \partial\alpha = \partial^*\alpha = 0 $.
+\item $ \Delta_{\overline{\partial}}\alpha = 0 $ if and only if $ \overline{\partial}\alpha = \overline{\partial}^*\alpha = 0 $.
+\end{itemize}
+\end{lemma}
+
+Let
+$$ \HHH^{p, q}\br{X} = \cbr{\alpha \ \text{$ \br{p, q} $-form} \st \Delta_{\overline{\partial}}\alpha = 0}. $$
+
+\begin{theorem}
+Let $ \br{X, \omega} $ be a compact K\"ahler manifold. Then $ \HHH^{p, q}\br{X} $ are finite dimensional vector spaces,
+$$ \C^\infty\br{X, \Omega_X^{p, q}} = \HHH^{p, q}\br{X} \oplus \Delta\br{\C^\infty\br{X, \Omega_X^{p, q}}} = \HHH^{p, q}\br{X} \oplus \overline{\partial}\br{\C^\infty\br{X, \Omega_X^{p, q - 1}}} \oplus \overline{\partial}^*\br{\C^\infty\br{X, \Omega_X^{p, q + 1}}}, $$
+and
+$$ \Ker \overline{\partial} = \HHH^{p, q}\br{X} \oplus \overline{\partial}\br{\C^\infty\br{X, \Omega_X^{p, q - 1}}}, \qquad \Ker \overline{\partial}^* = \HHH^{p, q}\br{X} \oplus \overline{\partial}^*\br{\C^\infty\br{X, \Omega_X^{p, q + 1}}}. $$
+\end{theorem}
+
+\begin{theorem}
+The setup is as before. Then
+$$ \HHH^{p, q}\br{X} = \H^{p, q}\br{X} = \Ker \overline{\partial} / \Im \overline{\partial}. $$
+\end{theorem}
+
+Recall that $ \HHH^k\br{X} = \H^k\br{X, \CC} $. The goal is if $ \br{X, \omega} $ is K\"ahler and compact then
+$$ \HHH^k\br{X} = \bigoplus_{p + q = k} \HHH^{p, q}\br{X}. $$
+
+\subsection{Lefschetz operator}
+
+\begin{definition}
+Let $ \br{X, \omega} $ be K\"ahler. The \textbf{Lefschetz operator} is
+$$ \function[\L]{\C_\c^\infty\br{X, \Omega_{X, \CC}^k}}{\C_\c^\infty\br{X, \Omega_X^{k + 2}}}{\alpha}{\alpha \wedge \omega}. $$
+There exists an adjoint operator
+$$ \Lambda = \L^* : \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 2}} \to \C_\c^\infty\br{X, \Omega_{X, \CC}^k}. $$
+\end{definition}
+
+\begin{lemma}
+For all $ k $, if $ \beta \in \C_\c^\infty\br{X, \Omega_{X, \CC}^{k + 2}} $ then
+$$ \Lambda\beta = \br{-1}^k\star\L\star\beta. $$
+\end{lemma}
+
+\begin{proof}
+Let $ \alpha \in \C^\infty\br{X, \Omega_{X, \CC}^k} $. Since $ \star\star = \br{-1}^k $,
+\begin{align*}
+\br{\L\alpha, \beta}
+& = \int_X \cbr{\L\alpha, \beta}\omega^n
+= \int_X \L\alpha \wedge \star\beta
+= \int_X \alpha \wedge \omega \wedge \star\beta
+= \int_X \omega \wedge \alpha \wedge \star\beta \\
+& = \int_X \omega \wedge \alpha \wedge \star\br{-1}^k\star\star\beta
+= \int_X \cbr{\alpha, \br{-1}^k\star\L\star\beta}\omega^n
+= \br{\alpha, \br{-1}^k\star\L\star\beta},
+\end{align*}
+and $ \br{-1}^k\star\L\star $ is the adjoint of $ \L $.
+\end{proof}
+
+\begin{definition}
+Let $ p : E \to X $ and $ q : F \to X $ be holomorphic vector bundles on $ X $. Then a $ \CC $-linear
+$$ \P : \C^\infty\br{X, E} \to \C^\infty\br{X, F} $$
+is called a \textbf{differential operator of order $ d $} if for all $ x \in X $, there exists an open set $ U \ni x $, local coordinates $ z_1, \dots, z_n $, a frame $ s_1, \dots, s_r $ for $ E $, and a frame $ t_1, \dots, t_l $ for $ F $, such that
+$$ \P\br{\sum_{i = 1}^r f_is_i} = \sum_{i = 1, \dots, l, \ j = 1, \dots, r, \ I = \br{i_1, \dots, i_n}} \P_{I, i, j}\dpd{f_j}{x_I}t_i, \qquad f_j \in \C^\infty\br{U}, $$
+where $ \P_{I, i, j} = 0 $ if $ \abs{I} > d $ and $ \P_{I, i, j} \ne 0 $ for some $ \abs{I} = d $.
+\end{definition}
+
+\begin{fact*}
+The definition and the order of $ \P $ do not depend on the coordinates and on the frames.
+\end{fact*}
+
+\pagebreak
+
+\begin{notation}
+Let $ A $ be an operator of order $ a $, and let $ B $ be an operator of order $ b $. Then the \textbf{Lie bracket} $ \sbr{A, B} $ is an operator of order $ a + b $ given by
+$$ \sbr{A, B} = AB - \br{-1}^{a \cdot b}BA. $$
+\end{notation}
+
+\begin{definition}
+Let $ X $ be a complex manifold, let $ V $ be a vector field, and let $ \omega $ be a $ k $-form on $ X $. Then $ v \ \lrcorner \ \omega $, the \textbf{contraction of $ \omega $ with respect to $ v $}, is a $ \br{k - 1} $-form defined by
+$$ \br{v \ \lrcorner \ \omega}\br{v_1, \dots, v_{k - 1}} = \omega\br{v, v_1, \dots, v_{k - 1}}, $$
+on $ \C^\infty\br{X} $.
+\end{definition}
 
 \end{document}
