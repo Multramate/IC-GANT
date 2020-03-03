@@ -1068,16 +1068,18 @@ Now $ A \cong \alpha A = \Im \alpha $. Let $ F_A $ be the $ \delta $-preimage of
 $$ 0 \to K \to F_A \to \alpha A \to 0. $$
 We have a commuting diagram
 $$
-\begin{tikzcd}
-0 \arrow{r} & K \arrow{r} \arrow[cong]{d} & F_A \arrow{r} \arrow[hookrightarrow]{d} & \alpha A \arrow{r} \arrow[hookrightarrow]{d} & 0 \\
-0 \arrow{r} & K \arrow{r} & F \arrow{r} & B \arrow{r} & 0
+\begin{tikzcd}[row sep=tiny]
+& & F_A \arrow{r} \arrow[hookrightarrow]{dd} & \alpha A \arrow{r} \arrow[hookrightarrow]{dd} & 0 \\
+0 \arrow{r} & K \arrow{ur} \arrow{dr} & & & \\
+& & F \arrow{r} & B \arrow{r} & 0
 \end{tikzcd}.
 $$
 Tensoring with $ M $,
 $$
-\begin{tikzcd}
-K \otimes_R M \arrow{r}{\beta} \arrow[cong]{d} & F_A \otimes_R M \arrow{r}{\gamma} \arrow{d}{f} & \alpha A \otimes_R M \arrow{r} \arrow{d}{g} & 0 \\
-K \otimes_R M \arrow[swap]{r}{\delta} & F \otimes_R M \arrow[swap]{r}{\epsilon} & B \otimes_R M \arrow{r} & 0
+\begin{tikzcd}[row sep=tiny]
+& F_A \otimes_R M \arrow{r}{\gamma} \arrow{dd}{f} & \alpha A \otimes_R M \arrow{r} \arrow{dd}{g} & 0 \\
+K \otimes_R M \arrow{ur}{\beta} \arrow[swap]{dr}{\delta} & & & \\
+& F \otimes_R M \arrow[swap]{r}{\epsilon} & B \otimes_R M \arrow{r} & 0
 \end{tikzcd}
 $$
 is commuting, and exact along rows. Let $ u \in \Ker g \le \alpha A \otimes_R M \cong A \otimes_R M $. Since $ \gamma $ is surjective, there is $ w \in F_A \otimes_R M $ with $ \gamma\br{w} = u $. So $ \br{g \circ \gamma}\br{w} = 0 $. So $ \br{\epsilon \circ f}\br{w} = 0 $. So $ f\br{w} \in \Ker \epsilon = \Im \delta $, so $ f\br{w} = \delta\br{k} $ for $ k \in K \otimes_R M $. Since $ f $ is injective, by Lemma \ref{lem:torsionflat4}, we get $ w = \beta\br{k} \in \Im \beta $. So $ w \in \Ker \gamma $, so $ u = 0 $. Hence $ g $ is injective, as required.
@@ -1792,7 +1794,11 @@ as required.
 \item If $ F $ is a covariant, left exact, additive functor from $ R $-modules to abelian groups, then we can define \textbf{right derived functors} $ \R^iF $ in a similar manner. Instead of working with a projective resolution, we use an injective resolution,
 $$ 0 \to A \to I_0 \to I_1 \to I_2 \to \dots. $$
 By similar arguments, we show that $ \R^iF\br{A} $ is independent of the choice of injective resolution. All of the results we proved for left derived functors have natural analogies for right derived functors. The argument requires a version of the Horseshoe lemma for injective resolutions, which is exactly what one might expect.
-\item We can even construct derived functors for contravariant functors. If $ F $ is contravariant and right exact, we get a left derived functor, which is defined using an injective resolution. If $ F $ is contravariant and left exact, we get a right derived functor, which is defined using a projective resolution.
+\item We can even construct derived functors for contravariant functors. If $ F $ is contravariant and right exact, so
+$$ 0 \to A \to I_0 \to I_1 \to I_2 \to \dots $$
+is exact implies that
+$$ \dots \to F\br{I_2} \to F\br{I_1} \to F\br{I_0} \to F\br{A} \to 0 $$
+is exact, we get a left derived functor, which is defined using an injective resolution. If $ F $ is contravariant and left exact, we get a right derived functor, which is defined using a projective resolution.
 \end{itemize}
 \end{proposition}
 
@@ -1800,7 +1806,7 @@ By similar arguments, we show that $ \R^iF\br{A} $ is independent of the choice 
 
 \section{Tor and Ext}
 
-\subsection{Tor and Ext}
+\subsection{Balancing theorems}
 
 \begin{definition}
 Let $ F $ be the functor $ F\br{A} = A \otimes_R B $. Then $ F $ is covariant, left exact, and additive. So $ \L_nF $ exists. Define
@@ -1822,20 +1828,116 @@ Let $ F' $ be the functor $ F'\br{A} = \Hom_R\br{A, B} $. Then $ F' $ is contrav
 $$ \R^iF'\br{A} \cong \R^iF\br{B} = \Ext_R^i\br{A, B}. $$
 \end{fact*}
 
-The two facts above are the \textbf{balancing theorems} for Tor and Ext. Their proof is beyond the scope of the course. The following is an observation. Suppose $ A $ is projective. Then a projective resolution for $ A $ is
-$$ 0 \to \dots \to 0 \to A \xrightarrow{\id} A \to 0. $$
-So $ \L_iF\br{A} = 0 $ for $ i \ge 1 $, and $ \L_0F\br{A} = F\br{A} $, for $ F $ possessing left derived functors. Similarly, if $ A $ is injective, then an injective resolution is
-$$ 0 \to A \xrightarrow{\id} A \to 0 \to \dots \to 0, $$
-so $ \R^iF\br{A} = 0 $ for $ i \ge 1 $, and $ \R^0F\br{A} = F\br{A} $, for $ F $ possessing right derived functors.
+The two facts above are the \textbf{balancing theorems} for Tor and Ext. Their proof is beyond the scope of the course.
 
 \subsection{Tor}
 
-In fact the property $ \Tor_i^R\br{A, B} = 0 $ for all $ i \ge 0 $ characterises flat modules, so either $ A $ or $ B $ is flat.
+The following is an observation. Suppose $ A $ is projective. Then a projective resolution for $ A $ is
+$$ 0 \to \dots \to 0 \to A \xrightarrow{\id} A \to 0. $$
+So $ \L_iF\br{A} = 0 $ for $ i \ge 1 $, and $ \L_0F\br{A} = F\br{A} $, for $ F $ possessing left derived functors. Similarly, if $ A $ is injective, then an injective resolution is
+$$ 0 \to A \xrightarrow{\id} A \to 0 \to \dots \to 0, $$
+so $ \R^iF\br{A} = 0 $ for $ i \ge 1 $, and $ \R^0F\br{A} = F\br{A} $, for $ F $ possessing right derived functors. In fact the property $ \Tor_i^R\br{A, B} = 0 $ for all $ i \ge 0 $ characterises flat modules, so either $ A $ or $ B $ is flat.
 
 \begin{proposition}
-Let $ F\br{A} = A \otimes_R B $. Then $ \L_iF\br{A} = 0 $ for $ i \ge 1 $ for all $ A $ if and only if $ B $ is flat.
+Let $ F\br{A} = A \otimes_R B $. Then $ \L_iF\br{A} = \Tor_i^R\br{A, B} = 0 $ for all $ i \ge 1 $ and for all $ A $ if and only if $ B $ is flat.
 \end{proposition}
 
-Similarly if $ F'\br{B} = A \otimes_R B $, then $ \L_iF'\br{B} = 0 $ for $ i \ge 1 $ for all $ B $ if and only if $ A $ is flat.
+Similarly if $ F'\br{B} = A \otimes_R B $, then $ \L_iF'\br{B} = 0 $ for all $ i \ge 1 $ and for all $ B $ if and only if $ A $ is flat.
+
+\lecture{24}{Tuesday}{03/03/20}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item[$ \impliedby $] If $ B $ is flat then $ F\br{A} = A \otimes_R B $ is exact, so
+$$ 0 \to L \to M \to N \to 0 $$
+is exact implies that
+$$ 0 \to F\br{L} \to F\br{M} \to F\br{N} \to 0 $$
+is exact, or $ F $ maps kernels to kernels and cokernels to cokernels. Let $ P_* \to A $ be a projective resolution. Then
+$$ \dots \to P_2 \to P_1 \to P_0 \to 0 $$
+is exact everywhere except $ P_0 $. So
+$$ \dots \to F\br{P_2} \to F\br{P_1} \to F\br{P_0} \to 0 $$
+is exact everywhere except $ F\br{P_0} $. So $ \L_nF\br{P_*} = 0 $ for $ n \ge 1 $. But $ \L_nF\br{P_*} = \Tor_n^R\br{A, B} $.
+
+\pagebreak
+
+\item[$ \implies $] Conversely, suppose $ \Tor_i^R\br{A, B} = 0 $ for all $ A $. Let
+$$ 0 \to L \to M \to N \to 0 $$
+be exact. This gives a long exact sequence of homology groups
+$$
+\begin{tikzcd}[column sep=small, row sep=tiny]
+\dots \arrow{r} & \L_1F\br{L} \arrow{r} & \L_1F\br{M} \arrow{r} & \L_1F\br{N} \arrow{r} \arrow[cong]{d} & L \otimes_R B \arrow{r} & M \otimes_R B \arrow{r} & N \otimes_R B \arrow{r} & 0 \\
+& & & \Tor_1^R\br{N, B} & & & &
+\end{tikzcd}.
+$$
+Since $ \Tor_1^R\br{N, B} = 0 $, we get a short exact sequence
+$$ 0 \to L \otimes_R B \to M \otimes_R B \to N \otimes_R B \to 0. $$
+So $ F\br{A} = A \otimes_R B $ is left exact, and so $ B $ is flat.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+Let $ A $ and $ B $ be abelian groups. Then $ \Tor_n^\ZZ\br{A, B} = 0 $ for $ n > 1 $.
+\end{proposition}
+
+\begin{proof}
+$ A $ is a quotient of some free module $ K $, say
+$$ K \xrightarrow{f} A \to 0. $$
+Now $ \Ker f \le K $, and since $ \ZZ $ is a PID, $ \Ker f $ is free, since it is a submodule of a free module. So
+$$ \dots \to 0 \to \Ker f \to K \to A \to 0 $$
+is a projective resolution for $ A $. Since all of the modules above $ P_1 $ in the resolution are zero, clearly $ \H_n\br{P_*} = 0 $ for $ n > 1 $.
+\end{proof}
+
+\begin{fact*}
+$ \Tor_1^\ZZ\br{A, \QQ / \ZZ} = \T\br{A} = \cbr{a \in A \st a \ \text{has finite order}} $. Proof omitted.
+\end{fact*}
+
+\subsection{Ext}
+
+\begin{proposition}
+Let $ A $ and $ B $ be abelian groups. Then $ \Ext_\ZZ^n\br{A, B} = 0 $ for $ n > 1 $.
+\end{proposition}
+
+\begin{proof}
+Problem sheet question.
+\end{proof}
+
+More generally, $ \Ext_R^1\br{A, C} $ tells us about \textbf{extensions} of $ C $ by $ A $, that is $ B $ such that
+$$ 0 \to A \to B \to C \to 0. $$
+Let $ B_1 $ and $ B_2 $ be two extensions of $ C $ by $ A $. Write $ B_1 \sim B_2 $ if there exists $ f : B_1 \to B_2 $ such that
+$$
+\begin{tikzcd}[row sep=tiny]
+& & B_1 \arrow{dr}{\beta_1} \arrow{dd}{f} & & \\
+0 \arrow{r} & A \arrow{ur}{\alpha_1} \arrow[swap]{dr}{\alpha_2} & & C \arrow{r} & 0 \\
+& & B_2 \arrow[swap]{ur}{\beta_2} & &
+\end{tikzcd}
+$$
+commutes.
+
+\begin{proposition}
+Any such $ f $ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item $ f $ is surjective. Suppose $ y \in B_2 $. Then $ \beta_2\br{y} \in C $, and $ \beta_1 $ is surjective, so $ \beta_2\br{y} = \beta_1\br{x} $ for some $ x \in B_1 $. Now $ f\br{x} - y \in \Ker \beta_2 = \Im \alpha_2 $, so $ f\br{x} - y = \alpha_2\br{a} $ for some $ a \in A $. So $ f\br{x} - y = \br{f \circ \alpha_1}\br{a} $, and so $ y = f\br{x} - \br{f \circ \alpha_1}\br{a} = f\br{x - \alpha_1\br{a}} $.
+\item $ f $ is injective. Suppose $ f\br{x} = f\br{y} $ for $ x, y \in B_1 $. Then $ f\br{x - y} = 0 $, so $ \br{\beta_2 \circ f}\br{x - y} = 0 $, so $ \beta_1\br{x - y} = 0 $. So $ x - y \in \Ker \beta_1 = \Im \alpha_1 $, so $ x - y = \alpha_1\br{a} $ for some $ a \in A $. Now $ \alpha_2\br{a} = \br{f \circ \alpha_1}\br{a} = f\br{x - y} = 0 $. But $ \alpha_2 $ is injective, so $ a = 0 $, so $ x - y = 0 $.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+Hence the relation $ \sim $ is an equivalence relation. Write $ E_c\br{A} $ for the set of $ \sim $-equivalence classes. We will put an abelian group structure on $ E_c\br{A} $. Let $ B_1 $ and $ B_2 $ be extensions, so
+$$ 0 \to A \xrightarrow{\alpha_1} B_1 \xrightarrow{\beta_1} C \to 0, \qquad 0 \to A \xrightarrow{\alpha_2} B_2 \xrightarrow{\beta_2} C \to 0. $$
+Define maps $ \alpha^* $ and $ \beta^* $ by
+$$ \function[\alpha^*]{A}{B_1 \oplus B_2}{a}{\br{\alpha_1\br{a}, -\alpha_2\br{a}}}, \qquad \function[\beta^*]{B_1 \oplus B_2}{C}{\br{b_1, b_2}}{\beta_1\br{b_1} - \beta_2\br{b_2}}. $$
+Now $ \beta^* \circ \alpha^* = 0 $. So
+$$ 0 \to A \xrightarrow{\alpha^*} B_1 \oplus B_2 \xrightarrow{\beta^*} C \to 0 $$
+is a chain complex. Define $ H $, the \textbf{Baer sum} of $ \sbr{B_1} $ and $ \sbr{B_2} $, to be the homology group at $ B_1 \oplus B_2 $, that is $ H = \Ker \beta^* / \Im \alpha^* $. Now define maps
+$$ \function[\alpha]{A}{H}{a}{\br{\alpha_1\br{a}, 0} + \Im \alpha^*}, \qquad \function[\beta]{H}{C}{\br{x, y} + \Im \alpha^*}{\beta_1\br{x} = \beta_2\br{y}}. $$
+Claim that
+$$ 0 \to A \xrightarrow{\alpha} H \xrightarrow{\beta} C \to 0 $$
+is a short exact sequence.
 
 \end{document}
