@@ -2013,4 +2013,140 @@ i\sum_{k = 1}^n \br{\d\xi_k \wedge \d\overline{\xi_k}}
 \end{align*}
 \end{proof}
 
+\lecture{26}{Thursday}{05/03/20}
+
+$ \xi_1, \dots, \xi_n $ are \textbf{normal coordinates} for the K\"ahler metric.
+
+\begin{theorem}[K\"ahler identities]
+Let $ \br{X, \omega} $ be K\"ahler. Then
+\begin{enumerate}
+\item $ \sbr{\overline{\partial}^*, \L} = i\partial $,
+\item $ \sbr{\partial^*, \L} = -i\overline{\partial} $,
+\item $ \sbr{\Lambda, \overline{\partial}} = -i\partial^* $, and
+\item $ \sbr{\Lambda, \partial} = i\overline{\partial}^* $.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item $ \sbr{\overline{\partial}^*, \L} = \overline{\partial}^*\L - \L\overline{\partial}^* = -\star\overline{\partial}\star\L + \L\star\overline{\partial}\star $. We want to check that $ 1 $ holds at $ x \in X $. But around $ x $, we may assume that
+$$ \omega = \dfrac{i}{2}\sum_{j, k = 1}^n h_{jk} \d z_k \wedge \d\overline{z_k}, \qquad h_{jk} = \delta_{jk} + \OOO\br{\abs{z}^2}. $$
+In the calculation only the first order of $ \omega $ appears at $ x $, so we can pretend that $ X = \CC^n $ and $ \omega $ is the standard metric. We checked that $ 1 $ holds on this setting, so $ 1 $ holds.
+\item Since $ \omega $ is real $ \L = \overline{\L} $, so $ 2 $ holds.
+\item Recall $ \Lambda $ is the adjoint of $ \L $. Let $ \alpha $ and $ \beta $ be $ \br{p, q} $-forms. Then
+\begin{align*}
+\br{\sbr{\Lambda, \overline{\partial}}\alpha, \beta}
+& = \br{\Lambda\overline{\partial}\alpha - \overline{\partial}\Lambda\alpha, \beta}
+= \br{\overline{\partial}\alpha, \L\beta} - \br{\Lambda\alpha, \overline{\partial}^*\beta}
+= \br{\alpha, \overline{\partial}^*\L\beta - \L\overline{\partial}^*\beta} \\
+& = \br{\alpha, \sbr{\overline{\partial}^*, \L}\beta}
+= \br{\alpha, i\partial\beta}
+= \br{-i\partial^*\alpha, \beta}.
+\end{align*}
+\item $ 3 $ implies $ 4 $, because $ \overline{\Lambda} = \Lambda $.
+\end{enumerate}
+\end{proof}
+
+\pagebreak
+
+\begin{theorem}
+\label{thm:6.33}
+Let $ \br{X, \omega} $ be a K\"ahler manifold. Then
+$$ \Delta = 2\Delta_\partial = 2\Delta_{\overline{\partial}}. $$
+\end{theorem}
+
+\begin{proof}
+Since $ \partial^2 = 0 $,
+\begin{align*}
+\Delta
+& = \d\d^* + \d^*\d \\
+& = \br{\partial + \overline{\partial}}\br{\partial^* + \overline{\partial}^*} + \br{\partial^* + \overline{\partial}^*}\br{\partial + \overline{\partial}} & \d = \partial + \overline{\partial} \\
+& = \Delta_\partial + \partial\overline{\partial}^* + \overline{\partial}\partial^* + \overline{\partial}\overline{\partial}^* + \partial^*\overline{\partial} + \overline{\partial}^*\partial + \overline{\partial}^*\overline{\partial} & \Delta_\partial = \partial\partial^* + \partial^*\partial \\
+& = \Delta_\partial + \partial\overline{\partial}^* + \overline{\partial}\overline{\partial}^* + \overline{\partial}^*\partial + \overline{\partial}^*\overline{\partial} & \overline{\partial}\partial^* = i\overline{\partial}\sbr{\Lambda, \overline{\partial}} = i\overline{\partial}\Lambda\overline{\partial} = -i\sbr{\Lambda, \overline{\partial}}\overline{\partial} = \partial^*\overline{\partial} \ \text{by} \ 3 \\
+& = \Delta_\partial + \overline{\partial}\overline{\partial}^* + \overline{\partial}^*\overline{\partial} & \partial\overline{\partial}^* = -i\partial\sbr{\Lambda, \partial} = -i\partial\Lambda\partial = i\sbr{\Lambda, \partial}\partial = \overline{\partial}^*\partial \ \text{by} \ 4 \\
+& = \Delta_\partial - i\overline{\partial}\Lambda\partial + i\overline{\partial}\partial\Lambda - i\Lambda\partial\overline{\partial} + i\partial\Lambda\overline{\partial} & \overline{\partial}^* = -i\sbr{\Lambda, \partial} = -i\Lambda\partial + i\partial\Lambda \ \text{by} \ 4 \\
+& = \Delta_\partial + i\sbr{\Lambda, \overline{\partial}}\partial + i\partial\sbr{\Lambda, \overline{\partial}} & \overline{\partial}\partial + \partial\overline{\partial} = 0 \\
+& = \Delta_\partial + \partial^*\partial + \partial\partial^* & \partial^* = i\sbr{\Lambda, \overline{\partial}} \ \text{by} \ 3 \\
+& = 2\Delta_\partial & \Delta_\partial = \partial\partial^* + \partial^*\partial.
+\end{align*}
+Similarly $ \Delta = 2\Delta_{\overline{\partial}} $.
+\end{proof}
+
+\subsection{Hodge decomposition}
+
+\begin{lemma}
+If $ \alpha $ is a $ \br{p, q} $-form then $ \Delta\alpha $ is a $ \br{p, q} $-form.
+\end{lemma}
+
+\begin{proof}
+Easy.
+\end{proof}
+
+\begin{theorem}
+Let $ \br{X, \omega} $ be K\"ahler. Then
+\begin{enumerate}
+\item for all $ k \ge 0 $,
+$$ \HHH^k\br{X} = \bigoplus_{p + q = k} \HHH^{p, q}\br{X}, $$
+\item for all $ p $ and $ q $,
+$$ \HHH^{p, q} = \overline{\HHH^{q, p}}. $$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item Let $ \alpha \in \C_\c^\infty\br{X, \Omega_{X, \CC}^k} $. Then there is a unique decomposition
+$$ \alpha = \sum_{p + q = k} \alpha_{p, q}, \qquad \alpha_{p, q} \in \C_\c^\infty\br{X, \Omega_X^{p, q}}, $$
+so $ \Delta\alpha = \sum_{p + q = k} \Delta\alpha_{p, q} $. Thus
+\begin{align*}
+\alpha \in \HHH^k\br{X}
+& \iff \Delta\alpha = 0 \\
+& \iff \forall p, q, \ p + q = k, \ \Delta\alpha_{p, q} = 0 \\
+& \iff \forall p, q, \ p + q = k, \ \Delta_{\overline{\partial}}\alpha_{p, q} = 0 & \text{Theorem \ref{thm:6.33}} \\
+& \iff \forall p, q, \ p + q = k, \ \alpha_{p, q} \in \HHH^{p, q}\br{X}.
+\end{align*}
+\item Let $ \alpha \in \C_\c^\infty\br{X, \Omega_X^{p, q}} $. Then $ \overline{\alpha} \in \C_\c^\infty\br{X, \Omega_X^{q, p}} $. Thus by Theorem \ref{thm:6.33},
+$$ \Delta\alpha = 0 \qquad \iff \qquad \Delta_\partial\alpha = 0 \qquad \iff \qquad \Delta_{\overline{\partial}}\overline{\alpha} = 0 \qquad \iff \qquad \Delta\overline{\alpha} = 0. $$
+\end{enumerate}
+\end{proof}
+
+\pagebreak
+
+\begin{theorem}[Hodge decomposition]
+\label{thm:6.36}
+Let $ \br{X, \omega} $ be a compact K\"ahler manifold. Then
+\begin{enumerate}
+\item for all $ k \ge 0 $,
+$$ \H^k\br{X, \CC} = \bigoplus_{p + q = k} \H^{p, q}\br{X}, $$
+\item for all $ p $ and $ q $,
+$$ \H^{p, q}\br{X} = \overline{\H^{q, p}\br{X}}. $$
+\end{enumerate}
+\end{theorem}
+
+\begin{exercise*}
+If $ X = \CC $ Theorem \ref{thm:6.36} is false.
+\end{exercise*}
+
+\begin{proof}
+$ \H^k\br{X, \CC} = \HHH^k\br{X} $ by Theorem \ref{thm:6.18} and $ \H^{p, q}\br{X} = \HHH^{p, q}\br{X} $ by Theorem \ref{thm:6.22}.
+\end{proof}
+
+\begin{example}
+If $ X = \PP_\CC^n $, by Mayer-Vietoris,
+$$ \H^k\br{X, \CC} =
+\begin{cases}
+\CC & k = 0, \dots, 2n \\
+0 & \text{otherwise}
+\end{cases}.
+$$
+Since $ \H^{k, k}\br{X} \ne 0 $ for all $ k = 0, \dots, n $,
+$$ \H^{p, q}\br{X} =
+\begin{cases}
+\CC & p = q \\
+0 & \text{otherwise}
+\end{cases}.
+$$
+\end{example}
+
 \end{document}
