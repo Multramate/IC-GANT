@@ -313,7 +313,7 @@ Let $ V_1 \supseteq V_2 \supseteq \dots $ be a descending chain of affine algebr
 \end{lemma}
 
 \begin{proof}
-The fact that $ V_1 \supseteq V_2 \supseteq \dots $ implies that $ \II\br{V_1} \subseteq \II\br{V_2} \subseteq \dots $. Because $ k\sbr{X_1, \dots, X_n} $ is Noetherian, there exists $ N $ such that $ \II\br{V_n} = \II\br{V_N} $ for all $ n > N $. By Lemma \ref{lem:viv}, $ V_n = \VV\br{\II\br{V_n}} $ for every $ n $ and so this proves the proposition.
+The fact that $ V_1 \supseteq V_2 \supseteq \dots $ implies that $ \II\br{V_1} \subseteq \II\br{V_2} \subseteq \dots $. Because $ k\sbr{X_1, \dots, X_n} $ is Noetherian, there exists $ N $ such that $ \II\br{V_n} = \II\br{V_N} $ for all $ n > N $. By Lemma \ref{lem:viv}, $ V_n = \VV\br{\II\br{V_n}} $ for every $ n $ and so this proves Lemma \ref{lem:descendingchain}.
 \end{proof}
 
 \pagebreak
@@ -2084,7 +2084,9 @@ By Theorem \ref{thm:projectionclosed2}, $ \pi_2\br{Z_{d, e}} $ is a Zariski clos
 
 \begin{theorem}
 \label{thm:fieldresultant}
-Fix $ d, e \in \ZZ_{> 0} $. There exists a polynomial $ \Res_{d, e} \in k\sbr{A_0, \dots, A_d, B_0, \dots, B_e} $ such that the polynomials
+Fix $ d, e \in \ZZ_{> 0} $. There exists a polynomial
+$$ \Res_{d, e} \in k\sbr{A_0, \dots, A_d, B_0, \dots, B_e}, $$
+such that the polynomials
 $$ \sum_{i = 0}^d a_iS^iT^{d - i}, \qquad \sum_{i = 0}^e b_iS^iT^{e - i} $$
 have a common root in $ \PP^1 $ if and only if
 $$ \Res_{d, e}\br{a_0, \dots, a_d, b_0, \dots, b_e} = 0. $$
@@ -2094,7 +2096,9 @@ This can be proved by going through the linear algebra from the end of the proof
 
 \begin{theorem}
 \label{thm:domainresultant}
-Fix $ d, e \in \ZZ_{> 0} $. There exists a universal polynomial $ \Res_{d, e} \in \ZZ\sbr{A_0, \dots, A_d, B_0, \dots, B_e} $ such that, for any integral domain $ R $ and any values $ a_0, \dots, a_d, b_0, \dots, b_e \in R $, the homogeneous polynomials
+Fix $ d, e \in \ZZ_{> 0} $. There exists a universal polynomial
+$$ \Res_{d, e} \in \ZZ\sbr{A_0, \dots, A_d, B_0, \dots, B_e}, $$
+such that, for any integral domain $ R $ and any values $ a_0, \dots, a_d, b_0, \dots, b_e \in R $, the homogeneous polynomials
 $$ f = \sum_{i = 0}^d a_iS^iT^{d - i} \in R\sbr{S, T}, \qquad g = \sum_{i = 0}^e b_iS^iT^{e - i} \in R\sbr{S, T} $$
 have a common factor of positive degree in $ R\sbr{S, T} $ if and only if
 $$ \Res_{d, e}\br{a_0, \dots, a_d, b_0, \dots, b_e} = 0. $$
@@ -2110,6 +2114,8 @@ if and only if $ f $ and $ g $ have a common root in $ k $, as long as $ f $ and
 
 We shall now prove Chevalley's theorem. We will reduce the proof to projections by using graphs, in a similar way to what we did for completeness. We can also reduce to the case where $ V $ and $ W $ are affine spaces, and perform a few more simplifications. The real work of the proof lies in the first two lemmas. After proving these lemmas, we will show the sequence of simpler steps to get from there to Theorem \ref{thm:chevalleytheorem}.
 
+\pagebreak
+
 \begin{lemma}
 \label{lem:projectioneither}
 Let $ \pi : \PP^1 \times \AA^m \to \AA^m $ denote the second projection map. Let $ V $ be an irreducible closed subset of $ \PP^1 \times \AA^m $ and let $ T $ be a proper closed subset of $ V $. Then either
@@ -2118,8 +2124,6 @@ Let $ \pi : \PP^1 \times \AA^m \to \AA^m $ denote the second projection map. Let
 \item $ V = \PP^1 \times \pi\br{V} $.
 \end{enumerate}
 \end{lemma}
-
-\pagebreak
 
 \begin{proof}
 Let $ W = \pi\br{V} $. By the completeness of $ \PP^1 $, $ W $ is closed in $ \AA^m $, by Theorem \ref{thm:projectionclosed}. Since $ V $ is irreducible, $ W $ is also irreducible. Hence the ring of regular functions $ k\sbr{W} $ is an integral domain. We write $ k\sbr{W}\sbr{X, Y} $ for the ring of polynomials in two variables $ X $ and $ Y $ with coefficients in $ k\sbr{W} $. Let $ I \subseteq k\sbr{W}\sbr{X, Y} $ denote the homogeneous ideal of polynomials which vanish on $ V \subseteq \PP^1 \times W $. Assume that $ V \ne \PP^1 \times W $, otherwise conclusion $ 2 $ holds so we have nothing to prove. Thus $ I \ne \cbr{0} $. Let $ f $ be a homogeneous polynomial in $ I $ which has minimum degree with respect to $ X $ and $ Y $. Since $ V $ is irreducible, $ f $ has no factorisation into factors of positive degree, since if $ f = f_1f_2 $, then $ V \cup \cbr{f_1 = 0} $ and $ V \cup \cbr{f_2 = 0} $ would be two closed subsets which cover $ V $. Since $ T $ is closed and properly contained in $ V $, there exists $ g \in k\sbr{W}\sbr{X, Y} $ which vanishes on $ T $ but not on $ V $. Since $ g $ does not vanish on $ V $, $ f $ does not divide $ g $. Since $ f $ has no factors of positive degree, we conclude that $ f $ and $ g $ have no common factors of positive degree. Hence we can use the resultant over the integral domain $ k\sbr{W} $, by Theorem \ref{thm:domainresultant}, to say that
@@ -2150,12 +2154,12 @@ is a closed subset of $ W $, so $ \pi\br{Z} $ is open in $ W $. And $ \pi\br{Z} 
 \end{enumerate}
 \end{proof}
 
+\pagebreak
+
 \begin{corollary}
 \label{cor:projectionopen}
 Let $ \pi : \AA^{n + m} \to \AA^m $ denote projection onto the last $ m $ coordinates. Let $ Z \subseteq \AA^{n + m} $ be a constructible subset. Let $ W $ be the Zariski closure of $ \pi\br{Z} $ in $ \AA^m $. Then $ \pi\br{Z} $ contains a dense open subset of $ W $.
 \end{corollary}
-
-\pagebreak
 
 \begin{proof}
 It suffices to assume that $ Z $ is an irreducible locally closed set. If it was not, we could simply break it up first into finitely many locally closed sets, by the definition of constructible sets, and then break up each of these into finitely many irreducible components. The proof is by induction on $ n $. The base case is Lemma \ref{lem:projectionopen}. We factor $ \pi : \AA^{n + m} \to \AA^m $ as
@@ -2201,7 +2205,7 @@ The real hard work in this argument was in the proof of Lemma \ref{lem:projectio
 
 \lecture{22}{Monday}{02/03/20}
 
-We want to define the dimension of algebraic varieties. There are several different definitions, all equivalent but each being useful in different situations. None of these definitions is particularly obvious, so we begin by listing some properties that the dimension of an irreducible quasi-projective variety $ V $ ought to have. We only consider irreducible varieties here, because a reducible variety might have components of different dimensions so it is harder to be confident about what properties the dimension of a reducible variety should have.
+We want to define the dimension of algebraic varieties. There are several different definitions, all equivalent but each being useful in different situations. None of these definitions is particularly obvious, so we begin by listing some properties that the dimension of an irreducible quasi-projective variety $ V $ ought to have. We only consider irreducible varieties here, because a reducible variety might have components of different dimensions so it is harder to be confident about what properties it should have.
 \begin{enumerate}
 \item $ \dim V \in \NN $.
 \item $ \dim V = 0 $ if and only if $ V $ is a point. Remember that we are assuming that $ V $ is irreducible.
@@ -2217,7 +2221,7 @@ Let $ V $ and $ W $ be irreducible quasi-projective varieties. A dominant ration
 \end{definition*}
 
 \begin{note*}
-There is more than one possible definition of generically finite for non-dominant rational maps used by different authors. I shall avoid the issue by only using the words generically finite when the map is dominant.
+There is more than one possible reasonable definition of generically finite for non-dominant rational maps. I shall avoid the issue by only using the words generically finite when the map is dominant.
 \end{note*}
 
 Now we expect the following.
@@ -2234,7 +2238,7 @@ Let $ V $ be an irreducible quasi-projective variety. Then there exists a generi
 By Lemma \ref{lem:quasiprojectiveaffine}, $ V $ has a non-empty affine open subset $ U \subseteq V $. By Corollary \ref{cor:irreduciblehypersurface}, which we used in the proof of the Nullstellensatz, $ U $ is birational to a hypersurface $ H $ in some affine space $ \AA^n $. Taking the projective closure $ \overline{H} $ of $ H $ in $ \PP^n $, we conclude that $ V $ is birational to $ \overline{H} $. Now projection from any point $ p \in \PP^n \setminus \overline{H} $ gives a generically finite dominant rational map $ \overline{H} \dashrightarrow \PP^{n - 1} $.
 \end{proof}
 
-Using properties $ 3 $ and $ 7 $, we can calculate $ \dim V $ by finding a generically finite dominant rational map $ V \dashrightarrow \PP^d $ and then saying that $ \dim V = d $. There is one problem with this definition. Maybe we can find generically finite dominant rational maps from $ V $ to two different projective spaces, giving two values for $ \dim V $. Fortunately this cannot happen, which is proved using the notion of transcendence degree from algebra.
+Using properties $ 3 $ and $ 7 $, we can calculate $ \dim V $ by finding a generically finite dominant rational map $ V \dashrightarrow \PP^d $ and then saying that $ \dim V = d $. There is one problem with this definition. Maybe we can find generically finite dominant rational maps from $ V $ to two different projective spaces, giving two values for $ \dim V $. How do we know that they will all live in affine space of the same dimension? Fortunately this cannot happen, which is proved using the notion of transcendence degree from algebra.
 
 \begin{theorem}
 \label{thm:algebraicallyindependent}
@@ -2245,11 +2249,11 @@ Let $ k $ and $ K $ be fields, with $ k \subseteq K $. All maximal $ k $-algebra
 Let $ k $ and $ K $ be fields, with $ k \subseteq K $. The \textbf{transcendence degree} of the extension $ K $ over $ k $ is the cardinality of a maximal $ k $-algebraically independent set in $ K $.
 \end{definition*}
 
-\pagebreak
-
 \begin{note*}
 We already made use of the idea of transcendence degree in the proof of Corollary \ref{cor:irreduciblehypersurface}, even if we did not prove it. In the proof of Corollary \ref{cor:irreduciblehypersurface}, we took a maximal $ k $-algebraically independent set $ z_1, \dots, z_d $ in $ k\br{V} $, then proved that $ V $ is birational to a hypersurface in $ \AA^{d + 1} $. Theorem \ref{thm:algebraicallyindependent} shows that the value of $ d $ here is the same for all maximal $ k $-algebraically independent sets in $ k\br{V} $.
 \end{note*}
+
+\pagebreak
 
 \begin{definition*}
 The \textbf{dimension} of an irreducible quasi-projective variety $ V $ is the transcendence degree, over $ k $, of the field of rational functions $ k\br{V} $.
@@ -2267,5 +2271,73 @@ We can replace $ V $ by the open subset $ \dom \phi $, so that $ \phi $ becomes 
 \end{proof}
 
 This allows us to restate the definition by saying, $ \dim V = d $ if and only if there exists a generically finite dominant rational map $ V \dashrightarrow \PP^d $.
+
+\subsubsection{Facts about dimension}
+
+\lecture{23}{Thursday}{05/03/20}
+
+We begin with some simple facts.
+
+\begin{fact*}
+Let $ V $ and $ W $ be irreducible quasi-projective algebraic varieties.
+\begin{itemize}
+\item If $ \phi : V \dashrightarrow W $ is a dominant rational map, then $ \dim W \le \dim V $. This follows from the fact that $ \phi^* $ is an injection $ k\br{W} \to k\br{V} $.
+\item $ \dim V \times W = \dim V + \dim W $. This holds because if $ \phi : V \dashrightarrow \AA^d $ and $ \psi : W \dashrightarrow \AA^e $ are generically finite dominant rational maps, then $ \br{\phi, \psi} : V \times W \dashrightarrow \AA^{d + e} $ is a generically finite dominant rational map.
+\end{itemize}
+\end{fact*}
+
+\subsubsection{Dimension of closed subsets}
+
+\begin{lemma}
+\label{lem:closeddimension}
+Let $ V $ be an irreducible quasi-projective variety and let $ W $ be an irreducible closed subset of $ V $. Then $ \dim W \le \dim V $.
+\end{lemma}
+
+\begin{proof}
+It suffices to prove Lemma \ref{lem:closeddimension} for irreducible $ V $ and $ W $. Using Lemma \ref{lem:quasiprojectiveaffine}, we may assume that $ V $ and $ W $ are affine algebraic sets in some affine space $ \AA^n $. Let $ d = \dim V $. Then any $ d + 1 $ of the coordinate functions are algebraically dependent in $ k\br{V} $. In other words, there exists a polynomial $ f \in k\sbr{T_1, \dots, T_{d + 1}} $ such that $ f\br{\eval{X_{i_1}}_V, \dots, \eval{X_{i_{d + 1}}}_V} = 0 $ in $ k\br{V} $. Since $ W \subseteq V $, this relation still holds after restricting to $ W $, so $ f\br{\eval{X_{i_1}}_W, \dots, \eval{X_{i_{d + 1}}}_W} = 0 $ in $ k\sbr{W} $. But the field of functions $ k\br{W} $ is generated, as a $ k $-field, by $ \eval{X_1}_W, \dots, \eval{X_n}_W $, so this establishes that $ \trdeg\br{k\br{W} / k} \le d $.
+\end{proof}
+
+We will later show that equality can only happen in Lemma \ref{lem:closeddimension} if $ W = V $. We could prove this algebraically now, but instead we will end the algebraic proofs using transcendence degree here and prove everything else geometrically. This means that we will need several steps before improving Lemma \ref{lem:closeddimension} to a strict inequality.
+
+\pagebreak
+
+\subsubsection{Dimension of a reducible variety}
+
+So far we have defined the dimension of an irreducible quasi-projective variety. The \textbf{dimension} of a reducible variety is defined to be the maximum of the dimensions of the irreducible components. To explain why this is a sensible definition, and why not minimum for example, note that if $ V = V_1 \cup \dots \cup V_r $ are the irreducible components of $ V $, then $ V_i \subseteq V $ so we should have $ \dim V_i \le \dim V $ for each $ i $. Meanwhile, we could find $ W_i $ for each $ i $ such that $ V_i \subseteq W_i $ and $ \dim W_i = \max\br{\dim V_1, \dots, \dim V_r} $. Then every irreducible component of $ W_1 \cup \dots \cup W_r $ has the same dimension, so it makes sense to declare that $ \dim\br{W_1 \cup \dots \cup W_r} $ is equal to $ \dim W_i $ for all $ i $. But then $ V \subseteq W_1 \cup \dots \cup W_r $ so $ \dim V \le \dim W_i = \max\br{\dim V_1, \dots, \dim V_r} $.
+
+\subsubsection{Intersection with a hyperplane}
+
+We begin by studying intersections between a projective algebraic set and hypersurfaces. For today, just hyperplanes. This is much simpler for projective varieties than for quasi-projective varieties, because then we know that there can be no intersections hiding at infinity. The expectation is that, if $ V $ is an algebraic set and $ H $ is a hypersurface, then $ \dim V \cap H $ should usually be $ \dim V - 1 $, because it is just adding one more equation to the equations defining $ V $. Before proving this, we need a couple of lemmas. Firstly, there is no room between a hypersurface and $ \PP^n $ to squeeze in another irreducible algebraic set.
+
+\begin{lemma}
+\label{lem:hypersurfaceirreducible}
+Let $ H \subseteq \PP^n $ be a hyperplane, or more generally a hypersurface. Let $ V \subseteq \PP^n $ be an irreducible projective algebraic set. If $ V \ne \PP^n $ and $ V \ne H $, then $ H \not\subseteq V $.
+\end{lemma}
+
+\begin{proof}
+Look at ideals of polynomials which vanish on $ H $ and $ V $.
+\end{proof}
+
+Secondly, we need to know how projection interacts with dimension.
+
+\begin{lemma}
+\label{lem:projectiondimension}
+Let $ V \subseteq \PP^n $ be an irreducible projective algebraic set. Let $ p \in \PP^n $ and let $ Z \subseteq \PP^n $ be a hyperplane such that $ p \notin Z $. Let $ \pi : \PP^n \dashrightarrow Z $ be the projection from $ p $ onto $ Z $. If $ p \notin V $, then $ \pi\br{V} $ is a Zariski closed subset of $ Z $ and $ \eval{\pi}_V : V \to \pi\br{V} $ is generically finite, so $ \dim \pi\br{V} = \dim V $.
+\end{lemma}
+
+\begin{proof}
+The projection $ \pi $ is regular on $ \PP^n \setminus \cbr{p} $, and in particular it is regular on $ V $. Since $ V $ is complete, $ \pi\br{V} $ is a closed subset of $ Z $. Now $ \eval{\pi}_V : V \to \pi\br{V} $ is certainly dominant. Indeed it is surjective. In order to show that $ \dim \pi\br{V} = \dim V $, it suffices to show that $ \eval{\pi}_V $ is generically finite. Consider a point $ y \in \pi\br{V} $. The preimage of $ y $ under $ \eval{\pi}_V $ is the intersection $ V \cap \L_{py} $, where $ \L_{py} $ is the line through $ p $ and $ y $. Now $ V \cap \L_{py} $ is a closed subset of $ \L_{py} $. Furthermore $ V \cap \L_{py} \ne \L_{py} $ because $ p \notin V $. Because $ \L_{py} \cong \PP^1 $, we conclude that $ V \cap \L_{py} $ must be finite. In other words $ \eval{\pi}_V^{-1}\br{y} $ is finite for all $ y \in \pi\br{V} $, and so $ \eval{\pi}_V $ is generically finite.
+\end{proof}
+
+Now we are ready to prove the result on the dimension of intersection with a hyperplane. Note the exceptional cases. If $ H $ contains a component of $ V $ of maximum dimension, then $ \dim V \cap H = \dim V $, while if $ \dim V = 0 $ then $ V \cap H $ might be empty. If $ \dim V > 0 $, then $ V \cap H \ne \emptyset $ by Lemma \ref{lem:hypersurfaceintersection}.
+
+\begin{proposition}
+\label{prop:hyperplanedimension}
+Let $ V \subseteq \PP^n $ be a projective algebraic set. Let $ H \subseteq \PP^n $ be a hyperplane which does not contain any irreducible component of $ V $. If $ \dim V > 0 $, then $ V \cap H $ is non-empty and $ \dim V \cap H = \dim V - 1 $.
+\end{proposition}
+
+\begin{proof}
+First replace $ V $ by an irreducible component $ V_1 $ such that $ \dim V_1 = \dim V $. Thus we may assume that $ V $ is irreducible. The proof is by induction on $ n $, the dimension of the ambient space. The base case of the induction is when $ V = \PP^n $. Remember we are inducting on $ n $, not $ \dim V $. This is trivial, since $ V \cap H = H \cong \PP^{n - 1} $ certainly has dimension $ n - 1 $. Otherwise, $ V \ne \PP^n $. We will project into $ \PP^{n - 1} $. In order to use Lemma \ref{lem:projectiondimension}, we need to project from a point $ p \notin V $. In order for the projection to interact nicely with $ H $, we need $ p \in H $. Fortunately, we can use Lemma \ref{lem:hypersurfaceirreducible} to show that a suitable $ p $ exists. We are assuming $ V \ne \PP^n $ while the hypothesis of Proposition \ref{prop:hyperplanedimension} tells us that $ V \not\subseteq H $, so $ V \ne H $. Therefore by Lemma \ref{lem:hypersurfaceirreducible}, $ H \not\subseteq V $, the opposite way round to our hypothesis, so we can select a point $ p \in H $ such that $ p \notin V $. Choose a hyperplane $ Z \subseteq \PP^n $ such that $ p \notin Z $. It does not matter which we choose. Let $ \pi : \PP^n \to Z $ be the projection from $ p $ onto $ Z $. Because $ p \in H $, all lines through $ p $ and a point of $ H $ lie entirely in $ H $. Therefore $ x \in H \setminus \cbr{p} $ if and only if $ \pi\br{x} \in H \cap Z $, and consequently $ \pi\br{V \cap H} = \pi\br{V} \cap \br{H \cap Z} $. This implies that $ \pi\br{V} \not\subseteq H \cap Z $, because $ V \not\subseteq H $. By completeness, $ \pi\br{V} $ is a closed subset of $ Z \cong \PP^{n - 1} $, while $ H \cap Z $ is a hyperplane in $ Z $. Furthermore, $ \pi\br{V} $ is irreducible and we have shown that $ \pi\br{V} \not\subseteq H \cap Z $. Therefore, by induction, we have $ \dim \pi\br{V} \cap \br{H \cap Z} = \dim \pi\br{V} - 1 $. We conclude by using Lemma \ref{lem:projectiondimension}, which tells us that $ \dim \pi\br{V} = \dim V $ and $ \dim \pi\br{V \cap H} = \dim \pi\br{V} \cap \br{H \cap Z} $.
+\end{proof}
 
 \end{document}
