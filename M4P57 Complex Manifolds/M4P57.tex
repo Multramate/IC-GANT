@@ -1797,6 +1797,7 @@ $$ \Ker \d = \HHH^k\br{X} \oplus \d\br{\C^\infty\br{X, \Omega_{X, \CC}^{k - 1}}}
 \pagebreak
 
 \begin{theorem}
+\label{thm:6.18}
 Let $ \br{X, \omega} $ be compact K\"ahler, and let $ k \ge 0 $. Then
 $$ \HHH^k\br{X} = \H^k\br{X, \CC}. $$
 \end{theorem}
@@ -1848,7 +1849,7 @@ We say that a form $ \alpha $ is \textbf{$ \Delta_\partial $-harmonic} if $ \Del
 \end{lemma}
 
 Let
-$$ \HHH^{p, q}\br{X} = \cbr{\alpha \ \text{$ \br{p, q} $-form} \st \Delta_{\overline{\partial}}\alpha = 0}. $$
+$$ \HHH^{p, q}\br{X} = \cbr{\alpha \ \text{harmonic $ \br{p, q} $-form} \st \Delta_{\overline{\partial}}\alpha = 0}. $$
 
 \begin{theorem}
 Let $ \br{X, \omega} $ be a compact K\"ahler manifold. Then $ \HHH^{p, q}\br{X} $ are finite dimensional vector spaces,
@@ -1858,6 +1859,7 @@ $$ \Ker \overline{\partial} = \HHH^{p, q}\br{X} \oplus \overline{\partial}\br{\C
 \end{theorem}
 
 \begin{theorem}
+\label{thm:6.22}
 The setup is as before. Then
 $$ \HHH^{p, q}\br{X} = \H^{p, q}\br{X} = \Ker \overline{\partial} / \Im \overline{\partial}. $$
 \end{theorem}
@@ -1896,10 +1898,10 @@ and $ \br{-1}^k\star\L\star $ is the adjoint of $ \L $.
 
 \begin{definition}
 Let $ p : E \to X $ and $ q : F \to X $ be holomorphic vector bundles on $ X $. Then a $ \CC $-linear
-$$ \P : \C^\infty\br{X, E} \to \C^\infty\br{X, F} $$
+$$ P : \C^\infty\br{X, E} \to \C^\infty\br{X, F} $$
 is called a \textbf{differential operator of order $ d $} if for all $ x \in X $, there exists an open set $ U \ni x $, local coordinates $ z_1, \dots, z_n $, a frame $ s_1, \dots, s_r $ for $ E $, and a frame $ t_1, \dots, t_l $ for $ F $, such that
-$$ \P\br{\sum_{i = 1}^r f_is_i} = \sum_{i = 1, \dots, l, \ j = 1, \dots, r, \ I = \br{i_1, \dots, i_n}} \P_{I, i, j}\dpd{f_j}{x_I}t_i, \qquad f_j \in \C^\infty\br{U}, $$
-where $ \P_{I, i, j} = 0 $ if $ \abs{I} > d $ and $ \P_{I, i, j} \ne 0 $ for some $ \abs{I} = d $.
+$$ P\br{\sum_{i = 1}^r f_is_i} = \sum_{i = 1, \dots, l, \ j = 1, \dots, r, \ I = \br{i_1, \dots, i_n}} P_{I, i, j}\dpd{f_j}{x_I}t_i, \qquad f_j \in \C^\infty\br{U}, $$
+where $ P_{I, i, j} = 0 $ if $ \abs{I} > d $ and $ P_{I, i, j} \ne 0 $ for some $ \abs{I} = d $.
 \end{definition}
 
 \begin{fact*}
@@ -1914,9 +1916,101 @@ $$ \sbr{A, B} = AB - \br{-1}^{a \cdot b}BA. $$
 \end{notation}
 
 \begin{definition}
-Let $ X $ be a complex manifold, let $ V $ be a vector field, and let $ \omega $ be a $ k $-form on $ X $. Then $ v \ \lrcorner \ \omega $, the \textbf{contraction of $ \omega $ with respect to $ v $}, is a $ \br{k - 1} $-form defined by
+Let $ X $ be a complex manifold, let $ v $ be a vector field, and let $ \omega $ be a $ k $-form on $ X $. Then $ v \ \lrcorner \ \omega $, the \textbf{contraction of $ \omega $ with respect to $ v $}, is a $ \br{k - 1} $-form defined by
 $$ \br{v \ \lrcorner \ \omega}\br{v_1, \dots, v_{k - 1}} = \omega\br{v, v_1, \dots, v_{k - 1}}, $$
 on $ \C^\infty\br{X} $.
 \end{definition}
+
+\lecture{25}{Thursday}{05/03/20}
+
+\begin{example}
+Let $ U \subset \CC^n $ be open. Then $ \T_U $ is spanned by the frame $ \tpd{}{z_1}, \dots, \tpd{}{z_n} $. Let $ I = \br{i_1, \dots, i_k} $. It is easy to check
+$$ \dpd{}{z_m} \ \lrcorner \ \d z_I =
+\begin{cases}
+0 & m \notin \cbr{i_1, \dots, i_k} \\
+\br{-1}^{l - 1} \d z_{i_1} \wedge \dots \wedge \widehat{\d z_{i_l}} \wedge \dots \wedge \d z_{i_k} & m = i_l
+\end{cases}.
+$$
+\end{example}
+
+\begin{exercise*}
+Let $ v \in \C^\infty\br{U, \T_U} $, and let $ \alpha \in \C^\infty\br{U, \Omega_{U, \CC}^p} $ and $ \beta \in \C^\infty\br{U, \Omega_{U, \CC}^q} $. Then
+$$ v \ \lrcorner \ \br{\alpha \wedge \beta} = \br{v \ \lrcorner \ \alpha} \wedge \beta + \br{-1}^p\alpha \wedge \br{v \ \lrcorner \ \beta}. $$
+\end{exercise*}
+
+\subsection{K\"ahler identities}
+
+The goal is the Hodge decomposition. Want to show if $ \br{X, \omega} $ is a K\"ahler manifold then
+$$ \HHH^k\br{X} = \bigoplus_{p + q = k} \HHH^{p, q}\br{X}, $$
+where $ \HHH^k\br{X} $ are $ \Delta $-harmonic forms and $ \HHH^{p, q}\br{X} $ are $ \Delta_{\overline{\partial}} $-harmonic forms. We want to compose $ \Delta $ with $ \Delta_{\overline{\partial}} $, by
+\begin{itemize}
+\item K\"ahler identities on $ \CC^n $ with the standard metric, and
+\item to show any K\"ahler manifold is locally like $ \CC^n $ with the standard metric.
+\end{itemize}
+
+\begin{example}
+Let $ U \subset \CC^n $, and let $ \omega = \tfrac{i}{2}\sum_i \d z_i \wedge \d\overline{z_i} $ be K\"ahler. With respect to such a metric the frame $ \tpd{}{z_1}, \dots, \tpd{}{z_n} $ is orthonormal. Let
+$$ \alpha = \sum_{\abs{I} = p, \ \abs{J} = q} \alpha_{I, J} \d z_I \wedge \d\overline{z_J} \in \C_\c^\infty\br{U, \Omega_\CC^{p, q}}, \qquad \alpha_{I, J} \in \C_\c^\infty\br{U}. $$
+Recall $ \partial^* = -\star\partial\star $. From the definition of $ \star $,
+$$ \partial^*\alpha = -\sum_{k = 1}^n \sum_{\abs{I} = p, \ \abs{J} = q} \dpd{}{z_k}\alpha_{I, J}\dpd{}{\overline{z_k}} \ \lrcorner \ \br{\d z_I \wedge \d\overline{z_J}}. \footnote{Exercise} $$
+The notation is
+$$ \dpd{}{z_k}\alpha = \sum_{\abs{I} = p, \ \abs{J} = q} \dpd{}{z_k}\alpha_{I, J} \d z_I \wedge \d\overline{z_J}. $$
+Thus
+$$ \partial^*\alpha = -\sum_{k = 1}^n \dpd{}{\overline{z_k}} \ \lrcorner \ \dpd{}{z_k}\alpha. $$
+\end{example}
+
+\pagebreak
+
+\begin{lemma}[K\"ahler identity on $ \CC^n $]
+Let $ U \subset \CC^n $ be open, and let $ \omega = \tfrac{i}{2}\sum_i \d z_i \wedge \d\overline{z_i} $. Then
+$$ \sbr{\overline{\partial}^*, \L} = i\partial. $$
+\end{lemma}
+
+\begin{proof}
+By $ \CC $-linearity, we may assume $ \alpha = \alpha_{I, J} \d z_I \wedge \d\overline{z_J} $ for some $ \abs{I} = p $ and $ \abs{J} = q $. Then $ \partial^*\alpha = -\sum_{k = 1}^n \tpd{}{\overline{z_k}} \ \lrcorner \ \tpd{}{z_k}\alpha $, so
+$$ \sbr{\overline{\partial}^*, \L}\alpha = \overline{\partial}^*\L\alpha - \L\overline{\partial}^*\alpha = -\sum_{k = 1}^n \dpd{}{z_k} \ \lrcorner \ \dpd{}{\overline{z_k}}\br{\omega \wedge \alpha} + \omega \wedge \br{\sum_{k = 1}^n \dpd{}{z_k} \ \lrcorner \ \dpd{}{\overline{z_k}}\alpha}. $$
+Since $ \tpd{}{\overline{z_k}}\br{\omega \wedge \alpha} = \omega \wedge \tpd{}{\overline{z_k}}\alpha $,
+$$ \sbr{\overline{\partial}^*, \L}\alpha = -\sum_{k = 1}^n \dpd{}{z_k} \ \lrcorner \ \br{\omega \wedge \dpd{}{\overline{z_k}}\alpha} + \omega \wedge \br{\sum_{k = 1}^n \dpd{}{z_k} \ \lrcorner \ \dpd{}{\overline{z_k}}\alpha}. $$
+Recall that $ v \ \lrcorner \ \br{\alpha \wedge \beta} = \br{v \ \lrcorner \ \alpha} \wedge \beta + \br{-1}^p\alpha \wedge \br{v \ \lrcorner \ \beta} $, so
+$$ \dpd{}{z_k} \ \lrcorner \ \br{\omega \wedge \dpd{}{\overline{z_k}}\alpha} = \br{\dpd{}{z_k} \ \lrcorner \ \omega} \wedge \dpd{}{\overline{z_k}}\alpha + \omega \wedge \br{\dpd{}{z_k} \ \lrcorner \ \dpd{}{\overline{z_k}}\alpha}, $$
+since $ p = 2 $. Since $ \tpd{}{z_k} \ \lrcorner \ \omega = i\d\overline{z_k} $,
+$$ \dpd{}{z_k} \ \lrcorner \ \br{\omega \wedge \dpd{}{\overline{z_k}}\alpha} = i\d\overline{z_k} \wedge \dpd{}{\overline{z_k}}\alpha + \omega \wedge \br{\dpd{}{z_k} \ \lrcorner \ \dpd{}{\overline{z_k}}\alpha}. $$
+Thus
+$$ \sbr{\overline{\partial}^*, \L}\alpha = \sum_{k = 1}^n i\d\overline{z_k} \wedge \dpd{}{\overline{z_k}}\alpha = i\partial\alpha. $$
+\end{proof}
+
+\begin{theorem}
+Let $ \br{X, \omega} $ be a K\"ahler manifold, and let $ x \in X $. There exist local holomorphic coordinates $ z_1, \dots, z_n $ around $ x $ such that if
+$$ \omega = \dfrac{i}{2}\sum_{j, k = 1}^n h_{jk} \d z_k \wedge \d\overline{z_k}, $$
+then
+$$ h_{jk} = \delta_{jk} + \OOO\br{\abs{z}^2}. $$
+\end{theorem}
+
+\begin{remark*}
+Assume that $ X $ is a complex manifold and $ \omega $ is a positive real $ \br{1, 1} $-form which satisfies the above. Then $ \omega $ is K\"ahler, so $ \d\omega = 0 $. \footnote{Exercise}
+\end{remark*}
+
+\begin{proof}
+Recall there exists a linear change of coordinates such that at $ x $, $ h_{jk}\br{x} = \delta_{jk} $, that is $ h_{jk}\br{z} = \delta_{jk} + \OOO\br{\abs{z}} $. Let
+$$ \omega = \dfrac{i}{2}\sum_{j, k = 1}^n h_{jk} \d z_k \wedge \d\overline{z_k}. $$
+Then
+$$ h_{jk} = \delta_{jk} + \sum_{l = 1}^n \br{a_{jkl}z_l + a_{jkl}'\overline{z_l}} + \OOO\br{\abs{z}^2}, \qquad a_{jkl}, a_{jkl}' \in \CC. $$
+Since $ h_{jk} $ is Hermitian $ \overline{a_{kjl}} = a_{jkl}' $. Since $ \omega $ is K\"ahler, $ \d\omega = 0 $, so $ a_{jkl} = a_{lkj} $. Write
+$$ \xi_k = z_k + \dfrac{1}{2}\sum_{j, l = 1}^n a_{jkl}z_jz_l, \qquad k = 1, \dots, n. $$
+
+\pagebreak
+
+Then $ \xi_k $ is holomorphic. Let $ \phi\br{z_1, \dots, z_n} = \br{\xi_1, \dots, \xi_n} $. Then $ \d\phi_x = \id $, so around $ x $, $ \det \d\phi \ne 0 $. By the implicit function theorem, $ \phi $ is locally an isomorphism, so $ \xi_1, \dots, \xi_n $ are homogeneous holomorphic coordinates at $ x $. Then
+$$ \d\xi_k = \d z_k + \dfrac{1}{2}\sum_{j, l = 1}^n a_{jkl}\br{z_j \d z_j + z_l \d z_l} = \d z_k + \dfrac{1}{2}\sum_{j, l = 1}^n \br{a_{jkl} + a_{lkj}}z_l \d z_j = \d z_k + \sum_{j, l = 1}^n a_{jkl}z_l \d z_j, $$
+so
+\begin{align*}
+i\sum_{k = 1}^n \br{\d\xi_k \wedge \d\overline{\xi_k}}
+& = i\sum_{k = 1}^n \d z_k \wedge \d\overline{z_k} + i\sum_{j, k, l = 1}^n \br{\overline{a_{jkl}z_l} \d z_k \wedge \d\overline{z_j} + a_{jkl}z_l \d z_j \wedge \d\overline{z_k}} + \OOO\br{\abs{z}^2} \\
+& = i\sum_{j, k = 1}^n \delta_{jk} \d z_j \wedge \d\overline{z_k} + i\sum_{j, k, l = 1}^n \br{a_{jkl}'\overline{z_l} + a_{jkl}z_l} \d z_j \wedge \d\overline{z_k} + \OOO\br{\abs{z}^2} \\
+& = i\sum_{j, k = 1}^n \br{\delta_{jk} + \sum_{l = 1}^n \br{a_{jkl}'\overline{z_l} + a_{jkl}z_l}} \d z_j \wedge \d\overline{z_k} + \OOO\br{\abs{z}^2} \\
+& = i\sum_{j, k = 1}^n h_{jk} \d z_j \wedge \d\overline{z_k}
+= 2\omega.
+\end{align*}
+\end{proof}
 
 \end{document}
