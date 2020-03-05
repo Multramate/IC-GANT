@@ -1911,7 +1911,7 @@ such that
 \item $ M^{\br{k}} $ is obtained by attaching $ k $-cells to $ M^{\br{k - 1}} $, and
 \item $ V \subset M $ is closed if and only if $ V \cap M^{\br{k}} $ is closed for all $ k $.
 \end{enumerate}
-Such $ M $ is called a \textbf{CW-complex}. Then $ M $ is a \textbf{finite CW-complex} if it is obtained by attaching finitely many cells. In this case $ 3 $ is not needed.
+Such $ M $ is called a \textbf{CW-complex}. Then $ M $ is a \textbf{finite CW-complex} if it is obtained by attaching finitely many cells. In this case $ 3 $ is not needed. A \textbf{subcomplex} of a CW-complex $ M $ is a closed subspace of $ M $ which is a union of cells of $ M $. A \textbf{closed cell} is the image of $ \D_n $ in a cell. An \textbf{open cell} is the image of $ \D_n \setminus \partial\D_n $ in a cell. Open cells are not open in $ M $ in general.
 \end{definition}
 
 \begin{example}
@@ -1923,11 +1923,34 @@ Such $ M $ is called a \textbf{CW-complex}. Then $ M $ is a \textbf{finite CW-co
 \end{itemize}
 \end{example}
 
-A \textbf{subcomplex} of a CW-complex $ M $ is a closed subspace of $ M $ which is a union of cells of $ M $. A \textbf{closed cell} is the image of $ \D_n $ in a cell. An \textbf{open cell} is the image of $ \D_n \setminus \partial\D_n $ in a cell. Open cells are not open in $ M $ in general.
-
 \pagebreak
 
-\subsection{Flows}
+\begin{proposition}
+\label{prop:3.11}
+Let $ M $ be a CW-complex. Then
+\begin{enumerate}
+\item if $ K \subset M $ is a compact subset, then $ K $ is contained in a finite union of open cells, and
+\item the closure of every cell of $ M $ is contained in a finite subcomplex of $ M $.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\hfill
+\begin{enumerate}
+\item We first prove $ 1 $. Let $ K \subset M $ be a compact subset. We want to show that $ K $ only intersects finitely many cells of $ M $. Assume by contradiction that there is an infinite sequence of points $ S = \cbr{x_j} \subset K $ all lying in distinct cells. We claim that $ S \cap M^{\br{n}} $ is closed and discrete for all $ n \ge 0 $. We proceed by induction on $ n $. For $ n = 0 $, this follows from the fact that $ M^{\br{0}} $ is closed and discrete. Assume now that $ S \cap M^{\br{n}} $ is closed and discrete. Then, if $ \cbr{e_i}_I $ are the $ \br{n + 1} $-cells, then the open cell corresponding to $ e_i $ contains at most one $ x_j \in S $. Thus $ S \cap \br{\bigcup_i e_i} $ is closed and discrete. It follows that $ S \cap M^{\br{n + 1}} $ is closed and discrete, as claimed. Since $ S \subset K $, it follows that $ S $ is finite, a contradiction.
+\item We now prove $ 2 $. To this end, we proceed by induction on the dimension $ n $ of the cell. For $ n = 0 $, the result is clear. Assume now that the result is true for any $ m $-cell with $ m < n $ and let $ e_n $ be an $ n $-cell. In particular, the border $ K $ of $ e_n $ is the image of $ \S^{n - 1} $ and it is compact. Hence, it is contained in a finite union of open cells of dimension smaller than $ n $ by $ 1 $. By induction, each of these cells is contained in a finite subcomplex. The union of these subcomplexes is a finite subcomplex containing $ K $. Hence attaching $ e_n $ results in a finite subcomplex containing $ e_n $.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+Let $ M $ be a CW-complex. Then any compact subset of $ M $ is contained in a finite subcomplex.
+\end{corollary}
+
+\begin{proof}
+Since a finite union of finite subcomplex is again a finite subcomplex, the result follows immediately from Proposition \ref{prop:3.11}.
+\end{proof}
+
+\subsection{The CW-complex structure associated to a Morse function}
 
 \lecture{22}{Thursday}{27/02/20}
 
@@ -1944,9 +1967,18 @@ where $ \gamma_x\br{0} = x $.
 
 Since $ \tod{}{t}\eval{\gamma_x}_{t = 0} \in \T_xM $, the flow defines a vector field on $ M $, that is a smooth section of $ \T M $. On the other hand, given a vector field, we can find a flow. Let $ X $ be a section of $ \T M $. There exists $ \phi_t $, and $ \gamma_x $, as above such that $ \tod{}{t}\eval{\gamma_x}_{t = 0} \in \T_xM $, locally around $ t = 0 $.
 
-\begin{example}
+\begin{lemma}
+Let $ M $ be a manifold, and let $ X $ be a smooth compactly supported vector field on $ M $. Then $ X $ generates a unique one-parameter group of diffeomorphisms $ \phi_t : M \to M $ such that, for all $ x \in M $, we have
+$$ \br{X \circ \gamma_x}\br{t} = \dod{}{t}\gamma_x\br{t}. $$
+\end{lemma}
+
+It can be shown that two distinct flow lines are disjoint. Thus, the manifold $ M $ decomposes into a disjoint union of flow lines.
+
+\begin{example*}
 Let $ M = \RR $, and let $ X = x^2\partial_x $. Find the flow. \footnote{Exercise}
-\end{example}
+\end{example*}
+
+\pagebreak
 
 \begin{definition}
 Let $ M $ be a manifold. A \textbf{Riemannian metric} $ g $ on $ M $ is a collection of inner products for $ \T_xM $ for $ x \in M $ given by
@@ -1964,7 +1996,9 @@ the derivative of $ f $ with respect to $ X $.
 
 Thus,
 $$ \norm{\nabla f}^2 = g\br{\nabla f, \nabla f} = \D f\br{\nabla f}. $$
-In particular $ \nabla f\br{x} = 0 $ if and only if $ x $ is a critical point of $ f $, and $ \nabla f $ is orthogonal to any vector tangent to $ f^{-1}\br{c} $ for all regular values $ c \in \RR $. In particular, for all smooth functions $ f : M \to \RR $, we can take the flow $ \phi $ associated to $ -\nabla f $ such that if $ \gamma_x\br{t} = \phi\br{t, x} $ then $ \tod{}{t}\gamma_x\br{0} = -\nabla f\br{\gamma_x\br{0}} $ where $ \gamma_x\br{0} = x $. This is called the \textbf{gradient flow} of $ f $. The integral curve of this flow are called \textbf{gradient flow lines}.
+In particular $ \nabla f\br{x} = 0 $ if and only if $ x $ is a critical point of $ f $, and $ \nabla f $ is orthogonal to any vector tangent to $ f^{-1}\br{c} $ for all regular values $ c \in \RR $. In particular, for all smooth functions $ f : M \to \RR $, we can take the flow $ \phi $ associated to $ -\nabla f $ such that if $ \gamma_x\br{t} = \phi\br{t, x} $ then
+$$ \dod{}{t}\gamma_x\br{0} = -\nabla f\br{\gamma_x\br{0}}, \qquad \gamma_x\br{0} = x. $$
+This is called the \textbf{gradient flow} of $ f $. The integral curve of this flow are called \textbf{gradient flow lines}.
 
 \begin{lemma}
 $ f $ decreases along the gradient lines, that is $ f\br{\gamma_x\br{t}} $ is a decreasing function with respect to $ t $.
@@ -1977,8 +2011,6 @@ $$ 0 \le -\norm{\nabla f\br{\gamma_x\br{t}}}^2 = \D f_{\gamma_x\br{t}}\br{-\nabl
 \begin{proposition}
 Let $ M $ be a compact manifold, and let $ f : M \to \RR $ be a Morse function. Then every gradient flow line begins and ends with a critical point of $ f $, that is $ \lim_{t \to \pm\infty} \gamma_x\br{t} $ exist and are critical points of $ f $.
 \end{proposition}
-
-\pagebreak
 
 \begin{proof}
 First we prove that if the limit exists then it is a critical point of $ f $. For all $ x $, $ f\br{\gamma_x\br{\cdot}} : \RR \to \RR $ is a bounded function. Then
@@ -1996,10 +2028,14 @@ This implies that $ S $ and $ X $ are homotopy equivalent.
 
 \begin{theorem}[First fundamental theorem of Morse theory]
 \label{thm:4.8}
-Let $ M $ be a manifold, let $ f : M \to \RR $, let $ a < b \in \RR $ such that $ f^{-1}\br{\sbr{a, b}} $ does not contain any critical point, and let $ \S_t = f^{-1}\br{\intoc{-\infty, t}} $ for all $ t \in \RR $. Then $ \S_a $ is a deformation retract of $ \S_b $.
+Let $ M $ be a manifold, let $ f : M \to \RR $, let $ a < b \in \RR $ such that $ f^{-1}\br{\sbr{a, b}} $ does not contain any critical point, and let
+$$ \S_t = f^{-1}\br{\intoc{-\infty, t}}, \qquad t \in \RR. $$
+Then $ \S_a $ is a deformation retract of $ \S_b $.
 \end{theorem}
 
 The idea is that we will use a perturbation of the gradient flow.
+
+\pagebreak
 
 \begin{proof}
 There exists $ \epsilon > 0 $ such that $ f^{-1}\br{\sbr{a - \epsilon, b + \epsilon}} $ does not contain any critical point. Fix a metric $ g $ on $ M $. Define $ \rho $ smooth on $ M $ such that $ \rho\br{x} \ge 0 $ and
@@ -2009,11 +2045,17 @@ $$ \rho\br{x} =
 0 & x \in M \setminus f^{-1}\br{\sbr{a - \epsilon, b + \epsilon}}
 \end{cases}.
 $$
-Define $ X\br{x} = -\rho\br{x}\nabla f\br{x} $. There exists a flow $ \phi\br{t, x} $ induced by $ X $, that is if $ \gamma_x\br{t} = \phi\br{t, x} $ then $ \tod{}{t}\gamma_x\br{0} = X\br{x} $. By definition of $ \nabla f $,
+Define
+$$ X\br{x} = -\rho\br{x}\nabla f\br{x}. $$
+There exists a flow $ \phi\br{t, x} $ induced by $ X $, that is if $ \gamma_x\br{t} = \phi\br{t, x} $ then $ \tod{}{t}\gamma_x\br{0} = X\br{x} $. By definition of $ \nabla f $,
 $$ \dod{}{t}f\br{\gamma_x\br{t}} = \D f_{\gamma_x\br{t}}\br{\dod{}{t}\gamma_x\br{t}} = g\br{\nabla f, \dod{}{t}\gamma_x\br{t}} = g\br{\nabla f, -\rho\br{\gamma_x\br{t}}\nabla f} = -\rho\br{\gamma_x\br{t}}\norm{\nabla f}^2 \le 0, $$
-so $ f\br{\gamma_x\br{t}} $ is decreasing. Moreover forall $ t $ such that $ f\br{\gamma_x\br{t}} \in \sbr{a, b} $ we have that $ \tod{}{t}f\br{\gamma_x\br{t}} = -1 $, by definition of $ \rho $. If $ \gamma_x\br{s} \in f^{-1}\br{\sbr{a, b}} $ for all $ s \in \sbr{0, t} $, by the fundamental theorem of calculus
+so $ f\br{\gamma_x\br{t}} $ is decreasing. Moreover for all $ t $ such that $ f\br{\gamma_x\br{t}} \in \sbr{a, b} $ we have that
+$$ \dod{}{t}f\br{\gamma_x\br{t}} = -1, $$
+by definition of $ \rho $. If $ \gamma_x\br{s} \in f^{-1}\br{\sbr{a, b}} $ for all $ s \in \sbr{0, t} $, by the fundamental theorem of calculus
 $$ f\br{\gamma_x\br{t}} - f\br{\gamma_x\br{0}} = \intd{0}{t}{\dod{}{s}f\br{\gamma_x\br{s}}}{s} = -t, $$
-so $ f\br{\gamma_x\br{t}} = f\br{x} - t $. Then
+so
+$$ f\br{\gamma_x\br{t}} = f\br{x} - t. $$
+Then
 \begin{enumerate}
 \item if $ f\br{x} \le b $ then $ f\br{\phi_{b - a}\br{x}} = f\br{\gamma_x\br{b - a}} \le a $, and
 \item if $ f\br{x} > b $ then $ f\br{\phi_{b - a}\br{x}} > a $.
@@ -2035,8 +2077,6 @@ $$
 In particular if $ x \in \S_a $, then $ F\br{x, 1} = x $ and for all $ x \in \S_b $, $ F\br{x, 1} \in \S_a $.
 \end{proof}
 
-\pagebreak
-
 \begin{theorem}[Reeb's theorem]
 Let $ M $ be a compact manifold, and let $ f : M \to \RR $ be a Morse function. Assume that $ f $ admits exactly two critical points. Then $ M $ is homeomorphic to a sphere $ \S^n $.
 \end{theorem}
@@ -2044,13 +2084,92 @@ Let $ M $ be a compact manifold, and let $ f : M \to \RR $ be a Morse function. 
 \begin{proof}
 There exists a unique $ x_{\min} $ such that $ h_{\min} = f\br{x_{\min}} $ is the minimum and there exists a unique $ x_{\max} $ such that $ h_{\max} = f\br{x_{\max}} $ is the maximum. Both $ x_{\min} $ and $ x_{\max} $ are critical points. Then $ \lambda\br{x_{\min}} = n $ and $ \lambda\br{x_{\max}} = 0 $. By the Morse lemma, around $ x_{\min} $, we can write locally
 $$ f\br{x} = h_{\min} + \sum_{i = 1}^n x_i^2, $$
-for some local coordinates $ x_1, \dots, x_n $ such that $ x_{\min} = \underline{0} $. Let $ a > h_{\min} $ be sufficiently close to $ x_{\min} $. Then
+for some local coordinates $ x_1, \dots, x_n $ such that $ x_{\min} = \br{0, \dots, 0} $. Let $ a > h_{\min} $ be sufficiently close to $ h_{\min} $. Then
 $$ \S_a = \cbr{h_{\min} + \sum_{i = 1}^n x_i^2 \le a} = \D_n. $$
-Similarly there exists $ b < h_{\max} $ sufficiently close such that $ M \setminus \S_b \cong \D_n $. By Theorem \ref{thm:4.8}, since there does not exist critical points in $ f^{-1}\br{\sbr{a, b}} $ we know that $ \S_b \cong \S_a \cong \D_n $. We proved that $ M = H_+ \cup H_- \cong \D_n \cup \D_n $ where $ H_- = \S_b $ and $ \H_+ = \overline{M \setminus \S_b} $. Let $ \phi_+ : \D_n \xrightarrow{\sim} H_+ $ and $ \phi_- : \D_n \xrightarrow{\sim} H_- $. The problem is that in general $ \eval{\phi_+}_{\partial\D_n} \ne \eval{\phi_-}_{\partial\D_n} $.
+
+\pagebreak
+
+Similarly there exists $ b < h_{\max} $ sufficiently close such that $ M \setminus \S_b \cong \D_n $. By Theorem \ref{thm:4.8}, since there does not exist critical points in $ f^{-1}\br{\sbr{a, b}} $ we know that $ \S_b \cong \S_a \cong \D_n $. We proved that there exist
+$$ \phi_+ : \D_n^+ \xrightarrow{\sim} H_+, \qquad \phi_- : \D_n^- \xrightarrow{\sim} H_-, $$
+where $ H_- = \S_b $ and $ H_+ = \overline{M \setminus \S_b} $, such that $ M = H_+ \cup H_- $ and $ \phi_+\br{\partial\D_n^+} = \phi_-\br{\partial\D_n^-} = H_+ \cap H_- $, so
+$$
+\begin{tikzcd}
+\S^{n - 1} = \partial\D_n^+ \arrow[subset]{r} \arrow[swap]{dr}{\phi_+} & \D_n^+ \arrow{r}{\phi_+} & H_+ \arrow[subset]{dr} & \\
+& H_+ \cap H_- \arrow[subset]{ur} \arrow[subset]{dr} & & H_+ \cup H_- = M \\
+\S^{n - 1} = \partial\D_n^- \arrow{ur}{\phi_-} \arrow[subset]{r} & \D_n^- \arrow[swap]{r}{\phi_-} & H_- \arrow[subset]{ur} &
+\end{tikzcd}.
+$$
+The problem is that in general $ \eval{\phi_+}_{\partial\D_n^+} \ne \eval{\phi_-}_{\partial\D_n^-} $. Let
+$$ f = \eval{\br{\phi_+^{-1} \circ \phi_-}}_{\S^{n - 1}} : \partial\D_n^- \to \partial\D_n^+. $$
+I want a homeomorphism $ F : \D_n^+ \to \D_n^+ $ such that $ \eval{F}_{\partial\D_n^-} = f $. By taking $ \phi_+ \circ F $ we obtain that $ M $ is obtained by attaching $ \D_n^+ $ with $ \D_n^- $ so that they coincide at the boundary with the identity on $ \S^{n - 1} $, so $ M $ is homeomorphic to $ \S^n $. The goal is given a homeomorphism $ f : \S^{n - 1} \to \S^{n - 1} $, there exists a homeomorphism $ F : \D_n \to \D_n $ such that $ \eval{F}_{\S^{n - 1}} = f $. Indeed, if $ v \in \RR^n $ such that $ \abs{v} = 1 $, then let
+$$ F\br{tv} = tf\br{v}. $$
+We do the same with the inverse.
 \end{proof}
 
 \lecture{24}{Tuesday}{03/03/20}
 
 Lecture 24 is a problems class.
+
+\lecture{25}{Thursday}{05/03/20}
+
+\begin{theorem}[Second fundamental theorem of Morse theory]
+Let $ M $ be a manifold of dimension $ n $, let $ f : M \to \RR $ be a Morse function, let $ x_0 \in M $ be a critical point for $ f $ such that if $ c = f\br{x_0} $ then there exists $ \epsilon > 0 $ such that $ f^{-1}\br{\sbr{c - \epsilon, c + \epsilon}} $ contains only one critical point, and let $ \lambda $ be the index of $ f $ at $ x_0 $. Then if $ \epsilon $ is sufficiently small, $ \S_{c + \epsilon} $ is homotopy equivalent to $ \S_{c - \epsilon} $ attached to a $ \lambda $-dimensional cell.
+\end{theorem}
+
+\begin{example*}
+$$
+\begin{tikzpicture}
+\draw (-2.5, 0) node{$ \S_{c + \epsilon} = $};
+\draw (-1.5, 1) arc (-180:0:1.5 and 2);
+\draw (-0.5, 1) arc (-180:0:0.5 and 1);
+\draw [fill=lightgray] (-1, 1) ellipse (0.5 and 0.25);
+\draw [fill=lightgray] (1, 1) ellipse (0.5 and 0.25);
+\draw (2.25, 0) node{$ \cong $};
+\draw (3, 0) arc (-132:-48:1.5 and 2);
+\draw [fill=lightgray] (4, 0) ellipse (1 and 0.25);
+\fill (4, -0.25) circle (0.1);
+\fill (4, 0.25) circle (0.1);
+\draw [thick] (4, -0.25) to (4, 0.25);
+\draw (6, 0) node{$ = \S_{c - \epsilon} $};
+\end{tikzpicture}.
+$$
+\end{example*}
+
+\begin{proof}
+\hfill
+\begin{itemize}[leftmargin=1in]
+\item[$ \lambda = 0 $.] $ x_0 $ is a local minimum for $ d $. Around $ x_0 $, $ \S_{c - \epsilon} $ is empty and $ \S_{c + \epsilon} $ is homotopy equivalent to a point. Indeed it is a ball. There exists $ U \ni x_0 $ such that outside $ U $, $ \eval{f}_{M \setminus \overline{U}} : M \setminus \overline{U} \to \RR $ does not contain any critical points. By the first fundamental theorem $ \S_{c - \epsilon} \setminus \overline{U} \cong \S_{c + \epsilon} \setminus \overline{U} $.
+\item[$ \lambda = n $.] $ x_0 $ is a local maximum. Let $ U \ni x_0 $ be a ball $ \D_n^+ $, by the Morse lemma. Like in the proof of Reeb's theorem, $ \S_{c + \epsilon} $ is homotopy equivalent to $ \S_{c - \epsilon} $ attached to $ \D_n^+ $, so ok.
+\item[$ 1 \le \lambda \le n - 1 $.] We apply the Morse lemma. There exists $ U \ni x_0 $ such that on $ U $, there exist coordinates $ x_1, \dots, x_n $ such that $ x_0 = \br{0, \dots, 0} $ and
+$$ f\br{x} = f\br{x_0} - \sum_{i = 1}^\lambda x_i^2 + \sum_{i = \lambda + 1}^n x_i^2. $$
+
+\pagebreak
+
+We just need to study $ \S_{c - \epsilon} \cap U $ and $ \S_{c + \epsilon} \cup U $. Define
+$$ B_{\sqrt{2\epsilon}} = \cbr{\br{x_1, \dots, x_n} \st \sum_{i = 1}^n x_i^2 \le 2\epsilon}, $$
+so $ B_{\sqrt{2\epsilon}} \subset U $ if $ \epsilon $ is sufficiently small, and
+$$ e_\lambda = \cbr{\br{x_1, \dots, x_n} \st \sum_{i = 1}^\lambda x_i^2 \le \epsilon, \ x_{\lambda + 1} = \dots = x_n = 0} \cong \D_\lambda. $$
+An easy case is $ n = 2 $ and $ \lambda = 1 $. Then
+$$ U \cap f^{-1}\br{c} = \cbr{x_1^2 - x_2^2 = 0}, \qquad e_1 \cap U = \cbr{x_1^2 \le \epsilon, \ x_2 = 0}, $$
+$$ U \cap \S_{c - \epsilon} = \cbr{x_1^2 - x_2^2 \ge \epsilon}, \qquad U \cap \S_{c + \epsilon} = \cbr{x_1^2 - x_2^2 \ge -\epsilon}, $$
+so $ \S_{c + \epsilon} \cong \S_{c - \epsilon} \cup e_1 $. We want to perturb $ f $, and obtain $ g \le f $ with the same critical value, and $ g = f $ outside $ U $. We define
+$$ \function[\mu]{\RR_{\ge 0}}{\RR_{\ge 0}}{t}{
+\begin{cases}
+\epsilon & t = 0 \\
+0 & t \ge 2\epsilon
+\end{cases}
+}, $$
+such that $ -1 < \mu'\br{t} \le 0 $. We define
+$$ g =
+\begin{cases}
+f & \text{outside} \ U \\
+f - \mu\br{\xi + 2\eta} & \text{in} \ U
+\end{cases},
+\qquad \xi = x_1^2 + \dots + x_\lambda^2, \qquad \eta = x_{\lambda + 1}^2 + \dots + x_n^2. $$
+Then $ g \le f $, since $ f\br{x} = f\br{x_0} - \xi + \eta $, so $ g\br{x} = f\br{x_0} - \xi + \eta - \mu\br{\xi + 2\eta} $ inside $ U $, and $ g = f $ in the ellipsoid
+$$ E = \cbr{\xi + 2\eta \le 2\epsilon} \subset B_{\sqrt{2\epsilon}} \subset U. $$
+In $ E $, $ \eta - \xi \le \tfrac{1}{2}\br{\xi + 2\eta} \le \epsilon $, so $ E \subset \S_{c + \epsilon} = \cbr{\eta - \xi \le \epsilon} $.
+\end{itemize}
+\end{proof}
 
 \end{document}
