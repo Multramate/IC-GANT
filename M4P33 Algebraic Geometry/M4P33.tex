@@ -352,7 +352,7 @@ If $ I = \abr{X, Y^2 - X} \subseteq k\sbr{X, Y} $, then we can rewrite this as $
 
 We have seen that affine algebraic sets in $ \AA^n $ satisfy the following conditions.
 \begin{itemize}
-\item $ \AA^n $ and $ \emptyset $ are affine algebraic sets.
+\item $ \AA^n $ and $ \emptyset $ are affine algebraic sets, since the empty set is the vanishing set of a non-zero constant polynomial.
 \item A finite union of affine algebraic sets is an affine algebraic set.
 \item An arbitrary intersection of affine algebraic sets is an affine algebraic set.
 \end{itemize}
@@ -1925,7 +1925,7 @@ Suppose we have a regular map $ \phi : V \to W $, where $ V $ is projective and 
 \end{proof}
 
 \begin{lemma}
-\label{lem:hypersurfaceintersection}
+\label{lem:hyperplaneintersection}
 Let $ V \subseteq \PP^n $ be an infinite projective algebraic set and let $ H \subseteq \PP^n $ be a hyperplane. Then the intersection $ V \cap H $ is non-empty.
 \end{lemma}
 
@@ -1936,7 +1936,7 @@ If $ H \subseteq \PP^n $ is a hypersurface, then the complement $ \PP^n \setminu
 \end{fact*}
 
 \begin{proof}
-Suppose for contradiction that Lemma \ref{lem:hypersurfaceintersection} were false, then $ V \cap H = \emptyset $. Then $ V \subseteq \PP^n \setminus H $, which is isomorphic to an affine algebraic set $ \AA^n $ for some $ n $. Hence we get an injective regular map $ \iota : V \to \AA^n $. Pick an infinite irreducible component $ V_1 \subseteq V $. Then $ V_1 $ is a projective algebraic set so, by Corollary \ref{cor:regularpoint}, $ \iota $ is constant on $ V_1 $, and since $ \iota $ is injective, $ V_1 $ maps to a point. But $ V $ has only finitely many irreducible components, so this contradicts the hypothesis that $ V $ is infinite.
+Suppose for contradiction that Lemma \ref{lem:hyperplaneintersection} were false, then $ V \cap H = \emptyset $. Then $ V \subseteq \PP^n \setminus H $, which is isomorphic to an affine algebraic set $ \AA^n $ for some $ n $. Hence we get an injective regular map $ \iota : V \to \AA^n $. Pick an infinite irreducible component $ V_1 \subseteq V $. Then $ V_1 $ is a projective algebraic set so, by Corollary \ref{cor:regularpoint}, $ \iota $ is constant on $ V_1 $, and since $ \iota $ is injective, $ V_1 $ maps to a point. But $ V $ has only finitely many irreducible components, so this contradicts the hypothesis that $ V $ is infinite.
 \end{proof}
 
 \subsubsection{Completeness of varieties}
@@ -2329,7 +2329,7 @@ Let $ V \subseteq \PP^n $ be an irreducible projective algebraic set. Let $ p \i
 The projection $ \pi $ is regular on $ \PP^n \setminus \cbr{p} $, and in particular it is regular on $ V $. Since $ V $ is complete, $ \pi\br{V} $ is a closed subset of $ Z $. Now $ \eval{\pi}_V : V \to \pi\br{V} $ is certainly dominant. Indeed it is surjective. In order to show that $ \dim \pi\br{V} = \dim V $, it suffices to show that $ \eval{\pi}_V $ is generically finite. Consider a point $ y \in \pi\br{V} $. The preimage of $ y $ under $ \eval{\pi}_V $ is the intersection $ V \cap \L_{py} $, where $ \L_{py} $ is the line through $ p $ and $ y $. Now $ V \cap \L_{py} $ is a closed subset of $ \L_{py} $. Furthermore $ V \cap \L_{py} \ne \L_{py} $ because $ p \notin V $. Because $ \L_{py} \cong \PP^1 $, we conclude that $ V \cap \L_{py} $ must be finite. In other words $ \eval{\pi}_V^{-1}\br{y} $ is finite for all $ y \in \pi\br{V} $, and so $ \eval{\pi}_V $ is generically finite.
 \end{proof}
 
-Now we are ready to prove the result on the dimension of intersection with a hyperplane. Note the exceptional cases. If $ H $ contains a component of $ V $ of maximum dimension, then $ \dim V \cap H = \dim V $, while if $ \dim V = 0 $ then $ V \cap H $ might be empty. If $ \dim V > 0 $, then $ V \cap H \ne \emptyset $ by Lemma \ref{lem:hypersurfaceintersection}.
+Now we are ready to prove the result on the dimension of intersection with a hyperplane. Note the exceptional cases. If $ H $ contains a component of $ V $ of maximum dimension, then $ \dim V \cap H = \dim V $, while if $ \dim V = 0 $ then $ V \cap H $ might be empty. If $ \dim V > 0 $, then $ V \cap H \ne \emptyset $ by Lemma \ref{lem:hyperplaneintersection}.
 
 \begin{proposition}
 \label{prop:hyperplanedimension}
@@ -2339,5 +2339,84 @@ Let $ V \subseteq \PP^n $ be a projective algebraic set. Let $ H \subseteq \PP^n
 \begin{proof}
 First replace $ V $ by an irreducible component $ V_1 $ such that $ \dim V_1 = \dim V $. Thus we may assume that $ V $ is irreducible. The proof is by induction on $ n $, the dimension of the ambient space. The base case of the induction is when $ V = \PP^n $. Remember we are inducting on $ n $, not $ \dim V $. This is trivial, since $ V \cap H = H \cong \PP^{n - 1} $ certainly has dimension $ n - 1 $. Otherwise, $ V \ne \PP^n $. We will project into $ \PP^{n - 1} $. In order to use Lemma \ref{lem:projectiondimension}, we need to project from a point $ p \notin V $. In order for the projection to interact nicely with $ H $, we need $ p \in H $. Fortunately, we can use Lemma \ref{lem:hypersurfaceirreducible} to show that a suitable $ p $ exists. We are assuming $ V \ne \PP^n $ while the hypothesis of Proposition \ref{prop:hyperplanedimension} tells us that $ V \not\subseteq H $, so $ V \ne H $. Therefore by Lemma \ref{lem:hypersurfaceirreducible}, $ H \not\subseteq V $, the opposite way round to our hypothesis, so we can select a point $ p \in H $ such that $ p \notin V $. Choose a hyperplane $ Z \subseteq \PP^n $ such that $ p \notin Z $. It does not matter which we choose. Let $ \pi : \PP^n \to Z $ be the projection from $ p $ onto $ Z $. Because $ p \in H $, all lines through $ p $ and a point of $ H $ lie entirely in $ H $. Therefore $ x \in H \setminus \cbr{p} $ if and only if $ \pi\br{x} \in H \cap Z $, and consequently $ \pi\br{V \cap H} = \pi\br{V} \cap \br{H \cap Z} $. This implies that $ \pi\br{V} \not\subseteq H \cap Z $, because $ V \not\subseteq H $. By completeness, $ \pi\br{V} $ is a closed subset of $ Z \cong \PP^{n - 1} $, while $ H \cap Z $ is a hyperplane in $ Z $. Furthermore, $ \pi\br{V} $ is irreducible and we have shown that $ \pi\br{V} \not\subseteq H \cap Z $. Therefore, by induction, we have $ \dim \pi\br{V} \cap \br{H \cap Z} = \dim \pi\br{V} - 1 $. We conclude by using Lemma \ref{lem:projectiondimension}, which tells us that $ \dim \pi\br{V} = \dim V $ and $ \dim \pi\br{V \cap H} = \dim \pi\br{V} \cap \br{H \cap Z} $.
 \end{proof}
+
+\pagebreak
+
+\subsubsection{Veronese embedding}
+
+\lecture{24}{Friday}{06/03/20}
+
+In order to generalise Proposition \ref{prop:hyperplanedimension} from intersections between $ V $ and hyperplanes to intersections with hypersurfaces, we use the Veronese embedding to reduce this to the case of an intersection with a hyperplane. This is defined as follows. Let $ d, n \in \ZZ_{\ge 0} $ and let $ N = \binom{n + d}{d} - 1 $. There are $ N + 1 $ monomials of degree $ d $ in variables $ X_0, \dots, X_n $, expressions of the form
+$$ X_0^{a_0} \dots X_n^{a_n}, \qquad a_0, \dots, a_n \in \ZZ_{\ge 0} \qquad a_0 + \dots + a_n = d. $$
+We define a regular map $ \nu_{n, d} : \PP^n \to \PP^N $ by writing down all these monomials of degree $ d $, in some order.
+
+\begin{example*}
+For $ n = d = 2 $ we get $ N = 5 $ and
+$$ \nu_{2, 2}\br{\sbr{X_0 : X_1 : X_2}} = \sbr{X_0^2 : X_1^2 : X_2^2 : X_0X_1 : X_1X_2 : X_0X_2}. $$
+\end{example*}
+
+This is called the \textbf{degree $ d $ Veronese embedding} of $ \PP^n $. By completeness, the image of $ \nu_{n, d} $ is a projective algebraic set $ V_{n, d} \subseteq \PP^N $. One can write down explicit polynomials defining this algebraic set, since they are determinants of $ 2 \times 2 $ matrices. Importantly, $ \nu_{n, d} $ is an isomorphism $ \PP^n \to V_{n, d} $, and proving this is elementary but the notation gets pretty complicated. The benefit of doing all this is that, if $ H \subseteq \PP^n $ is a hypersurface defined by some homogeneous polynomial $ f = \sum_I a_I\underline{X}^I $ of degree $ d $, then because the monomials of degree $ d $ become individual homogeneous coordinates via the Veronese embedding, the equation for $ \nu_{n, d}\br{H} $ is a linear equation $ \sum_I a_IZ_I = 0 $. Thus $ \nu_{n, d}\br{H} = V_{n, d} \cap Z $ for some hyperplane $ Z \subseteq \PP^N $. Therefore, instead of studying the intersection between $ V \subseteq \PP^n $ and a hypersurface $ H \subseteq \PP^n $, we can instead study the intersection between $ \nu_{n, d}\br{V} \subseteq V_{n, d} \subseteq \PP^N $ and a hyperplane $ Z \subseteq \PP^N $. Because $ \nu_{n, d} $ is an isomorphism, we can use Proposition \ref{prop:hyperplanedimension} to deduce the same result for intersections with hypersurfaces.
+
+\begin{theorem}
+\label{thm:projectivedimension}
+Let $ V \subseteq \PP^n $ be a projective algebraic set. Let $ H \subseteq \PP^n $ be a hypersurface which does not contain any irreducible component of $ V $. If $ \dim V > 0 $, then $ V \cap H $ is non-empty and $ \dim V \cap H = \dim V - 1 $.
+\end{theorem}
+
+On the other hand, it is much harder to tell what the dimension will be for the intersection between $ V $ and two or more hyperplanes, since the problem is that $ H_2 $ must satisfy the condition that it does not contain any irreducible component of $ V \cap H_1 $, and it may be hard to tell whether this happens or not.
+
+\subsubsection{Dimension of proper closed subsets}
+
+I mentioned last time that we can strengthen Lemma \ref{lem:closeddimension} to a strict inequality, as long as $ W \ne V $. In this lemma, it is essential that $ V $ is irreducible, whereas in Lemma \ref{lem:closeddimension}, that condition is not necessary.
+
+\begin{lemma}
+Let $ V $ be an irreducible quasi-projective variety and let $ W $ be a closed subset of $ V $. If $ W \ne V $, then $ \dim V < \dim W $.
+\end{lemma}
+
+\begin{proof}
+Suppose that $ V $ is a quasi-projective algebraic set in $ \PP^n $. Let $ \overline{V} $ and $ \overline{W} $ denote the closures of $ V $ and $ W $ respectively in $ \PP^n $. Because $ W $ is closed in $ V $ and not equal to $ V $, $ \overline{V} \ne \overline{W} $. So we can pick a homogeneous polynomial $ f \in k\sbr{X_0, \dots, X_n} $ which vanishes on $ \overline{W} $ but not on $ \overline{V} $. Let $ H $ be the hypersurface defined by $ f $. Then $ \overline{W} \subseteq \overline{V} \cap H $ so Theorem \ref{thm:projectivedimension} implies that $ \dim \overline{W} \le \dim \overline{V} \cap H = \dim \overline{V} - 1 $. Since $ V $ is open in $ \overline{V} $, $ \dim V = \dim \overline{V} $ and similarly $ \dim W = \dim \overline{W} $ which completes the proof.
+\end{proof}
+
+\subsubsection{Dimension and equations}
+
+What is the dimension of a subset of $ \PP^n $ defined by $ r $ homogeneous polynomial equations? We can try to work this out by applying Theorem \ref{thm:projectivedimension} repeatedly. The zero set of a single homogeneous polynomial $ f_1 $ is a hypersurface $ H_1 $, which we know has dimension $ n - 1 $. The zero set of two homogeneous polynomials $ f_1 $ and $ f_2 $ is an intersection $ H_1 \cap H_2 $ of two hypersurfaces. If $ f_1 $ and $ f_2 $ have no common factor, then $ H_2 $ does not contain any irreducible component of $ H_1 $ and so Theorem \ref{thm:projectivedimension} tells us that $ \dim H_1 \cap H_2 = n - 2 $. But once we look at three homogeneous polynomials $ f_1, f_2, f_3 $, we try to apply Theorem \ref{thm:projectivedimension} to $ V = H_1 \cap H_2 $ so we have to ask whether $ H_3 $ contains any irreducible component of $ H_1 \cap H_2 $. There is no easy condition to tell whether this is true. Consider the examples from problem sheets $ 1 $ and $ 2 $. There were algebraic sets defined by two polynomials with no common factors. Working out the irreducible components of the intersection was hard work. The best we can say is $ \dim H_1 \cap H_2 \cap H_3 = n - 2 $ or $ \dim H_1 \cap H_2 \cap H_3 = n - 3 $. As we repeat the process, controlling the irreducible components only gets harder. All we can say is that for each extra equation, the dimension goes down by either zero or one. By induction, all we get is the following inequality.
+
+\pagebreak
+
+\begin{proposition}
+\label{prop:equationsdimension}
+Let $ f_1, \dots, f_r \in k\sbr{X_0, \dots, X_n} $ be homogeneous polynomials and let $ V \subseteq \PP^n $ be the zero set of these polynomials. If $ r \le n $, then $ V \ne \emptyset $ and $ \dim V \ge n - r $.
+\end{proposition}
+
+\begin{proof}
+Let $ H_i $ be the hypersurface defined by the equation $ f_i = 0 $. By Theorem \ref{thm:projectivedimension}, if $ H_i $ does not contain any irreducible component of $ H_1 \cap \dots \cap H_{i - 1} $, then $ \dim H_1 \cap \dots \cap H_i = \dim H_1 \cap \dots \cap H_{i - 1} - 1 $. On the other hand, if $ H_i $ does contain an irreducible component of $ H_1 \cap \dots \cap H_{i - 1} $, then the dimension might not go down at all. In any case, $ \dim H_1 \cap \dots \cap H_i \ge \dim H_1 \cap \dots \cap H_{i - 1} - 1 $. Iterating this proves Proposition \ref{prop:equationsdimension}.
+\end{proof}
+
+\subsubsection{Complete intersections}
+
+We saw that if you take $ r $ homogeneous polynomials, their zero set in $ \PP^n $ has dimension at least $ n - r $. We cannot insist that the dimension be equal to $ n - r $, because the zero set of one of the polynomials might contain the zero set of the others. In reverse, we can ask the following. If $ V \subseteq \PP^n $ is a projective algebraic set of dimension $ n - r $, do there exist $ r $ homogeneous polynomials which define $ V $? The answer is not always. There are two relevant definitions. The first one is more in the style of this course, but the second one turns out to be more natural because it gives more algebraic information.
+
+\begin{definition*}
+Let $ V \subseteq \PP^n $ be an algebraic set of dimension $ n - r $. Then $ V $ is a \textbf{set-theoretic complete intersection} if there exist $ r $ homogeneous polynomials such that $ V $ is the zero set of these polynomials, and $ V $ is a \textbf{complete intersection} if there exist $ r $ homogeneous polynomials which generate the ideal of $ V $.
+\end{definition*}
+
+Being a complete intersection is a stronger property than being a set-theoretic complete intersection.
+
+\begin{example*}
+\hfill
+\begin{itemize}
+\item A set of three non-collinear points in $ \PP^2 $ is a set-theoretic complete intersection but not a complete intersection, since there exist two polynomials defining this set, but you need three polynomials to generate its ideal.
+\item An irreducible example is the twisted cubic which we saw earlier. It is the one-dimensional algebraic set $ C \subseteq \PP^3 $ defined by the three equations
+$$ WY - X^2 = 0, \qquad WZ - XY = 0, \qquad XZ - Y^2 = 0. $$
+Any two of these equations define a one-dimensional algebraic set which has $ C $ as an irreducible component, but also has another irreducible component. It is possible to find two polynomials which define the set $ C $, for example
+$$ WY - X^2 = 0, \qquad WZ^2 - 2XYZ + Y^3 = 0. $$
+But two polynomials cannot generate the ideal of $ C $. The earlier three polynomials do generate the ideal of $ C $.
+\item Take the two planes in $ \PP^4 $,
+$$ P_1 = \cbr{x \in \PP^4 \st x_1 = x_2 = 0}, \qquad P_2 = \cbr{x \in \PP^4 \st x_3 = x_4 = 0}. $$
+These intersect in only one point, namely $ \sbr{1 : 0 : 0 : 0 : 0} $. The union $ P_1 \cup P_2 $ has dimension two but it needs four equations to define it.
+\item One can also find examples of irreducible two-dimensional algebraic sets of $ \PP^4 $ which are not set-theoretic complete intersections, with a singularity which looks like the intersection point of the two planes in $ P_1 \cup P_2 $.
+\end{itemize}
+\end{example*}
+
+We had to go to $ \PP^4 $ to give explicit examples of non-set-theoretic complete intersections. It is an open question whether every irreducible algebraic set in $ \PP^3 $ is a set-theoretic complete intersection.
 
 \end{document}
