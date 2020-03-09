@@ -4,7 +4,7 @@
 
 ### Description
 
-The following lecture notes are taken during my third and fourth year in the MEng Joint Mathematics and Computing (Pure Mathematics and Computational Logic) course in Imperial College London. You can download them via the links below, or by navigating to their respective files within the repository.
+The following lecture notes are taken during my third and fourth year in the MEng Pure Mathematics and Computational Logic course in Imperial College London. You can download them via the links below, or by navigating to their respective files within the repository. **Pausing updates to notes until after Easter due to examinations.**
 
 ### Disclaimer
 
@@ -13,10 +13,6 @@ This is my second year at lecture scribing, so errors and typos are definitely p
 ### Legend
 
 (N) - processed notes
-
-(T) - unprocessed transcripts (I will redo these)
-
-(D) - to be done (I will do these in time)
 
 (X) - on indefinite hiatus
 
@@ -64,14 +60,14 @@ This is my second year at lecture scribing, so errors and typos are definitely p
 
 ### Year Four Spring (January 2020 to March 2020)
 
-(T) [M4P33 Algebraic Geometry](https://github.com/Multramate/GANT/raw/master/M4P33%20Algebraic%20Geometry/M4P33.pdf)
+(N) [M4P33 Algebraic Geometry](https://github.com/Multramate/GANT/raw/master/M4P33%20Algebraic%20Geometry/M4P33.pdf)
 
 (X) M4P46 Lie Algebras
 
 (X) M4P51 Riemannian Geometry
 
-(D) M4P54 Differential Topology
+(N) [M4P54 Differential Topology](https://github.com/Multramate/GANT/raw/master/M4P54%20Differential%20Topology/M4P54.pdf)
 
-(D) M4P57 Complex Manifolds
+(N) [M4P57 Complex Manifolds](https://github.com/Multramate/GANT/raw/master/M4P57%20Complex%20Manifolds/M4P57.pdf)
 
-(D) M4P63 Algebra IV
+(N) [M4P63 Algebra IV](https://github.com/Multramate/GANT/raw/master/M4P63%20Algebra%20IV/M4P63.pdf)
