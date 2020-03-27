@@ -27,10 +27,23 @@
 & \qquad \impb{\teb{y}\inb{y}{x}}{\teb{\phi : x \to \bigcup x}\fab{z}\impb{\inb{z}{x}}{\inb{\phi\br{z}}{z}}}
 \end{align*}
 }
-\def\syllabus{Propositional formulas and logical validity. The formal system $ \L $. Soundness and completeness. First-order languages and structures. Satisfaction and truth of formulas. The formal system $ \K_\LLL $. G\"odel's completeness theorem. The compactness theorem. The L\"owenheim-Skolem theorem. The axioms of Zermelo-Fraenkel set theory. Ordinals. Cardinality. The axiom of choice.}
+\def\syllabus{Propositional formulas and logical validity. The formal system $ \L $. Soundness and completeness. First-order languages and structures. The formal system $ \K_\LLL $. G\"odel's completeness theorem. The compactness theorem. The L\"owenheim-Skolem theorem. The axioms of Zermelo-Fraenkel set theory. Ordinals and cardinals. Transfinite induction and recursion. Axiom of choice. Well ordering principle. Zorn's lemma.}
 \def\thm{subsection}
 
 \input{../style/header}
+
+% Macros
+\newcommand{\andb}[2]{\br{#1 \land #2}}
+\newcommand{\eqb}[2]{\br{#1 = #2}}
+\newcommand{\fab}[1]{\br{\forall #1}}
+\newcommand{\iffb}[2]{\br{#1 \leftrightarrow #2}}
+\newcommand{\impb}[2]{\br{#1 \rightarrow #2}}
+\newcommand{\inb}[2]{\br{#1 \in #2}}
+\newcommand{\leb}[2]{\br{#1 \le #2}}
+\newcommand{\ltb}[2]{\br{#1 < #2}}
+\newcommand{\notb}[1]{\br{\neg #1}}
+\newcommand{\orb}[2]{\br{#1 \lor #2}}
+\newcommand{\teb}[1]{\br{\exists #1}}
 
 \begin{document}
 
@@ -1610,7 +1623,7 @@ Let $ \LLL^= $ be a first-order language with equality and a binary relation sym
 \end{align*}
 \item It is \textbf{dense} if also
 $$ \phi_4 : \fab{x_1}\fab{x_2}\teb{x_3}\impb{\ltb{x_1}{x_2}}{\andb{\ltb{x_1}{x_3}}{\ltb{x_3}{x_2}}}, $$
-where $ \ltb{x_1}{x_2} $ is an abbreviation for $ \andb{\leb{x_1}{x_2}}{\neb{x_1}{x_2}} $.
+where $ \ltb{x_1}{x_2} $ is an abbreviation for $ \andb{\leb{x_1}{x_2}}{\br{x_1 \ne x_2}} $.
 \item It is \textbf{without endpoints} if
 \begin{align*}
 \phi_5 & : \fab{x_1}\teb{x_2}\ltb{x_1}{x_2}, \\
@@ -1873,7 +1886,7 @@ The following are questions.
 \textbf{Zermelo-Fraenkel axioms (ZF)} say how we are allowed to build sets. All can be expressed in a first-order language, with equality, using a single binary relation symbol $ \in $. Have to avoid the \textbf{Russell paradox}. Let
 $$ S = \cbr{x \st x \ \text{is a set and} \ x \notin x}. $$
 If this is a set, is $ S \in S $?
-$$ \teb{S}\fab{x}\iffb{\inb{x}{S}}{\nib{x}{x}} $$
+$$ \teb{S}\fab{x}\iffb{\inb{x}{S}}{\br{x \notin x}} $$
 leads to inconsistency.
 
 \begin{axiom**}[Axiom of extensionality]
@@ -1882,7 +1895,7 @@ $$ \fab{x}\fab{y}\iffb{\eqb{x}{y}}{\fab{z}\iffb{\inb{z}{x}}{\inb{z}{y}}} $$
 \end{axiom**}
 
 \begin{axiom**}[Empty set axiom]
-$$ \teb{x}\fab{y}\nib{y}{x} $$
+$$ \teb{x}\fab{y}\br{y \notin x} $$
 There is a unique set $ x $ with this property, $ \emptyset $.
 \end{axiom**}
 
@@ -1919,7 +1932,7 @@ $$ 3 = \cbr{0, 1, 2} = \cbr{0, 1} \cup \cbr{2}. $$
 
 \begin{axiom**}[Power set axiom]
 For any set $ A $, there is a set $ \PPP\br{A} $ whose elements are the subsets of $ A $.
-$$ \fab{A}\teb{B}\fab{z}\iffb{\inb{z}{B}}{\subb{z}{A}}, $$
+$$ \fab{A}\teb{B}\fab{z}\iffb{\inb{z}{B}}{\br{z \subseteq A}}, $$
 where $ z \subseteq A $ means
 $$ \fab{y}\impb{\inb{y}{z}}{\inb{y}{A}}. $$
 \end{axiom**}
@@ -2001,7 +2014,7 @@ This is a well ordering on $ \NN $. \footnote{Exercise}
 
 \begin{definition}
 A linear ordering $ \abr{A; \le} $ is a \textbf{well ordering}, or a \textbf{woset}, if every non-empty subset of $ A $ has a least element.
-$$ \fab{X}\impb{\andb{\subb{X}{A}}{\neb{X}{\emptyset}}}{\teb{x}\andb{\inb{x}{X}}{\fab{y}\impb{\inb{y}{X}}{\inb{x}{y}}}} $$
+$$ \fab{X}\impb{\andb{\br{X \subseteq A}}{\br{X \ne \emptyset}}}{\teb{x}\andb{\inb{x}{X}}{\fab{y}\impb{\inb{y}{X}}{\inb{x}{y}}}} $$
 \end{definition}
 
 \begin{example*}
@@ -2502,7 +2515,7 @@ Appendix A.5.
 \subsection{Axiom of regularity}
 
 \begin{axiom**}[Axiom of regularity (foundation)]
-$$ \fab{x}\impb{\neb{x}{\emptyset}}{\teb{a}\andb{\inb{a}{x}}{\eqb{a \cap x}{\emptyset}}} $$
+$$ \fab{x}\impb{\br{x \ne \emptyset}}{\teb{a}\andb{\inb{a}{x}}{\eqb{a \cap x}{\emptyset}}} $$
 \end{axiom**}
 
 In particular, there is no set $ b $ with $ b \in b $. Consider $ x = \cbr{b} $. By ZF9, $ b \cap \cbr{b} \ne \emptyset $, so $ b \notin b $. We will not use this. Axioms ZF1-9 is \textbf{Zermelo-Fraenkel set theory}.
@@ -2560,7 +2573,7 @@ f\br{X \setminus \cbr{G\br{\beta} \st \beta < \gamma}} & X \setminus \cbr{G\br{\
 \infty & \text{otherwise}
 \end{cases}.
 $$
-Note that, if $ \infty \notin \Im G \upharpoonright \gamma $, then $ G \upharpoonright \gamma $ is an injective function
+Note that, if $ \infty \notin \im G \upharpoonright \gamma $, then $ G \upharpoonright \gamma $ is an injective function
 $$ \gamma \to X. $$
 By Hartogs' lemma, there is some ordinal $ \alpha $ with $ G\br{\alpha} = \infty $. Take the least such ordinal and call it $ \beta $. Then
 $$ g = G \upharpoonright \beta : \beta \to X $$

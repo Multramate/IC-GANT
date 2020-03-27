@@ -18,6 +18,10 @@
 
 \input{../style/header}
 
+% Macros
+\newcommand{\jacobi}[2]{\br{\tfrac{#1}{#2}}}
+\newcommand{\unit}[1]{\br{\ZZ / #1\ZZ}^\times}
+
 \begin{document}
 
 \input{../style/cover}
@@ -804,7 +808,7 @@ that is $ H $ is the QRs. Then $ \unit{p} / H $ is a group of order two by Lemma
 
 \begin{definition}
 Let $ a \in \ZZ $ and $ p $ a prime. Then the \textbf{Legendre symbol} is
-$$ \symbol{a}{p} =
+$$ \jacobi{a}{p} =
 \begin{cases}
 1 & a \ \text{is a QR modulo} \ p \\
 0 & p \mid a \\
@@ -814,16 +818,16 @@ $$
 \end{definition}
 
 Proposition \ref{prop:35} can be restated as saying that
-$$ \function{\unit{p}}{\cbr{\pm 1}}{a}{\symbol{a}{p}} $$
+$$ \function{\unit{p}}{\cbr{\pm 1}}{a}{\jacobi{a}{p}} $$
 is a group homomorphism, that is
-$$ \symbol{ab}{p} = \symbol{a}{p}\symbol{a}{p}. $$
+$$ \jacobi{ab}{p} = \jacobi{a}{p}\jacobi{a}{p}. $$
 Even holds if we do not assume that $ \br{a, p} = \br{b, p} = 1 $.
 
 \lecture{11}{Tuesday}{30/10/18}
 
 \begin{theorem}[Euler's criterion]
 If $ p $ is an odd prime, and $ p \nmid a $, then
-$$ \symbol{a}{p} \equiv a^{\tfrac{p - 1}{2}} \mod p. $$
+$$ \jacobi{a}{p} \equiv a^{\tfrac{p - 1}{2}} \mod p. $$
 \end{theorem}
 
 \pagebreak
@@ -833,7 +837,7 @@ Let $ g $ be a primitive root modulo $ p $, and write $ a \equiv g^r \mod p $ fo
 $$ a^{\tfrac{p - 1}{2}} \equiv \br{g^r}^{\tfrac{p - 1}{2}} \equiv \br{g^{\tfrac{p - 1}{2}}}^r \equiv \br{-1}^r \mod p. $$
 But
 \begin{align*}
-\symbol{a}{p} = 1 \qquad
+\jacobi{a}{p} = 1 \qquad
 & \iff \qquad \exists s \in \ZZ, \ \br{g^s}^2 \equiv a \mod p \\
 & \iff \qquad 2s \equiv r \mod p - 1 \\
 & \iff \qquad r \in 2\ZZ \\
@@ -849,9 +853,9 @@ $ -1 $ is a square modulo $ p $ if and only if $ p = 2 $ or $ p \equiv 1 \mod 4 
 
 \begin{proof}
 $ p = 2 $ is trivial. If $ p > 2 $, then by Euler's criterion,
-$$ \symbol{-1}{p} \equiv \br{-1}^{\tfrac{p - 1}{2}} \mod p, $$
+$$ \jacobi{-1}{p} \equiv \br{-1}^{\tfrac{p - 1}{2}} \mod p, $$
 so in fact
-$$ \symbol{-1}{p} = \br{-1}^{\tfrac{p - 1}{2}}. $$
+$$ \jacobi{-1}{p} = \br{-1}^{\tfrac{p - 1}{2}}. $$
 Then
 $$ \br{-1}^{\tfrac{p - 1}{2}} =
 \begin{cases}
@@ -862,18 +866,18 @@ $$
 \end{proof}
 
 \begin{proposition}[Gauss' lemma]
-$$ \symbol{2}{p} =
+$$ \jacobi{2}{p} =
 \begin{cases}
 1 & p \equiv \pm 1 \mod 8 \\
 -1 & p \equiv \pm 3 \mod 8
 \end{cases},
 $$
 that is
-$$ \symbol{2}{p} = \br{-1}^{\tfrac{p^2 - 1}{8}}. $$
+$$ \jacobi{2}{p} = \br{-1}^{\tfrac{p^2 - 1}{8}}. $$
 \end{proposition}
 
 \begin{proof}
-$$ \symbol{2}{p} \equiv 2^{\tfrac{p - 1}{2}} \mod p, $$
+$$ \jacobi{2}{p} \equiv 2^{\tfrac{p - 1}{2}} \mod p, $$
 by Euler's criterion. Let $ q = \br{p - 1} / 2 $, and let
 $$ Q = \br{2}\br{4} \dots \br{p - 3}\br{p - 1} = \br{2\br{1}} \dots \br{2\br{q}} = 2^qq! = 2^{\tfrac{p - 1}{2}}q!. $$
 Subtracting $ p $ from every term which is bigger than $ q $,
@@ -896,59 +900,59 @@ If $ p \equiv 1 \mod 8 $, say $ p = 1 + 8n $, then $ q = 4n $. Odd integers in $
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ \symbol{2}{7} = 1 $, since $ 2 \equiv 3^2 \mod 7 $.
-\item $ \symbol{2}{11} = -1 $, since squares modulo $ 11 $ are $ 1, 4, 9, 5, 3 $.
-\item $ \symbol{-1}{11} = -1 $, so $ \symbol{-2}{11} = \symbol{2}{11}\symbol{-1}{11} = \br{-1}^2 = 1 $, since $ -2 \equiv 3^2 \mod 11 $.
+\item $ \jacobi{2}{7} = 1 $, since $ 2 \equiv 3^2 \mod 7 $.
+\item $ \jacobi{2}{11} = -1 $, since squares modulo $ 11 $ are $ 1, 4, 9, 5, 3 $.
+\item $ \jacobi{-1}{11} = -1 $, so $ \jacobi{-2}{11} = \jacobi{2}{11}\jacobi{-1}{11} = \br{-1}^2 = 1 $, since $ -2 \equiv 3^2 \mod 11 $.
 \end{itemize}
 \end{example*}
 
 \begin{theorem}[Law of quadratic reciprocity]
 \label{thm:40}
 If $ p $ and $ q $ are odd primes, then
-$$ \symbol{p}{q} = \symbol{q}{p}\br{-1}^{\br{\tfrac{p - 1}{2}}\br{\tfrac{q - 1}{2}}}, $$
-that is $ \symbol{p}{q} = \symbol{q}{p} $ unless $ p \equiv q \equiv 3 \mod 4 $, when $ \symbol{p}{q} = -\symbol{q}{p} $.
+$$ \jacobi{p}{q} = \jacobi{q}{p}\br{-1}^{\br{\tfrac{p - 1}{2}}\br{\tfrac{q - 1}{2}}}, $$
+that is $ \jacobi{p}{q} = \jacobi{q}{p} $ unless $ p \equiv q \equiv 3 \mod 4 $, when $ \jacobi{p}{q} = -\jacobi{q}{p} $.
 \end{theorem}
 
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ \symbol{5}{p} = \symbol{p}{5} $ for $ p \ne 5 $. QRs modulo $ 5 $ are $ 1 $ and $ 4 $. So
-$$ \symbol{5}{p} =
+\item $ \jacobi{5}{p} = \jacobi{p}{5} $ for $ p \ne 5 $. QRs modulo $ 5 $ are $ 1 $ and $ 4 $. So
+$$ \jacobi{5}{p} =
 \begin{cases}
 1 & p \equiv \pm 1 \mod 5 \\
 -1 & p \equiv \pm 2 \mod 5
 \end{cases}.
 $$
 
-\item What is $ \symbol{3}{p} $ for $ p \ne 3 $? If $ p \equiv 1 \mod 4 $, then
-$$ \symbol{3}{p} = \symbol{p}{3} =
+\item What is $ \jacobi{3}{p} $ for $ p \ne 3 $? If $ p \equiv 1 \mod 4 $, then
+$$ \jacobi{3}{p} = \jacobi{p}{3} =
 \begin{cases}
 1 & p \equiv 1 \mod 3 \\
 -1 & p \equiv -1 \mod 3
 \end{cases}.
 $$
 If $ p \equiv -1 \mod 4 $, then
-$$ \symbol{3}{p} = -\symbol{p}{3} =
+$$ \jacobi{3}{p} = -\jacobi{p}{3} =
 \begin{cases}
 1 & p \equiv -1 \mod 3 \\
 -1 & p \equiv 1 \mod 3
 \end{cases}.
 $$
 So
-$$ \symbol{3}{p} =
+$$ \jacobi{3}{p} =
 \begin{cases}
 1 & p \equiv \pm 1 \mod 12 \\
 -1 & p \equiv \pm 5 \mod 12
 \end{cases}.
 $$
-For example, $ \symbol{3}{7} = -1 $, since QRs are $ 1, 2, 4 $, and $ \symbol{3}{11} = 1 $, since $ 5^2 \equiv 3 \mod 11 $.
-\item $ \symbol{6}{19} = \symbol{2}{19}\symbol{3}{19} = \br{-1}\br{-1} = 1 $, since $ \symbol{2}{19} = -1 $, because $ 19 \equiv 3 \mod 8 $, and $ \symbol{3}{19} \equiv -1 \mod 12 $, by the above.
+For example, $ \jacobi{3}{7} = -1 $, since QRs are $ 1, 2, 4 $, and $ \jacobi{3}{11} = 1 $, since $ 5^2 \equiv 3 \mod 11 $.
+\item $ \jacobi{6}{19} = \jacobi{2}{19}\jacobi{3}{19} = \br{-1}\br{-1} = 1 $, since $ \jacobi{2}{19} = -1 $, because $ 19 \equiv 3 \mod 8 $, and $ \jacobi{3}{19} \equiv -1 \mod 12 $, by the above.
 \end{itemize}
 \end{example*}
 
-In general to compute $ \symbol{a}{p} $, we could do the following. Use that if $ a \equiv b \mod p $ then $ \symbol{a}{p} = \symbol{b}{p} $. So without loss of generality $ \abs{a} < p $. Then write $ a = \pm\prod_i q_i^{s_i} $ for $ q_i $ prime. Then
-$$ \symbol{a}{p} = \symbol{\pm 1}{p} \prod_i \symbol{q_i}{p}^{s_i}. $$
-If $ s_i $ is even, then $ \symbol{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \symbol{q_i}{p}^{s_i} = \symbol{q_i}{p} $. We have formulas for $ \symbol{-1}{p} $ and $ \symbol{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \symbol{q}{p} $ and $ \symbol{p}{q} $. Then repeat modulo $ q $.
+In general to compute $ \jacobi{a}{p} $, we could do the following. Use that if $ a \equiv b \mod p $ then $ \jacobi{a}{p} = \jacobi{b}{p} $. So without loss of generality $ \abs{a} < p $. Then write $ a = \pm\prod_i q_i^{s_i} $ for $ q_i $ prime. Then
+$$ \jacobi{a}{p} = \jacobi{\pm 1}{p} \prod_i \jacobi{q_i}{p}^{s_i}. $$
+If $ s_i $ is even, then $ \jacobi{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then $ \jacobi{q_i}{p}^{s_i} = \jacobi{q_i}{p} $. We have formulas for $ \jacobi{-1}{p} $ and $ \jacobi{2}{p} $. If $ q $ is an odd prime, $ q < p $, then use quadratic reciprocity to relate $ \jacobi{q}{p} $ and $ \jacobi{p}{q} $. Then repeat modulo $ q $.
 
 \pagebreak
 
@@ -956,7 +960,7 @@ If $ s_i $ is even, then $ \symbol{q_i}{p}^{s_i} = 1 $. If $ s_i $ is odd, then 
 
 \lecture{12}{Wednesday}{31/10/18}
 
-The proof of this is due to Rousseau, in 1991. This resembles the proof we gave that $ \symbol{2}{p} = \br{-1}^{\br{p^2 - 1} / 8} $.
+The proof of this is due to Rousseau, in 1991. This resembles the proof we gave that $ \jacobi{2}{p} = \br{-1}^{\br{p^2 - 1} / 8} $.
 
 \begin{theorem}[Wilson's theorem]
 If $ p $ is prime, then $ \br{p - 1}! \equiv -1 \mod p $.
@@ -993,17 +997,17 @@ So
 Combining $ \br{\ref{eq:1}}, \br{\ref{eq:2}}, \br{\ref{eq:3}} $, get that the $ x $-coordinate of the product is
 $$ \prod_{i = 1, \ \br{i, pq} = 1}^{\tfrac{pq - 1}{2}} i = \dfrac{\br{p - 1}!^{\tfrac{q - 1}{2}}\br{\tfrac{p - 1}{2}}!}{q^{\tfrac{p - 1}{2}}\br{\tfrac{p - 1}{2}}!} = \dfrac{\br{-1}^{\tfrac{q - 1}{2}}}{q^{\tfrac{p - 1}{2}}}. $$
 So $ C $, the product of these representatives, is
-$$ C = \br{\br{-1}^{\tfrac{q - 1}{2}}\symbol{q}{p}, \br{-1}^{\tfrac{p - 1}{2}}\symbol{p}{q}}. $$
+$$ C = \br{\br{-1}^{\tfrac{q - 1}{2}}\jacobi{q}{p}, \br{-1}^{\tfrac{p - 1}{2}}\jacobi{p}{q}}. $$
 \end{itemize}
 
 \pagebreak
 
 $ A, B, C $ all agree up to sign, that is up to multiplication by $ \pm 1 $, that is up to multiplication by
 $$ \br{-1, -1} \in \unit{p} \times \unit{q}. $$
-Looking at $ y $-coordinates, $ C = \symbol{p}{q}A $. Similarly $ C = \symbol{q}{p}B $. So $ B = \symbol{q}{p}\symbol{p}{q}A $. To swap between $ A $ and $ B $, just change the signs of everything with $ 1 \le x \le \br{p - 1} / 2 $ and $ \br{q + 1} / 2 \le y \le q - 1 $. So
+Looking at $ y $-coordinates, $ C = \jacobi{p}{q}A $. Similarly $ C = \jacobi{q}{p}B $. So $ B = \jacobi{q}{p}\jacobi{p}{q}A $. To swap between $ A $ and $ B $, just change the signs of everything with $ 1 \le x \le \br{p - 1} / 2 $ and $ \br{q + 1} / 2 \le y \le q - 1 $. So
 $$ B = \br{-1}^{\br{\tfrac{p - 1}{2}}\br{\tfrac{q - 1}{2}}}A. $$
 So
-$$ \symbol{q}{p}\symbol{p}{q} = \br{-1}^{\br{\tfrac{p - 1}{2}}\br{\tfrac{q - 1}{2}}}. $$
+$$ \jacobi{q}{p}\jacobi{p}{q} = \br{-1}^{\br{\tfrac{p - 1}{2}}\br{\tfrac{q - 1}{2}}}. $$
 \end{proof}
 
 \subsection{Jacobi symbols}
@@ -1012,29 +1016,29 @@ These are an extension of Legendre symbols which are useful for making computati
 
 \begin{definition}
 Write $ b = \prod_i p_i^{r_i} $ for $ p_i $ distinct primes. Then the \textbf{Jacobi symbol} is
-$$ \symbol{a}{b} = \prod_i \symbol{a}{p_i}^{r_i}. $$
+$$ \jacobi{a}{b} = \prod_i \jacobi{a}{p_i}^{r_i}. $$
 \end{definition}
 
-A warning is that $ \symbol{a}{b} = 1 $ does not imply that $ a $ is a square modulo $ b $. On the other hand, $ \symbol{a}{b} = -1 $ implies that $ a $ is not a square modulo $ b $.
+A warning is that $ \jacobi{a}{b} = 1 $ does not imply that $ a $ is a square modulo $ b $. On the other hand, $ \jacobi{a}{b} = -1 $ implies that $ a $ is not a square modulo $ b $.
 
 \lecture{13}{Friday}{02/11/18}
 
 \begin{lemma}
 \hfill
 \begin{enumerate}
-\item $ \symbol{a_1a_2}{b} = \symbol{a_1}{b}\symbol{a_2}{b} $ and $ \symbol{a}{b_1b_2} = \symbol{a}{b_1}\symbol{a}{b_2} $.
-\item $ \symbol{a}{b} $ depends only on $ a \mod b $.
-\item $ \symbol{a^2}{b} = 1 $.
-\item $ \symbol{-1}{b} = \br{-1}^{\br{b - 1} / 2} $.
-\item $ \symbol{2}{b} = \br{-1}^{\br{b^2 - 1} / 8} $.
+\item $ \jacobi{a_1a_2}{b} = \jacobi{a_1}{b}\jacobi{a_2}{b} $ and $ \jacobi{a}{b_1b_2} = \jacobi{a}{b_1}\jacobi{a}{b_2} $.
+\item $ \jacobi{a}{b} $ depends only on $ a \mod b $.
+\item $ \jacobi{a^2}{b} = 1 $.
+\item $ \jacobi{-1}{b} = \br{-1}^{\br{b - 1} / 2} $.
+\item $ \jacobi{2}{b} = \br{-1}^{\br{b^2 - 1} / 8} $.
 \item If $ a, b > 0 $ are both odd
-$$ \symbol{a}{b}\symbol{b}{a} = \br{-1}^{\br{\tfrac{a - 1}{2}}\br{\tfrac{b - 1}{2}}}. $$
+$$ \jacobi{a}{b}\jacobi{b}{a} = \br{-1}^{\br{\tfrac{a - 1}{2}}\br{\tfrac{b - 1}{2}}}. $$
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 All of these statements are true for Legendre symbols, that is for $ b $ prime, and $ a $ prime in $ 6 $. $ 1 $ to $ 3 $ follow immediately, and $ 4 $ to $ 6 $ also follows from $ 1 $ and the corresponding statements for Legendre symbols. For $ 5 $, it is enough to show that if it holds for $ b_1 $ and $ b_2 $, then it holds for $ b_1b_2 $. Since
-$$ \symbol{2}{b_1b_2} = \symbol{2}{b_1}\symbol{2}{b_2}, $$
+$$ \jacobi{2}{b_1b_2} = \jacobi{2}{b_1}\jacobi{2}{b_2}, $$
 we need to show that
 $$ \br{-1}^{\tfrac{b_1^2 - 1}{8}}\br{-1}^{\tfrac{b_2^2 - 1}{8}} = \br{-1}^{\tfrac{\br{b_1b_2}^2 - 1}{8}}, $$
 that is need
@@ -1045,9 +1049,9 @@ that is $ \br{b_1^2 - 1}\br{b_2^2 - 1} \equiv 0 \mod 16 $. This is true because 
 \begin{example*}
 Since
 \begin{align*}
-\symbol{7411}{9283}
-& = -\symbol{9283}{7411} = -\symbol{1872}{7411} = -\symbol{16}{7411}\symbol{117}{7411} = -\symbol{117}{7411} = -\symbol{7411}{117} = -\symbol{40}{117} \\
-& = -\symbol{8}{117}\symbol{5}{117} = -\symbol{2}{117}\symbol{5}{117} = \symbol{5}{117} = \symbol{117}{5} = \symbol{2}{5} = -1,
+\jacobi{7411}{9283}
+& = -\jacobi{9283}{7411} = -\jacobi{1872}{7411} = -\jacobi{16}{7411}\jacobi{117}{7411} = -\jacobi{117}{7411} = -\jacobi{7411}{117} = -\jacobi{40}{117} \\
+& = -\jacobi{8}{117}\jacobi{5}{117} = -\jacobi{2}{117}\jacobi{5}{117} = \jacobi{5}{117} = \jacobi{117}{5} = \jacobi{2}{5} = -1,
 \end{align*}
 $ 7411 $ is not a square modulo $ 9283 $.
 \end{example*}
@@ -1129,7 +1133,7 @@ If $ p = 2 $ or $ p \equiv 1 \mod 4 $, then $ p $ is a sum of two squares.
 
 \begin{proof}
 By Corollary \ref{cor:50}, we just have to show that $ p $ is not a prime in $ \ZZ\sbr{i} $. There exists $ n $ such that $ n^2 \equiv -1 \mod p $. If $ p = 2 $ obvious, and if $ p \equiv 1 \mod 4 $,
-$$ \symbol{-1}{p} = \br{-1}^{\tfrac{p - 1}{2}} = 1, $$
+$$ \jacobi{-1}{p} = \br{-1}^{\tfrac{p - 1}{2}} = 1, $$
 by Euler's criterion. That is, $ p \mid n^2 + 1 = \br{n + i}\br{n - i} $. If $ p $ were prime, then $ p \mid n + i $ or $ p \mid n - i $, that is there exist $ c, d \in \ZZ $ such that $ n \pm i = p\br{c \pm di} $, so $ 1 = pd $, a contradiction.
 \end{proof}
 
@@ -1194,10 +1198,10 @@ $$ x^2 + y^2 + 1 \equiv 0 \mod p. $$
 \end{lemma}
 
 \begin{proof}
-Firstly, claim there exists $ a $ such that $ \symbol{a}{p} = 1 $ and $ \symbol{a + 1}{p} = -1 $. If not, since $ \symbol{1}{p} = 1 $, we must have
-$$ \symbol{2}{p} = \dots = \symbol{p - 1}{p} = 1. $$
-But we know that there are $ \br{p - 1} / 2 $ values of $ b $ with $ 1 \le b \le p - 1 $ and $ \symbol{b}{p} = -1 $, a contradiction. Since $ p \equiv 3 \mod 4 $, $ \symbol{-1}{p} = -1 $ by Euler's criterion. So
-$$ \symbol{-\br{a + 1}}{p} = \symbol{a + 1}{p}\symbol{-1}{p} = 1. $$
+Firstly, claim there exists $ a $ such that $ \jacobi{a}{p} = 1 $ and $ \jacobi{a + 1}{p} = -1 $. If not, since $ \jacobi{1}{p} = 1 $, we must have
+$$ \jacobi{2}{p} = \dots = \jacobi{p - 1}{p} = 1. $$
+But we know that there are $ \br{p - 1} / 2 $ values of $ b $ with $ 1 \le b \le p - 1 $ and $ \jacobi{b}{p} = -1 $, a contradiction. Since $ p \equiv 3 \mod 4 $, $ \jacobi{-1}{p} = -1 $ by Euler's criterion. So
+$$ \jacobi{-\br{a + 1}}{p} = \jacobi{a + 1}{p}\jacobi{-1}{p} = 1. $$
 Choose $ x $ and $ y $ such that
 $$ x^2 \equiv a \mod p, \qquad y^2 \equiv -\br{a + 1} \mod p. $$
 Then $ x^2 + y^2 \equiv -1 \mod p $.
@@ -1943,7 +1947,7 @@ Let $ x $ be even, and $ p $ be a prime factor of $ x^2 + 1 $, then $ p \equiv 1
 \end{lemma}
 
 \begin{proof}
-Certainly $ p $ is odd. Then $ x^2 + 1 \equiv 0 \mod p $, so $ x^2 \equiv -1 \mod p $, so $ \symbol{-1}{p} = 1 $, so $ p \equiv 1 \mod 4 $.
+Certainly $ p $ is odd. Then $ x^2 + 1 \equiv 0 \mod p $, so $ x^2 \equiv -1 \mod p $, so $ \jacobi{-1}{p} = 1 $, so $ p \equiv 1 \mod 4 $.
 \end{proof}
 
 \begin{theorem}

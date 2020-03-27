@@ -69,6 +69,36 @@ $$
 
 \input{../style/header}
 
+% Macros
+\newcommand{\rational}[5][]{
+  \ifx &#1&
+    \begin{array}{rcl}
+      #2 & \dashrightarrow & #3 \\
+      #4 & \longmapsto     & #5
+    \end{array}
+  \else
+    \begin{array}{ccrcl}
+      #1 & : & #2 & \dashrightarrow & #3 \\
+         &   & #4 & \longmapsto     & #5
+    \end{array}
+  \fi
+}
+\newcommand{\birational}[7][]{
+  \ifx &#1&
+    \begin{array}{rcl}
+      #2 & \dashrightarrow & #3 \\
+      #4 & \longmapsto     & #5 \\
+      #6 & \longmapsfrom   & #7
+    \end{array}
+  \else
+    \begin{array}{ccrcl}
+      #1 & : & #2 & \dashrightarrow & #3 \\
+         &   & #4 & \longmapsto     & #5 \\
+         &   & #6 & \longmapsfrom   & #7
+    \end{array}
+  \fi
+}
+
 \begin{document}
 
 \input{../style/cover}
@@ -978,7 +1008,7 @@ A rational map is \textbf{dominant} if its image is Zariski dense in $ W $.
 $ \psi $ from the end of the previous lecture is dominant if we consider it as a rational map $ \AA^1 \dashrightarrow V $ but it is not dominant if we consider it as a rational map $ \AA^1 \dashrightarrow \AA^2 $. This is like surjectivity, since whether a function is surjective or not depends on what codomain you declare it to have.
 \end{example*}
 
-Let $ V, W, T $ be irreducible affine algebraic sets. If $ \phi : V \dashrightarrow W $ is a dominant rational map and $ \psi : W \dashrightarrow T $ is a rational map, where $ \psi $ is not required to be dominant, then it makes sense to compose them because we know that $ \dom \psi $ is a Zariski open subset of $ W $, while $ \Im \phi $ is a Zariski dense subset of $ W $ and so $ \dom \psi \cap \Im \phi \ne \emptyset $. Thus there are at least some points where $ \psi \circ \phi $ is defined. One can check, by writing out $ \psi $ in terms of fractions of polynomials, then substituting in fractions of polynomials representing $ \phi $, that $ \psi \circ \phi $ is a rational map $ V \dashrightarrow T $.
+Let $ V, W, T $ be irreducible affine algebraic sets. If $ \phi : V \dashrightarrow W $ is a dominant rational map and $ \psi : W \dashrightarrow T $ is a rational map, where $ \psi $ is not required to be dominant, then it makes sense to compose them because we know that $ \dom \psi $ is a Zariski open subset of $ W $, while $ \im \phi $ is a Zariski dense subset of $ W $ and so $ \dom \psi \cap \im \phi \ne \emptyset $. Thus there are at least some points where $ \psi \circ \phi $ is defined. One can check, by writing out $ \psi $ in terms of fractions of polynomials, then substituting in fractions of polynomials representing $ \phi $, that $ \psi \circ \phi $ is a rational map $ V \dashrightarrow T $.
 
 \begin{definition*}
 Rational maps $ \phi : V \dashrightarrow W $ and $ \psi : W \to V $ are \textbf{rational inverses} if both are dominant and $ \phi \circ \psi = \id_W $ and $ \psi \circ \phi = \id_V $, everywhere these composite rational maps are well-defined. A rational map $ \phi : V \dashrightarrow W $ is a \textbf{birational equivalence} if it is dominant and has a rational inverse. We say that irreducible algebraic sets $ V $ and $ W $ are \textbf{birational}, or \textbf{birationally equivalent}, if there exists a birational equivalence $ V \dashrightarrow W $.
@@ -1080,7 +1110,7 @@ Let $ A $ be a finitely generated reduced $ k $-algebra. Then there exists an af
 \begin{proof}
 Pick a finite set $ f_1, \dots, f_n \in A $ which generates $ A $ as a $ k $-algebra. We can define a homomorphism
 $$ \function[\alpha]{k\sbr{X_1, \dots, X_n}}{A}{\br{X_1, \dots, X_n}}{\br{f_1, \dots, f_n}}. $$
-Let $ I = \Ker \alpha $ and let $ V = \VV\br{I} \subseteq \AA^n $. The homomorphism $ \alpha $ is surjective because $ f_1, \dots, f_n $ generate $ A $, and so $ A \cong k\sbr{X_1, \dots, X_n} / I $. Thus $ k\sbr{X_1, \dots, X_n} / I $ is a reduced $ k $-algebra. It follows that $ I $ is a radical ideal. Hence the Nullstellensatz tells us that $ I = \II\br{V} $. Thus
+Let $ I = \ker \alpha $ and let $ V = \VV\br{I} \subseteq \AA^n $. The homomorphism $ \alpha $ is surjective because $ f_1, \dots, f_n $ generate $ A $, and so $ A \cong k\sbr{X_1, \dots, X_n} / I $. Thus $ k\sbr{X_1, \dots, X_n} / I $ is a reduced $ k $-algebra. It follows that $ I $ is a radical ideal. Hence the Nullstellensatz tells us that $ I = \II\br{V} $. Thus
 $$ k\sbr{V} \cong k\sbr{X_1, \dots, X_n} / \II\br{V} \cong k\sbr{X_1, \dots, X_n} / I \cong A. $$
 \end{proof}
 
@@ -2012,7 +2042,7 @@ To prove Theorem \ref{thm:imageclosed}, we will use the graph $ \Gamma \subseteq
 Let $ V $ be a projective variety. For any quasi-projective variety $ W $, the second projection map $ \pi_2 : V \times W \to W $ maps closed sets to closed sets.
 \end{theorem}
 
-Again, we can see that Theorem \ref{thm:projectionclosed} does not apply when $ V $ is not projective by taking $ V = W = \AA^1 $ and taking the hyperbola as a closed subset of $ V \times W $. At first sight, Theorem \ref{thm:projectionclosed} looks stronger than Theorem \ref{thm:imageclosed} because it applies to all closed subsets of $ V \times W $, not just the graphs $ \Gamma $ of regular maps $ \phi : V \to W $, using that $ \Im \phi = \pi_2\br{\Gamma} $. In fact it is easy to deduce Theorem \ref{thm:projectionclosed} from Theorem \ref{thm:imageclosed}, by applying it to $ \pi_2 \circ \iota : Z \to W $ where $ \iota $ is the inclusion map $ Z \to V \times W $ for any closed subset $ Z \subseteq V \times W $.
+Again, we can see that Theorem \ref{thm:projectionclosed} does not apply when $ V $ is not projective by taking $ V = W = \AA^1 $ and taking the hyperbola as a closed subset of $ V \times W $. At first sight, Theorem \ref{thm:projectionclosed} looks stronger than Theorem \ref{thm:imageclosed} because it applies to all closed subsets of $ V \times W $, not just the graphs $ \Gamma $ of regular maps $ \phi : V \to W $, using that $ \im \phi = \pi_2\br{\Gamma} $. In fact it is easy to deduce Theorem \ref{thm:projectionclosed} from Theorem \ref{thm:imageclosed}, by applying it to $ \pi_2 \circ \iota : Z \to W $ where $ \iota $ is the inclusion map $ Z \to V \times W $ for any closed subset $ Z \subseteq V \times W $.
 
 \begin{definition*}
 A variety $ V $ is \textbf{complete} if it satisfies the conclusion of Theorem \ref{thm:projectionclosed}. In other words, for every quasi-projective variety $ W $, the second projection $ \pi_2 : V \times W \to W $ maps closed sets to closed sets.

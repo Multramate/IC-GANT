@@ -23,7 +23,8 @@ $$
 \draw [dotted] (-0.1, 2) arc (0:180:0.6 and 0.15);
 \draw [dotted, thick] (0.1, 2) arc (-180:0:0.6 and 0.15);
 \draw [dotted] (0.1, 2) arc (180:0:0.6 and 0.15);
-\fill (0, 2) circle (0.05) node[above]{$ \lambda = 1 $};
+\fill (0, 2) circle (0.05);
+\fill (0, 2.5) node[below]{$ \lambda = 1 $};
 \draw (-1.5, 4) arc (180:132:1.5 and 2);
 \draw (-0.5, 4) arc (180:0:0.5 and 1);
 \draw (1.5, 4) arc (0:48:1.5 and 2);
@@ -42,7 +43,8 @@ $$
 \draw [dotted] (-0.1, 5) arc (0:180:0.6 and 0.15);
 \draw [dotted, thick] (0.1, 5) arc (-180:0:0.6 and 0.15);
 \draw [dotted] (0.1, 5) arc (180:0:0.6 and 0.15);
-\fill (0, 5) circle (0.05) node[below]{$ \lambda = 1 $};
+\fill (0, 5) circle (0.05);
+\fill (0, 4.5) node[above]{$ \lambda = 1 $};
 \draw (-1, 6.5) arc (132:48:1.5 and 2);
 \fill [lightgray, opacity=0.5] (0, 6.5) ellipse (1 and 0.25);
 \draw [thick] (-1, 6.5) arc (-180:0:1 and 0.25);
@@ -60,6 +62,10 @@ $$
 \def\thm{section}
 
 \input{../style/header}
+
+% Macros
+\newcommand{\da}{\partial}
+\newcommand{\ext}{\textstyle\bigwedge}
 
 \begin{document}
 
@@ -101,7 +107,7 @@ where $ \SSS_p $ is the group of permutations of $ p $ elements and $ \epsilon\b
 Recall that if $ m $ is the number of transpositions in a decomposition of $ \sigma $, then $ \epsilon\br{\sigma} = \br{-1}^m $, where a \textbf{transposition} is $ \br{a_ia_j} $ for $ a_i \ne a_j $.
 
 \begin{notation}
-$$ \textstyle\bigwedge^pV^* = \cbr{\text{alternating $ p $-forms} \ \omega \ \text{on} \ V} $$
+$$ \ext^pV^* = \cbr{\text{alternating $ p $-forms} \ \omega \ \text{on} \ V} $$
 is called the \textbf{$ p $-th exterior power} of $ V $.
 \end{notation}
 
@@ -110,13 +116,13 @@ Check that it is a vector space. \footnote{Exercise}
 \begin{example}
 \hfill
 \begin{itemize}
-\item $ \bigwedge^0V^* = \RR $.
-\item $ \bigwedge^1V^* = V^* = \Hom\br{V, \RR} $, the \textbf{dual} of $ V $.
+\item $ \ext^0V^* = \RR $.
+\item $ \ext^1V^* = V^* = \Hom\br{V, \RR} $, the \textbf{dual} of $ V $.
 \end{itemize}
 \end{example}
 
 \begin{definition}
-Let $ \omega_1 \in \bigwedge^pV^* $ and $ \omega_2 \in \bigwedge^qV^* $. We define the \textbf{exterior product} $ \omega_1 \wedge \omega_2 \in \bigwedge^{p + q}V^* $ of $ \omega_1 $ and $ \omega_2 $ by
+Let $ \omega_1 \in \ext^pV^* $ and $ \omega_2 \in \ext^qV^* $. We define the \textbf{exterior product} $ \omega_1 \wedge \omega_2 \in \ext^{p + q}V^* $ of $ \omega_1 $ and $ \omega_2 $ by
 $$ \omega_1 \wedge \omega_2\br{v_1, \dots, v_{p + q}} = \sum_{\sigma \in \SSS_{p, q}} \epsilon\br{\sigma}\omega_1\br{v_{\sigma\br{1}}, \dots, v_{\sigma\br{p}}}\omega_2\br{v_{\sigma\br{p + 1}}, \dots, v_{\sigma\br{p + q}}}, \qquad v_1, \dots, v_{p + q} \in V, $$
 where
 $$ \SSS_{p, q} = \cbr{\sigma \in \SSS_{p + q} \st \sigma\br{1} < \dots < \sigma\br{p}, \ \sigma\br{p + 1} < \dots < \sigma\br{p + q}}. $$
@@ -125,16 +131,16 @@ $$ \SSS_{p, q} = \cbr{\sigma \in \SSS_{p + q} \st \sigma\br{1} < \dots < \sigma\
 \begin{example}
 \hfill
 \begin{itemize}
-\item Assume $ \omega_1, \omega_2 \in \bigwedge^1V^* $. Then
+\item Assume $ \omega_1, \omega_2 \in \ext^1V^* $. Then
 $$ \omega_1 \wedge \omega_2\br{v_1, v_2} = \omega_1\br{v_1}\omega_2\br{v_2} - \omega_1\br{v_2}\omega_2\br{v_1}, \qquad v_1, v_2 \in V. $$
-\item Assume $ \omega_1, \dots, \omega_p \in \bigwedge^1V^* $. Then
+\item Assume $ \omega_1, \dots, \omega_p \in \ext^1V^* $. Then
 $$ \omega_1 \wedge \dots \wedge \omega_p\br{v_1, \dots, v_p} = \det \br{\omega_i\br{v_j}}_{i, j = 1, \dots, p}, \qquad v_1, \dots, v_p \in V. $$
 \end{itemize}
 \end{example}
 
 \begin{proposition}
 \label{prop:1.6}
-Let $ \omega_i \in \bigwedge^{p_i}V^* $ for $ i = 1, 2, 3 $.
+Let $ \omega_i \in \ext^{p_i}V^* $ for $ i = 1, 2, 3 $.
 \begin{itemize}
 \item Associativity $ \br{\omega_1 \wedge \omega_2} \wedge \omega_3 = \omega_1 \wedge \br{\omega_2 \wedge \omega_3} $.
 \item Distributivity $ \omega_1 \wedge \br{\omega_2 + \omega_3} = \omega_1 \wedge \omega_2 + \omega_1 \wedge \omega_3 $, assuming $ p_2 = p_3 $.
@@ -143,7 +149,7 @@ Let $ \omega_i \in \bigwedge^{p_i}V^* $ for $ i = 1, 2, 3 $.
 \end{proposition}
 
 \begin{definition}
-Let $ \Phi : V \to W $ be a linear map between vector spaces over $ \RR $, and let $ \omega \in \bigwedge^pW^* $. Then the \textbf{pull-back} $ \Phi^*\omega \in \bigwedge^pV^* $ of $ \omega $ is an alternating $ p $-form on $ V $ defined by
+Let $ \Phi : V \to W $ be a linear map between vector spaces over $ \RR $, and let $ \omega \in \ext^pW^* $. Then the \textbf{pull-back} $ \Phi^*\omega \in \ext^pV^* $ of $ \omega $ is an alternating $ p $-form on $ V $ defined by
 $$ \Phi^*\omega\br{v_1, \dots, v_p} = \omega\br{\Phi\br{v_1}, \dots, \Phi\br{v_p}}, \qquad v_1, \dots, v_p \in V. $$
 \end{definition}
 
@@ -154,13 +160,13 @@ $$ \Phi^*\omega\br{v_1, \dots, v_p} = \omega\br{\Phi\br{v_1}, \dots, \Phi\br{v_p
 Given a linear map $ \Phi : V \to W $,
 \begin{itemize}
 \item the pull-back
-$$ \function[\Phi^*]{\bigwedge^pW^*}{\bigwedge^pV^*}{\omega}{\Phi^*\omega} $$
+$$ \function[\Phi^*]{\ext^pW^*}{\ext^pV^*}{\omega}{\Phi^*\omega} $$
 is a linear map that preserves exterior products, that is
-$$ \Phi^*\br{\omega_1 \wedge \omega_2} = \Phi^*\omega_1 \wedge \Phi^*\omega_2, \qquad \omega_1 \in \textstyle\bigwedge^pW^*, \qquad \omega_2 \in \textstyle\bigwedge^qW^*, $$
+$$ \Phi^*\br{\omega_1 \wedge \omega_2} = \Phi^*\omega_1 \wedge \Phi^*\omega_2, \qquad \omega_1 \in \ext^pW^*, \qquad \omega_2 \in \ext^qW^*, $$
 \item if $ \Psi : W \to Z $ is linear then
-$$ \br{\Psi \circ \Phi}^*\omega = \Phi^*\Psi^*\omega, \qquad \omega \in \textstyle\bigwedge^pZ^*, $$
+$$ \br{\Psi \circ \Phi}^*\omega = \Phi^*\Psi^*\omega, \qquad \omega \in \ext^pZ^*, $$
 \item assuming $ V = W $ and $ p = \dim V $, then
-$$ \Phi^*\omega = \br{\det \Phi}\omega, \qquad \omega \in \textstyle\bigwedge^pV^*. $$
+$$ \Phi^*\omega = \br{\det \Phi}\omega, \qquad \omega \in \ext^pV^*. $$
 \end{itemize}
 \end{proposition}
 
@@ -170,29 +176,29 @@ Let $ M $ be a smooth manifold of dimension $ n $, and let $ x \in M $. Then the
 
 \begin{notation}
 Let
-$$ \textstyle\bigwedge^p\T_x^*M = \textstyle\bigwedge^p\br{\T_xM}^*. $$
+$$ \ext^p\T_x^*M = \ext^p\br{\T_xM}^*. $$
 Consider the set
-$$ \textstyle\bigwedge^p\T^*M = \bigsqcup_{x \in M} \textstyle\bigwedge^p\T_x^*M, $$
-the \textbf{$ p $-th exterior bundle} on $ M $. There exists a morphism $ \pi : \bigwedge^p\T^*M \to M $ such that
-$$ \pi^{-1}\br{x} = \textstyle\bigwedge^p\T_x^*M, \qquad x \in M, $$
-so $ \bigwedge^p\T^*M $ is a vector bundle and it is a smooth manifold, and $ \pi $ is a smooth morphism.
+$$ \ext^p\T^*M = \bigsqcup_{x \in M} \ext^p\T_x^*M, $$
+the \textbf{$ p $-th exterior bundle} on $ M $. There exists a morphism $ \pi : \ext^p\T^*M \to M $ such that
+$$ \pi^{-1}\br{x} = \ext^p\T_x^*M, \qquad x \in M, $$
+so $ \ext^p\T^*M $ is a vector bundle and it is a smooth manifold, and $ \pi $ is a smooth morphism.
 \end{notation}
 
 \begin{example}
 \hfill
 \begin{itemize}
-\item $ \bigwedge^0\T^*M = M \times \RR $.
-\item $ \bigwedge^1\T^*M $ is the \textbf{cotangent bundle}, the dual of the tangent bundle.
+\item $ \ext^0\T^*M = M \times \RR $.
+\item $ \ext^1\T^*M $ is the \textbf{cotangent bundle}, the dual of the tangent bundle.
 \end{itemize}
 \end{example}
 
 \lecture{2}{Monday}{13/01/20}
 
 \begin{definition}
-A \textbf{differential $ p $-form} $ \omega $ on $ M $ is a smooth section of $ \pi $, that is it is a smooth morphism $ \omega : M \to \bigwedge^p\T^*M $ such that $ \pi \circ \omega = \id_M $.
+A \textbf{differential $ p $-form} $ \omega $ on $ M $ is a smooth section of $ \pi $, that is it is a smooth morphism $ \omega : M \to \ext^p\T^*M $ such that $ \pi \circ \omega = \id_M $.
 \end{definition}
 
-Thus, $ \omega\br{x} \in \bigwedge^p\T_x^*M $.
+Thus, $ \omega\br{x} \in \ext^p\T_x^*M $.
 
 \begin{notation}
 $$ \Omega^p\br{M} = \cbr{\text{differential $ p $-forms} \ \omega \ \text{on} \ M}, \qquad \Omega^\bullet\br{M} = \bigoplus_p \Omega^p\br{M}. $$
@@ -210,7 +216,7 @@ The algebra is the same as last week.
 
 \begin{definition}
 Let $ \omega_1 \in \Omega^p\br{M} $ and $ \omega_2 \in \Omega^q\br{M} $. Then $ \omega_1 \wedge \omega_2 \in \Omega^{p + q}\br{M} $ is defined by
-$$ \omega_1 \wedge \omega_2\br{x} = \omega_1\br{x} \wedge \omega_2\br{x} \in \textstyle\bigwedge^{p + q}\T_x^*M, \qquad x \in M. $$
+$$ \omega_1 \wedge \omega_2\br{x} = \omega_1\br{x} \wedge \omega_2\br{x} \in \ext^{p + q}\T_x^*M, \qquad x \in M. $$
 \end{definition}
 
 By Proposition \ref{prop:1.6}, associativity, distributivity, and supercommutativity hold for $ \Omega^p\br{M} $. Let $ F : M \to N $ be a smooth morphism between manifolds. Then for all $ x \in M $, the differential of $ F $ at $ x $ is the linear map
@@ -219,7 +225,7 @@ $$ \D F_x : \T_xM \to \T_{F\br{x}}N. $$
 \pagebreak
 
 Thus, for all $ p \ge 0 $, we have a natural map, called the \textbf{pull-back},
-$$ \function[F_x^*]{\bigwedge^p\T_{F\br{x}}^*N}{\bigwedge^p\T_x^*M}{\omega\br{v_1, \dots, v_p}}{\omega\br{\D F_x\br{v_1}, \dots, \D F_x\br{v_p}}}, \qquad \omega \in \textstyle\bigwedge^p\T_{F\br{x}}^*N, \qquad v_1, \dots, v_p \in \T_x^*M. $$
+$$ \function[F_x^*]{\ext^p\T_{F\br{x}}^*N}{\ext^p\T_x^*M}{\omega\br{v_1, \dots, v_p}}{\omega\br{\D F_x\br{v_1}, \dots, \D F_x\br{v_p}}}, \qquad \omega \in \ext^p\T_{F\br{x}}^*N, \qquad v_1, \dots, v_p \in \T_x^*M. $$
 Thus, we can define
 $$ \function[F^*]{\Omega^p\br{N}}{\Omega^p\br{M}}{\omega\br{x}}{F^*\omega\br{F\br{x}}}, \qquad \omega \in \Omega^p\br{N}. $$
 By Proposition \ref{prop:1.8}, the pull-back preserves the exterior product, so
@@ -233,7 +239,7 @@ Let $ M $ be a manifold of dimension $ n $, let $ x_0 \in M $, let $ \br{U, \phi
 $$ \cbr{\dpd{}{x_1}, \dots, \dpd{}{x_n}}. $$
 A basis of $ \T_{x_0}^*M $ is given by
 $$ \cbr{\d x_1, \dots, \d x_n}, \qquad \d x_i\br{\dpd{}{x_j}} = \delta_{ij}. $$
-A basis of $ \bigwedge^p\T_{x_0}^*M $ is
+A basis of $ \ext^p\T_{x_0}^*M $ is
 $$ \d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad i_1 < \dots < i_p. $$
 Thus, $ \omega \in \Omega^p\br{M} $ is locally given by
 $$ \omega\br{x} = \sum_{\abs{I} = p} f_I\br{x}\d x_{i_1} \wedge \dots \wedge \d x_{i_p}, \qquad I = \br{i_1, \dots, i_p}, \qquad i_1 < \dots < i_p, $$
@@ -270,7 +276,7 @@ so
 $$
 \begin{tikzcd}
 \Omega^p\br{M} \arrow{r}{\d} & \Omega^{p + 1}\br{M} \\
-\Omega^p\br{N} \arrow{u}{F^*} \arrow[swap]{r}{\d} & \Omega^{p + 1}\br{N} \arrow[swap]{u}{F^*}
+\Omega^p\br{N} \arrow{u}{F^*} \arrow{r}[swap]{\d} & \Omega^{p + 1}\br{N} \arrow{u}[swap]{F^*}
 \end{tikzcd}.
 $$
 \end{itemize}
@@ -296,14 +302,14 @@ Locally, assume $ \omega = f\d y_1 \wedge \dots \wedge \d y_n $ for some coordin
 $$ h_{\alpha\beta} = \phi_\beta \circ \phi_\alpha^{-1} : \phi_\alpha\br{U_\alpha \cap U_\beta} \subset \RR^n \to \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR^n, $$
 such that
 $$ h_{\alpha\beta}^*\omega\br{x} = \br{f \circ h_{\alpha\beta}}\br{x}\det \br{\D h_{\alpha\beta}}_x\d x_1 \wedge \dots \wedge \d x_n. $$
-Let $ D \subset \RR^n $ be compact such that $ \partial D $ has zero measure, so $ D $ is a domain of integration, let $ f : U \to \RR $ be a $ \C^\infty $-function where $ U \subset \RR^n $ is open such that $ D \subset U $, and let $ h : U \to h\br{U} $ be a diffeomorphism. Then
+Let $ D \subset \RR^n $ be compact such that $ \da D $ has zero measure, so $ D $ is a domain of integration, let $ f : U \to \RR $ be a $ \C^\infty $-function where $ U \subset \RR^n $ is open such that $ D \subset U $, and let $ h : U \to h\br{U} $ be a diffeomorphism. Then
 $$ \int_{h^{-1}\br{D}} f\br{y}\d y_1 \dots \d y_n = \int_{h^{-1}\br{D}} f\br{y}\d y_1 \wedge \dots \wedge \d y_n = \int_{D} \br{f \circ h}\br{x}\abs{\det \D h_x}\d x_1 \wedge \dots \wedge \d x_n. $$
 Let us assume that $ \omega = f\br{y}\d y_1 \wedge \dots \wedge \d y_n $ on $ U $. We define
 $$ \int_D \omega = \int_D f\br{y}\d y_1 \wedge \dots \wedge \d y_n, \qquad D \subset U. $$
 
 \begin{definition}
 Let $ U \subset \RR^n $ be an open set. We define the \textbf{support} of $ \omega $ as
-$$ \supp \omega = \overline{\cbr{x \in U \st \omega\br{x} \ne 0}}, \qquad \omega\br{x} \in \textstyle\bigwedge^p\T_x^*U. $$
+$$ \supp \omega = \overline{\cbr{x \in U \st \omega\br{x} \ne 0}}, \qquad \omega\br{x} \in \ext^p\T_x^*U. $$
 Then $ \omega $ has \textbf{compact support}, if $ \supp \omega $ is compact.
 \end{definition}
 
@@ -320,7 +326,7 @@ $$ \int_U \omega = \int_V \phi^*\omega. $$
 
 If $ V $ is a vector space over $ \RR $ of dimension $ n $, and $ B = \br{b_1, \dots, b_n} \subset V $ and $ B' = \br{b_1', \dots, b_n'} \subset V $ are ordered bases of $ V $, then $ B $ and $ B' $ have the \textbf{same orientation} if $ \det T > 0 $ for the linear map
 $$ \function[T]{V}{V}{b_i}{b_i'}. $$
-If $ \omega \in \bigwedge^nV^* $ for $ \omega \ne 0 $, then $ B $ and $ B' $ have the same orientation if and only if $ \omega\br{b_1, \dots, b_n} $ has the same sign as $ \omega\br{b_1', \dots, b_n'} $, by Proposition \ref{prop:1.8}. An \textbf{orientation} $ \Lambda $ of $ V $ is a set of all the ordered basis of $ V $ with the same orientation. If $ \phi : V \to W $ is an isomorphism of vector spaces with fixed orientations $ \Lambda_v $ and $ \Lambda_w $ respectively, we say that $ \phi $ is \textbf{orientation preserving} if an ordered basis of $ V $ induces an ordered basis of $ W $, so $ \Lambda_v $ induces $ \Lambda_w $. If $ V = \RR^n $, and $ e_i = \br{0, \dots, 0, 1, 0, \dots, 0} $, then $ e_1, \dots, e_n $ defines an orientation of $ V $ called \textbf{positive}. Let $ M $ be a manifold. The idea is to find an orientation $ \Lambda_x $ of $ \T_xM $ for all $ x \in M $.
+If $ \omega \in \ext^nV^* $ for $ \omega \ne 0 $, then $ B $ and $ B' $ have the same orientation if and only if $ \omega\br{b_1, \dots, b_n} $ has the same sign as $ \omega\br{b_1', \dots, b_n'} $, by Proposition \ref{prop:1.8}. An \textbf{orientation} $ \Lambda $ of $ V $ is a set of all the ordered basis of $ V $ with the same orientation. If $ \phi : V \to W $ is an isomorphism of vector spaces with fixed orientations $ \Lambda_v $ and $ \Lambda_w $ respectively, we say that $ \phi $ is \textbf{orientation preserving} if an ordered basis of $ V $ induces an ordered basis of $ W $, so $ \Lambda_v $ induces $ \Lambda_w $. If $ V = \RR^n $, and $ e_i = \br{0, \dots, 0, 1, 0, \dots, 0} $, then $ e_1, \dots, e_n $ defines an orientation of $ V $ called \textbf{positive}. Let $ M $ be a manifold. The idea is to find an orientation $ \Lambda_x $ of $ \T_xM $ for all $ x \in M $.
 \begin{itemize}[leftmargin=1in]
 \item[Special case.] Let $ M = U \subset \RR^n $ be open. There exists a natural isomorphism $ \phi_x : \T_xU \to \RR^n $. Let $ \Lambda_x^+ $ be an orientation on $ \T_xU $ such that $ \phi_x $ is orientation preserving with respect to the positive orientation on $ \RR^n $. Then $ \Lambda^+ = \cbr{\Lambda_x^+} $.
 \item[General case.] Let $ \cbr{\br{U_\alpha, \phi_\alpha}} $ be an atlas on $ M $. On $ U_\alpha $, we define the orientation so that
@@ -347,8 +353,8 @@ $$ \int_{\phi\br{U}} \br{\phi^{-1}}^*\omega = \int_{\overline{\phi}\br{\overline
 Let $ \overline{\phi} \circ \phi^{-1} : \phi\br{U \cap \overline{U}} \to \overline{\phi}\br{U \cap \overline{U}} $, so
 $$
 \begin{tikzcd}
-& U \cap \overline{U} \arrow[swap]{dl}{\phi} \arrow{dr}{\overline{\phi}} & \\
-\RR^n \supset \phi\br{U \cap \overline{U}} \arrow[swap]{rr}{\overline{\phi} \circ \phi^{-1}} & & \overline{\phi}\br{U \cap \overline{U}} \subset \RR^n
+& U \cap \overline{U} \arrow{dl}[swap]{\phi} \arrow{dr}{\overline{\phi}} & \\
+\RR^n \supset \phi\br{U \cap \overline{U}} \arrow{rr}[swap]{\overline{\phi} \circ \phi^{-1}} & & \overline{\phi}\br{U \cap \overline{U}} \subset \RR^n
 \end{tikzcd}.
 $$
 Since both charts are positively oriented the determinant of the differential $ \D\br{\overline{\phi} \circ \phi^{-1}} $ is positive, so
@@ -485,29 +491,29 @@ $$ \phi_\alpha \circ \phi_\beta^{-1} : \phi_\beta\br{U_\alpha \cap U_\beta} \sub
 is a diffeomorphism, so
 $$
 \begin{tikzcd}
-& U_\alpha \cap U_\beta \arrow[swap]{dl}{\phi_\alpha} \arrow{dr}{\phi_\beta} & \\
-\RR_+^n \supset \phi_\alpha\br{U_\alpha \cap U_\beta} \arrow[swap]{rr}{\phi_\alpha \circ \phi_\beta^{-1}} & & \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR_+^n
+& U_\alpha \cap U_\beta \arrow{dl}[swap]{\phi_\alpha} \arrow{dr}{\phi_\beta} & \\
+\RR_+^n \supset \phi_\alpha\br{U_\alpha \cap U_\beta} \arrow{rr}[swap]{\phi_\alpha \circ \phi_\beta^{-1}} & & \phi_\beta\br{U_\alpha \cap U_\beta} \subset \RR_+^n
 \end{tikzcd}.
 $$
 The \textbf{boundary} of $ M $ is
-$$ \partial M = \cbr{x \in M \st \exists \alpha, \ \phi_\alpha\br{x} \in \partial\RR_+^n = \RR^{n - 1} \times \cbr{0}}. $$
+$$ \da M = \cbr{x \in M \st \exists \alpha, \ \phi_\alpha\br{x} \in \da\RR_+^n = \RR^{n - 1} \times \cbr{0}}. $$
 Then $ \br{U_\alpha, \phi_\alpha} $ is called a \textbf{chart} and $ \cbr{\br{U_\alpha, \phi_\alpha}} $ is called an \textbf{atlas}.
 \end{definition}
 
 \begin{remark}
 \hfill
 \begin{itemize}
-\item $ \partial M $ is closed in $ M $.
-\item $ \mathring{M} = M \setminus \partial M $ is a manifold of dimension $ n $.
+\item $ \da M $ is closed in $ M $.
+\item $ \mathring{M} = M \setminus \da M $ is a manifold of dimension $ n $.
 \end{itemize}
 \end{remark}
 
 \begin{example}
 \hfill
 \begin{itemize}
-\item $ M = \sbr{0, 1} $ is a manifold with boundary $ \partial M = \cbr{0, 1} $.
-\item The closed disc $ D = \cbr{x \in \RR^n \st \abs{x} \le 1} $ is a manifold with boundary $ \partial D = \S^{n - 1} $.
-\item $ M = \sbr{0, 1} \times \S^1 $ is a manifold with boundary $ \partial M = \S^1 \sqcup \S^1 $.
+\item $ M = \sbr{0, 1} $ is a manifold with boundary $ \da M = \cbr{0, 1} $.
+\item The closed disc $ D = \cbr{x \in \RR^n \st \abs{x} \le 1} $ is a manifold with boundary $ \da D = \S^{n - 1} $.
+\item $ M = \sbr{0, 1} \times \S^1 $ is a manifold with boundary $ \da M = \S^1 \sqcup \S^1 $.
 \end{itemize}
 \end{example}
 
@@ -515,7 +521,7 @@ Then $ \br{U_\alpha, \phi_\alpha} $ is called a \textbf{chart} and $ \cbr{\br{U_
 \hfill
 \begin{itemize}
 \item We can define tangent spaces and differential forms exactly in the same way as usual manifolds.
-\item The definition of orientability is the same. If $ M $ is orientable, then $ \partial M $ is also orientable. As a convention, the positive orientation on the boundary of $ \RR_+^n = \RR^{n - 1} \times \cbr{0} $ is given by $ \br{-1}^n\d x_1 \wedge \dots \wedge \d x_{n - 1} $. This induces a positive orientation on $ \partial M $.
+\item The definition of orientability is the same. If $ M $ is orientable, then $ \da M $ is also orientable. As a convention, the positive orientation on the boundary of $ \RR_+^n = \RR^{n - 1} \times \cbr{0} $ is given by $ \br{-1}^n\d x_1 \wedge \dots \wedge \d x_{n - 1} $. This induces a positive orientation on $ \da M $.
 \item Also partitions of unity for any open cover $ U_\alpha $ of $ M $ is defined the same way. If $ M $ is orientable, for any manifold with boundary, for all open coverings $ \UUU = \cbr{U_\alpha} $, there exists a partition of unity $ f_\alpha $. This implies that if $ \omega \in \Omega_\c^n\br{M} $, then $ \int_M \omega $ is defined the same way for manifolds.
 \end{itemize}
 \end{remark}
@@ -524,7 +530,7 @@ Then $ \br{U_\alpha, \phi_\alpha} $ is called a \textbf{chart} and $ \cbr{\br{U_
 
 \begin{theorem}[Stokes]
 For any manifold with boundary $ M $ of dimension $ n $, we have
-$$ \int_M \d\omega = \int_{\partial M} \omega \in \Omega_\c^n\br{M}, \qquad \omega \in \Omega_\c^{n - 1}\br{M}. $$
+$$ \int_M \d\omega = \int_{\da M} \omega \in \Omega_\c^n\br{M}, \qquad \omega \in \Omega_\c^{n - 1}\br{M}. $$
 \end{theorem}
 
 \pagebreak
@@ -539,7 +545,7 @@ $$ \br{\phi_\alpha^{-1}}^*\br{f_\alpha\omega} = \sum_{j = 1}^n \widetilde{f_\alp
 where $ \omega_j $ is a smooth function on $ \phi_\alpha\br{U_\alpha} $ and
 $$
 \begin{tikzcd}
-U_\alpha \arrow{r}{\widetilde{\phi_\alpha}} \arrow[swap]{d}{f_\alpha} & \phi_\alpha\br{U_\alpha} \arrow{dl}{\widetilde{f_\alpha}} \\
+U_\alpha \arrow{r}{\widetilde{\phi_\alpha}} \arrow{d}[swap]{f_\alpha} & \phi_\alpha\br{U_\alpha} \arrow{dl}{\widetilde{f_\alpha}} \\
 \sbr{0, 1} &
 \end{tikzcd}.
 $$
@@ -562,8 +568,8 @@ because $ \widetilde{f_\alpha} = 0 $ outside $ \phi_\alpha\br{U_\alpha} $. Thus
 & = \sum_\alpha \intd{-\infty}{\infty}{\dots \intd{-\infty}{\infty}{\br{-1}^{n - 1}\eval{\br{\widetilde{f_\alpha}\omega_j}}_{x_n = 0}}{x_{n - 1} \dots}}{x_1},
 \end{align*}
 since $ \eval{\br{f_\alpha\omega_j}}_{x_n = 0} = 0 $ for $ j = 1, \dots, n - 1 $, so
-$$ \int_M \d\omega = \sum_\alpha \intd{-\infty}{\infty}{\dots \intd{-\infty}{\infty}{\br{-1}^{n - 1}\eval{\br{\widetilde{f_\alpha}\omega_j}}_{x_n = 0}}{x_{n - 1} \dots}}{x_1} = \sum_\alpha \int_{\partial U_\alpha} \eval{f_\alpha}_{\partial U_\alpha}\omega = \int_{\partial M} \omega, $$
-where $ \partial U_\alpha = U_\alpha \cap \partial M $.
+$$ \int_M \d\omega = \sum_\alpha \intd{-\infty}{\infty}{\dots \intd{-\infty}{\infty}{\br{-1}^{n - 1}\eval{\br{\widetilde{f_\alpha}\omega_j}}_{x_n = 0}}{x_{n - 1} \dots}}{x_1} = \sum_\alpha \int_{\da U_\alpha} \eval{f_\alpha}_{\da U_\alpha}\omega = \int_{\da M} \omega, $$
+where $ \da U_\alpha = U_\alpha \cap \da M $.
 \end{proof}
 
 \pagebreak
@@ -574,11 +580,11 @@ where $ \partial U_\alpha = U_\alpha \cap \partial M $.
 
 \begin{theorem}[Integration by parts]
 Let $ M $ be an orientable $ n $-dimensional manifold with boundary, let $ \omega \in \Omega_\c^p\br{M} $, let $ \eta \in \Omega_\c^{n - p - 1}\br{M} $, and let $ p \in \cbr{0, \dots, n - 1} $. Then
-$$ \int_{\partial M} \omega \wedge \eta = \int_M \d\omega \wedge \eta + \br{-1}^p\int_M \omega \wedge \d\eta. $$
+$$ \int_{\da M} \omega \wedge \eta = \int_M \d\omega \wedge \eta + \br{-1}^p\int_M \omega \wedge \d\eta. $$
 \end{theorem}
 
 \begin{proof}
-$$ \int_{\partial M} \omega \wedge \eta = \int_M \d\br{\omega \wedge \eta} = \int_M \br{\d\omega \wedge \eta + \br{-1}^p\omega \wedge \d\eta}, $$
+$$ \int_{\da M} \omega \wedge \eta = \int_M \d\br{\omega \wedge \eta} = \int_M \br{\d\omega \wedge \eta + \br{-1}^p\omega \wedge \d\eta}, $$
 by Stokes and the Leibnitz rule.
 \end{proof}
 
@@ -586,13 +592,13 @@ by Stokes and the Leibnitz rule.
 Let
 $$ D = \cbr{x \in \RR^n \st \abs{x} \le 1}, $$
 so
-$$ \partial D = \S^{n - 1} = \cbr{x \in \RR^n \st \abs{x} = 1}, $$
+$$ \da D = \S^{n - 1} = \cbr{x \in \RR^n \st \abs{x} = 1}, $$
 and let $ f : D \to D $ be a smooth morphism. Then $ f $ admits a fixed point, that is there exists $ x \in D $ such that $ f\br{x} = x $.
 \end{theorem}
 
 \begin{proof}
-Assume that $ f\br{x} \ne x $ for all $ x \in D $. For any $ x \in D $, consider the ray starting from $ f\br{x} $ and passing through $ x $. Let $ g\br{x} $ be the point where this ray intersects $ \partial D $ away from $ f\br{x} $. Note that if $ x \in \partial D $ then $ g\br{x} = x $. Then $ g : D \to \partial D $. It is easy to check that $ g $ is smooth. Since $ \partial D = \S^{n - 1} $ is orientable by Proposition \ref{prop:1.23} there exists a volume form $ \omega \in \Omega^{n - 1}\br{\partial D} $, so $ \omega\br{x} \ne 0 $. Since $ \omega \in \Omega^{n - 1}\br{\partial D} $, $ \d\omega \in \Omega^n\br{\partial D} $, which is an $ n $-dimensional manifold, so $ \d\omega = 0 $. Thus
-$$ 0 < \int_{\partial D} \omega = \int_{\partial D} g^*\omega = \int_D \d\br{g^*\omega} = \int_D g^*\d\omega = 0, $$
+Assume that $ f\br{x} \ne x $ for all $ x \in D $. For any $ x \in D $, consider the ray starting from $ f\br{x} $ and passing through $ x $. Let $ g\br{x} $ be the point where this ray intersects $ \da D $ away from $ f\br{x} $. Note that if $ x \in \da D $ then $ g\br{x} = x $. Then $ g : D \to \da D $. It is easy to check that $ g $ is smooth. Since $ \da D = \S^{n - 1} $ is orientable by Proposition \ref{prop:1.23} there exists a volume form $ \omega \in \Omega^{n - 1}\br{\da D} $, so $ \omega\br{x} \ne 0 $. Since $ \omega \in \Omega^{n - 1}\br{\da D} $, $ \d\omega \in \Omega^n\br{\da D} $, which is an $ n $-dimensional manifold, so $ \d\omega = 0 $. Thus
+$$ 0 < \int_{\da D} \omega = \int_{\da D} g^*\omega = \int_D \d\br{g^*\omega} = \int_D g^*\d\omega = 0, $$
 by Stokes, a contradiction.
 \end{proof}
 
@@ -608,7 +614,7 @@ $$ \function[\gamma]{\sbr{0, 2\pi}}{\S^1}{\theta}{\br{\cos \theta, \sin \theta}}
 Then
 $$ \int_{\S^1} \omega = \int_0^{2\pi} \gamma^*\omega = \int_0^{2\pi} \br{\br{\dfrac{\cos \theta}{\cos^2 \theta + \sin^2 \theta}}\cos \theta\d\theta - \br{\dfrac{\sin \theta}{\cos^2 \theta + \sin^2 \theta}}\br{-\sin \theta}\d\theta} = \intd{0}{2\pi}{}{\theta} = 2\pi, $$
 and
-$$ \int_{\S^1} \omega = \int_{\S^1} \d f = \int_{\partial\S^1} f = \int_\emptyset f = 0, $$
+$$ \int_{\S^1} \omega = \int_{\S^1} \d f = \int_{\da\S^1} f = \int_\emptyset f = 0, $$
 so $ \omega $ is not exact.
 \end{example}
 
@@ -625,7 +631,7 @@ Easy from Stokes.
 
 \begin{proposition}
 Let $ M $ be an orientable manifold of dimension $ n $ with boundary, and let $ \omega \in \Omega_\c^{n - 1}\br{M} $ be a closed form. Then
-$$ \int_{\partial M} \omega = 0. $$
+$$ \int_{\da M} \omega = 0. $$
 \end{proposition}
 
 \begin{proof}
@@ -638,7 +644,7 @@ where $ i : N \hookrightarrow M $ is the inclusion. We will denote
 $$ \eval{\omega}_N = i^*\omega \in \Omega_\c^k\br{N}. $$
 
 \begin{proposition}
-Let $ M $ be an oriented manifold of dimension $ n $, let $ \omega \in \Omega_\c^k\br{M} $, and let $ S \subset M $ be a compact orientable submanifold of dimension $ k $ such that $ \partial S = \emptyset $ and $ \int_S \omega \ne 0 $. Then
+Let $ M $ be an oriented manifold of dimension $ n $, let $ \omega \in \Omega_\c^k\br{M} $, and let $ S \subset M $ be a compact orientable submanifold of dimension $ k $ such that $ \da S = \emptyset $ and $ \int_S \omega \ne 0 $. Then
 \begin{itemize}
 \item $ \omega $ is not exact,
 \item $ \eval{\omega}_S $ is not exact, and
@@ -660,9 +666,9 @@ Exercise. \footnote{Exercise}
 
 \begin{definition}
 Let $ M $ be a manifold of dimension $ n $, and let $ p \ge 0 $. Then $ \omega_1, \omega_2 \in \Omega^p\br{M} $ are said to be \textbf{cohomologous} if $ \omega_1 - \omega_2 = \d\eta $ where $ \eta \in \Omega^{p - 1}\br{M} $. In particular $ \omega \in \Omega^p\br{M} $ is cohomologous to zero if it is exact. Let
-$$ \ZZZ^p\br{M} = \Ker \br{\d : \Omega^p\br{M} \to \Omega^{p + 1}\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is closed}} \subset \Omega^p\br{M}, $$
+$$ \ZZZ^p\br{M} = \ker \br{\d : \Omega^p\br{M} \to \Omega^{p + 1}\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is closed}} \subset \Omega^p\br{M}, $$
 and let
-$$ \BBB^p\br{M} = \Im \br{\d : \Omega^{p - 1}\br{M} \to \Omega^p\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is exact}} \subset \Omega^p\br{M}. $$
+$$ \BBB^p\br{M} = \im \br{\d : \Omega^{p - 1}\br{M} \to \Omega^p\br{M}} = \cbr{\omega \in \Omega^p\br{M} \st \omega \ \text{is exact}} \subset \Omega^p\br{M}. $$
 \end{definition}
 
 Then $ \BBB^p\br{M} \subset \ZZZ^p\br{M} $ for all $ p \ge 0 $.
@@ -731,7 +737,7 @@ $$ \H^n\br{M} \ne 0. $$
 
 \begin{proof}
 $ M $ is orientable, so there exists a volume form $ \omega \in \Omega^n\br{M} = \Omega_\c^n\br{M} $, by Proposition \ref{prop:1.23}. Then $ \omega $ is closed, because $ \d\omega $ is an $ \br{n + 1} $-form on $ M $, so $ \omega \in \ZZZ^n\br{M} $. We want to show that $ \sbr{\omega} \ne 0 $ in $ \H^n\br{M} $. Assume $ \sbr{\omega} = 0 $, so $ \omega $ is exact. Thus $ \omega = \d\eta $ where $ \eta $ is an $ \br{n - 1} $-form on $ M $, so
-$$ 0 < \int_M \omega = \int_M \d\eta = \int_{\partial M} \eta = \int_\emptyset \eta = 0, $$
+$$ 0 < \int_M \omega = \int_M \d\eta = \int_{\da M} \eta = \int_\emptyset \eta = 0, $$
 by Stokes, a contradiction.
 \end{proof}
 
@@ -926,7 +932,7 @@ $$ \int_0^1 \gamma_0^*\omega = \int_{\gamma_0} \omega = \int_{\gamma_1} \omega. 
 
 \begin{proof}
 Lee's introduction to smooth manifolds. The idea is that
-$$ \int_{\gamma_0} \omega - \int_{\gamma_1} \omega = \int_{\gamma_0 \cup \gamma_1} \omega = \int_{\Im F} \omega = 0, $$
+$$ \int_{\gamma_0} \omega - \int_{\gamma_1} \omega = \int_{\gamma_0 \cup \gamma_1} \omega = \int_{\im F} \omega = 0, $$
 by Stokes' theorem.
 \end{proof}
 
@@ -962,9 +968,9 @@ $ \br{C^\bullet, d^\bullet} $ is a \textbf{cochain complex} if $ C^\bullet $ is 
 
 \begin{definition}
 The elements of
-$$ \ZZZ^k\br{C^\bullet, d^\bullet} = \Ker \br{d^k : C^k \to C^{k + 1}} \subset C^k $$
+$$ \ZZZ^k\br{C^\bullet, d^\bullet} = \ker \br{d^k : C^k \to C^{k + 1}} \subset C^k $$
 are called \textbf{cocycles}. The elements of
-$$ \BBB^k\br{C^\bullet, d^\bullet} = \Im \br{d^k : C^{k - 1} \to C^k} \subset C^k $$
+$$ \BBB^k\br{C^\bullet, d^\bullet} = \im \br{d^k : C^{k - 1} \to C^k} \subset C^k $$
 are called \textbf{coboundaries}. Then $ d^{k - 1} \circ d^k = 0 $, so $ \BBB^k \subset \ZZZ^k $. The quotients
 $$ \H^k\br{C^\bullet, d^\bullet} = \ZZZ^k\br{C^\bullet, d^\bullet} / \BBB^k\br{C^\bullet, d^\bullet} $$
 are the \textbf{$ k $-th cohomology groups} of $ \br{C^\bullet, d^\bullet} $.
@@ -996,7 +1002,7 @@ Now I need to check that if $ \omega \in \BBB^k\br{C^\bullet, d^\bullet} $ then 
 \begin{definition}
 A sequence of linear maps
 $$ C^1 \xrightarrow{f^1} C^2 \to \dots \to C^{k - 1} \xrightarrow{f^{k - 1}} C^k $$
-between vector spaces is said to be \textbf{exact} if for all $ i $, $ \Ker f^i = \Im f^{i - 1} $.
+between vector spaces is said to be \textbf{exact} if for all $ i $, $ \ker f^i = \im f^{i - 1} $.
 \end{definition}
 
 \begin{example}
@@ -1020,7 +1026,7 @@ can be split into short exact sequences
 $$
 \begin{tikzcd}[column sep=tiny]
 \dots \arrow{r} & C^{k - 1} \arrow{rr}{f^{k - 1}} \arrow{dr} & & C^k \arrow{rr}{f^k} \arrow{dr} & & C^{k + 1} \arrow{r} & \dots \\
-& & \Im f^{k - 1} = \Ker f^k \arrow{ur} \arrow{dr} & & \Im f^k = \Ker f^{k + 1} \arrow{ur} \arrow{dr} & & \\
+& & \im f^{k - 1} = \ker f^k \arrow{ur} \arrow{dr} & & \im f^k = \ker f^{k + 1} \arrow{ur} \arrow{dr} & & \\
 & 0 \arrow{ur} & & 0 \arrow{ur} & & 0 &
 \end{tikzcd},
 \qquad k = 2, \dots, q - 1. $$
@@ -1036,7 +1042,7 @@ $$
 \end{tikzcd},
 $$
 such that both the horizontal lines are exact sequences. Then there exists a long exact sequence
-$$ \Ker \alpha_1 \to \Ker \alpha_2 \to \Ker \alpha_3 \xrightarrow{\delta} \Coker \alpha_1 \to \Coker \alpha_2 \to \Coker \alpha_3. $$
+$$ \ker \alpha_1 \to \ker \alpha_2 \to \ker \alpha_3 \xrightarrow{\delta} \coker \alpha_1 \to \coker \alpha_2 \to \coker \alpha_3. $$
 If
 $$
 \begin{tikzcd}
@@ -1045,31 +1051,31 @@ $$
 \end{tikzcd},
 $$
 then
-$$ 0 \to \Ker \alpha_1 \to \Ker \alpha_2 \to \Ker \alpha_3 \xrightarrow{\delta} \Coker \alpha_1 \to \Coker \alpha_2 \to \Coker \alpha_3 \to 0. $$
+$$ 0 \to \ker \alpha_1 \to \ker \alpha_2 \to \ker \alpha_3 \xrightarrow{\delta} \coker \alpha_1 \to \coker \alpha_2 \to \coker \alpha_3 \to 0. $$
 \end{lemma}
 
 \begin{proof}
-We are going to construct $ \delta : \Ker \alpha_3 \to \Coker \alpha_1 $. Let $ x \in \Ker \alpha_3 $. There exists $ y \in C^2 $ such that $ f^2\br{y} = x $ because $ f^2 $ is surjective. Let $ z = \alpha_2\br{y} $ then
+We are going to construct $ \delta : \ker \alpha_3 \to \coker \alpha_1 $. Let $ x \in \ker \alpha_3 $. There exists $ y \in C^2 $ such that $ f^2\br{y} = x $ because $ f^2 $ is surjective. Let $ z = \alpha_2\br{y} $ then
 $$ g^2\br{z} = g^2\br{\alpha_2\br{y}} = \alpha_3\br{f^2\br{y}} = \alpha_3\br{x} = 0, $$
-since $ x \in \Ker \alpha_3 $. Then $ z \in \Ker g^2 = \Im g^1 $, so there exists $ w \in D^1 $ such that $ z = g^1\br{w} $. The idea is that
+since $ x \in \ker \alpha_3 $. Then $ z \in \ker g^2 = \im g^1 $, so there exists $ w \in D^1 $ such that $ z = g^1\br{w} $. The idea is that
 $$
 \begin{tikzcd}
 & 0 \arrow{d} & 0 \arrow{d} & 0 \arrow{d} & \\
-& \Ker \alpha_1 \arrow{r} \arrow{d} & \Ker \alpha_2 \arrow{r} \arrow{d} & \Ker \alpha_3 \arrow{d} \arrow[in=180, out=0]{dddll} & \\
+& \ker \alpha_1 \arrow{r} \arrow{d} & \ker \alpha_2 \arrow{r} \arrow{d} & \ker \alpha_3 \arrow{d} \arrow[in=180, out=0]{dddll} & \\
 & C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & y \in C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & x \in C^3 \arrow{r} \arrow{d}{\alpha_3} & 0 \\
-0 \arrow{r} & w \in D^1 \arrow[swap]{r}{g^1} \arrow{d} & z \in D^2 \arrow[swap]{r}{g^2} \arrow{d} & D^3 \arrow{d} &\\
-& \Coker \alpha_1 \arrow{r} \arrow{d} & \Coker \alpha_2 \arrow{r} \arrow{d} & \Coker \alpha_3 \arrow{d} & \\
+0 \arrow{r} & w \in D^1 \arrow{r}[swap]{g^1} \arrow{d} & z \in D^2 \arrow{r}[swap]{g^2} \arrow{d} & D^3 \arrow{d} &\\
+& \coker \alpha_1 \arrow{r} \arrow{d} & \coker \alpha_2 \arrow{r} \arrow{d} & \coker \alpha_3 \arrow{d} & \\
 & 0 & 0 & 0 &
 \end{tikzcd}.
 $$
-Define $ \delta\br{x} = \sbr{w} \in \Coker \alpha^1 = D^1 / \Im \alpha^1 $. Need to check that $ \delta $ is well-defined, so $ \sbr{w} $ does not depend on our choice of $ w $ and $ y $. The rest is an exercise. \footnote{Exercise}
+Define $ \delta\br{x} = \sbr{w} \in \coker \alpha^1 = D^1 / \im \alpha^1 $. Need to check that $ \delta $ is well-defined, so $ \sbr{w} $ does not depend on our choice of $ w $ and $ y $. The rest is an exercise. \footnote{Exercise}
 \end{proof}
 
 \pagebreak
 
 \subsection{The Mayer-Vietoris sequence}
 
-The idea is that given a manifold $ M $, we may write $ M = U \cup V $ with open $ U $ and $ V $ so that $ H^i\br{U} $, $ H^i\br{V} $, and $ H^i\br{U \cap V} $ are easy to compute, so this will give us $ H^i\br{M} $. Let $ M $ be a manifold, and let $ U $ and $ V $ be open such that $ M = U \cup V $. Assume $ U \cap V \ne \emptyset $. Let
+The idea is that given a manifold $ M $, we may write $ M = U \cup V $ with open $ U $ and $ V $ so that $ \H^i\br{U} $, $ \H^i\br{V} $, and $ \H^i\br{U \cap V} $ are easy to compute, so this will give us $ \H^i\br{M} $. Let $ M $ be a manifold, and let $ U $ and $ V $ be open such that $ M = U \cup V $. Assume $ U \cap V \ne \emptyset $. Let
 $$ i_U : U \to M, \qquad i_V : V \to M, \qquad j_U : U \cap V \to U, \qquad j_V : U \cap V \to V $$
 be inclusions, and let $ i_U^*, i_V^*, j_U^*, j_V^* $ be pull-backs.
 
@@ -1084,22 +1090,22 @@ where $ f = \br{i_U^*, i_V^*} $ and $ g = j_V^* - j_U^* $. More precisely, if $ 
 \hfill
 \begin{itemize}
 \item $ f $ is injective. Assume $ \omega \in \Omega^p\br{M} $ such that $ f\br{\omega} = 0 $, so $ i_U^*\omega = i_V^*\omega = 0 $. Since $ M = U \cup V $ then $ \omega = 0 $ on $ M $, so $ f $ is injective.
-\item $ \Im f = \Ker g $. Let $ f\br{\omega} \in \Im f $, so $ f\br{\omega} = \br{i_U^*\omega, i_V^*\omega} $. Then $ g\br{f\br{\omega}} = j_V^*i_V^*\omega - j_U^*i_U^*\omega = l^*\omega - l^*\omega = 0 $, where
+\item $ \im f = \ker g $. Let $ f\br{\omega} \in \im f $, so $ f\br{\omega} = \br{i_U^*\omega, i_V^*\omega} $. Then $ g\br{f\br{\omega}} = j_V^*i_V^*\omega - j_U^*i_U^*\omega = l^*\omega - l^*\omega = 0 $, where
 $$
 \begin{tikzcd}
 & U \arrow{dr}{i_U} & \\
-U \cap V \arrow{ur}{j_U} \arrow{rr}{l} \arrow[swap]{dr}{j_V} & & M \\
-& V \arrow[swap]{ur}{i_V} &
+U \cap V \arrow{ur}{j_U} \arrow{rr}{l} \arrow{dr}[swap]{j_V} & & M \\
+& V \arrow{ur}[swap]{i_V} &
 \end{tikzcd},
 $$
-so $ \Im f \subset \Ker g $. Now let $ \br{\omega_1, \omega_2} \in \Ker g $, so $ j_V^*\omega_2 = j_U^*\omega_1 $ for $ \omega_1 \in \Omega^p\br{U} $ and $ \omega_2 \in \Omega^p\br{V} $. The restriction of $ \omega_2 $ on $ U \cap V $ coincides with the restriction of $ \omega_1 $ on $ U \cap V $. Then define
+so $ \im f \subset \ker g $. Now let $ \br{\omega_1, \omega_2} \in \ker g $, so $ j_V^*\omega_2 = j_U^*\omega_1 $ for $ \omega_1 \in \Omega^p\br{U} $ and $ \omega_2 \in \Omega^p\br{V} $. The restriction of $ \omega_2 $ on $ U \cap V $ coincides with the restriction of $ \omega_1 $ on $ U \cap V $. Then define
 $$ \omega =
 \begin{cases}
 \omega_1 & \text{on} \ U \\
 \omega_2 & \text{on} \ V
 \end{cases}.
 $$
-Then $ f\br{\omega} = \br{\omega_1, \omega_2} $, so $ \Ker g \subset \Im f $.
+Then $ f\br{\omega} = \br{\omega_1, \omega_2} $, so $ \ker g \subset \im f $.
 \item $ g $ is surjective. Let $ \eta \in \Omega^p\br{U \cap V} $, and let $ \cbr{f_U, f_V} $ be a partition of unity with respect to $ \cbr{U, V} $. Then $ \supp f_U \subset U $ and $ f_U + f_V = 1 $. Let $ \eta_1 \in \Omega^p\br{U} $ be defined by
 $$ \eta_1 =
 \begin{cases}
@@ -1114,7 +1120,7 @@ f_U \cdot \eta & \text{on} \ U \cap V \\
 0 & \text{outside} \ \supp f_U
 \end{cases}.
 $$
-Then $ g\br{-\eta_2, \eta_1} = \eval{\eta_1}_{U \cap V} + \eval{\eta_2}_{U \cap V} = \br{f_U + f_V} \cdot \eta = \eta $, so $ \eta \in \Im g $.
+Then $ g\br{-\eta_2, \eta_1} = \eval{\eta_1}_{U \cap V} + \eval{\eta_2}_{U \cap V} = \br{f_U + f_V} \cdot \eta = \eta $, so $ \eta \in \im g $.
 \end{itemize}
 \end{proof}
 
@@ -1125,7 +1131,7 @@ Then $ g\br{-\eta_2, \eta_1} = \eval{\eta_1}_{U \cap V} + \eval{\eta_2}_{U \cap 
 Let $ M $ be a manifold, and let $ U $ and $ V $ be open in $ M $ such that $ M = U \cup V $ and $ U \cap V \ne \emptyset $. Then for all $ p \ge 0 $ there exists a linear $ \delta : \H^p\br{U \cap V} \to \H^{p + 1}\br{M} $ such that
 $$
 \begin{tikzcd}[column sep=small]
-\dots \arrow{r} & \H^p\br{M} \arrow{r}{\br{i_U^*, i_V^*}} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r}{j_V^* - j_U^*} & \H^p\br{U \cap V} \arrow[in=180, out=0, swap]{dll}{\delta} & \\
+\dots \arrow{r} & \H^p\br{M} \arrow{r}{\br{i_U^*, i_V^*}} & \H^p\br{U} \oplus \H^p\br{V} \arrow{r}{j_V^* - j_U^*} & \H^p\br{U \cap V} \arrow[in=180, out=0]{dll}[swap]{\delta} & \\
 & \H^{p + 1}\br{M} \arrow{r}{\br{i_U^*, i_V^*}} & \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} \arrow{r}{j_V^* - j_U^*} & \H^{p + 1}\br{U \cap V} \arrow{r} & \dots
 \end{tikzcd}
 $$
@@ -1156,7 +1162,7 @@ $$
 & \RR & \RR \oplus \RR & \RR^2 & & 0 \oplus 0 & 0 &
 \end{tikzcd}.
 $$
-Thus $ \Im \phi = \RR \subset \H^0\br{U \cap V} = \RR^2 $, so $ \H^1\br{M} = \Coker \phi = \RR^2 / \Im \phi \cong \RR $.
+Thus $ \im \phi = \RR \subset \H^0\br{U \cap V} = \RR^2 $, so $ \H^1\br{M} = \coker \phi = \RR^2 / \im \phi \cong \RR $.
 \end{example}
 
 \begin{remark}
@@ -1218,17 +1224,17 @@ $$
 are exact. Recall $ \d $ commutes with the pull-back. By the strong snake lemma,
 $$
 \begin{tikzcd}
-& \Coker \d_M^{p - 1} \arrow{r} \arrow{d}{\partial_M^p = \d_M^p} & \Coker \br{\d_U^{p - 1}, \d_V^{p - 1}} \arrow{r} \arrow{d}{\br{\partial_U^p, \partial_V^p} = \br{\d_U^p, \d_V^p}} & \Coker \d_{U \cap V}^{p - 1} \arrow{r} \arrow{d}{\partial_{U \cap V}^p = \d_{U \cap V}^p} & 0 \\
-0 \arrow{r} & \Ker \d_M^{p + 1} \arrow{r} & \Ker \br{\d_U^{p + 1}, \d_V^{p + 1}} \arrow{r} & \Ker \d_{U \cap V}^{p + 1} &
+& \coker \d_M^{p - 1} \arrow{r} \arrow{d}{\da_M^p = \d_M^p} & \coker \br{\d_U^{p - 1}, \d_V^{p - 1}} \arrow{r} \arrow{d}{\br{\da_U^p, \da_V^p} = \br{\d_U^p, \d_V^p}} & \coker \d_{U \cap V}^{p - 1} \arrow{r} \arrow{d}{\da_{U \cap V}^p = \d_{U \cap V}^p} & 0 \\
+0 \arrow{r} & \ker \d_M^{p + 1} \arrow{r} & \ker \br{\d_U^{p + 1}, \d_V^{p + 1}} \arrow{r} & \ker \d_{U \cap V}^{p + 1} &
 \end{tikzcd},
 $$
 which is well-defined, since $ \d^{p + 1} \circ \d^p = 0 $. By the weak snake lemma again,
-$$ \Ker \partial_M^p \to \Ker \br{\partial_U^p, \partial_V^p} \to \Ker \partial_{U \cap V}^p \xrightarrow{\delta} \Coker \partial_M^p \to \Coker \br{\partial_U^p, \partial_V^p} \to \Coker \partial_{U \cap V}^p. $$
-Then $ \Coker \d_M^{p - 1} = \Omega^p\br{M} / \Im \d_M^{p - 1} $. There exists
-$$ \H^p\br{M} = \Ker \d_M^p / \Im \d_M^{p - 1} \xrightarrow{\sim} \Ker \br{\Omega^p\br{M} / \Im \d_M^{p - 1} \to \Ker \d_M^{p + 1}} = \Ker \partial_M^p. $$
-Similarly, $ \Ker \br{\partial_U^p, \partial_V^p} \cong \H^p\br{U} \oplus \H^p\br{V} $ and $ \Ker \partial_{U \cap V}^p \cong \H^p\br{U \cap V} $. There exists
-$$ \H^{p + 1}\br{M} = \Ker \d_M^{p + 1} / \Im \d_M^p \xrightarrow{\sim} \Coker \br{\Omega^p\br{M} / \Im \d_M^{p - 1} \to \Ker \d_M^{p + 1}} = \Coker \partial_M^p. $$
-Similarly, $ \Coker \br{\partial_U^p, \partial_V^p} \cong \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} $ and $ \Coker \partial_{U \cap V}^p \cong \H^{p + 1}\br{U \cap V} $.
+$$ \ker \da_M^p \to \ker \br{\da_U^p, \da_V^p} \to \ker \da_{U \cap V}^p \xrightarrow{\delta} \coker \da_M^p \to \coker \br{\da_U^p, \da_V^p} \to \coker \da_{U \cap V}^p. $$
+Then $ \coker \d_M^{p - 1} = \Omega^p\br{M} / \im \d_M^{p - 1} $. There exists
+$$ \H^p\br{M} = \ker \d_M^p / \im \d_M^{p - 1} \xrightarrow{\sim} \ker \br{\Omega^p\br{M} / \im \d_M^{p - 1} \to \ker \d_M^{p + 1}} = \ker \da_M^p. $$
+Similarly, $ \ker \br{\da_U^p, \da_V^p} \cong \H^p\br{U} \oplus \H^p\br{V} $ and $ \ker \da_{U \cap V}^p \cong \H^p\br{U \cap V} $. There exists
+$$ \H^{p + 1}\br{M} = \ker \d_M^{p + 1} / \im \d_M^p \xrightarrow{\sim} \coker \br{\Omega^p\br{M} / \im \d_M^{p - 1} \to \ker \d_M^{p + 1}} = \coker \da_M^p. $$
+Similarly, $ \coker \br{\da_U^p, \da_V^p} \cong \H^{p + 1}\br{U} \oplus \H^{p + 1}\br{V} $ and $ \coker \da_{U \cap V}^p \cong \H^{p + 1}\br{U \cap V} $.
 \end{proof}
 
 \lecture{14}{Monday}{10/02/20}
@@ -1293,7 +1299,7 @@ $$ \Omega_\c^p\br{M} \xrightarrow{\d} \Omega_\c^{p + 1}\br{M} \xrightarrow{\d} \
 
 \begin{definition}
 The \textbf{$ p $-th compactly supported de Rham cohomology group} is
-$$ \H_\c^p\br{M} = \ZZZ_\c^p\br{M} / \BBB_\c^p\br{M} = \Ker \br{\d : \Omega_\c^p\br{M} \to \Omega_\c^{p + 1}\br{M}} / \Im \br{\d : \Omega_\c^{p - 1}\br{M} \to \Omega_\c^p\br{M}}. $$
+$$ \H_\c^p\br{M} = \ZZZ_\c^p\br{M} / \BBB_\c^p\br{M} = \ker \br{\d : \Omega_\c^p\br{M} \to \Omega_\c^{p + 1}\br{M}} / \im \br{\d : \Omega_\c^{p - 1}\br{M} \to \Omega_\c^p\br{M}}. $$
 \end{definition}
 
 \begin{example*}
@@ -1422,14 +1428,14 @@ Let $ M $ be a manifold such that $ M = U \cup V $ for open $ U $ and $ V $ such
 $$
 \begin{tikzcd}
 & U \arrow[hookrightarrow]{dr}{i_U} & \\
-U \cap V \arrow[hookrightarrow]{ur}{j_U} \arrow[hookrightarrow, swap]{dr}{j_V} & & M \\
-& V \arrow[hookrightarrow, swap]{ur}{i_V} &
+U \cap V \arrow[hookrightarrow]{ur}{j_U} \arrow[hookrightarrow]{dr}[swap]{j_V} & & M \\
+& V \arrow[hookrightarrow]{ur}[swap]{i_V} &
 \end{tikzcd},
 \qquad
 \begin{tikzcd}
 & \Omega^p\br{U} \arrow{dr}{i_{U*}} & \\
-\Omega^p\br{U \cap V} \arrow{ur}{j_{U*}} \arrow[swap]{dr}{j_{V*}} & & \Omega^p\br{M} \\
-& \Omega^p\br{V} \arrow[swap]{ur}{i_{V*}} &
+\Omega^p\br{U \cap V} \arrow{ur}{j_{U*}} \arrow{dr}[swap]{j_{V*}} & & \Omega^p\br{M} \\
+& \Omega^p\br{V} \arrow{ur}[swap]{i_{V*}} &
 \end{tikzcd},
 \qquad p \ge 0. $$
 
@@ -1443,7 +1449,7 @@ where $ i = i_{U*} + i_{V*} $ and $ j = \br{-j_{U*}, j_{V*}} $.
 \hfill
 \begin{itemize}
 \item $ j $ is injective. Let $ \omega \in \Omega^p\br{U \cap V} $ such that $ j\br{\omega} = 0 $, so $ j_{U*}\omega = j_{V*}\omega = 0 $. Then $ \omega = 0 $, so $ j $ is injective.
-\item $ \Ker i = \Im j $. Let $ \omega \in \Omega^p\br{U \cap V} $. Then $ i\br{j\br{\omega}} = i\br{-j_{U*}\omega, j_{V*}\omega} = -i_{U*}j_{U*}\omega + i_{V*}j_{V*}\omega = 0 $, so $ \Ker i \supset \Im j $. Let $ \br{\omega_1, \omega_2} \in \Ker i $. Then $ i_{U*}\omega_1 + i_{V*}\omega_2 = 0 $, so $ i_{V*}\omega_1 = -i_{V*}\omega_2 $, so $ \supp \omega_1 \subset U \cap V $ and $ \supp \omega_2 \subset U \cap V $, so there exists $ \eta \in \Omega^p\br{U \cap V} $ such that $ j_{U*}\eta = -\omega_1 $ and $ j_{V*}\eta = \omega_2 $, so $ \br{\omega_1, \omega_2} = j\br{\eta} $, so $ \Ker i \subset \Im j $.
+\item $ \ker i = \im j $. Let $ \omega \in \Omega^p\br{U \cap V} $. Then $ i\br{j\br{\omega}} = i\br{-j_{U*}\omega, j_{V*}\omega} = -i_{U*}j_{U*}\omega + i_{V*}j_{V*}\omega = 0 $, so $ \ker i \supset \im j $. Let $ \br{\omega_1, \omega_2} \in \ker i $. Then $ i_{U*}\omega_1 + i_{V*}\omega_2 = 0 $, so $ i_{V*}\omega_1 = -i_{V*}\omega_2 $, so $ \supp \omega_1 \subset U \cap V $ and $ \supp \omega_2 \subset U \cap V $, so there exists $ \eta \in \Omega^p\br{U \cap V} $ such that $ j_{U*}\eta = -\omega_1 $ and $ j_{V*}\eta = \omega_2 $, so $ \br{\omega_1, \omega_2} = j\br{\eta} $, so $ \ker i \subset \im j $.
 \item $ i $ is surjective. Let $ \omega \in \Omega_\c^p\br{M} $, and let $ \cbr{f_U, f_V} $ be a partition of unity with respect to $ \cbr{U, V} $. Define $ \omega_U = f_U \cdot \eval{\omega}_U \in \Omega_\c^p\br{U} $ and $ \omega_V = f_V \cdot \eval{\omega}_V \in \Omega_\c^p\br{V} $. Then $ i\br{\omega_U, \omega_V} = i_{U*}\omega_U + i_{V*}\omega_V = f_U \cdot \omega + f_V \cdot \omega = \br{f_U + f_V} \cdot \omega = \omega $.
 \end{itemize}
 \end{proof}
@@ -1460,7 +1466,7 @@ $$
 There exists $ \delta : \H_\c^p\br{M} \to \H_\c^{p + 1}\br{U \cap V} $ such that
 $$
 \begin{tikzcd}[column sep=small]
-\dots \arrow{r} & \H_\c^p\br{U \cap V} \arrow{r} & \H_\c^p\br{U} \oplus \H_\c^p\br{V} \arrow{r} & \H_\c^p\br{M} \arrow[in=180, out=0, swap]{dll}{\delta} & \\
+\dots \arrow{r} & \H_\c^p\br{U \cap V} \arrow{r} & \H_\c^p\br{U} \oplus \H_\c^p\br{V} \arrow{r} & \H_\c^p\br{M} \arrow[in=180, out=0]{dll}[swap]{\delta} & \\
 & \H_\c^{p + 1}\br{U \cap V} \arrow{r} & \H_\c^{p + 1}\br{U} \oplus \H_\c^{p + 1}\br{V} \arrow{r} & \H_\c^{p + 1}\br{M} \arrow{r} & \dots
 \end{tikzcd}.
 $$
@@ -1566,10 +1572,10 @@ which is also exact, where $ \br{f^1}^*\phi = \phi \circ f^1 $ and $ \br{f^2}^*\
 \end{lemma}
 
 \begin{proof}
-By assumption $ \Ker f^2 = \Im f^1 $. We want to prove $ \Ker \br{f^1}^* = \Im \br{f^2}^* $.
+By assumption $ \ker f^2 = \im f^1 $. We want to prove $ \ker \br{f^1}^* = \im \br{f^2}^* $.
 \begin{itemize}
-\item Let $ \phi \in \Im \br{f^2}^* $. Then there exists $ \psi \in \br{C^3}^* $ such that $ \br{f^2}^*\psi = \phi $, so $ \psi \circ f^2 = \phi $, so $ 0 = \psi \circ f^2 \circ f^1 = \phi \circ f^1 = \br{f^1}^*\phi $, so $ \phi \in \Ker \br{f^1}^* $.
-\item Let $ \phi \in \Ker \br{f^1}^* $. Then $ \phi \circ f^1 = 0 $, so $ \Ker f^2 = \Im f^1 \subset \Ker \phi $, so there exists $ \overline{\phi} : C^2 / \Ker f^2 \to \RR $, so there exists $ \psi : C^3 \to \RR $ extending $ \overline{\phi} $ such that $ \psi \circ f^2 = \phi $, so $ \br{f^2}^*\psi = \phi $, so $ \phi \in \Im \br{f^2}^* $.
+\item Let $ \phi \in \im \br{f^2}^* $. Then there exists $ \psi \in \br{C^3}^* $ such that $ \br{f^2}^*\psi = \phi $, so $ \psi \circ f^2 = \phi $, so $ 0 = \psi \circ f^2 \circ f^1 = \phi \circ f^1 = \br{f^1}^*\phi $, so $ \phi \in \ker \br{f^1}^* $.
+\item Let $ \phi \in \ker \br{f^1}^* $. Then $ \phi \circ f^1 = 0 $, so $ \ker f^2 = \im f^1 \subset \ker \phi $, so there exists $ \overline{\phi} : C^2 / \ker f^2 \to \RR $, so there exists $ \psi : C^3 \to \RR $ extending $ \overline{\phi} $ such that $ \psi \circ f^2 = \phi $, so $ \br{f^2}^*\psi = \phi $, so $ \phi \in \im \br{f^2}^* $.
 \end{itemize}
 \end{proof}
 
@@ -1591,7 +1597,7 @@ Then $ \alpha_3 $ is an isomorphism.
 \end{lemma}
 
 \begin{proof}
-Let $ x \in C^3 $ such that $ \alpha_3\br{x} = 0 $, so if $ y = f^3\br{x} $ then $ \alpha_4\br{y} = 0 $. Since $ \alpha_4 $ is an isomorphism, $ y = 0 $. Then $ x \in \Ker f^3 = \Im f^2 $, so there exists $ z \in C^2 $ such that $ f^2\br{z} = x $. Let $ w = \alpha_2\br{z} $ then $ g^2\br{w} = 0 $, so $ w \in \Ker g^2 = \Im g^1 $. Then there exists $ t \in D^1 $ such that $ g^1\br{t} = w $. Since $ \alpha_1 $ is surjective there exists $ s \in C^1 $ such that $ \alpha_1\br{s} = t $, so
+Let $ x \in C^3 $ such that $ \alpha_3\br{x} = 0 $, so if $ y = f^3\br{x} $ then $ \alpha_4\br{y} = 0 $. Since $ \alpha_4 $ is an isomorphism, $ y = 0 $. Then $ x \in \ker f^3 = \im f^2 $, so there exists $ z \in C^2 $ such that $ f^2\br{z} = x $. Let $ w = \alpha_2\br{z} $ then $ g^2\br{w} = 0 $, so $ w \in \ker g^2 = \im g^1 $. Then there exists $ t \in D^1 $ such that $ g^1\br{t} = w $. Since $ \alpha_1 $ is surjective there exists $ s \in C^1 $ such that $ \alpha_1\br{s} = t $, so
 $$
 \begin{tikzcd}
 s \in C^1 \arrow{r}{f^1} \arrow{d}{\alpha_1} & z \in C^2 \arrow{r}{f^2} \arrow{d}{\alpha_2} & x \in C^3 \arrow{r}{f^3} \arrow{d}{\alpha_3} & y \in C^4 \arrow{r}{f^4} \arrow{d}{\alpha_4} & C^5 \arrow{d}{\alpha_5} \\
@@ -1645,7 +1651,7 @@ $$ i\br{\omega_U, \omega_V} = i_{U*}\omega_U + i_{V*}\omega_V = \omega_U + \omeg
 
 \pagebreak
 
-If $ \omega $ is closed, then $ i\br{\d\omega_U, \d\omega_V} = \d\br{i_{U*}\omega_U} + \d\br{i_{V*}\omega_V} = 0 $, so $ \br{\d\omega_U, \d\omega_V} \in \Ker i = \Im j \subset \Omega_\c^{p + 1}\br{U} \oplus \Omega_\c^{p + 1}\br{V} $. Since $ j $ is injective there exists a unique $ \delta_\c\br{\omega} \in \Omega_\c^{p + 1}\br{U \cap V} $ such that $ j\br{\delta_\c\br{\omega}} = \br{\d\omega_U, \d\omega_V} $. Since $ f_U + f_V = 1 $, $ \d f_U + \d f_V = 0 $, so $ \d f_U = -\d f_V $. Then
+If $ \omega $ is closed, then $ i\br{\d\omega_U, \d\omega_V} = \d\br{i_{U*}\omega_U} + \d\br{i_{V*}\omega_V} = 0 $, so $ \br{\d\omega_U, \d\omega_V} \in \ker i = \im j \subset \Omega_\c^{p + 1}\br{U} \oplus \Omega_\c^{p + 1}\br{V} $. Since $ j $ is injective there exists a unique $ \delta_\c\br{\omega} \in \Omega_\c^{p + 1}\br{U \cap V} $ such that $ j\br{\delta_\c\br{\omega}} = \br{\d\omega_U, \d\omega_V} $. Since $ f_U + f_V = 1 $, $ \d f_U + \d f_V = 0 $, so $ \d f_U = -\d f_V $. Then
 $$ j\br{\delta_\c\br{\omega}} = \br{\d\omega_U, \d\omega_V} = \br{\d f_U \wedge \eval{\omega}_U, \d f_V \wedge \eval{\omega}_V} = \br{-\d f_V \wedge \eval{\omega}_U, \d f_V \wedge \eval{\omega}_V} = j\br{\d f_V \wedge \eval{\omega}_{U \cap V}}. $$
 Since $ j $ is injective, $ \delta_\c\br{\omega} = \d f_V \wedge \eval{\omega}_{U \cap V} $, so $ \delta_\c : \Omega_\c^p\br{M} \to \Omega_\c^{p + 1} $. Let $ \eta $ be a form on $ M $. Since $ \delta_\c\br{\d\eta} = \d f_V \wedge \eval{\d \eta}_{U \cap V} = -\d\delta_\c\br{\eta} $, $ \delta_\c $ maps closed forms to closed forms and exact forms to exact forms, so
 $$ \function[\delta_\c]{\H_\c^p\br{M}}{\H_\c^{p + 1}\br{U \cap V}}{\omega}{\d f_V \wedge \eval{\omega}_{U \cap V}}. $$
@@ -1766,7 +1772,7 @@ Let $ M = \S^n = N $, and let
 $$ \function[f]{M}{N}{x}{-x} $$
 be the antipodal map. Claim that $ \deg f = \br{-1}^{n + 1} $. Let $ i : \S^n \hookrightarrow \RR^{n + 1} $, let
 $$ \widetilde{\omega} = x_1\d x_2 \wedge \dots \wedge \d x_{n + 1} \in \Omega^n\br{\RR^{n + 1}}, $$
-and let $ \omega = i_*\widetilde{\omega} \in \Omega^n\br{\S^n} $. By Stokes and $ \S^n = \partial\D_{n + 1} $,
+and let $ \omega = i_*\widetilde{\omega} \in \Omega^n\br{\S^n} $. By Stokes and $ \S^n = \da\D_{n + 1} $,
 $$ \int_{\S^n} \omega = \int_{\S^n} i^*\widetilde{\omega} = \int_{\D_{n + 1}} \d\widetilde{\omega} = \int_{\D_{n + 1}} \d x_1 \wedge \dots \wedge \d x_{n + 1} \ne 0, $$
 so $ f $ can be extended to
 $$ \function[\widetilde{f}]{\RR^{n + 1}}{\RR^{n + 1}}{x}{-x}. $$
@@ -1798,11 +1804,11 @@ By Sard's theorem most of the functions satisfy this property.
 \lecture{21}{Tuesday}{25/02/20}
 
 \begin{notation*}
-Let $ \D_n = \cbr{x \st \abs{x} \le 1} \subset \RR^n $ be the unit ball, and let $ \S^{n - 1} = \partial\D_n $.
+Let $ \D_n = \cbr{x \st \abs{x} \le 1} \subset \RR^n $ be the unit ball, and let $ \S^{n - 1} = \da\D_n $.
 \end{notation*}
 
 \begin{definition}
-An \textbf{$ n $-cell} is a topological space which is homeomorphic to the open ball $ \D_n \setminus \partial\D_n $. A \textbf{cell decomposition} of a topological space $ M $ is a family $ F $ of pairwise disjoint subspaces of $ M $ which are $ n $-cells and such that $ M = \bigsqcup_{e_i \in F} e_i $. If $ F $ is finite, then this is called a \textbf{finite cell decomposition}. Let
+An \textbf{$ n $-cell} is a topological space which is homeomorphic to the open ball $ \D_n \setminus \da\D_n $. A \textbf{cell decomposition} of a topological space $ M $ is a family $ F $ of pairwise disjoint subspaces of $ M $ which are $ n $-cells and such that $ M = \bigsqcup_{e_i \in F} e_i $. If $ F $ is finite, then this is called a \textbf{finite cell decomposition}. Let
 $$ \SK_m M = \bigsqcup_{\dim e_i \le m} e_i, \qquad m \ge 0. $$
 \end{definition}
 
@@ -1811,17 +1817,17 @@ $ \S^1 = \br{\S^1 \setminus \cbr{p}} \sqcup \cbr{p} $, where $ \S^1 \setminus \c
 \end{example}
 
 \begin{notation}
-Let $ M $ be a topological space, and let $ f_\partial : \S^{n - 1} \to M $ be continuous. We construct a new topological space
-$$ M \cup_{f_\partial} \D_n = M \sqcup \D_n / \sim, $$
-where $ M \ni x \sim y \in \S^{n - 1} \subset \D_n $ if $ f_0\br{y} = x $. Then $ M \cup_{f_\partial} \D_n $ is said to be obtained by \textbf{attaching} an $ n $-cell to $ M $ via $ f_\partial $.
+Let $ M $ be a topological space, and let $ f_\da : \S^{n - 1} \to M $ be continuous. We construct a new topological space
+$$ M \cup_{f_\da} \D_n = M \sqcup \D_n / \sim, $$
+where $ M \ni x \sim y \in \S^{n - 1} \subset \D_n $ if $ f_0\br{y} = x $. Then $ M \cup_{f_\da} \D_n $ is said to be obtained by \textbf{attaching} an $ n $-cell to $ M $ via $ f_\da $.
 \end{notation}
 
 \begin{example*}
-Let $ M = \cbr{p} $, and let $ f_\partial : \S^0 = \partial\D_1 = \partial\sbr{0, 1} \to \cbr{p} $. Then $ \S^1 = M \cup_{f_\partial} \D_1 $.
+Let $ M = \cbr{p} $, and let $ f_\da : \S^0 = \da\D_1 = \da\sbr{0, 1} \to \cbr{p} $. Then $ \S^1 = M \cup_{f_\da} \D_1 $.
 \end{example*}
 
 \begin{exercise*}
-If $ M $ admits a cell decomposition then also $ M \cup_{f_\partial} \D_n $ does.
+If $ M $ admits a cell decomposition then also $ M \cup_{f_\da} \D_n $ does.
 \end{exercise*}
 
 \begin{example}
@@ -1981,7 +1987,7 @@ such that
 \item $ M^{\br{k}} $ is obtained by attaching $ k $-cells to $ M^{\br{k - 1}} $, and
 \item $ V \subset M $ is closed if and only if $ V \cap M^{\br{k}} $ is closed for all $ k $.
 \end{enumerate}
-Such $ M $ is called a \textbf{CW-complex}. Then $ M $ is a \textbf{finite CW-complex} if it is obtained by attaching finitely many cells. In this case $ 3 $ is not needed. A \textbf{subcomplex} of a CW-complex $ M $ is a closed subspace of $ M $ which is a union of cells of $ M $. A \textbf{closed cell} is the image of $ \D_n $ in a cell. An \textbf{open cell} is the image of $ \D_n \setminus \partial\D_n $ in a cell. Open cells are not open in $ M $ in general.
+Such $ M $ is called a \textbf{CW-complex}. Then $ M $ is a \textbf{finite CW-complex} if it is obtained by attaching finitely many cells. In this case $ 3 $ is not needed. A \textbf{subcomplex} of a CW-complex $ M $ is a closed subspace of $ M $ which is a union of cells of $ M $. A \textbf{closed cell} is the image of $ \D_n $ in a cell. An \textbf{open cell} is the image of $ \D_n \setminus \da\D_n $ in a cell. Open cells are not open in $ M $ in general.
 \end{definition}
 
 \begin{example}
@@ -2045,7 +2051,7 @@ $$ \br{X \circ \gamma_x}\br{t} = \dod{}{t}\gamma_x\br{t}, \qquad x \in M. $$
 It can be shown that two distinct flow lines are disjoint. Thus, the manifold $ M $ decomposes into a disjoint union of flow lines.
 
 \begin{example*}
-Let $ M = \RR $, and let $ X = x^2\partial_x $. Find the flow. \footnote{Exercise}
+Let $ M = \RR $, and let $ X = x^2\da_x $. Find the flow. \footnote{Exercise}
 \end{example*}
 
 \pagebreak
@@ -2161,17 +2167,17 @@ $$ \S_a = \cbr{h_{\min} + \sum_{i = 1}^n x_i^2 \le a} = \D_n. $$
 
 Similarly there exists $ b < h_{\max} $ sufficiently close such that $ M \setminus \S_b \cong \D_n $. By Theorem \ref{thm:3.20}, since there do not exist critical points in $ f^{-1}\br{\sbr{a, b}} $ we know that $ \S_b \cong \S_a \cong \D_n $. We proved that there exist
 $$ \phi_+ : \D_n^+ \xrightarrow{\sim} H_+, \qquad \phi_- : \D_n^- \xrightarrow{\sim} H_-, $$
-where $ H_- = \S_b $ and $ H_+ = \overline{M \setminus \S_b} $, such that $ M = H_+ \cup H_- $ and $ \phi_+\br{\partial\D_n^+} = \phi_-\br{\partial\D_n^-} = H_+ \cap H_- $, so
+where $ H_- = \S_b $ and $ H_+ = \overline{M \setminus \S_b} $, such that $ M = H_+ \cup H_- $ and $ \phi_+\br{\da\D_n^+} = \phi_-\br{\da\D_n^-} = H_+ \cap H_- $, so
 $$
 \begin{tikzcd}
-\S^{n - 1} = \partial\D_n^+ \arrow[subset]{r} \arrow[swap]{dr}{\phi_+} & \D_n^+ \arrow{r}{\phi_+} & H_+ \arrow[subset]{dr} & \\
+\S^{n - 1} = \da\D_n^+ \arrow[subset]{r} \arrow{dr}[swap]{\phi_+} & \D_n^+ \arrow{r}{\phi_+} & H_+ \arrow[subset]{dr} & \\
 & H_+ \cap H_- \arrow[subset]{ur} \arrow[subset]{dr} & & H_+ \cup H_- = M \\
-\S^{n - 1} = \partial\D_n^- \arrow{ur}{\phi_-} \arrow[subset]{r} & \D_n^- \arrow[swap]{r}{\phi_-} & H_- \arrow[subset]{ur} &
+\S^{n - 1} = \da\D_n^- \arrow{ur}{\phi_-} \arrow[subset]{r} & \D_n^- \arrow{r}[swap]{\phi_-} & H_- \arrow[subset]{ur} &
 \end{tikzcd}.
 $$
-The problem is that in general $ \eval{\phi_+}_{\partial\D_n^+} \ne \eval{\phi_-}_{\partial\D_n^-} $. Let
-$$ f = \eval{\br{\phi_+^{-1} \circ \phi_-}}_{\S^{n - 1}} : \partial\D_n^- \to \partial\D_n^+. $$
-I want a homeomorphism $ F : \D_n^+ \to \D_n^+ $ such that $ \eval{F}_{\partial\D_n^-} = f $. By taking $ \phi_+ \circ F $ we obtain that $ M $ is obtained by attaching $ \D_n^+ $ with $ \D_n^- $ so that they coincide at the boundary with the identity on $ \S^{n - 1} $, so $ M $ is homeomorphic to $ \S^n $. The goal is given a homeomorphism $ f : \S^{n - 1} \to \S^{n - 1} $, there exists a homeomorphism $ F : \D_n \to \D_n $ such that $ \eval{F}_{\S^{n - 1}} = f $. Indeed, if $ v \in \RR^n $ such that $ \abs{v} = 1 $, then let $ F\br{tv} = tf\br{v} $. We do the same with the inverse.
+The problem is that in general $ \eval{\phi_+}_{\da\D_n^+} \ne \eval{\phi_-}_{\da\D_n^-} $. Let
+$$ f = \eval{\br{\phi_+^{-1} \circ \phi_-}}_{\S^{n - 1}} : \da\D_n^- \to \da\D_n^+. $$
+I want a homeomorphism $ F : \D_n^+ \to \D_n^+ $ such that $ \eval{F}_{\da\D_n^-} = f $. By taking $ \phi_+ \circ F $ we obtain that $ M $ is obtained by attaching $ \D_n^+ $ with $ \D_n^- $ so that they coincide at the boundary with the identity on $ \S^{n - 1} $, so $ M $ is homeomorphic to $ \S^n $. The goal is given a homeomorphism $ f : \S^{n - 1} \to \S^{n - 1} $, there exists a homeomorphism $ F : \D_n \to \D_n $ such that $ \eval{F}_{\S^{n - 1}} = f $. Indeed, if $ v \in \RR^n $ such that $ \abs{v} = 1 $, then let $ F\br{tv} = tf\br{v} $. We do the same with the inverse.
 \end{proof}
 
 \lecture{24}{Tuesday}{03/03/20}
@@ -2263,11 +2269,11 @@ Let $ f : X \to Y $ be continuous where $ X $ and $ Y $ are CW-complexes, and le
 The idea is to work on induction on $ n $.
 
 \begin{theorem}[Whitehead]
-Let $ X $ be a topological space, and let $ f_1, f_2 : \partial\D_n \to X $ be continuous such that $ f_1 \sim f_2 $. Then $ X \cup_{f_1} \D_n \sim X \cup_{f_2} \D_n $.
+Let $ X $ be a topological space, and let $ f_1, f_2 : \da\D_n \to X $ be continuous such that $ f_1 \sim f_2 $. Then $ X \cup_{f_1} \D_n \sim X \cup_{f_2} \D_n $.
 \end{theorem}
 
 \begin{theorem}[Hilton]
-Let $ X $ and $ Y $ be topological spaces, let $ f : \partial\D_n \to X $ be continuous, and let $ h : X \to Y $ be a homotopy equivalence. Then there exists a homotopy equivalence $ H : X \cup_f \D_n \to Y \cup_{h \circ f} \D_n $ for $ h \circ f : \partial\D_n \to Y $.
+Let $ X $ and $ Y $ be topological spaces, let $ f : \da\D_n \to X $ be continuous, and let $ h : X \to Y $ be a homotopy equivalence. Then there exists a homotopy equivalence $ H : X \cup_f \D_n \to Y \cup_{h \circ f} \D_n $ for $ h \circ f : \da\D_n \to Y $.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:4.12}]
@@ -2275,8 +2281,8 @@ Let $ c_0, c_1, \dots $ be critical values of $ f $ such that $ c_0 < c_1 < \dot
 \begin{itemize}[leftmargin=0.5in]
 \item[$ i = 0 $.] $ c_0 = \min f $, because by assumption $ f $ admits a minimum. There exist $ x_1, \dots, x_m \in M $ such that $ f\br{x_i} = c_0 $. For all $ i $, $ \lambda\br{x_i} = 0 $. If $ \epsilon_0 $ is small enough, then $ \S_{c_0 + \epsilon_0} $ is a union of balls around $ x_1, \dots, x_m $. Each ball is homotopy equivalent to a point, so $ \S_{c_0 + \epsilon_0} \sim \cbr{m \ \text{points}} $.
 \item[$ i > 0 $.] Fix $ c_i $. There exists $ \epsilon_i > 0 $ such that there do not exist critical values in $ \br{c_i - \epsilon_i, c_i + \epsilon_i} $. Let $ x_1, \dots, x_m \in M $ be such that $ f\br{x_j} = c_j $ for all $ j $. By the second fundamental theorem of Morse theory, if $ \epsilon_i $ is sufficiently small then $ \S_{c_i + \epsilon_i} $ is homotopy equivalent to $ \S_{c_i - \epsilon_i} $ attached to a $ \lambda_j $-cell for all $ j = 1, \dots, m $, where $ \lambda_j $ is the index of $ f $ at $ x_j $. By induction, there exists $ \epsilon_{i - 1} > 0 $ such that $ \S_{c_{i - 1} + \epsilon_{i - 1}} $ is homotopy equivalent to a CW-complex. There do not exist critical values between $ c_{i - 1} + \epsilon_{i - 1} $ and $ c_{i - 1} - \epsilon_{i - 1} $. By the first fundamental theorem of Morse theory, $ \S_{c_i - \epsilon_i} \sim \S_{c_{i - 1} + \epsilon_{i - 1}} $. For each critical point $ x_j $,
-$$ \partial\D_{\lambda_j} \to \S_{c_i - \epsilon_i} \xrightarrow{\sim} \S_{c_{i - 1} + \epsilon_{i - 1}} \to \S_{c_i + \epsilon_i}. $$
-By the Hilton and Whitehead theorems, we may assume that the attachment does not depend on $ \partial\D_{\lambda_j} $ and $ \S_{c_i - \epsilon_i} $, so $ \S_{c_i + \epsilon_i} $ is a CW-complex.
+$$ \da\D_{\lambda_j} \to \S_{c_i - \epsilon_i} \xrightarrow{\sim} \S_{c_{i - 1} + \epsilon_{i - 1}} \to \S_{c_i + \epsilon_i}. $$
+By the Hilton and Whitehead theorems, we may assume that the attachment does not depend on $ \da\D_{\lambda_j} $ and $ \S_{c_i - \epsilon_i} $, so $ \S_{c_i + \epsilon_i} $ is a CW-complex.
 \end{itemize}
 \end{proof}
 
@@ -2286,8 +2292,8 @@ Let $ M $ be a manifold, let $ g $ be a Riemannian metric, and let $ f : M \to \
 $$ \W^\s\br{c} = \cbr{x \st \lim_{t \to \infty} \gamma_x\br{t} = c}, \qquad \W^\u\br{c} = \cbr{x \st \lim_{t \to -\infty} \gamma_x\br{t} = c}. $$
 Then
 $$ M = \bigsqcup_c \W^\s\br{c} = \bigsqcup_c \W^\u\br{c}, $$
-and $ \W^\s\br{c} $ and $ \W^\u\br{c} $ are homotopy equivalent to balls. Choose two critical points $ c_1 $ and $ c_2 $ of $ f $ such that $ \lambda\br{c_i} = \lambda\br{c_{i - 1}} + 1 $. We want that there exist only finitely many lines from $ c_i $ to $ c_{i - 1} $. This property is called \textbf{Morse-Smale}. Let $ \C_k $ be the free abelian group generated by all the critical points of index $ k $, and let $ \partial_k : \C_k \to \C_{k - 1} $. Then $ \partial_{k - 1} \circ \partial_k = 0 $. Thus the \textbf{Morse homology group} is
-$$ \H_k\br{M, f, g} = \Ker \partial_k / \Im \partial_{k + 1}. $$
+and $ \W^\s\br{c} $ and $ \W^\u\br{c} $ are homotopy equivalent to balls. Choose two critical points $ c_1 $ and $ c_2 $ of $ f $ such that $ \lambda\br{c_i} = \lambda\br{c_{i - 1}} + 1 $. We want that there exist only finitely many lines from $ c_i $ to $ c_{i - 1} $. This property is called \textbf{Morse-Smale}. Let $ \C_k $ be the free abelian group generated by all the critical points of index $ k $, and let $ \da_k : \C_k \to \C_{k - 1} $. Then $ \da_{k - 1} \circ \da_k = 0 $. Thus the \textbf{Morse homology group} is
+$$ \H_k\br{M, f, g} = \ker \da_k / \im \da_{k + 1}. $$
 
 \pagebreak
 
@@ -2304,12 +2310,12 @@ The \textbf{$ i $-th face} of $ \Delta_n $ is $ \F_i = \sbr{e_0, \dots, \widehat
 \end{definition}
 
 \begin{example}
-$ \partial\Delta_2 = \sbr{e_0, e_1} \cup \sbr{e_1, e_2} \cup \sbr{e_0, e_2} $.
+$ \da\Delta_2 = \sbr{e_0, e_1} \cup \sbr{e_1, e_2} \cup \sbr{e_0, e_2} $.
 \end{example}
 
 \begin{definition}
 Let $ X $ be a topological space. An \textbf{$ n $-singular simplex} in $ X $ is a continuous map $ \sigma : \Delta_n \to X $. The \textbf{$ i $-th face} of this simplex is $ \sigma \circ \F_i : \Delta_{n - 1} \to \Delta_n \to X $. The \textbf{border map} is
-$$ \partial\sigma = \partial_n\sigma = \sum_{i = 0}^n \br{-1}^i\br{\sigma \circ \F_i}, $$
+$$ \da\sigma = \da_n\sigma = \sum_{i = 0}^n \br{-1}^i\br{\sigma \circ \F_i}, $$
 where $ \sigma $ are $ \br{n - 1} $-simplices.
 \end{definition}
 
@@ -2318,25 +2324,25 @@ where $ \sigma $ are $ \br{n - 1} $-simplices.
 \begin{definition}
 For each $ p \ge 0 $,
 $$ \C_p\br{X} = \ZZ\cbr{\sigma \ \text{$ p $-singular}} = \cbr{\sum_\sigma a_\sigma\sigma \ \text{finite sum} \st a_\sigma \in \ZZ, \ \sigma : \Delta_p \to X \ \text{continuous}} $$
-is the free abelian group generated by all the $ p $-simplices on $ X $. Then $ \partial $ induces a linear map
-$$ \function[\partial_p]{\C_p\br{X}}{\C_{p - 1}\br{X}}{\sum_\sigma a_\sigma\sigma}{\sum_\sigma  a_\sigma\partial\sigma}. $$
+is the free abelian group generated by all the $ p $-simplices on $ X $. Then $ \da $ induces a linear map
+$$ \function[\da_p]{\C_p\br{X}}{\C_{p - 1}\br{X}}{\sum_\sigma a_\sigma\sigma}{\sum_\sigma a_\sigma\da\sigma}. $$
 \end{definition}
 
 \begin{lemma}
-$$ \function[\partial_{p - 1} \circ \partial_p]{\C_p\br{X}}{\C_{p - 2}\br{X}}{\sigma}{0}, \qquad p \ge 0. $$
+$$ \function[\da_{p - 1} \circ \da_p]{\C_p\br{X}}{\C_{p - 2}\br{X}}{\sigma}{0}, \qquad p \ge 0. $$
 \end{lemma}
 
 \begin{proof}
 We need to check that for all $ p $-simplices $ \sigma $,
 \begin{align*}
-\partial_{p - 1}\partial_p\sigma
+\da_{p - 1}\da_p\sigma
 & = \sum_{i < j} \br{-1}^i\br{-1}^{j - i}\sigma\br{\sbr{e_0, \dots, \widehat{e_i}, \dots, \widehat{e_j}, \dots, e_p}} + \sum_{i < j} \br{-1}^i\br{-1}^j\sigma\br{\sbr{e_0, \dots, \widehat{e_i}, \dots, \widehat{e_j}, \dots, e_p}} \\
 & = 0.
 \end{align*}
 \end{proof}
 
 Let
-$$ \ZZZ_p\br{X} = \Ker \br{\partial_p : \C_p\br{X} \to \C_{p - 1}\br{X}}, \qquad \BBB_p\br{X} = \Im \br{\partial_{p + 1} : \C_{p + 1}\br{X} \to \C_p\br{X}}. $$
+$$ \ZZZ_p\br{X} = \ker \br{\da_p : \C_p\br{X} \to \C_{p - 1}\br{X}}, \qquad \BBB_p\br{X} = \im \br{\da_{p + 1} : \C_{p + 1}\br{X} \to \C_p\br{X}}. $$
 Then the \textbf{$ p $-th singular homology group} is
 $$ \H_p\br{X} = \ZZZ_p\br{X} / \BBB_p\br{X}. $$
 
@@ -2351,7 +2357,7 @@ $$ \H_p\br{X} \cong \H_p\br{Y}. $$
 Let $ X = \cbr{\text{point}} $. For all $ \sigma : \Delta_p \to X $, $ \sigma $ is constant. Then
 $$ \C_p\br{X} = \ZZ \cdot X = \ZZ, \qquad p \ge 0 $$
 is the free abelian group generated by a point, and
-$$ \function[\partial_p]{\ZZ}{\ZZ}{\sigma}{\sum_{i = 0}^p \br{-1}^i\sigma =
+$$ \function[\da_p]{\ZZ}{\ZZ}{\sigma}{\sum_{i = 0}^p \br{-1}^i\sigma =
 \begin{cases}
 0 & p \ \text{is odd} \\
 1 & p \ \text{is even}
@@ -2391,16 +2397,16 @@ $$ f_* : \H_p\br{X} \to \H_p\br{Y}, \qquad p \ge 0. $$
 We define
 $$ \C^p\br{X, \RR} = \Hom_\RR\br{\C_p\br{X}, \RR} = \cbr{\text{$ \RR $-linear maps} \ \C_p\br{X} \to \RR}, \qquad p \ge 0. $$
 We want to define
-$$ \function[\partial^p]{\C^p\br{X, \RR}}{\C^{p + 1}\br{X, \RR}}{\phi}{\phi \circ \partial_{p + 1} : \C_{p + 1}\br{X} \to \C_p\br{X} \to \RR}. $$
+$$ \function[\da^p]{\C^p\br{X, \RR}}{\C^{p + 1}\br{X, \RR}}{\phi}{\phi \circ \da_{p + 1} : \C_{p + 1}\br{X} \to \C_p\br{X} \to \RR}. $$
 
 \begin{exercise*}
-$ \partial^{p + 1} \circ \partial^p = 0 $.
+$ \da^{p + 1} \circ \da^p = 0 $.
 \end{exercise*}
 
 For all $ p $, there is a chain complex
-$$ \C^{p - 1}\br{X, \RR} \xrightarrow{\partial^{p - 1}} \C^p\br{X, \RR} \xrightarrow{\partial^p} \C^{p + 1}\br{X, \RR}. $$
+$$ \C^{p - 1}\br{X, \RR} \xrightarrow{\da^{p - 1}} \C^p\br{X, \RR} \xrightarrow{\da^p} \C^{p + 1}\br{X, \RR}. $$
 Let
-$$ \ZZZ^p\br{X, \RR} = \Ker \br{\partial^p : \C^p\br{X, \RR} \to \C^{p + 1}\br{X, \RR}}, \qquad \BBB^p\br{X, \RR} = \Im \br{\partial^{p - 1} : \C^{p - 1}\br{X, \RR} \to \C^p\br{X, \RR}}. $$
+$$ \ZZZ^p\br{X, \RR} = \ker \br{\da^p : \C^p\br{X, \RR} \to \C^{p + 1}\br{X, \RR}}, \qquad \BBB^p\br{X, \RR} = \im \br{\da^{p - 1} : \C^{p - 1}\br{X, \RR} \to \C^p\br{X, \RR}}. $$
 We can define the \textbf{$ p $-th singular cohomology group} of $ X $,
 $$ \H^p\br{X, \RR} = \ZZZ^p\br{X, \RR} / \BBB^p\br{X, \RR}. $$
 
@@ -2445,7 +2451,7 @@ $$
 Let $ M = U \cup V $ be a manifold for $ U $ and $ V $ open in $ M $ such that $ U \cap V = \emptyset $. Then there exists $ \delta : \H^p\br{U \cap V, \RR} \to \H^{p + 1}\br{M, \RR} $ such that
 $$
 \begin{tikzcd}[column sep=0.1cm]
-\dots \arrow{r} & \H^p\br{M, \RR} \arrow{r} & \H^p\br{U, \RR} \oplus \H^p\br{V, \RR} \arrow{r} & \H^p\br{U \cap V, \RR} \arrow[in=180, out=0, swap]{dll}{\delta} & \\
+\dots \arrow{r} & \H^p\br{M, \RR} \arrow{r} & \H^p\br{U, \RR} \oplus \H^p\br{V, \RR} \arrow{r} & \H^p\br{U \cap V, \RR} \arrow[in=180, out=0]{dll}[swap]{\delta} & \\
 & \H^{p + 1}\br{M, \RR} \arrow{r} & \H^{p + 1}\br{U, \RR} \oplus \H^{p + 1}\br{V, \RR} \arrow{r} & \H^{p + 1}\br{U \cap V, \RR} \arrow{r} & \dots
 \end{tikzcd}
 $$
@@ -2462,17 +2468,17 @@ By definition, $ \int \omega $ is linear.
 
 \begin{theorem}[Stokes' theorem]
 Let $ \omega $ be a $ \br{p - 1} $-form on $ M $, and let $ c \in \C_p\br{X} $. Then
-$$ \int_{\partial c} \omega = \int_c \d\omega, $$
-where $ \d\omega $ is a $ p $-form and $ \partial c $ is considered with orientation.
+$$ \int_{\da c} \omega = \int_c \d\omega, $$
+where $ \d\omega $ is a $ p $-form and $ \da c $ is considered with orientation.
 \end{theorem}
 
 Let $ M $ be a manifold, and let $ \omega \in \Omega^p\br{M} $. Then $ \int \omega = \br{c \mapsto \int_c \omega} \in \Hom_\RR\br{\C_p\br{M}, \RR} = \C^p\br{M, \RR} $, so
 $$ \function[\l^p]{\Omega^p\br{M}}{\C^p\br{M, \RR}}{\omega}{\int \omega} $$
-is an $ \RR $-linear map such that $ \l^{p + 1} \circ \d^p = \partial^p \circ \l^p $, so
+is an $ \RR $-linear map such that $ \l^{p + 1} \circ \d^p = \da^p \circ \l^p $, so
 $$
 \begin{tikzcd}
-\Omega^p\br{M} \arrow{r}{\d^p} \arrow[swap]{d}{\l^p} & \Omega^{p + 1}\br{M} \arrow{d}{\l^{p + 1}} \\
-\Omega^p\br{M, \RR} \arrow[swap]{r}{\partial^p} & \C^{p + 1}\br{M, \RR}
+\Omega^p\br{M} \arrow{r}{\d^p} \arrow{d}[swap]{\l^p} & \Omega^{p + 1}\br{M} \arrow{d}{\l^{p + 1}} \\
+\Omega^p\br{M, \RR} \arrow{r}[swap]{\da^p} & \C^{p + 1}\br{M, \RR}
 \end{tikzcd}.
 $$
 

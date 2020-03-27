@@ -81,10 +81,18 @@ $$
 \end{tikzpicture}
 $$
 }
-\def\syllabus{Modular forms of level one. Eisenstein series. Spaces of modular forms of level one. Theta series. Hecke operators of level one. $ L $-functions of level one. Modular forms of higher level. Spaces of modular forms of higher level. Hecke operators of higher level. $ L $-functions of higher level. Oldforms and newforms.}
+\def\syllabus{Modular forms of level one. Eisenstein series. Spaces of modular forms of level one. Theta series. Hecke operators of level one. $ \L $-functions of level one. Modular forms of higher level. Spaces of modular forms of higher level. Hecke operators of higher level. $ \L $-functions of higher level. Oldforms and newforms.}
 \def\thm{subsection}
 
 \input{../style/header}
+
+% Macros
+\newcommand{\twobytwosmall}[4]{
+  \begin{psmallmatrix}
+    #1 & #2 \\
+    #3 & #4
+  \end{psmallmatrix}
+}
 
 \begin{document}
 
@@ -379,7 +387,7 @@ A bounded holomorphic function on all of $ \CC $ is constant.
 \hfill
 \begin{enumerate}
 \item
-$$ \dfrac{\pi^2}{\sin^2 \pi z} =  \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2}. $$
+$$ \dfrac{\pi^2}{\sin^2 \pi z} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2}. $$
 \item
 $$ \pi\cot \pi z = \dfrac{1}{z} + \sum_{n = 1}^\infty \br{\dfrac{1}{z - n} + \dfrac{1}{z + n}} = \dfrac{1}{z} + \sum_{n = 1}^\infty \dfrac{2z}{z^2 - n^2}. $$
 \end{enumerate}
@@ -1162,7 +1170,7 @@ $$ L / L'' \cong \ZZ / p^a\ZZ \times \ZZ / p^b\ZZ, \qquad a, b \ge 0, \qquad a +
 \item $ L / L'' \cong \ZZ / p^{r + 1}\ZZ $ is cyclic. In this case $ c_{p, p^r}\br{L'', L} = 1 $.
 \item $ L / L'' \cong \ZZ / p^a\ZZ \times \ZZ / p^b\ZZ $ with $ a, b > 0 $. Any subgroup of order $ p $ is contained in the subgroup killed by $ p $,
 $$ p^{a - 1}\ZZ / p^a\ZZ \times p^{n - 1}\ZZ / p^b\ZZ \cong \br{\ZZ / p\ZZ}^2. $$
-The $ p^2 - 1 $ elements of $ \br{\ZZ / p\ZZ}^2 \setminus \cbr{0} $ each spans a subgroup of order $ p $, and two elements span the same group if and only if they differ by a scalar in $ \unit{p} $, so there are $ \br{p^2 - 1} / \br{p - 1} = p + 1 $ subgroups of order $ p $ in $ \br{\ZZ / p\ZZ}^2 $. In this case $ c_{p, p^r}\br{L'', L} = p + 1 $.
+The $ p^2 - 1 $ elements of $ \br{\ZZ / p\ZZ}^2 \setminus \cbr{0} $ each spans a subgroup of order $ p $, and two elements span the same group if and only if they differ by a scalar in $ \br{\ZZ / p\ZZ}^\times $, so there are $ \br{p^2 - 1} / \br{p - 1} = p + 1 $ subgroups of order $ p $ in $ \br{\ZZ / p\ZZ}^2 $. In this case $ c_{p, p^r}\br{L'', L} = p + 1 $.
 \end{enumerate}
 The latter case occurs if and only if $ L / L'' $ maps surjectively to $ \br{\ZZ / p\ZZ}^2 \cong L / \R_pL $, if and only if $ \R_pL \supseteq L'' $. Thus
 \begin{align*}
@@ -1327,7 +1335,7 @@ A question is does $ \M_k $ have a basis of eigenforms for all $ k $? By linear 
 
 \subsubsection{Hermitian pairings}
 
-Let $ V $ be a $ \CC $-vector space and $ \abr{-, -} : V \times V \to \CC $ a \textbf{Hermitian pairing}. That is,
+Let $ V $ be a $ \CC $-vector space and $ \abr{\cdot, \cdot} : V \times V \to \CC $ a \textbf{Hermitian pairing}. That is,
 \begin{itemize}
 \item $ \abr{\lambda v + w, x} = \lambda\abr{v, x} + \abr{w, x} $,
 \item $ \abr{x, y} = \overline{\abr{y, x}} $, and
@@ -1340,7 +1348,7 @@ $$ \function{\CC^n \times \CC^n}{\CC}{\abr{z, w}}{\sum_{i = 1}^n z_i\overline{w_
 \end{example*}
 
 \begin{definition}
-Let $ A : V \to V $ be $ \CC $-linear, and $ \abr{-, -} : V \times V \to \CC $ Hermitian. Then the \textbf{adjoint} $ A^* : V \to V $ is the unique linear map $ V \to V $ such that
+Let $ A : V \to V $ be $ \CC $-linear, and $ \abr{\cdot, \cdot} : V \times V \to \CC $ Hermitian. Then the \textbf{adjoint} $ A^* : V \to V $ is the unique linear map $ V \to V $ such that
 $$ \abr{Av, w} = \abr{v, A^*w}. $$
 We say $ A $ is \textbf{self-adjoint} if $ A^* = A $, and \textbf{normal} if $ A^* $ commutes with $ A $.
 \end{definition}
@@ -1367,27 +1375,27 @@ $$ W^\perp = \cbr{v \in V \st \forall w \in W, \ \abr{v, w} = 0}. $$
 \end{definition}
 
 \begin{proposition}
-$ \Im A^* = \br{\Ker A}^\perp $.
+$ \im A^* = \br{\ker A}^\perp $.
 \end{proposition}
 
 \begin{proof}
-$ \abr{v, A^*w} = \abr{Av, w} = 0 $ if $ v \in \Ker A $. So $ \Im A^* \subseteq \br{\Ker A}^\perp $, so $ \rk A^* \le \rk A $. The same argument with $ A^* $ in place of $ A $ implies that $ \rk A = \rk A^{**} \le \rk A^* $. So $ \rk A^* = \rk A $, so $ \Im A^* = \br{\Ker A}^\perp $.
+$ \abr{v, A^*w} = \abr{Av, w} = 0 $ if $ v \in \ker A $. So $ \im A^* \subseteq \br{\ker A}^\perp $, so $ \rk A^* \le \rk A $. The same argument with $ A^* $ in place of $ A $ implies that $ \rk A = \rk A^{**} \le \rk A^* $. So $ \rk A^* = \rk A $, so $ \im A^* = \br{\ker A}^\perp $.
 \end{proof}
 
-In particular, $ \Im A^* \cap \Ker A = \cbr{0} $ and $ \dim \Im A^* + \dim \Ker A = \rk A^* + n - \rk A = n $. So $ V = \Im A^* \oplus \Ker A $.
+In particular, $ \im A^* \cap \ker A = \cbr{0} $ and $ \dim \im A^* + \dim \ker A = \rk A^* + n - \rk A = n $. So $ V = \im A^* \oplus \ker A $.
 
 \begin{theorem}[Spectral theorem for normal operators]
 If $ A $ and $ A^* $ commute, then $ A^* $ is diagonalisable.
 \end{theorem}
 
 \begin{proof}
-Induction on $ \dim V $. Then $ \dim V = 1 $ is clear. Let $ \lambda $ be an eigenvalue of $ A $, and let $ A' = A - \lambda\I_V $, so $ V = \Ker A' \oplus \Im A'^* $, where $ \dim \Ker A' > 0 $. Then $ A $ commutes with $ A' $, and $ A'^* = A^* - \overline{\lambda} \I_V $, so $ A $ commutes with $ A'^* $. So $ AA'^*v = A'^*Av $, so $ A $ preserves the image of $ A'^* $. The restriction of $ \abr{-, -} $ to $ \Im A'^* $ is still Hermitian on $ \Im A'^* $ and the restriction of $ A $ to $ \Im A'^* $ is still normal, since its adjoint is the restriction of $ A^* $ to $ \Im A'^* $. By induction $ A $ is diagonalisable on $ \Im A'^* $ and scalar on $ \Ker A' $, so diagonalisable.
+Induction on $ \dim V $. Then $ \dim V = 1 $ is clear. Let $ \lambda $ be an eigenvalue of $ A $, and let $ A' = A - \lambda\I_V $, so $ V = \ker A' \oplus \im A'^* $, where $ \dim \ker A' > 0 $. Then $ A $ commutes with $ A' $, and $ A'^* = A^* - \overline{\lambda} \I_V $, so $ A $ commutes with $ A'^* $. So $ AA'^*v = A'^*Av $, so $ A $ preserves the image of $ A'^* $. The restriction of $ \abr{\cdot, \cdot} $ to $ \im A'^* $ is still Hermitian on $ \im A'^* $ and the restriction of $ A $ to $ \im A'^* $ is still normal, since its adjoint is the restriction of $ A^* $ to $ \im A'^* $. By induction $ A $ is diagonalisable on $ \im A'^* $ and scalar on $ \ker A' $, so diagonalisable.
 \end{proof}
 
 Also the need the folllowing observation.
 
 \begin{proposition}
-If $ A : V \to V $ and $ B : V \to V $ commute, and $ V_\lambda = \Ker \br{A - \lambda\I_V} $, then $ BV_\lambda = V_\lambda $.
+If $ A : V \to V $ and $ B : V \to V $ commute, and $ V_\lambda = \ker \br{A - \lambda\I_V} $, then $ BV_\lambda = V_\lambda $.
 \end{proposition}
 
 \begin{proof}
@@ -1396,7 +1404,7 @@ If $ v \in V_\lambda $, then $ ABv = BAv = B\lambda v = \lambda Bv $, so $ Bv \i
 
 \subsubsection{The Petersson inner product}
 
-To apply this to modular forms, we need a bilinear pairing on $ \M_k $ or $ \S_k $. The idea is to show that there exists a pairing $ \abr{-, -}_k : \S_k \times \S_k \to \CC $ such that $ \abr{\T_nf, g} = \abr{f, \T_ng} $ for all $ n $, so $ \T_n $ are self-adjoint, hence diagonalisable.
+To apply this to modular forms, we need a bilinear pairing on $ \M_k $ or $ \S_k $. The idea is to show that there exists a pairing $ \abr{\cdot, \cdot}_k : \S_k \times \S_k \to \CC $ such that $ \abr{\T_nf, g} = \abr{f, \T_ng} $ for all $ n $, so $ \T_n $ are self-adjoint, hence diagonalisable.
 
 \begin{definition}
 Let $ f, g \in \S_k $. The \textbf{Petersson inner product of weight $ k $} is
@@ -1416,7 +1424,7 @@ $$ \iintd{\gamma\br{U}}{f\br{z}\overline{g\br{z}}\dfrac{\Im z^k}{\Im z^2}}{z}{\o
 \begin{note*}
 This converges for $ f, g \in \S_k $, since $ f\br{a + it} $ goes like $ e^{-t} $ as $ t \to \pm\infty $, and the same for $ g $. If $ \abr{f, f} = 0 $, the integrand vanishes identically, since it lives in $ \RR_{\ge 0} $. So $ f = 0 $ on $ \DDD $, hence everywhere. Then
 $$ \abr{\lambda f, g}_k = \lambda\abr{f, g}_k, \qquad \abr{f, \lambda g}_k = \overline{\lambda}\abr{f, g}_k, \qquad \abr{f, g}_k = \overline{\abr{g, f}}_k. $$
-So $ \abr{-, -}_k $ is Hermitian.
+So $ \abr{\cdot, \cdot}_k $ is Hermitian.
 \end{note*}
 
 \begin{theorem}
@@ -1478,7 +1486,7 @@ $ \zeta\br{s} = \sum_{n = 1}^\infty n^{-s} $.
 In general, if $ \abs{a_n} \le Cn^k $, then the corresponding series converges absolutely for $ \Re s > k + 1 $.
 
 \begin{example*}
-Let $ \chi : \unit{N} \to \CC^\times $ be a \textbf{primitive character}, that is does not factor through $ \unit{N} \to \unit{m} $ for $ m \mid N $ such that $ m \ne N $. Set
+Let $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ be a \textbf{primitive character}, that is does not factor through $ \br{\ZZ / N\ZZ}^\times \to \br{\ZZ / m\ZZ}^\times $ for $ m \mid N $ such that $ m \ne N $. Set
 $$ a_n =
 \begin{cases}
 \chi\br{n} & \br{n, N} = 1 \\
@@ -1876,7 +1884,7 @@ Then $ Q\br{X, \j} = H_1\br{\j} \dots H_d\br{\j} \cdot P\br{X} $. Since $ P\br{f
 $$ \function[\phi]{\HH}{\CC^2}{z}{\br{f\br{z}, \j\br{z}}}. $$
 The image is contained in the zero locus of $ Q\br{X, Y} $, and factors through $ \Gamma \backslash \HH $. The following are some issues.
 \begin{itemize}
-\item This map is not necessarily defined everywhere. To fix, replace $ \CC^2 $ with $ \CP^2 $. Then $ \phi $ extends to $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} \to \CP^2 $.
+\item This map is not necessarily defined everywhere. To fix, replace $ \CC^2 $ with $ \CC\PP^2 $. Then $ \phi $ extends to $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} \to \CC\PP^2 $.
 \item This map is not necessarily injective on $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} $, but will be generically injective since $ f $ is primitive.
 \item This image might be singular. There are standard ways to fix, such as normalisation. When these are fixed, the map becomes injective.
 \end{itemize}
@@ -1945,8 +1953,8 @@ $$ \function[\T_n]{\M_k\br{\Gamma_1\br{N}}}{\M_k\br{\Gamma_1\br{N}}}{f}{\sum_{ad
 Recall that
 $$ \Gamma_1\br{N} \subseteq \Gamma_0\br{N} = \cbr{\twobytwo{a}{b}{c}{d} \in \SL_2\br{\ZZ} \st c \equiv 0 \mod N}. $$
 Have a surjection
-$$ \function{\Gamma_0\br{N}}{\unit{N}}{\twobytwo{a}{b}{c}{d}}{d}, $$
-where the kernel is $ \Gamma_1\br{N} $. So $ \Gamma_0\br{N} / \Gamma_1\br{N} \cong \unit{N} $.
+$$ \function{\Gamma_0\br{N}}{\br{\ZZ / N\ZZ}^\times}{\twobytwo{a}{b}{c}{d}}{d}, $$
+where the kernel is $ \Gamma_1\br{N} $. So $ \Gamma_0\br{N} / \Gamma_1\br{N} \cong \br{\ZZ / N\ZZ}^\times $.
 
 \begin{note*}
 If $ f \in \M_k\br{\Gamma_1\br{N}} $ and $ \alpha \in \Gamma_0\br{N} $, then $ \eval{f}_{k, \alpha} $ is modular of level $ \alpha^{-1}\Gamma_1\br{N}\alpha = \Gamma_1\br{N} $. Moreover $ \eval{f}_{k, \alpha} $ depends only on the class of $ \alpha \in \Gamma_0\br{N} / \Gamma_1\br{N} $, that is only on the lower right entry of $ \alpha $.
@@ -1958,10 +1966,10 @@ $$ \function[\abr{d}]{\M_k\br{\Gamma_1\br{N}}}{\M_k\br{\Gamma_1\br{N}}}{f}{\eval
 where $ \alpha \in \Gamma_0\br{N} $ with lower right entry congruent to $ d $ modulo $ N $.
 \end{definition}
 
-This defines an action of $ \unit{N} \cong \Gamma_0\br{N} / \Gamma_1\br{N} $ on $ \M_k\br{\Gamma_1\br{N}} $. Since $ \abr{d}\abr{d'} = \abr{dd'} = \abr{d'}\abr{d} $, and operators of finite order on a $ \CC $-vector space are diagonalisable, $ \M_k\br{\Gamma_1\br{N}} $ splits as a direct sum of simultaneous eigenspaces for the $ \abr{d} $. Let $ V $ be one such eigenspace. Then for each $ d \in \unit{N} $, there exists $ \chi\br{d} \in \CC^\times $ such that $ \abr{d}f = \chi\br{d}f $ for all $ f \in V $. Since $ \abr{d}\abr{d'} = \abr{dd'} $, $ \chi\br{d}\chi\br{d'} = \chi\br{dd'} $, so $ \chi $ is a homomorphism $ \unit{N} \to \CC^\times $, that is a character.
+This defines an action of $ \br{\ZZ / N\ZZ}^\times \cong \Gamma_0\br{N} / \Gamma_1\br{N} $ on $ \M_k\br{\Gamma_1\br{N}} $. Since $ \abr{d}\abr{d'} = \abr{dd'} = \abr{d'}\abr{d} $, and operators of finite order on a $ \CC $-vector space are diagonalisable, $ \M_k\br{\Gamma_1\br{N}} $ splits as a direct sum of simultaneous eigenspaces for the $ \abr{d} $. Let $ V $ be one such eigenspace. Then for each $ d \in \br{\ZZ / N\ZZ}^\times $, there exists $ \chi\br{d} \in \CC^\times $ such that $ \abr{d}f = \chi\br{d}f $ for all $ f \in V $. Since $ \abr{d}\abr{d'} = \abr{dd'} $, $ \chi\br{d}\chi\br{d'} = \chi\br{dd'} $, so $ \chi $ is a homomorphism $ \br{\ZZ / N\ZZ}^\times \to \CC^\times $, that is a character.
 
 \begin{definition}
-For any character $ \chi : \unit{N} \to \CC^\times $, let $ \M_k\br{\Gamma_1\br{N}, \chi} $ be the subspace of $ \M_k\br{\Gamma_1\br{N}} $ consisting of the forms $ f $ such that $ \abr{d}f = \chi\br{d}f $ for all $ d \in \unit{N} $.
+For any character $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $, let $ \M_k\br{\Gamma_1\br{N}, \chi} $ be the subspace of $ \M_k\br{\Gamma_1\br{N}} $ consisting of the forms $ f $ such that $ \abr{d}f = \chi\br{d}f $ for all $ d \in \br{\ZZ / N\ZZ}^\times $.
 \end{definition}
 
 A warning is that this might be zero.
@@ -1971,7 +1979,7 @@ If $ k $ is odd, then $ \chi\br{-1} = 1 $, so this space is zero.
 \end{example*}
 
 We have a direct sum decomposition
-$$ \M_k\br{\Gamma_1\br{N}} \cong \bigoplus_{\chi : \unit{N} \to \CC} \M_k\br{\Gamma_1\br{N}, \chi}. $$
+$$ \M_k\br{\Gamma_1\br{N}} \cong \bigoplus_{\chi : \br{\ZZ / N\ZZ}^\times \to \CC} \M_k\br{\Gamma_1\br{N}, \chi}. $$
 
 \begin{proposition}
 Let $ \br{n, N} = 1 $ and $ f \in \M_k\br{\Gamma_1\br{N}, \chi} $ such that $ f = \sum_{m = 1}^\infty c_mq^m $. Then
@@ -2070,7 +2078,7 @@ Write
 $$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \Gamma_1\br{N}\gamma_i = \bigsqcup_{j = 1}^r \widetilde{\gamma_j}\Gamma_1\br{N}. $$
 Claim that for all $ 1 \le i \le r $, $ \Gamma_1\br{N}\gamma_i \cap \widetilde{\gamma_i}\Gamma_1\br{N} \ne \emptyset $. Suppose otherwise. Then
 $$ \Gamma_1\br{N}\gamma_i \subseteq \bigsqcup_{j \ne i} \widetilde{\gamma_i}\Gamma_1\br{N}. $$
-The right hand side is stable under right multiplication by $ \Gamma_1\br{N} $, so $  $
+The right hand side is stable under right multiplication by $ \Gamma_1\br{N} $, so
 $$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \Gamma_1\br{N}\gamma_i\Gamma_1\br{N} = \bigcup_{\beta \in \Gamma_1\br{N}} \Gamma_1\br{N}\gamma_i\beta \subseteq \bigsqcup_{j \ne i} \widetilde{\gamma_i}\Gamma_1\br{N}. $$
 This is impossible since $ \widetilde{\gamma_i} $ is in the left hand side but not the right hand side. For all $ i $, choose $ \alpha_i $ such that $ \alpha_i \in \Gamma_1\br{N}\gamma_i \cap \widetilde{\gamma_i}\Gamma_1\br{N} $, so $ \Gamma_1\br{N}\alpha_i = \Gamma_1\br{N}\gamma_i $ and $ \alpha_i\Gamma_1\br{N} = \widetilde{\gamma_i}\Gamma_1\br{N} $. Now,
 $$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \Gamma_1\br{N}\gamma_i = \bigsqcup_{i = 1}^r \widetilde{\gamma_i}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \Gamma_1\br{N}\alpha_i = \bigsqcup_{i = 1}^r \alpha_i\Gamma_1\br{N}. $$
@@ -2103,7 +2111,7 @@ $$ \function[\w_N]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{N}}}{f}{i^kN^{1 
 The constants are chosen so that $ \w_N^2 = \id $, an \textbf{Atkin-Lehner involution}. A warning is that this does not commute with $ \T_p $ and $ \abr{p} $. In fact $ \w_N\T_p\w_N = \abr{p}\T_p $ and $ \w_N\abr{p}\w_N = \abr{p}^{-1} $, and
 $$ \R\br{f, s} = \R\br{\w_Nf, k - s}. $$
 
-If $ f \in \S_k\br{\Gamma_1\br{N}, \chi} $ for $ \chi : \unit{N} \to \CC^\times $ is an eigenform for all $ \T_p $ for $ p \nmid N $ and $ c_1 = 1 $, then using
+If $ f \in \S_k\br{\Gamma_1\br{N}, \chi} $ for $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ is an eigenform for all $ \T_p $ for $ p \nmid N $ and $ c_1 = 1 $, then using
 $$ \T_pf = \sum_{n = 1}^\infty c_{np}q^n + \chi\br{p}c_nq^{np}, $$
 if $ \T_pf = \lambda_pf = \sum_{n = 1}^\infty \gamma_nq^n $ for $ p \nmid N $, then
 $$ \gamma_n =
@@ -2130,7 +2138,7 @@ $$ \function[\alpha_{N, l}]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{Nl}}}{f
 
 \pagebreak
 
-Then $ \beta $, a multiple of $ \eval{f}_{k, \twobytwosmall{l}{0}{0}{1}} $, is modular of weight $ k $ and level $ \twobytwosmall{l}{0}{0}{1}^{-1}\Gamma\br{N}\twobytwosmall{l}{0}{0}{1} \supseteq \Gamma_1\br{Nl} $. Check that these commute with $ \T_p $ for $ p \nmid Nl $, $ \abr{d} $ for $ d \in \unit{Nl} $, and $ \U_p $ for $ l \ne p $. Then $ \U_l\br{\beta_{N, l}\br{f}} = f $ and $ \U_l\br{\alpha_{N, l}\br{f}} = \T_pf + p^k\chi\br{p}\beta_{N, l}\br{f} $, so the image of
+Then $ \beta $, a multiple of $ \eval{f}_{k, \twobytwosmall{l}{0}{0}{1}} $, is modular of weight $ k $ and level $ \twobytwosmall{l}{0}{0}{1}^{-1}\Gamma\br{N}\twobytwosmall{l}{0}{0}{1} \supseteq \Gamma_1\br{Nl} $. Check that these commute with $ \T_p $ for $ p \nmid Nl $, $ \abr{d} $ for $ d \in \br{\ZZ / Nl\ZZ}^\times $, and $ \U_p $ for $ l \ne p $. Then $ \U_l\br{\beta_{N, l}\br{f}} = f $ and $ \U_l\br{\alpha_{N, l}\br{f}} = \T_pf + p^k\chi\br{p}\beta_{N, l}\br{f} $, so the image of
 $$ \function{\S_k\br{\Gamma_1\br{N}}^2}{\S_k\br{\Gamma_1\br{Nl}}}{\br{f, g}}{\alpha_{N, l}f + \beta_{N, l}g} $$
 is stable under $ \T_p $, $ \abr{d} $, $ \U_p $, and $ \U_l $.
 
@@ -2139,11 +2147,11 @@ Define the \textbf{oldforms}
 $$ \S_k\br{\Gamma_1\br{N}}^{\old} = \sum_{l \nmid N} \br{\alpha_{\tfrac{N}{l}, l}\br{\S_k\br{\Gamma_1\br{\dfrac{N}{l}}}} + \beta_{\tfrac{N}{l}, l}\br{\S_k\br{\Gamma_1\br{\dfrac{N}{l}}}}}, $$
 which is stable under $ \T_p $, $ \abr{d} $, and $ \U_l $. Define
 $$ \S_k\br{\Gamma_1\br{N}}^{\new} = \br{\S_k\br{\Gamma_1\br{N}}^{\old}}^\perp, $$
-the orthogonal complement with respect to $ \abr{-, -} $, which is stable under $ \T_p $ and $ \abr{d} $, and not a priori under $ \U_p $, for $ p \mid N $.
+the orthogonal complement with respect to $ \abr{\cdot, \cdot} $, which is stable under $ \T_p $ and $ \abr{d} $, and not a priori under $ \U_p $, for $ p \mid N $.
 \end{definition}
 
 \begin{theorem}[Atkin-Lehner 1979, strong multiplicity one]
-Let $ 0 \ne f \in \S_k\br{\Gamma_1\br{N}}^{\new} $ and $ g \in \S_k\br{\Gamma_1\br{N}} $. Suppose for all $ p \nmid N $, there exist $ \lambda_p \in \CC $ and $ \chi : \unit{N} \to \CC^\times $ such that $ \T_pf = \lambda_pf $ and $ \T_pg = \lambda_pg $, and $ \abr{d}f = \chi\br{d}f $ and $ \abr{d}g = \chi\br{d}g $. Then $ g $ is a scalar multiple of $ f $.
+Let $ 0 \ne f \in \S_k\br{\Gamma_1\br{N}}^{\new} $ and $ g \in \S_k\br{\Gamma_1\br{N}} $. Suppose for all $ p \nmid N $, there exist $ \lambda_p \in \CC $ and $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ such that $ \T_pf = \lambda_pf $ and $ \T_pg = \lambda_pg $, and $ \abr{d}f = \chi\br{d}f $ and $ \abr{d}g = \chi\br{d}g $. Then $ g $ is a scalar multiple of $ f $.
 \end{theorem}
 
 \begin{corollary}

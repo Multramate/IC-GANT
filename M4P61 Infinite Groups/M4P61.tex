@@ -117,8 +117,8 @@ A convention is that unless otherwise specified, we identify edges $ e $ and $ e
 \begin{itemize}
 \item A \textbf{subgraph} is an induced subgraph.
 \item A graph \textbf{homomorphism} $ \phi $ from $ X $ to $ Y $ is a mapping from $ X^i \to Y^i $ for $ i = 0, 1 $ such that $ \phi\br{\alpha\br{e}} = \alpha\br{\phi\br{e}} $ and $ \phi\br{\overline{e}} = \overline{\phi\br{e}} $.
-\item Given $ x \in X^0 $, then we call the set $ \cbr{e \st \alpha\br{e} = x} $ the \textbf{star} of $ x $, or $ \star x $. The cardinality of $ \star x $ is called the \textbf{valency} of $ x $.
-\item A homomorphism $ \phi : X \to Y $ is \textbf{locally injective} if and only if its restriction to $ \star x $ is injective for all $ x \in X^0 $.
+\item Given $ x \in X^0 $, then we call the set $ \cbr{e \st \alpha\br{e} = x} $ the \textbf{star} of $ x $, or $ \Star x $. The cardinality of $ \Star x $ is called the \textbf{valency} of $ x $.
+\item A homomorphism $ \phi : X \to Y $ is \textbf{locally injective} if and only if its restriction to $ \Star x $ is injective for all $ x \in X^0 $.
 \item An \textbf{orientation} of $ X $ is a choice of vertices $ X_+^1 \subseteq X^1 $ which picks exactly one of each pair $ \cbr{e, \overline{e}} $.
 \end{itemize}
 
@@ -486,7 +486,7 @@ Assume $ F $ is a group and $ S \subseteq F $ is any set. Then $ F $ is a \textb
 $$
 \begin{tikzcd}
 S \arrow{r}{f} & G \\
-F \arrow{u}{\id} \arrow[dashed, swap]{ur}{\exists !f} &
+F \arrow{u}{\id} \arrow[dashed]{ur}[swap]{\exists !f} &
 \end{tikzcd}.
 $$
 \end{proposition}
@@ -517,7 +517,7 @@ Every group $ G $ is the quotient of some free group.
 \end{lemma}
 
 \begin{proof}
-Consider $ S \subseteq G $ some generating set of $ G $. Consider the homomorphism $ \phi : \F\br{S} \to G $. By \ref{prop:1.4.6} this exists. As $ S $ generates $ G $, it is surjective. Now by the isomorphism theorem, we have $ G \cong \F\br{S} / \Ker \phi $.
+Consider $ S \subseteq G $ some generating set of $ G $. Consider the homomorphism $ \phi : \F\br{S} \to G $. By \ref{prop:1.4.6} this exists. As $ S $ generates $ G $, it is surjective. Now by the isomorphism theorem, we have $ G \cong \F\br{S} / \ker \phi $.
 \end{proof}
 
 \begin{remark}
@@ -557,7 +557,7 @@ If $ G $ is free on $ S $, we call $ \abs{S} $ the \textbf{rank} of $ G $ and sa
 \subsection{Presentations of groups}
 
 \begin{definition}
-Let $ G $ be any group and $ S \subseteq G $ a subset for $ G $. Recall that $ f : S \hookrightarrow G $. Let $ R $ be a set of words over $ S $. We say that $ G $ \textbf{allows the presentation} $ \abr{S \st R} $ if and only if $ S $ generates $ G $ and $ R $ normally generates $ \Ker \phi $. For brevity we write
+Let $ G $ be any group and $ S \subseteq G $ a subset for $ G $. Recall that $ f : S \hookrightarrow G $. Let $ R $ be a set of words over $ S $. We say that $ G $ \textbf{allows the presentation} $ \abr{S \st R} $ if and only if $ S $ generates $ G $ and $ R $ normally generates $ \ker \phi $. For brevity we write
 $$ G = \abr{S \st R}. $$
 We call the elements in $ G $ \textbf{generators} of $ G $ and the elements in $ R $ \textbf{relators}.
 \end{definition}
@@ -612,9 +612,9 @@ Let
 $$ \function[\phi]{\F\br{\cbr{x, y}}}{\SSS_3}{\br{x, y}}{\br{\br{12}, \br{23}}}. $$
 Clearly
 $$ \phi\br{x^2} = \br{12}^2 = e_{\SSS_3} = \br{23}^2 = \phi\br{y^2}. $$
-Also, $ xy = \br{132} $ and hence $ \phi\br{\br{xy}^3} = \br{132}^3 = e_{\SSS_3} $, hence $ \br{xy}^3 \in \Ker \phi $. Thus, by \ref{ex:1.5.3}.$ 2 $ and as $ \phi $ is a homomorphism, we get
-$$ \abr{\cbr{x^2, y^2, \br{xy}^3}}^{\F\br{S}} \subseteq \Ker \phi. $$
-Now assume $ w = x^{k_1}y^{l_1} \dots x^{k_n}y^{l_n} $ on $ \cbr{x, y} $ such that $ w \underset{\SSS_3}{=} e_{\SSS_3} $, that is $ w \in \Ker \phi $. By \ref{ex:1.5.3}.$ 1 $, we can cancel all occurences of $ x^{\pm 2}y^{\pm 2} $. We obtain $ w' = xyxy \dots $ such that $ w' \underset{\SSS_3}{=} e_{\SSS_3} $ if and only if $ w' \underset{\SSS_3}{=} e_{\SSS_3} $. Now cancel $ \br{xy}^3 $ and obtain a word of length at most six. Now, note the relator $ \br{xy}^3 $ yields the relation $ xyx \underset{\SSS_3}{=} yxy $. Hence the only words left are of length at most three, that is $ \epsilon, x, y, xy, yx, xyx = yxy $. Hence, $ w $ is in $ \abr{R}^{\F\br{S}} $.
+Also, $ xy = \br{132} $ and hence $ \phi\br{\br{xy}^3} = \br{132}^3 = e_{\SSS_3} $, hence $ \br{xy}^3 \in \ker \phi $. Thus, by \ref{ex:1.5.3}.$ 2 $ and as $ \phi $ is a homomorphism, we get
+$$ \abr{\cbr{x^2, y^2, \br{xy}^3}}^{\F\br{S}} \subseteq \ker \phi. $$
+Now assume $ w = x^{k_1}y^{l_1} \dots x^{k_n}y^{l_n} $ on $ \cbr{x, y} $ such that $ w \underset{\SSS_3}{=} e_{\SSS_3} $, that is $ w \in \ker \phi $. By \ref{ex:1.5.3}.$ 1 $, we can cancel all occurences of $ x^{\pm 2}y^{\pm 2} $. We obtain $ w' = xyxy \dots $ such that $ w' \underset{\SSS_3}{=} e_{\SSS_3} $ if and only if $ w' \underset{\SSS_3}{=} e_{\SSS_3} $. Now cancel $ \br{xy}^3 $ and obtain a word of length at most six. Now, note the relator $ \br{xy}^3 $ yields the relation $ xyx \underset{\SSS_3}{=} yxy $. Hence the only words left are of length at most three, that is $ \epsilon, x, y, xy, yx, xyx = yxy $. Hence, $ w $ is in $ \abr{R}^{\F\br{S}} $.
 \end{example}
 
 \pagebreak
@@ -929,7 +929,7 @@ A subgroup of a free group is free.
 \end{theorem}
 
 \begin{proof}
-Let $ G $ be free on $ S $ and $ H \le G $. Then $ \Gamma\br{G, S} $ is a tree and $ G  $ acts on it freely without inversion of edges. Now clearly restricting the action to $ H $ yields that $ H $ acts freely on some tree. Hence $ H $ is free.
+Let $ G $ be free on $ S $ and $ H \le G $. Then $ \Gamma\br{G, S} $ is a tree and $ G $ acts on it freely without inversion of edges. Now clearly restricting the action to $ H $ yields that $ H $ acts freely on some tree. Hence $ H $ is free.
 \end{proof}
 
 \pagebreak
@@ -1129,7 +1129,7 @@ $$ A * B = \abr{S_A \cup S_B \st R_A \cup R_B}. $$
 \end{proposition}
 
 \begin{proof}
-$ A \cong \F\br{S_A} / \abr{R_A}^{\F\br{S_A}} $ and $ \phi_A : \F\br{S_A} \to A $ such that $ \Ker \phi_A = \abr{R_A}^{\F\br{S_A}} $. Similar for $ \phi_B $. We know that $ \phi_A \cup \phi_B : S_A \cup S_B \to A * B $ has a unique extension to a homomorphism of groups, say $ \psi : \F\br{S_A \cup S_B} \to A * B $. Clearly $ S_A \cup S_B $ generate $ A * B $. We claim that $ \Ker \psi = \abr{\Ker \phi_A \cup \Ker \phi_B} $. Then $ \Ker \psi \supseteq \Ker \phi_A \cup \Ker \phi_B $ is clear. Now let $ w = g_1 \dots g_2 $ be in normal form with respect to $ \F\br{S_A} * \F\br{S_B} $. Then $ \psi\br{w} = \psi\br{g_1} \dots \psi\br{g_n} $ is of alternating form. If $ \psi\br{w} = e_{A * B} $, then there exists $ i $ such that $ \psi\br{g_i} = e_{A * B} $. So $ g_i \in \Ker \phi_A \cup \Ker \phi_B $ . Inductively, as $ g' = g_1 \dots g_{i - 1}g_{i + 1} \dots g_n $ has a smaller normal form, whence $ \psi\br{g'} = e_G $, we conclude inductively that $ w \in \abr{\Ker \phi_A \cup \Ker \phi_B} $.
+$ A \cong \F\br{S_A} / \abr{R_A}^{\F\br{S_A}} $ and $ \phi_A : \F\br{S_A} \to A $ such that $ \ker \phi_A = \abr{R_A}^{\F\br{S_A}} $. Similar for $ \phi_B $. We know that $ \phi_A \cup \phi_B : S_A \cup S_B \to A * B $ has a unique extension to a homomorphism of groups, say $ \psi : \F\br{S_A \cup S_B} \to A * B $. Clearly $ S_A \cup S_B $ generate $ A * B $. We claim that $ \ker \psi = \abr{\ker \phi_A \cup \ker \phi_B} $. Then $ \ker \psi \supseteq \ker \phi_A \cup \ker \phi_B $ is clear. Now let $ w = g_1 \dots g_2 $ be in normal form with respect to $ \F\br{S_A} * \F\br{S_B} $. Then $ \psi\br{w} = \psi\br{g_1} \dots \psi\br{g_n} $ is of alternating form. If $ \psi\br{w} = e_{A * B} $, then there exists $ i $ such that $ \psi\br{g_i} = e_{A * B} $. So $ g_i \in \ker \phi_A \cup \ker \phi_B $. Inductively, as $ g' = g_1 \dots g_{i - 1}g_{i + 1} \dots g_n $ has a smaller normal form, whence $ \psi\br{g'} = e_G $, we conclude inductively that $ w \in \abr{\ker \phi_A \cup \ker \phi_B} $.
 \end{proof}
 
 \begin{proposition}
@@ -1316,7 +1316,7 @@ $$
 \begin{tikzcd}
 & \pi_1\br{X_1} \arrow{dr} \arrow[bend left=15]{drr}{f} & & \\
 \pi_1\br{X_1 \cap X_2} \arrow{ur} \arrow{dr} & & \pi_1\br{X} \arrow[dashed]{r}{\exists !h} & \pi_1\br{Y} \\
-& \pi_1\br{X_2} \arrow{ur} \arrow[bend right=15, swap]{urr}{g} & &
+& \pi_1\br{X_2} \arrow{ur} \arrow[bend right=15]{urr}[swap]{g} & &
 \end{tikzcd}.
 $$
 \end{theorem}
@@ -1420,14 +1420,14 @@ Let $ G_1, G_2, A $ be groups such that $ A $ embeds via $ i_k : A \hookrightarr
 $$
 \begin{tikzcd}
 & G_1 \arrow[dashed, hookrightarrow]{dr}{j_1} & \\
-A \arrow[hookrightarrow]{ur}{i_1} \arrow[hookrightarrow, swap]{dr}{i_2} & & G \\
-& G_2 \arrow[dashed, hookrightarrow, swap]{ur}{j_2} &
+A \arrow[hookrightarrow]{ur}{i_1} \arrow[hookrightarrow]{dr}[swap]{i_2} & & G \\
+& G_2 \arrow[dashed, hookrightarrow]{ur}[swap]{j_2} &
 \end{tikzcd},
 \qquad
 \begin{tikzcd}
 & G_1 \arrow[hookrightarrow]{dr}{j_1} \arrow[bend left=15]{drr}{\phi_1} & & \\
-A \arrow[hookrightarrow]{ur}{i_1} \arrow[hookrightarrow, swap]{dr}{i_2} & & G \arrow[dashed]{r}{\exists !\psi} & H \\
-& G_2 \arrow[hookrightarrow, swap]{ur}{j_2} \arrow[bend right=15, swap]{urr}{\phi_2} & &
+A \arrow[hookrightarrow]{ur}{i_1} \arrow[hookrightarrow]{dr}[swap]{i_2} & & G \arrow[dashed]{r}{\exists !\psi} & H \\
+& G_2 \arrow[hookrightarrow]{ur}[swap]{j_2} \arrow[bend right=15]{urr}[swap]{\phi_2} & &
 \end{tikzcd}.
 $$
 \end{itemize}
@@ -1479,7 +1479,7 @@ $$ X'^0 = \cbr{gG_x, gG_y \st g \in G}, \qquad X'^1 = \cbr{gG_e \st g \in G}, $$
 such that $ G' \curvearrowright X' $. Define
 $$ \function[\psi]{X'}{X}{gG_z}{\phi\br{g} \cdot z}, \qquad z \in T. $$
 One checks easily that this is a graph homomorphism, as $ \phi $ is a homomorphism of groups and $ G \curvearrowright X $. Clearly $ \psi $ is surjective, as $ \phi $ is surjective and $ G \cdot T = X $. It suffices to show that $ \psi $ is locally injective. By \ref{rem:2.3.3},
-$$ \star gG_x = \cbr{gg_xG_e \st g_x \in T_{G_e}^{G_x}}. $$
+$$ \Star gG_x = \cbr{gg_xG_e \st g_x \in T_{G_e}^{G_x}}. $$
 Now for $ g_x \ne g_x' \in T_{G_e}^{G_x} $, that is $ g_xG_e \ne g_x'G_e $ and $ g_x, g_x' \in G_x $, then $ \phi\br{gg_x} \cdot y \ne \phi\br{gg_x'} \cdot y $, as otherwise $ g_x^{-1}g^{-1}gg_x' = g_x^{-1}g_x' = \phi\br{g_x^{-1}g_x'} \cdot y = y $, so $ g_x^{-1}g_x' \in G_x \cap G_y = G_e $, a contradiction. Hence $ \psi\br{gg_xG_e} = \phi\br{gg_x} \cdot e \ne \phi\br{gg_x'} \cdot e = \psi\br{gg_x'G_e} $ and $ \psi $ is locally injective. Now $ \phi $ clearly is injective on $ G_x \cup G_y $. Now if $ g \in G' \setminus G_x $, then $ x = \psi\br{G_x} \ne \psi\br{gG_x} = \phi\br{g} \cdot x $. Hence $ \phi\br{g} \ne e_G $ and $ \phi $ is injective.
 \end{proof}
 
@@ -1637,7 +1637,7 @@ $$ G_e' \le G_x, \qquad G = \abr{G_x, \ t \st t^{-1}at = \phi\br{a}, \ a \in G_e
 \begin{proof}[Proof of \ref{thm:2.5.2}]
 Let
 $$ X^0 = G' / G, \qquad X_+^1 = G' / A, \qquad \alpha\br{g'A} = g'G, \qquad \omega\br{g'A} = g'tG. $$
-Then $ G' $ acts on it by left multiplication. Clearly it is vertex transitive. Assume $ g' \in G'  $ inverts the edge $ A $. Then $ g'G = g'\alpha\br{A} = \omega\br{A} = tG $ and $ g'tG = g'\omega\br{A} = \alpha\br{A} = G $. Hence, there exist $ g_1, g_2 \in G $ such that $ g' = tg_1 $ and $ g'tg_2 = e_{G'} $, hence $ tg_1tg_2 = e_{G'} $, a contradiction. If $ g' $ inverts $ gA $, then $ g^{-1}g'g $ inverts $ A $, a contradiction.
+Then $ G' $ acts on it by left multiplication. Clearly it is vertex transitive. Assume $ g' \in G' $ inverts the edge $ A $. Then $ g'G = g'\alpha\br{A} = \omega\br{A} = tG $ and $ g'tG = g'\omega\br{A} = \alpha\br{A} = G $. Hence, there exist $ g_1, g_2 \in G $ such that $ g' = tg_1 $ and $ g'tg_2 = e_{G'} $, hence $ tg_1tg_2 = e_{G'} $, a contradiction. If $ g' $ inverts $ gA $, then $ g^{-1}g'g $ inverts $ A $, a contradiction.
 \end{proof}
 
 \pagebreak

@@ -216,8 +216,8 @@ $$
 \begin{tikzcd}
 & & L & \\
 \QQ\br{\sqrt[3]{2}} \arrow[dash]{urr}{2} & \QQ\br{\omega\sqrt[3]{2}} \arrow[dash]{ur}{2} & \QQ\br{\omega^2\sqrt[3]{2}} \arrow[dash]{u}{2} & \\
-& & & \QQ\br{\omega} \arrow[dash, swap]{uul}{3} \\
-& & \QQ \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash, swap]{ur}{2} &
+& & & \QQ\br{\omega} \arrow[dash]{uul}[swap]{3} \\
+& & \QQ \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash]{ur}[swap]{2} &
 \end{tikzcd}.
 $$
 Claim that there are no other fields. Suppose $ \QQ \subsetneq K \subsetneq L $ is such a field. By the tower law $ \sbr{K : \QQ} = 2, 3 $. Suppose $ \sbr{K : \QQ} = 2 $. Then
@@ -226,7 +226,7 @@ $$
 & L & \\
 & K\br{\omega} \arrow[dash]{u} & \\
 K \arrow[dash]{uur}{3} \arrow[dash]{ur} & & \QQ\br{\omega} \arrow[dash]{ul} \\
-& \QQ \arrow[dash]{ul}{2} \arrow[dash, swap]{ur}{2} &
+& \QQ \arrow[dash]{ul}{2} \arrow[dash]{ur}[swap]{2} &
 \end{tikzcd}.
 $$
 Then $ \omega \in K $, that is $ \QQ\br{\omega} \subset K $, so by the tower law $ \QQ\br{\omega} = K $. Otherwise $ \omega \notin K $, so $ \sbr{K\br{\omega} : K} = 2 $, so $ \sbr{K\br{\omega} : \QQ} = 4 $ contradicts the tower law for $ \QQ \subset K\br{\omega} \subset L $. Suppose $ \sbr{K : \QQ} = 3 $. Then
@@ -235,7 +235,7 @@ $$
 & L & \\
 & K\br{\sqrt[3]{2}} \arrow[dash]{u} & \\
 K \arrow[dash]{uur}{2} \arrow[dash]{ur} & & \QQ\br{\sqrt[3]{2}} \arrow[dash]{ul} \\
-& \QQ \arrow[dash]{ul}{3} \arrow[dash, swap]{ur}{3} &
+& \QQ \arrow[dash]{ul}{3} \arrow[dash]{ur}[swap]{3} &
 \end{tikzcd}.
 $$
 Claim that $ X^3 - 2 \in K\sbr{X} $ splits. Suppose that it were irreducible, then $ \sbr{K\br{\sqrt[3]{2}} : K} = 3 $, which contradicts the tower law for $ K \subset K\br{\sqrt[3]{2}} \subset L $. So it has a root in $ K $. Either $ \sqrt[3]{2} \in K $, $ \omega\sqrt[3]{2} \in K $, or $ \omega^2\sqrt[3]{2} \in K $. Thus $ \QQ\br{\sqrt[3]{2}} = K $, $ \QQ\br{\omega\sqrt[3]{2}} = K $, or $ \QQ\br{\omega^2\sqrt[3]{2}} = K $.
@@ -281,8 +281,8 @@ $$
 \begin{tikzcd}
 & & \abr{e} & \\
 \abr{\br{23}} \arrow[dash]{urr}{2} & \abr{\br{12}} \arrow[dash]{ur}{2} & \abr{\br{13}} \arrow[dash]{u}{2} & \\
-& & & \abr{\br{123}} \arrow[dash, swap]{uul}{3} \\
-& & G \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash, swap]{ur}{2} &
+& & & \abr{\br{123}} \arrow[dash]{uul}[swap]{3} \\
+& & G \arrow[dash]{uull}{3} \arrow[dash]{uul}{3} \arrow[dash]{uu}{3} \arrow[dash]{ur}[swap]{2} &
 \end{tikzcd}.
 $$
 Thus $ \QQ\br{\omega} / \QQ $ is the splitting field of $ X^2 + X + 1 $ and of $ X^2 + 3 $. We can learn the following. Let $ k \subset L $ be a splitting field. Consider $ k \subset K \subset L $. Then $ K \subset L $ is also a splitting field. The corresponding $ H \le G $ is the Galois group $ \Gal\br{L / K} $. On the other hand $ k \subset K $ is not always a splitting field. It is a splitting field if and only if the corresponding $ H \le G $ is a normal subgroup and in that case $ \Gal\br{K / k} = G / H $.
@@ -310,10 +310,10 @@ $ f\br{X} = a_0X^n + \dots + a_n \in K\sbr{X} $ is \textbf{monic} if $ a_0 = 1 $
 $$
 \begin{tikzcd}
 K\br{X} \arrow{dr}{\widetilde{e_a}}[swap]{\sim} & \\
-K\sbr{X} \arrow[subset]{u} \arrow[swap]{r}{e_a} & K\br{a} \subset L
+K\sbr{X} \arrow[subset]{u} \arrow{r}[swap]{e_a} & K\br{a} \subset L
 \end{tikzcd}.
 $$
-\item If $ a $ is algebraic, then $ \Ker e_a = \abr{f_a} $, where $ f_a \in K\sbr{X} $ is irreducible, or prime, and unique if monic, then called the \textbf{minimal polynomial} of $ a \in L / K $. In this case
+\item If $ a $ is algebraic, then $ \ker e_a = \abr{f_a} $, where $ f_a \in K\sbr{X} $ is irreducible, or prime, and unique if monic, then called the \textbf{minimal polynomial} of $ a \in L / K $. In this case
 $$
 \begin{tikzcd}
 K\sbr{X} \arrow{r}{e_a} & K\sbr{a} \cong K\br{a} \subset L \\
@@ -430,7 +430,7 @@ $$ \#\Em_k\br{K, L} = \#\cbr{\text{roots}} \le \deg f = \sbr{k\br{a} : k}. $$
 $$
 \begin{tikzcd}
 & & L \\
-k \arrow[subset]{urr} \arrow[subset]{r} & k\br{a} \arrow[dashed, swap]{ur}{y} \arrow[subset]{r} & K \arrow[dashed]{u}
+k \arrow[subset]{urr} \arrow[subset]{r} & k\br{a} \arrow[dashed]{ur}[swap]{y} \arrow[subset]{r} & K \arrow[dashed]{u}
 \end{tikzcd}.
 $$
 Consider the restriction map
@@ -448,8 +448,8 @@ Suppose given two field extensions $ k \subset K $ and $ k \subset L $. Then the
 $$
 \begin{tikzcd}
 & K \arrow[hookrightarrow]{dr}{\phi_1} & \\
-k \arrow[hookrightarrow]{ur}{\sigma_1} \arrow[hookrightarrow, swap]{dr}{\sigma_2} & & \Omega \\
-& L \arrow[hookrightarrow, swap]{ur}{\phi_2} &
+k \arrow[hookrightarrow]{ur}{\sigma_1} \arrow[hookrightarrow]{dr}[swap]{\sigma_2} & & \Omega \\
+& L \arrow[hookrightarrow]{ur}[swap]{\phi_2} &
 \end{tikzcd},
 $$
 that contains both.
@@ -462,8 +462,8 @@ I never said that $ \Omega $ is unique. For example, let $ K = \QQ\br{\sqrt[3]{2
 $$
 \begin{tikzcd}
 & \QQ\br{\sqrt[3]{2}} \arrow[hookrightarrow]{dr}{\sqrt[3]{2} \mapsto \sqrt[3]{2}} & \\
-\QQ \arrow[hookrightarrow]{ur}{\sigma} \arrow[hookrightarrow, swap]{dr}{\sigma} & & \QQ\br{\sqrt[3]{2}, \sqrt{-3}} \\
-& \QQ\br{\sqrt[3]{2}} \arrow[hookrightarrow, swap]{ur}{\sqrt[3]{2} \mapsto \omega\sqrt[3]{2}} &
+\QQ \arrow[hookrightarrow]{ur}{\sigma} \arrow[hookrightarrow]{dr}[swap]{\sigma} & & \QQ\br{\sqrt[3]{2}, \sqrt{-3}} \\
+& \QQ\br{\sqrt[3]{2}} \arrow[hookrightarrow]{ur}[swap]{\sqrt[3]{2} \mapsto \omega\sqrt[3]{2}} &
 \end{tikzcd}.
 $$
 \end{remark*}
@@ -565,7 +565,7 @@ $ k \subset K $ is \textbf{normal} if
 $$
 \begin{tikzcd}
 & \Omega & \\
-\sigma_1\br{K} \arrow[subset]{ur} \arrow[bend left=15, dashed]{rr}{\sigma} & K \arrow{l}{\sigma_1} \arrow[swap]{r}{\sigma_2} & \sigma_2\br{K} \arrow[subset]{ul} \\
+\sigma_1\br{K} \arrow[subset]{ur} \arrow[bend left=15, dashed]{rr}{\sigma} & K \arrow{l}{\sigma_1} \arrow{r}[swap]{\sigma_2} & \sigma_2\br{K} \arrow[subset]{ul} \\
 & k \arrow[subset]{ul} \arrow[subset, u] \arrow[subset]{ur} &
 \end{tikzcd}.
 $$
@@ -618,7 +618,7 @@ $ k \subset K $ is \textbf{separable} if for all $ k \subset K_1 \subset K_2 \su
 $$
 \begin{tikzcd}
 K & & \Omega & \\
-K_2 \arrow[dashed]{r}{y_1} \arrow[bend right=15, dashed, near start, swap]{rrr}{y_2} \arrow[subset]{u} & y_1\br{K_2} \arrow[subset]{ur} & & y_2\br{K_2} \arrow[subset]{ul} \\
+K_2 \arrow[dashed]{r}{y_1} \arrow[bend right=15, dashed, near start]{rrr}[swap]{y_2} \arrow[subset]{u} & y_1\br{K_2} \arrow[subset]{ur} & & y_2\br{K_2} \arrow[subset]{ul} \\
 K_1 \arrow[subset]{u} \arrow{rr}{x} & & x\br{K_1} \arrow[subset]{ul} \arrow[subset]{ur} & \\
 k \arrow[subset]{u} \arrow[subset]{urr} & & &
 \end{tikzcd}.
@@ -656,7 +656,7 @@ We show that for all $ H \le G $, $ \br{H^*}^\dagger = H $ and for all $ k \subs
 $$
 \begin{tikzcd}
 K \arrow[dashed]{dr}{\widetilde{x_1}, \widetilde{x_2}} & \\
-k\br{\lambda} \arrow[dash]{u} \arrow[swap]{r}{x_1, x_2} & \Omega \\
+k\br{\lambda} \arrow[dash]{u} \arrow{r}[swap]{x_1, x_2} & \Omega \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd},
 $$
@@ -676,7 +676,7 @@ Lemma \ref{lem:surjective} says for all $ \sigma \in \Em_k\br{F, \Omega} $, ther
 $$
 \begin{tikzcd}
 K \arrow[dashed]{dr}{\widetilde{\sigma}} & \\
-F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \Omega \\
+F \arrow[dash]{u} \arrow{r}[swap]{\sigma} & \Omega \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
 $$
@@ -697,7 +697,7 @@ $$
 \begin{tikzcd}
 \Omega & \\
 K \arrow[dash]{u} \arrow[dashed]{r}{\widetilde{\sigma}} & \widetilde{\sigma}\br{K} \arrow[dash]{ul} \\
-F \arrow[dash]{u} \arrow[swap]{r}{\sigma} & \sigma\br{F} \arrow[dash]{ul} \arrow[dash]{u} \\
+F \arrow[dash]{u} \arrow{r}[swap]{\sigma} & \sigma\br{F} \arrow[dash]{ul} \arrow[dash]{u} \\
 k \arrow[dash]{u} \arrow[dash]{ur} &
 \end{tikzcd}.
 $$
@@ -896,7 +896,7 @@ Choose $ L \subset \Omega $ such that $ k \subset \Omega $ is normal, so
 $$
 \begin{tikzcd}
 L \arrow[dashed]{dr}{y} & \\
-K \arrow[subset]{u} \arrow[swap]{r}{x = \eval{y}_K} & \Omega \\
+K \arrow[subset]{u} \arrow{r}[swap]{x = \eval{y}_K} & \Omega \\
 k \arrow[subset]{u} \arrow[subset]{ur} &
 \end{tikzcd}.
 $$
@@ -1026,8 +1026,8 @@ Let $ B = \br{x + y\sqrt{A}}^2 = \br{x^2 + Ay^2} + 2xy\sqrt{A} $. Then
 $$
 \begin{tikzcd}
 & L & \\
-K\br{\alpha} \arrow[dash]{ur}{2} & & K\br{\alpha'} \arrow[dash, swap]{ul}{2} \\
-& K\br{\beta} \arrow[dash]{ul}{2} \arrow[dash, swap]{ur}{2} & \\
+K\br{\alpha} \arrow[dash]{ur}{2} & & K\br{\alpha'} \arrow[dash]{ul}[swap]{2} \\
+& K\br{\beta} \arrow[dash]{ul}{2} \arrow[dash]{ur}[swap]{2} & \\
 & K \arrow[dash]{u}{2} &
 \end{tikzcd}.
 $$
@@ -1070,9 +1070,9 @@ The lattice of subfields is
 $$
 \begin{tikzcd}
 & & L & & \\
-K\br{\alpha} \arrow[dash]{urr}{2} & K\br{\alpha'} \arrow[dash, swap]{ur}{2} & K\br{\beta, \gamma} \arrow[dash]{u}{2} & K\br{\delta} \arrow[dash]{ul}{2} & K\br{\delta'} \arrow[dash, swap]{ull}{2} \\
-& K\br{\beta} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & K\br{\beta\gamma} \arrow[dash]{u}{2} & K\br{\gamma} \arrow[dash]{ul}{2} \arrow[dash, swap]{u}{2} \arrow[dash, swap]{ur}{2} & \\
-& & K \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash, swap]{ur}{2} & &
+K\br{\alpha} \arrow[dash]{urr}{2} & K\br{\alpha'} \arrow[dash]{ur}[swap]{2} & K\br{\beta, \gamma} \arrow[dash]{u}{2} & K\br{\delta} \arrow[dash]{ul}{2} & K\br{\delta'} \arrow[dash]{ull}[swap]{2} \\
+& K\br{\beta} \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash]{ur}[swap]{2} & K\br{\beta\gamma} \arrow[dash]{u}{2} & K\br{\gamma} \arrow[dash]{ul}{2} \arrow[dash]{u}[swap]{2} \arrow[dash]{ur}[swap]{2} & \\
+& & K \arrow[dash]{ul}{2} \arrow[dash]{u}{2} \arrow[dash]{ur}[swap]{2} & &
 \end{tikzcd}.
 $$
 
@@ -1113,8 +1113,8 @@ Thus $ G = \CCC_4 $.
 $$
 \begin{tikzcd}
 & L = K\br{\delta, \delta'} & \\
-K\br{\beta} \arrow[dash]{ur} & K\br{\delta} \arrow[dash]{u} & K\br{\delta'} \arrow[dash, swap]{ul} \\
-& K \arrow[dash]{ul}{2} \arrow[dash]{u}{\le 2} \arrow[dash, swap]{ur}{\le 2} &
+K\br{\beta} \arrow[dash]{ur} & K\br{\delta} \arrow[dash]{u} & K\br{\delta'} \arrow[dash]{ul} \\
+& K \arrow[dash]{ul}{2} \arrow[dash]{u}{\le 2} \arrow[dash]{ur}[swap]{\le 2} &
 \end{tikzcd}.
 $$
 If $ \sbr{L : K} = 4 $ then $ G = \CCC_2 \times \CCC_2 $. Note that $ \sbr{L : K} $ cannot be $ 1 $. Can it be $ \sbr{L : K} = 2 $? At least one of $ 2\br{a + \gamma} $ and $ 2\br{a - \gamma} $ is not square in $ K $. Suppose $ 2\br{a - \gamma} $ is not square in $ K $. Can it be that $ 2\br{a + \gamma} $ is square in $ K\br{\sqrt{2\br{a - \gamma}}} = K\br{\delta'} $? By Lemma \ref{lem:biquadratic}
