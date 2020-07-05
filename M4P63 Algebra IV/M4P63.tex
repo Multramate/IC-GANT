@@ -18,7 +18,7 @@ $$
 \end{tikzcd}
 $$
 }
-\def\syllabus{Exact sequences. Hom and tensor product. Projective and free modules. Injective and divisible modules. Torsion-free and flat modules. Projective and injective resolutions. Chain and cochain complexes. Homology and cohomology. Derived functors. Tor and torsion. Ext and extensions. Global dimension.}
+\def\syllabus{Exact sequences. Hom and tensor product. Projective and free modules. Injective and divisible modules. Flat and torsion-free modules. Projective and injective resolutions. Chain and cochain complexes. Homology and cohomology. Derived functors. Tor and torsion. Ext and extensions. Global dimension.}
 \def\thm{section}
 
 \input{../style/header}
@@ -33,15 +33,15 @@ $$
 
 \lecture{1}{Friday}{10/01/20}
 
-Let $ R $ be an \textbf{associative ring with unity}, that is an abelian group written additively with a multiplication which is associative but not necessarily commutative, with an identity $ 1 $ and distributive laws $ a\br{b + c} = ab + ac $ and $ \br{a + b}c = ac + bc $. Then
+Let $ R $ be an \textbf{associative ring with unity}, that is an abelian group written additively with a multiplication which is associative but not necessarily commutative, with an identity one, and distributive laws $ a\br{b + c} = ab + ac $ and $ \br{a + b}c = ac + bc $. Then
 $$ R^* = \cbr{r \in R \st \exists s \in R, \ rs = 1 = sr} $$
-is the unit group of $ R $. If $ R^* = R \setminus \cbr{0} $ then $ R $ is a \textbf{division ring}, or a \textbf{skew field}. In the case that $ R $ is commutative, $ R $ is a \textbf{field}.
+is the \textbf{unit group} of $ R $. If $ R^* = R \setminus \cbr{0} $ then $ R $ is a \textbf{division ring}, or a \textbf{skew field}. In the case that $ R $ is commutative, $ R $ is a \textbf{field}.
 
 \begin{example*}
 \hfill
 \begin{itemize}
 \item Fields $ \CC $, $ \RR $, $ \QQ $, and $ \FF_q $, the field with $ q = p^a $ elements with $ p $ a prime and $ a \ge 1 $.
-\item Skew fields $ \HH = \cbr{a + bi + cj + dk \st a, b, c, d \in \RR} $ where $ i^2 = j^2 = k^2 = ijk = -1 $.
+\item The skew field $ \HH = \cbr{a + bi + cj + dk \st a, b, c, d \in \RR} $ where $ i^2 = j^2 = k^2 = ijk = -1 $.
 \item Other rings are polynomial rings $ k\sbr{x} $ for $ k $ a field, more generally $ k\sbr{x_1, \dots, x_p} $, and $ \Mat_n k $, the $ n \times n $ matrices with entries from $ k $, a field.
 \end{itemize}
 \end{example*}
@@ -58,11 +58,11 @@ We write $ rm $ for $ r * m $.
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ R $ is itself a left $ R $-module, with $ * $ as ring multiplication. More generally, let $ I $ be a left ideal of $ R $, so $ I $ is an additive subgroup, and $ rI \le I $ for all $ r \in R $. Then $ I $ is an $ R $-module with $ * $ as ring multiplication.
+\item $ R $ is itself a left $ R $-module, with $ * $ as ring multiplication. More generally, let $ I $ be a left ideal of $ R $, so $ I $ is an additive subgroup, and $ rI \le I $ for all $ r \in R $. Then $ I $ is an $ R $-module, with $ * $ as ring multiplication.
 \item Let $ k $ be a field. Then any vector space over $ k $ is a $ k $-module, and vice versa.
 \item Any abelian group is a $ \ZZ $-module, with $ * $ defined by $ na = a + \dots + a $ for $ n \in \ZZ^+ $ and $ a \in A $, and $ \br{-n}a = -\br{na} $.
 \item Let $ k $ be a field. Let $ k^n $ be column vectors. Then $ k^n $ is a left $ \Mat_n k $-module, with $ * $ as the usual matrix-vector multiplication.
-\item Let $ M \in \Mat_n k $. Then we can define a left $ k\sbr{x} $-module structure on $ k^* $ by letting $ x $ act as $ M $ on $ k^* $. So $ \br{x^2 + 3x - 2} * v = M^2v + 3Mv - 2v $.
+\item Let $ M \in \Mat_n k $. Then we can define a left $ k\sbr{x} $-module structure on $ k^n $ by letting $ x $ act as $ M $ on $ k^n $. So $ \br{x^2 + 3x - 2} * v = M^2v + 3Mv - 2v $.
 \item Let $ G $ be a group. Any representation of $ G $ over the field $ k $ is a left module for $ k\sbr{G} $, the \textbf{group algebra}, a vector space over $ k $ with elements of $ G $ as a basis, with multiplication derived from that of $ G $.
 \end{itemize}
 \end{example*}
@@ -78,7 +78,7 @@ Left and right modules are not quite the same. If we amend this definition by pu
 Let $ R $ be a ring. The \textbf{opposite ring} $ R^{\op} $ is $ R $ with a redefined multiplication $ r *_{R^{\op}} s = s *_R r $.
 \end{definition}
 
-It is easy to see that a left $ R $-module is the same as a right $ R^{\op} $-module and vice versa. If $ R $ is commutative then $ R = R^{\op} $.
+It is easy to see that a left $ R $-module is the same as a right $ R^{\op} $-module, and vice versa. If $ R $ is commutative then $ R = R^{\op} $.
 
 \begin{exercise*}
 Show that $ \Mat_n k \cong \Mat_n k^{\op} $.
@@ -93,7 +93,7 @@ Except where otherwise stated, $ R $-modules are assumed to be left $ R $-module
 \begin{definition}
 Let $ M_1 $ and $ M_2 $ be $ R $-modules. A map $ f : M_1 \to M_2 $ is an \textbf{$ R $-module homomorphism} if
 \begin{itemize}
-\item $ f $ is a group homomorphism, with respect to the $ + $ operation, and
+\item $ f $ is a group homomorphism, with respect to the $ + $ operations, and
 \item $ f\br{rm} = rf\br{m} $, for $ r \in R $ and $ m \in M $.
 \end{itemize}
 If $ f $ is bijective, then it is an \textbf{$ R $-module isomorphism}.
@@ -121,8 +121,9 @@ The \textbf{direct product} is
 $$ \prod_{s \in S} M_s = \cbr{\br{m_s}_S \st m_s \in M_s}, $$
 with coordinate-wise addition and $ R $-multiplication, so
 $$ \br{m_s}_S + \br{n_s}_S = \br{m_s + n_s}_S, \qquad r\br{m_s}_S = \br{rm_s}_S. $$
-If $ M_s = M $ for all $ s \in S $, then we write $ M^S $ for $ \prod_{s \in S} M_s $.
 \end{definition}
+
+If $ M_s = M $ for all $ s \in S $, then we write $ M^S $ for $ \prod_{s \in S} M_s $.
 
 \begin{definition}
 The \textbf{direct sum} is
@@ -135,7 +136,7 @@ If $ S $ is finite then the direct product and the direct sum are equal.
 Let $ M = \ZZ_2 $, as a $ \ZZ $-module, and let $ S = \NN $. Then $ \bigoplus_{s \in \NN} \ZZ_2 $ is a countable $ \ZZ $-module but $ \prod_{s \in \NN} \ZZ_2 = \ZZ_2^\NN $ is uncountable.
 \end{example*}
 
-When $ \abs{S} = 2 $, generally we write $ M_1 \oplus M_2 $ for the direct sum or product. There are natural injective maps
+When $ \abs{S} = 2 $, generally we write $ M_1 \oplus M_2 $ for the direct sum, or product. There are natural injective maps, or $ R $-module homomorphisms
 $$ \function[\iota_A]{A}{A \oplus B}{a}{\br{a, 0}}, \qquad \function[\iota_B]{B}{A \oplus B}{b}{\br{0, b}}, $$
 and surjective maps
 $$ \function[\pi_A]{A \oplus B}{A}{\br{a, b}}{a}, \qquad \function[\pi_B]{A \oplus B}{B}{\br{a, b}}{b}. $$
@@ -143,11 +144,7 @@ $$ \function[\pi_A]{A \oplus B}{A}{\br{a, b}}{a}, \qquad \function[\pi_B]{A \opl
 \subsection{Exact sequences}
 
 \begin{definition}
-Suppose we have a sequence of $ R $-modules
-$$ \dots \xrightarrow{f_{n - 1}} M_n \xrightarrow{f_n} M_{n + 1} \xrightarrow{f_{n + 1}} \dots, $$
-with maps $ f_n : M_n \to M_{n + 1} $. Say the sequence is \textbf{exact at $ M_n $} if
-$$ \im f_{n - 1} = \ker f_n. $$
-The sequence is \textbf{exact} if it is exact everywhere. A \textbf{short exact sequence} is an exact sequence
+Suppose we have a sequence of $ R $-modules $ \dots, M_{n - 1}, M_n, M_{n + 1}, \dots $, with maps $ f_n : M_n \to M_{n + 1} $. Say the sequence is \textbf{exact at $ M_n $} if $ \im f_{n - 1} = \ker f_n $. The sequence is \textbf{exact} if it is exact everywhere. A \textbf{short exact sequence} is an exact sequence
 $$ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0. $$
 \end{definition}
 
@@ -157,13 +154,11 @@ $ \alpha $ is injective and $ \beta $ is surjective.
 
 \pagebreak
 
-The first isomorphism theorem implies that $ B / \im \alpha \cong C $, where $ \im \alpha \cong A $. An easy case is
-$$ B \cong A \oplus C, $$
-with $ \im \alpha = \im \iota_A = A \oplus 0 $ and $ \im \beta = \im \pi_\beta = C $. We say that the short exact sequence \textbf{splits} in this case.
+By the first isomorphism theorem, $ B / \im \alpha \cong C $, where $ \im \alpha \cong A $. An easy case is $ B \cong A \oplus C $, with $ \im \alpha = \im \iota_A = A \oplus 0 $ and $ \im \beta = \im \pi_\beta = C $. We say that the short exact sequence \textbf{splits} in this case.
 
 \begin{example*}
 A non-split short exact sequence of $ \ZZ $-modules, or abelian groups, is
-$$ 0 \to \ZZ / 2\ZZ \to \ZZ / 4\ZZ \to \ZZ / 2\ZZ \to 0. $$
+$$ 0 \to \ZZ_2 \to \ZZ_4 \to \ZZ_2 \to 0. $$
 \end{example*}
 
 \begin{proposition}
@@ -180,10 +175,9 @@ Such a $ \sigma $ is called a \textbf{section} of $ \beta $.
 \item[$ \implies $] Suppose that the short exact sequence is split. So assume $ B = A \oplus C $, with $ \alpha = \iota_A $ and $ \beta = \pi_C $. Now $ \iota_C $ is a section for $ \beta $.
 \item[$ \impliedby $] For the converse, suppose that $ \sigma $ is a section for $ \beta $. We want $ f : A \oplus C \xrightarrow{\sim} B $ such that $ f \circ \iota_A = \alpha $ and $ \beta \circ f = \pi_C $, so
 $$
-\begin{tikzcd}[row sep=tiny]
-& & A \oplus C \arrow{dr}{\pi_C} \arrow{dd}{f} & & \\
-0 \arrow{r} & A \arrow{ur}{\iota_A} \arrow{dr}[swap]{\alpha} & & C \arrow{r} & 0 \\
-& & B \arrow{ur}[swap]{\beta} & &
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r}{\iota_A} \arrow[cong]{d} & A \oplus C \arrow{r}{\pi_C} \arrow{d}{f} & C \arrow{r} \arrow[cong]{d} & 0 \\
+0 \arrow{r} & A \arrow{r}[swap]{\alpha} & B \arrow{r}[swap]{\beta} & C \arrow{r} & 0
 \end{tikzcd}.
 $$
 Define
@@ -211,7 +205,8 @@ Such a $ \rho $ is a \textbf{retraction} of $ \alpha $.
 \begin{itemize}
 \item[$ \implies $] Once again, if the short exact sequence is split then the existence of $ \rho $ is clear.
 \item[$ \impliedby $] Suppose that $ \rho $ is a retraction for $ \alpha $. We define $ f : B \xrightarrow{\sim} A \oplus C $ such that $ f \circ \alpha = \iota_A $ and $ \pi_C \circ f = \beta $. Do this by
-$$ \function[g]{B}{A \oplus C}{b}{\br{\rho\br{a}, \beta\br{c}}}. $$
+$$ \function[g]{B}{A \oplus C}{b}{\br{\rho\br{b}, \beta\br{b}}}. $$
+Details are omitted.
 \end{itemize}
 \end{proof}
 
@@ -289,7 +284,7 @@ A \textbf{basis} for a module $ M $ is a set $ T $ of elements such that every e
 $$ m = \sum_{i = 1}^m r_it_i, \qquad r_i \in R, \qquad t_i \in T. $$
 \end{definition}
 
-If $ M = \bigoplus_{s \in S} R $, then $ M $ has a basis consisting of elements with exactly one coordinate one, and the rest zero. On the other hand, if $ M $ has a basis $ T $ then it is straightforward to show that $ M \cong \bigoplus_{t \in T} R $.
+If $ M = \bigoplus_{s \in S} R $, then $ M $ has a basis consisting of elements with exactly one coordinate one, and the rest zero. On the other hand, if $ M $ has a basis $ T $ then it is straightforward to show that $ M \cong \bigoplus_{t \in T} R $. \footnote{Exercise}
 
 \begin{proposition}
 Let $ F $ be a free $ R $-module with basis $ T $. Let $ M $ be some $ R $-module, and let $ \psi : T \to M $ be a set map. Then $ \psi $ extends uniquely to an $ R $-module homomorphism $ \psi : F \to M $.
@@ -314,13 +309,13 @@ Since $ M $ is projective, there is a section $ \sigma $ for $ \psi $, and so th
 
 \lecture{4}{Friday}{17/01/20}
 
-\item[$ \impliedby $] Suppose that $ M \oplus N = F $, a free module with basis $ T $. Suppose $ \beta : B \to C $ is surjective, and that $ f : M \to C $. Note that $ f \circ \pi_M : F \to C $. For each $ t \in T $, let $ b_t \in B $ be such that $ \beta\br{b_t} = \br{f \circ \pi_M}\br{t} $. The set map
+\item[$ \impliedby $] Suppose that $ M \oplus N = F $, a free module with basis $ T $. Suppose $ \beta : B \to C $ is surjective, and that $ f : M \to C $. Note that $ f \circ \pi_M : F \to C $. Let $ m_t = \pi_M\br{t} $. For each $ t \in T $, let $ b_t \in B $ be such that $ \beta\br{b_t} = f\br{m_t} $. The set map
 $$ \function{T}{B}{t}{b_t} $$
-extends to a homomorphism $ \widehat{g} : F \to B $. Now define $ g : M \to B $ by $ g = \widehat{g} \circ \iota_M $. We need to show $ f = \beta \circ g $. Take $ m \in M $. Then $ \iota_M\br{m} = \br{m, 0} \in F $ can be written as $ \sum_i r_it_i $, where $ t_i \in T $ and $ r_i \in R $. Applying $ \pi_M $, $ m = \sum_i r_im_{t_i} $. Then
-$$ g\br{m} = \br{\widehat{g} \circ \iota_M}\br{m} = \widehat{g}\br{\sum_i r_it_i} = \sum_i r_ib_{t_i}. $$
+extends to a homomorphism $ g' : F \to B $. Now define $ g : M \to B $ by $ g = g' \circ \iota_M $. We need to show $ f = \beta \circ g $. Take $ m \in M $. Then $ \iota_M\br{m} = \br{m, 0} \in F $ can be written as $ \sum_i r_it_i $, where $ t_i \in T $ and $ r_i \in R $. Applying $ \pi_M $, $ m = \sum_i r_im_{t_i} $. Then
+$$ g\br{m} = \br{g' \circ \iota_M}\br{m} = g'\br{\sum_i r_it_i} = \sum_i r_ib_{t_i}. $$
 So
 $$ \br{\beta \circ g}\br{m} = \beta\br{\sum_i r_ib_{t_i}} = \sum_i r_i\beta\br{b_{t_i}} = \sum_i r_if\br{m_{t_i}} = f\br{\sum_i r_im_{t_i}} = f\br{m}. $$
-Hence $ \beta \circ g = f $. So $ M $ is projective.
+Hence $ \beta \circ g = f $. So $ M $ is projective, as required.
 \end{itemize}
 \end{proof}
 
@@ -370,9 +365,9 @@ Let $ \gamma : B \oplus M \to \br{B \oplus M} / K $ be the canonical quotient ma
 & = \br{\alpha\br{a}, 0} + K
 = \gamma\br{\alpha\br{a}, 0}
 = \br{\gamma \circ \iota_B \circ \alpha}\br{a}
-= \br{\delta \circ \alpha}\br{a}.
+= \br{\delta \circ \alpha}\br{a},
 \end{align*}
-Hence $ \epsilon \circ f = \delta \circ \alpha $. Claim that $ \epsilon $ is injective. Suppose $ \epsilon\br{m} = 0 $. Then $ \iota_M\br{m} \in K $, so $ \br{0, m} = \br{\alpha\br{a}, -f\br{a}} $ for some $ a \in A $. But $ \alpha\br{a} = 0 $ implies that $ a = 0 $, and so $ m = -f\br{0} = 0 $. Since $ M $ is injective, $ \epsilon $ has a retraction $ \rho : Y \to M $. Define $ g : B \to M $ by $ g = \rho \circ \delta $, so
+since $ \br{\alpha\br{a}, -f\br{a}} \in K $. Hence $ \epsilon \circ f = \delta \circ \alpha $ as stated. Claim that $ \epsilon $ is injective. Suppose $ \epsilon\br{m} = 0 $. Then $ \iota_M\br{m} \in K $, so $ \br{0, m} = \br{\alpha\br{a}, -f\br{a}} $ for some $ a \in A $. But $ \alpha\br{a} = 0 $, so $ a = 0 $, and so $ m = -f\br{0} = 0 $. Since $ M $ is injective, $ \epsilon $ has a retraction $ \rho : Y \to M $. Define $ g : B \to M $ by $ g = \rho \circ \delta $, so
 $$
 \begin{tikzcd}
 A \arrow{r}{\alpha} \arrow{d}[swap]{f} & B \arrow[dashed]{dl}[swap]{g} \arrow{d}{\delta} \\
@@ -410,7 +405,7 @@ Note that $ X \ne \emptyset $ since $ \br{\im \alpha, f \circ \alpha^{-1}} $ is 
 $$ \function[h]{L}{M}{l}{h_s\br{l}}, \qquad l \in L_s. $$
 This does not depend on the choice of $ s $. Then $ \br{L, h} $ is an upper bound for the chain $ \cbr{\br{L_s, h_s} \st s \in S} $. Hence $ X $ has a maximal element, $ \br{L_0, h_0} $. We want to show that $ L_0 = B $. Then we may set $ g = h_0 $. Suppose that $ L_0 \ne B $. Let $ b \in B \setminus L_0 $. Note that $ Rb \le B $. Consider
 $$ L_0 + Rb = \cbr{l + rb \st l \in L_0, \ r \in R} \le B. $$
-We would like to extend $ h_0 $ to $ h_0^+ $ by specifying an image for $ h_0^+\br{b} $. The problem is that $ Rb \cap L_0 $ may not be $ \cbr{0} $, and if $ rb \in L_0 $ then we require $ rh_0^+\br{b} = h_0\br{rb} $, otherwise $ h_0^+ $ will not be well-defined. Note that $ I = \cbr{r \in R \st rb \in L_0} $ is a left ideal for $ R $. Suppose that $ M $ has the condition from Baer's criterion, so every map $ I \to M $ has the form $ x \mapsto xm $ for some $ m \in M $. Note that $ \cbr{xb \st x \in I} $ is a submodule of $ L_0 $. Define
+We would like to extend $ h_0 $ to $ h_0^+ $ by specifying an image for $ h_0^+\br{b} $. The problem is that $ Rb \cap L_0 $ may not be $ \cbr{0} $, and if $ rb \in L_0 $ then we require $ rh_0^+\br{b} = h_0\br{rb} $, otherwise $ h_0^+ $ will not be well-defined. Note that $ I = \cbr{r \in R \st rb \in L_0} $ is a left ideal for $ R $. Suppose that $ M $ has the condition from Baer's criterion, so every map $ I \to M $ has the form $ x \mapsto xm $ for some $ m \in M $. Note that $ \cbr{xb \st x \in I} $ is a submodule of $ L_0 $. Define a map
 $$ \function[\delta]{I}{M}{x}{h_0\br{xb}}. $$
 This is an $ R $-module homomorphism. So $ \delta\br{x} = xm $ for some $ m \in M $. Hence $ h_0\br{xb} = xm $ for all $ x \in I $. So we can safely define $ h_0^+\br{b} = m $. Now $ \br{L_0 + Rb, h_0^+} \in X $, and $ \br{L_0, h_0} < \br{L_0 + Rb, h_0^+} $, which contradicts the maximality of $ \br{L_0, h_0} $. Hence $ L_0 = B $, and we are done.
 \item[$ \implies $] The converse is left as an exercise. \footnote{Exercise}
@@ -424,7 +419,7 @@ This is an $ R $-module homomorphism. So $ \delta\br{x} = xm $ for some $ m \in 
 \item Let $ \ZZ $ be a module for itself. The ideals of $ \ZZ $ are $ k\ZZ $ for $ k \in \ZZ $. Define
 $$ \function[f]{k\ZZ}{\ZZ}{km}{m}. $$
 If $ k \ne 0, \pm 1 $, then $ f\br{k} = 1 $, and so $ f\br{x} \ne xm $ for $ m \in \ZZ $, since one is not divisible by $ k $ in $ \ZZ $. So Baer's criterion fails, and $ \ZZ $ is not injective. We already knew that $ \ZZ \to \QQ $ has no retraction.
-\item $ \QQ $ is injective as a $ \ZZ $-module. Suppose we have a map $ f : k\ZZ \to \QQ $. Let $ q = f\br{k} $. Then $ f\br{kt} = qt = \br{q / k}kt $. So $ f\br{x} = x\br{q / k} $ for all $ x $, so $ \QQ $ satisfies Baer's criterion.
+\item $ \QQ $ is injective as a $ \ZZ $-module. Suppose we have a map $ f : k\ZZ \to \QQ $ for $ k \ne 0 $. Let $ q = f\br{k} $. Then $ f\br{kt} = qt = \br{q / k}kt $. So $ f\br{x} = x\br{q / k} $ for all $ x $, so $ \QQ $ satisfies Baer's criterion.
 \end{itemize}
 \end{example*}
 
@@ -454,7 +449,7 @@ Suppose $ A, A_1, A_2, B, B_1, B_2, M $ are $ R $-modules, and $ \alpha : A \to 
 \begin{itemize}
 \item $ \Hom_R\br{A_1 \oplus A_2, B} \cong \Hom_R\br{A_1, B} \oplus \Hom_R\br{A_2, B} $.
 \item $ \Hom_R\br{A, B_1 \oplus B_2} \cong \Hom_R\br{A, B_1} \oplus \Hom_R\br{A, B_2} $.
-\item Then we can define
+\item We can define
 $$ \function[\alpha_*]{\Hom_R\br{M, A}}{\Hom_R\br{M, B}}{f}{\alpha \circ f}, \qquad f : M \to A. $$
 \item We can also define
 $$ \function[\alpha^*]{\Hom_R\br{B, M}}{\Hom_R\br{A, M}}{g}{g \circ \alpha}, \qquad g : B \to M. $$
@@ -463,11 +458,11 @@ $$ \function[\alpha^*]{\Hom_R\br{B, M}}{\Hom_R\br{A, M}}{g}{g \circ \alpha}, \qq
 
 Thus Hom is a bifunctor between the category of $ R $-modules and the category of abelian groups, additive in both arguments, covariant in the second argument and contravariant in the first argument.
 \begin{itemize}
-\item Bi means Hom takes two arguments.
-\item Functor means that homomorphisms between $ R $-modules turn into abelian group homomorphisms.
-\item Covariant means the homomorphism goes in the same direction.
-\item Contravariant means the direction gets reversed.
-\item Additive in both arguments means Hom respects direct sums.
+\item \textbf{Bi} means Hom takes two arguments.
+\item \textbf{Functor} means that homomorphisms between $ R $-modules turn into abelian group homomorphisms.
+\item \textbf{Covariant} means the homomorphism goes in the same direction.
+\item \textbf{Contravariant} means the direction gets reversed.
+\item \textbf{Additive} in both arguments means Hom respects direct sums.
 \end{itemize}
 
 \begin{proposition}
@@ -475,7 +470,7 @@ Suppose $ \alpha : A \to B $ is surjective. Then $ \alpha^* : \Hom_R\br{B, M} \t
 \end{proposition}
 
 \begin{proof}
-Suppose $ f_1, f_2 : B \to M $ are such that $ \alpha^*\br{f_1} = \alpha^*\br{f_2} $. Then $ f_1 \circ \alpha = f_2 \circ \alpha $, so $ \br{f_1 \circ \alpha}\br{a} = \br{f_2 \circ \alpha}\br{a} $ for all $ a \in A $. Let $ b \in B $. Then $ b = \alpha\br{a} $ for some $ a $, since $ \alpha $ is surjective, so $ f_1\br{b} = \br{f_1 \circ \alpha}\br{a} = \br{f_2 \circ \alpha}\br{a} = f_2\br{b} $, so $ f_1 = f_2 $.
+Suppose $ f_1, f_2 : B \to M $ are such that $ \alpha^*f_1 = \alpha^*f_2 $. Then $ f_1 \circ \alpha = f_2 \circ \alpha $, so $ \br{f_1 \circ \alpha}\br{a} = \br{f_2 \circ \alpha}\br{a} $ for all $ a \in A $. Let $ b \in B $. Then $ b = \alpha\br{a} $ for some $ a $, since $ \alpha $ is surjective, so $ f_1\br{b} = \br{f_1 \circ \alpha}\br{a} = \br{f_2 \circ \alpha}\br{a} = f_2\br{b} $, so $ f_1 = f_2 $.
 \end{proof}
 
 \begin{proposition}
@@ -483,7 +478,7 @@ Suppose $ \alpha : A \to B $ is injective. Then $ \alpha_* : \Hom_R\br{M, A} \to
 \end{proposition}
 
 \begin{proof}
-Suppose $ f_1, f_2 : M \to A $, and $ \alpha_*\br{f_1} = \alpha_*\br{f_2} $. Then $ \alpha \circ f_1 = \alpha \circ f_2 $, so $ \br{\alpha \circ f_1}\br{m} = \br{\alpha \circ f_2}\br{m} $ for all $ m \in M $. But $ \alpha $ is injective, so this implies $ f_1\br{m} = f_2\br{m} $ for all $ m \in M $.
+Suppose $ f_1, f_2 : M \to A $, and $ \alpha_*f_1 = \alpha_*f_2 $. Then $ \alpha \circ f_1 = \alpha \circ f_2 $, so $ \br{\alpha \circ f_1}\br{m} = \br{\alpha \circ f_2}\br{m} $ for all $ m \in M $. But $ \alpha $ is injective, so this implies $ f_1\br{m} = f_2\br{m} $ for all $ m \in M $.
 \end{proof}
 
 \pagebreak
@@ -497,11 +492,11 @@ $$ 0 \to \Hom_R\br{C, M} \xrightarrow{\beta^*} \Hom_R\br{B, M} \xrightarrow{\alp
 
 \begin{proof}
 This is exact at $ \Hom_R\br{C, M} $, since $ \beta^* $ is injective. Claim that the sequence is also exact at $ \Hom_R\br{B, M} $, so it is an exact sequence. It is not necessarily a short exact sequence since $ \alpha^* $ is not generally surjective. Let $ g : B \to M $. We have
-$$ g \in \ker \alpha^* \iff \alpha^*\br{g} = 0 \iff g \circ \alpha = 0 \iff g\br{\alpha\br{A}} = 0 \iff \im \alpha \le \ker g \iff \ker \beta \le \ker g, $$
-Then $ g \in \ker \alpha^* $ if and only if for all $ b_1, b_2 \in B $, $ \beta\br{b_1} = \beta\br{b_2} $ implies that $ g\br{b_1} = g\br{b_2} $, which is if and only if the map defined by
+$$ g \in \ker \alpha^* \iff \alpha^*g = 0 \iff g \circ \alpha = 0 \iff \br{g \circ \alpha}\br{A} = 0 \iff \im \alpha \le \ker g \iff \ker \beta \le \ker g, $$
+Then $ g \in \ker \alpha^* $ if and only if for all $ b_1, b_2 \in B $, $ \beta\br{b_1} = \beta\br{b_2} $ implies that $ g\br{b_1} = g\br{b_2} $, which is if and only if the $ R $-module homomorphism defined by
 $$ \function[f]{C}{M}{c}{g\br{b}}, \qquad \beta\br{b} = c $$
-is well-defined, since $ \beta $ is surjective, and $ f $ is an $ R $-module homomorphism. Thus
-$$ g \in \ker \alpha^* \qquad \iff \qquad \exists f \in \Hom_R\br{C, M}, \ \beta^*\br{f} = g \qquad \iff \qquad g \in \im \beta^*. $$
+is well-defined, since $ \beta $ is surjective. Thus
+$$ g \in \ker \alpha^* \qquad \iff \qquad \exists f \in \Hom_R\br{C, M}, \ \beta^*f = g \qquad \iff \qquad g \in \im \beta^*. $$
 Hence $ \ker \alpha^* = \im \beta^* $. So the sequence is exact at $ \Hom_R\br{B, M} $.
 \end{proof}
 
@@ -561,7 +556,7 @@ Let $ M $ be an $ R $-module. Then $ M $ is injective if and only if for every i
 \end{proposition}
 
 \begin{proof}
-$ M $ is injective if and only if for all injective $ \alpha : A \to B $, for all $ f \in \Hom_R\br{A, M} $, there exists $ g \in \Hom_R\br{B, M} $ such that $ f = g \circ \alpha $, so $ f = \alpha^*\br{g} $. This is if and only if for all injective $ \alpha : A \to B $, $ f \in \im \alpha^* $ for all $ f \in \Hom_R\br{A, M} $, which is if and only if $ \alpha^* $ is surjective.
+$ M $ is injective if and only if for all injective $ \alpha : A \to B $ and for all $ f \in \Hom_R\br{A, M} $, there exists $ g \in \Hom_R\br{B, M} $ such that $ f = g \circ \alpha $, so $ f = \alpha^*g $. This is if and only if for all injective $ \alpha : A \to B $, $ f \in \im \alpha^* $ for all $ f \in \Hom_R\br{A, M} $, which is if and only if $ \alpha^* $ is surjective.
 \end{proof}
 
 \begin{proposition}
@@ -597,9 +592,9 @@ $$ \ker f \xrightarrow{\alpha} \ker g \xrightarrow{\beta} \ker h \xrightarrow{\d
 \begin{proof}
 \hfill
 \begin{itemize}
-\item The maps $ \alpha : \ker f \to \ker g $ and $ \beta : \ker g \to \ker h $ are obtained simply by restricting $ \alpha $ and $ \beta $ respectively. Observe that if $ a \in \ker f $ then $ f\br{a} = 0 $, so $ \br{\phi \circ f}\br{a} = 0 $. But $ \phi \circ f = g \circ \alpha $, and so $ \br{g \circ \alpha}\br{a} = 0 $, so $ \alpha\br{a} \in \ker g $, which is what we wanted.
+\item The maps $ \alpha : \ker f \to \ker g $ and $ \beta : \ker g \to \ker h $ are obtained simply by restricting $ \alpha $ and $ \beta $ respectively. Observe that if $ a \in \ker f $ then $ f\br{a} = 0 $, so $ \br{\phi \circ f}\br{a} = 0 $. But $ \phi \circ f = g \circ \alpha $, and so $ \br{g \circ \alpha}\br{a} = 0 $, so $ \alpha\br{a} \in \ker g $, which is what we wanted. Similarly for $ \beta : \ker g \to \ker h $.
 \item The maps $ \overline{\phi} : \coker f \to \coker g $ and $ \overline{\psi} : \coker g \to \coker h $ are induced from $ \phi $ and $ \psi $ by
-$$ \overline{\phi}\br{x + \im f} = \phi\br{x} + \im g, \qquad \overline{\psi}\br{y + \im g} = \psi\br{g} + \im h. $$
+$$ \overline{\phi}\br{x + \im f} = \phi\br{x} + \im g, \qquad \overline{\psi}\br{y + \im g} = \psi\br{y} + \im h. $$
 Check that these maps make sense. Suppose $ x_1 + \im f = x_2 + \im f $. Then $ x_1 - x_2 \in \im f $, so there exists $ a \in A $ such that $ f\br{a} = x_1 - x_2 $. Now
 $$ \phi\br{x_1} - \phi\br{x_2} = \phi\br{x_1 - x_2} = \br{\phi \circ f}\br{a} = \br{g \circ \alpha}\br{a} \in \im g. $$
 So $ \phi\br{x_1} + \im g = \phi\br{x_2} + \im g $. So $ \overline{\phi} $ is well-defined, and $ \overline{\psi} $ is shown to be well-defined by a similar argument.
@@ -609,15 +604,13 @@ Check this is well-defined. Suppose $ b_1, b_2, x_1, x_2 $ are such that $ \phi\
 $$ \br{\phi \circ f}\br{a} = \br{g \circ \alpha}\br{a} = g\br{b_1 - b_2} = g\br{b_1} - g\br{b_2} = \phi\br{x_1} - \phi\br{x_2} = \phi\br{x_1 - x_2}. $$
 But $ \phi $ is injective, and so $ f\br{a} = x_1 - x_2 $, and so $ x_1 + \im f = x_2 + \im f $. So $ \delta $ is well-defined.
 \end{itemize}
-Exactness of the sequence is an exercise, on problem sheet.
+Exactness of the sequence is an exercise, on problem sheet. \footnote{Exercise}
 \end{proof}
 
 \subsection{Tensor products}
 
 \begin{definition}
-Let $ M $ be a left $ R $-module, and let $ L $ be a right $ R $-module. The \textbf{tensor product} $ L \otimes_R M $ is an abelian group generated as an abelian group by a set of \textbf{pure tensors}
-$$ \cbr{l \otimes m \st l \in L, \ m \in M}, $$
-subject to the relations
+Let $ M $ be a left $ R $-module, and let $ L $ be a right $ R $-module. The \textbf{tensor product} $ L \otimes_R M $ is an abelian group generated as an abelian group by a set of \textbf{pure tensors} $ \cbr{l \otimes m \st l \in L, \ m \in M} $ subject to the relations
 $$ l_1 \otimes m + l_2 \otimes m = \br{l_1 + l_2} \otimes m, \qquad l_1, l_2 \in L, \qquad m \in M, $$
 $$ l \otimes m_1 + l \otimes m_2 = l \otimes \br{m_1 + m_2}, \qquad l \in L, \qquad m_1, m_2 \in M, $$
 $$ \br{lr} \otimes m = l \otimes \br{rm}, \qquad l \in L, \qquad m \in M, \qquad r \in R. $$
@@ -628,7 +621,7 @@ The following are observations.
 \item In general, not every element of $ L \otimes_R M $ is a pure tensor. A general element of $ L \otimes_R M $ is a $ \ZZ $-linear combination of pure tensors.
 \item If $ R $ is commutative, $ L $ can be a left module, since left and right modules are the same. Also, in this case, $ L \otimes_R M $ has an $ R $-module structure, by $ r\br{l \otimes m} = rl \otimes m $.
 \item Suppose that $ S $ is a set of generators for $ L $, as an abelian group, and $ T $ is a set of generators for $ M $, as an abelian group. Then a smaller generating set for $ L \otimes_R M $ is $ \cbr{s \otimes t \st s \in S, \ t \in T} $. This is because if
-$$ l = \sum_{i = 1}^p a_is_i, \qquad m = \sum_{i = 1}^q b_jt_j, \qquad s_i \in S, \qquad t_i \in T, \qquad a_i, b_i \in \ZZ, $$
+$$ l = \sum_{i = 1}^p a_is_i, \qquad m = \sum_{j = 1}^q b_jt_j, \qquad s_i \in S, \qquad t_i \in T, \qquad a_i, b_i \in \ZZ, $$
 then, from the relations,
 $$ l \otimes m = \sum_{i = 1}^p \sum_{j = 1}^q a_ib_j\br{s_i \otimes t_j}. $$
 \end{itemize}
@@ -636,8 +629,8 @@ $$ l \otimes m = \sum_{i = 1}^p \sum_{j = 1}^q a_ib_j\br{s_i \otimes t_j}. $$
 \pagebreak
 
 \begin{example*}
-Tensor products can be counter intuitive, such as $ \ZZ_2 \otimes_\ZZ \ZZ_3 = 0 $. Why? Observe that for $ x \in \ZZ_2 $, $ x3 = 3x = x $. So for all $ x \in \ZZ_2 $ and $ y \in \ZZ_3 $,
-$$ x \otimes y = x3 \otimes y = x \otimes 3y = x \otimes 0 = x \otimes y - x \otimes y = 0. $$
+Tensor products can be counter intuitive, such as $ \ZZ_2 \otimes_\ZZ \ZZ_3 = 0 $. Why? Observe that for $ x \in \ZZ_2 $, $ x3 = 3x = x $. So
+$$ x \otimes y = x3 \otimes y = x \otimes 3y = x \otimes 0 = x \otimes y - x \otimes y = 0, \qquad x \in \ZZ_2, \qquad y \in \ZZ_3. $$
 \end{example*}
 
 \lecture{9}{Tuesday}{28/01/20}
@@ -684,11 +677,11 @@ It is easy to check that $ g $ is an inverse for $ f $, so $ f $ is bijective.
 \pagebreak
 
 \begin{corollary}
-Let $ A $ and $ B $ be right $ R $-modules, and let $ C $ be a left $ R $-module.
+\hfill
 \begin{enumerate}
-\item $ \br{A \oplus B} \otimes_R C \cong \br{A \otimes_R C} \oplus \br{B \otimes_R C} $, via the map
+\item Let $ A $ and $ B $ be right $ R $-modules, and $ C $ a left $ R $-module. Then $ \br{A \oplus B} \otimes_R C \cong \br{A \otimes_R C} \oplus \br{B \otimes_R C} $, via the map
 $$ \function[f]{\br{A \oplus B} \otimes_R C}{\br{A \otimes_R C} \oplus \br{B \otimes_R C}}{\br{a, b} \otimes c}{\br{a \otimes c, b \otimes c}}. $$
-\item $ A \otimes_R \br{B \oplus C} \cong \br{A \otimes_R B} \oplus \br{A \otimes_R C} $.
+\item Let $ A $ be a right $ R $-module, and $ B $ and $ C $ left $ R $-modules. Then $ A \otimes_R \br{B \oplus C} \cong \br{A \otimes_R B} \oplus \br{A \otimes_R C} $.
 \end{enumerate}
 \end{corollary}
 
@@ -719,13 +712,9 @@ Let $ A $ be an abelian group. Then
 \begin{enumerate}
 \item Define a map by
 $$ \function[f]{A}{\ZZ_n \otimes_\ZZ A}{a}{1 \otimes a}. $$
-Suppose $ a_0 \in A $ such that $ a_0 = na $ for some $ a $. Then $ f\br{a_0} = 1 \otimes a_0 = 1 \otimes na = n \otimes a = 0 $ so $ nA \le \ker f $. So $ f $ induces a map
-$$ \overline{f} : A / nA \to \ZZ_n \otimes_\ZZ A. $$
-Notice that the pure tensor $ k \otimes a $ is equal to $ 1 \otimes ka $, so $ \ZZ_n \otimes_\ZZ A $ is generated by $ \cbr{1 \otimes a \st a \in A} $. So $ \overline{f} $ is surjective. For injectivity, use the universal property. We have a bilinear map
+Suppose $ a_0 \in A $ such that $ a_0 = na $ for some $ a $. Then $ f\br{a_0} = 1 \otimes a_0 = 1 \otimes na = n \otimes a = 0 $ so $ nA \le \ker f $. So $ f $ induces a map $ \overline{f} : A / nA \to \ZZ_n \otimes_\ZZ A $. Notice that the pure tensor $ k \otimes a $ is equal to $ 1 \otimes ka $, so $ \ZZ_n \otimes_\ZZ A $ is generated by $ \cbr{1 \otimes a \st a \in A} $. So $ \overline{f} $ is surjective. For injectivity, use the universal property. We have a bilinear map
 $$ \function[g]{\ZZ_n \times A}{A / nA}{\br{k, a}}{ka + nA}. $$
-This is well-defined and bilinear. So extends to a homomorphism
-$$ \overline{g} : \ZZ_n \otimes_\ZZ A \to A / nA. $$
-It is easy to check that $ \overline{g} \circ \overline{f} = \id_{A / nA} $, so $ \overline{f} $ is injective.
+This is well-defined and bilinear. So extends to a homomorphism $ \overline{g} : \ZZ_n \otimes_\ZZ A \to A / nA $. It is easy to check that $ \overline{g} \circ \overline{f} = \id_{A / nA} $, so $ \overline{f} $ is injective.
 \item Similarly.
 \end{enumerate}
 \end{proof}
@@ -835,7 +824,7 @@ Lecture 11 is a problems class.
 \begin{proof}
 We know $ \br{A \oplus B} \otimes_R C \cong \br{A \otimes_R C} \oplus \br{B \otimes_R C} $. Similarly,
 $$ \br{\bigoplus_{s \in S} A_s} \otimes_R C \cong \bigoplus_{s \in S} \br{A_s \otimes_R C}. $$
-So Lemma \ref{lem:projectiveflat1} generalises, so $ \bigoplus_{s \in S} A_s $ is flat if and only if all of the $ A_s $ is flat for $ s \in S $. Let $ F $ be free. Then $ F = \bigoplus_{s \in S} R $, and so $ F $ is flat if and only if $ R $ is flat. But for any $ R $-module in $ A $, we have $ A \otimes_R R \cong A $, so
+So Lemma \ref{lem:projectiveflat1} generalises, so $ \bigoplus_{s \in S} A_s $ is flat if and only if all of the $ A_s $ are flat for $ s \in S $. Let $ F $ be free. Then $ F = \bigoplus_{s \in S} R $, and so $ F $ is flat if and only if $ R $ is flat. But for any $ R $-module in $ A $, we have $ A \otimes_R R \cong A $, so
 $$
 \begin{tikzcd}[row sep=tiny]
 A \arrow{r}{\alpha} \arrow[cong]{d} & B \arrow[cong]{d} \\
@@ -862,10 +851,10 @@ The ring $ \ZZ $ is an example of a PID.
 \subsection{Free and projective modules}
 
 \begin{proposition}
-Let $ R $ be a PID. Then every projective $ R $-module is free. Equivalently, every summand of a free module is free.
+Let $ R $ be a PID. Then every projective $ R $-module is free. Equivalently, every summand of a free module is free. In fact we will show that any submodule of a free module is free. Moreover, if $ F_1 \le F_2 $, where $ F_1 $ and $ F_2 $ are free, and if $ B_1 $ and $ B_2 $ are bases for $ F_1 $ and $ F_2 $ respectively, then $ \abs{B_1} \le \abs{B_2} $. In particular, if $ M \le R^n $, then $ M \cong R^m $ for some $ m \le n $.
 \end{proposition}
 
-In fact we will show that any submodule of a free module is free. Moreover, if $ F_1 \le F_2 $, where $ F_1 $ and $ F_2 $ are free, and if $ B_1 $ and $ B_2 $ are bases for $ F_1 $ and $ F_2 $ respectively, then $ \abs{B_1} \le \abs{B_2} $. In particular, if $ M \le R^n $, then $ M \cong R^m $ for some $ m \le n $. For this, we will need the well-ordering theorem.
+For this, we will need the well-ordering theorem.
 
 \begin{theorem}[Well-ordering theorem]
 Let $ X $ be a set. There exists a well-order $ \le $ on $ X $, that is a total order such that every non-empty subset of $ X $ has a least element.
@@ -883,7 +872,7 @@ $$ U_t = U \cap R_t. $$
 So $ t_1 < t_2 $ implies that $ U_{t_1} \le U_{t_2} $. Consider $ \pi_s\br{U_s} $. This is an ideal of $ R $. Hence there exists $ a_s \in R $ such that $ \pi_s\br{U_s} = \abr{a_s} $, since $ R $ is a PID. For each $ s $, let $ u_s \in U_s $ be such that $ \pi_s\br{u_s} = a_s $. In cases where $ a_s = 0 $, assume $ u_s = 0 $. Let
 $$ B = \cbr{u_s \st s \in S, \ u_s \ne 0}. $$
 \begin{itemize}
-\item Claim that $ B $ generates $ U $. We will actually prove that $ B_t = \cbr{u_s \st s \le t} $ generates $ U_t $, using transfinite induction. If $ s_0 $ is the least element of $ S $, it is easy to see that $ B_{s_0} = \cbr{u_{s_0}} $ generates $ U_{s_0} $. Suppose $ B_t $ generates $ U_t $ for all $ t < t_0 $. Let $ u \in U_{t_0} $. Then $ \pi_{t_0}\br{u} = ra_{t_0} $. Hence $ \pi_{t_0}\br{u - ru_{t_0}} = 0 $. So $ u - ru_{t_0} $ has zero in the $ t_0 $-coordinate, so $ u - ru_{t_0} \in \sp \cbr{e_s \st s < t_0} $. Clearly $ u - ru_{t_0} \in U $. We have $ u - ru_{t_0} = \sum_{i = 1}^q r_ie_{s_i} $, where $ s_i < t_0 $, and $ s_1 < \dots < s_q $. Then
+\item Claim that $ B $ generates $ U $. We will actually prove that $ B_t = \cbr{u_s \st s \le t} $ generates $ U_t $, using transfinite induction. If $ s_0 $ is the least element of $ S $, it is easy to see that $ \cbr{u_{s_0}} $ generates $ U_{s_0} $. Suppose $ B_t $ generates $ U_t $ for all $ t < t_0 $. Let $ u \in U_{t_0} $. Then $ \pi_{t_0}\br{u} = ra_{t_0} $. Hence $ \pi_{t_0}\br{u - ru_{t_0}} = 0 $. So $ u - ru_{t_0} $ has zero in the $ t_0 $-coordinate, so $ u - ru_{t_0} \in \sp \cbr{e_s \st s < t_0} $. Clearly $ u - ru_{t_0} \in U $. We have $ u - ru_{t_0} = \sum_{i = 1}^q r_ie_{s_i} $, where $ s_i < t_0 $, and $ s_1 < \dots < s_q $. Then
 $$ u - ru_{t_0} \in U \cap R_{s_q} = U_{s_q} = \sp B_{s_q}, $$
 by the inductive hypothesis. Hence $ u \in \sp \br{B_{s_q} \cup \cbr{u_{t_0}}} \subseteq \sp B_{t_0} $. Hence $ B_{t_0} $ generates $ U_{t_0} $, as required.
 \item Next we show the linear independence of $ B $. Suppose we have a linear combination of elements of $ B $ equal to zero. Say $ \sum_{i = 1}^k r_iu_{s_i} = 0 $. Assume $ s_1 < \dots < s_k $. We have
@@ -908,7 +897,7 @@ Let $ R $ be an integral domain, and $ M $ an $ R $-module. Let $ m \in M $. Say
 \end{definition}
 
 \begin{proposition}
-The divisible elements of $ M $ form a submodule $ \D\br{M} $.
+The divisible elements of $ M $ form a submodule, $ \D\br{M} $.
 \end{proposition}
 
 \begin{proof}
@@ -935,7 +924,7 @@ Then $ g \circ f^{-1} $ is a homomorphism $ \abr{a} \to M $, and $ \br{g \circ f
 Let $ R $ be a PID. If $ M $ is a divisible $ R $-module then $ M $ is injective.
 \end{proposition}
 
-So divisible equals injective when $ R $ is a PID.
+So divisible is equal to injective when $ R $ is a PID.
 
 \begin{proof}
 We use Baer's criterion. Let $ I $ be an ideal of $ R $, and $ f : I \to M $ an $ R $-module homomorphism. Since $ R $ is a PID, $ I = \abr{a} $ for some $ a \in R $. Suppose $ f\br{a} = m $. If $ a = 0 $ there is nothing to prove, since the zero map $ R \to M $ extends $ f $. So assume $ a \ne 0 $. Since $ m $ is divisible, there exists $ l \in M $ with $ al = m $. Now the map given by
@@ -986,7 +975,7 @@ The following is the strategy. We want to prove that whenever $ \alpha : A \to B
 \begin{enumerate}
 \item Prove this in the case that $ B $ is free, and $ A $ is a submodule of $ B $, and $ \alpha $ is the inclusion map, by
 \begin{itemize}
-\item first reducing the problem to the case that $ A $ and $ B $ are finitely generated, so $ B \cong \RR^n $, and
+\item first reducing the problem to the case that $ A $ and $ B $ are finitely generated, so $ B \cong R^n $, and
 \item then using induction on the rank $ n $ of $ B $.
 \end{itemize}
 \item Show the general case follows from $ 1 $.
@@ -1001,9 +990,11 @@ Let $ R $ be a PID, let $ I = \abr{a} $ be an ideal of $ R $, and let $ M $ be a
 The homomorphism given by
 $$ \function{R}{I}{r}{ra} $$
 gives a map $ f : R \otimes_R M \to I \otimes_R M $. Now $ g \circ f $ is a map
-$$ \function{R \otimes_R M}{R \otimes_R M}{r}{ra}. $$
-Now $ f $ is surjective, and $ g \circ f $ is injective, since $ R $ is an integral domain. But this implies that $ g $ is injective, as required.
+$$ \function{R \otimes_R M}{R \otimes_R M}{m}{ma}. $$
+Now $ f $ is surjective, and $ g \circ f $ is injective, since $ M $ is torsion-free. But this implies that $ g $ is injective, as required.
 \end{proof}
+
+The following is the reduction to the finitely generated case.
 
 \begin{lemma}
 \label{lem:torsionflat2}
@@ -1011,14 +1002,14 @@ Let $ A $ be a right $ R $-module. Let $ M $ be a left $ R $-module. Suppose $ \
 \end{lemma}
 
 \begin{proof}
-Recall that
-$$ A \otimes_R M = \F_{\ab}\br{A \times M} / K, $$
-where $ K $ is generated by certain relators. If $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A \otimes_R M $, then in $ \F_{\ab}\br{A \times M} $, we have $ \sum_{i = 1}^t \br{a_i \otimes m_i} \in K $. So there exist relators $ s_1, \dots, s_q $, or their negations, such that
+Recall that $ A \otimes_R M = \F_{\ab}\br{A \times M} / K $ where $ K $ is generated by certain relators. If $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A \otimes_R M $, then in $ \F_{\ab}\br{A \times M} $, we have $ \sum_{i = 1}^t \br{a_i \otimes m_i} \in K $. So there exist relators $ s_1, \dots, s_q $, or their negations, such that
 $$ \sum_{i = 1}^t \br{a_i \otimes m_i} = \sum_{i = 1}^q s_i. $$
 Only finitely many elements of $ A $ are involved in the relators $ s_1, \dots, s_q $. Let $ A_0 $ be generated by these together with $ a_1, \dots, a_t $. Then certainly $ a_i \in A_0 $ for all $ i $. And $ \sum_{i = 1}^t \br{a_i \otimes m_i} = \sum_{i = 1}^q s_i $ in $ \F_{\ab}\br{A_0 \times M} $ so $ \sum_{i = 1}^t \br{a_i \otimes m_i} = 0 $ in $ A_0 \otimes_R M $. Clearly $ A_0 $ is finitely generated.
 \end{proof}
 
 \lecture{15}{Tuesday}{11/02/20}
+
+We can assume that $ A $ is finitely generated.
 
 \begin{lemma}
 \label{lem:torsionflat3}
@@ -1026,9 +1017,7 @@ Let $ F = \F\br{S} = \bigoplus_{s \in S} R $. Let $ U $ be a finitely generated 
 \end{lemma}
 
 \begin{proof}
-Let $ u_1, \dots, u_q $ be generators for $ U $. Every $ u_i $ is an $ R $-linear combination of elements of $ S $. Since each of these linear combinations mentions only finitely many elements of $ S $, there is a finite subset $ T \subseteq S $ such that every $ u_i $ is an $ R $-linear combination of elements of $ T $. So $ U \le \F\br{T} $. We have
-$$ \F\br{S} = \F\br{T} \oplus \F\br{S \setminus T}, $$
-and so
+Let $ u_1, \dots, u_q $ be generators for $ U $. Every $ u_i $ is an $ R $-linear combination of elements of $ S $. Since each of these linear combinations mentions only finitely many elements of $ S $, there is a finite subset $ T \subseteq S $ such that every $ u_i $ is an $ R $-linear combination of elements of $ T $. So $ U \le \F\br{T} $. We have $ \F\br{S} = \F\br{T} \oplus \F\br{S \setminus T} $, and so
 $$ \F\br{S} \otimes_R M \cong \br{\F\br{T} \otimes_R M} \oplus \br{\F\br{S \setminus T} \otimes_R M}. $$
 It follows that the natural map $ \F\br{T} \otimes_R M \to \F\br{S} \otimes_R M $ is injective.
 \end{proof}
@@ -1086,18 +1075,16 @@ Now $ A \cong \alpha A = \im \alpha $. Let $ F_A $ be the $ \delta $-preimage of
 $$ 0 \to K \to F_A \to \alpha A \to 0. $$
 We have a commuting diagram
 $$
-\begin{tikzcd}[row sep=tiny]
-& & F_A \arrow{r} \arrow[hookrightarrow]{dd} & \alpha A \arrow{r} \arrow[hookrightarrow]{dd} & 0 \\
-0 \arrow{r} & K \arrow{ur} \arrow{dr} & & & \\
-& & F \arrow{r} & B \arrow{r} & 0
+\begin{tikzcd}
+0 \arrow{r} & K \arrow{r} \arrow[cong]{d} & F_A \arrow{r} \arrow[hookrightarrow]{d} & \alpha A \arrow{r} \arrow[hookrightarrow]{d} & 0 \\
+0 \arrow{r} & K \arrow{r} & F \arrow{r} & B \arrow{r} & 0
 \end{tikzcd}.
 $$
 Tensoring with $ M $,
 $$
-\begin{tikzcd}[row sep=tiny]
-& F_A \otimes_R M \arrow{r}{\gamma} \arrow{dd}{f} & \alpha A \otimes_R M \arrow{r} \arrow{dd}{g} & 0 \\
-K \otimes_R M \arrow{ur}{\beta} \arrow{dr}[swap]{\delta} & & & \\
-& F \otimes_R M \arrow{r}[swap]{\epsilon} & B \otimes_R M \arrow{r} & 0
+\begin{tikzcd}
+K \otimes_R M \arrow{r}{\beta} \arrow[cong]{d} & F_A \otimes_R M \arrow{r}{\gamma} \arrow{d}{f} & \alpha A \otimes_R M \arrow{r} \arrow{d}{g} & 0 \\
+K \otimes_R M \arrow{r}[swap]{\delta} & F \otimes_R M \arrow{r}[swap]{\epsilon} & B \otimes_R M \arrow{r} & 0
 \end{tikzcd}
 $$
 is commuting, and exact along rows. Let $ u \in \ker g \le \alpha A \otimes_R M \cong A \otimes_R M $. Since $ \gamma $ is surjective, there is $ w \in F_A \otimes_R M $ with $ \gamma\br{w} = u $. So $ \br{g \circ \gamma}\br{w} = 0 $. So $ \br{\epsilon \circ f}\br{w} = 0 $. So $ f\br{w} \in \ker \epsilon = \im \delta $, so $ f\br{w} = \delta\br{k} $ for $ k \in K \otimes_R M $. Since $ f $ is injective, by Lemma \ref{lem:torsionflat4}, we get $ w = \beta\br{k} \in \im \beta $. So $ w \in \ker \gamma $, so $ u = 0 $. Hence $ g $ is injective, as required.
@@ -1116,8 +1103,8 @@ $$ \text{free} \iff \text{projective} \implies \text{flat} \iff \text{torsion-fr
 Do we have projective if and only if flat, over a general ring, or over a PID? The answer is no.
 
 \begin{example*}
-The $ \ZZ $-module $ \QQ $ is torsion-free, so flat. Is $ \QQ $ projective? Is $ \QQ $ free, since $ \ZZ $ is a PID? Consider a free $ \ZZ $-module $ F = \bigoplus_{s \in S} \ZZ $. Let $ s_0 \in S $. Then let
-$$ x = \br{x_s}_{s \in S} =
+The $ \ZZ $-module $ \QQ $ is torsion-free, so flat. Is $ \QQ $ projective? Is $ \QQ $ free, since $ \ZZ $ is a PID? Consider a free $ \ZZ $-module $ F = \bigoplus_{s \in S} \ZZ $. Let $ s_0 \in S $. Then let $ x = \br{x_s}_{s \in S} $, where
+$$ x_s =
 \begin{cases}
 1 & s = s_0 \\
 0 & \text{otherwise}
@@ -1133,18 +1120,16 @@ It is clear there are no $ y \in F $ such that $ 2y = x $. So $ x $ is not a div
 \begin{definition}
 Let $ M $ be an $ R $-module. A \textbf{resolution}, or \textbf{left resolution}, for $ M $ is a sequence of $ R $-modules $ A_0, A_1, A_2, \dots $, with homomorphisms $ d : A_{i + 1} \to A_i $, and also a homomorphism $ A_0 \to M $, such that
 $$ \dots \xrightarrow{d} A_2 \xrightarrow{d} A_1 \xrightarrow{d} A_0 \to M \to 0 $$
-is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}.
+is an exact sequence, where $ d $ is the \textbf{differential}. If all of the modules $ A_i $ have a property $ \PPP $, we call this a \textbf{$ \PPP $-resolution}. So we can talk about \textbf{free resolutions}, \textbf{projective resolutions}, and \textbf{flat resolutions}.
 \end{definition}
 
-So we can talk about free resolutions, projective resolutions, flat resolutions. We do not use the term injective resolution in this context.
+We do not use the term injective resolution in this context.
 
 \begin{definition}
 A \textbf{right resolution}, or \textbf{coresolution}, for $ M $ is a sequence of $ R $-modules $ A^0, A^1, A^2, \dots $, with homomorphisms $ d : A^i \to A^{i + 1} $, and $ M \to A^0 $, such that
 $$ 0 \to M \to A^0 \xrightarrow{d} A^1 \xrightarrow{d} A^2 \xrightarrow{d} \dots $$
-is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}.
+is exact. If the modules $ A^i $ have a property $ \PPP $, we can refer to a \textbf{right $ \PPP $-resolution}. An \textbf{injective resolution} always means a right injective resolution.
 \end{definition}
-
-An injective resolution always means a right injective resolution.
 
 \subsection{Existence of projective resolutions}
 
@@ -1171,9 +1156,16 @@ Let $ A $ be an abelian group, and let $ a \in A \setminus \cbr{0} $. There is a
 \end{proposition}
 
 \begin{proof}
-Start by defining $ f_0 : \abr{a} \to \QQ / \ZZ $. If $ a $ has finite order $ t $, then $ f_0 : a \mapsto 1 / t + \ZZ $. If $ a $ has infinite order, then $ f_0 : a \mapsto \tfrac{1}{2} + \ZZ $. We will use Zorn's lemma. Let $ X $ be the set
+Start by defining
+$$ \function[f_0]{\abr{a}}{\QQ / \ZZ}{a}{
+\begin{cases}
+\tfrac{1}{t} + \ZZ & a \ \text{has finite order} \ t \\
+\tfrac{1}{2} + \ZZ & a \ \text{has infinite order}
+\end{cases}
+}. $$
+We will use Zorn's lemma. Let $ X $ be the set
 $$ \cbr{\br{B, f} \st B \le A, \ a \in B, \ f : B \to \QQ / \ZZ, \ f \ \text{extends} \ f_0}. $$
-Then $ X $ is non-empty, since $ \br{\abr{a}, f_0} \in X $. Define a partial order $ \le $ on $ X $ by $ \br{B_1, f_1} \le \br{B_2, f_2} $ if $ B_1 \le B_2 $ and $ f_2 $ extends $ f $. Let $ \cbr{\br{B_s, f_s} \st s \in S} $ be a chain in $ X $, where $ S $ is a suitable indexing set. Then $ \cbr{B_s \st s \in S} $ is a chain of subgroups of $ A $. So the union $ B = \bigcup_{s \in S} B_s $ is a subgroup of $ A $, containing $ a $. Define
+Then $ X $ is non-empty, since $ \br{\abr{a}, f_0} \in X $. Define a partial order $ \le $ on $ X $ by $ \br{B_1, f_1} \le \br{B_2, f_2} $ if $ B_1 \le B_2 $ and $ f_2 $ extends $ f_1 $. Let $ \cbr{\br{B_s, f_s} \st s \in S} $ be a chain in $ X $, where $ S $ is a suitable indexing set. Then $ \cbr{B_s \st s \in S} $ is a chain of subgroups of $ A $. So the union $ B = \bigcup_{s \in S} B_s $ is a subgroup of $ A $, containing $ a $. Define
 $$ \function[f]{B}{\QQ / \ZZ}{b}{f_s\br{b}}, \qquad b \in B_s. $$
 
 \pagebreak
@@ -1202,7 +1194,7 @@ Let $ M $ be a right $ R $-module, and let $ A $ be an abelian group. Then $ \Ho
 \end{proposition}
 
 \begin{proof}
-This is clearer if we write the map $ f $ on the right instead of the left. Then the proposition becomes $ \br{m}\br{rf} = \br{mr}f $, and it is easy to see this works.
+This is clearer if we write the map $ f $ on the right instead of the left. Then the definition becomes $ \br{m}\br{rf} = \br{mr}f $, and it is easy to see this works.
 \end{proof}
 
 \begin{proposition}
@@ -1274,7 +1266,7 @@ so $ \Psi\br{p_1 + p_2} = \Psi\br{p_1} + \Psi\br{p_2} $.
 Then $ \Psi \circ \Phi = \id_{\Hom_R\br{M, H}} $ and $ \Phi \circ \Psi = \id_{\Hom_\ZZ\br{M, A}} $. \footnote{Exercise} Hence $ \Phi $ and $ \Psi $ are isomorphisms.
 \end{proof}
 
-We are interested in the case $ A = \QQ / \ZZ $. Write $ S = \Hom_\ZZ\br{M, \QQ / \ZZ} $.
+We are interested in the case $ A = \QQ / \ZZ $. Write $ S = \Hom_\ZZ\br{R, \QQ / \ZZ} $.
 
 \lecture{18}{Tuesday}{18/02/20}
 
@@ -1300,7 +1292,7 @@ It is easy to see that this diagram commutes. It follows that $ \Theta' $ is sur
 \pagebreak
 
 \begin{proposition}
-Let $ M $ be a left $ R $-module, and $ m \in M \setminus \cbr{0} $. Then there exists $ f : M \to S $ such that $ f\br{m} \ne 0 $.
+Let $ M $ be a left $ R $-module, and $ m \in M \setminus \cbr{0} $. Then there exists an $ R $-module homomorphism $ f : M \to S $ such that $ f\br{m} \ne 0 $.
 \end{proposition}
 
 \begin{proof}
@@ -1425,7 +1417,7 @@ and since $ P_t $ is projective, there exists $ s_t $ such that $ d_t' \circ s_t
 The following is the equivalent result for injectives.
 
 \begin{proposition}
-Let $ M $ and $ N $ be $ R $-modules, and $ \phi : M \to N $ a homomorphism. Let $ \br{I_t} $ be an injective resolution for $ M $, and $ \br{J_t} $ another injective resolution for $ N $. Then
+Let $ M $ and $ N $ be $ R $-modules, and $ \phi : M \to N $ a homomorphism. Let $ \br{I_t} $ be an injective resolution for $ M $, and $ \br{J_t} $ an injective resolution for $ N $. Then
 \begin{itemize}
 \item there exist maps $ f_i : I_i \to J_i $ such that the diagram
 $$
@@ -1469,18 +1461,20 @@ Lecture 19 is a problems class.
 
 \pagebreak
 
-\section{Complexes and homology}
+\section{Chain complexes and homology}
 
 \subsection{Chain complexes}
 
 \lecture{20}{Monday}{24/02/20}
 
 \begin{definition}
-A \textbf{chain complex} is a series $ A_* = \br{A_i} $, with maps $ d_i^A = d_i = d : A_{i + 1} \to A_i $ such that $ d^2 = 0 $, that is $ d_{i + 1} \circ d_i = 0 $, or $ \im d_{i + 1} \le \ker d_i $.
+A \textbf{chain complex} is a series $ A_* = \br{A_i} $, with maps $ d_i^A = d_i = d : A_{i + 1} \to A_i $ such that $ d^2 = 0 $, that is $ d_{i + 1} \circ d_i = 0 $, or $ \im d_{i + 1} \le \ker d_i $, so
+$$ \dots \xrightarrow{d_2} A_2 \xrightarrow{d_1} A_1 \xrightarrow{d_0} A_0. $$
 \end{definition}
 
 \begin{definition}
-A \textbf{cochain complex} is a series $ A^* = \br{A^i} $ with maps $ d_i^A = d_i = d : A^i \to A^{i + 1} $ such that $ d^2 = 0 $, or $ \im d_i \le \ker d_{i + 1} $.
+A \textbf{cochain complex} is a series $ A^* = \br{A^i} $ with maps $ d_i^A = d_i = d : A^i \to A^{i + 1} $ such that $ d^2 = 0 $, or $ \im d_i \le \ker d_{i + 1} $, so
+$$ A^0 \xrightarrow{d_0} A^1 \xrightarrow{d_1} A^2 \xrightarrow{d_2} \dots. $$
 \end{definition}
 
 Let $ A_* $ and $ B_* $ be chain complexes. Let $ f = \br{f_i} $ be a family of $ R $-module homomorphisms $ f_i : A_i \to B_i $. Say that $ f $ is a \textbf{map of chain complexes} if $ f \circ d = d \circ f $, that is $ f_i \circ d_i^A = d_i^B \circ f_{i + 1} $. So
@@ -1494,9 +1488,9 @@ commutes. Say that $ f $ \textbf{has property $ \PPP $} if all $ f_i $ have prop
 $$ A_* \xrightarrow{f} B_* \xrightarrow{g} C_* $$
 is \textbf{exact} at $ B_* $ if
 $$ A_n \xrightarrow{f_n} B_n \xrightarrow{g_n} C_n $$
-is exact at $ B_n $ for all $ n $. A sequence of chain complexes is \textbf{exact} if it is exact everywhere. An \textbf{exact sequence}
+is exact at $ B_n $ for all $ n $. A sequence of chain complexes is \textbf{exact} if it is exact everywhere. An exact sequence
 $$ 0 \to A_* \to B_* \to C_* \to 0 $$
-is a short exact sequence of chain complexes.
+is a \textbf{short exact sequence} of chain complexes.
 
 \subsection{Homology groups}
 
@@ -1509,10 +1503,7 @@ Let $ A^* $ be a cochain complex. The \textbf{$ n $-th cohomology group} of $ A^
 \end{definition}
 
 \begin{example*}
-Let $ A_i = \ZZ^3 $ for all $ i $, and let $ d\br{a, b, c} = \br{0, 0, a} $. Certainly $ d^2 = 0 $, so this is a chain complex. Then
-$$ \ker d = \cbr{\br{0, b, c}} = 0 \oplus \ZZ^2, \qquad \im d = \cbr{\br{0, 0, a}} = 0^2 \oplus \ZZ. $$
-Now
-$$ \ker d_{n - 1} / \im d_n = \cbr{\br{0, b, 0} + 0^2 \oplus \ZZ}. $$
+Let $ A_i = \ZZ^3 $ for all $ i $, and let $ d\br{a, b, c} = \br{0, 0, a} $. Certainly $ d^2 = 0 $, so this is a chain complex. Then $ \ker d = \cbr{\br{0, b, c}} = 0 \oplus \ZZ^2 $ and $ \im d = \cbr{\br{0, 0, a}} = 0^2 \oplus \ZZ $. Now $ \ker d_{n - 1} / \im d_n = \cbr{\br{0, b, 0} + 0^2 \oplus \ZZ} $.
 \end{example*}
 
 \begin{proposition}
@@ -1523,8 +1514,8 @@ $$ \function[f_{*i}]{\H_i\br{A_*}}{\H_i\br{B_*}}{x + \im d_i^A}{f_i\br{x} + \im 
 \end{proposition}
 
 \begin{proof}
-Let $ x \in \ker d_{i - 1}^A $. Then $ \br{f_{i - 1} \circ d_{i - 1}^A}\br{x} = 0 $, so $ \br{d_{i - 1}^B \circ f_i}\br{x} = 0 $. Hence $ f_i\br{x} \in \ker d_{i - 1}^B $. So $ f_i $ certainly induces a map $ \overline{f_i} : \ker d_{i - 1}^A \to \ker d_{i - 1}^B / \im d_i^B $. So there exists $ y \in A_{i + 1} $ with $ d_i^A\br{y} = x $. Now $ f_i\br{x} = \br{f_i \circ d_i^A}\br{y} = \br{d_i^B \circ f_{i + 1}}\br{y} \in \im d_i^B $, so $ \overline{f_i}\br{x} = 0 $. Hence $ \im d_i^A \le \ker \overline{f_i} $ so $ \overline{f_i} $ induces a map
-$$ \ker d_{i - 1}^A / \im d_i^A = \H_i\br{A_*} \to \ker d_{i - 1}^B / \im d_i^B = \H_i\br{B_*}. $$
+Let $ x \in \ker d_{i - 1}^A $. Then $ \br{f_{i - 1} \circ d_{i - 1}^A}\br{x} = 0 $, so $ \br{d_{i - 1}^B \circ f_i}\br{x} = 0 $. Hence $ f_i\br{x} \in \ker d_{i - 1}^B $. So $ f_i $ certainly induces a map $ \overline{f_i} : \ker d_{i - 1}^A \to \ker d_{i - 1}^B / \im d_i^B $. Let $ x \in \im d_i^A $. So there exists $ y \in A_{i + 1} $ with $ d_i^A\br{y} = x $. Now $ f_i\br{x} = \br{f_i \circ d_i^A}\br{y} = \br{d_i^B \circ f_{i + 1}}\br{y} \in \im d_i^B $, so $ \overline{f_i}\br{x} = 0 $. Hence $ \im d_i^A \le \ker \overline{f_i} $ so $ \overline{f_i} $ induces a map
+$$ \H_i\br{A_*} = \ker d_{i - 1}^A / \im d_i^A \to \ker d_{i - 1}^B / \im d_i^B = \H_i\br{B_*}. $$
 \end{proof}
 
 \pagebreak
@@ -1543,9 +1534,10 @@ Exercise. \footnote{Exercise}
 \subsection{The long exact sequence in homology}
 
 \begin{proposition}
+\label{prop:homologysequence}
 Let
 $$ 0 \to A_* \xrightarrow{f} B_* \xrightarrow{g} C_* \to 0 $$
-be a short exact sequence. This induces a long exact sequence
+be a short exact sequence. This induces a long exact sequence of homology groups,
 $$ \dots \to \H_{n + 1}\br{A_*} \to \H_{n + 1}\br{B_*} \to \H_{n + 1}\br{C_*} \to \H_n\br{A_*} \to \H_n\br{B_*} \to \H_n\br{C_*} \to \dots. $$
 \end{proposition}
 
@@ -1577,7 +1569,7 @@ is an exact sequence. Then
 $$ \ker \overline{d_n^A} = \ker d_n^A / \im d_{n + 1}^A = \H_{n + 1}\br{A_*}, \qquad \coker \overline{d_n^A} = \ker d_{n - 1}^A / \im d_n^A = \H_n\br{A_*}. $$
 Similarly for $ B_* $ and $ C_* $. So we have an exact sequence
 $$ \H_{n + 1}\br{A_*} \to \H_{n + 1}\br{B_*} \to \H_{n + 1}\br{C_*} \to \H_n\br{A_*} \to \H_n\br{B_*} \to \H_n\br{C_*}. $$
-Since consecutive values of $ i $ give a sequence overlapping in three terms we can glue them together, to give the long exact sequence in the proposition.
+Since consecutive values of $ i $ give sequences overlapping in three terms we can glue them together, to give the long exact sequence in Proposition \ref{prop:homologysequence}.
 \end{proof}
 
 \pagebreak
@@ -1599,9 +1591,9 @@ $$ F\br{\phi_1 \circ \phi_2} = F\br{\phi_1} \circ F\br{\phi_2}. $$
 
 The map $ F $ on homomorphisms is \textbf{additive} if $ F\br{\phi_1 + \phi_2} = F\br{\phi_1} + F\br{\phi_2} $. If
 $$ 0 \to A \to B \to C \to 0 $$
-be a short exact sequence, then $ F $ is \textbf{right exact} if
+is a short exact sequence, then $ F $ is \textbf{right exact} if
 $$ F\br{A} \to F\br{B} \to F\br{C} \to 0 $$
-is exact, \textbf{left exact} if
+is exact, and \textbf{left exact} if
 $$ 0 \to F\br{A} \to F\br{B} \to F\br{C} $$
 is exact. Then $ F $ is \textbf{exact} if both left and right exact.
 
@@ -1614,14 +1606,14 @@ $$ F\br{\phi_1 \circ \phi_2} = F\br{\phi_2} \circ F\br{\phi_1}. $$
 
 Similarly, if
 $$ 0 \to A \to B \to C \to 0 $$
-be a short exact sequence, then $ F $ is \textbf{right exact} if
+is a short exact sequence, then $ F $ is \textbf{right exact} if
 $$ F\br{C} \to F\br{B} \to F\br{A} \to 0 $$
 is exact, and \textbf{left exact} if
 $$ 0 \to F\br{C} \to F\br{B} \to F\br{A} $$
 is exact.
 
 \begin{example*}
-Some functors we have seen. Fix a left $ R $-module $ M $.
+The following are some functors we have seen. Fix a left $ R $-module $ M $.
 \begin{itemize}
 \item $ F\br{A} = \Hom_R\br{M, A} $, where
 $$ \function[F\br{\phi}]{F\br{A} = \Hom_R\br{M, A}}{F\br{B} = \Hom_R\br{M, B}}{f}{\phi \circ f}, \qquad \phi : A \to B, $$
@@ -1629,7 +1621,7 @@ is covariant, left exact, and exact if and only if $ M $ is projective.
 \item $ F\br{A} = \Hom_R\br{A, M} $, where
 $$ \function[F\br{\phi}]{F\br{B} = \Hom_R\br{B, M}}{F\br{A} = \Hom_R\br{A, M}}{f}{f \circ \phi}, \qquad \phi : A \to B, $$
 is contravariant, left exact, and exact if and only if $ M $ is injective.
-\item For a right $ R $-module $ A $, $ F\br{A} = A \otimes_R M $ is covariant, right exact, and exact if and only if $ M $ is flat.
+\item For $ A $ a right $ R $-module, $ F\br{A} = A \otimes_R M $ is covariant, right exact, and exact if and only if $ M $ is flat.
 \end{itemize}
 \end{example*}
 
@@ -1637,7 +1629,7 @@ is contravariant, left exact, and exact if and only if $ M $ is injective.
 
 \subsection{Left derived functors}
 
-Let $ F $ be the functor $ F\br{A} = A \otimes_R M $, where $ M $ is a fixed $ R $-module. Let $ P_* \to A $ be a projective resolution for $ A $. So $ P_* = \br{P_i}_{i \ge 0} $ for projective $ P_i $, and
+Let $ F $ be the functor $ F\br{A} = A \otimes_R M $, where $ M $ is a fixed $ R $-module. Let $ P_* \to A $ be a projective resolution for $ A $. So $ P_* = \br{P_i}_{i \ge 0} $ for $ P_i $ projective, and
 $$ \dots \xrightarrow{d_2} P_2 \xrightarrow{d_1} P_1 \xrightarrow{d_0} P_0 \xrightarrow{\phi} A \to 0 $$
 is exact. Consider the sequence
 $$ \dots \to P_2 \to P_1 \to P_0 \to 0. $$
@@ -1677,8 +1669,8 @@ $$
 The diagram remains commutative, since $ F $ preserves composition. Now
 $$ g_i \circ f_i - \id = s_{i - 1} \circ d_{i - 1} + d_i \circ s_i, $$
 for suitable maps $ s_i $. Then
-$$ F\br{g_i} \circ F\br{f_i} - \id = F\br{s_{i - 1}} \circ F\br{d_{i - 1}} + F\br{d_i} \circ F\br{s_i}. $$
-So $ F\br{g_i} \circ F\br{f_i} $ is $ \id $ up to homotopy. Hence $ F\br{g} \circ F\br{f} $ induces the identity on homology $ \H_*\br{F\br{P_*}} $. Also $ F\br{f} \circ F\br{g} $ induces the identity on $ \H_*\br{F\br{Q_*}} $. Now we have
+$$ F\br{g_i} \circ F\br{f_i} - \id = F\br{s_{i - 1}} \circ F\br{d_{i - 1}} + F\br{d_i} \circ F\br{s_i}, $$
+so $ F\br{g_i} \circ F\br{f_i} $ is $ \id $ up to homotopy. Hence $ F\br{g} \circ F\br{f} $ induces the identity on homology $ \H_*\br{F\br{P_*}} $. Also $ F\br{f} \circ F\br{g} $ induces the identity on $ \H_*\br{F\br{Q_*}} $. Now we have
 $$ \overline{F\br{f_i}} : \H_i\br{F\br{P_*}} \to \H_i\br{F\br{Q_*}}, \qquad \overline{F\br{g_i}} : \H_i\br{F\br{Q_*}} \to \H_i\br{F\br{P_*}}, $$
 and $ \overline{F\br{f_i}} \circ \overline{F\br{g_i}} = \id $ and $ \overline{F\br{g_i}} \circ \overline{F\br{f_i}} = \id $, so $ \overline{F\br{f_i}} $ and $ \overline{F\br{g_i}} $ are isomorphisms. So
 $$ \H_n\br{F\br{P_*}} \cong \H_n\br{F\br{Q_*}}, $$
@@ -1707,7 +1699,7 @@ P_* \arrow{r} \arrow{d}[swap]{g} & A \arrow{r} \arrow{d}{\phi} & 0 \\
 Q_* \arrow{r} & B \arrow{r} & 0
 \end{tikzcd}
 $$
-commutes, then $ \overline{f} $ and $ \overline{g} $, the induced maps on homology, are equal. So there exists a map $ \overline{F\br{f_i}} : \L_iF\br{A} \to \L_iF\br{B} $, and is independent of the choice of $ f $. So we can write $ \L_nF\br{\phi} = \overline{F\br{f_i}} $. Then $ \L_nF $ preserves identity and compositions and is additive, since $ F $ is an additive functor. \footnote{Exercise}
+commutes, then $ \overline{f} $ and $ \overline{g} $, the induced maps on homology, are equal. So there exists a map $ \overline{F\br{f_i}} : \L_iF\br{A} \to \L_iF\br{B} $, and is independent of the choice of $ f $. So we can write $ \L_nF\br{\phi} = \overline{F\br{f_i}} $. Then $ \L_nF $ preserves $ \id $ and compositions and is additive, since $ F $ is an additive functor. \footnote{Exercise}
 \item We have a short exact sequence
 $$ 0 \to \im d_0 \xrightarrow{\subset} P_0 \xrightarrow{\phi} A \to 0. $$
 Since $ F $ is right exact, we get an exact sequence
@@ -1717,8 +1709,6 @@ $$ F\br{P_1} \to F\br{P_0} \to F\br{A} \to 0 $$
 is exact. So, setting $ P_{-1} = 0 $, we get $ \L_0F\br{P_*} = F\br{P_0} / \im F\br{d_0} = F\br{A} $.
 \end{enumerate}
 \end{proof}
-
-\pagebreak
 
 \subsection{The long exact sequence of left derived functors}
 
@@ -1738,12 +1728,10 @@ $$
 commutes, where if $ x \in P_i $ and $ y \in R_i $ then $ \iota\br{x} = \br{x, 0} $ and $ \pi\br{x, y} = y $.
 \end{proposition}
 
-\begin{note*}
-$ Q_i $ is a direct sum of projectives, so is itself projective.
-\end{note*}
+\pagebreak
 
 \begin{proof}
-We have the setup
+Note that $ Q_i $ is a direct sum of projectives, so is itself projective. We have the setup
 $$
 \begin{tikzcd}[row sep=small]
 0 \arrow{d} & 0 \arrow{d} & \\
@@ -1770,8 +1758,6 @@ $$ 0 \to \ker \phi \xrightarrow{\iota} \ker \chi \xrightarrow{\pi} \ker \psi \to
 by the snake lemma. So now we can iterate, replacing $ A, B, C $ with these kernels, to construct a map $ Q_1 \to Q_0 $, and so on.
 \end{proof}
 
-\pagebreak
-
 \begin{proposition}
 Let $ F $ be an additive functor, and let $ A $ and $ B $ be $ R $-modules. There is a canonical isomorphism $ F\br{A} \oplus F\br{B} \to F\br{A \oplus B} $.
 \end{proposition}
@@ -1779,7 +1765,9 @@ Let $ F $ be an additive functor, and let $ A $ and $ B $ be $ R $-modules. Ther
 \begin{proof}
 Let $ M = A \oplus B $. Consider functions
 $$ \function[p_1]{M}{M}{\br{a, b}}{\br{a, 0}}, \qquad \function[p_2]{M}{M}{\br{a, b}}{\br{0, b}}. $$
-Then $ p_i^2 = p_i $, $ p_1 \circ p_2 = p_2 \circ p_1 = 0 $, and $ p_1 + p_2 = \id_M $. If $ q_1 $ and $ q_2 $ are maps on a module $ M $ satisfying these relations, then $ M = q_1\br{M} \oplus q_2\br{M} $.
+Then
+$$ p_i^2 = p_i, \qquad p_1 \circ p_2 = p_2 \circ p_1 = 0, \qquad p_1 + p_2 = \id_M. $$
+If $ q_1 $ and $ q_2 $ are maps on a module $ M $ satisfying these relations, then $ M = q_1\br{M} \oplus q_2\br{M} $.
 \end{proof}
 
 \lecture{23}{Monday}{02/03/20}
@@ -1790,6 +1778,8 @@ $$ 0 \to A \to B \to C \to 0 $$
 be a short exact sequence of right $ R $-modules. This gives rise to a long exact sequence
 $$ \dots \to \L_nF\br{A} \to \L_nF\br{B} \to \L_nF\br{C} \to \dots \to \L_0F\br{A} \to \L_0F\br{B} \to \L_0F\br{C} \to 0. $$
 \end{proposition}
+
+\pagebreak
 
 \begin{proof}
 Let $ P_* \to A $ be a projective resolution and $ R_* \to C $ be a projective resolution. By the horseshoe lemma, there exists a projective resolution $ Q_* \to B $ such that
@@ -1814,17 +1804,21 @@ $$ 0 \to A \to I_0 \to I_1 \to I_2 \to \dots. $$
 By similar arguments, we show that $ \R^iF\br{A} $ is independent of the choice of injective resolution. All of the results we proved for left derived functors have natural analogies for right derived functors. The argument requires a version of the horseshoe lemma for injective resolutions, which is exactly what one might expect.
 \item We can even construct derived functors for contravariant functors. If $ F $ is contravariant and right exact, so
 $$ 0 \to A \to I_0 \to I_1 \to I_2 \to \dots $$
-is exact implies that
-$$ \dots \to F\br{I_2} \to F\br{I_1} \to F\br{I_0} \to F\br{A} \to 0 $$
-is exact, we get a left derived functor, which is defined using an injective resolution. If $ F $ is contravariant and left exact, we get a right derived functor, which is defined using a projective resolution.
+gives
+$$ \dots \to F\br{I_2} \to F\br{I_1} \to F\br{I_0} \to F\br{A} \to 0, $$
+we get a left derived functor, which is defined using an injective resolution. If $ F $ is contravariant and left exact, so
+$$ \dots \to P_2 \to P_1 \to P_0 \to A \to 0 $$
+gives
+$$ 0 \to F\br{A} \to F\br{P_0} \to F\br{P_1} \to F\br{P_2} \to \dots, $$
+we get a right derived functor, which is defined using a projective resolution.
 \end{itemize}
 \end{proposition}
 
 \pagebreak
 
-\section{Tor and Ext}
+\section{Tor and Ext functors}
 
-\subsection{Balancing theorems}
+\subsection{Tor and Ext}
 
 \begin{definition}
 Let $ F $ be the functor $ F\br{A} = A \otimes_R B $. Then $ F $ is covariant, right exact, and additive. So $ \L_nF $ exists. Define
@@ -1846,18 +1840,18 @@ Let $ F' $ be the functor $ F'\br{A} = \Hom_R\br{A, B} $. Then $ F' $ is contrav
 $$ \R^iF'\br{A} \cong \R^iF\br{B} = \Ext_R^i\br{A, B}. $$
 \end{fact*}
 
-The two facts above are the \textbf{balancing theorems} for Tor and Ext. Their proof is beyond the scope of the course.
-
-\subsection{Tor, flatness, and torsion}
-
-The following is an observation. Suppose $ A $ is projective. Then a projective resolution for $ A $ is
+The two facts above are the \textbf{balancing theorems} for Tor and Ext. Their proof is beyond the scope of the course. The following is an observation. Suppose $ A $ is projective. Then a projective resolution for $ A $ is
 $$ 0 \to \dots \to 0 \to A \xrightarrow{\id} A \to 0. $$
 So $ \L_iF\br{A} = 0 $ for $ i \ge 1 $, and $ \L_0F\br{A} = F\br{A} $, for $ F $ possessing left derived functors. Similarly, if $ A $ is injective, then an injective resolution is
 $$ 0 \to A \xrightarrow{\id} A \to 0 \to \dots \to 0, $$
-so $ \R^iF\br{A} = 0 $ for $ i \ge 1 $, and $ \R^0F\br{A} = F\br{A} $, for $ F $ possessing right derived functors. In fact the property $ \Tor_i^R\br{A, B} = 0 $ for all $ i \ge 0 $ characterises flat modules, so either $ A $ or $ B $ is flat.
+so $ \R^iF\br{A} = 0 $ for $ i \ge 1 $, and $ \R^0F\br{A} = F\br{A} $, for $ F $ possessing right derived functors.
+
+\subsection{Tor, flatness, and torsion}
+
+In fact the property $ \Tor_i^R\br{A, B} = 0 $ for all $ i \ge 1 $ characterises flat modules, so either $ A $ or $ B $ is flat.
 
 \begin{proposition}
-Let $ F\br{A} = A \otimes_R B $. Then $ \L_iF\br{A} = \Tor_i^R\br{A, B} = 0 $ for all $ i \ge 1 $ and for all $ A $ if and only if $ B $ is flat.
+Let $ F\br{A} = A \otimes_R B $. Then $ \Tor_i^R\br{A, B} = \L_iF\br{A} = 0 $ for all $ i \ge 1 $ and for all $ A $ if and only if $ B $ is flat.
 \end{proposition}
 
 Similarly if $ F'\br{B} = A \otimes_R B $, then $ \L_iF'\br{B} = 0 $ for all $ i \ge 1 $ and for all $ B $ if and only if $ A $ is flat.
@@ -1879,7 +1873,7 @@ is exact everywhere except $ F\br{P_0} $. So $ \L_nF\br{P_*} = 0 $ for $ n \ge 1
 
 \pagebreak
 
-\item[$ \implies $] Conversely, suppose $ \Tor_i^R\br{A, B} = 0 $ for all $ A $. Let
+\item[$ \implies $] Conversely, suppose $ \Tor_1^R\br{A, B} = 0 $ for all $ A $. Let
 $$ 0 \to L \to M \to N \to 0 $$
 be exact. This gives a long exact sequence of homology groups
 $$
@@ -1904,7 +1898,7 @@ $ A $ is a quotient of some free module $ K $, say
 $$ K \xrightarrow{f} A \to 0. $$
 Now $ \ker f \le K $, and since $ \ZZ $ is a PID, $ \ker f $ is free, since it is a submodule of a free module. So
 $$ \dots \to 0 \to \ker f \to K \to A \to 0 $$
-is a projective resolution for $ A $. Since all of the modules above $ P_1 $ in the resolution are zero, clearly $ \H_n\br{P_*} = 0 $ for $ n > 1 $.
+is a projective resolution for $ A $. Since all of the modules above $ P_1 $ in the resolution are zero, clearly $ \H_n\br{F\br{P_*}} = 0 $ for $ n > 1 $.
 \end{proof}
 
 \begin{fact*}
@@ -1927,10 +1921,9 @@ More generally, $ \Ext_R^1\br{A, C} $ tells us about \textbf{extensions} of $ C 
 $$ 0 \to A \to B \to C \to 0. $$
 Let $ B_1 $ and $ B_2 $ be two extensions of $ C $ by $ A $. Write $ B_1 \sim B_2 $ if there exists a \textbf{map of extensions} $ f : B_1 \to B_2 $ such that
 $$
-\begin{tikzcd}[row sep=tiny]
-& & B_1 \arrow{dr}{\beta_1} \arrow{dd}{f} & & \\
-0 \arrow{r} & A \arrow{ur}{\alpha_1} \arrow{dr}[swap]{\alpha_2} & & C \arrow{r} & 0 \\
-& & B_2 \arrow{ur}[swap]{\beta_2} & &
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r}{\alpha_1} \arrow[cong]{d} & B_1 \arrow{r}{\beta_1} \arrow{d}{f} & C \arrow{r} \arrow[cong]{d} & 0 \\
+0 \arrow{r} & A \arrow{r}[swap]{\alpha_2} & B_2 \arrow{r}[swap]{\beta_2} & C \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes.
@@ -1955,17 +1948,19 @@ Define maps $ \alpha^* $ and $ \beta^* $ by
 $$ \function[\alpha^*]{A}{B_1 \oplus B_2}{a}{\br{\alpha_1\br{a}, -\alpha_2\br{a}}}, \qquad \function[\beta^*]{B_1 \oplus B_2}{C}{\br{b_1, b_2}}{\beta_1\br{b_1} - \beta_2\br{b_2}}. $$
 Now $ \beta^* \circ \alpha^* = 0 $. So
 $$ 0 \to A \xrightarrow{\alpha^*} B_1 \oplus B_2 \xrightarrow{\beta^*} C \to 0 $$
-is a chain complex. Define
-$$ H = \H\br{B_1, B_2}, $$
-the \textbf{Baer sum} of $ \sbr{B_1} $ and $ \sbr{B_2} $, to be the homology group at $ B_1 \oplus B_2 $, that is $ H = \ker \beta^* / \im \alpha^* $. More explicitly,
+is a chain complex. Define $ \sbr{H} = \sbr{\H\br{B_1, B_2}} $, the \textbf{Baer sum} of $ \sbr{B_1} $ and $ \sbr{B_2} $, to be the homology group at $ B_1 \oplus B_2 $, that is $ H = \ker \beta^* / \im \alpha^* $. More explicitly,
 $$ H = \cbr{\br{b_1, b_2} \in B_1 \oplus B_2 \st \beta_1\br{b_1} = \beta_2\br{b_2}} / \cbr{\br{\alpha_1\br{a}, -\alpha_2\br{a}} \st a \in A}. $$
-Clearly $ H $ is an $ R $-module. Now define maps
+Clearly $ H $ is an $ R $-module. Now define maps by
 $$ \function[\alpha]{A}{H}{a}{\br{\alpha_1\br{a}, 0} + \im \alpha^*}, \qquad \function[\beta]{H}{C}{\br{b_1, b_2} + \im \alpha^*}{\beta_1\br{b_1}}. $$
 
 \lecture{25}{Friday}{06/03/20}
 
 \begin{note*}
-$ \br{b_1, b_2} \in \ker \beta^* $, so $ \beta_1\br{b_1} = \beta_2\br{b_2} $. Also $ \br{\alpha_1\br{a}, 0} = \br{0, \alpha_2\br{a}} + \br{\alpha_1\br{a}, -\alpha_2\br{a}} $, so $ \br{\alpha_1\br{a}, 0} + \im \alpha^* = \br{0, \alpha_2\br{a}} + \im \alpha^* $.
+\hfill
+\begin{itemize}
+\item $ \br{b_1, b_2} \in \ker \beta^* $, so $ \beta_1\br{b_1} = \beta_2\br{b_2} $.
+\item $ \br{\alpha_1\br{a}, 0} = \br{0, \alpha_2\br{a}} + \br{\alpha_1\br{a}, -\alpha_2\br{a}} $, so $ \br{\alpha_1\br{a}, 0} + \im \alpha^* = \br{0, \alpha_2\br{a}} + \im \alpha^* $.
+\end{itemize}
 \end{note*}
 
 \begin{proposition}
@@ -1979,7 +1974,7 @@ is a short exact sequence.
 \item First check that $ \beta $ is well-defined. If $ \br{b_1, b_2} \in \br{b_1', b_2'} + \im \alpha^* $ then $ \br{b_1, b_2} = \br{b_1', b_2'} + \br{\alpha_1\br{a}, -\alpha_2\br{a}} $ for some $ a \in A $. So
 $$ \beta\br{\br{b_1, b_2} + \im \alpha^*} = \beta_1\br{b_1} = \beta_1\br{b_1 - \alpha_1\br{a}} = \beta\br{\br{b_1', b_2'} + \im \alpha^*}, $$
 since $ \beta_1 \circ \alpha_1 = 0 $.
-\item Next check $ \alpha $ is injective. Suppose $ \alpha\br{a} = \br{0, 0} + \im \alpha^* $. Then $ \br{\alpha_1\br{a}, 0} = \alpha^*\br{a'} $ for some $ a' $. So $ \br{\alpha_1\br{a}, 0} = \br{\alpha_1\br{a'}, -\alpha_2\br{a'}} $. Since $ \alpha_1 $ and $ \alpha_2 $ are injective, $ a = a' = 0 $.
+\item Next check $ \alpha $ is injective. Suppose $ \alpha\br{a} = \br{0, 0} + \im \alpha^* $. Then $ \br{\alpha_1\br{a}, 0} = \alpha^*a' $ for some $ a' $. So $ \br{\alpha_1\br{a}, 0} = \br{\alpha_1\br{a'}, -\alpha_2\br{a'}} $. Since $ \alpha_1 $ and $ \alpha_2 $ are injective, $ a = a' = 0 $.
 \item Next, show $ \beta $ is surjective. Take $ c \in C $. Then $ c = \beta_1\br{b_1} $ for some $ b_1 \in B_1 $. Since $ \beta_2 $ is surjective, there exists $ b_2 \in B_2 $ with $ \beta_2\br{b_2} = \beta_1\br{b_1} = c $. Now $ \br{b_1, b_2} \in \ker \beta^* $, and $ \beta\br{\br{b_1, b_2} + \im \alpha^*} = \beta_1\br{b_1} = c $.
 
 \pagebreak
@@ -2003,10 +1998,9 @@ We have shown that $ H $ is an extension of $ C $ by $ A $.
 \begin{proposition}
 If $ B_1 \sim B_1' $ and $ B_2 \sim B_2' $ then $ \H\br{B_1, B_2} \sim \H\br{B_1', B_2'} $, where $ B \sim B' $ if there exists a map of extensions $ f : B \to B' $ such that
 $$
-\begin{tikzcd}[row sep=tiny]
-& & B \arrow{dr} \arrow{dd}{f} & & \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & C \arrow{r} & 0 \\
-& & B' \arrow{ur} & &
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & B \arrow{r} \arrow{d}{f} & C \arrow{r} \arrow[cong]{d} & 0 \\
+0 \arrow{r} & A \arrow{r} & B' \arrow{r} & C \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes.
@@ -2015,18 +2009,16 @@ commutes.
 \begin{proof}
 Suppose $ f_1 : B_1 \to B_1' $ and $ f_2 : B_2 \to B_2' $ are maps of extensions. Then there exists a map of chain complexes
 $$
-\begin{tikzcd}[row sep=tiny]
-& & B_1 \oplus B_2 \arrow{dr} \arrow{dd}{\br{f_1, f_2}} & & \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & C \arrow{r} & 0 \\
-& & B_1' \oplus B_2' \arrow{ur} & &
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & B_1 \oplus B_2 \arrow{r} \arrow{d}{\br{f_1, f_2}} & C \arrow{r} \arrow[cong]{d} & 0 \\
+0 \arrow{r} & A \arrow{r} & B_1' \oplus B_2' \arrow{r} & C \arrow{r} & 0
 \end{tikzcd}.
 $$
 This induces a map on homology, $ \overline{f} : \H\br{B_1, B_2} \to \H\br{B_1', B_2'} $. It is easy to check
 $$
-\begin{tikzcd}[row sep=tiny]
-& & \H\br{B_1, B_2} \arrow{dr} \arrow{dd}{\overline{f}} & & \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & C \arrow{r} & 0 \\
-& & \H\br{B_1', B_2'} \arrow{ur} & &
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & \H\br{B_1, B_2} \arrow{r} \arrow{d}{\overline{f}} & C \arrow{r} \arrow[cong]{d} & 0 \\
+0 \arrow{r} & A \arrow{r} & \H\br{B_1', B_2'} \arrow{r} & C \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes, so $ \H\br{B_1, B_2} \sim \H\br{B_1', B_2'} $.
@@ -2096,7 +2088,7 @@ $$
 0 \arrow{r} & \Ext_R^0\br{C, X} \arrow{r} & \Ext_R^0\br{C, Y} \arrow{r} & \Ext_R^0\br{C, Z} \arrow{r} & \Ext_R^1\br{C, X} \arrow{r} & \dots
 \end{tikzcd},
 $$
-where the vertical arrows are given by the functoriality of $ \Ext_R^1\br{C, \cdot} $. This diagram commutes.
+where the vertical arrows are given by the functoriality of $ \Ext_R^1\br{C, -} $. This diagram commutes.
 \end{lemma}
 
 \begin{proof}
@@ -2114,10 +2106,9 @@ Then $ \Ext_R^1\br{C, I} = 0 $ since $ I $ is injective. So $ \mu $ is surjectiv
 $$ X_\phi = \cbr{\br{i, c} \in I \oplus C \st i + A = \phi\br{c}} $$
 be the pullback via $ \phi $, so
 $$
-\begin{tikzcd}[row sep=tiny]
-& & X_\phi \arrow{r}{\pi_C} \arrow{dd}{\pi_I} & C \arrow{r} \arrow{dd}{\phi} & 0 \\
-0 \arrow{r} & A \arrow{ur}{\iota_I} \arrow{dr}[swap]{\le} & & \\
-& & I \arrow{r} & I / A \arrow{r} & 0
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r}{\iota_A} \arrow[cong]{d} & X_\phi \arrow{r}{\pi_C} \arrow{d}{\pi_I} & C \arrow{r} \arrow{d}{\phi} & 0 \\
+0 \arrow{r} & A \arrow{r}[swap]{\le} & I \arrow{r} & I / A \arrow{r} & 0
 \end{tikzcd}.
 $$
 
@@ -2125,10 +2116,9 @@ $$
 
 From Lemma \ref{lem:extensionclass}, there is a commuting square
 $$
-\begin{tikzcd}[row sep=tiny]
-\Hom_R\br{C, C} \arrow{dr}{\eta} \arrow{dd}[swap]{\overline{\phi}} & \\
-& \Ext_R^1\br{C, A} \\
-\Hom_R\br{C, I / A} \arrow{ur}[swap]{\mu} &
+\begin{tikzcd}
+\Hom_R\br{C, C} \arrow{r}{\eta} \arrow{d}[swap]{\overline{\phi}} & \Ext_R^1\br{C, A} \arrow[cong]{d} \\
+\Hom_R\br{C, I / A} \arrow{r}[swap]{\mu} & \Ext_R^1\br{C, A}
 \end{tikzcd}.
 $$
 For $ f \in \Hom_R\br{C, C} $, $ \overline{\phi}\br{f} = \phi \circ f $. So the class of the extension
@@ -2138,20 +2128,18 @@ is $ \eta\br{\id_C} = \mu\br{\phi \circ \id_C} = \mu\br{\phi} = x $.
 $$ \function{I \oplus C}{I \oplus C}{\br{i, c}}{\br{i + f\br{c}, c}} $$
 is bijective, and it maps $ X_\phi \to X_\psi $. The diagram
 $$
-\begin{tikzcd}[row sep=tiny]
-& & X_\phi \arrow{dr} \arrow{dd}{f} & & \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & C \arrow{r} & 0 \\
-& & X_\psi \arrow{ur} & &
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & X_\phi \arrow{r} \arrow{d}{f} & C \arrow{r} \arrow[cong]{d} & 0 \\
+0 \arrow{r} & A \arrow{r} & X_\psi \arrow{r} & C \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes, and so the extensions are equivalent. We need to show that every extension arises as $ X_\phi $ for some $ \phi $. Suppose
 $$ 0 \to A \xrightarrow{\alpha} B \to C \to 0 $$
 is an extension. Let $ A \le I $ where $ I $ is injective. Then there exists $ \lambda : B \to I $ such that $ \br{\lambda \circ \alpha}\br{a} = a $ for all $ a \in A $. We have $ \lambda' : C \cong B / \alpha\br{A} \to I / A $. We get short exact sequences
 $$
-\begin{tikzcd}[row sep=tiny]
-& & B \arrow{r} \arrow{dd}{\lambda} & C \arrow{r} \arrow{dd}{\lambda'} & 0 \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & \\
-& & I \arrow{r} & I / A \arrow{r} & 0
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & B \arrow{r} \arrow{d}{\lambda} & C \arrow{r} \arrow{d}{\lambda'} & 0 \\
+0 \arrow{r} & A \arrow{r} & I \arrow{r} & I / A \arrow{r} & 0
 \end{tikzcd}.
 $$
 Now we have $ B \cong X_{\lambda'} $, since this is the same construction as before.
@@ -2160,16 +2148,16 @@ Now we have $ B \cong X_{\lambda'} $, since this is the same construction as bef
 
 \item Equivalent extensions have the same class. Suppose
 $$
-\begin{tikzcd}[row sep=tiny]
-& & B_1 \arrow{dr} \arrow{dd}{f} & & \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & C \arrow{r} & 0 \\
-& & B_2 \arrow{ur} & &
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & B_1 \arrow{r} \arrow{d}{f} & C \arrow{r} \arrow[cong]{d} & 0 \\
+0 \arrow{r} & A \arrow{r} & B_2 \arrow{r} & C \arrow{r} & 0
 \end{tikzcd}
 $$
 commutes. We get maps
 $$
 \begin{tikzcd}[row sep=tiny]
-\Hom_R\br{C, C} \arrow[bend left=15]{r}{\mu_1} \arrow[bend right=15]{r}[swap]{\mu_2} & \Ext_R^1\br{C, A}
+\Hom_R\br{C, C} \arrow{r}{\mu_1} \arrow[cong]{d} & \Ext_R^1\br{C, A} \arrow[cong]{d} \\
+\Hom_R\br{C, C} \arrow{r}[swap]{\mu_2} & \Ext_R^1\br{C, A}
 \end{tikzcd}
 $$
 commuting. So $ \mu_1 = \mu_2 $. Hence the extensions $ B_1 $ and $ B_2 $ have the same class.
@@ -2181,10 +2169,9 @@ It remains to show that it is a group homomorphism. Let
 $$ 0 \to A \to B_i \to C \to 0, \qquad i = 1, 2. $$
 Suppose $ B_i = X_{\phi_i} $ for $ \phi_i : C \to I / A $, where $ I $ is an injective containing $ A $. From the arguments earlier, we have
 $$
-\begin{tikzcd}[row sep=tiny]
-& & B_i \arrow{r} \arrow{dd}{\rho_i} & C \arrow{r} \arrow{dd}{\phi_i} & 0 \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & \\
-& & I \arrow{r} & I / A \arrow{r} & 0
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & B_i \arrow{r} \arrow{d}{\rho_i} & C \arrow{r} \arrow{d}{\phi_i} & 0 \\
+0 \arrow{r} & A \arrow{r} & I \arrow{r} & I / A \arrow{r} & 0
 \end{tikzcd}.
 $$
 Use the diagram above for $ i = 1, 2 $ to construct a new commuting diagram
@@ -2198,10 +2185,9 @@ Define
 $$ A^+ = \cbr{\br{a, a} \st a \in A} \le A \oplus A, \qquad A^- = \cbr{\br{a, -a} \st a \in A} \le A \oplus A, \qquad C^+ = \cbr{\br{c, c} \st c \in C} \le C \oplus C. $$
 Quotienting by $ A^- $, $ \br{A \oplus A} / A^- \cong A $, since $ \br{a_1, a_2} = \br{a_1 + a_2, 0} - \br{a_2, -a_2} $. Then
 $$
-\begin{tikzcd}[row sep=tiny]
-& & \br{B_1 \oplus B_2} / A' \arrow{r} \arrow{dd} & C \oplus C \arrow{r} \arrow{dd}{\phi_1 + \phi_2} & 0 \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & \\
-& & I \arrow{r} & I / A \arrow{r} & 0
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & \br{B_1 \oplus B_2} / A' \arrow{r} \arrow{d} & C \oplus C \arrow{r} \arrow{d}{\phi_1 + \phi_2} & 0 \\
+0 \arrow{r} & A \arrow{r} & I \arrow{r} & I / A \arrow{r} & 0
 \end{tikzcd},
 $$
 where $ A' $ is the image of $ A^- $ in $ B_1 \oplus B_2 $, so if
@@ -2210,10 +2196,9 @@ then $ A' = \cbr{\br{\alpha_1\br{a}, -\alpha_2\br{a}}} $. Let $ X \le \br{B_1 \o
 $$ 0 \to A \to X \to C^+ \to 0 $$
 is exact, and we have $ C^+ \cong C $. We get
 $$
-\begin{tikzcd}[row sep=tiny]
-& & X \arrow{r} \arrow{dd} & C \arrow{r} \arrow{dd}{\phi_1 + \phi_2} & 0 \\
-0 \arrow{r} & A \arrow{ur} \arrow{dr} & & \\
-& & I \arrow{r} & I / A \arrow{r} & 0
+\begin{tikzcd}
+0 \arrow{r} & A \arrow{r} \arrow[cong]{d} & X \arrow{r} \arrow{d} & C \arrow{r} \arrow{d}{\phi_1 + \phi_2} & 0 \\
+0 \arrow{r} & A \arrow{r} & I \arrow{r} & I / A \arrow{r} & 0
 \end{tikzcd},
 $$
 identifying the maps
@@ -2228,15 +2213,15 @@ and $ H = \ker \br{\beta_1 - \beta_2} / \im \br{\alpha_1, -\alpha_2} $. But $ \i
 We have shown that elements of $ \Ext_R^1\br{C, A} $ corresponds to equivalence classes of extensions. Since the identity in $ \E_C\br{A} $ is the class of split extensions, it follows that $ 0 \in \Ext_R^1\br{C, A} $ corresponds to split extensions $ C \oplus A $.
 
 \begin{example*}
-Take $ R = \ZZ $. Calculate $ \Ext_R^1\br{\ZZ_n, H} $ for $ H $ an abelian group. Use the functor $ F\br{A} = \Hom_\ZZ\br{A, H} $. This is contravariant, so we need a projective resolution of $ \ZZ_n $. This is given by
+Take $ R = \ZZ $. Calculate $ \Ext_\ZZ^1\br{\ZZ_n, H} $ for $ H $ an abelian group. Use the functor $ F\br{A} = \Hom_\ZZ\br{A, H} $. This is contravariant, so we need a projective resolution of $ \ZZ_n $. This is given by
 $$ 0 \to \ZZ \xrightarrow{n} \ZZ \to \ZZ_n \to 0. $$
 This gives a long exact sequence
-$$ 0 \to \Hom_\ZZ\br{\ZZ_n, H} \to \Hom_\ZZ\br{\ZZ, H} \xrightarrow{n} \Hom_\ZZ\br{\ZZ, H} \to \Ext_R^1\br{\ZZ_n, H} \to 0, $$
-since $ \Ext_n^i\br{\ZZ, H} = 0 $ for $ i > 1 $ since $ \ZZ $ is projective. Now
+$$ 0 \to \Hom_\ZZ\br{\ZZ_n, H} \to \Hom_\ZZ\br{\ZZ, H} \xrightarrow{n} \Hom_\ZZ\br{\ZZ, H} \to \Ext_\ZZ^1\br{\ZZ_n, H} \to 0, $$
+since $ \Ext_\ZZ^i\br{\ZZ, H} = 0 $ for $ i > 0 $ since $ \ZZ $ is projective. Now
 $$ \Hom_\ZZ\br{\ZZ_n, H} \cong H_n = \cbr{h \in H \st nh = 0}, \qquad \Hom_\ZZ\br{\ZZ, H} \cong H. $$
 So
-$$ 0 \to H_n \to H \xrightarrow{n} H \to \Ext_R^1\br{\ZZ_n, H} \to 0, $$
-so $ \Ext_R^1\br{\ZZ_n, H} \cong H / nH $.
+$$ 0 \to H_n \to H \xrightarrow{n} H \to \Ext_\ZZ^1\br{\ZZ_n, H} \to 0, $$
+so $ \Ext_\ZZ^1\br{\ZZ_n, H} \cong H / nH $. Take $ n = 4 $ and $ H = \ZZ_4 $. Then $ \Ext_R^1\br{\ZZ_4, \ZZ_4} \cong \ZZ_4 $. What are the extensions of $ \ZZ_4 $ by $ \ZZ_4 $? These are $ \ZZ_{16} $ twice, $ \ZZ_8 \oplus \ZZ_2 $, and $ \ZZ_4 \oplus \ZZ_4 $.
 \end{example*}
 
 \lecture{28}{Friday}{13/03/20}
@@ -2252,7 +2237,7 @@ Lecture 28 is a problems class.
 \lecture{29}{Monday}{16/03/20}
 
 \begin{definition}
-Let $ M $ be a $ R $-module. The \textbf{projective dimension} $ \pd M $ is the smallest $ d $ such that there exists a projective resolution $ P_* \to M $ such that $ P_{d + 1} \to 0 $, or infinity if no such $ d $ exists. The \textbf{injective dimension} $ \id M $ is similar for injective resolutions. The \textbf{flat dimension} is similar for flat resolutions.
+Let $ M $ be a $ R $-module. The \textbf{projective dimension} $ \pd M $ is the smallest $ d $ such that there exists a projective resolution $ P_* \to M $ such that $ P_{d + 1} = 0 $, or infinity if no such $ d $ exists. The \textbf{injective dimension} $ \id M $ is similar for injective resolutions. The \textbf{flat dimension} is similar for flat resolutions.
 \end{definition}
 
 Every projective is flat, so $ \fd M \le \pd M $.
@@ -2260,7 +2245,7 @@ Every projective is flat, so $ \fd M \le \pd M $.
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ \ZZ $ as a module for itself. Then $ \ZZ $ is projective, and flat, so a projective or flat resolution is
+\item $ \ZZ $ as a module for itself. Then $ \ZZ $ is projective, and flat, so a projective, or flat, resolution is
 $$ 0 \to \ZZ \to \ZZ \to 0, $$
 so $ \fd \ZZ = \pd \ZZ = 0 $. Since $ \ZZ $ is not injective, an injective resolution is
 $$ 0 \to \ZZ \to \QQ / \ZZ \to \QQ / \ZZ \to 0, $$
@@ -2272,16 +2257,20 @@ so $ \id \ZZ = 1 $.
 \begin{proposition}
 \label{prop:projectivedimension}
 The following are equivalent.
-\begin{enumerate}
+\begin{itemize}
 \item $ \pd M \le d $.
 \item $ \Ext_R^{d + 1}\br{M, N} = 0 $ for all $ N $.
-\end{enumerate}
+\end{itemize}
 \end{proposition}
+
+\begin{fact*}
+$ \Ext_R^{d + 1}\br{M, N} \cong \Ext_R^1\br{K_{d - 1}, N} $.
+\end{fact*}
 
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Assume $ 1 $. Then there exists a projective resolution
+\item[$ \implies $] Assume $ \pd M \le d $. Then there exists a projective resolution
 $$ 0 \to P_d \to \dots \to P_0 \to M \to 0. $$
 Let $ F $ be the functor $ F\br{A} = \Hom_R\br{A, N} $. Then $ \Ext_R^*\br{M, N} $ is calculated from the chain complex
 $$ 0 \to F\br{P_d} \to \dots \to F\br{P_{d - 1}} \to F\br{P_0} \to 0, $$
@@ -2290,8 +2279,6 @@ so clearly $ \Ext_R^n\br{M, N} = \L_nF\br{P_*} = 0 $ for $ n > d $.
 $$ P_{d - 1} \to P_{d - 2} \to \dots \to P_0 \to M \to 0 $$
 is exact. Let $ K_{d - 1} $ be the kernel of $ P_{d - 1} \to P_{d - 2} $, the $ \br{d - 1} $-dimensional \textbf{syzygy} of $ M $. So
 $$ 0 \to K_{d - 1} \to P_{d - 1} \to P_{d - 2} \to \dots \to P_0 \to M \to 0. $$
-A fact is that
-$$ \Ext_R^{d + 1}\br{M, N} \cong \Ext_R^1\br{K_{d - 1}, N}. $$
 Suppose $ \Ext_R^{d + 1}\br{M, N} = 0 $. Then $ \Ext_R^1\br{K_{d - 1}, N} = 0 $. So $ K_{d - 1} $ is projective. Hence
 $$ 0 \to K_{d - 1} \to P_{d - 1} \to P_{d - 2} \to \dots \to P_0 \to M \to 0 $$
 is a projective resolution. So $ \pd M \le d $.
@@ -2332,13 +2319,12 @@ Using the fact, the proof is the same as above.
 
 We will be interested in defining dimension for the ring $ R $.
 
-\begin{definition}
-Claim that
+\begin{proposition}
 $$ \sup \cbr{\pd M \st M \ \text{a left $ R $-module}} = \sup \cbr{\id M \st M \ \text{a left $ R $-module}} = \sup \cbr{d \st \exists M, N, \ \Ext_R^d\br{M, N} \ne 0}, $$
-where the supremums are in $ \NN \cup \cbr{\infty} $. This number is the \textbf{left global dimension} $ \lgd R $ of $ R $. The \textbf{right global dimension} $ \rgd R $ is defined similarly, but using right modules.
-\end{definition}
+where the supremums are in $ \NN \cup \cbr{\infty} $.
+\end{proposition}
 
-There exist rings $ R $ such that $ \lgd R \ne \rgd R $.
+This number is the \textbf{left global dimension} $ \lgd R $ of $ R $. The \textbf{right global dimension} $ \rgd R $ is defined similarly, but using right modules. There exist rings $ R $ such that $ \lgd R \ne \rgd R $.
 
 \begin{definition}
 Say that $ R $ satisfies the \textbf{ascending chain condition on right ideals} if whenever $ I_0 \le I_1 \le \dots $ is a chain of right ideals, there exists $ d $ such that $ I_d = I_{d + 1} = \dots $. The condition that $ R $ satisfies the \textbf{ascending chain condition on left ideals} is similar. If $ R $ satisfies the ascending chain condition on both left and right ideals, it is \textbf{noetherian}.
@@ -2348,28 +2334,26 @@ Say that $ R $ satisfies the \textbf{ascending chain condition on right ideals} 
 For any noetherian ring $ R $, $ \lgd R = \rgd R $.
 \end{fact*}
 
-\begin{definition}
-So in this context we can refer to \textbf{global dimension}, $ \gd R $. Claim that
-$$ \sup \cbr{\fd N \st N \ \text{a left $ R $-module}} = \sup \cbr{\fd M \st M \ \text{a right $ R $-module}} = \sup \cbr{d \st \exists M, N, \ \Tor_d^R\br{M, N} \ne 0}. $$
-This number is the \textbf{weak global dimension} $ \wgd R $.
-\end{definition}
+So in this context we can refer to \textbf{global dimension}, $ \gd R $.
 
-Since $ \fd M \le \pd M $, $ \wgd R \le \gd R $.
+\begin{proposition}
+$$ \sup \cbr{\fd N \st N \ \text{a left $ R $-module}} = \sup \cbr{\fd M \st M \ \text{a right $ R $-module}} = \sup \cbr{d \st \exists M, N, \ \Tor_d^R\br{M, N} \ne 0}. $$
+\end{proposition}
+
+This number is the \textbf{weak global dimension} $ \wgd R $. Since $ \fd M \le \pd M $, $ \wgd R \le \gd R $.
 
 \subsection{Krull dimension}
 
 \lecture{30}{Tuesday}{17/03/20}
 
-The following is another ring dimension. Let $ R $ be a commutative ring.
+The following is another ring dimension. Let $ R $ be a commutative ring. Then $ I \le R $ is \textbf{prime} if $ I \ne R $, and $ ab \in I $ implies that $ a \in I $ or $ b \in I $. In particular, any maximal ideal of $ R $ is prime.
 
 \begin{definition}
-The \textbf{Krull dimension} $ \dim R $ is the length of the longest chain of prime ideals of $ R $, where $ I \le R $ is \textbf{prime} if $ I \ne R $, and $ ab \in I $ implies that $ a \in I $ or $ b \in I $.
+The \textbf{Krull dimension}, $ \dim R $, is the length of the longest chain of prime ideals of $ R $.
 \end{definition}
 
-In particular, any maximal ideal of $ R $ is prime.
-
 \begin{example*}
-Let $ V $ be an \textbf{affine variety} in $ F^n $, defined by the zeros of a set of polynomials in $ F\sbr{x_1, \dots, x_n} $. Then $ V $ corresponds to an ideal $ I_V $ in $ F\sbr{x_1, \dots, x_n} $, and $ V $ is \textbf{irreducible} if $ I_V $ is prime. Then
+Let $ V $ be an \textbf{affine variety} in $ F^n $, so $ V $ is defined by the zeros of a set of polynomials in $ F\sbr{x_1, \dots, x_n} $. Then $ V $ corresponds to an ideal $ I_V $ in $ F\sbr{x_1, \dots, x_n} $, and $ V $ is \textbf{irreducible} if $ I_V $ is prime. Then
 $$ \dim F\sbr{x_1, \dots, x_n} / I_V = \dim V. $$
 \end{example*}
 

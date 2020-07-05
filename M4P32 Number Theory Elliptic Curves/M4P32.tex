@@ -101,6 +101,8 @@ Do the case $ xy = 0 $.
 
 \section{The \texorpdfstring{$ p $}{p}-adic numbers}
 
+\subsection{Norms}
+
 \lecture{2}{Monday}{07/10/19}
 
 \begin{definition}
@@ -189,6 +191,8 @@ Check Lemma \ref{lem:2.7} for $ \abs{\cdot}_p $ using the definition.
 
 \pagebreak
 
+\subsection{Completion}
+
 Recall that
 \begin{itemize}
 \item a sequence $ \br{x_n} $ in $ k $ is \textbf{Cauchy} if for all $ \epsilon > 0 $ there exists $ N $ such that $ m, n \ge N $ implies that $ \abs{x_m - x_n} < \epsilon $, and
@@ -205,7 +209,7 @@ $ \br{x_n} $ converges implies that $ \br{x_n} $ is Cauchy, but in general $ \br
 \end{example*}
 
 \begin{example}
-Let $ p = 2 $. Then $ \br{x_n} = 3, 33, \dots $ is Cauchy with respect to $ \abs{\cdot}_2 $, and $ x_n = \tfrac{10^n - 1}{3} \to -\tfrac{1}{3} $ as $ n \to \infty $ because $ \abs{x_n + \tfrac{1}{3}}_2 = \abs{\tfrac{10^n}{3}}_2 = \abs{2^n\tfrac{5^n}{3}}_2 = 2^{-n} \to 0 $.
+Let $ p = 2 $. Then $ \br{x_n} = 3, 33, \dots $ is Cauchy with respect to $ \abs{\cdot}_2 $, and $ x_n = \tfrac{10^n - 1}{3} \to -\tfrac{1}{3} $ as $ n \to \infty $ because $ \abs{x_n + \tfrac{1}{3}}_2 = \abs{10^n / 3}_2 = \abs{2^n\br{5^n / 3}}_2 = 2^{-n} \to 0 $.
 \end{example}
 
 \begin{example}
@@ -229,10 +233,7 @@ where $ \br{x_n} + \br{y_n} = \br{x_n + y_n} $ and $ \br{x_n}\br{y_n} = \br{x_ny
 $$ I = \cbr{\br{x_n} \st x_n \to 0 \ \text{as} \ n \to \infty}. $$
 
 \begin{exercise*}
-\hfill
-\begin{itemize}
-\item Check that $ I $ is an ideal in $ R $.
-\item If $ \br{x_n} \notin I $, then there exists $ N $ such that $ n \ge N $ implies that $ x_n \ne 0 $. Show that furthermore the sequence $ \br{y_n} $ defined by
+Check that $ I $ is an ideal in $ R $. If $ \br{x_n} \notin I $, then there exists $ N $ such that $ n \ge N $ implies that $ x_n \ne 0 $. Show that furthermore the sequence $ \br{y_n} $ defined by
 $$ y_n =
 \begin{cases}
 0 & n < N \\
@@ -240,7 +241,6 @@ $$ y_n =
 \end{cases}
 $$
 is Cauchy, and $ x_ny_n = 1 $ for all $ n \ge N $, so $ \br{x_n}\br{y_n} - 1 \in I $.
-\end{itemize}
 \end{exercise*}
 
 That is, $ I $ is a maximal ideal of $ R $, so $ \widehat{k} = R / I $ is a field. There is a natural map
@@ -249,11 +249,7 @@ This is an injection. Call $ \widehat{k} $ the \textbf{completion} of $ k $. The
 $$ \abs{\br{x_n}} = \lim_{n \to \infty} \abs{x_n}. $$
 
 \begin{exercise*}
-\hfill
-\begin{itemize}
-\item Check that this is defined, and is a norm.
-\item Check that if $ x_n \not\to 0 $, then $ \abs{x_n} $ is eventually constant, by using Lemma \ref{lem:2.7}.
-\end{itemize}
+Check that this is defined, and is a norm. Check that if $ x_n \not\to 0 $, then $ \abs{x_n} $ is eventually constant, by using Lemma \ref{lem:2.7}.
 \end{exercise*}
 
 \pagebreak
@@ -264,7 +260,7 @@ $ k $ is dense in $ \widehat{k} $.
 \end{lemma}
 
 \begin{proof}
-Need to show that if $ x \in \widehat{k} $ and $ \epsilon > 0 $, then there exists $ y \in k $ such that $ \abs{x - y} < \epsilon $. Write $ x = \br{x_n} $ for $ x_n \in k $, and choose $ N $ such that if $ m, n \ge N $, then $ \abs{x_m - x_n} < \epsilon $. Then take $ y = x_N $. Then $ \abs{x - y} = \lim_{n \to \infty} \abs{x_n - x_N} < \epsilon $.
+Need to show that if $ x \in \widehat{k} $ and $ \epsilon > 0 $, then there exists $ y \in k $ such that $ \abs{x - y} < \epsilon $. Write $ x = \br{x_n} $ for $ x_n \in k $, and choose $ N $ such that if $ m, n \ge N $, then $ \abs{x_m - x_n} < \epsilon $. Then take $ y = \br{x_N}_{n \ge 1} $. Then $ \abs{x - y} = \lim_{n \to \infty} \abs{x_n - x_N} < \epsilon $.
 \end{proof}
 
 \begin{lemma}
@@ -272,7 +268,7 @@ $ \widehat{k} $ is complete.
 \end{lemma}
 
 \begin{proof}
-Let $ \br{x_n} $ be a Cauchy sequence in $ \widehat{k} $, so $ x_n $ is itself an equivalence class of Cauchy sequences in $ k $. By Lemma \ref{lem:2.12}, for each $ n \ge 1 $ there exists $ y_n \in k $ such that $ \abs{x_n - y_n} < \tfrac{1}{n} $. Claim that $ y = \br{y_n} $ is a Cauchy sequence, and $ x_n \to y $ as $ n \to \infty $. Since
+Let $ \br{x_n} $ be a Cauchy sequence in $ \widehat{k} $, so $ x_n $ is itself an equivalence class of Cauchy sequences in $ k $. By Lemma \ref{lem:2.12}, for each $ n \ge 1 $ there exists $ y_n \in k $ such that $ \abs{x_n - y_n} < 1 / n $. Claim that $ y = \br{y_n} $ is a Cauchy sequence, and $ x_n \to y $ as $ n \to \infty $. Since
 $$ \abs{y_m - y_n} \le \abs{y_m - x_m} + \abs{x_m - x_n} + \abs{x_n - y_n} < \dfrac{1}{m} + \dfrac{1}{n} + \abs{x_m - x_n}, $$
 and $ \br{x_n} $ is Cauchy, so $ \br{y_n} $ is Cauchy. Then
 $$ \abs{x_n - y} \le \abs{x_n - y_n} + \abs{y_n - y} < \dfrac{1}{n} + \abs{y_n - y}. $$
@@ -293,8 +289,10 @@ is a subring of $ k $.
 \end{exercise}
 
 \begin{note*}
-$ \tfrac{1}{p} \notin \ZZ_p $, and $ \abs{\tfrac{1}{p}}_p = p > 1 $. In fact $ \QQ_p = \ZZ_p\sbr{\tfrac{1}{p}} $, the field of fractions of $ \ZZ_p $.
+$ 1 / p \notin \ZZ_p $, since $ \abs{1 / p}_p = p > 1 $. In fact $ \QQ_p = \ZZ_p\sbr{1 / p} $, the field of fractions of $ \ZZ_p $.
 \end{note*}
+
+\subsection{Expansion}
 
 \begin{definition}
 If $ k $ is any field with a norm $ \abs{\cdot} $, then we write
@@ -319,26 +317,18 @@ A sequence $ \br{t_n} $ is Cauchy if and only if $ \abs{t_n - t_{n + 1}} \to 0 $
 \end{corollary}
 
 \begin{proof}
-If $ m > n $, then
-$$ t_m - t_n = \br{t_m - t_{m - 1}} + \dots + \br{t_{n + 1} - t_n}, $$
-and use Lemma \ref{lem:2.17}.
+If $ m > n $, then $ t_m - t_n = \br{t_m - t_{m - 1}} + \dots + \br{t_{n + 1} - t_n} $, and use Lemma \ref{lem:2.17}.
 \end{proof}
-
-\pagebreak
 
 \begin{lemma}
 If $ k $ is complete non-archimedean, such as $ k = \QQ_p $, then $ \sum_{n = 1}^\infty x_n $ converges if and only if $ x_n \to 0 $ as $ n \to \infty $. If $ \abs{x_n} \le R $ and $ x_n \to 0 $ then $ \abs{\sum_{n = 1}^\infty x_n} \le R $.
 \end{lemma}
 
 \begin{proof}
-$ \sum_{n = 1}^\infty x_n $ converges if and only if
-\begin{align*}
-\br{\sum_{n = 1}^m x_n}_{m \ge 1} \ \text{converges} \qquad
-& \iff \qquad \br{\sum_{n = 1}^m x_n}_{m \ge 1} \ \text{is Cauchy} & k \ \text{is complete} \\
-& \iff \qquad x_{m + 1} \to 0 & \text{Corollary \ref{cor:2.18}}.
-\end{align*}
-The final statement then follows from Lemma \ref{lem:2.17}.
+Since $ k $ is complete, $ \sum_{n = 1}^\infty x_n $ converges if and only if $ \br{\sum_{n = 1}^m x_n}_{m \ge 1} $ converges, if and only if $ \br{\sum_{n = 1}^m x_n}_{m \ge 1} $ is Cauchy, if and only if $ x_{m + 1} \to 0 $, by Corollary \ref{cor:2.18}. The final statement then follows from Lemma \ref{lem:2.17}.
 \end{proof}
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:2.20}
@@ -347,7 +337,9 @@ $$ \abs{\sum_{n = 0}^\infty a_np^n}_p = p^{-T}. $$
 \end{lemma}
 
 \begin{proof}
-Since $ a_n \in \ZZ $, $ \abs{a_np^n}_p = \abs{a_n}_p \cdot \abs{p^n}_p \le \abs{p^n}_p = p^{-n} \to 0 $. Furthermore $ \abs{a_Tp^T}_p = p^{-T} $ and $ \abs{a_np^n}_p \le p^{-T - 1} $ if $ n \ge T + 1 $, so $ \abs{\sum_{n = T + 1}^\infty a_np^n}_p \le p^{-T - 1} $, so $ \abs{a_Tp^T + \sum_{n = T + 1}^\infty a_np^n}_p = p^{-T} $, by Lemma \ref{lem:2.7}.
+Since $ a_n \in \ZZ $, $ \abs{a_np^n}_p = \abs{a_n}_p \cdot \abs{p^n}_p \le \abs{p^n}_p = p^{-n} \to 0 $. Furthermore $ \abs{a_Tp^T}_p = p^{-T} $ and $ \abs{a_np^n}_p \le p^{-T - 1} $ if $ n \ge T + 1 $, so
+$$ \abs{\sum_{n = T + 1}^\infty a_np^n}_p \le p^{-T - 1}, $$
+so $ \abs{a_Tp^T + \sum_{n = T + 1}^\infty a_np^n}_p = p^{-T} $, by Lemma \ref{lem:2.7}.
 \end{proof}
 
 \lecture{4}{Thursday}{10/10/19}
@@ -387,17 +379,15 @@ $ \ZZ $ is dense in $ \ZZ_p $.
 \end{corollary}
 
 \begin{proof}
-If $ \alpha \in \ZZ_p $, write $ \alpha = \sum_n a_np^n $. Then
-$$ \abs{\alpha - \br{a_0 + \dots + a_mp^m}}_p \le p^{-\br{m + 1}}, $$
-and $ a_0 + \dots + a_mp^m \in \ZZ $.
+If $ \alpha \in \ZZ_p $, write $ \alpha = \sum_n a_np^n $. Then $ \abs{\alpha - \br{a_0 + \dots + a_mp^m}}_p \le p^{-\br{m + 1}} $, and $ a_0 + \dots + a_mp^m \in \ZZ $.
 \end{proof}
-
-\pagebreak
 
 For all $ m \ge 1 $, there is a surjective ring homomorphism
 $$ \function{\ZZ_p}{\ZZ / p^m\ZZ}{\sum_{n = 0}^\infty a_np^n}{\sum_{n = 0}^{m - 1} a_np^n}. $$
 In fact
 $$ \ZZ_p / p^m\ZZ_p = \ZZ / p^m\ZZ, \qquad \ZZ_p = \varprojlim_m \ZZ / p^m\ZZ. $$
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:2.24}
@@ -422,7 +412,10 @@ Every element of $ \QQ_p $ other than zero is uniquely of the form $ p^nu $ for 
 If $ \alpha \in \QQ_p $ and $ \alpha \ne 0 $, write $ \abs{\alpha}_p = p^{-n} $ for $ n \in \ZZ $, and set $ u = \alpha p^{-n} $.
 \end{proof}
 
-Hensel's lemma is Newton-Raphson in $ \QQ_p $. A reminder that if $ k $ is any field, and $ f\br{X} \in k\sbr{X} $, then we can define $ f'\br{X}, f''\br{X}, \dots $ formally by $ \tod{}{x}\br{X^n} = nX^{n - 1} $.
+\subsection{Hensel's lemma}
+
+Hensel's lemma is Newton-Raphson in $ \QQ_p $. A reminder that if $ k $ is any field, and $ f\br{X} \in k\sbr{X} $, then we can define $ f'\br{X}, f''\br{X}, \dots $ formally by
+$$ \dod{}{x}\br{X^n} = nX^{n - 1}. $$
 
 \begin{theorem}[Hensel's lemma]
 Let $ k $ be a non-archimedean field with norm $ \abs{\cdot} $ and $ R = \cbr{x \in k \st \abs{x} \le 1} $. For example, $ k = \QQ_p $, $ \abs{\cdot} = \abs{\cdot}_p $, and $ R = \ZZ_p $. Suppose $ f \in R\sbr{X} $, and $ t_0 \in R $ such that $ \abs{f\br{t_0}} < \abs{f'\br{t_0}}^2 $. Then there exists a unique $ t \in R $ such that
@@ -444,6 +437,10 @@ If $ f\br{X} \in R\sbr{X} $ has a simple root $ X = t \in R $, then for any $ t_
 $$ \abs{f'\br{t}} = \abs{f'\br{t_0}}, \qquad \abs{f\br{t_0}} < \abs{f'\br{t_0}}^2. $$
 \end{lemma}
 
+\begin{proof}
+The polynomial $ f'\br{t} - f'\br{t_0} $ is divisible by $ t - t_0 $, so $ \abs{f'\br{t} - f'\br{t_0}} \le \abs{t - t_0} < \abs{f'\br{t}} $, and so $ \abs{f'\br{t}} = \abs{f'\br{t_0}} $. Also using the Taylor expansion around $ t $, $ f\br{t_0} = \br{t_0 - t}f'\br{t} + \br{t_0 - t}^2x $ for some $ x \in R $, and by assumption both of these terms have norm less than $ \abs{f'\br{t}}^2 = \abs{f'\br{t_0}}^2 $.
+\end{proof}
+
 \begin{exercise}
 The equation $ X^2 = 7 $ has a solution in $ \ZZ_3 $. Take $ f\br{X} = X^2 - 7 $. Then $ f'\br{X} = 2X $. So $ \abs{f'\br{X}}_3 = \abs{X}_3 $. So we need to find $ t_0 $ such that $ \abs{t_0^2 - 7}_3 < \abs{t_0}_3^2 $. For example, choose $ t_0 \in \ZZ $ such that $ 3 \nmid t_0 $ and $ t_0^2 \equiv 7 \mod 3 $, for example $ t_0 = 1 $. Hensel's lemma implies that there exists a unique $ t \in \ZZ_3 $ such that $ t^2 = 7 $ and $ \abs{t - 1}_3 < 1 $, that is $ t \equiv 1 \mod 3 $. In the same way, show that there exists a unique $ s \in \ZZ_3 $ such that $ s^2 = 7 $ and $ s \equiv 2 \mod 3 $. In fact $ s = -t $, since $ \br{-t}^2 = t^2 $ and $ X^2 - 7 = \br{X - t}\br{X + t} $.
 \end{exercise}
@@ -453,7 +450,7 @@ Let $ u \in \ZZ_p^\times $. If $ p > 2 $, then $ u $ is a square if and only if 
 \end{corollary}
 
 \begin{proof}
-Exercise. \footnote{Exercise}
+Exercise, using Hensel's lemma. \footnote{Exercise}
 \end{proof}
 
 \pagebreak
@@ -486,9 +483,12 @@ $$ \PP^2\br{\RR} = \cbr{\text{lines from} \ \cbr{y = 1}} \cup \cbr{\text{lines p
 This collection of subsets are called \textbf{projective lines}, which are two-dimensional subspaces in $ \RR^3 $, and points are one-dimensional subspaces in $ \RR^3 $. The set of points at infinity is a projective line, and any affine line $ l \subset \RR^2 $ gives a projective line $ l^\# = l \cup \cbr{\text{parallelism class}} $. Thus any two different projective lines intersect in exactly one point, and this definition makes sense for any field.
 \end{itemize}
 
+\subsection{Projective space}
+
 The following is an equivalent description of $ \PP^2\br{k} $. Let $ k $ be any field. Then
 $$ \PP^2\br{k} = k^3 \setminus \cbr{\underline{0}} / \sim $$
-is the equivalence classes $ \br{x_0, x_1, x_2} $ such that $ x_i \in k $ are not all zero modulo $ \sim $, where $ \underline{x} \sim \underline{y} $ if and only if $ \underline{x} = \lambda \cdot \underline{y} $ for $ \lambda \in k \setminus \cbr{\underline{0}} = k^* $.
+is the equivalence classes $ \br{x_0, x_1, x_2} $ such that $ x_i \in k $ are not all zero modulo $ \sim $, where
+$$ \underline{x} \sim \underline{y} \qquad \iff \qquad \underline{x} = \lambda \cdot \underline{y}, \qquad \lambda \in k \setminus \cbr{\underline{0}} = k^\times. $$
 
 \begin{definition}
 The \textbf{projective $ n $-space} is
@@ -527,6 +527,8 @@ $$ \function{\PP^{n - 1}\br{k}}{\PP^n\br{k} \setminus \phi_n\br{\AA^n\br{k}}}{\s
 The \textbf{points at infinity} of $ \PP^n\br{k} $ are the ones not in $ \phi_n\br{\AA^n\br{k}} $. They are recognisable as the graph of $ X_n = 0 $.
 \end{definition}
 
+\subsection{Homogenisation}
+
 \lecture{6}{Tuesday}{15/10/19}
 
 Let $ \lambda : k^{n + 1} \to k $ be a non-trivial linear function. The image of
@@ -535,7 +537,7 @@ with respect to the quotient map $ k^{n + 1} \setminus \cbr{\underline{0}} \twoh
 
 \begin{definition}
 A polynomial $ F\br{X_0, \dots, X_n} \in k\sbr{X_0, \dots, X_n} $ is \textbf{homogeneous} of degree $ d \in \NN $ if
-$$ F\br{X_0, \dots, X_n} = \sum \alpha_{i_0 \dots i_n}X_0^{i_0} \dots X_n^{i_n}, \qquad i_0 + \dots + i_n = d, $$
+$$ F\br{X_0, \dots, X_n} = \sum_{i_0 + \dots + i_n = d} \alpha_{i_0 \dots i_n}X_0^{i_0} \dots X_n^{i_n}, $$
 so you only have degree $ d $ terms.
 \begin{itemize}
 \item If $ f $ is a degree $ d $ polynomial in $ k\sbr{x_1, \dots, x_n} $, then here is how to \textbf{homogenise} it. Change $ x_i $ to $ X_i $ and then introduce a new variable $ X_0 $ and multiply each term with a suitable power of $ X_0 $ such that the resulting polynomial is homogeneous of the smallest possible degree.
@@ -558,6 +560,8 @@ does not depend on the representative. Homogenisation allows us to extend an alg
 \end{example*}
 
 \pagebreak
+
+\subsection{B\'ezout's theorem}
 
 \begin{theorem}[B\'ezout's theorem]
 If $ F, G \in k\sbr{X_0, X_1, X_2} $ be homogeneous non-zero polynomials of degree $ m $ and $ n $ respectively without common factors, so $ \gcd\br{f, g} = 1 $ up to associates, then
@@ -583,6 +587,8 @@ If $ F $ and $ G $ are two homogeneous polynomials of degree $ a $ and $ b $ in 
 \begin{proof}
 Immediate from B\'ezout applied to $ \overline{k} $.
 \end{proof}
+
+\subsection{Singularities}
 
 \begin{definition}
 Let $ k $ be a field of $ \ch k \nmid d $, and let $ f \in k\sbr{x_1, \dots, x_n} $ be a polynomial of degree $ d > 0 $. Let $ P \in \AA^n\br{k} $ be a point on $ f = 0 $, that is $ f\br{P} = 0 $. Then we say that $ P $ is a \textbf{smooth point} or \textbf{non-singular point} if one of the partial derivatives of $ f $ does not vanish at $ P $, that is if there exists some $ i $ with $ 1 \le i \le n $ such that $ \tpd{f}{x_i}\br{P} = 0 $. Note that the definition of a partial derivative is formal, not a limiting process. We say that $ P $ is a \textbf{singular point} if all the partial derivatives vanish at $ P $.
@@ -689,10 +695,10 @@ Let $ C $ be a conic $ aX^2 + bY^2 + cZ^2 = 0 $ over $ \QQ_p $ such that $ p $ i
 \begin{itemize}
 \item If $ \abs{a}_p, \abs{b}_p, \abs{c}_p = 1 $, then $ C $ is non-singular. As $ a, b, c \in \ZZ_p $, I can reduce the equation modulo $ p $. Pick $ x \ne 0 $, and let
 $$ A = \cbr{ax^2 + by^2 \st y \in \FF_p}. $$
-Assume $ A \subseteq \FF_p^* $, otherwise for some $ y $, $ ax^2 + by^2 + c0^2 = 0 $. If $ ax^2 + by^2 = ax^2 + by'^2 $, then $ y^2 = y'^2 $, so $ y = y' = 0 $ or $ y = -y' \ne 0 $, so $ \abs{A} = \br{p + 1} / 2 $. Let
+Assume $ A \subseteq \FF_p^\times $, otherwise for some $ y $, $ ax^2 + by^2 + c0^2 = 0 $. If $ ax^2 + by^2 = ax^2 + by'^2 $, then $ y^2 = y'^2 $, so $ y = y' = 0 $ or $ y = -y' \ne 0 $, so $ \abs{A} = \br{p + 1} / 2 $. Let
 $$ B = \cbr{-cz^2 \st z \in \FF_p}. $$
 Similarly $ \abs{B} = \br{p + 1} / 2 $. If the equation has no solutions, then $ A \cap B = \emptyset $, so
-$$ p - 1 = \abs{\FF_p^*} \ge \abs{A \cup B} = \abs{A} + \abs{B} = \dfrac{p + 1}{2} + \dfrac{p + 1}{2} = p + 1, $$
+$$ p - 1 = \abs{\FF_p^\times} \ge \abs{A \cup B} = \abs{A} + \abs{B} = \dfrac{p + 1}{2} + \dfrac{p + 1}{2} = p + 1, $$
 a contradiction. Then $ C $ has a point over $ \FF_p $, so it has a non-zero solution by Hensel's lemma. Thus $ C $ has a point over $ \QQ_p $.
 \item If $ \abs{c}_p = 1 / p $ and $ \abs{a}_p, \abs{b}_p = 1 $, then $ C $ is singular, and we could still use Hensel's lemma.
 \end{itemize}
@@ -704,6 +710,8 @@ Let $ C $ be a conic $ aX^2 + bY^2 + cZ^2 = 0 $ over $ \QQ $. I can assume that
 \item $ a, b, c $ are pairwise relatively prime, since if $ p $ is a prime number such that $ p \mid a $ and $ p \mid b $, then $ pa $ and $ pb $ are divisible by $ p^2 $, so I absorb the $ p^2 $ into $ X $ and $ Y $.
 \end{itemize}
 Now just by looking at the signs you can tell whether $ C $ has a solution or not over the reals, and just by looking at the valuations you can tell whether $ C $ has a solution or not over the individual $ p $-adic fields, but what can we say about the solutions of $ C $ over the rationals?
+
+\subsection{Geometry of numbers}
 
 \begin{lemma}
 \label{lem:5.1}
@@ -719,10 +727,8 @@ $$ \chi_X\br{\underline{t}} =
 \end{cases}
 $$
 be the characteristic function of $ X $. Then
-$$ m < \mu\br{U} = \intd{\RR^n}{}{\chi_U\br{\underline{t}}}{\underline{t}} = \sum_{\underline{x} \in \ZZ^n} \intd{\RR^n}{}{\chi_{\br{C + \underline{x}} \cap U}\br{\underline{t}}}{\underline{t}} = \intd{\RR^n}{}{\sum_{\underline{x} \in \ZZ^n} \chi_{\br{C + \underline{x}} \cap U}\br{\underline{t}}}{\underline{t}} = \intd{C}{}{\sum_{\underline{x} \in \ZZ^n} \chi_{C - \underline{x}}\br{\underline{t}}}{\underline{t}}. $$
-The function $ \sum_{\underline{x} \in \ZZ^n} \chi_{C - \underline{x}}\br{\underline{t}} $ is a counting function
-$$ \underline{x} \in C \mapsto \abs{\cbr{\underline{y} \in U \st \underline{x} - \underline{y} \in \ZZ^n}}, $$
-which is an integer-valued measurable function, and if $ \underline{x} < m $ for all points, then its integral over $ C $ is less than $ m $, a contradiction. Thus there exists $ \underline{x} \in C $ such that $ \abs{\underline{x} + \ZZ^n \cap U} > m $.
+$$ m < \mu\br{U} = \intd{\RR^n}{}{\chi_U\br{\underline{t}}}{\underline{t}} = \sum_{\underline{x} \in \ZZ^n} \intd{\RR^n}{}{\chi_{\br{C + \underline{x}} \cap U}\br{\underline{t}}}{\underline{t}} = \intd{\RR^n}{}{\sum_{\underline{x} \in \ZZ^n} \chi_{\br{C + \underline{x}} \cap U}\br{\underline{t}}}{\underline{t}} = \intd{C}{}{\sum_{\underline{x} \in \ZZ^n} \chi_U\br{\underline{t} + \underline{x}}}{\underline{t}}. $$
+The function $ \sum_{\underline{x} \in \ZZ^n} \chi_U\br{\underline{t} + \underline{x}} $ is a counting function $ \underline{t} \in C \mapsto \abs{\cbr{\underline{x} \in U \st \underline{t} - \underline{x} \in \ZZ^n}} $, which is an integer-valued measurable function, and if it is less than $ m $ for all points, then its integral over $ C $ is less than $ m $, a contradiction. Thus there exists $ \underline{t} \in C $ such that $ \abs{\br{\underline{t} + \ZZ^n} \cap U} > m $.
 \end{proof}
 
 \pagebreak
@@ -737,24 +743,26 @@ which is an integer-valued measurable function, and if $ \underline{x} < m $ for
 
 \begin{corollary}[Minkowski's geometry of numbers]
 \label{cor:5.3}
-Let $ \Lambda \subseteq \RR^n $ be a subgroup of finite index $ m $. Let $ U \subseteq \RR^n $ be an open, convex, symmetric set of $ \mu\br{U} > 2^n \cdot m $. Then $ \Lambda \cap U \ne \emptyset $.
+Let $ \Lambda \subseteq \ZZ^n $ be a subgroup of finite index $ m $. Let $ U \subseteq \RR^n $ be an open, convex, symmetric set of $ \mu\br{U} > 2^n \cdot m $. Then $ \Lambda \cap U \ne \cbr{0} $.
 \end{corollary}
 
 \begin{proof}
 Let
-$$ V = \dfrac{1}{2}U = \cbr{\tfrac{1}{2}\underline{x} \st \underline{x} \in U}, $$
-so $ \mu\br{V} = 2^{-n} \cdot \mu\br{U} > m $. So by the Lemma \ref{lem:5.1} there exist $ c_o, \dots, c_m \in V $ such that $ c_i - c_0 \in \ZZ^n $ for all $ i = 0, \dots, m $. By the pigeonhole principle, as
+$$ V = \dfrac{1}{2}U = \cbr{\dfrac{1}{2}\underline{x} \st \underline{x} \in U}. $$
+Then
+$$ \mu\br{V} = 2^{-n} \cdot \mu\br{U} > m. $$
+So by the Lemma \ref{lem:5.1} there exist $ c_0, \dots, c_m \in V $ such that $ c_i - c_0 \in \ZZ^n $ for all $ i = 0, \dots, m $. By the pigeonhole principle, as
 $$ \abs{\cbr{c_i - c_0 \st i = 0, \dots, m}} = m + 1 > \sbr{\ZZ^n : \Lambda}, $$
 there exist $ i \ne j $ such that $ c_i - c_0 \equiv c_j - c_0 \mod \Lambda $, so $ c_i - c_j = \br{c_i - c_0} - \br{c_j - c_0} \in \Lambda $. Then $ 2c_i \in U $, and $ -2c_i \in -U = U $ by symmetry of $ U $, so $ \tfrac{1}{2}\br{2c_i} + \tfrac{1}{2}\br{-2c_j} \in U $, as $ U $ is convex.
 \end{proof}
 
 \begin{theorem}
-If $ n \in \ZZ_{> 0} $ such that there exists $ t $ with $ t^2 \equiv 1 \mod n $, then $ n $ is a sum of two squares.
+If $ n \in \ZZ_{> 0} $ such that there exists $ t $ with $ t^2 \equiv -1 \mod n $, then $ n $ is a sum of two squares.
 \end{theorem}
 
 \begin{proof}
 Define
-$$ \Gamma = \cbr{\br{x, y} \st y \equiv tx \mod n} \subseteq \ZZ^2. $$
+$$ \Lambda = \cbr{\br{x, y} \st y \equiv tx \mod n} \subseteq \ZZ^2. $$
 This has index $ n $, because it is the kernel of
 $$ \function{\ZZ^2}{\ZZ / n\ZZ}{\br{x, y}}{y - tx}. $$
 Let
@@ -765,6 +773,8 @@ Corollary \ref{cor:5.3} implies that there exists $ \br{x, y} \in V \cap \Lambda
 $$ x^2 + y^2 \equiv x^2 + \br{tx}^2 \equiv x^2\br{t^2 + 1} \equiv 0 \mod n. $$
 So $ x^2 + y^2 = n $.
 \end{proof}
+
+\subsection{The Hasse-Minkowski theorem}
 
 \lecture{11}{Monday}{28/10/19}
 
@@ -782,24 +792,28 @@ where $ a, b, c $ are square-free. Let $ \Sigma = \cbr{p \mid 2abc} $. Then the 
 
 The problem of solving conics over $ \QQ $ is algorithmically decidable, so there is a computer program which solves this problem.
 
+\begin{remark}
+Let $ X \subseteq \PP^n\br{\QQ} $ be a projective algebraic variety, such as hypersurfaces or plane curves. The \textbf{local-global principle} holds for $ X $ if $ X\br{\QQ} \ne \emptyset $ if and only if $ X\br{\QQ_p} \ne \emptyset $ for all $ p $ prime number and $ X\br{\RR} \ne \emptyset $. Hasse-Minkowski implies that conics, and all dimensions for all quadratic hypersurfaces, satisfy the local-global principle. Selmer and Chabauty proved that $ 3X^3 + 4Y^3 + 5Z^3 = 0 $ does not.
+\end{remark}
+
 \pagebreak
 
 \begin{proof}
 $ 1 $ implies $ 2 $ implies $ 3 $ implies $ 4 $, and we proved $ 2 $ implies $ 1 $, so $ 4 $ implies $ 2 $ is enough. Assume $ 4 $. Claim that if $ p \mid a $, then there is a solution to
 $$ b + cz^2 \equiv 0 \mod p. $$
 By $ 4 $, there exists $ \br{x, y, z} \in \PP^2\br{\QQ_p} $ with $ ax^2 + by^2 + cz^2 = 0 $. Without loss of generality $ x, y, z \in \ZZ_p $, not all divisible by $ p $. If $ \abs{y}_p < 1 $ then $ cz^2 = -\br{ax^2 + by^2} \equiv 0 \mod p $, so $ \abs{z}_p < 1 $, then $ \abs{ax^2}_p \le 1 / p^2 $, so $ \abs{x}_p < 1 $, a contradiction. So $ \abs{y}_p = 1 $, so $ a\br{x / y}^2 + b + c\br{z / y}^2 = 0 $, with $ x / y, z / y \in \ZZ_p $. Then
-$$ b + c\br{z / y}^2 \equiv 0 \mod p. $$
+$$ b + c\br{\dfrac{z}{y}}^2 \equiv 0 \mod p. $$
 \begin{itemize}
 \item Now assume that $ p $ is odd and $ p \mid a $. Then let $ \alpha \in \ZZ / p\ZZ $ be a solution to $ b + c\alpha^2 \equiv 0 \mod p $, and impose the condition
 $$ \alpha s + t \equiv 0 \mod p. $$
 Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv bs^2 + c\br{\alpha s}^2 \equiv s^2\br{b + c\alpha^2} \equiv 0 \mod p $. If $ p $ is odd and $ p \mid b $ or $ p \mid c $, impose the analogous conditions.
 \item Now assume that $ p = 2 $.
-\begin{itemize}
+\begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
 \item Let $ 2 \mid a $, or by symmetry $ 2 \mid b $ or $ 2 \mid c $. We will write a condition to ensure that $ ar^2 + bs^2 + ct^2 \equiv 0 \mod 8 $. We saw in the proof of the claim that there exist $ x, y, z \in \ZZ_2 $ with $ \abs{x}_2 \le 1 $ and $ \abs{y}_2 = \abs{z}_2 = 1 $, and $ ax^2 + by^2 + cz^2 = 0 $. Then $ ax^2 + by^2 + cz^2 \equiv ax^2 + b + c \mod 8 $, that is $ ax^2 + b + c \equiv 0 \mod 8 $.
 \begin{itemize}
 \item If $ \abs{x}_2 = 1 $, then $ a + b + c \equiv 0 \mod 8 $. Impose
 $$ s \equiv t \mod 4, \qquad r \equiv s \mod 2. $$
-Then either $ r, s, t $ all odd, and $ ar^2 + bs^2 + ct^2 \equiv a + b + c \equiv 0 \mod 8 $, or $ r, s, t $ all even, and $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv 4\br{b + c} \equiv -4a \equiv 0 \mod 8 $.
+Then either $ r, s, t \equiv 1 \mod 2 $, and $ ar^2 + bs^2 + ct^2 \equiv a + b + c \equiv 0 \mod 8 $, or $ r, s, t \equiv 0 \mod 2 $, and $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv 4\br{b + c} \equiv -4a \equiv 0 \mod 8 $.
 \item If $ \abs{x}_2 < 1 $, then $ ax^2 + b + c \equiv b + c \mod 8 $, that is $ b + c \equiv 0 \mod 8 $. Impose
 $$ s \equiv t \mod 4, \qquad r \equiv 0 \mod 2. $$
 Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv bs^2 + cs^2 \equiv \br{b + c}s^2 \equiv 0 \mod 8 $.
@@ -807,23 +821,22 @@ Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv bs^2 + cs^2 \equiv \br{b + c
 \item Let $ 2 \nmid abc $. Let $ \br{x, y, z} \in \PP^2\br{\QQ_2} $ with $ ax^2 + by^2 + cz^2 = 0 $. Assume $ \max\br{\abs{x}_2, \abs{y}_2, \abs{z}_2} = 1 $. Then $ ax^2 + by^2 + cz^2 \equiv 0 \mod 2 $, that is $ x^2 + y^2 + z^2 \equiv 0 \mod 2 $. Then exactly one of $ x, y, z $ is even, without loss of generality $ \abs{x}_2 < 1 $ and $ \abs{y}_2 = \abs{z}_2 = 1 $. Then $ 0 = ax^2 + by^2 + cz^2 \equiv by^2 + cz^2 \equiv b + c \mod 4 $. Impose conditions
 $$ r \equiv 0 \mod 2, \qquad s \equiv t \mod 2. $$
 Then $ ar^2 + bs^2 + ct^2 \equiv bs^2 + ct^2 \equiv \br{b + c}s^2 \equiv 0 \mod 4 $.
-\end{itemize}
+\end{enumerate}
 \end{itemize}
 Let $ \Lambda \subseteq \ZZ^3 $ be the subgroup defined by all of these congruence conditions for $ p \in \Sigma $. Then
 $$ \sbr{\ZZ^3 : \Lambda} = \abs{4abc} = 4\prod_{p \mid abc} p, $$
 using the Chinese remainder theorem. If $ \br{r, s, t} \in \Lambda $ then $ ar^2 + bs^2 + ct^2 \equiv 0 \mod 4abc $. Let
 $$ V = \cbr{\abs{a}X^2 + \abs{b}Y^2 + \abs{c}Z^2 < 4\abs{abc}}. $$
-If $ \br{r, s, t} \in \Lambda \cap V $ then $ \abs{ar^2 + bs^2 + ct^2} < 4\abs{abc} $, so $ ar^2 + bs^2 + ct^2 = 0 $. By Corollary \ref{cor:5.3}, we just need to check that $ \mu\br{V} > 2^3 \cdot \abs{4abc} $, and
-$$ \mu\br{V} = \dfrac{\tfrac{4}{3}\pi\sqrt{\abs{4abc}}^3}{\sqrt{\abs{abc}}} = \dfrac{\pi}{3} \cdot 2^3 \cdot \abs{4abc} > 2^3 \cdot \abs{4abc}. $$
+If $ \br{r, s, t} \in \Lambda \cap V $ then $ \abs{ar^2 + bs^2 + ct^2} < 4\abs{abc} $, so $ ar^2 + bs^2 + ct^2 = 0 $. So by Corollary \ref{cor:5.3}, we just need to check that $ \mu\br{V} > 2^3 \cdot \abs{4abc} $, and
+$$ \mu\br{V} = \dfrac{\tfrac{4}{3}\pi\sqrt{\abs{4abc}}^3}{\sqrt{\abs{abc}}} = \dfrac{\pi}{3} \cdot 2^3 \cdot \abs{4abc} > 2^3 \cdot \abs{4abc}, $$
+as required.
 \end{proof}
-
-\begin{remark}
-Let $ X \subseteq \PP^n\br{\QQ} $ be a projective algebraic variety, such as hypersurfaces or plane curves. The \textbf{local-global principle} holds for $ X $ if $ X\br{\QQ} \ne \emptyset $ if and only if $ X\br{\QQ_p} \ne \emptyset $ for all $ p $ prime number and $ X\br{\RR} \ne \emptyset $. Hasse-Minkowski implies that conics satisfy the local-global principle, but $ 3X^3 + 4Y^3 + 5Z^3 = 0 $ does not.
-\end{remark}
 
 \pagebreak
 
 \section{Plane cubics}
+
+\subsection{Plane cubics}
 
 \lecture{12}{Tuesday}{29/10/19}
 
@@ -842,7 +855,7 @@ A \textbf{plane cubic} is a cubic equation in two variables over a field, such a
 \item $ x^3 + y^3 = 0 $ has lots of points over $ \QQ $, but it is singular, in fact $ x^3 + y^3 = \br{x + y}\br{x^2 - xy + y^2} $.
 \item $ x^3 + y^2 = 0 $ is also singular, and does not factor, even over $ \CC $.
 \item $ x^3 + y^3 = 1 $ has exactly two points over $ \QQ $, namely $ \br{1, 0} $ and $ \br{0, 1} $. This is a special case of Fermat's last theorem, $ a^3 + b^3 = c^3 $, where $ a, b, c \in \ZZ $ implies that $ abc = 0 $. This is a non-singular cubic with finitely many points over $ \QQ $, but not empty.
-\item $ x^3 + y^3 = 9 $ has at least two points over $ \QQ $, $ \br{2, 1} $ and $ \br{1, 2} $.
+\item $ x^3 + y^3 = 9 $ has at least two points over $ \QQ $, $ \br{2, 1} $ and $ \br{1, 2} $. This is non-singular, since $ 3x^2 = 3y^2 = 0 $ implies that $ \br{x, y} = \br{0, 0} $, a contradiction.
 \end{itemize}
 \end{example*}
 
@@ -855,15 +868,15 @@ The \textbf{height} of $ \sbr{x : y : z} \in \PP^2\br{\QQ} $ is $ \abs{z} $ prov
 \begin{example*}
 \hfill
 \begin{itemize}
-\item Height of $ \sbr{-\tfrac{17}{7} : \tfrac{20}{7} : 1} $ is $ 7 $.
-\item Height of $ \sbr{1 : 2 : 1} $ is $ 1 $.
+\item The height of $ \sbr{-\tfrac{17}{7} : \tfrac{20}{7} : 1} $ is $ 7 $.
+\item The height of $ \sbr{1 : 2 : 1} $ is $ 1 $.
 \end{itemize}
 \end{example*}
 
 \begin{proof}
-Non-singular, since $ 3x^2 = 3y^2 = 0 $ implies that $ \br{x, y} = \br{0, 0} $, a contradiction. Draw tangent lines. For example, take the tangent line $ \br{x - 1} + 4\br{y - 2} = 0 $ at $ \br{1, 2} $, so $ 4y + x = 9 $. Then $ y^3 + \br{9 - 4y}^2 = 9 $ is $ -9\br{y - 2}^2\br{7y - 20} = 0 $, so $ \br{x, y} = \br{-17 / 7, 20 / 7} $. If $ \sbr{r : s : t} $ is a point on $ X^3 + Y^3 = 9Z^3 $, then the third point of intersection of the tangent line at $ \sbr{r : s : t} $ with this curve is
+Draw tangent lines. For example, take the tangent line $ \br{x - 1} + 4\br{y - 2} = 0 $ at $ \br{1, 2} $, so $ 4y + x = 9 $. Then $ y^3 + \br{9 - 4y}^3 = 9 $, that is $ -9\br{y - 2}^2\br{7y - 20} = 0 $, so $ \br{x, y} = \br{-\tfrac{17}{7}, \tfrac{20}{7}} $. If $ \sbr{r : s : t} $ is a point on $ X^3 + Y^3 = 9Z^3 $, then the third point of intersection of the tangent line at $ \sbr{r : s : t} $ with this curve is
 $$ \sbr{R : S : T} = \sbr{r\br{r^3 + 2s^3} : -s\br{2r^3 + s^3} : t\br{r^3 - s^3}}. $$
-Claim that the height of $ \sbr{R : S : T} $ is greater than the height of $ \sbr{r : s : t} $. Assume that $ r, s, t \in \ZZ $ are coprime, and $ t > 0 $, so the height of $ \sbr{r : s : t} $ is $ t $. Then $ r^3 + s^3 = 9t^3 $ implies that $ \br{r, s} = \br{s, t} = \br{t, r} = 1 $, by considering any common prime factor, and using that $ 9 $ is not divisible by any cube. Let $ d $ be the GCD of $ R, S, T $. If $ p $ is a prime dividing both $ d $ and $ r $, then $ p \mid S $, so $ p \mid s^4 $, and $ p \mid s $. But $ \br{r, s} = 1 $, so this would be a contradiction, so $ \br{d, r} = 1 $. Since $ d \mid R $, we have $ d \mid \br{r^3 + 2s^3} $. Similarly, $ \br{d, s} = 1 $ and $ d \mid -S $, so $ d \mid \br{2r^3 + s^3} $. So $ d \mid 3\br{r^3, s^3} $, that is $ d \mid 3 $. So $ d \le 3 $, and the height of $ \sbr{R : S : T} $ is at least $ \abs{T / 3} $. So we just have to prove that $ \abs{r^3 - s^3} > 3 $. If not, then $ r, s = 0, \pm 1 $, which contradicts $ r^3 + s^3 = 9t^3 $ unless $ \sbr{r : s : t} = \sbr{1 : -1 : 0} $. The only way that we could reach this point is by starting at a point of the form $ \sbr{R : R : T} $, but then $ 2R^3 = 9T^3 $, which has no solutions.
+Claim that the height of $ \sbr{R : S : T} $ is greater than the height of $ \sbr{r : s : t} $. Assume that $ r, s, t \in \ZZ $ are coprime, and $ t > 0 $, so the height of $ \sbr{r : s : t} $ is $ t $. Then $ r^3 + s^3 = 9t^3 $ implies that $ \br{r, s} = \br{s, t} = \br{t, r} = 1 $, by considering any common prime factor, and using that $ 9 $ is not divisible by any cube. Let $ d $ be the GCD of $ R, S, T $. If $ p $ is a prime dividing both $ d $ and $ r $, then $ p \mid S $, so $ p \mid s^4 $, and $ p \mid s $. But $ \br{r, s} = 1 $, so this would be a contradiction, so $ \br{d, r} = 1 $. Since $ d \mid R $, we have $ d \mid \br{r^3 + 2s^3} $. Similarly, $ \br{d, s} = 1 $ and $ d \mid S $, so $ d \mid \br{2r^3 + s^3} $. So $ d \mid 3\br{r^3, s^3} $, that is $ d \mid 3 $. So $ d \le 3 $, and the height of $ \sbr{R : S : T} $ is at least $ \abs{T / 3} $. So we just have to prove that $ \abs{r^3 - s^3} > 3 $. If not, then $ r, s = 0, \pm 1 $, which contradicts $ r^3 + s^3 = 9t^3 $ unless $ \sbr{r : s : t} = \sbr{1 : -1 : 0} $. The only way that we could reach this point is by starting at a point of the form $ \sbr{R : R : T} $, but then $ 2R^3 = 9T^3 $, which has no solutions.
 \end{proof}
 
 \begin{algorithm}
@@ -882,9 +895,11 @@ If $ C $ is singular then provided that either $ k $ has characteristic zero, or
 By B\'ezout, at most one singular point, and then use Galois theory.
 \end{proof}
 
+\pagebreak
+
 \begin{example}
 \label{eg:6.5}
-The \textbf{cusp} $ y^2 = x^3 $ is singular at $ \br{0, 0} $. Then $ y = tx $ gives $ x = t^2 $ and $ y = t^3 $.
+The \textbf{cusp} $ y^2 = x^3 $, singular at $ \br{0, 0} $. Then $ y = tx $ gives $ x = t^2 $ and $ y = t^3 $.
 \end{example}
 
 \begin{example}
@@ -895,7 +910,7 @@ The \textbf{node} $ y^2 = x^2\br{x + 1} $. Then $ y = tx $ gives $ x = t^2 - 1 $
 
 Lecture 13 is a problems class.
 
-\pagebreak
+\subsection{Group law}
 
 \lecture{14}{Monday}{04/11/19}
 
@@ -920,11 +935,19 @@ Given eight points in general position, there exists a ninth point such that any
 \begin{proof}
 Let $ g $ be a cubic, so
 $$ g = a_1x^3 + a_2x^2 + a_3x + a_4 + a_5y^3 + a_6y^2 + a_7y + a_8x^2y + a_9xy^2 + a_{10}xy. $$
-The condition that my given eight points are contained in $ g = 0 $ gives me eight linear equations in $ a_1, \dots, a_{10} $. The condition of being in general position tells us that these equations are independent, so we have a two-dimensional space of solutions. So there exist cubics $ f_1 $ and $ f_2 $ such that every cubic containing the eight points is of the form $ \lambda_1f_1 + \lambda_2f_2 $ for $ \lambda_1, \lambda_2 \in k $. By B\'ezout, $ \cbr{f_1 = 0} \cap \cbr{f_2 = 0} $ has nine points, and the ninth point of intersection is the point we need.
+The condition that my given eight points are contained in $ g = 0 $ gives me eight linear equations in $ a_1, \dots, a_{10} $. The condition of being in general position tells us that these equations are independent, so we have a two-dimensional space of solutions. So there exist cubics $ f_1 $ and $ f_2 $ such that every cubic containing the eight points is of the form
+$$ \lambda_1f_1 + \lambda_2f_2, \qquad \lambda_1, \lambda_2 \in k. $$
+By B\'ezout, $ \cbr{f_1 = 0} \cap \cbr{f_2 = 0} $ has nine points, and the ninth point of intersection is the point we need.
 \end{proof}
 
 \begin{proof}[Proof of Theorem \ref{thm:6.7}]
-$ P + Q $ is the third point of intersection of the line $ \overrightarrow{\OOO R} $, where $ R $ is the third point of intersection of the line through $ \overrightarrow{PQ} $. If $ P = Q $ take the tangent at $ P $. To see that $ P + Q \in G $, just note that given any two points in $ G $, the third point of intersection has coordinates in $ k $, such as by explicitly solving equations, and must be non-singular, else would have at least $ 2 + 1 + 1 = 4 $ points of intersection with multiplicity. Then $ P + Q = Q + P $ and $ P + \OOO = P $ by definition. Want an inverse $ -P $ such that $ P + \br{-P} = \OOO $. Let $ Q $ be the third point of intersection of the tangent line at $ \OOO $. Then $ -P $ is defined to be the third point of intersection of $ \overrightarrow{PQ} $ with $ f = 0 $. It remains to check that $ \br{P + Q} + R = P + \br{Q + R} $. Unfortunately this is not obvious. We follow Cassels' book, which almost proves it. Let
+$ P + Q $ is the third point of intersection of the line $ \overrightarrow{\OOO R} $, where $ R $ is the third point of intersection of the line through $ \overrightarrow{PQ} $. If $ P = Q $ take the tangent at $ P $.
+\begin{itemize}
+\item To see that $ P + Q \in G $, just note that given any two points in $ G $, the third point of intersection has coordinates in $ k $, such as by explicitly solving equations, and must be non-singular, else would have at least $ 2 + 1 + 1 = 4 $ points of intersection with multiplicity.
+\item $ P + Q = Q + P $ by definition.
+\item $ P + \OOO = P $ by definition.
+\item Want an inverse $ -P $ such that $ P + \br{-P} = \OOO $. Let $ Q $ be the third point of intersection of the tangent line at $ \OOO $. Then $ -P $ is defined to be the third point of intersection of $ \overrightarrow{PQ} $ with $ f = 0 $.
+\item It remains to check that $ \br{P + Q} + R = P + \br{Q + R} $. Unfortunately this is not obvious. We follow Cassels' book, which almost proves it. Let
 $$
 \begin{tikzpicture}[scale=1.5]
 \fill (0, 0) circle (0.05) node[below left]{$ \OOO $};
@@ -944,20 +967,26 @@ $$
 \draw (-2, -0.5) to (-2, 2.5);
 \end{tikzpicture}.
 $$
-Associativity is the statement that $ W_1 = W_2 $. Apply Lemma \ref{lem:6.8} to $ \OOO, P, Q, R, T, V, P + Q, Q + R $. Consider three cubics
+
+\pagebreak
+
+Associativity is the statement that $ W_1 = W_2 $. Apply Lemma \ref{lem:6.8} to
+$$ \OOO, \qquad P, \qquad Q, \qquad R, \qquad T, \qquad V, \qquad P + Q, \qquad Q + R. $$
+Consider three cubics,
 \begin{itemize}
 \item $ f = 0 $,
 \item the three vertical lines, and
 \item the three horizontal lines.
 \end{itemize}
 There exists a unique ninth point $ W $ on all of these cubics. By B\'ezout, the ninth point of intersection of the first two cubics is $ W_1 $, so $ W = W_1 $. Similarly, $ W = W_2 $. So $ W_1 = W_2 $, and $ P + \br{Q + R} = \br{P + Q} + R $.
+\end{itemize}
 \end{proof}
 
 \begin{remark}
 This requires $ \OOO, P, Q, R, T, V, P + Q, Q + R $ are in general position. This is an open condition. The equation $ P + \br{Q + R} = \br{P + Q} + R $ is a closed condition. To make this a complete proof, work in the Zariski topology.
 \end{remark}
 
-\pagebreak
+\subsection{Elliptic curves}
 
 \lecture{15}{Tuesday}{05/11/19}
 
@@ -970,6 +999,7 @@ A \textbf{point of inflexion} is a point $ P $ such that the tangent line to the
 \end{definition}
 
 \begin{lemma}
+\label{lem:6.12}
 If $ \OOO $ is a point of inflexion, then $ P + Q + R = \OOO $ if and only if $ P, Q, R $ are collinear.
 \end{lemma}
 
@@ -998,13 +1028,18 @@ $$ Y^2Z - \br{X^3 + \alpha X^2Z + \beta XZ^2 + \gamma Z^3} = 0. $$
 \end{enumerate}
 \end{proof}
 
+\pagebreak
+
 If $ \ch k \ne 2 $, can always make any elliptic curve into a curve of this form. In general, need $ y^2 + \alpha y + \beta xy = f\br{x} $. If $ \ch k \ne 2, 3 $ then we can complete the cube in $ f\br{x} $, and write
 $$ y^2 = x^3 + ax + b, $$
-since $ x^3 + cx^2 + \dots = \br{x + \tfrac{1}{3}c}^3 + \dots $. Let $ \ch k \ne 2 $. If $ P = \br{x_0, y_0} $, what is $ -P $? The line through $ P $ and $ \OOO $ is $ x = x_0 $, \footnote{Exercise} so
-$$ -P = \br{x_0, -y_0}. $$
-Then $ 2P = \OOO $ if and only if $ P = -P $, if and only if $ y_0 = -y_0 $, if and only if $ y_0 = 0 $. So $ 2P = \OOO $ if and only if $ P = \br{x_0, 0} $ with $ x_0 $ a root of $ f\br{x} $. The \textbf{discriminant} of $ x^3 + ax + b $ is
-$$ 4a^3 + 27b^2. $$
-If $ x^3 + ax + b = \br{x - \alpha}\br{x - \beta}\br{x - \gamma} $, the discriminant is $ \br{\alpha - \beta}^2\br{\beta - \gamma}^2\br{\gamma - \alpha}^2 $. In particular, $ y^2 = x^3 + ax + b $ is an elliptic curve if and only if $ 4a^3 + 27b^2 \ne 0 $. Write $ \Delta = 4a^3 + 27b^2 $. What changes of variable can we make that turn $ y^2 = x^3 + ax + b $ into another equation $ y^2 = x^3 + a'x + b' $? If $ y' = u^3y $ and $ x' = u^2x $ for $ u \ne 0 $, then $ u^6y^2 = u^6x^3 + au^6x + bu^6 $, so $ y'^2 = x'^3 + au^6x + bu^6 $. This takes $ \br{a, b} \leftrightarrow \br{u^4a, u^6b} $ and $ \Delta \leftrightarrow u^{12}\Delta $.
+since $ x^3 + cx^2 + \dots = \br{x + \tfrac{1}{3}c}^3 + \dots $. Let $ \ch k \ne 2 $. If $ P = \br{x_0, y_0} $, what is $ -P $? The line through $ P $ and $ \OOO $ is $ x = x_0 $, so $ -P = \br{x_0, -y_0} $. \footnote{Exercise} Then
+$$ 2P = \OOO \qquad \iff \qquad P = -P \qquad \iff \qquad y_0 = -y_0 \qquad \iff \qquad y_0 = 0 \qquad \iff \qquad P = \br{x_0, 0}, $$
+with $ x_0 $ a root of $ f\br{x} $. The \textbf{discriminant} of $ x^3 + ax + b = \br{x - \alpha}\br{x - \beta}\br{x - \gamma} $ is
+$$ \Delta = \br{\alpha - \beta}^2\br{\beta - \gamma}^2\br{\gamma - \alpha}^2 = 4a^3 + 27b^2. $$
+In particular, $ y^2 = x^3 + ax + b $ is an elliptic curve if and only if $ \Delta \ne 0 $. What changes of variable can we make that turn $ y^2 = x^3 + ax + b $ into another equation $ y^2 = x^3 + a'x + b' $? \footnote{Exercise} If
+$$ y' = u^3y, \qquad x' = u^2x, \qquad u \ne 0, $$
+then $ u^6y^2 = u^6x^3 + au^6x + bu^6 $, so $ y'^2 = x'^3 + au^6x + bu^6 $. This takes
+$$ \br{a, b} \leftrightarrow \br{u^4a, u^6b}, \qquad \Delta \leftrightarrow u^{12}\Delta. $$
 
 \begin{definition}
 The \textbf{$ j $-invariant} of $ y^2 = x^3 + ax + b $ is
@@ -1013,30 +1048,36 @@ $$ -\dfrac{1728\br{4a}^3}{\Delta}. $$
 
 This is invariant under $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $.
 
-\pagebreak
-
 \begin{proposition}
 If $ k $ is algebraically closed, then two elliptic curves are isomorphic if and only if they have the same $ j $-invariant.
 \end{proposition}
 
 \begin{proof}
-Assume $ \ch k \ne 2, 3 $. Suppose that we have two elliptic curves $ y^2 = x^3 + ax + b $ and $ y^2 = x^3 + a'x + b' $. These have the same $ j $-invariants if and only if $ a^3 / \br{4a^3 + 27b^2} = a'^3 / \br{4a'^3 + 27b'^2} $, if and only if $ b^2 / a^3 = b'^2 / a'^3 $. If the two curves are isomorphic, then the $ j $-invariants are equal, as $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ does not change the $ j $-invariant. Conversely, assume $ b^2 / a^3 = b'^2 / a'^3 $, that is $ \br{a' / a}^3 = \br{b' / b}^2 $. Since $ k $ is algebraically closed, there exists $ u $ such that $ u^4 = a' / a $ and $ u^6 = b' / b $. Then the transformation $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ takes $ y^2 = x^3 + ax + b \leftrightarrow y^2 = x^3 + a'x + b' $. Implicitly assumed that $ a, b, a', b' \ne 0 $. More correctly, the equation is $ b^2a'^3 = b'^2a^3 $. If $ a = 0 $ then $ b \ne 0 $, as the curve is non-singular, so $ a' = 0 $, so $ b' \ne 0 $, so just choose $ u^6 = b' / b $. Similarly if $ b = 0 $ then $ a \ne 0 $, so $ b' = 0 $ and $ a' \ne 0 $, and choose $ u^4 = a' / a $.
+Assume $ \ch k \ne 2, 3 $. Suppose that we have two elliptic curves $ y^2 = x^3 + ax + b $ and $ y^2 = x^3 + a'x + b' $. These have the same $ j $-invariants if and only if $ a^3 / \br{4a^3 + 27b^2} = a'^3 / \br{4a'^3 + 27b'^2} $, if and only if
+$$ \dfrac{b^2}{a^3} = \dfrac{b'^2}{a'^3}. $$
+If the two curves are isomorphic, then the $ j $-invariants are equal, as $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ does not change the $ j $-invariant. Conversely, assume $ b^2 / a^3 = b'^2 / a'^3 $, that is $ \br{a' / a}^3 = \br{b' / b}^2 $. Since $ k $ is algebraically closed, there exists $ u $ such that $ u^4 = a' / a $ and $ u^6 = b' / b $. Then the transformation $ \br{x, y} \leftrightarrow \br{u^2x, u^3y} $ takes $ y^2 = x^3 + ax + b \leftrightarrow y^2 = x^3 + a'x + b' $. Implicitly assumed that $ a, b, a', b' \ne 0 $. More correctly, the equation is $ b^2a'^3 = b'^2a^3 $. If $ a = 0 $ then $ b \ne 0 $, as the curve is non-singular, so $ a' = 0 $, so $ b' \ne 0 $, so just choose $ u^6 = b' / b $. Similarly if $ b = 0 $ then $ a \ne 0 $, so $ b' = 0 $ and $ a' \ne 0 $, and choose $ u^4 = a' / a $.
 \end{proof}
+
+\subsection{Examples}
 
 \lecture{16}{Thursday}{07/11/19}
 
 \begin{example}
-Let $ \ch k \ne 2, 3 $, and let $ y^2 = x^3 $ with $ \OOO = \sbr{0 : 1 : 0} $. The non-singular points are all points not equal to $ \br{0, 0} $. Intersect $ y^2 = x^3 $ with a line $ ax + by = 1 $. Then $ x^3 = y^2 = y^2\br{ax + by} $, so $ \br{x / y}^3 = a\br{x / y} + b $. Write $ u = x / y $, so $ u^3 - au - b = 0 $. If the roots of this cubic are $ u_1, u_2, u_3 $, then $ u_1 + u_2 + u_3 = 0 $. Conversely if $ u_1 + u_2 + u_3 = 0 $, then $ u_1, u_2, u_3 $ are the roots of $ u^3 - au - b = 0 $, so $ a = -\br{u_1u_2 + u_2u_3 + u_3u_1} $ and $ b = u_1u_2u_3 $. That is, $ \br{x_1, y_1} + \br{x_2, y_2} + \br{x_3, y_3} = 0 $ if and only if $ x_1 / y_1 + x_2 / y_2 + x_3 / y_3 = 0 $. We get an isomorphism to the group $ \br{k, +} $ by $ \br{x, y} \mapsto x / y $.
+Let $ \ch k \ne 2, 3 $, and let $ y^2 = x^3 $ with $ \OOO = \sbr{0 : 1 : 0} $. The non-singular points are all points not equal to $ \br{0, 0} $. By Lemma \ref{lem:6.12}, $ P + Q + R = \OOO $ if and only if $ P, Q, R $ are collinear. Intersect $ y^2 = x^3 $ with a line $ ax + by = 1 $. Then $ x^3 = y^2 = y^2\br{ax + by} $, so $ \br{x / y}^3 = a\br{x / y} + b $. Write $ u = x / y $, so $ u^3 - au - b = 0 $. If the roots of this cubic are $ u_1, u_2, u_3 $, then $ u_1 + u_2 + u_3 = 0 $. Conversely if $ u_1 + u_2 + u_3 = 0 $, then $ u_1, u_2, u_3 $ are the roots of $ u^3 - au - b = 0 $, so $ a = -\br{u_1u_2 + u_2u_3 + u_3u_1} $ and $ b = u_1u_2u_3 $. That is, $ \br{x_1, y_1} + \br{x_2, y_2} + \br{x_3, y_3} = 0 $ if and only if $ x_1 / y_1 + x_2 / y_2 + x_3 / y_3 = 0 $. We get an isomorphism
+$$ \function{\cbr{y^2 = x^3}}{\br{k, +}}{\br{x, y}}{\dfrac{x}{y}}. $$
 \end{example}
 
+\pagebreak
+
 \begin{example}
-Let $ y^2 = x^2\br{x + 1} $, and let $ u = y + x $ and $ v = y - x $. Then $ x^3 = y^2 - x^2 = \br{y + x}\br{y - x} $ and $ x = \tfrac{1}{2}\br{u - v} $, so $ \br{u - v}^3 = 8uv $. Now take a line $ au + bv = 1 $. Then $ \br{u - v}^3 = 8uv = 8uv\br{au + bv} $. Set $ t = u / v $, so that $ \br{t - 1}^3 = 8t\br{at + b} $. The roots of this cubic are $ t_1, t_2, t_3 $ with $ t_1t_2t_3 = 1 $. So we have an isomorphism to the group $ \br{k^\times, \times} $, given by $ \br{x, y} \mapsto \br{y + x} / \br{y - x} $.
+Let $ y^2 = x^2\br{x + 1} $, and let $ u = y + x $ and $ v = y - x $. Then $ x^3 = y^2 - x^2 = \br{y + x}\br{y - x} $ and $ x = \tfrac{1}{2}\br{u - v} $, so $ \br{u - v}^3 = 8uv $. Now take a line $ au + bv = 1 $. Then $ \br{u - v}^3 = 8uv = 8uv\br{au + bv} $. Set $ t = u / v $, so that $ \br{t - 1}^3 = 8t\br{at + b} $. The roots of this cubic are $ t_1, t_2, t_3 $ with $ t_1t_2t_3 = 1 $. So we have an isomorphism
+$$ \function{\cbr{y^2 = x^2\br{x + 1}}}{\br{k^\times, \times}}{\br{x, y}}{\dfrac{y + x}{y - x}}. $$
 \end{example}
 
 \begin{example}
 Let $ y^2 = x^3 + 1 $, and let $ k = \FF_5 = \ZZ / 5\ZZ $. The discriminant is $ \Delta = 27 \ne 0 $ in $ \FF_5 $. The squares modulo five are $ 0, 1, 4 $, and
 $$
-\begin{array}{c|c|c|c|c|c}
+\begin{array}{c|ccccc}
 x & 0 & 1 & 2 & 3 & 4 \\
 \hline
 y & \pm 1 & \times & \pm 2 & \times & 0
@@ -1076,32 +1117,31 @@ Page 190 of Silverman shows that if $ E\br{L} / 2E\br{L} $ is finite for $ L $ a
 
 Let $ E $ be an elliptic curve over $ \QQ $. The torsion subgroup of $ E\br{\QQ} $ is
 $$ T = \cbr{P \in E\br{\QQ} \st \exists n \ge 1, \ nP = \OOO}. $$
-We will see that this is a finite abelian group, and we will see how to compute it. Write $ E $ as $ y^2 = x^3 + ax + b $ for $ a, b \in \QQ $. Making a change of variables $ \br{x, y} \mapsto \br{u^2x, u^3y} $ for some $ u \in \QQ^\times $, we can send $ \br{a, b} \mapsto \br{u^4a, u^6b} $, and we can assume $ a, b \in \ZZ $.
+We will see that this is a finite abelian group, and we will see how to compute it. Write $ E $ as $ y^2 = x^3 + ax + b $ for $ a, b \in \QQ $. Making a change of variables $ \br{x, y} \mapsto \br{u^2x, u^3y} $ for some $ u \in \QQ^\times $, we can send $ \br{a, b} \mapsto \br{u^4a, u^6b} $, and we can assume $ a, b \in \ZZ $ and $ 4a^3 + 27b^2 \ne 0 $.
 
 \begin{theorem}[Lutz-Nagell]
 \label{thm:7.1}
 Let $ y^2 = x^3 + ax + b $ be an elliptic curve with $ a, b \in \ZZ $. Then the torsion subgroup of $ E\br{\QQ} $ is finite. If $ \br{x, y} $ is in this torsion subgroup, then $ x, y \in \ZZ $. Furthermore either $ y = 0 $ or $ y^2 \mid \br{4a^3 + 27b^2} $.
 \end{theorem}
 
-To do this we need a formula for $ x_d $ and $ y_d $ in terms of $ x $ and $ y $. Write $ P = \br{x_0, y_0} $ and $ 2P = \br{x_d, y_d} $. Then $ -2P = \br{x_d, -y_d} $ is the third point of intersection of the tangent line at $ P $. Let this tangent line be $ y = mx + c $. Differentiating $ y^2 = x^3 + ax + b $, $ m = \br{3x_0^2 + a} / 2y_0 $. We have to solve $ \br{mx + c}^2 = x^3 + ax + b $. This will have roots $ x_0, x_0, x_d $. The sum of the roots of this cubic is $ m^2 $. So
-$$ x_d = m^2 - 2x_0 = \dfrac{\br{3x_0 + a}^2 - 2x_0\br{2y_0}^2}{\br{2y_0}^2}. $$
-Then $ y_0^2 = x_0^3 + ax_0 + b $, so the \textbf{doubling formula} is as follows.
+To do this we need a formula for $ 2P = \br{x_d, y_d} $ in terms of $ P = \br{x, y} $.
 
 \begin{algorithm}[Doubling formula]
+Write $ P = \br{x_0, y_0} $ and $ 2P = \br{x_d, y_d} $. Then $ -2P = \br{x_d, -y_d} $ is the third point of intersection of the tangent line at $ P $. Let this tangent line be $ y = mx + c $. Differentiating $ y^2 = x^3 + ax + b $, $ m = \br{3x_0^2 + a} / 2y_0 $. We have to solve $ \br{mx + c}^2 = x^3 + ax + b $. This will have roots $ x_0, x_0, x_d $. The sum of the roots of this cubic is $ m^2 $. So $ x_d = m^2 - 2x_0 $, and $ y_0^2 = x_0^3 + ax_0 + b $. Thus
+% $$ x_d = m^2 - 2x_0 = \dfrac{\br{3x_0^2 + a}^2 - 2x_0\br{2y_0}^2}{\br{2y_0}^2}. $$
 $$ x_d = \dfrac{x_0^4 - 2ax_0^2 - 8bx_0 + a^2}{4\br{x_0^3 + ax_0 + b}}, \qquad -y_d = mx_d + c. $$
 \end{algorithm}
 
-Similarly, if $ P = \br{x_1, y_1} $, $ Q = \br{x_2, y_2} $, and $ P + Q = \br{x_3, y_3} $, then the \textbf{addition formula} is as follows.
-
-\begin{algorithm}[Addition formula]
-$$ x_3 = \dfrac{-2y_1y_2 + \br{x_1 + x_2}\br{x_1x_2 + a} + 2b}{\br{x_1 - x_2}^2}, \qquad -y_3 = mx_3 + c. $$
-\end{algorithm}
-
 \begin{proof}[Proof of Theorem \ref{thm:7.1}]
-If $ \br{x, y} \in E\br{\QQ} $ is a torsion point, then by Corollary \ref{cor:8.12}, $ x, y \in \ZZ_p $ for all $ p $. So $ x, y \in \ZZ $. If $ \br{x, y} $ is a torsion point, then $ 2\br{x, y} $ is also a torsion point, since $ nP = \OOO $ implies that $ n\br{2P} = 2\br{nP} = 2\OOO = \OOO $. Then if $ 2\br{x, y} = \br{x_d, y_d} $, then $ x_d, y_d \in \ZZ $. We will show that this implies that $ y = 0 $ or $ y^2 \mid \br{4a^3 + 27b^2} $. Suppose that $ \br{x, y} $ is a torsion point and that $ y \ne 0 $. Then we have that $ y^2 \mid \br{3x^2 + a}^2 $ and $ y^2 = x^3 + ax + b $, and
+If $ \br{x, y} \in E\br{\QQ} $ is a torsion point, then by Corollary \ref{cor:8.12}, $ x, y \in \ZZ_p $ for all $ p $. So $ x, y \in \ZZ $. If $ \br{x, y} $ is a torsion point, then $ 2\br{x, y} $ is also a torsion point, since $ nP = \OOO $ implies that $ n\br{2P} = 2\br{nP} = 2\OOO = \OOO $. Then if $ 2\br{x, y} = \br{x_d, y_d} $, then $ x_d, y_d \in \ZZ $. We will show that this implies that $ y = 0 $ or $ y^2 \mid \br{4a^3 + 27b^2} $. Suppose that $ y \ne 0 $. Then we have that $ y^2 \mid \br{3x^2 + a}^2 $ and $ y^2 = x^3 + ax + b $, and
 $$ \br{3x^2 + a}^2\br{3x^2 + 4a} - \br{x^3 + ax + b}\br{27x^3 + 27ax - 27b} = 4a^3 + 27b^2. $$
 So $ y^2 \mid \br{4a^3 + 27b^2} $, as required.
 \end{proof}
+
+\begin{algorithm}[Addition formula]
+If $ P = \br{x_1, y_1} $, $ Q = \br{x_2, y_2} $, and $ P + Q = \br{x_3, y_3} $, then
+$$ x_3 = \dfrac{-2y_1y_2 + \br{x_1 + x_2}\br{x_1x_2 + a} + 2b}{\br{x_1 - x_2}^2}, \qquad -y_3 = mx_3 + c. $$
+\end{algorithm}
 
 \begin{example}
 If $ y^2 = x^3 + 1 $, then $ 4a^3 + 27b^2 = 27 $, so $ y = 0, \pm 1, \pm 3 $, so
@@ -1127,6 +1167,8 @@ This proves that there are infinitely many elements of $ E\br{\QQ} $, that is in
 
 The next aim is to study elliptic curves over $ \QQ_p $ in order to show that torsion points have coordinates in $ \ZZ_p $.
 
+\subsection{Reduction}
+
 \begin{definition}
 Write $ \sbr{a_1 : \dots : a_{n + 1}} $ for some point, where all $ a_i \in \ZZ_p $, and at least one $ a_i \in \ZZ_p^\times $. There is a map
 $$ \function{\PP^n\br{\QQ_p}}{\PP^n\br{\FF_p}}{\sbr{a_1 : \dots : a_{n + 1}}}{\sbr{\overline{a_1} : \dots : \overline{a_{n + 1}}}}, \qquad \overline{a_i} = a_i \mod p, $$
@@ -1136,8 +1178,11 @@ for all $ n $.
 Can also reduce lines in $ \PP^2\br{\QQ_p} $ modulo $ p $. Write any line as $ aX + bY + cZ = 0 $. Rescale so that $ a, b, c \in \ZZ_p $, and at least one is in $ \ZZ_p^\times $. Then $ \overline{a}X + \overline{b}Y + \overline{c}Z = 0 $ is a well-defined line in $ \PP^2\br{\FF_p} $. Let $ y^2 = g\br{x} $, where $ g $ is a monic cubic with distinct roots. Rescaling $ x $ and $ y $ if necessary, assume $ g\br{x} \in \ZZ_p\sbr{x} $. The \textbf{reduction modulo $ p $} of the elliptic curve is then $ y^2 = \overline{g}\br{x} $, where $ \overline{g}\br{x} = g\br{x} \mod p $. This is an irreducible cubic, but it could be singular, if $ p = 2 $ or if $ p \mid \Delta $.
 
 \begin{example}
-Let $ p = 3 $ and $ E $ be $ y^2 = x^3 - 18 $. This is $ y^2 = x^3 \mod 3 $, which has a singular point $ \br{0, 0} $. For example, $ \br{3, 3} \in E\br{\QQ_3} $ is $ \sbr{3 : 3 : 1} \mapsto \sbr{0 : 0 : 1} \mod 3 $, that is to the singular point. There is a point $ \br{x, y} $ on $ E\br{\QQ_3} $ with $ x = \tfrac{1}{9} $, since $ \br{\tfrac{1}{9}}^3 - 18 = \tfrac{1}{27^2}\br{1 - 18 \cdot 27^2} $ is a square, by Hensel's lemma for $ y^2 - \br{1 - 18 \cdot 27^2} $. Then $ y = \tfrac{1}{27}u $ for some $ u \in \ZZ_3^\times $. So $ \sbr{x : y : 1} = \sbr{27x : 27y : 27} = \sbr{3 : u : 27} \mapsto \sbr{0 : \overline{u} : 0} = \sbr{0 : 1 : 0} = \OOO \mod 3 $.
+Let $ p = 3 $ and $ E $ be $ y^2 = x^3 - 18 $. Modulo three, this is $ y^2 = x^3 $, which has a singular point $ \br{0, 0} $. For example, $ \br{3, 3} \in E\br{\QQ_3} $ is $ \sbr{3 : 3 : 1} \mapsto \sbr{0 : 0 : 1} \mod 3 $, that is to the singular point. There is a point $ \br{x, y} $ in $ E\br{\QQ_3} $ with $ x = \tfrac{1}{9} $, since $ \br{\tfrac{1}{9}}^3 - 18 = \tfrac{1}{27^2}\br{1 - 18 \cdot 27^2} $ is a square, by Hensel's lemma for $ y^2 - \br{1 - 18 \cdot 27^2} $. Then $ y = \tfrac{1}{27}u $ for some $ u \in \ZZ_3^\times $. So
+$$ \sbr{x : y : 1} = \sbr{27x : 27y : 27} = \sbr{3 : u : 27} \mapsto \sbr{0 : \overline{u} : 0} = \sbr{0 : 1 : 0} = \OOO \mod 3. $$
 \end{example}
+
+\subsection{A \texorpdfstring{$ p $}{p}-adic filtration}
 
 \begin{lemma}
 \hfill
@@ -1148,7 +1193,8 @@ Let $ p = 3 $ and $ E $ be $ y^2 = x^3 - 18 $. This is $ y^2 = x^3 \mod 3 $, whi
 \end{lemma}
 
 \begin{proof}
-Write $ g\br{x} = x^3 + \alpha x^2 + \beta x + \gamma $ for $ \alpha, \beta, \gamma \in \ZZ_p $.
+Write
+$$ g\br{x} = x^3 + \alpha x^2 + \beta x + \gamma, \qquad \alpha, \beta, \gamma \in \ZZ_p. $$
 \begin{enumerate}
 \item If $ \abs{x_0}_p > 1 $, then $ \abs{x_0^3}_p > \abs{\alpha x_0^2}_p, \abs{\beta x_0}_p, \abs{\gamma}_p $. So $ \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p = \abs{x_0}_p^3 $. Then $ \abs{y_0}_p^2 = \abs{x_0}_p^3 $. If $ \abs{x_0}_p \le 1 $, then $ \abs{y_0}_p^2 = \abs{x_0^3 + \alpha x_0^2 + \beta x_0 + \gamma}_p \le 1 $.
 \item By assumption, $ p \mid \alpha, \beta, \gamma $. So
@@ -1158,15 +1204,22 @@ That is, $ \abs{x_0}_p < 1 $ if and only if $ \abs{y_0}_p < 1 $.
 \end{proof}
 
 \begin{definition}
-Write $ \overline{E} $ for the cubic $ y^2 = \overline{g}\br{x} $ in $ \PP^2\br{\FF_p} $. Let $ E\br{\QQ_p}^{\br{0}} $ be the points $ P $ whose image in $ \overline{E}\br{\FF_p} $ is non-singular. Let $ E\br{\QQ_p}^{\br{1}} $ be the points $ P $ whose image $ \overline{P} $ is $ \OOO \in \overline{E}\br{\FF_p} $. That is, $ E\br{\QQ_p}^{\br{1}} $ is the points $ \br{x, y} $ with $ \abs{x}_p, \abs{y}_p > 1 $.
+Write $ \overline{E} $ for the cubic $ y^2 = \overline{g}\br{x} $ in $ \PP^2\br{\FF_p} $. Let
+$$ E\br{\QQ_p}^{\br{0}} = \cbr{P \in E\br{\QQ_p} \st \overline{P} \in \overline{E}\br{\FF_p} \ \text{is non-singular}}. $$
+Let
+$$ E\br{\QQ_p}^{\br{1}} = \cbr{P \in E\br{\QQ_p} \st \overline{P} = \OOO \in \overline{E}\br{\FF_p}}. $$
+That is,
+$$ E\br{\QQ_p}^{\br{1}} = \cbr{\br{x, y} \in E\br{\QQ_p} \st \abs{x}_p, \abs{y}_p > 1}. $$
 \end{definition}
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:8.5}
 \hfill
 \begin{enumerate}
 \item $ E\br{\QQ_p}^{\br{0}} $ is a subgroup of $ E\br{\QQ_p} $.
-\item Reduction modulo $ p $ is a group homomorphism from $ E\br{\QQ_p}^{\br{0}} $ to the group of non-singular points $ \overline{E}\br{\FF_p} $. The kernel of this homomorphism is $ E\br{\QQ_p}^{\br{1}} $.
+\item Reduction modulo $ p $ is a group homomorphism from $ E\br{\QQ_p}^{\br{0}} $ to the group of non-singular points in $ \overline{E}\br{\FF_p} $. The kernel of this homomorphism is $ E\br{\QQ_p}^{\br{1}} $.
 \end{enumerate}
 \end{lemma}
 
@@ -1182,16 +1235,18 @@ The group law is $ P + Q + R = \OOO $ if and only if $ P, Q, R $ are collinear.
 The homomorphism $ E\br{\QQ_p}^{\br{0}} $ to the non-singular points in $ \overline{E}\br{\FF_p} $ is surjective.
 \end{remark}
 
-\pagebreak
-
-Let $ E\br{\QQ_p}^{\br{n}} $, for $ n \ge 1 $, be the $ \br{x, y} \in E\br{\QQ_p} $ with $ \abs{x}_p \ge p^{2n} $. Say $ \br{x, y} $ has \textbf{level} $ n $ if $ \abs{x}_p = p^{2n} $, so $ \abs{y}_p = p^{3n} $.
+Let
+$$ E\br{\QQ_p}^{\br{n}} = \cbr{\br{x, y} \in E\br{\QQ_p} \st \abs{x}_p \ge p^{2n}}, \qquad n \ge 1. $$
+Say $ \br{x, y} $ has \textbf{level} $ n $ if $ \abs{x}_p = p^{2n} $, so $ \abs{y}_p = p^{3n} $.
 
 \begin{corollary}
 $ E\br{\QQ_p}^{\br{n}} $ is a subgroup of $ E\br{\QQ_p} $ for all $ n $.
 \end{corollary}
 
 \begin{proof}
-Let $ E_n $ be the elliptic curve obtained by the change of variables $ \br{x, y} \mapsto \br{p^{2n}x, p^{3n}y} $. Then we have $ E\br{\QQ_p}^{\br{n + 1}} \xrightarrow{\sim} E_n\br{\QQ_p}^{\br{1}} $, which is a group by Lemma \ref{lem:8.5}.
+Let $ E_n $ be the elliptic curve obtained by the change of variables $ \br{x, y} \mapsto \br{p^{2n}x, p^{3n}y} $. Then we have
+$$ \function{E}{E_n}{\br{x, y}}{\br{p^{2n}x, p^{3n}y}}, $$
+so $ E\br{\QQ_p}^{\br{n + 1}} \xrightarrow{\sim} E_n\br{\QQ_p}^{\br{1}} $, which is a group by Lemma \ref{lem:8.5}.
 \end{proof}
 
 \begin{corollary}
@@ -1200,19 +1255,26 @@ $$ E\br{\QQ_p}^{\br{n}} / E\br{\QQ_p}^{\br{n + 1}} \hookrightarrow \ZZ / p\ZZ. $
 \end{corollary}
 
 \begin{proof}
-The map $ E \to E_n $ takes $ E\br{\QQ_p}^{\br{n}} $ to a subgroup of $ E_n\br{\QQ_p}^{\br{0}} $, and $ E\br{\QQ_p}^{\br{n + 1}} $ to $ E_n\br{\QQ_p}^{\br{1}} $. The curve $ E_n $ reduces to $ y^3 = x^3 $ modulo $ p $. So it suffices to show that if $ E' $ is an elliptic curve with reduction $ y^2 = x^3 $, then we have an injection $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} \hookrightarrow \ZZ / p\ZZ $. But reduction modulo $ p $ is a homomorphism $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} $ to the non-singular points in $ y^2 = x^3 \mod p $. By Example \ref{eg:6.5}, the right hand side is isomorphic to $ \ZZ / p\ZZ $ via $ \br{x, y} \mapsto x / y $.
+The map $ E \to E_n $ takes $ E\br{\QQ_p}^{\br{n}} $ to a subgroup of $ E_n\br{\QQ_p}^{\br{0}} $, and $ E\br{\QQ_p}^{\br{n + 1}} $ to $ E_n\br{\QQ_p}^{\br{1}} $. The curve $ E_n $ reduces to $ y^2 = x^3 \mod p $. So it suffices to show that if $ E' $ is an elliptic curve with reduction $ y^2 = x^3 $, then we have an injection $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} \hookrightarrow \ZZ / p\ZZ $. But reduction modulo $ p $ is a homomorphism $ E'\br{\QQ_p}^{\br{0}} / E'\br{\QQ_p}^{\br{1}} $ to the non-singular points in $ y^2 = x^3 \mod p $. By Example \ref{eg:6.5}, the right hand side is isomorphic to $ \ZZ / p\ZZ $ via $ \br{x, y} \mapsto x / y $.
 \end{proof}
 
 \lecture{19}{Thursday}{14/11/19}
 
+The aim is that $ E\br{\QQ_p}^{\br{1}} $ has no non-trivial torsion points, that is if $ P \in E\br{\QQ_p}^{\br{1}} $ and $ mP = \OOO $ for $ m \ge 1 $, then $ P = \OOO $.
+
 \begin{remark}
-The aim is that $ E\br{\QQ_p}^{\br{1}} $ has no non-trivial torsion points, that is if $ P \in E\br{\QQ_p}^{\br{1}} $ and $ mP = \OOO $ for $ m \ge 1 $, then $ P = \OOO $. The idea is if $ P $ has level $ n $, then $ P = \sbr{x : y : 1} = \sbr{p^{3n}x : p^{3n}y : p^{3n}} $ is close to $ \sbr{0 : 1 : 0} $. We are looking at points which are close to $ \OOO $, and the group law is simpler here. Near the identity in a Lie group, the group law becomes simpler. For example, in $ \GL_2\br{\CC} $,
+The idea is if $ P $ has level $ n $, then $ P = \sbr{x : y : 1} = \sbr{p^{3n}x : p^{3n}y : p^{3n}} $ is close to $ \sbr{0 : 1 : 0} $. We are looking at points which are close to $ \OOO $, and the group law is simpler here. Near the identity in a Lie group, the group law becomes simpler. For example, in $ \GL_n\br{\CC} $,
 $$ \br{1 + \epsilon X}\br{1 + \epsilon Y} = 1 + \epsilon\br{X + Y} + \O\br{\epsilon^2}. $$
 \end{remark}
 
+\subsection{A formal group homomorphism}
+
 Define
 $$ \functions[\u]{E\br{\QQ_p}^{\br{1}}}{p\ZZ_p}{\OOO}{0}{\br{x, y}}{\dfrac{x}{y}}. $$
-If $ \br{x, y} \in E\br{\QQ_p}^{\br{n}} $ then $ \abs{\u\br{x, y}}_p \le p^{-n} $, with equality if $ \br{x, y} $ has level $ n $. Also $ -\u\br{P} = \u\br{-P} $ because $ -\br{x, y} = \br{x, -y} $.
+
+\pagebreak
+
+If $ \br{x, y} \in E\br{\QQ_p}^{\br{n}} $ then $ \abs{\u\br{\br{x, y}}}_p \le p^{-n} $, with equality if $ \br{x, y} $ has level $ n $. Also $ -\u\br{P} = \u\br{-P} $ because $ -\br{x, y} = \br{x, -y} $.
 
 \begin{lemma}
 \label{lem:8.10}
@@ -1221,17 +1283,15 @@ $$ \abs{\u\br{P + Q} - \u\br{P} - \u\br{Q}}_p \le \max\br{\abs{\u\br{P}}_p^5, \a
 \end{lemma}
 
 \begin{proof}
-If $ P, Q, P + Q $ equal $ \OOO $, then the left hand side is equal to zero and we are done. So assume that none of them is equal to zero. Recall that we set $ E_n = \cbr{y^2 = x^3 + p^{4n}a + p^{6n}b} $. Without loss of generality assume that the level of $ Q $ is at least the level of $ P $, and take $ n $ as the level of $ P $. Then the right hand side is $ p^{-5n} $. Let $ R = -\br{P + Q} $, so $ P, Q, R $ are collinear, and let $ P_n, Q_n, R_n $ be the corresponding points on $ E_n $. Since $ P $ has level $ n $, $ P_n \in E_n\br{\QQ_p}^{\br{0}} $ but $ P_n \notin E_n\br{\QQ_p}^{\br{1}} $ and $ Q_n \in E_n\br{\QQ_p}^{\br{0}} $, so $ R_n \in E_n\br{\QQ_p}^{\br{0}} $. Let the line through $ P_n, Q_n, R_n $ be $ lx + my = 1 $. Since this line, when reduced modulo $ p $, does not pass through $ \br{0, 0} $, we have $ l, m \in \ZZ_p $. Then
+If $ P, Q, P + Q $ equal $ \OOO $, then the left hand side is zero and we are done. So assume that none of them is $ \OOO $. Recall that we set $ E_n $ as $ y^2 = x^3 + p^{4n}a + p^{6n}b $. Without loss of generality assume that the level of $ Q $ is at least the level of $ P $, and take $ n $ as the level of $ P $. Then the right hand side is $ p^{-5n} $. Let $ R = -\br{P + Q} $, so $ P, Q, R $ are collinear, and let $ P_n, Q_n, R_n $ be the corresponding points on $ E_n $. Since $ P $ has level $ n $, $ P_n \in E_n\br{\QQ_p}^{\br{0}} $ but $ P_n \notin E_n\br{\QQ_p}^{\br{1}} $ and $ Q_n \in E_n\br{\QQ_p}^{\br{0}} $, so $ R_n \in E_n\br{\QQ_p}^{\br{0}} $. Let the line through $ P_n, Q_n, R_n $ be $ lx + my = 1 $. Since this line, when reduced modulo $ p $, does not pass through $ \br{0, 0} $, we have $ l, m \in \ZZ_p $. Then
 $$ y^2\br{lx + my} = x^3 + p^{4n}ax\br{lx + my}^2 + p^{6n}b\br{lx + my}^3. $$
-Write $ t = x / y $. So
-$$ lt + m = t^3 + p^{4n}at\br{lt + m}^2 + p^{6n}b\br{lt + m}^3. $$
-This equation is a cubic in $ t $, say $ c_0t^3 + c_1t^2 + c_2t + c_3 = 0 $. The sum of the roots of this cubic is $ -c_1 / c_0 $. So
+So
+$$ l\br{\dfrac{x}{y}} + m = \br{\dfrac{x}{y}}^3 + p^{4n}a\br{\dfrac{x}{y}}\br{l\br{\dfrac{x}{y}} + m}^2 + p^{6n}b\br{l\br{\dfrac{x}{y}} + m}^3. $$
+Write $ t = x / y $. This equation is a cubic in $ t $, say $ c_0t^3 + c_1t^2 + c_2t + c_3 = 0 $. The sum of the roots of this cubic is $ -c_1 / c_0 $, where
 $$ c_0 = 1 + p^{4n}al^2 + p^{6n}bl^3 \in \ZZ_p^\times, \qquad c_1 = 2p^{4n}alm + 3p^{6n}bl^2m \in p^{4n}\ZZ_p^\times. $$
 So $ \abs{c_1 / c_0}_p \le p^{-4n} $. But
 $$ \abs{\u\br{P + Q} - \u\br{P} - \u\br{Q}}_p = \abs{\u\br{P} + \u\br{Q} + \u\br{R}}_p = p^{-n}\abs{\dfrac{c_1}{c_0}}_p \le p^{-5n} = \max\br{\abs{\u\br{P}}_p^5, \abs{\u\br{Q}}_p^5}. $$
 \end{proof}
-
-\pagebreak
 
 A reminder that if $ \abs{x}_p \ne \abs{y}_p $ then $ \abs{x + y}_p = \max\br{\abs{x}_p, \abs{y}_p} $. Writing $ x = \br{x + y} + \br{-y} $, deduce that if $ \abs{x + y}_p < \abs{x}_p $, then $ \abs{x}_p = \abs{y}_p $.
 
@@ -1239,7 +1299,7 @@ A reminder that if $ \abs{x}_p \ne \abs{y}_p $ then $ \abs{x + y}_p = \max\br{\a
 \label{cor:8.11}
 \hfill
 \begin{enumerate}
-\item For all $ n \ge 1 $, $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 $ and $ \abs{\u\br{nP}}_p \le \abs{\u\br{P}}_p $.
+\item For all $ n \ge 1 $, $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 $, and $ \abs{\u\br{nP}}_p \le \abs{\u\br{P}}_p $.
 \item If $ p \nmid n $, then $ \abs{\u\br{nP}}_p = \abs{\u\br{P}}_p $.
 \item $ \abs{\u\br{pP}}_p = \abs{p}_p\abs{\u\br{P}}_p $.
 \item For all $ n \ge 1 $, $ \abs{\u\br{nP}}_p = \abs{n}_p\abs{\u\br{P}}_p $.
@@ -1252,7 +1312,7 @@ If $ \br{x, y} \in E\br{\QQ_p} $ is a torsion point, then $ x, y \in \ZZ_p $.
 \end{corollary}
 
 \begin{proof}
-Assume $ nP = \OOO $ and $ P = \br{x, y} $ for $ n \ge 1 $. If $ P \in E\br{\QQ_p}^{\br{1}} $, then we have $ \abs{n}_p\abs{\u\br{P}}_p = \abs{\u\br{nP}}_p = \abs{\u\br{\OOO}}_p = 0 $. So $ \abs{\u\br{P}}_p = 0 $, so $ \u\br{P} = 0 $, so $ P = \OOO $. So $ P \notin E\br{\QQ_p}^{\br{1}} $, so $ x, y \in \ZZ_p $.
+Assume $ nP = \OOO $ for $ P = \br{x, y} $ and $ n \ge 1 $. If $ P \in E\br{\QQ_p}^{\br{1}} $, then we have $ \abs{n}_p\abs{\u\br{P}}_p = \abs{\u\br{nP}}_p = \abs{\u\br{\OOO}}_p = 0 $. So $ \abs{\u\br{P}}_p = 0 $, so $ \u\br{P} = 0 $, so $ P = \OOO $. So $ P \notin E\br{\QQ_p}^{\br{1}} $, so $ x, y \in \ZZ_p $.
 \end{proof}
 
 \begin{corollary}
@@ -1263,17 +1323,19 @@ If $ E\br{\QQ} $ is an elliptic curve of the form $ y^2 = x^3 + ax + b $ for $ a
 $ p \nmid 2\Delta $ implies that $ E\br{\QQ_p}^{\br{0}} = E\br{\QQ_p} $. By Corollary \ref{cor:8.12}, the torsion subgroup of $ E\br{\QQ} $ has trivial intersection with $ E\br{\QQ_p}^{\br{1}} = \ker \br{E\br{\QQ_p} \to \overline{E}\br{\FF_p}} $.
 \end{proof}
 
+\pagebreak
+
 \begin{proof}[Proof of Corollary \ref{cor:8.11}]
 \hfill
 \begin{enumerate}
-\item Induction on $ n $, where $ n = 1 $ is obvious. If the first statement $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 $ holds, then $ \abs{\u\br{nP}}_p \le \abs{\u\br{P}}_p $, otherwise $ \abs{\u\br{nP}}_p > \abs{\u\br{P}}_p $, and then $ \abs{\u\br{P}}_p^5 \ge \abs{\u\br{nP} - n\u\br{P}}_p = \abs{\u\br{nP}}_p > \abs{\u\br{P}}_p $ but $ \abs{\u\br{P}}_p \le 1 / p $, a contradiction. So we just need to assume both statements for $ n $, and deduce the first statement for $ n + 1 $.
+\item Induction on $ n $, where $ n = 1 $ is obvious. If the first statement $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 $ holds, then $ \abs{\u\br{nP}}_p \le \abs{\u\br{P}}_p $, otherwise $ \abs{\u\br{nP}}_p > \abs{\u\br{P}}_p $, and then $ \abs{\u\br{P}}_p^5 \ge \abs{\u\br{nP} - n\u\br{P}}_p = \abs{\u\br{nP}}_p > \abs{\u\br{P}}_p $ but $ \abs{\u\br{P}}_p \le 1 / p $, a contradiction. So we just need to assume both statements for $ n $, and deduce the first statement for $ n + 1 $. By Lemma \ref{lem:8.10},
 \begin{align*}
 \abs{\u\br{\br{n + 1}P} - \br{n + 1}\u\br{P}}_p
 & \le \max\br{\abs{\u\br{\br{n + 1}P} - \u\br{nP} - \u\br{P}}_p, \abs{\u\br{nP} - n\u\br{P}}_p} \\
 & \le \max\br{\abs{\u\br{nP}}_p^5, \abs{\u\br{P}}_p^5}
 = \abs{\u\br{P}}_p^5,
 \end{align*}
-by Lemma \ref{lem:8.10} and induction.
+by induction.
 \item We have $ \abs{n\u\br{P}}_p = \abs{\u\br{P}}_p $ and $ \abs{\u\br{nP} - n\u\br{P}}_p \le \abs{\u\br{P}}_p^5 < \abs{n\u\br{P}}_p $.
 \item Same as $ 2 $, because $ \abs{\u\br{P}}_p^5 < \abs{p}_p\abs{\u\br{P}}_p $.
 \item Induction on $ n $. If $ \br{n, p} = 1 $, then $ 2 $. Otherwise $ \abs{\u\br{nP}}_p = \abs{p}_p\abs{\u\br{\br{n / p}P}}_p $ by $ 3 $, and $ \abs{\u\br{\br{n / p}P}}_p = \abs{n / p}_p\abs{\u\br{P}}_p $ by induction.
@@ -1281,26 +1343,40 @@ by Lemma \ref{lem:8.10} and induction.
 \end{proof}
 
 \begin{remark}
-Just having coefficients in $ \ZZ_p $ is not enough in general, and need to actually be in the special form above. For example $ y^2 + xy = x^3 + 4x + 1 $ is an elliptic curve over $ \QQ_2 $ and $ \br{-\tfrac{1}{4}, \tfrac{1}{8}} $ is a point of order two on this curve even though it has non-integral coefficients. More generally, for an elliptic curve over a finite extension of $ \QQ_p $ there can be torsion if there are elements $ u $ in the maximal ideal with $ \abs{u}^5 > \abs{p} $. The argument shows that there is never any $ n $-torsion in $ E\br{\QQ_p}^{\br{1}} $ if $ p \nmid n $ but there can be $ p $-torsion if one works over a general complete field of characteristic zero such that $ \abs{p} < 1 $.
+Just having coefficients in $ \ZZ_p $ is not enough in general, and need to actually be in the special form above. General elliptic curve is
+$$ y^2 + a_1xy + a_3y = x^3 + a_2x^2 + a_4x + a_6, $$
+and if we are over $ \QQ_p $ for $ p \ge 5 $ and all the $ a_i \in \ZZ $ then completing the square and cube does not introduce any denominators. But $ y^2 + xy = x^3 + 4x + 1 $ is an elliptic curve over $ \QQ_2 $ and $ \br{-\tfrac{1}{4}, \tfrac{1}{8}} $ is a point of order two on this curve even though it has non-integral coefficients. Set $ Y = y + x / 2 $ and then we get $ x^2 / 4 $ which we fix by multiplying $ x $ by four and $ Y $ by eight. More generally, for an elliptic curve over a finite extension of $ \QQ_p $ there can be torsion if there are elements $ u $ in the maximal ideal with $ \abs{u}^5 > \abs{p} $. The argument shows that there is never any $ n $-torsion in $ E\br{\QQ_p}^{\br{1}} $ if $ p \nmid n $ but there can be $ p $-torsion if one works over a general complete field of characteristic zero such that $ \abs{p} < 1 $.
 \end{remark}
 
+\subsection{Example}
+
 \begin{example}
-Let $ y^2 = x^3 + 105^{10^{10}}x + 3 $. Neither $ 5 \mid \Delta $ nor $ 7 \mid \Delta $, where $ \Delta = 4\br{105^{10^{10}}}^3 + 27\br{3}^2 $. Modulo five and seven, $ y^2 = x^3 + 3 $. The squares modulo five are $ 0, 1, 4 $ and modulo seven are $ 0, 1, 2, 4 $. Then
+Let $ y^2 = x^3 + 105^{10^{10}}x + 3 $. Neither five nor seven divides $ \Delta = 4\br{105^{10^{10}}}^3 + 27\br{3}^2 $.
+\begin{itemize}
+\item Modulo five, $ y^2 = x^3 + 3 $. The squares modulo five are $ 0, 1, 4 $, so
 $$
-\begin{array}{c|c|c|c|c|c}
+\begin{array}{c|ccccc}
 x & 0 & 1 & 2 & 3 & 4 \\
 \hline
+x^3 + 3 & 3 & 4 & 1 & 0 & 2 \\
+\hline
 \#y & 0 & 2 & 2 & 1 & 0
-\end{array}
-\mod 5, \qquad
-\begin{array}{c|c|c|c|c|c|c|c}
+\end{array}.
+$$
+Then $ \#E\br{\FF_5} = 5 + 1 = 6 $, so $ E\br{\FF_5} \cong \ZZ / 6\ZZ \cong \ZZ / 2\ZZ \times \ZZ / 3\ZZ $.
+\item Modulo seven, $ y^2 = x^3 + 3 $. The squares modulo seven are $ 0, 1, 2, 4 $, so
+$$
+\begin{array}{c|ccccccc}
 x & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
 \hline
+x^3 + 3 & 3 & 4 & 4 & 2 & 4 & 2 & 2 \\
+\hline
 \#y & 0 & 2 & 2 & 2 & 2 & 2 & 2
-\end{array}
-\mod 7,
+\end{array}.
 $$
-so $ \#E\br{\FF_5} = 5 + 1 = 6 $ and $ \#E\br{\FF_7} = 12 + 1 = 13 $. So $ E\br{\FF_5} \cong \ZZ / 6\ZZ \cong \ZZ / 2\ZZ \times \ZZ / 3\ZZ $ and $ E\br{\FF_7} \cong \ZZ / 13\ZZ $, so the torsion subgroup is just $ \cbr{0} $.
+Then $ \#E\br{\FF_7} = 12 + 1 = 13 $, so $ E\br{\FF_7} \cong \ZZ / 13\ZZ $.
+\end{itemize}
+So the torsion subgroup is just $ \cbr{0} $.
 \end{example}
 
 \lecture{20}{Monday}{18/11/19}
@@ -1315,15 +1391,17 @@ Lecture 20 is a problems class.
 
 The weak Mordell-Weil theorem is that $ E\br{\QQ} / 2E\br{\QQ} $ is a finite group. Assume that $ E $ can be written as
 $$ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3}, \qquad e_1, e_2, e_3 \in \QQ, $$
-if and only if the $ 2 $-torsion subgroup of $ E\br{\QQ} $ has order four, and these are the points $ \OOO, \br{e_1, 0}, \br{e_2, 0}, \br{e_3, 0} $.
+if and only if the $ 2 $-torsion subgroup of $ E\br{\QQ} $ has order four. These are the points $ \OOO, \br{e_1, 0}, \br{e_2, 0}, \br{e_3, 0} $.
+
+\subsection{Example}
 
 \begin{example}
 Let $ y^2 = x^3 - x = x\br{x - 1}\br{x + 1} $.
 \begin{itemize}
 \item Assume $ y \ne 0 $. Write
 $$ x - 1 = au^2, \qquad x = bv^2, \qquad x + 1 = cw^2, \qquad u, v, w \in \QQ, $$
-for $ a, b, c \in \ZZ $ square-free. For example, $ \tfrac{10}{9} = 10\br{\tfrac{1}{3}}^2 $, $ 27 = 3\br{3}^2 $, and $ -5 = -5\br{1}^2 $. Since $ y^2 = abc\br{uvw}^2 $, $ abc $ is a square. If $ p \mid abc $, then $ p $ divides at least two of $ a, b, c $.
-\item Claim that $ a, b, c \in \cbr{\pm 1, \pm 2} $. Need to show that if $ p > 2 $ is prime, then $ p \nmid abc $. If $ \abs{x}_p > 1 $, then $ \abs{x}_p = \abs{x \pm 1}_p $. Then $ \abs{y}_p^2 = \abs{x}_p\abs{x - 1}_p\abs{x + 1}_p = \abs{x}_p^3 $, so $ \abs{x}_p = \abs{x \pm 1}_p = p^{2n} $ for some $ n \ge 1 $. Since $ \abs{a}_p = \abs{x / u^2}_p = \abs{x}_p / \abs{u}_p^2 = \br{p^n / \abs{u}_p}^2 $ for example, $ \abs{a}_p = \abs{b}_p = \abs{c}_p = 1 $, a contradiction. So $ \abs{x}_p \le 1 $. Then $ \abs{x \pm 1}_p \le 1 $, and if $ p \mid abc $, then $ p $ divides at least two of $ x, x - 1, x + 1 $, and the difference of these two is either one or two. So $ p \mid 2 $.
+for $ a, b, c \in \ZZ $ square-free. For example, $ \tfrac{10}{9} = 10\br{\tfrac{1}{3}}^2 $, $ 27 = 3\br{3}^2 $, and $ -5 = -5\br{1}^2 $.
+\item Claim that $ a, b, c \in \cbr{\pm 1, \pm 2} $. Need to show that if $ p > 2 $ is prime, then $ p \nmid abc $. Since $ y^2 = x\br{x - 1}\br{x + 1} = abc\br{uvw}^2 $, $ abc $ is a square. If $ p \mid abc $, then $ p $ divides at least two of $ a, b, c $. If $ \abs{x}_p > 1 $, then $ \abs{x}_p = \abs{x \pm 1}_p $. Then $ \abs{y}_p^2 = \abs{x}_p\abs{x - 1}_p\abs{x + 1}_p = \abs{x}_p^3 $, so $ \abs{x}_p = \abs{x \pm 1}_p = p^{2n} $ for some $ n \ge 1 $. Since $ \abs{b}_p = \abs{x / u^2}_p = \abs{x}_p / \abs{u}_p^2 = \br{p^n / \abs{u}_p}^2 $ for example, $ \abs{a}_p = \abs{b}_p = \abs{c}_p = 1 $, a contradiction. So $ \abs{x}_p \le 1 $. Then $ \abs{x \pm 1}_p \le 1 $, and if $ p \mid abc $, then $ p $ divides at least two of $ x, x - 1, x + 1 $, and the difference of these two is either one or two. So $ p \mid 2 $.
 \item Since $ abc $ is a square, $ c $ is determined by $ a $ and $ b $. For example, if $ a = -1 $ and $ b = -2 $, then $ c = 2 $. So there are at most sixteen possibilities for $ \br{a, b, c} $. Since the product of $ x + 1 > x > x - 1 $ is a square, either all three are positive, or $ x + 1 > 0 > x > x - 1 $. This leaves eight possibilities,
 $$ \br{a, b, c} \in \cbr{\br{1, 1, 1}, \br{1, 2, 2}, \br{2, 1, 2}, \br{2, 2, 1}, \br{-1, -1, 1}, \br{-1, -2, 2}, \br{-2, -1, 2}, \br{-2, -2, 1}}. $$
 \item Assume $ y = 0 $. Then $ \br{0, 0} $ and $ \br{\pm 1, 0} $ are also solutions of $ y^2 = x^3 - x $.
@@ -1332,26 +1410,29 @@ $$ \br{a, b, c} \in \cbr{\br{1, 1, 1}, \br{1, 2, 2}, \br{2, 1, 2}, \br{2, 2, 1},
 \item If $ x = -1 $, then $ -2 = au^2 $ and $ -1 = bv^2 $, so $ a = -2 $ and $ b = -1 $. Similarly, $ c = 2 $.
 \item If $ x = 1 $, then $ 1 = bv^2 $ and $ 2 = cw^2 $, so $ b = 1 $ and $ c = 2 $. Similarly, $ a = 2 $.
 \end{itemize}
-Then
-$$ \br{a, b, c} \in \cbr{\br{2, 1, 2}, \br{-1, -1, 1}, \br{-2, -1, 2}}. $$
+Finally, $ \OOO $ corresponds to $ a = 1 $, $ b = 1 $, and $ c = 1 $, so
+$$ \br{a, b, c} \in \cbr{\br{1, 1, 1}, \br{2, 1, 2}, \br{-1, -1, 1}, \br{-2, -1, 2}}. $$
 \item Claim that there are no solutions to $ y^2 = x^3 - x $ which give $ \br{a, b, c} = \br{1, 2, 2} $. Let $ x - 1 = u^2 $, $ x = 2v^2 $, and $ x + 1 = 2w^2 $, so $ u^2 - 2v^2 = -1 $ and $ 2w^2 - 2v^2 = 1 $. Want to show that these have no solutions with $ u, v, w \in \QQ $. Writing $ u = U / Z $, $ v = V / Z $, and $ w = W / Z $, it is enough to show that there are no non-zero solutions in $ \ZZ $ to $ U^2 - 2V^2 = -Z^2 $ and $ 2W^2 - 2V^2 = Z^2 $. Then $ 2 \mid U, V, W, Z $. Repeating, $ U = V = W = Z = 0 $. Similar arguments work for the other three possibilities.
-\item We will see next time that in fact we have defined a group homomorphism
-$$ \functions[\delta]{E\br{\QQ}}{\cbr{\pm 1, \pm 2}^3}{\br{x, y}}{\br{a, b, c}}{\OOO}{\br{1, 1, 1}}, $$
-where $ \QQ^\times / \br{\QQ^\times}^2 $ is a group, and $ \cbr{\pm 1, \pm 2} = \cbr{\pm\br{\QQ^\times}^2, \pm2\br{\QQ^\times}^2} $ is a subgroup under multiplication. For example, $ \br{2}\br{2} = 1 $, $ \br{2}\br{-2} = -1 $, and $ \br{-2}\br{-2} = -1 $. In particular, the image of $ \delta $ is a subgroup of $ \cbr{\pm 1, \pm 2}^3 $, so it has order a power of two. Then $ \delta\br{2P} = 1 $ for any $ P \in E\br{\QQ} $, because $ \delta\br{2P} = \delta\br{P}^2 = 1 $. In fact, we will show that the induced homomorphism $ E\br{\QQ} / 2E\br{\QQ} \to \cbr{\pm 1, \pm 2}^3 $ is injective. So the calculation we made shows that $ E\br{\QQ} / 2E\br{\QQ} $ has order four.
 \end{itemize}
-In fact $ E\br{\QQ} = \cbr{\OOO, \br{0, 0}, \br{\pm 1, 0}} $.
+We will see next time that in fact we have defined a group homomorphism
+$$ \functions[\delta]{E\br{\QQ}}{\cbr{\pm 1, \pm 2}^3}{\br{x, y}}{\br{a, b, c}}{\OOO}{\br{1, 1, 1}}, $$
+where $ \QQ^\times / \br{\QQ^\times}^2 $ is a group, and $ \cbr{\pm 1, \pm 2} = \cbr{\pm\br{\QQ^\times}^2, \pm2\br{\QQ^\times}^2} $ is a subgroup under multiplication. For example, $ \br{2}\br{2} = 1 $, $ \br{2}\br{-2} = -1 $, and $ \br{-2}\br{-2} = -1 $. In particular, the image of $ \delta $ is a subgroup of $ \cbr{\pm 1, \pm 2}^3 $, so it has order a power of two. Then $ \delta\br{2P} = 1 $ for any $ P \in E\br{\QQ} $, because $ \delta\br{2P} = \delta\br{P}^2 = 1 $. In fact, we will show that the induced homomorphism $ E\br{\QQ} / 2E\br{\QQ} \to \cbr{\pm 1, \pm 2}^3 $ is injective. So the calculation we made shows that $ E\br{\QQ} / 2E\br{\QQ} $ has order four. In fact $ E\br{\QQ} = \cbr{\OOO, \br{0, 0}, \br{\pm 1, 0}} $.
 \end{example}
 
 \pagebreak
+
+\subsection{The \texorpdfstring{$ 2 $}{2}-descent isogeny}
 
 \lecture{22}{Thursday}{21/11/19}
 
 \begin{theorem}
 \label{thm:9.2}
-Let $ K $ be a field of characteristic not equal to two, and let $ E $ be the elliptic curve $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $, for $ e_1, e_2, e_3 \in K $ distinct. Define
+Let $ K $ be a field of characteristic not two, and let $ E $ be the elliptic curve
+$$ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3}, $$
+for $ e_1, e_2, e_3 \in K $ distinct. Define
 $$
 \begin{array}{ccrcl}
-\delta & : & E\br{K} & \longrightarrow & \cbr{K^\times / \br{K^\times}^2}^3 \\
+\delta & : & E\br{K} & \longrightarrow & \br{K^\times / \br{K^\times}^2}^3 \\
 & & \OOO & \longmapsto & \br{1, 1, 1} \\
 & & T_1 = \br{e_1, 0} & \longmapsto & \br{\br{e_1 - e_2}\br{e_1 - e_3}, e_1 - e_2, e_1 - e_3} \\
 & & T_2 = \br{e_2, 0} & \longmapsto & \br{e_2 - e_1, \br{e_2 - e_1}\br{e_2 - e_3}, e_2 - e_3} \\
@@ -1392,25 +1473,20 @@ So the point $ \br{x, -y} $ also lies on the tangent line to $ E $ at $ \br{x_0,
 \end{proof}
 
 \begin{proof}[Proof of Theorem \ref{thm:9.2}]
-Once we know that $ \delta $ is a group homomorphism, then $ 2E\br{K} \subset \ker \delta $, because $ \delta\br{2P} = \delta\br{P}^2 = 1 $. Lemma \ref{lem:9.3} implies that $ \ker \delta \subset 2E\br{K} $. So we have $ 2 $. Need to prove that if $ P_1 + P_2 + P_3 = \OOO $, then $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $. Note that by definition, $ \delta\br{P} = \delta\br{-P} $. Note that by definition, $ \delta\br{P} = \delta\br{-P} $.
-\begin{itemize}
-\item If $ P_1 = P_2 = P_3 = \OOO $, then obvious.
-\item If $ P_1 = \OOO $ and $ P_2 \ne \OOO $, then $ P_2 + P_3 = \OOO $, and
+Once we know that $ \delta $ is a group homomorphism, then $ 2E\br{K} \subset \ker \delta $, because $ \delta\br{2P} = \delta\br{P}^2 = 1 $. Lemma \ref{lem:9.3} implies that $ \ker \delta \subset 2E\br{K} $. So we have $ 2 $. Need to prove that if $ P_1 + P_2 + P_3 = \OOO $, then $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $. Note that by definition, $ \delta\br{P} = \delta\br{-P} $. Note that by definition, $ \delta\br{P} = \delta\br{-P} $. If $ P_1 = P_2 = P_3 = \OOO $, then obvious. If $ P_1 = \OOO $ and $ P_2 \ne \OOO $, then $ P_2 + P_3 = \OOO $, and
 $$ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = \delta\br{P_2}\delta\br{P_3} = \delta\br{P_2}\delta\br{-P_2} = \delta\br{P_2}^2 = 1. $$
-By symmetry assume none of $ P_1, P_2, P_3 $ is equal to $ \OOO $.
+By symmetry assume none of $ P_1, P_2, P_3 $ is $ \OOO $. Otherwise $ P_1, P_2, P_3 $ all lie on some line $ Y = mX + c $. Write $ P_i = \br{x_i, y_i} $.
 
 \pagebreak
 
-\item Otherwise $ P_1, P_2, P_3 $ all lie on some line $ Y = mX + c $. Write $ P_i = \br{x_i, y_i} $.
 \begin{itemize}
 \item Assume firstly that $ 2P_i \ne \OOO $ for $ i = 1, 2, 3 $, that is $ x_i \ne e_1, e_2, e_3 $. Then
 $$ \br{x - x_1}\br{x - x_2}\br{x - x_3} = \br{x - e_1}\br{x - e_2}\br{x - e_3} - \br{mx + c}^2. $$
 Substituting $ x = e_1 $, $ \br{e_1 - x_1}\br{e_1 - x_2}\br{e_1 - x_3} = -\br{me_1 + c}^2 $, that is
 $$ \br{x_1 - e_1}\br{x_2 - e_1}\br{x_3 - e_1} = \br{me_1 + c}^2 \in \br{K^\times}^2. $$
 Similarly $ \br{x_1 - e_2}\br{x_2 - e_2}\br{x_3 - e_2} \in \br{K^\times}^2 $ and $ \br{x_1 - e_3}\br{x_2 - e_3}\br{x_3 - e_3} \in \br{K^\times}^2 $. That is, $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $.
-\item Now assume that one of $ 2P_1, 2P_2, 2P_3 $ is equal to $ \OOO $. Without loss of generality $ P_1 = T_1 = \br{e_1, 0} $. Assume that $ 2P_2, 2P_3 \ne \OOO $. The calculation above shows that $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} \in K^\times / \br{K^\times}^2 \times 1 \times 1 $. By definition, $ \im \delta \subset \cbr{\br{a, b, c} \st abc = 1} $. So $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $ in this case.
+\item Now assume that one of $ 2P_1, 2P_2, 2P_3 $ is $ \OOO $. Without loss of generality $ P_1 = T_1 = \br{e_1, 0} $. Assume that $ 2P_2, 2P_3 \ne \OOO $. The calculation above shows that $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} \in K^\times / \br{K^\times}^2 \times 1 \times 1 $. By definition, $ \im \delta \subset \cbr{\br{a, b, c} \st abc = 1} $. So $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = 1 $ in this case.
 \item Now assume that at least two of $ P_1, P_2, P_3 $ are equal to $ T_1, T_2, T_3 $. The only possibility with $ P_1 + P_2 + P_3 = \OOO $ but $ P_i \ne \OOO $ is $ \cbr{P_1, P_2, P_3} = \cbr{T_1, T_2, T_3} $. Then $ \delta\br{P_1}\delta\br{P_2}\delta\br{P_3} = \delta\br{T_1}\delta\br{T_2}\delta\br{T_3} = 1 $.
-\end{itemize}
 \end{itemize}
 \end{proof}
 
@@ -1423,12 +1499,17 @@ $$ \delta : E\br{K} / 2E\br{K} \xrightarrow{\sim} \im \delta \subset \cbr{\br{a,
 $ \QQ^\times / \br{\QQ^\times}^2 $ is not a finite group, since for each prime $ p $, $ p \in \QQ^\times / \br{\QQ^\times}^2 $, and these are linearly independent, as elements of $ \QQ^\times / \br{\QQ^\times}^2 $, which is an $ \FF_2 $-vector space.
 \end{example*}
 
+\subsection{The weak Mordell-Weil theorem}
+
 \lecture{23}{Monday}{25/11/19}
 
+Let
+$$ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3}, \qquad e_1, e_2, e_3 \in \ZZ. $$
+
 \begin{proposition}
-Let $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_1, e_2, e_3 \in \ZZ $. Then $ \im \delta $ is finite, and more precisely,
-$$ \im \delta \subset \QQ\br{S, 2}^3, $$
-where $ S = \cbr{p \ \text{prime} \st p \mid \br{e_1 - e_2}\br{e_2 - e_3}\br{e_3 - e_1}} $ and $ \QQ\br{S, 2} \subset \QQ^\times / \br{\QQ^\times}^2 $ is the subgroup generated by the elements of $ S $, that is the coset representatives generated by square-free integers only divisible by primes in $ S $.
+$ \im \delta $ is finite, and more precisely,
+$$ \im \delta \subset \QQ\br{S, 2}^3, \qquad S = \cbr{p \ \text{prime} \st p \mid \br{e_1 - e_2}\br{e_2 - e_3}\br{e_3 - e_1}}, $$
+where $ \QQ\br{S, 2} \subset \QQ^\times / \br{\QQ^\times}^2 $ is the subgroup generated by the elements of $ S $, that is the coset representatives generated by square-free integers only divisible by primes in $ S $.
 \end{proposition}
 
 \begin{proof}
@@ -1441,14 +1522,14 @@ We need to show in case $ 2 $ we have $ p \in S $. So suppose that $ 2 $ holds. 
 \end{proof}
 
 \begin{theorem}[Weak Mordell-Weil theorem]
-If $ y^2 = \br{x - e_1}\br{x - e_2}\br{x - e_3} $ for $ e_1, e_2, e_3 \in \ZZ $, then $ E\br{\QQ} / 2E\br{\QQ} $ is finite.
+$ E\br{\QQ} / 2E\br{\QQ} $ is finite.
 \end{theorem}
 
 \begin{proof}
 $ \delta : E\br{\QQ} / 2E\br{\QQ} \hookrightarrow \QQ\br{S, 2}^3 $, and $ \QQ\br{S, 2} $ is finite.
 \end{proof}
 
-In fact $ \#\im \delta \ge 4 $ for any $ E $, because we have four points coming from $ \OOO $ and $ \br{e_i, 0} $ for $ i = 1, 2, 3 $. If $ s = \#S $, so $ s \ge 1 $, because $ 2 \in S $, then $ \#\QQ\br{S, 2} = 2^{s + 1} $. So $ \#\im \delta \le \br{2^{s + 1}}^3 = 8^{s + 1} $. By definition, if $ \delta\br{P} = \br{a, b, c} $, then $ abc = 1 $. So $ \#\im \delta \le \br{2^{s + 1}}^2 = 4^{s + 1} $. Considering the signs of $ x - e_1, x - e_2, x - e_3 $, and the condition that their products is a square, get $ \#\im \delta \le 2^{2s + 1} $.
+In fact $ \#\im \delta \ge 4 $ for any $ E $, because we have four points coming from $ \OOO $ and $ \br{e_i, 0} $ for $ i = 1, 2, 3 $. If $ s = \#S $, so $ s \ge 1 $, because $ 2 \in S $, then $ \#\QQ\br{S, 2} = 2^{s + 1} $. So $ \#\im \delta \le \br{2^{s + 1}}^3 = 8^{s + 1} $. By definition, if $ \delta\br{P} = \br{a, b, c} $, then $ abc = 1 $. So $ \#\im \delta \le \br{2^{s + 1}}^2 = 4^{s + 1} $. Considering the signs of $ x - e_1, x - e_2, x - e_3 $, and the condition that their product is a square, get $ \#\im \delta \le 2^{2s + 1} $.
 
 \begin{corollary}
 $ \#\im \delta \le 2^{1 + 2\#S} $.
@@ -1460,7 +1541,9 @@ Let $ y^2 = x^3 - x $. We saw that $ \im \delta $ has order four.
 
 \pagebreak
 
-Now assume that we know the Mordell-Weil theorem, so that $ E\br{\QQ} \cong T \times \ZZ^r $, where $ T $ is the finite torsion subgroup. Then $ E\br{\QQ} / 2E\br{\QQ} \cong T / 2T \times \br{\ZZ / 2\ZZ}^r $. Then $ \#\im \delta = \#E\br{\QQ} / 2E\br{\QQ} = \#\br{T / 2T} \times 2^r $.
+\subsection{The rank of \texorpdfstring{$ E\br{\QQ} $}{E(Q)}}
+
+Now assume that we know the Mordell-Weil theorem, so that $ E\br{\QQ} \cong T \times \ZZ^r $, where $ T $ is the finite torsion subgroup. Then $ E\br{\QQ} / 2E\br{\QQ} \cong T / 2T \times \br{\ZZ / 2\ZZ}^r $. Then $ \#\im \delta = \#\br{E\br{\QQ} / 2E\br{\QQ}} = \#\br{T / 2T} \times 2^r $.
 
 \begin{lemma}
 For any finite abelian group $ T $, $ \#T / 2T = \#T\sbr{2} $, where $ T\sbr{2} = \cbr{x \in T \st 2x = 0} $.
@@ -1485,11 +1568,9 @@ If $ E $ is $ y^2 = x^3 - x $, then $ 2^r = 4 / 4 = 1 $ so $ r = 0 $. So $ E\br{
 \lecture{24}{Tuesday}{26/11/19}
 
 \begin{example}
-Let $ E $ be
-$$ y^2 = \br{x - 5}\br{x - 6}\br{x + 11}. $$
-Then $ \Delta = \br{-5 - \br{-6}}^2\br{-5 - 11}^2\br{11 - \br{-6}}^2 = 2^817^2 $. Compute $ E\br{\QQ}_{\tors} $ and $ E\br{\QQ} / 2E\br{\QQ} $.
+Let $ E $ be $ y^2 = \br{x - 5}\br{x - 6}\br{x + 11} $. Then $ \Delta = \br{-5 - \br{-6}}^2\br{-5 - 11}^2\br{11 - \br{-6}}^2 = 2^817^2 $. Compute $ E\br{\QQ}_{\tors} $ and $ E\br{\QQ} / 2E\br{\QQ} $.
 \begin{itemize}
-\item The only primes dividing $ \Delta $ are $ 2 $ and $ 17 $. Modulo three, $ y^2 = x\br{x + 1}\br{x - 1} = x^3 - x $. This has solutions $ \br{0, 0}, \br{1, 0}, \br{-1, 0} $ in $ \FF_3 $, so $ E\br{\FF_3} $ has four points, and $ E\br{\FF_3} \cong \br{\ZZ / 2\ZZ}^2 $. Then $ E\br{\QQ}_{\tors} \hookrightarrow E\br{\FF_3} \cong \br{\ZZ / 2\ZZ}^2 $. So
+\item The only primes dividing $ \Delta $ are two and seventeen. Modulo three, $ y^2 = x\br{x + 1}\br{x - 1} = x^3 - x $. This has solutions $ \br{0, 0}, \br{1, 0}, \br{-1, 0} $ in $ \FF_3 $, so $ E\br{\FF_3} $ has four points, and $ E\br{\FF_3} \cong \br{\ZZ / 2\ZZ}^2 $. Then $ E\br{\QQ}_{\tors} \hookrightarrow E\br{\FF_3} \cong \br{\ZZ / 2\ZZ}^2 $. So
 $$ E\br{\QQ}_{\tors} = \cbr{\OOO, \br{5, 0}, \br{6, 0}, \br{-11, 0}}. $$
 \item Let
 $$ \function[\delta]{E\br{\QQ} / 2E\br{\QQ}}{\br{\QQ^\times / \br{\QQ^\times}^2}^2}{\br{x, y}}{\br{x - 5, x - 6, x + 11}, \qquad y \ne 0}. $$
@@ -1505,8 +1586,8 @@ $$
 \end{array}.
 $$
 To find $ \im \delta $, we need to solve the equations
-$$ x - 5 = b_1u^2, \qquad x - 6 = b_2v^2, \qquad x + 11 = b_3w^2, $$
-for $ b_1, b_2, b_3 \in \cbr{\pm 1, \pm 2, \pm 17, \pm 34} $ and $ u, v, w \in \QQ^\times $ such that $ b_1b_2b_3 = 1 $, so
+$$ x - 5 = b_1u^2, \qquad x - 6 = b_2v^2, \qquad x + 11 = b_3w^2, \qquad u, v, w \in \QQ^\times, $$
+where $ b_1, b_2, b_3 \in \cbr{\pm 1, \pm 2, \pm 17, \pm 34} $ such that $ b_1b_2b_3 = 1 $, so
 $$ b_1u^2 - b_2v^2 = 1, \qquad b_1b_2w^2 - b_1u^2 = 16. $$
 For these to have solutions in $ \RR $, need $ b_1b_2 > 0 $. Also, $ \delta\br{\br{5, 0}} = \br{-1, -1} $, so if $ \br{b_1, b_2} \in \im \delta $, then $ \br{-b_1, -b_2} \in \im \delta $. So it suffices to determine which $ \br{b_1, b_2} \in \im \delta $ for $ b_1, b_2 > 0 $.
 
@@ -1525,7 +1606,7 @@ b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
 34 & & & &
 \end{array}.
 $$
-\item If $ \br{b_1, b_2} = \br{1, 2} $, then $ u^2 - 2v^2 = 1 $ and $ 2w^2 - u^2 = 16 $, so $ U^2 - 2V^2 = Z^2 $ and $ 2W^2 - U^2 = 16Z^2 $, so $ 2 \mid U, V, W, Z $, so $ U = V = W = Z = 0 $, a contradiction, so $ \br{1, 2} \notin \im \delta $. Then $ \br{1, 34} = \br{1, 2}\br{1, 17} \notin \im \delta $, so
+\item If $ \br{b_1, b_2} = \br{1, 2} $, then $ u^2 - 2v^2 = 1 $ and $ 2w^2 - u^2 = 16 $, so $ U^2 - 2V^2 = Z^2 $ and $ 2W^2 - U^2 = 16Z^2 $, so $ 2 \mid U, V, W, Z $, so $ U = V = W = Z = 0 $, a contradiction, so $ \br{1, 2} \notin \im \delta $, so $ \br{1, 34} = \br{1, 2}\br{1, 17} \notin \im \delta $. Then
 $$
 \begin{array}{c|cccc}
 b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
@@ -1547,7 +1628,7 @@ b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
 34 & & & &
 \end{array}.
 $$
-\item If $ \br{b_1, b_2} = \br{2, 1} $, then $ 2u^2 - v^2 = 1 $ and $ w^2 - u^2 = 8 $ has a solution $ u = v = 1 $ and $ w = 3 $, so $ \br{2, 1} \in \im \delta $, so $ x - 5 = 2u^2 = 2 $ and $ y^2 = 36 = 6^2 $, so $ \br{x, y} = \br{7, \pm 6} $. Then $ \br{2, 17} = \br{2, 1}\br{1, 17} \in \im \delta $ and $ \br{2, 2}, \br{2, 34}, \br{34, 2}, \br{34, 34} \notin \im \delta $, so
+\item If $ \br{b_1, b_2} = \br{2, 1} $, then $ 2u^2 - v^2 = 1 $ and $ w^2 - u^2 = 8 $ has a solution $ u = v = 1 $ and $ w = 3 $, so $ \br{2, 1} \in \im \delta $, so $ x - 5 = 2u^2 = 2 $ and $ y^2 = 36 = 6^2 $, so $ \br{x, y} = \br{7, \pm 6} $, so $ \br{2, 17} = \br{2, 1}\br{1, 17} \in \im \delta $ and $ \br{2, 2}, \br{2, 34}, \br{34, 2}, \br{34, 34} \notin \im \delta $. Then
 $$
 \begin{array}{c|cccc}
 b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
@@ -1558,7 +1639,7 @@ b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
 34 & & \times & & \times
 \end{array}.
 $$
-\item If $ \br{b_1, b_2} = \br{17, 1} $, then $ 17u^2 - v^2 = 1 $ and $ 17w^2 - 17u^2 = 16 $, so $ 17U^2 - V^2 = Z^2 $ and $ 17W^2 - 17U^2 = 16Z^2 $, so $ 17 \mid U, V, W, Z $, so $ U = V = W = Z = 0 $, a contradiction, so $ \br{17, 1} \notin \im \delta $. Then $ \br{17, 17} = \br{1, 17}\br{17, 1} \notin \im \delta $, so
+\item If $ \br{b_1, b_2} = \br{17, 1} $, then $ 17u^2 - v^2 = 1 $ and $ 17w^2 - 17u^2 = 16 $, so $ 17U^2 - V^2 = Z^2 $ and $ 17W^2 - 17U^2 = 16Z^2 $, so $ 17 \mid U, V, W, Z $, so $ U = V = W = Z = 0 $, a contradiction, so $ \br{17, 1} \notin \im \delta $, so $ \br{17, 17} = \br{1, 17}\br{17, 1} \notin \im \delta $. Then
 $$
 \begin{array}{c|cccc}
 b_1 \backslash b_2 & 1 & 2 & 17 & 34 \\
@@ -1610,11 +1691,18 @@ $ G = \br{\QQ, +} $ and $ G / 2G = \cbr{0} $.
 What we need to show, morally, is that if $ P \in E\br{\QQ} $, then there is a bound on the biggest power of two such that there exists $ Q \in E\br{\QQ} $ with $ 2^nQ = P $. However, if $ P $ is a $ 3 $-torsion point, then $ 4P = P $, so $ 16P = 4\br{4P} = 4P = P $, etc. The idea is to follow what we did for $ x^3 + y^3 = 9 $, and show that usually $ 2P $ is more complicated than $ P $.
 
 \begin{definition}
-Let $ q \in \QQ $, and write $ q = l / m $ for $ l, m \in \ZZ $ and $ \br{l, m} = 1 $. The \textbf{height} of $ q $ is
+Let $ q \in \QQ $, and write $ q = l / m $ for $ l, m \in \ZZ $ such that $ \br{l, m} = 1 $. The \textbf{height} of $ q $ is
 $$ \H\br{q} = \max\br{\abs{l}, \abs{m}}. $$
+\end{definition}
+
+\begin{example*}
+$ \H\br{-\tfrac{3}{5}} = 5 $.
+\end{example*}
+
+\begin{definition}
 If $ \br{x, y} \in E\br{\QQ} $, set
-$$ \H\br{\br{x, y}} = \H\br{x}, $$
-and set
+$$ \H\br{\br{x, y}} = \H\br{x}. $$
+Set
 $$ \h\br{P} =
 \begin{cases}
 \log \H\br{\br{x, y}} & P = \br{x, y} \\
@@ -1623,9 +1711,7 @@ $$ \h\br{P} =
 $$
 \end{definition}
 
-\begin{example*}
-$ \H\br{-\tfrac{3}{5}} = 5 $.
-\end{example*}
+\subsection{The three key lemmas}
 
 \begin{lemma}
 For any $ Q \in E\br{\QQ} $, there exists $ C = C\br{Q} \in \RR $ such that for all $ P \in E\br{\QQ} $,
@@ -1633,7 +1719,7 @@ $$ \h\br{P + Q} \le 2\h\br{P} + C. $$
 \end{lemma}
 
 \begin{proof}
-Without loss of generality $ P \ne \OOO, \pm Q $. If $ Q = \OOO $, then we need to find $ C $ such that $ \h\br{P} \ge -C $ for all $ P $, but $ \h\br{P} = \log \H\br{P} \ge \log 1 = 0 $. So $ C = 0 $ works. So we may assume that $ P, Q \ne \OOO $ and $ P \ne \pm Q $. That is, $ P $ and $ Q $ are distinct, and $ -\br{P + Q} \ne \OOO $. We showed that if $ \br{x, y} \in E\br{\QQ} $ and $ \abs{x}_p > 1 $ for some $ p $, then there exists $ n \ge 1 $ such that $ \abs{x}_p = p^{2n} $ and $ \abs{y}_p = p^{3n} $. Then $ p^{2n}x, p^{3n}y \in \ZZ $, and $ p \nmid p^{2n}x, p^{3n}y $. Thus we can write
+Without loss of generality $ P \ne \OOO, \pm Q $. If $ Q = \OOO $, then we need to find $ C $ such that $ \h\br{P} \ge -C $ for all $ P $, but $ \h\br{P} = \log \H\br{P} \ge \log 1 = 0 $. So $ C = 0 $ works. So we may assume that $ P, Q \ne \OOO $ and $ P \ne \pm Q $. That is, $ P $ and $ Q $ are distinct, and $ -\br{P + Q} \ne \OOO $. We showed that if $ \br{x, y} \in E\br{\QQ} $ and $ \abs{x}_p > 1 $ for some $ p $, then there exists $ n \ge 1 $ such that $ \abs{x}_p = p^{2n} $ and $ \abs{y}_p = p^{3n} $. Then $ p^{2n}x, p^{3n}y \in \ZZ $, and $ p \nmid p^{2n}x, p^{3n}y $. Thus we can write $ \br{x, y} = \br{e / g^2, f / g^2} $ for $ e, f, g \in \ZZ $ such that $ \br{g, ef} = 1 $, by setting $ g = \prod_{\abs{x}_p > 1} p^n $. So we can write
 $$ P = \br{\dfrac{a}{d^2}, \dfrac{b}{d^3}}, \qquad Q = \br{\dfrac{e}{g^2}, \dfrac{f}{g^3}}, \qquad a, b, d, e, f, g \in \ZZ, \qquad \br{d, ab} = \br{g, ef} = 1. $$
 So $ \H\br{P} = \max\br{\abs{a}, d^2} $. Let the line through $ P $ and $ Q $ be $ y = mx + c $. If $ P = \br{x_P, y_P} $ and $ Q = \br{x_Q, y_Q} $, then $ m = \br{y_Q - y_P} / \br{x_Q - x_P} $, and if $ P + Q = \br{x_3, y_3} $, then $ x_P, x_Q, x_3 $ are the three roots of $ \br{mx + c}^2 = x^3 + Ax + B $. So
 $$ x_P + x_Q + x_3 = -m^2 = -\br{\dfrac{y_Q - y_P}{x_Q - x_P}}^2 = \dfrac{\br{x_Q^3 + Ax_Q + B} + \br{x_P^3 + Ax_P + B} - 2y_Py_Q}{\br{x_Q - x_P}^2}, $$
@@ -1646,7 +1732,7 @@ Substituting $ x_P = a / d^2 $ and $ y_P = b / d^3 $, and $ x_Q = e / g^2 $ and 
 $$ N = \br{2Bd^4 + Aad^2}g^4 + \br{Aed^4 + ea^2}g^2 - 2bfdg + e^2ad^2, \qquad D = a^2g^4 - 2ead^2g^2 + e^2g^4, $$
 so $ \H\br{P + Q} = \H\br{x_3} \le \max\br{\abs{N}, \abs{D}} $. Since $ Q = \br{e / g^2, f / g^3} $ is fixed, so are $ e, f, g $, as are $ A $ and $ B $. Want $ \h\br{P + Q} \le 2\h\br{P} + C $, that is $ \H\br{P + Q} \le \H\br{P}^2e^C $. That is, it suffices to prove
 $$ \max\br{\abs{N}, \abs{D}} \le K\max\br{a^2, d^4}, $$
-for some $ K > 0 $ independent of $ a, b, d $. Every term in $ N $ or $ D $ can be bounded by $ K'\max\br{a^2, d^4} $, except $ -2bfdg $. To deal with this term, since $ \br{a / d^2, b / d^3} \in E\br{\QQ} $, we have $ \br{b / d^3}^2 = \br{a / d^2}^3 + A\br{a / d^2} + B $. That is $ b^2d^2 = a^3d^2 + Aad^6 + Bd^8 \le K''^2\max\br{a^2, d^4}^2 $, that is $ bd \le K''\max\br{a^2, d^4} $, as required.
+for some $ K > 0 $ independent of $ a, b, d $. Every term in $ N $ or $ D $ can be bounded by $ K'\max\br{a^2, d^4} $, except $ -2bfdg $. To deal with this term, since $ \br{a / d^2, b / d^3} \in E\br{\QQ} $, we have $ \br{b / d^3}^2 = \br{a / d^2}^3 + A\br{a / d^2} + B $, that is $ b^2 = a^3 + Aad^4 + Bd^6 $. That is, $ b^2d^2 = a^3d^2 + Aad^6 + Bd^8 \le K''^2\max\br{a^2, d^4}^2 $, that is $ bd \le K''\max\br{a^2, d^4} $, as required.
 \end{proof}
 
 \lecture{27}{Tuesday}{03/12/19}
@@ -1656,12 +1742,10 @@ There exists $ D \in \RR $, depending only on $ E $, such that for all $ P \in E
 $$ \h\br{2P} \ge 4\h\br{P} - D. $$
 \end{lemma}
 
+\begin{proof}
 If $ P = \br{x_0, y_0} $, then the tangent at $ P $ is $ y = mx + c $, where $ m = \br{3x_0^2 + A} / 2y_0 $. If $ 2P = \br{x_d, y_d} $, then
 $$ x_d = m^2 - 2x_0 = \dfrac{x_0^4 - 2Ax_0^2 - 8Bx_0 + A^2}{4\br{x_0^3 + Ax_0 + B}}, $$
-since $ y_0^2 = x_0^3 + Ax_0 + B $.
-
-\begin{proof}
-Write $ x_0 = s / t $ for $ \br{s, t} = 1 $, so $ \H\br{P} = \max\br{\abs{s}, \abs{t}} $ and $ x_d = f / g $, where
+since $ y_0^2 = x_0^3 + Ax_0 + B $. Write $ x_0 = s / t $ such that $ \br{s, t} = 1 $, so $ \H\br{P} = \max\br{\abs{s}, \abs{t}} $ and $ x_d = f / g $, where
 $$ f = s^4 - 2As^2t^2 - 8Bst^3 + A^2t^4, \qquad g = 4\br{s^3t + Ast^3 + Bt^4}. $$
 Then
 $$ Cf + Dg = \br{16A^3 + 108B^2}t^7 = 4\Delta t^7, $$
@@ -1672,11 +1756,11 @@ $$ Ef + Fg = \br{16A^3 + 108B^2}s^7 = 4\Delta s^7, $$
 where
 $$ E = 4\br{4A^3 + 27B^2}s^3 - 4A^2Bs^2t + 4A\br{3A^3 + 22B^2}st^2 + 12B\br{A^3 + 8B^2}t^3 \in \ZZ\sbr{s, t}, $$
 $$ F = A^2Bs^3 + A\br{5A^3 + 32B^2}s^2t + 2B\br{13A^3 + 96B^2}st^2 - 3A^2\br{A^3 + 8B^2}t^3 \in \ZZ\sbr{s, t} $$
-are homogeneous of degree three. In particular, $ \br{f, g} \mid \br{4\Delta s^7, 4\Delta t^7} = 4\Delta $, which only depends on $ E $. So $ \H\br{2P} \ge \max\br{\abs{f}, \abs{g}} / 4\Delta $. Want $ \h\br{2P} \ge 4\h\br{P} - D $, that is $ \H\br{2P} \ge \H\br{P}^4e^{-D} $, that is
+are homogeneous of degree three. In particular, $ \br{f, g} \mid \br{4\Delta s^7, 4\Delta t^7} = 4\Delta $, which only depends on $ E $. So $ \H\br{2P} \ge \max\br{\abs{f}, \abs{g}} / 4\Delta $. Want $ \h\br{2P} \ge 4\h\br{P} - D $, that is $ \H\br{2P} \ge \H\br{P}^4e^{-D} $. That is,
 $$ \H\br{P}^4 \le K\H\br{2P}, $$
 for some $ K $. Then
-$$ \abs{t}^7 = \dfrac{1}{4\Delta}\abs{Cf + Dg} \le \dfrac{1}{4\Delta}\br{\abs{C}\abs{f} + \abs{D}\abs{g}} \le K'\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}}. $$
-Similarly $ \abs{s}^7 \le K''\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}} $. So $ \max\br{\abs{s}, \abs{t}}^7 \le K''\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}} $, that is $ \max\br{\abs{s}, \abs{t}}^4 \le K''\max\br{\abs{f}, \abs{g}} $, that is $ \H\br{P}^4 \le K''\H\br{2P} $.
+$$ \abs{t}^7 = \dfrac{1}{4\Delta}\abs{Cf + Dg} \le \dfrac{1}{4\Delta}\br{\abs{C}\abs{f} + \abs{D}\abs{g}} \le K'\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}}, $$
+for $ K' $ some constant. Similarly $ \abs{s}^7 \le K''\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}} $ for $ K'' $ some constant. So $ \max\br{\abs{s}, \abs{t}}^7 \le K'''\max\br{\abs{s}, \abs{t}}^3\max\br{\abs{f}, \abs{g}} $ for some $ K''' $, that is $ \max\br{\abs{s}, \abs{t}}^4 \le K'''\max\br{\abs{f}, \abs{g}} $, that is $ \H\br{P}^4 \le K\H\br{2P} $ for some $ K $.
 \end{proof}
 
 \begin{lemma}
@@ -1688,6 +1772,8 @@ $ \h\br{P} \le K $ if and only if $ \H\br{P} \le e^K $, if and only if $ P = \br
 \end{proof}
 
 \pagebreak
+
+\subsection{The height machine}
 
 \begin{proposition}
 Let $ A $ be an abelian group and $ h : A \to \RR $. Assume that
@@ -1708,8 +1794,8 @@ $$ A / 2A = \cbr{\overline{Q_1}, \dots, \overline{Q_r}}, \qquad \overline{Q_i} =
 by $ 4 $. Let $ C_1 = \max C\br{Q_i} $. Let $ C_2 = \br{C_1 + D} / 2 $. Let
 $$ S = \cbr{a \in A \st h\br{a} \le C_2} \cup \cbr{Q_1, \dots, Q_r}. $$
 Then $ S $ is finite, by $ 3 $. We will prove that $ S $ generates $ A $. Let $ B $ be the subgroup of $ A $ generated by $ S $. Take $ P_0 \in A $ arbitrary. By the definition of the $ Q_i $, we can write
-$$ P_{j - 1} = 2P_j - Q_{i_j}, \qquad 1 \le i_j \le r. $$
-For each $ j $,
+$$ P_0 = 2P_1 - Q_{i_1}, \qquad P_1 = 2P_2 - Q_{i_2}, \qquad \dots, $$
+for some $ 1 \le i_1, i_2, \dots \le r $. For each $ j $,
 \begin{align*}
 h\br{P_j}
 & \le \dfrac{h\br{2P_j} + D}{4}
@@ -1718,7 +1804,7 @@ h\br{P_j}
 = \dfrac{h\br{P_{j - 1}} + C_2}{2} & \text{by} \ 1.
 \end{align*}
 In particular if $ h\br{P_{j - 1}} > C_2 $, then $ h\br{P_j} < h\br{P_{j - 1}} $. If $ h\br{P_j} > C_2 $ for all $ j $, then we would have $ h\br{P_0} > h\br{P_1} > \dots $. This contradicts the finiteness of $ \cbr{a \in A \st h\br{a} \le h\br{P_0}} $. So there exists $ j $ such that $ h\br{P_j} \le C_2 $, that is $ P_j \in S $. Then
-$$ P_{k - 1} = 2P_k - Q_{i_k} \in B, \qquad j \ge k \ge 1. $$
+$$ P_{j - 1} = 2P_j - Q_{i_j} \in B, \qquad P_{j - 2} = 2P_{j - 1} - Q_{i_{j - 1}} \in B, \qquad \dots. $$
 Then by descending induction on $ j $, $ P_0 \in B $, so $ A = B $, as required.
 \end{proof}
 
@@ -1748,22 +1834,22 @@ $ \abs{\#E\br{\FF_p} - \br{p + 1}} < 2\sqrt{p} $.
 
 What more can we say about $ \#E\br{\FF_p} $?
 $$
-\begin{array}{c|c|c}
+\begin{array}{ccc}
 p = 3 & p = 5 & p = 7 \\
 & & \\
-\begin{array}{c|c|c|c}
+\begin{array}{c|ccc}
 x & 0 & 1 & 2 \\
 \hline
 \#\br{x, y} & 1 & 1 & 1
 \end{array}
 \quad & \quad
-\begin{array}{c|c|c|c|c|c}
+\begin{array}{c|ccccc}
 x & 0 & 1 & 2 & 3 & 4 \\
 \hline
 \#\br{x, y} & 1 & 1 & 2 & 2 & 1
 \end{array}
 \quad & \quad
-\begin{array}{c|c|c|c|c|c|c|c}
+\begin{array}{c|ccccccc}
 x & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
 \hline
 \#\br{x, y} & 1 & 1 & 0 & 0 & 2 & 2 & 1
@@ -1775,7 +1861,7 @@ x & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
 $$
 Let $ \a_p = p + 1 - \#E\br{\FF_p} $, so $ \a_p / 2\sqrt{p} \in \br{-1, 1} $. Then
 $$
-\begin{array}{c|c|c|c|c|c|c}
+\begin{array}{c|cccccc}
 p & 3 & 5 & 7 & 11 & 13 & 17 \\
 \hline
 \a_p & 0 & -2 & 0 & 0 & 6 & 2
@@ -1785,10 +1871,10 @@ $$
 If $ p \equiv 3 \mod 4 $, then $ -1 $ is not a quadratic residue modulo $ p $, that is not a square modulo $ p $. So if $ x^3 - x \ne 0 $, then exactly one of $ x^3 - x $ and $ \br{-x}^3 - \br{-x} = -\br{x^3 - x} $ is a square.
 
 \begin{proposition}
-If $ p \equiv 3 \mod 4 $, then the number of points $ x = x_0, -x_0 $ is exactly two for any $ x_0 \ne 0 $.
+If $ p \equiv 3 \mod 4 $, then the number of points $ x = \pm x_0 $ is exactly two for any $ x_0 \ne 0 $.
 \end{proposition}
 
-If $ p \equiv 1 \mod 4 $, then we can write $ p = a^2 + b^2 $ for some $ a $ and $ b $. Fix $ a $ and $ b $ by demanding $ a + ib \equiv -1 \mod \br{1 + i}^3 $. For example, if $ p = 5 = 2^2 + 1^2 $, then $ \cbr{a, b} = \cbr{\pm 1, \pm 2} $, so $ a = -1 $ and $ b = 2 $.
+If $ p \equiv 1 \mod 4 $, then we can write $ p = a^2 + b^2 $ for some $ a $ and $ b $. Fix $ a $ and $ b $ by demanding $ a + ib \equiv 1 \mod \br{1 + i}^3 $. For example, if $ p = 5 = 2^2 + 1^2 $, then $ \cbr{a, b} = \cbr{\pm 1, \pm 2} $, so $ a = -1 $ and $ b = 2 $.
 
 \begin{proposition}
 If $ p \equiv 1 \mod 4 $, then $ \a_p = 2a $.
@@ -1802,14 +1888,14 @@ Over all CM elliptic curves, $ \P\br{0} = \tfrac{1}{2} $, and if $ x \ne 0 $, th
 $$ \P\br{x} = \dfrac{1}{2\pi\sqrt{1 - x^2}}. $$
 \end{theorem}
 
-\begin{theorem}[Sato-Tate conjecture, Clozel-Harris-Shepherd-Barron-Taylor 2008]
+\begin{theorem}[Sato-Tate conjecture 1960, Clozel-Harris-Shepherd-Barron-Taylor 2008]
 Over all non-CM elliptic curves,
 $$ \P\br{x} = \dfrac{2}{\pi}\sqrt{1 - x^2}. $$
 \end{theorem}
 
 Let $ E $ be $ y^2 + y = x^3 - x^2 $, the \textbf{first elliptic curve in nature}. Then $ E\br{\QQ} = \ZZ / 5\ZZ = \abr{\br{0, 0}} $ and $ \Delta = -11 $. If $ p \ne 11 $, then $ E $ defines an elliptic curve over $ \FF_p $. Computing $ \a_p $,
 $$
-\begin{array}{c|c|c|c|c|c|c}
+\begin{array}{c|cccccc}
 p & 2 & 3 & 5 & 7 & 13 & 17 \\
 \hline
 \a_p & -2 & -1 & 1 & -2 & 4 & -2
@@ -1822,10 +1908,10 @@ f\br{z}
 & = q - 2q^2 - q^3 + 2q^4 + q^5 + 2q^6 - 2q^7 - 2q^9 \\
 & - 2q^{10} + q^{11} - 2q^{12} + 4q^{13} + 4q^{14} - q^{15} - 4q^{16} - 2q^{17} + \dots.
 \end{align*}
-Then $ f\br{z} $ is a holomorphic function, $ f\br{z + 1} = f\br{z} $, and $ f\br{-1 / 11z} = \br{11z}^2f\br{z} $, so $ f $ is a \textbf{modular form of level $ \Gamma_0\br{11} $ and weight two}.
+which converges, so $ f\br{z} $ is a holomorphic function. Then $ f\br{z + 1} = f\br{z} $, and $ f\br{-1 / 11z} = \br{11z}^2f\br{z} $, so $ f $ is a \textbf{modular form of level $ \Gamma_0\br{11} $ and weight two}.
 
-\begin{theorem}[Modularity of elliptic curves, Wiles 1995 and Breuil-Conrad-Diamond-Taylor 2001]
-For every elliptic curve $ E $ over $ \QQ $, there exists a corresponding weight two modular form $ f_E = q + b_2q^2 + b_3q^2 + \dots $, such that $ b_p = \a_p $.
+\begin{theorem}[Modularity of elliptic curves 1957, Wiles 1995 and Breuil-Conrad-Diamond-Taylor 2001]
+For each elliptic curve $ E $ over $ \QQ $, there exists a corresponding weight two modular form $ f_E = q + b_2q^2 + b_3q^2 + \dots $, such that $ b_p = \a_p $.
 \end{theorem}
 
 \lecture{29}{Monday}{09/12/19}
@@ -1848,8 +1934,8 @@ How large can the torsion subgroup be? Is there any bound on the order of the to
 
 \begin{theorem}[Mazur 1977]
 For any $ E\br{\QQ} $, the torsion subgroup is of the form
-$$ 0, \qquad \ZZ / 2\ZZ, \qquad \ZZ / 3\ZZ, \qquad \ZZ / 4\ZZ, \qquad \ZZ / 5\ZZ, \qquad \ZZ / 6\ZZ, \qquad \ZZ / 7\ZZ, \qquad \ZZ / 8\ZZ, \qquad \ZZ / 9\ZZ, \qquad \ZZ / 10\ZZ, $$
-$$ \ZZ / 12\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 2\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 4\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 6\ZZ, \qquad \ZZ / 2\ZZ \times \ZZ / 8\ZZ. $$
+$$ \ZZ / N\ZZ, \qquad 1 \le N \le 10, \qquad \ZZ / 12\ZZ, $$
+$$ \ZZ / 2\ZZ \times \ZZ / 2N\ZZ, \qquad 1 \le N \le 4. $$
 \end{theorem}
 
 Is the same true for the rank? Heuristically, if the rank of $ E\br{\QQ} $ is large, then $ \#E\br{\FF_p} $ is also large.
@@ -1868,13 +1954,13 @@ Then $ \zeta\br{s} $ has a meromorphic continuation to $ \CC $ and a simple pole
 \begin{definition}
 The \textbf{$ \L $-function} of $ E\br{\QQ} $ is
 $$ \L\br{E, s} = \sum_{n = 1}^\infty \dfrac{\a_n}{n^s} = \prod_{p \nmid \Delta \ \text{prime}} \dfrac{1}{1 - \a_pp^{-s} + p^{1 - 2s}}\prod_{p \mid \Delta \ \text{prime}} \dfrac{1}{1 - \a_pp^{-s}}, $$
-where $ \a_p $ are as above, and $ \a_{p^n} = 1 + p^n - \#E\br{\FF_p} $.
+where $ \a_p $ are as above, and $ \a_{p^n} = 1 + p^n - \#E\br{\FF_{p^n}} $.
 \end{definition}
 
 Then $ \L\br{E, s} $ converges for $ \Re s > \tfrac{3}{2} $, which follows from $ \abs{\a_p} < 2\sqrt{p} $.
 
 \begin{theorem}[Hasse-Weil conjecture]
-$ \L\br{E, s} $ has an analytic continuation to all of $ \CC $, so no poles.
+$ \L\br{E, s} $ has an analytic continuation to all of $ \CC $, and no poles.
 \end{theorem}
 
 This was conjectured in the 1940s and follows from modularity, which was known for CM elliptic curves $ y^2 = x^3 - Dx $ in the 1960s, which were the ones that Birch and Swinnerton-Dyer looked at.
@@ -1944,7 +2030,7 @@ $$ \abr{\underline{v_1}, \underline{v_2}} = \dfrac{1}{2}\br{\B\br{\underline{v_1
 Let $ V = k^n $, and let $ A $ be a symmetric $ n \times n $ matrix over $ k $. Then
 $$ \abr{\underline{v_1}, \underline{v_2}} = \underline{v_1}^\intercal A\underline{v_2} \in k, \qquad \underline{v_1}, \underline{v_2} \in V $$
 is a symmetric bilinear pairing. More generally, let $ V $ be any finite-dimensional vector space, so $ V = \abr{\underline{e_1}, \dots, \underline{e_n}}_k $ for $ \cbr{\underline{e_i}} $ a $ k $-basis, and let the $ \br{i, j} $-th entry of $ A $ be $ \br{\underline{e_i}, \underline{e_j}} $. Under the unique isomorphism
-$$ \function[\phi]{V}{k^n}{\underline{e_i}}{\br{0, \dots, 0, 1, 0, \dots, 0}}, $$
+$$ \function[\phi]{V}{k^n}{\underline{e_i}}{\onebythree{0 \dots 0}{1}{0 \dots 0}}, $$
 we get a symmetric bilinear pairing
 $$ \abr{\underline{v}, \underline{w}} = \phi\br{\underline{v}}^\intercal A\phi\br{\underline{w}} \in k, \qquad \underline{v}, \underline{w} \in V. $$
 \end{example}
@@ -1962,9 +2048,9 @@ If $ \br{V, \abr{\cdot, \cdot}} $ is a quadratic space, then $ V $ has a basis $
 \end{theorem}
 
 \begin{proof}
-Two cases. If $ \B \equiv 0 $, then $ \abr{\cdot, \cdot} \equiv 0 $. Otherwise for all $ \underline{v} \in V $ such that $ \B\br{\underline{v}} \ne 0 $. Let $ \underline{e_1} = \underline{v_1} $ and
+Two cases. If $ \B \equiv 0 $, then $ \abr{\cdot, \cdot} \equiv 0 $. Otherwise there exists $ \underline{v} \in V $ such that $ \B\br{\underline{v}} \ne 0 $. Let $ \underline{e_1} = \underline{v} $, and
 $$ \underline{v}^\perp = \cbr{\underline{w} \in V \st \abr{\underline{v}, \underline{w}} = 0}. $$
-This is an $ k $-linear subspace, which is trivial as $ \underline{w} \mapsto \abr{\underline{v}, \underline{w}} $ is $ k $-linear. Then $ \underline{v} \notin \ker \abr{\underline{v}, \cdot} $, so $ \dim \underline{v}^\perp = \dim V - 1 $. We apply the process to $ \br{\underline{v}^\perp, \eval{\abr{\cdot, \cdot}}_{\underline{v}^\perp}} $, by using induction on the dimension.
+This is an $ k $-linear subspace. This is trivial as $ \underline{w} \mapsto \abr{\underline{v}, \underline{w}} $ is $ k $-linear. Then $ \underline{v} \notin \ker \abr{\underline{v}, \cdot} $, so $ \dim \underline{v}^\perp = \dim V - 1 $. We apply the process to $ \br{\underline{v}^\perp, \eval{\abr{\cdot, \cdot}}_{\underline{v}^\perp}} $, by using induction on the dimension.
 \end{proof}
 
 \pagebreak
@@ -1972,7 +2058,7 @@ This is an $ k $-linear subspace, which is trivial as $ \underline{w} \mapsto \a
 \begin{remark}
 The \textbf{general linear group}
 $$ \GL_{n + 1}\br{k} = \Aut_k k^{n + 1} $$
-acts on $ \PP^n\br{k} $, and maps scalar multiples to scalar multiples, so maps equivalence classes under rescaling to equivalence classes, so have an induced action on $ \PP^n\br{k} $. The centre $ \Z_{n + 1}\br{k} $ of $ \GL_{n + 1}\br{k} $ is the scalar matrices $ \cbr{\lambda \I_3 \st \lambda \in k^*} $, which acts trivially on $ \PP^n\br{k} $. This is a normal subgroup, so I can form the quotient group
+acts on $ \PP^n\br{k} $, and maps scalar multiples to scalar multiples, so maps equivalence classes under rescaling to equivalence classes, so have an induced action on $ \PP^n\br{k} $. The centre $ \Z_{n + 1}\br{k} $ of $ \GL_{n + 1}\br{k} $ is the scalar matrices $ \cbr{\lambda \I_3 \st \lambda \in k^\times} $, which acts trivially on $ \PP^n\br{k} $. This is a normal subgroup, so I can form the quotient group
 $$ \PGL_{n + 1}\br{k} = \GL_{n + 1}\br{k} / \Z_{n + 1}\br{k}, $$
 the \textbf{projective linear group} of rank $ n + 1 $. Projective algebraic geometry is invariant under projective linear transformations. If $ F = 0 $ is non-singular, then its image under $ \PGL_{n + 1}\br{k} $ is also non-singular, and multiplicities in B\'ezout's theorem does not change under $ \PGL_{n + 1}\br{k} $, etc.
 \end{remark}

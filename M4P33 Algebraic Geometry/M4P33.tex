@@ -83,21 +83,6 @@ $$
     \end{array}
   \fi
 }
-\newcommand{\birational}[7][]{
-  \ifx &#1&
-    \begin{array}{rcl}
-      #2 & \dashrightarrow & #3 \\
-      #4 & \longmapsto     & #5 \\
-      #6 & \longmapsfrom   & #7
-    \end{array}
-  \else
-    \begin{array}{ccrcl}
-      #1 & : & #2 & \dashrightarrow & #3 \\
-         &   & #4 & \longmapsto     & #5 \\
-         &   & #6 & \longmapsfrom   & #7
-    \end{array}
-  \fi
-}
 
 \begin{document}
 
@@ -450,7 +435,7 @@ We have seen that affine algebraic sets in $ \AA^n $ satisfy the following condi
 \item A finite union of affine algebraic sets is an affine algebraic set.
 \item An arbitrary intersection of affine algebraic sets is an affine algebraic set.
 \end{itemize}
-The are precisely the conditions satisfied by the closed sets in a topological space. Therefore, we can define a topological space in which the underlying set is $ \AA^n $ and closed sets are the affine algebraic sets. This is called the \textbf{Zariski topology}. This is a very different topology from the ones you are used to in analysis. In particular, it is a very long way from being Hausdorff. For any affine algebraic set $ V \subseteq \AA^n $, we define the \textbf{Zariski topology} on $ V $ to be the subspace topology on $ V $ induced by the Zariski topology on $ \AA^n $. Thus, a subset of $ V $ is Zariski closed in $ V $ if and only if it is Zariski closed in $ \AA^n $. Thus for closed sets it does not matter whether we say Zariski closed in $ V $ or Zariski closed in $ \AA^n $.
+These are precisely the conditions satisfied by the closed sets in a topological space. Therefore, we can define a topological space in which the underlying set is $ \AA^n $ and closed sets are the affine algebraic sets. This is called the \textbf{Zariski topology}. This is a very different topology from the ones you are used to in analysis. In particular, it is a very long way from being Hausdorff. For any affine algebraic set $ V \subseteq \AA^n $, we define the \textbf{Zariski topology} on $ V $ to be the subspace topology on $ V $ induced by the Zariski topology on $ \AA^n $. Thus, a subset of $ V $ is Zariski closed in $ V $ if and only if it is Zariski closed in $ \AA^n $. Thus for closed sets it does not matter whether we say Zariski closed in $ V $ or Zariski closed in $ \AA^n $.
 
 \lecture{4}{Monday}{20/01/20}
 
@@ -708,7 +693,7 @@ The ideal $ I = \abr{X^2, XY} $ corresponds, in the world of schemes, to the lin
 
 \lecture{6}{Friday}{24/01/20}
 
-So far we have only considered algebraic sets as sets, sitting individually. Now we look at functions between them. Just as one uses continuous functions for topological spaces, holomorphic functions for complex manifolds, homomorphisms for groups, etc, so algebraic geometry has its own type of functions, regular functions. Of course, these are given by polynomials.
+So far we have only considered algebraic sets as sets, sitting individually. Now we look at functions between them. Just as one uses continuous functions for topological spaces, holomorphic functions for complex manifolds, homomorphisms for groups, etc, algebraic geometry has its own type of functions, regular functions. Of course, these are given by polynomials.
 
 \begin{definition*}
 Let $ V \subseteq \AA^n $ be an affine algebraic set. A \textbf{regular function} on $ V $ is a function $ f : V \to k $ such that there exists a polynomial $ F \in k\sbr{X_1, \dots, X_n} $ with $ f\br{\underline{x}} = F\br{\underline{x}} $ for all $ \underline{x} \in V $.
@@ -742,7 +727,7 @@ To prove this, one can also interpret this as
 $$ k\sbr{X, Y} / \abr{XY} \cong \cbr{a_0 + \sum_{r = 1}^m b_rX^r + \sum_{s = 1}^n c_sY^s \st a_0, b_1, \dots, b_m, c_1, \dots, c_n \in k, \ m, n \in \NN}. $$
 We can compare these two descriptions by observing that
 $$ k\sbr{X} = \cbr{a_0 + \sum_{r = 1}^m b_rX^r}, \qquad k\sbr{Y} = \cbr{a_0 + \sum_{s = 1}^n c_sY^s}, $$
-and the condition that $ f\br{0} = g\br{0} $ is equivalent to insisting that these two polynomials have the same constant coefficient $ a_0 $. This does not generalise to arbitrary reducible algebraic sets. We may have $ V = V_1 \cup V_2 $ where $ V_1 $ and $ V_2 $ are closed subsets, but
+and the condition that $ f\br{0} = g\br{0} $ is equivalent to insisting that these two polynomials have the same constant coefficient $ a_0 $. This example does not generalise to arbitrary reducible algebraic sets. We may have $ V = V_1 \cup V_2 $ where $ V_1 $ and $ V_2 $ are closed subsets, but
 $$ k\sbr{V} \ne \cbr{\br{f, g} \in k\sbr{V_1} \times k\sbr{V_2} \st \eval{f}_{V_1 \cap V_2} = \eval{g}_{V_1 \cap V_2}}. $$
 There will be an example of this on problem sheet $ 2 $.
 \item The coordinate ring of a hyperbola $ \cbr{\br{x, y} \in \AA^2 \st xy - 1 = 0} $ is the quotient ring $ k\sbr{X, Y} / \abr{XY - 1} $. To describe this more explicitly, note that any term of a two-variable polynomial is
@@ -773,7 +758,7 @@ $ V $ is irreducible if and only if $ \II\br{V} $ is a prime ideal in $ k\sbr{X_
 A regular function goes from an algebraic set $ V $ to the field $ k $. We can also define regular maps, which go from one algebraic set $ V $ to another algebraic set $ W $.
 
 \begin{definition*}
-Let $ V \subseteq \AA^m $ and $ W \subseteq \AA^n $ be affine algebraic sets. A \textbf{regular map} $ \phi : V \to W $ is a function $ V \to W $ such that there exist polynomials $ F_1, \dots, F_n \in k\sbr{X_1, \dots, X_n} $ such that $ \phi\br{\underline{x}} = \br{F_1\br{\underline{x}}, \dots, F_n\br{\underline{x}}} $ for all $ \underline{x} \in V $. Regular maps are often called \textbf{morphisms}.
+Let $ V \subseteq \AA^m $ and $ W \subseteq \AA^n $ be affine algebraic sets. A \textbf{regular map} $ \phi : V \to W $ is a function $ V \to W $ such that there exist polynomials $ F_1, \dots, F_n \in k\sbr{X_1, \dots, X_m} $ such that $ \phi\br{\underline{x}} = \br{F_1\br{\underline{x}}, \dots, F_n\br{\underline{x}}} $ for all $ \underline{x} \in V $. Regular maps are often called \textbf{morphisms}.
 \end{definition*}
 
 \begin{note*}
@@ -960,7 +945,7 @@ We use the broken arrow symbol instead of the usual arrow because a rational map
 The \textbf{domain of definition} of a rational map $ \phi : V \dashrightarrow W $ is the intersection of the domains of definition of the component rational functions $ \br{\phi_1, \dots, \phi_n} $.
 \end{definition*}
 
-The two lemmas we proved for rational functions also hold for rational maps, since the domain of definition of a rational map $ \phi : V \dashrightarrow W $ is a non-empty Zariski open subset of $ V $, and if a rational map is regular everywhere then it is a regular map. In order to prove that the domain of definition of a rational map is non-empty, we have to use the fact that $ V $ is irreducible, and therefore every open subset of $ V $ is dense.
+The two lemmas we proved for rational functions also hold for rational maps. The domain of definition of a rational map $ \phi : V \dashrightarrow W $ is a non-empty Zariski open subset of $ V $, and if a rational map is regular everywhere then it is a regular map. In order to prove that the domain of definition of a rational map is non-empty, we have to use the fact that $ V $ is irreducible, and therefore every open subset of $ V $ is dense.
 
 \begin{example*}
 An important example of a rational map is the projection from a point onto a hyperplane. Let $ H $ be a hyperplane in $ \AA^n $, that is a set defined by a single linear equation. Let $ p $ be a point in $ \AA^n \setminus H $. For simplicity, we shall assume that $ p $ is the origin and that
@@ -1011,18 +996,18 @@ $ \psi $ from the end of the previous lecture is dominant if we consider it as a
 Let $ V, W, T $ be irreducible affine algebraic sets. If $ \phi : V \dashrightarrow W $ is a dominant rational map and $ \psi : W \dashrightarrow T $ is a rational map, where $ \psi $ is not required to be dominant, then it makes sense to compose them because we know that $ \dom \psi $ is a Zariski open subset of $ W $, while $ \im \phi $ is a Zariski dense subset of $ W $ and so $ \dom \psi \cap \im \phi \ne \emptyset $. Thus there are at least some points where $ \psi \circ \phi $ is defined. One can check, by writing out $ \psi $ in terms of fractions of polynomials, then substituting in fractions of polynomials representing $ \phi $, that $ \psi \circ \phi $ is a rational map $ V \dashrightarrow T $.
 
 \begin{definition*}
-Rational maps $ \phi : V \dashrightarrow W $ and $ \psi : W \to V $ are \textbf{rational inverses} if both are dominant and $ \phi \circ \psi = \id_W $ and $ \psi \circ \phi = \id_V $, everywhere these composite rational maps are well-defined. A rational map $ \phi : V \dashrightarrow W $ is a \textbf{birational equivalence} if it is dominant and has a rational inverse. We say that irreducible algebraic sets $ V $ and $ W $ are \textbf{birational}, or \textbf{birationally equivalent}, if there exists a birational equivalence $ V \dashrightarrow W $.
+Rational maps $ \phi : V \dashrightarrow W $ and $ \psi : W \dashrightarrow V $ are \textbf{rational inverses} if both are dominant and $ \phi \circ \psi = \id_W $ and $ \psi \circ \phi = \id_V $, everywhere these composite rational maps are well-defined. A rational map $ \phi : V \dashrightarrow W $ is a \textbf{birational equivalence} if it is dominant and has a rational inverse. We say that irreducible algebraic sets $ V $ and $ W $ are \textbf{birational}, or \textbf{birationally equivalent}, if there exists a birational equivalence $ V \dashrightarrow W $.
 \end{definition*}
+
+\pagebreak
 
 \begin{example*}
 Our example from the previous lecture showed that the circle is birational to $ \AA^1 $.
 \end{example*}
 
-\pagebreak
-
 \begin{example*}
 Another example is the cuspidal cubic $ W = \cbr{\br{x, y} \st y^2 = x^3} $. This is also birational to $ \AA^1 $, as shown by the rational maps
-$$ \birational{W}{\AA^1}{\br{x, y}}{\dfrac{y}{x}}{\br{t^2, t^3}}{t}. $$
+$$ \rational{W}{\AA^1}{\br{x, y}}{\dfrac{y}{x}}, \qquad \rational{\AA^1}{W}{t}{\br{t^2, t^3}}. $$
 \end{example*}
 
 Birationally equivalent affine algebraic sets look the same almost everywhere.
@@ -1051,7 +1036,7 @@ Here $ \alpha\br{X_1}, \dots, \alpha\br{X_n} \in k\sbr{V} $. Then $ \alpha = s^*
 
 \begin{proposition}
 $ \phi \mapsto \phi^* $ is a bijection
-$$ \cbr{\text{regular maps} \ V \to W} \to \cbr{\text{$ k $-algebra homomorphisms} \ k\sbr{W} \to k\sbr{V}}. $$
+$$ \correspondence{\text{regular maps} \ V \to W}{\text{$ k $-algebra homomorphisms} \ k\sbr{W} \to k\sbr{V}}. $$
 \end{proposition}
 
 \begin{corollary}
@@ -1062,7 +1047,7 @@ The moral is that if we only care about affine algebraic sets up to isomorphism,
 
 \begin{proposition}
 $ \phi \mapsto \phi^* $ is a bijection
-$$ \cbr{\text{dominant rational maps} \ V \dashrightarrow W} \to \cbr{\text{$ k $-field homomorphisms} \ k\br{W} \to k\br{V}}. $$
+$$ \correspondence{\text{dominant rational maps} \ V \dashrightarrow W}{\text{$ k $-field homomorphisms} \ k\br{W} \to k\br{V}}. $$
 \end{proposition}
 
 \begin{corollary}
@@ -1098,7 +1083,7 @@ Lecture 10 is a problems class.
 We have seen that $ V \mapsto k\sbr{V} $ leads to bijections on maps between affine algebraic sets. To fully understand the relationship between affine algebraic sets and $ k $-algebras, there is one more question to answer. Which $ k $-algebras can occur as $ k\sbr{V} $ where $ V $ is an affine algebraic set? We write down some algebraic properties which obviously hold for $ A = k\sbr{V} $, the coordinate ring of an affine algebraic set $ V $.
 \begin{itemize}
 \item $ A $ is finitely generated, because if $ V \subseteq \AA^n $ then $ A $ is generated by the coordinate functions $ X_1, \dots, X_n $.
-\item $ A $ is reduced, meaning that if $ f \in A $ and $ f^k = 0 $ for some $ k > 0 $, then $ f = 0 $. This is because $ A $ is a ring of functions in the usual set-theoretic sense, since if $ f^k = 0 $ then $ f\br{x}^k = 0 $ for all $ x \in V $, so $ f\br{x} = 0 $ for all $ x \in V $.
+\item $ A $ is \textbf{reduced}, meaning that if $ f \in A $ and $ f^k = 0 $ for some $ k > 0 $, then $ f = 0 $. This is because $ A $ is a ring of functions in the usual set-theoretic sense, since if $ f^k = 0 $ then $ f\br{x}^k = 0 $ for all $ x \in V $, so $ f\br{x} = 0 $ for all $ x \in V $.
 \end{itemize}
 Using the Nullstellensatz, we can prove that these properties are enough to characterise the $ k $-algebras which are coordinate rings of affine algebraic sets.
 
@@ -1176,7 +1161,7 @@ where $ I - f^j $ means the coset $ \cbr{t - f^j \st t \in I} $. But $ b $ is a 
 We can restate the weak Nullstellensatz in elementary terms as, if $ f_1, \dots, f_m \in k\sbr{X_1, \dots, X_n} $ are a finite set of polynomials, and the ideal $ I $ which they generate is not the whole polynomial ring, then there exists a common solution $ \br{x_1, \dots, x_n} \in k^n $ to the equations
 $$ f_1\br{x_1, \dots, x_n} = 0, \qquad \dots, \qquad f_m\br{x_1, \dots, x_n} = 0. $$
 We prove this in two steps.
-\begin{enumerate}[label=Step \arabic*., leftmargin=0.5in]
+\begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
 \item There exists a larger field $ K $ containing $ k $ such that these equations have a common solution in $ K^n $.
 \item If the equations have a common solution in $ K^n $, then they also have a common solution in $ k^n $.
 \end{enumerate}
@@ -1224,7 +1209,7 @@ Let $ k $ be an algebraically closed field and let $ K $ be a finitely generated
 
 \begin{proof}
 Write $ K = k\br{t_1, \dots, t_d, u} $ as in Lemma \ref{lem:algebraicallyindependent}. Let $ K' = k\br{t_1, \dots, t_d} $. Because $ t_1, \dots, t_d $ are algebraically independent, we can identify $ K' $ with $ k\br{T_1, \dots, T_d} $, the field of fractions of the polynomial ring $ k\sbr{T_1, \dots, T_d} $. This will allow us to substitute a vector $ \underline{z} \in k^d $ into an element $ \alpha \in K' $ and get out an element $ \alpha\br{\underline{z}} \in k $, as long as the denominator of $ \alpha $ does not vanish at $ \underline{z} $. We use two facts about the finite algebraic extension $ K / K' $.
-\begin{enumerate}[label=Fact \arabic*., leftmargin=0.5in]
+\begin{enumerate}[leftmargin=0.5in, label=Fact \arabic*.]
 \item There exists a minimal polynomial $ p\br{U} \in K'\sbr{U} $ for $ u $. That is, $ p\br{u} = 0 $, $ p $ has leading coefficient one, and $ p $ divides every other polynomial $ q\br{U} \in K'\sbr{U} $ such that $ q\br{u} = 0 $.
 \item Every element of $ K $ can be written in the form $ a\br{u} $ for some polynomial $ a\br{U} \in K'\sbr{U} $.
 \end{enumerate}
@@ -1368,7 +1353,7 @@ Consider the affine hyperbola
 $$ H = \cbr{\br{x, y} \in \AA^2 \st xy - 1 = 0}. $$
 We need to turn the polynomial $ XY - 1 $ into a homogeneous polynomial, using a new variable $ W $ in $ k\sbr{W, X, Y} $, which restricts to $ XY - 1 $ when $ W = 1 $. To do this, note that the highest degree term in $ XY - 1 $ has degree two. We multiply each term by an appropriate power of $ W $ to get all terms of degree two, so we have to replace the constant one by $ W^2 $. Thus we get $ XY - W^2 = 0 $. Thus we consider
 $$ H' = \cbr{\sbr{w : x : y} \in \PP^2 \st xy - w^2 = 0}. $$
-Again, when $ w \ne 0 $, we can scale to get $ w = 1 $, so we can substitute that in and see that we just get back $ H' $. When $ w = 0 $, the equation becomes $ xy = 0 $, so we now get two points at infinity. Either $ x = 0 $, giving the point $ \sbr{0 : 0 : 1} \in \PP^2 $, or $ y = 0 $, giving the point $ \sbr{0 : 1 : 0} \in \PP^2 $. Thus
+Again, when $ w \ne 0 $, we can scale to get $ w = 1 $, so we can substitute that in and see that we just get back $ H $. When $ w = 0 $, the equation becomes $ xy = 0 $, so we now get two points at infinity. Either $ x = 0 $, giving the point $ \sbr{0 : 0 : 1} \in \PP^2 $, or $ y = 0 $, giving the point $ \sbr{0 : 1 : 0} \in \PP^2 $. Thus
 $$ H' = H \cup \cbr{\sbr{0 : 0 : 1}, \sbr{0 : 1 : 0}}. $$
 Geometrically, $ H' $ consists of $ H $ together with points at infinity along the $ x $-axis and $ y $-axis. These axes are the asymptotes of $ H $.
 \end{example*}
@@ -1382,7 +1367,7 @@ Compare the two above examples, where $ V' $ had equation $ wx - y^2 $, and $ H'
 The process we went through above to obtain $ V' $ from $ V $ and $ H' $ from $ H $ can be generalised.
 
 \begin{definition*}
-For any polynomial $ f \in k\sbr{X_1, \dots, X_n} $, we define the \textbf{homogenisation} of $ f $ to be the polynomial in $ \overline{f} \in k\sbr{X_0, \dots, X_n} $ obtained by the following procedure. Let $ d $ be the maximum degree of terms of $ f $. Then multiply each term of $ f $ by $ X_0^{d - e} $, where $ e $ is the degree of this term in $ f $.
+For any polynomial $ f \in k\sbr{X_1, \dots, X_n} $, we define the \textbf{homogenisation} of $ f $ to be the polynomial $ \overline{f} \in k\sbr{X_0, \dots, X_n} $ obtained by the following procedure. Let $ d $ be the maximum degree of terms of $ f $. Then multiply each term of $ f $ by $ X_0^{d - e} $, where $ e $ is the degree of this term in $ f $.
 \end{definition*}
 
 \begin{example*}
@@ -1460,7 +1445,7 @@ Thus any set of homogeneous polynomials, even an infinite set, defines a project
 
 Which homogeneous ideals can occur as the ideal of functions vanishing on a projective algebraic set? Clearly they have to be radical ideals. Is there a projective version of the Nullstellensatz? Yes, but it turns out that there is an exceptional case to deal with. Consider the homogeneous ideal
 $$ I_1 = \abr{X_0, \dots, X_n} \subseteq k\sbr{X_0, \dots, X_n}. $$
-The only solution in $ k^{n + 1} $ to the equations $ x_0 = 0, \dots, x_n = 0 $ is $ \br{0, \dots, 0} $. But this is not the homogeneous coordinates of any point in $ \PP^n $. So the projective algebraic set defined by $ I_1 $ is the empty set. Thus the ideals $ I_1 $ and $ k\sbr{X_0, \dots, X_n} $ both define the empty set by $ I_1 $ is the empty set. Thus the ideals $ I_1 $ and $ k\sbr{X_0, \dots, X_n} $ both define the empty set in $ \PP^n $, even though they are both radical homogeneous ideals. So we have to modify the statement of the Nullstellensatz slightly from the affine case. Thus turns out to be the only special case.
+The only solution in $ k^{n + 1} $ to the equations $ x_0 = 0, \dots, x_n = 0 $ is $ \br{0, \dots, 0} $. But this is not the homogeneous coordinates of any point in $ \PP^n $. So the projective algebraic set defined by $ I_1 $ is the empty set. Thus the ideals $ I_1 $ and $ k\sbr{X_0, \dots, X_n} $ both define the empty set in $ \PP^n $, even though they are both radical homogeneous ideals. So we have to modify the statement of the Nullstellensatz slightly from the affine case. Thus turns out to be the only special case.
 
 \pagebreak
 
@@ -1664,7 +1649,7 @@ We can now define a regular function on a projective algebraic set $ V $ to be a
 We can now make rigorous the claim that $ \AA^1 \setminus \cbr{0} $ looks the same as the affine hyperbola
 $$ H = \cbr{\br{x, y} \in \AA^2 \st xy = 1}. $$
 The set $ \AA^1 \setminus \cbr{0} = \PP^1 \setminus \cbr{\sbr{1 : 0}, \sbr{0 : 1}} $ is a Zariski open subset of $ \PP^1 $, because its complement is finite. Hence $ \AA^1 \setminus \cbr{0} $ is a quasi-projective algebraic set. The map
-$$ \function[\phi]{\AA^1 \setminus \cbr{0}}{H}{t}{\dfrac{1}{t}} $$
+$$ \function[\phi]{\AA^1 \setminus \cbr{0}}{H}{t}{\br{t, \dfrac{1}{t}}} $$
 can be written in homogeneous coordinates as
 $$ \function[\phi]{\AA^1 \setminus \cbr{0}}{H}{\sbr{1 : t}}{\sbr{1 : t : \dfrac{1}{t}} = \sbr{t : t^2 : 1}}, $$
 so homogenising, we get
@@ -1739,7 +1724,7 @@ Lecture 17 is a problems class.
 \lecture{18}{Friday}{21/02/20}
 
 \begin{definition*}
-A rational map $ \phi : V \to W $ is \textbf{regular} at a point $ x \in V $ if there exists at least one list of polynomials $ \br{f_0, \dots, f_n} \in S $ representing $ \phi $ such that $ \sbr{f_0\br{x} : \dots : f_n\br{x}} \ne \sbr{0 : \dots : 0} $ and $ \sbr{f_0\br{x} : \dots : f_n\br{x}} \in W $. If $ \phi $ is regular at $ x \in V $, then the equivalence relation $ \sim $ ensures that the value $ \phi\br{x} \in W $ makes sense and is well-defined, with homogeneous coordinates given by $ \sbr{f_0\br{x} : \dots : f_n\br{x}} $. This point is independent of the choice of polynomials representing $ \phi $, as well as independent of the choice of homogeneous coordinates for $ x $. Just as for affine algebraic sets, we define the \textbf{domain of definition} of a rational map to be the set of points where it is regular, the union of the sets where each representative of the equivalence class makes sense as a map.
+A rational map $ \phi : V \dashrightarrow W $ is \textbf{regular} at a point $ x \in V $ if there exists at least one list of polynomials $ \br{f_0, \dots, f_n} \in S $ representing $ \phi $ such that $ \sbr{f_0\br{x} : \dots : f_n\br{x}} \ne \sbr{0 : \dots : 0} $ and $ \sbr{f_0\br{x} : \dots : f_n\br{x}} \in W $. If $ \phi $ is regular at $ x \in V $, then the equivalence relation $ \sim $ ensures that the value $ \phi\br{x} \in W $ makes sense and is well-defined, with homogeneous coordinates given by $ \sbr{f_0\br{x} : \dots : f_n\br{x}} $. This point is independent of the choice of polynomials representing $ \phi $, as well as independent of the choice of homogeneous coordinates for $ x $. Just as for affine algebraic sets, we define the \textbf{domain of definition} of a rational map to be the set of points where it is regular, the union of the sets where each representative of the equivalence class makes sense as a map.
 \end{definition*}
 
 \begin{note*}
@@ -1774,9 +1759,9 @@ $$ \overline{C} = \cbr{\sbr{w : x : y} \in \PP^2 \st w^2y = x^3} = C \cup \cbr{\
 Consider the regular map of affine algebraic sets given by
 $$ \function[\phi]{C}{\AA^1}{\br{x, y}}{x}. $$
 If we try to extend this to a map of projective algebraic sets $ \overline{\phi} : \overline{C} \to \PP^1 $, we would say that for points $ \sbr{1 : x : y} \in C \subseteq \overline{C} $,
-$$ \function[\phi]{C}{\AA^1}{\br{\sbr{1 : x : y}}}{\sbr{1 : x}}, $$
+$$ \function[\phi]{C}{\AA^1}{\sbr{1 : x : y}}{\sbr{1 : x}}, $$
 and this homogenises to
-$$ \rational[\overline{\phi}]{\overline{C}}{\PP^1}{\br{\sbr{w : x : y}}}{\sbr{w : x}}. $$
+$$ \rational[\overline{\phi}]{\overline{C}}{\PP^1}{\sbr{w : x : y}}{\sbr{w : x}}. $$
 Thus $ \overline{\phi} $ is a rational map $ \overline{C} \dashrightarrow \PP^1 $. The above expression for $ \overline{\phi} $ is not defined at the point $ \sbr{0 : 0 : 1} \in \overline{C} $. We can prove that there is no other expression for $ \overline{\phi} $ which is defined at that point, and so $ \overline{\phi} $ is not regular at $ \sbr{0 : 0 : 1} $. See problem sheet $ 3 $, question $ 3 $.
 \end{example*}
 
@@ -1903,7 +1888,7 @@ Many sets that we want to work with, for example, the graph of a regular map $ V
 
 \begin{example*}
 To see informally why $ \PP^1 \times \PP^1 \not\cong \PP^2 $, recall that $ \PP^1 = \AA^1 \cup \cbr{\text{point}} $ so
-$$ \PP^1 \times \PP^1 = \br{\AA^1 \times \AA^1} \cup \br{\AA^1 \times \cbr{\text{point}}} \cup \br{\cbr{\text{point}} \times \AA^1} \cup \br{\text{point} \times \cbr{\text{point}}} = \AA^2 \cup \AA^1 \cup \AA^1 \cup \cbr{\text{point}}. $$
+$$ \PP^1 \times \PP^1 = \br{\AA^1 \times \AA^1} \cup \br{\AA^1 \times \cbr{\text{point}}} \cup \br{\cbr{\text{point}} \times \AA^1} \cup \br{\cbr{\text{point}} \times \cbr{\text{point}}} = \AA^2 \cup \AA^1 \cup \AA^1 \cup \cbr{\text{point}}. $$
 Meanwhile $ \PP^2 = \AA^2 \cup \PP^1 = \AA^2 \cup \AA^1 \cup \cbr{\text{point}} $. Thus $ \PP^1 \times \PP^1 $ contains an extra copy of $ \AA^1 $ compared to $ \PP^2 $. This is only an informal argument. A rigorous proof will be on problem sheet $ 4 $.
 \end{example*}
 
@@ -1958,7 +1943,7 @@ $$ V = \cbr{\br{\sbr{x_0 : \dots : x_m}, \sbr{y_0 : \dots : y_n}} \st \forall 1 
 where $ f_1, \dots, f_s \in k\sbr{X_0, \dots, X_m, Y_0, \dots, Y_n} $ are bihomogeneous polynomials.
 \end{lemma}
 
-We say that a polynomial $ f \in k\sbr{X_0, \dots, X_m, Y_0, \dots, Y_n} $ is \textbf{bihomogeneous of degree $ \br{d, e} $} if every term of $ f $ has degree $ d $ with respect to the $ X $ variables and degree $ e $ with respect to the $ Y $ variables.
+This proof is not part of the course. We say that a polynomial $ f \in k\sbr{X_0, \dots, X_m, Y_0, \dots, Y_n} $ is \textbf{bihomogeneous of degree $ \br{d, e} $} if every term of $ f $ has degree $ d $ with respect to the $ X $ variables and degree $ e $ with respect to the $ Y $ variables.
 
 \begin{proof}
 Suppose that $ \sigma_{m, n}\br{V} $ is Zariski closed in $ \PP^N $. Then it is defined by some homogeneous polynomials $ g_r\br{z_{00}, \dots, z_{mn}} $. Making the substitutions $ z_{ij} = x_iy_j $, as in the definition of $ \sigma_{m, n} $, we get a finite set of polynomials which define $ V $. If $ g_r $ is homogeneous in $ z_{ij} $ of degree $ d_r $, then $ g_r \circ \sigma_{m, n} $ is bihomogeneous of degree $ \br{d_r, d_r} $. It is easy to see that if $ V $ is defined by polynomials $ f_r $, where $ f_r $ is bihomogeneous of degree $ \br{d_r, d_r} $, then we can reverse this process to get homogeneous polynomials in $ z_{ij} $ which define $ \sigma_{m, n}\br{V} $. But what if the defining polynomials for $ V $ include some $ f $ which is bihomogeneous of degree $ \br{d, e} $, where $ d \ne e $? Without loss of generality, suppose that $ d > e $. Then $ f = 0 $ is equivalent to the system of equations
@@ -2088,7 +2073,7 @@ We will prove completeness of projective varieties and Chevalley's theorem in th
 
 \subsubsection{Chevalley's theorem and mathematical logic}
 
-This is not a formal part of the course, so I will not define things carefully. For anyone with an interest in mathematical logic, we remark on a logical interpretation of Chevalley's theorem. In logic, we consider formulas made out of some algebraic operations. In the context of algebraic geometry, these will be polynomial equations over an algebraically closed field, and combine these using logical operations, $ \land, \lor, \lnot, \exists, \forall $.
+This is not a formal part of the course, so I will not define things carefully. For anyone with an interest in mathematical logic, we remark on a logical interpretation of Chevalley's theorem. In logic, we consider formulas made out of some algebraic operations. In the context of algebraic geometry, these will be polynomial equations over an algebraically closed field. Combine these using logical operations, $ \land, \lor, \lnot, \exists, \forall $.
 
 \begin{example*}
 A logical formula might look like $ \br{\lnot\br{xy = z}} \land \exists\br{u, v}\br{\br{x = u^2} \land \br{y = uv} \land \br{z = v^2}} $.
@@ -2122,7 +2107,7 @@ Let $ V $ be a quasi-projective variety. For every point $ x \in V $, there exis
 \end{lemma}
 
 \begin{proof}
-Write $ V = V_0 \cap U_0 $ where $ V_0 \subseteq \PP^n $ is closed and $ U_0 \subseteq \PP^n $ is open. Given a point $ x \in V $, we may assume that $ x $ is in $ \AA^n \subseteq \PP^n $, embedded by setting $ X_0 = 1 $. We can achieve this by changing the coordinate system if necessary. Since $ \PP^n \setminus U_0 $ is a projective algebraic set which does not contain $ x $, there is some homogeneous polynomial $ f $ which vanishes on $ \PP^n \setminus U_0 $ but not at $ x $. Then $ x $ is contained in the set $ U_0 = V_0 \cap D\br{f} = V \cap D\br{f} $, where
+Write $ V = V_0 \cap U_0 $ where $ V_0 \subseteq \PP^n $ is closed and $ U_0 \subseteq \PP^n $ is open. Given a point $ x \in V $, we may assume that $ x $ is in $ \AA^n \subseteq \PP^n $, embedded by setting $ X_0 = 1 $. We can achieve this by changing the coordinate system if necessary. Since $ \PP^n \setminus U_0 $ is a projective algebraic set which does not contain $ x $, there is some homogeneous polynomial $ f $ which vanishes on $ \PP^n \setminus U_0 $ but not at $ x $. Then $ x $ is contained in the set $ U = V_0 \cap D\br{f} = V \cap D\br{f} $, where
 $$ D\br{f} = \cbr{\br{y_1, \dots, y_n} \in \AA^n \st f\br{1, y_1, \dots, y_n} \ne 0}. $$
 We have $ V_0 \cap D\br{f} = V \cap D\br{f} $ because $ D\br{f} \subseteq U_0 $. Then $ U $ is an open subset of $ V $ because $ D\br{f} $ is an open subset of $ \PP^n $, and $ U $ is a closed subset of $ D\br{f} $, so in order to show that $ U $ is an affine variety, it suffices to show that $ D\br{f} $ is an affine variety. We can prove this using the hyperbola trick. Consider the set
 $$ E\br{f} = \cbr{\br{y_1, \dots, y_n, z} \in \AA^{n + 1} \st zf\br{1, y_1, \dots, y_n} = 1}. $$
@@ -2186,7 +2171,7 @@ have a common root in $ \PP^1 $ if and only if
 $$ \Res_{d, e}\br{a_0, \dots, a_d, b_0, \dots, b_e} = 0. $$
 \end{theorem}
 
-This can be proved by going through the linear algebra from the end of the proof of Theorem \ref{thm:projectionclosed2}. Indeed it is possible to work out the polynomial $ \Res_{d, e} $ explicitly in this way. We shall just quote this as a result of algebra. The algebra actually gives us something more. This works not just for polynomials over an algebraically closed field, but for polynomials over any integral domain, provided we replace have a common zero by have a common factor of positive degree.
+This can be proved by going through the linear algebra from the end of the proof of Theorem \ref{thm:projectionclosed2}. Indeed it is possible to work out the polynomial $ \Res_{d, e} $ explicitly in this way. We shall just quote this as a result of algebra. The algebra actually gives us something more, since this works not just for polynomials over an algebraically closed field, but for polynomials over any integral domain, provided we replace have a common zero by have a common factor of positive degree.
 
 \begin{theorem}
 \label{thm:domainresultant}
@@ -2227,7 +2212,7 @@ $$ \Res_{d, e}\br{f_w, g_w} \ne 0, $$
 where $ f_w, g_w \in k\sbr{X, Y} $ are the polynomials obtained from $ f $ and $ g $ by evaluating their coefficients at $ w $. By the defining property of the resultant over the algebraically closed field $ k $, we conclude that $ f_w $ and $ g_w $ have no common root in $ \PP^1 $. But $ \pi^{-1}\br{w} \cap T $ is contained in the set of common roots of $ f_w $ and $ g_w $. Thus $ \pi^{-1}\br{w} \cap T = \emptyset $, that is $ w \notin \pi\br{T} $.
 \end{proof}
 
-Lemma \ref{lem:projectioneither} needed $ \PP^1 \times \AA^m $ in order to use completeness, here we need $ \AA^{1 + m} \to \AA^m $ so that we can set up an induction
+We embed $ \AA^{1 + m} = \AA^1 \times \AA^m $ into $ \PP^1 \times \AA^m $, in order to be able to use Lemma \ref{lem:projectioneither}. Lemma \ref{lem:projectioneither} needed $ \PP^1 \times \AA^m $ in order to use completeness, here we need $ \AA^{1 + m} \to \AA^m $ so that we can set up an induction
 $$ \AA^{2 + m} \to \AA^{1 + m} \to \AA^m, $$
 etc.
 
@@ -2237,8 +2222,8 @@ Let $ \pi : \AA^{1 + m} \to \AA^m $ denote projection onto the last $ m $ coordi
 \end{lemma}
 
 \begin{proof}
-We embed $ \AA^{1 + m} = \AA^1 \times \AA^m $ into $ \PP^1 \times \AA^m $, in order to be able to use Lemma \ref{lem:projectioneither}. Let $ V $ be the closure of $ Z $ in $ \PP^1 \times \AA^m $. By completeness, in Theorem \ref{thm:projectionclosed}, $ \pi\br{V} $ is closed in $ \AA^m $, so $ \pi\br{V} = W $. Let $ T = V \setminus Z $. Since $ Z $ is locally closed, $ T $ is a closed subset of $ \PP^1 \times \AA^m $. We can now apply Lemma \ref{lem:projectioneither}. We get two cases.
-\begin{enumerate}[label=Case \arabic*., leftmargin=0.5in]
+Let $ V $ be the closure of $ Z $ in $ \PP^1 \times \AA^m $. By completeness, in Theorem \ref{thm:projectionclosed}, $ \pi\br{V} $ is closed in $ \AA^m $, so $ \pi\br{V} = W $. Let $ T = V \setminus Z $. Since $ Z $ is locally closed, $ T $ is a closed subset of $ \PP^1 \times \AA^m $. We can now apply Lemma \ref{lem:projectioneither}. We get two cases.
+\begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
 \item $ \pi\br{T} $ is strictly contained in $ \pi\br{V} $. Completeness tells us that $ \pi\br{T} $ is closed in $ \AA^m $. Hence $ W \setminus \pi\br{T} $ is an open subset of $ W $. Since $ Z = V \setminus T $, it is clear that $ W \setminus \pi\br{T} $ is contained in $ \pi\br{Z} $. And $ W \setminus \pi\br{T} $ is non-empty because $ \pi\br{T} \ne W $.
 \item $ V = \PP^1 \times W $. In this case, an element $ w \in W $ is in the image of $ Z $ if and only if $ \PP^1 \times \cbr{w} $ is not contained in $ T $. That is,
 $$ \pi\br{Z} = \cbr{w \in W \st \PP^1 \times \cbr{w} \not\subseteq T}. $$
@@ -2361,7 +2346,9 @@ $$ \trdeg\br{k\br{V} / k} = \trdeg\br{k\br{W} / k}. $$
 \end{lemma}
 
 \begin{proof}
-We can replace $ V $ by the open subset $ \dom \phi $, so that $ \phi $ becomes a regular map. Using Lemma \ref{lem:quasiprojectiveaffine}, we can replace $ V $ and $ W $ by affine open subsets, and then replace $ V $ by the graph of $ \phi $ in $ V \times W $. Hence it suffices to assume that $ \phi = \eval{\pi_2}_V $, where $ \pi_2 $ is the projection $ \AA^{m + n} \to \AA^n $, $ V $ is a closed subset of $ \AA^{m + n} $, and $ W $ is the Zariski closure of $ \pi_2\br{V} $. By induction, by breaking up $ \phi $ into projections $ \AA^{m + n} \to \dots \to \AA^n $, we may reduce to the case $ m = 1 $. Since $ \phi $ is a dominant rational map, it induces an injection of fields $ \phi^* : k\br{W} \to k\br{V} $. We have to prove that the resulting field extension $ k\br{V} / \phi^*k\br{W} $ is algebraic, and hence that the transcendence degrees are the same. Look at the coordinate function $ X_1 $ on $ V $. This is the coordinate which is discarded by $ \pi $. Because $ \phi $ is a projection, $ X_2, \dots, X_{1 + n} $ on $ V $ are all in $ \phi^*k\br{W} $ and so the field $ k\br{V} $ is generated by $ \phi^*k\br{W} $ and $ X_1 $. Since $ \phi $ is generically finite, $ V $ is strictly contained in $ W \times \AA^1 $. Hence there is a non-zero polynomial $ f \in k\sbr{W}\sbr{X_{1 + n}} $ which vanishes on $ V $. This gives a $ k\br{W} $-algebraic relation satisfied by $ \eval{X_1}_V $ in $ k\br{V} $. Now $ k\br{V} $ is generated by $ k\br{W} $ and $ \eval{X_1}_V $, so $ k\br{V} $ is algebraic over $ k\br{W} $ as required.
+We can replace $ V $ by the open subset $ \dom \phi $, so that $ \phi $ becomes a regular map. Using Lemma \ref{lem:quasiprojectiveaffine}, we can replace $ V $ and $ W $ by affine open subsets, and then replace $ V $ by the graph of $ \phi $ in $ V \times W $. Hence it suffices to assume that $ \phi = \eval{\pi_2}_V $, where $ \pi_2 $ is the projection $ \AA^{m + n} \to \AA^n $, $ V $ is a closed subset of $ \AA^{m + n} $, and $ W $ is the Zariski closure of $ \pi_2\br{V} $. By induction, by breaking up $ \phi $ into projections
+$$ \AA^{m + n} \to \dots \to \AA^n, $$
+we may reduce to the case $ m = 1 $. Since $ \phi $ is a dominant rational map, it induces an injection of fields $ \phi^* : k\br{W} \to k\br{V} $. We have to prove that the resulting field extension $ k\br{V} / \phi^*k\br{W} $ is algebraic, and hence that the transcendence degrees are the same. Look at the coordinate function $ X_1 $ on $ V $. This is the coordinate which is discarded by $ \pi $. Because $ \phi $ is a projection, $ X_2, \dots, X_{1 + n} $ on $ V $ are all in $ \phi^*k\br{W} $ and so the field $ k\br{V} $ is generated by $ \phi^*k\br{W} $ and $ X_1 $. Since $ \phi $ is generically finite, $ V $ is strictly contained in $ W \times \AA^1 $. Hence there is a non-zero polynomial $ f \in k\sbr{W}\sbr{X_{1 + n}} $ which vanishes on $ V $. This gives a $ k\br{W} $-algebraic relation satisfied by $ \eval{X_1}_V $ in $ k\br{V} $. Now $ k\br{V} $ is generated by $ k\br{W} $ and $ \eval{X_1}_V $, so $ k\br{V} $ is algebraic over $ k\br{W} $ as required.
 \end{proof}
 
 This allows us to restate the definition by saying, $ \dim V = d $ if and only if there exists a generically finite dominant rational map $ V \dashrightarrow \PP^d $.
@@ -2374,14 +2361,14 @@ Lecture 24 is a problems class.
 
 \lecture{25}{Monday}{09/03/20}
 
-We begin with some simple facts.
+We begin with some simple facts. Let $ V $ and $ W $ be irreducible quasi-projective algebraic varieties.
 
 \begin{fact*}
-Let $ V $ and $ W $ be irreducible quasi-projective algebraic varieties.
-\begin{itemize}
-\item If $ \phi : V \dashrightarrow W $ is a dominant rational map, then $ \dim W \le \dim V $. This follows from the fact that $ \phi^* $ is an injection $ k\br{W} \to k\br{V} $.
-\item $ \dim V \times W = \dim V + \dim W $. This holds because if $ \phi : V \dashrightarrow \AA^d $ and $ \psi : W \dashrightarrow \AA^e $ are generically finite dominant rational maps, then $ \br{\phi, \psi} : V \times W \dashrightarrow \AA^{d + e} $ is a generically finite dominant rational map.
-\end{itemize}
+If $ \phi : V \dashrightarrow W $ is a dominant rational map, then $ \dim W \le \dim V $. This follows from the fact that $ \phi^* $ is an injection $ k\br{W} \to k\br{V} $.
+\end{fact*}
+
+\begin{fact*}
+$ \dim V \times W = \dim V + \dim W $. This holds because if $ \phi : V \dashrightarrow \AA^d $ and $ \psi : W \dashrightarrow \AA^e $ are generically finite dominant rational maps, then $ \br{\phi, \psi} : V \times W \dashrightarrow \AA^{d + e} $ is a generically finite dominant rational map.
 \end{fact*}
 
 \subsubsection{Dimension of closed subsets}
@@ -2392,7 +2379,7 @@ Let $ V $ be an irreducible quasi-projective variety and let $ W $ be an irreduc
 \end{lemma}
 
 \begin{proof}
-It suffices to prove Lemma \ref{lem:subsetdimension} for irreducible $ V $ and $ W $. Using Lemma \ref{lem:quasiprojectiveaffine}, we may assume that $ V $ and $ W $ are affine algebraic sets in some affine space $ \AA^n $. Let $ d = \dim V $. Then any $ d + 1 $ of the coordinate functions are algebraically dependent in $ k\br{V} $. In other words, there exists a polynomial $ f \in k\sbr{T_1, \dots, T_{d + 1}} $ such that $ f\br{\eval{X_{i_1}}_V, \dots, \eval{X_{i_{d + 1}}}_V} = 0 $ in $ k\br{V} $. Since $ W \subseteq V $, this relation still holds after restricting to $ W $, so $ f\br{\eval{X_{i_1}}_W, \dots, \eval{X_{i_{d + 1}}}_W} = 0 $ in $ k\sbr{W} $. But the field of functions $ k\br{W} $ is generated, as a $ k $-field, by $ \eval{X_1}_W, \dots, \eval{X_n}_W $, so this establishes that $ \trdeg\br{k\br{W} / k} \le d $.
+It suffices to prove Lemma \ref{lem:subsetdimension} for irreducible $ V $ and $ W $. Using Lemma \ref{lem:quasiprojectiveaffine}, we may assume that $ V $ and $ W $ are affine algebraic sets in some affine space $ \AA^n $. Let $ d = \dim V $. Then any $ d + 1 $ of the coordinate functions are algebraically dependent in $ k\br{V} $. In other words, there exists a polynomial $ f \in k\sbr{T_1, \dots, T_{d + 1}} $ such that $ f\br{\eval{X_{i_1}}_V, \dots, \eval{X_{i_{d + 1}}}_V} = 0 $ in $ k\br{V} $. Since $ W \subseteq V $, this relation still holds after restricting to $ W $, so $ f\br{\eval{X_{i_1}}_W, \dots, \eval{X_{i_{d + 1}}}_W} = 0 $ in $ k\br{W} $. But the field of functions $ k\br{W} $ is generated, as a $ k $-field, by $ \eval{X_1}_W, \dots, \eval{X_n}_W $, so this establishes that $ \trdeg\br{k\br{W} / k} \le d $.
 \end{proof}
 
 We will later show that equality can only happen in Lemma \ref{lem:subsetdimension} if $ W = V $. We could prove this algebraically now, but instead we will end the algebraic proofs using transcendence degree here and prove everything else geometrically. This means that we will need several steps before improving Lemma \ref{lem:subsetdimension} to a strict inequality.
@@ -2453,7 +2440,7 @@ For $ n = d = 2 $ we get $ N = 5 $ and
 $$ \nu_{2, 2}\br{\sbr{X_0 : X_1 : X_2}} = \sbr{X_0^2 : X_1^2 : X_2^2 : X_0X_1 : X_1X_2 : X_0X_2}. $$
 \end{example*}
 
-This is called the \textbf{degree $ d $ Veronese embedding} of $ \PP^n $. By completeness, the image of $ \nu_{n, d} $ is a projective algebraic set $ V_{n, d} \subseteq \PP^N $. One can write down explicit polynomials defining this algebraic set, since they are determinants of $ 2 \times 2 $ matrices. Importantly, $ \nu_{n, d} $ is an isomorphism $ \PP^n \to V_{n, d} $, and proving this is elementary but the notation gets pretty complicated. The benefit of doing all this is that, if $ H \subseteq \PP^n $ is a hypersurface defined by some homogeneous polynomial $ f = \sum_I a_I\underline{X}^I $ of degree $ d $, then because the monomials of degree $ d $ become individual homogeneous coordinates via the Veronese embedding, the equation for $ \nu_{n, d}\br{H} $ is a linear equation $ \sum_I a_IZ_I = 0 $. Thus $ \nu_{n, d}\br{H} = V_{n, d} \cap Z $ for some hyperplane $ Z \subseteq \PP^N $. Therefore, instead of studying the intersection between $ V \subseteq \PP^n $ and a hypersurface $ H \subseteq \PP^n $, we can instead study the intersection between $ \nu_{n, d}\br{V} \subseteq V_{n, d} \subseteq \PP^N $ and a hyperplane $ Z \subseteq \PP^N $. Because $ \nu_{n, d} $ is an isomorphism, we can use Proposition \ref{prop:hyperplanedimension} to deduce the same result for intersections with hypersurfaces.
+This is called the \textbf{degree $ d $ Veronese embedding} of $ \PP^n $. By completeness, the image of $ \nu_{n, d} $ is a projective algebraic set $ \V_{n, d} \subseteq \PP^N $. One can write down explicit polynomials defining this algebraic set, since they are determinants of $ 2 \times 2 $ matrices. Importantly, $ \nu_{n, d} $ is an isomorphism $ \PP^n \to \V_{n, d} $, and proving this is elementary but the notation gets pretty complicated. The benefit of doing all this is that, if $ H \subseteq \PP^n $ is a hypersurface defined by some homogeneous polynomial $ f = \sum_I a_I\underline{X}^I $ of degree $ d $, then because the monomials of degree $ d $ become individual homogeneous coordinates via the Veronese embedding, the equation for $ \nu_{n, d}\br{H} $ is a linear equation $ \sum_I a_IZ_I = 0 $. Thus $ \nu_{n, d}\br{H} = \V_{n, d} \cap Z $ for some hyperplane $ Z \subseteq \PP^N $. Therefore, instead of studying the intersection between $ V \subseteq \PP^n $ and a hypersurface $ H \subseteq \PP^n $, we can instead study the intersection between $ \nu_{n, d}\br{V} \subseteq \V_{n, d} \subseteq \PP^N $ and a hyperplane $ Z \subseteq \PP^N $. Because $ \nu_{n, d} $ is an isomorphism, we can use Proposition \ref{prop:hyperplanedimension} to deduce the same result for intersections with hypersurfaces.
 
 \begin{theorem}
 \label{thm:projectivedimension}
@@ -2691,9 +2678,9 @@ Alternatively, we could have seen this without reducing to the case $ x = \sbr{0
 $$ \dim p^{-1}\br{x} = \br{n + 1}\br{N - 1}, \qquad x \in \PP^n. $$
 We can apply the fibre dimension theorem, in Theorem \ref{thm:fibredimension}, to get
 $$ \dim \Sigma = \dim \PP^n + \dim p^{-1}\br{x} = n + \br{n + 1}\br{N - 1} = N\br{n + 1} - 1. $$
-By part $ 2 $ of the fibre dimension theorem, this holds for all $ x $ in some non-empty open subset of $ \PP^n $. It does not matter which $ x $ we choose because we showed that all the fibres have the same dimension. Now to compute $ \dim S $, we will apply the fibre dimension theorem to the projection $ q : \Sigma \to S $. This map is surjective by construction. This time, the fibres do not all have the same dimension, but the minimum dimension of the fibres is zero. To see that there are fibres of dimension zero, observe that for suitable choices of $ n + 1 $ homogeneous polynomials of degree $ d $, the intersection of the corresponding hypersurfaces is finite and non-empty, for example $ f_i = X_i^d $ for $ 0 \le i \le n - 1 $ and $ f_n X_0^d $, repeating $ f_0 $, have the unique common solution $ \sbr{0 : \dots : 0 : 1} $. Therefore the fibre dimension theorem implies that
+By part $ 2 $ of the fibre dimension theorem, this holds for all $ x $ in some non-empty open subset of $ \PP^n $. It does not matter which $ x $ we choose because we showed that all the fibres have the same dimension. Now to compute $ \dim S $, we will apply the fibre dimension theorem to the projection $ q : \Sigma \to S $. This map is surjective by construction. This time, the fibres do not all have the same dimension, but the minimum dimension of the fibres is zero. To see that there are fibres of dimension zero, observe that for suitable choices of $ n + 1 $ homogeneous polynomials of degree $ d $, the intersection of the corresponding hypersurfaces is finite and non-empty, for example $ f_i = X_i^d $ for $ 0 \le i \le n - 1 $ and $ f_n = X_0^d $, repeating $ f_0 $, have the unique common solution $ \sbr{0 : \dots : 0 : 1} $. Therefore the fibre dimension theorem implies that
 $$ \dim S = \dim \Sigma - 0 = N\br{n + 1} - 1. $$
-We recall how this follows from the fibre dimension theorem. By part $ 1 $, the fact that there is just a single fibre of dimension zero implies that $ 0 \ge \dim \Sigma - \dim S $. By part $ 2 $ of the fibre dimension theorem, there exists an open subset $ U \subseteq S $ on which $ \dim q^{-1}\br{s} = \dim \Sigma - \dim S $. But since $ q^{-1}\br{s} $ can never be negative, this forces $ 0 \le \dim q^{-1}\br{s} = \dim \Sigma - \dim S $. Combining these gives $ \dim S = \dim \Sigma $ as we claimed. In particular, we have $ \dim S = \dim \P_{n, d}^{n + 1} - 1 $. This means that it is only slightly unusual for $ n + 1 $ hypersurfaces to have non-empty intersection, since this subset of the parameter space has dimension only one less than the entire parameter space. As an application of this calculation, we see that $ S $ is a hypersurface in $ \P_{n, d}^{n + 1} $, and therefore it is defined by a single polynomial $ F \in k\sbr{X_{iI} \st 0 \le i \le n, \ 0 \le I \le N} $. In other words, there exists some polynomial $ F $ such that, when we evaluate it at the coefficients of $ n + 1 $ homogeneous polynomials $ f_0, \dots, f_n $ of degree $ d $, we get zero if and only if the intersection $ \bigcap_{i = 0}^n \HHH_{\sbr{f_i}} $ is non-empty.
+We recall how this follows from the fibre dimension theorem. By part $ 1 $, the fact that there is just a single fibre of dimension zero implies that $ 0 \ge \dim \Sigma - \dim S $. By part $ 2 $ of the fibre dimension theorem, there exists an open subset $ U \subseteq S $ on which $ \dim q^{-1}\br{s} = \dim \Sigma - \dim S $. But since $ q^{-1}\br{s} $ can never be negative, this forces $ 0 \le \dim q^{-1}\br{s} = \dim \Sigma - \dim S $. Combining these gives $ \dim S = \dim \Sigma $ as we claimed. In particular, we have $ \dim S = \dim \P_{n, d}^{n + 1} - 1 $. This means that it is only slightly unusual for $ n + 1 $ hypersurfaces to have non-empty intersection, since this subset of the parameter space has dimension only one less than the entire parameter space. As an application of this calculation, we see that $ S $ is a hypersurface in $ \P_{n, d}^{n + 1} $, and therefore it is defined by a single polynomial $ F \in k\sbr{X_{iJ} \st 0 \le i \le n, \ 0 \le J \le N} $. In other words, there exists some polynomial $ F $ such that, when we evaluate it at the coefficients of $ n + 1 $ homogeneous polynomials $ f_0, \dots, f_n $ of degree $ d $, we get zero if and only if the intersection $ \bigcap_{i = 0}^n \HHH_{\sbr{f_i}} $ is non-empty.
 \end{example*}
 
 \end{document}

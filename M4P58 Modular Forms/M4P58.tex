@@ -115,7 +115,7 @@ $$ E = \cbr{\br{x, y} \in \ZZ \st y^2 + y = x^3 - x^2 - 10x - 20}. $$
 \begin{itemize}
 \item Modulo $ 2 $, there are $ a_2 = 4 $ solutions $ \br{0, 0} $, $ \br{0, 1} $, $ \br{1, 0} $, $ \br{1, 1} $.
 \item Modulo $ 3 $, there are $ a_3 = 4 $ solutions $ \br{1, 0} $, $ \br{1, -1} $, $ \br{-1, 0} $, $ \br{-1, -1} $.
-\item Modulo $ 5 $, there are $ a_5 = 4 $ solutions $ \br{0, 0} $, $ \br{0, -1} $, $ \br{1, 0} $, $ \br{-1, -1} $.
+\item Modulo $ 5 $, there are $ a_5 = 4 $ solutions $ \br{0, 0} $, $ \br{0, -1} $, $ \br{1, 0} $, $ \br{1, -1} $.
 \item Modulo $ 7 $, there are $ a_7 = 9 $ solutions $ \br{1, 3} $, $ \br{2, 2} $, $ \br{2, -3} $, $ \br{-1, 1} $, $ \br{-1, -2} $, $ \br{-2, 1} $, $ \br{-2, -2} $, $ \br{-3, 1} $, $ \br{-3, -2} $.
 \end{itemize}
 If $ p \ne 11 $, then
@@ -152,22 +152,25 @@ $ \SL_2\br{\RR} $ acts on $ \CC \cup \cbr{\infty} $ by
 $$ \twobytwo{a}{b}{c}{d} \cdot z =
 \begin{cases}
 \dfrac{az + b}{cz + d} & z \ne -\dfrac{d}{c} \\
-\infty & z = -\dfrac{d}{c}
-\end{cases}
-\qquad \twobytwo{a}{b}{c}{d} \cdot \infty = \dfrac{a}{c}.
+\infty & z = -\dfrac{d}{c} \\
+\dfrac{a}{c} & z = \infty
+\end{cases}.
 $$
-One checks that this gives a bijection from $ \CC \cup \cbr{\infty} $ to $ \CC \cup \cbr{\infty} $, where inverse is given by the inverse matrix $ \twobytwosmall{d}{-b}{-c}{a} $, and
+One checks that this gives a bijection from $ \CC \cup \cbr{\infty} $ to $ \CC \cup \cbr{\infty} $, where the inverse is given by the inverse matrix $ \twobytwosmall{d}{-b}{-c}{a} $, and
 $$ \twobytwo{a}{b}{c}{d} \cdot \br{\twobytwo{a'}{b'}{c'}{d'} \cdot z} = \twobytwo{a}{b}{c}{d}\twobytwo{a'}{b'}{c'}{d'} \cdot z. $$
 One obtains a left action of $ \SL_2\br{\RR} $ on $ \CC \cup \cbr{\infty} $. An observation is
 $$ \Im \twobytwo{a}{b}{c}{d}z = \Im \dfrac{az + b}{cz + d} = \Im \dfrac{\br{az + b}\br{c\overline{z} + d}}{\abs{cz + d}^2} = \dfrac{\Im \br{az + b}\br{c\overline{z} + d}}{\abs{cz + d}^2} = \dfrac{\br{ad - bc}\Im z}{\abs{cz + d}^2}. $$
-
-\lecture{2}{Friday}{04/10/19}
-
 In particular, if $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \SL_2\br{\RR} $, then
 $$ \Im \gamma z = \dfrac{\Im z}{\abs{cz + d}^2}. $$
-So $ \SL_2\br{\RR} $ preserves $ \HH \cup \cbr{\infty} $. More generally, if $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \GL_2\br{\RR} $, then
+So $ \SL_2\br{\RR} $ preserves $ \HH \cup \cbr{\infty} $. More generally, if
+$$ \gamma = \twobytwo{a}{b}{c}{d} \in \GL_2\br{\RR} = \cbr{\twobytwo{a}{b}{c}{d} \st a, b, c, d \in \RR, \ ad - bc \ne 0}, $$
+then
 $$ \Im \gamma z = \dfrac{\det \gamma\Im z}{\abs{cz + d}^2}. $$
-So $ \GL_2\br{\RR}_+ $ preserves $ \HH \cup \cbr{\infty} $.
+So
+$$ \GL_2\br{\RR}_+ = \cbr{\twobytwo{a}{b}{c}{d} \st a, b, c, d \in \RR, \ ad - bc > 0} $$
+preserves $ \HH \cup \cbr{\infty} $.
+
+\lecture{2}{Friday}{04/10/19}
 
 \begin{definition}
 Let $ f : \HH \to \CC $, let $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \GL_2\br{\RR}_+ $, and let $ k \in \ZZ $. Define
@@ -176,28 +179,32 @@ where $ \det \gamma^{k - 1} $ is the \textbf{fudge factor}, which is one for $ \
 \end{definition}
 
 Check that
-$$ \eval{f}_{k, \id} = f, \qquad \eval{\br{\eval{f}_{k, \gamma}}}_{k, \gamma'} = \eval{f}_{k, \gamma'\gamma}. $$
+$$ \eval{f}_{k, \id} = f, \qquad \eval{\br{\eval{f}_{k, \gamma}}}_{k, \gamma'} = \eval{f}_{k, \gamma\gamma'}. $$
 This gives, for each $ k $, a left action of $ \GL_2\br{\RR}_+ $ on functions $ \HH \to \CC $, a \textbf{modular action of weight $ k $}. A modular form of weight $ k $ will be a sufficiently nice function $ f : \HH \to \CC $ such that $ \eval{f}_{k, \gamma} = f $ for all $ \gamma \in \SL_2\br{\ZZ} $. That is, for all $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \SL_2\br{\ZZ} $ and $ z \in \HH $,
-$$ f\br{\gamma z}\br{cz + d}^{-k} = f\br{z}, \qquad \implies \qquad f\br{\gamma z} = f\br{z}\br{cz + d}^k, $$
-the \textbf{modular transformation law of weight $ k $}. The following are some observations.
-\begin{itemize}
-\item Let $ k = 0 $. Then constant functions satisfy $ f\br{\gamma z} = f\br{z} $. It will turn out that all functions of weight zero are constant.
-\item Let $ k $ be odd, and $ \gamma = -\id $. Then $ \gamma z = z $ for all $ z $ and $ cz + d = -1 $, so $ f\br{\gamma z} = f\br{z}\br{cz + d}^k $ gives $ f\br{z} = f\br{z}\br{-1}^k $, so $ f\br{z} = -f\br{z} $, so $ f\br{z} = 0 $ for all $ z $. So no non-zero functions $ f : \HH \to \CC $ satisfy the modular transformation law of weight $ k $, for all $ \gamma \in \SL_2\br{\ZZ} $, when $ k $ is odd.
-\end{itemize}
+$$ f\br{\gamma z}\br{cz + d}^{-k} = f\br{z} \qquad \implies \qquad f\br{\gamma z} = f\br{z}\br{cz + d}^k, $$
+the \textbf{modular transformation law of weight $ k $}.
 
 \pagebreak
 
+The following are some observations.
+\begin{itemize}
+\item Let $ k = 0 $. Then constant functions satisfy $ f\br{\gamma z} = f\br{z} $. It will turn out that all functions of weight zero are constant.
+\item Let $ k $ be odd, and $ \gamma = -\id $. Then $ \gamma z = z $ for all $ z $ and $ cz + d = -1 $, so $ f\br{\gamma z} = f\br{z}\br{cz + d}^k $ gives $ f\br{z} = f\br{z}\br{-1}^k = -f\br{z} $, so $ f\br{z} = 0 $ for all $ z $. So no non-zero functions $ f : \HH \to \CC $ satisfy the modular transformation law of weight $ k $, for all $ \gamma \in \SL_2\br{\ZZ} $, when $ k $ is odd.
+\end{itemize}
+
 \subsubsection{Review of complex analysis}
 
-Let $ f : U \to \CC $, for $ U \subseteq \CC $ open, and let $ p \in U $.
+Let $ f : U \to \CC $ for $ U \subseteq \CC $ open, and let $ p \in U $.
 
 \begin{definition}
-$ f $ is \textbf{holomorphic} at $ p $ if $ f'\br{p'} = \lim_{\CC \ni \epsilon \to 0} \tfrac{f\br{p' + \epsilon} - f\br{p'}}{\epsilon} $ exists for all $ p' $ in a neighbourhood of $ p $.
+$ f $ is \textbf{holomorphic} at $ p $ if
+$$ f'\br{p'} = \lim_{\epsilon \to 0, \ \epsilon \in \CC} \dfrac{f\br{p' + \epsilon} - f\br{p'}}{\epsilon} $$
+exists for all $ p' $ in a neighbourhood of $ p $.
 \end{definition}
 
 \begin{proposition}
 $ f $ is holomorphic at $ p $ implies that $ f $ is continuous and infinitely differentiable at $ p $, that is $ f^{\br{n}}\br{p} $ exists for all $ n \ge 0 $. Moreover, we have
-$$ f\br{z} = \sum_{n = 0}^\infty \dfrac{f^{\br{n}}\br{p}}{n!}\br{z - p}^n = f\br{p} + f'\br{p}\br{z - p} + \dfrac{f'\br{p}}{2}\br{z - p}^2 + \dots, $$
+$$ f\br{z} = \sum_{n = 0}^\infty \dfrac{f^{\br{n}}\br{p}}{n!}\br{z - p}^n = f\br{p} + f'\br{p}\br{z - p} + \dfrac{f''\br{p}}{2}\br{z - p}^2 + \dots, $$
 for all $ z $ in a neighbourhood of $ p $.
 \end{proposition}
 
@@ -210,11 +217,19 @@ More generally is the following.
 \begin{definition}
 $ f $ is \textbf{meromorphic} at $ p $ if there exists a neighbourhood $ U $ of $ p $ and $ g, h : U \to \CC $ holomorphic on $ U $ such that $ f = g / h $ on $ U \setminus \cbr{p} $. Such an $ f $ has a \textbf{Laurent series expansion} at $ p $,
 $$ f\br{z} = \sum_{i = -N}^\infty c_i\br{z - p}^i. $$
-The smallest $ i $ such that $ c_i \ne 0 $ is denoted by $ \ord_p f $, the \textbf{order of vanishing} of $ f $ at $ p $. If $ \ord_p f = -n $ for $ n > 0 $, we say $ f $ has a \textbf{pole of order $ n $}. If $ \ord_p f = n $ for $ n > 0 $, we say $ f $ has a \textbf{zero of order $ n $}.
+The smallest $ i $ such that $ c_i \ne 0 $ is denoted by $ \ord_p f $, the \textbf{order of vanishing} of $ f $ at $ p $.
+\begin{itemize}
+\item If $ \ord_p f = -n $ for $ n > 0 $, we say $ f $ has a \textbf{pole of order $ n $}.
+\item If $ \ord_p f = n $ for $ n > 0 $, we say $ f $ has a \textbf{zero of order $ n $}.
+\end{itemize}
 \end{definition}
 
 \begin{proposition}
-$ \ord_p fg = \ord_p f + \ord_p g $ and $ \ord_p \br{f + g} \ge \min\cbr{\ord_p f, \ord_p g} $, with equality if $ \ord_p f \ne \ord_p g $.
+\hfill
+\begin{itemize}
+\item $ \ord_p fg = \ord_p f + \ord_p g $, and
+\item $ \ord_p \br{f + g} \ge \min\cbr{\ord_p f, \ord_p g} $, with equality if $ \ord_p f \ne \ord_p g $.
+\end{itemize}
 \end{proposition}
 
 If $ f $ is holomorphic on $ U \setminus \cbr{p} $ for $ U $ a neighbourhood of $ p $, then $ f $ may or may not be meromorphic at $ p $.
@@ -224,8 +239,12 @@ $ f\br{z} = e^{-1 / z^2} $ is holomorphic on $ \CC \setminus \cbr{0} $, but not 
 \end{example*}
 
 \begin{theorem}
-Let $ f $ be holomorphic on $ U \setminus \cbr{p} $, and there exists $ n > 0 $ such that $ \lim_{x \to p} \br{x - p}^nf\br{x} $ exists. Then $ f $ is meromorphic on $ U $, and $ \ord_p f \ge -n $.
+Let $ f $ be holomorphic on $ U \setminus \cbr{p} $, and there exists $ n > 0 $ such that
+$$ \lim_{x \to p} \br{x - p}^nf\br{x} $$
+exists. Then $ f $ is meromorphic on $ U $, and $ \ord_p f \ge -n $.
 \end{theorem}
+
+\pagebreak
 
 \subsubsection{Modular forms}
 
@@ -240,8 +259,10 @@ $ f : \HH \to \CC $ is a \textbf{weakly modular function of weight $ k $} if
 Consider $ \gamma = \twobytwosmall{1}{1}{0}{1} $, so $ \gamma z = z + 1 $ and $ cz + d = 1 $. The modular transformation law gives $ f\br{z + 1} = f\br{z} $. Let
 $$ \DD = \cbr{q \st \abs{q} < 1}. $$
 Can define a function
-$$ \function[g]{\DD \setminus \cbr{0}}{\CC}{q}{f\br{\dfrac{\log q}{2\pi i}}}, $$
-that is $ f\br{z} = g\br{e^{2\pi iz}} $ for $ z \in \HH $, where $ g $ is holomorphic or meromorphic on $ \cbr{z \st 0 < \abs{z} < 1} $ if and only if $ f $ is holomorphic or meromorphic on $ \HH $.
+$$ \function[g]{\DD \setminus \cbr{0}}{\HH}{q}{f\br{\dfrac{\log q}{2\pi i}}}, $$
+that is
+$$ \function[f]{\HH}{\DD \setminus \cbr{0}}{z}{g\br{e^{2\pi iz}}}, $$
+and $ q = e^{2\pi iz} $, where $ g $ is holomorphic or meromorphic on $ \DD \setminus \cbr{0} $ if and only if $ f $ is holomorphic or meromorphic on $ \HH $.
 
 \begin{definition}
 $ f : \HH \to \CC $ is a \textbf{modular form of weight $ k $} if
@@ -252,13 +273,11 @@ $ f : \HH \to \CC $ is a \textbf{modular form of weight $ k $} if
 \end{enumerate}
 \end{definition}
 
-\pagebreak
+\lecture{3}{Monday}{07/10/19}
 
-Then $ q \to 0 $ in $ \DD $ if and only if $ \Im z \to +\infty $. Then $ 3 $ means $ g\br{q} $ is bounded as $ q \to 0 $ so $ f\br{z} $ is bounded as $ \Im z \to +\infty $. For $ f $ satisfying $ 3 $, $ g : \DD \setminus \cbr{0} \to \CC $ has a series expansion
+Then $ q \to 0 $ in $ \DD $ if and only if $ \Im z \to +\infty $. Recall that a holomorphic function $ g $ on $ \DD \setminus \cbr{0} $ extends to a meromorphic function on $ \DD $ if and only if there exists $ n $ such that $ \lim_{q \to 0} q^ng\br{q} $ exists. Then $ 3 $ means $ g\br{q} $ is bounded as $ q \to 0 $ so $ f\br{z} $ is bounded as $ \Im z \to +\infty $. For $ f $ satisfying $ 3 $, $ g : \DD \setminus \cbr{0} \to \CC $ has a series expansion
 $$ g\br{q} = \sum_n a_nq^n = a_0 + a_1q + \dots $$
 in $ q = e^{2\pi iz} $. We call this the \textbf{$ q $-expansion} for $ f $.
-
-\lecture{3}{Monday}{07/10/19}
 
 \begin{definition}
 $ f : \HH \to \CC $ is a \textbf{meromorphic modular form of weight $ k $} if the same conditions $ 1 $ to $ 3 $ hold, but with holomorphic weakened to meromorphic.
@@ -269,12 +288,20 @@ If $ f $ is only meromorphic at $ \infty $ then a finite number of negative powe
 \end{note*}
 
 \begin{example*}
-$ \Delta\br{z} = q\prod_{n = 1}^\infty \br{1 - q^n}^{24} = q - 24q^2 + 252q^3 - 1472q^4 + \dots $ is a modular form of weight $ 12 $.
+\hfill
+\begin{itemize}
+\item The \textbf{discriminant}
+$$ \Delta\br{z} = q\prod_{n = 1}^\infty \br{1 - q^n}^{24} = q - 24q^2 + 252q^3 - 1472q^4 + \dots $$
+is a modular form of weight twelve.
+\item The \textbf{$ \j $-invariant}
+$$ \j\br{z} = \dfrac{1}{q} + 744 + 196844q + 21493760q^2 + \dots $$
+is a meromorphic modular form of weight zero.
+\end{itemize}
 \end{example*}
 
-\begin{example*}
-$ \j\br{z} = q^{-1} + 744 + 196844q + 21493760q^2 + \dots $ is a meromorphic modular form of weight zero.
-\end{example*}
+\pagebreak
+
+\subsection{Eisenstein series}
 
 \subsubsection{Lattice functions}
 
@@ -289,20 +316,34 @@ $$ \L_{z, 1} = \ZZ + \ZZ z = \cbr{az + b \st a, b \in \ZZ} \subseteq \CC. $$
 
 A question is when is $ \L_{z, 1} $ homothetic to $ \L_{z', 1} $, and what is a homothety factor?
 \begin{itemize}
-\item Suppose $ \L_{z, 1} = \lambda \L_{z', 1} $. Then there exist $ a, b, c, d $ such that $ \lambda z' = az + b $ and $ \lambda = cz + d $, so
+\item Suppose $ \L_{z, 1} = \lambda \L_{z', 1} $. Then there exist $ a, b, c, d $ such that
 \begin{equation}
 \label{eq:1}
-\twobyone{\lambda z'}{\lambda} = \twobytwo{a}{b}{c}{d}\twobyone{z}{1}.
+\begin{cases}
+\lambda z' = az + b \\
+\lambda = cz + d
+\end{cases}
+\qquad \implies \qquad \twobyone{\lambda z'}{\lambda} = \twobytwo{a}{b}{c}{d}\twobyone{z}{1}.
 \end{equation}
-On the other hand there exist $ a', b', c', d' $ such that $ z = a'\lambda z' + b'\lambda $ and $ 1 = c'\lambda z' + d'\lambda $, so
+On the other hand there exist $ a', b', c', d' $ such that
 \begin{equation}
 \label{eq:2}
-\twobytwo{a'}{b'}{c'}{d'}\twobyone{\lambda z'}{\lambda} = \twobyone{z}{1}.
+\begin{cases}
+z = a'\lambda z' + b'\lambda \\
+1 = c'\lambda z' + d'\lambda
+\end{cases}
+\qquad \implies \qquad \twobytwo{a'}{b'}{c'}{d'}\twobyone{\lambda z'}{\lambda} = \twobyone{z}{1}.
 \end{equation}
-Then $ \br{\ref{eq:1}} $ and $ \br{\ref{eq:2}} $ imply that $ \twobytwosmall{a'}{b'}{c'}{d'}\twobytwosmall{a}{b}{c}{d}\binom{z}{1} = \binom{z}{1} $, so $ \twobytwosmall{a}{b}{c}{d} \in \SL_2\br{\ZZ} $. Moreover $ \br{\ref{eq:1}} $ implies that $ z' = \br{az + b} / \br{cz + d} $.
-\item Conversely, if $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \SL_2\br{\ZZ} $, then $ \gamma z = \br{az + b} / \br{cz + d} $, so $ \L_{\gamma z, 1} = \br{cz + d}^{-1}\L_{az + b, cz + d} $. But certainly $ \L_{az + b, cz + d} \subseteq \L_{z, 1} $. On the other hand if $ \gamma' = \twobytwosmall{a'}{b'}{c'}{d'} $ is inverse to $ \gamma $,
+By $ \br{\ref{eq:1}} $ and $ \br{\ref{eq:2}} $,
+$$ \twobytwo{a'}{b'}{c'}{d'}\twobytwo{a}{b}{c}{d}\twobyone{z}{1} = \twobyone{z}{1}, $$
+so $ \twobytwosmall{a}{b}{c}{d} \in \SL_2\br{\ZZ} $. Moreover $ \br{\ref{eq:1}} $ implies that $ z' = \br{az + b} / \br{cz + d} $.
+\item Conversely, if $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \SL_2\br{\ZZ} $, then $ \gamma z = \br{az + b} / \br{cz + d} $, so
+$$ \L_{\gamma z, 1} = \br{cz + d}^{-1}\L_{az + b, cz + d}. $$
+But certainly $ \L_{az + b, cz + d} \subseteq \L_{z, 1} $. On the other hand if $ \gamma' = \twobytwosmall{a'}{b'}{c'}{d'} $ is inverse to $ \gamma $,
 $$ \twobyone{z}{1} = \gamma'\gamma\twobyone{z}{1} = \gamma\twobyone{az + b}{cz + d} = \twobyone{a'\br{az + b} + b'\br{cz + d}}{c'\br{az + b} + d'\br{cz + d}}, $$
-so $ z \in \L_{az + b, cz + d} $ and $ 1 \in \L_{az + b, cz + d} $. So $ \L_{az + b, cz + d} = \L_{z, 1} $, so $ \L_{\gamma z, 1} = \br{cz + d}^{-1}\L_{z, 1} $.
+so $ z \in \L_{az + b, cz + d} $ and $ 1 \in \L_{az + b, cz + d} $. So
+$$ \L_{az + b, cz + d} = \L_{z, 1}, $$
+so $ \L_{\gamma z, 1} = \br{cz + d}^{-1}\L_{z, 1} $.
 \end{itemize}
 
 \begin{definition}
@@ -313,11 +354,9 @@ $$ \function[f]{\HH}{\CC}{z}{F\br{\L_{z, 1}}}. $$
 \end{definition}
 
 If $ F $ has weight $ k $, then
-$$ f\br{\twobytwo{a}{b}{c}{d}z} = F\br{\L_{\twobytwosmall{a}{b}{c}{d}z, 1}} = F\br{\br{cz + d}^{-1}\L_{z, 1}} = \br{cz + d}^kF\br{\L_{z, 1}} = \br{cz + d}^kf\br{z}. $$
+$$ f\br{\gamma z} = F\br{\L_{\gamma z, 1}} = F\br{\br{cz + d}^{-1}\L_{z, 1}} = \br{cz + d}^kF\br{\L_{z, 1}} = \br{cz + d}^kf\br{z}, \qquad \gamma = \twobytwo{a}{b}{c}{d}. $$
 
 \pagebreak
-
-\subsection{Eisenstein series}
 
 \subsubsection{Eisenstein series}
 
@@ -338,7 +377,7 @@ $ \g_k $ satisfies the modular transformation law of weight $ k $.
 The following are some questions.
 \begin{itemize}
 \item Does $ \G_k $, or $ \g_k $, converge?
-\item Is $ \g_k $ holomorphic or meromorphic on $ \HH $?
+\item Is $ \g_k $ holomorphic, or meromorphic, on $ \HH $?
 \item Is $ \g_k $ holomorphic at $ \infty $?
 \item What is the $ q $-expansion of $ \g_k $?
 \end{itemize}
@@ -363,7 +402,7 @@ Let
 $$ P_{z, r} = \cbr{az + b \st a, b \in \RR, \ \max\br{\abs{a}, \abs{b}} = r} \subseteq \CC, $$
 so $ P_{z, r} = rP_{z, 1} $, and there are $ 8r $ points on $ P_{z, r} \cap \L_{z, 1} $. Then
 $$ \g_k\br{z} = \sum_{r = 1}^\infty \sum_{w \in \L_{z, 1} \cap P_{z, r}} \dfrac{1}{w^k}. $$
-The function $ z \mapsto \abs{z} $ attains a non-zero minimum $ \delta\br{z} $ on $ P_{z, 1} $, so on $ P_{z, 1} $, have $ \abs{z} > \delta\br{z} $, so $ 1 / \abs{z}^k < 1 / \delta\br{z}^k $. On $ P_{z, r} $, have $ \abs{z} > r\delta\br{z} $, so $ 1 / \abs{z}^k < 1 / r^k\delta\br{z}^k $. Let $ C \subseteq \HH $ be compact. Then $ z \mapsto \delta\br{z} $ is a continuous function on $ C $ and attains a minimum $ \delta_C $. For all $ z \in C $ and all $ w \in P_{z, r} $, get $ \abs{w} > r\delta_C $, so
+The function $ z \mapsto \abs{z} $ attains a non-zero minimum $ \delta\br{z} $ on $ P_{z, 1} $, so on $ P_{z, 1} $, have $ \abs{z} > \delta\br{z} $, so $ 1 / \abs{z}^k < 1 / \delta\br{z}^k $. On $ P_{z, r} $, have $ \abs{z} > r\delta\br{z} $, so $ 1 / \abs{z}^k < 1 / r^k\delta\br{z}^k $. Let $ C \subseteq \HH $ be compact. Then $ z \mapsto \delta\br{z} $ is a continuous function on $ C $ and attains a minimum $ \delta_C $. For all $ z \in C $ and $ w \in P_{z, r} $, get $ \abs{w} > r\delta_C $, so
 $$ \dfrac{1}{\abs{w}^k} < \dfrac{1}{r^k\delta_C^k}. $$
 Thus for $ z \in C $, $ \g_k\br{z} $ is dominated by
 $$ \sum_{r = 1}^\infty \dfrac{8r}{r^k\delta_C^k} = \dfrac{8}{\delta_C^k}\sum_{r = 1}^\infty \dfrac{1}{r^{k - 1}}, $$
@@ -373,6 +412,8 @@ which converges absolutely for $ k \ge 4 $.
 \begin{corollary}
 $ \g_k\br{z} $ is holomorphic on $ \HH $.
 \end{corollary}
+
+\pagebreak
 
 \subsubsection{\texorpdfstring{$ q $}{q}-expansion and holomorphy at \texorpdfstring{$ \infty $}{infinity}}
 
@@ -387,7 +428,7 @@ A bounded holomorphic function on all of $ \CC $ is constant.
 \hfill
 \begin{enumerate}
 \item
-$$ \dfrac{\pi^2}{\sin^2 \pi z} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2}. $$
+$$ \dfrac{\pi^2}{\sin^2 \pi z} = \sum_{n = -\infty}^\infty \dfrac{1}{\br{z - n}^2}. $$
 \item
 $$ \pi\cot \pi z = \dfrac{1}{z} + \sum_{n = 1}^\infty \br{\dfrac{1}{z - n} + \dfrac{1}{z + n}} = \dfrac{1}{z} + \sum_{n = 1}^\infty \dfrac{2z}{z^2 - n^2}. $$
 \end{enumerate}
@@ -410,7 +451,7 @@ where $ R_0 $ has finitely many terms that converge to less than $ \epsilon / 2 
 $$ \abs{\dfrac{\pi^2}{\sin^2 \pi z}} = \abs{\dfrac{2\pi^2}{e^{\pi iz} - e^{-\pi iz}}} \to 0, $$
 so $ \lim_{t \to \infty} g\br{a + it} = 0 $. Moreover, $ g\br{z + 1} = g\br{z} $ for all $ z $. Then
 $$ S = \cbr{z \in \CC \st n - 1 \le \Re z \le n, \ -N \le \Im z \le N}, \qquad n \in \ZZ $$
-is compact, so $ \abs{g\br{z}} $ attains a maximum in $ S $, so $ g\br{z} $ is bounded in $ S $. Since $ g\br{z} $ is also bounded in $ R_- + R_+ $, $ g\br{z} $ is bounded in $ \CC $, so $ g $ is constant. Since $ \lim_{t \to \infty} g\br{a + it} = 0 $, $ g = 0 $.
+is compact, so $ \abs{g\br{z}} $ attains a maximum in $ S $, so $ g\br{z} $ is bounded in $ S $, so $ g\br{z} $ is bounded in $ \CC $, so $ g $ is constant. Since $ \lim_{t \to \infty} g\br{a + it} = 0 $, $ g = 0 $.
 
 \pagebreak
 
@@ -452,7 +493,8 @@ a formal power series with rational coefficients.
 \end{definition}
 
 Then
-$$ \b_0 = 1, \qquad \b_1 = -\tfrac{1}{2}, \qquad \b_2 = \tfrac{1}{6}, \qquad \b_3 = 0, \qquad \b_4 = -\tfrac{1}{20}, \qquad \dots, \qquad \b_{2k} \in \QQ, \qquad \b_{2k + 1} = 0, \qquad \dots. $$
+$$ \b_0 = 1, \qquad \b_1 = -\dfrac{1}{2}, \qquad \b_2 = \dfrac{1}{6}, \qquad \b_3 = 0, \qquad \b_4 = -\dfrac{1}{20}, \qquad \dots, $$
+where $ \b_{2k} \in \QQ $ is interesting and $ \b_{2k + 1} = 0 $ for $ k \ge 1 $.
 
 \pagebreak
 
@@ -481,7 +523,7 @@ get the desired formula.
 \end{proof}
 
 So
-$$ \g_k\br{z} = \dfrac{-\b_k\br{2\pi i}^k}{k!} + \dfrac{2\br{2\pi i}^k}{\br{k - 1}!}\sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n. $$
+$$ \g_k\br{z} = -\b_k\dfrac{\br{2\pi i}^k}{k!} + \dfrac{2\br{2\pi i}^k}{\br{k - 1}!}\sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n. $$
 Set the \textbf{normalised Eisenstein series}
 $$ \E_k = \dfrac{\g_k}{2\zeta\br{k}} = 1 - \dfrac{2k}{\b_k}\sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n. $$
 
@@ -501,11 +543,15 @@ $ p $ is regular if and only if $ p $ does not divide the numerator of $ \b_k $ 
 An observation is if $ f $ is modular of weight $ k $ and $ g $ is modular of weight $ k' $, then $ fg $ is modular of weight $ k + k' $, and if $ k = k' $, then $ f + g $ is modular of weight $ k $.
 
 \begin{example*}
-$ \Delta\br{z} = \br{\E_4 - \E_6^2} / 1728 = q - 24q^2 + 252q^3 + \dots $ is a modular form of weight $ 12 $.
-\end{example*}
-
-\begin{example*}
-$ \j\br{z} = \E_4^3 / \Delta = q^{-1} + 744 + 196844q + \dots $ is a meromorphic modular form of weight zero.
+\hfill
+\begin{itemize}
+\item The discriminant
+$$ \Delta\br{z} = \dfrac{\E_4^3 - \E_6^2}{1728} = q - 24q^2 + 252q^3 + \dots $$
+is a modular form of weight twelve.
+\item The $ \j $-invariant
+$$ \j\br{z} = \dfrac{\E_4^3}{\Delta} = \dfrac{1}{q} + 744 + 196844q + \dots $$
+is a meromorphic modular form of weight zero.
+\end{itemize}
 \end{example*}
 
 \pagebreak
@@ -559,13 +605,13 @@ and let $ \Gamma \subseteq \SL_2\br{\ZZ} $ be the subgroup generated by $ \S $ a
 \item $ \abs{z} = 1 $ and $ z' = -1 / z $.
 \end{itemize}
 In particular, if $ z \ne z' $, then $ z $ and $ z' $ are on the boundary of $ \DDD $.
-\item For $ z \in \DDD $, let $ \I_z $ be the stabiliser of $ z $ in $ \SL_2\br{\ZZ} $, that is
-$$ \I_z = \cbr{\gamma \in \SL_2\br{\ZZ} \st \gamma z = z}. $$
-Then $ \I_z = \cbr{\pm\I} $ unless
+\item For $ z \in \DDD $, let $ \Stab_z $ be the stabiliser of $ z $ in $ \SL_2\br{\ZZ} $, that is
+$$ \Stab_z = \cbr{\gamma \in \SL_2\br{\ZZ} \st \gamma z = z}. $$
+Then $ \Stab_z = \cbr{\pm\id} $ unless
 \begin{itemize}
-\item $ z = i $, where $ \I_z = \cbr{\pm\I, \pm \S} $,
-\item $ z = \rho $, where $ \I_z = \cbr{\pm\I, \pm\br{\S\T}, \pm\br{\T^{-1}\S}} $, or
-\item $ z = \rho' $, where $ \I_z = \cbr{\pm\I, \pm\br{\T\S}, \pm\br{\S\T^{-1}}} $.
+\item $ z = i $, where $ \Stab_z = \cbr{\pm\id, \pm \S} $,
+\item $ z = \rho $, where $ \Stab_z = \cbr{\pm\id, \pm\br{\S\T}, \pm\br{\T^{-1}\S}} $, or
+\item $ z = \rho' $, where $ \Stab_z = \cbr{\pm\id, \pm\br{\T\S}, \pm\br{\S\T^{-1}}} $.
 \end{itemize}
 \end{enumerate}
 \end{theorem}
@@ -575,7 +621,7 @@ $ \Gamma = \SL_2\br{\ZZ} $.
 \end{corollary}
 
 \begin{proof}
-Fix $ \gamma \in \SL_2\br{\ZZ} $ and $ z \in \mathring{\DDD} $ so $ \SL_2\br{\ZZ}z \cap \DDD = \cbr{z} $ and $ \I_z = \cbr{\pm\I} $. Consider $ \gamma z $. There exists $ \gamma' \in \Gamma $ such that $ \gamma'\gamma z \in \DDD $, so $ \gamma'\gamma z = z $. So $ \gamma'\gamma = \pm\I $, so $ \gamma = \pm\gamma'^{-1} $. But $ \gamma'^{-1} \in \Gamma $ and $ -\I = \S^2 \in \Gamma $, so $ \gamma \in \Gamma $.
+Fix $ \gamma \in \SL_2\br{\ZZ} $ and $ z \in \mathring{\DDD} $ so $ \SL_2\br{\ZZ}z \cap \DDD = \cbr{z} $ and $ \Stab_z = \cbr{\pm\id} $. Consider $ \gamma z $. There exists $ \gamma' \in \Gamma $ such that $ \gamma'\gamma z \in \DDD $, so $ \gamma'\gamma z = z $. So $ \gamma'\gamma = \pm\id $, so $ \gamma = \pm\gamma'^{-1} $. But $ \gamma'^{-1} \in \Gamma $ and $ -\id = \S^2 \in \Gamma $, so $ \gamma \in \Gamma $.
 \end{proof}
 
 \pagebreak
@@ -590,11 +636,11 @@ Since $ \S\T^n\gamma \in \Gamma $, this contradicts maximality so $ \abs{\T^n\ga
 \lecture{7}{Friday}{18/10/19}
 
 \item[$ 2, 3 $.] Let $ z, z' \in \DDD $ such that $ \gamma z = z' $. Without loss of generality $ \Im z' \ge \Im z $, so $ \abs{cz + d} \le 1 $. Note that $ \abs{cz + d} \ge \Im \br{cz + d} \ge \tfrac{\sqrt{3}}{2}c $, so $ c = -1, 0, 1 $. Note that can replace $ \gamma $ with $ -\gamma $ if convenient.
-\begin{itemize}
+\begin{itemize}[leftmargin=0.5in]
 \item[$ c = 0 $.] $ ad = 1 $, so can assume $ a = d = 1 $, so $ \gamma z = z + b $.
 Since $ z, z + b \in \DDD $, $ b = \pm 1 $ and $ \Re z = \mp\tfrac{1}{2} $.
 \item[$ c = 1 $.] Have $ \abs{z + d} \le 1 $ and $ \abs{z} \ge 1 $, so $ d = -1, 0, 1 $.
-\begin{itemize}
+\begin{itemize}[leftmargin=0.5in]
 \item[$ d = 0 $.] $ \abs{z} = 1 $, and $ \gamma z = \br{az - 1} / z = a - 1 / z $.
 The only possibilities are
 \begin{itemize}
@@ -612,7 +658,7 @@ The only possibilities are
 
 \subsubsection{Further review of complex analysis}
 
-Recall that on any compact set, a meromorphic function has only finitely many zeroes and poles. If $ f\br{z} = g\br{e^{2\pi i z}} $ is meromorphic at $ \infty $ and $ g $ is meromorphic on $ \DD = \cbr{\abs{q} < 1} $, zeroes and poles of $ g $ are discrete with respect to $ q $, and $ \Im z \gg 0 $ if and only if $ \abs{q} < \epsilon $.
+Recall that on any compact set, a meromorphic function has only finitely many zeroes and poles. If $ f\br{z} = g\br{e^{2\pi i z}} $ is meromorphic at $ \infty $, then $ g $ is meromorphic on $ \DD = \cbr{\abs{q} < 1} $, so zeroes and poles of $ g $ are discrete with respect to $ q $, and $ \Im z \gg 0 $ if and only if $ \abs{q} < \epsilon $.
 
 \begin{definition}
 Let $ U \subseteq \CC $ be open, and let $ f : U \to \CC $ be meromorphic on $ U $. If $ f $ has a pole at $ p $, can write
@@ -621,7 +667,7 @@ The coefficient $ a_{-1} $ is called the \textbf{residue} $ \Res_p f $ of $ f $ 
 \end{definition}
 
 \begin{theorem}[Residue theorem]
-Let $ V $ be a region in $ \CC $ whose boundary $ \partial V $ is a simple closed curve. Then
+Let $ V $ be a region in $ \CC $ whose boundary $ \partial V $ is a simple closed curve with counterclockwise orientation. Then
 $$ \dfrac{1}{2\pi}\intd{\partial V}{}{f\br{z}}{z} = \sum_{p \in V \ \text{pole of} \ f} \Res_p f. $$
 \end{theorem}
 
@@ -629,10 +675,10 @@ $$ \dfrac{1}{2\pi}\intd{\partial V}{}{f\br{z}}{z} = \sum_{p \in V \ \text{pole o
 Let $ f $ be meromorphic on $ U \subseteq \CC $ open. Then the \textbf{logarithmic derivative} $ \d\log f $ is the function $ f' / f $.
 \end{definition}
 
-If $ f\br{z} = c_n\br{z - p}^n + c_{n + 1}\br{z - p}^{n + 1} + \dots $, then if $ n \ne 0 $, then the leading term of $ f' $ is $ nc_n\br{z - p}^{n - 1} $ and the leading term of $ f $ is $ c_n\br{z - p}^n $, so the leading term of $ f' / f $ is $ n\br{z - p}^{-1} $. If $ n = 0 $, then $ f' / f $ is holomorphic. So $ f' / f $ is meromorphic with simple poles precisely at the points where $ \ord_p f \ne 0 $, and $ \Res_p f' / f $ at such $ p $ is $ \ord_p f $.
+If $ f\br{z} = c_n\br{z - p}^n + c_{n + 1}\br{z - p}^{n + 1} + \dots $ and $ c_n \ne 0 $, then if $ n \ne 0 $ then the leading term of $ f' $ is $ nc_n\br{z - p}^{n - 1} $ and the leading term of $ f $ is $ c_n\br{z - p}^n $, so the leading term of $ f' / f $ is $ n\br{z - p}^{-1} $. If $ n = 0 $, then $ f' / f $ is holomorphic. So $ f' / f $ is meromorphic with simple poles precisely at the points where $ \ord_p f \ne 0 $, and $ \Res_p f' / f $ at such $ p $ is $ \ord_p f $.
 
 \begin{theorem}[Argument principle]
-$$ \dfrac{1}{2\pi i}\intd{\partial V}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p \in V} \ord_p f. $$
+$$ \dfrac{1}{2\pi i}\intd{\partial V}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p \in V \ \text{pole of} \ f} \ord_p f. $$
 \end{theorem}
 
 \pagebreak
@@ -682,15 +728,19 @@ where the $ z $'s are zeroes or poles of $ f $, and the circles are of radius $ 
 $$ \dfrac{1}{2\pi i}\intd{C_{N, \epsilon}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \sum_{p \in \SL_2\br{\ZZ} \backslash \HH, \ p \nsim \cbr{i, \rho}} \ord_p f, \qquad \epsilon \to 0. $$
 So it suffices to show
 $$ \lim_{\epsilon \to 0, \ N \to \infty} \dfrac{1}{2\pi i}\intd{C_{N, \epsilon}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = -\ord_\infty f - \dfrac{\ord_\rho f}{3} - \dfrac{\ord_i f}{2} + \dfrac{k}{12}. $$
-The vertical parts of the boundary cancel. The integral over the circular part of $ \partial\DDD $ approaches
-$$ \dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} + \dfrac{1}{2\pi i}\intd{i}{\rho'}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \dfrac{1}{2\pi i}\br{\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} - \intd{\rho}{i}{\dfrac{f'\br{-1 / z}}{f\br{-1 / z}}}{z}} $$
-Since $ f\br{-1 / z} = z^kf\br{z} $,
+The vertical parts of the boundary cancel. Since $ f\br{-1 / z} = z^kf\br{z} $,
 $$ \d\br{z^kf\br{z}} = \br{kz^{k - 1}f\br{z} + z^kf'\br{z}}\d z, $$
-so
-$$ \dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} + \dfrac{1}{2\pi i}\intd{i}{\rho'}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}} - \dfrac{kz^{k - 1}f\br{z} + z^kf'\br{z}}{z^kf\br{z}}}{z} = -\dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{k}{z}}{z} = \dfrac{k}{12}. $$
+so the integral over the circular part of $ \partial\DDD $ approaches
+\begin{align*}
+\dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} + \dfrac{1}{2\pi i}\intd{i}{\rho'}{\dfrac{f'\br{z}}{f\br{z}}}{z}
+& = \dfrac{1}{2\pi i}\br{\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}}}{z} - \intd{\rho}{i}{\dfrac{f'\br{-1 / z}}{f\br{-1 / z}}}{z}} \\
+& = \dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{f'\br{z}}{f\br{z}} - \dfrac{kz^{k - 1}f\br{z} + z^kf'\br{z}}{z^kf\br{z}}}{z}
+= -\dfrac{1}{2\pi i}\intd{\rho}{i}{\dfrac{k}{z}}{z}
+= \dfrac{k}{12}.
+\end{align*}
 Since $ \d q = 2\pi iq\d z $, the top part is
 $$ \dfrac{1}{2\pi i}\intd{\tfrac{1}{2} + iN}{\tfrac{1}{2} - iN}{\dfrac{f'\br{z}}{f\br{z}}}{z} = -\dfrac{1}{2\pi i}\intd{\text{circle of radius} \ \epsilon}{}{\dfrac{g'\br{q}}{g\br{q}}}{q} = -\ord_\infty f. $$
-Near $ i $, $ f' / f = \ord_i f\br{z - i}^{-1} + h\br{z} $, where $ h\br{z} $ is holomorphic and $ h\br{z} \to 0 $ as $ \epsilon \to 0 $. Then the circle $ C_{\epsilon, i} $ of radius $ \epsilon $ centered at $ i $ is
+Near $ i $, $ f' / f = \ord_i f\br{z - i}^{-1} + h\br{z} $, where $ h\br{z} $ is holomorphic such that $ h\br{z} \to 0 $ as $ \epsilon \to 0 $. Then the circle $ C_{\epsilon, i} $ of radius $ \epsilon $ centered at $ i $ is
 $$ \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{C_{\epsilon, i}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{\text{arc of half circle centered at} \ i}{}{\dfrac{\ord_i f}{z - i}}{z} = -\dfrac{\ord_i f}{2}. $$
 Similarly, at $ \rho $ and $ \rho' $, get that the circles $ C_{\epsilon, \rho} $ and $ C_{\epsilon, \rho'} $ of radius $ \epsilon $ centered at $ \rho $ and $ \rho' $ are
 $$ \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{C_{\epsilon, \rho}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = \lim_{\epsilon \to 0} \dfrac{1}{2\pi i}\intd{C_{\epsilon, \rho'}}{}{\dfrac{f'\br{z}}{f\br{z}}}{z} = -\dfrac{\ord_\rho f}{6}, $$
@@ -703,7 +753,6 @@ which gives $ -\ord_\rho f / 3 $.
 
 Let
 $$ \M_k = \cbr{\text{holomorphic modular forms of weight} \ k}, $$
-and let
 $$ \S_k = \cbr{\text{cusp forms of weight} \ k} = \cbr{f \in \M_k \st \ord_\infty f > 0} \subseteq \M_k. $$
 
 \begin{corollary}
@@ -723,15 +772,7 @@ $$ \S_k = \cbr{\text{cusp forms of weight} \ k} = \cbr{f \in \M_k \st \ord_\inft
 $ \Delta : \M_k \to \S_{k + 12} $ is an isomorphism. On the other hand,
 $$ \M_k \cong \CC\E_k \oplus \S_k, \qquad k \ge 4 \ \text{even}, $$
 so
-$$ \M_k \cong \CC\E_k \oplus \dots \oplus \CC\E_{k - 12r}\Delta^r, \qquad k - 12r \in \cbr{0, 4, 6, 8, 10, 14}. $$
-So for $ k \ge 4 $, the set
-$$
-\begin{cases}
-\E_k, \dots, \E_{k - 12\fbr{k / 12}}\Delta^{\fbr{k / 12}} & k \not\equiv 2 \mod 12 \\
-\E_k, \dots, \E_{14}\Delta^{\fbr{k / 12} - 1} & k \equiv 2 \mod 12
-\end{cases}
-$$
-is a basis for $ \M_k $.
+$$ \M_k \cong \CC\E_k \oplus \dots \oplus \CC\E_{k - 12r}\Delta^r, \qquad k - 12r = 0, 4, 6, 8, 10, 14. $$
 \end{corollary}
 
 \begin{corollary}
@@ -740,7 +781,14 @@ $ \E_4^2 = \E_8 $ and $ \E_4\E_6 = \E_{10} $.
 
 \lecture{9}{Monday}{21/10/19}
 
-A variant is to write $ k = 4n + 6m $ with $ m = 0, 1 $ and $ n \ge 0 $, for $ k \ge 4 $. Then $ \M_k = \CC\E_4^n\E_6^m \oplus \S_k $ gives a basis
+So for $ k \ge 4 $, the set
+$$
+\begin{cases}
+\E_k, \dots, \E_{k - 12\fbr{k / 12}}\Delta^{\fbr{k / 12}} & k \not\equiv 2 \mod 12 \\
+\E_k, \dots, \E_{14}\Delta^{\fbr{k / 12} - 1} & k \equiv 2 \mod 12
+\end{cases}
+$$
+is a basis for $ \M_k $. A variant is to write $ k = 4n + 6m $ with $ m = 0, 1 $ and $ n \ge 0 $, for $ k \ge 4 $. Then $ \M_k = \CC\E_4^n\E_6^m \oplus \S_k $ gives a basis
 $$ \E_4^n\E_6^m, \dots, \E_4^{n - 3\fbr{n / 3}}\E_6^m\Delta^{\fbr{n / 3}} $$
 for $ \M_k $. Since $ \Delta = \br{\E_4^3 - \E_6^2} / 1728 $, we see every modular form of weight $ k $ is a polynomial in $ \E_4 $ and $ \E_6 $, and
 $$ \Delta \in q + q^2\ZZ\sbr{\sbr{q}}, \qquad \E_4^n\E_6^m \in 1 + q\ZZ\sbr{\sbr{q}}, \qquad \E_4^{n - 3}\E_6^m\Delta \in q + q^2\ZZ\sbr{\sbr{q}}, \qquad \dots $$
@@ -766,11 +814,11 @@ such that $ R_i \cdot R_j \subseteq R_{i + j} $ for all $ i, j \in \ZZ $.
 \end{definition}
 
 \begin{example*}
-$ R = \CC\sbr{X, Y} $, where $ R_i $ are polynomials homogeneous of degree $ i $.
-\end{example*}
-
-\begin{example*}
-$ R = \bigoplus_{k \in \ZZ} \M_k $.
+\hfill
+\begin{itemize}
+\item $ R = \CC\sbr{X, Y} $, where $ R_i $ are polynomials homogeneous of degree $ i $.
+\item $ R = \bigoplus_{k \in \ZZ} \M_k $.
+\end{itemize}
 \end{example*}
 
 \pagebreak
@@ -783,29 +831,33 @@ This is an isomorphism of graded rings.
 \end{theorem}
 
 \begin{proof}
-This map is surjective, since every $ f \in \M_k $ is a polynomial in $ \E_4 $ and $ \E_6 $. It remains to show this map is injective. Suppose not. There exists $ P\br{X, Y} $, homogeneous of degree $ k $, such that $ P\br{\E_4, \E_6} = 0 $. Write $ k = 4n + 6m $ with $ m = 0, 1 $. If $ P = c_0X^nY^n + \dots + c_rX^{n - 3r}Y^{m + 2r} $ where $ r = \fbr{n / 3} $, then
-$$ c_0\E_4^n\E_6^n + \dots + c_r\E_4^{n - 3r}\E_6^{m + 2r} = 0. $$
+This map is surjective, since every $ f \in \M_k $ is a polynomial in $ \E_4 $ and $ \E_6 $. It remains to show this map is injective. Suppose not. There exists $ P\br{X, Y} $, homogeneous of degree $ k $, such that $ P\br{\E_4, \E_6} = 0 $. Write $ k = 4n + 6m $ with $ m = 0, 1 $. If $ P = c_0X^nY^m + \dots + c_rX^{n - 3r}Y^{m + 2r} $ where $ r = \fbr{n / 3} $, then
+$$ c_0\E_4^n\E_6^m + \dots + c_r\E_4^{n - 3r}\E_6^{m + 2r} = 0. $$
 Dividing by $ \E_4^{n - 3r}\E_6^{m + 2r} $, get $ Q\br{\E_4^3 / \E_6^2} = 0 $ where $ Q\br{X} = c_0X^r + \dots + c_r $. Since the roots of $ Q $ are discrete, and $ \E_4^3 / \E_6^2 $ is non-constant, this is impossible.
 \end{proof}
 
 \subsubsection{The space of meromorphic modular forms}
 
 \begin{note*}
-The meromorphic modular forms of weight zero form a field. For example, $ \j\br{z} = \E_4^3 / \Delta = 1728\E_4^3 / \br{\E_4^3 - \E_6^2} $ is a non-constant meromorphic modular form, with a pole of order one at $ \infty $, a zero of order three at $ \rho $, and no other zeroes or poles.
+The meromorphic modular forms of weight zero form a field.
 \end{note*}
+
+\begin{example*}
+The $ \j $-invariant $ \j\br{z} = \E_4^3 / \Delta = 1728\E_4^3 / \br{\E_4^3 - \E_6^2} $ is a non-constant meromorphic modular form, with a pole of order one at $ \infty $, a zero of order three at $ \rho $, and no other zeroes or poles.
+\end{example*}
 
 \begin{theorem}
 $ \j $ gives a bijection between $ \SL_2\br{\ZZ} \backslash \HH $ and $ \CC $.
 \end{theorem}
 
 \begin{proof}
-Given $ \lambda \in \CC $, want $ z \in \HH $ such that $ \j\br{z} = \lambda $. Consider $ g = j - \lambda $. This is meromorphic of weight zero. There is a pole at $ \infty $, and no other poles, and
+Given $ \lambda \in \CC $, want $ z \in \HH $ such that $ \j\br{z} = \lambda $. Consider $ g = j - \lambda $. This is meromorphic of weight zero. This has a pole at $ \infty $, and no other poles, and
 $$ \ord_\infty g + \dfrac{\ord_\rho g}{3} + \dfrac{\ord_i g}{2} + \sum_{p \in \SL_2\br{\ZZ} \backslash \HH, \ p \nsim \cbr{i, \rho}} \ord_p g = 0. $$
 The only possibilities are
 \begin{itemize}
 \item $ g $ has a zero at $ \rho $ of order three, and no other zeroes,
 \item $ g $ has a zero at $ i $ of order two, and no other zeroes, or
-\item $ g $ has a simple zero somewhere else, and no others.
+\item $ g $ has a simple zero somewhere else, and no other zeroes.
 \end{itemize}
 In each case, the zero of $ g $ is a unique $ \SL_2\br{\ZZ} $-orbit on which $ \j\br{z} = \lambda $. So $ \j $ is bijective.
 \end{proof}
@@ -831,7 +883,7 @@ $$ \dfrac{\E_6^2}{\Delta} = \dfrac{1728\E_6^2}{\E_4^3 - \E_6^2} = \dfrac{1728\br
 
 Let $ L \subseteq \RR^n $ be a lattice. For $ x, y \in L $, $ x \cdot y \in \RR $. Suppose $ x \cdot y \in \ZZ $ for all $ x, y \in L $. A question is for $ n \in \ZZ $, how many $ x \in L $ have $ x \cdot x = n $? The rough idea is to form the series
 $$ \sum_{x \in L} q^{x \cdot x} = \sum_{n = 0}^\infty a_nq^n, \qquad a_n = \#\cbr{x \in L \st x \cdot x = n}. $$
-We will show, with some slight modifications, and extra hypotheses on $ L $, this generating function turns out to be a modular form.
+We will show that, with some slight modifications, and extra hypotheses on $ L $, this generating function turns out to be a modular form.
 
 \subsubsection{Quadratic forms}
 
@@ -840,7 +892,7 @@ $$ L = \ZZ \cdot e_1 \oplus \dots \oplus \ZZ \cdot e_n. $$
 Given these $ e_i $, form a matrix $ A $ such that $ A_{ij} = e_i \cdot e_j $.
 
 \begin{note*}
-$ A = B^\intercal B $, where $ B $ is the matrix whose columns are the $ e_i $, and $ \abs{\det B} $ is the volume of the parallelogram spanned by $ e_i $, so $ \det A = \det B^2 > 0 $.
+$ A = B^\intercal B $, where $ B $ is the matrix whose columns are the $ e_i $, and $ \abs{\det B} $ is the \textbf{volume} of the parallelogram spanned by $ e_i $, so $ \det A = \det B^2 > 0 $.
 \end{note*}
 
 \begin{definition}
@@ -875,7 +927,7 @@ A lattice $ L $ is \textbf{self-dual} if $ L^\vee = L $ as subsets of $ \RR^n $.
 \end{definition}
 
 \begin{proposition}
-$ L $ is self-dual if and only if the associated matrix $ A $ has integer entries and determinant $ 1 $.
+$ L $ is self-dual if and only if the associated matrix $ A $ has integer entries and determinant one.
 \end{proposition}
 
 \begin{proof}
@@ -883,7 +935,7 @@ Clearly if $ L = L^\vee $, then $ e_i \cdot e_j \in \ZZ $, so $ A $ has integer 
 \end{proof}
 
 If $ L $ is self-dual, get an integer-valued \textbf{quadratic form}
-$$ \function[\Q_L]{\ZZ^n}{\ZZ}{\br{a_1, \dots, a_n}}{\br{a_1e_1 + \dots + a_ne_n} \cdot \br{a_1e_1 + \dots + a_ne_n} = \onebythree{a_1}{\dots}{a_n}A\threebyone{a_1}{\dots}{a_n}}. $$
+$$ \function[\Q_L]{\ZZ^n}{\ZZ}{\br{a_1, \dots, a_n}}{\br{a_1e_1 + \dots + a_ne_n} \cdot \br{a_1e_1 + \dots + a_ne_n} = \onebythree{a_1}{\dots}{a_n}A\threebyone{a_1}{\vdots}{a_n}}. $$
 A question is given $ m $, how often does $ \Q_L $ represent $ m $?
 
 \pagebreak
@@ -892,26 +944,23 @@ A question is given $ m $, how often does $ \Q_L $ represent $ m $?
 
 \lecture{11}{Friday}{25/10/19}
 
-Let $ f $ be a $ \C^\infty $ function on $ \RR^n \to \CC $.
+Let $ f : \RR^n \to \CC $ be a $ \C^\infty $ function.
 
 \begin{definition}
 We will say $ f $ is \textbf{rapidly decreasing} if for all $ m $,
-$$ \abs{\abs{x}^m \cdot f\br{x}} \to 0, \qquad \abs{x} \to \infty, $$
+$$ \abs{\abs{x}^mf\br{x}} \to 0, \qquad \abs{x} \to \infty, $$
 where $ \abs{x} = \br{x \cdot x}^{1 / 2} $. For $ f \in \C^\infty $, rapidly decreasing, define
 $$ \widehat{f}\br{y} = \intd{\RR^n}{}{e^{-2\pi i\br{x \cdot y}}}{x} : \RR^n \to \CC. $$
 \end{definition}
 
 \begin{fact*}
-If $ f $ is smooth and rapidly decreasing, so is $ \widehat{f} $.
-\end{fact*}
-
-\begin{fact*}
-If $ f\br{x} = e^{-\pi\br{x \cdot x}} $, then $ \widehat{f}\br{x} = f\br{x} $.
-\end{fact*}
-
-\begin{fact*}
-If $ f $ is smooth and rapidly decreasing, and $ \RR^n $ is a lattice with volume $ V $, then
-$$ \sum_{x \in L} f\br{x} = \dfrac{1}{v}\sum_{x \in L^\vee} \widehat{f}\br{x}. $$
+\hfill
+\begin{itemize}
+\item If $ f $ is smooth and rapidly decreasing, so is $ \widehat{f} $.
+\item If $ f\br{x} = e^{-\pi\br{x \cdot x}} $, then $ \widehat{f}\br{x} = f\br{x} $.
+\item If $ f $ is smooth and rapidly decreasing, and $ L \subseteq \RR^n $ is a lattice with volume $ V $, then
+$$ \sum_{x \in L} f\br{x} = \dfrac{1}{V}\sum_{x \in L^\vee} \widehat{f}\br{x}. $$
+\end{itemize}
 \end{fact*}
 
 \subsubsection{Theta series}
@@ -931,8 +980,8 @@ $ \Theta_L $ is modular of weight $ n / 2 $.
 \begin{example*}
 Let $ \Gamma_8 \subseteq \RR^8 $ be spanned by
 $$ e_1 = \br{\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, \dfrac{1}{2}}, \qquad e_2 = \br{1, 1, 0, 0, 0, 0, 0, 0}, $$
-$$ e_3 = \br{1, -1, 0, 0, 0, 0, 0, 0}, \qquad e_4 = \br{0, 1, -1, 0, 0, 0, 0, 0}, \qquad e_5 = \br{0, 0, 1, -1, 0, 0, 0, 0}, $$
-$$ e_6 = \br{0, 0, 0, 1, -1, 0, 0, 0}, \qquad e_7 = \br{0, 0, 0, 0, 1, -1, 0, 0}, \qquad e_8 = \br{0, 0, 0, 0, 0, 1, -1, 0}. $$
+$$ e_3 = \br{-1, 1, 0, 0, 0, 0, 0, 0}, \qquad e_4 = \br{0, -1, 1, 0, 0, 0, 0, 0}, \qquad e_5 = \br{0, 0, -1, 1, 0, 0, 0, 0}, $$
+$$ e_6 = \br{0, 0, 0, -1, 1, 0, 0, 0}, \qquad e_7 = \br{0, 0, 0, 0, -1, 1, 0, 0}, \qquad e_8 = \br{0, 0, 0, 0, 0, -1, 1, 0}. $$
 Then
 $$ A =
 \begin{pmatrix}
@@ -950,10 +999,10 @@ and
 $$ \Q_L\br{z_1, \dots, z_8} = 2\br{z_1^2 + \dots + z_8^2 - z_1z_3 - z_2z_4 - z_3z_4 - z_4z_5 - z_6z_7 - z_7z_8}. $$
 \end{example*}
 
-If $ L \subseteq \RR^n $ is even and self-dual, and $ \Theta_L $ is modular of weight $ n / 2 $, then dimension is $ \sim 24 $.
+If $ L \subseteq \RR^n $ is even and self-dual, and $ \Theta_L $ is modular of weight $ n / 2 $, then the dimension is $ \sim n / 24 $.
 
 \begin{fact*}
-$ L \subseteq \RR^n $ even and self-dual implies that $ 8 \mid n $.
+If $ L \subseteq \RR^n $ is even and self-dual, then $ 8 \mid n $.
 \end{fact*}
 
 \begin{proof}
@@ -965,20 +1014,20 @@ Serre V.2.1 Corollary 2.
 \begin{proof}[Proof of Theorem \ref{thm:thetaseries}]
 Know, since $ L $ is even, that $ \Theta_L\br{z + 1} = \Theta_L\br{z} $. It suffices to show $ \Theta_L\br{-1 / z} = z^{n / 2}\Theta_L\br{z} $. Both sides are holomorphic on $ \HH $, so it suffices to show
 $$ \Theta_L\br{-\dfrac{1}{it}} = \br{it}^{\tfrac{n}{2}}\Theta_L\br{it}. $$
-For $ t \in \RR^\times $, let $ L_t = t^{1 / 2} \cdot L $ and $ L_t^\vee = t^{-1 / 2} \cdot L = L_{t^{-1}} $, so $ \vol L_t = t^{n / 2} $. By the facts,
+For $ t \in \RR^\times $, let $ L_t = t^{1 / 2} \cdot L $. Then $ L_t^\vee = t^{-1 / 2} \cdot L = L_{t^{-1}} $, so the volume of $ L_t $ is $ t^{n / 2} $. By the facts,
 $$ \sum_{x \in L_t} e^{-\pi\br{x \cdot x}} = t^{-\tfrac{n}{2}}\sum_{x \in L_{t^{-1}}} e^{-\pi\br{x \cdot x}}, $$
 so
 $$ \sum_{x \in L} e^{-\pi\br{x \cdot x}t} = t^{-\tfrac{n}{2}}\sum_{x \in L} e^{-\tfrac{\pi\br{x \cdot x}}{t}}. $$
 Now return to $ \Theta_L $. The left hand side is
 $$ \Theta_L\br{-\dfrac{1}{it}} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{-\tfrac{1}{it}} \cdot \br{x \cdot x}} = \sum_{x \in L} e^{-\tfrac{\pi\br{x \cdot x}}{t}}, $$
 and the right hand side is
-$$ \Theta_L\br{it} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{it} \cdot \br{x \cdot x}} = \sum_{x \in L} e^{\pi\br{x \cdot x}t}, $$
+$$ \Theta_L\br{it} = \sum_{x \in L} e^{\tfrac{1}{2} \cdot 2\pi i \cdot \br{it} \cdot \br{x \cdot x}} = \sum_{x \in L} e^{-\pi\br{x \cdot x}t}, $$
 so the result follows.
 \end{proof}
 
 \subsubsection{Asymptotic analysis}
 
-Let $ \Theta_L = \sum_{m = 1}^\infty a_mq^m $, where $ a_m $ is the number of ways $ \Q_L $ represents $ 2m $, so $ a_0 = 1 $. Then
+Let $ L \subseteq \RR^n $ be even and self-dual, so $ 8 \mid n $, and let $ \Theta_L = \sum_{m = 0}^\infty a_mq^m $, where $ a_m $ is the number of ways $ \Q_L $ represents $ 2m $, so $ a_0 = 1 $. Then
 $$ \Theta_L = \E_{\tfrac{n}{2}} + g, \qquad \E_{\tfrac{n}{2}} \sim \sigma_{\tfrac{n}{2} - 1}\br{m} \sim m^{\tfrac{n}{2} - 1}, $$
 where $ g $ is a cusp form.
 
@@ -1000,10 +1049,10 @@ Set $ A = C $. Then
 $$ \sigma_{k - 1}\br{n} = \sum_{d \mid n} d^{k - 1} \ge n^{k - 1}, $$
 so $ a_n = C\sigma_{k - 1}\br{n} \ge Cn^{k - 1} $. Consider
 $$ \dfrac{\sigma_{k - 1}\br{n}}{n^{k - 1}} = \sum_{d \mid n} \dfrac{d^{k - 1}}{n^{k - 1}} = \sum_{d' \mid n} \dfrac{1}{d'^{k - 1}} \le \sum_{n = 1}^\infty \dfrac{1}{n^{k - 1}} = \zeta\br{k - 1}, $$
-so $ \sigma_{k - 1}\br{n} \le \zeta\br{k - 1}n^{k - 1} $. So set $ B = C \cdot \zeta\br{k - 1} $, so $ a_n \le Bn^{k - 1} $.
+so $ \sigma_{k - 1}\br{n} \le \zeta\br{k - 1}n^{k - 1} $. So set $ B = C\zeta\br{k - 1} $, so $ a_n \le Bn^{k - 1} $.
 \end{proof}
 
-\begin{theorem}[Hasse]
+\begin{theorem}[Hecke]
 Let $ f = \sum_{n = 1}^\infty a_nq^n $ be a cusp form of weight $ k $. Then
 $$ \abs{a_n} = \O\br{n^{\tfrac{k}{2}}}, $$
 that is $ \abs{a_n}n^{-k / 2} $ is bounded as $ n \to \infty $.
@@ -1016,11 +1065,11 @@ $ f / q $ is holomorphic on $ \HH $, so $ \abs{f / q} $ is bounded as $ q \to 0 
 $$ \phi\br{z} = \abs{f\br{z}}\Im z^{\tfrac{k}{2}}, $$
 so $ \lim_{\Im z \to \infty} \phi\br{z} = 0 $. Note that
 $$ \phi\br{\gamma z} = \abs{f\br{\gamma z}}\Im \gamma z^{\tfrac{k}{2}} = \abs{f\br{z}}\abs{cz + d}^k\dfrac{\Im z^{\tfrac{k}{2}}}{\abs{cz + d}^{2\tfrac{k}{2}}} = \abs{f\br{z}}\Im z^{\tfrac{k}{2}} = \phi\br{z}, \qquad \gamma = \twobytwo{a}{b}{c}{d} \in \SL_2\br{\ZZ}. $$
-Then $ \phi\br{z} $ is determined by its values on the standard fundamental domain, so $ \phi\br{z} $ is bounded on $ \HH $, so $ \abs{f\br{z}} < M'\Im z^{-k / 2} $ for some $ M' \in \RR $. If $ z = x + iy $ for $ y $ fixed, then the residue theorem implies that
+Then $ \phi\br{z} $ is determined by its values on the standard fundamental domain, so $ \phi\br{z} $ is bounded on $ \HH $, so $ \abs{f\br{z}} < M'\Im z^{-k / 2} $ for some $ M' \in \RR $. If $ z = x + iy $ for $ y $ fixed, then by the residue theorem,
 $$ a_m = \dfrac{1}{2\pi i}\intd{C}{}{\dfrac{f\br{q}}{q^{m + 1}}}{q} = \intd{-\tfrac{1}{2}}{\tfrac{1}{2}}{\dfrac{f\br{x + iy}}{e^{2\pi i\br{x + iy}m}}}{x}, $$
-so
+where $ C $ is a circle around zero, oriented counterclockwise, so
 $$ \abs{a_m} \le \intd{-\tfrac{1}{2}}{\tfrac{1}{2}}{\dfrac{\abs{f\br{x + iy}}}{e^{-2\pi ym}}}{x} \le \dfrac{\abs{f\br{x + iy}}}{e^{-2\pi ym}} \le e^{2\pi ym}M'y^{-\tfrac{k}{2}}. $$
-Set $ y = 1 / m $. Get $ \abs{a_n} \le e^{2\pi}M'm^{k / 2} $, so $ \abs{a_m} / m^{k / 2} $ is bounded.
+Set $ y = 1 / m $. Get $ \abs{a_m} \le e^{2\pi}M'm^{k / 2} $, so $ \abs{a_m} / m^{k / 2} $ is bounded.
 \end{proof}
 
 Had
@@ -1055,23 +1104,24 @@ where the roots of $ P_i\br{t} $ have absolute value $ q^{i / 2} $.
 
 \lecture{14}{Friday}{01/11/19}
 
-Let $ \Delta = \br{\E_4^3 - \E_6^2} / 1728 = \sum_{n = 1}^\infty \tau\br{n}q^n $. Then $ \tau\br{n} $ grows roughly like $ n^6 $ or $ n^{11 / 2 + \epsilon} $. Mordell proved
+Let
+$$ \Delta = \dfrac{\E_4^3 - \E_6^2}{1728} = \sum_{n = 1}^\infty \tau\br{n}q^n = q\prod_{m = 1}^\infty \br{1 - q^m}^{24} = q - 24q^2 + 252q^3 - 1472q^4 + 4830q^5 + \dots. $$
+Then $ \tau\br{n} $ grows roughly like $ n^6 $ or $ n^{11 / 2 + \epsilon} $. Mordell proved that
 \begin{itemize}
 \item $ \tau\br{mn} = \tau\br{n}\tau\br{m} $ if $ \br{m, n} = 1 $, and
 \item $ \tau\br{p^{n + 1}} = \tau\br{p}\tau\br{p^n} - p^{11}\tau\br{p^{n - 1}} $.
 \end{itemize}
-If $ \E_k = 1 + C\sum_n \sigma_{k - 1}\br{n}q^n $, set
-$$ \E_k' = \dfrac{1}{C} + \sum_n \sigma_{k - 1}\br{n}q^n. $$
 
 \begin{note*}
-\hfill
+If $ \E_k = 1 + C\sum_n \sigma_{k - 1}\br{n}q^n $, set
+$$ \E_k' = \dfrac{1}{C} + \sum_n \sigma_{k - 1}\br{n}q^n. $$
 \begin{itemize}
 \item If $ \br{m, n} = 1 $, then
 $$ \sigma_{k - 1}\br{nm} = \sum_{d \mid n} \sum_{d' \mid m} \br{dd'}^{k - 1} = \br{\sum_{d \mid n} d^{k - 1}}\br{\sum_{d' \mid m} d'^{k - 1}} = \sigma_{k - 1}\br{n}\sigma_{k - 1}\br{m}. $$
 \item Since $ \sigma_{k - 1}\br{p^n} = 1 + \dots + p^{n\br{k - 1}} $,
 \begin{align*}
 \sigma_{k - 1}\br{p}\sigma_{k - 1}\br{p^n}
-& = \br{1 + p^{k + 1}}\br{1 + \dots + p^{n\br{k - 1}}} \\
+& = \br{1 + p^{k - 1}}\br{1 + \dots + p^{n\br{k - 1}}} \\
 & = 1 + 2p^{k - 1} + \dots + 2p^{n\br{k - 1}} + p^{\br{n + 1}\br{k - 1}} \\
 & = \sigma_{k - 1}\br{p^{n + 1}} + p^{k - 1}\sigma_{k - 1}\br{p^{n - 1}},
 \end{align*}
@@ -1099,21 +1149,21 @@ If $ X $ is a finite set $ X = \cbr{x_1, \dots, x_r} $, any correspondence $ T $
 $$ Tx_i = \sum_{j = 1}^r \br{M_T}_{ij}x_j, $$
 and composition of correspondences is matrix multiplication. Let $ X $ be a set, and let
 $$ \Fun_\CC X = \cbr{\text{functions} \ X \to \CC}. $$
-Then $ T \in \Corr X $ acts on $ \Fun_\CC X $ as follows. If $ Tx = \sum_i a_ix_i $ then $ \br{Tf}x = \sum_i a_if\br{x_i} $. Check $ \br{T \circ T'}f = T\br{T'f} $, etc. Let
+Then $ T \in \Corr X $ acts on $ \Fun_\CC X $ as follows. If $ Tx = \sum_i a_ix_i $ then $ \br{Tf}x = \sum_i a_if\br{x_i} $. Check $ \br{T \circ T'}f = T\br{T'f} $ etc. Let
 $$ \LLL = \cbr{\text{lattices in} \ \CC}. $$
 
 \pagebreak
 
 \begin{example*}
-For $ \lambda \in \CC^\times $, have
+\hfill
+\begin{itemize}
+\item For $ \lambda \in \CC^\times $, have
 $$ \function[\R_\lambda]{\ZZ\LLL}{\ZZ\LLL}{L}{\lambda L}. $$
-\end{example*}
-
-\begin{example*}
-For $ n \in \ZZ_{> 0} $, have
+\item For $ n \in \ZZ_{> 0} $, have
 $$ \function[\T_n]{\ZZ\LLL}{\ZZ\LLL}{L}{\sum_{L' \subseteq_n L} L'}, $$
-the $ n $ \textbf{Hecke operators}. Note that there are only finitely many $ L' \subseteq L $ of index $ n $, since if $ L' $ has index $ n $ in $ L $, then $ L' $ contains $ \R_nL $. Then $ L / \R_nL \cong \ZZ / n\ZZ \times \ZZ / n\ZZ $. The image of $ L' $ in $ L / \R_nL $ is a subgroup $ H $ of $ \ZZ / n\ZZ \times \ZZ / n\ZZ $ of order $ n $. The preimage of $ H $ in $ L $ is $ L' $. Thus there is a bijection
-$$ \correspondence{\text{subgroups of} \ L / \R_nL \ \text{of order} \ n}{\text{sublattices of index} \ n}. $$
+the $ n $ \textbf{Hecke operators}. Note that there are only finitely many $ L' \subseteq_n L $, since if $ L' \subseteq_n L $, then $ L' $ contains $ \R_nL $. Then $ L / \R_nL \cong \ZZ / n\ZZ \times \ZZ / n\ZZ $. The image of $ L' $ in $ L / \R_nL $ is a subgroup $ H $ of $ \ZZ / n\ZZ \times \ZZ / n\ZZ $ of order $ n $. The preimage of $ H $ in $ L $ is $ L' $. Thus there is a bijection
+$$ \correspondence{\text{subgroups of} \ L / \R_nL \ \text{of order} \ n}{\text{sublattices of} \ L \ \text{of index} \ n}. $$
+\end{itemize}
 \end{example*}
 
 \begin{proposition}
@@ -1123,7 +1173,7 @@ $$ \correspondence{\text{subgroups of} \ L / \R_nL \ \text{of order} \ n}{\text{
 \item $ \R_\lambda\R_\mu = \R_{\lambda\mu} $.
 \item $ \R_\lambda\T_n = \T_n\R_\lambda $.
 \item $ \T_n\T_m = \T_{nm} $ if $ \br{m, n} = 1 $.
-\item $ \T_p\T_{p^n} = \T_{p^{n + 1}} + p\T_{p^{n + 1}}\R_p $.
+\item $ \T_p\T_{p^n} = \T_{p^{n + 1}} + p\T_{p^{n - 1}}\R_p $.
 \end{enumerate}
 \end{proposition}
 
@@ -1151,32 +1201,34 @@ Then $ mA $ has order $ n $ and $ nA $ has order $ m $. Clearly inverses on one 
 $$ \R_\lambda\T_nL = \R_\lambda\sum_{L' \subseteq_n L} L' = \sum_{L' \subseteq_n L} \R_\lambda L' = \sum_{L' \subseteq_n \R_\lambda L} L' = \T_n\R_\lambda L. $$
 \item If $ L \in \LLL $, then
 $$ \T_n\T_mL = \T_n\sum_{L' \subseteq_m L} L' = \sum_{L' \subseteq_m L} \T_nL' = \sum_{L' \subseteq_m L} \sum_{L'' \subseteq_n L'} L''. $$
-An observation is $ L'' \subseteq_n L' \subseteq_m L $, so $ L'' $ has index $ nm $ in $ L $. Let
+An observation is $ L'' \subseteq_n L' \subseteq_m L $, so $ L'' \subseteq_{nm} L $. Then
 $$ \T_n\T_mL = \sum_{L'' \subseteq_{nm} L} c_{n, m}\br{L'', L}L'', \qquad c_{n, m}\br{L'', L} = \#\cbr{L' \in \LLL \st L'' \subseteq_n L' \subseteq_m L}. $$
 An observation is that there is a bijection
 $$ \bijection{\cbr{\text{lattices} \ L' \st L'' \subseteq_n L' \subseteq_m L}}{\cbr{\text{subgroups} \ H \ \text{of} \ L / L'' \ \text{of order} \ n}}{L'}{L' / L'' \subseteq L / L''}{\text{preimage of} \ H \ \text{under} \ L \to L / L''}{H}. $$
-Have $ \br{n, m} = 1 $, so $ c_{n, m}\br{L'', L} = 1 $ so
+Have $ \br{n, m} = 1 $, then $ c_{n, m}\br{L'', L} = 1 $ so
 $$ \T_n\T_mL = \sum_{L'' \subseteq_{nm} L} c_{n, m}\br{L'', L}L'' = \sum_{L'' \subseteq_{nm} L} L'' = \T_{nm}L. $$
 
 \pagebreak
 
-\item If $ L \in \LLL $, then
+\item Similarly, if $ L \in \LLL $, then
 $$ \T_p\T_{p^r}L = \sum_{L'' \subseteq_{p^{r + 1}} L} c_{p, p^r}\br{L'', L}L'', \qquad c_{p, p^r}\br{L'', L} = \#\cbr{L' \in \LLL \st L'' \subseteq_p L' \subseteq_{p^r} L}. $$
 What is
 $$ c_{p, p^r}\br{L'', L} = \#\cbr{\text{subgroups of order} \ p \ \text{in} \ L / L''}? $$
-$ L / L'' $ is abelian of order $ p^{r + 1} $ and generated by two elements. The classification of finite abelian groups implies that every finite abelian group can be written uniquely as $ \ZZ / a_1\ZZ \times \dots \times \ZZ / a_r\ZZ $ where $ a_1 \mid \dots \mid a_r $, up to isomorphism, and $ r $ is the minimal number of generators for such a group. So
+$ L / L'' $ is abelian of order $ p^{r + 1} $ and is generated by two elements. By the classification of finite abelian groups, every finite abelian group can be written uniquely as
+$$ \ZZ / a_1\ZZ \times \dots \times \ZZ / a_r\ZZ, \qquad a_1 \mid \dots \mid a_r, $$
+up to isomorphism, and $ r $ is the minimal number of generators for such a group. So
 $$ L / L'' \cong \ZZ / p^a\ZZ \times \ZZ / p^b\ZZ, \qquad a, b \ge 0, \qquad a + b = r + 1. $$
-\begin{enumerate}[label=Case \arabic*., leftmargin=0.5in]
+\begin{enumerate}[leftmargin=0.5in, label=Case \arabic*.]
 \item $ L / L'' \cong \ZZ / p^{r + 1}\ZZ $ is cyclic. In this case $ c_{p, p^r}\br{L'', L} = 1 $.
 \item $ L / L'' \cong \ZZ / p^a\ZZ \times \ZZ / p^b\ZZ $ with $ a, b > 0 $. Any subgroup of order $ p $ is contained in the subgroup killed by $ p $,
-$$ p^{a - 1}\ZZ / p^a\ZZ \times p^{n - 1}\ZZ / p^b\ZZ \cong \br{\ZZ / p\ZZ}^2. $$
-The $ p^2 - 1 $ elements of $ \br{\ZZ / p\ZZ}^2 \setminus \cbr{0} $ each spans a subgroup of order $ p $, and two elements span the same group if and only if they differ by a scalar in $ \br{\ZZ / p\ZZ}^\times $, so there are $ \br{p^2 - 1} / \br{p - 1} = p + 1 $ subgroups of order $ p $ in $ \br{\ZZ / p\ZZ}^2 $. In this case $ c_{p, p^r}\br{L'', L} = p + 1 $.
+$$ p^{a - 1}\ZZ / p^a\ZZ \times p^{b - 1}\ZZ / p^b\ZZ \cong \br{\ZZ / p\ZZ}^2. $$
+The $ p^2 - 1 $ elements of $ \br{\ZZ / p\ZZ}^2 $ other than zero each spans a subgroup of order $ p $, and two elements span the same group if and only if they differ by a scalar in $ \br{\ZZ / p\ZZ}^\times $, so there are $ \br{p^2 - 1} / \br{p - 1} = p + 1 $ subgroups of order $ p $ in $ \br{\ZZ / p\ZZ}^2 $. In this case $ c_{p, p^r}\br{L'', L} = p + 1 $.
 \end{enumerate}
 The latter case occurs if and only if $ L / L'' $ maps surjectively to $ \br{\ZZ / p\ZZ}^2 \cong L / \R_pL $, if and only if $ \R_pL \supseteq L'' $. Thus
 \begin{align*}
 \T_p\T_{p^r}L
 & = \sum_{L'' \subseteq_{p^{r + 1}} L} c_{p, p^r}\br{L'', L}L''
-= \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{cyclic}} L'' + \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} \br{p + 1}L'' \\
+= \sum_{L'' \subseteq_{p^{r + 1}} L \ \text{cyclic}} L'' + \br{p + 1}\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L'' \\
 & = \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r + 1}} L \ \text{not cyclic}} L''
 = \T_{p^{r + 1}}L + p\sum_{L'' \subseteq_{p^{r - 1}} \R_pL} L''
 = \T_{p^{r + 1}}L + p\T_{p^{r - 1}}\R_pL.
@@ -1189,8 +1241,10 @@ The latter case occurs if and only if $ L / L'' $ maps surjectively to $ \br{\ZZ
 \lecture{16}{Friday}{08/11/19}
 
 If $ F : \LLL \to \CC $, then
-$$ \T_nF\br{L} = \sum_{L' \subseteq_n L} F\br{L'}, \qquad \R_\lambda F\br{L} = F\br{\R_\lambda L}. $$
-Recall that $ F $ has weight $ k $ if $ F\br{\R_\lambda L} = \lambda^{-k}F\br{L} $ for all $ \lambda \in \CC^\times $, if and only if $ \R_\lambda F = \lambda^{-k}F $ for all $ \lambda \in \CC^\times $, so
+$$ \br{\T_nF}\br{L} = \sum_{L' \subseteq_n L} F\br{L'}, \qquad \br{\R_\lambda F}\br{L} = F\br{\R_\lambda L}. $$
+Recall that $ F $ has weight $ k $ if $ F\br{\R_\lambda L} = \lambda^{-k}F\br{L} $ for all $ \lambda \in \CC^\times $, if and only if
+$$ \R_\lambda F = \lambda^{-k}F, \qquad \lambda \in \CC^\times, $$
+so
 $$ \R_\lambda\T_nF = \T_n\R_\lambda F = \T_n\lambda^{-k}F = \lambda^{-k}\T_nF. $$
 So the $ \T_n $ and $ \R_\lambda $ preserve lattice functions of weight $ k $. Have a bijection
 $$ \function{\cbr{f : \HH \to \CC \st f\br{\gamma z} = \br{cz + d}^kf\br{z}}}{\cbr{\text{lattice functions} \ F \ \text{of weight} \ k}}{f\br{z}}{F\br{\L_{z, 1}}}. $$
@@ -1202,43 +1256,42 @@ For $ f : \HH \to \CC $ corresponding to $ F : \LLL \to \CC $ of weight $ k $, d
 $$ \br{\T_nf}\br{z} = n^{k - 1}\br{\T_nF}\br{\L_{z, 1}} = n^{k - 1}\sum_{L' \subseteq_n \L_{z, 1}} F\br{L'}. $$
 \end{definition}
 
-On $ f : \HH \to \CC $, $ \T_n $ satisfy
-$$ \T_p\T_{p^r} = \T_{p^{r + 1}} + p^{k - 1}\T_{p^{r - 1}}. $$
-
 \pagebreak
 
+On $ f : \HH \to \CC $, $ \T_n $ satisfy
+$$ \T_p\T_{p^r} = \T_{p^{r + 1}} + p^{k - 1}\T_{p^{r - 1}}. $$
 Need to rewrite $ \sum_{L' \subseteq_n \L_{z, 1}} F\br{L'} $ in terms of $ f $. Let
-$$ \S_n = \cbr{\twobytwo{a}{b}{0}{d} \in \Mat_{2 \times 2} \ZZ \st ad = n, \ a, d > 0, \ 0 \le b < d}. $$
+$$ \S^n = \cbr{\twobytwo{a}{b}{0}{d} \in \Mat_{2 \times 2} \ZZ \st ad = n, \ a, d > 0, \ 0 \le b < d}. $$
 
 \begin{lemma}
 The map
-$$ \function{\S_n}{\cbr{\text{sublattices of} \ \L_{z, 1} \ \text{of index} \ n}}{\twobytwo{a}{b}{0}{d}}{\L_{az + b, d}} $$
+$$ \function{\S^n}{\cbr{\text{sublattices of} \ \L_{z, 1} \ \text{of index} \ n}}{\twobytwo{a}{b}{0}{d}}{\L_{az + b, d}} $$
 is a bijection.
 \end{lemma}
 
 \begin{proof}
-For surjectivity, let $ L \subseteq_n \L_{z, 1} $. Then $ \L_{z, 1} / L $ is a group of order $ n $. Can consider $ 1 + L \in \L_{z, 1} / L $. Let $ d $ be the order of $ 1 + L $, that is $ d $ is the smallest positive integer such that $ d \in L $. Then $ d \mid n $, so set $ a = n / d $. Let $ L' = \ZZ + L $ be the lattice generated by $ 1 $ and $ L $. Then $ L \subseteq_d L' $ and $ L \subseteq_n \L_{z, 1} $, so $ L' \subseteq_a \L_{z, 1} $, so $ az \in L' $, so there exists $ b \in \ZZ $ such that $ az + b \in L $. Since $ d \in L $, without loss of generality can arrange $ 0 \le b < d $. Now $ d \in L $ and $ az + b \in L $, so $ L \subseteq_n \L_{z, 1} $ and $ \L_{az + b, d} \subseteq_n \L_{z, 1} $, so $ L = \L_{az + b, d} $. Thus surjective, and for injectivity, can recover $ a, b, d $ from $ \L_{az + b, d} \subseteq \L_{z, 1} $.
+For surjectivity, let $ L \subseteq_n \L_{z, 1} $. Then $ \L_{z, 1} / L $ is a group of order $ n $. Can consider $ 1 + L \in \L_{z, 1} / L $. Let $ d $ be the order of $ 1 + L $, that is $ d $ is the smallest positive integer such that $ d \in L $. Then $ d \mid n $, so set $ a = n / d $. Let $ L' = \ZZ + L $ be the lattice generated by $ 1 $ and $ L $. Then $ L \subseteq_d L' $ and $ L \subseteq_n \L_{z, 1} $, so $ L' \subseteq_a \L_{z, 1} $, so $ az \in L' $, so there exists $ b \in \ZZ $ such that $ az + b \in L $. Since $ d \in L $, without loss of generality can arrange $ 0 \le b < d $. Now $ d \in L $ and $ az + b \in L $, so $ \L_{az + b, d} \subseteq_n \L_{z, 1} $ and $ L \subseteq_n \L_{z, 1} $, so $ L = \L_{az + b, d} $. Thus surjective, and for injectivity, can recover $ a, b, d $ from $ \L_{az + b, d} \subseteq \L_{z, 1} $.
 \end{proof}
 
 Thus
 \begin{align*}
 \T_nf
 & = n^{k - 1}\sum_{L' \subseteq_n \L_{z, 1}} F\br{L'}
-= n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S_n} F\br{\L_{az + b, d}} \\
-& = n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S_n} d^{-k}F\br{\L_{\tfrac{az + b}{d}, 1}}
-= n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}.
+= n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S^n} F\br{\L_{az + b, d}} \\
+& = n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S^n} d^{-k}F\br{\L_{\tfrac{az + b}{d}, 1}}
+= n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S^n} d^{-k}f\br{\dfrac{az + b}{d}}.
 \end{align*}
 
 \begin{theorem}
 If $ f = \sum_{m = 0}^\infty c_mq^m $ is modular of weight $ k $, then
-$$ \T_nf = \sum_{m = 0}^\infty \gamma_mq^m, \qquad \gamma_m = \sum_{a \mid \br{m, n}, \ a \ge 1} a^{k - 1}c_{\tfrac{mn}{a^2}}. $$
+$$ \T_nf = \sum_{m = 0}^\infty \gamma_mq^m, \qquad \gamma_m = \sum_{a \mid \br{m, n}, \ a > 0} a^{k - 1}c_{\tfrac{mn}{a^2}}. $$
 \end{theorem}
 
 \begin{proof}
 \begin{align*}
 \T_nf
-& = n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S_n} d^{-k}f\br{\dfrac{az + b}{d}}
-= n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S_n} \sum_{m = 0}^\infty d^{-k}c_me^{2\pi im\br{\tfrac{az + b}{d}}} \\
+& = n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S^n} d^{-k}f\br{\dfrac{az + b}{d}}
+= n^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S^n} \sum_{m = 0}^\infty d^{-k}c_me^{2\pi im\br{\tfrac{az + b}{d}}} \\
 & = n^{k - 1}\sum_{ad = n, \ a > 0} \sum_{b = 0}^{d - 1} \sum_{m = 0}^\infty d^{-k}c_mq^{\tfrac{ma}{d}}e^{\tfrac{2\pi imb}{d}}
 = n^{k - 1}\sum_{m = 0}^\infty \sum_{ad = n, \ a > 0} d^{-k}c_mq^{\tfrac{ma}{d}}\sum_{b = 0}^{d - 1} e^{\tfrac{2\pi imb}{d}}.
 \end{align*}
@@ -1251,8 +1304,11 @@ d & d \mid m \\
 $$
 so
 $$ \T_nf = n^{k - 1}\sum_{m = 0, \ d \mid m}^\infty \sum_{ad = n, \ a > 0} d^{1 - k}c_mq^{\tfrac{ma}{d}} = \sum_{a \mid n, \ a > 0} \sum_{m' = 0}^\infty a^{k - 1}c_{\tfrac{m'n}{a}}q^{m'a}. $$
-Which $ m' $ and $ a $ give $ q^m $? Need $ a \mid \br{m, n} $ for $ a > 0 $ and $ m'a = m $, so the coefficient is $ a^{k - 1}c_{mn / a^2} $. The sum of these is $ \gamma_m $.
+Which $ m' $ and $ a $ give $ q^m $? Need $ a \mid \br{m, n} $ for $ a > 0 $ and $ m'a = m $, so the coefficient is $ a^{k - 1}c_{mn / a^2} $. The sum of these is
+$$ \gamma_m = \sum_{a \mid \br{m, n}, \ a > 0} a^{k - 1}c_{\tfrac{mn}{a^2}}. $$
 \end{proof}
+
+\pagebreak
 
 \begin{corollary}
 $ \T_n $ preserves $ \M_k $ and $ \S_k $.
@@ -1265,8 +1321,6 @@ c_{mp} + p^{k - 1}c_{\tfrac{m}{p}} & p \mid m \\
 c_{mp} & p \nmid m
 \end{cases}.
 $$
-
-\pagebreak
 
 \subsubsection{Eigenforms}
 
@@ -1316,22 +1370,22 @@ $ \E_k $ is an eigenform for all $ k $.
 
 \begin{proof}
 It suffices to show $ \T_p\E_k = \lambda_p\E_k $ for all primes $ p $. Recall that $ \E_k $ is a constant multiple of $ \G_k $. Now
-$$ \br{\T_pf}\br{L} = \sum_{L' \subseteq_p L} \sum_{w \in L', \ w \ne 0} \dfrac{1}{w^k} = \sum_{w \in L, \ w \ne 0} c_w\dfrac{1}{w_k}, \qquad c_w = \#\cbr{L' \subseteq_p L \st w \in L'}. $$
-Note that $ pL \subseteq L' \subseteq L $. If $ w \in pL $, then $ w \in L' $ for all $ L' \subseteq_p L $, and there are $ p + 1 $ of these. If $ w \notin pL $, then $ pL \subseteq_{p^2} L $ and $ pL \subsetneq pL + \ZZ w \subsetneq L $, so $ pL \subsetneq_p pL + \ZZ w $ and $ pL + \ZZ w \subsetneq_p L $. In this case there exists a unique lattice of index $ p $ containing $ w $. Thus
+$$ \br{\T_p\G_k}\br{L} = \sum_{L' \subseteq_p L} \sum_{w \in L', \ w \ne 0} \dfrac{1}{w^k} = \sum_{w \in L, \ w \ne 0} c_w\dfrac{1}{w_k}, \qquad c_w = \#\cbr{L' \subseteq_p L \st w \in L'}. $$
+Note that $ pL \subseteq L' \subseteq L $. If $ w \in pL $, then $ w \in L' $ for all $ L' \subseteq_p L $, and there are $ p + 1 $ of these. If $ w \notin pL $, then $ pL \subsetneq pL + \ZZ w \subsetneq L $ and $ pL \subseteq_{p^2} L $, so $ pL \subsetneq_p pL + \ZZ w $ and $ pL + \ZZ w \subsetneq_p L $. In this case there exists a unique lattice of index $ p $ containing $ w $. Thus
 \begin{align*}
-\T_p\G_k\br{L}
-& = \sum_{w \in L \setminus pL} \dfrac{1}{w^k} + \sum_{w \in pL, \ w \ne 0} \br{p + 1}\dfrac{1}{w^k}
+\br{\T_p\G_k}\br{L}
+& = \sum_{w \in L \setminus pL} \dfrac{1}{w^k} + \br{p + 1}\sum_{w \in pL, \ w \ne 0} \dfrac{1}{w^k}
 = \sum_{w \in L, \ w \ne 0} \dfrac{1}{w^k} + p\sum_{w \in pL, \ w \ne 0} \dfrac{1}{w^k} \\
 & = \G_k\br{L} + p\sum_{w \in L, \ w \ne 0} \dfrac{1}{\br{pw}^k}
-= \G_k\br{L} + p^{1 - k}\sum_{w \in L} \dfrac{1}{w^k}
+= \G_k\br{L} + p^{1 - k}\sum_{w \in L, \ w \ne 0} \dfrac{1}{w^k}
 = \br{1 + p^{1 - k}}\G_k\br{L},
 \end{align*}
 so $ \T_p\E_k = \br{1 + p^{k - 1}}\E_k $.
 \end{proof}
 
-A question is does $ \M_k $ have a basis of eigenforms for all $ k $? By linear algebra, there exist nice classes of operators that are guaranteed to admit bases of eigenvectors, such as self-adjoint, or more generally, normal operators.
-
 \pagebreak
+
+A question is does $ \M_k $ have a basis of eigenforms for all $ k $? By linear algebra, there exist nice classes of operators that are guaranteed to admit bases of eigenvectors, such as self-adjoint, or more generally, normal operators.
 
 \subsubsection{Hermitian pairings}
 
@@ -1382,25 +1436,28 @@ $ \im A^* = \br{\ker A}^\perp $.
 $ \abr{v, A^*w} = \abr{Av, w} = 0 $ if $ v \in \ker A $. So $ \im A^* \subseteq \br{\ker A}^\perp $, so $ \rk A^* \le \rk A $. The same argument with $ A^* $ in place of $ A $ implies that $ \rk A = \rk A^{**} \le \rk A^* $. So $ \rk A^* = \rk A $, so $ \im A^* = \br{\ker A}^\perp $.
 \end{proof}
 
-In particular, $ \im A^* \cap \ker A = \cbr{0} $ and $ \dim \im A^* + \dim \ker A = \rk A^* + n - \rk A = n $. So $ V = \im A^* \oplus \ker A $.
+In particular, $ \im A^* \cap \ker A = \cbr{0} $ and $ \dim \im A^* + \dim \ker A = \rk A^* + n - \rk A = n $. So
+$$ V = \im A^* \oplus \ker A. $$
 
 \begin{theorem}[Spectral theorem for normal operators]
 If $ A $ and $ A^* $ commute, then $ A^* $ is diagonalisable.
 \end{theorem}
 
 \begin{proof}
-Induction on $ \dim V $. Then $ \dim V = 1 $ is clear. Let $ \lambda $ be an eigenvalue of $ A $, and let $ A' = A - \lambda\I_V $, so $ V = \ker A' \oplus \im A'^* $, where $ \dim \ker A' > 0 $. Then $ A $ commutes with $ A' $, and $ A'^* = A^* - \overline{\lambda} \I_V $, so $ A $ commutes with $ A'^* $. So $ AA'^*v = A'^*Av $, so $ A $ preserves the image of $ A'^* $. The restriction of $ \abr{\cdot, \cdot} $ to $ \im A'^* $ is still Hermitian on $ \im A'^* $ and the restriction of $ A $ to $ \im A'^* $ is still normal, since its adjoint is the restriction of $ A^* $ to $ \im A'^* $. By induction $ A $ is diagonalisable on $ \im A'^* $ and scalar on $ \ker A' $, so diagonalisable.
+Induction on $ \dim V $. Then $ \dim V = 1 $ is clear. Let $ \lambda $ be an eigenvalue of $ A $, and let $ A' = A - \lambda\id_V $, so $ V = \ker A' \oplus \im A'^* $, where $ \dim \ker A' > 0 $. Then $ A $ commutes with $ A' $, and $ A'^* = A^* - \overline{\lambda}\id_V $, so $ A $ commutes with $ A'^* $. So $ AA'^*v = A'^*Av $, so $ A $ preserves the image of $ A'^* $. The restriction of $ \abr{\cdot, \cdot} $ to $ \im A'^* $ is still Hermitian on $ \im A'^* $ and the restriction of $ A $ to $ \im A'^* $ is still normal, since its adjoint is the restriction of $ A^* $ to $ \im A'^* $. By induction $ A $ is diagonalisable on $ \im A'^* $ and scalar on $ \ker A' $, so diagonalisable.
 \end{proof}
 
 Also the need the folllowing observation.
 
 \begin{proposition}
-If $ A : V \to V $ and $ B : V \to V $ commute, and $ V_\lambda = \ker \br{A - \lambda\I_V} $, then $ BV_\lambda = V_\lambda $.
+If $ A : V \to V $ and $ B : V \to V $ commute, and $ V_\lambda = \ker \br{A - \lambda\id_V} $, then $ BV_\lambda = V_\lambda $.
 \end{proposition}
 
 \begin{proof}
 If $ v \in V_\lambda $, then $ ABv = BAv = B\lambda v = \lambda Bv $, so $ Bv \in V_\lambda $.
 \end{proof}
+
+\pagebreak
 
 \subsubsection{The Petersson inner product}
 
@@ -1409,15 +1466,14 @@ To apply this to modular forms, we need a bilinear pairing on $ \M_k $ or $ \S_k
 \begin{definition}
 Let $ f, g \in \S_k $. The \textbf{Petersson inner product of weight $ k $} is
 $$ \abr{f, g}_k = \iintd{\DDD}{f\br{z}\overline{g\br{z}}\dfrac{y^k}{y^2}}{x}{y} = \dfrac{i}{2}\iintd{\DDD}{f\br{z}\overline{g\br{z}}\dfrac{\Im z^k}{\Im z^2}}{z}{\overline{z}}. $$
-Here $ z = x + iy $ and $ \overline{z} = x - iy $, so $ \d z\d\overline{z} = \br{\d x + i\d y} \wedge \br{\d x - i\d y} = -2i\br{\d x \wedge \d y} $.
+Here $ z = x + iy $ and $ \overline{z} = x - iy $, so
+$$ \d z\d\overline{z} = \br{\d x + i\d y} \wedge \br{\d x - i\d y} = -2i\br{\d x \wedge \d y}. $$
 \end{definition}
 
-\pagebreak
-
 Let $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \SL_2\br{\ZZ} $. Then
-$$ f\br{\gamma z}\overline{g\br{\gamma z}}\Im \gamma z^k = f\br{z}\br{cz + d}^k\overline{g\br{z}\br{cz + d}^k}\dfrac{\Im z}{\abs{cz + d}^{2k}} = f\br{z}\overline{g\br{z}}\Im z^k, $$
+$$ f\br{\gamma z}\overline{g\br{\gamma z}}\Im \gamma z^k = f\br{z}\br{cz + d}^k\overline{g\br{z}\br{cz + d}^k}\dfrac{\Im z^k}{\abs{cz + d}^{2k}} = f\br{z}\overline{g\br{z}}\Im z^k, $$
 and
-$$ \dfrac{1}{\Im \gamma z^2}\d\br{\gamma z}\br{\gamma \overline{z}} = \dfrac{1}{\Im \gamma z^2\abs{cz + d}^4}\d z\d\overline{z} = \dfrac{1}{\Im z^2}\d z\d\overline{z}, $$
+$$ \dfrac{1}{\Im \gamma z^2}\d\br{\gamma z}\d\br{\gamma \overline{z}} = \dfrac{1}{\Im \gamma z^2\abs{cz + d}^4}\d z\d\overline{z} = \dfrac{1}{\Im z^2}\d z\d\overline{z}, $$
 so for all $ U \subseteq \HH $,
 $$ \iintd{\gamma\br{U}}{f\br{z}\overline{g\br{z}}\dfrac{\Im z^k}{\Im z^2}}{z}{\overline{z}} = \iintd{U}{f\br{z}\overline{g\br{z}}\dfrac{\Im z^k}{\Im z^2}}{z}{\overline{z}}. $$
 
@@ -1429,7 +1485,7 @@ So $ \abr{\cdot, \cdot}_k $ is Hermitian.
 
 \begin{theorem}
 \label{thm:innerproduct}
-$ \abr{\T_nf, g}_k = \abr{f, \T_ng}_k $ for all $ f, g \in \S_k $ and $ n \in \ZZ_{\ge 1} $.
+$$ \abr{\T_nf, g}_k = \abr{f, \T_ng}_k, \qquad f, g \in \S_k, \qquad n \in \ZZ_{\ge 1}. $$
 \end{theorem}
 
 \begin{corollary}
@@ -1437,7 +1493,9 @@ Each $ \T_n $ is diagonalisable on $ \S_k $. Since $ \T_n $ and $ \T_m $ commute
 \end{corollary}
 
 \begin{proposition}
-Let $ n > \fbr{k / 12} + 1 $. Fix $ \lambda_2, \dots, \lambda_n \in \CC $. The subspace $ V $ of $ \S_k $ on which $ \T_i = \lambda_i $ for $ i = 2, \dots, n $ is zero or one-dimensional.
+Let $ n > \fbr{k / 12} + 1 $. Fix $ \lambda_2, \dots, \lambda_n \in \CC $. The subspace $ V $ of $ \S_k $ on which
+$$ \T_i = \lambda_i, \qquad i = 2, \dots, n $$
+is zero or one-dimensional.
 \end{proposition}
 
 \begin{proof}
@@ -1452,6 +1510,8 @@ $ \S_k $ admits a basis of eigenforms for all $ k $.
 Let $ n \ge \fbr{k / 12} + 1 $. Can diagonalise $ \S_k $ with respect to the first $ n $ Hecke operators. Any simultaneous eigenspace for these is at most one-dimensional, and preserved by all $ \T_n $. So each of these is actually an eigenspace for all $ \T_n $.
 \end{proof}
 
+\pagebreak
+
 \lecture{19}{Friday}{15/11/19}
 
 \begin{note*}
@@ -1461,9 +1521,9 @@ $$ \lambda_n\abr{f, f}_k = \abr{\T_nf, f}_k = \abr{f, \T_nf}_k = \overline{\abr{
 So $ \lambda_n = \overline{\lambda_n} $ and $ \mu_n = \overline{\mu_n} $. Then $ \br{\lambda_n - \mu_n}\abr{f, g}_k = 0 $, so $ \abr{f, g}_k = 0 $.
 \end{note*}
 
-The formula for $ \T_n $ on $ q $-expansions implies that $ \T_n $ takes a $ q $-expansion with $ \ZZ $ coefficients to another such. Saw that the space of modular forms with integral $ q $-expansions is spanned by
+By the formula for $ \T_n $ on $ q $-expansions, $ \T_n $ takes a $ q $-expansion with integer coefficients to another such. Saw that the space of modular forms with integral $ q $-expansions is spanned by
 $$ \E_4^n\E_6^m, \dots, \E_4^{n - 3\fbr{n / 3}}\E_6^m\Delta^{\fbr{n / 3}}, \qquad k = 4n + 6m, \qquad n, m > 0, $$
-where $ m \in \cbr{0, 1} $ is minimal, so the matrix of $ \T_n $ with respect to this basis has integer entries. Thus the characteristic polynomial of $ \T_n $ on $ \S_k $ has integer coefficients, so the eigenvalues of $ \T_n $ are algebraic integers.
+where $ m = 0, 1 $ is minimal, so the matrix of $ \T_n $ with respect to this basis has integer entries. Thus the characteristic polynomial of $ \T_n $ on $ \S_k $ has integer coefficients, so the eigenvalues of $ \T_n $ are algebraic integers.
 
 \begin{example*}
 Can ask when modular forms are congruent modulo $ p $. In fact $ \E_{12} \equiv \Delta \mod 691 $.
@@ -1471,29 +1531,34 @@ Can ask when modular forms are congruent modulo $ p $. In fact $ \E_{12} \equiv 
 
 Ribet 1970s proved that when an Eisenstein series of suitable weight is congruent modulo $ p $ to a cusp form, can use the Galois representation attached to that cusp form to construct elements of ideal class groups of cyclotomic fields.
 
-\pagebreak
-
 \subsection{\texorpdfstring{$ \L $}{L}-functions}
 
-\begin{definition}
-Let $ \cbr{a_n}_{n \ge 1} $ be a sequence of complex numbers, usually algebraic integers. The \textbf{Dirichlet series} attached to $ a_n $ is the formal series $ \sum_{n = 1}^\infty a_nn^{-s} $, thought of as a function of $ s \in \CC $.
-\end{definition}
+\subsubsection{Dirichlet \texorpdfstring{$ \L $}{L}-functions}
 
-\begin{example*}
-$ \zeta\br{s} = \sum_{n = 1}^\infty n^{-s} $.
-\end{example*}
+\begin{definition}
+Let $ \cbr{a_n}_{n \ge 1} $ be a sequence of complex numbers, usually algebraic integers. The \textbf{Dirichlet series} attached to $ a_n $ is the formal series
+$$ \sum_{n = 1}^\infty a_nn^{-s}, $$
+thought of as a function of $ s \in \CC $.
+\end{definition}
 
 In general, if $ \abs{a_n} \le Cn^k $, then the corresponding series converges absolutely for $ \Re s > k + 1 $.
 
 \begin{example*}
-Let $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ be a \textbf{primitive character}, that is does not factor through $ \br{\ZZ / N\ZZ}^\times \to \br{\ZZ / m\ZZ}^\times $ for $ m \mid N $ such that $ m \ne N $. Set
+\hfill
+\begin{itemize}
+\item The \textbf{Riemann $ \zeta $-function} is
+$$ \zeta\br{s} = \sum_{n = 1}^\infty n^{-s}. $$
+\item Let $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ be a \textbf{primitive character}, that is does not factor through $ \br{\ZZ / N\ZZ}^\times \to \br{\ZZ / m\ZZ}^\times $ for $ m \mid N $ such that $ m \ne N $. Set
 $$ a_n =
 \begin{cases}
 \chi\br{n} & \br{n, N} = 1 \\
 0 & \br{n, N} \ne 1
 \end{cases}.
 $$
-Then $ \L\br{s, \chi} = \sum_n a_nn^{-s} $ is the \textbf{Dirichlet $ \L $-function} attached to $ \chi $.
+Then
+$$ \L\br{s, \chi} = \sum_{n = 1}^\infty a_nn^{-s} $$
+is the \textbf{Dirichlet $ \L $-function} attached to $ \chi $.
+\end{itemize}
 \end{example*}
 
 In both these examples, and many others,
@@ -1503,9 +1568,13 @@ In both these examples, and many others,
 \item there is an \textbf{Euler product}.
 \end{itemize}
 
+\pagebreak
+
 \begin{example*}
 $$ \zeta\br{s} = 2^s\pi^{s - 1}\sin \tfrac{\pi s}{2}\Gamma\br{1 - s}\zeta\br{1 - s}, \qquad \zeta\br{s} = \prod_{p \ \text{prime}} \dfrac{1}{1 - p^{-s}}, \qquad \L\br{s, \chi} = \prod_{p \nmid N} \dfrac{1}{1 - \chi\br{p}p^{-s}}. $$
 \end{example*}
+
+\subsubsection{Hecke \texorpdfstring{$ \L $}{L}-functions}
 
 \begin{definition}
 Let $ f = \sum_{n = 0}^\infty a_nq^n \in \M_k $. Define the \textbf{Hecke $ \L $-function of weight $ k $}
@@ -1513,21 +1582,25 @@ $$ \L\br{s, f} = \sum_{n = 1}^\infty a_nn^{-s}. $$
 \end{definition}
 
 \begin{example*}
-Let $ f = \E_k' = \br{-1}^{k / 2}\b_k / 2k + \sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n $. Then
+Let
+$$ f = \E_k' = \b_k\dfrac{\br{-1}^{\tfrac{k}{2}}}{2k} + \sum_{n = 1}^\infty \sigma_{k - 1}\br{n}q^n. $$
+Then
 $$ \L\br{s, f} = \sum_{n = 1}^\infty \sigma_{k - 1}\br{n}n^{-s} = \prod_{p \ \text{prime}} \dfrac{1}{1 - \sigma_{k - 1}\br{p}p^{-s}} = \prod_{p \ \text{prime}} \dfrac{1}{1 - p^{-s}} \cdot \dfrac{1}{1 - p^{k - 1}p^{-s}} = \zeta\br{s}\zeta\br{s - k + 1}, $$
 since $ \sigma_{k - 1}\br{mn} = \sigma_{k - 1}\br{m}\sigma_{k - 1}\br{n} $ for $ \br{m, n} = 1 $ and $ \sigma_{k - 1}\br{p^r} = 1 + \dots + p^{r\br{k - 1}} $.
 \end{example*}
 
 \lecture{20}{Friday}{15/11/19}
 
-Let $ f = \sum_{n = 1}^\infty a_nq^n $ be a cusp form. Recall that Hasse implies that $ \abs{a_n} \le Cn^{k / 2} $, so gives absolute convergence of $ \L\br{s, f} $ for $ \Re s > k / 2 + 1 $.
+Let $ f = \sum_{n = 1}^\infty a_nq^n $ be a cusp form. Recall that Hecke implies that $ \abs{a_n} \le Cn^{k / 2} $, so gives absolute convergence of $ \L\br{s, f} $ for $ \Re s > k / 2 + 1 $.
 
 \begin{theorem}
 \label{thm:lfunction}
 \hfill
 \begin{enumerate}
 \item $ \L\br{s, f} $ extends to a holomorphic function on all of $ \CC $.
-\item Set $ \R\br{s, f} = \br{2\pi}^{-s}\Gamma\br{s}\L\br{s, f} $. Then
+\item Set
+$$ \R\br{s, f} = \dfrac{\Gamma\br{s}}{\br{2\pi}^s}\L\br{s, f}. $$
+Then
 $$ \R\br{s, f} = \br{-1}^{\tfrac{k}{2}}\R\br{k - s, f}. $$
 \item If $ f $ is a normalised eigenform, then
 $$ \L\br{s, f} = \prod_{p \ \text{prime}} \dfrac{1}{1 - a_pp^{-s} + p^{k - 1}p^{-2s}}. $$
@@ -1535,10 +1608,12 @@ $$ \L\br{s, f} = \prod_{p \ \text{prime}} \dfrac{1}{1 - a_pp^{-s} + p^{k - 1}p^{
 \end{theorem}
 
 \begin{definition}
-The infinite product $ \prod_{n = 1}^\infty \br{1 + c_n} $ \textbf{converges} if $ \lim_{N \to \infty} \prod_{n = 1}^N \br{1 + c_n} $ converges to a non-zero number, if and only if $ \sum_{n = 1}^\infty \log \br{1 + c_n} $ converges. Then $ \prod_{n = 1}^\infty \br{1 + c_n} $ \textbf{converges absolutely} if $ \prod_{n = 1}^\infty \br{1 + \abs{c_n}} $ converges.
+The infinite product $ \prod_{n = 1}^\infty \br{1 + c_n} $ \textbf{converges} if
+$$ \lim_{N \to \infty} \prod_{n = 1}^N \br{1 + c_n} $$
+converges to a non-zero number, if and only if $ \sum_{n = 1}^\infty \log \br{1 + c_n} $ converges. Then $ \prod_{n = 1}^\infty \br{1 + c_n} $ \textbf{converges absolutely} if
+$$ \prod_{n = 1}^\infty \br{1 + \abs{c_n}} $$
+converges.
 \end{definition}
-
-\pagebreak
 
 \begin{lemma}
 $ \prod_{n = 1}^\infty \br{1 + c_n} $ converges absolutely if and only if $ \sum_{n = 1}^\infty \abs{c_n} $ converges.
@@ -1547,6 +1622,8 @@ $ \prod_{n = 1}^\infty \br{1 + c_n} $ converges absolutely if and only if $ \sum
 \begin{proof}
 $$ \sum_{n = 1}^N \abs{c_n} \le \prod_{n = 1}^N \br{1 + \abs{c_n}} \le \prod_{n = 1}^N e^{\abs{c_n}} \le e^{\sum_{n = 1}^\infty \abs{c_n}}. $$
 \end{proof}
+
+\pagebreak
 
 \begin{proof}[Proof of Theorem \ref{thm:lfunction}]
 Recall that
@@ -1565,17 +1642,19 @@ Then
 & = \intd{0}{1}{t^{s - 1}f\br{it}}{t} + \intd{1}{\infty}{t^{s - 1}f\br{it}}{t}
 = \intd{1}{\infty}{\br{\dfrac{1}{t}}^{s - 1}f\br{\dfrac{i}{t}}}{\br{\dfrac{1}{t}}} + \intd{1}{\infty}{t^{s - 1}f\br{it}}{t} \\
 & = \intd{1}{\infty}{\br{t^{-s - 1}\br{it}^kf\br{it} + t^{s - 1}f\br{it}}}{t}
-= \intd{1}{\infty}{f\br{it}\br{\br{-1}^{\tfrac{k}{2}}t^{k - s - 1} + t^{s - 1}}}{t},
+= \intd{1}{\infty}{f\br{it}\br{\br{-1}^{\tfrac{k}{2}}t^{k - s - 1} + t^{s - 1}}}{t}.
 \end{align*}
 \begin{enumerate}
-\item $ \R\br{s, f} $ converges independently of $ s $ uniformly for $ s $ in a compact subset of $ \CC $, so it is holomorphic in $ s $, and extends to a holomorphic function on $ \CC $. Then $ \L\br{s, f} = \br{2\pi}^s\Gamma\br{s}^{-1}\R\br{s, f} $, so $ \L\br{s, f} $ is holomorphic since $ \Gamma\br{s} $ is non-vanishing.
+\item $ \R\br{s, f} $ converges independently of $ s $ uniformly for $ s $ in a compact subset of $ \CC $, so it is holomorphic in $ s $, and extends to a holomorphic function on $ \CC $. Then
+$$ \L\br{s, f} = \dfrac{\br{2\pi}^s}{\Gamma\br{s}}\R\br{s, f}, $$
+so $ \L\br{s, f} $ is holomorphic since $ \Gamma\br{s} $ is non-vanishing.
 \item $ \R\br{s, f} $ is symmetric up to a sign under $ s \mapsto k - s $, so
 $$ \R\br{s, f} = \br{-1}^{\tfrac{k}{2}}\R\br{k - s, f}. $$
 \item Now assume $ f $ is a normalised eigenform, so $ f = \sum_{n = 1}^\infty a_nq^n $ with $ a_1 = 1 $ and $ \T_nf = a_nf $. Then $ a_{nm} = a_na_m $ if $ \br{n, m} = 1 $, so
 $$ \L\br{s, f} = \sum_n a_nn^{-s} = \prod_{p \ \text{prime}} \sum_{k = 0}^\infty a_{p^k}p^{-ks}, $$
 a power series in $ p^{-s} $. Fix $ p $, and consider
 $$ \br{1 - a_pp^{-s} + p^{k - 1}p^{-2s}}\sum_{k = 0}^\infty a_{p^k}p^{-ks}. $$
-The $ p^0 $ coefficient is $ a_1 = 1 $, the $ p^1 $ coefficient is $ a_pp^{-s} - a_pp^{-s} = 0 $, and the $ p^{r + 1} $ coefficient is
+The $ p^0 $ coefficient is $ a_1 = 1 $, the $ p^{-s} $ coefficient is $ a_pp^{-s} - a_pp^{-s} = 0 $, and the $ p^{-\br{r + 1}s} $ coefficient is
 $$ a_{p^{r + 1}}p^{-\br{r + 1}s} - a_pa_{p^r}p^{-\br{r + 1}s} + p^{k - 1}a_{p^{r - 1}}p^{-\br{r + 1}s} = \br{a_{p^{r + 1}} - a_pa_{p^r} + p^{k - 1}a_{p^{r - 1}}}p^{-\br{r + 1}s} = 0, $$
 since $ a_{p^{r + 1}} = a_pa_{p^r} - p^{k - 1}a_{p^{r - 1}} $. So
 $$ \L\br{s, f} = \prod_{p \ \text{prime}} \sum_{k = 0}^\infty a_{p^k}p^{-ks} = \prod_{p \ \text{prime}} \dfrac{1}{1 - a_pp^{-s} + p^{k - 1}p^{-2s}}. $$
@@ -1625,10 +1704,10 @@ Let $ \alpha \in \GL_2\br{\QQ}_+ $, and let $ \Gamma $ be a congruence subgroup.
 \end{proposition}
 
 \begin{proof}
-Need that there exists $ M $ with $ \Gamma\br{M} \subseteq \alpha\Gamma\alpha^{-1} $ with finite index. There exists $ N $ such that $ \Gamma\br{N} \subseteq \Gamma $. Note that $ \Gamma\br{N} = \SL_2\br{\QQ} \cap \br{\I_2 + N\Mat_2 \ZZ} $. Consider
-$$ \alpha\Gamma\br{N}\alpha^{-1} = \SL_2\br{\QQ} \cap \br{\I_2 + N\alpha\Mat_2 \ZZ\alpha^{-1}}. $$
+Need that there exists $ M $ with $ \Gamma\br{M} \subseteq \alpha\Gamma\alpha^{-1} $ with finite index. There exists $ N $ such that $ \Gamma\br{N} \subseteq \Gamma $. Note that $ \Gamma\br{N} = \SL_2\br{\QQ} \cap \br{\id_2 + N\Mat_2 \ZZ} $. Consider
+$$ \alpha\Gamma\br{N}\alpha^{-1} = \SL_2\br{\QQ} \cap \br{\id_2 + N\alpha\Mat_2 \ZZ\alpha^{-1}}. $$
 Choose $ n \in \ZZ $ such that $ n\alpha $ and $ n\alpha^{-1} $ have entries in $ \ZZ $. Then $ n^2\alpha^{-1}\Mat_2 \ZZ\alpha \subseteq \Mat_2 \ZZ $, so $ n^2\Mat_2 \ZZ \subseteq \alpha\Mat_2 \ZZ\alpha^{-1} $, so $ Nn^2\Mat_2 \ZZ \subseteq N\alpha\Mat_2 \ZZ\alpha^{-1} $, so
-$$ \Gamma\br{n^2N} = \SL_2\br{\QQ} \cap \br{\I_2 + Nn^2\Mat_2 \ZZ} \subseteq \SL_2\br{\QQ} \cap \br{\I_2 + N\alpha\Mat_2 \ZZ\alpha^{-1}} = \alpha\Gamma\br{N}\alpha^{-1}. $$
+$$ \Gamma\br{n^2N} = \SL_2\br{\QQ} \cap \br{\id_2 + Nn^2\Mat_2 \ZZ} \subseteq \SL_2\br{\QQ} \cap \br{\id_2 + N\alpha\Mat_2 \ZZ\alpha^{-1}} = \alpha\Gamma\br{N}\alpha^{-1}. $$
 Similarly, show
 $$ \alpha\Gamma\br{n^4N}\alpha^{-1} \subseteq \Gamma\br{n^2N} \subseteq \alpha\Gamma\br{N}\alpha^{-1}. $$
 Since $ \Gamma\br{n^4N} $ has finite index in $ \Gamma\br{N} $, $ \Gamma\br{n^2N} $ has finite index in $ \alpha\Gamma\br{N}\alpha^{-1} $.
@@ -1642,7 +1721,7 @@ Also, if $ T = \lcm\br{M, N} $ then $ \Gamma\br{T} \subseteq \Gamma\br{M} \cap \
 Let $ \alpha = \twobytwosmall{p}{0}{0}{1} $. Then
 $$ \alpha^{-1}\SL_2\br{\ZZ}\alpha = \cbr{\twobytwo{a}{p^{-1}b}{pc}{d} \st \twobytwo{a}{b}{c}{d} \in \SL_2\br{\ZZ}}, $$
 and
-$$ \alpha^{-1}\SL_2\br{\ZZ}\alpha \cap \SL_2\br{\ZZ} = \cbr{\twobytwo{a}{b}{pc}{d} \st ad - pbc = 1} = \Gamma_0\br{p}. $$
+$$ \alpha^{-1}\SL_2\br{\ZZ}\alpha \cap \SL_2\br{\ZZ} = \cbr{\twobytwo{a}{b}{pc}{d} \st ad - bpc = 1} = \Gamma_0\br{p}. $$
 \end{example*}
 
 \pagebreak
@@ -1651,11 +1730,12 @@ $$ \alpha^{-1}\SL_2\br{\ZZ}\alpha \cap \SL_2\br{\ZZ} = \cbr{\twobytwo{a}{b}{pc}{
 
 Recall that for $ f : \HH \to \CC $ and $ \alpha = \twobytwosmall{a}{b}{c}{d} \in \GL_2\br{\QQ}_+ $, we defined $ \eval{f}_{k, \alpha} $ by
 $$ \eval{f}_{k, \alpha}\br{z} = \det \alpha^{k - 1}f\br{\alpha z}\br{cz + d}^{-k}. $$
-Suppose we have a $ \Gamma \subseteq \SL_2\br{\QQ} $ and $ f : \HH \to \CC $ such that $ \eval{f}_{k, \gamma} = f $ for all $ \gamma \in \Gamma $. Then if $ g = \eval{f}_{k, \alpha} $, then $ \eval{g}_{k, \gamma} = g $ for all $ \gamma \in \alpha^{-1}\Gamma\alpha $, since
-$$ \eval{\br{\eval{f}_{k, \alpha}}}_{k, \gamma} = \eval{f}_{k, \gamma\alpha} = \eval{\br{\eval{f}_{k, \gamma}}}_{k, \alpha} = \eval{f}_{k, \alpha}. $$
+Suppose we have a $ \Gamma \subseteq \SL_2\br{\QQ} $ and $ f : \HH \to \CC $ such that $ \eval{f}_{k, \gamma} = f $ for all $ \gamma \in \Gamma $. Then if $ g = \eval{f}_{k, \alpha} $, then $ \eval{g}_{k, \alpha^{-1}\gamma\alpha} = g $, since
+$$ \eval{\br{\eval{f}_{k, \alpha}}}_{k, \alpha^{-1}\gamma\alpha} = \eval{f}_{k, \gamma\alpha} = \eval{\br{\eval{f}_{k, \gamma}}}_{k, \alpha} = \eval{f}_{k, \alpha}. $$
+Fix $ \Gamma \subseteq \SL_2\br{\QQ} $ a congruence subgroup.
 
 \begin{definition}
-Fix $ \Gamma \subseteq \SL_2\br{\QQ} $ a congruence subgroup. A function $ f : \HH \to \CC $ is a \textbf{weakly holomorphic or meromorphic modular form of weight $ k $ and level $ \Gamma $} if
+A function $ f : \HH \to \CC $ is a \textbf{weakly holomorphic or meromorphic modular form of weight $ k $ and level $ \Gamma $} if
 \begin{itemize}
 \item $ \eval{f}_{k, \gamma} = f $ for all $ \gamma \in \Gamma $, and
 \item $ f $ is holomorphic or meromorphic on $ \HH $.
@@ -1667,43 +1747,45 @@ A question is what condition should we impose at $ \infty $ to get a good theory
 \begin{example*}
 Let $ k \ge 4 $ and $ N \in \ZZ $, and let
 $$ \E_k^{0, 1}\br{z} = \sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{mz + n}^k}, \qquad S^{0, 1} = \cbr{\br{m, n} \in \ZZ^2 \setminus \cbr{0} \st m \equiv 1 \mod N, \ n \equiv 0 \mod N}. $$
-Claim that $ \E_k\br{\gamma z} = \E_k\br{z} $ for $ \gamma \in \Gamma\br{N} $. Let $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \Gamma\br{N} $. Then
+Claim that $ \E_k^{0, 1}\br{\gamma z} = \E_k^{0, 1}\br{z} $ for $ \gamma \in \Gamma\br{N} $. Let $ \gamma = \twobytwosmall{a}{b}{c}{d} \in \Gamma\br{N} $. Then
 \begin{align*}
 \E_k^{0, 1}\br{\gamma z}
-& = \sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{m\br{\tfrac{az + b}{cz + d}} + n}^k} \\
-& = \br{cz + d}^k\sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{m\br{az + b} + n\br{cz + d}}^k} \\
-& = \br{cz + d}^k\sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{\br{ma + nc}z + \br{mb + nd}}^k},
+& = \sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{m\br{\tfrac{az + b}{cz + d}} + n}^k}
+= \br{cz + d}^k\sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{m\br{az + b} + n\br{cz + d}}^k} \\
+& = \br{cz + d}^k\sum_{\br{m, n} \in S^{0, 1}} \dfrac{1}{\br{\br{ma + nc}z + \br{mb + nd}}^k}.
 \end{align*}
-so $ m \equiv a \equiv d \equiv 1 \mod N $ and $ n \equiv b \equiv c \equiv 0 \mod N $, so $ ma + nc \equiv 1 \mod N $ and $ mb + nd \equiv 0 \mod N $. So $ \br{ma + nc, mb + nd} \in S^{0, 1} $. Moreover, the map
+Since $ m \equiv a \equiv d \equiv 1 \mod N $ and $ n \equiv b \equiv c \equiv 0 \mod N $, $ ma + nc \equiv 1 \mod N $ and $ mb + nd \equiv 0 \mod N $, so $ \br{ma + nc, mb + nd} \in S^{0, 1} $. Moreover, the map
 $$ \bijection{S^{0, 1}}{S^{0, 1}}{\br{m, n}}{\br{ma + nc, mb + nd}}{\br{m'a' + n'c', m'b' + n'd'}}{\br{m', n'}} $$
-is a bijection, where $ \gamma^{-1} = \twobytwosmall{a'}{b'}{c'}{d'} $. So
-$$ \E_k^{0, 1}\br{\gamma z} = \E_k^{0, 1}\br{z}\br{cz + d}^k. $$
+is a bijection, where $ \gamma^{-1} = \twobytwosmall{a'}{b'}{c'}{d'} $. So $ \E_k^{0, 1}\br{\gamma z} = \E_k^{0, 1}\br{z}\br{cz + d}^k $.
 \end{example*}
 
 \lecture{23}{Friday}{22/11/19}
 
-Every congruence subgroup is conjugate to a subgroup of $ \SL_2\br{\ZZ} $, and $ \twobytwosmall{1}{1}{0}{1} \in \SL_2\br{\ZZ} $ need not be in $ \Gamma $. On the other hand, if $ \Gamma \subseteq \SL_2\br{\ZZ} $, then $ \Gamma $ has finite index in $ \SL_2\br{\ZZ} $, so there exists a minimal $ n_\Gamma > 0 $ such that $ \twobytwosmall{1}{n_\Gamma}{0}{1} \in \Gamma $. Then if $ f $ is weakly modular of weight $ k $ and level $ \Gamma $, know $ f\br{z + n_\Gamma} = f\br{z} $ for all $ z $, so $ f $ is a function of $ q^{1 / n_\Gamma} $. Let $ g\br{q^{1 / n_\Gamma}} $ be a function on $ \DD \setminus \cbr{0} $ such that $ f\br{z} = g\br{e^{2\pi iz / n_\Gamma}} $. Then if $ g $ is meromorphic on $ \DD $, can express $ g $ as a Laurent series in $ q^{1 / n_\Gamma} $. We say $ f $ is \textbf{meromorphic at $ \infty $}, and the series for $ q $ is its \textbf{$ q $-expansion}.
+Every congruence subgroup is conjugate to a subgroup of $ \SL_2\br{\ZZ} $, and $ \twobytwosmall{1}{1}{0}{1} \in \SL_2\br{\ZZ} $ need not be in $ \Gamma $. On the other hand, if $ \Gamma \subseteq \SL_2\br{\ZZ} $, then $ \Gamma $ has finite index in $ \SL_2\br{\ZZ} $, so there exists a minimal $ \n_\Gamma > 0 $ such that $ \twobytwosmall{1}{\n_\Gamma}{0}{1} \in \Gamma $. Then if $ f $ is weakly modular of weight $ k $ and level $ \Gamma $, know $ f\br{z + \n_\Gamma} = f\br{z} $ for all $ z $, so $ f $ is a function of $ q^{1 / \n_\Gamma} $. Let $ g\br{q^{1 / \n_\Gamma}} $ be a function on $ \DD \setminus \cbr{0} $ such that $ f\br{z} = g\br{e^{2\pi iz / \n_\Gamma}} $. Then if $ g $ is meromorphic on $ \DD $, can express $ g $ as a Laurent series in $ q^{1 / \n_\Gamma} $. We say $ f $ is \textbf{meromorphic at $ \infty $}, and the series for $ q $ is its \textbf{$ q $-expansion}.
 
 \begin{example*}
-For $ \Gamma = \Gamma_0\br{N} $ or $ \Gamma = \Gamma_1\br{N} $, $ n_\Gamma = 1 $.
+\hfill
+\begin{itemize}
+\item For $ \Gamma = \Gamma_0\br{N} $ or $ \Gamma = \Gamma_1\br{N} $, $ \n_\Gamma = 1 $.
+\item For $ \Gamma = \Gamma\br{N} $, $ \n_\Gamma = N $.
+\end{itemize}
 \end{example*}
-
-\begin{example*}
-For $ \Gamma = \Gamma\br{N} $, $ n_\Gamma = N $.
-\end{example*}
-
-\pagebreak
 
 \subsubsection{A fundamental domain}
 
-A question is for $ \Gamma \subseteq \SL_2\br{\ZZ} $, can we write down a fundamental domain for $ \Gamma $? For $ \Gamma \subseteq \SL_2\br{\ZZ} $, write $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $. Set
-$$ \DDD_\Gamma = \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i^{-1} \cdot \DDD. $$
+A question is for $ \Gamma \subseteq \SL_2\br{\ZZ} $, can we write down a fundamental domain for $ \Gamma $? For all $ z \in \HH $, there exists $ \gamma \in \SL_2\br{\ZZ} $ such that $ \gamma z \in \DDD $. For $ \Gamma \subseteq \SL_2\br{\ZZ} $, write
+$$ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma. $$
+
+\pagebreak
+
+Set
+$$ \DDD_\Gamma = \bigcup_i \gamma_i^{-1} \cdot \DDD. $$
 
 \begin{theorem}
 \hfill
 \begin{enumerate}
 \item For all $ z \in \HH $, there exists $ \gamma \in \Gamma $ such that $ \gamma z \in \DDD_\Gamma $.
-\item The subset $ \cbr{z \in \DDD_\Gamma \st \Gamma \cdot z \cap \DDD_\Gamma \ne \cbr{z}} $ is contained in $ \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i \cdot \partial\DDD $, so has measure zero.
+\item The subset $ \cbr{z \in \DDD_\Gamma \st \Gamma \cdot z \cap \DDD_\Gamma \ne \cbr{z}} $ is contained in $ \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i \cdot \partial\DDD $, the boundary of $ \DDD $, so has measure zero.
 \end{enumerate}
 That is, $ \DDD_\Gamma $ is a fundamental domain for $ \Gamma $.
 \end{theorem}
@@ -1712,13 +1794,13 @@ That is, $ \DDD_\Gamma $ is a fundamental domain for $ \Gamma $.
 \hfill
 \begin{enumerate}
 \item Fix $ z \in \HH $. There exists $ \gamma \in \SL_2\br{\ZZ} $ such that $ \gamma z \in \DDD $. Can write $ \gamma $ as $ \pm\gamma_i\gamma' $ for some $ i $ and $ \gamma' \in \Gamma $. Then $ \pm\gamma_i\gamma'z \in \DDD $, so $ \gamma_i\gamma'z \in \DDD $, so $ \gamma'z \in \gamma_i^{-1}\DDD \subseteq \DDD_\Gamma $.
-\item Let $ z \in \bigcup_{\gamma_i \in \SL_2\br{\ZZ}} \gamma_i^{-1} \cdot \mathring{\DDD} $. Want $ \Gamma \cdot z \cap \DDD_\Gamma = \cbr{z} $. Suppose $ \gamma z \in \DDD_\Gamma $ for $ \gamma \in \Gamma $. There exist $ i $ and $ j $ such that $ z \in \gamma_i^{-1} \cdot \mathring{\DDD} $ and $ \gamma z \in \gamma_j^{-1} \cdot \mathring{\DDD} $, so $ \gamma_iz, \gamma_j\gamma z \in \mathring{\DDD} $. So $ \gamma_iz = \gamma_j\gamma z $ so $ \gamma^{-1}\gamma_j^{-1}\gamma_iz = z $. Then $ \Stab_{\SL_2\br{\ZZ}} z = \pm\I_2 $, so $ \gamma_i = \pm\gamma_j\gamma $. Since $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $, this is only possible if $ i = j $. Then $ \gamma_i = \pm\gamma_i\gamma $, so $ \gamma = \pm\I_2 $. So $ z = \gamma z $.
+\item Let $ z \in \bigcup_i \gamma_i^{-1} \cdot \mathring{\DDD} $. Want $ \Gamma \cdot z \cap \DDD_\Gamma = \cbr{z} $. Suppose $ \gamma z \in \DDD_\Gamma $ for $ \gamma \in \Gamma $. There exist $ i $ and $ j $ such that $ z \in \gamma_i^{-1} \cdot \mathring{\DDD} $ and $ \gamma z \in \gamma_j^{-1} \cdot \mathring{\DDD} $, so $ \gamma_iz, \gamma_j\gamma z \in \mathring{\DDD} $. So $ \gamma_iz = \gamma_j\gamma z $ so $ \gamma^{-1}\gamma_j^{-1}\gamma_iz = z $. Then $ \Stab_z = \pm\id_2 $, so $ \gamma_i = \pm\gamma_j\gamma $. Since $ \SL_2\br{\ZZ} = \bigsqcup_i \pm\gamma_i \cdot \Gamma $, this is only possible if $ i = j $. Then $ \gamma_i = \pm\gamma_i\gamma $, so $ \gamma = \pm\id_2 $. So $ z = \gamma z $.
 \end{enumerate}
 \end{proof}
 
 \begin{example*}
 $ \Gamma = \Gamma_0\br{2} $ has index three in $ \SL_2\br{\ZZ} $. The coset representatives are
-$$ \I_2 = \twobytwo{1}{0}{0}{1} : z \mapsto z, \qquad \S = \twobytwo{0}{-1}{1}{0} : z \mapsto -\dfrac{1}{z}, \qquad \S\T = \twobytwo{0}{-1}{1}{1} : z \mapsto -\dfrac{1}{z + 1}, $$
+$$ \id_2 = \twobytwo{1}{0}{0}{1} : z \mapsto z, \qquad \S = \twobytwo{0}{-1}{1}{0} : z \mapsto -\dfrac{1}{z}, \qquad \S\T = \twobytwo{0}{-1}{1}{1} : z \mapsto -\dfrac{1}{z + 1}, $$
 so
 $$
 \begin{tikzpicture}[scale=2]
@@ -1732,10 +1814,10 @@ $$
 \draw [dashed] (0, 0) arc (180:0:0.35);
 \draw [dashed] (-0.5, 0) to (-0.5, 2);
 \draw [dashed] (0.5, 0) to (0.5, 2);
-\draw (-0.5, 0.866) arc (60:0:1);
-\draw (0, 0) arc (180:60:0.35);
-\draw (-0.5, 0.866) to (-0.5, 2);
-\draw (0.5, 0.3) to (0.5, 2);
+\draw (0, 0) arc (0:120:0.35);
+\draw (0, 0) arc (180:120:1);
+\draw (-0.5, 0.3) to (-0.5, 2);
+\draw (0.5, 0.866) to (0.5, 2);
 \end{tikzpicture}.
 $$
 \end{example*}
@@ -1748,7 +1830,7 @@ The set of \textbf{cusps} for $ \Gamma $ is the set of $ \Gamma $-orbits on $ \Q
 \end{definition}
 
 \begin{note*}
-If $ \SL_2\br{\ZZ} = \bigsqcup_{\gamma_i \in \SL_2\br{\ZZ}} \pm\gamma_i \cdot \Gamma $, then $ \cbr{\gamma_i^{-1} \cdot \infty} $ is a set of representatives for the $ \Gamma $-orbits on $ \QQ \cup \cbr{\infty} $.
+If $ \SL_2\br{\ZZ} = \bigsqcup_i \pm\gamma_i \cdot \Gamma $, then $ \cbr{\gamma_i^{-1} \cdot \infty} $ is a set of representatives for the $ \Gamma $-orbits on $ \QQ \cup \cbr{\infty} $.
 \end{note*}
 
 \begin{example*}
@@ -1778,45 +1860,42 @@ A \textbf{modular form of weight $ k $ and level $ \Gamma $} is a weakly modular
 
 Let
 $$ \M_k\br{\Gamma} = \cbr{\text{holomorphic modular forms of weight} \ k \ \text{and level} \ \Gamma}, $$
-and let
 $$ \S_k\br{\Gamma} = \cbr{f \in \M_k\br{\Gamma} \st f \ \text{vanishes at all cusps}}. $$
 
 \begin{note*}
 For any $ \gamma \in \GL_2\br{\QQ}_+ $, if $ f \in \M_k\br{\Gamma} $, then $ \eval{f}_{k, \gamma} \in \M_k\br{\gamma^{-1}\Gamma\gamma} $. If we consider the $ \CC $-vector space $ \widetilde{\M_k} = \bigcup_\Gamma \M_k\br{\Gamma} $, then $ \gamma $ acts on $ \widetilde{\M_k} $ by $ \gamma \cdot f = \eval{f}_{k, \gamma} $. In fact, $ \GL_2\br{\QQ}_+ \subseteq \GL_2\br{\AA_\QQ^{\fin}} $ and the action extends to this larger group. If we enlarge $ \widetilde{\M_k} $ in a suitable way, the correct group that acts is $ \GL_2\br{\AA_\QQ} $.
 \end{note*}
 
-A question is what can we say about $ \dim_\CC \M_k\br{\Gamma} $? Assume $ \Gamma \subseteq \SL_2\br{\ZZ} $, and fix $ f \in \M_k\br{\Gamma} $. Write $ d = \sbr{\SL_2\br{\ZZ} : \Gamma} $, and write $ \SL_2\br{\ZZ} = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j $. Let
-$$ g = \prod_{j = 1}^d \eval{f}_{k, \alpha_j}. $$
+A question is what can we say about $ \dim_\CC \M_k\br{\Gamma} $? Assume $ \Gamma \subseteq \SL_2\br{\ZZ} $, and fix $ f \in \M_k\br{\Gamma} $. Write
+$$ \SL_2\br{\ZZ} = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j, \qquad g = \prod_{j = 1}^d \eval{f}_{k, \alpha_j}, \qquad d = \sbr{\SL_2\br{\ZZ} : \Gamma}. $$
 
 \begin{proposition}
-$ g $ is independent of the choice of $ \alpha_i $.
+\hfill
+\begin{enumerate}
+\item $ g $ is independent of the choice of $ \alpha_i $.
+\item $ g \in \M_{kd} $.
+\end{enumerate}
 \end{proposition}
 
 \begin{proof}
-Suppose I replace $ \alpha_j' $ such that $ \Gamma \cdot \alpha_j = \Gamma \cdot \alpha_j' $. Then there exists $ \gamma \in \Gamma $ such that $ \gamma\alpha_j = \alpha_j' $, so $ \eval{f}_{k, \alpha_j'} = \eval{\br{\eval{f}_{k, \gamma}}}_{k, \alpha_j} = \eval{f}_{k, \alpha_j} $. So the product defining $ g $ does not change.
-\end{proof}
-
-\begin{proposition}
-$ g \in \M_{kd} $.
-\end{proposition}
-
-\begin{proof}
-For $ \alpha \in \SL_2\br{\ZZ} $,
-$$ \eval{g}_{kd, \alpha} = \prod_{j = 1}^d \eval{\br{\eval{f}_{k, \alpha_j}}}_{k, \alpha} = \prod_{j = 1}^d \eval{f}_{k, \alpha_j\alpha}. $$
-Since $ \SL_2\br{\ZZ} = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j $, $ \SL_2\br{\ZZ} = \SL_2\br{\ZZ} \cdot \alpha = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j\alpha $. So the elements $ \alpha_i\alpha $ are another set of coset representatives for $ \Gamma $ in $ \SL_2\br{\ZZ} $. Since $ g $ was independent of the choice of representatives, $ \eval{g}_{kd, \alpha} = g $.
+\hfill
+\begin{enumerate}
+\item Suppose I replace $ \alpha_j' $ such that $ \Gamma \cdot \alpha_j = \Gamma \cdot \alpha_j' $. Then there exists $ \gamma \in \Gamma $ such that $ \gamma\alpha_j = \alpha_j' $, so $ \eval{f}_{k, \alpha_j'} = \eval{\br{\eval{f}_{k, \gamma}}}_{k, \alpha_j} = \eval{f}_{k, \alpha_j} $. So the product defining $ g $ does not change.
+\item For $ \alpha \in \SL_2\br{\ZZ} $, $ \eval{g}_{kd, \alpha} = \prod_{j = 1}^d \eval{\br{\eval{f}_{k, \alpha_j}}}_{k, \alpha} = \prod_{j = 1}^d \eval{f}_{k, \alpha_j\alpha} $. Since $ \SL_2\br{\ZZ} = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j $, $ \SL_2\br{\ZZ} = \SL_2\br{\ZZ} \cdot \alpha = \bigsqcup_{j = 1}^d \Gamma \cdot \alpha_j\alpha $. So the elements $ \alpha_i\alpha $ are another set of coset representatives for $ \Gamma $ in $ \SL_2\br{\ZZ} $. Since $ g $ was independent of the choice of representatives, $ \eval{g}_{kd, \alpha} = g $.
+\end{enumerate}
 \end{proof}
 
 Have
-$$ \sum_{p \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{1}{e_p}\ord_p g = \dfrac{kd}{12}, \qquad e_p =
+$$ \sum_{p \in \SL_2\br{\ZZ} \backslash \br{\HH \cup \QQ \cup \cbr{\infty}}} \dfrac{1}{e_p}\ord_p g = \dfrac{kd}{12}, \qquad e_p =
 \begin{cases}
-\dfrac{1}{2}\#\Stab_{\SL_2\br{\ZZ}} p & p \in \HH \\
+\dfrac{1}{2}\#\Stab_p \in \cbr{1, 2, 3} & p \in \HH \\
 1 & p \in \QQ \cup \cbr{\infty}
 \end{cases},
 $$
 so
-$$ \dfrac{kd}{12} = \sum_{p \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{1}{e_p}\sum_{j = 1}^d \ord_p \eval{f}_{k, \alpha_j} = \sum_{p \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{1}{e_p}\sum_{j = 1}^d \ord_{\alpha_j^{-1}p} f. $$
-As $ p $ runs over a set of representatives for $ \SL_2\br{\ZZ} $-orbits, and $ \alpha_j $ runs over the coset representatives for $ \Gamma $ in $ \SL_2\br{\ZZ} $, $ \alpha_j^{-1}p $ runs over the representatives for $ \Gamma $-orbits, so
-$$ \sum_{q \in \SL_2\br{\ZZ} \backslash \HH \cup \QQ \cup \cbr{\infty}} \dfrac{n_q}{e_q}\ord_q g = \dfrac{kd}{12}, \qquad n_q = \#\cbr{j \st \alpha_j^{-1}q \in \Gamma \cdot q} \ge 1. $$
+$$ \dfrac{kd}{12} = \sum_{p \in \SL_2\br{\ZZ} \backslash \br{\HH \cup \QQ \cup \cbr{\infty}}} \dfrac{1}{e_p}\sum_{j = 1}^d \ord_p \eval{f}_{k, \alpha_j} = \sum_{p \in \SL_2\br{\ZZ} \backslash \br{\HH \cup \QQ \cup \cbr{\infty}}} \dfrac{1}{e_p}\sum_{j = 1}^d \ord_{\alpha_jp} f. $$
+As $ p $ runs over a set of representatives for $ \SL_2\br{\ZZ} $-orbits, and $ \alpha_j $ runs over the coset representatives for $ \Gamma $ in $ \SL_2\br{\ZZ} $, $ q = \alpha_jp $ runs over the representatives for $ \Gamma $-orbits, so
+$$ \sum_{q \in \Gamma \backslash \br{\HH \cup \QQ \cup \cbr{\infty}}} \dfrac{n_q}{e_q}\ord_q f = \dfrac{kd}{12}, \qquad n_q = \#\cbr{j \st \alpha_jq \in \Gamma \cdot q} \ge 1. $$
 
 \begin{corollary}
 If $ \ord_\infty f \ge kd / 12n_\infty + 1 $ for $ f \in \M_k\br{\Gamma} $, then $ f = 0 $.
@@ -1825,14 +1904,15 @@ If $ \ord_\infty f \ge kd / 12n_\infty + 1 $ for $ f \in \M_k\br{\Gamma} $, then
 Then
 \begin{align*}
 n_\infty
-& = \#\cbr{j \st \alpha_j^{-1}\infty \in \Gamma \cdot \infty}
-= \#\cbr{j \st \exists \gamma \in \Gamma, \ \alpha_j^{-1}\infty
-= \gamma\infty} = \#\cbr{j \st \exists \gamma \in \Gamma, \ \alpha_j\gamma \in \Stab_{\SL_2\br{\ZZ}} \infty} \\
-& = \#\cbr{j \st \alpha_j \in \Stab_{\SL_2\br{\ZZ}} \infty\Gamma}
-= \#\Stab_{\SL_2\br{\ZZ}} \infty / \Gamma
-= \#\Stab_{\SL_2\br{\ZZ}} \infty / \Stab_\Gamma \infty,
+& = \#\cbr{j \st \alpha_j\infty \in \Gamma \cdot \infty}
+= \#\cbr{j \st \exists \gamma \in \Gamma, \ \alpha_j\infty
+= \gamma\infty} = \#\cbr{j \st \exists \gamma \in \Gamma, \ \alpha_j^{-1}\gamma \in \Stab_\infty} \\
+& = \#\cbr{j \st \alpha_j^{-1} \cdot \Gamma \subseteq \Stab_\infty \cdot \Gamma}
+= \#\br{\Stab_\infty \cdot \Gamma / \Gamma}
+= \#\br{\Stab_\infty / \br{\Stab_\infty \cap \Gamma}}
+= \n_\Gamma,
 \end{align*}
-so $ f $ is a power series in $ q^{1 / n_\infty} $, and $ f $ is determined by its terms of order at most $ kd / 12n_\infty $. So $ f $ is determined by the first $ 1 + kd / 12 $ terms of its $ q $-expansion. Thus
+since $ \Stab_\infty = \cbr{\twobytwosmall{1}{b}{0}{1} \st b \in \ZZ} $. Since $ f $ is a power series in $ q^{1 / \n_\Gamma} $, and $ f $ is determined by its terms of order at most $ kd / 12\n_\Gamma $, $ f $ is determined by the first $ 1 + kd / 12 $ terms of its $ q $-expansion, so
 $$ \dim_\CC \M_k\br{\Gamma} \le 1 + \dfrac{kd}{12}. $$
 
 \pagebreak
@@ -1841,7 +1921,7 @@ $$ \dim_\CC \M_k\br{\Gamma} \le 1 + \dfrac{kd}{12}. $$
 
 \lecture{25}{Friday}{29/11/19}
 
-Let $ \Gamma \subseteq \SL_2\br{\ZZ} $ be a congruence subgroup. Let $ \F_\Gamma $ be the field of meromorphic modular forms of weight zero and level $ \Gamma $, and let $ \F_N = \F_{\Gamma\br{N}} $, so $ \F_1 = \F_{\SL_2\br{\ZZ}} = \CC\br{\j} $. If $ M \mid N $, then $ \Gamma\br{N} \subseteq \Gamma\br{M} $, so $ \F_M \subseteq \F_N $. Then $ \SL_2\br{\ZZ} $ normalises $ \Gamma\br{N} $ so if $ f \in \F_N $, then $ \eval{f}_{0, \alpha} $ is modular for $ \alpha^{-1}\Gamma\br{N}\alpha = \Gamma\br{N} $ if $ \alpha \in \SL_2\br{\ZZ} $.
+Let $ \Gamma \subseteq \SL_2\br{\ZZ} $ be a congruence subgroup. Let $ \F\br{\Gamma} $ be the field of meromorphic modular forms of weight zero and level $ \Gamma $, and let $ \F_N = \F\br{\Gamma\br{N}} $, so $ \F_1 = \F\br{\SL_2\br{\ZZ}} = \CC\br{\j} $. If $ M \mid N $, then $ \Gamma\br{N} \subseteq \Gamma\br{M} $, so $ \F_M \subseteq \F_N $. Then $ \SL_2\br{\ZZ} $ normalises $ \Gamma\br{N} $ so if $ f \in \F_N $, then $ \eval{f}_{0, \alpha} $ is modular for $ \alpha^{-1}\Gamma\br{N}\alpha = \Gamma\br{N} $ if $ \alpha \in \SL_2\br{\ZZ} $.
 
 \begin{note*}
 $ \eval{\br{fg}}_{0, \alpha} = \eval{f}_{0, \alpha} \cdot \eval{g}_{0, \alpha} $ and $ \eval{\br{f + g}}_{0, \alpha} = \eval{f}_{0, \alpha} + \eval{g}_{0, \alpha} $.
@@ -1850,7 +1930,9 @@ $ \eval{\br{fg}}_{0, \alpha} = \eval{f}_{0, \alpha} \cdot \eval{g}_{0, \alpha} $
 Then $ \alpha \in \SL_2\br{\ZZ} $ gives an automorphism of $ \F_N $ fixing $ \F_1 $. Get an action of $ \SL_2\br{\ZZ} / \Gamma\br{N} $ on $ \F_N $ by field automorphisms and $ \F_1 $ is the fixed field.
 
 \begin{theorem}[Galois theory]
-Let $ F $ be a field and $ G $ a finite group acting faithfully on $ F $ by automorphisms, that is no $ g \in G $ acts on $ F $ as the identity except $ g = \id_G $. Then $ F $ is a Galois extension of $ F^G = \cbr{x \in F \st \forall g \in G, \ gx = x} $ with Galois group $ G $. In particular $ \sbr{F : F^G} = \#G $.
+Let $ F $ be a field and $ G $ a finite group acting faithfully on $ F $ by automorphisms, that is no $ g \in G $ acts on $ F $ as $ \id $ except $ g = \id_G $. Then $ F $ is a Galois extension of
+$$ F^G = \cbr{x \in F \st \forall g \in G, \ gx = x}, $$
+with Galois group $ G $. In particular $ \sbr{F : F^G} = \#G $.
 \end{theorem}
 
 \begin{proposition}
@@ -1858,37 +1940,33 @@ $ \SL_2\br{\ZZ} / \Gamma\br{N} \cong \SL_2\br{\ZZ / N\ZZ} $ acts faithfully on $
 \end{proposition}
 
 \begin{proof}
-Use the dimension formulas for $ \M_k\br{\Gamma} $ to show that for $ k \gg 0 $ even, $ \dim \M_k\br{\Gamma\br{N}} > \dim \M_k\br{\Gamma} $ for $ \Gamma \supsetneq \Gamma\br{N} $, so there exists $ f \in \M_k\br{\Gamma\br{N}} $ such that the only elements of $ \SL_2\br{\ZZ} $ fixing $ f $ lie in $ \Gamma\br{N} $. Then $ f / \E_k $ lies in $ \F_N $ but not in $ \F_\Gamma $ for $ \Gamma \supsetneq \Gamma\br{N} $. So $ f / \E_k $ is not fixed by non-trivial elements of $ \SL_2\br{\ZZ} / \Gamma\br{N} $.
+Use dimension formulae for $ \M_k\br{\Gamma} $ to show that for $ k \gg 0 $ even, $ \dim \M_k\br{\Gamma\br{N}} > \dim \M_k\br{\Gamma} $ for $ \Gamma \supsetneq \Gamma\br{N} $, so there exists $ f \in \M_k\br{\Gamma\br{N}} $ such that the only elements of $ \SL_2\br{\ZZ} $ fixing $ f $ lie in $ \Gamma\br{N} $. Then $ f / \E_k $ lies in $ \F_N $ but not in $ \F\br{\Gamma} $ for $ \Gamma \supsetneq \Gamma\br{N} $. So $ f / \E_k $ is not fixed by non-trivial elements of $ \SL_2\br{\ZZ} / \Gamma\br{N} $.
 \end{proof}
 
 \begin{corollary}
 $ \F_N / \F_1 $ is Galois with Galois group $ \SL_2\br{\ZZ / N\ZZ} $.
 \end{corollary}
 
-Then $ \F_N $ is a finite and algebraic extension of $ \CC\br{\j} $, of transcendence degree one over $ \CC $. For $ \Gamma $ arbitrary in $ \SL_2\br{\ZZ} $, $ \Gamma \supseteq \Gamma\br{N} $ for some $ N $, so $ \F_\Gamma $ is the fixed field of $ \Gamma / \Gamma\br{N} $ in $ \F_N $, and $ \F_\Gamma / \F_1 $ is not Galois in general, but is algebraic of degree $ \sbr{\SL_2\br{\ZZ} : \Gamma} $.
+Then $ \F_N $ is a finite and algebraic extension of $ \CC\br{\j} $, of transcendence degree one over $ \CC $. For $ \Gamma $ arbitrary in $ \SL_2\br{\ZZ} $, $ \Gamma \supseteq \Gamma\br{N} $ for some $ N $, so $ \F\br{\Gamma} $ is the fixed field of $ \Gamma / \Gamma\br{N} $ in $ \F_N $. Then $ \F\br{\Gamma} / \F_1 $ is not Galois in general, but is algebraic of degree $ \sbr{\SL_2\br{\ZZ} : \Gamma} $.
 
 \begin{proposition}
-There exists a unique smooth and projective algebraic curve $ X\br{\Gamma} $ over $ \CC $, whose field of rational functions is $ \F_\Gamma $.
+There exists a unique smooth and projective algebraic curve $ X\br{\Gamma} $ over $ \CC $, whose field of rational functions is $ \F\br{\Gamma} $.
 \end{proposition}
 
 \begin{proof}
-Fix $ \Gamma $, and let $ f $ be a primitive element of $ \F_\Gamma $, that is $ f $ generates $ \F_\Gamma $ over $ \F_1 $. Consider the polynomial
-\begin{align*}
-P\br{X}
-& = \prod_{\SL_2\br{\ZZ} = \bigsqcup_j \Gamma \cdot \alpha_j} \br{X - \eval{f}_{0, \alpha_j}} \in \F_1\sbr{X} \\
-& = X^d + \dfrac{G_1\br{\j}}{H_1\br{\j}}X^{d - 1} + \dots + \dfrac{G_d\br{\j}}{H_d\br{\j}}, \qquad G_i, H_i \in \CC\sbr{Y}.
-\end{align*}
+Fix $ \Gamma $, and let $ f $ be a primitive element of $ \F\br{\Gamma} $, that is $ f $ generates $ \F\br{\Gamma} $ over $ \F_1 $. Consider the polynomial
+$$ P\br{X} = \prod_{\SL_2\br{\ZZ} = \bigsqcup_j \Gamma \cdot \alpha_j} \br{X - \eval{f}_{0, \alpha_j}} = X^d + \dfrac{G_1\br{\j}}{H_1\br{\j}}X^{d - 1} + \dots + \dfrac{G_d\br{\j}}{H_d\br{\j}} \in \F_1\sbr{X}, \qquad G_i, H_i \in \CC\sbr{Y}. $$
 Let
 $$ Q\br{X, Y} = H_1\br{Y} \dots H_d\br{Y}\br{X^d + \dfrac{G_1\br{Y}}{H_1\br{Y}}X^{d - 1} + \dots + \dfrac{G_d\br{Y}}{H_d\br{Y}}} \in \CC\sbr{X, Y}. $$
 Then $ Q\br{X, \j} = H_1\br{\j} \dots H_d\br{\j} \cdot P\br{X} $. Since $ P\br{f} = 0 $, $ Q\br{f, \j} = 0 $. Consider the map
 $$ \function[\phi]{\HH}{\CC^2}{z}{\br{f\br{z}, \j\br{z}}}. $$
 The image is contained in the zero locus of $ Q\br{X, Y} $, and factors through $ \Gamma \backslash \HH $. The following are some issues.
 \begin{itemize}
-\item This map is not necessarily defined everywhere. To fix, replace $ \CC^2 $ with $ \CC\PP^2 $. Then $ \phi $ extends to $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} \to \CC\PP^2 $.
-\item This map is not necessarily injective on $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} $, but will be generically injective since $ f $ is primitive.
+\item This map is not necessarily defined everywhere. To fix, replace $ \CC^2 $ with $ \CC\PP^2 $. Then $ \phi $ extends to $ \Gamma \backslash \br{\HH \cup \QQ \cup \cbr{\infty}} \to \CC\PP^2 $.
+\item This map is not necessarily injective on $ \Gamma \backslash \br{\HH \cup \QQ \cup \cbr{\infty}} $, but will be generically injective since $ f $ is primitive.
 \item This image might be singular. There are standard ways to fix, such as normalisation. When these are fixed, the map becomes injective.
 \end{itemize}
-The upshot is to get a complex algebraic curve $ X\br{\Gamma} $ whose function field is $ \F_\Gamma $, whose complex points are in bijection with $ \Gamma \backslash \HH \cup \QQ \cup \cbr{\infty} $.
+The upshot is to get a complex algebraic curve $ X\br{\Gamma} $ whose function field is $ \F\br{\Gamma} $, whose complex points are in bijection with $ \Gamma \backslash \br{\HH \cup \QQ \cup \cbr{\infty}} $.
 \end{proof}
 
 $ \M_k\br{\Gamma} $ is the space of sections of certain line bundles on $ X\br{\Gamma} $.
@@ -1896,8 +1974,6 @@ $ \M_k\br{\Gamma} $ is the space of sections of certain line bundles on $ X\br{\
 \pagebreak
 
 \subsection{Hecke operators}
-
-\subsubsection{Hecke operators}
 
 \lecture{26}{Friday}{29/11/19}
 
@@ -1907,7 +1983,7 @@ Let $ f \in \M_k\br{\Gamma} $.
 \item If $ \alpha \in \GL_2\br{\QQ}_+ $, then $ \eval{f}_{k, \alpha} \in \M_k\br{\alpha^{-1}\Gamma\alpha} $.
 \item If $ \Gamma \subseteq \Gamma' $, can write $ \Gamma' = \bigsqcup_{i = 1}^d \Gamma \cdot \alpha_i $, then $ \sum_{i = 1}^d \eval{f}_{k, \alpha_i} $ is independent of choices and lives in $ \M_k\br{\Gamma'} $.
 \end{enumerate}
-The rough idea is given $ f \in \M_k\br{\Gamma} $, act on it by $ \alpha $ to get a modular form of level $ \alpha^{-1}\Gamma\alpha $, using $ 2 $, and average to get a modular form of level $ \Gamma' \supseteq \alpha^{-1}\Gamma\alpha $, using $ 3 $. Recall that if $ H, K \le G $ and $ g \in G $, then the \textbf{double coset} is
+The rough idea is given $ f \in \M_k\br{\Gamma} $ and $ \Gamma' \supseteq \alpha^{-1}\Gamma\alpha $, act on it by $ \alpha $ to get a modular form of level $ \alpha^{-1}\Gamma\alpha $, using $ 2 $, and average to get a modular form of level $ \Gamma' $, using $ 3 $. Recall that if $ H, K \le G $ and $ g \in G $, then the \textbf{double coset} is
 $$ HgK = \cbr{hgk \st h \in H, \ k \in K}. $$
 That is, the orbit of $ G $ under the action of $ HxK $ on $ G $ such that $ \br{h, k} \cdot g = hgk^{-1} $.
 
@@ -1917,8 +1993,18 @@ $$ \eval{f}_{k, \Gamma\alpha\Gamma'} = \sum_{i = 1}^d \eval{f}_{k, \alpha_i}, \q
 \end{definition}
 
 The idea is that the $ \alpha_i $ are of the form $ \alpha\beta_i $ where $ \beta_i $ are a set of coset representatives for $ \alpha^{-1}\Gamma\alpha \cap \Gamma' $ in $ \Gamma' $, by the coursework, so
-$$ \sum_{i = 1}^d \eval{f}_{k, \alpha_i} = \sum_{i = 1}^d \eval{\br{\eval{f}_{k, \alpha}}}_{k, \beta_i}. $$
-Then act by $ \alpha $, getting something modular of level $ \alpha^{-1}\Gamma\alpha $, so also modular of level $ \alpha^{-1}\Gamma\alpha \cap \Gamma $, and average to get $ \eval{f}_{k, \Gamma\alpha\Gamma'} $ modular of level $ \Gamma $. So the double coset $ \Gamma\alpha\Gamma' $ gives a map between $ \M_k\br{\Gamma} $ and $ \M_k\br{\Gamma'} $. Recall that
+$$ \sum_{i = 1}^d \eval{f}_{k, \alpha_i} = \sum_{i = 1}^d \eval{\br{\eval{f}_{k, \alpha}}}_{k, \beta_i}, $$
+where
+\begin{itemize}
+\item acting by $ \alpha $ gets $ \eval{f}_{k, \alpha} $ modular of level $ \alpha^{-1}\Gamma\alpha $,
+\item so also modular of level $ \alpha^{-1}\Gamma\alpha \cap \Gamma $, and
+\item averaging gets $ \eval{f}_{k, \Gamma\alpha\Gamma'} $ modular of level $ \Gamma' $.
+\end{itemize}
+So the double coset $ \Gamma\alpha\Gamma' $ gives a map between $ \M_k\br{\Gamma} $ and $ \M_k\br{\Gamma'} $.
+
+\subsubsection{Hecke operators}
+
+Recall that
 $$ \Gamma_1\br{N} = \cbr{\twobytwo{a}{b}{c}{d} \in \SL_2\br{\ZZ} \st a \equiv d \equiv 1 \mod N, \ c \equiv 0 \mod N}. $$
 
 \begin{definition}
@@ -1927,21 +2013,29 @@ $$ \function[\T_p]{\M_k\br{\Gamma_1\br{N}}}{\M_k\br{\Gamma_1\br{N}}}{f}{\eval{f}
 \end{definition}
 
 Recall that for $ \SL_2\br{\ZZ} $ we set
-$$ \T_pf = p^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S_p} d^{-k}f\br{\dfrac{az + b}{d}} = \sum_{\twobytwosmall{a}{b}{0}{d} \in \S_p} \eval{f}_{k, \twobytwosmall{a}{b}{0}{d}}. $$
+$$ \T_pf = p^{k - 1}\sum_{\twobytwosmall{a}{b}{0}{d} \in \S^p} d^{-k}f\br{\dfrac{az + b}{d}} = \sum_{\twobytwosmall{a}{b}{0}{d} \in \S^p} \eval{f}_{k, \twobytwosmall{a}{b}{0}{d}}. $$
 To show this agrees with our new definition, we need that
-$$ \SL_2\br{\ZZ}\twobytwo{1}{0}{0}{p}\SL_2\br{\ZZ} = \bigsqcup_{\twobytwosmall{a}{b}{0}{d} \in \S_p} \SL_2\br{\ZZ}\twobytwo{a}{b}{0}{d}. $$
+$$ \SL_2\br{\ZZ}\twobytwo{1}{0}{0}{p}\SL_2\br{\ZZ} = \bigsqcup_{\twobytwosmall{a}{b}{0}{d} \in \S^p} \SL_2\br{\ZZ}\twobytwo{a}{b}{0}{d}. $$
+
 \begin{itemize}
-\item For the reverse containment, it suffices to show $ \twobytwosmall{a}{b}{0}{d} \in \S_p $ lies in $ \SL_2\br{\ZZ}\twobytwosmall{1}{0}{0}{p}\SL_2\br{\ZZ} $, and
-$$ \twobytwo{p}{0}{0}{1} = \twobytwo{0}{1}{-1}{0}\twobytwo{1}{0}{0}{p}\twobytwo{0}{-1}{1}{0}, \qquad \twobytwo{1}{b}{0}{p} = \twobytwo{1}{0}{0}{p}\twobytwo{1}{b}{0}{1}. $$
-\item For disjointness, if $ \SL_2\br{\ZZ}\twobytwosmall{a}{b}{0}{d} = \SL_2\br{\ZZ}\twobytwosmall{a'}{b'}{0}{d'} $ for $ \twobytwosmall{a}{b}{0}{d}, \twobytwosmall{a'}{b'}{0}{d'} \in \S_p $, then $ \twobytwosmall{a}{b}{0}{d}\twobytwosmall{a'}{b'}{0}{d'}^{-1} \in \SL_2\br{\ZZ} $, so $ a = a' $ and $ d = d' $. If $ a = p $, then $ d = 1 $ and $ b = 0 $, and the same holds for $ b' $, so equal. If $ a = 1 $, have
-$$ \twobytwo{1}{\tfrac{b - b'}{p}}{0}{1} = \twobytwo{1}{b}{0}{p}\twobytwo{1}{b'}{0}{p}^{-1} \in \SL_2\br{\ZZ}, $$
-so $ p \mid b - b' $. Since $ 0 \le b, b' < p $, $ b = b' $.
+\item For the reverse containment, it suffices to show $ \twobytwosmall{a}{b}{0}{d} \in \S^p $ lies in $ \SL_2\br{\ZZ}\twobytwosmall{1}{0}{0}{p}\SL_2\br{\ZZ} $, and
+$$ \twobytwo{p}{0}{0}{1} = \twobytwo{0}{1}{-1}{0}\twobytwo{1}{0}{0}{p}\twobytwo{0}{-1}{1}{0}, \qquad \twobytwo{1}{b}{0}{p} = \twobytwo{1}{0}{0}{1}\twobytwo{1}{0}{0}{p}\twobytwo{1}{b}{0}{1}, $$
+where $ \twobytwosmall{0}{1}{-1}{0}, \twobytwosmall{0}{-1}{1}{0}, \twobytwosmall{1}{0}{0}{1}, \twobytwosmall{1}{b}{0}{1} \in \SL_2\br{\ZZ} $.
 
 \pagebreak
 
-\item It remains to show that $ \SL_2\br{\ZZ}\twobytwosmall{1}{0}{0}{p}\SL_2\br{\ZZ} $ is the union of $ p + 1 $ left cosets. The coursework gives that the number of cosets is
-$$ \#\SL_2\br{\ZZ} / \br{\twobytwo{1}{0}{0}{p}^{-1}\SL_2\br{\ZZ}\twobytwo{1}{0}{0}{p} \cap \SL_2\br{\ZZ}} = \#\SL_2\br{\ZZ} / \Gamma_0\br{p} = \sbr{\SL_2\br{\ZZ} : \Gamma_0\br{p}}, $$
-which is $ \sbr{\SL_2\br{\ZZ / p\ZZ} : \text{upper triangular matrices modulo} \ p} $. For upper triangular matrices $ \twobytwosmall{a}{b}{0}{a^{-1}} $ of determinant one modulo $ p $, there are $ p\br{p - 1} $ possibilities. For $ \SL_2\br{\ZZ / p\ZZ} $, there are $ p^2 - 1 $ possibilities for the first row, the second row cannot be a multiple of the first row, so there are $ p^2 - p $ possibilities, and to get determinant one need to rescale the second row, so there are $ p $ possibilities left over, so $ \#\SL_2\br{\ZZ / p\ZZ} = p\br{p^2 - 1} $. Thus the index is $ p\br{p^2 - 1} / p\br{p - 1} = p + 1 $.
+\item For disjointness, if $ \SL_2\br{\ZZ}\twobytwosmall{a}{b}{0}{d} = \SL_2\br{\ZZ}\twobytwosmall{a'}{b'}{0}{d'} $ for $ \twobytwosmall{a}{b}{0}{d}, \twobytwosmall{a'}{b'}{0}{d'} \in \S^p $, then $ \twobytwosmall{a}{b}{0}{d}\twobytwosmall{a'}{b'}{0}{d'}^{-1} \in \SL_2\br{\ZZ} $, so $ a = a' $ and $ d = d' $. If $ a = p $, then $ d = 1 $ and $ b = 0 $, and the same holds for $ b' $, so equal. If $ a = 1 $, have
+$$ \twobytwo{1}{\tfrac{b - b'}{p}}{0}{1} = \twobytwo{1}{b}{0}{p}\twobytwo{1}{b'}{0}{p}^{-1} \in \SL_2\br{\ZZ}, $$
+so $ p \mid b - b' $. Since $ 0 \le b, b' < p $, $ b = b' $.
+\item It remains to show that $ \SL_2\br{\ZZ}\twobytwosmall{1}{0}{0}{p}\SL_2\br{\ZZ} $ is the union of $ p + 1 $ left cosets. By the coursework,
+\begin{align*}
+\#\cbr{\text{cosets}}
+& = \#\SL_2\br{\ZZ} / \br{\twobytwo{1}{0}{0}{p}^{-1}\SL_2\br{\ZZ}\twobytwo{1}{0}{0}{p} \cap \SL_2\br{\ZZ}}
+= \#\SL_2\br{\ZZ} / \Gamma_0\br{p} \\
+& = \sbr{\SL_2\br{\ZZ} : \Gamma_0\br{p}}
+= \sbr{\SL_2\br{\ZZ / p\ZZ} : \text{upper triangular matrices modulo} \ p}.
+\end{align*}
+For upper triangular matrices $ \twobytwosmall{a}{b}{0}{a^{-1}} $ of determinant one modulo $ p $, there are $ p\br{p - 1} $ possibilities. For $ \SL_2\br{\ZZ / p\ZZ} $, there are $ p^2 - 1 $ possibilities for the first row, the second row cannot be a multiple of the first row, so there are $ p^2 - p $ possibilities, and to get determinant one need to rescale the second row, so there are $ p $ possibilities left over, so $ \#\SL_2\br{\ZZ / p\ZZ} = p\br{p^2 - 1} $. Thus the index is $ p\br{p^2 - 1} / p\br{p - 1} = p + 1 $.
 \end{itemize}
 Extending from $ \T_p $ to $ \T_n $ for $ \br{n, N} = 1 $, we set
 $$ \function[\T_n]{\M_k\br{\Gamma_1\br{N}}}{\M_k\br{\Gamma_1\br{N}}}{f}{\sum_{ad = n, \ a \mid d} \eval{f}_{k, \Gamma_1\br{N}\twobytwosmall{a}{0}{0}{d}\Gamma_1\br{N}}}. $$
@@ -1966,17 +2060,20 @@ $$ \function[\abr{d}]{\M_k\br{\Gamma_1\br{N}}}{\M_k\br{\Gamma_1\br{N}}}{f}{\eval
 where $ \alpha \in \Gamma_0\br{N} $ with lower right entry congruent to $ d $ modulo $ N $.
 \end{definition}
 
-This defines an action of $ \br{\ZZ / N\ZZ}^\times \cong \Gamma_0\br{N} / \Gamma_1\br{N} $ on $ \M_k\br{\Gamma_1\br{N}} $. Since $ \abr{d}\abr{d'} = \abr{dd'} = \abr{d'}\abr{d} $, and operators of finite order on a $ \CC $-vector space are diagonalisable, $ \M_k\br{\Gamma_1\br{N}} $ splits as a direct sum of simultaneous eigenspaces for the $ \abr{d} $. Let $ V $ be one such eigenspace. Then for each $ d \in \br{\ZZ / N\ZZ}^\times $, there exists $ \chi\br{d} \in \CC^\times $ such that $ \abr{d}f = \chi\br{d}f $ for all $ f \in V $. Since $ \abr{d}\abr{d'} = \abr{dd'} $, $ \chi\br{d}\chi\br{d'} = \chi\br{dd'} $, so $ \chi $ is a homomorphism $ \br{\ZZ / N\ZZ}^\times \to \CC^\times $, that is a character.
+This defines an action of $ \br{\ZZ / N\ZZ}^\times \cong \Gamma_0\br{N} / \Gamma_1\br{N} $ on $ \M_k\br{\Gamma_1\br{N}} $. Since $ \abr{d}\abr{d'} = \abr{dd'} = \abr{d'}\abr{d} $, and operators of finite order on a $ \CC $-vector space are diagonalisable, $ \M_k\br{\Gamma_1\br{N}} $ splits as a direct sum of simultaneous eigenspaces for the $ \abr{d} $. Let $ V $ be one such eigenspace. Then for each $ d \in \br{\ZZ / N\ZZ}^\times $, there exists $ \chi\br{d} \in \CC^\times $ such that $ \abr{d}f = \chi\br{d}f $ for all $ f \in V $. Since $ \abr{d}\abr{d'} = \abr{dd'} $, $ \chi\br{d}\chi\br{d'} = \chi\br{dd'} $, so $ \chi $ is a homomorphism $ \br{\ZZ / N\ZZ}^\times \to \CC^\times $, that is a \textbf{character}.
 
 \begin{definition}
-For any character $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $, let $ \M_k\br{\Gamma_1\br{N}, \chi} $ be the subspace of $ \M_k\br{\Gamma_1\br{N}} $ consisting of the forms $ f $ such that $ \abr{d}f = \chi\br{d}f $ for all $ d \in \br{\ZZ / N\ZZ}^\times $.
+For any character $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $, let $ \M_k\br{\Gamma_1\br{N}, \chi} $ be the subspace of $ \M_k\br{\Gamma_1\br{N}} $ consisting of the forms $ f $ such that
+$$ \abr{d}f = \chi\br{d}f, \qquad d \in \br{\ZZ / N\ZZ}^\times. $$
 \end{definition}
 
 A warning is that this might be zero.
 
 \begin{example*}
-If $ k $ is odd, then $ \chi\br{-1} = 1 $, so this space is zero.
+If $ k $ is odd and $ \chi\br{-1} = 1 $, this space is zero.
 \end{example*}
+
+\pagebreak
 
 We have a direct sum decomposition
 $$ \M_k\br{\Gamma_1\br{N}} \cong \bigoplus_{\chi : \br{\ZZ / N\ZZ}^\times \to \CC} \M_k\br{\Gamma_1\br{N}, \chi}. $$
@@ -1986,8 +2083,6 @@ Let $ \br{n, N} = 1 $ and $ f \in \M_k\br{\Gamma_1\br{N}, \chi} $ such that $ f 
 $$ \T_nf = \sum_{m = 1}^\infty \gamma_mf, \qquad \gamma_m = \sum_{d \mid \br{n, m}} \chi\br{d}d^{k - 1}c_{\tfrac{nm}{d^2}}. $$
 In particular, if $ \T_nf = \lambda_nf $ for some $ n $ with $ \br{n, N} = 1 $, then $ c_n = \lambda_nc_1 $.
 \end{proposition}
-
-\pagebreak
 
 \subsubsection{The Petersson inner product}
 
@@ -2020,40 +2115,23 @@ Let $ \alpha = \twobytwosmall{a}{b}{c}{d} $ and $ \alpha^{-1} = \twobytwosmall{a
 & = \dfrac{1}{C}\iintd{\DDD_\Gamma}{\det \alpha^{k - 2}f\br{z'}\overline{\eval{g}_{k, \alpha^{-1}}\br{z'}}\dfrac{y'^k}{y'^2}}{x'}{y'} \\
 & = \det \alpha^{k - 2}\abr{f, \eval{g}_{k, \alpha^{-1}}}_{k, \Gamma}.
 \end{align*}
-Recall that $ \alpha' = \alpha^{-1}\det \alpha $. Then
+Recall $ \alpha' = \alpha^{-1}\det \alpha $. Then
 $$ \eval{g}_{k, \lambda\alpha}\br{z} = \det \lambda\alpha^{k - 1}g\br{\lambda\alpha z}\br{\lambda cz + \lambda d}^{-k} = \lambda^{2k - 2}\det \alpha^{k - 1}g\br{\alpha z}\br{cz + d}^{-k}\lambda^{-k} = \lambda^{k - 2}\eval{g}_{k, \alpha}\br{z}, $$
-so $ \eval{g}_{k, \alpha'}\br{z} = \det \alpha^{k - 2}\eval{g}_{k, \alpha^{-1}}\br{z} $. Thus
-$$ \abr{\eval{f}_{k, \alpha}, g}_{k, \alpha^{-1}\Gamma\alpha} = \abr{f, \eval{g}_{k, \alpha'}}_{k, \Gamma}. $$
+so $ \eval{g}_{k, \alpha'}\br{z} = \det \alpha^{k - 2}\eval{g}_{k, \alpha^{-1}}\br{z} $. Thus $ \abr{\eval{f}_{k, \alpha}, g}_{k, \alpha^{-1}\Gamma\alpha} = \abr{f, \eval{g}_{k, \alpha'}}_{k, \Gamma} $.
 \end{proof}
 
 \lecture{28}{Friday}{06/12/19}
-
-\begin{proposition}
-In general,
-$$ \Gamma_1\br{N}\twobytwo{p}{0}{0}{1}\Gamma_1\br{N} = \T_p\abr{p}. $$
-\end{proposition}
-
-\begin{proof}
-See Diamond and Shurman Chapter 5. This argument depends on finding $ \alpha_i $ such that
-$$ \Gamma_1\br{N}\twobytwo{p}{0}{0}{1}\Gamma_1\br{N} = \bigsqcup_i \Gamma_1\br{N}\alpha_i = \bigsqcup_i \alpha_i\Gamma_1\br{N}. $$
-\end{proof}
 
 Recall that
 $$ \function[\T_p]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{N}}}{f}{\eval{f}_{k, \Gamma_1\br{N}\twobytwosmall{1}{0}{0}{p}\Gamma_1\br{N}} = \sum_i \eval{f}_{k, \alpha_i}}, \qquad \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_i \Gamma_1\br{N}\alpha_i. $$
 
 \pagebreak
 
-\begin{lemma}
 Suppose we can find $ \alpha_i $ such that
-$$ \Gamma_1\br{N}\twobytwo{p}{0}{0}{1}\Gamma_1\br{N} = \bigsqcup_i \Gamma_1\br{N}\alpha_i, \qquad \Gamma_1\br{N}\twobytwo{p}{0}{0}{1}\Gamma_1\br{N} = \bigsqcup_i \alpha_i\Gamma_1\br{N}. $$
-If $ f, g \in \S_k\br{\Gamma_1\br{N}} $, then
-$$ \abr{\T_pf, g}_{k, \Gamma_1\br{N}} = \abr{f, \eval{g}_{k, \Gamma_1\br{N}\twobytwosmall{p}{0}{0}{1}\Gamma_1\br{N}}}_{k, \Gamma_1\br{N}}. $$
-\end{lemma}
-
-\begin{proof}
+$$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_i \Gamma_1\br{N}\alpha_i, \qquad \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_i \alpha_i\Gamma_1\br{N}. $$
 Applying the operation $ ' $ to the latter gives
-$$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p'}\Gamma_1\br{N} = \bigsqcup_i \Gamma_1\br{N}\alpha_i'. $$
-Then
+$$ \Gamma_1\br{N}\twobytwo{p}{0}{0}{1}\Gamma_1\br{N} = \bigsqcup_i \Gamma_1\br{N}\alpha_i'. $$
+If $ f, g \in \S_k\br{\Gamma_1\br{N}} $,
 \begin{align*}
 \abr{\T_pf, g}_{k, \Gamma_1\br{N}}
 & = \sum_i \abr{\eval{f}_{k, \alpha_i}, g}_{k, \Gamma}, \qquad \Gamma \subseteq \Gamma_1\br{N} \cap \bigcap_i \alpha_i^{-1}\Gamma_1\br{N}\alpha_i \cap \bigcap_i \alpha_i'^{-1}\Gamma_1\br{N}\alpha_i' \\
@@ -2061,38 +2139,37 @@ Then
 = \abr{f, \eval{g}_{k, \Gamma_1\br{N}\twobytwosmall{p}{0}{0}{1}\Gamma_1\br{N}}}_{k, \Gamma}
 = \abr{f, \eval{g}_{k, \Gamma_1\br{N}\twobytwosmall{p}{0}{0}{1}\Gamma_1\br{N}}}_{k, \Gamma_1\br{N}}.
 \end{align*}
-\end{proof}
-
 For $ \SL_2\br{\ZZ} $,
 $$ \SL_2\br{\ZZ}\twobytwo{p}{0}{0}{1}\SL_2\br{\ZZ} = \SL_2\br{\ZZ}\twobytwo{0}{1}{-1}{0}\twobytwo{p}{0}{0}{1}\twobytwo{0}{-1}{1}{0}\SL_2\br{\ZZ} = \SL_2\br{\ZZ}\twobytwo{1}{0}{0}{p}\SL_2\br{\ZZ}, $$
-so $ \abr{\T_pf, g}_{k, \SL_2\br{\ZZ}} = \abr{f, \T_pg}_{k, \SL_2\br{\ZZ}} $ for all $ f, g \in \S_k\br{\SL_2\br{\ZZ}} $, which is Theorem \ref{thm:innerproduct}.
+so
+$$ \abr{\T_pf, g}_{k, \SL_2\br{\ZZ}} = \abr{f, \T_pg}_{k, \SL_2\br{\ZZ}}, \qquad f, g \in \S_k\br{\SL_2\br{\ZZ}}, $$
+which is Theorem \ref{thm:innerproduct}. In general,
+$$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \T_p\abr{p}. $$
+Will not prove, so see Diamond and Shurman chapter $ 5 $. This argument depends on finding $ \alpha_i $ such that
+$$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_i \Gamma_1\br{N}\alpha_i = \bigsqcup_i \alpha_i\Gamma_1\br{N}. $$
 
 \begin{lemma}
 Such $ \alpha_i $ exist.
 \end{lemma}
 
-This is Diamond and Shurman 5.5.1c.
-
 \begin{proof}
-Write
+This is Diamond and Shurman $ 5.5.1 $(c). Write
 $$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \Gamma_1\br{N}\gamma_i = \bigsqcup_{j = 1}^r \widetilde{\gamma_j}\Gamma_1\br{N}. $$
-Claim that for all $ 1 \le i \le r $, $ \Gamma_1\br{N}\gamma_i \cap \widetilde{\gamma_i}\Gamma_1\br{N} \ne \emptyset $. Suppose otherwise. Then
-$$ \Gamma_1\br{N}\gamma_i \subseteq \bigsqcup_{j \ne i} \widetilde{\gamma_i}\Gamma_1\br{N}. $$
-The right hand side is stable under right multiplication by $ \Gamma_1\br{N} $, so
-$$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \Gamma_1\br{N}\gamma_i\Gamma_1\br{N} = \bigcup_{\beta \in \Gamma_1\br{N}} \Gamma_1\br{N}\gamma_i\beta \subseteq \bigsqcup_{j \ne i} \widetilde{\gamma_i}\Gamma_1\br{N}. $$
+Claim that for all $ 1 \le i \le r $, $ \Gamma_1\br{N}\gamma_i \cap \widetilde{\gamma_i}\Gamma_1\br{N} \ne \emptyset $. Suppose otherwise. Then $ \Gamma_1\br{N}\gamma_i \subseteq \bigsqcup_{j \ne i} \widetilde{\gamma_j}\Gamma_1\br{N} $. The right hand side is stable under right multiplication by $ \Gamma_1\br{N} $, so
+$$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \Gamma_1\br{N}\gamma_i\Gamma_1\br{N} = \bigcup_{\beta \in \Gamma_1\br{N}} \Gamma_1\br{N}\gamma_i\beta \subseteq \bigsqcup_{j \ne i} \widetilde{\gamma_j}\Gamma_1\br{N}. $$
 This is impossible since $ \widetilde{\gamma_i} $ is in the left hand side but not the right hand side. For all $ i $, choose $ \alpha_i $ such that $ \alpha_i \in \Gamma_1\br{N}\gamma_i \cap \widetilde{\gamma_i}\Gamma_1\br{N} $, so $ \Gamma_1\br{N}\alpha_i = \Gamma_1\br{N}\gamma_i $ and $ \alpha_i\Gamma_1\br{N} = \widetilde{\gamma_i}\Gamma_1\br{N} $. Now,
-$$ \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \Gamma_1\br{N}\gamma_i = \bigsqcup_{i = 1}^r \widetilde{\gamma_i}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \Gamma_1\br{N}\alpha_i = \bigsqcup_{i = 1}^r \alpha_i\Gamma_1\br{N}. $$
+$$ \bigsqcup_{i = 1}^r \Gamma_1\br{N}\alpha_i = \bigsqcup_{i = 1}^r \Gamma_1\br{N}\gamma_i = \Gamma_1\br{N}\twobytwo{1}{0}{0}{p}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \widetilde{\gamma_i}\Gamma_1\br{N} = \bigsqcup_{i = 1}^r \alpha_i\Gamma_1\br{N}. $$
 \end{proof}
 
-\begin{corollary}
-$ \abr{\T_pf, g}_{k, \Gamma_1\br{N}} = \abr{f, \abr{p}\T_pg}_{k, \Gamma_1\br{N}} $ for $ p \nmid N $ and $ f, g \in \S_k\br{\Gamma_1\br{N}} $.
-\end{corollary}
-
-Check, such as by formulas on $ q $-expansions, that $ \T_p $ and $ \T_q $ commute for $ p, q \nmid N $ prime, and $ \T_p $ and $ \abr{d} $ commute. Then $ \T_p $ commutes with its adjoint for all $ p $, so $ \T_p $ is diagonalisable on $ \S_k\br{\Gamma_1\br{N}} $.
+The upshot is
+$$ \abr{\T_pf, g}_{k, \Gamma_1\br{N}} = \abr{f, \abr{p}\T_pg}_{k, \Gamma_1\br{N}}, \qquad p \nmid N, \qquad f, g \in \S_k\br{\Gamma_1\br{N}}. $$
+Check, such as by formulas on $ q $-expansions, that $ \T_p $ and $ \T_q $ commute for $ p, q \nmid N $ prime, and $ \T_p $ and $ \abr{d} $ commute. Thus $ \T_p $ commutes with its adjoint for all $ p $, so $ \T_p $ is diagonalisable on $ \S_k\br{\Gamma_1\br{N}} $.
 
 \pagebreak
 
 \subsection{\texorpdfstring{$ \L $}{L}-functions}
+
+\subsubsection{Hecke \texorpdfstring{$ \L $}{L}-functions}
 
 \begin{definition}
 Let $ f = \sum_{n = 1}^\infty a_nq^n \in \S_k\br{\Gamma_1\br{N}} $. Then the \textbf{Hecke $ \L $-function of weight $ k $ and level $ \Gamma_1\br{N} $} is
@@ -2100,7 +2177,7 @@ $$ \L\br{s, f} = \sum_{n = 1}^\infty a_nn^{-s}. $$
 \end{definition}
 
 This is absolutely convergent for $ \Re s \gg 0 $, and has a meromorphic continuation and a functional equation. Set
-$$ \R\br{f, s} = N^{\tfrac{s}{2}}\br{2\pi}^{-s}\Gamma\br{s}\L\br{s, f}. $$
+$$ \R\br{s, f} = N^{\tfrac{s}{2}}\dfrac{\Gamma\br{s}}{\br{2\pi}^s}\L\br{s, f}. $$
 
 \begin{note*}
 $$ \twobytwo{0}{-1}{N}{0}^2 = \twobytwo{-N}{0}{0}{-N}, \qquad \twobytwo{0}{-1}{N}{0}\Gamma_1\br{N}\twobytwo{0}{-1}{N}{0} = \Gamma_1\br{N}. $$
@@ -2108,9 +2185,8 @@ $$ \twobytwo{0}{-1}{N}{0}^2 = \twobytwo{-N}{0}{0}{-N}, \qquad \twobytwo{0}{-1}{N
 
 Set
 $$ \function[\w_N]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{N}}}{f}{i^kN^{1 - \tfrac{k}{2}}\eval{f}_{k, \twobytwosmall{0}{-1}{N}{0}}}. $$
-The constants are chosen so that $ \w_N^2 = \id $, an \textbf{Atkin-Lehner involution}. A warning is that this does not commute with $ \T_p $ and $ \abr{p} $. In fact $ \w_N\T_p\w_N = \abr{p}\T_p $ and $ \w_N\abr{p}\w_N = \abr{p}^{-1} $, and
-$$ \R\br{f, s} = \R\br{\w_Nf, k - s}. $$
-
+The constants are chosen so that $ \w_N^2 = \id $, the \textbf{Atkin-Lehner involution}. A warning is that this does not commute with $ \T_p $ and $ \abr{p} $. In fact $ \w_N\T_p\w_N = \abr{p}\T_p $ and $ \w_N\abr{p}\w_N = \abr{p}^{-1} $, and
+$$ \R\br{s, f} = \R\br{k - s, \w_Nf}. $$
 If $ f \in \S_k\br{\Gamma_1\br{N}, \chi} $ for $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ is an eigenform for all $ \T_p $ for $ p \nmid N $ and $ c_1 = 1 $, then using
 $$ \T_pf = \sum_{n = 1}^\infty c_{np}q^n + \chi\br{p}c_nq^{np}, $$
 if $ \T_pf = \lambda_pf = \sum_{n = 1}^\infty \gamma_nq^n $ for $ p \nmid N $, then
@@ -2120,25 +2196,23 @@ c_{np} + \chi\br{p}p^{k - 1}c_{\tfrac{n}{p}} & p \mid n \\
 c_{np} & p \nmid n
 \end{cases}.
 $$
-The upshot is for $ m $ not divisible by $ p $,
-$$ c_{p^{k + 1}} = \lambda_pc_{p^k}m + \chi\br{p}p^{k - 1}c_{p^{k - 1}}m, \qquad k \ge 1, $$
+The upshot is for $ p \nmid m $,
+$$ c_{p^{k + 1}m} = \lambda_pc_{p^km} + \chi\br{p}p^{k - 1}c_{p^{k - 1}m}, \qquad k \ge 1, $$
 so
-$$ \L\br{s, f} = \prod_{p \nmid N} \dfrac{1}{1 - \lambda_pp^{-s} + \chi\br{p}p^{-2s}}\sum_{m \ \text{divisible only by primes} \ q \mid N} c_mm^{-s}. $$
-
-\subsection{Oldforms and newforms}
+$$ \L\br{s, f} = \prod_{p \nmid N} \dfrac{1}{1 - \lambda_pp^{-s} + \chi\br{p}p^{k - 1 - 2s}}\sum_{m \ \text{divisible only by primes} \ l \mid N} c_mm^{-s}. $$
 
 \subsubsection{Oldforms and newforms}
 
 \lecture{29}{Friday}{06/12/19}
 
 Let $ p \nmid N $ and $ l \mid N $, and let
-$$ \function[\U_l]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{N}}}{f}{\eval{f}_{k, \Gamma_1\br{N}s_l\Gamma_1\br{N}}}. $$
+$$ \function[\U_l]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{N}}}{f}{\eval{f}_{k, \Gamma_1\br{N}\twobytwosmall{1}{0}{0}{l}\Gamma_1\br{N}}}. $$
 On $ q $-expansions, if $ f = \sum_{n = 1}^\infty c_nq^n $, then $ \U_lf = \sum_{n = 1}^\infty c_{nl}q^n $. Then $ \U_l $ commutes with $ \T_p $ and $ \abr{d} $, by checking on $ q $-expansions. A problem is that $ \U_l $ are generally not self-adjoint or even normal. Let $ f = \sum_n c_nq^n \in \S_k\br{\Gamma_1\br{N}} $ be an eigenform for $ \T_p $ and $ \abr{d} $. Atkin-Lehner defined
 $$ \function[\alpha_{N, l}]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{Nl}}}{f}{f}, \qquad \function[\beta_{N, l}]{\S_k\br{\Gamma_1\br{N}}}{\S_k\br{\Gamma_1\br{Nl}}}{f}{z \mapsto f\br{lz} = \sum_n c_nq^{nl}}. $$
 
 \pagebreak
 
-Then $ \beta $, a multiple of $ \eval{f}_{k, \twobytwosmall{l}{0}{0}{1}} $, is modular of weight $ k $ and level $ \twobytwosmall{l}{0}{0}{1}^{-1}\Gamma\br{N}\twobytwosmall{l}{0}{0}{1} \supseteq \Gamma_1\br{Nl} $. Check that these commute with $ \T_p $ for $ p \nmid Nl $, $ \abr{d} $ for $ d \in \br{\ZZ / Nl\ZZ}^\times $, and $ \U_p $ for $ l \ne p $. Then $ \U_l\br{\beta_{N, l}\br{f}} = f $ and $ \U_l\br{\alpha_{N, l}\br{f}} = \T_pf + p^k\chi\br{p}\beta_{N, l}\br{f} $, so the image of
+Then $ \beta $, a multiple of $ \eval{f}_{k, \twobytwosmall{l}{0}{0}{1}} $, is modular of weight $ k $ and level $ \twobytwosmall{l}{0}{0}{1}^{-1}\Gamma\br{N}\twobytwosmall{l}{0}{0}{1} \supseteq \Gamma_1\br{Nl} $. Check that $ \br{\T_p\beta_{N, l}}\br{f} = \beta_{N, l}\br{\T_pf} $, and similarly for $ \abr{d} $ for $ d \in \br{\ZZ / Nl\ZZ}^\times $. Check that $ \alpha_{N, l} $ and $ \beta_{N, l} $ commute with $ \T_p $, $ \abr{d} $ for $ d \in \br{\ZZ / Nl\ZZ}^\times $, and $ \U_p $ for $ p \mid N $ and $ l \ne p $. Then $ \U_l\br{\beta_{N, l}\br{f}} = f $ and $ \U_l\br{\alpha_{N, l}\br{f}} = \T_pf + p^k\chi\br{p}\beta_{N, l}\br{f} $, so the image of
 $$ \function{\S_k\br{\Gamma_1\br{N}}^2}{\S_k\br{\Gamma_1\br{Nl}}}{\br{f, g}}{\alpha_{N, l}f + \beta_{N, l}g} $$
 is stable under $ \T_p $, $ \abr{d} $, $ \U_p $, and $ \U_l $.
 
@@ -2147,11 +2221,13 @@ Define the \textbf{oldforms}
 $$ \S_k\br{\Gamma_1\br{N}}^{\old} = \sum_{l \nmid N} \br{\alpha_{\tfrac{N}{l}, l}\br{\S_k\br{\Gamma_1\br{\dfrac{N}{l}}}} + \beta_{\tfrac{N}{l}, l}\br{\S_k\br{\Gamma_1\br{\dfrac{N}{l}}}}}, $$
 which is stable under $ \T_p $, $ \abr{d} $, and $ \U_l $. Define
 $$ \S_k\br{\Gamma_1\br{N}}^{\new} = \br{\S_k\br{\Gamma_1\br{N}}^{\old}}^\perp, $$
-the orthogonal complement with respect to $ \abr{\cdot, \cdot} $, which is stable under $ \T_p $ and $ \abr{d} $, and not a priori under $ \U_p $, for $ p \mid N $.
+the orthogonal complement with respect to $ \abr{\cdot, \cdot}_{k, \Gamma_1\br{N}} $, which is stable under $ \T_p $ and $ \abr{d} $, and not a priori under $ \U_p $ for $ p \mid N $.
 \end{definition}
 
 \begin{theorem}[Atkin-Lehner 1979, strong multiplicity one]
-Let $ 0 \ne f \in \S_k\br{\Gamma_1\br{N}}^{\new} $ and $ g \in \S_k\br{\Gamma_1\br{N}} $. Suppose for all $ p \nmid N $, there exist $ \lambda_p \in \CC $ and $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ such that $ \T_pf = \lambda_pf $ and $ \T_pg = \lambda_pg $, and $ \abr{d}f = \chi\br{d}f $ and $ \abr{d}g = \chi\br{d}g $. Then $ g $ is a scalar multiple of $ f $.
+Let $ 0 \ne f \in \S_k\br{\Gamma_1\br{N}}^{\new} $ and $ g \in \S_k\br{\Gamma_1\br{N}} $. Suppose for all $ p \nmid N $, there exist $ \lambda_p \in \CC $ and $ \chi : \br{\ZZ / N\ZZ}^\times \to \CC^\times $ such that
+$$ \T_pf = \lambda_pf, \qquad \T_pg = \lambda_pg, \qquad \abr{d}f = \chi\br{d}f, \qquad \abr{d}g = \chi\br{d}g. $$
+Then $ g $ is a scalar multiple of $ f $.
 \end{theorem}
 
 \begin{corollary}
@@ -2175,9 +2251,9 @@ A \textbf{newform} is an element of $ \S_k\br{\Gamma_1\br{N}}^{\new} $ with $ c_
 Let $ f \in \S_k\br{\Gamma_1\br{N}, \chi} $ be a newform such that $ \T_pf = \lambda_pf $ and $ \U_lf = \lambda_lf $. Then
 $$ \L\br{s, f} = \prod_{p \nmid N} \dfrac{1}{1 - \lambda_pp^{-s} + \chi\br{p}p^{k - 1 - 2s}}\prod_{l \mid N} \dfrac{1}{1 - \lambda_ll^{-s}}. $$
 
-\subsubsection{Fermat's last theorem}
+\subsection{Fermat's last theorem}
 
-Let $ E / \QQ $ be an elliptic curve of \textbf{conductor} $ N $, and let
+Let $ E / \QQ $ be an elliptic curve of conductor $ N $, and let
 $$ a_p =
 \begin{cases}
 \#E\br{\FF_p} - p - 1 & p \nmid N \\
@@ -2189,11 +2265,11 @@ $$
 Let
 $$ \L\br{s, E} = \prod_{p \nmid N} \dfrac{1}{1 - a_pp^{-s} + p^{1 - 2s}}\prod_{l \mid N} \dfrac{1}{1 - a_ll^{-s}}. $$
 
+\pagebreak
+
 \begin{theorem}[Eichler-Shimura]
 Let $ f \in \S_2\br{\Gamma_0\br{N}} $ be a newform with integer coefficients. There exists an elliptic curve $ E_f / \QQ $ of conductor $ N $ such that $ \L\br{s, f} = \L\br{s, E_f} $.
 \end{theorem}
-
-\pagebreak
 
 A question is that is the converse true?
 
@@ -2204,33 +2280,32 @@ Let $ f \in \S_k\br{\Gamma_0\br{N}, \chi} $ be a newform for $ k \ge 2 $ such th
 \end{theorem}
 
 \begin{example*}
-If $ f \in \S_2\br{\Gamma_0\br{N}} $ has integer coefficients, then $ E_f\br{\overline{\QQ}} \cong \br{\ZZ / p\ZZ}^2 $. Then $ \rho_{f, p} : \Gal\br{\overline{\QQ} / \QQ} \to \GL_2\br{\FF_p} $ gives an $ \FF_p $-linear action of $ \Gal\br{\overline{\QQ} / \QQ} $ on $ E_f\sbr{p}\br{\overline{\QQ}} $.
+If $ f \in \S_2\br{\Gamma_0\br{N}} $ has integer coefficients, then $ E_f\sbr{p}\br{\overline{\QQ}} \cong \br{\ZZ / p\ZZ}^2 $. Then $ \rho_{f, p} : \Gal\br{\overline{\QQ} / \QQ} \to \GL_2\br{\FF_p} $ gives an $ \FF_p $-linear action of $ \Gal\br{\overline{\QQ} / \QQ} $ on $ E_f\sbr{p}\br{\overline{\QQ}} $.
 \end{example*}
 
 A natural question is given $ \overline{\rho} : \Gal\br{\overline{\QQ} / \QQ} \to \GL_2\br{\overline{\FF_p}} $, is $ \overline{\rho} = \overline{\rho_{f, p}} $ for some newform $ f $? If so, for which $ \br{k, N, \chi} $?
 
-\begin{theorem}[Serre's conjecture 1987, Khare-Wintenberger theorem 2005]
+\begin{theorem}[Serre's conjecture 1987 and Khare-Wintenberger theorem 2005]
 Let $ \overline{\rho} : \Gal\br{\overline{\QQ} / \QQ} \to \GL_2\br{\FF_p} $ be odd, that is $ \det \overline{\rho}\br{i \mapsto -i} = -1 $.
 \begin{itemize}
 \item $ \overline{\rho} = \overline{\rho_{f, p}} $ for some newform $ f $.
-\item Can take $ f $ of weight $ k_{\overline{\rho}} $, level $ N_{\overline{\rho}} $, and characteristic $ \chi_{\overline{\rho}} $, where
+\item Can take $ f $ of weight $ k_{\overline{\rho}} $, level $ N_{\overline{\rho}} $, and character $ \chi_{\overline{\rho}} $, where
 \begin{itemize}
-\item $ 2 \le k \le p $, and if $ k = 2 $,
-$$
-N_{\overline{\rho}} =
-\begin{cases}
-\dfrac{\N\br{\overline{\rho}}}{p} & \overline{\rho} \ \text{is finite at} \ p \\
-\N\br{\overline{\rho}} & \overline{\rho} \ \text{is not finite at} \ p
-\end{cases},
-$$
-\item $ \det \overline{\rho}\br{\Frob_l} \equiv \chi\br{l}l^{k - 1} \mod p $, and this condition determines $ k $ modulo $ p - 1 $ and $ \chi $, and
+\item $ 2 \le k_{\overline{\rho}} \le p $,
+\item $ \det \overline{\rho}\br{\Frob_l} \equiv \chi_{\overline{\rho}}\br{l}l^{k_{\overline{\rho}} - 1} \mod p $, and this condition determines $ k_{\overline{\rho}} $ modulo $ p - 1 $ and $ \chi_{\overline{\rho}} $,
 \item $ N_{\overline{\rho}} $ is the so-called \textbf{Artin conductor} $ \N\br{\overline{\rho}} $ of $ \overline{\rho} $ usually, where
-$$
-\v_l\br{\N\br{\overline{\rho}}} =
+$$ \v_l\br{\N\br{\overline{\rho}}} =
 \begin{cases}
 0 & \overline{\rho} \ \text{is unramified at} \ l \\
 1 & \overline{\rho}^{\I_l} \ \text{has dimension one} \\
 \ge 2 & \text{otherwise}
+\end{cases},
+$$
+\item if $ k_{\overline{\rho}} = 2 $,
+$$ N_{\overline{\rho}} =
+\begin{cases}
+\dfrac{\N\br{\overline{\rho}}}{p} & \overline{\rho} \ \text{is finite at} \ p \\
+\N\br{\overline{\rho}} & \overline{\rho} \ \text{is not finite at} \ p
 \end{cases}.
 $$
 \end{itemize}
@@ -2238,34 +2313,36 @@ $$
 \end{theorem}
 
 \begin{example*}
-If $ \overline{\rho} $ comes from $ E / \QQ $, then $ k_{\overline{\rho}} = 2 $, $ \chi_{\overline{\rho}} $ is trivial, and $ N_{\overline{\rho}} \mid \N_E $, where $ \N_E = \prod_{l \ \text{bad for} \ E} p^{\v_l} $ is the conductor of $ E $, and
-$$ \v_l\br{\N_E} =
+If $ \overline{\rho} $ comes from $ E / \QQ $, then $ k_{\overline{\rho}} = 2 $, $ \chi_{\overline{\rho}} $ is trivial, and $ N_{\overline{\rho}} \mid \N\br{E} $, where $ \N\br{E} = \prod_{l \ \text{bad for} \ E} p^{\v_l} $ is the \textbf{conductor} of $ E $, and
+$$ \v_l\br{\N\br{E}} =
 \begin{cases}
 1 & E \ \text{has multiplicative reduction} \\
 \ge 2 & E \ \text{has additive reduction}
 \end{cases}.
 $$
-Moreover, if $ \v_l\br{\N_E} = 1 $ and $ p \mid \ord_l \Delta_E $, then $ \v_l\br{N_{\overline{\rho}}} = 0 $.
+Moreover, if $ \v_l\br{\N\br{E}} = 1 $ and $ p \mid \ord_l \Delta_E $, then $ \v_l\br{N_{\overline{\rho}}} = 0 $.
 \end{example*}
 
-\begin{theorem}[Frey 1985]
+\begin{definition}[Frey 1985]
 Suppose $ p \ge 5 $ and $ a^p + b^p = c^p $ for $ a, b, c $ coprime. Consider
-$$ y^2 = x\br{x - a^p}\br{x + a^p}, $$
-so $ \Delta = 2^s\br{abc}^p $. If $ E $ has multiplicative reduction modulo $ l $ for all $ l $, then $ \N_E = \rad 2abc $. Then $ N_{\overline{\rho}} = 2 $, $ k_{\overline{\rho}} = 2 $, and $ \chi_{\overline{\rho}} $ is trivial.
-\end{theorem}
+$$ y^2 = x\br{x - a^p}\br{x + b^p}, $$
+so $ \Delta = 2^s\br{abc}^p $.
+\end{definition}
+
+Then $ E_{a, b, c} $ has multiplicative reduction modulo $ l $ for all $ l $, so $ \N\br{E_{a, b, c}} = \rad 2abc $. Let $ \overline{\rho} : \Gal\br{\overline{\QQ} / \QQ} \to \GL_2\br{\FF_p} $ giving action of $ \Gal\br{\overline{\QQ} / \QQ} $ on $ E_{a, b, c}\sbr{p}\br{\overline{\QQ}} $. Then $ N_{\overline{\rho}} = 2 $, $ k_{\overline{\rho}} = 2 $, and $ \chi_{\overline{\rho}} $ is trivial.
 
 \begin{theorem}[Ribet 1986]
 If $ \overline{\rho} $ comes from any newform, it comes from the level, weight, and character predicted by Serre.
 \end{theorem}
 
 \begin{corollary}
-If $ E_{a^p, b^p, c^p} $ is modular, then the corresponding $ \overline{\rho} $ comes from a modular form in $ \S_2\br{\Gamma\br{2}} $.
+If $ E_{a, b, c} $ is modular, then the corresponding $ \overline{\rho} $ comes from a modular form in $ \S_2\br{\Gamma_0\br{2}} $.
 \end{corollary}
 
 The problem is $ \dim \S_k\br{\Gamma} \le \tfrac{1}{12}k\sbr{\SL_2\br{\ZZ} : \Gamma} $, and $ \sbr{\SL_2\br{\ZZ} : \Gamma_0\br{2}} = 3 $, so $ \dim \S_2\br{\Gamma_0\br{2}} \le \tfrac{1}{2} $.
 
-\begin{theorem}[Wiles, Taylor-Wiles 1995-1996]
-All elliptic curves over $ \QQ $ such that $ \N_E $ is square-free are modular.
+\begin{theorem}[Wiles 1995 and Taylor-Wiles 1996]
+All elliptic curves over $ \QQ $ such that $ \N\br{E} $ is square-free are modular.
 \end{theorem}
 
 \begin{corollary}

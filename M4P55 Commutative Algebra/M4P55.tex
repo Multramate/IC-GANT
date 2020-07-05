@@ -78,16 +78,14 @@ A \textbf{commutative ring} is a set $ \br{A, +, \cdot, 0, 1} $ such that
 \begin{remark}
 \hfill
 \begin{itemize}
-\item One is uniquely determined by $ 3 $, since $ 1' = 1' \cdot 1 = 1 $.
-\item If $ 1 = 0 $, then $ 0 = x \cdot 0 = x \cdot 1 = x $, since
-$$ x \cdot 0 = x \cdot \br{0 + 0} = x \cdot 0 + x \cdot 0, $$
-so $ x \cdot 0 = 0 $. So every element is zero. Hence $ R = \cbr{0} $.
+\item $ 1 $ is uniquely determined by $ 3 $, since $ 1' = 1' \cdot 1 = 1 $.
+\item If $ 1 = 0 $, then $ 0 = x \cdot 0 = x \cdot 1 = x $, since $ x \cdot 0 = x \cdot \br{0 + 0} = x \cdot 0 + x \cdot 0 $, so $ x \cdot 0 = 0 $. So every element is zero. Hence $ A = \cbr{0} $.
 \end{itemize}
 \end{remark}
 
 \begin{definition}
-A \textbf{homomorphism of rings} $ f : A \to B $ is a map such that for all $ x, y \in A $,
-$$ f\br{x + y} = f\br{x} + f\br{y}, \qquad f\br{xy} = f\br{x}f\br{y}, \qquad f\br{1} = 1. $$
+A \textbf{homomorphism of rings} $ f : A \to B $ is a map such that
+$$ f\br{x + y} = f\br{x} + f\br{y}, \qquad f\br{xy} = f\br{x}f\br{y}, \qquad f\br{1} = 1, \qquad x, y \in A. $$
 \end{definition}
 
 \begin{example*}
@@ -132,30 +130,32 @@ $$ \im f = f\br{A} \cong A / \ker f \subset B. $$
 \lecture{2}{Tuesday}{08/10/19}
 
 \begin{definition}
-Let $ R $ be a ring. The \textbf{polynomial ring} with coefficients in $ R $ is
+Let $ R $ be a ring. The \textbf{polynomial ring} with coefficients in $ R $ is the set
 $$ R\sbr{x} = \cbr{a_0 + \dots + a_nx^n \st a_i \in R, \ n \in \ZZ_{\ge 0}}. $$
 The addition is coefficient-wise, and the multiplication is given by the formula
 $$ \br{\sum_{i \ge 0} a_ix^i}\br{\sum_{j \ge 0} b_jx^j} = \sum_{i \ge 0} \br{\sum_{j + k = i, \ j \ge 0, \ k \ge 0} a_jb_k}x^i, $$
-where all but finitely many coefficients are zero. Define
+where all but finitely many coefficients are equal to zero. Define
 $$ R\sbr{x_1, \dots, x_n} = R\sbr{x_1} \dots \sbr{x_n} = \cbr{\sum_{i_1, \dots, i_n \ge 0} a_{i_1, \dots, i_n}x_1^{i_1} \dots x_n^{i_n} \st a_{i_1, \dots, i_n} \in R}, $$
-where all but finitely many coefficients $ a_{i_1, \dots, i_n} $ are equal to zero.
+where all but finitely many coefficients are equal to zero.
 \end{definition}
 
 \begin{definition}
-The \textbf{ring of formal power series} with coefficients in $ R $ is
+The \textbf{ring of formal power series} with coefficients in $ R $ is the set
 $$ R\sbr{\sbr{t}} = \cbr{a_0 + a_1t + \dots \st a_i \in R}. $$
 The addition is coefficient-wise, and the multiplication is given by the formula
-$$ \br{\sum_{i \ge 0} a_it^i}\br{\sum_{j \ge 0} b_jt^j} = \sum_{i \ge 0} \br{\sum_{j + k = i, \ j \ge 0, \ k \ge 0} a_jb_k}x^i. $$
+$$ \br{\sum_{i \ge 0} a_it^i}\br{\sum_{j \ge 0} b_jt^j} = \sum_{i \ge 0} \br{\sum_{j + k = i, \ j \ge 0, \ k \ge 0} a_jb_k}t^i. $$
 Define
 $$ R\sbr{\sbr{t_1, \dots, t_n}} = R\sbr{\sbr{t_1}} \dots \sbr{\sbr{t_n}}. $$
 \end{definition}
 
-In $ R\sbr{\sbr{t}} $ many products equal one unlike in $ R\sbr{t} $, for example $ \br{1 - t}\br{1 + t + \dots} = 1 $.
+\begin{example*}
+$ \br{1 - t}\br{1 + t + \dots} = 1 $, so in $ R\sbr{\sbr{t}} $ many products equal one unlike in $ R\sbr{t} $.
+\end{example*}
 
 \section{Zero-divisors, nilpotents, units}
 
 \begin{definition}
-Let $ A $ be a ring. An element $ x \in A $ is a \textbf{zero-divisor} if $ x \ne 0 $ but $ xy = 0 $ for some $ y \ne 0 $ in $ A $. A ring without zero-divisors is called an \textbf{integral domain}. An element $ x \in A $ is \textbf{nilpotent} if $ x^n = 0 $ for some $ n \in \ZZ_{> 0} $. A \textbf{unit} $ x \in A $ is an element such that $ xy = 1 $ for some $ y \in A $. The units of $ A $ form a group under multiplication, denoted by $ A^* $, or $ A^\times $.
+Let $ A $ be a ring. An element $ x \in A $ is a \textbf{zero-divisor} if $ x \ne 0 $ but $ xy = 0 $ for some $ y \ne 0 $ in $ A $. A ring without zero-divisors is called an \textbf{integral domain}. An element $ x \in A $ is \textbf{nilpotent} if $ x \cdot \dots \cdot x = x^n = 0 $ for some $ n \in \ZZ_{> 0} $. A \textbf{unit} $ x \in A $ is an element such that $ xy = 1 $ for some $ y \in A $. Then we write $ y = x^{-1} $. The units of $ A $ form a group under multiplication, denoted by $ A^* $, or $ A^\times $.
 \end{definition}
 
 \begin{definition}
@@ -165,7 +165,7 @@ is an ideal. Such ideals are called \textbf{principal ideals}.
 \end{definition}
 
 \begin{remark*}
-$ x \in A^* $ if and only if $ \abr{x} = A $, and $ R $ is a field if and only if $ R^* = R \setminus \cbr{0} $.
+$ x \in A^* $ if and only if $ \abr{x} = A $, and $ A $ is a field if and only if $ A^* = A \setminus \cbr{0} $.
 \end{remark*}
 
 \begin{proposition}
@@ -180,7 +180,7 @@ Let $ A $ be a non-zero ring. Then the following are equivalent.
 \begin{proof}
 \hfill
 \begin{itemize}[leftmargin=0.5in]
-\item[$ 1 \implies 2 $.] Clear.
+\item[$ 1 \implies 2 $.] Obvious.
 \item[$ 2 \implies 3 $.] $ \ker f \subset A $ is an ideal. Since $ f \ne 0 $, $ \ker f \ne A $. Hence $ \ker f = 0 $.
 \item[$ 3 \implies 1 $.] Take any $ x \ne 0 $ in $ A $. Look at $ \abr{x} $. Define $ B = A / \abr{x} $. Then take $ f : A \to B $ to be the natural surjective map. If $ f $ is not identically zero, we get a contradiction with $ 3 $.
 \end{itemize}
@@ -251,9 +251,9 @@ Suppose that $ S $ is a partially ordered set such that every chain $ T \subset 
 Zorn's lemma is equivalent to the axiom of choice.
 
 \begin{proof}[Proof of Theorem \ref{thm:4.6}]
-Let $ \Sigma $ be the set of all ideals of $ A $ which are not equal to $ A $. Then $ 0 \in \Sigma $, so $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with partial order given by inclusion. Enough to check the assumption of Zorn's lemma. Suppose $ T $ is a chain of ideals, so it is a collection of ideals $ J_i $ for $ i \in T $. Consider instead
+Let $ \Sigma $ be the set of all ideals of $ A $ which are not equal to $ A $. Then $ 0 \in \Sigma $, so $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with partial order given by inclusion. It is enough to check the assumption of Zorn's lemma. Suppose $ T $ is a chain of ideals, so it is a collection of ideals $ J_i $ for $ i \in T $. Consider instead
 $$ I = \bigcup_{i \in T} J_i. $$
-Claim that $ T $ is a chain implies that $ I $ is an ideal. Then $ x \in I $ implies that $ x \in J_i $ for some $ i $. Take any $ x, y \in I $. Then $ x \in J_i $ and $ y \in J_k $ for some $ i, k \in T $, so $ T $ is a chain, hence $ i \le k $ or $ k \le i $, so $ J_i \subset J_k $ or $ J_k \subset J_i $. Without loss of generality assume $ J_i \subset J_k $. Then $ x, y \in J_k $, so $ x + y \in J_k \subset I $. Clearly, $ I $ is an upper bound.
+Claim that since $ T $ is a chain, $ I $ is an ideal. Then $ x \in I $ implies that $ x \in J_i $ for some $ i $. Take any $ x, y \in I $. Then $ x \in J_i $ and $ y \in J_k $ for some $ i, k \in T $. Since $ T $ is a chain, $ i \le k $ or $ k \le i $, so $ J_i \subset J_k $ or $ J_k \subset J_i $. Without loss of generality assume $ J_i \subset J_k $. Then $ x, y \in J_k $, so $ x + y \in J_k \subset I $. Clearly, $ I $ is an upper bound.
 \end{proof}
 
 \pagebreak
@@ -294,9 +294,7 @@ Let $ A $ be a ring and let $ \ppp \subset A $ be a prime ideal. Suppose that $ 
 \end{lemma}
 
 \begin{proof}
-Suppose that $ I_j $ is not a subset of $ \ppp $ for any $ j $. Then there exists $ x_j \in I_j $ such that $ x_j \notin \ppp $. Hence
-$$ x_1, \dots, x_n \in I_1 \dots I_n \subset \bigcap_{j = 1}^n I_j \subset \ppp, $$
-so $ x_1\br{x_2 \dots x_n} \in \ppp $. Then $ x_1 \notin \ppp $ implies that $ x_2 \dots x_n \in \ppp $. Since $ \ppp $ is prime we get a contradiction. For the second claim, we know that some $ I_j \subset \ppp $. But $ \ppp = \bigcap_{j = 1}^k I_j \subset I_k $ for all $ k $. Hence $ \ppp = I_j $.
+Suppose that $ I_j $ is not a subset of $ \ppp $ for any $ j $. Then there exists $ x_j \in I_j $ such that $ x_j \notin \ppp $. Hence $ x_1 \dots x_n \in I_1 \dots I_n \subset \bigcap_{j = 1}^n I_j \subset \ppp $. Since $ x_1\br{x_2 \dots x_n} \in \ppp $ and $ x_1 \notin \ppp $, $ x_2 \dots x_n \in \ppp $. Since $ \ppp $ is prime we get a contradiction. For the second claim, we know that some $ I_j \subset \ppp $. But $ \ppp = \bigcap_{j = 1}^k I_j \subset I_k $ for all $ k $. Hence $ \ppp = I_j $.
 \end{proof}
 
 \section{Nilradical and the Jacobson radical}
@@ -304,7 +302,7 @@ so $ x_1\br{x_2 \dots x_n} \in \ppp $. Then $ x_1 \notin \ppp $ implies that $ x
 \lecture{4}{Thursday}{10/10/19}
 
 \begin{proposition}
-The set $ \NNN\br{A} $ consisting of all nilpotents of the ring $ A $ and zero is an ideal. Then $ \NNN\br{A} $ is called the \textbf{nilradical} of $ A $. The quotient $ A / \NNN\br{A} $ has no nilpotents.
+The set $ \NNN\br{A} $ consisting of all nilpotents of the ring $ A $ and zero is an ideal, called the \textbf{nilradical} of $ A $. The quotient $ A / \NNN\br{A} $ has no nilpotents.
 \end{proposition}
 
 \begin{proof}
@@ -324,9 +322,9 @@ $ \NNN\br{A} $ is the intersection of all prime ideals of $ A $.
 \hfill
 \begin{itemize}
 \item[$ \subset $] Let $ I $ be the intersection of all prime ideals of $ A $. Let $ f \in A $ be such that $ f^n = 0 $. Take any prime ideal $ \ppp \subset A $. We know that $ f^n = 0 \in \ppp $. Then $ f\br{f \dots f} \in \ppp $ and $ \ppp $ prime implies that $ f \in \ppp $, so $ f \in I $.
-\item[$ \supset $] Let us prove the converse. Suppose $ f $ is not nilpotent, so $ f^n \ne 0 $ for all $ n \ge 1 $. We will show that there exists a prime ideal $ \ppp \subset A $ that does not contain $ f $. Let us consider all ideals of $ A $ that do not contain $ f^m $, where $ m \in \ZZ_{> 0} $. Let $ \Sigma $ be the set of ideals $ J \subset A $ such that
-$$ J \cap \cbr{f^m \st m \ge 1} = \emptyset. $$
-The zero ideal is in $ \Sigma $. So $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with a partial order given by inclusion. Applying Zorn's lemma we obtain that $ \Sigma $ contains a maximal element. Call it $ \ppp $. By construction, $ \ppp \cap \cbr{f^m \st m \ge 1} = \emptyset $, so $ f \notin \ppp $. It remains to prove that $ \ppp $ is prime. Enough to prove that if $ x \notin \ppp $ and $ y \notin \ppp $, then $ xy \notin \ppp $. Consider the ideal $ \ppp + \abr{x} \supsetneq \ppp $. Since $ \ppp $ is maximal in $ \Sigma $, thus $ \ppp + \abr{x} $ is not in $ \Sigma $. By definition of $ \Sigma $ there exists $ n \ge 1 $ such that $ f^n \in \ppp + \abr{x} $. Similarly, there exists $ m \ge 1 $ such that $ f^m \in \ppp + \abr{y} $. Then $ \br{\ppp + \abr{x}}\br{\ppp + \abr{y}} \subset \ppp + \abr{xy} $. In particular, $ f^{n + m} = f^nf^m \in \ppp + \abr{xy} $. If $ xy \in \ppp $, then $ f^{n + m} \in \ppp $, which is not possible. Therefore, $ xy \notin \ppp $. So $ \ppp $ is a prime ideal that does not contain $ f $.
+\item[$ \supset $] Let us prove the converse. Suppose $ f $ is not nilpotent, so $ f^n \ne 0 $ for all $ n \ge 1 $. We will show that there exists a prime ideal $ \ppp \subset A $ that does not contain $ f $. Let us consider all ideals of $ A $ that do not contain $ f^m $, where $ m \in \ZZ_{> 0} $. Let $ \Sigma $ be the set of ideals $ J \subset A $ such that $ J \cap \cbr{f^m \st m \ge 1} = \emptyset $. The zero ideal is in $ \Sigma $. So $ \Sigma \ne \emptyset $. Equip $ \Sigma $ with a partial order given by inclusion. Applying Zorn's lemma we obtain that $ \Sigma $ contains a maximal element. Call it $ \ppp $. By construction,
+$$ \ppp \cap \cbr{f^m \st m \ge 1} = \emptyset, $$
+so $ f \notin \ppp $. It remains to prove that $ \ppp $ is prime. It is enough to prove that if $ x \notin \ppp $ and $ y \notin \ppp $, then $ xy \notin \ppp $. Consider the ideal $ \ppp + \abr{x} \supsetneq \ppp $. Since $ \ppp $ is maximal in $ \Sigma $, thus $ \ppp + \abr{x} $ is not in $ \Sigma $. By definition of $ \Sigma $ there exists $ n \ge 1 $ such that $ f^n \in \ppp + \abr{x} $. Similarly, there exists $ m \ge 1 $ such that $ f^m \in \ppp + \abr{y} $. Then $ \br{\ppp + \abr{x}}\br{\ppp + \abr{y}} \subset \ppp + \abr{xy} $. In particular, $ f^{n + m} = f^nf^m \in \ppp + \abr{xy} $. If $ xy \in \ppp $, then $ f^{n + m} \in \ppp $, which is not possible. Therefore, $ xy \notin \ppp $. So $ \ppp $ is a prime ideal that does not contain $ f $.
 \end{itemize}
 \end{proof}
 
@@ -360,8 +358,10 @@ Apply Proposition \ref{prop:5.3} to $ A / I $.
 \lecture{5}{Tuesday}{15/10/19}
 
 \begin{definition}
-Let $ I $ be an indexing set. For each $ i \in I $ we are given a ring $ R_i $. Consider the product set $ \prod_{i \in I} R_i $. This is $ \br{x_i}_{i \in I} $ for $ x_i \in R_i $. Define
-$$ 0 = \br{0}_{i \in I} \in \prod_{i \in I} R_i, \qquad 1 = \br{1}_{i \in I} \in \prod_{i \in I} R_i. $$
+Let $ I $ be an indexing set. For each $ i \in I $ we are given a ring $ R_i $. Consider the product set
+$$ \prod_{i \in I} R_i = \cbr{\br{x_i}_{i \in I} \st x_i \in R_i}. $$
+Define
+$$ 0 = \br{0, 0, \dots} \in \prod_{i \in I} R_i, \qquad 1 = \br{1, 1, \dots} \in \prod_{i \in I} R_i. $$
 Define addition and multiplication coordinate-wise, so
 $$ \br{a_i}_{i \in I} + \br{b_i}_{i \in I} = \br{a_i + b_i}_{i \in I}, \qquad \br{a_i}_{i \in I} \cdot \br{b_i}_{i \in I} = \br{a_i \cdot b_i}_{i \in I}, \qquad \br{a_i}_{i \in I}, \br{b_i}_{i \in I} \in \prod_{i \in I} R_i. $$
 Then $ \prod_{i \in I} R_i $ is a ring, the \textbf{product of rings}.
@@ -422,7 +422,7 @@ Check that this is indeed an equivalence relation. \footnote{Exercise} The follo
 \end{itemize}
 Define
 $$ \dfrac{a}{s} + \dfrac{b}{t} = \dfrac{at + bs}{st}, \qquad \dfrac{a}{s} \cdot \dfrac{b}{t} = \dfrac{ab}{st}, \qquad a, b \in A, \qquad s, t \in S. $$
-Need to check that these operations are well-defined. \footnote{Exercise} Define $ \tfrac{0}{1} $ as the zero of $ S^{-1}A $, and $ \tfrac{1}{1} $ as the one of $ S^{-1}A $. Then $ S^{-1}A $ is a ring, the \textbf{localisation of $ A $ with respect to $ S $}.
+Need to check that these operations are well-defined. Define $ 0 / 1 $ as the zero of $ S^{-1}A $, and $ 1 / 1 $ as the one of $ S^{-1}A $. Then $ S^{-1}A $ is a ring, the \textbf{localisation of $ A $ with respect to $ S $}.
 \end{definition}
 
 \begin{lemma}
@@ -432,7 +432,7 @@ This $ f $ is injective if and only if $ S $ has no zero-divisors.
 \end{lemma}
 
 \begin{proof}
-If $ S $ contains a zero-divisor, say $ u $, then there exists $ a \in A $ for $ a \ne 0 $ such that $ ua = 0 $. Then
+If $ S $ contains a zero-divisor, say $ u $, then there exists $ 0 \ne a \in A $ such that $ ua = 0 $. Then
 $$ f\br{a} = \dfrac{a}{1} = \dfrac{au}{u} = \dfrac{0}{u} = 0. $$
 So $ \ker f $ contains $ a $, hence $ f $ is not injective. If $ f $ has no zero-divisors, then $ ua = u\br{a - 0} \ne 0 $ if $ a \ne 0 $ and any $ u \in S $. Hence $ f\br{a} \ne 0 $.
 \end{proof}
@@ -470,9 +470,9 @@ $$ S^{-1}k\sbr{x} = k\br{x} = \cbr{\dfrac{f\br{x}}{g\br{x}} \st g\br{x} \ \text{
 \end{example*}
 
 \begin{example}
-Let $ k $ be a field, and let $ A = k\sbr{x, y} / \abr{xy} $. Note that $ A $ has zero-divisors, since $ xy = 0 $ in $ A $, but $ x \ne 0 $ in $ A $ and $ y \ne 0 $ in $ A $. Then $ S = \cbr{1, x, \dots} $ is a multiplicative set, since $ x^n \ne 0 $ in $ A $ for $ n = 1, 2, \dots $, because no power of the polynomial $ x $ is in $ \abr{xy} $. What is $ S^{-1}A $? Let $ f : A \to S^{-1}A $. Then $ a \in \ker f $ if and only if $ a / 1 = 0 / 1 $, if and only if $ u \cdot \br{a \cdot 1 - 0 \cdot 1} = 0 $ for some $ u \in S $, if and only if $ ua = 0 $. Let $ a \ne 0 $. Then $ u = 1 $ is not interesting. Take $ u = x $ and $ a = y $, then $ xy = 0 $, hence $ y \in \ker f $. Then $ f $ is a homomorphism, hence $ \ker f $ is an ideal. So $ \abr{y} = yA \subset \ker f $. In general,
+Let $ k $ be a field, and let $ A = k\sbr{x, y} / \abr{xy} $. Note that $ A $ has zero-divisors, since $ xy = 0 $ in $ A $, but $ x \ne 0 $ in $ A $ and $ y \ne 0 $ in $ A $. Then $ S = \cbr{1, x, \dots} $ is a multiplicative set, since $ x^n \ne 0 $ in $ A $ for $ n = 1, 2, \dots $, because no power of the polynomial $ x $ is in $ \abr{xy} $. What is $ S^{-1}A $? Let $ f : A \to S^{-1}A $. Then $ a \in \ker f $ if and only if $ a / 1 = 0 / 1 $, if and only if $ u \cdot \br{a \cdot 1 - 0 \cdot 1} = 0 $ for some $ u \in S $, if and only if $ ua = 0 $. Let $ a \ne 0 $. Then $ u = 1 $ is not interesting. Take $ u = x $ and $ a = y $, then $ xy = 0 $, hence $ y \in \ker f $. Since $ f $ is a homomorphism, $ \ker f $ is an ideal. So $ \abr{y} = yA \subset \ker f $. In general,
 $$ a = \sum_{i, j \ge 0} a_{ij}x^iy^j \equiv a_{00} + \sum_{i \ge 1} a_{i0}x^i + \sum_{j \ge 1} a_{0j}y^j \mod \abr{xy}. $$
-Then $ \ker f = yA = \abr{y} $, since $ \sum_{j \ge 1} a_{0j}y^j $ goes to zero, since it is annihilated by $ x $, and $ x^n\sum_{i \ge 0} a_ix^i $ is never zero in $ A $. Thus $ f\br{A} = k\sbr{x} $, and
+Then $ \ker f = yA = \abr{y} $, since $ \sum_{j \ge 1} a_{0j}y^j $ goes to zero, since it is annihilated by $ x $, and $ x^n\sum_{i \ge 0} a_{i0}x^i $ is never zero in $ A $. Thus $ f\br{A} = k\sbr{x} $, and
 $$ S^{-1}A = \cbr{\dfrac{f\br{x}}{x^n} \st f\br{x} \in k\sbr{x}, \ n \ge 0} = k\sbr{x, x^{-1}} = \cbr{\sum_{i \in \ZZ, \ a_i = 0 \ \text{for almost all} \ i} a_ix^i \st a_i \in k}. $$
 \end{example}
 
@@ -493,7 +493,7 @@ $$
 \begin{proof}
 Define
 $$ \function[h]{S^{-1}A}{B}{\dfrac{a}{s}}{\dfrac{g\br{a}}{g\br{s}}}, \qquad a \in A, \qquad s \in S. $$
-This is well-defined, that is if $ a / s = b / t $ then $ g\br{a}g\br{s}^{-1} = g\br{b}g\br{t}^{-1} $. \footnote{Exercise} This is a ring homomorphism. \footnote{Exercise} Now easy to check that
+This is well-defined, that is if $ a / s = b / t $ then $ g\br{a} / g\br{s} = g\br{b} / g\br{t} $. \footnote{Exercise} This is a ring homomorphism. \footnote{Exercise} Now easy to check that
 $$ \br{h \circ f}\br{a} = h\br{\dfrac{a}{1}} = \dfrac{g\br{a}}{g\br{1}} = \dfrac{g\br{a}}{1} = g\br{a}, \qquad a \in A. $$
 Moreover, if $ h' : S^{-1}A \to B $ and $ g = h' \circ f $ then for all $ a \in A $ we have $ \br{h' \circ f}\br{a} = g\br{a} $. Since $ h' $ is a ring homomorphism, for all $ s \in S $, $ h'\br{1 / s} = 1 / h'\br{s / 1} = 1 / g\br{s} $. Hence
 $$ h'\br{\dfrac{a}{s}} = h'\br{\dfrac{a}{1}}h'\br{\dfrac{1}{s}} = \dfrac{h'\br{f\br{a}}}{h'\br{f\br{s}}} = \dfrac{g\br{a}}{g\br{s}} = h\br{\dfrac{a}{s}}. $$
@@ -525,7 +525,7 @@ Every ideal of $ S^{-1}A $ is of the form $ S^{-1}I $ for some ideal $ I \subset
 \end{proposition}
 
 \begin{proof}
-Let $ J $ be any ideal of $ S^{-1}A $. Define $ I = f^{-1}A $. Know $ I $ is an ideal of $ A $. Claim that $ J = S^{-1}I $. Say $ a / s \in J $. Since $ J $ is an ideal, $ s\br{a / s} \in J $, so $ a / 1 \in J $, so $ a \in I $. Hence $ a / s \in S^{-1}I $. So $ J \subset S^{-1}I $. Conversely, $ f\br{I} = f\br{f^{-1}\br{J}} \subset J $. Thus $ S^{-1}I \subset J $.
+Let $ J $ be any ideal of $ S^{-1}A $. Define $ I = f^{-1}\br{J} $. Know $ I $ is an ideal of $ A $. Claim that $ J = S^{-1}I $. Say $ a / s \in J $. Since $ J $ is an ideal, $ s\br{a / s} \in J $, so $ a / 1 \in J $, so $ a \in I $. Hence $ a / s \in S^{-1}I $. So $ J \subset S^{-1}I $. Conversely, $ f\br{I} = f\br{f^{-1}\br{J}} \subset J $. Thus $ S^{-1}I \subset J $.
 \end{proof}
 
 \begin{theorem}
@@ -535,7 +535,7 @@ $$ \correspondence{\text{prime ideals of} \ S^{-1}A}{\text{prime ideals of} \ A 
 \end{theorem}
 
 \begin{proof}
-Prove $ S^{-1}\ppp $ is prime if $ \ppp $ is prime and $ \ppp \cap S = \emptyset $. Say $ a / s \cdot b / t \in S^{-1}\ppp $ for $ a / s, b / t \in S^{-1}A $. This implies $ v\br{abu - cst} = 0 $ for some $ u, v \in S $ and $ c \in \ppp $. Hence $ abuv = cstv \in \ppp $, so $ ab \in \ppp $, as $ u $ and $ v $ are units, so $ a \in \ppp $ or $ b \in \ppp $. Hence $ S^{-1}\ppp $ is prime. Next note that $ f^{-1}\br{S^{-1}\ppp} = \ppp $, assuming $ \ppp \cap S = \emptyset $. For if $ a \in A $ lies in $ S^{-1}\ppp $ then by definition there exists $ s \in S $ such that $ sa \in \ppp $. Then $ s $ is a unit and so $ a \in \ppp $. Hence $ \ppp $ is uniquely determined by $ S^{-1}\ppp $. Now let $ \qqq $ be an arbitrary prime ideal of $ S^{-1}A $. Then certainly $ \qqq = S^{-1}I $ for $ I = f^{-1}\br{\qqq} $. But the preimage of a prime ideal is prime. So $ I $ is prime. Moreover, $ I \cap S = \emptyset $ as no $ s \in S $ is in $ \qqq $, since $ \qqq $ is prime, so $ \qqq $ contains no units.
+Prove $ S^{-1}\ppp $ is prime if $ \ppp $ is prime and $ \ppp \cap S = \emptyset $. Say $ a / s \cdot b / t \in S^{-1}\ppp $ for $ a / s, b / t \in S^{-1}A $. This implies $ v\br{abu - cst} = 0 $ for some $ u, v \in S $ and $ c \in \ppp $. Hence $ abuv = cstv \in \ppp $, so $ ab \in \ppp $, as $ u $ and $ v $ are units, so $ a \in \ppp $ or $ b \in \ppp $. Hence $ S^{-1}\ppp $ is prime. Next note that $ f^{-1}\br{S^{-1}\ppp} = \ppp $, assuming $ \ppp \cap S = \emptyset $. For if $ a \in A $ lies in $ S^{-1}\ppp $ then by definition there exists $ s \in S $ such that $ sa \in \ppp $. Since $ s $ is a unit, $ a \in \ppp $. Hence $ \ppp $ is uniquely determined by $ S^{-1}\ppp $. Now let $ \qqq $ be an arbitrary prime ideal of $ S^{-1}A $. Then certainly $ \qqq = S^{-1}I $ for $ I = f^{-1}\br{\qqq} $. But the preimage of a prime ideal is prime. So $ I $ is prime. Moreover, $ I \cap S = \emptyset $ as no $ s \in S $ is in $ \qqq $, since $ \qqq $ is prime, so $ \qqq $ contains no units.
 \end{proof}
 
 \pagebreak
@@ -567,17 +567,17 @@ The collection of subsets $ \V_I \subset \Spec R $, for all ideals $ I \subset R
 \begin{enumerate}
 \item If $ I = 0 $ is the zero ideal, then $ \V_0 = \Spec R $, all prime ideals of $ R $. If $ I = R $, then no prime ideals of $ R $ contain $ R $, so $ \V_R = \emptyset $, so $ 1 $ holds.
 \item It is enough to check that $ \V_I \cup \V_J = \V_{IJ} = \V_{I \cap J} $. Note that $ IJ \subset I \cap J $. An element of $ \V_I $ is a prime ideal $ \ppp \supset I $, so $ \ppp \supset IJ $. Conversely, let $ \ppp $ be a prime ideal such that $ IJ \subset \ppp $. Claim that $ I \subset \ppp $ or $ J \subset \ppp $. Suppose not. Then there exists $ x \in I $ such that $ x \notin \ppp $ and there exists $ y \in J $ such that $ y \notin \ppp $. Then $ xy \in IJ \subset \ppp $. This contradicts the definition of prime ideals. So the claim is proved. Thus $ 2 $ holds.
-\item $ J_i $ for $ i \in S $ is a collection of ideals. Claim that $ \bigcap_{i \in S} \V_{J_i} = \V_J $, where $ J = \sum_{i \in S} J_i $ is the smallest ideal of $ R $ containing all $ J_i $ for $ i \in S $. The elements of $ J $ are finite sums, where each summand is in some $ J_i $. If $ \ppp \supset J_i $ for $ i \in S $, then $ \ppp \supset J $. Conversely, if $ \ppp \supset J \supset J_i $, then $ \ppp \supset J_i $ for all $ i \in S $.
+\item Let $ J_i $ for $ i \in S $ be a collection of ideals. Claim that $ \bigcap_{i \in S} \V_{J_i} = \V_J $, where $ J = \sum_{i \in S} J_i $ is the smallest ideal of $ R $ containing all $ J_i $ for $ i \in S $. The elements of $ J $ are finite sums, where each summand is in some $ J_i $. If $ \ppp \supset J_i $ for $ i \in S $, then $ \ppp \supset J $. Conversely, if $ \ppp \supset J \supset J_i $, then $ \ppp \supset J_i $ for all $ i \in S $.
 \end{enumerate}
 \end{proof}
 
-Recall that if $ f : A \to B $ is a homomorphism of rings, then $ f^* : \Spec B \to \Spec A $ sends any prime ideal $ \ppp \subset B $ to the inverse image $ f^{-1}\br{\ppp} $, which is a prime ideal in $ A $. This breaks down for maximal ideals.
+Recall that if $ f : A \to B $ is a homomorphism of rings, then for any prime ideal $ \ppp \subset B $ the inverse image $ f^{-1}\br{\ppp} $ is a prime ideal. This breaks down for maximal ideals.
 
 \begin{example*}
 Take $ f : \ZZ \to \QQ $, then $ f^{-1}\br{0} = 0 $, which is not maximal in $ \ZZ $.
 \end{example*}
 
-A map of topological spaces is \textbf{continuous} if the inverse image of any open set is open. Equivalently, the inverse images of closed sets are closed.
+Then $ f^* : \Spec B \to \Spec A $ sends $ \ppp \subset B $ to $ f^{-1}\br{\ppp} $, which is prime in $ A $. A map of topological spaces is \textbf{continuous} if the inverse image of any open set is open. Equivalently, the inverse images of closed sets are closed.
 
 \begin{proposition}
 $ f^* $ is a continuous map.
@@ -597,7 +597,7 @@ Let $ I $ be an ideal in $ A $. We need to show that $ \br{f^*}^{-1}\br{\V_I} = 
 
 The following are particular cases.
 \begin{itemize}
-\item Assume $ f $ is surjective. Then $ B \cong A / \ker f $. Then
+\item Assume $ f $ is surjective. Then $ B \cong A / \ker f $, so
 $$ \function{\cbr{\text{prime ideals in} \ B}}{\cbr{\text{prime ideals in} \ A \ \text{containing} \ \ker f}}{\ppp \subset B}{f^{-1}\br{\ppp}}. $$
 So in this case $ f^* $ is injective and its image is $ \V_{\ker f} $.
 \item Let $ S $ be a multiplicative set in $ A $. Let $ f : A \to S^{-1}A $ be the associated canonical map. By Theorem \ref{thm:6.9} the prime ideals of $ S^{-1}A $ are $ S^{-1}\ppp $, where $ \ppp $ is a prime ideal in $ A $ such that $ \ppp \cap S = \emptyset $. Thus $ f^* : \Spec S^{-1}A \to \Spec A $ is injective and its image consists of $ \ppp \subset A $ such that $ \ppp \cap S = \emptyset $.
@@ -610,7 +610,7 @@ So in this case $ f^* $ is injective and its image is $ \V_{\ker f} $.
 \item Let $ R = k\sbr{x} $, an integral domain. This is a PID, so every ideal is $ \abr{p\br{x}} $, where $ p\br{x} \in k\sbr{x} $ is monic. Then $ \abr{p\br{x}} $ is prime if and only if $ p\br{x} $ is irreducible, so
 $$ \Spec k\sbr{x} = \cbr{0} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{is monic and irreducible}}. $$
 In particular, if $ k $ is algebraically closed, such as $ k = \CC $, then
-$$ \Spec k\sbr{x} = \cbr{0} \cup \cbr{\abr{x - a} \st a \in k}. $$
+$$ \Spec \CC\sbr{x} = \cbr{0} \cup \cbr{\abr{x - a} \st a \in k} = \CC \cup \cbr{0}. $$
 \item Let $ R = \ZZ $, a PID. Then
 $$ \Spec \ZZ = \cbr{0} \cup \cbr{\abr{p} \st p \ \text{is a prime number}}. $$
 \item Let $ R = \ZZ\sbr{i} $ be the Gaussian integers, a PID. The tautological map $ f : \ZZ \to \ZZ\sbr{i} $ gives rise to $ f^* : \Spec \ZZ\sbr{i} \to \Spec \ZZ $. Take a usual prime $ p $ and decompose $ p $ into a product of primes in $ \ZZ\sbr{i} $.
@@ -630,7 +630,7 @@ $$
 \end{array}.
 $$
 \item Let $ R $ be an integral domain and let $ k $ be the fraction field of $ R $, so $ f : R \hookrightarrow k $. Then $ \Spec k = \cbr{0} $ and $ f^* : \Spec k \to \Spec R $.
-\item Let $ k $ be a field, so $ f : k \hookrightarrow k\sbr{x} $. Then $ f^* : \Spec k\sbr{x} \to \Spec k $. If $ \ppp \subset k\sbr{x} $, then $ \ppp \cap k = \cbr{0} $, otherwise if $ \ppp $ contains a unit of $ k\sbr{x} $ then $ \ppp = k\sbr{x} $. A contradiction.
+\item Let $ k $ be a field, so $ f : k \hookrightarrow k\sbr{x} $. Then $ f^* : \Spec k\sbr{x} \to \Spec k $. If $ \ppp \subset k\sbr{x} $, then $ \ppp \cap k = 0 $, otherwise if $ \ppp $ contains a unit of $ k\sbr{x} $ then $ \ppp = k\sbr{x} $, a contradiction.
 \end{itemize}
 \end{example*}
 
@@ -641,7 +641,7 @@ In $ \Spec \ZZ $, the point $ \abr{p} $ is closed, because $ \V_{\abr{p}} = \cbr
 \end{example*}
 
 \begin{example*}
-Let $ R = k\sbr{\sbr{t}} $, a local ring. Its unique maximal ideal is $ \abr{t} $. This is also a unique non-zero prime ideal. \footnote{Exercise} All ideals are zero and $ \abr{t^n} $. Then $ \Spec k\sbr{\sbr{t}} = \cbr{0, \abr{t}} $. Similarly, zero is not a closed point, since its closure is $ \Spec k\sbr{\sbr{t}} $, and $ \abr{t} $ is a closed point.
+Let $ R = k\sbr{\sbr{t}} $. By sheet $ 1 $, this is a local ring. Its unique maximal ideal is $ \abr{t} $. This is also a unique non-zero prime ideal. \footnote{Exercise} All ideals are zero and $ \abr{t^n} $. Then $ \Spec k\sbr{\sbr{t}} = \cbr{0, \abr{t}} $, where zero is not a closed point, since its closure is $ \Spec k\sbr{\sbr{t}} $, and $ \abr{t} $ is a closed point.
 \end{example*}
 
 \pagebreak
@@ -650,12 +650,12 @@ Let $ R = k\sbr{\sbr{t}} $, a local ring. Its unique maximal ideal is $ \abr{t} 
 
 \lecture{10}{Thursday}{24/10/19}
 
-Let $ R $ be a commutative ring with unity. Let $ A $ be a matrix $ A = \br{a_{ij}}_{1 \le i, j \le n} $ for $ a_{ij} \in R $.
+Let $ R $ be a commutative ring with unity. Let $ A $ be a matrix $ A = \br{a_{ij}}_{i, j = 1}^n $ for $ a_{ij} \in R $.
 
 \begin{definition}
 The \textbf{determinant} of $ A $ is
 $$ \det A = \sum_{\pi \in \SSS_n} \sgn \pi \cdot a_{1\pi\br{1}} \cdot \dots \cdot a_{n\pi\br{n}} \in R, $$
-where $ \sgn : \SSS_n \to \cbr{\pm 1} $.
+where $ \SSS_n $ is the symmetric group and $ \sgn : \SSS_n \to \cbr{\pm 1} $.
 \end{definition}
 
 \begin{definition}
@@ -664,7 +664,6 @@ $$ \M_{ij} = \det\br{A \ \text{without $ j $-th column and $ i $-th row}} \in R.
 \end{definition}
 
 \begin{proposition}
-Then
 $$ \br{-1}^{j + 1}a_{i1}\M_{j1} + \dots + \br{-1}^{j + n}a_{in}\M_{jn} =
 \begin{cases}
 \det A & i = j \\
@@ -680,7 +679,6 @@ $$ \br{A^\vee}_{ij} = \br{-1}^{i + j}\M_{ji} \qquad \iff \qquad A^\vee = \br{\br
 
 \begin{theorem}[Determinant trick]
 \label{thm:8.5}
-Then
 $$ A \cdot A^\vee = A^\vee \cdot A = \det A \cdot \I_n, $$
 where $ \I_n $ is the identity matrix.
 \end{theorem}
@@ -696,7 +694,7 @@ $$ \lambda\br{x + y} = \lambda x + \lambda y, \qquad \br{\mu + \lambda}x = \mu x
 \hfill
 \begin{itemize}
 \item If $ R $ is a field, then an $ R $-module is the same as a vector space.
-\item If $ R = \ZZ $, then an $ R $-module is the same as an abelian group. Remark that if $ G $ is an abelian group then $ n \cdot g = g + \dots + g $.
+\item If $ R = \ZZ $, then an $ R $-module is the same as an abelian group. Remark that if $ G $ is an abelian group then $ n \cdot g = g + \dots + g $ for $ n \in \ZZ_{> 0} $, and $ 0 \cdot g = 0 $ and $ \br{-n} \cdot g = -\br{n \cdot g} $.
 \item If $ R $ is any ring, then subgroups of $ R $ that are $ R $-modules are the same as ideals.
 \item If $ k $ is a field, then $ k\sbr{x} $-modules are vector spaces $ V $ over $ k $ equipped with a linear transformation $ L : V \to V $. Here $ x $ acts on $ V $ as $ L $.
 \end{itemize}
@@ -706,11 +704,13 @@ $$ \lambda\br{x + y} = \lambda x + \lambda y, \qquad \br{\mu + \lambda}x = \mu x
 If $ M $ and $ N $ are $ R $-modules, then a \textbf{homomorphism of $ R $-modules} $ f : M \to N $ is a homomorphism of abelian groups such that $ f\br{rx} = rf\br{x} $ for all $ x \in M $ and $ r \in R $.
 \end{definition}
 
+Then $ \ker f $, $ \im f $, and $ \coker f = N / \im f $ are $ R $-modules.
+
 \begin{definition}
 Let $ \Hom_R\br{M, N} $ be the set of $ R $-module homomorphisms $ M \to N $.
 \end{definition}
 
-This is an abelian group. Moreover, it is an $ R $-module. If $ r \in R $ and $ f \in \Hom_R\br{M, N} $ then $ r \cdot f $ sends $ x \in M $ to $ rf\br{x} \in N $. Warning that if $ R $ is not commutative $ \Hom_R\br{M, N} $ is just an abelian group.
+This is an abelian group. Moreover, it is an $ R $-module. If $ r \in R $ and $ f \in \Hom_R\br{M, N} $ then $ r \cdot f $ sends $ x \in M $ to $ rf\br{x} \in N $. A warning is if $ R $ is not commutative $ \Hom_R\br{M, N} $ is just an abelian group.
 
 \begin{definition}
 Let $ M $ and $ N $ be submodules of an $ R $-module. Define
@@ -721,7 +721,7 @@ This is an ideal in $ R $.
 
 \begin{example*}
 The \textbf{annihilator} of $ M $ is
-$$ \br{0 : M} = \cbr{r \in R \st rM = 0} = \Ann M. $$
+$$ \Ann M = \br{0 : M} = \cbr{r \in R \st rM = 0}. $$
 \end{example*}
 
 \pagebreak
@@ -738,7 +738,7 @@ with coordinate-wise addition and multiplication.
 
 \begin{remark*}
 Any finitely generated $ R $-module is a quotient of a free finitely generated $ R $-module. Indeed, define
-$$ \function[f_i]{R^{\oplus n}}{M}{\br{t_1, \dots, t_n}}{t_1x_1 + \dots + t_nx_n}. $$
+$$ \function[f]{R^{\oplus n}}{M}{\br{t_1, \dots, t_n}}{t_1x_1 + \dots + t_nx_n}. $$
 \end{remark*}
 
 \begin{remark*}
@@ -752,9 +752,9 @@ Let $ A $ be a ring. Let $ M $ be a finitely generated $ A $-module. Let $ J \su
 \end{lemma}
 
 \begin{proof}
-If $ M = 0 $, then it is fine. Suppose $ M \ne 0 $ and $ m_1, \dots, m_n $ are generators of $ M $. Then $ m_i \in M = JM $, so
-$$ m_1 = x_{11}m_1 + \dots + x_{1n}m_n, \qquad \dots, \qquad m_n = x_{n1}m_1 + \dots + x_{nn}m_n, $$
-for $ x_{ij} \in J $. Define $ X = \br{x_{ij}}_{i, j = 1}^n $. Then
+If $ M = 0 $, then it is fine. Suppose $ M \ne 0 $ and $ m_1, \dots, m_n $ are generators of $ M $. Since $ m_i \in M = JM $,
+$$ m_1 = x_{11}m_1 + \dots + x_{1n}m_n, \qquad \dots, \qquad m_n = x_{n1}m_1 + \dots + x_{nn}m_n, \qquad x_{ij} \in J. $$
+Define $ X = \br{x_{ij}}_{i, j = 1}^n $. Then
 $$ \threebyone{m_1}{\vdots}{m_n} = X\threebyone{m_1}{\vdots}{m_n} \qquad \iff \qquad \br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0. $$
 Consider the adjoint matrix $ \br{\I_n - X}^\vee $. Then
 $$ \br{\I_n - X}^\vee\br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0 \qquad \iff \qquad \det \br{\I_n - X}\threebyone{m_1}{\vdots}{m_n} = 0. $$
@@ -764,7 +764,7 @@ We have $ \det \br{\I_n - X} \in A $. Then $ \det \br{\I_n - X} $ is a product o
 \lecture{11}{Tuesday}{29/10/19}
 
 \begin{remark*}
-If $ M $ is not finitely generated then this is false, such as $ A = \ZZ $ and $ M = \QQ $. If $ p $ is a prime, then $ p\QQ = \QQ $. So for $ J = \abr{p} $ we have $ JM = M $. But no non-zero integer annihilates $ \QQ $, since $ \QQ $ is not a finitely generated $ \ZZ $-module.
+If $ M $ is not finitely generated then this is false. For example, let $ A = \ZZ $ and $ M = \QQ $. If $ p $ is a prime, then $ p\QQ = \QQ $. So for $ J = \abr{p} $ we have $ JM = M $. But no non-zero integer annihilates $ \QQ $, since $ \QQ $ is not a finitely generated $ \ZZ $-module.
 \end{remark*}
 
 \begin{corollary}
@@ -772,7 +772,7 @@ Let $ R $ be a ring and let $ M $ be a finitely generated $ R $-module. If $ f :
 \end{corollary}
 
 \begin{proof}
-Define $ A = R\sbr{t} $. Let us equip $ M $ with the structure of an $ A $-module. Define $ t \cdot m = f\br{m} $ for $ m \in M $. This makes sense because $ f\br{rx} = rf\br{x} $ for all $ r \in R $. Then $ M $ is finitely generated also as an $ A $-module. If $ f\br{M} = M $, then $ tM = M $. Take $ J = \abr{t} \subset A $. By Lemma \ref{lem:9.7} there exists $ a \in \abr{t} $ such that $ \br{1 - a}M = 0 $. Take $ v \in M $ such that $ f\br{v} = 0 $. Then $ tv = 0 $, so $ av = 0 $. Since $ \br{1 - a}v = 0 $, we conclude $ v = 0 $.
+Define $ A = R\sbr{t} $. Let us equip $ M $ with the structure of an $ A $-module. Define $ t \cdot m = f\br{m} $ for $ m \in M $. This makes sense because $ f\br{rx} = rf\br{x} $ for all $ r \in R $. Then $ M $ is finitely generated also as an $ A $-module. Since $ f\br{M} = M $, $ tM = M $. Take $ J = \abr{t} \subset A $. By Lemma \ref{lem:9.7} there exists $ a \in \abr{t} $ such that $ \br{1 - a}M = 0 $. Take $ v \in M $ such that $ f\br{v} = 0 $. Then $ tv = 0 $, so $ av = 0 $. Since $ \br{1 - a}v = 0 $, we conclude $ v = 0 $.
 \end{proof}
 
 \begin{theorem}[Nakayama's lemma]
@@ -781,7 +781,7 @@ Let $ A $ be a ring and let $ J \subset A $ be an ideal contained in the Jacobso
 \end{theorem}
 
 \begin{proof}
-Lemma \ref{lem:9.7} implies that there exists $ a \in J $ such that $ \br{1 - a}M = 0 $. But $ a \in \JJJ\br{A} $, so $ 1 - a $ is a unit in $ A $. Then there exists $ u \in A $ such that $ u\br{1 - a} = 1 $. Hence $ M = u\br{1 - a}M = 0 $.
+By Lemma \ref{lem:9.7}, there exists $ a \in J $ such that $ \br{1 - a}M = 0 $. But $ a \in \JJJ\br{A} $, so $ 1 - a $ is a unit in $ A $. Then there exists $ u \in A $ such that $ u\br{1 - a} = 1 $. Hence $ M = u\br{1 - a}M = 0 $.
 \end{proof}
 
 \begin{corollary}
@@ -795,19 +795,19 @@ Apply Nakayama's lemma to $ M / N $. Indeed, we have $ M / N = J\br{M / N} $, so
 
 \pagebreak
 
-Recall a ring is local when it has a unique maximal ideal. The quotient is called the \textbf{residue field}.
+Recall that a ring is local when it has a unique maximal ideal. The quotient is called the \textbf{residue field}.
 
 \begin{example*}
-For $ k $ a field, $ k\sbr{\sbr{t}} \supset \abr{t} $ and $ k\sbr{\sbr{t_1, \dots, t_n}} \supset \abr{t_1, \dots, t_n} $ are local rings. \footnote{Exercise}
+For $ k $ a field, $ k\sbr{\sbr{t}} \supset \abr{t} $ and $ k\sbr{\sbr{t_1, \dots, t_n}} \supset \abr{t_1, \dots, t_n} $ are local rings. \footnote{Exercise} If $ A $ is a ring with a prime ideal $ \ppp $, and $ S = A \setminus \ppp $, then $ S^{-1}A $ is a local ring, such as $ A = \ZZ $ and $ \ppp = \abr{p} \subseteq \ZZ_\ppp = \cbr{a / b \st \br{b, p} = 1} $.
 \end{example*}
 
 \begin{theorem}
 \label{thm:9.11}
-Let $ R $ be a local ring with maximal ideal $ J $ and residue field $ k = R / J $. Let $ M $ be a finitely generated $ R $-module.
+Let $ R $ be a local ring with maximal ideal $ J \subset R $ and residue field $ k = R / J $. Let $ M $ be a finitely generated $ R $-module.
 \begin{enumerate}
 \item $ M / JM $ is a finite-dimensional vector space over $ k $.
-\item Let $ v_1, \dots, v_n $ be a basis of $ M / JM $ as a vector space over $ k $. Choose $ \widetilde{v_1}, \dots, \widetilde{v_n} \in M $ to be representatives of $ v_1, \dots, v_n $ respectively. That is, $ v_i = \widetilde{v_i} + JM $. Then $ \widetilde{v_1}, \dots, \widetilde{v_n} $ generate $ M $ as an $ R $-module. Moreover, this is a minimal set of generators of $ M $. That is, no proper subset generates $ M $.
-\item All minimal sets of generators of $ M $ are obtained in this way. In particular, all such sets have $ n $ elements, where $ n = \dim_k M / JM $.
+\item Let $ v_1, \dots, v_n $ be a basis of $ M / JM $ as a vector space over $ k $. Choose $ \widetilde{v_1}, \dots, \widetilde{v_n} \in M $ to be representatives of $ v_1, \dots, v_n $ respectively, that is $ v_i = \widetilde{v_i} + JM $. Then $ \widetilde{v_1}, \dots, \widetilde{v_n} $ generate $ M $ as an $ R $-module. Moreover, this is a minimal set of generators of $ M $, that is no proper subset generates $ M $.
+\item All minimal sets of generators of $ M $ are obtained in this way. In particular, all such minimal sets of generators have $ n $ elements, where $ n = \dim_k M / JM $.
 \end{enumerate}
 \end{theorem}
 
@@ -816,8 +816,8 @@ $ J $ is the Jacobson radical of $ A $.
 \begin{enumerate}
 \item Any quotient of a finitely generated $ R $-module is a finitely generated $ R $-module. Hence $ M / JM $ is a finitely generated $ R $-module. But if $ x \in J $ then $ x \cdot M / JM = 0 $. So $ R $ acts on $ M / JM $ via the quotient $ k = R / J $. One says that the action of $ R $ descends to an action of $ k $. Thus $ M / JM $ is a $ k $-module, which is finitely generated. In other words, $ M / JM $ is a finite-dimensional $ k $-vector space.
 \item Consider
-$$ N = R\widetilde{v_1} + \dots R\widetilde{v_n} = \cbr{r_1\widetilde{v_1} + \dots + r_n\widetilde{v_n} \st r_i \in R} \subset M. $$
-Then $ M / JM $ is generated by $ v_1, \dots, v_n $, hence $ M = N + JM $, since $ M / JM = N / JN $. By Corollary \ref{cor:9.10} we have $ M = N $. If a proper subset of $ \widetilde{v_1}, \dots, \widetilde{v_n} $ generates $ M $, then a proper subset of $ v_1, \dots, v_n $ generates an $ n $-dimensional vector space. A contradiction.
+$$ N = R\widetilde{v_1} + \dots + R\widetilde{v_n} = \cbr{r_1\widetilde{v_1} + \dots + r_n\widetilde{v_n} \st r_i \in R} \subset M. $$
+Since $ M / JM $ is generated by $ v_1, \dots, v_n $, $ M = N + JM $, since $ M / JM = N / JN $. By Corollary \ref{cor:9.10} we have $ M = N $. If a proper subset of $ \widetilde{v_1}, \dots, \widetilde{v_n} $ generates $ M $, then a proper subset of $ v_1, \dots, v_n $ generates an $ n $-dimensional vector space. A contradiction.
 
 \lecture{12}{Wednesday}{30/10/19}
 
@@ -825,7 +825,7 @@ Then $ M / JM $ is generated by $ v_1, \dots, v_n $, hence $ M = N + JM $, since
 \end{enumerate}
 \end{proof}
 
-The moral of the story is any finitely generated module $ M $ over a local ring $ R $ has a minimal set of generators, where $ m_1, \dots, m_n $ is a minimal set of generators of $ M $ if and only if $ \overline{m_1}, \dots, \overline{m_n} $ is a basis of the $ k $-vector space $ M / JM $, and $ n $ is well-defined.
+The moral of the story is any finitely generated module $ M $ over a local ring $ R $ has a minimal set of generators. Then $ m_1, \dots, m_n $ is a minimal set of generators of $ M $ if and only if $ \overline{m_1}, \dots, \overline{m_n} $ is a basis of the $ k $-vector space $ M / JM $, and $ n $ is well-defined.
 
 \section{Localisation of modules}
 
@@ -839,8 +839,8 @@ This is an equivalence relation.
 \item Define $ S^{-1}M $ as the set of equivalence classes.
 \item The equivalence class of $ \br{m, s} $ is written as $ m / s $.
 \end{itemize}
-Turn $ S^{-1}M $ into a $ S^{-1}A $-module as follows. Let $ \tfrac{0}{1}, \tfrac{1}{1} \in S^{-1}M $, and
-$$ \dfrac{m}{s} + \dfrac{b}{t} = \dfrac{mt + bs}{st}, \qquad \dfrac{a}{s} \cdot \dfrac{m}{t} = \dfrac{am}{st}, \qquad a \in A, \qquad m \in M, \qquad s \in S, \qquad t \in S. $$
+Turn $ S^{-1}M $ into a $ S^{-1}A $-module as follows. Let $ 0 / 1 \in S^{-1}M $, and
+$$ \dfrac{m}{s} + \dfrac{b}{t} = \dfrac{mt + bs}{st}, \qquad \dfrac{a}{s} \cdot \dfrac{m}{t} = \dfrac{am}{st}, \qquad a \in A, \qquad m \in M, \qquad s, t \in S. $$
 This is the \textbf{localisation of $ M $ with respect to $ S $}.
 \end{definition}
 
@@ -872,7 +872,7 @@ is the unique maximal ideal.
 \end{example}
 
 \begin{proposition}
-Let $ M $ be an $ A $-module. Consider $ M_\mmm = \br{A \setminus \mmm}^{-1}M $, where $ \mmm \subset A $ is a maximal ideal. Then $ M = 0 $ if and only if $ M_\mmm = 0 $ for any maximal ideal $ \mmm $.
+Let $ M $ be an $ A $-module. Consider $ M_\mmm = \br{A \setminus \mmm}^{-1}M $, where $ \mmm \subset A $ is a maximal ideal. Then $ M = 0 $ if and only if $ M_\mmm = 0 $ for any maximal ideal $ \mmm \subset A $.
 \end{proposition}
 
 \begin{proof}
@@ -885,7 +885,7 @@ so $ 1 \notin I $ since $ x \ne 0 $. Choose a maximal ideal $ \mmm $ containing 
 \end{itemize}
 \end{proof}
 
-The following is a corollary. Let $ M $ be a finitely generated $ A $-module. Then $ m_1, \dots, m_n $ generate $ M $ if and only if $ m_1, \dots, m_n $ generate the $ A_\mmm $-module $ M_\mmm $ for any maximal ideal $ \mmm \subset A $. By Theorem \ref{thm:9.11} applied to $ A_\mmm $, this is if and only if the images $ \overline{m_1}, \dots, \overline{m_n} $ in $ M / \mmm M \cong M_\mmm / \mmm M_\mmm $ generate the $ k\br{\mmm} $-vector space for every maximal ideal $ \mmm \subset A $, where $ k\br{\mmm} = A / \mmm $.
+The following is a corollary. Let $ M $ be a finitely generated $ A $-module. Then $ m_1, \dots, m_n $ generate $ M $ if and only if $ m_1, \dots, m_n $ generate the $ A_\mmm $-module $ M_\mmm $ for any maximal ideal $ \mmm \subset A $. By Theorem \ref{thm:9.11} applied to $ A_\mmm $, this is if and only if the images $ \overline{m_1}, \dots, \overline{m_n} $ in $ M / \mmm M \cong M_\mmm / \mmm M_\mmm $ generate the $ k\br{\mmm} $-vector space, where $ k\br{\mmm} = A / \mmm $, for every maximal ideal $ \mmm \subset A $.
 
 \begin{corollary}
 \label{cor:10.6}
@@ -947,7 +947,7 @@ In particular, $ A $ is a Noetherian ring if and only if every ideal in $ A $ is
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Suppose that $ N \subset M $ is a submodule which is not finitely generated. Let $ N_1 = 0 $. Since $ N $ is not finitely generated we can find $ 0 \ne x \in N $ such that $ N_2 = Ax $ is the submodule generated by $ x $, where $ N \ne N_2 $. So we continue. If $ 0 = N_1 \subsetneq \dots \subsetneq N_m $ are constructed, then $ N_m \ne N $, so there exists $ y \in N $ such that $ y \notin N_m $. Define $ N_{m + 1} = N_m + Ay $, the smallest module containing $ N_m $ and $ y $. Since $ N $ is not finitely generated, this chain is not stationary.
+\item[$ \implies $] Suppose that $ N \subset M $ is a submodule which is not finitely generated. Let $ N_1 = 0 $. Since $ N $ is not finitely generated we can find $ 0 \ne x \in N $ such that $ N_2 = Ax $, the submodule generated by $ x $, and $ N \ne N_2 $. So we continue. If $ 0 = N_1 \subsetneq \dots \subsetneq N_m $ are constructed, then $ N_m \ne N $, so there exists $ y \in N $ such that $ y \notin N_m $. Define $ N_{m + 1} = N_m + Ay $, the smallest module containing $ N_m $ and $ y $. Since $ N $ is not finitely generated, this chain is not stationary.
 \item[$ \impliedby $] Let $ M_1 \subset M_2 \subset \dots \subset M $. Must prove that this chain is stationary. Define
 $$ N = \bigcup_{i \in I} M_i. $$
 This is a submodule of $ M $. We know that $ N = Rx_1 + \dots + Rx_n $ where $ x_1, \dots, x_n \in N $. Then $ x_k $ is contained in some $ M_{i_k} $. Suppose that $ i_0 = \max\cbr{i_1, \dots, i_n} $. Then $ x_{i_1}, \dots, x_{i_n} \in M_{i_0} $, since $ M_{i_1} \subset M_{i_0}, \dots, M_{i_k} \subset M_{i_0} $. But now we see that $ M_{i_0} \supset N $. Since $ M_{i_0} \subset N $, we must have $ N = M_{i_0} $. Hence $ M_{i_0} = M_{i_0 + 1} = \dots $.
@@ -956,33 +956,35 @@ This is a submodule of $ M $. We know that $ N = Rx_1 + \dots + Rx_n $ where $ x
 
 \begin{proposition}
 \label{prop:11.4}
-Suppose $ M $ is an $ A $-module. Let $ N \subset M $ be a submodule. Then $ M $ is Noetherian if and only if $ N $ and $ M / N $ are Noetherian, and $ M $ is Artinian if and only if $ N $ and $ M / N $ are Artinian.
+Suppose $ M $ is an $ A $-module. Let $ N \subset M $ be a submodule. Then $ M $ is Noetherian if and only if $ N $ and $ M / N $ are both Noetherian, and $ M $ is Artinian if and only if $ N $ and $ M / N $ are both Artinian.
 \end{proposition}
 
 \begin{proof}
 The Noetherian case.
 \begin{itemize}
-\item[$ \implies $] Suppose $ M $ is Noetherian. Ascending chains of submodules of $ N $ are ascending chains of submodules of $ M $, so must be stationary. Let $ f : M \to N $ be the canonical map. If $ L_1 \subset L_2 \subset \dots $ is a chain of submodules of $ M / N $, then $ f^{-1}\br{L_1} \subset f^{-1}\br{L_2} \subset \dots $ is a chain of submodules of $ M $. This is stationary. Since $ f\br{f^{-1}\br{L_i}} = L_i $, the original chain of $ L_i $'s is stationary.
-
-\pagebreak
+\item[$ \implies $] Suppose $ M $ is Noetherian. Ascending chains of submodules of $ N $ are ascending chains of submodules of $ M $, so must be stationary. Let $ f : M \twoheadrightarrow N $ be the canonical map. If $ L_1 \subset L_2 \subset \dots $ is a chain of submodules of $ M / N $, then $ f^{-1}\br{L_1} \subset f^{-1}\br{L_2} \subset \dots $ is a chain of submodules of $ M $. This is stationary. Since $ f\br{f^{-1}\br{L_i}} = L_i $, the original chain of $ L_i $'s is stationary.
 
 \lecture{16}{Thursday}{07/11/19}
 
-\item[$ \impliedby $] Now assume that $ N $ and $ M / N $ are Noetherian. We need to prove that an ascending chain $ M_1 \subset M_2 \subset \dots $ of submodules of $ M $ is stationary. Then $ N \cap M_1 \subset N \cap M_2 \subset \dots $ is a chain of submodules of $ N $. Similarly, $ M_1 / N \cap M_1 \subset M_2 / N \cap M_2 \subset \dots $. Indeed, $ M_1 \to M_2 $ is clearly injective, and $ \ker \br{M_1 \to M_2 / N \cap M_2} = N \cap M_1 $. Therefore, $ M_1 / N \cap M_1 $ injectively maps to $ M_2 / N \cap M_2 $. Then
+\item[$ \impliedby $] Now assume that $ N $ and $ M / N $ are Noetherian. We need to prove that an ascending chain $ M_1 \subset M_2 \subset \dots $ of submodules of $ M $ is stationary. Then $ N \cap M_1 \subset N \cap M_2 \subset \dots $ is a chain of submodules of $ N $. Similarly, $ M_1 / \br{N \cap M_1} \subset M_2 / \br{N \cap M_2} \subset \dots $. Indeed, $ M_1 \to M_2 $ is clearly injective, and $ \ker \br{M_1 \to M_2 / \br{N \cap M_2}} = N \cap M_1 $. Therefore, $ M_1 / \br{N \cap M_1} $ injectively maps to $ M_2 / \br{N \cap M_2} $.
+
+\pagebreak
+
+Then
 $$
 \begin{tikzcd}[row sep=small]
-M_1 / M_1 \cap N \arrow[hookrightarrow]{r} & M_2 / M_2 \cap N \arrow[hookrightarrow]{r} & \dots \arrow[hookrightarrow]{r} & M / N \\
+M_1 / \br{M_1 \cap N} \arrow[hookrightarrow]{r} & M_2 / \br{M_2 \cap N} \arrow[hookrightarrow]{r} & \dots \arrow[hookrightarrow]{r} & M / N \\
 M_1 \arrow[twoheadrightarrow]{u} \arrow[hookrightarrow]{r} & M_2 \arrow[twoheadrightarrow]{u} \arrow[hookrightarrow]{r} & \dots \arrow[hookrightarrow]{r} & M \arrow[twoheadrightarrow]{u} \\
 M_1 \cap N \arrow[hookrightarrow]{u} \arrow[hookrightarrow]{r} & M_2 \cap N \arrow[hookrightarrow]{u} \arrow[hookrightarrow]{r} & \dots \arrow[hookrightarrow]{r} & M \arrow[hookrightarrow]{u}
 \end{tikzcd}.
 $$
 If $ F $ and $ G $ are submodules of $ H $, then we have a natural map
 $$ \function{F}{\br{F + G} / G}{x}{x + G}. $$
-The kernel of this map is $ F \cap G $. The map $ F \to \br{F + G} / G $ is surjective. So we have a canonical isomorphism $ F / F \cap G \xrightarrow{\sim} \br{F + G} / G $. Apply this to $ F = M_i $, $ G = N $, and $ H = M $. Then
+The kernel of this map is $ F \cap G $. The map $ F \to \br{F + G} / G $ is surjective. So we have a canonical isomorphism $ F / \br{F \cap G} \xrightarrow{\sim} \br{F + G} / G $. Apply this to $ F = M_i $, $ G = N $, and $ H = M $. Then
 $$
 \begin{tikzcd}[row sep=small]
 \br{M_1 + N} / N \arrow[hookrightarrow]{r} & \br{M_2 + N} / N \arrow[hookrightarrow]{r} & \dots \arrow[hookrightarrow]{r} & M / N \\
-M_1 / M_1 \cap N \arrow{u}{\sim} \arrow[hookrightarrow]{r} & M_2 / M_2 \cap N \arrow{u}{\sim} \arrow[hookrightarrow]{r} & \dots \arrow[hookrightarrow]{r} & M / N \arrow{u}{\sim}
+M_1 / \br{M_1 \cap N} \arrow{u}{\sim} \arrow[hookrightarrow]{r} & M_2 / \br{M_2 \cap N} \arrow{u}{\sim} \arrow[hookrightarrow]{r} & \dots \arrow[hookrightarrow]{r} & M / N \arrow{u}{\sim}
 \end{tikzcd}.
 $$
 There exists $ a \in \NN $ such that $ M_i \cap N = M_a \cap N $ for all $ i \ge a $. There exists $ b \in \NN $ such that $ \br{M_i + N} / N = \br{M_b + N} / N $ for all $ i \ge b $. Define $ c = \max\cbr{a, b} $. Then
@@ -990,7 +992,7 @@ $$
 \begin{tikzcd}[row sep=small]
 \br{M_c + N} / N \arrow{r}{\sim} & \br{M_i + N} / N \\
 y \in M_c \arrow[twoheadrightarrow]{u} \arrow[hookrightarrow]{r} & M_i \ni x \arrow[twoheadrightarrow]{u} \\
-M_c \cap N \arrow[hookrightarrow]{u} \arrow{r}{\sim} & M_i \cap N \arrow[hookrightarrow]{u}
+M_c \cap N \arrow[hookrightarrow]{u} \arrow{r}[swap]{\sim} & M_i \cap N \arrow[hookrightarrow]{u}
 \end{tikzcd}.
 $$
 Claim that $ M_i = M_c $ for all $ i \ge c $. It remains to show that any $ x \in M_i $ is in fact in $ M_c $. Since the top arrow is an isomorphism, and $ M_c \to \br{M_c + N} / N $ is surjective, we can find $ y \in M_c $ whose image in $ \br{M_i + N} / N $ is equal to the image of $ x $. Then $ x - y \in M_i $ goes to zero in $ \br{M_i + N} / N $. Thus $ x - y \in M_i \cap N $. Hence $ x - y \in M_c \cap N \subset M_c $. Hence $ x = \br{x - y} + y \in M_c $. Therefore, $ M_c = M_i $.
@@ -1007,11 +1009,11 @@ Recall that any finitely generated $ A $-module is a quotient of a free module $
 
 \begin{corollary}
 \label{cor:11.6}
-Let $ M $ be an $ A $-module. If $ 0 = M_0 \subset \dots \subset M_n = M $ are $ A $-submodules such that $ M_{i + 1} / M_i $ is a Noetherian $ A $-module, then $ M $ is also Noetherian. The same statement is true for Artinian modules.
+Let $ M $ be an $ A $-module. If $ 0 = M_0 \subset \dots \subset M_n = M $ are $ A $-submodules such that $ M_{i + 1} / M_i $ is a Noetherian $ A $-module, then $ M $ is also a Noetherian $ A $-module. The same statement is true for Artinian modules.
 \end{corollary}
 
 \begin{proof}
-Apply Proposition \ref{prop:11.4}. Then $ M_1 / M_0 $ is Noetherian and $ M_2 / M_1 $ is Noetherian implies that $ M_2 $ is Noetherian, etc.
+Apply Proposition \ref{prop:11.4}. Since $ M_1 / M_0 $ is Noetherian and $ M_2 / M_1 $ is Noetherian, $ M_2 $ is Noetherian, etc.
 \end{proof}
 
 \begin{lemma}
@@ -1020,7 +1022,9 @@ Let $ A $ be a Noetherian ring. Let $ S \subset A $ be a multiplicative set. The
 \end{lemma}
 
 \begin{proof}
-By Lemma \ref{lem:11.1} it is enough to prove that any non-empty set of ideals of $ S^{-1}A $ has a maximal element. So take $ J $ a non-empty set of ideals of $ S^{-1}A $. Let $ f : A \to S^{-1}A $ be the map $ f\br{a} = a / 1 $. Consider $ \cbr{f^{-1}\br{I} \st I \in J} $. This is a set of ideals of $ A $. It has a maximal element, say $ I_0 $, since $ A $ is Noetherian. Then $ I_0 = S^{-1}f\br{I_0} $ is a maximal element of $ J $.
+By Lemma \ref{lem:11.1} it is enough to prove that any non-empty set of ideals of $ S^{-1}A $ has a maximal element. So take $ J $ a non-empty set of ideals of $ S^{-1}A $. Let
+$$ \function[f]{A}{S^{-1}A}{a}{\dfrac{a}{1}}. $$
+Consider $ \cbr{f^{-1}\br{I} \st I \in J} $. This is a set of ideals of $ A $. It has a maximal element, say $ I_0 $, since $ A $ is Noetherian. Then $ I_0 = S^{-1}f\br{I_0} $ is a maximal element of $ J $.
 \end{proof}
 
 \pagebreak
@@ -1080,8 +1084,10 @@ Let $ I \subsetneq R $ be an ideal. Then $ I $ is called \textbf{irreducible} if
 \end{enumerate}
 \end{proposition}
 
-\begin{exercise*}
+Thus
 $$ \cbr{\text{prime ideals}} \subset \cbr{\text{irreducible ideals}} \subset \cbr{\text{primary ideals}}. $$
+
+\begin{exercise*}
 Show that these are strict in general.
 \end{exercise*}
 
@@ -1090,10 +1096,10 @@ Show that these are strict in general.
 \begin{proof}
 \hfill
 \begin{enumerate}
-\item Suppose $ \ppp \subset R $ is a prime ideal such that $ \ppp = J \cap K $, and $ \ppp \ne J $ and $ \ppp \ne K $. Let $ x \in J \setminus \ppp $ and $ y \in K \setminus \ppp $. Then $ xy \in JK \subset J \cap K = \ppp $. This is a contradiction, since $ \ppp $ is prime.
+\item Suppose $ \ppp \subset R $ is a prime ideal such that $ \ppp = J \cap K $, where $ \ppp \ne J $ and $ \ppp \ne K $. Let $ x \in J \setminus \ppp $ and $ y \in K \setminus \ppp $. Then $ xy \in JK \subset J \cap K = \ppp $. This is a contradiction, since $ \ppp $ is prime.
 \item Let $ I $ be an irreducible ideal of a Noetherian ring $ R $. Consider $ R / I $. Suppose $ x, y \in R / I $ such that $ xy = 0 $ and $ x \ne 0 $. The task is to show that $ y^n = 0 $ for some $ n \ge 1 $. Since $ R $ is Noetherian, $ R / I $ is Noetherian. Consider
 $$ \Ann y^m = \cbr{\alpha \in R / I \st \alpha y^m = 0}. $$
-Then $ \Ann y \subset \Ann y^2 \subset \dots \subset R / I $. There exists $ n \ge 1 $ such that $ \Ann y^n = \Ann y^{n + i} $, for all $ i \ge 0 $. Claim that $ \abr{x} \cap \abr{y^n} = 0 $. Suppose $ 0 \ne a \in \abr{x} \cap \abr{y^n} $. Then $ ay = 0 $ and also $ a = by^n $ for some $ b \in R / I $. Then $ 0 = ay = by^{n + 1} $. This says that $ b \in \Ann y^{n + 1} = \Ann y^n $. Hence $ by^n = 0 $, so $ a = 0 $, a contradiction. But the ideal $ I \subset R $ is irreducible, hence the ideal $ 0 \subset R / I $ is irreducible. We know that $ \abr{x} \ne 0 $. Thus $ \abr{y^n} = 0 $, so $ y^n = 0 $. This finishes the proof.
+Then $ \Ann y \subset \Ann y^2 \subset \dots \subset R / I $. There exists $ n $ such that $ \Ann y^n = \Ann y^{n + i} $, for all $ i \ge 0 $. Claim that $ \abr{x} \cap \abr{y^n} = 0 $. Suppose $ 0 \ne a \in \abr{x} \cap \abr{y^n} $. Then $ ay = 0 $ and also $ a = by^n $ for some $ b \in R / I $. Then $ 0 = ay = by^{n + 1} $. This says that $ b \in \Ann y^{n + 1} = \Ann y^n $. Hence $ by^n = 0 $, so $ a = 0 $, a contradiction. But the ideal $ I \subset R $ is irreducible, hence the ideal $ 0 \subset R / I $ is irreducible. We know that $ \abr{x} \ne 0 $. Thus $ \abr{y^n} = 0 $, so $ y^n = 0 $. This finishes the proof.
 \end{enumerate}
 \end{proof}
 
@@ -1104,7 +1110,7 @@ Every ideal in a Noetherian ring has a primary decomposition.
 \end{theorem}
 
 \begin{proof}
-We shall in fact prove that every ideal is a finite intersection of irreducible ideals. Suppose this does not hold for a Noetherian ring $ R $. Let $ \Sigma $ be the set of proper ideals of $ R $ that are not finite intersections of irreducible ideals. Assume $ \Sigma \ne \emptyset $. In a Noetherian ring every non-empty set of ideals has a maximal element. Take a maximal element of $ \Sigma $. This is an ideal $ I \subsetneq R $. Then $ I $ is not a finite intersection of irreducible ideals, in particular $ I $ is not irreducible. Thus $ I = J \cap K $, where $ J $ and $ K $ are ideals of $ R $, and $ J \supsetneq I $ and $ K \supsetneq I $. Since $ I $ is a maximal element of $ \Sigma $, we can write $ J = \bigcap_{m = 1}^n J_m $ and $ K = \bigcap_{s = 1}^r K_s $, where each $ J_m $ and each $ K_s $ is irreducible. Hence
+We shall in fact prove that every ideal is a finite intersection of irreducible ideals. Suppose this does not hold for a Noetherian ring $ R $. Let $ \Sigma $ be the set of proper ideals of $ R $ that are not finite intersections of irreducible ideals. Assume $ \Sigma \ne \emptyset $. In a Noetherian ring every non-empty set of ideals has a maximal element. Take a maximal element of $ \Sigma $. This is an ideal $ I \subsetneq R $. Then $ I $ is not a finite intersection of irreducible ideals, in particular $ I $ is not irreducible. Thus $ I = J \cap K $, where $ J \supsetneq I $ and $ K \supsetneq I $ are ideals of $ R $. Since $ I $ is a maximal element of $ \Sigma $, we can write $ J = \bigcap_{m = 1}^n J_m $ and $ K = \bigcap_{s = 1}^r K_s $, where each $ J_m $ and each $ K_s $ is irreducible. Hence
 $$ I = \br{\bigcap_{m = 1}^n J_m} \cap \br{\bigcap_{s = 1}^r K_s} $$
 is a finite intersection of irreducible ideals. This is a contradiction. This shows that $ \Sigma = \emptyset $.
 \end{proof}
@@ -1118,7 +1124,7 @@ $$ \rad \bigcap_{j = 1}^n I_j = \rad I_1 = \dots = \rad I_n. $$
 \begin{proof}
 Let $ \ppp = \rad I_j $ for $ j = 1, \dots, n $, and let $ I = \bigcap_{j = 1}^n I_j $. Suppose $ x, y \in R $ such that $ xy \in I $, but $ x \notin I $. Hence $ x \notin I_j $ for some $ j $. We have $ xy \in I_j $ but $ x \notin I_j $ thus $ y \in \rad I_j $, since $ I_j $ is primary. So $ y \in \ppp $. Then
 $$ \rad I = \rad \bigcap_{j = 1}^n I_j = \bigcap_{j = 1}^n \rad I_j = \ppp, $$
-by problem sheet $ 2 $ question $ 2\br{b} $. Hence $ y \in \rad I $. This shows that $ I $ is primary. Moreover, $ \rad I = \ppp $.
+by problem sheet $ 2 $ question $ 2 $(b). Hence $ y \in \rad I $. This shows that $ I $ is primary. Moreover, $ \rad I = \ppp $.
 \end{proof}
 
 \begin{lemma}
@@ -1133,22 +1139,20 @@ $$
 \end{lemma}
 
 \begin{proof}
-$ x \in I $ implies that $ 1 \in \br{I : \abr{x}} $. Hence $ \abr{I : \abr{x}} = R $. Now assume $ x \notin I $. Then
-$$ \br{I : \abr{x}} = \cbr{y \in R \st xy \in I}. $$
-Since $ I $ is primary, this implies $ y^n \in I $ and $ y \in \rad I = \ppp $. So $ I \subset \br{I : \abr{x}} \subset \ppp $, so $ \ppp = \rad I \subset \rad \br{I : \abr{x}} \subset \ppp $, so $ \rad \br{I : \abr{x}} = \ppp $. It remains to show that $ \br{I : \abr{x}} $ is primary. Assume $ yz \in \br{I : \abr{x}} $ whereas $ y \notin \rad \br{I : \abr{x}} = \ppp $. We must show that $ z \in \br{I : \abr{x}} $. Then $ yz \in \br{I : \abr{x}} $ implies that $ y\br{xz} = xyz \in I $. Since $ I $ is primary and $ y \notin \ppp = \rad I $, no power of $ y $ is contained in $ I $, therefore $ xz \in I $, so $ z \in \br{I : \abr{x}} $.
+If $ x \in I $, then $ 1 \in \br{I : \abr{x}} $. Hence $ \br{I : \abr{x}} = R $. Now assume $ x \notin I $. Then $ \br{I : \abr{x}} = \cbr{y \in R \st xy \in I} $. Since $ I $ is primary, this implies $ y^n \in I $ and $ y \in \rad I = \ppp $. So $ I \subset \br{I : \abr{x}} \subset \ppp $, so $ \ppp = \rad I \subset \rad \br{I : \abr{x}} \subset \ppp $, so $ \rad \br{I : \abr{x}} = \ppp $. It remains to show that $ \br{I : \abr{x}} $ is primary. Assume $ yz \in \br{I : \abr{x}} $ whereas $ y \notin \rad \br{I : \abr{x}} = \ppp $. We must show that $ z \in \br{I : \abr{x}} $. Since $ yz \in \br{I : \abr{x}} $, $ y\br{xz} = xyz \in I $. Then $ I $ is primary and $ y \notin \ppp = \rad I $. So no power of $ y $ is contained in $ I $, therefore $ xz \in I $, so $ z \in \br{I : \abr{x}} $.
 \end{proof}
 
 \pagebreak
 
 Call a primary decomposition $ I = \bigcap_{j = 1}^k I_j $ \textbf{minimal} if
-\begin{itemize}
+\begin{enumerate}
 \item $ \rad I_j \ne \rad I_k $ for $ j \ne k $, and
-\item for every $ j = 1, \dots, n $, $ \bigcap_{k = 1, \ k \ne j}^n I_k \subset I_j $.
-\end{itemize}
-Can achieve this by Lemma \ref{lem:12.7}.
+\item for every $ j = 1, \dots, n $, $ \bigcap_{k = 1, \ k \ne j}^n I_k \not\subset I_j $.
+\end{enumerate}
+Can achieve $ 1 $ by Lemma \ref{lem:12.7}.
 
 \begin{theorem}[First uniqueness theorem]
-Let $ I = \bigcap_{j = 1}^n I_j $ be a minimal primary decomposition. Write $ \ppp_j = \rad I_j $ for $ j = 1, \dots, n $. Then the ideals $ \ppp_1, \dots, \ppp_n $ are precisely the prime ideals of $ R $ of the form $ \rad \br{I : \abr{x}} $, where $ x \in R $. In particular, $ \ppp_1, \dots, \ppp_n $ do not depend on the primary decomposition chosen.
+Let $ I = \bigcap_{j = 1}^n I_j $ be a minimal primary decomposition. Write $ \ppp_j = \rad I_j $ for $ j = 1, \dots, n $. Then the prime ideals $ \ppp_1, \dots, \ppp_n $ are precisely recovered as the prime ideals of $ R $ of the form $ \rad \br{I : \abr{x}} $, where $ x \in R $. In particular, $ \ppp_1, \dots, \ppp_n $ do not depend on the primary decomposition chosen.
 \end{theorem}
 
 \lecture{19}{Thursday}{14/11/19}
@@ -1156,14 +1160,14 @@ Let $ I = \bigcap_{j = 1}^n I_j $ be a minimal primary decomposition. Write $ \p
 \begin{proof}
 Take any $ x \in R $. Then
 $$ \br{I : \abr{x}} = \br{\bigcap_{j = 1}^k I_j : \abr{x}} = \cbr{y \in R \st xy \in \bigcap_{j = 1}^k I_j} = \bigcap_{j = 1}^k \cbr{y \in R \st xy \in I_j} = \bigcap_{j = 1}^k \br{I_j : \abr{x}}. $$
-Take the radicals of these ideals. Problem sheet $ 2 $ question $ 2\br{b} $ says that the radical of an intersection is the intersection of their radicals, so $ \rad \br{I : \abr{x}} = \bigcap_{j = 1}^k \rad \br{I_j : \abr{x}} $. Note that by Lemma \ref{lem:12.8}
+Take the radicals of these ideals. Problem sheet $ 2 $ question $ 2 $(b) says that the radical of an intersection is the intersection of their radicals, so $ \rad \br{I : \abr{x}} = \bigcap_{j = 1}^k \rad \br{I_j : \abr{x}} $. Note that by Lemma \ref{lem:12.8}
 $$ \rad \br{I_j : \abr{x}} =
 \begin{cases}
 R & x \in I_j \\
 \ppp_j & x \notin I_j
 \end{cases},
 $$
-so $ \rad \br{I : \abr{x}} = \bigcap_{x \notin I_j} \ppp_j $. So we recover all of $ \ppp_1, \dots, \ppp_n $ and nothing else. Lemma \ref{lem:4.12} says that $ \ppp = \bigcap_{i = 1}^m J_i $ is prime implies that $ \ppp $ is one of the $ J_i $'s. Hence if $ \rad \br{I : \abr{x}} $ is a prime ideal, then it is one of $ \ppp_j = \rad \br{I_j : \abr{x}} $ for $ x \notin I_j $.
+so $ \rad \br{I : \abr{x}} = \bigcap_{x \notin I_j} \ppp_j $. Lemma \ref{lem:4.12} says that $ \ppp = \bigcap_{i = 1}^m J_i $ is prime implies that $ \ppp $ is one of the $ J_i $'s. Hence if $ \rad \br{I : \abr{x}} $ is a prime ideal, then it is one of $ \ppp_j = \rad \br{I_j : \abr{x}} $ for $ x \notin I_j $. So we recover all of $ \ppp_1, \dots, \ppp_n $ and nothing else.
 \end{proof}
 
 \begin{remark*}
@@ -1176,16 +1180,18 @@ These prime ideals $ \ppp_1, \dots, \ppp_n $ are called the \textbf{associated p
 \item Let $ R = \ZZ $. Then
 $$ \cbr{\text{prime ideals}} = \cbr{0} \cup \cbr{\text{maximal ideals}} = \cbr{0} \cup \cbr{\abr{p} \st p \ \text{prime}}, $$
 $$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{0} \cup \cbr{\abr{p^n} \st p \ \text{prime}}. $$
-For example, $ \abr{4} \subsetneq \abr{2} \cap \abr{2} \subsetneq \ZZ $ is irreducible.
-\item Let $ R = k\sbr{x} $. Then
+For example, $ \abr{4} \subsetneq \abr{2} \subsetneq \ZZ $ is irreducible.
+\item Let $ R = k\sbr{x} $ for $ k $ a field. Then
 $$ \cbr{\text{prime ideals}} = \cbr{0} \cup \cbr{\text{maximal ideals}} = \cbr{0} \cup \cbr{\abr{p\br{x}} \st p\br{x} \ \text{monic irreducible polynomial}}, $$
 $$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{0} \cup \cbr{\abr{p\br{x}^n} \st p\br{x} \ \text{monic irreducible polynomial}}. $$
-\item Let $ R = k\sbr{x, y} $. Then $ \abr{x} $ is prime, since $ k\sbr{x, y} / \abr{x} \cong k\sbr{y} $ is an integral domain, and $ \abr{x, y} $ is maximal, since $ k\sbr{x, y} / \abr{x, y} \cong k $ is a field.
+\item Let $ R = k\sbr{x, y} $.
 \begin{itemize}
+\item $ \abr{x} $ is prime, since $ k\sbr{x, y} / \abr{x} \cong k\sbr{y} $ is an integral domain.
+\item $ \abr{x, y} $ is maximal, since $ k\sbr{x, y} / \abr{x, y} \cong k $ is a field.
 \item $ \abr{x, y^2} $ is not prime, since $ k\sbr{x, y} / \abr{x, y^2} \cong k \oplus ky $ is not an integral domain, where $ y^2 = 0 $. Then $ \rad \abr{x, y^2} = \abr{x, y} $, so Proposition \ref{prop:12.2} implies that $ \abr{x, y^2} $ is primary.
-\item $ \abr{xy} $ is not prime, since $ x^n, y^n \notin \abr{xy} $ for all $ n \ge 1 $ and $ xy \in \abr{xy} $, and $ k\sbr{x, y} / \abr{xy} $ has zero-divisors which are not nilpotent, so $ \abr{xy} $ is also not primary. Then $ \abr{xy} = \abr{x} = \abr{x}\abr{y} = \abr{x} \cap \abr{y} $ is a primary decomposition, where $ \abr{x} $ and $ \abr{y} $ are prime, hence primary.
-\item $ \abr{x^ay^b} = \abr{x^a} \cap \abr{x^b} $ for $ a, b \ge 1 $ is a primary decomposition, since $ \abr{x^a} $ and $ \abr{y^b} $ are primary. For example, $ \rad \abr{x^a} = \abr{x} $, since $ k\sbr{x, y} / \abr{x^a} \cong k\sbr{y} \oplus \dots \oplus k\sbr{y}x^{a - 1} $ has no non-nilpotent zero-divisors.
-\item $ \abr{x^2, xy^2} = \abr{x}\abr{x, y^2} $ for $ a, b \ge 1 $ is not primary, since $ y $ gives a zero-divisor in $ k\sbr{x, y} / \abr{x^2, xy^2} $ which is not nilpotent. Find a primary decomposition. \footnote{Exercise}
+\item $ \abr{xy} $ is not prime, since $ x^n, y^n \notin \abr{xy} $ for all $ n \ge 1 $ and $ xy \in \abr{xy} $, and $ k\sbr{x, y} / \abr{xy} $ has zero-divisors which are not nilpotent, so $ \abr{xy} $ is also not primary. Then $ \abr{xy} = \abr{x}\abr{y} = \abr{x} \cap \abr{y} $ is a primary decomposition, where $ \abr{x} $ and $ \abr{y} $ are prime, hence primary.
+\item $ \abr{x^ay^b} = \abr{x^a} \cap \abr{y^b} $ for $ a, b \ge 1 $ is a primary decomposition, since $ \abr{x^a} $ and $ \abr{y^b} $ are primary, for example since $ k\sbr{x, y} / \abr{x^a} \cong k\sbr{y} \oplus \dots \oplus k\sbr{y}x^{a - 1} $ has no non-nilpotent zero-divisors.
+\item $ \abr{x^2, xy^2} = \abr{x}\abr{x, y^2} $ is not primary, since $ y $ gives a zero-divisor in $ k\sbr{x, y} / \abr{x^2, xy^2} $ which is not nilpotent. Find a primary decomposition. \footnote{Exercise}
 \item $ \abr{x^2, xy, y^2} = \abr{x, y}^2 $, so it is primary but not irreducible, since $ \abr{x^2, xy, y^2} = \abr{x^2, y} \cap \abr{x, y^2} $.
 \end{itemize}
 \end{itemize}
@@ -1198,7 +1204,7 @@ $$ \cbr{\text{primary ideals}} = \cbr{\text{irreducible ideals}} = \cbr{0} \cup 
 \lecture{20}{Tuesday}{19/11/19}
 
 \begin{definition}
-Let $ A $ be a ring and let $ M $ be an $ A $-module. Then $ M $ is a \textbf{simple} $ A $-module if the only proper submodule of $ M $ is zero. A \textbf{composition series} is a descending chain of submodules $ M = M_0 \supsetneq \dots \supsetneq M_n = 0 $ such that $ M_i / M_{i + 1} $ is a simple $ A $-module for $ i = 0, \dots, n - 1 $.
+Let $ A $ be a ring and let $ M $ be an $ A $-module. Then $ M $ is called a \textbf{simple} $ A $-module if the only proper submodule of $ M $ is zero. A \textbf{composition series} is a descending chain of submodules $ M = M_0 \supsetneq \dots \supsetneq M_n = 0 $ such that $ M_i / M_{i + 1} $ is a simple $ A $-module for $ i = 0, \dots, n - 1 $.
 \end{definition}
 
 \begin{proposition}
@@ -1223,21 +1229,21 @@ If $ M $ has a composition series of length $ n $, then any composition series o
 
 \begin{proof}
 Let us denote by $ \l\br{M} $ the smallest length of a composition series of $ M $.
-\begin{enumerate}[label=Step \arabic*.]
+\begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
 \item For a proper submodule $ N \subsetneq M $ we have $ \l\br{N} < \l\br{M} $. Indeed, let $ \br{M_i} $ be a composition series of length $ \l\br{M} $. Define $ N_i = N \cap M_i $, so
 $$
 \begin{tikzcd}[row sep=small]
 M = M_0 & \dots \arrow[subset]{l} & M_{n - 1} \arrow[subset]{l} & M_n = 0 \arrow[subset]{l} \\
-N = N_0 \arrow[subset]{u} & \dots \arrow[subset]{l} & N_{n - 1} \arrow[subset]{u} \arrow[subset]{l} & N_n = 0 \arrow[subset]{l} \\
+N = N_0 \arrow[subset]{u} & \dots \arrow[subset]{l} & N_{n - 1} \arrow[subset]{u} \arrow[subset]{l} & N_n = 0 \arrow[cong]{u} \arrow[subset]{l}
 \end{tikzcd}.
 $$
-Then $ \ker \br{N_i \to M_i / M_{i + 1}} = N_{i + 1} $, so $ N_i / N_{i + 1} \subset M_i / M_{i + 1} $, which is simple. After eliminating repetitions we get a composition of length at most $ \l\br{M} $. If the length is exactly $ \l\br{M} $, then $ N_{n - 1} = M_{n - 1} $, $ N_{n - 2} = M_{n - 2} $, etc, and finally $ N = M $.
+Then $ \ker \br{N_i \to M_i / M_{i + 1}} = N_{i + 1} $, so $ N_i / N_{i + 1} \subset M_i / M_{i + 1} $, which is simple. After eliminating repetitions we get a composition series for $ N $ of length at most $ \l\br{M} $. If the length is exactly $ \l\br{M} $, then $ N_{n - 1} = M_{n - 1} $, $ N_{n - 2} = M_{n - 2} $, etc, and finally $ N = M $.
 \item Any proper chain of submodules of $ M $ has length at most $ \l\br{M} $. Passing to a proper submodule decreases $ \l\br{M} $ at least by one. So the chain contains no more than $ \l\br{M} $ terms.
 \item So consider any composition series of $ M $. By step $ 2 $, it has length at most $ \l\br{M} $. By minimality of $ \l\br{M} $, it has length equal to $ \l\br{M} $.
 \end{enumerate}
 \end{proof}
 
-Define the \textbf{length} of a Noetherian and Artinian module $ M $ to be $ \l\br{M} $, the length of any composition series.
+Define the \textbf{length} of a Noetherian and Artinian module $ M $ to be $ \l\br{M} $, the length of any composition series of $ M $.
 
 \begin{exercise*}
 Any chain of submodules of $ M $ can be made into a composition series by inserting some submodules.
@@ -1274,7 +1280,7 @@ An Artinian integral domain is a field.
 \end{lemma}
 
 \begin{proof}
-Take $ x \ne 0 $ in an Artinian ring $ A $. Consider $ \abr{x} \supset \abr{x^2} \supset \dots $, which is stationary, so $ \abr{x^n} = \abr{x^{n + 1}} $ for some $ n \ge 0 $. Therefore, $ x^n = ax^{n + 1} $, so $ x^n\br{ax - 1} = 0 $. Then $ x^n \ne 0 $, so $ ax = 1 $, so $ x $ is invertible, that is $ x \in A^* $.
+Take $ x \ne 0 $ in an Artinian ring $ A $. Consider $ \abr{x} \supset \abr{x^2} \supset \dots $, which is stationary, so for some $ n \ge 0 $, $ \abr{x^n} = \abr{x^{n + 1}} $. Therefore, $ x^n = ax^{n + 1} $, so $ x^n\br{ax - 1} = 0 $. Since $ x^n \ne 0 $, $ ax = 1 $, so $ x $ is invertible, that is $ x \in A^* $.
 \end{proof}
 
 \begin{corollary}
@@ -1295,9 +1301,7 @@ An Artinian ring has only finitely many maximal ideals.
 Assume this is false, so $ \mmm_1, \mmm_2, \dots $ are pairwise different maximal ideals. Then $ \mmm_1 \supset \mmm_1 \cap \mmm_2 \supset \dots $ is stationary, so for some $ n \ge 1 $ we have $ \mmm_1 \cap \dots \cap \mmm_n = \br{\mmm_1 \cap \dots \cap \mmm_n} \cap \mmm_{n + 1} $, so $ \mmm_1 \cap \dots \cap \mmm_n \subset \mmm_{n + 1} $. By the prime avoidance lemma, $ \mmm_{n + 1} $ contains some $ \mmm_i $, where $ i \in \cbr{1, \dots, n} $. These are maximal ideals, hence $ \mmm_i = \mmm_{n + 1} $. This is a contradiction.
 \end{proof}
 
-\begin{definition*}
 An ideal $ I \subset R $ is called \textbf{nilpotent} if $ I^n = 0 $ for some $ n \ge 1 $.
-\end{definition*}
 
 \begin{lemma}
 \label{lem:13.10}
@@ -1307,14 +1311,12 @@ If $ A $ is an Artinian or Noetherian ring, then the nilradical $ \NNN\br{A} $ i
 \begin{proof}
 \hfill
 \begin{itemize}
-\item Assume $ A $ is Artinian. Consider $ \NNN\br{A} \supset \NNN\br{A}^2 \supset \dots $. There exists $ n \ge 1 $ such that $ \NNN\br{A}^n = \NNN\br{A}^{n + 1} $. Claim that $ \NNN\br{A}^n = 0 $. Assume $ \NNN\br{A}^n \ne 0 $. Consider all ideals $ I \subset A $ such that $ I\NNN\br{A}^n \ne 0 $. This set is non-empty. It contains $ \NNN\br{A} $, since $ \NNN\br{A}^{n + 1} = \NNN\br{A}^n = 0 $. Then $ A $ is Artinian, so this set has a minimal element. Call it $ I $. So we have $ I\NNN\br{A}^n \ne 0 $ hence $ x\NNN\br{A}^n \ne 0 $ for some $ x \in I $. We have $ \abr{x}\NNN\br{A}^n \ne 0 $ where $ \abr{x} \subset I $. Then $ \abr{x} $ belongs to our set, so by minimality of $ I $ we must have $ I = \abr{x} $. We have $ 0 \ne x\NNN\br{A}^n = x\NNN\br{A}^n\NNN\br{A}^n $, since $ \NNN\br{A}^n = \NNN\br{A}^m $, for any $ m \ge n $. So $ x\NNN\br{A}^n $ is an ideal in our set. Then $ x \in I $ so $ x\NNN\br{A}^n \subset I $. By minimality of $ I $ we must have $ x\NNN\br{A}^n = I $. Therefore $ \abr{x}\NNN\br{A}^n = I = \abr{x} $, so $ x $ can be written as $ xy $ for some $ y \in \NNN\br{A}^n \subset \NNN\br{A} $. Thus $ y^r = 0 $ for some $ r \ge 1 $. Then $ x = \dots = xy^r = 0 $. This says that $ I = \abr{x} = 0 $. This is a contradiction because $ I\NNN\br{A}^n \ne 0 $.
-\item Now assume $ A $ is Noetherian. Then every ideal is finitely generated, in particular $ \NNN\br{A} = \abr{x_1, \dots, x_n} $. Since each $ x_i $ is nilpotent there exists $ m \ge 1 $ such that $ x_i^m = 0 $ for all $ i $. Then any product of $ mn $ elements of $ \NNN\br{A} $ is
-$$ \sum_{a_1 + \dots + a_n = mn} cx_1^{a_1} \dots x_n^{a_n}. $$
-So there exists $ i $, for $ 1 \le i \le n $, such that $ a_i \ge m $. Hence $ x_1^{a_1} \dots x_n^{a_n} = 0 $, so $ \NNN\br{A}^{mn} = 0 $.
+\item Assume $ A $ is Artinian. Consider $ \NNN\br{A} \supset \NNN\br{A}^2 \supset \dots $. There exists $ n \ge 1 $ such that $ \NNN\br{A}^n = \NNN\br{A}^{n + 1} $. Claim that $ \NNN\br{A}^n = 0 $. Assume $ \NNN\br{A}^n \ne 0 $. Consider all ideals
+$$ \cbr{I \subset A \st I \cdot \NNN\br{A}^n \ne 0}. $$
+This set is non-empty. It contains $ \NNN\br{A} $, since $ \NNN\br{A}^{n + 1} = \NNN\br{A}^n \ne 0 $. Then $ A $ is Artinian, so this set has a minimal element. Call it $ I $. So we have $ I \cdot \NNN\br{A}^n \ne 0 $ hence $ x\NNN\br{A}^n \ne 0 $ for some $ x \in I $. We have $ \abr{x}\NNN\br{A}^n \ne 0 $ where $ \abr{x} \subset I $. Then $ \abr{x} $ belongs to our set, so by minimality of $ I $ we must have $ I = \abr{x} $. We have $ 0 \ne x\NNN\br{A}^n = x\NNN\br{A}^n\NNN\br{A}^n $, since $ \NNN\br{A}^n = \NNN\br{A}^m $, for any $ m \ge n $. So $ x\NNN\br{A}^n $ is an ideal in our set. Then $ x \in I $ so $ x\NNN\br{A}^n \subset I $. By minimality of $ I $ we must have $ x\NNN\br{A}^n = I $. Therefore $ \abr{x}\NNN\br{A}^n = I = \abr{x} $, so $ x $ can be written as $ xy $ for some $ y \in \NNN\br{A}^n \subset \NNN\br{A} $. Thus $ y^r = 0 $ for some $ r \ge 1 $. Then $ x = \dots = xy^r = 0 $. This says that $ I = \abr{x} = 0 $. This is a contradiction because $ I \cdot \NNN\br{A}^n \ne 0 $. Therefore, $ \NNN\br{A}^n = 0 $.
+\item Now assume $ A $ is Noetherian. Then every ideal is finitely generated, in particular $ \NNN\br{A} = \abr{x_1, \dots, x_n} $. Since each $ x_i $ is nilpotent there exists $ m \ge 1 $ such that $ x_i^m = 0 $ for all $ i $. Then any product of $ mn $ elements of $ \NNN\br{A} $ is $ \sum_{a_1 + \dots + a_n = mn} cx_1^{a_1} \dots x_n^{a_n} $. So there exists $ i $, for $ 1 \le i \le n $, such that $ a_i \ge m $. Hence $ x_1^{a_1} \dots x_n^{a_n} = 0 $, so $ \NNN\br{A}^{mn} = 0 $.
 \end{itemize}
 \end{proof}
-
-\pagebreak
 
 \lecture{22}{Thursday}{21/11/19}
 
@@ -1326,6 +1328,8 @@ Every ideal in a Noetherian or Artinian ring contains some power of its radical.
 \begin{proof}
 If $ A $ is Noetherian, then $ A / I $ is also Noetherian. We have $ \rad I / I = \NNN\br{A / I} $. By Lemma \ref{lem:13.10} there exists $ m \ge 1 $ such that $ \NNN\br{A / I}^m = 0 $. Then $ \rad I^m \subset I $. The same proof works in the Artinian case.
 \end{proof}
+
+\pagebreak
 
 \begin{lemma}
 \label{lem:13.12}
@@ -1349,7 +1353,9 @@ Let $ A $ be a ring. Let $ I_1, \dots, I_n $ be maximal ideals of $ A $, possibl
 \begin{proof}
 \hfill
 \begin{itemize}
-\item[$ \implies $] Define $ M_r = I_1 \dots I_r $ for $ r = 1, \dots, n $, so $ A \supset M_1 = I_1 \supset \dots \supset M_n = \prod_{r = 1}^n I_r = 0 $. Then $ A $ is a Noetherian $ A $-module, so every subquotient module is also Noetherian. In particular, $ M_i / M_{i + 1} $ is a Noetherian $ A $-module. Since $ I_{r + 1}M_r = M_{r + 1} $, $ I_{r + 1} $ acts trivially on $ M_r / M_{r + 1} $. Therefore, $ M_r / M_{r + 1} $ is naturally an $ A / I_{r + 1} $-module. But $ A / I_{r + 1} $ is a field. Call it $ k $. The $ A $-submodules of $ M_r / M_{r + 1} $ are the same as the $ k $-submodules of $ M_r / M_{r + 1} $. By Lemma \ref{lem:13.12} $ M_r / M_{r + 1} $ is an Artinian $ k $-module hence $ M_r / M_{r + 1} $ is an Artinian $ A $-module. Now Proposition \ref{prop:11.4} implies that $ A $ is Artinian.
+\item[$ \implies $] Define $ M_r = I_1 \dots I_r $ for $ r = 1, \dots, n $, so
+$$ A \supset M_1 = I_1 \supset \dots \supset M_n = \prod_{r = 1}^n I_r = 0. $$
+Since $ A $ is a Noetherian $ A $-module, every subquotient module is also Noetherian. In particular, $ M_i / M_{i + 1} $ is a Noetherian $ A $-module. Since $ I_{r + 1}M_r = M_{r + 1} $, $ I_{r + 1} $ acts trivially on $ M_r / M_{r + 1} $. Therefore, $ M_r / M_{r + 1} $ is naturally an $ A / I_{r + 1} $-module. But $ A / I_{r + 1} $ is a field. Call it $ k $. The $ A $-submodules of $ M_r / M_{r + 1} $ are the same as the $ k $-submodules of $ M_r / M_{r + 1} $. By Lemma \ref{lem:13.12} $ M_r / M_{r + 1} $ is an Artinian $ k $-module hence $ M_r / M_{r + 1} $ is an Artinian $ A $-module. Now Proposition \ref{prop:11.4} implies that $ A $ is Artinian.
 \item[$ \impliedby $] Similar.
 \end{itemize}
 \end{proof}
@@ -1363,7 +1369,7 @@ The \textbf{Krull dimension} of a ring $ A $ is the supremum of all $ n \ge 0 $ 
 \begin{itemize}
 \item Any field has dimension zero.
 \item If $ A $ is Artinian, then every prime ideal is maximal, hence $ \dim A = 0 $.
-\item Since $ 0 \subsetneq \abr{p} $ for $ p $ a prime number, $ \dim \ZZ = 1 $.
+\item $ \dim \ZZ = 1 $, since $ 0 \subsetneq \abr{p} $ for $ p $ a prime number.
 \item If $ k $ is a field, then $ \dim k\sbr{t} = 1 $.
 \item If $ k $ is a field, then $ \dim k\sbr{\sbr{t}} = 1 $.
 \item If $ k $ is a field, then $ \dim k\sbr{t_1, \dots, t_n} = n $.
@@ -1379,7 +1385,7 @@ A ring is Artinian if and only if it is Noetherian and has dimension zero.
 \hfill
 \begin{itemize}
 \item[$ \implies $] Suppose $ A $ is Artinian. Corollary \ref{cor:13.7} says that every prime ideal is maximal, hence $ \dim A = 0 $. Lemma \ref{lem:13.9} says that $ A $ has only finitely many maximal ideals, say $ I_1, \dots, I_n $. Then $ I_1 \dots I_n \subset I_1 \cap \dots \cap I_n = \NNN\br{A} $. Lemma \ref{lem:13.10} says $ \NNN\br{A}^m = 0 $ for some $ m \ge 1 $. Hence $ I_1^m \dots I_n^m = 0 $. Lemma \ref{lem:13.13} now implies that $ A $ is Noetherian.
-\item[$ \impliedby $] Now assume that $ A $ is Noetherian and $ \dim A = 0 $. By Emmy Noether's theorem the ideal $ zero $ has a primary decomposition, that is $ 0 = J_1 \cap \dots \cap J_n $, where $ J_i $'s are primary. Recall $ \rad J_i $ is a prime ideal of $ A $. Since $ \dim A = 0 $, this ideal is maximal. The associated primes of zero are maximal ideals. By Corollary \ref{cor:13.11} each $ J_i $ contains a power of $ \rad J_i $. Therefore, the product of these powers of these maximal ideals is contained in $ \prod_{i = 1}^n J_i \subset \bigcap_{i = 1}^n J_i = 0 $. Now Lemma \ref{lem:13.13} implies that $ A $ is Artinian.
+\item[$ \impliedby $] Now assume that $ A $ is Noetherian and $ \dim A = 0 $. By Emmy Noether's theorem the ideal zero has a primary decomposition, that is $ 0 = J_1 \cap \dots \cap J_n $, where $ J_i $'s are primary. Recall $ \rad J_i $ is a prime ideal of $ A $. Since $ \dim A = 0 $, this ideal is maximal. The associated primes of zero are maximal ideals. By Corollary \ref{cor:13.11} each $ J_i $ contains a power of $ \rad J_i $. Therefore, the product of these powers of these maximal ideals is contained in $ \prod_{i = 1}^n J_i \subset \bigcap_{i = 1}^n J_i = 0 $. Now Lemma \ref{lem:13.13} implies that $ A $ is Artinian.
 \end{itemize}
 \end{proof}
 
@@ -1427,7 +1433,7 @@ Let $ R $ be an Artinian ring. Then $ R $ has only finitely many maximal ideals,
 $$ 1 = 1^{2k} = \sum_{i = 0}^{2k} \binom{2k}{i}x^iy^{2k - i}. $$
 Hence $ i \ge k $ or $ 2k - i \ge k $, so $ x^i \in J_r^k $ or $ y^{2k - i} \in J_s^k $, so $ x^iy^{2k - i} \in J_r^k $ or $ x^iy^{2k - i} \in J_s^k $. Hence $ 1 \in J_r^k + J_s^k $. Let
 $$ \phi : R \to \prod_{i = 1}^n R / J_i^k. $$
-Then $ \phi $ is surjective since $ R = J_i^k + J_s^k $ for $ r \ne s $, by Lemma \ref{lem:13.18}, and $ \phi $ is injective since $ \bigcap_{i = 1}^n J_i^k = \prod_{i = 1}^n J_i^k = 0 $. Therefore $ \phi $ is an isomorphism of rings. It remains to show that each $ R / J_i^k $ is a local Artinian ring. Then $ R $ is Artinian, so $ R / J_i^k $ is Artinian, and $ J_i \subset J_i^k \subset R / J_i^k $ is a maximal ideal of $ R / J_i^k $. The nilradical of $ R / J_i^k $ is $ J_i / J_i^k $. Indeed, every element is $ J_i / J_i^k $ is nilpotent, since $ \br{J_i / J_i^k}^k = 0 $ in $ R / J_i^k $. But the nilradical cannot be larger than $ J_i / J_i^k $ because this ideal is maximal. Thus $ \NNN\br{R / J_i^k} = J_i / J_i^k $. This is the intersection of all prime ideals of $ R / J_i^k $, so each prime ideal of $ R / J_i^k $ is equal to $ J_i / J_i^k $. So $ R / J_i^k $ is indeed a local ring.
+Then $ \phi $ is surjective since $ R = J_r^k + J_s^k $ for $ r \ne s $, by Lemma \ref{lem:13.18}, and $ \phi $ is injective since $ \bigcap_{i = 1}^n J_i^k = \prod_{i = 1}^n J_i^k = 0 $, by Lemma \ref{lem:13.18}.$ 1 $ and we have chosen $ k $ so this holds. Therefore $ \phi $ is an isomorphism of rings. It remains to show that each $ R / J_i^k $ is a local Artinian ring. Since $ R $ is Artinian, $ R / J_i^k $ is Artinian, so $ J_i / J_i^k \subset R / J_i^k $ is a maximal ideal of $ R / J_i^k $. The nilradical of $ R / J_i^k $ is $ J_i / J_i^k $. Indeed, every element is $ J_i / J_i^k $ is nilpotent, since $ \br{J_i / J_i^k}^k = 0 $ in $ R / J_i^k $. But the nilradical cannot be larger than $ J_i / J_i^k $ because this ideal is maximal. Thus $ \NNN\br{R / J_i^k} = J_i / J_i^k $. This is the intersection of all prime ideals of $ R / J_i^k $, so each prime ideal of $ R / J_i^k $ is equal to $ J_i / J_i^k $. So $ R / J_i^k $ is indeed a local ring.
 \end{proof}
 
 \begin{example*}
@@ -1458,16 +1464,14 @@ Let $ x \in R $. The following are equivalent.
 \begin{itemize}[leftmargin=0.5in]
 \item[$ 1 \implies 2 $.] $ x^{n + j} = -a_{n - 1}x^{n + j - 1} - \dots - a_0x^j $. By repeating this we express all powers of $ x $ as linear combinations of $ 1, \dots, x^{n - 1} $ with coefficients in $ A $. Hence $ A\sbr{x} $ is generated by $ 1, \dots, x^{n - 1} $.
 \item[$ 2 \implies 3 $.] Take $ B = A\sbr{x} $.
-\item[$ 3 \implies 1 $.] $ B $ is finitely generated as an $ A $-module, so suppose $ y_1, \dots, y_n $ are generators of $ B $. Then $ x, y_i \in B $ and $ B $ is a subring, hence $ xy_i \in B $ for $ i = 1, \dots, n $. Hence $ xy_i = \sum_{j = 1}^n a_{ij}y_j $ for $ a_{ij} \in A $. Let $ \AAA = \br{a_{ij}}_{1 \le i, j \le n} $. Consider $ d = \det \br{x\I_n - \AAA} \in B $, where $ \I_n $ is the identity matrix. By Theorem \ref{thm:8.5}, the determinant trick, we have $ dy_i = 0 $ for $ i = 1, \dots, n $. Hence $ dy = 0 $ for any $ y \in B $. But $ 1 \in B $, so taking $ y = 1 $ we get $ d = 0 $ in $ B $. Now let $ f\br{t} = \det \br{t\I_n - \AAA} \in A\sbr{t} $ be the characteristic polynomial of $ \AAA $. We obtain $ f\br{x} = 0 $, and $ f\br{t} $ is monic in $ A\sbr{t} $.
+\item[$ 3 \implies 1 $.] $ B $ is finitely generated as an $ A $-module, so suppose $ y_1, \dots, y_n $ are generators of $ B $. Then $ x, y_i \in B $ and $ B $ is a subring, hence $ xy_i \in B $ for $ i = 1, \dots, n $. Hence $ xy_i = \sum_{j = 1}^n a_{ij}y_j $ for $ a_{ij} \in A $. Let $ \AAA = \br{a_{ij}}_{1 \le i, j \le n} $. Consider $ d = \det \br{x\I_n - \AAA} \in B $, where $ \I_n $ is the identity matrix. By Theorem \ref{thm:8.5}, the determinant trick, we have $ dy_i = 0 $ for $ i = 1, \dots, n $. Hence $ dy = 0 $ for any $ y \in B $. But $ 1 \in B $, so taking $ y = 1 $ we get $ d = 0 $, in $ B $. Now let $ f\br{t} = \det \br{t\I_n - \AAA} \in A\sbr{t} $ be a characteristic polynomial of $ \AAA $. We obtain $ f\br{x} = 0 $, and $ f\br{t} $ is monic in $ A\sbr{t} $.
 \end{itemize}
 \end{proof}
 
 \lecture{25}{Thursday}{28/11/19}
 
 \begin{definition}
-An element $ x \in R $ is \textbf{integral} over $ A $ if
-$$ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0, \qquad a_{n - 1}, \dots, a_0 \in A. $$
-Equivalently, $ A\sbr{x} $ is a finitely generated $ A $-module. Such a polynomial is called an \textbf{integral dependence relation}. Then $ R $ is called an \textbf{integral $ A $-algebra} if every element of $ R $ is integral over $ A $.
+An element $ x \in R $ is \textbf{integral} over $ A $ if $ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0 $, for some $ a_{n - 1}, \dots, a_0 \in A $. Equivalently, $ A\sbr{x} $ is a finitely generated $ A $-module. Such a polynomial is called an \textbf{integral dependence relation}. Then $ R $ is called an \textbf{integral $ A $-algebra} if every element of $ R $ is integral over $ A $.
 \end{definition}
 
 \begin{example*}
@@ -1476,7 +1480,7 @@ Equivalently, $ A\sbr{x} $ is a finitely generated $ A $-module. Such a polynomi
 \item Suppose $ k \subset K $ is an extension of fields. Thus $ K $ is a $ k $-algebra. Then $ K $ is integral over $ k $ if and only if $ K $ is algebraic over $ k $. For example, if $ \sbr{K : k} = \dim_k K < \infty $, then $ K $ is integral over $ k $.
 \item Let $ R = k\sbr{x} $ and $ A = k\sbr{x^2} \subset R $. Then $ R $ is integral over $ A $. For example, $ x \in R $ satisfies the equation $ t^2 - x^2 = 0 $, so $ x $ is integral over $ A $. Show that any element of $ R $ is integral over $ A $. \footnote{Exercise}
 \item Let $ R = \ZZ\sbr{\tfrac{1 + \sqrt{-3}}{2}} $. Then $ \zeta_3 = \tfrac{1 + \sqrt{-3}}{2} $ satisfies $ t^2 + t + 1 = 0 $, so $ R $ is in integral over $ \ZZ $. Theorem \ref{thm:14.1}.$ 3 $ says that $ r \in R $ is integral as long as $ R $ contains a subring $ B $ such that $ A \subset B $, $ r \in B $, and $ B $ is a finitely generated $ A $-module.
-\item $ \ZZ\sbr{\tfrac{1}{2}} = \cbr{n / 2^m \st n \in \ZZ, \ m \ge 0} $ is not an integral $ \ZZ $-algebra, since $ \tfrac{1}{2} $ is not integral over $ \Z $.
+\item $ \ZZ\sbr{\tfrac{1}{2}} = \cbr{n / 2^m \st n \in \ZZ, \ m \ge 0} $ is not an integral $ \ZZ $-algebra, since $ \tfrac{1}{2} $ is not integral over $ \ZZ $.
 \end{itemize}
 \end{example*}
 
@@ -1485,7 +1489,7 @@ Equivalently, $ A\sbr{x} $ is a finitely generated $ A $-module. Such a polynomi
 \hfill
 \begin{enumerate}
 \item If $ A \subset B \subset C $ are rings and $ C $ is a finitely generated $ B $-module, and $ B $ is a finitely generated $ A $-module, then $ C $ is a finitely generated $ A $-module.
-\item If $ A \subset B $ rings and $ x_1, \dots, x_n \in B $ are integral over $ A $, then $ A\sbr{x_1, \dots, x_n} $ is a finitely generated $ A $-module. Hence $ A\sbr{x_1, \dots, x_n} $ is an integral $ A $-algebra.
+\item If $ A \subset B $ are rings and $ x_1, \dots, x_n \in B $ are integral over $ A $, then $ A\sbr{x_1, \dots, x_n} $ is a finitely generated $ A $-module. Hence $ A\sbr{x_1, \dots, x_n} $ is an integral $ A $-algebra.
 \item If $ A \subset B \subset C $ are rings such that $ C $ is integral over $ B $ and $ B $ is integral over $ A $, then $ C $ is integral over $ A $.
 \item If $ A \subset B $ are rings, then the set of all elements in $ B $ that are integral over $ A $ is a subring of $ B $. Denote it by $ \widetilde{A} $ and call it the \textbf{integral closure} of $ A $ in $ B $. Then $ \widetilde{\widetilde{A}} = \widetilde{A} $, that is the integral closure of $ \widetilde{A} $ is equal to $ \widetilde{A} $.
 \end{enumerate}
@@ -1499,22 +1503,22 @@ Equivalently, $ A\sbr{x} $ is a finitely generated $ A $-module. Such a polynomi
 \item If $ c_1, \dots, c_n $ generate $ C $ as a $ B $-module and $ b_1, \dots, b_m $ generate $ B $ as an $ A $-module, then $ c_ib_j $ generate $ C $ as an $ A $-module.
 \item $ A\sbr{x_1} $ is a finitely generated $ A $-module. Next, $ x_2 $ is integral over $ A $, hence also over $ A\sbr{x_1} $. Thus $ A\sbr{x_1, x_2} $ is a finitely generated $ A\sbr{x_1} $-module. Using $ 1 $ we see that $ A\sbr{x_1, x_2} $ is also a finitely generated $ A $-module. Repeat and show that $ A\sbr{x_1, \dots, x_n} $ is a finitely generated $ A $-module. By Theorem \ref{thm:14.1}.$ 3 $ every element of $ A\sbr{x_1, \dots, x_n} $ is integral over $ A $, so $ A\sbr{x_1, \dots, x_n} $ is an integral $ A $-algebra.
 \item Pick up any $ x \in C $. Then $ x^n + b_{n - 1}x^{n - 1} + \dots + b_0 = 0 $ for $ b_i \in B $. Since $ b_0, \dots, b_{n - 1} $ are integral over $ A $, by $ 2 $ we get that $ A\sbr{b_0, \dots, b_{n - 1}} $ is a finitely generated $ A $-module. Then $ A\sbr{b_0, \dots, b_{n - 1}, x} $ is also finitely generated as a module over $ A\sbr{b_0, \dots, b_{n - 1}} $. By $ 1 $, $ A\sbr{b_0, \dots, b_{n - 1}, x} $ is a finitely generated as an $ A $-module. Now Theorem \ref{thm:14.1}.$ 3 $ says that $ x $ is integral over $ A $.
-\item Let $ x, y \in B $ be integral over $ A $. Want to prove that $ -x, x + y, xy $ are integral over $ A $. Look at $ A\sbr{x, y} $. By $ 2 $ this is an integral $ A $-algebra. Hence everything contained in $ A\sbr{x, y} $, such as $ xy $ and $ x + y $, are integral over $ A $. Hence $ \widetilde{A} $ is a ring. Consider $ A \subset \widetilde{A} \subset \widetilde{\widetilde{A}} $, which are integral. Now $ 3 $ says that $ \widetilde{\widetilde{A}} $ is integral over $ A $. Thus $ \widetilde{\widetilde{A}} = \widetilde{A} $.
+\item Let $ x, y \in B $ be integral over $ A $. Want to prove that $ -x, x + y, xy $ are integral over $ A $. Look at $ A\sbr{x, y} $. By $ 2 $ this is an integral $ A $-algebra. Hence everything contained in $ A\sbr{x, y} $, such as $ xy $ and $ x + y $, are integral over $ A $. Hence $ \widetilde{A} $ is a ring. Consider $ A \subset \widetilde{A} \subset \widetilde{\widetilde{A}} $, which are both integral. Now $ 3 $ says that $ \widetilde{\widetilde{A}} $ is integral over $ A $. Thus $ \widetilde{\widetilde{A}} = \widetilde{A} $.
 \end{enumerate}
 \end{proof}
 
 \begin{example*}
-If $ x = \sqrt{a} $, $ y = \sqrt{b} $, and $ z = \sqrt{c} $ for $ a, b \in \QQ $, then $ \sqrt{a} + \sqrt{b} + \sqrt{c} $ is algebraic over $ \QQ $. This follows immediately from Lemma \ref{lem:14.3}.$ 4 $.
+If $ x = \sqrt{a} $, $ y = \sqrt{b} $, and $ z = \sqrt{c} $ for $ a, b, c \in \QQ $, then $ \sqrt{a} + \sqrt{b} + \sqrt{c} $ is algebraic over $ \QQ $. This follows immediately from Lemma \ref{lem:14.3}.$ 4 $.
 \end{example*}
 
 \begin{definition}
-The set of elements of $ B $ which are integral over $ A $ is called the \textbf{integral closure} of $ A $ in $ B $. Then $ A $ is \textbf{integrally closed} in $ B $ if $ A $ equals its integral closure in $ B $. Now let $ R $ be an integral domain. Let $ F $ be the fraction field of $ R $, so $ R \subset F $. Then $ R $ is called \textbf{normal} if $ R $ equals its integral closure in $ F $. The integral closure of $ R $ in $ F $ is called its \textbf{normalisation}.
+The set of elements of $ B $ which are integral over $ A $ is called the \textbf{integral closure} of $ A $ in $ B $. Then $ A $ is called \textbf{integrally closed} in $ B $ if $ A $ equals its integral closure in $ B $. Now let $ R $ be an integral domain. Let $ F $ be the fraction field of $ R $, so $ R \subset F $. Then $ R $ is called \textbf{normal} if $ R $ equals its integral closure in $ F $. The integral closure of $ R $ in $ F $ is called the \textbf{normalisation}.
 \end{definition}
 
 \lecture{26}{Tuesday}{03/12/19}
 
 \begin{example*}
-Integral closure in number theory. The integral closure of $ \QQ $ in $ \CC $ is $ \overline{\QQ} $, the algebraic numbers in $ \CC $, which is algebraically closed. Let $ \QQ \subset F $ be a finite extension of the field. Then $ F $ is called a \textbf{number field}. Let $ \OOO_F $ be the integral closure of $ \ZZ $ in $ F $.
+Integral closure in number theory. The integral closure of $ \QQ $ in $ \CC $ is $ \overline{\QQ} $, the algebraic numbers in $ \CC $, which is algebraically closed. Let $ \QQ \subset F $ be a finite extension of fields. Then $ F $ is called a \textbf{number field}. Let $ \OOO_F $ be the integral closure of $ \ZZ $ in $ F $.
 \begin{itemize}
 \item Let $ F = \QQ\br{\zeta} $, where $ \zeta $ is a primitive $ d $-th root of unity. Then $ \OOO_F = \ZZ\sbr{\zeta} $.
 \item Let $ F = \QQ\br{\sqrt{a}} $ for $ 0, 1 \ne a \in \ZZ $ square-free. Then
@@ -1541,12 +1545,16 @@ An integral domain $ A $ is normal if and only if $ A_\ppp = \br{A \setminus \pp
 \end{proposition}
 
 \begin{proof}
-Let $ S \subset A $ be any multiplicative set. Claim that $ S^{-1}A $ is normal. Since $ A $ is an integral domain, $ A \subset S^{-1}A \subset K $, the field of fractions of $ A $. Pick any $ x \in K $ which is integral over $ S^{-1}A $, that is $ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0 $, where $ a_i \in S^{-1}A $, that is $ a_i = b_i / s_i $, where $ b_i \in A $ and $ s_i \in S $. Define $ y = \br{s_0 \dots s_{n - 1}}x $. Then $ y $ is integral over $ A $, so $ y \in A $. It remains to prove that if $ A_\mmm $ is normal for every $ \mmm $, then $ A $ is normal. Take any $ x \in K $ which is integral over $ A $. Since $ A \subset A_\mmm \subset K $, $ x $ is integral over $ A_\mmm $, hence $ x \in A_\mmm $. Thus $ x \in \bigcap_\mmm A_\mmm = A $, by Corollary \ref{cor:10.6}.
+Let $ S \subset A $ be any multiplicative set. Claim that $ S^{-1}A $ is normal. Since $ A $ is an integral domain, $ A \subset S^{-1}A \subset K $, the field of fractions of $ A $. Pick any $ x \in K $ which is integral over $ S^{-1}A $, that is $ x^n + a_{n - 1}x^{n - 1} + \dots + a_0 = 0 $, where $ a_i \in S^{-1}A $, that is $ a_i = b_i / s_i $, where $ b_i \in A $ and $ s_i \in S $. Define $ y = \br{s_0 \dots s_{n - 1}}x $. Then $ y $ is integral over $ A $, so $ y \in A $. Hence $ x \in S^{-1}A $. It remains to prove that if $ A_\mmm $ is normal for every $ \mmm $, then $ A $ is normal. Take any $ x \in K $ which is integral over $ A $. Since $ A \subset A_\mmm \subset K $, $ x $ is integral over $ A_\mmm $, hence $ x \in A_\mmm $. Thus $ x \in \bigcap_\mmm A_\mmm = A $, by Corollary \ref{cor:10.6}.
 \end{proof}
 
 \pagebreak
 
 \section{Discrete valuation rings}
+
+\begin{example*}
+$ k\sbr{\sbr{x}} $ and $ \ZZ_{\abr{p}} $.
+\end{example*}
 
 \begin{theorem}
 \label{thm:15.1}
@@ -1564,16 +1572,16 @@ Let $ R $ be an integral domain. The following are equivalent.
 
 \lecture{27}{Wednesday}{04/12/19}
 
-\item[$ \impliedby $] Let $ t \in R $ be a generator of the unique maximal ideal. Then $ R \setminus \abr{t} = R^* $. Claim that for every non-zero $ a \in R $, there exists a largest $ n \ge 0 $ such that $ a \in \abr{t^n} $. If $ a \notin \abr{t} $, then $ a \in R^* $, so $ n = 0 $. If $ a \in \abr{t} $, then $ a = a_1t $ for some $ a_1 \in R $. Two possibilities can occur. If $ a_1 \in R^* $, then $ a \notin \abr{t^2} $. If $ a_1 \notin R^* $, then $ \abr{a_1} $ is a proper ideal of $ R $. We have $ \abr{a} \subsetneq \abr{a_1} \subsetneq R $. The inclusion $ \abr{a} \subsetneq \abr{a_1} $ is strict, because if $ \abr{a} = \abr{a_1} $, then for some $ u \in R^* $ we must have $ uta_1 = a_1 $, so $ t \in R^* $, a contradiction. We continue, since $ a_1 $ is not a unit, $ a_1 \in \abr{t} $ and we write $ a_1 = a_2t $ and we analyse $ a_2 $ as we analysed $ a_1 $. Either, after finitely many steps, we get $ a_n \in R^* $, so that $ a = a_nt^n $ and we are done, or we build an ascending chain of ideals $ \abr{a} \subsetneq \abr{a_1} \subsetneq \abr{a_2} \subsetneq \dots $ that is not stationary. The second possibility cannot occur in a Noetherian ring.
+\item[$ \impliedby $] Let $ t \in R $ be a generator of the unique maximal ideal. Then $ R \setminus \abr{t} = R^* $. Claim that for every non-zero $ a \in R $, there exists a largest $ n \ge 0 $ such that $ a \in \abr{t^n} $. If $ a \notin \abr{t} $, then $ a \in R^* $, so $ n = 0 $. If $ a \in \abr{t} $, then $ a = a_1t $ for some $ a_1 \in R $. Two possibilities can occur. If $ a_1 \in R^* $, then $ a \notin \abr{t^2} $. If $ a_1 \notin R^* $, then $ \abr{a_1} $ is a proper ideal of $ R $. We have $ \abr{a} = \abr{a_1t} \subsetneq \abr{a_1} \subsetneq R $. The inclusion $ \abr{a} \subsetneq \abr{a_1} $ is strict, because if $ \abr{a} = \abr{a_1} $, then for some $ u \in R^* $ we must have $ uta_1 = a_1 $, so $ t \in R^* $, a contradiction. We continue, since $ a_1 $ is not a unit, $ a_1 \in \abr{t} $ and we write $ a_1 = a_2t $ and we analyse $ a_2 $ as we analysed $ a_1 $. Either, after finitely many steps, we get $ a_n \in R^* $, so that $ a = a_nt^n $ and we are done, or we build an ascending chain of ideals $ \abr{a} \subsetneq \abr{a_1} \subsetneq \abr{a_2} \subsetneq \dots $ that is not stationary. The second possibility cannot occur in a Noetherian ring.
 \end{itemize}
 \end{proof}
 
 \begin{remark*}
 $ R = \cbr{0} \cup \cbr{at^n \st a \in R^*, \ n \ge 0} $. Define
 $$ \function[v]{R \setminus \cbr{0}}{\ZZ_{\ge 0}}{at^n}{n}. $$
-Then $ v\br{at^n \cdot bt^m} = v\br{at^n} + v\br{bt^m} $, and $ v $ obviously extends to a surjective homomorphism $ K^* \to \ZZ $, where $ K $ is the field of fractions of $ R $. Note that
+Then $ v\br{at^n \cdot bt^m} = n + m = v\br{at^n} + v\br{bt^m} $, and $ v $ obviously extends to a surjective homomorphism $ K^* \to \ZZ $, where $ K $ is the field of fractions of $ R $. Note that
 $$ v\br{at^n + bt^m} \ge \min\cbr{v\br{at^n}, v\br{bt^m}}, \qquad a, b \in R^*, $$
-since say $ n \ge m $, then $ at^n + bt^m = t^n\br{a + bt^{m - n}} $.
+since say $ n \le m $, then $ at^n + bt^m = t^n\br{a + bt^{m - n}} $, and $ a + bt^{m - n} \in R $.
 \end{remark*}
 
 Recall that a \textbf{total order} on a set is a binary relation, written as $ x < y $, such that for any $ a $ and $ b $ exactly one of
@@ -1599,7 +1607,7 @@ $$ R = \cbr{x \in K \st v\br{x} \ge 0} $$
 is a ring. It is called the \textbf{valuation ring} of $ v $. Prove that
 $$ R^* = \cbr{x \in K \st v\br{x} = 0}. $$
 Hence
-$$ R \setminus R^* = \cbr{x \in K \st v\br{x} \ge 0} $$
+$$ R \setminus R^* = \cbr{x \in K \st v\br{x} > 0} $$
 is a unique maximal ideal of $ R $, so $ R $ is a local ring.
 \end{exercise*}
 
@@ -1612,9 +1620,9 @@ Suppose $ R $ is a subring of a field $ K $. When is $ R $ a valuation ring? Thi
 \begin{example*}
 \hfill
 \begin{itemize}
-\item $ \ZZ_{\abr{p}} $ is a valuation ring with $ G = \ZZ $.
+\item $ \ZZ_{\abr{p}} = \cbr{a / b \st p \nmid b, \ b \ne 0, \ a, b \in \ZZ} $ is a valuation ring with $ G = \ZZ $.
 \item Likewise, $ k\sbr{\sbr{x}} $ is a valuation ring with $ G = \ZZ $.
-\item The field of fractions of $ k\sbr{\sbr{x}} $ is the \textbf{field of Laurent formal power series}
+\item The field of fractions of $ k\sbr{\sbr{x}} = \cbr{\sum_{i \ge 0} a_ix^i \st a_i \in k} $ is the \textbf{field of Laurent formal power series}
 $$ k\br{\br{x}} = \cbr{\sum_{i \ge m} a_ix^i \st a_i \in k, \ m \in \ZZ}. $$
 Consider the \textbf{field of Puiseux series}
 $$ K = \bigcup_{n \ge 1} k\br{\br{x^{\tfrac{1}{n}}}} = \cbr{\sum_{i \ge m} a_it^{\tfrac{i}{N}} \st a_i \in k, \ m \in \ZZ, \ N \ \text{fixed}}. $$
@@ -1638,12 +1646,12 @@ Let $ K $ be a field. Let $ v : K^* \to G $ be a valuation, where $ G $ is an or
 \begin{proof}
 Let $ R $ be the valuation ring attached to $ \br{K, v} $, that is $ R = \cbr{x \in K \st v\br{x} \ge 0} $.
 \begin{itemize}
-\item[$ \implies $] Assume $ R $ is Noetherian. Let us show that every ideal is principal. Since $ R $ is Noetherian, every ideal $ I = \abr{a_1, \dots, a_n} $ for $ a_i \in R $. It is enough to prove that for all $ 0 \ne x, y \in R $, $ \abr{x, y} = \abr{x} $ or $ \abr{x, y} = \abr{y} $. Then $ G $ is totally ordered, so one of
+\item[$ \implies $] Assume $ R $ is Noetherian. Let us show that every ideal is principal. Since $ R $ is Noetherian, every ideal $ I = \abr{a_1, \dots, a_n} $ for $ a_i \in R $. It is enough to prove that for all $ 0 \ne x, y \in R $, $ \abr{x, y} = \abr{x} $ or $ \abr{x, y} = \abr{y} $. Since $ G $ is totally ordered, one of
 $$ v\br{x} < v\br{y}, \qquad v\br{x} = v\br{y}, \qquad v\br{x} > v\br{y} $$
 holds. Thus $ v\br{x} \ge v\br{y} $ or $ v\br{y} \ge v\br{x} $. Without loss of generality assume $ v\br{y} \ge v\br{x} $. Then $ v\br{y / x} = v\br{y} - v\br{x} \ge 0 $, hence $ y / x \in R $. Hence $ y \in \abr{x} $. In particular, as $ R $ is a local ring, the maximal ideal is $ \abr{t} $, for some $ t \in R $. Theorem \ref{thm:15.1} implies that $ R $ is a UFD and $ t $ is a unique irreducible element of $ R $. Then
 $$ R = \cbr{0} \cup \cbr{rt^n \st n \ge 0, \ r \in R^*}, \qquad K = \cbr{0} \cup \cbr{rt^n \st n \in \ZZ, \ r \in R^*}, $$
 so $ R $ is a valuation ring attached to the valuation that sends $ rt^n $ to $ n $.
-\item[$ \impliedby $] Assume that $ v : K^* \to \ZZ $. Choose $ t \in R $ with $ v\br{t} = 1 $. For all $ x \in K^* $, if $ v\br{x} \ge 1 $ then $ x / t \in R $, so $ x \in \abr{t} $. Then $ R^* = \cbr{x \in K \st v\br{x} = 0} = R \setminus \abr{t} $. Thus $ \abr{t} $ is a maximal ideal. Claim that all proper ideals of $ R $ are $ \abr{t^n} $ for $ n \ge 1 $. Indeed, let $ I \subset R $ be a non-zero proper ideal. Choose $ x \in I $ with the least possible $ v\br{x} $. Say, $ v\br{x} = n $. Then $ v\br{t^n} = n $. Then $ v\br{x / t^n} = 0 $, so $ x / t^n \in R^* $, hence $ t^n \in I $. For any $ 0 \ne y \in I $, $ v\br{y / t^n} = v\br{y} - n \ge 0 $, hence $ y \in \abr{t^n} $, so $ I = \abr{t^n} $. Therefore, any ascending chain of ideals $ \abr{t^n} $ must be stationary, since $ \abr{t^m} \subsetneq \abr{t^n} $ implies that $ m < n $. Hence $ R $ is Noetherian.
+\item[$ \impliedby $] Conversely, assume that $ v : K^* \to \ZZ $. Choose $ t \in R $ with $ v\br{t} = 1 $. For all $ x \in K^* $, if $ v\br{x} \ge 1 $ then $ x / t \in R $, so $ x \in \abr{t} $. Then $ R^* = \cbr{x \in K \st v\br{x} = 0} = R \setminus \abr{t} $. Thus $ \abr{t} $ is a maximal ideal. Claim that all proper non-zero ideals of $ R $ are $ \abr{t^n} $ for $ n \ge 1 $. Indeed, let $ I \subset R $ be a non-zero proper ideal. Choose $ x \in I $ with the least possible $ v\br{x} $. Say, $ v\br{x} = n $. Then $ v\br{t^n} = n $. Then $ v\br{x / t^n} = 0 $, so $ x / t^n \in R^* $, hence $ t^n \in I $. For any $ 0 \ne y \in I $, $ v\br{y / t^n} = v\br{y} - n \ge 0 $, hence $ y \in \abr{t^n} $, so $ I = \abr{t^n} $. Therefore, any ascending chain of ideals $ \abr{t^n} $ must be stationary, since $ \abr{t^n} \subsetneq \abr{t^m} $ implies that $ m < n $. Hence $ R $ is Noetherian.
 \end{itemize}
 \end{proof}
 
@@ -1663,15 +1671,15 @@ Let $ R $ be an integral domain. The following are equivalent.
 \begin{proof}
 \hfill
 \begin{itemize}[leftmargin=0.5in]
-\item[$ 1 \implies 3 $.] Theorem \ref{thm:15.4}.
+\item[$ 1 \implies 3 $.] The second part of the proof of Theorem \ref{thm:15.4}.
 \item[$ 3 \implies 2 $.] Theorem \ref{thm:15.1}.
-\item[$ 2 \implies 1 $.] Easy.
-\item[$ 1 \implies 4 $.] Any UFD is Noetherian and normal. All non-zero ideals in a DVR are $ \abr{t^n} $. Hence zero and $ \abr{t} $ are the only prime ideals. Then $ 0 \subsetneq \abr{t} $, so the Krull dimension is one.
+\item[$ 2 \implies 1 $.] Easy, since $ v\br{rt^n} = n $.
+\item[$ 1 \implies 4 $.] Any UFD is Noetherian and normal. All non-zero ideals in a DVR are $ \abr{t^n} $. Hence zero and $ \abr{t} $ are the only prime ideals. Since $ 0 \subsetneq \abr{t} $, the Krull dimension is one.
 \item[$ 4 \implies 3 $.] We must prove that the maximal ideal is principal.
-\begin{enumerate}[label=Step \arabic*.]
+\begin{enumerate}[leftmargin=0.5in, label=Step \arabic*.]
 \item Let $ I \subset R $ be the maximal ideal. Recall that Nakayama's lemma for a Noetherian ring $ R $ implies that if $ I^2 = I $, then $ I = 0 $, by Theorem \ref{thm:9.9}. If $ I = 0 $, then $ R $ is a field. But the Krull dimension of a field is zero, so $ R $ is not a field. Thus $ I \ne 0 $. Hence $ I^2 \subsetneq I $. Choose $ t \in I $ such that $ t \notin I^2 $. We will prove that $ I = \abr{t} $.
 \item Suppose that $ I \ne \abr{t} $, so $ I $ contains an element $ y $ which is not in $ \abr{t} $. Consider $ \br{\abr{t} : \abr{y}} = \cbr{r \in R \st ry \in \abr{t}} $. If $ y \notin \abr{t} $, then $ \br{\abr{t} : \abr{y}} \ne R $. Note that $ t \in \br{\abr{t} : \abr{y}} $, so $ \br{\abr{t} : \abr{y}} \ne 0 $. Since $ R $ is Noetherian, this set of ideals contains a maximal element, say $ \br{\abr{t} : \abr{y}} $ for some $ y $.
-\item Claim that $ \br{\abr{t} : \abr{y}} $ is a non-zero prime ideal. Since the Krull dimension of $ R $ is one, it must be the maximal ideal $ I $. Take any $ a, b \in R $ such that $ ab \in \br{\abr{t} : \abr{y}} $, that is $ aby \in \abr{t} $. Assume that $ b \notin \br{\abr{t} : \abr{y}} $, that is $ by \notin \abr{t} $. We have $ \br{\abr{t} : \abr{y}} \subset \br{\abr{t} : \abr{by}} $, but our ideal $ \br{\abr{t} : \abr{y}} $ is maximal in our set, hence $ \br{\abr{t} : \abr{y}} = \br{\abr{t} : \abr{by}} $. Then $ aby \in \abr{t} $, so $ ay \in \abr{t} $. This shows that $ a \in \br{\abr{t} : \abr{y}} $. So $ \br{\abr{t} : \abr{y}} $ is a prime ideal. The claim is proved. Thus we have $ yI \subset \abr{t} $.
+\item Claim that $ \br{\abr{t} : \abr{y}} $ is a non-zero prime ideal. Since the Krull dimension of $ R $ is one, it must be the maximal ideal $ I $. Take any $ a, b \in R $ such that $ ab \in \br{\abr{t} : \abr{y}} $, that is $ aby \in \abr{t} $. Assume that $ b \notin \br{\abr{t} : \abr{y}} $, that is $ by \notin \abr{t} $. We have $ \br{\abr{t} : \abr{y}} \subset \br{\abr{t} : \abr{by}} $, but our ideal $ \br{\abr{t} : \abr{y}} $ is maximal in our set, hence $ \br{\abr{t} : \abr{y}} = \br{\abr{t} : \abr{by}} $. Since $ aby \in \abr{t} $, $ ay \in \abr{t} $. This shows that $ a \in \br{\abr{t} : \abr{y}} $. So $ \br{\abr{t} : \abr{y}} $ is a prime ideal. The claim is proved. Thus we have $ yI \subset \abr{t} $.
 
 \lecture{29}{Tuesday}{10/12/19}
 
@@ -1702,10 +1710,10 @@ $$ A = \bigcap_{\text{minimal non-zero prime ideals} \ \ppp \subset A} A_\ppp \s
 Let $ R $ be a ring and $ I \subset R $ be an ideal.
 
 \begin{definition}
-Turn $ R $ into a topological space in the \textbf{$ I $-adic topology} by declaring $ I^m $ as open neighbourhoods of zero. In other words, $ a_n \to 0 $ if for any $ m \ge 1 $ there exists an $ N \ge 1 $ such that $ a_n \in I^m $ for all $ n \ge N $.
+Turn $ R $ into a topological space with the \textbf{$ I $-adic topology} by declaring $ I^m $ as open neighbourhoods of zero. In other words, $ a_n \to 0 $ if for any $ m \ge 1 $ there exists an $ N \ge 1 $ such that $ a_n \in I^m $ for all $ n \ge N $.
 \end{definition}
 
-For any $ x \in R $ the cosets $ x + I^m $ are a system of neighbourhoods of $ x $. Since the complement to a given coset is the union of all the other cosets, it is open, hence the original coset is both open and closed. So every $ x + I^m $ is open and closed. Then if we put the discrete topology on $ R / I^m $, then the natural map $ R \to R / I^m $ is continuous. Then it is easy to check that addition and subtraction $ R \times R \to R $ are continuous, and multiplication $ R \to R $ is also continuous. This says that $ R $ is a \textbf{topological ring}.
+For any $ x \in R $ the cosets $ x + I^m $ are a system of open neighbourhoods of $ x $. Since the complement to a given coset is the union of all the other cosets, it is open, hence the original coset is both open and closed. So every $ x + I^m $ is open and closed. Then if we put the discrete topology on $ R / I^m $, then the natural map $ R \to R / I^m $ is continuous. Then it is easy to check that addition and subtraction $ R \times R \to R $ are continuous, and multiplication $ R \to R $ is also continuous. This says that $ R $ is a \textbf{topological ring}.
 
 \begin{example}
 Let $ R = \ZZ $ and $ I = \abr{p} $. Then $ R_I = \ZZ_{\abr{p}} \supset \abr{p} $ has completion $ \ZZ_p $, the \textbf{ring of $ p $-adic integers}.
@@ -1714,12 +1722,14 @@ Let $ R = \ZZ $ and $ I = \abr{p} $. Then $ R_I = \ZZ_{\abr{p}} \supset \abr{p} 
 Let us construct the completion of $ R $ in the $ I $-adic topology, which we just defined. Look at the product ring
 $$ \prod_{m \ge 1} R / I^m = \cbr{\br{x_m} \st x_m \in R / I^m}. $$
 We have surjective maps
-$$ \function[s_n]{R / I^{n + 1}}{R / I^n}{x + I^{n + 1}}{x + I^n}, $$
+$$ \function[s_n]{R / I^{n + 1}}{R / I^n}{x + I^{n + 1}}{x + I^n}, \qquad n \ge 1, $$
 so
 $$ \dots \xrightarrow{s_{n + 1}} R / I^{n + 1} \xrightarrow{s_n} R / I^n \xrightarrow{s_{n - 1}} \dots. $$
 
 \begin{definition}
-Define $ \widehat{R} = \varprojlim_m R / I^m $, the \textbf{$ I $-adic completion} of $ R $, as the subset of $ \prod_{m \ge 1} R / I^m $ given by $ s_n\br{x_{n + 1}} = x_n $, for all $ n \ge 1 $.
+Define
+$$ \widehat{R} = \varprojlim_m R / I^m, $$
+the \textbf{$ I $-adic completion} of $ R $, as the subset of $ \prod_{m \ge 1} R / I^m $ given by $ s_n\br{x_{n + 1}} = x_n $, for all $ n \ge 1 $.
 \end{definition}
 
 $ \widehat{R} $ is closed under coordinate-wise addition and multiplication. So $ \widehat{R} $ is a ring.
@@ -1755,10 +1765,12 @@ $ R $ is \textbf{complete} in the $ I $-adic topology if this map is an isomorph
 \pagebreak
 
 \begin{theorem}[Krull intersection theorem]
-If $ R $ is Noetherian, then $ \bigcap_{m \ge 1} I^m = 0 $. Then $ R \hookrightarrow \widehat{R} $.
+If $ R $ is Noetherian, then
+$$ \bigcap_{m \ge 1} I^m = 0. $$
+Then $ R \hookrightarrow \widehat{R} $.
 \end{theorem}
 
-Another approach is to define $ a_n $ for $ i = 1, 2, \dots $ to be a Cauchy sequence if for any $ m \ge 1 $ there exists an $ N \ge 1 $ such that for any $ n \ge N $, $ a_n - a_N \in I^m $. Any Cauchy sequence has a limit in $ \widehat{R} $.
+Another approach is to define $ a_n $ for $ n = 1, 2, \dots $ to be a Cauchy sequence if for any $ m \ge 1 $ there exists an $ N \ge 1 $ such that for any $ n \ge N $, $ a_n - a_N \in I^m $. Any Cauchy sequence has a limit in $ \widehat{R} $.
 
 \begin{lemma}
 If $ R $ is $ I $-adically complete, then $ I $ is contained in the Jacobson radical of $ R $.
@@ -1790,7 +1802,7 @@ is an isomorphism.
 \begin{example}
 Let $ R = \ZZ $ and $ I = \abr{p} $, so
 $$ R_I = \ZZ_{\abr{p}} = \cbr{\dfrac{a}{b} \st \br{p, b} = 1}. $$
-Let $ \ZZ_p $ be the completion of $ \ZZ_{\abr{p}} $ with respect to the topology given by the maximal ideal $ \abr{p} $. By Tychonoff's theorem, $ \ZZ_p $ is compact. The elements of $ \ZZ_p $ can be written as
+Let $ \ZZ_p $ be the completion of $ \ZZ_{\abr{p}} $ with respect to the topology given by the maximal ideal $ p\ZZ_{\abr{p}} $. By Tychonoff's theorem, $ \ZZ_p $ is compact. The elements of $ \ZZ_p $ can be written as
 $$ a_0 + a_1p + \dots, \qquad 0 \le a_i \le p - 1. $$
 Then $ \ZZ_p = \varprojlim_i \ZZ / p^i $, and the field of fractions of $ \ZZ_p $ is $ \QQ_p $.
 \end{example}
